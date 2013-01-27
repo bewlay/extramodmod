@@ -6952,6 +6952,10 @@ public:
 	const CvWString& getWorldNews(int i) const;
 	int getNumWorldNews() const;
 
+// Start EmperorFool: Events with Images
+	DllExport const TCHAR* getEventArt() const;				// Exposed to Python
+// End EmperorFool: Events with Images
+
 	bool isSinglePlayer() const;				// Exposed to Python
 	bool isTeam() const;						// Exposed to Python
 	bool isRecurring() const;					// Exposed to Python
@@ -7040,6 +7044,10 @@ private:
 	std::vector<int> m_aiTextEra;
 	std::vector<CvWString> m_aszText;
 	std::vector<CvWString> m_aszWorldNews;
+
+// Start EmperorFool: Events with Images
+	CvString m_szEventArt;
+// End EmperorFool: Events with Images
 
 	bool m_bSinglePlayer;
 	bool m_bTeam;

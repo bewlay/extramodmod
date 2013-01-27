@@ -1,0 +1,58 @@
+Events Enhanced
+Adjusted for MNAI by lfgr
+Additions by lfgr
+Thread: http://forums.civfanatics.com/showthread.php?p=12095057#post12095057
+
+Based on: MoreEvents Modmod Expanded
+	Original Thread: http://forums.civfanatics.com/showthread.php?t=357987
+
+Search Stings for DLL:
+	EVENT_FIXES
+	EVENT_NEW_TAGS
+
+Changes:
+v1.0 2012/11/03
+	- Fixed a bug in canTriggerPacifistDemonstration (was "player" instead of "pPlayer")
+v1.1 2013/01/06
+	- Events with images optional file excluded
+	- Updated to MNAI 2.4.1
+	- Fixed and activated gela Event
+
+v1.2 2013/01/07
+	- Merged Events with images
+	- Influence driven war is included in the compiled DLL (didn't want to build it extra), but disabled by default
+
+v1.3
+	Changed Events (Gameplay):
+		Overcouncil Gift:
+			- Happens about every 40 Turns now (idea by Nor'easter)
+		Undercouncil Gift:
+			- Happens about every 60 Turns now (idea by Nor'easter)
+		Hell Refugees:
+			- Get Prior Option nerfed, now getting just Priest of the Order with 5 experience and demon slaying, removed AC requirement, added Religion/Order requirement
+			- Tech and Religion requirements for some options
+		Mad Golemicist:
+			- Reduced Chance, requires Sorcery (Flesh Golem in early game is Overpowered)
+		Pacifist Demonstration:
+			- Second option gives +1 Happy and +35 War Weariness now (instead of +1 Happy for 10 Turns and +25 War Weariness)
+		Ancient Burial:
+			- Third option no longer removes hill, gives -1 prod instead of -1 food, Text changed
+	Code:
+		Moved much code from python to XML
+		Help Text from RifE (http://forums.civfanatics.com/forumdisplay.php?f=360) and myself
+		Adjusted AI values in some Events
+		Most optional Tags in CIV4EventInfos.xml and CIV4EventTriggerInfos.xml with default value removed, reducing file size
+		Added "Help" Tag for Events, providing standard help if PythonHelp tag is empty
+		Adding "UnitPromotions" Tag for Events, allowing multiple Promotions for created or targeted units. single "UnitPromotion" Tag is still in and working.
+		Fixed some bugs
+	Other:
+		Influence Driven War removed
+
+Planned:
+	Review Events from "MoreEvents ModMod Expanded" (Fix bugs, add help)
+	Review original FfH Events
+	Add and Review Rife "MoreEvents" mod (by black_imperator, includes some new Events and Quests)
+	"bBarbarian" Tag, spawning Barbarian units instead of receiving units. For targeted Plots, they will spawn on that plot (if it is empty and passable), for targeted cities or if targeted plot is not empty or impassable, on near plot (if not empty and there is an empty and passable plot nearby)
+
+TODO: put DLL and source files into dev folder
+TODO: Status

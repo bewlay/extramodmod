@@ -731,7 +731,6 @@ void CvUnit::convert(CvUnit* pUnit)
 	// Avatars
 	if (pUnit->isAvatarOfCivLeader())
 	{
-		pUnit->setAvatarOfCivLeader(false);
 		setAvatarOfCivLeader(true);
 	}
 
@@ -2192,6 +2191,27 @@ void CvUnit::updateCombat(bool bQuick)
 			}
 
 			szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_UNIT_DIED_ATTACKING", getNameKey(), pDefender->getNameKey());
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              Start                                                 */
+/* Merged and adjusted by lfgr 10/31/12                                                                      */
+/************************************************************************************************/
+			// ------ BEGIN InfluenceDrivenWar -------------------------------
+			float fInfluenceRatio = 0.0;
+			if (GC.getDefineINT("IDW_ENABLED") > 0)
+			{
+				fInfluenceRatio = pDefender->doVictoryInfluence(this, false, false);
+				CvWString szTempBuffer;
+				szTempBuffer.Format(L" Influence: -%.1f%%", fInfluenceRatio);
+				szBuffer += szTempBuffer;
+			}
+			// ------ END InfluenceDrivenWar ---------------------------------
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              End                                                   */
+/************************************************************************************************/
 			gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitDefeatScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 			if (isHiddenNationality())
 			{
@@ -2201,6 +2221,25 @@ void CvUnit::updateCombat(bool bQuick)
 			{
 				szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_KILLED_ENEMY_UNIT", pDefender->getNameKey(), getNameKey(), getVisualCivAdjective(pDefender->getTeam()));
 			}
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              Start                                                 */
+/* Merged and adjusted by lfgr 10/31/12                                                                      */
+/************************************************************************************************/
+			// ------ BEGIN InfluenceDrivenWar -------------------------------
+			if (GC.getDefineINT("IDW_ENABLED") > 0)
+			{
+				CvWString szTempBuffer;
+				szTempBuffer.Format(L" Influence: +%.1f%%", fInfluenceRatio);
+				szBuffer += szTempBuffer;
+			}
+			// ------ END InfluenceDrivenWar ---------------------------------
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              End                                                   */
+/************************************************************************************************/
 			gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 
 //FfH: Added by Kael 07/30/2007
@@ -2237,6 +2276,27 @@ void CvUnit::updateCombat(bool bQuick)
 			}
 
 			szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_UNIT_DESTROYED_ENEMY", getNameKey(), pDefender->getNameKey());
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              Start                                                 */
+/* Merged and adjusted by lfgr 10/31/12                                                                      */
+/************************************************************************************************/
+			// ------ BEGIN InfluenceDrivenWar -------------------------------
+			float fInfluenceRatio = 0.0;			
+			if (GC.getDefineINT("IDW_ENABLED") > 0)
+			{
+				fInfluenceRatio = doVictoryInfluence(pDefender, true, false);
+				CvWString szTempBuffer;
+				szTempBuffer.Format(L" Influence: +%.1f%%", fInfluenceRatio);
+				szBuffer += szTempBuffer;
+			}
+			// ------ END InfluenceDrivenWar ---------------------------------
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              End                                                   */
+/************************************************************************************************/
 			gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 			if (getVisualOwner(pDefender->getTeam()) != getOwnerINLINE())
 			{
@@ -2250,6 +2310,25 @@ void CvUnit::updateCombat(bool bQuick)
 			{
 				szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_UNIT_WAS_DESTROYED", pDefender->getNameKey(), getNameKey(), getVisualCivAdjective(pDefender->getTeam()));
 			}
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              Start                                                 */
+/* Merged and adjusted by lfgr 10/31/12                                                                      */
+/************************************************************************************************/
+			// ------ BEGIN InfluenceDrivenWar -------------------------------
+			if (GC.getDefineINT("IDW_ENABLED") > 0)
+			{
+				CvWString szTempBuffer;
+				szTempBuffer.Format(L" Influence: -%.1f%%", fInfluenceRatio);
+				szBuffer += szTempBuffer;
+			}
+			// ------ END InfluenceDrivenWar ---------------------------------
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              End                                                   */
+/************************************************************************************************/
 			gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer,GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitDefeatScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 
 //FfH: Added by Kael 05/15/2007
@@ -2327,6 +2406,32 @@ void CvUnit::updateCombat(bool bQuick)
 				{
 					changeMoves(std::max(GC.getMOVE_DENOMINATOR(), pPlot->movementCost(this, plot())));
 					checkRemoveSelectionAfterAttack();
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              Start                                                 */
+/* Merged and adjusted by lfgr 10/31/12                                                                      */
+/************************************************************************************************/
+			// ------ BEGIN InfluenceDrivenWar -------------------------------
+			if (GC.getDefineINT("IDW_ENABLED") > 0)
+			{	
+				if (!canMove() || !isBlitz())
+				{
+					if (IsSelected())
+					{
+						if (gDLL->getInterfaceIFace()->getLengthSelectionList() > 1)
+						{
+							gDLL->getInterfaceIFace()->removeFromSelectionList(this);
+						}
+					}
+				}
+			}
+			// ------ END InfluenceDrivenWar -------------------------------
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              End                                                   */
+/************************************************************************************************/
 				}
 			}
 
@@ -4203,21 +4308,6 @@ bool CvUnit::canGift(bool bTestVisible, bool bTestTransport)
 		}
 	}
 
-	if (m_pUnitInfo->getStateReligion() != NO_RELIGION)
-	{
-		if (m_pUnitInfo->getStateReligion() != GET_PLAYER(pPlot->getOwner()).getStateReligion())
-		{
-			return false;
-		}
-	}
-
-	if (m_pUnitInfo->getPrereqAlignment() != NO_ALIGNMENT)
-	{
-		if (m_pUnitInfo->getStateReligion() != GET_PLAYER(pPlot->getOwner()).getAlignment())
-		{
-			return false;
-		}
-	}
 //FfH: End Add
 
 	return !atWar(pPlot->getTeam(), getTeam());
@@ -6072,9 +6162,51 @@ bool CvUnit::pillage()
                 iPillageGold += (iPillageGold * GET_PLAYER(getOwnerINLINE()).getPillagingGold()) / 100;
 //FfH: End Add
 
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              Start                                                 */
+/* Merged and adjusted by lfgr 10/31/12                                                                      */
+/************************************************************************************************/
+				// ------ BEGIN InfluenceDrivenWar -------------------------------
+				float fInfluenceRatio = 0.0f;
+				if (GC.getDefineINT("IDW_ENABLED") > 0 && (GC.getDefineINT("IDW_PILLAGE_INFLUENCE_ENABLED") > 0))
+				{
+					if (atWar(pPlot->getTeam(), getTeam()))
+					{
+						fInfluenceRatio = doPillageInfluence();
+					}
+				}
+				// ------ END InfluenceDrivenWar -------------------------------
+
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              End                                                   */
+/************************************************************************************************/
+
 				GET_PLAYER(getOwnerINLINE()).changeGold(iPillageGold);
 
 				szBuffer = gDLL->getText("TXT_KEY_MISC_PLUNDERED_GOLD_FROM_IMP", iPillageGold, GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide());
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              Start                                                 */
+/* Merged and adjusted by lfgr 10/31/12                                                                      */
+/************************************************************************************************/
+				// ------ BEGIN InfluenceDrivenWar -------------------------------
+				if (fInfluenceRatio > 0.0f)
+				{
+					CvWString szInfluence;
+					szInfluence.Format(L" Tile influence: +%.1f%%", fInfluenceRatio);
+					szBuffer += szInfluence;
+				}
+				// ------ END InfluenceDrivenWar -------------------------------
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              End                                                   */
+/************************************************************************************************/
 				gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 
 				if (pPlot->isOwned())
@@ -6097,6 +6229,25 @@ bool CvUnit::pillage()
 					// End Advanced Tactics
 
 					szBuffer = gDLL->getText("TXT_KEY_MISC_IMP_DESTROYED", GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide(), getNameKey(), getVisualCivAdjective(pPlot->getTeam()));
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              Start                                                 */
+/* Merged and adjusted by lfgr 10/31/12                                                                      */
+/************************************************************************************************/
+					// ------ BEGIN InfluenceDrivenWar -------------------------------
+					if (fInfluenceRatio > 0.0f)
+					{
+						CvWString szInfluence;
+						szInfluence.Format(L" Tile influence: -%.1f%%", fInfluenceRatio);
+						szBuffer += szInfluence;
+					}
+					// ------ END InfluenceDrivenWar -------------------------------
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              End                                                   */
+/************************************************************************************************/
 					gDLL->getInterfaceIFace()->addMessage(pPlot->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE(), true, true);
 				}
 			}
@@ -8526,27 +8677,6 @@ bool CvUnit::canUpgrade(UnitTypes eUnit, bool bTestVisible) const
 		}
 	}
 
-	for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
-	{
-		if (kUnitInfo.getFreePromotions(iI))
-		{
-			if (GC.getPromotionInfo((PromotionTypes)iI).isRace())
-			{
-				if (getRace() == NO_PROMOTION)
-				{
-					return false;
-				}
-				else
-				{
-					if (getRace() != iI)
-					{
-						return false;
-					}
-				}
-			}
-		}
-	}
-
 //FfH Units: Added by Kael 05/24/2008
     if (getLevel() < kUnitInfo.getMinLevel())
 	{
@@ -8935,7 +9065,7 @@ void CvUnit::upgrade(UnitTypes eUnit)
 	if( gUnitLogLevel > 2 )
 	{
 		CvWString szString;
-		getUnitAIString(szString, pUpgradeUnit->AI_getUnitAIType());
+		getUnitAIString(szString, AI_getUnitAIType());
 		logBBAI("    %S spends %d to upgrade %S to %S, unit AI %S", GET_PLAYER(getOwnerINLINE()).getCivilizationDescription(0), upgradePrice(eUnit), getName(0).GetCString(), pUpgradeUnit->getName(0).GetCString(), szString.GetCString());
 	}
 /************************************************************************************************/
@@ -15920,10 +16050,6 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
 	int iCost = kSpell.getCost();
 	if (iCost != 0)
 	{
-		// scale costs by gamespeed
-		iCost *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
-		iCost /= 100;
-
 		if (kSpell.getConvertUnitType() != NO_UNIT)
 		{
 			iCost += (iCost * GET_PLAYER(getOwnerINLINE()).getUpgradeCostModifier()) / 100;
@@ -16632,10 +16758,6 @@ void CvUnit::cast(int spell)
     int iCost = kSpellInfo.getCost();
     if (iCost != 0)
     {
-		// scale costs by gamespeed
-		iCost *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
-		iCost /= 100;
-
         if (kSpellInfo.getConvertUnitType() != NO_UNIT)
         {
             iCost += (iCost * GET_PLAYER(getOwnerINLINE()).getUpgradeCostModifier()) / 100;
@@ -18686,17 +18808,17 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 	}
 	if (!bUnitAutoCapture) // Tholal Bugfix - we dont also get slaves from units we capture
 	{
-		if ((m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()) > 0)
+	if ((m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()) > 0)
+	{
+		// Summons, non-Alive units, Animals and World class units cannot become slaves
+		if (getDuration() == 0 && pLoser->isAlive() && !pLoser->isAnimal() && iUnit == NO_UNIT && !isWorldUnitClass((UnitClassTypes)pLoser->getUnitClassType()))
 		{
-			// Summons, non-Alive units, Animals and World class units cannot become slaves
-			if (getDuration() == 0 && pLoser->isAlive() && !pLoser->isAnimal() && iUnit == NO_UNIT && !isWorldUnitClass((UnitClassTypes)pLoser->getUnitClassType()))
+			if (GC.getGameINLINE().getSorenRandNum(100, "Enslavement") < (m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()))
 			{
-				if (GC.getGameINLINE().getSorenRandNum(100, "Enslavement") < (m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()))
-				{
-					iUnit = GC.getDefineINT("SLAVE_UNIT");
-				}
+				iUnit = GC.getDefineINT("SLAVE_UNIT");
 			}
 		}
+	}
 	}
 	if (m_pUnitInfo->getPromotionFromCombat() != NO_PROMOTION)
 	{
@@ -19725,3 +19847,287 @@ bool CvUnit::isRangedCollateral()
 	}
 	return false;
 }
+
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              Start                                                 */
+/* Merged and adjusted by lfgr 10/31/12                                                                      */
+/************************************************************************************************/
+// ------ BEGIN InfluenceDrivenWar -------------------------------
+
+// unit influences combat area after victory 
+// returns influence % in defended plot
+float CvUnit::doVictoryInfluence(CvUnit* pLoserUnit, bool bAttacking, bool bWithdrawal)
+{
+	if( isAnimal() || pLoserUnit->isAnimal() )
+	{
+		return 0.0f;
+	}
+	// lfgr: defeated temporary units and illusions are excluded
+	if( pLoserUnit->isIllusionary() )
+		return 0.0f;
+	if( pLoserUnit->getDuration() != 0 )
+		return 0.0f;
+	// lfgr end
+	if( isAlwaysHostile(plot()) || pLoserUnit->isAlwaysHostile(pLoserUnit->plot()) )
+	{
+		return 0.0f;
+	}
+	if (GC.getDefineINT("IDW_NO_BARBARIAN_INFLUENCE") > 0)
+	{
+		if (isBarbarian() || pLoserUnit->isBarbarian())
+		{
+			return 0.0f;
+		}
+	}
+	if (GC.getDefineINT("IDW_NO_NAVAL_INFLUENCE") > 0)
+	{
+		if (DOMAIN_SEA == getDomainType())
+		{
+			return 0.0f;
+		}
+	}
+
+	CvPlot* pWinnerPlot = plot();
+	CvPlot* pLoserPlot = pLoserUnit->plot();
+	CvPlot* pDefenderPlot = NULL;
+	if (!bAttacking)
+	{
+		pDefenderPlot = pWinnerPlot;
+	}
+	else
+	{
+		pDefenderPlot = pLoserPlot;
+	}
+	int iWinnerCultureBefore = pDefenderPlot->getCulture(getOwnerINLINE()); //used later for influence %
+
+	float fWinnerPlotMultiplier = GC.getDefineFLOAT("IDW_WINNER_PLOT_MULTIPLIER");
+
+	float fLoserPlotMultiplier = GC.getDefineFLOAT("IDW_LOSER_PLOT_MULTIPLIER");
+
+	float bWithdrawalMultiplier = 0.5f;
+	if (bWithdrawal)
+	{
+		fWinnerPlotMultiplier *= bWithdrawalMultiplier;
+		fLoserPlotMultiplier *= bWithdrawalMultiplier;
+	}
+
+	if (pLoserPlot->isEnemyCity(*this)) // city combat 
+	{         	
+		if (pLoserPlot->getNumVisibleEnemyDefenders(this) > 1)
+		{
+			// if there are still some city defenders ->
+			// we use same influence rules as for field combat
+			influencePlots(pLoserPlot, pLoserUnit->getOwnerINLINE(), fLoserPlotMultiplier);
+			influencePlots(pWinnerPlot, pLoserUnit->getOwnerINLINE(), fWinnerPlotMultiplier);			
+		}		
+		else // last defender is dead
+		{			
+			float fNoCityDefenderMultiplier = GC.getDefineFLOAT("IDW_NO_CITY_DEFENDER_MULTIPLIER");
+
+			// last city defender is dead -> influence is increased
+			influencePlots(pLoserPlot, pLoserUnit->getOwnerINLINE(), fLoserPlotMultiplier * fNoCityDefenderMultiplier);
+			influencePlots(pWinnerPlot, pLoserUnit->getOwnerINLINE(), fWinnerPlotMultiplier * fNoCityDefenderMultiplier);
+		}
+	}
+	else // field combat
+	{				
+		if (!pLoserUnit->canDefend()) 
+		{
+			// no influence from worker capture
+			return 0.0f;
+		}
+
+		if (pLoserPlot->getImprovementType() != NO_IMPROVEMENT 
+			&& GC.getImprovementInfo(pLoserPlot->getImprovementType()).getDefenseModifier() > 0
+			&& pLoserPlot->getNumVisibleEnemyDefenders(this) > 1)
+		{		
+			// fort captured
+			float fFortCaptureMultiplier = GC.getDefineFLOAT("IDW_FORT_CAPTURE_MULTIPLIER");
+
+			// influence is increased
+			influencePlots(pLoserPlot, pLoserUnit->getOwnerINLINE(), fLoserPlotMultiplier * fFortCaptureMultiplier);
+			influencePlots(pWinnerPlot, pLoserUnit->getOwnerINLINE(), fWinnerPlotMultiplier * fFortCaptureMultiplier);
+
+		}
+		else
+		{			
+			influencePlots(pLoserPlot, pLoserUnit->getOwnerINLINE(), fLoserPlotMultiplier);
+			influencePlots(pWinnerPlot, pLoserUnit->getOwnerINLINE(), fWinnerPlotMultiplier);
+		}
+	}
+
+	// calculate influence % in defended plot (to be displayed in game log)
+    
+	int iWinnerCultureAfter = pDefenderPlot->getCulture(getOwnerINLINE());
+	int iTotalCulture = pDefenderPlot->countTotalCulture();
+	float fInfluenceRatio = 0.0f;
+	if (iTotalCulture > 0)
+	{
+		fInfluenceRatio = ((iWinnerCultureAfter-iWinnerCultureBefore)*100.0f)/iTotalCulture;	
+	}
+    return fInfluenceRatio;
+}
+
+// unit influences given plot and surounding area i.e. transfers culture from target civ to unit's owner
+void CvUnit::influencePlots(CvPlot* pCentralPlot, PlayerTypes eTargetPlayer, float fLocationMultiplier)
+{
+	float fBaseCombatInfluence = GC.getDefineFLOAT("IDW_BASE_COMBAT_INFLUENCE");
+
+	// calculate base multiplier used for all plots
+	float fGameSpeedMultiplier = (float) GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getConstructPercent();
+	fGameSpeedMultiplier /= 100;
+	fGameSpeedMultiplier *= GC.getEraInfo(GC.getGameINLINE().getStartEra()).getConstructPercent();
+	fGameSpeedMultiplier /= 100;
+	fGameSpeedMultiplier = sqrt(fGameSpeedMultiplier);
+
+	float fExperienceFactor = GC.getDefineFLOAT("IDW_EXPERIENCE_FACTOR");
+	float fExperienceMultiplier = 1.0f + (getExperience() * 0.01f);
+
+	float fWarlordMultiplier = 1.0; 
+	if (NO_UNIT != getLeaderUnitType()) // warlord is here
+	{
+		fWarlordMultiplier = GC.getDefineFLOAT("IDW_WARLORD_MULTIPLIER");
+	}
+
+	float fCityPlotMultiplier = GC.getDefineFLOAT("IDW_CITY_TILE_MULTIPLIER");
+
+	float fBaseMultiplier = fBaseCombatInfluence * fGameSpeedMultiplier * fLocationMultiplier * fExperienceMultiplier * fWarlordMultiplier;
+	if (fBaseMultiplier <= 0.0f)
+		return;
+
+	// get influence radius
+	int iInfluenceRadius = GC.getDefineINT("IDW_INFLUENCE_RADIUS");
+	if (iInfluenceRadius < 0)
+		return;
+
+	float fPlotDistanceFactor = GC.getDefineFLOAT("IDW_PLOT_DISTANCE_FACTOR");
+
+//	CvWString szBuffer;
+//	szBuffer.Format(L"Factors: %.1f, %.1f, %.1f, %.1f, %.1f, %.1f, %.3f, %d", fBaseCombatInfluence, fLocationMultiplier, fGameSpeedMultiplier, fPlotDistanceFactor, fExperienceMultiplier, fWarlordMultiplier, fBaseMultiplier, iInfluenceRadius);	
+//	gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_UNIT_BUILD_UNIT", MESSAGE_TYPE_INFO, GC.getUnitInfo(getUnitType()).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pCentralPlot->getX_INLINE(), pCentralPlot->getY_INLINE());
+
+	for (int iDX = -iInfluenceRadius; iDX <= iInfluenceRadius; iDX++)
+	{
+		for (int iDY = -iInfluenceRadius; iDY <= iInfluenceRadius; iDY++)
+		{
+			int iDistance = plotDistance(0, 0, iDX, iDY);
+
+			if (iDistance <= iInfluenceRadius)
+			{
+				CvPlot* pLoopPlot = plotXY(pCentralPlot->getX_INLINE(), pCentralPlot->getY_INLINE(), iDX, iDY);
+
+				if (pLoopPlot != NULL)
+				{	
+					// calculate distance multiplier for current plot
+					float fDistanceMultiplier = 0.5f+0.5f*fPlotDistanceFactor-fPlotDistanceFactor*iDistance;
+					if (fDistanceMultiplier <= 0.0f)
+						continue;
+					int iTargetCulture = pLoopPlot->getCulture(eTargetPlayer);
+					if (iTargetCulture <= 0)
+						continue;
+					if ( pLoopPlot->isCity() )
+					{
+						fBaseMultiplier *= fCityPlotMultiplier;
+					}
+					if (fBaseMultiplier <= 0.0f)
+						continue;
+					int iCultureTransfer = int (fBaseMultiplier * fDistanceMultiplier * sqrt((float) iTargetCulture));
+					if (iTargetCulture < iCultureTransfer)
+					{
+						// cannot transfer more culture than remaining target culure
+						iCultureTransfer = iTargetCulture;
+					}
+					if (iCultureTransfer == 0 && iTargetCulture > 0)
+					{
+						// always at least 1 point of culture must be transfered
+						// othervise we may have the problems with capturing of very low culture cities. 
+						iCultureTransfer = 1; 
+					}
+
+					if (iCultureTransfer > 0)
+					{
+						// target player's culture in plot is lowered
+						pLoopPlot->changeCulture(eTargetPlayer, -iCultureTransfer, false);
+						if( iTargetCulture > 0 && pLoopPlot->getCulture(eTargetPlayer) <= 0 )
+						{
+							// Don't allow complete loss of all culture
+							pLoopPlot->setCulture(eTargetPlayer,1,false,false);
+						}
+						// owners's culture in plot is raised
+						pLoopPlot->changeCulture(getOwnerINLINE(), iCultureTransfer, true);
+					}
+				}	
+			}
+		}
+	}		
+}
+
+
+// unit influences current tile via pillaging 
+// returns influence % in current plot
+float CvUnit::doPillageInfluence()
+{
+	if (isBarbarian() && (GC.getDefineINT("IDW_NO_BARBARIAN_INFLUENCE") > 0))
+	{
+		return 0.0f;
+	}
+	if ((DOMAIN_SEA == getDomainType()) && (GC.getDefineINT("IDW_NO_NAVAL_INFLUENCE") > 0))
+	{
+		return 0.0f;
+	}
+	
+	CvPlot* pPlot = plot();
+	if (pPlot == NULL)
+	{
+		//should not happen
+		return 0.0f;	
+	}
+
+	int iOurCultureBefore = pPlot->getCulture(getOwnerINLINE()); //used later for influence %
+
+	float fBasePillageInfluence = GC.getDefineFLOAT("IDW_BASE_PILLAGE_INFLUENCE");
+
+	float fGameSpeedMultiplier = (float) GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getConstructPercent();
+	fGameSpeedMultiplier /= 100;
+	fGameSpeedMultiplier *= GC.getEraInfo(GC.getGameINLINE().getStartEra()).getConstructPercent();
+	fGameSpeedMultiplier /= 100;
+	fGameSpeedMultiplier = sqrt(fGameSpeedMultiplier);
+
+	PlayerTypes eTargetPlayer = pPlot->getOwner();
+	int iTargetCulture = pPlot->getCulture(eTargetPlayer);
+	if (iTargetCulture <= 0)
+	{
+		//should not happen
+		return 0.0f;		
+	}
+	int iCultureTransfer = int (fBasePillageInfluence * fGameSpeedMultiplier * sqrt((float) iTargetCulture));
+	if (iTargetCulture < iCultureTransfer)
+	{
+		// cannot transfer more culture than remaining target culure
+		iCultureTransfer = iTargetCulture;
+	}
+
+	// target player's culture in plot is lowered
+	pPlot->changeCulture(eTargetPlayer, -iCultureTransfer, false);
+	// owners's culture in plot is raised
+	pPlot->changeCulture(getOwnerINLINE(), iCultureTransfer, true);
+
+	// calculate influence % in pillaged plot (to be displayed in game log)
+    int iOurCultureAfter = pPlot->getCulture(getOwnerINLINE());
+	float fInfluenceRatio = ((iOurCultureAfter-iOurCultureBefore)*100.0f)/pPlot->countTotalCulture();	
+ 
+//	CvWString szBuffer;
+//	szBuffer.Format(L"Factors: %.1f, %.1f, %d, Result: %.3f, ", fGameSpeedMultiplier, fBasePillageInfluence, iTargetCulture, fInfluenceRatio);	
+//	gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_UNIT_BUILD_UNIT", MESSAGE_TYPE_INFO, GC.getUnitInfo(getUnitType()).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), plot()->getX_INLINE(), plot()->getY_INLINE());
+
+	return fInfluenceRatio;
+}
+
+// ------ END InfluenceDrivenWar ---------------------------------
+/************************************************************************************************/
+/* INFLUENCE_DRIVEN_WAR                   04/16/09                                johnysmith    */
+/*                                                                                              */
+/* Original Author Moctezuma              End                                                   */
+/************************************************************************************************/

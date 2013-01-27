@@ -24483,6 +24483,18 @@ int CvEventTriggerInfo::getNumCorporationsRequired() const
 	return (int)m_aiCorporationsRequired.size();
 }
 
+// Begin EmperorFool: Events with Images
+const TCHAR* CvEventTriggerInfo::getEventArt() const
+{
+	if (m_szEventArt.empty())
+	{
+		return NULL;
+	}
+
+	return m_szEventArt;
+}
+// End EmperorFool: Events with Images
+
 bool CvEventTriggerInfo::isSinglePlayer() const
 {
 	return m_bSinglePlayer;
@@ -24828,6 +24840,10 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 		m_aiCorporationsRequired.push_back(iElement);
 	}
 
+// Begin EmperorFool: Events with Images
+	stream->ReadString(m_szEventArt);
+// End EmperorFool: Events with Images
+
 	stream->Read(&m_bSinglePlayer);
 	stream->Read(&m_bTeam);
 	stream->Read(&m_bRecurring);
@@ -24994,6 +25010,10 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 	{
 		stream->Write(*it);
 	}
+
+// Begin EmperorFool: Events with Images
+	stream->WriteString(m_szEventArt);
+// End EmperorFool: Events with Images
 
 	stream->Write(m_bSinglePlayer);
 	stream->Write(m_bTeam);
@@ -25555,6 +25575,10 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
+
+// Begin EmperorFool: Events with Images
+	pXML->GetChildXmlValByName(m_szEventArt, "EventArt");
+// End EmperorFool: Events with Images
 
 	pXML->GetChildXmlValByName(&m_bSinglePlayer, "bSinglePlayer");
 	pXML->GetChildXmlValByName(&m_bTeam, "bTeam");

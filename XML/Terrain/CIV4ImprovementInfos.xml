@@ -429,7 +429,7 @@
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
-            <PythonOnMove></PythonOnMove>
+            <PythonOnMove>onMoveBrokenSepulcher(pCaster, pPlot)</PythonOnMove>
             <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
@@ -2390,6 +2390,10 @@
             <FeatureMakesValids>
                 <FeatureMakesValid>
                     <FeatureType>FEATURE_FOREST</FeatureType>
+                    <bMakesValid>1</bMakesValid>
+                </FeatureMakesValid>
+				    <FeatureMakesValid>
+                    <FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
                     <bMakesValid>1</bMakesValid>
                 </FeatureMakesValid>
             </FeatureMakesValids>
@@ -5038,7 +5042,7 @@
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
-            <PythonOnMove></PythonOnMove>
+            <PythonOnMove>onMovePyreOfTheSeraphic(pCaster, pPlot)</PythonOnMove>
             <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>

@@ -8668,45 +8668,43 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 		return;
 	}
 
-	CvPromotionInfo &kPromotionInfo = GC.getPromotionInfo(ePromotion);
-
-	if (kPromotionInfo.isBlitz())
+	if (GC.getPromotionInfo(ePromotion).isBlitz())
 	{
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_BLITZ_TEXT"));
 	}
 
-	if (kPromotionInfo.isAmphib())
+	if (GC.getPromotionInfo(ePromotion).isAmphib())
 	{
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_AMPHIB_TEXT"));
 	}
 
-	if (kPromotionInfo.isRiver())
+	if (GC.getPromotionInfo(ePromotion).isRiver())
 	{
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_RIVER_ATTACK_TEXT"));
 	}
 
-	if (kPromotionInfo.isEnemyRoute())
+	if (GC.getPromotionInfo(ePromotion).isEnemyRoute())
 	{
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_ENEMY_ROADS_TEXT"));
 	}
 
-	if (kPromotionInfo.isAlwaysHeal())
+	if (GC.getPromotionInfo(ePromotion).isAlwaysHeal())
 	{
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_ALWAYS_HEAL_TEXT"));
 	}
 
-	if (kPromotionInfo.isHillsDoubleMove())
+	if (GC.getPromotionInfo(ePromotion).isHillsDoubleMove())
 	{
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HILLS_MOVE_TEXT"));
 	}
 
-	if (kPromotionInfo.isImmuneToFirstStrikes())
+	if (GC.getPromotionInfo(ePromotion).isImmuneToFirstStrikes())
 	{
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMUNE_FIRST_STRIKES_TEXT"));
@@ -8714,7 +8712,7 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 
 	for (iI = 0; iI < GC.getNumTerrainInfos(); ++iI)
 	{
-		if (kPromotionInfo.getTerrainDoubleMove(iI))
+		if (GC.getPromotionInfo(ePromotion).getTerrainDoubleMove(iI))
 		{
 			szBuffer.append(pcNewline);
 			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DOUBLE_MOVE_TEXT", GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide()));
@@ -8723,98 +8721,98 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 
 	for (iI = 0; iI < GC.getNumFeatureInfos(); ++iI)
 	{
-		if (kPromotionInfo.getFeatureDoubleMove(iI))
+		if (GC.getPromotionInfo(ePromotion).getFeatureDoubleMove(iI))
 		{
 			szBuffer.append(pcNewline);
 			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DOUBLE_MOVE_TEXT", GC.getFeatureInfo((FeatureTypes) iI).getTextKeyWide()));
 		}
 	}
 
-	if (kPromotionInfo.getVisibilityChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getVisibilityChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_VISIBILITY_TEXT", kPromotionInfo.getVisibilityChange()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_VISIBILITY_TEXT", GC.getPromotionInfo(ePromotion).getVisibilityChange()));
 	}
 
-	if (kPromotionInfo.getMovesChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getMovesChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_MOVE_TEXT", kPromotionInfo.getMovesChange()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_MOVE_TEXT", GC.getPromotionInfo(ePromotion).getMovesChange()));
 	}
 
-	if (kPromotionInfo.getMoveDiscountChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getMoveDiscountChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_MOVE_DISCOUNT_TEXT", -(kPromotionInfo.getMoveDiscountChange())));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_MOVE_DISCOUNT_TEXT", -(GC.getPromotionInfo(ePromotion).getMoveDiscountChange())));
 	}
 
-	if (kPromotionInfo.getAirRangeChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getAirRangeChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_AIR_RANGE_TEXT", kPromotionInfo.getAirRangeChange()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_AIR_RANGE_TEXT", GC.getPromotionInfo(ePromotion).getAirRangeChange()));
 	}
 
-	if (kPromotionInfo.getInterceptChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getInterceptChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_INTERCEPT_TEXT", kPromotionInfo.getInterceptChange()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_INTERCEPT_TEXT", GC.getPromotionInfo(ePromotion).getInterceptChange()));
 	}
 
-	if (kPromotionInfo.getEvasionChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getEvasionChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EVASION_TEXT", kPromotionInfo.getEvasionChange()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EVASION_TEXT", GC.getPromotionInfo(ePromotion).getEvasionChange()));
 	}
 
-	if (kPromotionInfo.getWithdrawalChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getWithdrawalChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_WITHDRAWAL_TEXT", kPromotionInfo.getWithdrawalChange()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_WITHDRAWAL_TEXT", GC.getPromotionInfo(ePromotion).getWithdrawalChange()));
 	}
 
-	if (kPromotionInfo.getCargoChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getCargoChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CARGO_TEXT", kPromotionInfo.getCargoChange()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CARGO_TEXT", GC.getPromotionInfo(ePromotion).getCargoChange()));
 	}
 
-	if (kPromotionInfo.getCollateralDamageChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getCollateralDamageChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_COLLATERAL_DAMAGE_TEXT", kPromotionInfo.getCollateralDamageChange()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_COLLATERAL_DAMAGE_TEXT", GC.getPromotionInfo(ePromotion).getCollateralDamageChange()));
 	}
 
-	if (kPromotionInfo.getBombardRateChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getBombardRateChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_BOMBARD_TEXT", kPromotionInfo.getBombardRateChange()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_BOMBARD_TEXT", GC.getPromotionInfo(ePromotion).getBombardRateChange()));
 	}
 
-	if (kPromotionInfo.getFirstStrikesChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getFirstStrikesChange() != 0)
 	{
-		if (kPromotionInfo.getFirstStrikesChange() == 1)
+		if (GC.getPromotionInfo(ePromotion).getFirstStrikesChange() == 1)
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FIRST_STRIKE_TEXT", kPromotionInfo.getFirstStrikesChange()));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FIRST_STRIKE_TEXT", GC.getPromotionInfo(ePromotion).getFirstStrikesChange()));
 		}
 		else
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FIRST_STRIKES_TEXT", kPromotionInfo.getFirstStrikesChange()));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FIRST_STRIKES_TEXT", GC.getPromotionInfo(ePromotion).getFirstStrikesChange()));
 		}
 	}
 
-	if (kPromotionInfo.getChanceFirstStrikesChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getChanceFirstStrikesChange() != 0)
 	{
-		if (kPromotionInfo.getChanceFirstStrikesChange() == 1)
+		if (GC.getPromotionInfo(ePromotion).getChanceFirstStrikesChange() == 1)
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FIRST_STRIKE_CHANCE_TEXT", kPromotionInfo.getChanceFirstStrikesChange()));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FIRST_STRIKE_CHANCE_TEXT", GC.getPromotionInfo(ePromotion).getChanceFirstStrikesChange()));
 		}
 		else
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FIRST_STRIKES_CHANCE_TEXT", kPromotionInfo.getChanceFirstStrikesChange()));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FIRST_STRIKES_CHANCE_TEXT", GC.getPromotionInfo(ePromotion).getChanceFirstStrikesChange()));
 		}
 	}
 /*************************************************************************************************/
@@ -8823,35 +8821,35 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 /**																								**/
 /*************************************************************************************************/
 //BUGFfH: Added by Denev 2009/09/06
-	if (kPromotionInfo.getEnemyHealChange() == kPromotionInfo.getNeutralHealChange()
-		&& kPromotionInfo.getEnemyHealChange() == kPromotionInfo.getFriendlyHealChange())
+	if (GC.getPromotionInfo(ePromotion).getEnemyHealChange() == GC.getPromotionInfo(ePromotion).getNeutralHealChange()
+		&& GC.getPromotionInfo(ePromotion).getEnemyHealChange() == GC.getPromotionInfo(ePromotion).getFriendlyHealChange())
 	{
-		if (kPromotionInfo.getEnemyHealChange() != 0)
+		if (GC.getPromotionInfo(ePromotion).getEnemyHealChange() != 0)
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_EXTRA_TEXT", kPromotionInfo.getEnemyHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_EXTRA_TEXT", GC.getPromotionInfo(ePromotion).getEnemyHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
 		}
 	}
 	else
 	{
 //BUGFfH: End Add
-	if (kPromotionInfo.getEnemyHealChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getEnemyHealChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_EXTRA_TEXT", kPromotionInfo.getEnemyHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_ENEMY_LANDS_TEXT"));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_EXTRA_TEXT", GC.getPromotionInfo(ePromotion).getEnemyHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_ENEMY_LANDS_TEXT"));
 	}
 
 
-	if (kPromotionInfo.getNeutralHealChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getNeutralHealChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_EXTRA_TEXT", kPromotionInfo.getNeutralHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_NEUTRAL_LANDS_TEXT"));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_EXTRA_TEXT", GC.getPromotionInfo(ePromotion).getNeutralHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_NEUTRAL_LANDS_TEXT"));
 	}
 
-	if (kPromotionInfo.getFriendlyHealChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getFriendlyHealChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_EXTRA_TEXT", kPromotionInfo.getFriendlyHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_FRIENDLY_LANDS_TEXT"));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_EXTRA_TEXT", GC.getPromotionInfo(ePromotion).getFriendlyHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_FRIENDLY_LANDS_TEXT"));
 	}
 //BUGFfH: Added by Denev 2009/09/06
 	}
@@ -8859,22 +8857,22 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 /**	END																							**/
 /*************************************************************************************************/
 
-	if (kPromotionInfo.getSameTileHealChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getSameTileHealChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_SAME_TEXT", kPromotionInfo.getSameTileHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_SAME_TEXT", GC.getPromotionInfo(ePromotion).getSameTileHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
 	}
 
-	if (kPromotionInfo.getAdjacentTileHealChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getAdjacentTileHealChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_ADJACENT_TEXT", kPromotionInfo.getAdjacentTileHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_ADJACENT_TEXT", GC.getPromotionInfo(ePromotion).getAdjacentTileHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
 	}
 
-	if (kPromotionInfo.getCombatPercent() != 0)
+	if (GC.getPromotionInfo(ePromotion).getCombatPercent() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_STRENGTH_TEXT", kPromotionInfo.getCombatPercent()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_STRENGTH_TEXT", GC.getPromotionInfo(ePromotion).getCombatPercent()));
 	}
 
 /*************************************************************************************************/
@@ -8883,12 +8881,12 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 /**																								**/
 /*************************************************************************************************/
 //BUGFfH: Added by Denev 2009/09/05
-	if (kPromotionInfo.getCityAttackPercent() == kPromotionInfo.getCityDefensePercent())
+	if (GC.getPromotionInfo(ePromotion).getCityAttackPercent() == GC.getPromotionInfo(ePromotion).getCityDefensePercent())
 	{
-		if (kPromotionInfo.getCityAttackPercent() != 0)
+		if (GC.getPromotionInfo(ePromotion).getCityAttackPercent() != 0)
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_CITY_STRENGTH_MOD", kPromotionInfo.getCityAttackPercent()));
+			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_CITY_STRENGTH_MOD", GC.getPromotionInfo(ePromotion).getCityAttackPercent()));
 		}
 	}
 	else
@@ -8896,43 +8894,43 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 //BUGFfH: End Add
 
 
-	if (kPromotionInfo.getCityAttackPercent() != 0)
+	if (GC.getPromotionInfo(ePromotion).getCityAttackPercent() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CITY_ATTACK_TEXT", kPromotionInfo.getCityAttackPercent()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CITY_ATTACK_TEXT", GC.getPromotionInfo(ePromotion).getCityAttackPercent()));
 	}
 
-	if (kPromotionInfo.getCityDefensePercent() != 0)
+	if (GC.getPromotionInfo(ePromotion).getCityDefensePercent() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CITY_DEFENSE_TEXT", kPromotionInfo.getCityDefensePercent()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CITY_DEFENSE_TEXT", GC.getPromotionInfo(ePromotion).getCityDefensePercent()));
 	}
 //BUGFfH: Added by Denev 2009/09/05
 	}
 //BUGFfH: End Add
 
 //BUGFfH: Added by Denev 2009/09/05
-	if (kPromotionInfo.getHillsAttackPercent() == kPromotionInfo.getHillsDefensePercent())
+	if (GC.getPromotionInfo(ePromotion).getHillsAttackPercent() == GC.getPromotionInfo(ePromotion).getHillsDefensePercent())
 	{
-		if (kPromotionInfo.getHillsAttackPercent() != 0)
+		if (GC.getPromotionInfo(ePromotion).getHillsAttackPercent() != 0)
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_HILLS_STRENGTH", kPromotionInfo.getHillsAttackPercent()));
+			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_HILLS_STRENGTH", GC.getPromotionInfo(ePromotion).getHillsAttackPercent()));
 		}
 	}
 	else
 	{
 //BUGFfH: End Add
-	if (kPromotionInfo.getHillsAttackPercent() != 0)
+	if (GC.getPromotionInfo(ePromotion).getHillsAttackPercent() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_HILLS_ATTACK", kPromotionInfo.getHillsAttackPercent()));
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_HILLS_ATTACK", GC.getPromotionInfo(ePromotion).getHillsAttackPercent()));
 	}
 
-	if (kPromotionInfo.getHillsDefensePercent() != 0)
+	if (GC.getPromotionInfo(ePromotion).getHillsDefensePercent() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HILLS_DEFENSE_TEXT", kPromotionInfo.getHillsDefensePercent()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HILLS_DEFENSE_TEXT", GC.getPromotionInfo(ePromotion).getHillsDefensePercent()));
 	}
 //BUGFfH: Added by Denev 2009/09/05
 	}
@@ -8941,27 +8939,27 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 /**	END																							**/
 /*************************************************************************************************/
 
-	if (kPromotionInfo.getRevoltProtection() != 0)
+	if (GC.getPromotionInfo(ePromotion).getRevoltProtection() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_REVOLT_PROTECTION_TEXT", kPromotionInfo.getRevoltProtection()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_REVOLT_PROTECTION_TEXT", GC.getPromotionInfo(ePromotion).getRevoltProtection()));
 	}
 
-	if (kPromotionInfo.getCollateralDamageProtection() != 0)
+	if (GC.getPromotionInfo(ePromotion).getCollateralDamageProtection() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_COLLATERAL_PROTECTION_TEXT", kPromotionInfo.getCollateralDamageProtection()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_COLLATERAL_PROTECTION_TEXT", GC.getPromotionInfo(ePromotion).getCollateralDamageProtection()));
 	}
 
-	if (kPromotionInfo.getPillageChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).getPillageChange() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_PILLAGE_CHANGE_TEXT", kPromotionInfo.getPillageChange()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_PILLAGE_CHANGE_TEXT", GC.getPromotionInfo(ePromotion).getPillageChange()));
 	}
 
-	if (kPromotionInfo.getUpgradeDiscount() != 0)
+	if (GC.getPromotionInfo(ePromotion).getUpgradeDiscount() != 0)
 	{
-		if (100 == kPromotionInfo.getUpgradeDiscount())
+		if (100 == GC.getPromotionInfo(ePromotion).getUpgradeDiscount())
 		{
 			szBuffer.append(pcNewline);
 			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_UPGRADE_DISCOUNT_FREE_TEXT"));
@@ -8969,20 +8967,20 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 		else
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_UPGRADE_DISCOUNT_TEXT", kPromotionInfo.getUpgradeDiscount()));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_UPGRADE_DISCOUNT_TEXT", GC.getPromotionInfo(ePromotion).getUpgradeDiscount()));
 		}
 	}
 
-	if (kPromotionInfo.getExperiencePercent() != 0)
+	if (GC.getPromotionInfo(ePromotion).getExperiencePercent() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FASTER_EXPERIENCE_TEXT", kPromotionInfo.getExperiencePercent()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FASTER_EXPERIENCE_TEXT", GC.getPromotionInfo(ePromotion).getExperiencePercent()));
 	}
 
-	if (kPromotionInfo.getKamikazePercent() != 0)
+	if (GC.getPromotionInfo(ePromotion).getKamikazePercent() != 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_KAMIKAZE_TEXT", kPromotionInfo.getKamikazePercent()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_KAMIKAZE_TEXT", GC.getPromotionInfo(ePromotion).getKamikazePercent()));
 	}
 
 	for (iI = 0; iI < GC.getNumTerrainInfos(); ++iI)
@@ -8993,28 +8991,28 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 /**																								**/
 /*************************************************************************************************/
 //BUGFfH: Added by Denev 2009/09/05
-		if (kPromotionInfo.getTerrainAttackPercent(iI) == kPromotionInfo.getTerrainDefensePercent(iI))
+		if (GC.getPromotionInfo(ePromotion).getTerrainAttackPercent(iI) == GC.getPromotionInfo(ePromotion).getTerrainDefensePercent(iI))
 		{
-			if (kPromotionInfo.getTerrainAttackPercent(iI) != 0)
+			if (GC.getPromotionInfo(ePromotion).getTerrainAttackPercent(iI) != 0)
 			{
 				szBuffer.append(pcNewline);
-				szBuffer.append(gDLL->getText("TXT_KEY_UNIT_STRENGTH", kPromotionInfo.getTerrainAttackPercent(iI), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide()));
+				szBuffer.append(gDLL->getText("TXT_KEY_UNIT_STRENGTH", GC.getPromotionInfo(ePromotion).getTerrainAttackPercent(iI), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide()));
 			}
 		}
 		else
 		{
 //BUGFfH: End Add
-		if (kPromotionInfo.getTerrainAttackPercent(iI) != 0)
+		if (GC.getPromotionInfo(ePromotion).getTerrainAttackPercent(iI) != 0)
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_ATTACK_TEXT", kPromotionInfo.getTerrainAttackPercent(iI), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide()));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_ATTACK_TEXT", GC.getPromotionInfo(ePromotion).getTerrainAttackPercent(iI), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide()));
 		}
 
 
-		if (kPromotionInfo.getTerrainDefensePercent(iI) != 0)
+		if (GC.getPromotionInfo(ePromotion).getTerrainDefensePercent(iI) != 0)
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSE_TEXT", kPromotionInfo.getTerrainDefensePercent(iI), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide()));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSE_TEXT", GC.getPromotionInfo(ePromotion).getTerrainDefensePercent(iI), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide()));
 		}
 //BUGFfH: Added by Denev 2009/09/05
 		}
@@ -9029,27 +9027,27 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 /**																								**/
 /*************************************************************************************************/
 //BUGFfH: Added by Denev 2009/09/05
-		if (kPromotionInfo.getFeatureAttackPercent(iI) == kPromotionInfo.getFeatureDefensePercent(iI))
+		if (GC.getPromotionInfo(ePromotion).getFeatureAttackPercent(iI) == GC.getPromotionInfo(ePromotion).getFeatureDefensePercent(iI))
 		{
-			if (kPromotionInfo.getFeatureAttackPercent(iI) != 0)
+			if (GC.getPromotionInfo(ePromotion).getFeatureAttackPercent(iI) != 0)
 			{
 				szBuffer.append(pcNewline);
-				szBuffer.append(gDLL->getText("TXT_KEY_UNIT_STRENGTH", kPromotionInfo.getFeatureAttackPercent(iI), GC.getFeatureInfo((FeatureTypes) iI).getTextKeyWide()));
+				szBuffer.append(gDLL->getText("TXT_KEY_UNIT_STRENGTH", GC.getPromotionInfo(ePromotion).getFeatureAttackPercent(iI), GC.getFeatureInfo((FeatureTypes) iI).getTextKeyWide()));
 			}
 		}
 		else
 		{
 //BUGFfH: End Add
-		if (kPromotionInfo.getFeatureAttackPercent(iI) != 0)
+		if (GC.getPromotionInfo(ePromotion).getFeatureAttackPercent(iI) != 0)
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_ATTACK_TEXT", kPromotionInfo.getFeatureAttackPercent(iI), GC.getFeatureInfo((FeatureTypes) iI).getTextKeyWide()));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_ATTACK_TEXT", GC.getPromotionInfo(ePromotion).getFeatureAttackPercent(iI), GC.getFeatureInfo((FeatureTypes) iI).getTextKeyWide()));
 		}
 
-		if (kPromotionInfo.getFeatureDefensePercent(iI) != 0)
+		if (GC.getPromotionInfo(ePromotion).getFeatureDefensePercent(iI) != 0)
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSE_TEXT", kPromotionInfo.getFeatureDefensePercent(iI), GC.getFeatureInfo((FeatureTypes) iI).getTextKeyWide()));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSE_TEXT", GC.getPromotionInfo(ePromotion).getFeatureDefensePercent(iI), GC.getFeatureInfo((FeatureTypes) iI).getTextKeyWide()));
 		}
 //BUGFfH: Added by Denev 2009/09/05
 		}
@@ -9061,299 +9059,299 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 
 	for (iI = 0; iI < GC.getNumUnitCombatInfos(); ++iI)
 	{
-		if (kPromotionInfo.getUnitCombatModifierPercent(iI) != 0)
+		if (GC.getPromotionInfo(ePromotion).getUnitCombatModifierPercent(iI) != 0)
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_VERSUS_TEXT", kPromotionInfo.getUnitCombatModifierPercent(iI), GC.getUnitCombatInfo((UnitCombatTypes)iI).getTextKeyWide()));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_VERSUS_TEXT", GC.getPromotionInfo(ePromotion).getUnitCombatModifierPercent(iI), GC.getUnitCombatInfo((UnitCombatTypes)iI).getTextKeyWide()));
 		}
 	}
 
 	for (iI = 0; iI < NUM_DOMAIN_TYPES; ++iI)
 	{
-		if (kPromotionInfo.getDomainModifierPercent(iI) != 0)
+		if (GC.getPromotionInfo(ePromotion).getDomainModifierPercent(iI) != 0)
 		{
 			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_VERSUS_TEXT", kPromotionInfo.getDomainModifierPercent(iI), GC.getDomainInfo((DomainTypes)iI).getTextKeyWide()));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_VERSUS_TEXT", GC.getPromotionInfo(ePromotion).getDomainModifierPercent(iI), GC.getDomainInfo((DomainTypes)iI).getTextKeyWide()));
 		}
 	}
 
 //FfH: Added by Kael 07/30/2007
-    if (kPromotionInfo.isRace())
+    if (GC.getPromotionInfo(ePromotion).isRace())
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_RACE_PEDIA", kPromotionInfo.getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_RACE_PEDIA", GC.getPromotionInfo(ePromotion).getDescription()));
     }
 	for (iI = 0; iI < GC.getNumDamageTypeInfos(); iI++)
 	{
-        if (kPromotionInfo.getDamageTypeCombat((DamageTypes)iI) != 0)
+        if (GC.getPromotionInfo(ePromotion).getDamageTypeCombat((DamageTypes)iI) != 0)
 		{
             szBuffer.append(pcNewline);
-            szBuffer.append(gDLL->getText("TXT_KEY_DAMAGE_TYPE_COMBAT", kPromotionInfo.getDamageTypeCombat((DamageTypes)iI), GC.getDamageTypeInfo((DamageTypes)iI).getDescription()));
+            szBuffer.append(gDLL->getText("TXT_KEY_DAMAGE_TYPE_COMBAT", GC.getPromotionInfo(ePromotion).getDamageTypeCombat((DamageTypes)iI), GC.getDamageTypeInfo((DamageTypes)iI).getDescription()));
 		}
-        if (kPromotionInfo.getDamageTypeResist((DamageTypes)iI) != 0)
+        if (GC.getPromotionInfo(ePromotion).getDamageTypeResist((DamageTypes)iI) != 0)
 		{
             szBuffer.append(pcNewline);
-            if (kPromotionInfo.getDamageTypeResist((DamageTypes)iI) == 100)
+            if (GC.getPromotionInfo(ePromotion).getDamageTypeResist((DamageTypes)iI) == 100)
             {
                 szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TYPE_IMMUNE", GC.getDamageTypeInfo((DamageTypes)iI).getDescription()));
             }
             else
             {
-                szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TYPE_RESIST", kPromotionInfo.getDamageTypeResist((DamageTypes)iI), GC.getDamageTypeInfo((DamageTypes)iI).getDescription()));
+                szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TYPE_RESIST", GC.getPromotionInfo(ePromotion).getDamageTypeResist((DamageTypes)iI), GC.getDamageTypeInfo((DamageTypes)iI).getDescription()));
             }
 		}
 	}
 	for (iI = 0; iI < GC.getNumBonusInfos(); iI++)
 	{
-        if (kPromotionInfo.getBonusAffinity((BonusTypes)iI) != 0)
+        if (GC.getPromotionInfo(ePromotion).getBonusAffinity((BonusTypes)iI) != 0)
 		{
             szBuffer.append(NEWLINE);
-            szBuffer.append(gDLL->getText("TXT_KEY_BONUS_AFFINITY", kPromotionInfo.getBonusAffinity((BonusTypes)iI), GC.getBonusInfo((BonusTypes)iI).getDescription()));
+            szBuffer.append(gDLL->getText("TXT_KEY_BONUS_AFFINITY", GC.getPromotionInfo(ePromotion).getBonusAffinity((BonusTypes)iI), GC.getBonusInfo((BonusTypes)iI).getDescription()));
 		}
 	}
-    if (kPromotionInfo.getDefensiveStrikeChance() == 0)
+    if (GC.getPromotionInfo(ePromotion).getDefensiveStrikeChance() == 0)
     {
-        if (kPromotionInfo.getDefensiveStrikeDamage() > 0)
+        if (GC.getPromotionInfo(ePromotion).getDefensiveStrikeDamage() > 0)
         {
             szBuffer.append(NEWLINE);
-            szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSIVE_STRIKE_DAMAGE_PEDIA", kPromotionInfo.getDefensiveStrikeDamage()));
+            szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSIVE_STRIKE_DAMAGE_PEDIA", GC.getPromotionInfo(ePromotion).getDefensiveStrikeDamage()));
         }
     }
     else
     {
-        if (kPromotionInfo.getDefensiveStrikeDamage() > 0)
+        if (GC.getPromotionInfo(ePromotion).getDefensiveStrikeDamage() > 0)
         {
             szBuffer.append(NEWLINE);
-            szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSIVE_STRIKE_PEDIA", kPromotionInfo.getDefensiveStrikeChance(), kPromotionInfo.getDefensiveStrikeDamage()));
+            szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSIVE_STRIKE_PEDIA", GC.getPromotionInfo(ePromotion).getDefensiveStrikeChance(), GC.getPromotionInfo(ePromotion).getDefensiveStrikeDamage()));
         }
         else
         {
             szBuffer.append(NEWLINE);
-            szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSIVE_STRIKE_CHANCE_PEDIA", kPromotionInfo.getDefensiveStrikeChance()));
+            szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSIVE_STRIKE_CHANCE_PEDIA", GC.getPromotionInfo(ePromotion).getDefensiveStrikeChance()));
         }
     }
-    if (kPromotionInfo.isImmuneToDefensiveStrike())
+    if (GC.getPromotionInfo(ePromotion).isImmuneToDefensiveStrike())
     {
         szBuffer.append(NEWLINE);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMUNE_TO_DEFENSIVE_STRIKE_PEDIA"));
     }
-    if (kPromotionInfo.getCombatPercentInBorders() != 0)
+    if (GC.getPromotionInfo(ePromotion).getCombatPercentInBorders() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_COMBAT_PERCENT_IN_BORDERS", kPromotionInfo.getCombatPercentInBorders()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_COMBAT_PERCENT_IN_BORDERS", GC.getPromotionInfo(ePromotion).getCombatPercentInBorders()));
     }
-	if (kPromotionInfo.getExtraCombatStr() == kPromotionInfo.getExtraCombatDefense())
+	if (GC.getPromotionInfo(ePromotion).getExtraCombatStr() == GC.getPromotionInfo(ePromotion).getExtraCombatDefense())
 	{
-		if (kPromotionInfo.getExtraCombatStr() != 0)
+		if (GC.getPromotionInfo(ePromotion).getExtraCombatStr() != 0)
 		{
 			szBuffer.append(NEWLINE);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXTRA_COMBAT_STR", kPromotionInfo.getExtraCombatStr()));
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXTRA_COMBAT_STR", GC.getPromotionInfo(ePromotion).getExtraCombatStr()));
 		}
 	}
 	else
 	{
-        if (kPromotionInfo.getExtraCombatStr() != 0)
+        if (GC.getPromotionInfo(ePromotion).getExtraCombatStr() != 0)
         {
             szBuffer.append(pcNewline);
-            szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXTRA_COMBAT_STR_ATTACK", kPromotionInfo.getExtraCombatStr()));
+            szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXTRA_COMBAT_STR_ATTACK", GC.getPromotionInfo(ePromotion).getExtraCombatStr()));
         }
-        if (kPromotionInfo.getExtraCombatDefense() != 0)
+        if (GC.getPromotionInfo(ePromotion).getExtraCombatDefense() != 0)
         {
             szBuffer.append(pcNewline);
-            szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXTRA_COMBAT_STR_DEFENSE", kPromotionInfo.getExtraCombatDefense()));
+            szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXTRA_COMBAT_STR_DEFENSE", GC.getPromotionInfo(ePromotion).getExtraCombatDefense()));
         }
 	}
-    if (kPromotionInfo.isTargetWeakestUnit())
+    if (GC.getPromotionInfo(ePromotion).isTargetWeakestUnit())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_TARGET_WEAKEST_UNIT"));
     }
-    if (kPromotionInfo.isTargetWeakestUnitCounter())
+    if (GC.getPromotionInfo(ePromotion).isTargetWeakestUnitCounter())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_TARGET_WEAKEST_UNIT_COUNTER"));
     }
-    if (kPromotionInfo.getBetterDefenderThanPercent() != 0)
+    if (GC.getPromotionInfo(ePromotion).getBetterDefenderThanPercent() != 0)
     {
         szBuffer.append(pcNewline);
-        if (kPromotionInfo.getBetterDefenderThanPercent() < 0)
+        if (GC.getPromotionInfo(ePromotion).getBetterDefenderThanPercent() < 0)
         {
             szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_BETTER_DEFENDER_THAN_PERCENT_LESS"));
         }
-        if (kPromotionInfo.getBetterDefenderThanPercent() > 0)
+        if (GC.getPromotionInfo(ePromotion).getBetterDefenderThanPercent() > 0)
         {
             szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_BETTER_DEFENDER_THAN_PERCENT_MORE"));
         }
     }
-    if (kPromotionInfo.getPromotionCombatApply() != NO_PROMOTION)
+    if (GC.getPromotionInfo(ePromotion).getPromotionCombatApply() != NO_PROMOTION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_COMBAT_APPLY", GC.getPromotionInfo((PromotionTypes)kPromotionInfo.getPromotionCombatApply()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_COMBAT_APPLY", GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo(ePromotion).getPromotionCombatApply()).getDescription()));
     }
-    if (kPromotionInfo.getPromotionRandomApply() != NO_PROMOTION)
+    if (GC.getPromotionInfo(ePromotion).getPromotionRandomApply() != NO_PROMOTION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_RANDOM_APPLY", GC.getPromotionInfo((PromotionTypes)kPromotionInfo.getPromotionRandomApply()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_RANDOM_APPLY", GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo(ePromotion).getPromotionRandomApply()).getDescription()));
     }
-    if (kPromotionInfo.isBoarding())
+    if (GC.getPromotionInfo(ePromotion).isBoarding())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_BOARDING_PEDIA"));
     }
-    if (kPromotionInfo.getCaptureUnitCombat() != NO_UNITCOMBAT)
+    if (GC.getPromotionInfo(ePromotion).getCaptureUnitCombat() != NO_UNITCOMBAT)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CAPTURE_UNITCOMBAT", GC.getUnitCombatInfo((UnitCombatTypes)kPromotionInfo.getCaptureUnitCombat()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CAPTURE_UNITCOMBAT", GC.getUnitCombatInfo((UnitCombatTypes)GC.getPromotionInfo(ePromotion).getCaptureUnitCombat()).getDescription()));
     }
-    if (kPromotionInfo.getCombatCapturePercent() != 0)
+    if (GC.getPromotionInfo(ePromotion).getCombatCapturePercent() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_COMBAT_CAPTURE_PERCENT", kPromotionInfo.getCombatCapturePercent()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_COMBAT_CAPTURE_PERCENT", GC.getPromotionInfo(ePromotion).getCombatCapturePercent()));
     }
-    if (kPromotionInfo.getCombatHealPercent() != 0)
+    if (GC.getPromotionInfo(ePromotion).getCombatHealPercent() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_COMBAT_HEAL_PERCENT", kPromotionInfo.getCombatHealPercent()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_COMBAT_HEAL_PERCENT", GC.getPromotionInfo(ePromotion).getCombatHealPercent()));
     }
-    if (kPromotionInfo.getCombatLimit() != 0)
+    if (GC.getPromotionInfo(ePromotion).getCombatLimit() != 0)
     {
         szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_COMBAT_LIMIT", (100 * kPromotionInfo.getCombatLimit()) / GC.getMAX_HIT_POINTS()));
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_COMBAT_LIMIT", (100 * GC.getPromotionInfo(ePromotion).getCombatLimit()) / GC.getMAX_HIT_POINTS()));
     }
-    if (kPromotionInfo.isFear())
+    if (GC.getPromotionInfo(ePromotion).isFear())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FEAR_PEDIA"));
     }
-    if (kPromotionInfo.getFreeXPPerTurn() != 0)
+    if (GC.getPromotionInfo(ePromotion).getFreeXPPerTurn() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FREE_XP_PER_TURN", kPromotionInfo.getFreeXPPerTurn(), GC.getDefineINT("FREE_XP_MAX")));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FREE_XP_PER_TURN", GC.getPromotionInfo(ePromotion).getFreeXPPerTurn(), GC.getDefineINT("FREE_XP_MAX")));
     }
-    if (kPromotionInfo.getFreeXPFromCombat() != 0)
+    if (GC.getPromotionInfo(ePromotion).getFreeXPFromCombat() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FREE_XP_FROM_COMBAT", kPromotionInfo.getFreeXPFromCombat()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FREE_XP_FROM_COMBAT", GC.getPromotionInfo(ePromotion).getFreeXPFromCombat()));
     }
-    if (kPromotionInfo.getGoldFromCombat() != 0)
+    if (GC.getPromotionInfo(ePromotion).getGoldFromCombat() != 0)
     {
         szBuffer.append(NEWLINE);
-        szBuffer.append(gDLL->getText("TXT_KEY_UNIT_GOLD_FROM_COMBAT", kPromotionInfo.getGoldFromCombat()));
+        szBuffer.append(gDLL->getText("TXT_KEY_UNIT_GOLD_FROM_COMBAT", GC.getPromotionInfo(ePromotion).getGoldFromCombat()));
     }
-    if (kPromotionInfo.getModifyGlobalCounter() != 0)
+    if (GC.getPromotionInfo(ePromotion).getModifyGlobalCounter() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_MESSAGE_MODIFY_GLOBAL_COUNTER", kPromotionInfo.getModifyGlobalCounter()));
+        szBuffer.append(gDLL->getText("TXT_KEY_MESSAGE_MODIFY_GLOBAL_COUNTER", GC.getPromotionInfo(ePromotion).getModifyGlobalCounter()));
     }
-    if (kPromotionInfo.getModifyGlobalCounterOnCombat() != 0)
+    if (GC.getPromotionInfo(ePromotion).getModifyGlobalCounterOnCombat() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_MESSAGE_MODIFY_GLOBAL_COUNTER_ON_COMBAT", kPromotionInfo.getModifyGlobalCounterOnCombat()));
+        szBuffer.append(gDLL->getText("TXT_KEY_MESSAGE_MODIFY_GLOBAL_COUNTER_ON_COMBAT", GC.getPromotionInfo(ePromotion).getModifyGlobalCounterOnCombat()));
     }
-    if (kPromotionInfo.getSpellCasterXP() != 0)
+    if (GC.getPromotionInfo(ePromotion).getSpellCasterXP() != 0)
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_SPELL_CASTER_XP"));
     }
-    if (kPromotionInfo.isFlying())
+    if (GC.getPromotionInfo(ePromotion).isFlying())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FLYING_PEDIA"));
     }
-    if (kPromotionInfo.isHeld())
+    if (GC.getPromotionInfo(ePromotion).isHeld())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HELD_PEDIA"));
     }
-    if (kPromotionInfo.isHiddenNationality())
+    if (GC.getPromotionInfo(ePromotion).isHiddenNationality())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HIDDEN_NATIONALITY_PEDIA"));
     }
-    if (kPromotionInfo.isIgnoreBuildingDefense())
+    if (GC.getPromotionInfo(ePromotion).isIgnoreBuildingDefense())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IGNORE_BUILDING_DEFENSE"));
     }
-    if (kPromotionInfo.isImmortal())
+    if (GC.getPromotionInfo(ePromotion).isImmortal())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMORTAL_PEDIA"));
     }
-    if (kPromotionInfo.isImmuneToCapture())
+    if (GC.getPromotionInfo(ePromotion).isImmuneToCapture())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMUNE_TO_CAPTURE_PEDIA"));
     }
-    if (kPromotionInfo.isImmuneToMagic())
+    if (GC.getPromotionInfo(ePromotion).isImmuneToMagic())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMUNE_TO_MAGIC_PEDIA"));
     }
-    if (kPromotionInfo.isImmuneToFear())
+    if (GC.getPromotionInfo(ePromotion).isImmuneToFear())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMUNE_TO_FEAR_PEDIA"));
     }
-    if (kPromotionInfo.getPromotionImmune1() != NO_PROMOTION)
+    if (GC.getPromotionInfo(ePromotion).getPromotionImmune1() != NO_PROMOTION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMUNE", GC.getPromotionInfo((PromotionTypes)kPromotionInfo.getPromotionImmune1()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMUNE", GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo(ePromotion).getPromotionImmune1()).getDescription()));
     }
-    if (kPromotionInfo.getPromotionImmune2() != NO_PROMOTION)
+    if (GC.getPromotionInfo(ePromotion).getPromotionImmune2() != NO_PROMOTION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMUNE", GC.getPromotionInfo((PromotionTypes)kPromotionInfo.getPromotionImmune2()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMUNE", GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo(ePromotion).getPromotionImmune2()).getDescription()));
     }
-    if (kPromotionInfo.getPromotionImmune3() != NO_PROMOTION)
+    if (GC.getPromotionInfo(ePromotion).getPromotionImmune3() != NO_PROMOTION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMUNE", GC.getPromotionInfo((PromotionTypes)kPromotionInfo.getPromotionImmune3()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMUNE", GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo(ePromotion).getPromotionImmune3()).getDescription()));
     }
-    if (kPromotionInfo.isInvisible())
+    if (GC.getPromotionInfo(ePromotion).isInvisible())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_INVISIBLE_PEDIA"));
     }
-    if (kPromotionInfo.isSeeInvisible())
+    if (GC.getPromotionInfo(ePromotion).isSeeInvisible())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_SEE_INVISIBLE_PEDIA"));
     }
-    if (kPromotionInfo.isDoubleFortifyBonus())
+    if (GC.getPromotionInfo(ePromotion).isDoubleFortifyBonus())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DOUBLE_FORTIFY_BONUS"));
     }
-    if (kPromotionInfo.isTwincast())
+    if (GC.getPromotionInfo(ePromotion).isTwincast())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_TWINCAST_PEDIA"));
     }
-    if (kPromotionInfo.isWaterWalking())
+    if (GC.getPromotionInfo(ePromotion).isWaterWalking())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_WATER_WALKING_PEDIA"));
     }
-    if (kPromotionInfo.isNotAlive())
+    if (GC.getPromotionInfo(ePromotion).isNotAlive())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_NOT_ALIVE"));
     }
-    if (kPromotionInfo.getResistMagic() != 0)
+    if (GC.getPromotionInfo(ePromotion).getResistMagic() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_RESIST", kPromotionInfo.getResistMagic()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_RESIST", GC.getPromotionInfo(ePromotion).getResistMagic()));
     }
-    if (kPromotionInfo.getSpellDamageModify() != 0)
+    if (GC.getPromotionInfo(ePromotion).getSpellDamageModify() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_SPELL_DAMAGE_MODIFY", kPromotionInfo.getSpellDamageModify()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_SPELL_DAMAGE_MODIFY", GC.getPromotionInfo(ePromotion).getSpellDamageModify()));
     }
-    if (kPromotionInfo.getCasterResistModify() != 0)
+    if (GC.getPromotionInfo(ePromotion).getCasterResistModify() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CASTER_RESIST_MODIFY", kPromotionInfo.getCasterResistModify()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CASTER_RESIST_MODIFY", GC.getPromotionInfo(ePromotion).getCasterResistModify()));
     }
 	for (iI = 0; iI < GC.getNumSpellInfos(); iI++)
 	{
@@ -9373,57 +9371,57 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
             }
 		}
 	}
-    if (kPromotionInfo.getExpireChance() != 0)
+    if (GC.getPromotionInfo(ePromotion).getExpireChance() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXPIRE_CHANCE", kPromotionInfo.getExpireChance()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXPIRE_CHANCE", GC.getPromotionInfo(ePromotion).getExpireChance()));
     }
-    if (kPromotionInfo.isRemovedByCasting())
+    if (GC.getPromotionInfo(ePromotion).isRemovedByCasting())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_REMOVED_BY_CASTING"));
     }
-    if (kPromotionInfo.isRemovedByCombat())
+    if (GC.getPromotionInfo(ePromotion).isRemovedByCombat())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_REMOVED_BY_COMBAT"));
     }
-    if (kPromotionInfo.isRemovedWhenHealed())
+    if (GC.getPromotionInfo(ePromotion).isRemovedWhenHealed())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_REMOVED_WHEN_HEALED"));
     }
-    if (kPromotionInfo.getPromotionSummonPerk() != NO_PROMOTION)
+    if (GC.getPromotionInfo(ePromotion).getPromotionSummonPerk() != NO_PROMOTION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_SUMMON_PERK", GC.getPromotionInfo((PromotionTypes)kPromotionInfo.getPromotionSummonPerk()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_SUMMON_PERK", GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo(ePromotion).getPromotionSummonPerk()).getDescription()));
     }
-    if (kPromotionInfo.getPromotionCombatMod() != 0)
+    if (GC.getPromotionInfo(ePromotion).getPromotionCombatMod() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_VERSUS_TEXT", kPromotionInfo.getPromotionCombatMod(), GC.getPromotionInfo((PromotionTypes)kPromotionInfo.getPromotionCombatType()).getTextKeyWide()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_VERSUS_TEXT", GC.getPromotionInfo(ePromotion).getPromotionCombatMod(), GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo(ePromotion).getPromotionCombatType()).getTextKeyWide()));
     }
-    if (kPromotionInfo.getBetrayalChance() != 0)
+    if (GC.getPromotionInfo(ePromotion).getBetrayalChance() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_BETRAYAL_CHANCE", kPromotionInfo.getBetrayalChance()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_BETRAYAL_CHANCE", GC.getPromotionInfo(ePromotion).getBetrayalChance()));
     }
-    if (kPromotionInfo.getWorkRateModify() != 0)
+    if (GC.getPromotionInfo(ePromotion).getWorkRateModify() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_WORK_RATE_MODIFY", kPromotionInfo.getWorkRateModify()));
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_WORK_RATE_MODIFY", GC.getPromotionInfo(ePromotion).getWorkRateModify()));
     }
-	if (kPromotionInfo.isPrereqAlive())
+	if (GC.getPromotionInfo(ePromotion).isPrereqAlive())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_PREREQ_ALIVE"));
     }
 //FfH: End Add
 
-	if (wcslen(kPromotionInfo.getHelp()) > 0)
+	if (wcslen(GC.getPromotionInfo(ePromotion).getHelp()) > 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(kPromotionInfo.getHelp());
+		szBuffer.append(GC.getPromotionInfo(ePromotion).getHelp());
 	}
 }
 
@@ -9438,263 +9436,260 @@ void CvGameTextMgr::parseSpellHelp(CvWStringBuffer &szBuffer, SpellTypes eSpell,
 	{
 		return;
 	}
-
-	CvSpellInfo &kSpellInfo = GC.getSpellInfo(eSpell);
-
-    if (kSpellInfo.isGlobal())
+    if (GC.getSpellInfo(eSpell).isGlobal())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_GLOBAL"));
     }
-    if (kSpellInfo.isPrereqSlaveTrade())
+    if (GC.getSpellInfo(eSpell).isPrereqSlaveTrade())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_PREREQ_SLAVE_TRADE"));
     }
-    if (kSpellInfo.getCasterMinLevel() != 0)
+    if (GC.getSpellInfo(eSpell).getCasterMinLevel() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CASTER_MIN_LEVEL", kSpellInfo.getCasterMinLevel()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CASTER_MIN_LEVEL", GC.getSpellInfo(eSpell).getCasterMinLevel()));
     }
-    if (kSpellInfo.getBuildingPrereq() != NO_BUILDING)
+    if (GC.getSpellInfo(eSpell).getBuildingPrereq() != NO_BUILDING)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_BUILDING_PREREQ", GC.getBuildingInfo((BuildingTypes)kSpellInfo.getBuildingPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_BUILDING_PREREQ", GC.getBuildingInfo((BuildingTypes)GC.getSpellInfo(eSpell).getBuildingPrereq()).getDescription()));
     }
-    if (kSpellInfo.getBuildingClassOwnedPrereq() != NO_BUILDINGCLASS)
+    if (GC.getSpellInfo(eSpell).getBuildingClassOwnedPrereq() != NO_BUILDINGCLASS)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_BUILDINGCLASS_OWNED_PREREQ", GC.getBuildingClassInfo((BuildingClassTypes)kSpellInfo.getBuildingClassOwnedPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_BUILDINGCLASS_OWNED_PREREQ", GC.getBuildingClassInfo((BuildingClassTypes)GC.getSpellInfo(eSpell).getBuildingClassOwnedPrereq()).getDescription()));
     }
-    if (kSpellInfo.getCivilizationPrereq() != NO_CIVILIZATION)
+    if (GC.getSpellInfo(eSpell).getCivilizationPrereq() != NO_CIVILIZATION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CIVILIZATION_PREREQ", GC.getCivilizationInfo((CivilizationTypes)kSpellInfo.getCivilizationPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CIVILIZATION_PREREQ", GC.getCivilizationInfo((CivilizationTypes)GC.getSpellInfo(eSpell).getCivilizationPrereq()).getDescription()));
     }
-    if (kSpellInfo.getCorporationPrereq() != NO_CORPORATION)
+    if (GC.getSpellInfo(eSpell).getCorporationPrereq() != NO_CORPORATION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CORPORATION_PREREQ", GC.getCorporationInfo((CorporationTypes)kSpellInfo.getCorporationPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CORPORATION_PREREQ", GC.getCorporationInfo((CorporationTypes)GC.getSpellInfo(eSpell).getCorporationPrereq()).getDescription()));
     }
-    if (kSpellInfo.getFeatureOrPrereq1() != NO_FEATURE)
+    if (GC.getSpellInfo(eSpell).getFeatureOrPrereq1() != NO_FEATURE)
     {
-        if (kSpellInfo.getFeatureOrPrereq2() == NO_FEATURE)
+        if (GC.getSpellInfo(eSpell).getFeatureOrPrereq2() == NO_FEATURE)
         {
             szBuffer.append(pcNewline);
-            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_FEATURE_PREREQ", GC.getFeatureInfo((FeatureTypes)kSpellInfo.getFeatureOrPrereq1()).getDescription()));
+            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_FEATURE_PREREQ", GC.getFeatureInfo((FeatureTypes)GC.getSpellInfo(eSpell).getFeatureOrPrereq1()).getDescription()));
         }
         else
         {
             szBuffer.append(pcNewline);
-            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_FEATURE2_PREREQ", GC.getFeatureInfo((FeatureTypes)kSpellInfo.getFeatureOrPrereq1()).getDescription(), GC.getFeatureInfo((FeatureTypes)kSpellInfo.getFeatureOrPrereq2()).getDescription()));
+            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_FEATURE2_PREREQ", GC.getFeatureInfo((FeatureTypes)GC.getSpellInfo(eSpell).getFeatureOrPrereq1()).getDescription(), GC.getFeatureInfo((FeatureTypes)GC.getSpellInfo(eSpell).getFeatureOrPrereq2()).getDescription()));
         }
     }
-    if (kSpellInfo.getImprovementPrereq() != NO_IMPROVEMENT)
+    if (GC.getSpellInfo(eSpell).getImprovementPrereq() != NO_IMPROVEMENT)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMPROVEMENT_PREREQ", GC.getImprovementInfo((ImprovementTypes)kSpellInfo.getImprovementPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMPROVEMENT_PREREQ", GC.getImprovementInfo((ImprovementTypes)GC.getSpellInfo(eSpell).getImprovementPrereq()).getDescription()));
     }
-    if (kSpellInfo.getPromotionInStackPrereq() != NO_PROMOTION)
+    if (GC.getSpellInfo(eSpell).getPromotionInStackPrereq() != NO_PROMOTION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_PROMOTION_IN_STACK_PREREQ", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getPromotionInStackPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_PROMOTION_IN_STACK_PREREQ", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getPromotionInStackPrereq()).getDescription()));
     }
-    if (kSpellInfo.getReligionPrereq() != NO_RELIGION)
+    if (GC.getSpellInfo(eSpell).getReligionPrereq() != NO_RELIGION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_RELIGION_PREREQ", GC.getReligionInfo((ReligionTypes)kSpellInfo.getReligionPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_RELIGION_PREREQ", GC.getReligionInfo((ReligionTypes)GC.getSpellInfo(eSpell).getReligionPrereq()).getDescription()));
     }
-    if (kSpellInfo.getStateReligionPrereq() != NO_RELIGION)
+    if (GC.getSpellInfo(eSpell).getStateReligionPrereq() != NO_RELIGION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_STATE_RELIGION_PREREQ", GC.getReligionInfo((ReligionTypes)kSpellInfo.getStateReligionPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_STATE_RELIGION_PREREQ", GC.getReligionInfo((ReligionTypes)GC.getSpellInfo(eSpell).getStateReligionPrereq()).getDescription()));
     }
-    if (kSpellInfo.getTechPrereq() != NO_TECH)
+    if (GC.getSpellInfo(eSpell).getTechPrereq() != NO_TECH)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_TECH_PREREQ", GC.getTechInfo((TechTypes)kSpellInfo.getTechPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_TECH_PREREQ", GC.getTechInfo((TechTypes)GC.getSpellInfo(eSpell).getTechPrereq()).getDescription()));
     }
-    if (kSpellInfo.getUnitPrereq() != NO_UNIT)
+    if (GC.getSpellInfo(eSpell).getUnitPrereq() != NO_UNIT)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_UNIT_PREREQ", GC.getUnitInfo((UnitTypes)kSpellInfo.getUnitPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_UNIT_PREREQ", GC.getUnitInfo((UnitTypes)GC.getSpellInfo(eSpell).getUnitPrereq()).getDescription()));
     }
-    if (kSpellInfo.getUnitCombatPrereq() != NO_UNITCOMBAT)
+    if (GC.getSpellInfo(eSpell).getUnitCombatPrereq() != NO_UNITCOMBAT)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_UNIT_PREREQ", GC.getUnitCombatInfo((UnitCombatTypes)kSpellInfo.getUnitCombatPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_UNIT_PREREQ", GC.getUnitCombatInfo((UnitCombatTypes)GC.getSpellInfo(eSpell).getUnitCombatPrereq()).getDescription()));
     }
-    if (kSpellInfo.getUnitClassPrereq() != NO_UNITCLASS)
+    if (GC.getSpellInfo(eSpell).getUnitClassPrereq() != NO_UNITCLASS)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_UNIT_PREREQ", GC.getUnitClassInfo((UnitClassTypes)kSpellInfo.getUnitClassPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_UNIT_PREREQ", GC.getUnitClassInfo((UnitClassTypes)GC.getSpellInfo(eSpell).getUnitClassPrereq()).getDescription()));
     }
-    if (kSpellInfo.getUnitInStackPrereq() != NO_UNIT)
+    if (GC.getSpellInfo(eSpell).getUnitInStackPrereq() != NO_UNIT)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_UNIT_IN_STACK_PREREQ", GC.getUnitInfo((UnitTypes)kSpellInfo.getUnitInStackPrereq()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_UNIT_IN_STACK_PREREQ", GC.getUnitInfo((UnitTypes)GC.getSpellInfo(eSpell).getUnitInStackPrereq()).getDescription()));
     }
-    if (kSpellInfo.getCreateUnitType() != NO_UNIT)
+    if (GC.getSpellInfo(eSpell).getCreateUnitType() != NO_UNIT)
     {
         szBuffer.append(pcNewline);
-        if (kSpellInfo.getCreateUnitNum() == 1)
+        if (GC.getSpellInfo(eSpell).getCreateUnitNum() == 1)
         {
-            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_SUMMON_UNIT", GC.getUnitInfo((UnitTypes)kSpellInfo.getCreateUnitType()).getDescription()));
+            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_SUMMON_UNIT", GC.getUnitInfo((UnitTypes)GC.getSpellInfo(eSpell).getCreateUnitType()).getDescription()));
         }
         else
         {
-            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_SUMMON_UNIT_MULTIPLE", kSpellInfo.getCreateUnitNum(), GC.getUnitInfo((UnitTypes)kSpellInfo.getCreateUnitType()).getDescription()));
+            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_SUMMON_UNIT_MULTIPLE", GC.getSpellInfo(eSpell).getCreateUnitNum(), GC.getUnitInfo((UnitTypes)GC.getSpellInfo(eSpell).getCreateUnitType()).getDescription()));
         }
-        if (kSpellInfo.isPermanentUnitCreate())
+        if (GC.getSpellInfo(eSpell).isPermanentUnitCreate())
         {
             szBuffer.append(gDLL->getText("TXT_KEY_SPELL_SUMMON_UNIT_PERMANENT"));
         }
-        if (kSpellInfo.isCopyCastersPromotions())
+        if (GC.getSpellInfo(eSpell).isCopyCastersPromotions())
         {
             szBuffer.append(pcNewline);
             szBuffer.append(gDLL->getText("TXT_KEY_SPELL_COPY_CASTERS_PROMOTIONS"));
         }
     }
-    if (kSpellInfo.getCreateUnitPromotion() != NO_PROMOTION)
+    if (GC.getSpellInfo(eSpell).getCreateUnitPromotion() != NO_PROMOTION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CREATE_UNIT_PROMOTION", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getCreateUnitPromotion()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CREATE_UNIT_PROMOTION", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getCreateUnitPromotion()).getDescription()));
     }
-    if (kSpellInfo.getDamage() != 0)
+    if (GC.getSpellInfo(eSpell).getDamage() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_DAMAGE", kSpellInfo.getDamage(), kSpellInfo.getDamageLimit()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_DAMAGE", GC.getSpellInfo(eSpell).getDamage(), GC.getSpellInfo(eSpell).getDamageLimit()));
     }
-    if (kSpellInfo.getAddPromotionType1() != NO_PROMOTION)
+    if (GC.getSpellInfo(eSpell).getAddPromotionType1() != NO_PROMOTION)
     {
-        if (kSpellInfo.isBuffCasterOnly())
+        if (GC.getSpellInfo(eSpell).isBuffCasterOnly())
         {
             szBuffer.append(pcNewline);
-            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION_CASTER", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getAddPromotionType1()).getDescription()));
-            if (kSpellInfo.getAddPromotionType2() != NO_PROMOTION)
+            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION_CASTER", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getAddPromotionType1()).getDescription()));
+            if (GC.getSpellInfo(eSpell).getAddPromotionType2() != NO_PROMOTION)
             {
                 szBuffer.append(pcNewline);
-                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION_CASTER", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getAddPromotionType2()).getDescription()));
+                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION_CASTER", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getAddPromotionType2()).getDescription()));
             }
-            if (kSpellInfo.getAddPromotionType3() != NO_PROMOTION)
+            if (GC.getSpellInfo(eSpell).getAddPromotionType3() != NO_PROMOTION)
             {
                 szBuffer.append(pcNewline);
-                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION_CASTER", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getAddPromotionType3()).getDescription()));
+                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION_CASTER", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getAddPromotionType3()).getDescription()));
             }
         }
         else
         {
-            if (kSpellInfo.getRange() == 0)
+            if (GC.getSpellInfo(eSpell).getRange() == 0)
             {
                 szBuffer.append(pcNewline);
-                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getAddPromotionType1()).getDescription()));
-                if (kSpellInfo.getAddPromotionType2() != NO_PROMOTION)
+                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getAddPromotionType1()).getDescription()));
+                if (GC.getSpellInfo(eSpell).getAddPromotionType2() != NO_PROMOTION)
                 {
                     szBuffer.append(pcNewline);
-                    szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getAddPromotionType2()).getDescription()));
+                    szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getAddPromotionType2()).getDescription()));
                 }
-                if (kSpellInfo.getAddPromotionType3() != NO_PROMOTION)
+                if (GC.getSpellInfo(eSpell).getAddPromotionType3() != NO_PROMOTION)
                 {
                     szBuffer.append(pcNewline);
-                    szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getAddPromotionType3()).getDescription()));
+                    szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getAddPromotionType3()).getDescription()));
                 }
             }
             else
             {
                 szBuffer.append(pcNewline);
-                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION_AT_RANGE", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getAddPromotionType1()).getDescription(), kSpellInfo.getRange()));
-                if (kSpellInfo.getAddPromotionType2() != NO_PROMOTION)
+                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION_AT_RANGE", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getAddPromotionType1()).getDescription(), GC.getSpellInfo(eSpell).getRange()));
+                if (GC.getSpellInfo(eSpell).getAddPromotionType2() != NO_PROMOTION)
                 {
                     szBuffer.append(pcNewline);
-                    szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION_AT_RANGE", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getAddPromotionType2()).getDescription(), kSpellInfo.getRange()));
+                    szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION_AT_RANGE", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getAddPromotionType2()).getDescription(), GC.getSpellInfo(eSpell).getRange()));
                 }
-                if (kSpellInfo.getAddPromotionType3() != NO_PROMOTION)
+                if (GC.getSpellInfo(eSpell).getAddPromotionType3() != NO_PROMOTION)
                 {
                     szBuffer.append(pcNewline);
-                    szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION_AT_RANGE", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getAddPromotionType3()).getDescription(), kSpellInfo.getRange()));
+                    szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADD_PROMOTION_AT_RANGE", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getAddPromotionType3()).getDescription(), GC.getSpellInfo(eSpell).getRange()));
                 }
             }
         }
     }
-    if (kSpellInfo.getRemovePromotionType1() != NO_PROMOTION)
+    if (GC.getSpellInfo(eSpell).getRemovePromotionType1() != NO_PROMOTION)
     {
-        if (kSpellInfo.isBuffCasterOnly())
+        if (GC.getSpellInfo(eSpell).isBuffCasterOnly())
         {
             szBuffer.append(pcNewline);
-            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_PROMOTION_CASTER", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getRemovePromotionType1()).getDescription()));
-            if (kSpellInfo.getRemovePromotionType2() != NO_PROMOTION)
+            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_PROMOTION_CASTER", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getRemovePromotionType1()).getDescription()));
+            if (GC.getSpellInfo(eSpell).getRemovePromotionType2() != NO_PROMOTION)
             {
                 szBuffer.append(pcNewline);
-                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_PROMOTION_CASTER", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getRemovePromotionType2()).getDescription()));
+                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_PROMOTION_CASTER", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getRemovePromotionType2()).getDescription()));
             }
-            if (kSpellInfo.getRemovePromotionType3() != NO_PROMOTION)
+            if (GC.getSpellInfo(eSpell).getRemovePromotionType3() != NO_PROMOTION)
             {
                 szBuffer.append(pcNewline);
-                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_PROMOTION_CASTER", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getRemovePromotionType3()).getDescription()));
+                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_PROMOTION_CASTER", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getRemovePromotionType3()).getDescription()));
             }
         }
         else
         {
             szBuffer.append(pcNewline);
-            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_PROMOTION", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getRemovePromotionType1()).getDescription()));
-            if (kSpellInfo.getRemovePromotionType2() != NO_PROMOTION)
+            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_PROMOTION", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getRemovePromotionType1()).getDescription()));
+            if (GC.getSpellInfo(eSpell).getRemovePromotionType2() != NO_PROMOTION)
             {
                 szBuffer.append(pcNewline);
-                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_PROMOTION", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getRemovePromotionType2()).getDescription()));
+                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_PROMOTION", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getRemovePromotionType2()).getDescription()));
             }
-            if (kSpellInfo.getRemovePromotionType3() != NO_PROMOTION)
+            if (GC.getSpellInfo(eSpell).getRemovePromotionType3() != NO_PROMOTION)
             {
                 szBuffer.append(pcNewline);
-                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_PROMOTION", GC.getPromotionInfo((PromotionTypes)kSpellInfo.getRemovePromotionType3()).getDescription()));
+                szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_PROMOTION", GC.getPromotionInfo((PromotionTypes)GC.getSpellInfo(eSpell).getRemovePromotionType3()).getDescription()));
             }
         }
     }
-    if (kSpellInfo.getRange() != 0 && kSpellInfo.getAddPromotionType1() == NO_PROMOTION)
+    if (GC.getSpellInfo(eSpell).getRange() != 0 && GC.getSpellInfo(eSpell).getAddPromotionType1() == NO_PROMOTION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_RANGE", kSpellInfo.getRange()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_RANGE", GC.getSpellInfo(eSpell).getRange()));
     }
-    if (kSpellInfo.getConvertUnitType() != NO_UNIT)
+    if (GC.getSpellInfo(eSpell).getConvertUnitType() != NO_UNIT)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CONVERT_UNIT", GC.getUnitInfo((UnitTypes)kSpellInfo.getConvertUnitType()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CONVERT_UNIT", GC.getUnitInfo((UnitTypes)GC.getSpellInfo(eSpell).getConvertUnitType()).getDescription()));
     }
-    if (kSpellInfo.getCreateBuildingType() != NO_BUILDING)
+    if (GC.getSpellInfo(eSpell).getCreateBuildingType() != NO_BUILDING)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CREATE_BUILDING", GC.getBuildingInfo((BuildingTypes)kSpellInfo.getCreateBuildingType()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CREATE_BUILDING", GC.getBuildingInfo((BuildingTypes)GC.getSpellInfo(eSpell).getCreateBuildingType()).getDescription()));
     }
-    if (kSpellInfo.getCreateFeatureType() != NO_FEATURE)
+    if (GC.getSpellInfo(eSpell).getCreateFeatureType() != NO_FEATURE)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CREATE_FEATURE", GC.getFeatureInfo((FeatureTypes)kSpellInfo.getCreateFeatureType()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CREATE_FEATURE", GC.getFeatureInfo((FeatureTypes)GC.getSpellInfo(eSpell).getCreateFeatureType()).getDescription()));
     }
-    if (kSpellInfo.getCreateImprovementType() != NO_IMPROVEMENT)
+    if (GC.getSpellInfo(eSpell).getCreateImprovementType() != NO_IMPROVEMENT)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CREATE_IMPROVEMENT", GC.getImprovementInfo((ImprovementTypes)kSpellInfo.getCreateImprovementType()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_CREATE_IMPROVEMENT", GC.getImprovementInfo((ImprovementTypes)GC.getSpellInfo(eSpell).getCreateImprovementType()).getDescription()));
     }
-    if (kSpellInfo.getSpreadReligion() != NO_RELIGION)
+    if (GC.getSpellInfo(eSpell).getSpreadReligion() != NO_RELIGION)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_SPREAD_RELIGION", GC.getReligionInfo((ReligionTypes)kSpellInfo.getSpreadReligion()).getDescription()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_SPREAD_RELIGION", GC.getReligionInfo((ReligionTypes)GC.getSpellInfo(eSpell).getSpreadReligion()).getDescription()));
     }
-    if (kSpellInfo.isDispel())
+    if (GC.getSpellInfo(eSpell).isDispel())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_DISPEL"));
     }
-	if (wcslen(kSpellInfo.getHelp()) > 0)
+	if (wcslen(GC.getSpellInfo(eSpell).getHelp()) > 0)
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(kSpellInfo.getHelp());
+		szBuffer.append(GC.getSpellInfo(eSpell).getHelp());
 	}
-    if (kSpellInfo.isResistable())
+    if (GC.getSpellInfo(eSpell).isResistable())
     {
-        if (kSpellInfo.getResistModify() != 0)
+        if (GC.getSpellInfo(eSpell).getResistModify() != 0)
         {
             szBuffer.append(pcNewline);
-            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_RESIST_WITH_MODIFY", kSpellInfo.getResistModify()));
+            szBuffer.append(gDLL->getText("TXT_KEY_SPELL_RESIST_WITH_MODIFY", GC.getSpellInfo(eSpell).getResistModify()));
         }
         else
         {
@@ -9702,87 +9697,84 @@ void CvGameTextMgr::parseSpellHelp(CvWStringBuffer &szBuffer, SpellTypes eSpell,
             szBuffer.append(gDLL->getText("TXT_KEY_SPELL_RESIST"));
         }
     }
-    if (kSpellInfo.isAdjacentToWaterOnly())
+    if (GC.getSpellInfo(eSpell).isAdjacentToWaterOnly())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_ADJACENT_TO_WATER_ONLY"));
     }
-    if (kSpellInfo.isInBordersOnly() && kSpellInfo.isInCityOnly())
+    if (GC.getSpellInfo(eSpell).isInBordersOnly() && GC.getSpellInfo(eSpell).isInCityOnly())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IN_BORDERS_AND_CITY_ONLY"));
     }
     else
     {
-        if (kSpellInfo.isInBordersOnly())
+        if (GC.getSpellInfo(eSpell).isInBordersOnly())
         {
             szBuffer.append(pcNewline);
             szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IN_BORDERS_ONLY"));
         }
-        if (kSpellInfo.isInCityOnly())
+        if (GC.getSpellInfo(eSpell).isInCityOnly())
         {
             szBuffer.append(pcNewline);
             szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IN_CITY_ONLY"));
         }
     }
-    if (kSpellInfo.isImmuneTeam() && !kSpellInfo.isImmuneNeutral() && !kSpellInfo.isImmuneEnemy())
+    if (GC.getSpellInfo(eSpell).isImmuneTeam() && !GC.getSpellInfo(eSpell).isImmuneNeutral() && !GC.getSpellInfo(eSpell).isImmuneEnemy())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMUNE_TEAM"));
     }
-    if (!kSpellInfo.isImmuneTeam() && kSpellInfo.isImmuneNeutral() && !kSpellInfo.isImmuneEnemy())
+    if (!GC.getSpellInfo(eSpell).isImmuneTeam() && GC.getSpellInfo(eSpell).isImmuneNeutral() && !GC.getSpellInfo(eSpell).isImmuneEnemy())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMUNE_NEUTRAL"));
     }
-    if (!kSpellInfo.isImmuneTeam() && !kSpellInfo.isImmuneNeutral() && kSpellInfo.isImmuneEnemy())
+    if (!GC.getSpellInfo(eSpell).isImmuneTeam() && !GC.getSpellInfo(eSpell).isImmuneNeutral() && GC.getSpellInfo(eSpell).isImmuneEnemy())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMUNE_ENEMY"));
     }
-    if (kSpellInfo.isImmuneTeam() && kSpellInfo.isImmuneNeutral() && !kSpellInfo.isImmuneEnemy())
+    if (GC.getSpellInfo(eSpell).isImmuneTeam() && GC.getSpellInfo(eSpell).isImmuneNeutral() && !GC.getSpellInfo(eSpell).isImmuneEnemy())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMUNE_TEAM_NEUTRAL"));
     }
-    if (kSpellInfo.isImmuneTeam() && !kSpellInfo.isImmuneNeutral() && kSpellInfo.isImmuneEnemy())
+    if (GC.getSpellInfo(eSpell).isImmuneTeam() && !GC.getSpellInfo(eSpell).isImmuneNeutral() && GC.getSpellInfo(eSpell).isImmuneEnemy())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMUNE_TEAM_ENEMY"));
     }
-    if (!kSpellInfo.isImmuneTeam() && kSpellInfo.isImmuneNeutral() && kSpellInfo.isImmuneEnemy())
+    if (!GC.getSpellInfo(eSpell).isImmuneTeam() && GC.getSpellInfo(eSpell).isImmuneNeutral() && GC.getSpellInfo(eSpell).isImmuneEnemy())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMUNE_NEUTRAL_ENEMY"));
     }
-    if (kSpellInfo.isImmuneTeam() && kSpellInfo.isImmuneNeutral() && kSpellInfo.isImmuneEnemy())
+    if (GC.getSpellInfo(eSpell).isImmuneTeam() && GC.getSpellInfo(eSpell).isImmuneNeutral() && GC.getSpellInfo(eSpell).isImmuneEnemy())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMUNE_TEAM_NEUTRAL_ENEMY"));
     }
-    if (kSpellInfo.isImmuneFlying())
+    if (GC.getSpellInfo(eSpell).isImmuneFlying())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMUNE_FLYING"));
     }
-    if (kSpellInfo.isImmuneNotAlive())
+    if (GC.getSpellInfo(eSpell).isImmuneNotAlive())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMUNE_NOT_ALIVE"));
     }
-    if (kSpellInfo.isRemoveHasCasted())
+    if (GC.getSpellInfo(eSpell).isRemoveHasCasted())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_HAS_CASTED"));
     }
-    int iCost = kSpellInfo.getCost();
+    int iCost = GC.getSpellInfo(eSpell).getCost();
     if (iCost != 0)
     {
-		// scale costs by gamespeed
-		iCost *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
-		iCost /= 100;
 
-        if (kSpellInfo.getConvertUnitType() != NO_UNIT)
+        if (GC.getSpellInfo(eSpell).getConvertUnitType() != NO_UNIT)
         {
             if (GC.getGameINLINE().getActivePlayer() != NO_PLAYER)
             {
@@ -9792,22 +9784,22 @@ void CvGameTextMgr::parseSpellHelp(CvWStringBuffer &szBuffer, SpellTypes eSpell,
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_COST", iCost));
     }
-    if (kSpellInfo.getDelay() != 0)
+    if (GC.getSpellInfo(eSpell).getDelay() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_DELAY", kSpellInfo.getDelay()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_DELAY", GC.getSpellInfo(eSpell).getDelay()));
     }
-    if (kSpellInfo.getMiscastChance() != 0)
+    if (GC.getSpellInfo(eSpell).getMiscastChance() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_MISCAST_CHANCE", kSpellInfo.getMiscastChance()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_MISCAST_CHANCE", GC.getSpellInfo(eSpell).getMiscastChance()));
     }
-    if (kSpellInfo.getImmobileTurns() != 0)
+    if (GC.getSpellInfo(eSpell).getImmobileTurns() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMOBILE_TURNS", kSpellInfo.getImmobileTurns()));
+        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMOBILE_TURNS", GC.getSpellInfo(eSpell).getImmobileTurns()));
     }
-    if (kSpellInfo.isSacrificeCaster())
+    if (GC.getSpellInfo(eSpell).isSacrificeCaster())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_SACRIFICE_CASTER"));
@@ -11271,9 +11263,9 @@ void CvGameTextMgr::setBasicUnitHelpWithCity(CvWStringBuffer &szBuffer, UnitType
 			{
 				if (kUnitInfo.getCombat() == kUnitInfo.getCombatDefense())
 				{
-					szTempBuffer.Format(L"%d%c, ", kUnitInfo.getCombat(), gDLL->getSymbolID(STRENGTH_CHAR));
-					szBuffer.append(szTempBuffer);
-				}
+				szTempBuffer.Format(L"%d%c, ", kUnitInfo.getCombat(), gDLL->getSymbolID(STRENGTH_CHAR));
+				szBuffer.append(szTempBuffer);
+			}
 				else
 				{
 					szTempBuffer.Format(L"%d/%d%c, ", kUnitInfo.getCombat(), kUnitInfo.getCombatDefense(), gDLL->getSymbolID(STRENGTH_CHAR));
@@ -21596,6 +21588,19 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
 		szBuffer.append(NEWLINE);
 		szBuffer.append(szHelp);
 	}
+/************************************************************************************************/
+/* EVENT_HELP                               01/20/13                                lfgr        */
+/*                                                                                              */
+/* Original by Chronis                                                                          */
+/************************************************************************************************/
+	else if( !CvWString( kEvent.getHelp() ).empty() )
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(CvWString( kEvent.getHelp() ));
+	}
+/************************************************************************************************/
+/* EVENT_HELP                              END                                                  */
+/************************************************************************************************/
 
 	CvWStringBuffer szTemp;
 	for (int i = 0; i < GC.getNumEventInfos(); ++i)
