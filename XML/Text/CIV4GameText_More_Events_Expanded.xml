@@ -1379,7 +1379,6 @@
 		<Italian>This warrior was buried before the Age of Ice, let's profit from their death. Loot the grave!</Italian>
 		<Spanish>This warrior was buried before the Age of Ice, let's profit from their death. Loot the grave!</Spanish>
 	</TEXT>
-	</TEXT>
 	<TEXT><!-- EVENT_ANCIENT_BURIAL_4_HELP -->
 		<Tag>TXT_KEY_EVENT_ANCIENT_BURIAL_4_HELP</Tag>
 		<English>[ICON_BULLET]60% chance:[NEWLINE][TAB][ICON_BULLET]+90 Gold[NEWLINE][ICON_BULLET]40% chance:[NEWLINE][TAB][ICON_BULLET]A Skeleton Warrior with Heroic Defense appears</English>
