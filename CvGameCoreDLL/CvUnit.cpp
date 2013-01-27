@@ -731,6 +731,7 @@ void CvUnit::convert(CvUnit* pUnit)
 	// Avatars
 	if (pUnit->isAvatarOfCivLeader())
 	{
+		pUnit->setAvatarOfCivLeader(false);
 		setAvatarOfCivLeader(true);
 	}
 
@@ -2325,6 +2326,7 @@ void CvUnit::updateCombat(bool bQuick)
 				if (!bAdvance)
 				{
 					changeMoves(std::max(GC.getMOVE_DENOMINATOR(), pPlot->movementCost(this, plot())));
+					checkRemoveSelectionAfterAttack();
 				}
 			}
 
@@ -4201,6 +4203,21 @@ bool CvUnit::canGift(bool bTestVisible, bool bTestTransport)
 		}
 	}
 
+	if (m_pUnitInfo->getStateReligion() != NO_RELIGION)
+	{
+		if (m_pUnitInfo->getStateReligion() != GET_PLAYER(pPlot->getOwner()).getStateReligion())
+		{
+			return false;
+		}
+	}
+
+	if (m_pUnitInfo->getPrereqAlignment() != NO_ALIGNMENT)
+	{
+		if (m_pUnitInfo->getStateReligion() != GET_PLAYER(pPlot->getOwner()).getAlignment())
+		{
+			return false;
+		}
+	}
 //FfH: End Add
 
 	return !atWar(pPlot->getTeam(), getTeam());
@@ -6054,7 +6071,6 @@ bool CvUnit::pillage()
 //FfH Traits: Added by Kael 08/02/2007
                 iPillageGold += (iPillageGold * GET_PLAYER(getOwnerINLINE()).getPillagingGold()) / 100;
 //FfH: End Add
-
 
 				GET_PLAYER(getOwnerINLINE()).changeGold(iPillageGold);
 
@@ -8510,6 +8526,27 @@ bool CvUnit::canUpgrade(UnitTypes eUnit, bool bTestVisible) const
 		}
 	}
 
+	for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
+	{
+		if (kUnitInfo.getFreePromotions(iI))
+		{
+			if (GC.getPromotionInfo((PromotionTypes)iI).isRace())
+			{
+				if (getRace() == NO_PROMOTION)
+				{
+					return false;
+				}
+				else
+				{
+					if (getRace() != iI)
+					{
+						return false;
+					}
+				}
+			}
+		}
+	}
+
 //FfH Units: Added by Kael 05/24/2008
     if (getLevel() < kUnitInfo.getMinLevel())
 	{
@@ -8898,7 +8935,7 @@ void CvUnit::upgrade(UnitTypes eUnit)
 	if( gUnitLogLevel > 2 )
 	{
 		CvWString szString;
-		getUnitAIString(szString, AI_getUnitAIType());
+		getUnitAIString(szString, pUpgradeUnit->AI_getUnitAIType());
 		logBBAI("    %S spends %d to upgrade %S to %S, unit AI %S", GET_PLAYER(getOwnerINLINE()).getCivilizationDescription(0), upgradePrice(eUnit), getName(0).GetCString(), pUpgradeUnit->getName(0).GetCString(), szString.GetCString());
 	}
 /************************************************************************************************/
@@ -15883,6 +15920,10 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
 	int iCost = kSpell.getCost();
 	if (iCost != 0)
 	{
+		// scale costs by gamespeed
+		iCost *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
+		iCost /= 100;
+
 		if (kSpell.getConvertUnitType() != NO_UNIT)
 		{
 			iCost += (iCost * GET_PLAYER(getOwnerINLINE()).getUpgradeCostModifier()) / 100;
@@ -16591,6 +16632,10 @@ void CvUnit::cast(int spell)
     int iCost = kSpellInfo.getCost();
     if (iCost != 0)
     {
+		// scale costs by gamespeed
+		iCost *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
+		iCost /= 100;
+
         if (kSpellInfo.getConvertUnitType() != NO_UNIT)
         {
             iCost += (iCost * GET_PLAYER(getOwnerINLINE()).getUpgradeCostModifier()) / 100;
@@ -18641,17 +18686,17 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 	}
 	if (!bUnitAutoCapture) // Tholal Bugfix - we dont also get slaves from units we capture
 	{
-	if ((m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()) > 0)
-	{
-		// Summons, non-Alive units, Animals and World class units cannot become slaves
-		if (getDuration() == 0 && pLoser->isAlive() && !pLoser->isAnimal() && iUnit == NO_UNIT && !isWorldUnitClass((UnitClassTypes)pLoser->getUnitClassType()))
+		if ((m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()) > 0)
 		{
-			if (GC.getGameINLINE().getSorenRandNum(100, "Enslavement") < (m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()))
+			// Summons, non-Alive units, Animals and World class units cannot become slaves
+			if (getDuration() == 0 && pLoser->isAlive() && !pLoser->isAnimal() && iUnit == NO_UNIT && !isWorldUnitClass((UnitClassTypes)pLoser->getUnitClassType()))
 			{
-				iUnit = GC.getDefineINT("SLAVE_UNIT");
+				if (GC.getGameINLINE().getSorenRandNum(100, "Enslavement") < (m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()))
+				{
+					iUnit = GC.getDefineINT("SLAVE_UNIT");
+				}
 			}
 		}
-	}
 	}
 	if (m_pUnitInfo->getPromotionFromCombat() != NO_PROMOTION)
 	{
