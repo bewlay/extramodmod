@@ -23,6 +23,10 @@
 #include "CvEventReporter.h"
 #include "CvMessageControl.h"
 
+// lfgr EVENT_DEBUG
+#include "BetterBTSAI.h"
+// lfgr end
+
 // BUG - start
 // RevolutionDCM - BugMod included in CvGlobals.h
 //#include "BugMod.h"
@@ -905,6 +909,10 @@ void CvDLLButtonPopup::OnFocus(CvPopup* pPopup, CvPopupInfo &info)
 // returns false if popup is not launched
 bool CvDLLButtonPopup::launchButtonPopup(CvPopup* pPopup, CvPopupInfo &info)
 {
+	// lfgr EVENT_DEBUG
+	logBBAI( "EVENT_DEBUG - Launching Button Popup (Type %d) \"%s\"", info.getButtonPopupType(), info.getText().c_str() );
+	// lfgr end
+
 	bool bLaunched = false;
 
 	switch (info.getButtonPopupType())
@@ -2644,15 +2652,25 @@ bool CvDLLButtonPopup::launchVassalGrantTributePopup(CvPopup* pPopup, CvPopupInf
 
 bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 {
+	// lfgr EVENT_DEBUG
+	logBBAI( "EVENT_DEBUG - Launching Popup \"%s\"", info.getText().c_str() );
+	// lfgr end
+
 	CvPlayer& kActivePlayer = GET_PLAYER(GC.getGameINLINE().getActivePlayer());
 	EventTriggeredData* pTriggeredData = kActivePlayer.getEventTriggered(info.getData1());
 	if (NULL == pTriggeredData)
 	{
+		// lfgr EVENT_DEBUG
+		logBBAI( "EVENT_DEBUG - ABORTED! No Triggered Data." );
+		// lfgr end
 		return false;
 	}
 
 	if (pTriggeredData->m_eTrigger == NO_EVENTTRIGGER)
 	{
+		// lfgr EVENT_DEBUG
+		logBBAI( "EVENT_DEBUG - ABORTED! No EventTrigger." );
+		// lfgr end
 		return false;
 	}
 
@@ -2683,6 +2701,9 @@ bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 
 	if (!bEventAvailable)
 	{
+		// lfgr EVENT_DEBUG
+		logBBAI( "EVENT_DEBUG - ABORTED! No available Event." );
+		// lfgr end
 		return false;
 	}
 

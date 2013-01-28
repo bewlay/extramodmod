@@ -26039,6 +26039,18 @@ int CvEventInfo::getPrereqStateReligion() const
 }
 //FfH: End Add
 
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+bool CvEventInfo::isUnitPromotion( int iUnitPromotion )
+{
+	FAssert (iUnitPromotion >= 0 && iUnitPromotion < GC.getNumPromotionInfos());
+	return m_pbUnitPromotions ? m_pbUnitPromotions[iUnitPromotion] : false;
+}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
+
 int CvEventInfo::getAdditionalEventChance(int i) const
 {
 	FAssert (i >= 0 && i < GC.getNumEventInfos());
@@ -26610,6 +26622,48 @@ bool CvEventInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "PrereqStateReligion");
 	m_iPrereqStateReligion = pXML->FindInInfoClass(szTextVal);
 //FfH: End Add
+
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	m_pbUnitPromotions = new bool[GC.getNumPromotionInfos()];
+	for (int i = 0; i < GC.getNumPromotionInfos(); ++i)
+	{
+		m_pbUnitPromotions[i] = false;
+	}
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"UnitPromotions"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						int iPromotion = pXML->FindInInfoClass(szTextVal);
+						if( iPromotion > 0 && iPromotion < GC.getNumPromotionInfos() )
+							m_pbUnitPromotions[iPromotion] = true;
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	CvString* pszPromotions = NULL;
 	FAssertMsg(NULL == m_piUnitCombatPromotions, "Memory leak");

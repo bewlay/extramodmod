@@ -7158,6 +7158,14 @@ public:
 	int getInflationModifier() const;			// Exposed to Python
 	int getSpaceProductionModifier() const;	// Exposed to Python
 	int getAIValue() const;	// Exposed to Python
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	bool isUnitPromotion( int iUnitPromotion );
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	int getAdditionalEventChance(int i) const;// Exposed to Python
 	int getAdditionalEventTime(int i) const;	// Exposed to Python
@@ -7273,6 +7281,14 @@ private:
 	int m_iPrereqReligion;
 	int m_iPrereqStateReligion;
 //FfH: End Add
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	bool* m_pbUnitPromotions;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	int* m_piTechFlavorValue;
 	int* m_piPlotExtraYields;
