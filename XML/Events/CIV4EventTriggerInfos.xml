@@ -8446,6 +8446,9 @@
 				<Event>EVENT_MAD_GOLEMICIST_2</Event>
 				<Event>EVENT_MAD_GOLEMICIST_3</Event>
 			</Events>
+			<OrPreReqs>
+				<PrereqTech>TECH_SORCERY</PrereqTech>
+			</OrPreReqs>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- YOUNGER_COUNCIL -->

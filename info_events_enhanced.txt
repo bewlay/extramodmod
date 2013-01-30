@@ -53,6 +53,3 @@ Planned:
 	Review original FfH Events
 	Add and Review Rife "MoreEvents" mod (by black_imperator, includes some new Events and Quests)
 	"bBarbarian" Tag, spawning Barbarian units instead of receiving units. For targeted Plots, they will spawn on that plot (if it is empty and passable), for targeted cities or if targeted plot is not empty or impassable, on near plot (if not empty and there is an empty and passable plot nearby)
-
-TODO: put DLL and source files into dev folder
-TODO: Status
