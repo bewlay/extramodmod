@@ -8449,6 +8449,7 @@
 			<OrPreReqs>
 				<PrereqTech>TECH_SORCERY</PrereqTech>
 			</OrPreReqs>
+			<bGlobal>1</bGlobal>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- YOUNGER_COUNCIL -->
