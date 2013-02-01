@@ -8526,21 +8526,38 @@ bool CvUnit::canUpgrade(UnitTypes eUnit, bool bTestVisible) const
 		}
 	}
 
-	for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
+	// check to see if this is a religion or alignment -specific upgrade
+	// if so, we can skip the racial check - these special upgrades trump the laws of nature
+	bool bSpecialUpgrade = false;
+	if (kUnitInfo.getPrereqReligion() != NO_RELIGION)
 	{
-		if (kUnitInfo.getFreePromotions(iI))
+		bSpecialUpgrade = true;
+	}
+
+	if (kUnitInfo.getPrereqAlignment() != NO_ALIGNMENT)
+	{
+		bSpecialUpgrade = true;
+	}
+
+	if (!bSpecialUpgrade)
+	{
+		// make sure we dont cross racial boundaries during upgrades
+		for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
 		{
-			if (GC.getPromotionInfo((PromotionTypes)iI).isRace())
+			if (kUnitInfo.getFreePromotions(iI))
 			{
-				if (getRace() == NO_PROMOTION)
+				if (GC.getPromotionInfo((PromotionTypes)iI).isRace())
 				{
-					return false;
-				}
-				else
-				{
-					if (getRace() != iI)
+					if (getRace() == NO_PROMOTION)
 					{
 						return false;
+					}
+					else
+					{
+						if (getRace() != iI)
+						{
+							return false;
+						}
 					}
 				}
 			}
@@ -8897,10 +8914,16 @@ void CvUnit::upgrade(UnitTypes eUnit)
     }
 
 	// Tholal AI - AI switch for upgraded Slaves
-    if (eUnitAI == UNITAI_WORKER)
+	if (eUnitAI == UNITAI_WORKER && GC.getUnitInfo(eUnit).getWorkRate() == 0)
     {
 		eUnitAI = UNITAI_ATTACK_CITY;
     }
+
+	// when we upgrade units that have AI_HERO as their default AI, we should switch to that AI
+	if (GC.getUnitInfo(eUnit).getDefaultUnitAIType() == UNITAI_HERO)
+	{
+		eUnitAI = UNITAI_HERO;
+	}
 	// End Tholal AI
 
 
