@@ -4459,6 +4459,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<iGlobalCounter>2</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- WITCH_2 -->
 			<Type>EVENT_WITCH_2</Type>

@@ -11,17 +11,10 @@ Search Stings for DLL:
 	EVENT_NEW_TAGS
 
 Changes:
-v1.0 2012/11/03
-	- Fixed a bug in canTriggerPacifistDemonstration (was "player" instead of "pPlayer")
-v1.1 2013/01/06
-	- Events with images optional file excluded
-	- Updated to MNAI 2.4.1
-	- Fixed and activated gela Event
-
-v1.2 2013/01/07
-	- Merged Events with images
-	- Influence driven war is included in the compiled DLL (didn't want to build it extra), but disabled by default
-
+v1.4 (in development)
+	Changed Events (Gameplay):
+		Witch
+			- Executing Witch now adds +2 to AC
 v1.3
 	Changed Events (Gameplay):
 		Overcouncil Gift:
@@ -47,6 +40,15 @@ v1.3
 		Fixed some bugs
 	Other:
 		Influence Driven War removed
+v1.2 2013/01/07
+	- Merged Events with images
+	- Influence driven war is included in the compiled DLL (didn't want to build it extra), but disabled by default
+v1.1 2013/01/06
+	- Events with images optional file excluded
+	- Updated to MNAI 2.4.1
+	- Fixed and activated gela Event
+v1.0 2012/11/03
+	- Fixed a bug in canTriggerPacifistDemonstration (was "player" instead of "pPlayer")
 
 Planned:
 	Review Events from "MoreEvents ModMod Expanded" (Fix bugs, add help)
