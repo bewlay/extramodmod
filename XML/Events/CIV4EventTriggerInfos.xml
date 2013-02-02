@@ -7868,6 +7868,7 @@
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
+			<PythonCanDo>CanTriggerDemonSign</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- HANGING_SISTERS -->
 			<Type>EVENTTRIGGER_HANGING_SISTERS</Type>

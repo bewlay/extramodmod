@@ -16,9 +16,11 @@ v1.4 (in development)
 		Witch
 			- Executing Witch now adds +2 to AC
 		Pacifist demonstration
-			- 2nd option gives +35 War weariness instead of +25
 			- 4th option gives the best available non-national-unit warrior upgrade instead of an Axeman
 			- 5th option gives 3 XP to all vampires instead of only to the ones in the city, removed +food in city (you don't get it from feast either)
+		Demon Sign
+			- 3rd option gives priest instead of high priest (was OP, I don't want national units to be given)
+			- Grigori no longer receive a luonnotar for 50G and 1 temp unhappy (see above), instead they can pay 10G to let nothing happen.
 	Code:
 		Added some Help texts
 		Added some Utility functions
@@ -63,3 +65,4 @@ Planned:
 	Review original FfH Events
 	Add and Review Rife "MoreEvents" mod (by black_imperator, includes some new Events and Quests)
 	"bBarbarian" Tag, spawning Barbarian units instead of receiving units. For targeted Plots, they will spawn on that plot (if it is empty and passable), for targeted cities or if targeted plot is not empty or impassable, on near plot (if not empty and there is an empty and passable plot nearby)
+	"bIncludeUpgrades" Tag, to automatically search for upgrades on spawned unit (ATM done with python func initBestUnitFromUpgrades())

@@ -5815,8 +5815,9 @@
 			<Description>TXT_KEY_EVENT_DEMON_SIGN_2</Description>
 			<bPickCity>1</bPickCity>
 			<iGold>-200</iGold>
+			<UnitClass>UNITCLASS_PROPHET</UnitClass>
+			<iNumFreeUnits>1</iNumFreeUnits>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doDemonSign2</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iGlobalCounter>3</iGlobalCounter>
@@ -5827,8 +5828,10 @@
 			<Description>TXT_KEY_EVENT_DEMON_SIGN_3</Description>
 			<bPickCity>1</bPickCity>
 			<iGold>-50</iGold>
+			<UnitClass>UNITCLASS_PRIEST_OF_THE_VEIL</UnitClass>
+			<UnitPromotion>PROMOTION_PROPHECY_MARK</UnitPromotion>
+			<iNumFreeUnits>1</iNumFreeUnits>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doDemonSign3</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqStateReligion>RELIGION_THE_ASHEN_VEIL</PrereqStateReligion>
@@ -5849,6 +5852,8 @@
 			<iGold>-100</iGold>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doDemonSign5</PythonCallback>
+			<PythonCanDo>CanDoDemonSign5</PythonCanDo>
+			<PythonHelp>helpDemonSign5</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iGlobalCounter>3</iGlobalCounter>
@@ -5858,10 +5863,8 @@
 			<Type>EVENT_DEMON_SIGN_6</Type>
 			<Description>TXT_KEY_EVENT_DEMON_SIGN_6</Description>
 			<bPickCity>1</bPickCity>
-			<iGold>-50</iGold>
-			<iHurryAnger>1</iHurryAnger>
+			<iGold>-10</iGold>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doDemonSign6</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqCivilization>CIVILIZATION_GRIGORI</PrereqCivilization>

@@ -6289,7 +6289,7 @@ def CanDoTrappedFrostlings3(argsList):
 def helpTrappedFrostlings3(argsList):
 	return cityReqBuildingHelp( argsList, 'BUILDING_FREAK_SHOW' )
 
-######## PACIFIST_DEMONSTRATION (lfgr: fixed, to test)
+######## PACIFIST_DEMONSTRATION (lfgr: fixed)
 
 def canTriggerPacifistDemonstration(argsList):
 	kTriggeredData = argsList[0]
@@ -6359,47 +6359,42 @@ def DoPacifistDemonstration5(argsList):
 		if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_VAMPIRISM')):
 			pUnit.changeExperience(3, -1, False, False, False)
 
-######## (lfgr: not fixed)
+######## DEMON_SIGN (lfgr: fixed, to test)
 
 def CanTriggerDemonSign (argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
+	kTriggeredData = argsList[0]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	if (pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_MERCURIANS")):
-		return false
+		return False
 	if (pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INFERNALS")):
-		return false
-	return true
+		return False
+	return True
 
-def	doDemonSign2(argsList):
+def CanDoDemonSign5(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_PROPHET'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+	
+	return canDoBestUnitFromUpgrades( gc.getInfoTypeForString( "UNITCLASS_WARRIOR" ), pPlayer, pCity )
 
-def	doDemonSign3(argsList):
+def helpDemonSign5( argsList ):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_HIGH_PRIEST_OF_THE_VEIL'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PROPHECY_MARK'), True)
+	
+	return getBestUnitFromUpgradesHelp( 'UNITCLASS_WARRIOR', pPlayer, pCity, ['PROMOTION_PROPHECY_MARK'] )
 	
 def	doDemonSign5(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_CHAMPION'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PROPHECY_MARK'), True)
 	
-def	doDemonSign6(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_LUONNOTAR'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+	initBestUnitFromUpgrades( gc.getInfoTypeForString( "UNITCLASS_WARRIOR" ), pPlayer, pCity, -1, -1, ['PROMOTION_PROPHECY_MARK'] )
+	
+######## (lfgr: not fixed)
 
 def CanDoAshCough2 (argsList):
 	iEvent = argsList[0]
@@ -6532,6 +6527,7 @@ def	doNecroCannibalism4(argsList):
 	newUnit1 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_DISEASED_CORPSE'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
 def canTriggerHellPortalCity(argsList):
+	# TODO: This should cause an error...
 	eTrigger = argsList[0]
 	ePlayer = argsList[1]
 	iCity = argsList[2]

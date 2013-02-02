@@ -3,7 +3,7 @@ Balancing Rules:
 		Examples:
 			Champion requires at least Bronze Working (better Smelting)
 			Mage requires at least KotE (better Elementalism/...)
-	National units should only be given if the limit will not be exceeded
+	National units should normally not be given
 Other:
 	Try to avoid temporary happiness, temporary unhappiness and unhealthiness is fine
 	There should be a strategical choice.
@@ -15,6 +15,7 @@ TODO: Block some Events/Eventtriggers for AI
 TODO: Block some for Infernals, Mercurians, other Civs
 TODO: World announcements and Unit Names whenever it makes sense.
 TODO: obsolete Techs?
+TODO: look over suppression of some help text when requirement is not met
 
 Gela:
 [SPOILER]
@@ -184,9 +185,10 @@ Some people are demonstrating against the endless war in <City>.
 	All of your vampires gain 3 XP. [TODO]
 [/SPOILER]
 
-Demon Sign [TODO:check]
+Demon Sign
 [SPOILER]
-Requires: AC above 30%; not Infernal or Mercurian; Compact Enforced setting off
+Requires: 30+ AC
+Blocked for: Infernals and Mercurians; Compact Enforced setting off
 
 A newborn child in X has been reported to carry the mark of Agares. What should we do?
 
@@ -210,9 +212,8 @@ A newborn child in X has been reported to carry the mark of Agares. What should 
 	+3 AC
 	Recieve a Champion with Prophecy Mark promotion
 - Teach the child to forsake his destiny set by the gods.
-	Requires: Grigori; Sorcery
-	-50 gold
-	Recieve one Luonnotar
+	Requires: Grigori
+	-10 gold
 [/SPOILER]
 
 Hanging Sisters [TODO:check]
