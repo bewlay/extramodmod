@@ -184,7 +184,7 @@ Some people are demonstrating against the endless war in <City>.
 	All of your vampires gain 3 XP. [TODO]
 [/SPOILER]
 
-The Sign of the Demon [TODO:check]
+Demon Sign [TODO:check]
 [SPOILER]
 Requires: AC above 30%; not Infernal or Mercurian; Compact Enforced setting off
 
@@ -194,7 +194,7 @@ A newborn child in X has been reported to carry the mark of Agares. What should 
 	+1 Unhappy For 10 Turns
 	+3 AC
 - Wondrous! If the king of hope moves upon Erebus, then we shall honor his chosen.
-	Requries: Ashen Veil
+	Requires: Ashen Veil
 	-200 Gold
 	+3 AC
 	Receive a Great Prophet

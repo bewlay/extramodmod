@@ -22,6 +22,7 @@ v1.4 (in development)
 	Code:
 		Added some Help texts
 		Added some Utility functions
+		Removed huns, vandals, goths, philistines, vedic aryans python callbacks
 v1.3
 	Changed Events (Gameplay):
 		Overcouncil Gift:
