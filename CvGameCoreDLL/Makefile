@@ -76,7 +76,7 @@ Final_Release_LIBS=$(PROJECT_LIBS) $(GLOBAL_LIBS) msvcprt.lib
 #### Objects ####
 Debug_LINKOBJS=$(Debug_OBJS)
 Release_LINKOBJS=$(Release_OBJS)
-Final_Release_LINKOBJS=$(Release_OBJS)
+Final_Release_LINKOBJS=$(Final_Release_OBJS)
 
 #### Auto SOURCES/OBJS ####
 !IF [ECHO SOURCES= \> sources.mk] == 0 && \
