@@ -159,21 +159,29 @@ Some Frostlings got trapped and caught by hunters near <City>. What do you want 
 	Recieve 1 Frostling with Strong promotion in <City>.
 [/SPOILER]
 
-Pacifist demonstration [TODO:check]
+Pacifist demonstration
 [SPOILER]
+Requires: 10 turns war with another player, possibility to sign peace
+Blocked For: Infernals
 Some people are demonstrating against the endless war in <City>.
 
 - Who cares?
-	+1 Unhappy in <City> for 10 turns.
-- They are right, I will start the negociations. 
-	+1 Happy in <City>, +35 War weariness
-- Repress them.
-	5 turns of revolt in <City>. All of your units in <City> gain 3 XP.
+	+1 Unhappy temporarily in <City>
+- They are right, I will start the negociations.
+	[TODO: There's something wrong, it gives the opposing player unhappiness]
+	+1 Happy in <City>
+	+35 War weariness
+- Repress them before they spread.
+	5 turns of revolt in <City>
+	Every unit in <City> gain 3 XP
 - Send them to the front, so they learn how to fight.
 	Requires: Barbarian Trait
-	+1Unhappy in <City> for 10 turns. Recieve an Axeman with Weak promotion.
+	+1 Unhappy temporarily in <City>
+	Recieve an [Best Warrior Upgrade] with Weak promotion
 - (Reqs Calabim) Hmm... let's have lunch!
-	-1 pop in <City>. +5 in storage box. -10% War weariness in <City>. All of your vampires gain 3 XP.
+	-1 pop in <City>
+	-10 War Weariness
+	All of your vampires gain 3 XP. [TODO]
 [/SPOILER]
 
 The Sign of the Demon [TODO:check]
@@ -352,7 +360,7 @@ People in X are eating their dead.
 - Have the dead fight back.
 	Requires: Death Mana, Knowledge of the Ether
 	-2 pop
-	Receive 2 Warriors with Undead and Strong
+	Receive 2 Skeletons with Strong
 [/SPOILER]
 
 Hell Portal [TODO:check]

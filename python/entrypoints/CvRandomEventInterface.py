@@ -14,6 +14,12 @@ from CvPythonExtensions import *
 import CustomFunctions
 import PyHelpers
 
+# lfgr start
+import BugUtil
+
+LOG_DEBUG = True
+# lfgr end
+
 cf = CustomFunctions.CustomFunctions()
 gc = CyGlobalContext()
 localText = CyTranslator()
@@ -6561,6 +6567,120 @@ def playerReqTraitHelp( argsList, sTraitType ) :
 	else :
 		return ""
 
+def getBestUnitFromUpgrades( eUnitClass, pPlayer, pCity = None ) :
+	if( eUnitClass == UnitClassTypes.NO_UNITCLASS ) :
+		BugUtil.error( "RandomEvents: initBestUnitFromUpgrades() eUnitClass param is NO_UNITCLASS" )
+	
+	eUnit = gc.getCivilizationInfo( pPlayer.getCivilizationType() ).getCivilizationUnits( eUnitClass )
+	if( eUnit == UnitTypes.NO_UNIT ) :
+		if( LOG_DEBUG ) : CvUtil.pyPrint( "RandomEvents - getBestUnitFromUpgrades from unit class %s failed: no available units." % ( gc.getUnitClassInfo( eUnitClass ).getDescription() ) )
+		return UnitTypes.NO_UNIT
+	
+	return recGetBestTrainableUnitFromUpgrade( eUnit, pPlayer, pCity )
+
+def recGetBestTrainableUnitFromUpgrade( eUnit, pPlayer, pCity ) :
+	# TODO: Block national and world units
+	eBestUnit = eUnit
+	# loop upgrades
+	for eUpgradeUnitClass in range( gc.getNumUnitClassInfos() ) :
+		pUpgradeUnitClass = gc.getUnitClassInfo( eUpgradeUnitClass )
+		if( pUpgradeUnitClass.getMaxGlobalInstances() > -1 ) :
+			continue
+		if( pUpgradeUnitClass.getMaxPlayerInstances() > -1 ) :
+			continue
+		if( pUpgradeUnitClass.getMaxTeamInstances() > -1 ) :
+			continue
+		if( gc.getUnitInfo( eUnit ).getUpgradeUnitClass( eUpgradeUnitClass ) ) :
+			if( LOG_DEBUG ) : CvUtil.pyPrint( "RandomEvents - found upgrade class: %s" % ( pUpgradeUnitClass.getDescription() ) )
+			eUpgradeUnit = gc.getCivilizationInfo( pPlayer.getCivilizationType() ).getCivilizationUnits( eUpgradeUnitClass )
+			
+			if( eUpgradeUnit != UnitTypes.NO_UNIT ) :
+				if( LOG_DEBUG ) : CvUtil.pyPrint( "RandomEvents - found upgrade unit: %s" % ( gc.getUnitInfo( eUpgradeUnit ).getDescription() ) )
+				
+				if( LOG_DEBUG ) : CvUtil.pyPrint( "RandomEvents - Searching for further upgrades..." )
+				# replacing eUpgradeUnit with trainable upgrades
+				eUpgradeUnit = recGetBestTrainableUnitFromUpgrade( eUpgradeUnit, pPlayer, pCity )
+				if( LOG_DEBUG ) : CvUtil.pyPrint( "RandomEvents - new upgrade unit: %s" % ( gc.getUnitInfo( eUpgradeUnit ).getDescription() ) )
+				
+				if( canTrain( eUpgradeUnit, pPlayer, pCity ) ) :
+					pUpgradeUnit = gc.getUnitInfo( eUpgradeUnit )
+					# ">=": Favor upgrades
+					if( pUpgradeUnit.getPowerValue() >= gc.getUnitInfo( eBestUnit ).getPowerValue() ) :
+						if( LOG_DEBUG ) : CvUtil.pyPrint( "RandomEvents - Upgrade %s is better than current best %s" % ( pUpgradeUnit.getDescription(), gc.getUnitInfo( eBestUnit ).getDescription() ) )
+						eBestUnit = eUpgradeUnit
+	if( LOG_DEBUG ) : CvUtil.pyPrint( "RandomEvents - Returning unit %s" % ( gc.getUnitInfo( eBestUnit ).getDescription() ) )
+	return eBestUnit
+
+def canTrain( eUnit, pPlayer, pCity ) :
+	if( pCity != None ) :
+		return pCity.canTrain( eUnit, False, False )
+	else :
+		return pPlayer.canTrain( eUnit, False, False )
+
+def canDoBestUnitFromUpgrades( eUnitClass, pPlayer, pCity = None ) :
+	return getBestUnitFromUpgrades( eUnitClass, pPlayer, pCity ) != UnitTypes.NO_UNIT
+
+def getBestUnitFromUpgradesHelp( sUnitClass, pPlayer, pCity = None, lsPromotions = [] ) :
+	eUnit = getBestUnitFromUpgrades( gc.getInfoTypeForString( sUnitClass ), pPlayer, pCity )
+	
+	lePromotions = []
+	for sPromotion in lsPromotions :
+		ePromotion = gc.getInfoTypeForString( sPromotion )
+		if( ePromotion >= 0 ) :
+			lePromotions.append( ePromotion )
+		else :
+			BugUtil.error( "RandomEvents: getBestUnitFromUpgradesHelp() lsPromotions param contains invalid promotion type string: %s" % sPromotion )
+			return ""
+	
+	if( eUnit == UnitTypes.NO_UNIT ) :
+		return localText.getText( 'TXT_KEY_EVENT_NO_BONUS_UNIT_AVAILABLE', () )
+	else :
+		szUnit = gc.getUnitInfo( eUnit ).getDescription()
+		szResult =  localText.getText( 'TXT_KEY_EVENT_BONUS_UNIT', ( 1, szUnit, ) )
+		for ePromotion in lePromotions :
+			szPromotion = gc.getPromotionInfo( ePromotion ).getDescription()
+			szResult += localText.getText( 'TXT_KEY_NEWLINE', () )
+			szResult += localText.getText( 'TXT_KEY_EVENT_UNIT_PROMOTION', ( szUnit, szPromotion, ) )
+		return szResult
+
+def initBestUnitFromUpgrades( eUnitClass, pPlayer, pCity = None, iPlotX = -1, iPlotY = -1, lsPromotions = [] ) :
+	
+	if( iPlotX < 0 or iPlotY < 0 ) :
+		if( pCity != None ) :
+	 		iPlotX = pCity.getX()
+	 		iPlotY = pCity.getY()
+		else :
+			BugUtil.error( "RandomEvents: initBestUnitFromUpgrades() missing plot or city param" )
+			return None
+	
+	eUnit = getBestUnitFromUpgrades( eUnitClass, pPlayer, pCity )
+	
+	lePromotions = []
+	for sPromotion in lsPromotions :
+		ePromotion = gc.getInfoTypeForString( sPromotion )
+		if( ePromotion >= 0 ) :
+			lePromotions.append( ePromotion )
+		else :
+			BugUtil.error( "RandomEvents: initBestUnitFromUpgrades() lsPromotions param contains invalid promotion type string: %s" % sPromotion )
+			return None
+	
+	pUnit = pPlayer.initUnit(eUnit, iPlotX, iPlotY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+	
+	for ePromotion in lePromotions :
+		 pUnit.setHasPromotion( ePromotion, True )
+	
+	return pUnit
+
+	
+## Utility test funcs
+def testBUFU( iPlayer, sUnitClass ) :
+	eUnit = getBestUnitFromUpgrades( gc.getInfoTypeForString( sUnitClass ), gc.getPlayer( iPlayer ) )
+	if( eUnit == UnitTypes.NO_UNIT ) :
+		return "NO_UNIT"
+	else :
+		return gc.getUnitInfo( eUnit ).getDescription()
+
+
 ######## GELA (lfgr: fixed)
 def ApplyGela1(argsList):
 	gc.getGame().changeScenarioCounter(1)
@@ -6761,17 +6881,27 @@ def CanDoPacifistDemonstration4(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_BARBARIAN')):
-		return true
-	return false
+	pCity = pPlayer.getCity(kTriggeredData.iCityId)
+	return playerHasTrait( argsList, 'TRAIT_BARBARIAN' ) and canDoBestUnitFromUpgrades( gc.getInfoTypeForString( "UNITCLASS_WARRIOR" ), pPlayer, pCity )
+
+def helpPacifistDemonstration4( argsList ):
+	iEvent = argsList[0]
+	kTriggeredData = argsList[1]
+	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
+	pCity = pPlayer.getCity(kTriggeredData.iCityId)
+	
+	szResult = playerReqTraitHelp( argsList, 'TRAIT_BARBARIAN' )
+	szResult += localText.getText( 'TXT_KEY_NEWLINE', () )
+	szResult += getBestUnitFromUpgradesHelp( 'UNITCLASS_WARRIOR', pPlayer, pCity, ['PROMOTION_WEAK'] )
+	return szResult
 
 def DoPacifistDemonstration4(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_AXEMAN'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_WEAK'), True)
+	# newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_AXEMAN'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+	initBestUnitFromUpgrades( gc.getInfoTypeForString( "UNITCLASS_WARRIOR" ), pPlayer, pCity, -1, -1, ['PROMOTION_WEAK'] )
 	
 def DoPacifistDemonstration5(argsList):
 	iEvent = argsList[0]
@@ -6781,8 +6911,7 @@ def DoPacifistDemonstration5(argsList):
 	pCity = pPlayer.getCity(kTriggeredData.iCityId)
 	eTeam = gc.getTeam(pPlayer.getTeam())
 	eTeam.changeWarWeariness(pPlayer.getTeam(),-10)
-	for i in range(pCity.plot().getNumUnits()):
-		pUnit = pCity.plot().getUnit(i)
+	for pUnit in PyPlayer( kTriggeredData.ePlayer ).getUnitList() :
 		if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_VAMPIRISM')):
 			pUnit.changeExperience(3, -1, False, False, False)
 

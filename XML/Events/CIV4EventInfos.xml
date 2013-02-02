@@ -5784,14 +5784,15 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>DoPacifistDemonstration4</PythonCallback>
 			<PythonCanDo>CanDoPacifistDemonstration4</PythonCanDo>
+			<PythonHelp>helpPacifistDemonstration4</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- PACIFIST_DEMONSTRATION_5 -->
 			<Type>EVENT_PACIFIST_DEMONSTRATION_5</Type>
 			<Description>TXT_KEY_EVENT_PACIFIST_DEMONSTRATION_5</Description>
+			<Help>TXT_KEY_EVENT_PACIFIST_DEMONSTRATION_5_HELP</Help>
 			<bPickCity>1</bPickCity>
-			<iFood>5</iFood>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<iPopulationChange>-1</iPopulationChange>
 			<PythonCallback>DoPacifistDemonstration5</PythonCallback>

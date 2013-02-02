@@ -4,7 +4,23 @@
 <!-- Copyright Firaxis Games 2005 -->
 <!-- -->
 <!-- Game Text - Events -->
-<!-- MORE EVENTS MOD STARTS -->
+<!-- MORE EVENTS MOD STARTS lfgr: changed -->
+	<TEXT><!-- EVENT_NO_BONUS_UNIT_AVAILABLE -->
+		<Tag>TXT_KEY_EVENT_NO_BONUS_UNIT_AVAILABLE</Tag>
+		<English>[ICON_BULLET][COLOR_RED]No appropriate unit type available.[COLOR_REVERT]</English>
+		<French>[ICON_BULLET][COLOR_RED]No appropriate unit type available.[COLOR_REVERT]</French>
+		<German>[ICON_BULLET][COLOR_RED]Kein passender Einheitentyp verf&#252;gbar[COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET][COLOR_RED]No appropriate unit type available.[COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET][COLOR_RED]No appropriate unit type available.[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT><!-- NEWLINE -->
+		<Tag>TXT_KEY_NEWLINE</Tag>
+		<English>[NEWLINE]</English>
+		<French>[NEWLINE]</French>
+		<German>[NEWLINE]</German>
+		<Italian>[NEWLINE]</Italian>
+		<Spanish>[NEWLINE]</Spanish>
+	</TEXT>
 	<!-- GELA -->
 	<TEXT><!-- EVENT_GELA -->
 		<Tag>TXT_KEY_EVENT_GELA</Tag>
@@ -413,11 +429,11 @@
 	</TEXT>
 	<TEXT><!-- EVENT_PACIFIST_DEMONSTRATION_2_HELP -->
 		<Tag>TXT_KEY_EVENT_PACIFIST_DEMONSTRATION_2_HELP</Tag>
-		<English>[ICON_BULLET]+25 War Weariness</English>
-		<French>[ICON_BULLET]+25 War Weariness</French>
-		<German>[ICON_BULLET]+25 War Weariness</German>
-		<Italian>[ICON_BULLET]+25 War Weariness</Italian>
-		<Spanish>[ICON_BULLET]+25 War Weariness</Spanish>
+		<English>[ICON_BULLET]+35 War Weariness</English>
+		<French>[ICON_BULLET]+35 War Weariness</French>
+		<German>[ICON_BULLET]+35 War Weariness</German>
+		<Italian>[ICON_BULLET]+35 War Weariness</Italian>
+		<Spanish>[ICON_BULLET]+35 War Weariness</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_PACIFIST_DEMONSTRATION_3 -->
 		<Tag>TXT_KEY_EVENT_PACIFIST_DEMONSTRATION_3</Tag>
@@ -451,14 +467,22 @@
 		<Italian>Hmm... let's have lunch!</Italian>
 		<Spanish>Hmm... let's have lunch!</Spanish>
 	</TEXT>
+	<TEXT><!-- EVENT_PACIFIST_DEMONSTRATION_2_HELP -->
+		<Tag>TXT_KEY_EVENT_PACIFIST_DEMONSTRATION_5_HELP</Tag>
+		<English>[ICON_BULLET]-10 War Weariness[NEWLINE][ICON_BULLET]All your Vampires gain 3 XP</English>
+		<French>[ICON_BULLET]-10 War Weariness[NEWLINE][ICON_BULLET]All your Vampires gain 3 XP</French>
+		<German>[ICON_BULLET]-10 War Weariness[NEWLINE][ICON_BULLET]All your Vampires gain 3 XP</German>
+		<Italian>[ICON_BULLET]-10 War Weariness[NEWLINE][ICON_BULLET]All your Vampires gain 3 XP</Italian>
+		<Spanish>[ICON_BULLET]-10 War Weariness[NEWLINE][ICON_BULLET]All your Vampires gain 3 XP</Spanish>
+	</TEXT>
 	<!-- EVENT_DEMON_SIGN -->
 	<TEXT><!-- EVENT_DEMON_SIGN -->
 		<Tag>TXT_KEY_EVENT_DEMON_SIGN</Tag>
-		<English>A newborn child in %s2_city  has been reported to carry the mark of Agares. What should we do?</English>
-		<French>A newborn child in %s2_city  has been reported to carry the mark of Agares. What should we do?</French>
-		<German>A newborn child in %s2_city  has been reported to carry the mark of Agares. What should we do?</German>
-		<Italian>A newborn child in %s2_city  has been reported to carry the mark of Agares. What should we do?</Italian>
-		<Spanish>A newborn child in %s2_city  has been reported to carry the mark of Agares. What should we do?</Spanish>
+		<English>A newborn child in %s2_city has been reported to carry the mark of Agares. What should we do?</English>
+		<French>A newborn child in %s2_city has been reported to carry the mark of Agares. What should we do?</French>
+		<German>A newborn child in %s2_city has been reported to carry the mark of Agares. What should we do?</German>
+		<Spanish>A newborn child in %s2_city has been reported to carry the mark of Agares. What should we do?</Spanish>
+		<Italian>A newborn child in %s2_city has been reported to carry the mark of Agares. What should we do?</Italian>
 	</TEXT>
 	<TEXT><!-- EVENT_DEMON_SIGN_1 -->
 		<Tag>TXT_KEY_EVENT_DEMON_SIGN_1</Tag>

@@ -15,6 +15,13 @@ v1.4 (in development)
 	Changed Events (Gameplay):
 		Witch
 			- Executing Witch now adds +2 to AC
+		Pacifist demonstration
+			- 2nd option gives +35 War weariness instead of +25
+			- 4th option gives the best available non-national-unit warrior upgrade instead of an Axeman
+			- 5th option gives 3 XP to all vampires instead of only to the ones in the city, removed +food in city (you don't get it from feast either)
+	Code:
+		Added some Help texts
+		Added some Utility functions
 v1.3
 	Changed Events (Gameplay):
 		Overcouncil Gift:
