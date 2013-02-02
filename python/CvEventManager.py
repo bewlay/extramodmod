@@ -642,7 +642,7 @@ class CvEventManager:
 								if (pPlayer.isHuman()):
 									CyInterface().addMessage(pWinner.getOwner(),false,20,CyTranslator().getText("TXT_KEY_WEHAVECAPTUREDSOMETHING",(pLoser.getName())),'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_GREEN")), pWinner.getX(), pWinner.getY(), True,True)
 								elif (pPlayerLoser.isHuman()):
-									CyInterface().addMessage(pLoser.getOwner(),false,20,CyTranslator().getText("TXT_KEY_WEHAVELOSTSOMETHING",(pLoser.getName())),'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), pLoser.getX(), pLoser.getY(), True,True)  
+									CyInterface().addMessage(pLoser.getOwner(),false,20,CyTranslator().getText("TXT_KEY_WEHAVELOSTSOMETHING",(pLoser.getName(),)),'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), pLoser.getX(), pLoser.getY(), True,True)  
 					if (unitY.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SIEGE")):
 						if CyGame().getSorenRandNum(100, "WarPrizes Siege") <= 15:
 							iUnit = pLoser.getUnitType()

@@ -6579,7 +6579,6 @@ def getBestUnitFromUpgrades( eUnitClass, pPlayer, pCity = None ) :
 	return recGetBestTrainableUnitFromUpgrade( eUnit, pPlayer, pCity )
 
 def recGetBestTrainableUnitFromUpgrade( eUnit, pPlayer, pCity ) :
-	# TODO: Block national and world units
 	eBestUnit = eUnit
 	# loop upgrades
 	for eUpgradeUnitClass in range( gc.getNumUnitClassInfos() ) :
