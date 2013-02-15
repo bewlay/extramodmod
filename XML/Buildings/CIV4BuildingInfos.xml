@@ -2595,6 +2595,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -5116,6 +5120,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -5783,6 +5791,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -6678,6 +6690,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -7162,6 +7178,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -9246,6 +9266,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -10613,6 +10637,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -19539,6 +19567,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -21854,6 +21886,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -38661,6 +38697,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
