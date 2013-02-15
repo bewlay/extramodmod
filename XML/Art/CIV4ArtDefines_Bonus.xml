@@ -431,7 +431,7 @@
 			<KFM>Art/Terrain/Resources/Horse/Horse.kfm</KFM>
 			<SHADERNIF>Art/Terrain/Resources/Nightmare/Horse_FX.nif</SHADERNIF>
 			<Button>Art/Interface/Buttons/WorldBuilder/Nightmare.dds</Button>
-			<FontButtonIndex>3</FontButtonIndex>
+			<FontButtonIndex>62</FontButtonIndex>
 		</BonusArtInfo>
 		<BonusArtInfo>
 			<Type>ART_DEF_BONUS_MANA_AIR</Type>
