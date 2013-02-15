@@ -1146,6 +1146,10 @@
 		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
 		                    <BuildingType>BUILDING_ADVENTURERS_GUILD</BuildingType>
 		                </Building>
+				<Building>
+					<BuildingClassType>BUILDINGCLASS_COURTHOUSE</BuildingClassType>
+					<BuildingType>BUILDING_FORUM</BuildingType>
+				</Building>
 			</Buildings>
 			<Units>
 				<Unit>

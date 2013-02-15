@@ -1274,6 +1274,29 @@ class CvMainInterface:
 				screen.setText( "ACText", "Background", ACstr, CvUtil.FONT_CENTER_JUSTIFY, xResolution - iEndOfTurnPosX, yResolution - 157, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 				screen.setHitTest( "ACText", HitTestTypes.HITTEST_NOHIT )
 
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+			if (not CyInterface().isCityScreenUp() and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START and CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_SHOW):	
+
+				if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI') and pPlayer.getNumCities() > 0:
+
+# Figure the counter values.
+					fGrigoriActual = pPlayer.getCivCounter()
+					fGrigoriSpawn = (fGrigoriActual / 2)
+					fGrigoriMod = (pPlayer.getCivCounterMod() / 2)
+
+					fSecondPart = fGrigoriActual - (fGrigoriSpawn * 2)
+# Show the calculated values.
+					if fGrigoriSpawn > 0:
+							iPosition = 270
+							SRstr = u"<font=2i>%s</font>" %(str(" ") + str(fGrigoriSpawn) + str(".") + str(fSecondPart) + str(" / ") + str(fGrigoriMod) + str(" "))
+							screen.setImageButton("AdventurerChance", "Art/Interface/Buttons/Units/Adventurer.dds", iPosition, 7, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+							screen.setText( "SRText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iPosition + 12, 5, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+							screen.setHitTest( "SRText", HitTestTypes.HITTEST_NOHIT )
+					else:
+						screen.hide( "AdventurerChance" )
+						screen.hide( "SRText" )
+#AdventurerCounter End
+
 		self.updateEndTurnButton()
 
 # BUG - NJAGC - start
