@@ -1,0 +1,28 @@
+### Copy this file as Makefile-Vars and fill in the following variables.
+
+#### Paths ####
+
+# TOOLKIT: Path of Visual C++ 2003 Toolkit
+TOOLKIT=C:\Dev\Microsoft Visual C++ Toolkit 2003
+
+# TOOLKIT: Path of Windows PlatformSDK
+PSDK=C:\Dev\WindowsSDK
+
+#### Tools ####
+
+CC="$(TOOLKIT)\bin\cl.exe"
+
+CPP="$(TOOLKIT)\bin\cl.exe"
+
+LD="$(TOOLKIT)\bin\link.exe"
+
+RC="$(PSDK)\bin\rc.exe"
+
+## Uncomment to build dependencies using fastdep
+FD="$(MAKEDIR)\bin\fastdep.exe"
+
+
+#### BLACKLIST ####
+## Uncomment to block CvTextScreen (accidentally included by Firaxis)
+BLACKLIST=CvTextScreens
+
