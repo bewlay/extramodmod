@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Jon Shafer (Firaxis Games) --><!-- Sid Meier's Civilization 4 --><!-- Copyright Firaxis Games 2005 --><!-- --><!-- Bonus/Resource art path information --><Civ4ArtDefines xmlns="x-schema:CIV4ArtDefinesSchema.xml">
+<?xml version="1.0" encoding="UTF-8"?><!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Jon Shafer (Firaxis Games) --><!-- Sid Meier's Civilization 4 --><!-- Copyright Firaxis Games 2005 --><!-- --><!-- Bonus/Resource art path information -->
+<Civ4ArtDefines xmlns="x-schema:CIV4ArtDefinesSchema.xml">
 	<BonusArtInfos>
 		<BonusArtInfo>
 			<Type>ART_DEF_BONUS_ALE</Type>
@@ -613,6 +614,15 @@
 			<Button>Art/Interface/Buttons/WorldBuilder/Water.dds</Button>
 			<FontButtonIndex>49</FontButtonIndex>
 		</BonusArtInfo>
+		<BonusArtInfo>
+			<Type>ART_DEF_BONUS_MUSHROOMS</Type>
+			<fScale>0.9</fScale>
+			<fInterfaceScale>0.5</fInterfaceScale>
+			<NIF>Art/Structures/Improvements/Mushrooms/Mushrooms.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Improvements/Mushrooms.dds</Button>
+			<FontButtonIndex>60</FontButtonIndex>
+		</BonusArtInfo>
 	 	<BonusArtInfo>
 			<Type>ART_DEF_BONUS_PEARL</Type>
 			<fScale>1.0</fScale>
@@ -621,6 +631,15 @@
 			<KFM>Art/Terrain/Resources/Pearl/clam.kfm</KFM>
 			<Button>Art/Terrain/Resources/Pearl/pearl_button.dds</Button>
 			<FontButtonIndex>35</FontButtonIndex>
+		</BonusArtInfo>
+		<BonusArtInfo>
+			<Type>ART_DEF_BONUS_PENGUINS</Type>
+			<fScale>2.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Improvements/Penguins/pig.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Improvements/penguins.dds</Button>
+			<FontButtonIndex>61</FontButtonIndex>
 		</BonusArtInfo>
 		<BonusArtInfo>
 			<Type>ART_DEF_BONUS_MANA</Type>

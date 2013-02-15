@@ -3732,24 +3732,14 @@ def spellWonder(caster):
 			caster.cast(gc.getInfoTypeForString('SPELL_WITHER'))
 		elif iRnd == 58:
 			if bCity == False:
-				iImprovement = pPlot.getImprovementType()
-				bValid = True
-				if iImprovement != -1 :
-					if gc.getImprovementInfo(iImprovement).isPermanent() :
-						bValid = False
-				if bValid :
-					pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_PENGUINS'))
-					CyInterface().addMessage(caster.getOwner(), True, gc.getEVENT_MESSAGE_TIME(), CyTranslator().getText("TXT_KEY_MESSAGE_WONDER_PENGUINS", ()), '', InterfaceMessageTypes.MESSAGE_TYPE_INFO, 'Art/Interface/Buttons/Improvements/Penguins.dds',ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
+				if pPlot.getBonusType(-1) != -1:
+					pPlot.setBonusType(gc.getInfoTypeForString('BONUS_PENGUINS'))
+					CyInterface().addMessage(caster.getOwner(), True, 25, CyTranslator().getText("TXT_KEY_MESSAGE_WONDER_PENGUINS", ()), '', 1, 'Art/Interface/Buttons/Improvements/Penguins.dds', ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
 		elif iRnd == 59:
 			if bCity == False:
-				iImprovement = pPlot.getImprovementType()
-				bValid = True
-				if iImprovement != -1 :
-					if gc.getImprovementInfo(iImprovement).isPermanent() :
-						bValid = False
-				if bValid :
-					pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_MUSHROOMS'))
-					CyInterface().addMessage(caster.getOwner(), True, gc.getEVENT_MESSAGE_TIME(), CyTranslator().getText("TXT_KEY_MESSAGE_WONDER_MUSHROOMS", ()), '', InterfaceMessageTypes.MESSAGE_TYPE_INFO, 'Art/Interface/Buttons/Improvements/Mushrooms.dds',ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
+				if pPlot.getBonusType(-1) != -1:
+					pPlot.setBonusType(gc.getInfoTypeForString('BONUS_MUSHROOM'))
+					CyInterface().addMessage(caster.getOwner(), True, 25, CyTranslator().getText("TXT_KEY_MESSAGE_WONDER_MUSHROOMS", ()), '', 1, 'Art/Interface/Buttons/Improvements/Mushrooms.dds', ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
 		elif iRnd == 60:
 			for iProm in range(gc.getNumPromotionInfos()):
 				if caster.isHasPromotion(iProm):

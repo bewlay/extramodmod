@@ -14425,6 +14425,7 @@
                 <ImprovementType>NONE</ImprovementType>
             </ImprovementsRequired>
             <BonusesRequired>
+				<BonusType>NONE</BonusType>
             </BonusesRequired>
             <RoutesRequired>
             </RoutesRequired>
