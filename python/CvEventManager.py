@@ -1601,7 +1601,7 @@ class CvEventManager:
 
 			# more events mod starts # 
 		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_GOBLIN') or unit.getUnitType() == gc.getInfoTypeForString('UNIT_GOBLIN_SCORPION_CLAN'):
-			if CyGame().getSorenRandNum(1000, "Goblin2")<100:
+			if CyGame().getSorenRandNum(1000, "Goblin2")<40:
 				if iPlayer == gc.getBARBARIAN_PLAYER() :
 					iX = unit.getX()
 					iY = unit.getY()
