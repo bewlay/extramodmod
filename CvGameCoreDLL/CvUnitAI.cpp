@@ -160,7 +160,7 @@ bool CvUnitAI::AI_update()
 
 /** BETTER AI Sephi (Time for the Mages to Caste Haste, etc.)                   **/
 
-
+		/*
         CLLNode<IDInfo>* pEntityNode = getGroup()->headUnitNode();
         CvUnit* pLoopUnit;
         while (pEntityNode != NULL)
@@ -172,6 +172,7 @@ bool CvUnitAI::AI_update()
                 pLoopUnit->AI_MovementCast();
             }
         }
+		*/
     }
 
 /*************************************************************************************************/
@@ -14794,6 +14795,11 @@ bool CvUnitAI::AI_lead(std::vector<UnitAITypes>& aeUnitAITypes)
 									iCombatStrength *= 10 + (pLoopUnit->getExperience() * 2);
 									iCombatStrength /= 15;
 
+									if (pLoopUnit->getUnitCombatType() == NO_UNITCOMBAT)
+									{
+										iCombatStrength /= 10;
+									}
+
 									if(bLegend)
 									{
 										iCombatStrength *= 10 - GC.getUnitClassInfo(pLoopUnit->getUnitClassType()).getMaxGlobalInstances();
@@ -16621,7 +16627,7 @@ CvCity* CvUnitAI::AI_pickTargetCity(int iFlags, int iMaxPathTurns, bool bHuntBar
 	{
 		if( gUnitLogLevel >= 2 )
 		{
-			logBBAI("     %S (unit %d) (groupsize: %d) targeting city %S \n", getName().GetCString(), getID(), getGroup()->getNumUnits(), pBestCity->getName().GetCString());
+			logBBAI("     %S (unit %d - %S) (groupsize: %d) targeting city %S \n", getName().GetCString(), getID(), GC.getUnitAIInfo(AI_getUnitAIType()).getDescription(), getGroup()->getNumUnits(), pBestCity->getName().GetCString());
 		}
 	}
 
@@ -26780,7 +26786,7 @@ void CvUnitAI::PatrolMove()
 		return;
 	}
 
-	if (AI_cityAttack(3, 65))
+	if (AI_stackAttackCity(3, 140))
 	{
 		return;
 	}
@@ -27207,41 +27213,49 @@ bool CvUnitAI::AI_exploreLairSea(int iRange)
 									{
 										if (iPathTurns <= iRange)
 										{
-											iValue = 20;
-											iValue /= iPathTurns;
+											iValue = 20 + getLevel();
+											iValue /= (iPathTurns + 1);
 
 											if (GC.getImprovementInfo(pLoopPlot->getImprovementType()).isUnique())
 											{
-												if (pLoopPlot->getOwner() != getOwner())
-												{
-													iValue = 0;
-												}
-												else
+												// Tholal ToDo - make this less hardcoded and scale by game speed
+												if (GC.getGameINLINE().getElapsedGameTurns() > ((20 * 100) / GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getAITrainPercent()))
 												{
 													iValue += 2 * getLevel();
 												}
-											}
 
-											pNearestCity = GC.getMapINLINE().findCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
-											if (pNearestCity != NULL)
-											{
-												// avoid opening lairs near our team if they are lightly defended or its early in the game
-												if (pNearestCity->getTeam() == getTeam())
+												if (pLoopPlot->isOwned())
 												{
-													if (!pNearestCity->AI_isDefended() || (GET_PLAYER(getOwnerINLINE()).getNumCities() == 1))
+													// cant explore unique lairs in other player's territory
+													if (pLoopPlot->getOwner() != getOwner())
+													{
+														iValue = 0;
+													}
+													// dont explore lairs in our territory that offer up free bonuses
+													// TODO - allow exploration after we have the tech and units to build the proper improvement
+													else if (GC.getImprovementInfo(pLoopPlot->getImprovementType()).getBonusConvert() != NO_BONUS)
 													{
 														iValue = 0;
 													}
 												}
-												else
+											
+												pNearestCity = GC.getMapINLINE().findCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
+												if (pNearestCity != NULL)
 												{
-													iValue *= 2;
+													// avoid opening lairs near our team if they are lightly defended or its early in the game
+													if (pNearestCity->getTeam() == getTeam())
+													{
+														if (!pNearestCity->AI_isDefended() || (GET_PLAYER(getOwnerINLINE()).getNumCities() == 1))
+														{
+															iValue = 0;
+														}
+													}
 												}
-											}
 
-											if (iValue > iBestValue)
-											{
-												pBestPlot = pLoopPlot;
+												if (iValue > iBestValue)
+												{
+													pBestPlot = pLoopPlot;
+												}
 											}
 										}
 									}
@@ -27340,24 +27354,24 @@ bool CvUnitAI::AI_exploreLair(int iRange)
 													iValue = 0;
 												}
 											}
-										}
-
-										pNearestCity = GC.getMapINLINE().findCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
-										if (pNearestCity != NULL)
-										{
-											// avoid opening lairs near our team if they are lightly defended or its early in the game
-											if (pNearestCity->getTeam() == getTeam())
+										
+											pNearestCity = GC.getMapINLINE().findCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
+											if (pNearestCity != NULL)
 											{
-												if (!pNearestCity->AI_isDefended() || (GET_PLAYER(getOwnerINLINE()).getNumCities() == 1))
+												// avoid opening lairs near our team if they are lightly defended or its early in the game
+												if (pNearestCity->getTeam() == getTeam())
 												{
-													iValue = 0;
+													if (!pNearestCity->AI_isDefended() || (GET_PLAYER(getOwnerINLINE()).getNumCities() == 1))
+													{
+														iValue = 0;
+													}
 												}
 											}
-										}
 
-										if (iValue > iBestValue)
-										{
-											pBestPlot = pLoopPlot;
+											if (iValue > iBestValue)
+											{
+												pBestPlot = pLoopPlot;
+											}
 										}
 									}
 								}
@@ -27931,7 +27945,8 @@ void CvUnitAI::ConquestMove()
 	CvCity* pTargetCity = NULL;
 	if (bReadyToAttack)
 	{
-		if (AI_cityAttack(1, 80, true))
+		//if (AI_cityAttack(1, 80, true))
+		if (AI_stackAttackCity(1, 160, true))
 		{
 			if( gUnitLogLevel >= 3 )
 			{
@@ -27968,7 +27983,8 @@ void CvUnitAI::ConquestMove()
 		if( gUnitLogLevel >= 3 ) logBBAI("      %S, %d trying to assault target city", getName().GetCString(), getID());
 
 		int iStepDistToTarget = stepDistance(pTargetCity->getX_INLINE(), pTargetCity->getY_INLINE(), getX_INLINE(), getY_INLINE());
-		int iAttackRatio = std::max(100, GC.getBBAI_ATTACK_CITY_STACK_RATIO());
+		//int iAttackRatio = std::max(100, GC.getBBAI_ATTACK_CITY_STACK_RATIO());
+		int iAttackRatio = 120; //Todo - find better way to come up with an AttackRatio - should vary based on situation
 
 		int iComparePostBombard = 0;
 		// AI gets a 1-tile sneak peak to compensate for lack of memory
@@ -28047,7 +28063,8 @@ void CvUnitAI::ConquestMove()
 					{ 
 						// BBAI TODO: What is right ratio?
 						//if (AI_stackAttackCity(1, iAttackRatio, true))
-						if (AI_cityAttack(1, iAttackRatio, true))
+						//if (AI_cityAttack(1, iAttackRatio, true))
+						if (AI_stackAttackCity(1, iAttackRatio, true))
 						{
 							return;
 						}
@@ -28909,16 +28926,7 @@ void CvUnitAI::AI_upgrademanaMove()
 	BuildTypes eBestBuild = NO_BUILD;
 	CvPlayerAI& kPlayer = GET_PLAYER(getOwnerINLINE());
 
-	if (GC.getLogging())
-	{
-		if (gDLL->getChtLvl() > 0)
-		{
-			char szOut[1024];
-			sprintf(szOut, "Player %d Unit %d (%S's %S) starting mana upgrade move\n", getOwnerINLINE(), getID(), GET_PLAYER(getOwnerINLINE()).getName(), getName().GetCString());
-			gDLL->messageControlLog(szOut);
-		}
-	}
-
+	//ToDo - keep one spare raw mana node if we have more than X mana and are pursuing Tower victory (for metamagic node)
 	bool bReadytoBuild = false;
 	// loop through plots in range
 	// ToDo - make this a map search?
@@ -28963,16 +28971,6 @@ void CvUnitAI::AI_upgrademanaMove()
 
 							if (bBonusMana || bBonusRawMana)
 							{
-								if (GC.getLogging())
-								{
-									if (gDLL->getChtLvl() > 0)
-									{
-										char szOut[1024];
-										sprintf(szOut, "Player %d Unit %d (%S's %S)found mana bonus (%d, %d)\n", getOwnerINLINE(), getID(), GET_PLAYER(getOwnerINLINE()).getName(), getName().GetCString(), pLoopPlot->getX(), pLoopPlot->getY());
-										gDLL->messageControlLog(szOut);
-									}
-								}
-
 								// found mana, now check path
 								if (generatePath(pLoopPlot, 0, true, &iPathTurns))
 								{

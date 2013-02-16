@@ -1889,6 +1889,11 @@ def canApplyTraitAggressive(argsList):
 		return False
 	return True
 
+# lfgr: adaptive event help
+def helpTraitAggressive(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_AGGRESSIVE'), CivilizationTypes.NO_CIVILIZATION, false )
+# lfgr end
+
 def doTraitAggressive(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -1908,6 +1913,11 @@ def canApplyTraitArcane(argsList):
 	if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() == gc.getInfoTypeForString('TRAIT_ARCANE'):
 		return False
 	return True
+
+# lfgr: adaptive event help
+def helpTraitArcane(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_ARCANE'), CivilizationTypes.NO_CIVILIZATION, false )
+# lfgr end
 
 def doTraitArcane(argsList):
 	iEvent = argsList[0]
@@ -1929,6 +1939,11 @@ def canApplyTraitCharismatic(argsList):
 		return False
 	return True
 
+# lfgr: adaptive event help
+def helpTraitCharismatic(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_CHARISMATIC'), CivilizationTypes.NO_CIVILIZATION, false )
+# lfgr end
+
 def doTraitCharismatic(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -1948,6 +1963,11 @@ def canApplyTraitCreative(argsList):
 	if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() == gc.getInfoTypeForString('TRAIT_CREATIVE'):
 		return False
 	return True
+
+# lfgr: adaptive event help
+def helpTraitCreative(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_CREATIVE'), CivilizationTypes.NO_CIVILIZATION, false )
+# lfgr end
 
 def doTraitCreative(argsList):
 	iEvent = argsList[0]
@@ -1969,6 +1989,11 @@ def canApplyTraitExpansive(argsList):
 		return False
 	return True
 
+# lfgr: adaptive event help
+def helpTraitExpansive(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_EXPANSIVE'), CivilizationTypes.NO_CIVILIZATION, false )
+# lfgr end
+
 def doTraitExpansive(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -1989,6 +2014,11 @@ def canApplyTraitFinancial(argsList):
 		return False
 	return True
 
+# lfgr: adaptive event help
+def helpTraitFinancial(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_FINANCIAL'), CivilizationTypes.NO_CIVILIZATION, false )
+# lfgr end
+
 def doTraitFinancial(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -2008,6 +2038,11 @@ def canApplyTraitIndustrious(argsList):
 	if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() == gc.getInfoTypeForString('TRAIT_INDUSTRIOUS'):
 		return False
 	return True
+
+# lfgr: adaptive event help
+def helpTraitIndustrious(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_INDUSTRIOUS'), CivilizationTypes.NO_CIVILIZATION, false )
+# lfgr end
 
 def doTraitIndustrious(argsList):
 	iEvent = argsList[0]
@@ -2068,6 +2103,11 @@ def canApplyTraitOrganized(argsList):
 		return False
 	return True
 
+# lfgr: adaptive event help
+def helpTraitOrganized(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_ORGANIZED'), CivilizationTypes.NO_CIVILIZATION, false )
+# lfgr end
+
 def doTraitOrganized(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -2087,6 +2127,11 @@ def canApplyTraitPhilosophical(argsList):
 	if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() == gc.getInfoTypeForString('TRAIT_PHILOSOPHICAL'):
 		return False
 	return True
+
+# lfgr: adaptive event help
+def helpTraitPhilosophical(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_PHILOSOPHICAL'), CivilizationTypes.NO_CIVILIZATION, false )
+# lfgr end
 
 def doTraitPhilosophical(argsList):
 	iEvent = argsList[0]
@@ -2108,6 +2153,11 @@ def canApplyTraitRaiders(argsList):
 		return False
 	return True
 
+# lfgr: adaptive event help
+def helpTraitRaiders(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_RAIDERS'), CivilizationTypes.NO_CIVILIZATION, false )
+# lfgr end
+
 def doTraitRaiders(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -2127,6 +2177,11 @@ def canApplyTraitSpiritual(argsList):
 	if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() == gc.getInfoTypeForString('TRAIT_SPIRITUAL'):
 		return False
 	return True
+
+# lfgr: adaptive event help
+def helpTraitSpiritual(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_SPIRITUAL'), CivilizationTypes.NO_CIVILIZATION, false )
+# lfgr end
 
 def doTraitSpiritual(argsList):
 	iEvent = argsList[0]

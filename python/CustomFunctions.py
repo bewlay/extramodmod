@@ -129,7 +129,7 @@ class CustomFunctions:
 
 		lList = ['UNIT_AZER']
 		lPromoList = ['PROMOTION_MUTATED', 'PROMOTION_CANNIBALIZE', 'PROMOTION_MOBILITY1', 'PROMOTION_STRONG', 'PROMOTION_BLITZ', 'PROMOTION_COMMAND1', 'PROMOTION_HEROIC_STRENGTH', 'PROMOTION_HEROIC_DEFENSE', 'PROMOTION_MAGIC_IMMUNE', 'PROMOTION_STONESKIN', 'PROMOTION_VALOR', 'PROMOTION_VILE_TOUCH']
-		lHenchmanList = ['UNIT_AZER', 'UNIT_GRIFFON']
+		lHenchmanList = ['UNIT_GRIFFON']
 		if self.grace() == False:
 			lList = lList + ['UNIT_AIR_ELEMENTAL']
 		if not pPlot.isWater():
@@ -655,6 +655,7 @@ class CustomFunctions:
 		iForest = gc.getInfoTypeForString('FEATURE_FOREST')
 		iJungle = gc.getInfoTypeForString('FEATURE_JUNGLE')
 		iAForest = gc.getInfoTypeForString('FEATURE_FOREST_ANCIENT')
+		iNForest = gc.getInfoTypeForString('FEATURE_FOREST_NEW')
 		iBForest = gc.getInfoTypeForString('FEATURE_FOREST_BURNT')
 		iCount = CyGame().getGlobalCounter()
 		for i in range (CyMap().numPlots()):
@@ -708,10 +709,10 @@ class CustomFunctions:
 					pPlot.setBonusType(-1)
 					pPlot.setImprovementType(iSnakePillar)
 
-#				if (iFeature == iForest or iFeature == iAForest or iFeature == iJungle):
+				if (iFeature == iForest or iFeature == iAForest or iFeature == iNForest or iFeature == iJungle):
 #					iRandom = CyGame().getSorenRandNum(100, "Hell Terrain Burnt Forest")
 #					if iRandom < 10:
-#						pPlot.setFeatureType(iBForest, 0)
+					pPlot.setFeatureType(iBForest, 0)
 #				if pPlot.isPeak() == True:
 #					iRandom = CyGame().getSorenRandNum(100, "Hell Terrain Volcanos")
 #					if iRandom < 2:
