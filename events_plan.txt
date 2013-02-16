@@ -151,10 +151,10 @@ Some Frostlings got trapped and caught by hunters near <City>. What do you want 
 - Just kill them.
 - I pity those miserable creatures. Release them, they are harmless.
 	Requires: Good
-	+1 Happy for 15 turns.
+	-1 to AC
 	May spawn a barbarian Frostling with Weak promotion near <City>
 - Strange creatures! Add them to the freak show, they are amusing!
-	Requires: Balseraphs
+	Requires: Balseraphs, Freak Show
 	+4 Culture from the Freak Show
 - Eat them.
 	Requires: Calabim

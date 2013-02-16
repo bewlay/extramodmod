@@ -6252,9 +6252,9 @@ def CanDoGela7(argsList):
 			return True
 	return False
 
-######## STRANGE_ADEPT (lfgr: fixed, moved to XML)
+######## STRANGE_ADEPT (lfgr: tweaked, moved to XML)
 
-######## HELL_REFUGEES (lfgr: fixed, moved to XML)
+######## HELL_REFUGEES (lfgr: tweaked, moved to XML)
 
 def CanDoHellRefugees(argsList):
 	for iPlayer2 in range(gc.getMAX_PLAYERS()):
@@ -6279,7 +6279,7 @@ def doHellRefugees5(argsList):
 				if eTeam.isAtWar(i2Team):
 					eTeam.makePeace(i2Team)	
 
-######## SCHOLARS (lfgr: fixed)
+######## SCHOLARS (lfgr: tweaked)
 
 def CanDoScholars2(argsList):
 	return cityHasBuilding( argsList, 'BUILDING_LIBRARY' )
@@ -6293,7 +6293,7 @@ def CanDoScholars4(argsList):
 def helpScholars4( argsList ):
 	return playerReqTraitHelp( argsList, 'TRAIT_BARBARIAN' )
 
-######## TRAPPED_FROSTLINGS
+######## TRAPPED_FROSTLINGS (lfgr: tweaked)
 
 def CanTriggerTrappedFrostlings (argsList):
 	kTriggeredData = argsList[0]
@@ -6344,7 +6344,7 @@ def CanDoTrappedFrostlings3(argsList):
 def helpTrappedFrostlings3(argsList):
 	return cityReqBuildingHelp( argsList, 'BUILDING_FREAK_SHOW' )
 
-######## PACIFIST_DEMONSTRATION (lfgr: fixed)
+######## PACIFIST_DEMONSTRATION (lfgr: tweaked)
 
 def canTriggerPacifistDemonstration(argsList):
 	kTriggeredData = argsList[0]
@@ -6414,7 +6414,7 @@ def DoPacifistDemonstration5(argsList):
 		if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_VAMPIRISM')):
 			pUnit.changeExperience(3, -1, False, False, False)
 
-######## DEMON_SIGN (lfgr: fixed, to test)
+######## DEMON_SIGN (lfgr: tweaked, TOTEST)
 
 def CanTriggerDemonSign (argsList):
 	kTriggeredData = argsList[0]
