@@ -78,6 +78,9 @@ b)	The equivalent of the Rite of Ogmha occurs.  The Pyre of the Seraphic is dest
 
 Strange Adept
 [SPOILER]
+Design Notes:
+	Choice available unconditionally
+
 Requires: Mage Guild
 AI: Can choose itself
 
@@ -180,9 +183,10 @@ Some people are demonstrating against the endless war in <City>.
 	+1 Unhappy temporarily in <City>
 	Recieve an [Best Warrior Upgrade] with Weak promotion
 - (Reqs Calabim) Hmm... let's have lunch!
+	[TODO: Design - It's odd to 
 	-1 pop in <City>
 	-10 War Weariness
-	All of your vampires gain 3 XP. [TODO]
+	All of your vampires gain 3 XP.
 [/SPOILER]
 
 Demon Sign
@@ -216,19 +220,20 @@ A newborn child in X has been reported to carry the mark of Agares. What should 
 	-10 gold
 [/SPOILER]
 
-Hanging Sisters [TODO:check]
+Hanging Sisters [TODO: test]
 [SPOILER]
+Design Notes:
+	
 Requires: 10+ AC, Carnival
 Crazed citizens are celebrating the "Carnival of the Hanging Sisters" in X. They've raided local graveyards and strung up the dead like puppets!
-- MAKE IT STOP!
-	50% chance for 2 turns anarchy in city
-- Let the carnival commence!
+- Let the carnival begin!
 	Requires: Evil
-	+1 happy in city
-	+2 unhealthy in city for 10 turns
-- Hey, neat idea!
+	+1 happy, +2 unhealthy from Carnival
+- MAKE IT STOP!
+	2 turns of revolt in city
+- A great idea!
 	Requires: Balseraph
-	+1 happy in city
+	+1 happy from Carnival
 [/SPOILER]
 
 Ash Cough [TODO:check]

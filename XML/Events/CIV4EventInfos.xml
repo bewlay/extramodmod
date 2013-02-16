@@ -5556,6 +5556,7 @@
 			<PythonCallback>doStrangeAdept</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<iGlobalCounter>1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- STRANGE_ADEPT_3 -->
 			<Type>EVENT_STRANGE_ADEPT_3</Type>
@@ -5567,6 +5568,7 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
+			<iGlobalCounter>1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- STRANGE_ADEPT_4 -->
 			<Type>EVENT_STRANGE_ADEPT_4</Type>
@@ -5886,9 +5888,9 @@
 				</BuildingExtraHealth>
 			</BuildingExtraHealths>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCanDo>CanDoHangingSisters1</PythonCanDo>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
 		</EventInfo>
 		<EventInfo><!-- HANGING_SISTERS_2 -->
 			<Type>EVENT_HANGING_SISTERS_2</Type>

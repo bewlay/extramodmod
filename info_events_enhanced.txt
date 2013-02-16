@@ -21,6 +21,8 @@ v1.4 (in development)
 		Demon Sign
 			- 3rd option gives priest instead of high priest (was OP, I don't want national units to be given)
 			- Grigori no longer receive a luonnotar for 50G and 1 temp unhappy (see above), instead they can pay 10G to let nothing happen.
+		Hanging Sisters
+			- 1st option now properly only for evil
 	Code:
 		Added some Help texts
 		Added some Utility functions
