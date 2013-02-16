@@ -9,6 +9,7 @@ Other:
 	There should be a strategical choice.
 	Lore-Wise inappropriate civs should be blocked
 	World announcements and Unit Names can make even AI Events fun
+	
 
 TODO: AI
 TODO: Block some Events/Eventtriggers for AI
@@ -76,7 +77,7 @@ b)	The equivalent of the Rite of Ogmha occurs.  The Pyre of the Seraphic is dest
 	When the Gela is brought to the Mirror of Heaven. [I]Your people place the Gela in the center of the Mirror of Heaven.  Inky black smoke begins to rise from the weapon in plumes as the sun purifies it.  This will take time, and surely attract the attention of any demons nearby.After some time, the weapon ceases to smoke, and the light of the Mirror shines brilliantly off of its surface.  The taint is removed, and in its place a holy trident of great power remains.[/I][/SPOILER]
 [/SPOILER]
 
-Strange Adept
+Strange Adept [TODO: test]
 [SPOILER]
 Design Notes:
 	Choice available unconditionally
@@ -90,14 +91,16 @@ A strange adept has recently joined the mage guild of (city). While the student 
 - We need all the proficient Adepts we can get our hands on, let him serve the nation.
 	-30 Gold;
 	+2 Unhappy temporary in city
+	+1 to AC
 	gain Adept with Death I and Entropy I
 - You tell me this as if it's a problem. Have him advance immediately.
 	Requires Evil
 	-30Gold
+	+1 to AC
 	gain Adept with Death I and Entropy I
 - Dark arts? Expel him from our country, he is not welcome here!
 	Requires Good
-	+1 Happy temporary in city
+	-1 to AC
 [/SPOILER]
 
 Hell's Refugees 

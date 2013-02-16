@@ -5579,6 +5579,7 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
+			<iGlobalCounter>-1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- HELL_REFUGEES_1 -->
 			<Type>EVENT_HELL_REFUGEES_1</Type>

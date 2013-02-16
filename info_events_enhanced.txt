@@ -23,6 +23,9 @@ v1.4 (in development)
 			- Grigori no longer receive a luonnotar for 50G and 1 temp unhappy (see above), instead they can pay 10G to let nothing happen.
 		Hanging Sisters
 			- 1st option now properly only for evil
+		Strange Adept
+			- Recruiting the Adept now adds +1 to AC (Make it more a "sin" for Good Civs)
+			- Expelling the Adept now gives -1 to AC instead of +1 temporary happiness
 	Code:
 		Added some Help texts
 		Added some Utility functions
