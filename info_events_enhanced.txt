@@ -26,6 +26,9 @@ v1.4 (in development)
 		Strange Adept
 			- Recruiting the Adept now adds +1 to AC (Make it more a "sin" for Good Civs)
 			- Expelling the Adept now gives -1 to AC instead of +1 temporary happiness
+		Scholars
+			- Now requires Writing AND Knowledge of the Ether (Just being able to click "We cannot afford it", because only having Writing and no library is not fun)
+			- Prices halved (was far much)
 	Code:
 		Added some Help texts
 		Added some Utility functions

@@ -5653,7 +5653,7 @@
 			<Type>EVENT_SCHOLARS_2</Type>
 			<Description>TXT_KEY_EVENT_SCHOLARS_2</Description>
 			<bPickCity>1</bPickCity>
-			<iGold>-200</iGold>
+			<iGold>-100</iGold>
 			<BuildingExtraCommerces>
 				<BuildingExtraCommerce>
 					<BuildingClass>BUILDINGCLASS_LIBRARY</BuildingClass>
@@ -5670,7 +5670,7 @@
 			<Type>EVENT_SCHOLARS_3</Type>
 			<Description>TXT_KEY_EVENT_SCHOLARS_3</Description>
 			<bPickCity>1</bPickCity>
-			<iGold>-150</iGold>
+			<iGold>-75</iGold>
 			<BuildingClass>BUILDINGCLASS_MAGE_GUILD</BuildingClass>
 			<iBuildingChange>1</iBuildingChange>
 			<iMaxNumReligions>-1</iMaxNumReligions>

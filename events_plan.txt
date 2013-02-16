@@ -79,9 +79,6 @@ b)	The equivalent of the Rite of Ogmha occurs.  The Pyre of the Seraphic is dest
 
 Strange Adept [TODO: test]
 [SPOILER]
-Design Notes:
-	Choice available unconditionally
-
 Requires: Mage Guild
 AI: Can choose itself
 
@@ -131,15 +128,16 @@ A band of haggard refugees has shown up outside (city). The leader of the group 
 
 Scholars 
 [SPOILER]
+Requires: Writing and Knowledge of the Ether
 There has been a recent surge of promising young scholars wishing to study science, magic, and the arcane. <City>’s current facilities will be overcrowded with activity and will suffer material shortages, and need additional funding to expand and accommodate everyone.
 
 - We cannot afford it.
 - Scholarly study is the foundation of advancement! Expand our libraries.
 	Requires: Library
-	-200 Gold
+	-100 Gold
 	+4 science from Library
 - Sounds like good news. Build them a Mage Guild
-	-150 Gold
+	-75 Gold
 	Recieve a a Mage Guild
 - Scholarly societies are for the weak. Press these foolish youths into the service
 	Requires Barbarian trait
@@ -154,7 +152,7 @@ Some Frostlings got trapped and caught by hunters near <City>. What do you want 
 - I pity those miserable creatures. Release them, they are harmless.
 	Requires: Good
 	+1 Happy for 15 turns.
-	Max spawn a barbarian Frostling with Weak promotion near <City>
+	May spawn a barbarian Frostling with Weak promotion near <City>
 - Strange creatures! Add them to the freak show, they are amusing!
 	Requires: Balseraphs
 	+4 Culture from the Freak Show
