@@ -26554,12 +26554,32 @@ int CvPlayerAI::AI_magicCombatValue(UnitTypes eUnit) const
 int CvPlayerAI::AI_trueCombatValue(UnitTypes eUnit) const
 {
 	PROFILE_FUNC();
+
+	// Performance improvements for MNAI: Start
+	CombatValueMap::const_iterator trueCombatValue = trueCombatValueMap.find(eUnit);
+	if (trueCombatValue != trueCombatValueMap.end())
+	{
+		return (trueCombatValue->second);
+	}
+
     int iI, iCombat = 0;
 
 	CvUnitInfo& kUnitInfo = GC.getUnitInfo(eUnit);
 
-	// Performance improvements for MNAI: Start
-    for (iI = 0; iI < GC.getNumBonusInfos(); iI++)
+    if (kUnitInfo.getDomainType() == DOMAIN_AIR)
+	{
+		iCombat = kUnitInfo.getAirCombat();
+	}
+	else
+	{
+	    iCombat = kUnitInfo.getCombat();
+	}
+    for (iI = 0; iI < GC.getNumDamageTypeInfos(); iI++)
+    {
+        iCombat += kUnitInfo.getDamageTypeCombat((DamageTypes) iI);
+    }
+
+	for (iI = 0; iI < GC.getNumBonusInfos(); iI++)
     {
         iCombat += kUnitInfo.getBonusAffinity((BonusTypes)iI) * getNumAvailableBonuses((BonusTypes)iI);
     }
@@ -26588,26 +26608,6 @@ int CvPlayerAI::AI_trueCombatValue(UnitTypes eUnit) const
         }
     }
 
-	CombatValueMap::const_iterator trueCombatValue = trueCombatValueMap.find(eUnit);
-	if (trueCombatValue != trueCombatValueMap.end())
-	{
-		return (trueCombatValue->second + iCombat);
-	}
-
-	int iCombatValue = 0;
-	if (kUnitInfo.getDomainType() == DOMAIN_AIR)
-	{
-		iCombatValue += kUnitInfo.getAirCombat();
-	}
-	else
-	{
-	    iCombatValue += kUnitInfo.getCombat();
-	}
-    for (iI = 0; iI < GC.getNumDamageTypeInfos(); iI++)
-    {
-        iCombatValue += kUnitInfo.getDamageTypeCombat((DamageTypes) iI);
-    }
-
 	for (int iJ = 0; iJ < GC.getNumTraitInfos(); iJ++)
 	{
 		if (hasTrait((TraitTypes)iJ))
@@ -26620,7 +26620,7 @@ int CvPlayerAI::AI_trueCombatValue(UnitTypes eUnit) const
 					{
 						if ((GC.getUnitInfo(eUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes)iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eUnit).getUnitCombatType()))
 						{
-							iCombatValue += GC.getPromotionInfo((PromotionTypes)iK).getExtraCombatStr();
+							iCombat += GC.getPromotionInfo((PromotionTypes)iK).getExtraCombatStr();
 						}
 					}
 				}
@@ -26628,10 +26628,10 @@ int CvPlayerAI::AI_trueCombatValue(UnitTypes eUnit) const
 		}
 	}
 
-	trueCombatValueMap[eUnit] = iCombatValue;
+	trueCombatValueMap[eUnit] = iCombat;
 	// Performance improvements for MNAI: End
 
-	return iCombat + iCombatValue;
+	return iCombat;
 }
 
 int CvPlayerAI::AI_combatValue(UnitTypes eUnit) const
