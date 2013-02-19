@@ -200,11 +200,16 @@ public:
 	DenialTypes AI_religionTrade(ReligionTypes eReligion, PlayerTypes ePlayer) const;
 
 	int AI_unitImpassableCount(UnitTypes eUnit) const;
-	int AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea, bool bUpgrade = false) const;
 	int AI_totalUnitAIs(UnitAITypes eUnitAI) const;
 	int AI_totalAreaUnitAIs(CvArea* pArea, UnitAITypes eUnitAI) const;
 	int AI_totalWaterAreaUnitAIs(CvArea* pArea, UnitAITypes eUnitAI) const;
 	int AI_countCargoSpace(UnitAITypes eUnitAI) const;
+
+	// Unit value methods.
+	int AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea, bool bUpgrade = false) const;
+	// Performance improvements for MNAI: Start
+	bool AI_unitValueValid(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea, int iCombat, bool bisLimitedUnit, bool bUpgrade) const;
+	// Performance improvements for MNAI: End
 
 	int AI_neededExplorers(CvArea* pArea) const;
 	int AI_neededWorkers(CvArea* pArea) const;

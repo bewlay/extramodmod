@@ -6438,7 +6438,7 @@ bool CvPlayer::canTradeNetworkWith(PlayerTypes ePlayer) const
 
 int CvPlayer::getNumAvailableBonuses(BonusTypes eBonus) const
 {
-
+	PROFILE_FUNC();
 //FfH: Added by Kael 11/14/2007
     if (isFullMember((VoteSourceTypes)0))
     {
