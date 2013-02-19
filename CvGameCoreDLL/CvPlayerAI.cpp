@@ -360,6 +360,10 @@ void CvPlayerAI::AI_reset(bool bConstructor)
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
 	}
+	// Performance improvements for MNAI: Start
+	this->combatValueMap.clear();
+	AI_invalidateCombatValueCache();
+	// Performance improvements for MNAI: End
 }
 
 
@@ -19959,7 +19963,10 @@ void CvPlayerAI::read(FDataStreamBase* pStream)
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
-
+	// Performance improvements for MNAI: Start
+	this->combatValueMap.clear();
+	AI_invalidateCombatValueCache();
+	// Performance improvements for MNAI: End
 }
 
 
@@ -26551,47 +26558,54 @@ int CvPlayerAI::AI_trueCombatValue(UnitTypes eUnit) const
 
 	CvUnitInfo& kUnitInfo = GC.getUnitInfo(eUnit);
 
-	if (kUnitInfo.getDomainType() == DOMAIN_AIR)
-	{
-		iCombat = kUnitInfo.getAirCombat();
-	}
-	else
-	{
-	    iCombat = kUnitInfo.getCombat();
-	}
-    for (iI = 0; iI < GC.getNumDamageTypeInfos(); iI++)
-    {
-        iCombat += kUnitInfo.getDamageTypeCombat((DamageTypes) iI);
-    }
+	// Performance improvements for MNAI: Start
     for (iI = 0; iI < GC.getNumBonusInfos(); iI++)
     {
         iCombat += kUnitInfo.getBonusAffinity((BonusTypes)iI) * getNumAvailableBonuses((BonusTypes)iI);
     }
     if (kUnitInfo.getWeaponTier() > 0)
     {
-        int iCombatBonus = 0;
         if (GC.getDefineINT("WEAPON_PROMOTION_TIER1") != -1)
         {
             if (getNumAvailableBonuses((BonusTypes)GC.getDefineINT("WEAPON_REQ_BONUS_TIER1")) > 0)
             {
-                iCombatBonus = GC.getPromotionInfo((PromotionTypes)GC.getDefineINT("WEAPON_PROMOTION_TIER1")).getExtraCombatStr();
+                iCombat += GC.getPromotionInfo((PromotionTypes)GC.getDefineINT("WEAPON_PROMOTION_TIER1")).getExtraCombatStr();
             }
         }
         if (GC.getDefineINT("WEAPON_PROMOTION_TIER2") != -1)
         {
             if (kUnitInfo.getWeaponTier() > 1 && getNumAvailableBonuses((BonusTypes)GC.getDefineINT("WEAPON_REQ_BONUS_TIER2")) > 0)
             {
-                iCombatBonus = GC.getPromotionInfo((PromotionTypes)GC.getDefineINT("WEAPON_PROMOTION_TIER2")).getExtraCombatStr();
+                iCombat += GC.getPromotionInfo((PromotionTypes)GC.getDefineINT("WEAPON_PROMOTION_TIER2")).getExtraCombatStr();
             }
         }
         if (GC.getDefineINT("WEAPON_PROMOTION_TIER3") != -1)
         {
             if (kUnitInfo.getWeaponTier() > 2 && getNumAvailableBonuses((BonusTypes)GC.getDefineINT("WEAPON_REQ_BONUS_TIER3")) > 0)
             {
-                iCombatBonus = GC.getPromotionInfo((PromotionTypes)GC.getDefineINT("WEAPON_PROMOTION_TIER3")).getExtraCombatStr();
+                iCombat += GC.getPromotionInfo((PromotionTypes)GC.getDefineINT("WEAPON_PROMOTION_TIER3")).getExtraCombatStr();
             }
         }
-        iCombat += iCombatBonus;
+    }
+
+	CombatValueMap::const_iterator trueCombatValue = trueCombatValueMap.find(eUnit);
+	if (trueCombatValue != trueCombatValueMap.end())
+	{
+		return (trueCombatValue->second + iCombat);
+	}
+
+	int iCombatValue = 0;
+	if (kUnitInfo.getDomainType() == DOMAIN_AIR)
+	{
+		iCombatValue += kUnitInfo.getAirCombat();
+	}
+	else
+	{
+	    iCombatValue += kUnitInfo.getCombat();
+	}
+    for (iI = 0; iI < GC.getNumDamageTypeInfos(); iI++)
+    {
+        iCombatValue += kUnitInfo.getDamageTypeCombat((DamageTypes) iI);
     }
 
 	for (int iJ = 0; iJ < GC.getNumTraitInfos(); iJ++)
@@ -26606,7 +26620,7 @@ int CvPlayerAI::AI_trueCombatValue(UnitTypes eUnit) const
 					{
 						if ((GC.getUnitInfo(eUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes)iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eUnit).getUnitCombatType()))
 						{
-							iCombat += GC.getPromotionInfo((PromotionTypes)iK).getExtraCombatStr();
+							iCombatValue += GC.getPromotionInfo((PromotionTypes)iK).getExtraCombatStr();
 						}
 					}
 				}
@@ -26614,19 +26628,29 @@ int CvPlayerAI::AI_trueCombatValue(UnitTypes eUnit) const
 		}
 	}
 
-	return iCombat;
+	trueCombatValueMap[eUnit] = iCombatValue;
+	// Performance improvements for MNAI: End
+
+	return iCombat + iCombatValue;
 }
 
 int CvPlayerAI::AI_combatValue(UnitTypes eUnit) const
 {
 	PROFILE_FUNC();
+	// Performance improvements for MNAI: Start
+	CombatValueMap::const_iterator combatValue = combatValueMap.find(eUnit);
+	if (combatValue != combatValueMap.end())
+	{
+		return (combatValue->second * AI_trueCombatValue(eUnit)) / (100 * GC.getGameINLINE().getBestLandUnitCombat());
+	}
+
 	CvUnitInfo& kUnitInfo = GC.getUnitInfo(eUnit);
-	
-	int iValue = 100 * AI_trueCombatValue(eUnit);
-    iValue *= ((((kUnitInfo.getFirstStrikes() * 2) + kUnitInfo.getChanceFirstStrikes()) * (GC.getDefineINT("COMBAT_DAMAGE") / 5)) + 100);
-    iValue /= 100;
-	iValue /= GC.getGameINLINE().getBestLandUnitCombat();
-	return iValue;
+
+	int iValue = 100 * ((((kUnitInfo.getFirstStrikes() * 2) + kUnitInfo.getChanceFirstStrikes()) * (GC.getDefineINT("COMBAT_DAMAGE") / 5)) + 100);
+	combatValueMap[eUnit] = iValue;
+
+	return (iValue * AI_trueCombatValue(eUnit)) / (100 * GC.getGameINLINE().getBestLandUnitCombat());
+	// Performance improvements for MNAI: End
 }
 
 int CvPlayerAI::AI_getCivicShareAttitude(PlayerTypes ePlayer) const
@@ -27287,3 +27311,9 @@ int CvPlayerAI::AI_militaryBonusVal(BonusTypes eBonus)
 /* Afforess	                     END                                                            */
 /************************************************************************************************/
 
+// Performance improvements for MNAI: Start
+void CvPlayerAI::AI_invalidateCombatValueCache()
+{
+	this->trueCombatValueMap.clear();
+}
+// Performance improvements for MNAI: End

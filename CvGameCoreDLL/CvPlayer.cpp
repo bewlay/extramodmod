@@ -3601,6 +3601,9 @@ void CvPlayer::setHasTrait(TraitTypes eTrait, bool bNewValue)
 
 	m_pbTraits[(int)eTrait] = bNewValue;
 
+	// Performance improvements for MNAI: Start
+	GET_PLAYER(getID()).AI_invalidateCombatValueCache();
+	// Performance improvements for MNAI: End
 	changeExtraHealth(GC.getTraitInfo(eTrait).getHealth() * iChange);
 	changeExtraHappiness(GC.getTraitInfo(eTrait).getHappiness() * iChange);
 
