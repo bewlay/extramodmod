@@ -8875,6 +8875,10 @@
             </PrereqBonuses>
             <ProductionTraits>
                 <ProductionTrait>
+                    <ProductionTraitType>TRAIT_IMPERIALISTIC</ProductionTraitType>
+                    <iProductionTrait>100</iProductionTrait>
+                </ProductionTrait>
+                <ProductionTrait>
                     <ProductionTraitType>TRAIT_ORGANIZED</ProductionTraitType>
                     <iProductionTrait>100</iProductionTrait>
                 </ProductionTrait>
@@ -9104,6 +9108,10 @@
             <PrereqBonuses>
             </PrereqBonuses>
             <ProductionTraits>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_IMPERIALISTIC</ProductionTraitType>
+                    <iProductionTrait>100</iProductionTrait>
+                </ProductionTrait>
                 <ProductionTrait>
                     <ProductionTraitType>TRAIT_ORGANIZED</ProductionTraitType>
                     <iProductionTrait>100</iProductionTrait>
@@ -32564,6 +32572,10 @@
             <PrereqBonuses>
             </PrereqBonuses>
             <ProductionTraits>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_IMPERIALISTIC</ProductionTraitType>
+                    <iProductionTrait>100</iProductionTrait>
+                </ProductionTrait>
             </ProductionTraits>
             <HappinessTraits>
             </HappinessTraits>

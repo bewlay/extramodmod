@@ -3426,11 +3426,11 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				 <Trait>
-					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
+					<TraitType>TRAIT_IMPERIALISTIC</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
-					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 			</Traits>
@@ -6986,7 +6986,7 @@
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
-					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<TraitType>TRAIT_IMPERIALISTIC</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 			</Traits>
@@ -14610,7 +14610,7 @@
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
-					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
+					<TraitType>TRAIT_IMPERIALISTIC</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 			</Traits>
@@ -18094,7 +18094,7 @@
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
-					<TraitType>TRAIT_RAIDERS</TraitType>
+					<TraitType>TRAIT_IMPERIALISTIC</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 			</Traits>

@@ -21679,6 +21679,7 @@
                 <Event>EVENT_TRAIT_CREATIVE</Event>
                 <Event>EVENT_TRAIT_EXPANSIVE</Event>
                 <Event>EVENT_TRAIT_FINANCIAL</Event>
+                <Event>EVENT_TRAIT_IMPERIALISTIC</Event>
                 <Event>EVENT_TRAIT_INDUSTRIOUS</Event>
                 <Event>EVENT_TRAIT_ORGANIZED</Event>
                 <Event>EVENT_TRAIT_PHILOSOPHICAL</Event>

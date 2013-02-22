@@ -29,6 +29,14 @@
 		<Spanish>Agrario</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRAIT_IMPERIALIST</Tag>
+		<English>Imperialistic</English>
+		<French>Imp&#233;rialiste</French>
+		<German>Imperialistisch</German>
+		<Italian>Imperialista</Italian>
+		<Spanish>Imperialista</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_TRAIT_SAGE</Tag>
 		<English>Sage</English>
 		<French>Sage</French>
