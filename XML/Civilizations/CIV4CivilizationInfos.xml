@@ -106,13 +106,13 @@
 			</Cities>
 			<Buildings>
 				<Building>
+					<BuildingClassType>BUILDINGCLASS_PAGAN_TEMPLE</BuildingClassType>
+					<BuildingType>BUILDING_CAVE_OF_ANCESTORS</BuildingType>
+				</Building>
+				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_AMURITES</BuildingType>
 				</Building>
-		                <Building>
-		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
-		                    <BuildingType>BUILDING_CAVE_OF_ANCESTORS</BuildingType>
-		                </Building>
 			</Buildings>
 			<Units>
 				<Unit>
@@ -984,16 +984,16 @@
 			</Cities>
 			<Buildings>
 				<Building>
+                    <BuildingClassType>BUILDINGCLASS_MONUMENT</BuildingClassType>
+                    <BuildingType>BUILDING_RELIQUARY</BuildingType>
+                </Building>
+				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_ELOHIM</BuildingType>
 				</Building>
 		                <Building>
 		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
 		                    <BuildingType>BUILDING_CHANCEL_OF_GUARDIANS</BuildingType>
-		                </Building>
-		                <Building>
-		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING2</BuildingClassType>
-		                    <BuildingType>BUILDING_RELIQUARY</BuildingType>
 		                </Building>
 			</Buildings>
 			<Units>
@@ -2072,10 +2072,6 @@
 			</Cities>
 			<Buildings>
 				<Building>
-					<BuildingClassType>BUILDINGCLASS_ALCHEMY_LAB</BuildingClassType>
-					<BuildingType>NONE</BuildingType>
-				</Building>
-				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_LJOSALFAR</BuildingType>
 				</Building>
@@ -2910,10 +2906,6 @@
 				<City>TXT_KEY_CITY_SVARTALFAR_25</City>
 			</Cities>
 			<Buildings>
-				<Building>
-					<BuildingClassType>BUILDINGCLASS_ALCHEMY_LAB</BuildingClassType>
-					<BuildingType>NONE</BuildingType>
-				</Building>
 				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_SVARTALFAR</BuildingType>

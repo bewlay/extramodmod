@@ -1617,6 +1617,122 @@
             <Button>Art/Interface/Buttons/Spells/Heal.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_ESUS_BLUR</Type>
+            <Description>TXT_KEY_SPELL_BLUR</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_ESUS_AGENT</PromotionPrereq1>
+            <ReligionPrereq>RELIGION_COUNCIL_OF_ESUS</ReligionPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_BLUR</AddPromotionType1>
+            <iCost>12</iCost>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_CHARM_PERSON</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Promotions/Blur.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_ESUS_HASTE</Type>
+            <Description>TXT_KEY_SPELL_HASTE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_ESUS_AGENT</PromotionPrereq1>
+            <UnitClassPrereq>UNITCLASS_SHADOW</UnitClassPrereq>
+            <ReligionPrereq>RELIGION_COUNCIL_OF_ESUS</ReligionPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_HASTED</AddPromotionType1>
+            <RemovePromotionType1>PROMOTION_SLOW</RemovePromotionType1>
+            <bImmuneNeutral>1</bImmuneNeutral>
+            <bImmuneEnemy>1</bImmuneEnemy>
+            <bImmuneNotAlive>1</bImmuneNotAlive>
+            <iCost>60</iCost>
+            <Effect>EFFECT_WIND_SWIRL</Effect>
+            <Sound>AS3D_SPELL_HASTE</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Promotions/Hasted.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_ESUS_POISONED_BLADE</Type>
+            <Description>TXT_KEY_SPELL_POISONED_BLADE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_ESUS_AGENT</PromotionPrereq1>
+            <UnitClassPrereq>UNITCLASS_NIGHTWATCH</UnitClassPrereq>
+            <ReligionPrereq>RELIGION_COUNCIL_OF_ESUS</ReligionPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <TechPrereq>TECH_POISONS</TechPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_POISONED_BLADE</AddPromotionType1>
+            <bImmuneNeutral>1</bImmuneNeutral>
+            <iCost>90</iCost>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Spells/Poisoned Blade.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_ESUS_REGENERATION</Type>
+            <Description>TXT_KEY_SPELL_REGENERATION</Description>
+            <Civilopedia>TXT_KEY_SPELL_REGENERATION_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_ESUS_AGENT</PromotionPrereq1>
+            <UnitClassPrereq>UNITCLASS_SHADOWRIDER</UnitClassPrereq>
+            <ReligionPrereq>RELIGION_COUNCIL_OF_ESUS</ReligionPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_REGENERATION</AddPromotionType1>
+            <bImmuneNotAlive>1</bImmuneNotAlive>
+            <iCost>120</iCost>
+            <Effect>EFFECT_CREATION</Effect>
+            <Sound>AS3D_SPELL_BLESS</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Promotions/Regeneration.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_ESUS_SHADOWWALK</Type>
+            <Description>TXT_KEY_SPELL_SHADOWWALK</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_ESUS_AGENT</PromotionPrereq1>
+            <UnitClassPrereq>UNITCLASS_SHADOWRIDER</UnitClassPrereq>
+            <ReligionPrereq>RELIGION_COUNCIL_OF_ESUS</ReligionPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_SHADOWWALK</AddPromotionType1>
+            <iCost>60</iCost>
+            <Effect>EFFECT_SWORDS_SPARKS</Effect>
+            <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Promotions/Shadowwalk.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_EXTORT</Type>
+            <Description>TXT_KEY_SPELL_EXTORT</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_EXTORT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_ESUS_AGENT</PromotionPrereq1>
+            <ReligionPrereq>RELIGION_COUNCIL_OF_ESUS</ReligionPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bInBordersOnly>1</bInBordersOnly>
+            <bInCityOnly>1</bInCityOnly>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <iChangePopulation>-1</iChangePopulation>
+            <PyResult>spellExtort(pCaster)</PyResult>
+            <PyRequirement>reqExtort(pCaster)</PyRequirement>
+            <Effect>EFFECT_SACRIFICE</Effect>
+            <Sound>AS3D_SPELL_FEAST</Sound>
+            <Button>Art/Interface/Buttons/Buildings/Moneychanger.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_HEALING_SALVE</Type>
             <Description>TXT_KEY_SPELL_HEALING_SALVE</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1675,6 +1791,23 @@
             <AddPromotionType1>PROMOTION_HIDDEN</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+            <PyRequirement>reqHide(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_HOPE</Sound>
+            <Button>Art/Interface/Buttons/Promotions/Hidden.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_ESUS_HIDE</Type>
+            <Description>TXT_KEY_SPELL_HIDE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitClassPrereq>UNITCLASS_ASSASSIN</UnitClassPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_HIDDEN</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <iCost>30</iCost>
             <PyRequirement>reqHide(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HOPE</Sound>
@@ -1841,6 +1974,22 @@
             <Button>Art/Interface/Buttons/Buildings/Inspiration.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_ILLUMINATION</Type>
+            <Description>TXT_KEY_SPELL_ILLUMINATION</Description>
+            <Civilopedia>TXT_KEY_SPELL_ILLUMINATION_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_ILLUMINATION_HELP</Help>
+            <PromotionPrereq1>PROMOTION_SPIRIT3</PromotionPrereq1>
+            <PromotionPrereq2>PROMOTION_CHANNELING3</PromotionPrereq2>
+            <bAllowAI>1</bAllowAI>
+            <bInCityOnly>1</bInCityOnly>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <CreateBuildingType>BUILDING_ILLUMINATION</CreateBuildingType>
+            <Effect>EFFECT_CREATION</Effect>
+            <Sound>AS3D_SPELL_INSPIRATION</Sound>
+            <Button>Art/Interface/Buttons/Buildings/Inspiration.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_INTO_THE_MIST</Type>
             <Description>TXT_KEY_SPELL_INTO_THE_MIST</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1912,6 +2061,7 @@
             <Description>TXT_KEY_SPELL_LICHDOM</Description>
             <Civilopedia>TXT_KEY_SPELL_LICHDOM_PEDIA</Civilopedia>
             <PromotionPrereq1>PROMOTION_DEATH3</PromotionPrereq1>
+            <TechPrereq>TECH_DIVINE_ESSENCE</TechPrereq>
             <bAllowAI>1</bAllowAI>
             <iAIWeight>200</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
@@ -2128,7 +2278,7 @@
             <Description>TXT_KEY_SPELL_PILLAR_OF_FIRE</Description>
             <Civilopedia>TXT_KEY_SPELL_PILLAR_OF_FIRE_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_PILLAR_OF_FIRE_HELP</Help>
-            <UnitClassPrereq>UNITCLASS_CHALID</UnitClassPrereq>
+            <UnitClassPrereq>UNITCLASS_HIGH_PRIEST_OF_THE_ORDER</UnitClassPrereq>
             <bAllowAI>1</bAllowAI>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
@@ -2358,6 +2508,26 @@
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_RECRUIT</Sound>
             <Button>Art/Interface/Buttons/Units/Mercenary.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_RECRUIT_NIGHTWATCH</Type>
+            <Description>TXT_KEY_SPELL_RECRUIT_NIGHTWATCH</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_RECRUIT_NIGHTWATCH_HELP</Help>
+            <UnitCombatPrereq>UNITCOMBAT_RECON</UnitCombatPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <TechPrereq>TECH_BOWYERS</TechPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bInBordersOnly>1</bInBordersOnly>
+            <bInCityOnly>1</bInCityOnly>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <iCost>200</iCost>
+            <PyResult>spellRecruitNightwatch(pCaster)</PyResult>
+            <PyRequirement>reqRecruitNightwatch(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_RECRUIT</Sound>
+            <Button>Art/Interface/Buttons/Units/Nightwatch.dds</Button>
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_REGENERATION</Type>
@@ -2823,7 +2993,7 @@
             <bHasCasted>1</bHasCasted>
             <iRange>1</iRange>
             <iDamage>40</iDamage>
-            <iDamageLimit>80</iDamageLimit>
+            <iDamageLimit>70</iDamageLimit>
             <DamageType>DAMAGE_COLD</DamageType>
             <PyResult>spellSnowfall(pCaster)</PyResult>
             <Effect>EFFECT_SNOWFALL</Effect>
@@ -2896,7 +3066,7 @@
             <bHasCasted>1</bHasCasted>
             <SpreadReligion>RELIGION_COUNCIL_OF_ESUS</SpreadReligion>
             <bAbility>1</bAbility>
-            <iCost>25</iCost>
+            <iCost>100</iCost>
             <PyRequirement>reqSpreadTheCouncilOfEsus(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_COUNCIL_OF_ESUS_DINK</Sound>
@@ -4232,7 +4402,7 @@
             <bCausesWar>1</bCausesWar>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <iRange>2</iRange>
+            <iRange>1</iRange>
             <PyResult>spellTsunami(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TSUNAMI</Sound>
@@ -4413,7 +4583,7 @@
             <CivilizationPrereq>CIVILIZATION_BARBARIAN</CivilizationPrereq>
             <bAllowAI>1</bAllowAI>
             <iAIWeight>300</iAIWeight>
-            <iCasterMinLevel>5</iCasterMinLevel>
+            <iCasterMinLevel>6</iCasterMinLevel>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <ConvertUnitType>UNIT_WRAITH</ConvertUnitType>

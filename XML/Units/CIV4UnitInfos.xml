@@ -7902,7 +7902,7 @@
             <iBombardRate>0</iBombardRate>
             <SpecialCargo>NONE</SpecialCargo>
             <DomainCargo>DOMAIN_LAND</DomainCargo>
-            <iCargo>3</iCargo>
+            <iCargo>1</iCargo>
             <iConscription>0</iConscription>
             <iCultureGarrison>0</iCultureGarrison>
             <iExtraCost>0</iExtraCost>
@@ -8056,7 +8056,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>60</iCost>
+            <iCost>45</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -8510,7 +8510,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>60</iCost>
+            <iCost>45</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -8742,7 +8742,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>90</iCost>
+            <iCost>45</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -10136,6 +10136,10 @@
                     <PromotionType>PROMOTION_DWARF</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_MEDIC3</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
@@ -11106,6 +11110,10 @@
                 </FreePromotion>
                 <FreePromotion>
                     <PromotionType>PROMOTION_LIFE1</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_CHANNELING2</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
             </FreePromotions>
@@ -12618,7 +12626,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>60</iCost>
+            <iCost>45</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -13326,7 +13334,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>60</iCost>
+            <iCost>45</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -13565,7 +13573,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>60</iCost>
+            <iCost>45</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -13788,7 +13796,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>90</iCost>
+            <iCost>60</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -14471,7 +14479,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>5</iCombat>
+            <iCombat>6</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -14567,7 +14575,7 @@
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
             <bAbandon>1</bAbandon>
-            <iCombatDefense>5</iCombatDefense>
+            <iCombatDefense>6</iCombatDefense>
             <iTier>3</iTier>
             <iWeaponTier>3</iWeaponTier>
             <Image>Art/Interface/Popups/Bambur.dds</Image>
@@ -14667,12 +14675,12 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>180</iCost>
+            <iCost>90</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>-1</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
             <iMinAreaSize>-1</iMinAreaSize>
-            <iMoves>1</iMoves>
+            <iMoves>2</iMoves>
             <bNoRevealMap>0</bNoRevealMap>
             <iAirRange>0</iAirRange>
             <iAirUnitCap>0</iAirUnitCap>
@@ -15985,7 +15993,7 @@
             <StateReligion>NONE</StateReligion>
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
-            <PrereqBuilding>BUILDING_GROVE</PrereqBuilding>
+            <PrereqBuilding>BUILDING_HUNTING_LODGE</PrereqBuilding>
             <PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
             <TechTypes>
             </TechTypes>
@@ -16210,7 +16218,7 @@
             <StateReligion>NONE</StateReligion>
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
-            <PrereqBuilding>BUILDING_GROVE</PrereqBuilding>
+            <PrereqBuilding>BUILDING_HUNTING_LODGE</PrereqBuilding>
             <PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
             <TechTypes>
             </TechTypes>
@@ -16439,7 +16447,7 @@
             <StateReligion>NONE</StateReligion>
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
-            <PrereqBuilding>BUILDING_GROVE</PrereqBuilding>
+            <PrereqBuilding>BUILDING_HUNTING_LODGE</PrereqBuilding>
             <PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
             <TechTypes>
             </TechTypes>
@@ -17157,8 +17165,8 @@
             <iEvasionProbability>0</iEvasionProbability>
             <iWithdrawalProb>0</iWithdrawalProb>
             <iCollateralDamage>40</iCollateralDamage>
-            <iCollateralDamageLimit>20</iCollateralDamageLimit>
-            <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
+            <iCollateralDamageLimit>60</iCollateralDamageLimit>
+            <iCollateralDamageMaxUnits>6</iCollateralDamageMaxUnits>
             <iCityAttack>0</iCityAttack>
             <iCityDefense>0</iCityDefense>
             <iAnimalCombat>0</iAnimalCombat>
@@ -17372,8 +17380,8 @@
             <iEvasionProbability>0</iEvasionProbability>
             <iWithdrawalProb>0</iWithdrawalProb>
             <iCollateralDamage>40</iCollateralDamage>
-            <iCollateralDamageLimit>20</iCollateralDamageLimit>
-            <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
+            <iCollateralDamageLimit>60</iCollateralDamageLimit>
+            <iCollateralDamageMaxUnits>6</iCollateralDamageMaxUnits>
             <iCityAttack>0</iCityAttack>
             <iCityDefense>0</iCityDefense>
             <iAnimalCombat>0</iAnimalCombat>
@@ -17408,7 +17416,7 @@
             <SpecialCargo>NONE</SpecialCargo>
             <DomainCargo>NONE</DomainCargo>
             <iCargo>0</iCargo>
-            <iConscription>4</iConscription>
+            <iConscription>0</iConscription>
             <iCultureGarrison>4</iCultureGarrison>
             <iExtraCost>0</iExtraCost>
             <iAsset>22</iAsset>
@@ -17608,8 +17616,8 @@
             <iEvasionProbability>0</iEvasionProbability>
             <iWithdrawalProb>0</iWithdrawalProb>
             <iCollateralDamage>40</iCollateralDamage>
-            <iCollateralDamageLimit>20</iCollateralDamageLimit>
-            <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
+            <iCollateralDamageLimit>60</iCollateralDamageLimit>
+            <iCollateralDamageMaxUnits>6</iCollateralDamageMaxUnits>
             <iCityAttack>0</iCityAttack>
             <iCityDefense>0</iCityDefense>
             <iAnimalCombat>0</iAnimalCombat>
@@ -17822,8 +17830,8 @@
             <iEvasionProbability>0</iEvasionProbability>
             <iWithdrawalProb>0</iWithdrawalProb>
             <iCollateralDamage>40</iCollateralDamage>
-            <iCollateralDamageLimit>20</iCollateralDamageLimit>
-            <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
+            <iCollateralDamageLimit>60</iCollateralDamageLimit>
+            <iCollateralDamageMaxUnits>6</iCollateralDamageMaxUnits>
             <iCityAttack>0</iCityAttack>
             <iCityDefense>0</iCityDefense>
             <iAnimalCombat>0</iAnimalCombat>
@@ -18928,10 +18936,10 @@
             <iChanceFirstStrikes>0</iChanceFirstStrikes>
             <iInterceptionProbability>0</iInterceptionProbability>
             <iEvasionProbability>0</iEvasionProbability>
-            <iWithdrawalProb>25</iWithdrawalProb>
+            <iWithdrawalProb>60</iWithdrawalProb>
             <iCollateralDamage>100</iCollateralDamage>
             <iCollateralDamageLimit>60</iCollateralDamageLimit>
-            <iCollateralDamageMaxUnits>7</iCollateralDamageMaxUnits>
+            <iCollateralDamageMaxUnits>10</iCollateralDamageMaxUnits>
             <iCityAttack>0</iCityAttack>
             <iCityDefense>0</iCityDefense>
             <iAnimalCombat>0</iAnimalCombat>
@@ -18962,7 +18970,7 @@
             <BonusProductionModifiers>
             </BonusProductionModifiers>
             <iBombRate>0</iBombRate>
-            <iBombardRate>20</iBombardRate>
+            <iBombardRate>40</iBombardRate>
             <SpecialCargo>NONE</SpecialCargo>
             <DomainCargo>NONE</DomainCargo>
             <iCargo>0</iCargo>
@@ -19137,10 +19145,10 @@
             <iChanceFirstStrikes>0</iChanceFirstStrikes>
             <iInterceptionProbability>0</iInterceptionProbability>
             <iEvasionProbability>0</iEvasionProbability>
-            <iWithdrawalProb>25</iWithdrawalProb>
+            <iWithdrawalProb>60</iWithdrawalProb>
             <iCollateralDamage>100</iCollateralDamage>
             <iCollateralDamageLimit>60</iCollateralDamageLimit>
-            <iCollateralDamageMaxUnits>7</iCollateralDamageMaxUnits>
+            <iCollateralDamageMaxUnits>10</iCollateralDamageMaxUnits>
             <iCityAttack>0</iCityAttack>
             <iCityDefense>0</iCityDefense>
             <iAnimalCombat>0</iAnimalCombat>
@@ -19171,7 +19179,7 @@
             <BonusProductionModifiers>
             </BonusProductionModifiers>
             <iBombRate>0</iBombRate>
-            <iBombardRate>30</iBombardRate>
+            <iBombardRate>60</iBombardRate>
             <SpecialCargo>NONE</SpecialCargo>
             <DomainCargo>NONE</DomainCargo>
             <iCargo>0</iCargo>
@@ -19929,7 +19937,7 @@
             <PrereqReligion>RELIGION_THE_EMPYREAN</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_RELIGIOUS_LAW</PrereqTech>
+            <PrereqTech>TECH_RIGHTEOUSNESS</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -20226,7 +20234,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>150</iCost>
+            <iCost>120</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -20596,6 +20604,10 @@
             <FreePromotions>
                 <FreePromotion>
                     <PromotionType>PROMOTION_BOARDING</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_AMPHIBIOUS</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
             </FreePromotions>
@@ -22061,7 +22073,7 @@
             <SpecialCargo>NONE</SpecialCargo>
             <DomainCargo>NONE</DomainCargo>
             <iCargo>0</iCargo>
-            <iConscription>3</iConscription>
+            <iConscription>0</iConscription>
             <iCultureGarrison>6</iCultureGarrison>
             <iExtraCost>0</iExtraCost>
             <iAsset>7</iAsset>
@@ -22112,6 +22124,7 @@
             <iCombatDefense>5</iCombatDefense>
             <iTier>3</iTier>
             <iWeaponTier>3</iWeaponTier>
+            <PrereqBuildingClass>BUILDINGCLASS_TRAINING_YARD</PrereqBuildingClass>
             <UpgradeCiv>CIVILIZATION_CALABIM</UpgradeCiv>
         </UnitInfo>
         <UnitInfo>
@@ -22424,7 +22437,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_TRADE</PrereqTech>
+            <PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
             <TechTypes>
                     <PrereqTech>TECH_CONSTRUCTION</PrereqTech>
             </TechTypes>
@@ -22644,7 +22657,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>BUILDING_SIEGE_WORKSHOP</PrereqBuilding>
-            <PrereqTech>TECH_TRADE</PrereqTech>
+            <PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
             <TechTypes>
                     <PrereqTech>TECH_CONSTRUCTION</PrereqTech>
             </TechTypes>
@@ -22867,7 +22880,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>BUILDING_SIEGE_WORKSHOP</PrereqBuilding>
-            <PrereqTech>TECH_TRADE</PrereqTech>
+            <PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
             <TechTypes>
                     <PrereqTech>TECH_CONSTRUCTION</PrereqTech>
             </TechTypes>
@@ -24232,6 +24245,10 @@
             <Builds>
             </Builds>
             <ReligionSpreads>
+                <ReligionSpread>
+                    <ReligionType>RELIGION_THE_ORDER</ReligionType>
+                    <iReligionSpread>80</iReligionSpread>
+                </ReligionSpread>
             </ReligionSpreads>
             <CorporationSpreads>
             </CorporationSpreads>
@@ -24247,7 +24264,7 @@
             <PrereqReligion>RELIGION_THE_ORDER</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>BUILDING_TEMPLE_OF_THE_ORDER</PrereqBuilding>
-            <PrereqTech>TECH_FANATICISM</PrereqTech>
+            <PrereqTech>TECH_ORDERS_FROM_HEAVEN</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -24262,7 +24279,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>120</iCost>
+            <iCost>80</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>-1</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -24290,7 +24307,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>6</iCombat>
+            <iCombat>4</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -24377,8 +24394,9 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
-            <iCombatDefense>6</iCombatDefense>
+            <iCombatDefense>4</iCombatDefense>
             <iTier>3</iTier>
+            <iWeaponTier>3</iWeaponTier>
             <DamageTypeCombats>
                 <DamageTypeCombat>
                     <DamageType>DAMAGE_HOLY</DamageType>
@@ -24486,7 +24504,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_IRON_WORKING</PrereqTech>
+            <PrereqTech>TECH_SMELTING</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -26631,7 +26649,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>1</iCombat>
+            <iCombat>5</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -26710,7 +26728,7 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
-            <iCombatDefense>1</iCombatDefense>
+            <iCombatDefense>5</iCombatDefense>
             <iTier>4</iTier>
             <BonusAffinities>
                 <BonusAffinity>
@@ -28555,7 +28573,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_FERAL_BOND</PrereqTech>
+            <PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -29221,7 +29239,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_MALEVOLENT_DESIGNS</PrereqTech>
+            <PrereqTech>TECH_FANATICISM</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -29236,7 +29254,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>240</iCost>
+            <iCost>160</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -29264,7 +29282,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>11</iCombat>
+            <iCombat>8</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -29347,9 +29365,10 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
-            <iCombatDefense>11</iCombatDefense>
+            <iCombatDefense>8</iCombatDefense>
             <iModifyGlobalCounter>1</iModifyGlobalCounter>
             <iTier>4</iTier>
+            <iWeaponTier>3</iWeaponTier>
             <PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
             <DamageTypeCombats>
                 <DamageTypeCombat>
@@ -30562,7 +30581,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>90</iCost>
+            <iCost>60</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -30618,6 +30637,14 @@
             <TerrainDefenses>
             </TerrainDefenses>
             <FeatureAttacks>
+                <FeatureAttack>
+                    <FeatureType>FEATURE_FOREST</FeatureType>
+                    <iFeatureAttack>25</iFeatureAttack>
+                </FeatureAttack>
+                <FeatureAttack>
+                    <FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+                    <iFeatureAttack>25</iFeatureAttack>
+                </FeatureAttack>
             </FeatureAttacks>
             <FeatureDefenses>
             </FeatureDefenses>
@@ -31241,7 +31268,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_FANATICISM</PrereqTech>
+            <PrereqTech>TECH_IRON_WORKING</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -33983,7 +34010,7 @@
             <PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_DECEPTION</PrereqTech>
+            <PrereqTech>TECH_SORCERY</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -36266,7 +36293,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_HUNTING</PrereqTech>
+            <PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -40367,6 +40394,10 @@
                     <UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
                     <iUnitCombatMod>40</iUnitCombatMod>
                 </UnitCombatMod>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
             </UnitCombatMods>
             <UnitCombatCollateralImmunes>
             </UnitCombatCollateralImmunes>
@@ -44196,7 +44227,7 @@
             <PrereqReligion>RELIGION_FELLOWSHIP_OF_LEAVES</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_FERAL_BOND</PrereqTech>
+            <PrereqTech>TECH_HIDDEN_PATHS</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -47732,7 +47763,7 @@
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
             <bNeverObsolete>1</bNeverObsolete>
-            <iCombatDefense>4</iCombatDefense>
+            <iCombatDefense>5</iCombatDefense>
             <iDefensiveStrikeChance>30</iDefensiveStrikeChance>
             <iDefensiveStrikeDamage>15</iDefensiveStrikeDamage>
             <iTier>3</iTier>
@@ -47847,7 +47878,7 @@
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
             <iMinAreaSize>-1</iMinAreaSize>
-            <iMoves>1</iMoves>
+            <iMoves>2</iMoves>
             <bNoRevealMap>0</bNoRevealMap>
             <iAirRange>0</iAirRange>
             <iAirUnitCap>0</iAirUnitCap>
@@ -47870,7 +47901,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>8</iCombat>
+            <iCombat>6</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -48181,7 +48212,7 @@
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
             <bNeverObsolete>1</bNeverObsolete>
-            <iCombatDefense>6</iCombatDefense>
+            <iCombatDefense>7</iCombatDefense>
             <iDefensiveStrikeChance>30</iDefensiveStrikeChance>
             <iDefensiveStrikeDamage>15</iDefensiveStrikeDamage>
             <iTier>3</iTier>
@@ -51350,6 +51381,7 @@
             <iDefensiveStrikeDamage>20</iDefensiveStrikeDamage>
             <iMinLevel>6</iMinLevel>
             <iTier>4</iTier>
+            <iWeaponTier>3</iWeaponTier>
             <PrereqBuildingClass>BUILDINGCLASS_ARCHERY_RANGE</PrereqBuildingClass>
         </UnitInfo>
         <UnitInfo>
@@ -52316,6 +52348,10 @@
             <Buildings>
                 <Building>
                     <BuildingType>BUILDING_NOX_NOCTIS</BuildingType>
+                    <bBuilding>1</bBuilding>
+                </Building>
+                <Building>
+                    <BuildingType>BUILDING_TABLETS_OF_BAMBUR</BuildingType>
                     <bBuilding>1</bBuilding>
                 </Building>
             </Buildings>
@@ -53457,7 +53493,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>1200</iCost>
+            <iCost>400</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>-1</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -54685,8 +54721,9 @@
             <PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_BOWYERS</PrereqTech>
+            <PrereqTech>TECH_DECEPTION</PrereqTech>
             <TechTypes>
+                    <PrereqTech>TECH_BOWYERS</PrereqTech>
             </TechTypes>
             <BonusType>NONE</BonusType>
             <PrereqBonuses>
@@ -54724,7 +54761,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>3</iCombat>
+            <iCombat>4</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -54798,6 +54835,10 @@
             <FreePromotions>
                 <FreePromotion>
                     <PromotionType>PROMOTION_HIDDEN_NATIONALITY</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_ESUS_AGENT</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
             </FreePromotions>
@@ -55371,7 +55412,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_RIGHTEOUSNESS</PrereqTech>
+            <PrereqTech>TECH_FANATICISM</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -55386,7 +55427,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>240</iCost>
+            <iCost>160</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -55414,7 +55455,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>11</iCombat>
+            <iCombat>8</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -55505,8 +55546,9 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
-            <iCombatDefense>11</iCombatDefense>
+            <iCombatDefense>8</iCombatDefense>
             <iTier>4</iTier>
+            <iWeaponTier>3</iWeaponTier>
             <PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
             <DamageTypeCombats>
                 <DamageTypeCombat>
@@ -55619,7 +55661,7 @@
             <PrereqReligion>RELIGION_RUNES_OF_KILMORPH</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>BUILDING_TEMPLE_OF_KILMORPH</PrereqBuilding>
-            <PrereqTech>TECH_FANATICISM</PrereqTech>
+            <PrereqTech>TECH_ARETE</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -55662,7 +55704,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>7</iCombat>
+            <iCombat>6</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -55746,7 +55788,7 @@
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
             <bNeverObsolete>1</bNeverObsolete>
-            <iCombatDefense>7</iCombatDefense>
+            <iCombatDefense>8</iCombatDefense>
             <iTier>3</iTier>
         </UnitInfo>
         <UnitInfo>
@@ -55841,7 +55883,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_MITHRIL_WEAPONS</PrereqTech>
+            <PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -56068,7 +56110,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_MITHRIL_WEAPONS</PrereqTech>
+            <PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -56143,6 +56185,10 @@
             <UnitClassDefenseMods>
             </UnitClassDefenseMods>
             <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
             </UnitCombatMods>
             <UnitCombatCollateralImmunes>
             </UnitCombatCollateralImmunes>
@@ -56283,7 +56329,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_MITHRIL_WEAPONS</PrereqTech>
+            <PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -56358,6 +56404,10 @@
             <UnitClassDefenseMods>
             </UnitClassDefenseMods>
             <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
             </UnitCombatMods>
             <UnitCombatCollateralImmunes>
             </UnitCombatCollateralImmunes>
@@ -56507,7 +56557,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_MITHRIL_WEAPONS</PrereqTech>
+            <PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -56582,6 +56632,10 @@
             <UnitClassDefenseMods>
             </UnitClassDefenseMods>
             <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
             </UnitCombatMods>
             <UnitCombatCollateralImmunes>
             </UnitCombatCollateralImmunes>
@@ -57865,6 +57919,10 @@
                 </FreePromotion>
                 <FreePromotion>
                     <PromotionType>PROMOTION_SPIRIT_GUIDE</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_INQUISITOR</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
             </FreePromotions>
@@ -60398,7 +60456,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>4</iCombat>
+            <iCombat>3</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -60434,6 +60492,10 @@
             <UnitClassDefenseMods>
             </UnitClassDefenseMods>
             <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <iUnitCombatMod>25</iUnitCombatMod>
+                </UnitCombatMod>
             </UnitCombatMods>
             <UnitCombatCollateralImmunes>
             </UnitCombatCollateralImmunes>
@@ -60582,7 +60644,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>BUILDING_CARNIVAL</PrereqBuilding>
-            <PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
+            <PrereqTech>TECH_FERAL_BOND</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -60800,7 +60862,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
+            <PrereqTech>TECH_FERAL_BOND</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -61027,7 +61089,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
+            <PrereqTech>TECH_FERAL_BOND</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -61466,7 +61528,7 @@
             <PrereqReligion>RELIGION_THE_EMPYREAN</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_TRADE</PrereqTech>
+            <PrereqTech>TECH_HONOR</PrereqTech>
             <TechTypes>
                     <PrereqTech>TECH_CONSTRUCTION</PrereqTech>
             </TechTypes>
@@ -63026,7 +63088,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_FEUDALISM</PrereqTech>
+            <PrereqTech>TECH_STIRRUPS</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -63708,7 +63770,7 @@
             <PrereqReligion>RELIGION_FELLOWSHIP_OF_LEAVES</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
+            <PrereqTech>TECH_HIDDEN_PATHS</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -64506,6 +64568,10 @@
             <bGraphicalOnly>0</bGraphicalOnly>
             <iHotKeyPriority>0</iHotKeyPriority>
             <FreePromotions>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_NATURE2</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
@@ -66380,7 +66446,7 @@
             </ForceBuildings>
             <HolyCity>NONE</HolyCity>
             <ReligionType>RELIGION_COUNCIL_OF_ESUS</ReligionType>
-            <StateReligion>NONE</StateReligion>
+            <StateReligion>RELIGION_COUNCIL_OF_ESUS</StateReligion>
             <PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
@@ -66503,6 +66569,10 @@
                     <PromotionType>PROMOTION_INVISIBLE</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_ESUS_AGENT</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
@@ -66613,7 +66683,7 @@
             </ForceBuildings>
             <HolyCity>NONE</HolyCity>
             <ReligionType>RELIGION_COUNCIL_OF_ESUS</ReligionType>
-            <StateReligion>NONE</StateReligion>
+            <StateReligion>RELIGION_COUNCIL_OF_ESUS</StateReligion>
             <PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
@@ -66740,6 +66810,10 @@
                     <PromotionType>PROMOTION_INVISIBLE</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_ESUS_AGENT</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
@@ -66849,7 +66923,7 @@
             </ForceBuildings>
             <HolyCity>NONE</HolyCity>
             <ReligionType>RELIGION_COUNCIL_OF_ESUS</ReligionType>
-            <StateReligion>NONE</StateReligion>
+            <StateReligion>RELIGION_COUNCIL_OF_ESUS</StateReligion>
             <PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
@@ -66970,6 +67044,10 @@
                 </FreePromotion>
                 <FreePromotion>
                     <PromotionType>PROMOTION_INVISIBLE</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_ESUS_AGENT</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
             </FreePromotions>
@@ -67198,6 +67276,10 @@
             <FreePromotions>
                 <FreePromotion>
                     <PromotionType>PROMOTION_HIDDEN_NATIONALITY</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_ESUS_AGENT</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
             </FreePromotions>
@@ -68154,10 +68236,6 @@
             <iHotKeyPriority>0</iHotKeyPriority>
             <FreePromotions>
                 <FreePromotion>
-                    <PromotionType>PROMOTION_FEAR</PromotionType>
-                    <bFreePromotion>1</bFreePromotion>
-                </FreePromotion>
-                <FreePromotion>
                     <PromotionType>PROMOTION_UNDEAD</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
@@ -68777,7 +68855,7 @@
             <PrereqReligion>RELIGION_OCTOPUS_OVERLORDS</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>BUILDING_TEMPLE_OF_THE_OVERLORDS</PrereqBuilding>
-            <PrereqTech>TECH_FANATICISM</PrereqTech>
+            <PrereqTech>TECH_MALEVOLENT_DESIGNS</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -68788,7 +68866,7 @@
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>120</iCost>
+            <iCost>200</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -68816,7 +68894,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>5</iCombat>
+            <iCombat>6</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -68904,13 +68982,13 @@
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
             <bNeverObsolete>1</bNeverObsolete>
-            <iCombatDefense>5</iCombatDefense>
+            <iCombatDefense>6</iCombatDefense>
             <iTier>3</iTier>
             <iWeaponTier>3</iWeaponTier>
             <DamageTypeCombats>
                 <DamageTypeCombat>
                     <DamageType>DAMAGE_UNHOLY</DamageType>
-                    <iCombat>2</iCombat>
+                    <iCombat>4</iCombat>
                 </DamageTypeCombat>
             </DamageTypeCombats>
         </UnitInfo>
@@ -71270,7 +71348,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
+            <PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -72272,6 +72350,7 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+            <bNeverObsolete>1</bNeverObsolete>
             <iCombatDefense>3</iCombatDefense>
             <iTier>1</iTier>
             <iWeaponTier>1</iWeaponTier>
@@ -73771,11 +73850,15 @@
             <PrereqBonuses>
             </PrereqBonuses>
             <ProductionTraits>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_INDUSTRIOUS</ProductionTraitType>
+                    <iProductionTrait>25</iProductionTrait>
+                </ProductionTrait>
             </ProductionTraits>
             <Flavors>
             </Flavors>
             <iAIWeight>0</iAIWeight>
-            <iCost>100</iCost>
+            <iCost>50</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -74041,6 +74124,10 @@
             <PrereqBonuses>
             </PrereqBonuses>
             <ProductionTraits>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_INDUSTRIOUS</ProductionTraitType>
+                    <iProductionTrait>25</iProductionTrait>
+                </ProductionTrait>
             </ProductionTraits>
             <Flavors>
             </Flavors>

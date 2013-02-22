@@ -2198,8 +2198,8 @@
 			<Type>UNITCLASS_LICH</Type>
 			<Description>TXT_KEY_UNIT_LICH</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
-			<iMaxTeamInstances>3</iMaxTeamInstances>
-			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>4</iMaxPlayerInstances>
 			<iInstanceCostModifier>0</iInstanceCostModifier>
 			<DefaultUnit>UNIT_LICH</DefaultUnit>
 		</UnitClassInfo>

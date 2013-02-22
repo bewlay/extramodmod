@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Civ4GameText xmlns="http://www.firaxis.com">
+    <TEXT>
+        <Tag>TXT_KEY_BUILDING_ILLUMINATION</Tag>
+        <English>Illumination</English>
+        <French>Illumination</French>
+        <German>Illumination</German>
+        <Italian>Illumination</Italian>
+        <Spanish>Iluminación</Spanish>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_PROMOTION_FAVORED</Tag>
+        <English>Favored</English>
+        <French>Favored</French>
+        <German>Favored</German>
+        <Italian>Favored</Italian>
+        <Spanish>Favorecido</Spanish>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_PROMOTION_ESUS_AGENT</Tag>
+        <English>Steward of Esus</English>
+        <French>Steward of Esus</French>
+        <German>Steward of Esus</German>
+        <Italian>Steward of Esus</Italian>
+        <Spanish>Apoderado de Esus</Spanish>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_SPELL_EXTORT</Tag>
+        <English>Extort</English>
+        <French>Extort</French>
+        <German>Extort</German>
+        <Italian>Extort</Italian>
+        <Spanish>Extorsión</Spanish>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_SPELL_EXTORT_HELP</Tag>
+        <English>[ICON_BULLET]The Nightwatch will collect the council's Tithe.[NEWLINE][ICON_BULLET]Gain gold based on the population of the city and gamespeed, increases unhappiness and kills population.</English>
+        <French>[ICON_BULLET]The Nightwatch will collect the council's Tithe.[NEWLINE][ICON_BULLET]Gain gold based on the population of the city and gamespeed, increases unhappiness and kills population.</French>
+        <German>[ICON_BULLET]The Nightwatch will collect the council's Tithe.[NEWLINE][ICON_BULLET]Gain gold based on the population of the city and gamespeed, increases unhappiness and kills population.</German>
+        <Italian>[ICON_BULLET]The Nightwatch will collect the council's Tithe.[NEWLINE][ICON_BULLET]Gain gold based on the population of the city and gamespeed, increases unhappiness and kills population.</Italian>
+        <Spanish>[ICON_BULLET]La Guardia de la Noche recolecta el Diezmo del concilio.[NEWLINE][ICON_BULLET]Se gana una cantidad de oro dependiente de la población de la ciudad y la velocidad de juego, pero incrementa la infelicidad y mata población.</Spanish>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_SPELL_ILLUMINATION</Tag>
+        <English>Illumination</English>
+        <French>Illumination</French>
+        <German>Illumination</German>
+        <Italian>Illumination</Italian>
+        <Spanish>Iluminación</Spanish>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_SPELL_ILLUMINATION_HELP</Tag>
+        <English>[ICON_BULLET]Illuminates the city, granting +50% GPP and calming any enraged units that enter.</English>
+        <French>[ICON_BULLET]Illuminates the city, granting +50% GPP and calming any enraged units that enter.</French>
+        <German>[ICON_BULLET]Illuminates the city, granting +50% GPP and calming any enraged units that enter.</German>
+        <Italian>[ICON_BULLET]Illuminates the city, granting +50% GPP and calming any enraged units that enter.</Italian>
+        <Spanish>[ICON_BULLET]Ilumina a la ciudad, incrementando en un 50% la adquisición de puntos de Grandes Personas y calmando a cualquier unidad Enfurecida que entre en ella.</Spanish>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_SPELL_ILLUMINATION_PEDIA</Tag>
+        <English>[TAB]"What does it mean to be inspired? Would the people truly believe if I told them that their greatest paragons of art, science, and architecture were all simple peasants? That each had been plucked from the streets and bestowed with their great gifts not by gods, but by men?"[PARAGRAPH:2]-Archmage Galen, "A Treatise on Magic and the Mind"</English>
+        <French>[TAB]"What does it mean to be inspired? Would the people truly believe if I told them that their greatest paragons of art, science, and architecture were all simple peasants? That each had been plucked from the streets and bestowed with their great gifts not by gods, but by men?"[PARAGRAPH:2]-Archmage Galen, "A Treatise on Magic and the Mind"</French>
+        <German>[TAB]"What does it mean to be inspired? Would the people truly believe if I told them that their greatest paragons of art, science, and architecture were all simple peasants? That each had been plucked from the streets and bestowed with their great gifts not by gods, but by men?"[PARAGRAPH:2]-Archmage Galen, "A Treatise on Magic and the Mind"</German>
+        <Italian>[TAB]"What does it mean to be inspired? Would the people truly believe if I told them that their greatest paragons of art, science, and architecture were all simple peasants? That each had been plucked from the streets and bestowed with their great gifts not by gods, but by men?"[PARAGRAPH:2]-Archmage Galen, "A Treatise on Magic and the Mind"</Italian>
+        <Spanish>[TAB]"What does it mean to be inspired? Would the people truly believe if I told them that their greatest paragons of art, science, and architecture were all simple peasants? That each had been plucked from the streets and bestowed with their great gifts not by gods, but by men?"[PARAGRAPH:2]-Archmage Galen, "A Treatise on Magic and the Mind"</Spanish>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_SPELL_RECRUIT_NIGHTWATCH</Tag>
+        <English>Recruit Nightwatch</English>
+        <French>Recruit Nightwatch</French>
+        <German>Soldner anheuern</German>
+        <Italian>Recruit Nightwatch</Italian>
+        <Spanish>Reclutar Guardia de la Noche</Spanish>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_SPELL_RECRUIT_NIGHTWATCH_HELP</Tag>
+        <English>[ICON_BULLET]Hire a Nightwatch Unit from the Council.</English>
+        <French>[ICON_BULLET]Hire a Nightwatch Unit from the Council.</French>
+        <German>[ICON_BULLET]Heuert einen Söldner an</German>
+        <Italian>[ICON_BULLET]Hire a Nightwatch Unit from the Council.</Italian>
+        <Spanish>[ICON_BULLET]Recluta a una unidad de Guardia de la Noche del Concilio.</Spanish>
+    </TEXT>
+</Civ4GameText>
