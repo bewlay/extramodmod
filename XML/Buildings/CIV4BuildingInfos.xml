@@ -35121,8 +35121,10 @@
             <Bonus>NONE</Bonus>
             <PrereqBonuses>
             </PrereqBonuses>
-            <ProductionTraits>
-            </ProductionTraits>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_CREATIVE</ProductionTraitType>
+                    <iProductionTrait>100</iProductionTrait>
+                </ProductionTrait>
             <HappinessTraits>
             </HappinessTraits>
             <NoBonus>NONE</NoBonus>
