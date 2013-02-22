@@ -614,6 +614,7 @@ public:
 	int getBonusAffinity(int i) const;
 	int getDamageTypeCombat(int i) const;
 	int getDamageTypeResist(int i) const;
+	int getEnslavementChance() const;
 	bool readPass3();
 //FfH: End Add
 
@@ -751,6 +752,7 @@ protected:
 	int* m_piBonusAffinity;
 	int* m_piDamageTypeCombat;
 	int* m_piDamageTypeResist;
+	int m_iEnslavementChance;
 //FfH: End Add
 
 	// Arrays

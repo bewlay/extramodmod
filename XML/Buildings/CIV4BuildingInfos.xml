@@ -263,6 +263,10 @@
             <PrereqBonuses>
             </PrereqBonuses>
             <ProductionTraits>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_SAGE</ProductionTraitType>
+                    <iProductionTrait>100</iProductionTrait>
+                </ProductionTrait>
             </ProductionTraits>
             <HappinessTraits>
             </HappinessTraits>
@@ -10471,6 +10475,10 @@
             <PrereqBonuses>
             </PrereqBonuses>
             <ProductionTraits>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_SLAVER</ProductionTraitType>
+                    <iProductionTrait>100</iProductionTrait>
+                </ProductionTrait>
             </ProductionTraits>
             <HappinessTraits>
             </HappinessTraits>
@@ -14517,6 +14525,10 @@
             <ProductionTraits>
                 <ProductionTrait>
                     <ProductionTraitType>TRAIT_EXPANSIVE</ProductionTraitType>
+                    <iProductionTrait>100</iProductionTrait>
+                </ProductionTrait>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_AGRARIAN</ProductionTraitType>
                     <iProductionTrait>100</iProductionTrait>
                 </ProductionTrait>
             </ProductionTraits>
@@ -19161,6 +19173,10 @@
             <ProductionTraits>
                 <ProductionTrait>
                     <ProductionTraitType>TRAIT_PHILOSOPHICAL</ProductionTraitType>
+                    <iProductionTrait>100</iProductionTrait>
+                </ProductionTrait>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_SAGE</ProductionTraitType>
                     <iProductionTrait>100</iProductionTrait>
                 </ProductionTrait>
             </ProductionTraits>
@@ -30028,6 +30044,10 @@
             <PrereqBonuses>
             </PrereqBonuses>
             <ProductionTraits>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_AGRARIAN</ProductionTraitType>
+                    <iProductionTrait>100</iProductionTrait>
+                </ProductionTrait>
             </ProductionTraits>
             <HappinessTraits>
             </HappinessTraits>
@@ -35121,10 +35141,12 @@
             <Bonus>NONE</Bonus>
             <PrereqBonuses>
             </PrereqBonuses>
+			<ProductionTraits>
                 <ProductionTrait>
                     <ProductionTraitType>TRAIT_CREATIVE</ProductionTraitType>
                     <iProductionTrait>100</iProductionTrait>
                 </ProductionTrait>
+			</ProductionTraits>
             <HappinessTraits>
             </HappinessTraits>
             <NoBonus>NONE</NoBonus>

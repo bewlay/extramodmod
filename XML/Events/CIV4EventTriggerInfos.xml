@@ -21673,6 +21673,7 @@
             <bHeadquarters>0</bHeadquarters>
             <Events>
                 <Event>EVENT_TRAIT_AGGRESSIVE</Event>
+				<Event>EVENT_TRAIT_AGRARIAN</Event>
                 <Event>EVENT_TRAIT_ARCANE</Event>
                 <Event>EVENT_TRAIT_CHARISMATIC</Event>
                 <Event>EVENT_TRAIT_CREATIVE</Event>
@@ -21682,6 +21683,7 @@
                 <Event>EVENT_TRAIT_ORGANIZED</Event>
                 <Event>EVENT_TRAIT_PHILOSOPHICAL</Event>
                 <Event>EVENT_TRAIT_RAIDERS</Event>
+                <Event>EVENT_TRAIT_SAGE</Event>
                 <Event>EVENT_TRAIT_SPIRITUAL</Event>
             </Events>
             <PrereqEvents>

@@ -1830,7 +1830,8 @@ m_iPromotionCombatType(NO_PROMOTION),
 m_iPromotionCombatMod(0),
 m_piBonusAffinity(NULL),
 m_piDamageTypeCombat(NULL),
-m_piDamageTypeResist(NULL)
+m_piDamageTypeResist(NULL),
+m_iEnslavementChance(0)
 //FfH: End Add
 {
 }
@@ -2482,6 +2483,12 @@ int CvPromotionInfo::getDamageTypeResist(int i) const
 {
 	return m_piDamageTypeResist ? m_piDamageTypeResist[i] : -1;
 }
+
+int CvPromotionInfo::getEnslavementChance() const
+{
+	return m_iEnslavementChance;
+}
+
 //FfH: End Add
 
 // Arrays
@@ -2689,6 +2696,9 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_piDamageTypeResist);
 	m_piDamageTypeResist = new int[GC.getNumDamageTypeInfos()];
 	stream->Read(GC.getNumDamageTypeInfos(), m_piDamageTypeResist);
+
+	stream->Read(&m_iEnslavementChance);
+
 //FfH: End Add
 
 	// Arrays
@@ -2861,6 +2871,8 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumBonusInfos(), m_piBonusAffinity);
 	stream->Write(GC.getNumDamageTypeInfos(), m_piDamageTypeCombat);
 	stream->Write(GC.getNumDamageTypeInfos(), m_piDamageTypeResist);
+
+	stream->Write(m_iEnslavementChance);
 //FfH: End Add
 
 	// Arrays
@@ -3016,6 +3028,8 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_piBonusAffinity, "BonusAffinities", sizeof(GC.getBonusInfo((BonusTypes)0)), GC.getNumBonusInfos());
 	pXML->SetVariableListTagPair(&m_piDamageTypeCombat, "DamageTypeCombats", sizeof(GC.getDamageTypeInfo((DamageTypes)0)), GC.getNumDamageTypeInfos());
 	pXML->SetVariableListTagPair(&m_piDamageTypeResist, "DamageTypeResists", sizeof(GC.getDamageTypeInfo((DamageTypes)0)), GC.getNumDamageTypeInfos());
+
+	pXML->GetChildXmlValByName(&m_iEnslavementChance,"iEnslavementChance");
 //FfH: End Add
 
 	return true;
