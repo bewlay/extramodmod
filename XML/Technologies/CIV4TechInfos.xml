@@ -5639,7 +5639,7 @@
                 </Flavor>
                 <Flavor>
                     <FlavorType>FLAVOR_SCIENCE</FlavorType>
-                    <iFlavor>80</iFlavor>
+                    <iFlavor>90</iFlavor>
                 </Flavor>
             </Flavors>
             <OrPreReqs>
