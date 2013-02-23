@@ -462,7 +462,7 @@ def spellAddToWolfPack(caster):
 def reqArcaneLacuna(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	eTeam = gc.getTeam(pPlayer.getTeam())
-	manaTypes = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_DEATH','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER','BONUS_MANA_ICE' ]
+	manaTypes = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_DEATH','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER','BONUS_MANA_ICE','BONUS_MANA_CREATION','BONUS_MANA_FORCE','BONUS_MANA_DIMENSIONAL' ]
 	iCount = 0
 	for szBonus in manaTypes:
 		iBonus = gc.getInfoTypeForString(szBonus)
@@ -478,7 +478,7 @@ def reqArcaneLacuna(caster):
 	return True
 
 def spellArcaneLacuna(caster):
-	manaTypes = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_DEATH','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER','BONUS_MANA_ICE' ]
+	manaTypes = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_DEATH','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER','BONUS_MANA_ICE','BONUS_MANA_CREATION','BONUS_MANA_FORCE','BONUS_MANA_DIMENSIONAL' ]
 	iAdept = gc.getInfoTypeForString('UNITCOMBAT_ADEPT')
 	iCount = 0
 	pPlayer = gc.getPlayer(caster.getOwner())
@@ -1215,6 +1215,12 @@ def reqEscape(caster):
 		if caster.getDamage() >= 50:
 			return False
 	return True
+
+def spellEscape(caster):
+	player = caster.getOwner()
+	pPlayer = gc.getPlayer(player)
+	pCity = pPlayer.getCapitalCity()
+	caster.setXY(pCity.getX(), pCity.getY(), False, True, True)
 
 def reqExploreLair(caster):
 	if caster.isOnlyDefensive():
@@ -3295,12 +3301,6 @@ def spellTaunt(caster):
 												pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ENRAGED'),true)
 												pUnit.attack(pPlot, False)
 
-def spellTeleport(caster,loc):
-	player = caster.getOwner()
-	pPlayer = gc.getPlayer(player)
-	pCity = pPlayer.getCapitalCity()
-	caster.setXY(pCity.getX(), pCity.getY(), False, True, True)
-
 def reqTeachSpellcasting(caster):
 	iAnimal = gc.getInfoTypeForString('UNITCOMBAT_ANIMAL')
 	iBird = gc.getInfoTypeForString('SPECIALUNIT_BIRD')
@@ -3311,8 +3311,12 @@ def reqTeachSpellcasting(caster):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_BODY1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_CHAOS1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_CHAOS1')]
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_CREATION1')):
+		lList = lList + [gc.getInfoTypeForString('PROMOTION_CREATION1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_DEATH1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_DEATH1')]
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_DIMENSIONAL1')):
+		lList = lList + [gc.getInfoTypeForString('PROMOTION_DIMENSIONAL1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_EARTH1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_EARTH1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_ENCHANTMENT1')):
@@ -3321,6 +3325,8 @@ def reqTeachSpellcasting(caster):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_ENTROPY1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_FIRE1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_FIRE1')]
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_FORCE1')):
+		lList = lList + [gc.getInfoTypeForString('PROMOTION_FORCE1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_ICE1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_ICE1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_LAW1')):
@@ -3366,8 +3372,12 @@ def spellTeachSpellcasting(caster):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_BODY1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_CHAOS1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_CHAOS1')]
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_CREATION1')):
+		lList = lList + [gc.getInfoTypeForString('PROMOTION_CREATION1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_DEATH1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_DEATH1')]
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_DIMENSIONAL1')):
+		lList = lList + [gc.getInfoTypeForString('PROMOTION_DIMENSIONAL1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_EARTH1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_EARTH1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_ENCHANTMENT1')):
@@ -3376,6 +3386,8 @@ def spellTeachSpellcasting(caster):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_ENTROPY1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_FIRE1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_FIRE1')]
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_FORCE1')):
+		lList = lList + [gc.getInfoTypeForString('PROMOTION_FORCE1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_ICE1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_ICE1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_LAW1')):
@@ -4001,3 +4013,133 @@ def applyDeclareBarbs(argsList):
 		CyMessageControl().sendModNetMessage(CvUtil.BarbarianWar, iBarb, iTeam, 0, 0)
 #		gc.getTeam(iBarb).declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
 		cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
+
+def reqUnsummon(caster):
+	iRange = 1
+	iX = caster.getX()
+	iY = caster.getY()
+	for iiX in range(iX-iRange, iX+iRange+1, 1):
+		for iiY in range(iY-iRange, iY+iRange+1, 1):
+			pPlot = CyMap().plot(iiX,iiY)
+			if not pPlot.isNone():
+				for iUnit in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(iUnit)
+					if pUnit.getSummoner() != -1:
+						return True
+	return False
+
+
+def spellUnsummon(caster):
+	iRange = 1
+	iX = caster.getX()
+	iY = caster.getY()
+	for iiX in range(iX-iRange, iX+iRange+1, 1):
+		for iiY in range(iY-iRange, iY+iRange+1, 1):
+			pPlot = CyMap().plot(iiX,iiY)
+			if not pPlot.isNone():
+				for iUnit in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(iUnit)
+					if pUnit.getSummoner() != -1:
+						if pUnit.isResisted(caster, gc.getInfoTypeForString('SPELL_UNSUMMON')) == False:
+							pUnit.setExperience(0, -1)
+							pUnit.kill(True, caster.getOwner())
+
+#Rise from Erebus
+def reqFertility(caster):
+	pPlot = caster.plot()
+	pPlayer = gc.getPlayer(caster.getOwner())
+	ePlotOwner = pPlot.getOwner()
+
+	if ePlotOwner == -1:
+		return False
+
+	if pPlayer.getTeam() != gc.getPlayer(ePlotOwner).getTeam():
+		return False
+
+	pBonus = pPlot.getBonusType(-1)
+	if pBonus == -1:
+		return False
+
+	iWheat  = gc.getInfoTypeForString('BONUS_WHEAT')
+	iRice   = gc.getInfoTypeForString('BONUS_RICE')
+	iCorn   = gc.getInfoTypeForString('BONUS_CORN')
+
+	iCow    = gc.getInfoTypeForString('BONUS_COW')
+	iSheep  = gc.getInfoTypeForString('BONUS_SHEEP')
+ 	iPig    = gc.getInfoTypeForString('BONUS_PIG')
+
+	iBanana = gc.getInfoTypeForString('BONUS_BANANA')
+	iSugar  = gc.getInfoTypeForString('BONUS_SUGAR')
+ 	iCotton = gc.getInfoTypeForString('BONUS_COTTON')
+
+	iDeer   = gc.getInfoTypeForString('BONUS_DEER')
+	iFur    = gc.getInfoTypeForString('BONUS_FUR')
+
+	iClam   = gc.getInfoTypeForString('BONUS_CLAM')
+	iCrab   = gc.getInfoTypeForString('BONUS_CRAB')
+ 	iFish   = gc.getInfoTypeForString('BONUS_FISH')
+
+	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or onus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish:
+		return True
+
+	return False
+
+#Rise from Erebus
+def spellFertility(caster):
+	iPlayer = caster.getOwner()
+	pPlayer = gc.getPlayer(iPlayer)
+	pPlot = caster.plot()
+
+	pBonus = pPlot.getBonusType(-1)
+
+	iWheat  = gc.getInfoTypeForString('BONUS_WHEAT')
+	iRice   = gc.getInfoTypeForString('BONUS_RICE')
+	iCorn   = gc.getInfoTypeForString('BONUS_CORN')
+
+	iCow    = gc.getInfoTypeForString('BONUS_COW')
+	iSheep  = gc.getInfoTypeForString('BONUS_SHEEP')
+ 	iPig    = gc.getInfoTypeForString('BONUS_PIG')
+
+	iBanana = gc.getInfoTypeForString('BONUS_BANANA')
+	iSugar  = gc.getInfoTypeForString('BONUS_SUGAR')
+ 	iCotton = gc.getInfoTypeForString('BONUS_COTTON')
+
+	iDeer   = gc.getInfoTypeForString('BONUS_DEER')
+	iFur    = gc.getInfoTypeForString('BONUS_FUR')
+
+	iClam   = gc.getInfoTypeForString('BONUS_CLAM')
+	iCrab   = gc.getInfoTypeForString('BONUS_CRAB')
+ 	iFish   = gc.getInfoTypeForString('BONUS_FISH')
+
+ 	if pBonus == iWheat:
+ 		pPlot.setBonusType(iRice)
+ 	elif pBonus == iRice:
+ 		pPlot.setBonusType(iCorn)
+  	elif pBonus == iCorn:
+  		pPlot.setBonusType(iWheat)
+
+  	elif pBonus == iCow:
+ 		pPlot.setBonusType(iSheep)
+ 	elif pBonus == iSheep:
+ 		pPlot.setBonusType(iPig)
+ 	elif pBonus == iPig:
+ 		pPlot.setBonusType(iCow)
+
+  	elif pBonus == iBanana:
+ 		pPlot.setBonusType(iSugar)
+ 	elif pBonus == iSugar:
+ 		pPlot.setBonusType(iCotton)
+ 	elif pBonus == iCotton:
+ 		pPlot.setBonusType(iBanana)
+
+  	elif pBonus == iDeer:
+ 		pPlot.setBonusType(iFur)
+ 	elif pBonus == iFur:
+ 		pPlot.setBonusType(iDeer)
+
+  	elif pBonus == iClam:
+ 		pPlot.setBonusType(iCrab)
+ 	elif pBonus == iCrab:
+ 		pPlot.setBonusType(iFish)
+ 	elif pBonus == iFish:
+ 		pPlot.setBonusType(iClam)

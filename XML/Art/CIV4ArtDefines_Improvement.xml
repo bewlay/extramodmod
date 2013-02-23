@@ -493,6 +493,15 @@
 			<Button>Art/Interface/Buttons/Improvements/Chaos.dds</Button>
 		</ImprovementArtInfo>
 		<ImprovementArtInfo>
+			<Type>ART_DEF_IMPROVEMENT_MANA_CREATION</Type>
+			<bExtraAnimations>0</bExtraAnimations>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Improvements/Node/mine.nif</NIF>
+			<KFM>Art/Structures/Improvements/Node/Mine.kfm</KFM>
+			<Button>Art/Interface/Buttons/Worldbuilder/creation.dds</Button>
+		</ImprovementArtInfo>
+		<ImprovementArtInfo>
 			<Type>ART_DEF_IMPROVEMENT_MANA_DEATH</Type>
 			<bExtraAnimations>0</bExtraAnimations>
 			<fScale>1.0</fScale>
@@ -545,6 +554,24 @@
 			<NIF>Art/Structures/Improvements/Node/mine.nif</NIF>
 			<KFM>Art/Structures/Improvements/Node/Mine.kfm</KFM>
 			<Button>Art/Interface/Buttons/Improvements/Fire.dds</Button>
+		</ImprovementArtInfo>
+		<ImprovementArtInfo>
+			<Type>ART_DEF_IMPROVEMENT_MANA_FORCE</Type>
+			<bExtraAnimations>0</bExtraAnimations>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Improvements/Node/mine.nif</NIF>
+			<KFM>Art/Structures/Improvements/Node/Mine.kfm</KFM>
+			<Button>Art/Interface/Buttons/WorldBuilder/Force.dds</Button>
+		</ImprovementArtInfo>
+		<ImprovementArtInfo>
+			<Type>ART_DEF_IMPROVEMENT_MANA_ICE</Type>
+			<bExtraAnimations>0</bExtraAnimations>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Improvements/Node/mine.nif</NIF>
+			<KFM>Art/Structures/Improvements/Node/Mine.kfm</KFM>
+			<Button>Art/Interface/Buttons/WorldBuilder/Ice.dds</Button>
 		</ImprovementArtInfo>
 		<ImprovementArtInfo>
 			<Type>ART_DEF_IMPROVEMENT_MANA_LAW</Type>

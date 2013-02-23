@@ -5738,6 +5738,44 @@ int CvUnitInfo::getDamageTypeCombat(int i) const
 {
 	return m_piDamageTypeCombat ? m_piDamageTypeCombat[i] : -1;
 }
+
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+/*
+ * A unit is alive if it is not mechanized, and if it does not get any free promotion which makes it not alive.
+ */
+bool CvUnitInfo::isAlive(CivilizationTypes eCiv) const
+{
+	if (this->isMechUnit()) {
+		return false;
+	}
+
+	for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
+	{
+		if (this->getFreePromotions(iI))
+		{
+			if (GC.getPromotionInfo((PromotionTypes)iI).isNotAlive())
+            {
+				return false;
+			}
+		}
+	}
+
+	if (NO_CIVILIZATION != eCiv && GC.getCivilizationInfo(eCiv).getDefaultRace() != NO_PROMOTION) {
+		if (GC.getPromotionInfo((PromotionTypes)GC.getCivilizationInfo(eCiv).getDefaultRace()).isNotAlive())
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
+
 //FfH: End Add
 
 
@@ -8984,6 +9022,14 @@ m_iGlobalHappiness(0),
 m_iStateReligionHappiness(0),
 m_iWorkerSpeedModifier(0),
 m_iMilitaryProductionModifier(0),
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+m_iLivingProductionModifier(0),
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 m_iSpaceProductionModifier(0),
 m_iGlobalSpaceProductionModifier(0),
 m_iTradeRoutes(0),
@@ -9457,6 +9503,18 @@ int CvBuildingInfo::getMilitaryProductionModifier() const
 {
 	return m_iMilitaryProductionModifier;
 }
+
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+int CvBuildingInfo::getLivingProductionModifier() const
+{
+	return m_iLivingProductionModifier;
+}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 
 int CvBuildingInfo::getSpaceProductionModifier() const
 {
@@ -10407,6 +10465,14 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iStateReligionHappiness);
 	stream->Read(&m_iWorkerSpeedModifier);
 	stream->Read(&m_iMilitaryProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	stream->Read(&m_iLivingProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	stream->Read(&m_iSpaceProductionModifier);
 	stream->Read(&m_iGlobalSpaceProductionModifier);
 	stream->Read(&m_iTradeRoutes);
@@ -10774,6 +10840,14 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iStateReligionHappiness);
 	stream->Write(m_iWorkerSpeedModifier);
 	stream->Write(m_iMilitaryProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	stream->Write(m_iLivingProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	stream->Write(m_iSpaceProductionModifier);
 	stream->Write(m_iGlobalSpaceProductionModifier);
 	stream->Write(m_iTradeRoutes);
@@ -11185,6 +11259,14 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iStateReligionHappiness, "iStateReligionHappiness");
 	pXML->GetChildXmlValByName(&m_iWorkerSpeedModifier, "iWorkerSpeedModifier");
 	pXML->GetChildXmlValByName(&m_iMilitaryProductionModifier, "iMilitaryProductionModifier");
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iLivingProductionModifier, "iLivingProductionModifier");
+	/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_iSpaceProductionModifier, "iSpaceProductionModifier");
 	pXML->GetChildXmlValByName(&m_iGlobalSpaceProductionModifier, "iGlobalSpaceProductionModifier");
 	pXML->GetChildXmlValByName(&m_iTradeRoutes, "iTradeRoutes");
