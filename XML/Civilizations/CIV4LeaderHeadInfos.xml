@@ -18097,6 +18097,10 @@
 					<TraitType>TRAIT_IMPERIALISTIC</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
+				 <Trait>
+					<TraitType>TRAIT_DEFENDER</TraitType>
+					<bTrait>1</bTrait>
+				 </Trait>
 			</Traits>
 			<Flavors>
 				 <Flavor>
