@@ -2696,12 +2696,12 @@
             <Type>SPELL_SEVER</Type>
             <Description>TXT_KEY_SPELL_SEVER_SOUL</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <UnitPrereq>UNIT_DIVIDED_SOUL</UnitPrereq>
+			<UnitPrereq>UNIT_DIVIDED_SOUL</UnitPrereq>
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <CreateUnitType>UNIT_SEVERED_SOUL</CreateUnitType>
-            <iCreateUnitNum>1</iCreateUnitNum>
+			<PyResult>spellSeverSoul(pCaster)</PyResult>
+			<PyRequirement>reqSeverSoul(pCaster)</PyRequirement>
             <Effect>EFFECT_ENTROPY_SUMMON</Effect>
             <Sound>AS3D_SPELL_DEFILE</Sound>
             <Button>Art/Interface/Buttons/Units/Severed Soul.dds</Button>

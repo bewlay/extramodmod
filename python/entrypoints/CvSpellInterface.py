@@ -2908,6 +2908,57 @@ def spellScorch(caster):
 	if pPlot.isOwned():
 		cf.startWar(caster.getOwner(), pPlot.getOwner(), WarPlanTypes.WARPLAN_TOTAL)
 
+#Severed soul changes by MagisterCultuum
+def reqSeverSoul(pCaster):
+	if pCaster.getSummoner() != -1:
+		return False
+	iSummon = gc.getInfoTypeForString('UNIT_SEVERED_SOUL')
+	casterID = pCaster.getID()
+	py = PyPlayer(pCaster.getOwner())
+	for pUnit in py.getUnitList():
+		if pUnit.getUnitType() == iSummon:
+			if pUnit.getSummoner() == casterID:
+				return False
+	return True
+
+def spellSeverSoul(pCaster):
+	newUnit = gc.getPlayer(pCaster.getOwner()).initUnit(gc.getInfoTypeForString('UNIT_SEVERED_SOUL'), pCaster.getX(), pCaster.getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH)
+	newUnit.setSummoner(pCaster.getID())
+	newUnit.setDuration(3);
+	newUnit.setHasCasted(True)
+
+	promoList = ['PROMOTION_SENTRY',
+			'PROMOTION_SENTRY2',
+			'PROMOTION_PERFECT_SIGHT',
+			'PROMOTION_COMMANDO',
+			'PROMOTION_MOBILITY1',
+			'PROMOTION_MOBILITY2',
+			'PROMOTION_HASTED',
+			'PROMOTION_FATIGUED',
+			'PROMOTION_FLYING',
+			'PROMOTION_STARTING_SETTLER',
+			'PROMOTION_GUERILLA1',
+			'PROMOTION_GUERILLA2',
+			'PROMOTION_WOODSMAN1',
+			'PROMOTION_WOODSMAN2',
+			'PROMOTION_AMPHIBIOUS',
+			'PROMOTION_HOMELAND',
+			'PROMOTION_MAGIC_RESISTANCE',
+			'PROMOTION_COLD_RESISTANCE',
+			'PROMOTION_FIRE_RESISTANCE',
+			'PROMOTION_LIGHTNING_RESISTANCE',
+			'PROMOTION_MAGIC_IMMUNE',
+			'PROMOTION_IMMUNE_COLD',
+			'PROMOTION_IMMUNE_FIRE',
+			'PROMOTION_IMMUNE_LIGHTNING'
+			]
+	for i in range(len(promoList)):
+		iProm = gc.getInfoTypeForString(promoList[i])
+		if pCaster.isHasPromotion(iProm):
+			newUnit.setHasPromotion(iProm, True)
+
+#Severed soul changes end
+
 def spellSing(caster):
 	pPlot = caster.plot()
 	point = pPlot.getPoint()

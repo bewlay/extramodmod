@@ -65860,11 +65860,11 @@
             <Type>UNIT_SEVERED_SOUL</Type>
             <UniqueNames>
             </UniqueNames>
-            <Special>SPECIALUNIT_SPELL</Special>
+            <Special>NONE</Special>
             <Capture>NONE</Capture>
             <Combat>NONE</Combat>
             <Domain>DOMAIN_LAND</Domain>
-            <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+            <DefaultUnitAI>UNITAI_EXPLORE</DefaultUnitAI>
             <Invisible>INVISIBLE_ALL</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_SEVERED_SOUL</Description>
@@ -65875,9 +65875,9 @@
             <bFood>0</bFood>
             <bNoBadGoodies>0</bNoBadGoodies>
             <bOnlyDefensive>1</bOnlyDefensive>
-            <bNoCapture>0</bNoCapture>
+            <bNoCapture>1</bNoCapture>
             <bQuickCombat>0</bQuickCombat>
-            <bRivalTerritory>0</bRivalTerritory>
+            <bRivalTerritory>1</bRivalTerritory>
             <bMilitaryHappiness>0</bMilitaryHappiness>
             <bMilitarySupport>0</bMilitarySupport>
             <bMilitaryProduction>0</bMilitaryProduction>
@@ -65886,7 +65886,7 @@
             <bSabotage>0</bSabotage>
             <bDestroy>0</bDestroy>
             <bStealPlans>0</bStealPlans>
-            <bInvestigate>0</bInvestigate>
+            <bInvestigate>1</bInvestigate>
             <bCounterSpy>0</bCounterSpy>
             <bFound>0</bFound>
             <bGoldenAge>0</bGoldenAge>
@@ -65894,10 +65894,10 @@
             <bFirstStrikeImmune>0</bFirstStrikeImmune>
             <bNoDefensiveBonus>0</bNoDefensiveBonus>
             <bIgnoreBuildingDefense>0</bIgnoreBuildingDefense>
-            <bCanMoveImpassable>0</bCanMoveImpassable>
+            <bCanMoveImpassable>1</bCanMoveImpassable>
             <bCanMoveAllTerrain>0</bCanMoveAllTerrain>
             <bFlatMovementCost>0</bFlatMovementCost>
-            <bIgnoreTerrainCost>0</bIgnoreTerrainCost>
+            <bIgnoreTerrainCost>1</bIgnoreTerrainCost>
             <bNukeImmune>0</bNukeImmune>
             <bPrereqBonuses>0</bPrereqBonuses>
             <bPrereqReligion>0</bPrereqReligion>
@@ -65959,7 +65959,7 @@
             <iAdvancedStartCost>-1</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
             <iMinAreaSize>-1</iMinAreaSize>
-            <iMoves>1</iMoves>
+            <iMoves>2</iMoves>
             <bNoRevealMap>0</bNoRevealMap>
             <iAirRange>0</iAirRange>
             <iAirUnitCap>0</iAirUnitCap>
@@ -65982,7 +65982,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>0</iCombat>
+            <iCombat>1</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -66058,13 +66058,10 @@
                     <PromotionType>PROMOTION_ELEMENTAL</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
-                <FreePromotion>
-                    <PromotionType>PROMOTION_FLYING</PromotionType>
-                    <bFreePromotion>1</bFreePromotion>
-                </FreePromotion>
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+            <iCombatDefense>1</iCombatDefense>
             <iTier>2</iTier>
         </UnitInfo>
         <UnitInfo>
