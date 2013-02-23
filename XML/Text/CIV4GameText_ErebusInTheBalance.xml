@@ -80,4 +80,16 @@
         <Italian>[ICON_BULLET]Hire a Nightwatch Unit from the Council.</Italian>
         <Spanish>[ICON_BULLET]Recluta a una unidad de Guardia de la Noche del Concilio.</Spanish>
     </TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_HIGH_PRIEST_OF_THE_ORDER</Tag>
+		<English>Prior</English>
+		<French>Prieur</French>
+		<German>Ältester</German>
+		<Italian>Prior</Italian>
+		<Spanish>
+			<Text>Prior:Priores</Text>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</Spanish>
+	</TEXT>
 </Civ4GameText>
