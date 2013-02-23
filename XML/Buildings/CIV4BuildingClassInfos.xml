@@ -1473,7 +1473,7 @@
 			<iExtraPlayerInstances>1</iExtraPlayerInstances>
 			<bNoLimit>1</bNoLimit>
 			<bMonument>0</bMonument>
-			<DefaultBuilding>BUILDING_PALACE_BANNOR</DefaultBuilding>
+			<DefaultBuilding>BUILDING_PALACE</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
 		<BuildingClassInfo>
