@@ -8411,7 +8411,7 @@
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>NONE</FreePromotion>
             <CivicOption>NONE</CivicOption>
-            <GreatPeopleUnitClass>UNITCLASS_ENGINEER</GreatPeopleUnitClass>
+            <GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
             <iGreatPeopleRateChange>2</iGreatPeopleRateChange>
             <iHurryAngerModifier>0</iHurryAngerModifier>
             <bBorderObstacle>0</bBorderObstacle>
