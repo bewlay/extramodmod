@@ -4314,10 +4314,9 @@
 			<Button>Art/Interface/Buttons/Promotions/Temporance.dds</Button>
 		</SpellInfo>
         <SpellInfo>
-            <Type>SPELL_TREETOP_DEFENCE</Type>
-            <Description>TXT_KEY_SPELL_TREETOP_DEFENCE</Description>
+            <Type>SPELL_TREETOP_TACTICS</Type>
+            <Description>TXT_KEY_SPELL_TREETOP_TACTICS</Description>
             <Civilopedia>TXT_KEY_SPELL_TREETOP_DEFENCE_PEDIA</Civilopedia>
-            <Help>TXT_KEY_SPELL_TREETOP_DEFENCE_HELP</Help>
             <PromotionPrereq1>PROMOTION_NATURE1</PromotionPrereq1>
             <PromotionPrereq2>PROMOTION_CHANNELING1</PromotionPrereq2>
             <FeatureOrPrereq1>FEATURE_FOREST</FeatureOrPrereq1>
@@ -4326,7 +4325,7 @@
             <iAIWeight>10</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <PyResult>spellTreetopDefence(pCaster)</PyResult>
+             <AddPromotionType1>PROMOTION_TREETOP_TACTICS</AddPromotionType1>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_SANCTIFY</Sound>
             <Button>Art/Interface/Buttons/Spells/Treetopdefence.dds</Button>
@@ -4663,20 +4662,6 @@
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_INSPIRATION</Sound>
             <Button>Art/Interface/Buttons/Promotions/Warcry.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
-            <Type>SPELL_WATER_WALKING</Type>
-            <Description>TXT_KEY_SPELL_WATER_WALKING</Description>
-            <Civilopedia>TXT_KEY_SPELL_WATER_WALKING_PEDIA</Civilopedia>
-            <PromotionPrereq1>PROMOTION_WATER2</PromotionPrereq1>
-            <bAllowAI>1</bAllowAI>
-            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
-            <bHasCasted>1</bHasCasted>
-            <AddPromotionType1>PROMOTION_WATER_WALKING</AddPromotionType1>
-            <bBuffCasterOnly>1</bBuffCasterOnly>
-            <Effect>EFFECT_CREATION</Effect>
-            <Sound>AS3D_SPELL_WATER</Sound>
-            <Button>Art/Interface/Buttons/Promotions/Waterwalking.dds</Button>
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_WHITEOUT</Type>

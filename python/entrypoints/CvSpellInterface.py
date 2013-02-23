@@ -3525,13 +3525,6 @@ def spellTeachSpellcasting(caster):
 								if not pUnit.isHasPromotion(iChanneling1):
 									pUnit.setHasPromotion(iChanneling1, True)
 
-def spellTreetopDefence(caster):
-	pPlot = caster.plot()
-	for i in range(pPlot.getNumUnits()):
-		pUnit = pPlot.getUnit(i)
-		if pUnit.getTeam() == caster.getTeam():
-			pUnit.setFortifyTurns(5)
-
 def reqTrust(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	if pPlayer.isFeatAccomplished(FeatTypes.FEAT_TRUST):
@@ -3542,7 +3535,6 @@ def reqTrust(caster):
 
 def spellTrust(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
-	pCity = pPlayer.getCapitalCity()
 	pPlayer.setFeatAccomplished(FeatTypes.FEAT_TRUST, True)
 
 def spellTsunami(caster):

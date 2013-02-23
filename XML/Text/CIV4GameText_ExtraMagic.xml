@@ -241,6 +241,14 @@
 		<Italian>Temperance</Italian>
 		<Spanish>Templanza</Spanish>
 	</TEXT>
+ 	<TEXT>
+		<Tag>TXT_KEY_SPELL_TREETOP_TACTICS</Tag>
+		<English>Treetop Tactics</English>
+		<French>Treetop Tactics</French>
+		<German>Treetop</German>
+		<Italian>Treetop Defense</Italian>
+		<Spanish>Tácticas Arbóreas</Spanish>
+	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_BLESSING</Tag>
 		<English>Blessing</English>

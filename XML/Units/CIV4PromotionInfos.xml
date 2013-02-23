@@ -7295,6 +7295,72 @@
             <bImmuneToFear>1</bImmuneToFear>
         </PromotionInfo>
         <PromotionInfo>
+            <Type>PROMOTION_TREETOP_TACTICS</Type>
+            <Description>TXT_KEY_SPELL_TREETOP_TACTICS</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <TechPrereq>TECH_NEVER</TechPrereq>
+            <iWithdrawalChange>10</iWithdrawalChange>
+            <FeatureAttacks>
+                <FeatureAttack>
+                    <FeatureType>FEATURE_FOREST</FeatureType>
+                    <iFeatureAttack>10</iFeatureAttack>
+                </FeatureAttack>
+                <FeatureAttack>
+                    <FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+                    <iFeatureAttack>20</iFeatureAttack>
+                </FeatureAttack>
+            </FeatureAttacks>
+            <FeatureDefenses>
+                <FeatureDefense>
+                    <FeatureType>FEATURE_FOREST</FeatureType>
+                    <iFeatureDefense>10</iFeatureDefense>
+                </FeatureDefense>
+                <FeatureDefense>
+                    <FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+                    <iFeatureDefense>20</iFeatureDefense>
+                </FeatureDefense>
+            </FeatureDefenses>
+            <UnitCombats>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_ANIMAL</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_BEAST</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_DISCIPLE</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+            </UnitCombats>
+            <Button>Art/Interface/Buttons/Spells/Treetopdefence.dds</Button>
+            <bDispellable>1</bDispellable>
+            <iAIWeight>50</iAIWeight>
+            <iExpireChance>100</iExpireChance>
+            <iMinLevel>-1</iMinLevel>
+        </PromotionInfo>
+        <PromotionInfo>
             <Type>PROMOTION_TWINCAST</Type>
             <Description>TXT_KEY_PROMOTION_TWINCAST</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
@@ -7569,6 +7635,7 @@
             </UnitCombats>
             <Button>Art/Interface/Buttons/Promotions/Water2.dds</Button>
             <iAIWeight>100</iAIWeight>
+            <bWaterWalking>1</bWaterWalking>
             <PromotionPrereqAnd>PROMOTION_CHANNELING2</PromotionPrereqAnd>
             <PromotionNextLevel>PROMOTION_WATER3</PromotionNextLevel>
         </PromotionInfo>
