@@ -1935,6 +1935,20 @@
             <Button>Art/Interface/Buttons/Spells/Kidnap.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_LABYRINTH</Type>
+            <Description>TXT_KEY_SPELL_LABYRINTH</Description>
+            <Civilopedia>TXT_KEY_SPELL_LABYRINTH_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_CHANNELING2</PromotionPrereq1>
+            <PromotionPrereq2>PROMOTION_DIMENSIONAL2</PromotionPrereq2>
+            <bAllowAI>0</bAllowAI>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <CreateFeatureType>FEATURE_LABYRINTH</CreateFeatureType>
+            <Effect>EFFECT_ENTROPY_SUMMON</Effect>
+            <Sound>AS3D_SPELL_DEFILE</Sound>
+            <Button>Art/Interface/Buttons/TerrainFeatures/Tormented Souls.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_LEGENDS</Type>
             <Description>TXT_KEY_SPELL_LEGENDS</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>

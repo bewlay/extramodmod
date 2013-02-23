@@ -122,6 +122,22 @@
 		<Spanish>Fuerza</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_FEATURE_LABYRINTH</Tag>
+		<English>Labyrinth</English>
+		<French>Labyrinth</French>
+		<German>Labyrinth</German>
+		<Italian>Labyrinth</Italian>
+		<Spanish>Laberinto</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FEATURE_LABYRINTH_PEDIA</Tag>
+		<English>It has a 40% chance of dissapearing on each turn (on standard speed)</English>
+		<French>It has a 40% chance of dissapearing on each turn (on standard speed)</French>
+		<German>It has a 40% chance of dissapearing on each turn (on standard speed)</German>
+		<Italian>It has a 40% chance of dissapearing on each turn (on standard speed)</Italian>
+		<Spanish>Tiene una probabilidad de desaparecer cada turno del 40% (en velocidad normal)</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_MANA_CREATION</Tag>
 		<English>Creation Node</English>
 		<French>Noeud de Creation</French>
@@ -297,6 +313,22 @@
 		<German>[ICON_BULLET]Converts Grain, Animal, Sea and Camp resources to a different resource type of the same group</German>
 		<Italian>[ICON_BULLET]Converts Grain, Animal, Sea and Camp resources to a different resource type of the same group</Italian>
 		<Spanish>[ICON_BULLET]Convierte recursos de grano, animales, mar o campamento a un tipo de recurso diferente del mismo grupo</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_LABYRINTH</Tag>
+		<English>Labyrinth</English>
+		<French>Labyrinth</French>
+		<German>Labyrinth</German>
+		<Italian>Labyrinth</Italian>
+		<Spanish>Laberinto</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_LABYRINTH_HELP</Tag>
+		<English>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</English>
+		<French>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</French>
+		<German>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</German>
+		<Italian>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</Italian>
+		<Spanish>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_MAGIC_MISSILE</Tag>
