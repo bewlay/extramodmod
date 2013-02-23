@@ -3266,5 +3266,66 @@
 				</StyleUnit>
 			</StyleUnits>
 		</UnitArtStyleTypeInfo>
+		<UnitArtStyleTypeInfo>
+			<Type>UNIT_ARTSTYLE_LUCIAN</Type>
+			<StyleUnits>
+				<StyleUnit>
+					<UnitType>UNIT_SONS_OF_ASENA</UnitType>
+					<UnitMeshGroup>
+						<EarlyArtDefineTag>ART_DEF_UNIT_LUCIAN</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_LUCIAN</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_LUCIAN</MiddleArtDefineTag>
+					</UnitMeshGroup>
+				</StyleUnit>
+				<StyleUnit>
+					<UnitType>UNIT_BATTLEMASTER</UnitType>
+					<UnitMeshGroup>
+						<EarlyArtDefineTag>ART_DEF_UNIT_LUCIAN</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_LUCIAN</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_LUCIAN</MiddleArtDefineTag>
+					</UnitMeshGroup>
+				</StyleUnit>
+				<StyleUnit>
+					<UnitType>UNIT_CIRCLE_OF_URD</UnitType>
+					<UnitMeshGroup>
+						<EarlyArtDefineTag>ART_DEF_UNIT_LUCIAN</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_LUCIAN</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_LUCIAN</MiddleArtDefineTag>
+					</UnitMeshGroup>
+				</StyleUnit>
+				<StyleUnit>
+					<UnitType>UNIT_SKULD</UnitType>
+					<UnitMeshGroup>
+						<EarlyArtDefineTag>ART_DEF_UNIT_LUCIAN</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_LUCIAN</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_LUCIAN</MiddleArtDefineTag>
+					</UnitMeshGroup>
+				</StyleUnit>
+				<StyleUnit>
+					<UnitType>UNIT_VERDANDI</UnitType>
+					<UnitMeshGroup>
+						<EarlyArtDefineTag>ART_DEF_UNIT_LUCIAN</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_LUCIAN</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_LUCIAN</MiddleArtDefineTag>
+					</UnitMeshGroup>
+				</StyleUnit>
+				<StyleUnit>
+					<UnitType>UNIT_PALADIN</UnitType>
+					<UnitMeshGroup>
+						<EarlyArtDefineTag>ART_DEF_UNIT_LUCIAN</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_LUCIAN</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_LUCIAN</MiddleArtDefineTag>
+					</UnitMeshGroup>
+				</StyleUnit>
+				<StyleUnit>
+					<UnitType>UNIT_EIDOLON</UnitType>
+					<UnitMeshGroup>
+						<EarlyArtDefineTag>ART_DEF_UNIT_LUCIAN</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_LUCIAN</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_LUCIAN</MiddleArtDefineTag>
+					</UnitMeshGroup>
+				</StyleUnit>
+			</StyleUnits>
+		</UnitArtStyleTypeInfo>
 	</UnitArtStyleTypeInfos>
 </Civ4UnitArtStyleTypeInfos>

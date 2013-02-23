@@ -6656,6 +6656,20 @@
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
         <PromotionInfo>
+            <Type>PROMOTION_STRONG_LUCIAN</Type>
+            <Description>TXT_KEY_PROMOTION_STRONG</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <TechPrereq>TECH_NEVER</TechPrereq>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Promotions/Strong.dds</Button>
+            <iAIWeight>100</iAIWeight>
+            <iExtraCombatStr>1</iExtraCombatStr>
+            <iExtraCombatDefense>1</iExtraCombatDefense>
+            <iMinLevel>-1</iMinLevel>
+			<iGroupSize>1</iGroupSize>
+			<UnitArtStyleType>UNIT_ARTSTYLE_LUCIAN</UnitArtStyleType>
+        </PromotionInfo>
+        <PromotionInfo>
             <Type>PROMOTION_SUBDUE_ANIMAL</Type>
             <Description>TXT_KEY_PROMOTION_SUBDUE_ANIMAL</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>

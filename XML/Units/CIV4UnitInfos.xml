@@ -48507,7 +48507,7 @@
             <PrereqReligion>NONE</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>NONE</PrereqTech>
+            <PrereqTech>TECH_NEVER</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>NONE</BonusType>
@@ -48546,7 +48546,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>4</iCombat>
+            <iCombat>3</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -48619,16 +48619,20 @@
             <iHotKeyPriority>0</iHotKeyPriority>
             <FreePromotions>
                 <FreePromotion>
+                    <PromotionType>PROMOTION_STRONG_LUCIAN</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
                     <PromotionType>PROMOTION_WINTERBORN</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
-            <iCombatDefense>4</iCombatDefense>
+            <iCombatDefense>3</iCombatDefense>
             <iTier>2</iTier>
             <iWeaponTier>3</iWeaponTier>
-	    <PrereqCiv>CIVILIZATION_DOVIELLO</PrereqCiv>
+	        <PrereqCiv>CIVILIZATION_DOVIELLO</PrereqCiv>
             <Image>Art/Interface/Popups/Lucian.dds</Image>
         </UnitInfo>
         <UnitInfo>

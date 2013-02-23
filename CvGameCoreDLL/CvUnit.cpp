@@ -715,7 +715,10 @@ void CvUnit::convert(CvUnit* pUnit)
 	setLeaderUnitType(pUnit->getLeaderUnitType());
 
 //FfH: Added by Kael 10/03/2008
-	if (!isWorldUnitClass((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) && isWorldUnitClass((UnitClassTypes)(pUnit->getUnitClassType())))
+	if (!pUnit->m_szName.empty()) {
+		setName(pUnit->m_szName);
+	}
+	else if (!isWorldUnitClass((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) && isWorldUnitClass((UnitClassTypes)(pUnit->getUnitClassType())))
 	{
 	    setName(pUnit->getName());
 	}

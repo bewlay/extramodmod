@@ -325,7 +325,7 @@
 		<UnitClassInfo>
 			<Type>UNITCLASS_LUCIAN</Type>
 			<Description>TXT_KEY_UNIT_LUCIAN</Description>
-			<iMaxGlobalInstances>1</iMaxGlobalInstances>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>-1</iMaxTeamInstances>
 			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
 			<iInstanceCostModifier>0</iInstanceCostModifier>
