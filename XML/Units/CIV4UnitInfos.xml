@@ -12960,6 +12960,7 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+            <bNeverObsolete>1</bNeverObsolete>
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
             <iWeaponTier>3</iWeaponTier>
@@ -41570,6 +41571,7 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+            <bNeverObsolete>1</bNeverObsolete>
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
             <PrereqBuildingClass>BUILDINGCLASS_HUNTING_LODGE</PrereqBuildingClass>
