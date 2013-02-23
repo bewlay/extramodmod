@@ -962,10 +962,13 @@ class CvEventManager:
 							pUnit.kill(False, pCity.getOwner())
 
 		if iProjectType == gc.getInfoTypeForString('PROJECT_GENESIS'):
-			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_ILLIANS'):
-				cf.snowgenesis(iPlayer)
-			else:
-				cf.genesis(iPlayer)
+			for iLoopPlayer in range(gc.getMAX_PLAYERS()):
+				pLoopPlayer = gc.getPlayer(iLoopPlayer)
+				if pLoopPlayer.getTeam() == pPlayer.getTeam():
+					if pLoopPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_ILLIANS'):
+						cf.snowgenesis(iLoopPlayer)
+					else:
+						cf.genesis(iLoopPlayer)
 
 
 		if iProjectType == gc.getInfoTypeForString('PROJECT_GLORY_EVERLASTING'):
