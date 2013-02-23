@@ -25114,7 +25114,7 @@
             <iModifyGlobalCounter>0</iModifyGlobalCounter>
             <iPlotRadius>0</iPlotRadius>
             <iResistMagic>0</iResistMagic>
-            <FreeBonus2>BONUS_MANA_NATURE</FreeBonus2>
+            <FreeBonus2>BONUS_MANA_LIFE</FreeBonus2>
             <FreeBonus3>BONUS_MANA_WATER</FreeBonus3>
             <PrereqCiv></PrereqCiv>
             <PrereqTrait>NONE</PrereqTrait>
@@ -25158,7 +25158,7 @@
             </HappinessTraits>
             <NoBonus>NONE</NoBonus>
             <PowerBonus>NONE</PowerBonus>
-            <FreeBonus>BONUS_MANA_SPIRIT</FreeBonus>
+            <FreeBonus>BONUS_MANA_FORCE</FreeBonus>
             <iNumFreeBonuses>1</iNumFreeBonuses>
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>NONE</FreePromotion>
@@ -25343,7 +25343,7 @@
             <iPlotRadius>0</iPlotRadius>
             <iResistMagic>0</iResistMagic>
             <FreeBonus2>BONUS_MANA_ENCHANTMENT</FreeBonus2>
-            <FreeBonus3>BONUS_MANA_WATER</FreeBonus3>
+            <FreeBonus3>BONUS_MANA_SPIRIT</FreeBonus3>
             <PrereqCiv></PrereqCiv>
             <PrereqTrait>NONE</PrereqTrait>
             <RemovePromotion>NONE</RemovePromotion>
@@ -26304,7 +26304,7 @@
             </HappinessTraits>
             <NoBonus>NONE</NoBonus>
             <PowerBonus>NONE</PowerBonus>
-            <FreeBonus>BONUS_MANA_SUN</FreeBonus>
+            <FreeBonus>BONUS_MANA_CREATION</FreeBonus>
             <iNumFreeBonuses>1</iNumFreeBonuses>
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>NONE</FreePromotion>
@@ -26488,7 +26488,7 @@
             <iModifyGlobalCounter>0</iModifyGlobalCounter>
             <iPlotRadius>0</iPlotRadius>
             <iResistMagic>0</iResistMagic>
-            <FreeBonus2>BONUS_MANA_SPIRIT</FreeBonus2>
+            <FreeBonus2>BONUS_MANA_SUN</FreeBonus2>
             <FreeBonus3>BONUS_MANA_WATER</FreeBonus3>
             <PrereqCiv></PrereqCiv>
             <PrereqTrait>NONE</PrereqTrait>
@@ -27678,7 +27678,7 @@
             </HappinessTraits>
             <NoBonus>NONE</NoBonus>
             <PowerBonus>NONE</PowerBonus>
-            <FreeBonus>BONUS_MANA_DEATH</FreeBonus>
+            <FreeBonus>BONUS_MANA_DIMENSIONAL</FreeBonus>
             <iNumFreeBonuses>1</iNumFreeBonuses>
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>NONE</FreePromotion>
@@ -27863,7 +27863,7 @@
             <iPlotRadius>0</iPlotRadius>
             <iResistMagic>0</iResistMagic>
             <FreeBonus2>BONUS_MANA_CHAOS</FreeBonus2>
-            <FreeBonus3>BONUS_MANA_FIRE</FreeBonus3>
+            <FreeBonus3>BONUS_MANA_DEATH</FreeBonus3>
             <PrereqCiv></PrereqCiv>
             <PrereqTrait>NONE</PrereqTrait>
             <RemovePromotion>NONE</RemovePromotion>
@@ -28106,7 +28106,7 @@
             <iModifyGlobalCounter>0</iModifyGlobalCounter>
             <iPlotRadius>0</iPlotRadius>
             <iResistMagic>0</iResistMagic>
-            <FreeBonus2>BONUS_MANA_ENCHANTMENT</FreeBonus2>
+            <FreeBonus2>BONUS_MANA_DIMENSIONAL</FreeBonus2>
             <FreeBonus3>BONUS_MANA_SHADOW</FreeBonus3>
             <PrereqCiv></PrereqCiv>
             <PrereqTrait>NONE</PrereqTrait>
@@ -35396,7 +35396,7 @@
             <bPrereqReligion>0</bPrereqReligion>
             <bCenterInCity>0</bCenterInCity>
             <iAIWeight>0</iAIWeight>
-            <iCost>600</iCost>
+            <iCost>900</iCost>
             <iHurryCostModifier>100</iHurryCostModifier>
             <iAdvancedStartCost>-1</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -35497,6 +35497,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+                <BonusProductionModifier>
+                    <BonusType>BONUS_MANA_DIMENSIONAL</BonusType>
+                    <iProductonModifier>100</iProductonModifier>
+                </BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
