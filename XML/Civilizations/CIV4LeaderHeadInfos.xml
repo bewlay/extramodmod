@@ -59989,6 +59989,10 @@
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
+					<TraitType>TRAIT_INGENUITY</TraitType>
+					<bTrait>1</bTrait>
+				 </Trait>
+				 <Trait>
 					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
