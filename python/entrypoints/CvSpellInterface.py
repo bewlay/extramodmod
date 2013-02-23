@@ -4109,36 +4109,6 @@ def applyDeclareBarbs(argsList):
 #		gc.getTeam(iBarb).declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
 		cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
 
-def reqUnsummon(caster):
-	iRange = 1
-	iX = caster.getX()
-	iY = caster.getY()
-	for iiX in range(iX-iRange, iX+iRange+1, 1):
-		for iiY in range(iY-iRange, iY+iRange+1, 1):
-			pPlot = CyMap().plot(iiX,iiY)
-			if not pPlot.isNone():
-				for iUnit in range(pPlot.getNumUnits()):
-					pUnit = pPlot.getUnit(iUnit)
-					if pUnit.getSummoner() != -1:
-						return True
-	return False
-
-
-def spellUnsummon(caster):
-	iRange = 1
-	iX = caster.getX()
-	iY = caster.getY()
-	for iiX in range(iX-iRange, iX+iRange+1, 1):
-		for iiY in range(iY-iRange, iY+iRange+1, 1):
-			pPlot = CyMap().plot(iiX,iiY)
-			if not pPlot.isNone():
-				for iUnit in range(pPlot.getNumUnits()):
-					pUnit = pPlot.getUnit(iUnit)
-					if pUnit.getSummoner() != -1:
-						if pUnit.isResisted(caster, gc.getInfoTypeForString('SPELL_UNSUMMON')) == False:
-							pUnit.setExperience(0, -1)
-							pUnit.kill(True, caster.getOwner())
-
 #Rise from Erebus
 def reqFertility(caster):
 	pPlot = caster.plot()

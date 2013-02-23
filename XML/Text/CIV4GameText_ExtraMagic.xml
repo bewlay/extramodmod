@@ -307,22 +307,6 @@
 		<Spanish>Proyectil Mágico</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_SPELL_UNSUMMON</Tag>
-		<English>Unsummon</English>
-		<French>Unsummon</French>
-		<German>Unsummon</German>
-		<Italian>Unsummon</Italian>
-		<Spanish>Desconvocar</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_SPELL_UNSUMMON_HELP</Tag>
-		<English>Destroys nearby enemy summons</English>
-		<French>Destroys nearby enemy summons</French>
-		<German>Destroys nearby enemy summons</German>
-		<Italian>Destroys nearby enemy summons</Italian>
-		<Spanish>Destruye invocaciones enemigas cercanas</Spanish>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CREATE</Tag>
 		<English>Create Rift</English>
 		<French>Create Rift</French>
@@ -404,11 +388,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SUMMON_RUNEWYN_HELP</Tag>
-		<English>[ICON_BULLET]Runewyns can cast [LINK=SPELL_DISPEL_MAGIC]Dispel Magic[\LINK] as well as [LINK=SPELL_UNSUMMON]Unsummon[\LINK], and they always choose to target arcane units when they attack.</English>
-		<French>[ICON_BULLET]Runewyns can cast [LINK=SPELL_DISPEL_MAGIC]Dispel Magic[\LINK] as well as [LINK=SPELL_UNSUMMON]Unsummon[\LINK], and they always choose to target arcane units when they attack.</French>
-		<German>[ICON_BULLET]Runewyns can cast [LINK=SPELL_DISPEL_MAGIC]Dispel Magic[\LINK] as well as [LINK=SPELL_UNSUMMON]Unsummon[\LINK], and they always choose to target arcane units when they attack.</German>
-		<Italian>[ICON_BULLET]Runewyns can cast [LINK=SPELL_DISPEL_MAGIC]Dispel Magic[\LINK] as well as [LINK=SPELL_UNSUMMON]Unsummon[\LINK], and they always choose to target arcane units when they attack.</Italian>
-		<Spanish>[ICON_BULLET]Los Runewyns pueden lanzar [LINK=SPELL_DISPEL_MAGIC]Disipar Magia[\LINK] y [LINK=SPELL_UNSUMMON]Desconvocar[\LINK], y siempre eligen como objetivo a unidades arcanas cuando atacan.</Spanish>
+		<English>[ICON_BULLET]Runewyns can cast [LINK=SPELL_DISPEL_MAGIC]Dispel Magic[\LINK], and they always choose to target arcane units when they attack.</English>
+		<French>[ICON_BULLET]Runewyns can cast [LINK=SPELL_DISPEL_MAGIC]Dispel Magic[\LINK], and they always choose to target arcane units when they attack.</French>
+		<German>[ICON_BULLET]Runewyns can cast [LINK=SPELL_DISPEL_MAGIC]Dispel Magic[\LINK], and they always choose to target arcane units when they attack.</German>
+		<Italian>[ICON_BULLET]Runewyns can cast [LINK=SPELL_DISPEL_MAGIC]Dispel Magic[\LINK], and they always choose to target arcane units when they attack.</Italian>
+		<Spanish>[ICON_BULLET]Los Runewyns pueden lanzar [LINK=SPELL_DISPEL_MAGIC]Disipar Magia[\LINK], y siempre eligen como objetivo a unidades arcanas cuando atacan.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_TEMPERANCE</Tag>

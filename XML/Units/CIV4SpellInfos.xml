@@ -4365,24 +4365,6 @@
             <Sound>AS3D_SPELL_TSUNAMI</Sound>
             <Button>Art/Interface/Buttons/Spells/Tsunami.dds</Button>
         </SpellInfo>
-		<SpellInfo>
-			<Type>SPELL_UNSUMMON</Type>
-			<Description>TXT_KEY_SPELL_UNSUMMON</Description>
-			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-			<Help>TXT_KEY_SPELL_UNSUMMON_HELP</Help>
-			<PromotionPrereq1>PROMOTION_DIMENSIONAL2</PromotionPrereq1>
-			<bAllowAI>1</bAllowAI>
-			<iAIWeight>100</iAIWeight>
-			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
-			<bHasCasted>1</bHasCasted>
-			<bResistable>1</bResistable>
-			<iResistModify>33</iResistModify>
-			<PyResult>spellUnsummon(pCaster)</PyResult>
-			<PyRequirement>reqUnsummon(pCaster)</PyRequirement>
-			<Effect>EFFECT_SPELL2</Effect>
-			<Sound>AS3D_SPELL_ESCAPE</Sound>
-			<Button>Art/Interface/Buttons/Spells/Banish.dds</Button>
-		</SpellInfo>
         <SpellInfo>
             <Type>SPELL_UNYIELDING_ORDER</Type>
             <Description>TXT_KEY_SPELL_UNYIELDING_ORDER</Description>

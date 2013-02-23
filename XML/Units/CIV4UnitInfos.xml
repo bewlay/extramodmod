@@ -64011,10 +64011,6 @@
 					<PromotionType>PROMOTION_METAMAGIC2</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
-				<FreePromotion>
-					<PromotionType>PROMOTION_DIMENSIONAL2</PromotionType>
-					<bFreePromotion>1</bFreePromotion>
-				</FreePromotion>
                 <FreePromotion>
                     <PromotionType>PROMOTION_FLYING</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
