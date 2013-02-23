@@ -4636,5 +4636,33 @@
             <Sound>AS3D_SPELL_COMMANDER_SPLIT</Sound>
             <Button>Art/Interface/Buttons/Units/Commander.dds</Button>
         </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_TARGET_WEAK</Type>
+			<Description>TXT_KEY_SPELL_TARGET_WEAKEST_UNIT</Description>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<PromotionPrereq1>PROMOTION_MARKSMAN_DISABLED</PromotionPrereq1>
+			<bAbility>1</bAbility>
+			<bIgnoreHasCasted>1</bIgnoreHasCasted>
+			<AddPromotionType1>PROMOTION_MARKSMAN</AddPromotionType1>
+			<RemovePromotionType1>PROMOTION_MARKSMAN_DISABLED</RemovePromotionType1>
+			<bBuffCasterOnly>1</bBuffCasterOnly>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS3D_SPELL_TRAIN</Sound>
+			<Button>Art/Interface/Buttons/Promotions/Marksman.dds</Button>
+		</SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_TARGET_STRONG</Type>
+			<Description>TXT_KEY_SPELL_STOP_TARGETING_WEAKEST_UNIT</Description>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<PromotionPrereq1>PROMOTION_MARKSMAN</PromotionPrereq1>
+			<bAbility>1</bAbility>
+			<bIgnoreHasCasted>1</bIgnoreHasCasted>
+			<AddPromotionType1>PROMOTION_MARKSMAN_DISABLED</AddPromotionType1>
+			<RemovePromotionType1>PROMOTION_MARKSMAN</RemovePromotionType1>
+			<bBuffCasterOnly>1</bBuffCasterOnly>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS3D_SPELL_TRAIN</Sound>
+			<Button>Art/Interface/Buttons/Promotions/Marksman.dds</Button>
+		</SpellInfo>
     </SpellInfos>
 </Civ4SpellInfos>

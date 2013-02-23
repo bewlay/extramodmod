@@ -4675,6 +4675,13 @@
             <bTargetWeakestUnit>1</bTargetWeakestUnit>
         </PromotionInfo>
         <PromotionInfo>
+            <Type>PROMOTION_MARKSMAN_DISABLED</Type>
+            <Description>TXT_KEY_PROMOTION_MARKSMAN_DISABLED</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <TechPrereq>TECH_NEVER</TechPrereq>
+            <Button>Art/Interface/Buttons/Promotions/Marksman.dds</Button>
+        </PromotionInfo>
+        <PromotionInfo>
             <Type>PROMOTION_MEDIC1</Type>
             <Description>TXT_KEY_PROMOTION_MEDIC1</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
