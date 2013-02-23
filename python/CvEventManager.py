@@ -2385,17 +2385,10 @@ class CvEventManager:
 									CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_EYES_AND_EARS_NETWORK_FREE_TECH",()),'AS2D_TECH_DING',1,'Art/Interface/Buttons/Buildings/Eyesandearsnetwork.dds',ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
 
 		if pCity.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_PLANAR_GATE')) > 0:
-			iMax = 1
-			iMult = 1
-			if CyGame().getGlobalCounter() >= 50:
-				iMax = 2
-				iMult = 1.5
-			if CyGame().getGlobalCounter() >= 75:
-				iMax = 3
-				iMult = 2
-			if CyGame().getGlobalCounter() == 100:
-				iMax = 4
-				iMult = 2.5
+			## Scaled planar gate probability.
+			iMax = 1 + 0.03 * CyGame().getGlobalCounter()
+			iMult = 1 + 0.015 * CyGame().getGlobalCounter()
+
 			if CyGame().getSorenRandNum(10000, "Planar Gate") < gc.getDefineINT('PLANAR_GATE_CHANCE') * iMult:
 				listUnits = []
 				iMax = iMax * pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_PLANAR_GATE'))
