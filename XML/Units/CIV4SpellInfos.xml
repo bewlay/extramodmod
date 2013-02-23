@@ -2291,6 +2291,23 @@
             <Button>Art/Interface/Buttons/Spells/PillarofFire.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_PILLAR_OF_FIRE_CHALID</Type>
+            <Description>TXT_KEY_SPELL_PILLAR_OF_FIRE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PILLAR_OF_FIRE_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_PILLAR_OF_FIRE_HELP</Help>
+            <UnitClassPrereq>UNITCLASS_CHALID</UnitClassPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>300</iAIWeight>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <iRange>2</iRange>
+            <PyResult>spellPillarofFire(pCaster)</PyResult>
+            <PyRequirement>reqPillarofFire(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_FIREBALL</Sound>
+            <Button>Art/Interface/Buttons/Spells/PillarofFire.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_PIRATE_COVE</Type>
             <Description>TXT_KEY_SPELL_PIRATE_COVE</Description>
             <Civilopedia>TXT_KEY_SPELL_PIRATE_COVE_PEDIA</Civilopedia>
