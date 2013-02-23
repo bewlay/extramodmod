@@ -3503,6 +3503,7 @@
             <Type>PROMOTION_HERO</Type>
             <Description>TXT_KEY_PROMOTION_HERO</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
+			<iUpgradeDiscount>100</iUpgradeDiscount>
             <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Hero.dds</Button>
             <iFreeXPPerTurn>1</iFreeXPPerTurn>
