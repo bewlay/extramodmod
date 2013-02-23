@@ -46385,7 +46385,7 @@
             <Advisor>ADVISOR_RELIGION</Advisor>
             <bAnimal>0</bAnimal>
             <bFood>0</bFood>
-            <bNoBadGoodies>0</bNoBadGoodies>
+            <bNoBadGoodies>1</bNoBadGoodies>
             <bOnlyDefensive>0</bOnlyDefensive>
             <bNoCapture>0</bNoCapture>
             <bQuickCombat>0</bQuickCombat>
