@@ -6577,7 +6577,7 @@
             <bPrereqReligion>0</bPrereqReligion>
             <bCenterInCity>0</bCenterInCity>
             <iAIWeight>500</iAIWeight>
-            <iCost>300</iCost>
+            <iCost>200</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
