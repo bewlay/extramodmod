@@ -2463,6 +2463,10 @@
             <PrereqBonuses>
             </PrereqBonuses>
             <ProductionTraits>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_EXPANSIVE</ProductionTraitType>
+                    <iProductionTrait>100</iProductionTrait>
+                </ProductionTrait>
             </ProductionTraits>
             <HappinessTraits>
             </HappinessTraits>
@@ -14531,10 +14535,6 @@
             <PrereqBonuses>
             </PrereqBonuses>
             <ProductionTraits>
-                <ProductionTrait>
-                    <ProductionTraitType>TRAIT_EXPANSIVE</ProductionTraitType>
-                    <iProductionTrait>100</iProductionTrait>
-                </ProductionTrait>
                 <ProductionTrait>
                     <ProductionTraitType>TRAIT_AGRARIAN</ProductionTraitType>
                     <iProductionTrait>100</iProductionTrait>
