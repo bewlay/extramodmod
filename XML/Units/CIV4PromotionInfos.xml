@@ -6108,6 +6108,27 @@
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
         <PromotionInfo>
+            <Type>PROMOTION_RIFT</Type>
+            <Description>TXT_KEY_UNIT_RIFT</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <TechPrereq>TECH_NEVER</TechPrereq>
+            <iVisibilityChange>-100</iVisibilityChange>
+            <Button>Art/Interface/Buttons/Promotions/Illusion.dds</Button>
+            <bNotAlive>1</bNotAlive>
+            <bRace>1</bRace>
+        </PromotionInfo>
+        <PromotionInfo>
+            <Type>PROMOTION_RIFT_OPENED</Type>
+            <Description>TXT_KEY_PROMOTION_RIFT_OPENED</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <iVisibilityChange>-1</iVisibilityChange>
+            <Button>Art/Interface/Buttons/Units/Lightning Elemental.dds</Button>
+            <bHeld>1</bHeld>
+            <iAIWeight>-100</iAIWeight>
+            <iExpireChance>100</iExpireChance>
+            <iMinLevel>-1</iMinLevel>
+        </PromotionInfo>
+        <PromotionInfo>
             <Type>PROMOTION_ROD_OF_WINDS</Type>
             <Description>TXT_KEY_EQUIPMENT_ROD_OF_WINDS</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>

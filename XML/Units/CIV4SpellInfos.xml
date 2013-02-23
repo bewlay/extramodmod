@@ -2570,6 +2570,49 @@
             <Button>Art/Interface/Buttons/Spells/Revelry.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_RIFT_CREATE</Type>
+            <Description>TXT_KEY_SPELL_RIFT_CREATE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_RIFT_CREATE_HELP</Help>
+			<PromotionPrereq1>PROMOTION_DIMENSIONAL3</PromotionPrereq1>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+			<PyResult>spellRiftCreate(pCaster)</PyResult>
+			<PyRequirement>reqRiftCreate(pCaster)</PyRequirement>
+            <Effect>EFFECT_ENTROPY_SUMMON</Effect>
+            <Sound>AS3D_SPELL_DEFILE</Sound>
+            <Button>Art/Interface/Buttons/Units/Lightning Elemental.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_RIFT_CROSS</Type>
+            <Description>TXT_KEY_SPELL_RIFT_CROSS</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_RIFT_CROSS_HELP</Help>
+            <bAllowAI>1</bAllowAI>
+            <bHasCasted>1</bHasCasted>
+            <PyResult>spellRiftCross(pCaster)</PyResult>
+            <PyRequirement>reqRiftCross(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_DEFILE</Sound>
+            <Button>Art/Interface/Buttons/Units/Lightning Elemental.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_RIFT_OPEN</Type>
+            <Description>TXT_KEY_SPELL_RIFT_OPEN</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_RIFT_OPEN_HELP</Help>
+			<PromotionPrereq1>PROMOTION_DIMENSIONAL3</PromotionPrereq1>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>0</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+			<PyResult>spellRiftOpen(pCaster)</PyResult>
+			<PyRequirement>reqRiftOpen(pCaster)</PyRequirement>
+            <Effect>EFFECT_ENTROPY_SUMMON</Effect>
+            <Sound>AS3D_SPELL_DEFILE</Sound>
+            <Button>Art/Interface/Buttons/Units/Lightning Elemental.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_RING_OF_FLAMES</Type>
             <Description>TXT_KEY_SPELL_RING_OF_FLAMES</Description>
             <Civilopedia>TXT_KEY_SPELL_RING_OF_FLAMES_PEDIA</Civilopedia>

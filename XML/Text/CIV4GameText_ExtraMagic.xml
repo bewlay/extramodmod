@@ -226,6 +226,14 @@
 		<Spanish>Fuerza III</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_RIFT_OPENED</Tag>
+		<English>Opened rift</English>
+		<French>Opened rift</French>
+		<German>Opened rift</German>
+		<Italian>Opened rift</Italian>
+		<Spanish>Vórtice abierto</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_TEMPERANCE</Tag>
 		<English>Temperance</English>
 		<French>Temperance</French>
@@ -307,6 +315,78 @@
 		<Spanish>Destruye invocaciones enemigas cercanas</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_CREATE</Tag>
+		<English>Create Rift</English>
+		<French>Create Rift</French>
+		<German>Create Rift</German>
+		<Italian>Create Rift</Italian>
+		<Spanish>Crear Vórtice</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_CREATE_HELP</Tag>
+		<English>Creates a rift. The rift can be moved and opened to allow instant transportation of units between the caster and the rift</English>
+		<French>Creates a rift. The rift can be moved and opened to allow instant transportation of units between the caster and the rift</French>
+		<German>Creates a rift. The rift can be moved and opened to allow instant transportation of units between the caster and the rift</German>
+		<Italian>Creates a rift. The rift can be moved and opened to allow instant transportation of units between the caster and the rift</Italian>
+		<Spanish>Crea un vórtice. El vórtice puede desplazarse y ser abierto para permitir el transporte instantáneo de unidades entre el lanzador y el vórtice</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_CROSS</Tag>
+		<English>Cross Rift</English>
+		<French>Cross Rift</French>
+		<German>Cross Rift</German>
+		<Italian>Cross Rift</Italian>
+		<Spanish>Cruzar Vórtice</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_CROSS_HELP</Tag>
+		<English>Allows the unit to cross the rift, moving instantly from the rift to the rift's caster or viceversa</English>
+		<French>Allows the unit to cross the rift, moving instantly from the rift to the rift's caster or viceversa</French>
+		<German>Allows the unit to cross the rift, moving instantly from the rift to the rift's caster or viceversa</German>
+		<Italian>Allows the unit to cross the rift, moving instantly from the rift to the rift's caster or viceversa</Italian>
+		<Spanish>Permite a la unidad cruzar el vórtice, moviéndose instantáneamente desde el vórtice hasta el lanzador del vórtice o viceversa</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_CROSS_CLOSED_MESSAGE</Tag>
+		<English>A unit of %s1_unit has crossed through the rift. The rift is now closed</English>
+		<French>A unit of %s1_unit has crossed through the rift. The rift is now closed</French>
+		<German>A unit of %s1_unit has crossed through the rift. The rift is now closed</German>
+		<Italian>A unit of %s1_unit has crossed through the rift. The rift is now closed</Italian>
+		<Spanish>A unit of %s1_unit has crossed through the rift. The rift is now closed</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_CROSS_NUMBER_MESSAGE</Tag>
+		<English>A unit of %s1_unit has crossed through the rift. %d2 more units can still cross it</English>
+		<French>A unit of %s1_unit has crossed through the rift. %d2 more units can still cross it</French>
+		<German>A unit of %s1_unit has crossed through the rift. %d2 more units can still cross it</German>
+		<Italian>A unit of %s1_unit has crossed through the rift. %d2 more units can still cross it</Italian>
+		<Spanish>A unit of %s1_unit has crossed through the rift. %d2 more units can still cross it</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_OPEN</Tag>
+		<English>Open Rift</English>
+		<French>Open Rift</French>
+		<German>Open Rift</German>
+		<Italian>Open Rift</Italian>
+		<Spanish>Abrir Vórtice</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_OPEN_HELP</Tag>
+		<English>Opens the rift. This allows up to 10 units to cross it in any direction (from the caster to the rift or viceversa) and it will destroy the rift in the next turn</English>
+		<French>Opens the rift. This allows up to 10 units to cross it in any direction (from the caster to the rift or viceversa) and it will destroy the rift in the next turn</French>
+		<German>Opens the rift. This allows up to 10 units to cross it in any direction (from the caster to the rift or viceversa) and it will destroy the rift in the next turn</German>
+		<Italian>Opens the rift. This allows up to 10 units to cross it in any direction (from the caster to the rift or viceversa) and it will destroy the rift in the next turn</Italian>
+		<Spanish>Abre el vórtice. Esto permite a un máximo de 10 unidades cruzarlo en cualquier dirección (desde el lanzador al vórtice o viceversa) y destruirá al vórtice en el próximo turno</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_OPENED_MESSAGE</Tag>
+		<English>A rift has been opened. It can be used to transport %d1 units</English>
+		<French>A rift has been opened. It can be used to transport %d1 units</French>
+		<German>A rift has been opened. It can be used to transport %d1 units</German>
+		<Italian>A rift has been opened. It can be used to transport %d1 units</Italian>
+		<Spanish>A rift has been opened. It can be used to transport %d1 units</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_SPELL_SUMMON_RUNEWYN</Tag>
 		<English>Summon Runewyn</English>
 		<French>Summon Runewyn</French>
@@ -337,6 +417,14 @@
 		<German>Magic Missile</German>
 		<Italian>Magic Missile</Italian>
 		<Spanish>Proyectil Mágico</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_RIFT</Tag>
+		<English>Rift</English>
+		<French>Rift</French>
+		<German>Rift</German>
+		<Italian>Rift</Italian>
+		<Spanish>Vórtice</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_RUNEWYN</Tag>

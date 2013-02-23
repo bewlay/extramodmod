@@ -2914,6 +2914,109 @@ def spellScorch(caster):
 	if pPlot.isOwned():
 		cf.startWar(caster.getOwner(), pPlot.getOwner(), WarPlanTypes.WARPLAN_TOTAL)
 
+def reqRiftCreate(pCaster):
+	if pCaster.getSummoner() != -1:
+		return False
+	iRift = gc.getInfoTypeForString('UNIT_RIFT')
+	casterID = pCaster.getID()
+	py = PyPlayer(pCaster.getOwner())
+	for pUnit in py.getUnitList():
+		if pUnit.getUnitType() == iRift and pUnit.getSummoner() == casterID:
+			return False
+	return True
+
+def spellRiftCreate(pCaster):
+	newUnit = gc.getPlayer(pCaster.getOwner()).initUnit(gc.getInfoTypeForString('UNIT_RIFT'), pCaster.getX(), pCaster.getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH)
+	newUnit.setSummoner(pCaster.getID())
+	pPlayer = gc.getPlayer(pCaster.getOwner())
+	if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_SUMMONER')):
+		newUnit.setDuration(6)
+	else:
+		newUnit.setDuration(5)
+	newUnit.setHasCasted(True)
+
+def reqRiftOpen(pCaster):
+	if not pCaster.getUnitType() == gc.getInfoTypeForString('UNIT_RIFT'):
+		return False
+
+	pPlot = pCaster.plot()
+	pPlayer = gc.getPlayer(pCaster.getOwner())
+
+	if pPlot.getTeam() != pPlayer.getTeam() and pPlot.getTeam() != PlayerTypes.NO_PLAYER:
+		return False
+
+	if not pPlot.isRevealed(pPlayer.getTeam(), false):
+		return False
+
+	if pCaster.getSummoner() != -1:
+		pPlayer = gc.getPlayer(pCaster.getOwner())
+		pOriginalCaster = pPlayer.getUnit(pCaster.getSummoner())
+		if not pOriginalCaster.isHasCasted():
+			return True
+
+	return False
+
+def spellRiftOpen(pCaster):
+	pCaster.setDuration(1)
+	pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_RIFT_OPENED'), True)
+	pCaster.setBaseCombatStr(10)
+	pPlayer = gc.getPlayer(pCaster.getOwner())
+	pOriginalCaster = pPlayer.getUnit(pCaster.getSummoner())
+	pOriginalCaster.setHasCasted(True)
+	pOriginalCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_RIFT_OPENED'), True)
+	CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_SPELL_RIFT_OPENED_MESSAGE", (pCaster.baseCombatStr(), )),'',1,'Art/Interface/Buttons/Units/Lightning Elemental.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+
+def reqRiftCross(pCaster):
+	pPlot = pCaster.plot()
+	pPlayer = gc.getPlayer(pCaster.getOwner())
+	iRift = gc.getInfoTypeForString('UNIT_RIFT')
+	iRiftOpened = gc.getInfoTypeForString('PROMOTION_RIFT_OPENED')
+	for i in range(pPlot.getNumUnits()):
+		pLoopUnit = pPlot.getUnit(i)
+		if pLoopUnit.getOwner() == pCaster.getOwner() and pLoopUnit.isHasPromotion(iRiftOpened):
+			if pLoopUnit.getDuration() > 0 and pLoopUnit.getUnitType() == iRift and pLoopUnit.getSummoner() != -1:
+				pOriginalCaster = pPlayer.getUnit(pLoopUnit.getSummoner())
+				if pOriginalCaster.isHasPromotion(iRiftOpened):
+					return True
+			else:
+				pLoopUnitID = pLoopUnit.getID()
+				py = PyPlayer(pLoopUnit.getOwner())
+				for pRiftUnit in py.getUnitList():
+					if pRiftUnit.getUnitType() == iRift and pRiftUnit.getSummoner() == pLoopUnitID and pRiftUnit.isHasPromotion(iRiftOpened) and pRiftUnit.getDuration() > 0:
+						return True
+	return False
+
+def spellRiftCross(pCaster):
+	pRiftUnit = None
+	pDestinationUnit = None
+	pPlot = pCaster.plot()
+	pPlayer = gc.getPlayer(pCaster.getOwner())
+	iRift = gc.getInfoTypeForString('UNIT_RIFT')
+	iRiftOpened = gc.getInfoTypeForString('PROMOTION_RIFT_OPENED')
+	for i in range(pPlot.getNumUnits()):
+		pLoopUnit = pPlot.getUnit(i)
+		if pLoopUnit.getOwner() == pCaster.getOwner() and pLoopUnit.isHasPromotion(iRiftOpened):
+			if pLoopUnit.getDuration() > 0 and pLoopUnit.getUnitType() == iRift and pLoopUnit.getSummoner() != -1:
+				pRiftUnit = pLoopUnit
+				pDestinationUnit = pPlayer.getUnit(pLoopUnit.getSummoner())
+				break
+			else:
+				pLoopUnitID = pLoopUnit.getID()
+				py = PyPlayer(pLoopUnit.getOwner())
+				for pLoopRiftUnit in py.getUnitList():
+					if pLoopRiftUnit.getUnitType() == iRift and pLoopRiftUnit.getSummoner() == pLoopUnitID:
+						pRiftUnit = pLoopRiftUnit
+						pDestinationUnit = pLoopRiftUnit
+						break
+				break
+	pCaster.setXY(pDestinationUnit.getX(), pDestinationUnit.getY(), False, True, True)
+	pRiftUnit.setBaseCombatStr(pRiftUnit.baseCombatStr() - 1)
+	if pRiftUnit.baseCombatStr() == 0:
+		pRiftUnit.kill(True, PlayerTypes.NO_PLAYER)
+		CyInterface().addMessage(pRiftUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_SPELL_RIFT_CROSS_CLOSED_MESSAGE", (gc.getUnitInfo(pCaster.getUnitType()).getDescription(), )),'',1,'Art/Interface/Buttons/Units/Lightning Elemental.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+	else:
+		CyInterface().addMessage(pRiftUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_SPELL_RIFT_CROSS_NUMBER_MESSAGE", (gc.getUnitInfo(pCaster.getUnitType()).getDescription(), pRiftUnit.baseCombatStr())),'',1,'Art/Interface/Buttons/Units/Lightning Elemental.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+
 def spellSing(caster):
 	pPlot = caster.plot()
 	point = pPlot.getPoint()
