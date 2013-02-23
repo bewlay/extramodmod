@@ -10925,7 +10925,7 @@
             </AudioRunSounds>
         </UnitArtInfo>
         <UnitArtInfo>
-            <Type>ART_DEF_UNIT_PARAMANDER</Type>
+            <Type>ART_DEF_UNIT_SOLDIER_OF_KILMORPH</Type>
             <Button>Art/Interface/Buttons/Units/Paramander.dds</Button>
             <fScale>0.44</fScale>
             <fInterfaceScale>1</fInterfaceScale>
@@ -13769,7 +13769,7 @@
             </AudioRunSounds>
         </UnitArtInfo>
         <UnitArtInfo>
-            <Type>ART_DEF_UNIT_SOLDIER_OF_KILMORPH</Type>
+            <Type>ART_DEF_UNIT_PARAMANDER</Type>
             <Button>Art/Interface/Buttons/Units/Soldier of Kilmorph.dds</Button>
             <fScale>0.42</fScale>
             <fInterfaceScale>1</fInterfaceScale>
