@@ -3712,7 +3712,7 @@ def spellWonder(caster):
 	if pPlot.isCity():
 		bCity = True
 	for i in range (iCount):
-		iRnd = CyGame().getSorenRandNum(66, "Wonder")
+		iRnd = CyGame().getSorenRandNum(72, "Wonder")
 		iUnit = -1
 		if iRnd == 0:
 			caster.cast(gc.getInfoTypeForString('SPELL_BLAZE'))
@@ -3885,6 +3885,16 @@ def spellWonder(caster):
 			caster.cast(gc.getInfoTypeForString('SPELL_SUMMON_ICE_ELEMENTAL'))
 		elif iRnd == 65:
 			caster.cast(gc.getInfoTypeForString('SPELL_SNOWFALL'))
+		elif iRnd == 66:
+			caster.cast(gc.getInfoTypeForString('SPELL_TEMPERANCE'))
+		elif iRnd == 67:
+			caster.cast(gc.getInfoTypeForString('SPELL_MAGIC_MISSILE'))
+		elif iRnd == 68:
+			caster.cast(gc.getInfoTypeForString('SPELL_SUMMON_RUNEWYN'))
+		elif iRnd == 69:
+			caster.cast(gc.getInfoTypeForString('SPELL_TREETOP_TACTICS'))
+		elif iRnd == 70:
+			caster.cast(gc.getInfoTypeForString('SPELL_LABYRINTH'))
 		if iUnit != -1:
 			newUnit = pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_SUMMONER')):

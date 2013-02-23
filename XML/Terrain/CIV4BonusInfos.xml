@@ -30,8 +30,8 @@
             <iMinLatitude>0</iMinLatitude>
             <iMaxLatitude>90</iMaxLatitude>
             <Rands>
-                <iRandApp1>10</iRandApp1>
-                <iRandApp2>10</iRandApp2>
+                <iRandApp1>11</iRandApp1>
+                <iRandApp2>11</iRandApp2>
                 <iRandApp3>0</iRandApp3>
                 <iRandApp4>0</iRandApp4>
             </Rands>
