@@ -41563,6 +41563,10 @@
             <bGraphicalOnly>0</bGraphicalOnly>
             <iHotKeyPriority>0</iHotKeyPriority>
             <FreePromotions>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_DIVIDED_SOUL</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>

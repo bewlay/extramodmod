@@ -2014,6 +2014,14 @@
             <PromotionCombatApply>PROMOTION_DISEASED</PromotionCombatApply>
         </PromotionInfo>
         <PromotionInfo>
+            <Type>PROMOTION_DIVIDED_SOUL</Type>
+            <Description>TXT_KEY_UNIT_DIVIDED_SOUL</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Units/Severed Soul.dds</Button>
+            <iMinLevel>-1</iMinLevel>
+        </PromotionInfo>
+        <PromotionInfo>
             <Type>PROMOTION_DIVINE</Type>
             <Description>TXT_KEY_PROMOTION_DIVINE</Description>
             <Help>TXT_KEY_PROMOTION_DIVINE_PEDIA</Help>

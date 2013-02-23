@@ -2696,7 +2696,7 @@
             <Type>SPELL_SEVER</Type>
             <Description>TXT_KEY_SPELL_SEVER_SOUL</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-			<UnitPrereq>UNIT_DIVIDED_SOUL</UnitPrereq>
+			<PromotionPrereq1>PROMOTION_DIVIDED_SOUL</PromotionPrereq1>
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
