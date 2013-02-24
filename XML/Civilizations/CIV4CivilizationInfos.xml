@@ -1791,7 +1791,7 @@
 			<ArtStyleType>ARTSTYLE_KURIOTATES</ArtStyleType>
 			<UnitArtStyleType>UNIT_ARTSTYLE_KURIOTATES</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
-			<bAIPlayable>1</bAIPlayable>
+			<bAIPlayable>0</bAIPlayable>
 			<Cities>
 				<City>TXT_KEY_CITY_KURIOTATES_1</City>
 				<City>TXT_KEY_CITY_KURIOTATES_2</City>
