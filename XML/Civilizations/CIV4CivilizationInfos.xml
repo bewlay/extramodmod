@@ -71,6 +71,8 @@
 			<Hero>NONE</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_AMURITES</Type>
@@ -198,6 +200,8 @@
 			<Hero>UNIT_GOVANNON</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_BALSERAPHS</Type>
@@ -347,6 +351,8 @@
 			<Hero>UNIT_LOKI</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_BANNOR</Type>
@@ -461,6 +467,8 @@
 			<Hero>UNIT_DONAL</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_CALABIM</Type>
@@ -614,6 +622,8 @@
 			<Hero>UNIT_LOSHA</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_CLAN_OF_EMBERS</Type>
@@ -805,6 +815,24 @@
 			<Hero>UNIT_RANTINE</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_DOVIELLO</Type>
@@ -979,6 +1007,24 @@
 			<Hero>UNIT_WAR_MACHINE</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_ELOHIM</Type>
@@ -1100,6 +1146,8 @@
 			<Hero>UNIT_CORLINDALE</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_GRIGORI</Type>
@@ -1269,6 +1317,8 @@
 			<Hero>NONE</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_HIPPUS</Type>
@@ -1401,6 +1451,8 @@
 			<Hero>UNIT_MAGNADINE</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_ILLIANS</Type>
@@ -1526,6 +1578,21 @@
 			<Hero>UNIT_WILBOMAN</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<TerrainYields>
+						<iYield>2</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+					<TerrainRiverYields>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</TerrainRiverYields>
+				</TerrainYieldChange>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_INFERNAL</Type>
@@ -1685,6 +1752,8 @@
 			<Hero>UNIT_HYBOREM</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_KHAZAD</Type>
@@ -1849,6 +1918,8 @@
 			<Hero>UNIT_MAROS</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_KURIOTATES</Type>
@@ -1993,6 +2064,8 @@
 			<Hero>UNIT_EURABATRES</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_LANUN</Type>
@@ -2114,6 +2187,8 @@
 			<Hero>UNIT_GUYBRUSH</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_LJOSALFAR</Type>
@@ -2270,6 +2345,8 @@
 					<bMaintain>1</bMaintain>
 				</MaintainFeature>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_LUCHUIRP</Type>
@@ -2454,6 +2531,8 @@
 			<Hero>UNIT_BARNAXUS</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_MALAKIM</Type>
@@ -2575,6 +2654,24 @@
 			<Hero>UNIT_TEUTORIX</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<TerrainYields>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<TerrainYields>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_MERCURIANS</Type>
@@ -2705,6 +2802,8 @@
 			<Hero>UNIT_BASIUM</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_SHEAIM</Type>
@@ -2854,6 +2953,8 @@
 			<Hero>UNIT_ABASHI</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_SIDAR</Type>
@@ -2967,6 +3068,8 @@
 			<Hero>UNIT_RATHUS</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_SVARTALFAR</Type>
@@ -3129,6 +3232,8 @@
 					<bMaintain>1</bMaintain>
 				</MaintainFeature>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_MINOR</Type>
@@ -3454,6 +3559,8 @@
 			<Hero>UNIT_ORTHUS</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
+			<TerrainYieldChanges>
+			</TerrainYieldChanges>
 		</CivilizationInfo>
 		</CivilizationInfos>
 </Civ4CivilizationInfos>

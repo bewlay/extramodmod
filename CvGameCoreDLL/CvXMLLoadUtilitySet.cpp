@@ -1006,9 +1006,6 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 		GC.getProjectInfo((ProjectTypes)i).readPass3();
 	}
 	for (int i=0; i < GC.getNumTerrainInfos(); ++i)
-	{
-		GC.getTerrainInfo((TerrainTypes)i).readPass3();
-	}
 /**
 	for (int i=0; i < GC.getNumBuildingInfos(); ++i)
 	{

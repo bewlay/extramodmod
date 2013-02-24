@@ -32,7 +32,7 @@ class SevoPediaCivilization:
 		X_MERGIN = self.top.X_MERGIN
 		Y_MERGIN = self.top.Y_MERGIN
 
-		self.W_CIV_TRAIT = 150
+		self.W_CIV_TRAIT = 280
 		self.H_CIV_TRAIT = 116
 		self.X_CIV_TRAIT = self.top.R_PEDIA_PAGE - self.W_CIV_TRAIT
 		self.Y_CIV_TRAIT = self.top.Y_PEDIA_PAGE
@@ -272,25 +272,26 @@ class SevoPediaCivilization:
 	def placeTrait(self):
 		screen = self.top.getScreen()
 		panelName = self.top.getNextWidgetName()
-
+		screen.addPanel(panelName, localText.getText("TXT_KEY_CIV_TRAIT", ()), "", False, True, self.X_CIV_TRAIT, self.Y_CIV_TRAIT, self.W_CIV_TRAIT, self.H_CIV_TRAIT, PanelStyles.PANEL_STYLE_BLUE50)
+		screen.attachLabel(panelName, "", "  ")
 
 		#terrain yield modifier
 		ltTerrainModifier = []
 		for iTerrain in range(gc.getNumTerrainInfos()):
-			if self.iCivilization == gc.getTerrainInfo(iTerrain).getCivilizationYieldType():
-				szYield = u""
-				bFirst = true
-				for iYield in range(YieldTypes.NUM_YIELD_TYPES):
-					iYieldChange = gc.getTerrainInfo(iTerrain).getCivilizationYieldChange(iYield)
-					if (iYieldChange != 0):
-						if not bFirst:
-							szYield += ", "
-						bFirst = false
+			szYield = u""
+			bFirst = true
+			for iYield in range(YieldTypes.NUM_YIELD_TYPES):
+				iYieldChange = gc.getCivilizationInfo(self.iCivilization).getTerrainYieldChanges(iTerrain, iYield, False)
+				if (iYieldChange > 0):
+					if not bFirst:
+						szYield += ", "
+					bFirst = false
 
-						szSign = "+"
-						if szYield < 0:
-							szSign = ""
-						szYield += u"<font=3>%s%i%c</font>" % (szSign, iYieldChange, gc.getYieldInfo(iYield).getChar())
+					szSign = "+"
+					if szYield < 0:
+						szSign = ""
+					szYield += u"<font=3>%s%i%c</font>" % (szSign, iYieldChange, gc.getYieldInfo(iYield).getChar())
+			if not bFirst:
 				ltTerrainModifier.append( (iTerrain, szYield) )
 
 		#place panel with variable title
@@ -302,7 +303,6 @@ class SevoPediaCivilization:
 			screen.attachPanel(panelName, childPanelName, "", "", False, False, PanelStyles.PANEL_STYLE_EMPTY)
 			screen.attachImageButton(childPanelName, "", gc.getTerrainInfo(iTerrain).getButton(), GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_TERRAIN, iTerrain, 1, False)
 			screen.attachLabel(childPanelName, "", szYield)
-
 
 	def placeHero(self):
 		screen = self.top.getScreen()
