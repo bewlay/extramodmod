@@ -1608,5 +1608,18 @@
 			<DefaultBuilding>BUILDING_THE_NEXUS</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
+<!-- MORE EVENTS MOD STARTS -->
+		<BuildingClassInfo>
+			<Type>BUILDINGCLASS_FROZEN_FLAME</Type>
+			<Description>TXT_KEY_BUILDING_FROZEN_FLAME</Description>
+			<iMaxGlobalInstances>1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_FROZEN_FLAME</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
 	</BuildingClassInfos>
 </Civ4BuildingClassInfos>

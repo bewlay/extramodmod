@@ -20883,6 +20883,10 @@ void CvPlayer::setTriggerFired(const EventTriggeredData& kTriggeredData, bool bO
 
 EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger, bool bFire, int iCityId, int iPlotX, int iPlotY, PlayerTypes eOtherPlayer, int iOtherPlayerCityId, ReligionTypes eReligion, CorporationTypes eCorporation, int iUnitId, BuildingTypes eBuilding)
 {
+	// lfgr EVENT_DEBUG
+	logBBAI( "EVENT_DEBUG - initTriggeredData #%d \"%s\"", eEventTrigger, GC.getEventTriggerInfo( eEventTrigger ).getType() );
+	// lfgr end
+
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eEventTrigger);
 
 	CvCity* pCity = getCity(iCityId);
@@ -22156,6 +22160,17 @@ void CvPlayer::applyEvent(EventTypes eEvent, int iEventTriggeredId, bool bUpdate
                         {
                             pUnit->setHasPromotion((PromotionTypes)kEvent.getUnitPromotion(), true);
                         }
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+						for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+							if( kEvent.isUnitPromotion( i ) )
+							{
+								pUnit->setHasPromotion((PromotionTypes)i, true);
+							}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
                         if (kEvent.getUnitExperience() != 0)
                         {
                             pUnit->changeExperience(kEvent.getUnitExperience());
@@ -22684,6 +22699,10 @@ int CvPlayer::getEventCost(EventTypes eEvent, PlayerTypes eOtherPlayer, bool bRa
 
 void CvPlayer::doEvents()
 {
+	// lfgr EVENT_DEBUG
+	logBBAI( "EVENT_DEBUG - doEvents on player #%d", getID() );
+	// lfgr end
+
 	if (GC.getGameINLINE().isOption(GAMEOPTION_NO_EVENTS))
 	{
 		return;
@@ -22960,6 +22979,10 @@ void CvPlayer::trigger(EventTriggerTypes eTrigger)
 
 void CvPlayer::trigger(const EventTriggeredData& kData)
 {
+	// lfgr EVENT_DEBUG
+	logBBAI( "EVENT_DEBUG - Triggered EventTrigger \"%s\"", GC.getEventTriggerInfo( kData.m_eTrigger ).getType() );
+	// lfgr end
+
 	if (isHuman())
 	{
 		CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_EVENT, kData.getID());

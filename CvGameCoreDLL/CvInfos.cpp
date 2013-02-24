@@ -24483,6 +24483,18 @@ int CvEventTriggerInfo::getNumCorporationsRequired() const
 	return (int)m_aiCorporationsRequired.size();
 }
 
+// Begin EmperorFool: Events with Images
+const TCHAR* CvEventTriggerInfo::getEventArt() const
+{
+	if (m_szEventArt.empty())
+	{
+		return NULL;
+	}
+
+	return m_szEventArt;
+}
+// End EmperorFool: Events with Images
+
 bool CvEventTriggerInfo::isSinglePlayer() const
 {
 	return m_bSinglePlayer;
@@ -24828,6 +24840,10 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 		m_aiCorporationsRequired.push_back(iElement);
 	}
 
+// Begin EmperorFool: Events with Images
+	stream->ReadString(m_szEventArt);
+// End EmperorFool: Events with Images
+
 	stream->Read(&m_bSinglePlayer);
 	stream->Read(&m_bTeam);
 	stream->Read(&m_bRecurring);
@@ -24994,6 +25010,10 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 	{
 		stream->Write(*it);
 	}
+
+// Begin EmperorFool: Events with Images
+	stream->WriteString(m_szEventArt);
+// End EmperorFool: Events with Images
 
 	stream->Write(m_bSinglePlayer);
 	stream->Write(m_bTeam);
@@ -25556,6 +25576,10 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
 
+// Begin EmperorFool: Events with Images
+	pXML->GetChildXmlValByName(m_szEventArt, "EventArt");
+// End EmperorFool: Events with Images
+
 	pXML->GetChildXmlValByName(&m_bSinglePlayer, "bSinglePlayer");
 	pXML->GetChildXmlValByName(&m_bTeam, "bTeam");
 	pXML->GetChildXmlValByName(&m_bRecurring, "bRecurring");
@@ -26014,6 +26038,18 @@ int CvEventInfo::getPrereqStateReligion() const
 	return m_iPrereqStateReligion;
 }
 //FfH: End Add
+
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+bool CvEventInfo::isUnitPromotion( int iUnitPromotion )
+{
+	FAssert (iUnitPromotion >= 0 && iUnitPromotion < GC.getNumPromotionInfos());
+	return m_pbUnitPromotions ? m_pbUnitPromotions[iUnitPromotion] : false;
+}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 int CvEventInfo::getAdditionalEventChance(int i) const
 {
@@ -26586,6 +26622,48 @@ bool CvEventInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "PrereqStateReligion");
 	m_iPrereqStateReligion = pXML->FindInInfoClass(szTextVal);
 //FfH: End Add
+
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	m_pbUnitPromotions = new bool[GC.getNumPromotionInfos()];
+	for (int i = 0; i < GC.getNumPromotionInfos(); ++i)
+	{
+		m_pbUnitPromotions[i] = false;
+	}
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"UnitPromotions"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						int iPromotion = pXML->FindInInfoClass(szTextVal);
+						if( iPromotion > 0 && iPromotion < GC.getNumPromotionInfos() )
+							m_pbUnitPromotions[iPromotion] = true;
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	CvString* pszPromotions = NULL;
 	FAssertMsg(NULL == m_piUnitCombatPromotions, "Memory leak");

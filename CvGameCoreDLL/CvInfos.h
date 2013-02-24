@@ -6952,6 +6952,10 @@ public:
 	const CvWString& getWorldNews(int i) const;
 	int getNumWorldNews() const;
 
+// Start EmperorFool: Events with Images
+	DllExport const TCHAR* getEventArt() const;				// Exposed to Python
+// End EmperorFool: Events with Images
+
 	bool isSinglePlayer() const;				// Exposed to Python
 	bool isTeam() const;						// Exposed to Python
 	bool isRecurring() const;					// Exposed to Python
@@ -7040,6 +7044,10 @@ private:
 	std::vector<int> m_aiTextEra;
 	std::vector<CvWString> m_aszText;
 	std::vector<CvWString> m_aszWorldNews;
+
+// Start EmperorFool: Events with Images
+	CvString m_szEventArt;
+// End EmperorFool: Events with Images
 
 	bool m_bSinglePlayer;
 	bool m_bTeam;
@@ -7150,6 +7158,14 @@ public:
 	int getInflationModifier() const;			// Exposed to Python
 	int getSpaceProductionModifier() const;	// Exposed to Python
 	int getAIValue() const;	// Exposed to Python
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	bool isUnitPromotion( int iUnitPromotion );
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	int getAdditionalEventChance(int i) const;// Exposed to Python
 	int getAdditionalEventTime(int i) const;	// Exposed to Python
@@ -7265,6 +7281,14 @@ private:
 	int m_iPrereqReligion;
 	int m_iPrereqStateReligion;
 //FfH: End Add
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	bool* m_pbUnitPromotions;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	int* m_piTechFlavorValue;
 	int* m_piPlotExtraYields;

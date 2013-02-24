@@ -643,9 +643,9 @@ class CvEventManager:
 								newUnit.finishMoves()
 								newUnit.setDamage(75, pWinner.getOwner())
 								if (pPlayer.isHuman()):
-									CyInterface().addMessage(pWinner.getOwner(),false,20,CyTranslator().getText("TXT_KEY_WEHAVECAPTUREDSOMETHING",(pLoser.getName(),)),'',0,gc.getUnitInfo(newUnit.getUnitType()).getButton(),ColorTypes(gc.getInfoTypeForString("COLOR_GREEN")), pWinner.getX(), pWinner.getY(), True,True)
+									CyInterface().addMessage(pWinner.getOwner(),false,20,CyTranslator().getText("TXT_KEY_WEHAVECAPTUREDSOMETHING",(pLoser.getName())),'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_GREEN")), pWinner.getX(), pWinner.getY(), True,True)
 								elif (pPlayerLoser.isHuman()):
-									CyInterface().addMessage(pLoser.getOwner(),false,20,CyTranslator().getText("TXT_KEY_WEHAVELOSTSOMETHING",(pLoser.getName(),)),'',0,gc.getUnitInfo(newUnit.getUnitType()).getButton(),ColorTypes(gc.getInfoTypeForString("COLOR_RED")), pLoser.getX(), pLoser.getY(), True,True)
+									CyInterface().addMessage(pLoser.getOwner(),false,20,CyTranslator().getText("TXT_KEY_WEHAVELOSTSOMETHING",(pLoser.getName(),)),'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), pLoser.getX(), pLoser.getY(), True,True)  
 					if (unitY.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SIEGE")):
 						if CyGame().getSorenRandNum(100, "WarPrizes Siege") <= 15:
 							iUnit = pLoser.getUnitType()
@@ -653,9 +653,9 @@ class CvEventManager:
 							newUnit.finishMoves()
 							newUnit.setDamage(75, pWinner.getOwner())
 							if (pPlayer.isHuman()):
-								CyInterface().addMessage(pWinner.getOwner(),false,20,CyTranslator().getText("TXT_KEY_MISC_WARPRIZES_SUCCESS",(pLoser.getName(),)),'',0,gc.getUnitInfo(newUnit.getUnitType()).getButton(),ColorTypes(gc.getInfoTypeForString("COLOR_GREEN")), pWinner.getX(), pWinner.getY(), True,True)
+								CyInterface().addMessage(pWinner.getOwner(),false,20,CyTranslator().getText("TXT_KEY_MISC_WARPRIZES_SUCCESS",(pLoser.getName(),)),'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_GREEN")), pWinner.getX(), pWinner.getY(), True,True)
 							elif (pPlayerLoser.isHuman()):
-								CyInterface().addMessage(pLoser.getOwner(),false,20,CyTranslator().getText("TXT_KEY_MISC_WARPRIZES_FAILURE",(pLoser.getName(),)),'',0,gc.getUnitInfo(newUnit.getUnitType()).getButton(),ColorTypes(gc.getInfoTypeForString("COLOR_RED")), pLoser.getX(), pLoser.getY(), True,True)
+								CyInterface().addMessage(pLoser.getOwner(),false,20,CyTranslator().getText("TXT_KEY_MISC_WARPRIZES_FAILURE",(pLoser.getName(),)),'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), pLoser.getX(), pLoser.getY(), True,True)
 ## End Advanced Tactics
 
 		if (not self.__LOG_COMBAT):
@@ -1608,6 +1608,27 @@ class CvEventManager:
 		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_ACHERON'):
 			unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
 
+			# more events mod starts # 
+		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_GOBLIN') or unit.getUnitType() == gc.getInfoTypeForString('UNIT_GOBLIN_SCORPION_CLAN'):
+			if CyGame().getSorenRandNum(1000, "Goblin2")<40:
+				if iPlayer == gc.getBARBARIAN_PLAYER() :
+					iX = unit.getX()
+					iY = unit.getY()
+					int=1
+					pAttacker = gc.getPlayer(iAttacker)
+					for iiX in range(iX-2, iX+2, 1):
+						for iiY in range(iY-2, iY+2, 1):
+							pPlot2 = CyMap().plot(iiX,iiY)
+							for i in range(pPlot2.getNumUnits()):
+								pUnit2 = pPlot2.getUnit(i)
+								if pUnit2.getOwner()== iAttacker:
+									iWorker = gc.getInfoTypeForString('UNITCLASS_WORKER')
+									iSettler = gc.getInfoTypeForString('UNITCLASS_SETTLER')
+									if not pUnit2.getUnitClassType() == iWorker and not pUnit2.getUnitClassType() == iSettler and int==1 :
+										iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_ORPHANED_GOBLIN')
+										triggerData = pAttacker.initTriggeredData(iEvent, true, -1, pUnit2.getX(), pUnit2.getY(), pUnit2.getOwner(), -1, -1, -1, pUnit2.getID(), -1)
+										int=0
+					# more events mod ends #
 		if CyGame().getWBMapScript():
 			sf.onUnitKilled(unit, iAttacker)
 
@@ -1637,11 +1658,12 @@ class CvEventManager:
 	def onUnitPromoted(self, argsList):
 		'Unit Promoted'
 		pUnit, iPromotion = argsList
+		
 		player = PyPlayer(pUnit.getOwner())
 		if (not self.__LOG_UNITPROMOTED):
 			return
 		CvUtil.pyPrint('Unit Promotion Event: %s - %s' %(player.getCivilizationName(), pUnit.getName(),))
-
+	
 	def onUnitSelected(self, argsList):
 		'Unit Selected'
 		unit = argsList[0]
@@ -1762,49 +1784,28 @@ class CvEventManager:
 					iInfernalPlayer = pPlayer.initNewEmpire(gc.getInfoTypeForString('LEADER_HYBOREM'), gc.getInfoTypeForString('CIVILIZATION_INFERNAL'))
 					if iInfernalPlayer != PlayerTypes.NO_PLAYER:
 						pInfernalPlayer = gc.getPlayer(iInfernalPlayer)
-						pTeam = gc.getTeam(pInfernalPlayer.getTeam())
 
 						pBestPlot = -1
 						iBestPlot = -1
 						for iLoop in range (CyMap().numPlots()):
 							pPlot = CyMap().plotByIndex(iLoop)
-							iX = pPlot.getX()
-							iY = pPlot.getY()
 							iPlot = -1
-							if pInfernalPlayer.canFound(iX, iY):
+							if pInfernalPlayer.canFound(pPlot.getX(), pPlot.getY()):
 								if pPlot.getNumUnits() == 0:
-									iPlot = CyGame().getSorenRandNum(50, "Place Hyborem")
+									iPlot = CyGame().getSorenRandNum(10, "Place Hyborem")
 									iPlot += 50
 									iPlot += pPlot.area().getNumTiles() * 2
 									iPlot += pPlot.area().getNumUnownedTiles() * 10
 
-									## Check Big Fat Cross for other players, resources and terrain
-									for iCityPlotX in range(iX-1, iX+2, 1):
-										for iCityPlotY in range(iY-1, iY+2, 1):
-											pCityPlot = CyMap().plot(iCityPlotX,iCityPlotY)
-											iCityTerrain = pCityPlot.getTerrainType()
-											iCityPlot = pCityPlot.getPlotType()
-											iCityBonus = pCityPlot.getBonusType(TeamTypes.NO_TEAM)
-
-											for jPlayer in range(gc.getMAX_PLAYERS()):
-												lPlayer = gc.getPlayer(jPlayer)
-												if lPlayer.isAlive():
-													if pCityPlot.getCulture(jPlayer) > 100:
-														iPlot -= 250
-											if pPlot.isAdjacentOwned():
-												iPlot -= 25
-											else:
-												iPlot += 15
-											if (iCityTerrain == gc.getInfoTypeForString('TERRAIN_SNOW')) or (iCityTerrain == gc.getInfoTypeForString("TERRAIN_DESERT")):
-												iPlot -= 25
-											elif (iCityTerrain == gc.getInfoTypeForString('TERRAIN_TUNDRA')):
-												iPlot -= 10
-											if (pCityPlot.isWater()):
-												iPlot -= 25
-											elif not iCityBonus == BonusTypes.NO_BONUS:
-												iPlot += gc.getBonusInfo(iCityBonus).getYieldChange(YieldTypes.YIELD_PRODUCTION) * 25
-												iPlot += gc.getBonusInfo(iCityBonus).getYieldChange(YieldTypes.YIELD_COMMERCE) * 15
-											
+									for jPlayer in range(gc.getMAX_PLAYERS()):
+										lPlayer = gc.getPlayer(jPlayer)
+										if lPlayer.isAlive():
+											if pPlot.getCulture(jPlayer) > 100:
+												iPlot -= 250
+									if pPlot.isAdjacentOwned():
+										iPlot -= 25
+									if (pPlot.getTerrainType() == gc.getInfoTypeForString('TERRAIN_SNOW')) or (pPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT")):
+										iPlot -= 25
 							if iPlot > iBestPlot:
 								iBestPlot = iPlot
 								pBestPlot = pPlot
@@ -2450,6 +2451,22 @@ class CvEventManager:
 #						iUnit = gc.getInfoTypeForString('UNIT_SON_OF_THE_INFERNO')
 					newUnit = pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
+	# more events mod starts #	
+		
+		if CyGame().getScenarioCounter()==4:
+			if gc.getPlayer(pCity.getOwner()).getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_MERCURIANS'):
+				for i in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(i)
+					if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA')):
+						pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
+						pPlayer2 = gc.getPlayer(pUnit.getOwner())
+						pPlayer2.AI_changeAttitudeExtra(3,1)
+						newUnit = pPlayer2.initUnit(gc.getInfoTypeForString('UNIT_ANGEL'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+						newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HERO'), True) 
+						CyInterface().addMessage(pUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_BASIUM_GELA",()),"",1,'Art/Interface/Buttons/Units/Basium.dds',ColorTypes(8),pUnit.getX(),pUnit.getY(),True,True)
+						CyGame().changeGlobalCounter(-10)
+						
+			# more events mod ends #
 		CvAdvisorUtils.cityAdvise(pCity, iPlayer)
 
 	def onCityBuildingUnit(self, argsList):

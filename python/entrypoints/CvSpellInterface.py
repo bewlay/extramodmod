@@ -3253,6 +3253,16 @@ def spellTakeEquipmentPromotion(caster,unit):
 	if pHolder != -1:
 		pHolder.setHasPromotion(iProm, False)
 		caster.setHasPromotion(iProm, True)
+	# More Events mod starts  #
+	# modified by lfgr: moved and fixed
+	if gc.getPlayer( iPlayer ).isHuman():
+		iGela = gc.getInfoTypeForString( 'PROMOTION_GELA' )
+		if iProm == iGela :
+			if ( not gc.getPlayer( iPlayer ).getCivilizationType() == gc.getInfoTypeForString( 'CIVILIZATION_INFERNALS' ) ):
+				iEvent = CvUtil.findInfoTypeNum( gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_GELA' )
+				if( gc.getGame().getScenarioCounter() == 0 ) :
+					triggerData = gc.getPlayer( iPlayer ).initTriggeredData( iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1 )
+	# More Events mod ends #
 
 def reqTakeEquipmentUnit(caster,unit):
 	if caster.getUnitCombatType() == gc.getInfoTypeForString('UNITCOMBAT_NAVAL'):
@@ -3299,6 +3309,16 @@ def spellTakeEquipmentUnit(caster,unit):
 	if pHolder != -1:
 		pHolder.setHasCasted(True)
 		pHolder.kill(True, PlayerTypes.NO_PLAYER)
+	# More Events mod starts  #
+	# modified by lfgr: moved and fixed
+	if gc.getPlayer( iPlayer ).isHuman():
+		iGela = gc.getInfoTypeForString( 'PROMOTION_GELA' )
+		if iProm == iGela :
+			if ( not gc.getPlayer( iPlayer ).getCivilizationType() == gc.getInfoTypeForString( 'CIVILIZATION_INFERNALS' ) ):
+				iEvent = CvUtil.findInfoTypeNum( gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_GELA' )
+				if( gc.getGame().getScenarioCounter() == 0 ) :
+					triggerData = gc.getPlayer( iPlayer ).initTriggeredData( iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1 )
+	# More Events mod ends #
 
 def reqTaunt(caster):
 	iX = caster.getX()
@@ -3945,35 +3965,157 @@ def onMoveLetumFrigus(pCaster, pPlot):
 			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_EXPLORE_LAIR_GOLDEN_AGE",()),'',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
 		pPlot.setPythonActive(False)
 		
+			# More Events Mod Starts #	
 
+# lfgr: tweaked
+def onMoveBrokenSepulcher(pCaster, pPlot) :
+	if CyGame().getScenarioCounter()==6:
+		if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA')):
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
+			pPlayer = gc.getPlayer(pCaster.getOwner())
+			for pyCity in PyPlayer(pCaster.getOwner()).getCityList() :
+				pCity = pyCity.GetCy()
+				if CyGame().getSorenRandNum(100, "Mane") <= 60:
+					newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_MANES'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+					pCity.setNumRealBuilding( gc.getInfoTypeForString( 'BUILDING_DEMONIC_CITIZENS' ), 1 );
+				if pCity.getPopulation() > 2:
+					pCity.changePopulation(-2)
+				elif pCity.getPopulation() > 1:
+					pCity.changePopulation(-1)
+			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_GELA_BROKEN", ()),'',1,'Art/Interface/Buttons/Improvements/Broken Sepulcher.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+		
+	
+	
 def onMoveMaelstrom(pCaster, pPlot):
-	if CyGame().getSorenRandNum(100, "Maelstrom") < 25:
-		CyInterface().addMessage(pCaster.getOwner(), True, gc.getEVENT_MESSAGE_TIME(), CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_KILL",()), 'AS2D_FEATUREGROWTH', InterfaceMessageTypes.MESSAGE_TYPE_INFO, 'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-		pCaster.kill(True, PlayerTypes.NO_PLAYER)
-	else:
-		iOcean = gc.getInfoTypeForString('TERRAIN_OCEAN')
-		iBestValue = 0
-		pBestPlot = -1
-		for i in range (CyMap().numPlots()):
-			iValue = 0
-			pTargetPlot = CyMap().plotByIndex(i)
-			if pTargetPlot.getTerrainType() == iOcean:
-				iValue = CyGame().getSorenRandNum(1000, "Maelstrom")
-				if pTargetPlot.isOwned() == False:
-					iValue += 1000
-				if pTargetPlot == pPlot:
+	if CyGame().getScenarioCounter()==3:
+		if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA')):
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
+			pPlayer = gc.getPlayer(pCaster.getOwner())
+			iProm = gc.getInfoTypeForString('PROMOTION_WATER_WALKING')
+			if  pPlayer.getStateReligion() == gc.getInfoTypeForString('RELIGION_OCTOPUS_OVERLORDS'):
+				newUnit1 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_STYGIAN_GUARD'), pPlot.getX()+1, pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				newUnit1.setHasPromotion(iProm, True)
+				newUnit2 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_STYGIAN_GUARD'), pPlot.getX()+1, pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				newUnit2.setHasPromotion(iProm, True)
+				newUnit3 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_STYGIAN_GUARD'), pPlot.getX()+1, pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				newUnit3.setHasPromotion(iProm, True)
+				newUnit4 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_STYGIAN_GUARD'), pPlot.getX()+1, pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				newUnit4.setHasPromotion(iProm, True)
+				newUnit5 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_DISCIPLE_OCTOPUS_OVERLORDS'), pPlot.getX()+1, pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				newUnit5.setHasPromotion(iProm, True)
+				newUnit5.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HERO'), True)
+				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_GELA_1",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
+				pCaster.kill(True, PlayerTypes.NO_PLAYER)
+			else:
+				iStygianChance = 300
+				bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
+				for i in range (CyMap().numPlots()):
+					pPlot = CyMap().plotByIndex(i)
+					if  pPlot.isWater():
+						if pPlot.getNumUnits() == 0:
+							if CyGame().getSorenRandNum(10000, "Stygian") <= iStygianChance:			
+								newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_STYGIAN_GUARD'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+								newUnit.setUnitAIType(gc.getInfoTypeForString('UNITAI_ANIMAL'))
+								newUnit.setHasPromotion(iProm, True)
+				for i in range (CyMap().numPlots()):
+					pPlot = CyMap().plotByIndex(i)
+					if  pPlot.isWater():
+						if pPlot.getNumUnits() == 0:
+							if CyGame().getSorenRandNum(10000, "SeaSerpent") <= iStygianChance:			
+								newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_SEA_SERPENT'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+								newUnit.setUnitAIType(gc.getInfoTypeForString('UNITAI_ANIMAL'))
+								newUnit.setHasPromotion(iProm, True)
+				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_GELA_2",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
+				pCaster.kill(True, PlayerTypes.NO_PLAYER)
+		else:
+			if CyGame().getSorenRandNum(100, "Maelstrom") < 25:
+				CyInterface().addMessage(pCaster.getOwner(), True, gc.getEVENT_MESSAGE_TIME(), CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_KILL",()), 'AS2D_FEATUREGROWTH', InterfaceMessageTypes.MESSAGE_TYPE_INFO, 'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
+				pCaster.kill(True, PlayerTypes.NO_PLAYER)
+			else:
+				iOcean = gc.getInfoTypeForString('TERRAIN_OCEAN')
+				iBestValue = 0
+				pBestPlot = -1
+				for i in range (CyMap().numPlots()):
 					iValue = 0
-				if iValue > iBestValue:
-					iBestValue = iValue
-					pBestPlot = pTargetPlot
-		if pBestPlot != -1:
-			pCaster.setXY(pBestPlot.getX(), pBestPlot.getY(), False, True, True)
-			pCaster.setDamage(25, PlayerTypes.NO_PLAYER)
-			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_MOVE",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
+					pTargetPlot = CyMap().plotByIndex(i)
+					if pTargetPlot.getTerrainType() == iOcean:
+						iValue = CyGame().getSorenRandNum(1000, "Maelstrom")
+						if pTargetPlot.isOwned() == false:
+							iValue += 1000
+						if iValue > iBestValue:
+							iBestValue = iValue
+							pBestPlot = pTargetPlot
+				if pBestPlot != -1:
+					pCaster.setXY(pBestPlot.getX(), pBestPlot.getY(), false, true, true)
+					pCaster.setDamage(25, PlayerTypes.NO_PLAYER)
+					CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_MOVE",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
+
+	else:
+		if CyGame().getSorenRandNum(100, "Maelstrom") <= 25:
+			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_KILL",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),pPlot.getX(),pPlot.getY(),True,True)
+			pCaster.kill(True, PlayerTypes.NO_PLAYER)
+		else:
+			iOcean = gc.getInfoTypeForString('TERRAIN_OCEAN')
+			iBestValue = 0
+			pBestPlot = -1
+			for i in range (CyMap().numPlots()):
+				iValue = 0
+				pTargetPlot = CyMap().plotByIndex(i)
+				if pTargetPlot.getTerrainType() == iOcean:
+					iValue = CyGame().getSorenRandNum(1000, "Maelstrom")
+					if pTargetPlot.isOwned() == False:
+						iValue += 1000
+					if pTargetPlot == pPlot:
+						iValue = 0
+					if iValue > iBestValue:
+						iBestValue = iValue
+						pBestPlot = pTargetPlot
+			if pBestPlot != -1:
+				pCaster.setXY(pBestPlot.getX(), pBestPlot.getY(), False, True, True)
+				pCaster.setDamage(25, PlayerTypes.NO_PLAYER)
+				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_MOVE",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
 
 def onMoveMirrorOfHeaven(pCaster, pPlot):
 	if CyGame().getWBMapScript():
 		sf.onMoveMirrorOfHeaven(pCaster, pPlot)
+	if CyGame().getScenarioCounter()==7 :
+		if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA')):
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_TEMP_HELD'), True)
+			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_GELA_MIRROR",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Mirror Of Heaven.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_SOL'), True)
+			pPlayer = gc.getPlayer(pCaster.getOwner())
+			iX = pPlot.getX()
+			iY = pPlot.getY()
+			iChampion = gc.getInfoTypeForString('UNIT_CHAMPION')
+			iDemon = gc.getInfoTypeForString('PROMOTION_DEMON')
+			iHellfire = gc.getInfoTypeForString('IMPROVEMENT_HELLFIRE')
+			bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
+			for iPlayer2 in range(gc.getMAX_PLAYERS()):
+				pPlayer2 = gc.getPlayer(iPlayer2)
+				if (pPlayer2.isAlive()):
+					if pPlayer2.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
+						bPlayer = pPlayer2
+						enemyTeam = bPlayer.getTeam()
+						eTeam = gc.getTeam(pPlayer.getTeam())
+						eTeam.declareWar(enemyTeam, true, WarPlanTypes.WARPLAN_TOTAL)
+			for iiX in range(iX-2, iX+3, 1):
+				for iiY in range(iY-2, iY+3, 1):
+					pPlot2 = CyMap().plot(iiX,iiY)
+					if not pPlot2.isWater():
+						if pPlot2.getNumUnits() == 0:
+							if not pPlot2.isCity():
+								if pPlot2.isFlatlands():
+									if CyGame().getSorenRandNum(500, "Hellfire") <= 400:
+										iImprovement = pPlot2.getImprovementType()
+										bValid = True
+										if iImprovement != -1 :
+											if gc.getImprovementInfo(iImprovement).isPermanent():
+												bValid = False
+										if bValid :
+											pPlot2.setImprovementType(iHellfire)
+											newUnit = bPlayer.initUnit(iChampion, pPlot2.getX(), pPlot2.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+											newUnit.setHasPromotion(iDemon, True)
 
 def onMovePoolOfTears(pCaster, pPlot):
 	if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_DISEASED')):
@@ -3988,7 +4130,62 @@ def onMovePoolOfTears(pCaster, pPlot):
 	if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_WITHERED')):
 		pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_WITHERED'), False)
 		CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_POOL_OF_TEARS_WITHERED",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Pool of Tears.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+	# lfgr: tweaked
+	if CyGame().getScenarioCounter()==2:
+		if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA')):
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
+			pPlayer = gc.getPlayer(pCaster.getOwner())
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PIKE_OF_TEARS'), True)
+			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_TEARS_GELA",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Pool of Tears.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+			if pPlayer.getStateReligion() == gc.getInfoTypeForString('RELIGION_FELLOWSHIP_OF_LEAVES') :
+				isPlague = CyGame().getSorenRandNum(100, "Plague") <= 20
+			else :
+				isPlague = CyGame().getSorenRandNum(100, "Plague") <= 50
+			if isPlague:
+				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_TEARS_GELA_PLAGUE",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Pool of Tears.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
+				for iPlayer2 in range(gc.getMAX_PLAYERS()):
+					pPlayer2 = gc.getPlayer(iPlayer2)
+					if pPlayer2.getCivilizationType() != gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
+						for pyCity in PyPlayer(iPlayer2).getCityList() :
+							pCity = pyCity.GetCy()
+							i = CyGame().getSorenRandNum(5, "Blight")
+							i += pCity.getPopulation() - 2
+							i -= pCity.totalGoodBuildingHealth()
+							if i > 0:
+								pCity.changeEspionageHealthCounter(i)
+							py = PyPlayer(iPlayer2)
+							for pUnit in py.getUnitList():
+								if pUnit.isAlive():
+									pUnit.doDamageNoCaster(10, 100, gc.getInfoTypeForString('DAMAGE_DEATH'), false)
+			
 
+def onMovePyreOfTheSeraphic(pCaster, pPlot):
+	if CyGame().getScenarioCounter()==5 :
+		if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA')):
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
+			pPlayer = gc.getPlayer(pCaster.getOwner())
+			if CyGame().getSorenRandNum(100, "Pyre") <= 40:
+				pPlot.setImprovementType(-1)
+				pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_FROZEN_FLAME'), True)
+				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_TEARS_GELA_PYRE_1",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Pyre of the Seraphic.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+			else:  
+				pPlot.setImprovementType(-1)
+				i = 4
+				if CyMap().getWorldSize() == gc.getInfoTypeForString('WORLDSIZE_DUEL'):
+					i = i - 3
+				if CyMap().getWorldSize() == gc.getInfoTypeForString('WORLDSIZE_TINY'):
+					i = i - 2
+				if CyMap().getWorldSize() == gc.getInfoTypeForString('WORLDSIZE_SMALL'):
+					i = i - 1
+				if CyMap().getWorldSize() == gc.getInfoTypeForString('WORLDSIZE_LARGE'):
+					i = i + 1
+				if CyMap().getWorldSize() == gc.getInfoTypeForString('WORLDSIZE_HUGE'):
+					i = i + 3
+				cf.addBonus('BONUS_MANA',i,'Art/Interface/Buttons/WorldBuilder/mana_button.dds')
+				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_TEARS_GELA_PYRE_2",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Pyre of the Seraphic.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+					
+	# More Events Mod ends #
+	
 def onMoveJungleAltar(pCaster, pPlot):
 	if CyGame().getWBMapScript():
 		sf.onMoveJungleAltar(pCaster, pPlot)

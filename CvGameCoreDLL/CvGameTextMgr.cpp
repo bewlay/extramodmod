@@ -21477,6 +21477,19 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_EVENT_UNIT_PROMOTION", szUnit.GetCString(), GC.getPromotionInfo((PromotionTypes)kEvent.getUnitPromotion()).getTextKeyWide()));
 	}
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+		if( kEvent.isUnitPromotion( i ) )
+		{
+			szBuffer.append( NEWLINE );
+			szBuffer.append( gDLL->getText( "TXT_KEY_EVENT_UNIT_PROMOTION", szUnit.GetCString(), GC.getPromotionInfo( (PromotionTypes)i ).getTextKeyWide() ) );
+		}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	for (int i = 0; i < GC.getNumUnitCombatInfos(); ++i)
 	{
@@ -21600,6 +21613,18 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
 		szBuffer.append(gDLL->getText("TXT_KEY_EVENT_GLOBAL_COUNTER", kEvent.getGlobalCounter()));
 	}
 //FfH: End Add
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/20/13                                lfgr        */
+/************************************************************************************************/
+	if( !CvWString( kEvent.getHelp() ).empty() )
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(CvWString( kEvent.getHelp() ));
+	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	if (!CvWString(kEvent.getPythonHelp()).empty())
 	{
@@ -21609,9 +21634,23 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
 		argsList.add(gDLL->getPythonIFace()->makePythonObject(pTriggeredData));
 
 		gDLL->getPythonIFace()->callFunction(PYRandomEventModule, kEvent.getPythonHelp(), argsList.makeFunctionArgs(), &szHelp);
-
-		szBuffer.append(NEWLINE);
-		szBuffer.append(szHelp);
+		
+/************************************************************************************************/
+/* EVENT_FIXES                              01/20/13                                lfgr        */
+/* Avoid empty newline                                                                          */
+/************************************************************************************************/
+/* Old:                                                                                         */
+//		szBuffer.append(NEWLINE);
+//		szBuffer.append(szHelp);
+/************************************************************************************************/
+		if( !szHelp.empty() )
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(szHelp);
+		}
+/************************************************************************************************/
+/* EVENT_FIXES                             END                                                  */
+/************************************************************************************************/
 	}
 
 	CvWStringBuffer szTemp;

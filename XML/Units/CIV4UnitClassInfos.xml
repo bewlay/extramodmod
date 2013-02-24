@@ -2239,5 +2239,33 @@
 			<iInstanceCostModifier>0</iInstanceCostModifier>
 			<DefaultUnit>UNIT_GREAT_GENERAL</DefaultUnit>
 		</UnitClassInfo>
+<!-- MORE EVENTS MOD STARTS -->		
+		<UnitClassInfo>
+			<Type>EQUIPMENTCLASS_PIKE_OF_TEARS</Type>
+			<Description>TXT_KEY_EQUIPMENT_PIKE_OF_TEARS</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>EQUIPMENT_PIKE_OF_TEARS</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
+			<Type>EQUIPMENTCLASS_FROZEN_FLAME</Type>
+			<Description>TXT_KEY_EQUIPMENT_FROZEN_FLAME</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>EQUIPMENT_FROZEN_FLAME</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
+			<Type>EQUIPMENTCLASS_SOL</Type>
+			<Description>TXT_KEY_EQUIPMENT_SOL</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>EQUIPMENT_SOL</DefaultUnit>
+		</UnitClassInfo>	
 	</UnitClassInfos>
 </Civ4UnitClassInfos>

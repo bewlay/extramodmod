@@ -1,0 +1,1545 @@
+Balancing Rules:
+	Units are only received if a (similar) technology at least 2 stages before the technology that unit requires.
+		Examples:
+			Champion requires at least Bronze Working (better Smelting)
+			Mage requires at least KotE (better Elementalism/...)
+	National units should normally not be given
+Other:
+	Try to avoid temporary happiness, temporary unhappiness and unhealthiness is fine
+	There should be a strategical choice.
+	Lore-Wise inappropriate civs should be blocked
+	World announcements and Unit Names can make even AI Events fun
+
+TODO: AI
+TODO: Block some Events/Eventtriggers for AI
+TODO: Block some for Infernals, Mercurians, other Civs
+TODO: World announcements and Unit Names whenever it makes sense.
+TODO: obsolete Techs?
+TODO: look over suppression of some help text when requirement is not met
+
+Gela:
+[SPOILER]
+Trigger: One of your units takes Gela
+AI: Always Option 1
+
+[I]The demon Hyborem has been vanquished, and his soul sent screaming back into the pits of Hell.  His weapon, the unholy Gela, is all that remains of this mighty demon.  Your forces, victorious, reach to claim the weapon that has been left behind.  But it is up to you to decide what will become of the demon’s legacy.[/I]
+
+[B][U]Branch 1[/U][/B]
+[B]1)[/B] [I]I shall keep the weapon.  Its strength shall become my own.[/I]
+		Quest ends.  Basium cannot choose this.
+[B]2)[/B] [I]The demonic taint shall be washed from this trident.  I shall cleanse it in the waters of the Pool of Tears.[/I]
+		The player must take Gela to the Pool of Tears.
+[B]3)[/B] [I]The Gela must be disposed of quickly.  I shall hurl it into the great Maelstrom, banishing it to the ocean floor.[/I]
+		The player must take Gela to the Whirlpool.
+[B]4)[/B] [I]Only the angels of Basium will know how to handle this.  I shall entrust the Gela to their care and bring it to their Gate.[/I]
+		The player must take Gela to a  Mercurian city.  Basium cannot choose this.
+[B]5)[/B] [I]The Gela must be destroyed!  I shall hurl it into the fires of Pyre of the Seraphic.[/I]
+		The player must take Gela to the Pyre of the Seraphic.
+[B]6)[/B] [I]The Gela contains much demonic power.  Perhaps I can harness it using the necromantic texts found in the Broken Sepulcher.[/I]
+		The player must take Gela to the Broken Sepulcher.  Requires Evil.
+[B]7)[/B] [I]Perhaps the Gela can be used for good, if properly energized.  I shall let it soak up the holy power of the Sun at the Mirror of Heaven.  But it will take time.[/I]
+		The player must take Gela to the Mirror of Sun.  Requires Good.
+
+	*Note: The player that triggers the quest does not need to own any of the buildings required or have the terrain under his or her control.
+
+[B][U]Results[/U][/B]
+[SPOILER][B]1)[/B]	The player keeps the Gela.  Nothing happens.
+
+[B]2)[/B]	Player looses the Gela and gains a new item: Pike of Tears.  It grants the promotion “+1 affinity to Nature and Water mana” to the holder.  There is also a 50% of a minor plague occurring, 20% if state religion is FoL.  This would be similar to Armageddon's Blight, but 1/3 as strong.
+[I]The Gela is plunged into the cold waters of the Pool of Tears.  The demonic taint washes off from the weapon in waves of oily blackness, mixing with the spring.  The Gela is no more, and in its place an even more powerful weapon has been created.  But at what cost?[/I]
+
+If plague occurs: [I]The demon tainted water is carried far and wide throughout the land.  The world suffers, as do the people of Erebus.[/I]
+
+[B]3)[/B]	The unit carrying Gela is destroyed.
+
+a)	If the state religion of the player is OO, the player gains 4 Stygian Guard and a hero disciple of OO with the water walking promotion.
+[I]The Maelstrom consumes the trident quickly and, miraculously, the waves grow calm.  A moment passes as the swirling vortex begins again.  Out of the center walks a man with bowed head, wearing the robes of a priest.  He is accompanied by four attendants.  The Overlords must be pleased…[/I]
+
+b)	If the state religion of the player is not OO, 20 or so barbarian Stygian Guard and sea monsters spawn throughout the ocean.
+[I]The ship is sacrificed and sucked into the turbulent vortex of the whirlpool.  A moment passes, and then the seas turn red.  A storm begins brewing on the horizon.  Something is not right.[/I]
+
+[B]4)[/B]	The player looses the Gela.  +3 diplomacy bonus with Mercurians.  Armageddon counter gets -10.  The player is also granted a level 1 angel with the Hero promotion.
+[I]Standing before the holy Gate of the Mercurians, the mighty Basium looks down upon you.  You offer up the Gela, and the Angel’s massive hand reaches down to take it.  “You have done well to rid Erebus of the demon Hyborem.  The angel’s shall sing your name in praise. But there is still much corruption in this land.  Take one of my finest newly reborn warriors to aid you in your battle.”[/I]
+
+[B]5)[/B]	The player loses the Gela.  One of the following happens.
+
+a)	The Pyre of the Seraphic is destroyed.  An item is created where it laid called "The Frozen Flame", which provides 1 Fire Mana, 1 Chaos Mana, and 1 Entropy mana, as well as -3 Unhappy.  40% chance.
+[I]The Gela is hurled into the flames, which seem to flicker and burn eagerly for the demonic object.  The fires die down for a moment before flaring into an intensity that scorches the ceiling of the great temple.  Then, miraculously, the flames stop moving and grow black.  A piercing cry fills the Pyre, and looking into the flame one can now see the tortured souls used to forge the trident wailing in dispair.[/I]
+
+b)	The equivalent of the Rite of Ogmha occurs.  The Pyre of the Seraphic is destroyed.  60% chance.
+[I]The Gela is hurled into the flames, which seem to flicker and burn eagerly for the demonic object.  The weapon hisses for a brief moment and then, for the first time since it was lit, the fires burn out.   The very earth screams out in protest at the magical energies unleashed by the Gela’s destruction.  The ley lines leading to the Pyre, once invisible to the naked eye, are suddenly illuminated by the energy surging through them.  The phenomenon fades, and the temple now lies in ruins.[/I]
+
+[B]6)[/B]	The player loses the Gela.  Armageddon counter gets +10.  -2 population in all your cities (except settlements).  40% chance to gain a Mane and Demonic Citizens per city.
+[I]Using the necromantic texts found in the libraries left behind by Barbatos, you learn how to twist the demonic powers of the Gela to your will.  This ritual will unravel the unholy markings of the weapon, allowing you to guide the spirits of the recently departed away from Hell and into your own kingdom. It requires thousands of sacrifices.  You are fairly certain you have enough willing subjects.[/I]
+
+[B]7)[/B]	The player loses the Gela, and the unit that was holding it is unable to move temporary from the Mirror of Heaven .  The Infernalsdeclare war on the player.  5 to 10 Hellfires appear near the Mirror, each with an Enraged Demonic Axeman.  After ten turns, the player receives Sol, a +1 Sun mana affinity weapon with +25% damage to undead, demon, and vampire.  -5 to Armageddon counter.
+	When the Gela is brought to the Mirror of Heaven. [I]Your people place the Gela in the center of the Mirror of Heaven.  Inky black smoke begins to rise from the weapon in plumes as the sun purifies it.  This will take time, and surely attract the attention of any demons nearby.After some time, the weapon ceases to smoke, and the light of the Mirror shines brilliantly off of its surface.  The taint is removed, and in its place a holy trident of great power remains.[/I][/SPOILER]
+[/SPOILER]
+
+Strange Adept
+[SPOILER]
+Requires: Mage Guild
+AI: Can choose itself
+
+A strange adept has recently joined the mage guild of (city). While the student is incredibly smart and talented, all the other students and even some of the instructors steer clear of him. Many claim he delves deeply in necromancy and dark arts, some have observed strange experiments, and everyone says that anyone who gets in his way often falls victim to some strange circumstance.
+
+- Disturbing, but let the instructors handle it how they will.
+- We need all the proficient Adepts we can get our hands on, let him serve the nation.
+	-30 Gold;
+	+2 Unhappy temporary in city
+	gain Adept with Death I and Entropy I
+- You tell me this as if it's a problem. Have him advance immediately.
+	Requires Evil
+	-30Gold
+	gain Adept with Death I and Entropy I
+- Dark arts? Expel him from our country, he is not welcome here!
+	Requires Good
+	+1 Happy temporary in city
+[/SPOILER]
+
+Hell's Refugees 
+[SPOILER]
+Requires: Good alignment, presence of Infernal civilization
+
+A band of haggard refugees has shown up outside (city). The leader of the group says that they had stumbled upon the true nature of the Veil religion, much to the chagrin of the higher-ups in their nation. Not wanting to live in Hell, assist it in any way, or become the next demonic sacrifice for what they know, they had no choice but to flee. They seek refuge in a land where they can live free of Hell's taint, and if possible, fight back.
+
+- If they come from a Veil civilization, they already have Hell's taint upon them. Close our borders to them.
+- Any enemy of evil is a friend of ours. Welcome them with open arms and set up housing.
+	-50 Gold
+	+1 Population
+	+1 Permanent Happy in city
+- If they can escape a Veil nation, they must be very blessed and hardy! Enable them to enlist.
+	Requires: Smelting
+	Blocked for all Civs that cannot train the Champion unit.
+	-100 Gold
+	Receive 2 Champions with Blessed and Demon Slaying
+- Hell's reach is strong, and they know the worst of it. Give their leadership a high religious position, that they may spread their words of truth and give direction.
+	Requires: Order
+	-100 Gold
+	Receive 1 Priest of the Order with Demon Slaying and 5 Experience
+- We do not need the eyes of Hell upon us. Sell them back to their Veil masters at the highest price so that we may avoid confrontation.
+	+150 Gold
+	+1 Permanent Unhappy in all cities
+	Ceasefire with all Veil civs
+[/SPOILER]
+
+Scholars 
+[SPOILER]
+There has been a recent surge of promising young scholars wishing to study science, magic, and the arcane. <City>’s current facilities will be overcrowded with activity and will suffer material shortages, and need additional funding to expand and accommodate everyone.
+
+- We cannot afford it.
+- Scholarly study is the foundation of advancement! Expand our libraries.
+	Requires: Library
+	-200 Gold
+	+4 science from Library
+- Sounds like good news. Build them a Mage Guild
+	-150 Gold
+	Recieve a a Mage Guild
+- Scholarly societies are for the weak. Press these foolish youths into the service
+	Requires Barbarian trait
+	Receive 2 Warriors/Beastmen
+[/SPOILER]
+
+Trapped Frostlings
+[SPOILER]
+Some Frostlings got trapped and caught by hunters near <City>. What do you want to do with them?
+
+- Just kill them.
+- I pity those miserable creatures. Release them, they are harmless.
+	Requires: Good
+	+1 Happy for 15 turns.
+	Max spawn a barbarian Frostling with Weak promotion near <City>
+- Strange creatures! Add them to the freak show, they are amusing!
+	Requires: Balseraphs
+	+4 Culture from the Freak Show
+- Eat them.
+	Requires: Calabim
+	+5 in Storage Box
+- Hire them, they are our brothers.
+	Requires Illians
+	Recieve 1 Frostling with Strong promotion in <City>.
+[/SPOILER]
+
+Pacifist demonstration
+[SPOILER]
+Requires: 10 turns war with another player, possibility to sign peace
+Blocked For: Infernals
+Some people are demonstrating against the endless war in <City>.
+
+- Who cares?
+	+1 Unhappy temporarily in <City>
+- They are right, I will start the negociations.
+	[TODO: There's something wrong, it gives the opposing player unhappiness]
+	+1 Happy in <City>
+	+35 War weariness
+- Repress them before they spread.
+	5 turns of revolt in <City>
+	Every unit in <City> gain 3 XP
+- Send them to the front, so they learn how to fight.
+	Requires: Barbarian Trait
+	+1 Unhappy temporarily in <City>
+	Recieve an [Best Warrior Upgrade] with Weak promotion
+- (Reqs Calabim) Hmm... let's have lunch!
+	-1 pop in <City>
+	-10 War Weariness
+	All of your vampires gain 3 XP. [TODO]
+[/SPOILER]
+
+Demon Sign
+[SPOILER]
+Requires: 30+ AC
+Blocked for: Infernals and Mercurians; Compact Enforced setting off
+
+A newborn child in X has been reported to carry the mark of Agares. What should we do?
+
+- Leave the matter to local officials
+	+1 Unhappy For 10 Turns
+	+3 AC
+- Wondrous! If the king of hope moves upon Erebus, then we shall honor his chosen.
+	Requires: Ashen Veil
+	-200 Gold
+	+3 AC
+	Receive a Great Prophet
+- Excellent. If the King of Hope has marked this one, he shall show great service to him. Train him in our temples.
+	Requries: Ashen Veil
+	-50 Gold
+	Receive a Ritualist with Prophecy Mark
+- Call the Confessors to remove this mark.
+	Requires: Order
+- This child will be champion among men on the battlefield. Outfit him with the proper equipment and train him to lead our armies.
+	Requires: Evil
+	-100 Gold
+	+3 AC
+	Recieve a Champion with Prophecy Mark promotion
+- Teach the child to forsake his destiny set by the gods.
+	Requires: Grigori
+	-10 gold
+[/SPOILER]
+
+Hanging Sisters [TODO:check]
+[SPOILER]
+Requires: 10+ AC, Carnival
+Crazed citizens are celebrating the "Carnival of the Hanging Sisters" in X. They've raided local graveyards and strung up the dead like puppets!
+- MAKE IT STOP!
+	50% chance for 2 turns anarchy in city
+- Let the carnival commence!
+	Requires: Evil
+	+1 happy in city
+	+2 unhealthy in city for 10 turns
+- Hey, neat idea!
+	Requires: Balseraph
+	+1 happy in city
+[/SPOILER]
+
+Ash Cough [TODO:check]
+[SPOILER]
+Requires: 15+ AC
+ People are coughing up ashes and fire in X. The reason is unknown.
+- Kill all of the firebreathers, just to be sure.
+	-1 Population in city
+- This is an omen. All hail the dragon!
+	Requires: Kuriotates or Sheaim
+	+1 Happy in city
+- Purge the evil from our men.
+	Requires: Order
+	-3 AC
+- Have our mages investigate this matter.
+	Requires: Mage Guild
+	+2 AC
+	50% chance for receiving an adept with fire+entropy 1
+	50% chance for 1 temporary unhappy
+[/SPOILER]
+
+Dead Angel [TODO:check]
+[SPOILER]
+Requires: 35+ AC
+ An angel's body was found sliced open in the fields near X. Plants around it are dying off. 
+- Sanctify the area.
+	Requires: Life mana
+	-5 AC
+- Ensure the angel gets a proper burial.
+	Requires: Good or Neutral
+	-2 AC
+	-1 Food in tile
+- Leave the body rotting.
+	Requires: Evil
+	-1 Food in tile
+	+2 AC
+- Do our very best to defile the lands further.
+	Requires Entropy Mana
+	+5 AC
+	Tile becomes Hell Terrain
+- Hm... send for our necromancers!
+	Requires: Evil or Neutral
+	Requires Death Mana; Necromancy
+	+10 AC
+	Receive an angel unit with Undead and Plague Carrier
+[/SPOILER]
+
+Depressed Toymaker [TODO:check]
+[SPOILER]
+Requires: 45+ AC
+A depressed toymaker is making tiny coffins for dolls. Their popularity is causing uneasiness among the citizens
+- Stop the toymaker, and get these things out of my sight. They make me sick.
+	Requires: Good or Neutral
+	+1 unhappiness in all cities
+	+2 AC
+- I don't care what this toymaker does.
+	Requires: Evil
+- Make tiny Kuriotate dolls to fit these coffins.
+	Requires Sheaim
+	-30 Gold
+	+1 Happiness
+	+2 AC
+- They're beautiful! Toymakers should carve these baby coffins in all our cities!
+	Requires Balseraphs
+	+50 culture in all cities
+[/SPOILER]
+
+Devastating Plague [TODO:check]
+[SPOILER]
+Requires: 55 AC
+A devastating plague has hit X. Peoples' limbs are rotting black and falling off. Prophets on the streets say it's a sign of the end of times.
+- Tell the city doctor's to do everything they can.
+	-[Halve City population] Population
+	Units in tile get Plagued promotion
+- Our people won't suffer for the petty conflicts of the divine. Send our medics in to stamp out this pandemic
+	Requires: Grigori
+	+1 unhealthy for 10 turns
+- Burn the homes of the infected and quarantine the city.
+	Requires Order
+	-2 Population
+- Bring the corpses here, we'll put them to good use.
+	Requires: Ashen Veil
+	-[Halve City population] Population
+	Reaceive [PopulationLost/2] Diseased Corpses
+[/SPOILER]
+
+Massive Suicide [TODO:check]
+[SPOILER]
+Requires: 55 AC
+Blocked for: Infernals
+People are committing suicide in droves in X.
+- Tell our adepts to do whatever they can to calm them.
+	Requires Spirit mana
+	-1 Population
+	-3 AC
+- Send in Councilors to talk to the people. Find out what troubles them and put an end to it
+	Requires: Empyrean; Overcouncil
+	-1 pop
+	+1 happiness for 10 turns
+	-3 AC
+- There is little we can do. Buff the local guard and do whatever we can to stop the suicides.
+	Requires: Good or Neutral
+	-2 Population
+	+2 unhappiness for 10 turns
+- Let them die.
+	Requires Evil
+	-3 Population
+	+3 AC
+[/SPOILER]
+
+NecroCannibalism [TODO:check]
+[SPOILER]
+Requires: 65 AC
+People in X are eating their dead.
+
+- Put a stop to this.
+	+2 unhappy in that city
+	2 turns revolt
+- If they really want to do it...
+	Requires Neutral or Evil
+	+1 unhappy in every city
+	+2 unhealthy
+	+1 Permanent Food in specific city
+	+5 AC
+- Conscript as many as you can.
+	Requires Neutral or Evil
+	-[CityPop/2] Population
+	Receive [CityPop/2] [WarriorUU]
+	+10 AC
+- Have the dead fight back.
+	Requires: Death Mana, Knowledge of the Ether
+	-2 pop
+	Receive 2 Skeletons with Strong
+[/SPOILER]
+
+Hell Portal [TODO:check]
+[SPOILER]
+Requires: 75 AC, Ashen Veil
+A portal to Hell has opened in one of your cities.
+- Receive a Demonic Citizens building.
+[/SPOILER]
+
+Ghost ship [TODO:check]
+[SPOILER]
+Requires: Optics, Harbor in city
+
+A mysterious ship has drifted into the harbor of [city name]. It appears to be in good condition, but it flies the flag of no known nation, and its crew is nowhere to be seen. So far, no one has emerged from the ship, and the townsfolk have not dared to approach it, fearing that it may be cursed.
+
+- They are superstitious cowards. Order them to board the ship and claim it for our own.
+	Who knows what you will find?
+		* "The rotting remains of the crew emerge from below decks to defend their ship"
+			Several Drown units spawn outside the city
+			Receive a free Galleon
+		* "The crew are found within the ship, dead of an unknown disease"
+			+5 Unhealthiness temporary
+			Receive a free Galleon
+		* "A lone crewman is found hiding within the ship, incoherent and violently insane"
+			Receive a free Lunatic
+		* "The ship is deserted, but holds much valuable cargo."
+			+50 Gold
+		* "A mysterious map is found in the captain's quarters."
+			Reveal the location of a treasure chest
+		* "As several townspeople board the ship, it shudders and sinks suddenly into the water, taking them with it."
+			+2 Unhappiness temporary
+- They are wise to be prudent. Scuttle the ship, so that whatever curse claimed its crew will not spread to the town.
+[/SPOILER]
+
+The Wayward Elves [TODO:check]
+[SPOILER]
+Requires: Forest on tile
+We have come across an isolated village of elves that have managed to survive during the harsh Age of Ice. What do you want us to do with them?
+- What do I care? Leave them to their fate
+	A elven hamlet is revealed on the tile [TODO: Help]
+- Welcome them home!
+	Requires: Ljosalfar or Svartalfar [TODO: Help]
+	+1 Happiness [TODO]
+	+1 Population in [nearest city] [TODO: Help]
+- Who cares? Wipe them out. [TODO]
+	Requires: Evil
+	+50 Gold
+	Creates a smoke on tile
+- Wonderful! More petlings!
+	Requires: Slavery Civic [TODO: Help]
+	Receive 2 Slaves with Elven [TODO: Help]
+- Offer them refuge in our nearest town.
+	Requires: Good [TODO]
+	-40 Gold [TODO: Help]
+	Free Archery Range  [TODO: Help]
+	Gain an Archer with Commando, Dexterous and Elven [TODO: Help]
+[/SPOILER]
+
+Corrupt Judge [TODO:check]
+[SPOILER]
+Requires: Courthouse; Crime Rate > 50.
+
+A new judge has been very effective at keeping the streets safe in <City>, but we have found evidence that proves beyond a shadow of a doubt that he is corrupt.
+
+- As long as the populace sleep safely at night, I do not care if he creams a little off the top.
+	-20 to Crime Rate
+	-2 Gold from Courthouse
+- Close the courthouse and see that it that he is brought to account for his crimes.
+	+5 to Crime Rate
+	Lose the Courthouse
+- I will not stand for this. Make a full example of him and send a priest of Order to serve in his place.
+	Requires Order
+	-10 to Crime Rate
+- He is obvious not being subtle enough. Show him how to hide his tracks... and see to it that we receive our cut.
+	Requires: Undercouncil
+	+50 Gold
+[/SPOILER]
+
+Princess Rule [TODO:check]
+[SPOILER]
+Your units have spotted a unicorn outside of (cityname).
+
+- Kill it, Shiny bits for the win!
+	+25 Gold
+- Kill it, it's horn can purify water
+	+1 Health
+- Dinnertime, boys!
+	+30 Food in city
+- Don't kill it! Oh wait...
+	(Requires: Infernal and Mercurian Palace in city)
+	Gain an Avatar of Wrath
+[/SPOILER]
+
+Orphaned Goblin [TODO:check]
+[SPOILER]
+Triggers after a Warrior defeated a Goblin (50% Chance) [TODO?]
+[BUG: Triggers more than once]
+After our troops defeated the goblin horde, a soldier discovered an orphaned Goblin child. Seeing that it posed no threat, he took pity on it and has been taking care of it.
+
+- Such compassion is noble, allow him to raise the child to follow in his footsteps
+	[Unit] gains Orcish [TODO: Help]
+- His actions were noble, but we cannot risk barbarians in our army. Abandon the child
+	50% a Barbarian Goblin with Weak spawns nearby [TODO: Help]
+	50%: you Receive a Weak Goblin [TODO: Help]
+	[BUG: Both may spawn]
+- Punish this weakness by having the soldier kill his new friend, see if the trauma teaches him a lesson
+	Requires: Evil
+	[Unit] gains Orc Slaying and Crazed [TODO: Help]
+- The army is no place to raise a child! Allow the soldier to return home to raise his new child
+	Requires: Good
+	Unit loses 1 XP [TODO: Help]
+	Receive a Goblin in capital city [TODO: Help]
+[/SPOILER]
+
+Renowned Market [TODO:check]
+ [SPOILER]
+Requires: Market 
+The market in <townname> is drawing widespread attention as a place one can go to buy anything their heart desires.
+- Make a personal visit to the market to give your endorsement.
+	+1 gold from Market
+- Send out word with the traders! Our market will be known world-wide!
+	+2 Culture from Market
+- Have our sages search the bazaar for interesting relics of the past.
+	+1 Research from Market
+[/SPOILER]
+
+Board Game [TODO:check]
+[SPOILER]
+Requires Writing.
+Sire, our sages in {City Name} have created a strategic board game based on Erebus' history. They call it "Fall From Heaven".
+- Bah, those sages have too much time on their hands.
+- It could become a widespread pastime. Sponsor the game!
+	-50gold
+	+20 Culture in city
+	+1 Happy in city
+- Have the sages come up with a fantasy variant. Call it "Civilization".
+	-100gold
+	+40 Culture
+	+2 Happy in city
+- Wait, Fall from Heaven? Blasphemy!
+	Requires: Order
+	Receive 1 acolyte with Inquisitor
+	+1 Unhappy in city
+[/SPOILER]
+
+A Traveller [TODO:check]
+[SPOILER]
+An experienced traveller has just arrived to your palace. For a little fee(50 gold) he can tell one story. What would you like to hear about?
+- Tell me about natural wonders of Erebus
+	-50 Gold
+	(show maelstom, mirror of heaven or yggdrasil)
+- Tell me about remnants from ancient Ages
+	-50 Gold
+	(show remnanats of patria,broken sepulcher, aifon isle or dragon bones)
+- Tell me about holy shrines of the gods
+	-50 Gold
+	(show seven pines, pyre of the seraphic, tomb of sucellus or letum frigus)
+- Tell me about places related to the angels
+	-50 Gold
+	(show odio's prison, ring of carcer or pool of tears)
+- Tell me about the biggest city you have ever seen
+	-50 Gold
+	(show one of the cities with the max of population)
+- I have neither time nor money for this
+[/SPOILER]
+
+Unfortunate Assassin [TODO:check]
+[SPOILER]
+Can only happen at Capital.
+There's just been an assassination attempt on you! What do you want to do with the assassin?
+- Don't we have a feast scheduled for tomorrow?
+	Requires: Calabim
+	+5% Food
+- Stop asking stupid questions and execute her!
+	-1 permanent Unhappy
+- Find out who sent her and make her spy on them for us.
+	Changes relationship with random player by -1(50%) or +1(50%)
+- Let her go.
+	Requires Good-aligned leader. City gets +1  .
+- He managed to sneak past my guards? We need men with such potential. Make her an offer he can't refuse.
+	Requires: Council of Esus
+	Receive an Assassin with Council of Esus Religion
+[/SPOILER]
+
+Overcrowded Dungeon [TODO:check]
+[SPOILER]Requires: Crime rate 20+, Dungeon
+Our dungeon in [city] is so full with criminals that there is barely enough room for all inmates. Escapes, fights and assaults on guards are all reported.
+- Who cares? The dungeon is not supposed to be a comfortable inn.
+	Dungeon: +1 Unhappy
+- Hire more guards and expand dungeon capacity
+	-30 gold
+- Release all small crooks, so there is enough room for true criminals and thugs.
+	+10 crime rate
+- Make a full effort to reduce a crime rate in the city and teach criminals how to do useful labor
+	Requires: Good
+	-150 gold
+	Dungeon: +1 Production
+	-10 to crime rate
+- Execute the entire dungeon, every last of them, they are all thugs anyway. That will make some space...
+	Requires: Evil or Neutral
+	-15 to crime rate
+	+1 Unhappy
+	25% chance City revolts for one turn
+[/SPOILER]
+
+Ancient Burial
+[SPOILER]
+Targets a hill 
+Some locals near (city name) have discovered that the nearby mound is actually an ancient burial site for some unnamed warrior! They are fearful of the consequences of disturbing the grave.
+
+- May the warrior's bones rest in peace.
+- An ancient warrior, this must be one of our ancient ancestors lost to history! Set up a memorial in its honor.
+	+50 Culture in city
+	20% chance for a Skeleton Warrior with Heroic Defense to appear
+		"The ancient warrior rises to defend his grave"
+- Interesting... let's move the grave and set up a tourist attraction. Just to ease the villagers fears, of course.
+	-1 Production on Tile
+	+2 Gold on Tile
+	90% chance for a Skeleton Warrior with Heroic Defense to appear
+		"The ancient warrior rises to defend his grave"
+- This warrior was buried before the Age of Ice, lets profit from its death. Loot the grave!
+	60% chance:
+		+90 Gold
+		"The grave is full of ancient jewelry"
+	40% chance:
+		A Skeleton Warrior with Heroic Defense appears
+		"The ancient warrior rises to defend his grave"
+[/SPOILER]
+
+Mad Golemicist [TODO:check]
+[SPOILER]
+
+Requires Sorcery
+
+While on patrol, your [UNITNAME] stumbles across the laboratory of an isolated golem-maker. As the golem-maker greets you, you see a strange, crazed glint in his eye. Some of the half-finished golems that you can see lying around appear disturbingly...biological.
+"Welcome," the golem-maker says. "I could use another deft pair of hands for my experiments. My golem assistants are strong, but they lack manual dexterity. Will you help me?"
+- No, this place makes me nervous. I'm going to leave now.
+- These experiments are an abomination! Kill him, and sieze his gold and his magical materials. But watch out for his golems!
+	+100 Gold
+	Unit gains the Sheut Stone promotion
+	2 barbarian Wood Golems spawn
+- Yes, I will help you.
+	Who knows what you will happen?
+	* "Ah yes, I can see much room for improvement here. Let me just adjust this and tweak that...there!"
+		(if unit is a golem)
+		(unit is promoted to Heroic Strength I and II, Heroic Defense I and II).
+	* "Oh my, what a perfect specimen! I can't see how I could possibly improve you, my friend. Maybe if I remove this piece...oh no! I broke it!"
+		(if unit is Barnaxus)
+		(Barnaxus is killed; pieces of Barnaxus are left on the tile).
+	* "If you'll just hold this intestine while I cast the enchantment .... There we go! It's perfect!"
+			(if not Barnaxus or a golem, 50% chance)
+			(recieve a Str 2 Flesh Golem).
+	* "Just hold this piece for me...no! What are you doing? You dropped it! My experiment is ruined! Now I will need new experimental materials. Golems, seize them! Hold them down while I saw open the skulls. It's a tight space in there, but I have some excellent clockwork that will fit once I remove the useless gray matter.
+		(if not Barnaxus or a golem, 50% chance)
+		(unit is promoted to Enpower V, Strong, and Golem. Unit loses its Unitcombat (No more promotions) ).
+[/SPOILER]
+
+Younger Council [TODO:check]
+[SPOILER]
+Requires: Elder council; Education
+Youths from [city name] are complaining abort the local Elder Council. They claim that its members spend their time on telling stories form their youth instead of doing anything useful. They demand a representation in the council so that they could control its work.
+
+- There is a reason why it's called Elder Council. We shall keep to the tradition.
+	+1 unhappy for 10 turns
+- Let some of the younger citizens join the council.
+	Elder Council: -1 Research, +2 Culture
+- Get rid of the elders. They have no idea how today’s world work.
+	Elder Council: -2 Research  +3 culture
+	+1 Happy
+- The state should take care that the elders do their job. Assign some official to the council.
+	-50 Gold
+	Elder Council: -1 Research  +1 Gold
+[/SPOILER]
+
+Skilled Craftsman [TODO:check]
+[SPOILER]
+Requires: Forge
+Blocked for: Infernals
+A very promising journeyman in [city name] is infuriating local master craftsman by wasting his time on making jewelry instead of weapons and tools.
+
+- We could use a service of a skilled jeweler. Fund him his own workshop. 
+	-50 gold
+	Receive Jeweler in [city name]. 
+- He should return to his work as a blacksmith.
+	Forge: +2 production
+[/SPOILER]
+
+Cookbook [TODO:check]
+[SPOILER]
+Requires: Library
+Blocked for: Infernals
+An ancient cookbook from the Age of Magic has been discovered in library in [city name].
+
+- That’s great news I have always wanted to know what people from that age ate.
+	Library: +1 Food
+[/SPOILER]
+
+Redecoration [TODO:check]
+[SPOILER]
+Requirements: Palace, or Forbidden Palace, or Winter Palace; Mining and Masonry
+Our chief architect suggest adding new decorations to the palace.
+
+- We could add some stone statues.
+	-20 gold
+	Palace: +1 culture
+- How about some marble sculptures.
+	Requires Marble
+	-30 gold
+	Palace +2  culture
+- Maybe some golden ornaments here and there would do the trick.
+	Requires Gold
+	-30 gold
+	Palace +2 culture
+- I think bronze statues would do just fine.
+	Requires Copper
+	-30 gold
+	Palace +2 culture
+- I’m afraid we can not afford this.
+[/SPOILER]
+
+Great Speaker [TODO:check]
+[SPOILER]
+Requires: Courthouse
+Blocked for: Infernals, Calabim
+One of the lawyers in [city name] is gaining renown for his eloquent, moving and honest speeches. People say he raises the use of language to the rank of art.
+
+- I suppose that’s good news as long as he does not use his talent against us.
+	Courthouse: +1 Culture
+[/SPOILER]
+
+Death of an Elder [TODO:check]
+[SPOILER]
+Requires: Elder Council
+A member of the Elder Council in {cityname} recently died. He was an honorary member, how shall we honor his death?
+- Why are you bothering me with this?
+	+1 Unhappy in city for 10 turns
+- We will fund a lavish funeral in celebration of the man's life
+	-40 Gold
+	+1 happy in city [TODO]
+- Search the city for a new member for the council.
+	-50 Gold
+	Elder Council: +1 Research
+- He can serve me in the afterlife.
+	Requires: Death Mana
+	Recieve 1 Skeleton [TODO: Help]
+[/SPOILER]
+
+
+
+EXPANDED:
+
+[QUOTE=ostar;9014820]List of new events added:
+
+Kuriotates Fish; Kuriotates Clam; Kuriotates Crab [TODO:check]
+[SPOILER]
+These three (separate) events create Fishing Boats improvements (not an actual workboat) for the Kuriotates BUT only
+a) for settlements with those unimproved resources,
+b) if they have no cities on the coast,
+c) if the Sailing Tech is known.
+This way the Kuriotates can still use water resources if they have no cities to build workboats. However, each of them only occurs once per game - no building a string of coastal settlements just to get free improvements.
+
+The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to catch their plentiful fish.
+The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their bountiful clam beds.
+The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their abundant crabs.
+
+- That is the type of citizen initiative I like to hear about.
+[/SPOILER]
+
+Demonic Tower [TODO:check]
+[SPOILER]
+Requires: Mysticism; Ancient Tower
+Blocked for: Ashen Veil
+A group of cultists in an Ancient Tower have summoned a Demon from Hell. Fortunately a band of adventurers killed the cultists and trapped the demon in the Tower.
+
+- Let no one enter the Ancient Tower until we can kill or banish it.
+	A held Balor with Diseased appears. [TODO:Help]
+[/SPOILER]
+
+Lanun Pirates [TODO:check]
+[SPOILER]
+Requires: A civ with Optics
+Blocked: If Lanun exist
+Ships of the Lanun have arrived in our waters, seeking gold and plunder!
+
+- We must marshal our fleets to defeat these Lanun raiders.
+	Some barbarian Lanun Privateers appear. [TODO:Help]
+[/SPOILER]
+
+Frog Legs [TODO:check]
+[SPOILER]
+Quantity: Global and not Recurring
+The swamps near the city of %s2_city have a plethora of large edible frogs. Their legs have become a delicacy.
+
+- They do taste like chicken, don't they?
+	Toad Ressource is found
+[/SPOILER]
+
+Uranium [TODO:check]
+[SPOILER]
+Requires: Mine; Knowledge of the Ether
+Blocked for: Infernals
+Miners near the city of %s2_city have found a strange new mineral all over the mine. They call it Uranium, and it glows slightly in the dark. Unfortunately it is slowly poisoning them and their tools. What shall we do?
+
+- Our Earth adepts should be able to find a way to use this Uranium safely.
+	Requires: Earth Mana
+	Mine: +1 Production
+- Station a Life adept at the mine to keep the miners healthy.
+	Requires: Life Mana
+- Safety first - take the necessary precautions to protect our miners.
+	Mine: -1 Production
+- Keep it quiet, but KEEP them working.
+	Requries: Evil
+	+1 unhealthy
+[/SPOILER]
+
+Oil [TODO:check]
+[SPOILER]
+Requires Agriculture
+A desert area floodplain near the city of %s2_city has a thick, black, stinking, oily liquid welling up from the ground in many places. It is reducing available farmland.
+
+- We'll never find a use for this worthless "oil".
+	-1 food
+- I wonder if this "oil" burns?
+	Requires: Fire mana
+	-1 food
+	+1 hammer
+- Hmmm, this "oil" may help us lubricate our machinery better.
+	Requries: Khazad or Luichirp
+	-1 food
+	+1 hammer
+[/SPOILER]
+
+Winds From Hell [TODO:check]
+[SPOILER]
+Requires: AC 20; Knowledge of the Ether; Windmill
+Massive storms are slowly destroying our windmills near the city of %s2_city. Eyewitnesses say the winds sound like they come from the very Vaults of Hell. What can we do?
+
+- Our Air adepts can redirect the winds until the storms subside.
+	Requires: Air Mana
+- Sacrifice a soul to appease these winds
+	Requires: Ashen Veil
+	+1 AC
+- What can we do? Let the storms run their course and rebuild.
+	Lose the Windmill
+[/SPOILER]
+
+Treant Rage [TODO:check]
+[SPOILER]
+Requires: Lumbermill; Knowledge of the Ether
+Logging operations in the forests near the city of %s2_city are in danger. Treants are enraged at tree cuttings and their attacks have caught us by surprise. Loggers are fleeing and buildings being destroyed.
+
+- Quick, our Nature adepts should be able to calm them down.
+	Requires: Nature Mana
+- Rush our priests there to convince the treants we replant as well as cut.
+	Requires: FoL State religion
+- Our troops cannot reach there in time. We shall just have to rebuild our lumbermills.
+	Lose Lumbermill
+[/SPOILER]
+
+Perfect Storm [TODO:check]
+[SPOILER]
+An unexpectedly fierce storm has struck land near the city of %s2_city, devastating our coastal waters.
+
+- A disaster. We shall have to repair or rebuild almost everything there.
+	Lose the fishing boats
+- A disaster. We shall have to rebuild our pirate cove.
+	Lose the pirate cove
+[/SPOILER]
+
+Peat [TODO:check]
+[SPOILER]
+Requires: Swamp
+The swamps near the city of %s2_city have an abundant supply of peat.
+
+- That's good news.
+	Tile: +1 hammer
+[/SPOILER]
+
+Bread [TODO:check]
+[SPOILER]
+Requries: Windmill
+Blocked for: Infernals
+Millers using the windmills near the city of %s2_city have discovered a more efficient way to make bread flour with less waste.
+
+- Now all we need is the jug of wine and thou, as the poet once said.
+	Windmill: +1 food
+[/SPOILER]
+
+Sutter's Mill [TODO:check]
+[SPOILER]
+Requires: Workshop
+Small amounts of silver have been discovered near the workshops of the city of %s2_city. The workshops are using it to increase the value of their products.
+
+- Good, but don't let it start a silver rush.
+	Workshop: +1 Commerce
+[/SPOILER]
+
+Thread Necromancy [TODO:check]
+[SPOILER]
+An issue long thought decided is being discussed again amongst our people - risen from the dead, so to speak. Heated arguments are breaking out daily, dividing family and friends.
+
+- Just let it be - maybe it will die away again.
+	1 unhappy in all cities temporarily [TODO]
+- Our stability is more important than those raising this issue. So let's have lunch.
+	Requires: Calabim
+	+2 Food in all cities
+- I have an idea for a series of public ice sculptures using those causing this unrest.
+	Requires: Evil; Ice Mana
+	+100 Culture in capital
+- Let's show the people real necromancy and stop this irritation.
+	Requires: Ashen Veil
+	Receive a Diseased Corpses
+- It's hard to talk and spread dissension when your lungs are filled with water.
+	Requires: OO state religion
+	Receive a Drown
+- Dissent of such a random nature is a threat to our society and will not be tolerated. Crackdown on this and train our priests better to avoid this happening ever again.
+	Requires: Order
+	[TODO]
+[/SPOILER]
+
+########################## TODO
+
+Poisoned Water [TODO:check]
+[SPOILER]
+Requires: Aqueduct, Knowledge of the Ether
+The water supplies for our city of %s2_city have somehow became tainted - possibly they were poisoned by one of our enemies. Water shortages are widespread.
+
+- Have our Water adepts purify our water supplies.
+	Requires: Water Mana
+- The powers of Aquae Sucellus will have already removed any and all poisons.
+	Requires: Aquae Sucellus in any of your cities
+- Begin cleansing operations immediately, and ration our water supplies until done.
+	-50 gold
+	2 unhealthy in city temporarily
+- Begin rationing our water supplies until nature herself finally cleans them.
+	1 anger
+	3 unhealthy in city temporarily
+[/SPOILER]
+
+Framed [TODO:check]
+[SPOILER]
+Requires: Knowledge of the Ether
+The %s1_civ_adjective Empire has had a scandal break out that somehow it looks like our diplomats there were involved in. Our relations with them will suffer unless we can prove we're innocent. We are, right?
+
+- Our Mind adepts will prove we are innocent.
+	Requires: Mind Mana
+- We shall prove another civilization caused this.
+	Requires: Council of Esus
+- We are innocent, but have no proof.
+	-1 relations with other civ
+- Yes, we're innocent. But tell them we did it - and that they deserved it.
+	-3 relations other civ
+[/SPOILER]
+
+Ancient Tower Lore [TODO:check]
+[SPOILER]
+Requires: Ancient Tower
+Blocked for: Infernals
+We have discovered a cache of pre-Age of Ice books in an Ancient Tower. The books are decorated with gold and jewels, but fragile - reading them may end up destroying them. And they may be dangerous to read. What shall we do?
+
+- Keep the gold and jewels, but burn the books just to be safe.
+	+50 Gold
+- Have them sent - carefully - to our scholars for study.
+	Requires: Education
+	+[50%] research to [current tech]
+- Have them sent - carefully - to our priests and mystics for study.
+	Requries: Mysticism
+	Receive 1 Great Prophet
+[/SPOILER]
+
+Stormy Seas [TODO:check]
+[SPOILER]
+Requires: Non-Hero Naval Unit of Level 5 or lower
+A sudden storm caught a number of our %s3_unit by surprise. They were all sunk or damaged beyond repair.
+
+- As it is said, anyone can steer a ship when the sea is calm.
+	Lose Unit
+[/SPOILER]
+
+Ralph and Sam [TODO:check]
+[SPOILER]
+Requires: Sheep Resource, obsolete at Hunting or Calendar
+Packs of wolves near the city of %s2_city have fed well on the local sheep flocks and grown very large and aggressive.
+
+- Hire some adventurers to deal with them.
+	-20 gold
+- Those who cried wolf were telling the truth this time, I see.
+	1 (held) barb Wolf Pack appears on sheep
+- Kill the pack leaders - then they shall be our pack of wolves.
+	Requires: Doviello
+	Receive 1 wolf pack
+[/SPOILER]
+
+Centaur Tribe [TODO:check]
+[SPOILER]
+Requires: Unimproved Horse Resource
+A tribe of centaurs has claimed the local herds of horses and the land they graze on for their tribe solely. The centaurs ask only to be left alone.
+
+- No, we claim that land.
+	1 (held) barb Centaur [Unit depends on technology] appears on plot
+- We will gladly let them manage the land there. In return we offer them protection and a place in our civilization.
+	Requires: Kuriotates
+	Receive a Centaur [Unit depends on technology]
+	A Pasture is built
+- We welcome all who seek help not from heaven but from themselves, and offer them our friendship.
+	Requires: Grigori
+	A Pasture is built
+- If they will manage the herds for us, we will extend them our protection.
+	Requires: FoL
+	A Pasture is built
+[/SPOILER]
+
+Sea Serpent [TODO:check]
+[SPOILER]
+Requires: crab, clam, fish, or pearl resource
+The sea life is so bountiful off our coasts that a pod of sea serpents has made one of our most productive fishing areas their personal larder.
+
+- We will have to send our navy to deal with them.
+	1 (held) barb Sea Serpent appears
+[/SPOILER]
+
+Monkey See [TODO:check]
+[SPOILER]
+Requries Banana, Calendar
+A motley collection of monkeys, apes, and gorillas has descended upon our banana crops, eating everything in sight.
+
+- Monkey see, monkey do, as the old saying goes.
+	A barb Gorilla appears
+[/SPOILER]
+
+Haunted Castle [TODO:check]
+[SPOILER]
+Requires: Fort or Castle, Knowledge of the Ether
+Workers expanding the dungeons of a %s8_improvement near the city of %s2_city have disturbed the mass grave of a pre-Age of Ice battleground. They have fled in terror, saying the vengeful dead are rising.
+
+- If the dead are rising then they can rise into our armies.
+	Req Death Mana
+	+1 AC
+	Receive Spectre
+- Send some well-guarded Spirit adepts there and have them calm the restless spirits for good.
+	Req Spirit Mana
+	-1 AC
+- Send some well-guarded Life adepts there and have them Sanctify the ancient mass grave.
+	Req Life Mana
+	-1 AC
+- Keep everyone out of there until we destroy those risen spirits.
+	+1 AC
+	1 barb (held) Spectre appears on improvement
+[/SPOILER]
+
+################################## Maybe NOT TO INCLUDE
+
+That kind of day
+[SPOILER]
+Requires: Only one city, undefended with barbarian unit adjacent; Game turn < 100; War with barbarians
+The barbarian hordes are at our gates! Our armies have failed us! We’re doomed!
+- Conscript the populace. Even there are massive casualties, our empire must survive
+	Kill all barbarian Units around the city
+	-1 Population
+- Announce our surrender, give them whatever they want
+	Kill all barbarian Units around the city
+	-100% food and production in the city,
+	all your gold
+- Sir? Where are you Sir? Our leader has abandoned us in our time of need! We are undone!
+	Requires Evil; An Evil AI civlization
+	Blocked for AI
+	Take control of the lowest ranked Evil AI civilization
+	(Leader name and image of that civilization is changed to you)
+- Get me my sword, I will challenge their leader to single combat
+	Kill all barbarian Units around the city
+	Requires: Aggressive
+- Send emissaries to regale them with tales of our glorious empire, and offer them citizenship
+	Kill all barbarian Units around the city
+	Requires: Kuriotates or Elohim
+	Gain 1 population
+[/SPOILER]
+
+################################ TO INCLUDE: Event Series by Xienwolf from http://forums.civfanatics.com/showthread.php?t=262009
+I'd like to include some of this event series. The chances of the "story alternatives" should be based on environment (religions, alignment, civs... at best even player actions). The player has to think what f.e. the "passing stranger" could want; in an evil CoE city with high crime rate it will probably be a thief...
+
+Note: For this next series of events, there are no tooltips to announce the rewards. Or alternatively, it is a single event with 3 possible outcomes from each decision (33% chance of each), and the player is allowed to see a tooltip stating what the possible outcomes are & the percent chances.
+
+## Passing Stranger Series
+Triggers in any City
+Blocked for Infernals
+
+Thief in the Night
+Chance changes:
+	Coucil of Esus (+?)
+	Undercouncil (+?)
+	High Crime Rate (+/++)
+	Evil (+)
+	Good (-)
+	Empearean (-)
+	Low Crime Rate (-/--)
+	Order (--)
+ --A stranger has been seen wandering the streets of [City] late at night...
+Send the Guards to apprehend and question the man
+	+1 Happy permanent
+	"The Guards interrogated the man and discovered he is a Thief!"
+Attempt to follow him and discover his purpose
+	+2 XP to garrisoned units of [City]
+	"The Guards caught him breaking into a house, he died in the ensuing struggle."
+Do nothing, he can cause no harm
+	+1 Unhappy temporarily
+	"We have been informed that there were a series of break-ins in the night, at least one of which resulted in Murder as well."
+Post more guards through the City, encourage the populace to observe a curfew if they do not wish to be subject to random questioning
+	Nothing Happens
+	"The guards report that nothing suspicious seems to have happened, and overall night-time traffic has reduced significantly since we put the changes into effect."
+
+The Good Samaritan
+Chance changes:
+	Empearean (+++)
+	Elohim Original Owner (+)
+	Good (+)
+	Evil (-)
+	Octupus Overlords (-)
+	Ashen Veil (---)
+ --A stranger has been seen wandering the streets of [City] late at night...
+Send the Guards to apprehend and question the man
+	+1 Unhappy temporarily
+	"The Old Man they apprehend turns out to have been leaving random gifts in the town, word of our harsh treatment has spread"
+Attempt to follow him and discover his purpose
+	+1 Happiness in [City]
+	"Our Soldiers observed the man leaving gifts in front of a Widow's House. The Nightwatch is inspired and begins a new tradition in his honor."
+Do nothing, he can cause no harm
+	Troops garrisoned in [City] gain Homeland Promotion.
+	"Tales of great Kindness in [City] move our soldiers to higher levels of devotion."
+Post more guards through the City, encourage the populace to observe a curfew if they do not wish to be subject to random questioning
+	Nothing Happens
+	"The guards report that nothing suspicious seems to have happened, and overall night-time traffic has reduced significantly since we put the changes into effect."
+
+Secret Meetings
+# LORE: A bit hard to find that out
+Chance changes:
+	Much Culture per turn (+/++)
+	Balseraphs Original Owner (+)
+	Few Culture per turn (-/--)
+ --A stranger has been seen wandering the streets of [City] late at night...
+Send the Guards to apprehend and question the man
+	City gains a Theater, or Theater in city gains +2 
+	"After questioning the man, he reveals the presence of a members only Theater hidden in the back alleys."
+Attempt to follow him and discover his purpose
+	+1 Unhappy temporarily
+	"After bursting into a building they saw the man cautiously enter, our guards found themselves in the dressing rooms of an underground theater. The Star was so distressed he has quit the troupe."
+Do nothing, he can cause no harm
+	+1 Happiness Permanently
+	"Rumors abound of many activities being available for nighttime entertainment in [City], allowing people a chance to rest after working all day."
+Post more guards through the City, encourage the populace to observe a curfew if they do not wish to be subject to random questioning
+	Nothing Happens
+	"The guards report that nothing suspicious seems to have happened, and overall night-time traffic has reduced significantly since we put the changes into effect."
+
+## A Lone Lioness
+# LORE: No connection with lore at all
+Triggers on any Recon Unit.
+
+A Mother & Her Cubs
+ --Our [Recon Unit] has come across a Lioness. She is alone and seems not to be disturbed by his presence...
+Have him spend some time with her, he can learn how to deal with other Animals as well.
+[Recon Unit] gains Subdue Animals.
+"After some time, a few Cubs wander into the area to find their Mother. She allows them to play with our [Recon Unit], and he learns much about interacting with animals."
+Have him follow her and see if there are others equally calm.
+[Recon Unit] dies.
+"Our [Recon Unit] followed the Mother Lioness back to her Den, but she felt that her Cubs were threatened by the [Recon Unit] and she attacked him visciously! He has been lost to us."
+Destroy it! These beasts are a threat to our livestock!
++2 XP for [Recon Unit]
+"The lone Lioness proves little difficulty for our well trained [Recon Unit] to handle."
+Have him back cautiously away and leave the area. You never know with Wild Animals.
+No Effect
+"Our [Recon Unit] left the area and continued with his mission."
+
+A Rabid Beast
+ --Our [Recon Unit] has come across a Lioness. She is alone and seems not to be disturbed by his presence...
+Have him spend some time with her, he can learn how to deal with other Animals as well.
+[Recon Unit] dies.
+"The Lioness was Rabid! As soon as he got close she lashed out and caught him by surprise."
+Have him follow her and see if there are others equally calm.
++10  in nearest City.
+"Keeping his distance the [Recon Unit] trails the Lioness, who dies for mysteriously a short time later."
+Destroy it! These beasts are a threat to our livestock!
+[Recon Unit] gains Flanking 1 & 2
+"After a surprisingly Viscious battle, our [Recon Unit] emerges much improved for the experience."
+Have him back cautiously away and leave the area. You never know with Wild Animals.
+No Effect
+"Our [Recon Unit] left the area and continued with his mission."
+
+The Strongest of Her Kind
+ --Our [Recon Unit] has come across a Lioness. She is alone and seems not to be disturbed by his presence...
+Have him spend some time with her, he can learn how to deal with other Animals as well.
++2 XP for [Recon Unit].
+"The Beast seems to have no fear of our [Recon Unit] and even helps him when a Bear attacked suddenly."
+Have him follow her and see if there are others equally calm.
+[Recon Unit] gains Woodsman 1 & 2
+"He learns much from watching how she maneuvers the forests."
+Destroy it! These beasts are a threat to our livestock!
+[Recon Unit] dies.
+"Never has anyone seen such a Ferocious Beast as this Lioness has proved to be. Our inexperienced [Recon Unit] did not stand a chance!"
+Have him back cautiously away and leave the area. You never know with Wild Animals.
+No Effect
+"Our [Recon Unit] left the area and continued with his mission."
+
+## An Old Man's Wisdom
+Triggers on any City. Preferably reward units are always 1 Tier better than the City can produce for itself.
+
+An Aged Scout
+Chance changes:
+	Svartalfar Original Owner (++)
+	High tier recon units buildable in city compared to other unit lines (+/++)
+	Ljosalfar Original Owner (+)
+	Fellowship of Leaves (+)
+	Khazad/Luchuirp (-)
+ --There is an Elderly Man in [City] who constantly criticizes our Generals, they would like to make him shut up, so propose to allow him to demonstrate a better way of doing things.
+Put him in charge of our Scouts for a time
+Free Hunter Unit in [City]
+"The Old Man proves amazingly resourceful in matters of Scouting. His criticism was well warranted, and you appropriately chastize the Generals to learn from their elders!"
+Put him in charge of the Local Archer Garrison for a time
+-10% Military Production for 10 Turns
+"As your Generals suspected, the old man was a complete fool. He spends most of the time informing our marksmen of which Mushroomss they should or shouldn't eat amongst those growing along the walls."
+Put him in charge of the Regulars for a time.
+-10% Military Production for 15 Turns
+"It is worse than your Generals even thought. The doddering old fool refused to use the roads for marching the troops and we have had reports of numerous injuries along the harsh trails he forces our recruits to train on."
+Are my Generals so weak that mere words can disquiet them? Inform them to only bother me when it is important!
+Nothing Happens
+"Nothing further is heard from your Generals after their Chastizement about being pestered by an Old Man."
+
+Deadeye Dan
+Chance changes:
+	Ljosalfar Original Owner (++)
+	High tier archery units buildable in city compared to other unit lines (+/++)
+	Khazad/Luchuirp (--)
+ --There is an Elderly Man in [City] who constantly criticizes our Generals, they would like to make him shut up, so propose to allow him to demonstrate a better way of doing things.
+Put him in charge of our Scouts for a time
+-10% Production for 15 turns.
+"It is worse than your Generals even thought. The doddering old fool trained our young scouts to stay in areas of the highest possible visibility. We shall have to completely re-train them now!"
+Put him in charge of the Local Archer Garrison for a time
+Free Archer Unit in [City]
+"The Old Man proves amazingly resourceful in matters of Defense. His criticism was well warranted, and you appropriately chastize the Generals to learn from their elders!"
+Put him in charge of the Regulars for a time.
+-10% Military Production for 10 Turns
+"As your Generals suspected, the old man was a complete fool. He tried to teach the men to hold back from striking until they could find the perfect opportunity, and encouraged running for cover rather than understanding self defense!"
+Are my Generals so weak that mere words can disquiet them? Inform them to only bother me when it is important!
+Nothing Happens
+"Nothing further is heard from your Generals after their Chastizement about being pestered by an Old Man."
+
+Master of Weapons
+Chance changes:
+	Khazad (+)
+ --There is an Elderly Man in [City] who constantly criticizes our Generals, they would like to make him shut up, so propose to allow him to demonstrate a better way of doing things.
+Put him in charge of our Scouts for a time
+-10% Military Production for 10 turns.
+"As your Generals suspected, the old man was a complete fool. He encouraged our scouts to use the main roads whenever possible, and to make lots of noise so that people could dread their arrival."
+Put him in charge of the Local Archer Garrison for a time
+-10% Military Production for 15 turns.
+"It is worse than your Generals even thought. The doddering old fool trained our young marksmen to engage the enemy head-on and offer a fair fight! They'll be slaughtered unless we completely re-train them!"
+Put him in charge of the Regulars for a time.
+Free Axeman Unit in [City]
+[COLOR="#48d1cc"]"The Old Man proves amazingly resourceful in matters of Offense. His criticism was well warranted, and you appropriately chastize the Generals to learn from their elders!"
+Are my Generals so weak that mere words can disquiet them? Inform them to only bother me when it is important!
+Nothing Happens
+"Nothing further is heard from your Generals after their Chastizement about being pestered by an Old Man."
+
+## The Hermit
+Triggers on a Forest Tile in a City's Workable Area.
+
+Mischeivous Miscreant
+ --People in [City] speak of an old man in the forest on the outskirts of town who shuns any company.
+He must join Society and Earn his keep!
+Gain a free Slave Unit in [City].
+"Our soldiers go to his forest home to deliver your orders and catch him ambushing an innocent traveler! After a quick trial, he is consigned to slavery."
+Give him some land, but tell him to be Fruitfull in his efforts.
++1  on the tile.
+"Little more is heard about the man after one of the City Officials goes out to speak with him about being allowed to use the land as he pleases. But regular tithes keep your concerns at ease."
+Let him be and do as he wishes.
+-1 Population in [City].
+"Some of our People wandering in the woods have been Kidnapped!"
+I have my own plans for the area. It'll all sort out soon enough.
+Nothing Happens
+"Life Carries on."
+
+Strong Farmer
+ --People in [City] speak of an old man in the forest on the outskirts of town who shuns any company.
+He must join Society and Earn his keep!
+-1 Population in [City].
+"The old man has formed a rebellion and encouraged many people to follow him out of our lands!"
+Give him some land, but tell him to be Fruitfull in his efforts.
+Free Farm improvement with a Road on any single non-developed tile in the Cities workable area (clearing any forest/jungle in that spot if neccessary).
+"Having been encouraged to work, and given freedom to do as he wishes, the man establishes a thriving farm in record time!"
+Let him be and do as he wishes.
++30  in [City].
+"Finally understanding that society isn't all about oppression, the man comes out of his seclusion and helps many people around town daily to earn his living."
+I have my own plans for the area. It'll all sort out soon enough.
+Nothing Happens
+"Life Carries on."
+
+Elder Woodsman
+ --People in [City] speak of an old man in the forest on the outskirts of town who shuns any company.
+He must join Society and Earn his keep!
++2  permanently in [City]
+"Your Soldiers remove the old Hermit from his forested getaway and place him in some quarters in town. He grudgingly sets up an apothecary, selling natural remedies to the townsfolk"
+Give him some land, but tell him to be Fruitfull in his efforts.
+-1 Population in [City].
+"He has grown some food, but in his ignorance used tainted water!"
+Let him be and do as he wishes.
+Free Cottage Improvement in Forest Tile
+"Having been left to his own designs, the Hermit has turned the forest into a veritable second city! What he has accomplished it truely remarkable!"
+I have my own plans for the area. It'll all sort out soon enough.
+Nothing Happens
+"Life Carries on."
+
+## Entreprenuer Series
+Triggers in any city.
+
+The Businessman
+ --Our Governor in [City] claims that his friend is a worthy advisor, and would like to add him to the payroll.
+Place him in charge of Foreign Affairs.
++1 Trade Route in [City]
+"Our Governor was correct. His friend is an absolute Genius in matters of Trade!"
+Place him in charge of Internal Affairs
++35 
+"Our Governor's friend isn't amazing, but he does seem to have a good head for trade."
+Let him set up an Independant Business in the City.
+[City] goes into Revolt for 1 Turn.
+"Our people are Jealous of the Obvious Favoritism you have shown!"
+Inform the Governor that I pay him to make run my city. If he would like to give up his job that can be arranged, otherwise he must do it himself.
+Nothing Happens
+"The Governor has returned to his post and is unlikely to bother us again anytime soon."
+
+The Wanderer
+ --Our Governor in [City] claims that his friend is a worthy advisor, and would like to add him to the payroll.
+Place him in charge of Foreign Affairs.
+[City] goes into Revolt for 1 Turn.
+"He has commited a Horrific Social Faux Paus! Our people are outraged at how our allies were treated."
+Place him in charge of Internal Affairs
+All tiles in [City]'s Fat Cross gain a road improvement
+"Our Governor was correct. His friend is an absolute Genius when it comes to knowing the Local Area!"
+Let him set up an Independant Business in the City.
++35 
+"Our Governor's friend isn't amazing, but he has helped to improve tourism a bit."
+Inform the Governor that I pay him to make run my city. If he would like to give up his job that can be arranged, otherwise he must do it himself.
+Nothing Happens
+"The Governor has returned to his post and is unlikely to bother us again anytime soon."
+
+The Mathemetician
+ --Our Governor in [City] claims that his friend is a worthy advisor, and would like to add him to the payroll.
+Place him in charge of Foreign Affairs.
+Reveals the map of 1 randomly selected known leader (if not possible, then +1 relation with all known leaders)
+"Our Governor's friend isn't amazing, but he did help our friends with planning their land."
+Place him in charge of Internal Affairs
+[City] goes into Revolt for 1 Turn.
+"Our pedestrians are Furious over the confusing new layout."
+Let him set up an Independant Business in the City.
+Free Market Building in [City], or +2  from Market.
+"Our Governor was correct. His friend is an absolute Genius in matters of Business!"
+Inform the Governor that I pay him to make run my city. If he would like to give up his job that can be arranged, otherwise he must do it himself.
+Nothing Happens
+"The Governor has returned to his post and is unlikely to bother us again anytime soon."
+
+## Retired General Series
+Triggers on any Melee Unit.
+
+Traitor
+ --Our [Melee Unit] has been approached by a retired General who seeks to instruct him privately, how should he respond?
+This sounds suspicious, strip him of his Sword and send him on his way.
+[Melee Unit] gains Mithril Weapons Promotion
+"The sword he has acquired from the man is not one of our Ceremonial Retirement Blades! It appears to be the finest work of [Worst Enemy]!"
+Allow him to Co-ordinate some Military Excercises, the Troops can do to gain his Knowledge
+[Melee Unit] dies.
+"The General had sold out to our Enemies! He has slain the [Melee Unit] and ran!"
+Send him abroad, inform him he is to study the Defenses of our potential Enemies.
++3 Relations with [Worst Enemy] Civilization "You are a Cunning Advesary!"
+"After sending the Retired General into exile, we recieved word from [Worst Enemy's Leader] commending us for having discovered the General was now on his Payroll! We shall not correct his misunderstanding."
+The Elderly ought to stand aside and let the Young continue to Progress on their own. Ignore the man and keep to your assigned tasks.
+Nothing Happens
+"[Melee Unit] quickly dismisses himself from the presence of the General and continues about his work."
+
+Great Tactician
+ --Our [Melee Unit] has been approached by a retired General who seeks to instruct him privately, how should he respond?
+This sounds suspicious, strip him of his Sword and send him on his way.
+Gain Rusted Promotion
+"Though old, the Retired General is skilled. He has disarmed our [Melee Unit] for the insult and left our lands."
+Allow him to Co-ordinate some Military Excercises, the Troops can do to gain his Knowledge
++3 XP for [Melee Unit]
+"The training proves to be useful, though uneventful."
+Send him abroad, inform him he is to study the Defenses of our potential Enemies.
+[Melee Unit] Promoted to City Raider
+"With the advice of the Retired General, our [Melee Unit] has gained a great understanding of how our enemies defend their cities. This learning is priceless!"
+The Elderly ought to stand aside and let the Young continue to Progress on their own. Ignore the man and keep to your assigned tasks.
+Nothing Happens
+"[Melee Unit] quickly dismisses himself from the presence of the General and continues about his work."
+
+Connected Man
+ --Our [Melee Unit] has been approached by a retired General who seeks to instruct him privately, how should he respond?
+This sounds suspicious, strip him of his Sword and send him on his way.
+[Melee Unit] gains Enchanted Blade Promotion
+"The sword he has acquired from the man seems to be well cared for, and possibly enhanced by some strange means."
+Allow him to Co-ordinate some Military Excercises, the Troops can do to gain his Knowledge
+[Melee Unit] gains City Garrison promotion
+"The training proves to be absolutely invaluable. What this Retired General knows of the other Nations & their strategies could fill libraries!"
+Send him abroad, inform him he is to study the Defenses of our potential Enemies.
+-1 relations with all known Civilizations "You tried to spy on us!"
+"The Retired General leaves in outrage and spreads news of your underhanded methods to all of his friends."
+The Elderly ought to stand aside and let the Young continue to Progress on their own. Ignore the man and keep to your assigned tasks.
+Nothing Happens
+"[Melee Unit] quickly dismisses himself from the presence of the General and continues about his work."
+
+## Mysterious Portal Series
+Triggers inside cultural borders, but outside the BFC of any city. If that isn't possible, then triggers in any non-city tile without a resource.
+
+Mystical Laboratory
+ --Traveler's tell the tale of a portal which appears in our lands every night. Nobody has dared to venture into it, and thus far nothing has come out...
+Send in a Scholar to sort things out, who better to explore the unknown?
+Free Mage Guild in nearest City without one.
+"Our Scholar returns with tales of a Mystical Laboratory full of otherworldly Scholars. He has learned much and is eager to teach others."
+Grab a random Farmer and toss him in if he won't go willingly! If this leads to mysterious lands, we need someone who knows a turnip from a toadstool!
++10%  Cost of Tech toward current Technology Research
+"The Farmer returns jibberingly like a madman about other worlds and things which simply cannot be. But his arms are laden with scrolls and texts which back up his claims."
+Send in a stray dog, we cannot risk people to such mystery.
+Spawns a Barbarian Ravenous Werewolf on the Tile
+"Shortly after tossing the mutt into the portal a great beast emerged. The soldiers report that it had the same markings on it's fur as the Dog, and a strange red shape hanging from one ear..."
+If nothing has come out, why bother to send something in? Inform people to keep clear of the area.
+Nothing Happens
+"Word is spread and warnings are posted. Nothing more is heard of this portal again."
+
+Garden of the Gods
+ --Traveler's tell the tale of a portal which appears in our lands every night. Nobody has dared to venture into it, and thus far nothing has come out...
+Send in a Scholar to sort things out, who better to explore the unknown?
+Spawns a Barbarian Druid in the Tile.
+"The Scholar has returned wearing strange vestments and denouncing our Civilization as an abomination to nature. Not only that, but he has begun attacking our troops with strange magics!"
+Grab a random Farmer and toss him in if he won't go willingly! If this leads to mysterious lands, we need someone who knows a turnip from a toadstool!
+Reagents resource appears in Tile.
+"The Farmer ran out of the portal like Hell itself was on his heels, and from his tales of a strange garden where the plants themselves can speak I'd almost believe it! But he had a seed laden fruit nestled in his arms which he has begun to cultivate in the area."
+Send in a stray dog, we cannot risk people to such mystery.
++40 Culture in all Cities.
+"We sent in a Mutt, but what returned can be likened unto perfection. We shall treat this Magnificent Beast as a National Symbol."
+If nothing has come out, why bother to send something in? Inform people to keep clear of the area.
+Nothing Happens
+"Word is spread and warnings are posted. Nothing more is heard of this portal again."
+
+Metaplanar Wildlands
+ --Traveler's tell the tale of a portal which appears in our lands every night. Nobody has dared to venture into it, and thus far nothing has come out...
+Send in a Scholar to sort things out, who better to explore the unknown?
++40 
+"After a short while our Scholar returns. He claims to lack the proper words to describe the Wildlands through which he wandered, but has brought back some novelties which we can easily sell to fatten our coffers."
+Grab a random Farmer and toss him in if he won't go willingly! If this leads to mysterious lands, we need someone who knows a turnip from a toadstool!
+A Barbarian Sect of Flies Unit spawns on the Tile
+"After waiting some time the soldiers nearly gave up on waiting and left the area when suddenly the Farmer, or so we think it was by the shredded remnants of his clothing on it, emerged from the portal and assailed the troops! His eyes have the glimmer of madness, and his arms a strength to match!"
+Send in a stray dog, we cannot risk people to such mystery.
+A permanent Sand Lion Unit spawns in the Tile under the control of the Civilization.
+"This beast which has returned from the portal bears little resemblance to the Mutt we sent in, but responds to the same name and seems as loyal to his master as ever. But for such a transformation to take place so rapidly... It is a true miracle."
+If nothing has come out, why bother to send something in? Inform people to keep clear of the area.
+Nothing Happens
+"Word is spread and warnings are posted. Nothing more is heard of this portal again."
+
+
+######################################### Notes by TheCowSaysMoo
+
+I've not really thought up any quick events that I liked yet (though there are definitely some in this thread with potential), but I did whip up a quick list of possible things that could trigger early events. Not everything on this list is necessarily appropriate for Kael's request of Common Events, as it was a quick brainstorm, and it's certainly not exhaustive... and I'm not even sure that all of them are actually possible triggers for events... but something on the list might trigger a brilliant idea to someone , so I decided it might be worth posting:
+
+Early Buildings:
+ Palace
+ Obelisk
+ Pagan Temple
+ Elder Council
+ Carnival
+ Brewery
+ Harbor
+ Market
+ City Wall
+ Hunting Lodge
+
+Terrain:
+ --Events could happen on the location with the terrain, or to a city with the terrain in it's workable area
+ Plain
+ Grassland
+ Desert
+ Tundra
+ Ice
+ Hill
+ Mountain
+ Coast
+ Ocean
+ Fresh Water Lake
+ River
+
+Feature:
+ --Events could happen on the location with the feature, or to a city with the feature in it's workable area
+ Forest
+ Jungle
+ Flood Plains
+ Oasis
+ Ice Floe
+
+Improvements:
+ --Events could happen on the location with the improvement, or to a city or civ with the improvement
+ Road
+ Farm
+ Cottage
+ Fishing Boat
+ Mine
+ Plantation
+ Pasture
+ Winery
+ Camp
+
+Bonuses:
+ --Events could happen on the location with the bonus, or to a city or civ connected to a bonus
+ Corn
+ Wheat
+ Rice
+ Copper
+ Marble
+ Mana
+ Cow
+ Horse
+ Sheep
+ Pig
+ Reagents
+ Incense
+ Fruit
+ Wine
+ Fish
+ Clams
+ Crabs
+ Pearls
+ Whale
+ Deer
+ Elephants
+ Fur
+ Starting mana (from palaces)
+
+Early Units:
+ Scout
+ Hunter
+ Warrior
+ Worker
+ Settler
+ Work Boat
+
+Early Triggers:
+ Contact with another civilization
+ Spot an animal
+ Spot another civilization's unit
+ Spot a barbarian
+ Spot a skeleton
+ Spot a lizardman
+ Defeat a barbarian
+ Defeat a skeleton
+ Defeat a lizardman
+ Defeat an animal
+ Defeat an enemy unit
+ Lose to an animal
+ Lose to an enemy unit
+ Spot a Goody Hut
+ Get a Goody Hut
+ Get a specific result from a Goody Hut
+ Spot a barrow
+ Destroy a barrow
+ Spot a ruins
+ Destroy a ruins
+ Spot a unique feature
+ Connect city to a unique feature
+ Connect a trade route
+ Fortified unit
+ Capture an enemy worker
+ Capture an enemy city
+ Get a great person
+ Use a great person
+
+Early Civics:
+ Despotism
+ God King
+ Pacifism
+ Religion
+ Nationhood
+ Agriculture
+ Fend for Themselves
+
+Specific Leader Traits
+Specific Leaders
+Specific Civilizations
+Units with specific promotions
