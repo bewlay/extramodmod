@@ -1008,6 +1008,8 @@ public:
     bool withdrawlToNearestValidPlot();
 
 	virtual int AI_promotionValue(PromotionTypes ePromotion) = 0;
+
+	int getEnslavementChance() const;
 //FfH: End Add
 
 protected:

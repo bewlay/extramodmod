@@ -842,6 +842,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			szString.append(gDLL->getText("TXT_KEY_UNIT_DURATION", pUnit->getDuration()));
             szString.append(CvWString::format(ENDCOLR));
 		}
+
 /*************************************************************************************************/
 /**	FFHBUG denev																				**/
 /**	ADDON (FFHBUG) merged Sephi																	**/
@@ -1581,7 +1582,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			}
 
 			int iEnslavementChance = 0;
-			iEnslavementChance += kUnitInfo.getEnslavementChance();
+			iEnslavementChance += pUnit->getEnslavementChance();
 			iEnslavementChance += GET_PLAYER(pUnit->getOwnerINLINE()).getEnslavementChance();
 			if (iEnslavementChance > 0)
 			{
@@ -9425,6 +9426,12 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_PREREQ_ALIVE"));
+    }
+
+	if (GC.getPromotionInfo(ePromotion).getEnslavementChance() != 0)
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_UNIT_ENSLAVEMENT_CHANCE", GC.getPromotionInfo(ePromotion).getEnslavementChance()));
     }
 //FfH: End Add
 

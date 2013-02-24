@@ -66696,6 +66696,10 @@
                     <ProductionTraitType>TRAIT_EXPANSIVE</ProductionTraitType>
                     <iProductionTrait>100</iProductionTrait>
                 </ProductionTrait>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_IMPERIALISTIC</ProductionTraitType>
+                    <iProductionTrait>100</iProductionTrait>
+                </ProductionTrait>
             </ProductionTraits>
             <Flavors>
             </Flavors>

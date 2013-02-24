@@ -1906,6 +1906,26 @@ def doTraitAggressive(argsList):
 					pPlayer.setHasTrait(iTrait,False)
 	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_AGGRESSIVE'),True)
 
+def canApplyTraitAgrarian(argsList):
+	iEvent = argsList[0]
+	kTriggeredData = argsList[1]
+	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
+	if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() == gc.getInfoTypeForString('TRAIT_AGRARIAN'):
+		return False
+	return True
+
+def doTraitAgrarian(argsList):
+	iEvent = argsList[0]
+	kTriggeredData = argsList[1]
+	iPlayer = kTriggeredData.ePlayer
+	pPlayer = gc.getPlayer(iPlayer)
+	for iTrait in range(gc.getNumTraitInfos()):
+		if pPlayer.hasTrait(iTrait):
+			if (gc.getTraitInfo(iTrait).isSelectable()):
+				if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() != iTrait:
+					pPlayer.setHasTrait(iTrait,False)
+	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_AGRARIAN'),True)
+
 def canApplyTraitArcane(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -2031,6 +2051,30 @@ def doTraitFinancial(argsList):
 					pPlayer.setHasTrait(iTrait,False)
 	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_FINANCIAL'),True)
 
+def canApplyTraitImperialistic(argsList):
+	iEvent = argsList[0]
+	kTriggeredData = argsList[1]
+	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
+	if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() == gc.getInfoTypeForString('TRAIT_IMPERIALISTIC'):
+		return False
+	return True
+
+def helpTraitImperialistic(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_IMPERIALISTIC'), CivilizationTypes.NO_CIVILIZATION, false )
+# lfgr end
+
+def doTraitImperialistic(argsList):
+	iEvent = argsList[0]
+	kTriggeredData = argsList[1]
+	iPlayer = kTriggeredData.ePlayer
+	pPlayer = gc.getPlayer(iPlayer)
+	for iTrait in range(gc.getNumTraitInfos()):
+		if pPlayer.hasTrait(iTrait):
+			if (gc.getTraitInfo(iTrait).isSelectable()):
+				if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() != iTrait:
+					pPlayer.setHasTrait(iTrait, False)
+	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_IMPERIALISTIC'),True)
+
 def canApplyTraitIndustrious(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -2069,7 +2113,7 @@ def doTraitInsane(argsList):
 				pPlayer.setHasTrait(i, False)
 				iTraitCount = iTraitCount + 1
 				
-	Traits = [ 'TRAIT_AGGRESSIVE','TRAIT_ARCANE','TRAIT_CHARISMATIC','TRAIT_CREATIVE','TRAIT_EXPANSIVE','TRAIT_FINANCIAL','TRAIT_INDUSTRIOUS','TRAIT_ORGANIZED','TRAIT_PHILOSOPHICAL','TRAIT_RAIDERS','TRAIT_SPIRITUAL' ]
+	Traits = [ 'TRAIT_AGRARIAN','TRAIT_AGGRESSIVE','TRAIT_ARCANE','TRAIT_CHARISMATIC','TRAIT_CREATIVE','TRAIT_EXPANSIVE','TRAIT_FINANCIAL','TRAIT_IMPERIALISTIC','TRAIT_INDUSTRIOUS','TRAIT_ORGANIZED','TRAIT_PHILOSOPHICAL','TRAIT_RAIDERS','TRAIT_SAGE','TRAIT_SAVAGE','TRAIT_SLAVER','TRAIT_SPIRITUAL' ]
 
 	if (iTraitCount > 0):
 		iRnd1 = CyGame().getSorenRandNum(len(Traits), "Insane Trait 1")
@@ -2169,6 +2213,26 @@ def doTraitRaiders(argsList):
 				if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() != iTrait:
 					pPlayer.setHasTrait(iTrait, False)
 	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_RAIDERS'),True)
+
+def canApplyTraitSage(argsList):
+	iEvent = argsList[0]
+	kTriggeredData = argsList[1]
+	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
+	if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() == gc.getInfoTypeForString('TRAIT_SAGE'):
+		return False
+	return True
+
+def doTraitSage(argsList):
+	iEvent = argsList[0]
+	kTriggeredData = argsList[1]
+	iPlayer = kTriggeredData.ePlayer
+	pPlayer = gc.getPlayer(iPlayer)
+	for iTrait in range(gc.getNumTraitInfos()):
+		if pPlayer.hasTrait(iTrait):
+			if (gc.getTraitInfo(iTrait).isSelectable()):
+				if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() != iTrait:
+					pPlayer.setHasTrait(iTrait,False)
+	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_SAGE'),True)
 
 def canApplyTraitSpiritual(argsList):
 	iEvent = argsList[0]

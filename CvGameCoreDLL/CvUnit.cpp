@@ -18575,6 +18575,21 @@ void CvUnit::doImmortalRebirth()
 	// Sephi AI End
 }
 
+int CvUnit::getEnslavementChance() const
+{
+	int enslavementChance = m_pUnitInfo->getEnslavementChance();
+
+	for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); iPromotion++)
+	{
+		if (isHasPromotion((PromotionTypes)iPromotion))
+		{
+			enslavementChance += GC.getPromotionInfo((PromotionTypes)iPromotion).getEnslavementChance();
+		}
+	}
+
+	return enslavementChance;
+}
+
 void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 {
 	PromotionTypes ePromotion;
@@ -18740,12 +18755,14 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 	}
 	if (!bUnitAutoCapture) // Tholal Bugfix - we dont also get slaves from units we capture
 	{
-		if ((m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()) > 0)
+		int iEnslavementChance = this->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance();
+
+		if (iEnslavementChance > 0)
 		{
 			// Summons, non-Alive units, Animals and World class units cannot become slaves
 			if (getDuration() == 0 && pLoser->isAlive() && !pLoser->isAnimal() && iUnit == NO_UNIT && !isWorldUnitClass((UnitClassTypes)pLoser->getUnitClassType()))
 			{
-				if (GC.getGameINLINE().getSorenRandNum(100, "Enslavement") < (m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()))
+				if (GC.getGameINLINE().getSorenRandNum(100, "Enslavement") < iEnslavementChance)
 				{
 					iUnit = GC.getDefineINT("SLAVE_UNIT");
 				}

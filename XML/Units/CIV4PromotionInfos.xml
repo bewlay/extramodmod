@@ -3102,6 +3102,7 @@
             <bFear>1</bFear>
             <iAIWeight>100</iAIWeight>
             <PromotionPrereqOr3>PROMOTION_NIGHTMARE</PromotionPrereqOr3>
+            <PromotionPrereqOr4>PROMOTION_SAVAGE</PromotionPrereqOr4>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_FIRE_RESISTANCE</Type>
@@ -6207,6 +6208,15 @@
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
         <PromotionInfo>
+            <Type>PROMOTION_SAVAGE</Type>
+            <Description>TXT_KEY_PROMOTION_SAVAGE</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <TechPrereq>TECH_NEVER</TechPrereq>
+            <Button>Art/Interface/Buttons/Promotions/Enraged.dds</Button>
+            <bImmuneToFear>1</bImmuneToFear>
+			<iCombatHealPercent>10</iCombatHealPercent>
+        </PromotionInfo>
+        <PromotionInfo>
             <Type>PROMOTION_SCORCHED_STAFF</Type>
             <Description>TXT_KEY_EQUIPMENT_SCORCHED_STAFF</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
@@ -6247,6 +6257,15 @@
                 </UnitCombat>
             </UnitCombats>
             <Button>Art/Interface/Buttons/Promotions/Scourge.dds</Button>
+        </PromotionInfo>
+        <PromotionInfo>
+            <Type>PROMOTION_SLAVER</Type>
+            <Description>TXT_KEY_PROMOTION_SLAVER</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <TechPrereq>TECH_NEVER</TechPrereq>
+            <Button>,Art/Interface/Buttons/Civics/Slavery.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,8,2</Button>
+            <PromotionSummonPerk>PROMOTION_SLAVER</PromotionSummonPerk>
+            <iEnslavementChance>15</iEnslavementChance>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_SENTRY</Type>
