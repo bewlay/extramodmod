@@ -1,8 +1,8 @@
 #CvModName.py
 
-modName = "FFH - More Naval AI"
-displayName = "FFH - More Naval AI"
-modVersion = "2.42"
+modName = "Fall from Heaven 2 - ExtraModMod"
+displayName = "Fall from Heaven 2 - ExtraModMod"
+modVersion = "0.2"
 
 civName = "BtS"
 civVersion = "3.19"
