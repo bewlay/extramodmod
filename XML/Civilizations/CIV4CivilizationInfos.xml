@@ -17,7 +17,7 @@
 			<ArtStyleType>ARTSTYLE_BARBARIAN</ArtStyleType>
 			<UnitArtStyleType>NONE</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
-			<bAIPlayable>0</bAIPlayable>
+			<bAIPlayable>1</bAIPlayable>
 			<Cities>
 				<City>TXT_KEY_CITY_RANDOM_1</City>
 			</Cities>
