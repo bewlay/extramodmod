@@ -2008,7 +2008,7 @@
             <BonusClassType>BONUSCLASS_RUSH</BonusClassType>
             <ArtDefineTag>ART_DEF_BONUS_SILVER</ArtDefineTag>
             <TechReveal>TECH_MITHRIL_WORKING</TechReveal>
-            <TechCityTrade>TECH_MITHRIL_WORKING</TechCityTrade>
+            <TechCityTrade>TECH_MITHRIL_WEAPONS</TechCityTrade>
             <TechObsolete>NONE</TechObsolete>
             <YieldChanges>
                 <iYieldChange>0</iYieldChange>
@@ -2560,7 +2560,7 @@
             <Civilopedia>TXT_KEY_BONUS_PEARL_PEDIA</Civilopedia>
             <BonusClassType>BONUSCLASS_GENERAL</BonusClassType>
             <ArtDefineTag>ART_DEF_BONUS_PEARL</ArtDefineTag>
-            <TechReveal>TECH_SEAFARING</TechReveal>
+            <TechReveal>TECH_SAILING</TechReveal>
             <TechCityTrade>NONE</TechCityTrade>
             <TechObsolete>NONE</TechObsolete>
             <YieldChanges>

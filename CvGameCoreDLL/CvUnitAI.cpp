@@ -29208,7 +29208,10 @@ void CvUnitAI::AI_mageCast()
         if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_INSPIRATION")) == 0)
             cast(GC.getInfoTypeForString("SPELL_INSPIRATION"));
 
-
+	// Spirit III (EitB)
+    if (canCast(GC.getInfoTypeForString("SPELL_ILLUMINATION"),false))
+        if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_ILLUMINATION")) == 0)
+            cast(GC.getInfoTypeForString("SPELL_ILLUMINATION"));
 
     if (canCast(GC.getInfoTypeForString("SPELL_HOPE"),false))
         if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_HOPE")) == 0)

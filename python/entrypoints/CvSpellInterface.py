@@ -138,7 +138,8 @@ def postCombatExplode(pCaster, pOpponent):
 								pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_SMOKE'))
 					for i in range(pPlot.getNumUnits()):
 						pUnit = pPlot.getUnit(i)
-						pUnit.doDamage(10, 100, pCaster, gc.getInfoTypeForString('DAMAGE_FIRE'), false)
+						# Sareln 3/25/2011 - PostCombatExplode Damage Cap 100 -> 90
+						pUnit.doDamage(10, 90, pCaster, gc.getInfoTypeForString('DAMAGE_FIRE'), false)
 
 def postCombatHeal50(pCaster, pOpponent):
 	if pCaster.getDamage() > 0:
@@ -1076,6 +1077,9 @@ def spellDivineRetribution(caster):
 					pUnit.doDamage(50, 100, caster, gc.getInfoTypeForString('DAMAGE_HOLY'), False)
 
 def reqDomination(caster):
+	# Sareln 6/17/2011
+	# Units with Loyalty do not count as valid targets.
+	iLoyalty = gc.getInfoTypeForString('SPELL_LOYALTY')
 	iX = caster.getX()
 	iY = caster.getY()
 	pPlayer = gc.getPlayer(caster.getOwner())
@@ -1089,7 +1093,7 @@ def reqDomination(caster):
 			pPlot = CyMap().plot(iiX,iiY)
 			for i in range(pPlot.getNumUnits()):
 				pUnit = pPlot.getUnit(i)
-				if pUnit.isAlive():
+				if (pUnit.isAlive() and pUnit.isHasPromotion(iLoyalty) == False):
 					if not pUnit.isDelayedDeath():
 						if eTeam.isAtWar(pUnit.getTeam()):
 							iResist = pUnit.getResistChance(caster, gc.getInfoTypeForString('SPELL_DOMINATION'))
@@ -1098,7 +1102,11 @@ def reqDomination(caster):
 	return False
 
 def spellDomination(caster):
+	# Sareln 6/17/2011
+	# Made it so that the spell will not attempt to target units that have
+	# the loyalty promotion.
 	iSpell = gc.getInfoTypeForString('SPELL_DOMINATION')
+	iLoyalty = gc.getInfoTypeForString('PROMOTION_LOYALTY')
 	iX = caster.getX()
 	iY = caster.getY()
 	pPlayer = gc.getPlayer(caster.getOwner())
@@ -1115,7 +1123,7 @@ def spellDomination(caster):
 			for i in range(pPlot.getNumUnits()):
 				pUnit = pPlot.getUnit(i)
 				iValue = 0
-				if pUnit.isAlive():
+				if (pUnit.isAlive() and pUnit.isHasPromotion(iLoyalty) == False):
 					if pUnit.isDelayedDeath() == False:
 						if eTeam.isAtWar(pUnit.getTeam()):
 							iResist = pUnit.getResistChance(caster, iSpell)
@@ -1305,6 +1313,31 @@ def spellFeast(caster):
 	pCity = pPlot.getPlotCity()
 	caster.changeExperience(pCity.getPopulation()-2, -1, False, False, False)
 	pCity.changeHurryAngerTimer(3)
+	
+def reqExtort(caster):
+	pPlot = caster.plot()
+	pCity = pPlot.getPlotCity()
+	iEsus = gc.getInfoTypeForString("RELIGION_COUNCIL_OF_ESUS")
+	if not pCity.isHasReligion(iEsus):
+		#iEsus = 3
+		return False
+	if pCity.getPopulation() < 2:
+		return False
+	return True
+
+def spellExtort(caster):
+	pPlot = caster.plot()
+	pCity = pPlot.getPlotCity()
+	pPlayer = gc.getPlayer(caster.getOwner())
+	iGoldPerPop = 15
+	if CyGame().getGameSpeedType() == gc.getInfoTypeForString('GAMESPEED_QUICK'):
+		iGoldPerPop = 10
+	if CyGame().getGameSpeedType() == gc.getInfoTypeForString('GAMESPEED_EPIC'):
+		iGoldPerPop = 20
+	if CyGame().getGameSpeedType() == gc.getInfoTypeForString('GAMESPEED_MARATHON'):
+		iGoldPerPop = 30
+	pPlayer.changeGold(pCity.getPopulation()*iGoldPerPop)
+	pCity.changeHurryAngerTimer(3)
 
 def reqFeed(caster):
 	if caster.getDamage() == 0:
@@ -1348,14 +1381,20 @@ def reqForTheHorde(caster):
 	return True
 
 def spellForTheHorde(caster):
+	# Sareln 6/17/2011
+	# Make it so that the Loyalty Promotion blocks For the Horde.  This would let us take out the specific exemptions
+	# for the Sons of the Inferno and Disciples of Acheron, but I'll leave them in for now.  If we take out the specific
+	# Exemption, then a Metamagic II wizard combined with For the Horde could grab all the Sons of the Inferno from Acheron's
+	# City.
 	pPlayer = gc.getPlayer(caster.getOwner())
 	iHero = gc.getInfoTypeForString('PROMOTION_HERO')
 	iOrc = gc.getInfoTypeForString('PROMOTION_ORC')
+	iLoyalty = gc.getInfoTypeForString('PROMOTION_LOYALTY')
 	iDisciple = gc.getInfoTypeForString('UNITCLASS_DISCIPLE_OF_ACHERON')
 	iSon = gc.getInfoTypeForString('UNITCLASS_SON_OF_THE_INFERNO')
 	py = PyPlayer(gc.getBARBARIAN_PLAYER())
 	for pUnit in py.getUnitList():
-		if (pUnit.getRace() == iOrc and pUnit.isHasPromotion(iHero) == False):
+		if (pUnit.getRace() == iOrc and pUnit.isHasPromotion(iHero) == False and pUnit.isHasPromotion(iLoyalty) == False):
 			if ( (pUnit.getUnitClassType()!= iDisciple) and (pUnit.getUnitClassType()!= iSon) ):
 				if CyGame().getSorenRandNum(100, "Bob") < 50:
 					pPlot = pUnit.plot()
@@ -1991,7 +2030,7 @@ def spellPillarofFire(caster):
 	if pBestPlot != -1:
 		for i in range(pBestPlot.getNumUnits()):
 			pUnit = pBestPlot.getUnit(i)
-			pUnit.doDamage(50, 75, caster, gc.getInfoTypeForString('DAMAGE_FIRE'), True)
+			pUnit.doDamage(30, 50, caster, gc.getInfoTypeForString('DAMAGE_FIRE'), True)
 		if (pPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_FOREST') or pPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_JUNGLE')):
 			bValid = True
 			iImprovement = pPlot.getImprovementType()
@@ -2423,6 +2462,38 @@ def spellRecruitMercenary(caster):
 	newUnit.setHasCasted(True)
 	if caster.getUnitType() == gc.getInfoTypeForString('UNIT_MAGNADINE'):
 		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_LOYALTY'), True)
+
+# Sareln 3/25/2011 Recruit Nightwatch Spell Addition requirement		
+def reqRecruitNightwatch(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
+	if pPlayer.isHuman() == False:
+		pPlot = caster.plot()
+		#if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD'):
+		#	return False
+		iX = caster.getX()
+		iY = caster.getY()
+		eTeam = gc.getTeam(pPlayer.getTeam())
+		for iiX in range(iX-1, iX+2, 1):
+			for iiY in range(iY-1, iY+2, 1):
+				pPlot = CyMap().plot(iiX,iiY)
+				for i in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(i)
+					p2Player = gc.getPlayer(pUnit.getOwner())
+					e2Team = p2Player.getTeam()
+					if eTeam.isAtWar(e2Team) == True:
+						return True
+		return False
+	return True		
+		
+# Sareln 3/25/2011 Recruit Nightwatch Spell Addition		
+def spellRecruitNightwatch(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
+	iUnit = gc.getInfoTypeForString('UNITCLASS_NIGHTWATCH')
+	infoCiv = gc.getCivilizationInfo(pPlayer.getCivilizationType())
+	iUnit = infoCiv.getCivilizationUnits(iUnit)
+	newUnit = pPlayer.initUnit(iUnit, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_NORTH)
+	newUnit.finishMoves()
+	newUnit.setHasCasted(True)
 
 def spellReleaseFromCage(caster):
 	pPlot = caster.plot()
@@ -3232,9 +3303,12 @@ def reqStasis(caster):
 	return True
 
 def spellStasis(caster):
+# EitB: Stasis gives both GA and Freezing to Illians for now.
+#		Duration Halved.
 	pPlayer = gc.getPlayer(caster.getOwner())
-	iBaseDelay = 20
+	iBaseDelay = 10
 	iDelay = (iBaseDelay * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()) / 100
+	pPlayer.changeGoldenAgeTurns(iDelay)
 	iTeam = pPlayer.getTeam()
 	
 	for iPlayer2 in range(gc.getMAX_PLAYERS()):
@@ -3614,8 +3688,9 @@ def spellTrust(caster):
 def spellTsunami(caster):
 	iX = caster.getX()
 	iY = caster.getY()
-	for iiX in range(iX-2, iX+3, 1):
-		for iiY in range(iY-2, iY+3, 1):
+	# Change Tsunami range to 1 from 2
+	for iiX in range(iX-1, iX+2, 1):
+		for iiY in range(iY-1, iY+2, 1):
 			pPlot = CyMap().plot(iiX,iiY)
 			if pPlot.isAdjacentToWater():
 				if (iX != iiX or iY != iiY):

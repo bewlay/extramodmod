@@ -1390,6 +1390,7 @@
             <Description>TXT_KEY_PROMOTION_COMMAND1</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
             <PromotionPrereqOr1>PROMOTION_CHANNELING2</PromotionPrereqOr1>
+            <TechPrereq>TECH_FANATICISM</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_DISCIPLE</UnitCombatType>
@@ -2038,7 +2039,7 @@
             <Description>TXT_KEY_PROMOTION_DEMON_SLAYING</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
             <PromotionPrereq>PROMOTION_COMBAT1</PromotionPrereq>
-            <TechPrereq>TECH_WAY_OF_THE_WISE</TechPrereq>
+            <TechPrereq>TECH_PRIESTHOOD</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_BEAST</UnitCombatType>
@@ -3868,6 +3869,7 @@
             <Description>TXT_KEY_PROMOTION_HERO</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
             <TechPrereq>TECH_NEVER</TechPrereq>
+            <iUpgradeDiscount>100</iUpgradeDiscount>
             <Button>Art/Interface/Buttons/Promotions/Hero.dds</Button>
             <iFreeXPPerTurn>1</iFreeXPPerTurn>
             <iMinLevel>-1</iMinLevel>
@@ -4193,6 +4195,7 @@
             <bHiddenNationality>1</bHiddenNationality>
             <iMinLevel>-1</iMinLevel>
             <PromotionSummonPerk>PROMOTION_HIDDEN_NATIONALITY</PromotionSummonPerk>
+            <UnitArtStyleType>UNIT_ARTSTYLE_ORC</UnitArtStyleType>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_HOMELAND</Type>
@@ -4442,6 +4445,7 @@
             <Help>TXT_KEY_PROMOTION_INQUISITOR_HELP</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
             <PromotionPrereq>PROMOTION_CHANNELING2</PromotionPrereq>
+            <TechPrereq>TECH_FANATICISM</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_DISCIPLE</UnitCombatType>
@@ -5395,6 +5399,10 @@
                     <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
                     <bUnitCombat>1</bUnitCombat>
                 </UnitCombat>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_SIEGE</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
             </UnitCombats>
             <Button>,Art/Interface/Buttons/Promotions/Mobility1.dds,Art/Interface/Buttons/Promotions_Atlas.dds,5,4</Button>
             <bMutation>1</bMutation>
@@ -5978,16 +5986,29 @@
                     <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
                     <bUnitCombat>1</bUnitCombat>
                 </UnitCombat>
-                <UnitCombat>
-                    <UnitCombatType>UNITCOMBAT_DISCIPLE</UnitCombatType>
-                    <bUnitCombat>1</bUnitCombat>
-                </UnitCombat>
             </UnitCombats>
             <Button>Art/Interface/Buttons/Promotions/Potency.dds</Button>
             <bValidate>1</bValidate>
             <iCasterResistModify>-10</iCasterResistModify>
             <iMinLevel>-1</iMinLevel>
-            <iSpellCasterXP>20</iSpellCasterXP>
+            <iSpellCasterXP>30</iSpellCasterXP>
+        </PromotionInfo>
+        <PromotionInfo>
+            <Type>PROMOTION_FAVORED</Type>
+            <Description>TXT_KEY_PROMOTION_FAVORED</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <TechPrereq>TECH_NEVER</TechPrereq>
+            <UnitCombats>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_DISCIPLE</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+            </UnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/Favored.dds</Button>
+            <bValidate>1</bValidate>
+            <iCasterResistModify>-10</iCasterResistModify>
+            <iMinLevel>-1</iMinLevel>
+            <iSpellCasterXP>30</iSpellCasterXP>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_POTION_OF_INVISIBILITY</Type>
@@ -6204,7 +6225,7 @@
             <Description>TXT_KEY_PROMOTION_SCOURGE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
             <PromotionPrereq>PROMOTION_COMBAT1</PromotionPrereq>
-            <TechPrereq>TECH_WAY_OF_THE_WICKED</TechPrereq>
+            <TechPrereq>TECH_PRIESTHOOD</TechPrereq>
             <UnitCombatMods>
                 <UnitCombatMod>
                     <UnitCombatType>UNITCOMBAT_DISCIPLE</UnitCombatType>
@@ -6910,6 +6931,17 @@
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
         <PromotionInfo>
+            <Type>PROMOTION_ESUS_AGENT</Type>
+            <Description>TXT_KEY_PROMOTION_ESUS_AGENT</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <TechPrereq>TECH_NEVER</TechPrereq>
+            <Button>Art/Interface/Buttons/Promotions/steward_of_esus.dds</Button>
+            <DamageTypeCombats>
+            </DamageTypeCombats>
+            <DamageTypeResists>
+            </DamageTypeResists>
+        </PromotionInfo>
+        <PromotionInfo>
             <Type>PROMOTION_STIGMATA</Type>
             <Description>TXT_KEY_PROMOTION_STIGMATA</Description>
             <Help>TXT_KEY_PROMOTION_STIGMATA_PEDIA</Help>
@@ -7448,7 +7480,7 @@
             <Description>TXT_KEY_PROMOTION_UNDEAD_SLAYING</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
             <PromotionPrereq>PROMOTION_COMBAT1</PromotionPrereq>
-            <TechPrereq>TECH_WAY_OF_THE_WISE</TechPrereq>
+            <TechPrereq>TECH_PRIESTHOOD</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_BEAST</UnitCombatType>
@@ -7871,6 +7903,7 @@
             <bMutation>1</bMutation>
             <bPrereqAlive>1</bPrereqAlive>
             <iAIWeight>-100</iAIWeight>
+            <iExtraCombatDefense>-1</iExtraCombatDefense>
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
         <PromotionInfo>

@@ -276,14 +276,14 @@
 				<iGlobalReligionCommerce>0</iGlobalReligionCommerce>
 			</GlobalReligionCommerces>
 			<HolyCityCommerces>
+				<iHolyCityCommerce>2</iHolyCityCommerce>
 				<iHolyCityCommerce>0</iHolyCityCommerce>
 				<iHolyCityCommerce>0</iHolyCityCommerce>
-				<iHolyCityCommerce>4</iHolyCityCommerce>
 			</HolyCityCommerces>
 			<StateReligionCommerces>
-				<iStateReligionCommerce>0</iStateReligionCommerce>
-				<iStateReligionCommerce>0</iStateReligionCommerce>
 				<iStateReligionCommerce>1</iStateReligionCommerce>
+				<iStateReligionCommerce>0</iStateReligionCommerce>
+				<iStateReligionCommerce>0</iStateReligionCommerce>
 			</StateReligionCommerces>
 			<Button>Art/Interface/Buttons/Religions/Council of Esus.dds</Button>
 			<TechButton>Art/Interface/Buttons/Religions/Council of Esus.dds</TechButton>
