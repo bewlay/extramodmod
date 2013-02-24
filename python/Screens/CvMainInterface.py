@@ -4952,9 +4952,10 @@ class CvMainInterface:
 
 # BUG - Power Rating - start
 ## Advanced Tactics: Advanced Diplomacy - Embassy required to see power ratios
-#				bShowPower = ScoreOpt.isShowPower()
+### ExtraModMod: Allow to see the power ratios inconditionally.
+				bShowPower = ScoreOpt.isShowPower()
 #				bShowPower = gc.getGame().isDebugMode() and ScoreOpt.isShowPower()
-				bShowPower = gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS) and ScoreOpt.isShowPower()
+#				bShowPower = gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS) and ScoreOpt.isShowPower()
 				if (bShowPower):
 					iPlayerPower = gc.getActivePlayer().getPower()
 					iPowerColor = ScoreOpt.getPowerColor()
@@ -5213,11 +5214,13 @@ class CvMainInterface:
 # BUG - Power Rating - start
 												# if on, show according to espionage "see demographics" mission
 												# Advanced Tactics - only display power rating for civs we have an embassy with
+												### ExtraModMod: Allow to see the power ratios inconditionally.
 												pPlayer = gc.getActivePlayer()
 												if (bShowPower 
 													and (gc.getGame().getActivePlayer() != ePlayer
 														 and (not bEspionage or gc.getActivePlayer().canDoEspionageMission(iDemographicsMission, ePlayer, None, -1)))):
-													if ( gc.getTeam(pPlayer.getTeam()).isHasEmbassy(ePlayer)):
+#													if ( gc.getTeam(pPlayer.getTeam()).isHasEmbassy(ePlayer)):
+													if ( True ):
 														iPower = gc.getPlayer(ePlayer).getPower()
 														if (iPower > 0): # avoid divide by zero
 															fPowerRatio = float(iPlayerPower) / float(iPower)
