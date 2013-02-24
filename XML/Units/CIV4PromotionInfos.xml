@@ -5381,6 +5381,12 @@
             </TerrainDoubleMoves>
             <Button>Art/Interface/Buttons/Promotions/Nomad.dds</Button>
             <iMinLevel>-1</iMinLevel>
+            <DamageTypeResists>
+                <DamageTypeResist>
+                    <DamageType>DAMAGE_FIRE</DamageType>
+                    <iResist>20</iResist>
+                </DamageTypeResist>
+            </DamageTypeResists>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_ORC</Type>
