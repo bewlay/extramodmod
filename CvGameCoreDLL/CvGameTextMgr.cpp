@@ -13684,6 +13684,19 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_MILITARY_MOD", kBuilding.getMilitaryProductionModifier()));
 	}
 
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	if (kBuilding.getLivingProductionModifier() != 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_LIVING_MOD", kBuilding.getLivingProductionModifier()));
+	}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
+
 	if (kBuilding.getSpaceProductionModifier() != 0)
 	{
 		szBuffer.append(NEWLINE);
@@ -19253,6 +19266,25 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 				iBaseModifier += iMilitaryMod;
 			}
 		}
+
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+		// Living
+		if (unit.isAlive(GET_PLAYER(city.getOwnerINLINE()).getCivilizationType()))
+		{
+			int iLivingMod = city.getLivingProductionModifier();
+			if (0 != iLivingMod)
+			{
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_LIVING", iLivingMod));
+				szBuffer.append(NEWLINE);
+				iBaseModifier += iLivingMod;
+			}
+		}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 
 		// Bonus
 		for (int i = 0; i < GC.getNumBonusInfos(); i++)

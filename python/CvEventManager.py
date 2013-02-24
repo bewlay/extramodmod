@@ -1288,6 +1288,13 @@ class CvEventManager:
 					unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CHAOS2'), True)
 					if (iNum > 3 and unit.isHasPromotion(iChanneling3)):
 						unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CHAOS3'), True)
+			iNum = pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_CREATION'))
+			if iNum > 1:
+				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CREATION1'), True)
+				if (iNum > 2 and unit.isHasPromotion(iChanneling2)):
+					unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CREATION2'), True)
+					if (iNum > 3 and unit.isHasPromotion(iChanneling3)):
+						unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CREATION3'), True)
 			iNum = pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_DEATH'))
 			if iNum > 1:
 				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DEATH1'), True)
@@ -1295,6 +1302,13 @@ class CvEventManager:
 					unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DEATH2'), True)
 					if (iNum > 3 and unit.isHasPromotion(iChanneling3)):
 						unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DEATH3'), True)
+			iNum = pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_DIMENSIONAL'))
+			if iNum > 1:
+				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DIMENSIONAL1'), True)
+				if (iNum > 2 and unit.isHasPromotion(iChanneling2)):
+					unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DIMENSIONAL2'), True)
+					if (iNum > 3 and unit.isHasPromotion(iChanneling3)):
+						unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DIMENSIONAL3'), True)
 			iNum = pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_EARTH'))
 			if iNum > 1:
 				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_EARTH1'), True)
@@ -1323,6 +1337,13 @@ class CvEventManager:
 					unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_FIRE2'), True)
 					if (iNum > 3 and unit.isHasPromotion(iChanneling3)):
 						unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_FIRE3'), True)
+			iNum = pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_FORCE'))
+			if iNum > 1:
+				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_FORCE1'), True)
+				if (iNum > 2 and unit.isHasPromotion(iChanneling2)):
+					unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_FORCE2'), True)
+					if (iNum > 3 and unit.isHasPromotion(iChanneling3)):
+						unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_FORCE3'), True)
 			iNum = pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_ICE'))
 			if iNum > 1:
 				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ICE1'), True)
@@ -1544,6 +1565,10 @@ class CvEventManager:
 						if unit.isAlive():
 							newUnit = pPlayer.initUnit(unit.getUnitType(), city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 							city.applyBuildEffects(newUnit)
+
+		if city.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_BLESSING')) > 0:
+			if unit.isAlive() and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_WORKER') and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_SETTLE'):
+				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_STRONG'), True)
 
 		CvAdvisorUtils.unitBuiltFeats(city, unit)
 		

@@ -30,8 +30,8 @@
             <iMinLatitude>0</iMinLatitude>
             <iMaxLatitude>90</iMaxLatitude>
             <Rands>
-                <iRandApp1>10</iRandApp1>
-                <iRandApp2>10</iRandApp2>
+                <iRandApp1>11</iRandApp1>
+                <iRandApp2>11</iRandApp2>
                 <iRandApp3>0</iRandApp3>
                 <iRandApp4>0</iRandApp4>
             </Rands>
@@ -692,6 +692,65 @@
             <DamageType>DAMAGE_FIRE</DamageType>
             <FreePromotion>NONE</FreePromotion>
 			<bMana>1</bMana>
+        </BonusInfo>
+        <BonusInfo>
+            <Type>BONUS_MANA_FORCE</Type>
+            <Description>TXT_KEY_BONUS_MANA_FORCE</Description>
+            <Civilopedia>TXT_KEY_BONUS_MANA_FORCE_PEDIA</Civilopedia>
+            <BonusClassType>BONUSCLASS_MANA</BonusClassType>
+            <ArtDefineTag>ART_DEF_BONUS_MANA_FORCE</ArtDefineTag>
+            <TechReveal>NONE</TechReveal>
+            <TechCityTrade>TECH_ALTERATION</TechCityTrade>
+            <TechObsolete>NONE</TechObsolete>
+            <YieldChanges>
+                <iYieldChange>0</iYieldChange>
+                <iYieldChange>0</iYieldChange>
+                <iYieldChange>0</iYieldChange>
+            </YieldChanges>
+            <iAITradeModifier>90</iAITradeModifier>
+            <iAIObjective>10</iAIObjective>
+            <iHealth>0</iHealth>
+            <iHappiness>0</iHappiness>
+            <iPlacementOrder>-1</iPlacementOrder>
+            <iConstAppearance>0</iConstAppearance>
+            <iMinAreaSize>-1</iMinAreaSize>
+            <iMinLatitude>0</iMinLatitude>
+            <iMaxLatitude>90</iMaxLatitude>
+            <Rands>
+                <iRandApp1>0</iRandApp1>
+                <iRandApp2>0</iRandApp2>
+                <iRandApp3>0</iRandApp3>
+                <iRandApp4>0</iRandApp4>
+            </Rands>
+            <iPlayer>0</iPlayer>
+            <iTilesPer>0</iTilesPer>
+            <iMinLandPercent>0</iMinLandPercent>
+            <iUnique>0</iUnique>
+            <iGroupRange>0</iGroupRange>
+            <iGroupRand>0</iGroupRand>
+            <bArea>0</bArea>
+            <bHills>1</bHills>
+            <bFlatlands>1</bFlatlands>
+            <bNoRiverSide>0</bNoRiverSide>
+            <bNormalize>0</bNormalize>
+            <TerrainBooleans>
+            </TerrainBooleans>
+            <FeatureBooleans>
+            </FeatureBooleans>
+            <FeatureTerrainBooleans>
+            </FeatureTerrainBooleans>
+            <bModifierPerBonus>1</bModifierPerBonus>
+            <iBadAttitude>0</iBadAttitude>
+            <iDiscoverRandModifier>0</iDiscoverRandModifier>
+            <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+            <iHealChange>0</iHealChange>
+            <iHealChangeEnemy>0</iHealChangeEnemy>
+            <iMaintenanceModifier>-5</iMaintenanceModifier>
+            <iMutateChance>0</iMutateChance>
+            <iResearchModifier>0</iResearchModifier>
+            <DamageType>DAMAGE_FORCE</DamageType>
+            <FreePromotion>NONE</FreePromotion>
+            <bMana>1</bMana>
         </BonusInfo>
         <BonusInfo>
             <Type>BONUS_BANANA</Type>
@@ -2738,6 +2797,124 @@
             <DamageType>NONE</DamageType>
             <FreePromotion>NONE</FreePromotion>
 			<bMana>1</bMana>
+        </BonusInfo>
+        <BonusInfo>
+            <Type>BONUS_MANA_CREATION</Type>
+            <Description>TXT_KEY_BONUS_MANA_CREATION</Description>
+            <Civilopedia>TXT_KEY_BONUS_MANA_CREATION_PEDIA</Civilopedia>
+            <BonusClassType>BONUSCLASS_MANA</BonusClassType>
+            <ArtDefineTag>ART_DEF_BONUS_MANA_CREATION</ArtDefineTag>
+            <TechReveal>NONE</TechReveal>
+            <TechCityTrade>TECH_DIVINATION</TechCityTrade>
+            <TechObsolete>NONE</TechObsolete>
+            <YieldChanges>
+                <iYieldChange>0</iYieldChange>
+                <iYieldChange>0</iYieldChange>
+                <iYieldChange>0</iYieldChange>
+            </YieldChanges>
+            <iAITradeModifier>90</iAITradeModifier>
+            <iAIObjective>10</iAIObjective>
+            <iHealth>1</iHealth>
+            <iHappiness>0</iHappiness>
+            <iPlacementOrder>-1</iPlacementOrder>
+            <iConstAppearance>0</iConstAppearance>
+            <iMinAreaSize>-1</iMinAreaSize>
+            <iMinLatitude>0</iMinLatitude>
+            <iMaxLatitude>90</iMaxLatitude>
+            <Rands>
+                <iRandApp1>0</iRandApp1>
+                <iRandApp2>0</iRandApp2>
+                <iRandApp3>0</iRandApp3>
+                <iRandApp4>0</iRandApp4>
+            </Rands>
+            <iPlayer>0</iPlayer>
+            <iTilesPer>0</iTilesPer>
+            <iMinLandPercent>0</iMinLandPercent>
+            <iUnique>0</iUnique>
+            <iGroupRange>0</iGroupRange>
+            <iGroupRand>0</iGroupRand>
+            <bArea>0</bArea>
+            <bHills>1</bHills>
+            <bFlatlands>1</bFlatlands>
+            <bNoRiverSide>0</bNoRiverSide>
+            <bNormalize>0</bNormalize>
+            <TerrainBooleans>
+            </TerrainBooleans>
+            <FeatureBooleans>
+            </FeatureBooleans>
+            <FeatureTerrainBooleans>
+            </FeatureTerrainBooleans>
+            <bModifierPerBonus>1</bModifierPerBonus>
+            <iBadAttitude>0</iBadAttitude>
+            <iDiscoverRandModifier>0</iDiscoverRandModifier>
+            <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+            <iHealChange>0</iHealChange>
+            <iHealChangeEnemy>0</iHealChangeEnemy>
+            <iMaintenanceModifier>0</iMaintenanceModifier>
+            <iMutateChance>0</iMutateChance>
+            <iResearchModifier>0</iResearchModifier>
+            <DamageType>NONE</DamageType>
+            <FreePromotion>NONE</FreePromotion>
+            <bMana>1</bMana>
+        </BonusInfo>
+        <BonusInfo>
+            <Type>BONUS_MANA_DIMENSIONAL</Type>
+            <Description>TXT_KEY_BONUS_MANA_DIMENSIONAL</Description>
+            <Civilopedia>TXT_KEY_BONUS_MANA_DIMENSIONAL_PEDIA</Civilopedia>
+            <BonusClassType>BONUSCLASS_MANA</BonusClassType>
+            <ArtDefineTag>ART_DEF_BONUS_MANA_DIMENSIONAL</ArtDefineTag>
+            <TechReveal>NONE</TechReveal>
+            <TechCityTrade>TECH_NECROMANCY</TechCityTrade>
+            <TechObsolete>NONE</TechObsolete>
+            <YieldChanges>
+                <iYieldChange>0</iYieldChange>
+                <iYieldChange>0</iYieldChange>
+                <iYieldChange>0</iYieldChange>
+            </YieldChanges>
+            <iAITradeModifier>90</iAITradeModifier>
+            <iAIObjective>10</iAIObjective>
+            <iHealth>0</iHealth>
+            <iHappiness>0</iHappiness>
+            <iPlacementOrder>-1</iPlacementOrder>
+            <iConstAppearance>0</iConstAppearance>
+            <iMinAreaSize>-1</iMinAreaSize>
+            <iMinLatitude>0</iMinLatitude>
+            <iMaxLatitude>90</iMaxLatitude>
+            <Rands>
+                <iRandApp1>0</iRandApp1>
+                <iRandApp2>0</iRandApp2>
+                <iRandApp3>0</iRandApp3>
+                <iRandApp4>0</iRandApp4>
+            </Rands>
+            <iPlayer>0</iPlayer>
+            <iTilesPer>0</iTilesPer>
+            <iMinLandPercent>0</iMinLandPercent>
+            <iUnique>0</iUnique>
+            <iGroupRange>0</iGroupRange>
+            <iGroupRand>0</iGroupRand>
+            <bArea>0</bArea>
+            <bHills>0</bHills>
+            <bFlatlands>0</bFlatlands>
+            <bNoRiverSide>0</bNoRiverSide>
+            <bNormalize>0</bNormalize>
+            <TerrainBooleans>
+            </TerrainBooleans>
+            <FeatureBooleans>
+            </FeatureBooleans>
+            <FeatureTerrainBooleans>
+            </FeatureTerrainBooleans>
+            <bModifierPerBonus>0</bModifierPerBonus>
+            <iBadAttitude>-1</iBadAttitude>
+            <iDiscoverRandModifier>0</iDiscoverRandModifier>
+            <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+            <iHealChange>0</iHealChange>
+            <iHealChangeEnemy>0</iHealChangeEnemy>
+            <iMaintenanceModifier>0</iMaintenanceModifier>
+            <iMutateChance>0</iMutateChance>
+            <iResearchModifier>0</iResearchModifier>
+            <DamageType>DAMAGE_UNHOLY</DamageType>
+            <FreePromotion>NONE</FreePromotion>
+            <bMana>1</bMana>
         </BonusInfo>
         <BonusInfo>
             <Type>BONUS_MANA_EARTH</Type>

@@ -5701,7 +5701,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -5718,6 +5726,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -5997,7 +6009,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -6014,6 +6034,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -6307,7 +6331,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -6324,6 +6356,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -8942,7 +8978,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -8959,6 +9003,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -9242,7 +9290,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -9259,6 +9315,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -10852,6 +10912,10 @@
             <FreePromotions>
                 <FreePromotion>
                     <PromotionType>PROMOTION_MARKSMAN</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_DIMENSIONAL1</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
             </FreePromotions>
@@ -26790,6 +26854,18 @@
                     <BonusType>BONUS_MANA_ICE</BonusType>
                     <iAffinity>1</iAffinity>
                 </BonusAffinity>
+                <BonusAffinity>
+                    <BonusType>BONUS_MANA_CREATION</BonusType>
+                    <iAffinity>1</iAffinity>
+                </BonusAffinity>
+                <BonusAffinity>
+                    <BonusType>BONUS_MANA_FORCE</BonusType>
+                    <iAffinity>1</iAffinity>
+                </BonusAffinity>
+                <BonusAffinity>
+                    <BonusType>BONUS_MANA_DIMENSIONAL</BonusType>
+                    <iAffinity>1</iAffinity>
+                </BonusAffinity>
             </BonusAffinities>
         </UnitInfo>
         <UnitInfo>
@@ -32792,7 +32868,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -32809,6 +32893,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -33375,12 +33463,12 @@
             </TerrainImpassables>
             <FeatureImpassables>
             </FeatureImpassables>
-						<TerrainPassableTechs>
-								<TerrainPassableTech>
-										<TerrainType>TERRAIN_OCEAN</TerrainType>
-										<PassableTech>TECH_OPTICS</PassableTech>
-								</TerrainPassableTech>
-						</TerrainPassableTechs>
+                    	<TerrainPassableTechs>
+                    			<TerrainPassableTech>
+                                        <TerrainType>TERRAIN_OCEAN</TerrainType>
+                                        <PassableTech>TECH_OPTICS</PassableTech>
+                    			</TerrainPassableTech>
+                    	</TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
             <iCombat>4</iCombat>
@@ -34646,7 +34734,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -34663,6 +34759,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -36476,7 +36576,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -36493,6 +36601,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -38623,6 +38735,10 @@
             <NotUnitAIs>
             </NotUnitAIs>
             <Builds>
+                <Build>
+                    <BuildType>BUILD_MANA_ICE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
             </Builds>
             <ReligionSpreads>
             </ReligionSpreads>
@@ -46177,7 +46293,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -46194,6 +46318,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -48953,7 +49081,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -48970,6 +49106,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -49258,7 +49398,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -49275,6 +49423,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -49559,7 +49711,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -49576,6 +49736,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -49995,6 +50159,234 @@
             <iWeaponTier>3</iWeaponTier>
 	    <PrereqCiv>CIVILIZATION_HIPPUS</PrereqCiv>
             <Image>Art/Interface/Popups/Magnadine.dds</Image>
+        </UnitInfo>
+        <UnitInfo>
+            <Class>UNITCLASS_MAGIC_MISSILE</Class>
+            <Type>UNIT_MAGIC_MISSILE</Type>
+            <UniqueNames>
+            </UniqueNames>
+            <Special>SPECIALUNIT_SPELL</Special>
+            <Capture>NONE</Capture>
+            <Combat>NONE</Combat>
+            <Domain>DOMAIN_LAND</Domain>
+            <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+            <Invisible>NONE</Invisible>
+            <SeeInvisible>NONE</SeeInvisible>
+            <Description>TXT_KEY_UNIT_MAGIC_MISSILE</Description>
+            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Strategy></Strategy>
+            <Advisor>ADVISOR_MILITARY</Advisor>
+            <bAnimal>0</bAnimal>
+            <bFood>0</bFood>
+            <bNoBadGoodies>0</bNoBadGoodies>
+            <bOnlyDefensive>0</bOnlyDefensive>
+            <bNoCapture>1</bNoCapture>
+            <bQuickCombat>1</bQuickCombat>
+            <bRivalTerritory>0</bRivalTerritory>
+            <bMilitaryHappiness>0</bMilitaryHappiness>
+            <bMilitarySupport>0</bMilitarySupport>
+            <bMilitaryProduction>0</bMilitaryProduction>
+            <bPillage>0</bPillage>
+            <bSpy>0</bSpy>
+            <bSabotage>0</bSabotage>
+            <bDestroy>0</bDestroy>
+            <bStealPlans>0</bStealPlans>
+            <bInvestigate>0</bInvestigate>
+            <bCounterSpy>0</bCounterSpy>
+            <bFound>0</bFound>
+            <bGoldenAge>0</bGoldenAge>
+            <bInvisible>0</bInvisible>
+            <bFirstStrikeImmune>1</bFirstStrikeImmune>
+            <bNoDefensiveBonus>0</bNoDefensiveBonus>
+            <bIgnoreBuildingDefense>0</bIgnoreBuildingDefense>
+            <bCanMoveImpassable>0</bCanMoveImpassable>
+            <bCanMoveAllTerrain>0</bCanMoveAllTerrain>
+            <bFlatMovementCost>1</bFlatMovementCost>
+            <bIgnoreTerrainCost>1</bIgnoreTerrainCost>
+            <bNukeImmune>0</bNukeImmune>
+            <bPrereqBonuses>0</bPrereqBonuses>
+            <bPrereqReligion>0</bPrereqReligion>
+            <bMechanized>0</bMechanized>
+            <bSuicide>1</bSuicide>
+            <bHiddenNationality>0</bHiddenNationality>
+            <bAlwaysHostile>0</bAlwaysHostile>
+            <UnitClassUpgrades>
+            </UnitClassUpgrades>
+            <UnitClassTargets>
+            </UnitClassTargets>
+            <UnitCombatTargets>
+            </UnitCombatTargets>
+            <UnitClassDefenders>
+            </UnitClassDefenders>
+            <UnitCombatDefenders>
+            </UnitCombatDefenders>
+            <FlankingStrikes>
+            </FlankingStrikes>
+            <UnitAIs>
+                <UnitAI>
+                    <UnitAIType>UNITAI_ATTACK_CITY_LEMMING</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+            </UnitAIs>
+            <NotUnitAIs>
+            </NotUnitAIs>
+            <Builds>
+            </Builds>
+            <ReligionSpreads>
+            </ReligionSpreads>
+            <CorporationSpreads>
+            </CorporationSpreads>
+            <GreatPeoples>
+            </GreatPeoples>
+            <Buildings>
+            </Buildings>
+            <ForceBuildings>
+            </ForceBuildings>
+            <HolyCity>NONE</HolyCity>
+            <ReligionType>NONE</ReligionType>
+            <StateReligion>NONE</StateReligion>
+            <PrereqReligion>NONE</PrereqReligion>
+            <PrereqCorporation>NONE</PrereqCorporation>
+            <PrereqBuilding>NONE</PrereqBuilding>
+            <PrereqTech>NONE</PrereqTech>
+            <TechTypes>
+            </TechTypes>
+            <BonusType>NONE</BonusType>
+            <PrereqBonuses>
+            </PrereqBonuses>
+            <ProductionTraits>
+            </ProductionTraits>
+            <Flavors>
+                <Flavor>
+                    <FlavorType>FLAVOR_SCIENCE</FlavorType>
+                    <iFlavor>1</iFlavor>
+                </Flavor>
+            </Flavors>
+            <iAIWeight>0</iAIWeight>
+            <iCost>-1</iCost>
+            <iHurryCostModifier>0</iHurryCostModifier>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+            <iMinAreaSize>-1</iMinAreaSize>
+            <iMoves>1</iMoves>
+            <bNoRevealMap>0</bNoRevealMap>
+            <iAirRange>0</iAirRange>
+            <iAirUnitCap>0</iAirUnitCap>
+            <iDropRange>0</iDropRange>
+            <iNukeRange>-1</iNukeRange>
+            <iWorkRate>0</iWorkRate>
+            <iBaseDiscover>0</iBaseDiscover>
+            <iDiscoverMultiplier>0</iDiscoverMultiplier>
+            <iBaseHurry>0</iBaseHurry>
+            <iHurryMultiplier>0</iHurryMultiplier>
+            <iBaseTrade>0</iBaseTrade>
+            <iTradeMultiplier>0</iTradeMultiplier>
+            <iGreatWorkCulture>0</iGreatWorkCulture>
+            <iEspionagePoints>0</iEspionagePoints>
+            <TerrainImpassables>
+            </TerrainImpassables>
+            <FeatureImpassables>
+            </FeatureImpassables>
+            <TerrainPassableTechs>
+            </TerrainPassableTechs>
+            <FeaturePassableTechs>
+            </FeaturePassableTechs>
+            <iCombat>0</iCombat>
+            <iCombatLimit>100</iCombatLimit>
+            <iAirCombat>0</iAirCombat>
+            <iAirCombatLimit>0</iAirCombatLimit>
+            <iXPValueAttack>0</iXPValueAttack>
+            <iXPValueDefense>0</iXPValueDefense>
+            <iFirstStrikes>0</iFirstStrikes>
+            <iChanceFirstStrikes>0</iChanceFirstStrikes>
+            <iInterceptionProbability>0</iInterceptionProbability>
+            <iEvasionProbability>0</iEvasionProbability>
+            <iWithdrawalProb>0</iWithdrawalProb>
+            <iCollateralDamage>0</iCollateralDamage>
+            <iCollateralDamageLimit>0</iCollateralDamageLimit>
+            <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
+            <iCityAttack>0</iCityAttack>
+            <iCityDefense>0</iCityDefense>
+            <iAnimalCombat>0</iAnimalCombat>
+            <iHillsAttack>0</iHillsAttack>
+            <iHillsDefense>0</iHillsDefense>
+            <TerrainNatives>
+            </TerrainNatives>
+            <FeatureNatives>
+            </FeatureNatives>
+            <TerrainAttacks>
+            </TerrainAttacks>
+            <TerrainDefenses>
+            </TerrainDefenses>
+            <FeatureAttacks>
+            </FeatureAttacks>
+            <FeatureDefenses>
+            </FeatureDefenses>
+            <UnitClassAttackMods>
+            </UnitClassAttackMods>
+            <UnitClassDefenseMods>
+            </UnitClassDefenseMods>
+            <UnitCombatMods>
+            </UnitCombatMods>
+            <UnitCombatCollateralImmunes>
+            </UnitCombatCollateralImmunes>
+            <DomainMods>
+            </DomainMods>
+            <BonusProductionModifiers>
+            </BonusProductionModifiers>
+            <iBombRate>0</iBombRate>
+            <iBombardRate>5</iBombardRate>
+            <SpecialCargo>NONE</SpecialCargo>
+            <DomainCargo>NONE</DomainCargo>
+            <iCargo>0</iCargo>
+            <iConscription>0</iConscription>
+            <iCultureGarrison>3</iCultureGarrison>
+            <iExtraCost>0</iExtraCost>
+            <iAsset>0</iAsset>
+            <iPower>6</iPower>
+            <UnitMeshGroups>
+            <iGroupSize>1</iGroupSize>
+            <fMaxSpeed>1.75</fMaxSpeed>
+            <fPadTime>1</fPadTime>
+            <iMeleeWaveSize>1</iMeleeWaveSize>
+            <iRangedWaveSize>0</iRangedWaveSize>
+                <UnitMeshGroup>
+                    <iRequired>1</iRequired>
+                    <EarlyArtDefineTag>ART_DEF_UNIT_FIREBALL</EarlyArtDefineTag>
+                </UnitMeshGroup>
+            </UnitMeshGroups>
+            <FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+            <HotKey></HotKey>
+            <bAltDown>0</bAltDown>
+            <bShiftDown>0</bShiftDown>
+            <bCtrlDown>0</bCtrlDown>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <iHotKeyPriority>0</iHotKeyPriority>
+            <FreePromotions>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_ELEMENTAL</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_FLYING</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_MARKSMAN</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+            </FreePromotions>
+            <LeaderPromotion>NONE</LeaderPromotion>
+            <iLeaderExperience>0</iLeaderExperience>
+            <bExplodeInCombat>1</bExplodeInCombat>
+            <bNoWarWeariness>1</bNoWarWeariness>
+            <iTier>3</iTier>
+            <DamageTypeCombats>
+                <DamageTypeCombat>
+                    <DamageType>DAMAGE_FORCE</DamageType>
+                    <iCombat>5</iCombat>
+                </DamageTypeCombat>
+            </DamageTypeCombats>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_MAN_O_WAR</Class>
@@ -53693,7 +54085,15 @@
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
+                    <BuildType>BUILD_MANA_CREATION</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
                     <BuildType>BUILD_MANA_DEATH</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -53710,6 +54110,10 @@
                 </Build>
                 <Build>
                     <BuildType>BUILD_MANA_FIRE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
+                <Build>
+                    <BuildType>BUILD_MANA_FORCE</BuildType>
                     <bBuild>1</bBuild>
                 </Build>
                 <Build>
@@ -58490,6 +58894,10 @@
             <NotUnitAIs>
             </NotUnitAIs>
             <Builds>
+                <Build>
+                    <BuildType>BUILD_MANA_ICE</BuildType>
+                    <bBuild>1</bBuild>
+                </Build>
             </Builds>
             <ReligionSpreads>
             </ReligionSpreads>
@@ -60495,6 +60903,219 @@
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
             <iWeaponTier>3</iWeaponTier>
+        </UnitInfo>
+        <UnitInfo>
+            <Class>UNITCLASS_SEVERED_SOUL</Class>
+            <Type>UNIT_RIFT</Type>
+            <UniqueNames>
+            </UniqueNames>
+            <Special>NONE</Special>
+            <Capture>NONE</Capture>
+            <Combat>NONE</Combat>
+            <Domain>DOMAIN_LAND</Domain>
+            <DefaultUnitAI>UNITAI_EXPLORE</DefaultUnitAI>
+            <Invisible>INVISIBLE_ALL</Invisible>
+            <SeeInvisible>NONE</SeeInvisible>
+            <Description>TXT_KEY_UNIT_RIFT</Description>
+            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Strategy>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Strategy>
+            <Advisor>ADVISOR_MILITARY</Advisor>
+            <bAnimal>0</bAnimal>
+            <bFood>0</bFood>
+            <bNoBadGoodies>0</bNoBadGoodies>
+            <bOnlyDefensive>1</bOnlyDefensive>
+            <bNoCapture>1</bNoCapture>
+            <bQuickCombat>0</bQuickCombat>
+            <bRivalTerritory>1</bRivalTerritory>
+            <bMilitaryHappiness>0</bMilitaryHappiness>
+            <bMilitarySupport>0</bMilitarySupport>
+            <bMilitaryProduction>0</bMilitaryProduction>
+            <bPillage>0</bPillage>
+            <bSpy>0</bSpy>
+            <bSabotage>0</bSabotage>
+            <bDestroy>0</bDestroy>
+            <bStealPlans>0</bStealPlans>
+            <bInvestigate>0</bInvestigate>
+            <bCounterSpy>0</bCounterSpy>
+            <bFound>0</bFound>
+            <bGoldenAge>0</bGoldenAge>
+            <bInvisible>0</bInvisible>
+            <bFirstStrikeImmune>0</bFirstStrikeImmune>
+            <bNoDefensiveBonus>0</bNoDefensiveBonus>
+            <bIgnoreBuildingDefense>0</bIgnoreBuildingDefense>
+            <bCanMoveImpassable>1</bCanMoveImpassable>
+            <bCanMoveAllTerrain>1</bCanMoveAllTerrain>
+            <bFlatMovementCost>0</bFlatMovementCost>
+            <bIgnoreTerrainCost>1</bIgnoreTerrainCost>
+            <bNukeImmune>0</bNukeImmune>
+            <bPrereqBonuses>0</bPrereqBonuses>
+            <bPrereqReligion>0</bPrereqReligion>
+            <bMechanized>0</bMechanized>
+            <bSuicide>0</bSuicide>
+            <bHiddenNationality>1</bHiddenNationality>
+            <bAlwaysHostile>0</bAlwaysHostile>
+            <UnitClassUpgrades>
+            </UnitClassUpgrades>
+            <UnitClassTargets>
+            </UnitClassTargets>
+            <UnitCombatTargets>
+            </UnitCombatTargets>
+            <UnitClassDefenders>
+            </UnitClassDefenders>
+            <UnitCombatDefenders>
+            </UnitCombatDefenders>
+            <FlankingStrikes>
+            </FlankingStrikes>
+            <UnitAIs>
+                <UnitAI>
+                    <UnitAIType>UNITAI_EXPLORE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+            </UnitAIs>
+            <NotUnitAIs>
+            </NotUnitAIs>
+            <Builds>
+            </Builds>
+            <ReligionSpreads>
+            </ReligionSpreads>
+            <CorporationSpreads>
+            </CorporationSpreads>
+            <GreatPeoples>
+            </GreatPeoples>
+            <Buildings>
+            </Buildings>
+            <ForceBuildings>
+            </ForceBuildings>
+            <HolyCity>NONE</HolyCity>
+            <ReligionType>NONE</ReligionType>
+            <StateReligion>NONE</StateReligion>
+            <PrereqReligion>NONE</PrereqReligion>
+            <PrereqCorporation>NONE</PrereqCorporation>
+            <PrereqBuilding>NONE</PrereqBuilding>
+            <PrereqTech>NONE</PrereqTech>
+            <TechTypes>
+            </TechTypes>
+            <BonusType>NONE</BonusType>
+            <PrereqBonuses>
+            </PrereqBonuses>
+            <ProductionTraits>
+            </ProductionTraits>
+            <Flavors>
+            </Flavors>
+            <iAIWeight>0</iAIWeight>
+            <iCost>-1</iCost>
+            <iHurryCostModifier>0</iHurryCostModifier>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+            <iMinAreaSize>-1</iMinAreaSize>
+            <iMoves>12</iMoves>
+            <bNoRevealMap>1</bNoRevealMap>
+            <iAirRange>0</iAirRange>
+            <iAirUnitCap>0</iAirUnitCap>
+            <iDropRange>0</iDropRange>
+            <iNukeRange>-1</iNukeRange>
+            <iWorkRate>0</iWorkRate>
+            <iBaseDiscover>0</iBaseDiscover>
+            <iDiscoverMultiplier>0</iDiscoverMultiplier>
+            <iBaseHurry>0</iBaseHurry>
+            <iHurryMultiplier>0</iHurryMultiplier>
+            <iBaseTrade>0</iBaseTrade>
+            <iTradeMultiplier>0</iTradeMultiplier>
+            <iGreatWorkCulture>0</iGreatWorkCulture>
+            <iEspionagePoints>0</iEspionagePoints>
+            <TerrainImpassables>
+            </TerrainImpassables>
+            <FeatureImpassables>
+            </FeatureImpassables>
+            <TerrainPassableTechs>
+            </TerrainPassableTechs>
+            <FeaturePassableTechs>
+            </FeaturePassableTechs>
+            <iCombat>1</iCombat>
+            <iCombatLimit>100</iCombatLimit>
+            <iAirCombat>0</iAirCombat>
+            <iAirCombatLimit>0</iAirCombatLimit>
+            <iXPValueAttack>0</iXPValueAttack>
+            <iXPValueDefense>0</iXPValueDefense>
+            <iFirstStrikes>0</iFirstStrikes>
+            <iChanceFirstStrikes>0</iChanceFirstStrikes>
+            <iInterceptionProbability>0</iInterceptionProbability>
+            <iEvasionProbability>0</iEvasionProbability>
+            <iWithdrawalProb>0</iWithdrawalProb>
+            <iCollateralDamage>0</iCollateralDamage>
+            <iCollateralDamageLimit>0</iCollateralDamageLimit>
+            <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
+            <iCityAttack>0</iCityAttack>
+            <iCityDefense>0</iCityDefense>
+            <iAnimalCombat>0</iAnimalCombat>
+            <iHillsAttack>0</iHillsAttack>
+            <iHillsDefense>0</iHillsDefense>
+            <TerrainNatives>
+            </TerrainNatives>
+            <FeatureNatives>
+            </FeatureNatives>
+            <TerrainAttacks>
+            </TerrainAttacks>
+            <TerrainDefenses>
+            </TerrainDefenses>
+            <FeatureAttacks>
+            </FeatureAttacks>
+            <FeatureDefenses>
+            </FeatureDefenses>
+            <UnitClassAttackMods>
+            </UnitClassAttackMods>
+            <UnitClassDefenseMods>
+            </UnitClassDefenseMods>
+            <UnitCombatMods>
+            </UnitCombatMods>
+            <UnitCombatCollateralImmunes>
+            </UnitCombatCollateralImmunes>
+            <DomainMods>
+            </DomainMods>
+            <BonusProductionModifiers>
+            </BonusProductionModifiers>
+            <iBombRate>0</iBombRate>
+            <iBombardRate>0</iBombardRate>
+            <SpecialCargo>NONE</SpecialCargo>
+            <DomainCargo>NONE</DomainCargo>
+            <iCargo>0</iCargo>
+            <iConscription>0</iConscription>
+            <iCultureGarrison>0</iCultureGarrison>
+            <iExtraCost>0</iExtraCost>
+            <iAsset>2</iAsset>
+            <iPower>0</iPower>
+            <UnitMeshGroups>
+            <iGroupSize>1</iGroupSize>
+            <fMaxSpeed>1.75</fMaxSpeed>
+            <fPadTime>1</fPadTime>
+            <iMeleeWaveSize>1</iMeleeWaveSize>
+            <iRangedWaveSize>0</iRangedWaveSize>
+                <UnitMeshGroup>
+                    <iRequired>1</iRequired>
+                    <EarlyArtDefineTag>ART_DEF_UNIT_LIGHTNING_ELEMENTAL</EarlyArtDefineTag>
+                </UnitMeshGroup>
+            </UnitMeshGroups>
+            <FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+            <HotKey></HotKey>
+            <bAltDown>0</bAltDown>
+            <bShiftDown>0</bShiftDown>
+            <bCtrlDown>0</bCtrlDown>
+            <bGraphicalOnly>0</bGraphicalOnly>
+            <iHotKeyPriority>0</iHotKeyPriority>
+            <FreePromotions>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_RIFT</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_DIMENSIONAL3</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+            </FreePromotions>
+            <LeaderPromotion>NONE</LeaderPromotion>
+            <iLeaderExperience>0</iLeaderExperience>
+            <iCombatDefense>1</iCombatDefense>
+            <iTier>2</iTier>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_RANGER</Class>
@@ -63172,6 +63793,263 @@
             <iTier>3</iTier>
             <iWeaponTier>3</iWeaponTier>
             <PrereqCivic>CIVIC_ARISTOCRACY</PrereqCivic>
+        </UnitInfo>
+        <UnitInfo>
+            <Class>UNITCLASS_RUNEWYN</Class>
+            <Type>UNIT_RUNEWYN</Type>
+            <UniqueNames>
+            </UniqueNames>
+            <Special>NONE</Special>
+            <Capture>NONE</Capture>
+            <Combat>UNITCOMBAT_MELEE</Combat>
+            <Domain>DOMAIN_LAND</Domain>
+            <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+            <Invisible>NONE</Invisible>
+            <SeeInvisible>NONE</SeeInvisible>
+            <Description>TXT_KEY_UNIT_RUNEWYN</Description>
+            <Civilopedia>TXT_KEY_UNIT_RUNEWYN_PEDIA</Civilopedia>
+            <Strategy>TXT_KEY_SUMMON_RUNEWYN_HELP</Strategy>
+            <Advisor>ADVISOR_MILITARY</Advisor>
+            <bAnimal>0</bAnimal>
+            <bFood>0</bFood>
+            <bNoBadGoodies>0</bNoBadGoodies>
+            <bOnlyDefensive>0</bOnlyDefensive>
+            <bNoCapture>0</bNoCapture>
+            <bQuickCombat>0</bQuickCombat>
+            <bRivalTerritory>0</bRivalTerritory>
+            <bMilitaryHappiness>1</bMilitaryHappiness>
+            <bMilitarySupport>0</bMilitarySupport>
+            <bMilitaryProduction>1</bMilitaryProduction>
+            <bPillage>1</bPillage>
+            <bSpy>0</bSpy>
+            <bSabotage>0</bSabotage>
+            <bDestroy>0</bDestroy>
+            <bStealPlans>0</bStealPlans>
+            <bInvestigate>0</bInvestigate>
+            <bCounterSpy>0</bCounterSpy>
+            <bFound>0</bFound>
+            <bGoldenAge>0</bGoldenAge>
+            <bInvisible>0</bInvisible>
+            <bFirstStrikeImmune>0</bFirstStrikeImmune>
+            <bNoDefensiveBonus>0</bNoDefensiveBonus>
+            <bIgnoreBuildingDefense>0</bIgnoreBuildingDefense>
+            <bCanMoveImpassable>0</bCanMoveImpassable>
+            <bCanMoveAllTerrain>0</bCanMoveAllTerrain>
+            <bFlatMovementCost>0</bFlatMovementCost>
+            <bIgnoreTerrainCost>0</bIgnoreTerrainCost>
+            <bNukeImmune>0</bNukeImmune>
+            <bPrereqBonuses>0</bPrereqBonuses>
+            <bPrereqReligion>0</bPrereqReligion>
+            <bMechanized>0</bMechanized>
+            <bSuicide>0</bSuicide>
+            <bHiddenNationality>0</bHiddenNationality>
+            <bAlwaysHostile>0</bAlwaysHostile>
+            <UnitClassUpgrades>
+            </UnitClassUpgrades>
+			<UnitClassTargets>
+				<UnitClassTarget>
+					<UnitClassTargetType>UNITCLASS_ARCHMAGE</UnitClassTargetType>
+					<bUnitClassTarget>1</bUnitClassTarget>
+				</UnitClassTarget>
+			</UnitClassTargets>
+			<UnitCombatTargets>
+				<UnitCombatTarget>
+					<UnitCombatTargetType>UNITCOMBAT_ADEPT</UnitCombatTargetType>
+					<bUnitCombatTarget>1</bUnitCombatTarget>
+				</UnitCombatTarget>
+			</UnitCombatTargets>
+			<UnitClassDefenders>
+			</UnitClassDefenders>
+			<UnitCombatDefenders>
+				<UnitCombatDefender>
+					<UnitCombatDefenderType>UNITCOMBAT_ADEPT</UnitCombatDefenderType>
+					<bUnitCombatDefender>1</bUnitCombatDefender>
+				</UnitCombatDefender>
+			</UnitCombatDefenders>
+            <FlankingStrikes>
+            </FlankingStrikes>
+            <UnitAIs>
+                <UnitAI>
+                    <UnitAIType>UNITAI_ATTACK</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_ATTACK_CITY</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+            </UnitAIs>
+            <NotUnitAIs>
+            </NotUnitAIs>
+            <Builds>
+            </Builds>
+            <ReligionSpreads>
+            </ReligionSpreads>
+            <CorporationSpreads>
+            </CorporationSpreads>
+            <GreatPeoples>
+            </GreatPeoples>
+            <Buildings>
+            </Buildings>
+            <ForceBuildings>
+            </ForceBuildings>
+            <HolyCity>NONE</HolyCity>
+            <ReligionType>NONE</ReligionType>
+            <StateReligion>NONE</StateReligion>
+            <PrereqReligion>NONE</PrereqReligion>
+            <PrereqCorporation>NONE</PrereqCorporation>
+            <PrereqBuilding>NONE</PrereqBuilding>
+            <PrereqTech>NONE</PrereqTech>
+            <TechTypes>
+            </TechTypes>
+            <BonusType>NONE</BonusType>
+            <PrereqBonuses>
+            </PrereqBonuses>
+            <ProductionTraits>
+            </ProductionTraits>
+            <Flavors>
+            </Flavors>
+            <iAIWeight>0</iAIWeight>
+            <iCost>-1</iCost>
+            <iHurryCostModifier>0</iHurryCostModifier>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+            <iMinAreaSize>-1</iMinAreaSize>
+            <iMoves>1</iMoves>
+            <bNoRevealMap>0</bNoRevealMap>
+            <iAirRange>0</iAirRange>
+            <iAirUnitCap>0</iAirUnitCap>
+            <iDropRange>0</iDropRange>
+            <iNukeRange>-1</iNukeRange>
+            <iWorkRate>0</iWorkRate>
+            <iBaseDiscover>0</iBaseDiscover>
+            <iDiscoverMultiplier>0</iDiscoverMultiplier>
+            <iBaseHurry>0</iBaseHurry>
+            <iHurryMultiplier>0</iHurryMultiplier>
+            <iBaseTrade>0</iBaseTrade>
+            <iTradeMultiplier>0</iTradeMultiplier>
+            <iGreatWorkCulture>0</iGreatWorkCulture>
+            <iEspionagePoints>0</iEspionagePoints>
+            <TerrainImpassables>
+            </TerrainImpassables>
+            <FeatureImpassables>
+            </FeatureImpassables>
+            <TerrainPassableTechs>
+            </TerrainPassableTechs>
+            <FeaturePassableTechs>
+            </FeaturePassableTechs>
+            <iCombat>6</iCombat>
+            <iCombatLimit>100</iCombatLimit>
+            <iAirCombat>0</iAirCombat>
+            <iAirCombatLimit>0</iAirCombatLimit>
+            <iXPValueAttack>8</iXPValueAttack>
+            <iXPValueDefense>4</iXPValueDefense>
+            <iFirstStrikes>1</iFirstStrikes>
+            <iChanceFirstStrikes>0</iChanceFirstStrikes>
+            <iInterceptionProbability>0</iInterceptionProbability>
+            <iEvasionProbability>0</iEvasionProbability>
+            <iWithdrawalProb>0</iWithdrawalProb>
+            <iCollateralDamage>0</iCollateralDamage>
+            <iCollateralDamageLimit>0</iCollateralDamageLimit>
+            <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
+            <iCityAttack>0</iCityAttack>
+            <iCityDefense>0</iCityDefense>
+            <iAnimalCombat>0</iAnimalCombat>
+            <iHillsAttack>0</iHillsAttack>
+            <iHillsDefense>0</iHillsDefense>
+            <TerrainNatives>
+            </TerrainNatives>
+            <FeatureNatives>
+            </FeatureNatives>
+            <TerrainAttacks>
+            </TerrainAttacks>
+            <TerrainDefenses>
+            </TerrainDefenses>
+            <FeatureAttacks>
+            </FeatureAttacks>
+            <FeatureDefenses>
+            </FeatureDefenses>
+            <UnitClassAttackMods>
+            </UnitClassAttackMods>
+            <UnitClassDefenseMods>
+            </UnitClassDefenseMods>
+            <UnitCombatMods>
+            </UnitCombatMods>
+            <UnitCombatCollateralImmunes>
+            </UnitCombatCollateralImmunes>
+            <DomainMods>
+            </DomainMods>
+            <BonusProductionModifiers>
+            </BonusProductionModifiers>
+            <iBombRate>0</iBombRate>
+            <iBombardRate>0</iBombardRate>
+            <SpecialCargo>NONE</SpecialCargo>
+            <DomainCargo>NONE</DomainCargo>
+            <iCargo>0</iCargo>
+            <iConscription>0</iConscription>
+            <iCultureGarrison>6</iCultureGarrison>
+            <iExtraCost>0</iExtraCost>
+            <iAsset>10</iAsset>
+            <iPower>12</iPower>
+            <UnitMeshGroups>
+            <iGroupSize>1</iGroupSize>
+            <fMaxSpeed>1.75</fMaxSpeed>
+            <fPadTime>1</fPadTime>
+            <iMeleeWaveSize>1</iMeleeWaveSize>
+            <iRangedWaveSize>0</iRangedWaveSize>
+				<UnitMeshGroup>
+					<iRequired>1</iRequired>
+					<EarlyArtDefineTag>ART_DEF_UNIT_ANGEL_OF_DEATH</EarlyArtDefineTag>
+				</UnitMeshGroup>
+            </UnitMeshGroups>
+            <FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+            <HotKey></HotKey>
+            <bAltDown>0</bAltDown>
+            <bShiftDown>0</bShiftDown>
+            <bCtrlDown>0</bCtrlDown>
+            <bGraphicalOnly>0</bGraphicalOnly>
+            <iHotKeyPriority>0</iHotKeyPriority>
+            <FreePromotions>
+				<FreePromotion>
+					<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_ANGEL</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_MAGIC_RESISTANCE</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_METAMAGIC2</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_FLYING</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_TEMPERANCE</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+            </FreePromotions>
+            <LeaderPromotion>NONE</LeaderPromotion>
+            <iLeaderExperience>0</iLeaderExperience>
+            <iCombatDefense>4</iCombatDefense>
+            <iTier>4</iTier>
+            <DamageTypeCombats>
+                <DamageTypeCombat>
+                    <DamageType>DAMAGE_FORCE</DamageType>
+                    <iCombat>2</iCombat>
+                </DamageTypeCombat>
+            </DamageTypeCombats>
+            <BonusAffinities>
+                <BonusAffinity>
+                    <BonusType>BONUS_MANA_FORCE</BonusType>
+                    <iAffinity>1</iAffinity>
+                </BonusAffinity>
+            </BonusAffinities>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_SAILORS_DIRGE</Class>

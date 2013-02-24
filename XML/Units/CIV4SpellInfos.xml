@@ -265,6 +265,21 @@
             <Sound>AS3D_SPELL_BLESS</Sound>
             <Button>Art/Interface/Buttons/Promotions/Blessed.dds</Button>
         </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_BLESSING</Type>
+			<Description>TXT_KEY_SPELL_BLESSING</Description>
+			<Civilopedia>TXT_KEY_SPELL_BLESSING_PEDIA</Civilopedia>
+			<PromotionPrereq1>PROMOTION_CREATION3</PromotionPrereq1>
+			<bAllowAI>1</bAllowAI>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bInBordersOnly>1</bInBordersOnly>
+			<bInCityOnly>1</bInCityOnly>
+			<bHasCasted>1</bHasCasted>
+			<CreateBuildingType>BUILDING_BLESSING</CreateBuildingType>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS2D_BUILD_GRANARY</Sound>
+			<Button>Art/Interface/Buttons/Spells/birth.dds</Button>
+		</SpellInfo>
         <SpellInfo>
             <Type>SPELL_BLINDING_LIGHT</Type>
             <Description>TXT_KEY_SPELL_BLINDING_LIGHT</Description>
@@ -1096,11 +1111,11 @@
             <Description>TXT_KEY_SPELL_ESCAPE</Description>
             <Civilopedia>TXT_KEY_SPELL_ESCAPE_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_ESCAPE_HELP</Help>
-            <UnitPrereq>UNIT_CHANTER</UnitPrereq>
+            <PromotionPrereq1>PROMOTION_DIMENSIONAL1</PromotionPrereq1>
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <PyResult>spellTeleport(pCaster,'Capital')</PyResult>
+            <PyResult>spellEscape(pCaster)</PyResult>
             <PyRequirement>reqEscape(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL2</Effect>
             <Sound>AS3D_SPELL_ESCAPE</Sound>
@@ -1311,6 +1326,20 @@
             <Sound>AS3D_SPELL_FEED</Sound>
             <Button>Art/Interface/Buttons/Spells/Feed.dds</Button>
         </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_FERTILITY</Type>
+			<Description>TXT_KEY_SPELL_FERTILITY</Description>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_FERTILITY_HELP</Help>
+			<PromotionPrereq1>PROMOTION_CREATION2</PromotionPrereq1>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bHasCasted>1</bHasCasted>
+			<PyResult>spellFertility(pCaster)</PyResult>
+			<PyRequirement>reqFertility(pCaster)</PyRequirement>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS2D_POSITIVE_DINK</Sound>
+			<Button>Art/Interface/Buttons/Spells/fertility.dds</Button>
+		</SpellInfo>
         <SpellInfo>
             <Type>SPELL_FIREBALL</Type>
             <Description>TXT_KEY_SPELL_FIREBALL</Description>
@@ -1564,6 +1593,21 @@
             <Sound>AS3D_SPELL_GRAFT_FLESH</Sound>
             <Button>Art/Interface/Buttons/Units/Flesh Golem.dds</Button>
         </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_GROWTH</Type>
+			<Description>TXT_KEY_SPELL_GROWTH</Description>
+			<Civilopedia>TXT_KEY_SPELL_GROWTH_PEDIA</Civilopedia>
+			<PromotionPrereq1>PROMOTION_CREATION1</PromotionPrereq1>
+			<bAllowAI>1</bAllowAI>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bInBordersOnly>1</bInBordersOnly>
+			<bInCityOnly>1</bInCityOnly>
+			<bHasCasted>1</bHasCasted>
+			<CreateBuildingType>BUILDING_GROWTH</CreateBuildingType>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS2D_BUILD_GRANARY</Sound>
+			<Button>Art/Interface/Buttons/Spells/growth.dds</Button>
+		</SpellInfo>
         <SpellInfo>
             <Type>SPELL_HASTE</Type>
             <Description>TXT_KEY_SPELL_HASTE</Description>
@@ -1891,6 +1935,20 @@
             <Button>Art/Interface/Buttons/Spells/Kidnap.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_LABYRINTH</Type>
+            <Description>TXT_KEY_SPELL_LABYRINTH</Description>
+            <Civilopedia>TXT_KEY_SPELL_LABYRINTH_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_CHANNELING2</PromotionPrereq1>
+            <PromotionPrereq2>PROMOTION_DIMENSIONAL2</PromotionPrereq2>
+            <bAllowAI>0</bAllowAI>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <CreateFeatureType>FEATURE_LABYRINTH</CreateFeatureType>
+            <Effect>EFFECT_ENTROPY_SUMMON</Effect>
+            <Sound>AS3D_SPELL_DEFILE</Sound>
+            <Button>Art/Interface/Buttons/TerrainFeatures/Tormented Souls.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_LEGENDS</Type>
             <Description>TXT_KEY_SPELL_LEGENDS</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1956,6 +2014,20 @@
             <Effect>EFFECT_MAELSTROM</Effect>
             <Sound>AS3D_SPELL_MAELSTROM</Sound>
             <Button>Art/Interface/Buttons/Spells/Maelstrom.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_MAGIC_MISSILE</Type>
+            <Description>TXT_KEY_SPELL_MAGIC_MISSILE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_FORCE2</PromotionPrereq1>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <CreateUnitType>UNIT_MAGIC_MISSILE</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_FIREBALL</Sound>
+            <Button>Art/Interface/Buttons/Units/Fireball.dds</Button>
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_MARCH_OF_THE_TREES</Type>
@@ -2510,6 +2582,49 @@
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_INSPIRATION</Sound>
             <Button>Art/Interface/Buttons/Spells/Revelry.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_RIFT_CREATE</Type>
+            <Description>TXT_KEY_SPELL_RIFT_CREATE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_RIFT_CREATE_HELP</Help>
+			<PromotionPrereq1>PROMOTION_DIMENSIONAL3</PromotionPrereq1>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+			<PyResult>spellRiftCreate(pCaster)</PyResult>
+			<PyRequirement>reqRiftCreate(pCaster)</PyRequirement>
+            <Effect>EFFECT_ENTROPY_SUMMON</Effect>
+            <Sound>AS3D_SPELL_DEFILE</Sound>
+            <Button>Art/Interface/Buttons/Units/Lightning Elemental.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_RIFT_CROSS</Type>
+            <Description>TXT_KEY_SPELL_RIFT_CROSS</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_RIFT_CROSS_HELP</Help>
+            <bAllowAI>1</bAllowAI>
+            <bHasCasted>1</bHasCasted>
+            <PyResult>spellRiftCross(pCaster)</PyResult>
+            <PyRequirement>reqRiftCross(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_DEFILE</Sound>
+            <Button>Art/Interface/Buttons/Units/Lightning Elemental.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_RIFT_OPEN</Type>
+            <Description>TXT_KEY_SPELL_RIFT_OPEN</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_RIFT_OPEN_HELP</Help>
+			<PromotionPrereq1>PROMOTION_DIMENSIONAL3</PromotionPrereq1>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>0</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+			<PyResult>spellRiftOpen(pCaster)</PyResult>
+			<PyRequirement>reqRiftOpen(pCaster)</PyRequirement>
+            <Effect>EFFECT_ENTROPY_SUMMON</Effect>
+            <Sound>AS3D_SPELL_DEFILE</Sound>
+            <Button>Art/Interface/Buttons/Units/Lightning Elemental.dds</Button>
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_RING_OF_FLAMES</Type>
@@ -3145,6 +3260,19 @@
             <Sound>AS3D_SPELL_PIT_BEAST</Sound>
             <Button>Art/Interface/Buttons/Units/Pit Beast.dds</Button>
         </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_SUMMON_RUNEWYN</Type>
+			<Description>TXT_KEY_SPELL_SUMMON_RUNEWYN</Description>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SUMMON_RUNEWYN_HELP</Help>
+			<PromotionPrereq1>PROMOTION_FORCE3</PromotionPrereq1>
+			<bHasCasted>1</bHasCasted>
+			<CreateUnitType>UNIT_RUNEWYN</CreateUnitType>
+			<iCreateUnitNum>1</iCreateUnitNum>
+			<Effect>EFFECT_PIT_BEAST_SUMMON</Effect>
+			<Sound>AS3D_SPELL_PIT_BEAST</Sound>
+			<Button>Art/Interface/Buttons/Units/Angel of Death.dds</Button>
+		</SpellInfo>
         <SpellInfo>
             <Type>SPELL_SUMMON_SAND_LION</Type>
             <Description>TXT_KEY_SPELL_SUMMON_SAND_LION</Description>
@@ -4185,11 +4313,24 @@
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <Button>Art/Interface/Buttons/Units/Govannon.dds</Button>
         </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_TEMPERANCE</Type>
+			<Description>TXT_KEY_SPELL_TEMPERANCE</Description>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<PromotionPrereq1>PROMOTION_FORCE1</PromotionPrereq1>
+			<bAllowAI>1</bAllowAI>
+			<iAIWeight>10</iAIWeight>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bHasCasted>1</bHasCasted>
+			<AddPromotionType1>PROMOTION_TEMPERANCE</AddPromotionType1>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS3D_SPELL_SANCTIFY</Sound>
+			<Button>Art/Interface/Buttons/Promotions/Temporance.dds</Button>
+		</SpellInfo>
         <SpellInfo>
-            <Type>SPELL_TREETOP_DEFENCE</Type>
-            <Description>TXT_KEY_SPELL_TREETOP_DEFENCE</Description>
+            <Type>SPELL_TREETOP_TACTICS</Type>
+            <Description>TXT_KEY_SPELL_TREETOP_TACTICS</Description>
             <Civilopedia>TXT_KEY_SPELL_TREETOP_DEFENCE_PEDIA</Civilopedia>
-            <Help>TXT_KEY_SPELL_TREETOP_DEFENCE_HELP</Help>
             <PromotionPrereq1>PROMOTION_NATURE1</PromotionPrereq1>
             <PromotionPrereq2>PROMOTION_CHANNELING1</PromotionPrereq2>
             <FeatureOrPrereq1>FEATURE_FOREST</FeatureOrPrereq1>
@@ -4198,7 +4339,7 @@
             <iAIWeight>10</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <PyResult>spellTreetopDefence(pCaster)</PyResult>
+             <AddPromotionType1>PROMOTION_TREETOP_TACTICS</AddPromotionType1>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_SANCTIFY</Sound>
             <Button>Art/Interface/Buttons/Spells/Treetopdefence.dds</Button>
@@ -4536,20 +4677,6 @@
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_INSPIRATION</Sound>
             <Button>Art/Interface/Buttons/Promotions/Warcry.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
-            <Type>SPELL_WATER_WALKING</Type>
-            <Description>TXT_KEY_SPELL_WATER_WALKING</Description>
-            <Civilopedia>TXT_KEY_SPELL_WATER_WALKING_PEDIA</Civilopedia>
-            <PromotionPrereq1>PROMOTION_WATER2</PromotionPrereq1>
-            <bAllowAI>1</bAllowAI>
-            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
-            <bHasCasted>1</bHasCasted>
-            <AddPromotionType1>PROMOTION_WATER_WALKING</AddPromotionType1>
-            <bBuffCasterOnly>1</bBuffCasterOnly>
-            <Effect>EFFECT_CREATION</Effect>
-            <Sound>AS3D_SPELL_WATER</Sound>
-            <Button>Art/Interface/Buttons/Promotions/Waterwalking.dds</Button>
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_WHITEOUT</Type>

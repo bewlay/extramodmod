@@ -468,7 +468,7 @@
 			<NIF>Art/Terrain/Resources/mana_creation/Uranium.nif</NIF>
 			<KFM>Art/Terrain/Resources/mana_creation/Uranium.kfm</KFM>
 			<Button>Art/Interface/Buttons/WorldBuilder/Creation.dds</Button>
-			<FontButtonIndex>42</FontButtonIndex>
+			<FontButtonIndex>65</FontButtonIndex>
 		</BonusArtInfo>
 		<BonusArtInfo>
 			<Type>ART_DEF_BONUS_MANA_DEATH</Type>
@@ -523,6 +523,15 @@
 			<KFM>Art/Terrain/Resources/mana_fire/Uranium.kfm</KFM>
 			<Button>Art/Interface/Buttons/WorldBuilder/Fire.dds</Button>
 			<FontButtonIndex>8</FontButtonIndex>
+		</BonusArtInfo>
+		<BonusArtInfo>
+			<Type>ART_DEF_BONUS_MANA_FORCE</Type>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Terrain/Resources/mana_law/Uranium.nif</NIF>
+			<KFM>Art/Terrain/Resources/mana_law/Uranium.kfm</KFM>
+			<Button>Art/Interface/Buttons/WorldBuilder/Force.dds</Button>
+			<FontButtonIndex>66</FontButtonIndex>
 		</BonusArtInfo>
 		<BonusArtInfo>
 			<Type>ART_DEF_BONUS_MANA_ICE</Type>

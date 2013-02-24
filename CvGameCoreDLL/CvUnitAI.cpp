@@ -29214,6 +29214,16 @@ void CvUnitAI::AI_mageCast()
         if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_HOPE")) == 0)
             cast(GC.getInfoTypeForString("SPELL_HOPE"));
 
+	// Creation I
+	if (canCast(GC.getInfoTypeForString("SPELL_GROWTH"),false))
+		if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_GROWTH")) == 0)
+			cast(GC.getInfoTypeForString("SPELL_GROWTH"));
+
+	// Creation III
+	if (canCast(GC.getInfoTypeForString("SPELL_BLESSING"),false))
+		if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_BLESSING")) == 0)
+			cast(GC.getInfoTypeForString("SPELL_BLESSING"));
+
 // Spells to boost the Garrison Units
     if (canCast(GC.getInfoTypeForString("SPELL_DANCE_OF_BLADES"),false))
         cast(GC.getInfoTypeForString("SPELL_DANCE_OF_BLADES"));

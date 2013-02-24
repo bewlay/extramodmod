@@ -85,8 +85,9 @@ import GGUtil
 
 #FfH: Added by Kael 10/29/2007
 bshowManaBar = 1
-manaTypes1 = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_DEATH','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_ICE' ]
-manaTypes2 = [ 'BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER' ]
+manaTypes1 = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_CREATION','BONUS_MANA_DEATH','BONUS_MANA_DIMENSIONAL','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_FORCE','BONUS_MANA_ICE','BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER' ]
+MANA_X_POS = 0
+MANA_Y_POS = 103
 #FfH: End Add
 # BUG - Great Person Bar - start
 import GPUtil
@@ -560,13 +561,13 @@ class CvMainInterface:
 		screen.hide( "InterfaceTopRight" )
 
 		# FFH Mana - Mana Button
-		screen.setImageButton("RawManaButton1", "Art/Interface/Screens/RawManaButton.dds", 5, 298, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+		screen.setImageButton("RawManaButton1", "Art/Interface/Screens/RawManaButton.dds", MANA_X_POS + 12, MANA_Y_POS + 407, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 		screen.hide( "RawManaButton1" )
-		screen.addPanel( "ManaToggleHelpTextPanel", u"", u"", True, True, 60, 298, 170, 30, PanelStyles.PANEL_STYLE_HUD_HELP )
+		screen.addPanel( "ManaToggleHelpTextPanel", u"", u"", True, True, MANA_X_POS + 55, MANA_Y_POS + 407, 170, 30, PanelStyles.PANEL_STYLE_HUD_HELP )
 		screen.hide( "ManaToggleHelpTextPanel" )
 #		szText = "<font=2>" + localText.getText("[COLOR_HIGHLIGHT_TEXT]Toggle Manabar Display[COLOR_REVERT]", ()) + "</font=2>"
 		szText = "<font=2>" + localText.getText("TXT_KEY_MANA_TOGGLE_HELP", ()) + "</font=2>"
-		screen.addMultilineText( "ManaToggleHelpText", szText, 62, 303, 167, 27, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+		screen.addMultilineText( "ManaToggleHelpText", szText, MANA_X_POS + 57, MANA_Y_POS + 411, 167, 27, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
 		screen.hide( "ManaToggleHelpText" )
 		# End FFH
 
@@ -5497,15 +5498,14 @@ class CvMainInterface:
 		for szBonus in manaTypes1:
 			szName = "ManaText" + szBonus
 			screen.hide( szName )
-		for szBonus in manaTypes2:
-			szName = "ManaText" + szBonus
-			screen.hide( szName )
+#		for szBonus in manaTypes2:
+#			szName = "ManaText" + szBonus
+#			screen.hide( szName )
 
 		iWidth = 0
 		iCount = 0
 		iBtnHeight = 18
 
-		yCoord = 103
 		if (CyInterface().isScoresVisible() and not CyInterface().isCityScreenUp() and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY and CyEngine().isGlobeviewUp() == false and bshowManaBar == 1):
 			for szBonus in manaTypes1:
 				iBonus = gc.getInfoTypeForString(szBonus)
@@ -5516,23 +5516,23 @@ class CvMainInterface:
 				if ( CyInterface().determineWidth( szBuffer ) > iWidth ):
 					iWidth = CyInterface().determineWidth( szBuffer )
 				szName = "ManaText" + szBonus
-				screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, 40, yCoord + (iCount * iBtnHeight) + 24, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1 )
+				screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, MANA_X_POS + 40, MANA_Y_POS + (iCount * iBtnHeight) + 24, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1 )
 				screen.show( szName )
 				iCount = iCount + 1
 			iCount = 0
-			for szBonus in manaTypes2:
-				iBonus = gc.getInfoTypeForString(szBonus)
-				szBuffer = u"<font=2>"
-				szTempBuffer = u"%c: %d" %(gc.getBonusInfo(iBonus).getChar(), pPlayer.getNumAvailableBonuses(iBonus))
-				szBuffer = szBuffer + szTempBuffer
-				szBuffer = szBuffer + "</font>"
-				if ( CyInterface().determineWidth( szBuffer ) > iWidth ):
-					iWidth = CyInterface().determineWidth( szBuffer )
-				szName = "ManaText" + szBonus
-				screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, 80, yCoord + (iCount * iBtnHeight) + 24, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1 )
-				screen.show( szName )
-				iCount = iCount + 1
-			screen.setPanelSize( "ManaBackground", 6, yCoord + 18, (iWidth * 2) + 12, (iBtnHeight * 9) + 12 )
+#			for szBonus in manaTypes2:
+#				iBonus = gc.getInfoTypeForString(szBonus)
+#				szBuffer = u"<font=2>"
+#				szTempBuffer = u"%c: %d" %(gc.getBonusInfo(iBonus).getChar(), pPlayer.getNumAvailableBonuses(iBonus))
+#				szBuffer = szBuffer + szTempBuffer
+#				szBuffer = szBuffer + "</font>"
+#				if ( CyInterface().determineWidth( szBuffer ) > iWidth ):
+#					iWidth = CyInterface().determineWidth( szBuffer )
+#				szName = "ManaText" + szBonus
+#				screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, 80, MANA_Y_POS + (iCount * iBtnHeight) + 24, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1 )
+#				screen.show( szName )
+#				iCount = iCount + 1
+			screen.setPanelSize( "ManaBackground", MANA_X_POS, MANA_Y_POS + 18, iWidth + 12, (iBtnHeight * 21) + 12 )
 			screen.show( "ManaBackground" )
 #FfH: End Add
 
