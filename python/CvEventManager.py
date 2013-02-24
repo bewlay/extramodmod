@@ -563,6 +563,11 @@ class CvEventManager:
 		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
 			cf.doCrusade(iPlayer)
 
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+		if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI'):
+			cf.doTurnGrigori(iPlayer)
+#AdventurerCounter End
+
 		if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD'):
 			cf.doTurnKhazad(iPlayer)
 

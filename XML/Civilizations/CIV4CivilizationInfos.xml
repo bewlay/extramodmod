@@ -1151,8 +1151,14 @@
 		                    <BuildingType>BUILDING_ADVENTURERS_GUILD</BuildingType>
 		                </Building>
 				<Building>
+				<Building>
+					<BuildingClassType>BUILDINGCLASS_COURTHOUSE</BuildingClassType>
+					<BuildingType>BUILDING_FORUM</BuildingType>
+				</Building>
+				<Building>
 					<BuildingClassType>BUILDINGCLASS_CIV_BUILDING2</BuildingClassType>
 					<BuildingType>BUILDING_MUSEUM</BuildingType>
+				</Building>
 				</Building>
 			</Buildings>
 			<Units>
