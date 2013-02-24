@@ -960,6 +960,22 @@
 			<MaintainFeatures>
 			</MaintainFeatures>
 			<TerrainYieldChanges>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
 			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
@@ -2543,6 +2559,14 @@
 			<TerrainYieldChanges>
 				<TerrainYieldChange>
 					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<TerrainYields>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
 					<TerrainYields>
 						<iYield>0</iYield>
 						<iYield>0</iYield>
