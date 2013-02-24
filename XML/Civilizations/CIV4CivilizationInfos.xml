@@ -1230,11 +1230,10 @@
 					<BuildingClassType>BUILDINGCLASS_TEMPLE_OF_THE_VEIL</BuildingClassType>
 					<BuildingType>NONE</BuildingType>
 				</Building>
-		                <Building>
-		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
-		                    <BuildingType>BUILDING_ADVENTURERS_GUILD</BuildingType>
-		                </Building>
 				<Building>
+					<BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
+					<BuildingType>BUILDING_ADVENTURERS_GUILD</BuildingType>
+				</Building>
 				<Building>
 					<BuildingClassType>BUILDINGCLASS_COURTHOUSE</BuildingClassType>
 					<BuildingType>BUILDING_FORUM</BuildingType>
@@ -1242,7 +1241,6 @@
 				<Building>
 					<BuildingClassType>BUILDINGCLASS_CIV_BUILDING2</BuildingClassType>
 					<BuildingType>BUILDING_MUSEUM</BuildingType>
-				</Building>
 				</Building>
 			</Buildings>
 			<Units>

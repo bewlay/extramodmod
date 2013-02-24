@@ -5871,10 +5871,6 @@
         </BuildingInfo>
         <BuildingInfo>
             <BuildingClass>BUILDINGCLASS_CIV_BUILDING1</BuildingClass>
-				<BonusProductionModifier>
-					<BonusType>BONUS_STONE</BonusType>
-					<iProductonModifier>50</iProductonModifier>
-				</BonusProductionModifier>
             <Type>BUILDING_CHANCEL_OF_GUARDIANS</Type>
             <SpecialBuildingType>NONE</SpecialBuildingType>
             <Description>TXT_KEY_BUILDING_CHANCEL_OF_GUARDIANS</Description>
@@ -40635,6 +40631,10 @@
                 </BonusHappinessChange>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
