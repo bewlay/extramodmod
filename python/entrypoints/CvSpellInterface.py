@@ -4509,8 +4509,9 @@ def reqFertility(caster):
 	iClam   = gc.getInfoTypeForString('BONUS_CLAM')
 	iCrab   = gc.getInfoTypeForString('BONUS_CRAB')
  	iFish   = gc.getInfoTypeForString('BONUS_FISH')
+ 	iShrimp = gc.getInfoTypeForString('BONUS_SHRIMP')
 
-	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or onus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish:
+	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or onus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish or pBonus == iShrimp:
 		return True
 
 	return False
@@ -4541,6 +4542,7 @@ def spellFertility(caster):
 	iClam   = gc.getInfoTypeForString('BONUS_CLAM')
 	iCrab   = gc.getInfoTypeForString('BONUS_CRAB')
  	iFish   = gc.getInfoTypeForString('BONUS_FISH')
+ 	iShrimp = gc.getInfoTypeForString('BONUS_SHRIMP')
 
  	if pBonus == iWheat:
  		pPlot.setBonusType(iRice)
@@ -4573,4 +4575,6 @@ def spellFertility(caster):
  	elif pBonus == iCrab:
  		pPlot.setBonusType(iFish)
  	elif pBonus == iFish:
+ 		pPlot.setBonusType(iShrimp)
+ 	elif pBonus == iShrimp:
  		pPlot.setBonusType(iClam)
