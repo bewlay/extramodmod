@@ -4435,6 +4435,46 @@ def applyDeclareBarbs(argsList):
 #		gc.getTeam(iBarb).declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
 		cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
 
+# We need to check if these checks can be done in XML instead.
+def reqDropEquipmentPromotion(caster,unit):
+	# The AI should not be dropping weapons.
+	pPlayer = gc.getPlayer(caster.getOwner())
+	if pPlayer.isHuman() == False:
+		return False
+
+	# The unit must be in a friendly tile.
+	pPlot = caster.plot()
+	if pPlot.isOwned():
+		pPlotPlayer = gc.getPlayer(pPlot.getOwner())
+		if caster.getTeam() != pPlotPlayer.getTeam():
+			return False
+	else:
+		return False
+
+	return True
+
+# We need to check if these checks can be done in XML instead.
+def reqDropEquipmentPiecesBarnaxus(caster):
+	# The AI should not be dropping weapons.
+	pPlayer = gc.getPlayer(caster.getOwner())
+	if pPlayer.isHuman() == False:
+		return False
+
+	# The unit must be in a friendly tile.
+	pPlot = caster.plot()
+	if pPlot.isOwned():
+		pPlotPlayer = gc.getPlayer(pPlot.getOwner())
+		if caster.getTeam() != pPlotPlayer.getTeam():
+			return False
+	else:
+		return False
+
+	# Barnaxus cannot drop its own pieces.
+	if caster.getUnitType() == gc.getInfoTypeForString('UNIT_BARNAXUS'):
+		return False
+
+	return True
+
 #Rise from Erebus
 def reqFertility(caster):
 	pPlot = caster.plot()
