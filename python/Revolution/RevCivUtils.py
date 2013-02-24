@@ -307,21 +307,22 @@ class RevCivDefines :
 		for idx in range( 0, gc.getNumCivilizationInfos() ) :
 			self.liMinorLeaders.append( list() )
 
-		self.liMinorLeaders[self.iAmurite] = [self.iTya]
-		self.liMinorLeaders[self.iBannor] = [self.iTethira]
-		self.liMinorLeaders[self.iBalseraph] = [self.iMelisandre, self.iFuria, self.iWeevil]
-		self.liMinorLeaders[self.iClan] = [self.iHafgan]
-		self.liMinorLeaders[self.iCalabim] = [self.iMahon]
-		self.liMinorLeaders[self.iDoviello] = [self.iVolanna, self.iDuin]
-		self.liMinorLeaders[self.iElohim] = [self.iThessalonica]
-		self.liMinorLeaders[self.iGrigori] = [self.iKoun]
-		self.liMinorLeaders[self.iHippus] = [self.iOstanes, self.iUldanor]
-		self.liMinorLeaders[self.iIllians] = [self.iDumannios, self.iRiuros, self.iAnaganios, self.iBraeden]
-		self.liMinorLeaders[self.iInfernal] = [self.iSallos, self.iJudecca, self.iOuzza, self.iMeresin, self.iStatius, self.iLethe]
-		self.liMinorLeaders[self.iMalakim] = [self.iKane]
-		self.liMinorLeaders[self.iSheaim] = [self.iAverax, self.iGosea, self.iMalchavic]
-		self.liMinorLeaders[self.iSidar] = [self.iShekinah]
-		self.liMinorLeaders[self.iSvartalfar] = [self.iVolanna, self.iRivanna]
+## There are no minor leaders in ExtraModMod.
+#		self.liMinorLeaders[self.iAmurite] = [self.iTya]
+#		self.liMinorLeaders[self.iBannor] = [self.iTethira]
+#		self.liMinorLeaders[self.iBalseraph] = [self.iMelisandre, self.iFuria, self.iWeevil]
+#		self.liMinorLeaders[self.iClan] = [self.iHafgan]
+#		self.liMinorLeaders[self.iCalabim] = [self.iMahon]
+#		self.liMinorLeaders[self.iDoviello] = [self.iVolanna, self.iDuin]
+#		self.liMinorLeaders[self.iElohim] = [self.iThessalonica]
+#		self.liMinorLeaders[self.iGrigori] = [self.iKoun]
+#		self.liMinorLeaders[self.iHippus] = [self.iOstanes, self.iUldanor]
+#		self.liMinorLeaders[self.iIllians] = [self.iDumannios, self.iRiuros, self.iAnaganios, self.iBraeden]
+#		self.liMinorLeaders[self.iInfernal] = [self.iSallos, self.iJudecca, self.iOuzza, self.iMeresin, self.iStatius, self.iLethe]
+#		self.liMinorLeaders[self.iMalakim] = [self.iKane]
+#		self.liMinorLeaders[self.iSheaim] = [self.iAverax, self.iGosea, self.iMalchavic]
+#		self.liMinorLeaders[self.iSidar] = [self.iShekinah]
+#		self.liMinorLeaders[self.iSvartalfar] = [self.iVolanna, self.iRivanna]
 
 		# religions
 
