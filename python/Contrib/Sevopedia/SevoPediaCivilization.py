@@ -32,7 +32,7 @@ class SevoPediaCivilization:
 		X_MERGIN = self.top.X_MERGIN
 		Y_MERGIN = self.top.Y_MERGIN
 
-		self.W_CIV_TRAIT = 150
+		self.W_CIV_TRAIT = 280
 		self.H_CIV_TRAIT = 116
 		self.X_CIV_TRAIT = self.top.R_PEDIA_PAGE - self.W_CIV_TRAIT
 		self.Y_CIV_TRAIT = self.top.Y_PEDIA_PAGE
@@ -272,8 +272,8 @@ class SevoPediaCivilization:
 	def placeTrait(self):
 		screen = self.top.getScreen()
 		panelName = self.top.getNextWidgetName()
-#		screen.addPanel(panelName, localText.getText("TXT_KEY_CIV_TRAIT", ()), "", False, True, self.X_CIV_TRAIT, self.Y_CIV_TRAIT, self.W_CIV_TRAIT, self.H_CIV_TRAIT, PanelStyles.PANEL_STYLE_BLUE50)
-#		screen.attachLabel(panelName, "", "  ")
+		screen.addPanel(panelName, localText.getText("TXT_KEY_CIV_TRAIT", ()), "", False, True, self.X_CIV_TRAIT, self.Y_CIV_TRAIT, self.W_CIV_TRAIT, self.H_CIV_TRAIT, PanelStyles.PANEL_STYLE_BLUE50)
+		screen.attachLabel(panelName, "", "  ")
 
 		#terrain yield modifier
 		ltTerrainModifier = []
