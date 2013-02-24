@@ -556,6 +556,17 @@
                         <iYieldChange>1</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
+				<BonusTypeStruct>
+					<BonusType>BONUS_PENGUINS</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>4</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
             </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -1437,6 +1448,17 @@
                         <iYieldChange>0</iYieldChange>
                         <iYieldChange>0</iYieldChange>
                         <iYieldChange>2</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_SHRIMP</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
             </BonusTypeStructs>
@@ -3962,6 +3984,28 @@
                         <iYieldChange>0</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MUSHROOMS</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>5000</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>-1</iYieldChange>
+                        <iYieldChange>1</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_AMBER</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>10000</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>-1</iYieldChange>
+                        <iYieldChange>5</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
             </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -5100,6 +5144,28 @@
                         <iYieldChange>0</iYieldChange>
                         <iYieldChange>2</iYieldChange>
                         <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_STONE</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>1</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                 <BonusTypeStruct>
+                    <BonusType>BONUS_SALT</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>1</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>2</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
             </BonusTypeStructs>

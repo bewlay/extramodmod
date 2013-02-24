@@ -2595,6 +2595,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -5116,6 +5120,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -5783,6 +5791,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -6678,6 +6690,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -7162,6 +7178,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -7844,6 +7864,10 @@
                     <BonusType>BONUS_PEARL</BonusType>
                     <iHappinessChange>1</iHappinessChange>
                 </BonusHappinessChange>
+                <BonusHappinessChange>
+                    <BonusType>BONUS_AMBER</BonusType>
+                    <iHappinessChange>1</iHappinessChange>
+                </BonusHappinessChange>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
             </BonusProductionModifiers>
@@ -7880,6 +7904,14 @@
                 </BonusYieldModifier>
                 <BonusYieldModifier>
                     <BonusType>BONUS_PEARL</BonusType>
+                    <YieldModifiers>
+                        <iYield>0</iYield>
+                        <iYield>0</iYield>
+                        <iYield>10</iYield>
+                    </YieldModifiers>
+                </BonusYieldModifier>
+                <BonusYieldModifier>
+                    <BonusType>BONUS_AMBER</BonusType>
                     <YieldModifiers>
                         <iYield>0</iYield>
                         <iYield>0</iYield>
@@ -9246,6 +9278,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -10613,6 +10649,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -14663,6 +14703,10 @@
                     <BonusType>BONUS_WHEAT</BonusType>
                     <iHealthChange>1</iHealthChange>
                 </BonusHealthChange>
+                <BonusHealthChange>
+                    <BonusType>BONUS_MUSHROOMS</BonusType>
+                    <iHealthChange>1</iHealthChange>
+                </BonusHealthChange>
             </BonusHealthChanges>
             <BonusHappinessChanges>
             </BonusHappinessChanges>
@@ -16816,6 +16860,10 @@
                     <BonusType>BONUS_FISH</BonusType>
                     <iHealthChange>1</iHealthChange>
                 </BonusHealthChange>
+                <BonusHealthChange>
+                    <BonusType>BONUS_SHRIMP</BonusType>
+                    <iHealthChange>1</iHealthChange>
+                </BonusHealthChange>
             </BonusHealthChanges>
             <BonusHappinessChanges>
             </BonusHappinessChanges>
@@ -17054,6 +17102,10 @@
                 </BonusHealthChange>
                 <BonusHealthChange>
                     <BonusType>BONUS_FISH</BonusType>
+                    <iHealthChange>1</iHealthChange>
+                </BonusHealthChange>
+                <BonusHealthChange>
+                    <BonusType>BONUS_SHRIMP</BonusType>
                     <iHealthChange>1</iHealthChange>
                 </BonusHealthChange>
             </BonusHealthChanges>
@@ -18184,6 +18236,10 @@
             <BonusHappinessChanges>
                 <BonusHappinessChange>
                     <BonusType>BONUS_FUR</BonusType>
+                    <iHappinessChange>1</iHappinessChange>
+                </BonusHappinessChange>
+                <BonusHappinessChange>
+                    <BonusType>BONUS_PENGUINS</BonusType>
                     <iHappinessChange>1</iHappinessChange>
                 </BonusHappinessChange>
             </BonusHappinessChanges>
@@ -19531,6 +19587,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -22077,6 +22137,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>
@@ -30635,6 +30699,10 @@
                     <BonusType>BONUS_TOAD</BonusType>
                     <iHealthChange>1</iHealthChange>
                 </BonusHealthChange>
+                <BonusHealthChange>
+                    <BonusType>BONUS_SALT</BonusType>
+                    <iHealthChange>1</iHealthChange>
+                </BonusHealthChange>
             </BonusHealthChanges>
             <BonusHappinessChanges>
             </BonusHappinessChanges>
@@ -39112,6 +39180,10 @@
             <BonusHappinessChanges>
             </BonusHappinessChanges>
             <BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
             </BonusProductionModifiers>
             <UnitCombatFreeExperiences>
             </UnitCombatFreeExperiences>

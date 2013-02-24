@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Jon Shafer (Firaxis Games) --><!-- Sid Meier's Civilization 4 --><!-- Copyright Firaxis Games 2005 --><!-- --><!-- Bonus/Resource art path information --><Civ4ArtDefines xmlns="x-schema:CIV4ArtDefinesSchema.xml">
+<?xml version="1.0" encoding="UTF-8"?><!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Jon Shafer (Firaxis Games) --><!-- Sid Meier's Civilization 4 --><!-- Copyright Firaxis Games 2005 --><!-- --><!-- Bonus/Resource art path information -->
+<Civ4ArtDefines xmlns="x-schema:CIV4ArtDefinesSchema.xml">
 	<BonusArtInfos>
 		<BonusArtInfo>
 			<Type>ART_DEF_BONUS_ALE</Type>
@@ -431,7 +432,7 @@
 			<KFM>Art/Terrain/Resources/Horse/Horse.kfm</KFM>
 			<SHADERNIF>Art/Terrain/Resources/Nightmare/Horse_FX.nif</SHADERNIF>
 			<Button>Art/Interface/Buttons/WorldBuilder/Nightmare.dds</Button>
-			<FontButtonIndex>3</FontButtonIndex>
+			<FontButtonIndex>62</FontButtonIndex>
 		</BonusArtInfo>
 		<BonusArtInfo>
 			<Type>ART_DEF_BONUS_MANA_AIR</Type>
@@ -613,6 +614,15 @@
 			<Button>Art/Interface/Buttons/WorldBuilder/Water.dds</Button>
 			<FontButtonIndex>49</FontButtonIndex>
 		</BonusArtInfo>
+		<BonusArtInfo>
+			<Type>ART_DEF_BONUS_MUSHROOMS</Type>
+			<fScale>0.9</fScale>
+			<fInterfaceScale>0.5</fInterfaceScale>
+			<NIF>Art/Structures/Improvements/Mushrooms/Mushrooms.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Improvements/Mushrooms.dds</Button>
+			<FontButtonIndex>60</FontButtonIndex>
+		</BonusArtInfo>
 	 	<BonusArtInfo>
 			<Type>ART_DEF_BONUS_PEARL</Type>
 			<fScale>1.0</fScale>
@@ -621,6 +631,15 @@
 			<KFM>Art/Terrain/Resources/Pearl/clam.kfm</KFM>
 			<Button>Art/Terrain/Resources/Pearl/pearl_button.dds</Button>
 			<FontButtonIndex>35</FontButtonIndex>
+		</BonusArtInfo>
+		<BonusArtInfo>
+			<Type>ART_DEF_BONUS_PENGUINS</Type>
+			<fScale>2.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Improvements/Penguins/pig.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Improvements/penguins.dds</Button>
+			<FontButtonIndex>61</FontButtonIndex>
 		</BonusArtInfo>
 		<BonusArtInfo>
 			<Type>ART_DEF_BONUS_MANA</Type>
@@ -658,6 +677,33 @@
 			<KFM/>
 			<Button>Art/Interface/Buttons/WorldBuilder/Fruit.dds</Button>
 			<FontButtonIndex>32</FontButtonIndex>
+		</BonusArtInfo>
+		<BonusArtInfo>
+			<Type>ART_DEF_BONUS_AMBER</Type>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Terrain/Resources/amber/Gems.nif</NIF>
+			<KFM>Art/Terrain/Resources/amber/Gems.kfm</KFM>
+			<Button>Art/Interface/Buttons/WorldBuilder/amber.dds</Button>
+			<FontButtonIndex>62</FontButtonIndex>
+		</BonusArtInfo>
+		<BonusArtInfo>
+			<Type>ART_DEF_BONUS_SALT</Type>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Terrain/Resources/Salt/Marble.nif</NIF>
+			<KFM>Art/Terrain/Resources/Salt/Marble.kfm</KFM>
+			<Button>Art/Interface/Buttons/WorldBuilder/Salt.dds</Button>
+			<FontButtonIndex>63</FontButtonIndex>
+		</BonusArtInfo>
+		<BonusArtInfo>
+			<Type>ART_DEF_BONUS_SHRIMP</Type>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/terrain/resources/shrimp/shrimp.nif</NIF>
+			<KFM>Art/Terrain/Resources/Crab/Crab.kfm</KFM>
+			<Button>Art/Interface/Buttons/WorldBuilder/shrimp.dds</Button>
+			<FontButtonIndex>64</FontButtonIndex>
 		</BonusArtInfo>
 	</BonusArtInfos>
 </Civ4ArtDefines>

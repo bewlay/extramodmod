@@ -4225,6 +4225,7 @@
 			<ImprovementsRequired>
 				<ImprovementType>NONE</ImprovementType>
 			</ImprovementsRequired>
+				<BonusType>NONE</BonusType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
