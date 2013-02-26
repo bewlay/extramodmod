@@ -20789,7 +20789,7 @@ bool CvUnitAI::AI_fortTerritory(bool bCanal, bool bAirbase)
 					if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
 					{
 						CvPlot* pAdjacentPlot;
-						for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+						for (int iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
 						{
 							pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
 
@@ -28042,12 +28042,17 @@ void CvUnitAI::ConquestMove()
 
 		return;
 	}
-	
+
+	if (AI_groupMergeRange(UNITAI_HERO, 0, true, true, bIgnoreFaster))
+	{
+		return;
+	}
+		
 	if (AI_groupMergeRange(UNITAI_ATTACK_CITY, 0, true, true, bIgnoreFaster))
 	{
 		return;
 	}
-	
+
 	// BBAI TODO: Find some way of reliably targetting nearby cities with less defense ...
 	pTargetCity = AI_pickTargetCity(0, MAX_INT, bHuntBarbs);
 	
