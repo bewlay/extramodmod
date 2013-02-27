@@ -55,12 +55,12 @@ class SevoPediaCivilization:
 
 		self.X_HEROES = self.X_MAIN_PANE
 		self.Y_HEROES = self.Y_MAIN_PANE + self.H_MAIN_PANE + Y_MERGIN
-		self.W_HEROES = 155
+		self.W_HEROES = 83
 		self.H_HEROES = 110
 
 		self.X_SPELLS = self.X_HEROES + self.W_HEROES + X_MERGIN
 		self.Y_SPELLS = self.Y_HEROES
-		self.W_SPELLS = 155
+		self.W_SPELLS = 122
 		self.H_SPELLS = self.H_HEROES
 
 		self.X_LEADERS = self.X_SPELLS + self.W_SPELLS + X_MERGIN
