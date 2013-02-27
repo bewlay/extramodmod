@@ -21685,6 +21685,7 @@
                 <Event>EVENT_TRAIT_PHILOSOPHICAL</Event>
                 <Event>EVENT_TRAIT_RAIDERS</Event>
                 <Event>EVENT_TRAIT_SAGE</Event>
+                <Event>EVENT_TRAIT_SLAVER</Event>
                 <Event>EVENT_TRAIT_SPIRITUAL</Event>
             </Events>
             <PrereqEvents>
