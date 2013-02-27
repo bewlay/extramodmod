@@ -190,7 +190,7 @@ Some people are demonstrating against the endless war in <City>.
 	All of your vampires gain 3 XP.
 [/SPOILER]
 
-Demon Sign
+Demon Sign [TOTEST]
 [SPOILER]
 Requires: 30+ AC
 Blocked for: Infernals and Mercurians; Compact Enforced setting off
@@ -221,7 +221,7 @@ A newborn child in X has been reported to carry the mark of Agares. What should 
 	-10 gold
 [/SPOILER]
 
-Hanging Sisters [TODO: test]
+Hanging Sisters [TOTEST]
 [SPOILER]
 Design Notes:
 	
