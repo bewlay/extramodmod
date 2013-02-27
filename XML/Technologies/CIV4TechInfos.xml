@@ -963,7 +963,7 @@
             <bDisable>0</bDisable>
             <bGoodyTech>1</bGoodyTech>
             <bExtraWaterSeeFrom>0</bExtraWaterSeeFrom>
-            <bMapCentering>1</bMapCentering>
+            <bMapCentering>0</bMapCentering>
             <bMapVisible>0</bMapVisible>
             <bMapTrading>0</bMapTrading>
             <bTechTrading>0</bTechTrading>
