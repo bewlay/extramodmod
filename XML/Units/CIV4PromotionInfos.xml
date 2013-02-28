@@ -3330,18 +3330,6 @@
             </DamageTypeResists>
         </PromotionInfo>
         <PromotionInfo>
-            <Type>PROMOTION_GREAT_COMMANDER</Type>
-            <Description>TXT_KEY_PROMOTION_GREAT_COMMANDER</Description>
-            <Help>TXT_KEY_PROMOTION_GREAT_COMMANDER_PEDIA</Help>
-            <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
-            <Button>Art/Interface/Buttons/Units/Commander.dds</Button>
-            <iExtraCombatStr>1</iExtraCombatStr>
-            <iExtraCombatDefense>1</iExtraCombatDefense>
-            <iFreeXPFromCombat>1</iFreeXPFromCombat>
-            <iMinLevel>-1</iMinLevel>
-        </PromotionInfo>
-        <PromotionInfo>
             <Type>PROMOTION_GUARDSMAN</Type>
             <Description>TXT_KEY_PROMOTION_GUARDSMAN</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>

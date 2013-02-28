@@ -3745,13 +3745,13 @@ BeginPlot
 		UnitAIType=UNITAI_MERCHANT
 	EndUnit
 	BeginUnit
-		UnitType=UNIT_COMMANDER, UnitOwner=2
+		UnitType=UNIT_GENERAL, UnitOwner=2
 		UnitName=Rivanna the Wraith Lord
 		Damage=0
 		Level=1, Experience=0
 		PromotionType=PROMOTION_RECRUITER
 		FacingDirection=4
-		UnitAIType=UNITAI_ENGINEER
+		UnitAIType=UNITAI_GENERAL
 	EndUnit
 	BeginUnit
 		UnitType=UNIT_ARTIST, UnitOwner=2

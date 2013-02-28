@@ -786,7 +786,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 				<StyleUnit>
-					<UnitType>UNIT_COMMANDER</UnitType>
+					<UnitType>UNIT_GREAT_GENERAL</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_CHAMPION_SVARTALFAR</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_CHAMPION_SVARTALFAR</LateArtDefineTag>
