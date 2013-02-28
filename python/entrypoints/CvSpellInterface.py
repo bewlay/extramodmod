@@ -674,61 +674,6 @@ def spellCallOfTheGrave(caster):
 			if bValid:
 				CyEngine().triggerEffect(gc.getInfoTypeForString('EFFECT_SACRIFICE'),pPlot.getPoint())
 
-def reqCommanderJoin(caster):
-	pPlayer = gc.getPlayer(caster.getOwner())
-	pPlot = caster.plot()
-	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GREAT_COMMANDER')):
-		return False
-	iCommander = gc.getInfoTypeForString('UNITCLASS_COMMANDER')
-	pCommander = -1
-	for i in range(pPlot.getNumUnits()):
-		pUnit = pPlot.getUnit(i)
-		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitClassType() == iCommander):
-			pCommander = pUnit
-	if pCommander == -1:
-		return False
-	if pCommander.isHasCasted():
-		return False
-	if pPlayer.isHuman() == False:
-		if caster.baseCombatStr() <= 5:
-			return False
-	return True
-
-def spellCommanderJoin(caster):
-	pPlayer = gc.getPlayer(caster.getOwner())
-	pPlot = caster.plot()
-	iCommander = gc.getInfoTypeForString('UNITCLASS_COMMANDER')
-	pCommander = -1
-	for i in range(pPlot.getNumUnits()):
-		pUnit = pPlot.getUnit(i)
-		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitClassType() == iCommander):
-			pCommander = pUnit
-	if pCommander != -1:
-		pCommander.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
-		pCommander.kill(False, PlayerTypes.NO_PLAYER)
-
-def spellCommanderJoinDecius(caster):
-	pPlayer = gc.getPlayer(caster.getOwner())
-	pPlot = caster.plot()
-	iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
-	pCommander = -1
-	for i in range(pPlot.getNumUnits()):
-		pUnit = pPlot.getUnit(i)
-		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitType() == iDecius):
-			pCommander = pUnit
-	if pCommander != -1:
-		caster.setScenarioCounter(iDecius)
-		pCommander.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
-		pCommander.kill(False, PlayerTypes.NO_PLAYER)
-
-def spellCommanderSplit(caster):
-	pPlayer = gc.getPlayer(caster.getOwner())
-	iCommander = gc.getInfoTypeForString('UNIT_COMMANDER')
-	if caster.getScenarioCounter() == gc.getInfoTypeForString('UNIT_DECIUS'):
-		iCommander = gc.getInfoTypeForString('UNIT_DECIUS')
-		caster.setScenarioCounter(-1)
-	newUnit = pPlayer.initUnit(iCommander, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-
 def reqConvertCityBasium(caster):
 	pPlot = caster.plot()
 	pCity = pPlot.getPlotCity()
