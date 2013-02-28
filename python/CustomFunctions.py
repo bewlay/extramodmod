@@ -468,7 +468,7 @@ class CustomFunctions:
 		if pPlayer.canReceiveGoody(pPlot, gc.getInfoTypeForString('GOODY_GRAVE_TECH'), caster):
 			lList = lList + ['TECH']
 		if not pPlot.isWater():
-			lList = lList + ['ITEM_JADE_TORC', 'ITEM_ROD_OF_WINDS', 'ITEM_TIMOR_MASK', 'PRISONER_ADVENTURER', 'PRISONER_ARTIST', 'PRISONER_COMMANDER', 'PRISONER_ENGINEER', 'PRISONER_MERCHANT', 'PRISONER_PROPHET', 'PRISONER_SCIENTIST']
+			lList = lList + ['ITEM_JADE_TORC', 'ITEM_ROD_OF_WINDS', 'ITEM_TIMOR_MASK', 'PRISONER_ADVENTURER', 'PRISONER_ARTIST', 'PRISONER_GENERAL', 'PRISONER_ENGINEER', 'PRISONER_MERCHANT', 'PRISONER_PROPHET', 'PRISONER_SCIENTIST']
 			if pPlot.getBonusType(-1) == -1:
 				lList = lList + ['BONUS_MANA']
 				if pPlayer.isHasTech(gc.getInfoTypeForString('TECH_MINING')):
@@ -546,8 +546,8 @@ class CustomFunctions:
 		if sGoody == 'PRISONER_CHAMPION':
 			pPlayer.receiveGoody(pPlot, gc.getInfoTypeForString('GOODY_EXPLORE_LAIR_PRISONER_CHAMPION'), caster)
 			return 100
-		if sGoody == 'PRISONER_COMMANDER':
-			pPlayer.receiveGoody(pPlot,gc.getInfoTypeForString('GOODY_EXPLORE_LAIR_PRISONER_COMMANDER'), caster)
+		if sGoody == 'PRISONER_GENERAL':
+			pPlayer.receiveGoody(pPlot,gc.getInfoTypeForString('GOODY_EXPLORE_LAIR_PRISONER_GENERAL'), caster)
 			return 100
 		if sGoody == 'PRISONER_ENGINEER':
 			pPlayer.receiveGoody(pPlot,gc.getInfoTypeForString('GOODY_EXPLORE_LAIR_PRISONER_ENGINEER'), caster)
