@@ -3904,6 +3904,13 @@ def voteFundDissidents():
 						pCity = pyCity.GetCy()
 						pCity.changeHurryAngerTimer(1 + CyGame().getSorenRandNum(3, "Fund Dissidents"))
 
+def spellGreatGeneralSplit(caster):
+       pPlayer = gc.getPlayer(caster.getOwner())
+       iCommander = gc.getInfoTypeForString('UNIT_GREAT_GENERAL')
+       newUnit = pPlayer.initUnit(iCommander, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+       newUnit.setHasCasted(True)
+       newUnit.setImmobileTimer(1)
+
 def reqDeclareBarbs(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
