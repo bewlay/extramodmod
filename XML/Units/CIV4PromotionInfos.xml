@@ -5388,7 +5388,7 @@
             <DamageTypeResists>
                 <DamageTypeResist>
                     <DamageType>DAMAGE_FIRE</DamageType>
-                    <iResist>20</iResist>
+                    <iResist>5</iResist>
                 </DamageTypeResist>
             </DamageTypeResists>
         </PromotionInfo>
