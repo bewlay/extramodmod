@@ -15,7 +15,7 @@ gc = CyGlobalContext()
 ArtFileMgr = CyArtFileMgr()
 localText = CyTranslator()
 
-iLeaderPromo = gc.getInfoTypeForString('PROMOTION_GREAT_COMMANDER')
+iLeaderPromo = gc.getInfoTypeForString('PROMOTION_GREAT_GENERAL')
 sFileNamePromo = ArtFileMgr.getInterfaceArtInfo("OVERLAY_PROMOTION_FRAME").getPath()
 #screen = CyGInterfaceScreen( "MainInterface", CvScreenEnums.MAIN_INTERFACE )
 

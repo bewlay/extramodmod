@@ -154,7 +154,7 @@ def postCombatMimic(pCaster, pOpponent):
 	iBronze = gc.getInfoTypeForString('PROMOTION_BRONZE_WEAPONS')
 	iChanneling3 = gc.getInfoTypeForString('PROMOTION_CHANNELING3')
 	iDivine = gc.getInfoTypeForString('PROMOTION_DIVINE')
-	iGreatCommander = gc.getInfoTypeForString('PROMOTION_GREAT_COMMANDER')
+	iGreatGeneral = gc.getInfoTypeForString('PROMOTION_GREAT_GENERAL')
 	iIron = gc.getInfoTypeForString('PROMOTION_IRON_WEAPONS')
 	iMithril = gc.getInfoTypeForString('PROMOTION_MITHRIL_WEAPONS')
 	iHN = gc.getInfoTypeForString('PROMOTION_HIDDEN_NATIONALITY')
@@ -167,7 +167,7 @@ def postCombatMimic(pCaster, pOpponent):
 		else:
 			if (pOpponent.isHasPromotion(iProm)):
 				if gc.getPromotionInfo(iProm).isEquipment() == False:
-					if (iProm != iChanneling3 and iProm != iDivine and iProm != iBronze and iProm != iIron and iProm != iMithril and iProm != iGreatCommander and iProm != iRusted):
+					if (iProm != iChanneling3 and iProm != iDivine and iProm != iBronze and iProm != iIron and iProm != iMithril and iProm != iGreatGeneral and iProm != iRusted):
 						if gc.getPromotionInfo(iProm).isRace() == false:
 							if ((iProm != iHN) or (pCaster.getGroup().getNumUnits()==1)):
 								listProms.append(iProm)
@@ -3903,13 +3903,6 @@ def voteFundDissidents():
 					if CyGame().getSorenRandNum(100, "Fund Dissidents") < 50:
 						pCity = pyCity.GetCy()
 						pCity.changeHurryAngerTimer(1 + CyGame().getSorenRandNum(3, "Fund Dissidents"))
-
-def spellGreatGeneralSplit(caster):
-	pPlayer = gc.getPlayer(caster.getOwner())
-	iCommander = gc.getInfoTypeForString('UNIT_GREAT_GENERAL')
-	newUnit = pPlayer.initUnit(iCommander, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-	newUnit.setHasCasted(True)
-	newUnit.setImmobileTimer(1)
 
 def reqDeclareBarbs(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())

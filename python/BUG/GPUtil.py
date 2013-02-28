@@ -34,7 +34,6 @@ g_gpIcon = None
 g_gpBarList = (
 				"UNIT_ADVENTURER",
 				"UNIT_ARTIST",
-				"UNIT_COMMANDER",
 				"UNIT_ENGINEER",
 				"UNIT_MERCHANT",
 				"UNIT_PROPHET",
@@ -47,7 +46,6 @@ NUM_GP = len(g_gpBarList)
 (
 	GP_ADVENTURER,
 	GP_ARTIST,
-	GP_COMMANDER,
 	GP_ENGINEER,
 	GP_MERCHANT,
 	GP_PROPHET,
@@ -75,7 +73,6 @@ def init():
 	g_gpColors = [None] * NUM_GP
 	g_gpColors[GP_ADVENTURER] = gc.getInfoTypeForString("COLOR_RED")
 	g_gpColors[GP_ARTIST] = gc.getInfoTypeForString("COLOR_CULTURE_STORED")
-	g_gpColors[GP_COMMANDER] = gc.getInfoTypeForString("COLOR_GREEN")
 	g_gpColors[GP_ENGINEER] = gc.getYieldInfo(YieldTypes.YIELD_PRODUCTION).getColorType()
 	g_gpColors[GP_MERCHANT] = gc.getInfoTypeForString("COLOR_YELLOW")
 	g_gpColors[GP_PROPHET] = gc.getInfoTypeForString("COLOR_BLUE")
@@ -86,7 +83,6 @@ def init():
 
 	g_unitIcons[g_gpUnitTypes[GP_ADVENTURER]] = u"%c" %(CyGame().getSymbolID(FontSymbols.STRENGTH_CHAR))
 	g_unitIcons[g_gpUnitTypes[GP_ARTIST]] = u"%c" %(gc.getCommerceInfo(CommerceTypes.COMMERCE_CULTURE).getChar())
-	g_unitIcons[g_gpUnitTypes[GP_COMMANDER]] = u"%c" %(CyGame().getSymbolID(FontSymbols.GREAT_GENERAL_CHAR))
 	g_unitIcons[g_gpUnitTypes[GP_ENGINEER]] = u"%c" %(gc.getYieldInfo(YieldTypes.YIELD_PRODUCTION).getChar())
 	g_unitIcons[g_gpUnitTypes[GP_MERCHANT]] = u"%c" %(gc.getCommerceInfo(CommerceTypes.COMMERCE_GOLD).getChar())
 	g_unitIcons[g_gpUnitTypes[GP_PROPHET]] = u"%c" % CyGame().getSymbolID(FontSymbols.RELIGION_CHAR)
