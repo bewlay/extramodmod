@@ -74909,7 +74909,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_GREAT_GENERAL</Description>
-            <Civilopedia>TXT_KEY_UNIT_GENERAL_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_GREAT_GENERAL_PEDIA</Civilopedia>
             <Strategy></Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -75111,6 +75111,10 @@
             <bGraphicalOnly>0</bGraphicalOnly>
             <iHotKeyPriority>0</iHotKeyPriority>
             <FreePromotions>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_RECRUITER</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
             </FreePromotions>
             <LeaderPromotion>PROMOTION_GREAT_GENERAL</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
