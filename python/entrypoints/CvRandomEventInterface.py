@@ -1906,6 +1906,7 @@ def doTraitAggressive(argsList):
 					pPlayer.setHasTrait(iTrait,False)
 	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_AGGRESSIVE'),True)
 
+#Extra leaders (Traits): Start (Terkhen)
 def canApplyTraitAgrarian(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -1913,6 +1914,9 @@ def canApplyTraitAgrarian(argsList):
 	if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() == gc.getInfoTypeForString('TRAIT_AGRARIAN'):
 		return False
 	return True
+
+def helpTraitAgrarian(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_AGRARIAN'), CivilizationTypes.NO_CIVILIZATION, false )
 
 def doTraitAgrarian(argsList):
 	iEvent = argsList[0]
@@ -1925,6 +1929,7 @@ def doTraitAgrarian(argsList):
 				if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() != iTrait:
 					pPlayer.setHasTrait(iTrait,False)
 	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_AGRARIAN'),True)
+#Extra leaders (Traits): End
 
 def canApplyTraitArcane(argsList):
 	iEvent = argsList[0]
@@ -2051,6 +2056,7 @@ def doTraitFinancial(argsList):
 					pPlayer.setHasTrait(iTrait,False)
 	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_FINANCIAL'),True)
 
+#Extra leaders (Traits): Start (Terkhen)
 def canApplyTraitImperialistic(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -2061,7 +2067,6 @@ def canApplyTraitImperialistic(argsList):
 
 def helpTraitImperialistic(argsList) :
 	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_IMPERIALISTIC'), CivilizationTypes.NO_CIVILIZATION, false )
-# lfgr end
 
 def doTraitImperialistic(argsList):
 	iEvent = argsList[0]
@@ -2074,6 +2079,7 @@ def doTraitImperialistic(argsList):
 				if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() != iTrait:
 					pPlayer.setHasTrait(iTrait, False)
 	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_IMPERIALISTIC'),True)
+#Extra leaders (Traits): End
 
 def canApplyTraitIndustrious(argsList):
 	iEvent = argsList[0]
@@ -2214,6 +2220,7 @@ def doTraitRaiders(argsList):
 					pPlayer.setHasTrait(iTrait, False)
 	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_RAIDERS'),True)
 
+#Extra leaders (Traits): Start (Terkhen)
 def canApplyTraitSage(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -2221,6 +2228,9 @@ def canApplyTraitSage(argsList):
 	if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() == gc.getInfoTypeForString('TRAIT_SAGE'):
 		return False
 	return True
+
+def helpTraitSage(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_SAGE'), CivilizationTypes.NO_CIVILIZATION, false )
 
 def doTraitSage(argsList):
 	iEvent = argsList[0]
@@ -2233,6 +2243,34 @@ def doTraitSage(argsList):
 				if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() != iTrait:
 					pPlayer.setHasTrait(iTrait,False)
 	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_SAGE'),True)
+#Extra leaders (Traits): End
+
+#Extra leaders (Traits): Start (Terkhen)
+def canApplyTraitSlaver(argsList):
+	iEvent = argsList[0]
+	kTriggeredData = argsList[1]
+	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
+	if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() == gc.getInfoTypeForString('TRAIT_SLAVER'):
+		return False
+	if pPlayer.getAlignment() == gc.getInfoTypeForString('ALIGNMENT_GOOD'):
+		return False
+	return True
+
+def helpTraitSlaver(argsList) :
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_SLAVER'), CivilizationTypes.NO_CIVILIZATION, false )
+
+def doTraitSlaver(argsList):
+	iEvent = argsList[0]
+	kTriggeredData = argsList[1]
+	iPlayer = kTriggeredData.ePlayer
+	pPlayer = gc.getPlayer(iPlayer)
+	for iTrait in range(gc.getNumTraitInfos()):
+		if pPlayer.hasTrait(iTrait):
+			if (gc.getTraitInfo(iTrait).isSelectable()):
+				if gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() != iTrait:
+					pPlayer.setHasTrait(iTrait,False)
+	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_SLAVER'),True)
+#Extra leaders (Traits): End
 
 def canApplyTraitSpiritual(argsList):
 	iEvent = argsList[0]

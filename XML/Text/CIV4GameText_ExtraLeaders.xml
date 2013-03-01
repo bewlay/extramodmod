@@ -113,6 +113,14 @@
 		<Spanish>Esclavista</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRAIT_SLAVER</Tag>
+		<English>Slaver</English>
+		<French>Slaver</French>
+		<German>Slaver</German>
+		<Italian>Slaver</Italian>
+		<Spanish>Esclavista</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_LEADER_CHERON</Tag>
 		<English>Cheron</English>
 		<French>Cheron</French>
