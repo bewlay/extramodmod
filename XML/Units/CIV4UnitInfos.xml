@@ -53888,7 +53888,7 @@
             <PrereqReligion>RELIGION_RUNES_OF_KILMORPH</PrereqReligion>
             <PrereqCorporation>NONE</PrereqCorporation>
             <PrereqBuilding>NONE</PrereqBuilding>
-            <PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
+            <PrereqTech>TECH_MITHRIL_WEAPONS</PrereqTech>
             <TechTypes>
             </TechTypes>
             <BonusType>BONUS_MITHRIL</BonusType>
