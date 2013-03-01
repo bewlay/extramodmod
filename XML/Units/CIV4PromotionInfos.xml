@@ -2256,7 +2256,6 @@
             <Type>PROMOTION_DIVIDED_SOUL</Type>
             <Description>TXT_KEY_UNIT_DIVIDED_SOUL</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Units/Severed Soul.dds</Button>
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
@@ -5754,7 +5753,7 @@
             <DamageTypeResists>
                 <DamageTypeResist>
                     <DamageType>DAMAGE_FIRE</DamageType>
-                    <iResist>20</iResist>
+                    <iResist>5</iResist>
                 </DamageTypeResist>
             </DamageTypeResists>
         </PromotionInfo>
