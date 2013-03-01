@@ -830,7 +830,11 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 
 	if (ePlayer != NO_PLAYER)
 	{
-
+		if (!bConvert)
+		{
+			logBBAI("    %S Slain! (Unit %d - plot: %d, %d)", getName().GetCString(), getID(), getX(), getY());
+		}
+				
 //FfH: Modified by Kael 02/05/2009
 //		CvEventReporter::getInstance().unitKilled(this, ePlayer);
         if (!isImmortal())
@@ -838,6 +842,10 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 			CvEventReporter::getInstance().unitKilled(this, ePlayer);
         }
 //FfH: End Modify
+		else
+		{
+			logBBAI("    Immortal Rebirth!");
+		}
 
 		if (NO_UNIT != getLeaderUnitType())
 		{
@@ -12003,11 +12011,20 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
         int iImprovement = pNewPlot->getImprovementType();
         if (iImprovement != NO_IMPROVEMENT)
         {
-            if (GC.getImprovementInfo((ImprovementTypes)iImprovement).getSpawnUnitType() != NO_UNIT)
+			CvImprovementInfo& kImprovementInfo = GC.getImprovementInfo((ImprovementTypes)iImprovement);
+
+            if (kImprovementInfo.getSpawnUnitType() != NO_UNIT)
             {
-                if (!isHuman() || GC.getImprovementInfo((ImprovementTypes)iImprovement).isPermanent() == false)
+				bool bAnimalLair = false;
+
+				if (GC.getUnitInfo((UnitTypes)kImprovementInfo.getSpawnUnitType()).isAnimal())
+				{
+					bAnimalLair = true;
+				}
+
+                if (!isHuman() || kImprovementInfo.isPermanent() == false)
                 {
-                    if (atWar(getTeam(), GET_PLAYER(BARBARIAN_PLAYER).getTeam()))
+                    if (atWar(getTeam(), GET_PLAYER(BARBARIAN_PLAYER).getTeam()) || (bAnimalLair && !isBarbarian()))
                     {
                         if (isHuman())
                         {
@@ -13450,24 +13467,10 @@ void CvUnit::setCombatUnit(CvUnit* pCombatUnit, bool bAttacking)
 		{
 			if( gUnitLogLevel > 0 ) 
 			{
-				logBBAI("*** KOMBAT!\n     ATTACKER: Player %d Unit %d (%S's %S), CombatStrength=%d\n     DEFENDER: Player %d Unit %d (%S's %S), CombatStrength=%d\n",
-						getOwnerINLINE(), getID(), GET_PLAYER(getOwnerINLINE()).getName(), getName().GetCString(), currCombatStr(NULL, NULL),
+				logBBAI("      *** KOMBAT!\n                    ATTACKER: %S (Unit %d), CombatStrength=%d\n                    DEFENDER: Player %d Unit %d (%S's %S), CombatStrength=%d\n",
+						getName().GetCString(), getID(), currCombatStr(NULL, NULL),
 						pCombatUnit->getOwnerINLINE(), pCombatUnit->getID(), GET_PLAYER(pCombatUnit->getOwnerINLINE()).getNameKey(), pCombatUnit->getName().GetCString(), pCombatUnit->currCombatStr(pCombatUnit->plot(), this));
 			}
-			/*
-			if (GC.getLogging())
-			{
-				if (gDLL->getChtLvl() > 0)
-				{
-					// Log info about this combat...
-					char szOut[1024];
-					sprintf( szOut, "*** KOMBAT!\n     ATTACKER: Player %d Unit %d (%S's %S), CombatStrength=%d\n     DEFENDER: Player %d Unit %d (%S's %S), CombatStrength=%d\n",
-						getOwnerINLINE(), getID(), GET_PLAYER(getOwnerINLINE()).getName(), getName().GetCString(), currCombatStr(NULL, NULL),
-						pCombatUnit->getOwnerINLINE(), pCombatUnit->getID(), GET_PLAYER(pCombatUnit->getOwnerINLINE()).getNameKey(), pCombatUnit->getName().GetCString(), pCombatUnit->currCombatStr(pCombatUnit->plot(), this));
-					gDLL->messageControlLog(szOut);
-				}
-			}
-			*/
 
 			if (getDomainType() == DOMAIN_LAND
 				&& !m_pUnitInfo->isIgnoreBuildingDefense()
@@ -18804,6 +18807,9 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 			}
 		}
 	}
+	
+	CvWString szBuffer;
+	
 	if (iUnit != NO_UNIT)
 	{
 		if ((!pLoser->isImmuneToCapture() && !isNoCapture() && !pLoser->isImmortal())
@@ -18854,8 +18860,20 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 					pUnit->withdrawlToNearestValidPlot();
 				}
 //<<<<Unofficial Bug Fix: End Add
+			szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_CAPTURED_UNIT", pUnit->getNameKey());
+			gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pUnit->getX_INLINE(), pUnit->getY_INLINE());
+
+			szBuffer = gDLL->getText("TXT_KEY_MISC_YOUR_UNIT_CAPTURED", pUnit->getNameKey());
+			gDLL->getInterfaceIFace()->addMessage(pLoser->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pUnit->getX_INLINE(), pUnit->getY_INLINE());
+
 		}
 	}
+	else if (bUnitAutoCapture) // text message for captured workers
+	{
+		szBuffer = gDLL->getText("TXT_KEY_MISC_YOUR_UNIT_CAPTURED", pLoser->getNameKey());
+		gDLL->getInterfaceIFace()->addMessage(pLoser->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pLoser->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoser->getX_INLINE(), pLoser->getY_INLINE());
+	}
+
 	if (!CvString(GC.getUnitInfo(getUnitType()).getPyPostCombatWon()).empty())
     {
         CyUnit* pyCaster = new CyUnit(this);
