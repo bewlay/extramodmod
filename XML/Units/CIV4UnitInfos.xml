@@ -23095,12 +23095,8 @@
             </CorporationSpreads>
             <GreatPeoples>
             </GreatPeoples>
-			<Buildings>
-				<Building>
-					<BuildingType>BUILDING_CODE_OF_JUNIL</BuildingType>
-					<bBuilding>1</bBuilding>
-				</Building>
-			</Buildings>
+            <Buildings>
+            </Buildings>
             <ForceBuildings>
                 <ForceBuilding>
                     <BuildingType>BUILDING_COMMAND_POST</BuildingType>
