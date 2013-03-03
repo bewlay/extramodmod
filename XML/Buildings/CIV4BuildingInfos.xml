@@ -17423,7 +17423,7 @@
             <iMinLatitude>0</iMinLatitude>
             <iMaxLatitude>90</iMaxLatitude>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
-            <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+            <iGreatGeneralRateModifier>20</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
             <iAnarchyModifier>0</iAnarchyModifier>
