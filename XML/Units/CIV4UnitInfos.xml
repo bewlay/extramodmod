@@ -50321,7 +50321,7 @@
             <BonusProductionModifiers>
             </BonusProductionModifiers>
             <iBombRate>0</iBombRate>
-            <iBombardRate>5</iBombardRate>
+            <iBombardRate>0</iBombardRate>
             <SpecialCargo>NONE</SpecialCargo>
             <DomainCargo>NONE</DomainCargo>
             <iCargo>0</iCargo>
