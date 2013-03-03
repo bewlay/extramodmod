@@ -468,7 +468,7 @@
 			<NIF>Art/Terrain/Resources/mana_creation/Uranium.nif</NIF>
 			<KFM>Art/Terrain/Resources/mana_creation/Uranium.kfm</KFM>
 			<Button>Art/Interface/Buttons/WorldBuilder/Creation.dds</Button>
-			<FontButtonIndex>65</FontButtonIndex>
+			<FontButtonIndex>66</FontButtonIndex>
 		</BonusArtInfo>
 		<BonusArtInfo>
 			<Type>ART_DEF_BONUS_MANA_DEATH</Type>
@@ -531,7 +531,7 @@
 			<NIF>Art/Terrain/Resources/mana_law/Uranium.nif</NIF>
 			<KFM>Art/Terrain/Resources/mana_law/Uranium.kfm</KFM>
 			<Button>Art/Interface/Buttons/WorldBuilder/Force.dds</Button>
-			<FontButtonIndex>66</FontButtonIndex>
+			<FontButtonIndex>67</FontButtonIndex>
 		</BonusArtInfo>
 		<BonusArtInfo>
 			<Type>ART_DEF_BONUS_MANA_ICE</Type>
@@ -694,7 +694,7 @@
 			<NIF>Art/Terrain/Resources/amber/Gems.nif</NIF>
 			<KFM>Art/Terrain/Resources/amber/Gems.kfm</KFM>
 			<Button>Art/Interface/Buttons/WorldBuilder/amber.dds</Button>
-			<FontButtonIndex>62</FontButtonIndex>
+			<FontButtonIndex>63</FontButtonIndex>
 		</BonusArtInfo>
 		<BonusArtInfo>
 			<Type>ART_DEF_BONUS_SALT</Type>
@@ -703,7 +703,7 @@
 			<NIF>Art/Terrain/Resources/Salt/Marble.nif</NIF>
 			<KFM>Art/Terrain/Resources/Salt/Marble.kfm</KFM>
 			<Button>Art/Interface/Buttons/WorldBuilder/Salt.dds</Button>
-			<FontButtonIndex>63</FontButtonIndex>
+			<FontButtonIndex>64</FontButtonIndex>
 		</BonusArtInfo>
 		<BonusArtInfo>
 			<Type>ART_DEF_BONUS_SHRIMP</Type>
@@ -712,7 +712,7 @@
 			<NIF>Art/terrain/resources/shrimp/shrimp.nif</NIF>
 			<KFM>Art/Terrain/Resources/Crab/Crab.kfm</KFM>
 			<Button>Art/Interface/Buttons/WorldBuilder/shrimp.dds</Button>
-			<FontButtonIndex>64</FontButtonIndex>
+			<FontButtonIndex>65</FontButtonIndex>
 		</BonusArtInfo>
 	</BonusArtInfos>
 </Civ4ArtDefines>
