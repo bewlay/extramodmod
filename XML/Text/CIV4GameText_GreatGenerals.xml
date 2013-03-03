@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_MISSION_LEAD_TROOPS</Tag>
+		<English>Lead Troops as a Great General</English>
+		<French>Diriger les troupes en tant que Seigneur de guerre</French>
+		<German>Truppen als Kriegsherr anf&#252;hren</German>
+		<Italian>Guida le truppe come Guerriero</Italian>
+		<Spanish>Liderar tropas como un Gran General</Spanish>
+	</TEXT>
+</Civ4GameText>
