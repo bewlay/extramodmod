@@ -8,6 +8,10 @@
 #include "CvPlayer.h"
 #include "AI_defines.h"
 
+// Performance improvements for MNAI: Start
+typedef std::map<UnitTypes, int> CombatValueMap;
+// Performance improvements for MNAI: End
+
 class CvEventTriggerInfo;
 
 class CvPlayerAI : public CvPlayer
@@ -200,11 +204,16 @@ public:
 	DenialTypes AI_religionTrade(ReligionTypes eReligion, PlayerTypes ePlayer) const;
 
 	int AI_unitImpassableCount(UnitTypes eUnit) const;
-	int AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea, bool bUpgrade = false) const;
 	int AI_totalUnitAIs(UnitAITypes eUnitAI) const;
 	int AI_totalAreaUnitAIs(CvArea* pArea, UnitAITypes eUnitAI) const;
 	int AI_totalWaterAreaUnitAIs(CvArea* pArea, UnitAITypes eUnitAI) const;
 	int AI_countCargoSpace(UnitAITypes eUnitAI) const;
+
+	// Unit value methods.
+	int AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea, bool bUpgrade = false) const;
+	// Performance improvements for MNAI: Start
+	bool AI_unitValueValid(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea, int iCombat, bool bisLimitedUnit, bool bUpgrade) const;
+	// Performance improvements for MNAI: End
 
 	int AI_neededExplorers(CvArea* pArea) const;
 	int AI_neededWorkers(CvArea* pArea) const;
@@ -521,6 +530,10 @@ public:
   virtual void read(FDataStreamBase* pStream);
   virtual void write(FDataStreamBase* pStream);
 
+	// Performance improvements for MNAI: Start
+	void AI_invalidateCombatValueCache();
+	// Performance improvements for MNAI: End
+
 protected:
 
 	static CvPlayerAI* m_aPlayers;
@@ -597,6 +610,12 @@ protected:
 	bool m_bWasFinancialTrouble;
 	int m_iTurnLastProductionDirty;
 
+	// Performance improvements for MNAI: Start
+	// Cache for CvPlayerAI::AI_combatValue. It does not need to be cleaned.
+	mutable CombatValueMap combatValueMap;
+	// Cache for CvPlayerAI::AI_trueCombatValue. It needs to be cleaned when the player's traits change.
+	mutable CombatValueMap trueCombatValueMap;
+	// Performance improvements for MNAI: End
 
 	void AI_doCounter();
 	void AI_doMilitary();

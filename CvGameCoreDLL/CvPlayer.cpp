@@ -3619,6 +3619,10 @@ void CvPlayer::setHasTrait(TraitTypes eTrait, bool bNewValue)
 
 	m_pbTraits[(int)eTrait] = bNewValue;
 
+	// Performance improvements for MNAI: Start
+	GET_PLAYER(getID()).AI_invalidateCombatValueCache();
+	// Performance improvements for MNAI: End
+
 	CvTraitInfo& kTraitInfo = GC.getTraitInfo(eTrait);
 
 	changeExtraHealth(kTraitInfo.getHealth() * iChange);
@@ -6463,7 +6467,7 @@ bool CvPlayer::canTradeNetworkWith(PlayerTypes ePlayer) const
 
 int CvPlayer::getNumAvailableBonuses(BonusTypes eBonus) const
 {
-
+	PROFILE_FUNC();
 //FfH: Added by Kael 11/14/2007
     if (isFullMember((VoteSourceTypes)0))
     {

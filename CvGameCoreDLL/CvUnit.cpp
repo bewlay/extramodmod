@@ -15675,6 +15675,7 @@ int CvUnit::getSelectionSoundScript() const
 //FfH Spell System: Added by Kael 07/23/2007
 bool CvUnit::canCast(int spell, bool bTestVisible)
 {
+	PROFILE_FUNC();
     SpellTypes eSpell = (SpellTypes)spell;
 	CvSpellInfo& kSpell = GC.getSpellInfo(eSpell);
     CvPlot* pPlot = plot();

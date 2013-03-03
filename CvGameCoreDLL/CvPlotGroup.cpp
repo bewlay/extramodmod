@@ -234,6 +234,11 @@ void CvPlotGroup::changeNumBonuses(BonusTypes eBonus, int iChange)
 				if (pCity->getOwnerINLINE() == getOwnerINLINE())
 				{
 					pCity->changeNumBonuses(eBonus, iChange);
+					// Performance improvements for MNAI: Start
+					if (pCity->isCapital()) {
+						GET_PLAYER((PlayerTypes) pCity->getOwnerINLINE()).AI_invalidateCombatValueCache();
+					}
+					// Performance improvements for MNAI: End
 				}
 			}
 

@@ -798,6 +798,7 @@ bool CvUnitAI::AI_update()
 // Returns true if took an action or should wait to move later...
 bool CvUnitAI::AI_follow()
 {
+	PROFILE_FUNC();
 	bool bCanAllMove = getGroup()->canAllMove();
 
 	if (AI_followBombard())
