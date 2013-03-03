@@ -12394,9 +12394,11 @@ void CvUnit::changeExperience(int iChange, int iMax, bool bFromCombat, bool bInB
 			iUnitExperience += (iChange * kPlayer.getExpInBorderModifier()) / 100;
 		}
 
+		/** ExtraModMod: Great Generals are available unconditionally.
 		// Great General experience - limit this to the Advanced Tactics option
 		if (bUpdateGlobal && GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
-		//if (bUpdateGlobal)
+		*/
+		if (bUpdateGlobal)
 		{
 			kPlayer.changeCombatExperience((iChange * iCombatExperienceMod) / 100);
 		}
