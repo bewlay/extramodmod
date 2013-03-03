@@ -3348,8 +3348,11 @@ class CvMainInterface:
 # BUG - Great Person Bar - end
 
 # BUG - Great General Bar - start
-				if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS): ## Suppress display of Great General bar
-					self.updateGreatGeneralBar(screen)
+				## ExtraModMod: Great Generals are available unconditionally.
+				#if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS): ## Suppress display of Great General bar
+					#self.updateGreatGeneralBar(screen)
+				self.updateGreatGeneralBar(screen)
+				## ExtraModMod end
 # BUG - Great General Bar - end
 					
 		return 0

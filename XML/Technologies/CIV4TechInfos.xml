@@ -3702,7 +3702,7 @@
             <iAdvancedStartCost>100</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
             <Era>ERA_CLASSICAL</Era>
-            <FirstFreeUnitClass>UNITCLASS_COMMANDER</FirstFreeUnitClass>
+            <FirstFreeUnitClass>UNITCLASS_GREAT_GENERAL</FirstFreeUnitClass>
             <iFeatureProductionModifier>0</iFeatureProductionModifier>
             <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
             <iTradeRoutes>0</iTradeRoutes>

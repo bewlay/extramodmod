@@ -3156,8 +3156,8 @@
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>NONE</FreePromotion>
             <CivicOption>NONE</CivicOption>
-            <GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-            <iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+            <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+            <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
             <iHurryAngerModifier>0</iHurryAngerModifier>
             <bBorderObstacle>0</bBorderObstacle>
             <bTeamShare>0</bTeamShare>
@@ -8460,8 +8460,8 @@
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>NONE</FreePromotion>
             <CivicOption>NONE</CivicOption>
-            <GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-            <iGreatPeopleRateChange>2</iGreatPeopleRateChange>
+            <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+            <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
             <iHurryAngerModifier>0</iHurryAngerModifier>
             <bBorderObstacle>0</bBorderObstacle>
             <bTeamShare>0</bTeamShare>
@@ -8497,7 +8497,7 @@
             <iMinLatitude>0</iMinLatitude>
             <iMaxLatitude>90</iMaxLatitude>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
-            <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+            <iGreatGeneralRateModifier>20</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
             <iAnarchyModifier>0</iAnarchyModifier>
@@ -8701,8 +8701,8 @@
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>NONE</FreePromotion>
             <CivicOption>NONE</CivicOption>
-            <GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-            <iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+            <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+            <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
             <iHurryAngerModifier>0</iHurryAngerModifier>
             <bBorderObstacle>0</bBorderObstacle>
             <bTeamShare>0</bTeamShare>
@@ -14151,8 +14151,8 @@
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>NONE</FreePromotion>
             <CivicOption>NONE</CivicOption>
-            <GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-            <iGreatPeopleRateChange>2</iGreatPeopleRateChange>
+            <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+            <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
             <iHurryAngerModifier>0</iHurryAngerModifier>
             <bBorderObstacle>0</bBorderObstacle>
             <bTeamShare>1</bTeamShare>
@@ -16502,8 +16502,8 @@
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>NONE</FreePromotion>
             <CivicOption>NONE</CivicOption>
-            <GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-            <iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+            <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+            <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
             <iHurryAngerModifier>0</iHurryAngerModifier>
             <bBorderObstacle>0</bBorderObstacle>
             <bTeamShare>1</bTeamShare>
@@ -17929,8 +17929,8 @@
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>NONE</FreePromotion>
             <CivicOption>NONE</CivicOption>
-            <GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-            <iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+            <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+            <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
             <iHurryAngerModifier>0</iHurryAngerModifier>
             <bBorderObstacle>0</bBorderObstacle>
             <bTeamShare>0</bTeamShare>
@@ -17966,7 +17966,7 @@
             <iMinLatitude>0</iMinLatitude>
             <iMaxLatitude>90</iMaxLatitude>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
-            <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+            <iGreatGeneralRateModifier>20</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
             <iAnarchyModifier>0</iAnarchyModifier>
@@ -30128,8 +30128,8 @@
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>PROMOTION_MORALE</FreePromotion>
             <CivicOption>NONE</CivicOption>
-            <GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-            <iGreatPeopleRateChange>2</iGreatPeopleRateChange>
+            <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+            <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
             <iHurryAngerModifier>0</iHurryAngerModifier>
             <bBorderObstacle>0</bBorderObstacle>
             <bTeamShare>0</bTeamShare>
@@ -37342,8 +37342,8 @@
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>NONE</FreePromotion>
             <CivicOption>NONE</CivicOption>
-            <GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-            <iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+            <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+            <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
             <iHurryAngerModifier>0</iHurryAngerModifier>
             <bBorderObstacle>0</bBorderObstacle>
             <bTeamShare>0</bTeamShare>

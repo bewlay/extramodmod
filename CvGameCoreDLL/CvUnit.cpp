@@ -12414,9 +12414,11 @@ void CvUnit::changeExperience(int iChange, int iMax, bool bFromCombat, bool bInB
 			iUnitExperience += (iChange * kPlayer.getExpInBorderModifier()) / 100;
 		}
 
+		/** ExtraModMod: Great Generals are available unconditionally.
 		// Great General experience - limit this to the Advanced Tactics option
 		if (bUpdateGlobal && GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
-		//if (bUpdateGlobal)
+		*/
+		if (bUpdateGlobal)
 		{
 			kPlayer.changeCombatExperience((iChange * iCombatExperienceMod) / 100);
 		}
@@ -17302,7 +17304,7 @@ void CvUnit::castCreateUnit(int spell)
 	    {
             if (GC.getSpellInfo((SpellTypes)spell).isCopyCastersPromotions())
             {
-                if (!GC.getPromotionInfo((PromotionTypes)iI).isEquipment() && !GC.getPromotionInfo((PromotionTypes)iI).isRace() && iI != GC.getDefineINT("GREAT_COMMANDER_PROMOTION"))
+                if (!GC.getPromotionInfo((PromotionTypes)iI).isEquipment() && !GC.getPromotionInfo((PromotionTypes)iI).isRace() && iI != GC.getDefineINT("GREAT_GENERAL_PROMOTION"))
                 {
                     pUnit->setHasPromotion((PromotionTypes)iI, true);
                 }

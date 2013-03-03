@@ -320,8 +320,8 @@
         <DefineTextVal>UNIT_SLAVE</DefineTextVal>
     </Define>
     <Define>
-        <DefineName>GREAT_COMMANDER_PROMOTION</DefineName>
-        <DefineTextVal>PROMOTION_GREAT_COMMANDER</DefineTextVal>
+        <DefineName>GREAT_GENERAL_PROMOTION</DefineName>
+        <DefineTextVal>PROMOTION_GREAT_GENERAL</DefineTextVal>
     </Define>
     <Define>
         <DefineName>HIDDEN_NATIONALITY_PROMOTION</DefineName>

@@ -366,9 +366,9 @@ bool CvXMLLoadUtility::SetPostGlobalsGlobalDefines()
 		idx = FindInInfoClass(szVal);
 		GC.getDefinesVarSystem()->SetValue("FLAMES_SPREAD_EFFECT", idx);
 
-		SetGlobalDefine("GREAT_COMMANDER_PROMOTION", szVal);
+		SetGlobalDefine("GREAT_GENERAL_PROMOTION", szVal);
 		idx = FindInInfoClass(szVal);
-		GC.getDefinesVarSystem()->SetValue("GREAT_COMMANDER_PROMOTION", idx);
+		GC.getDefinesVarSystem()->SetValue("GREAT_GENERAL_PROMOTION", idx);
 
 		SetGlobalDefine("HIDDEN_NATIONALITY_PROMOTION", szVal);
 		idx = FindInInfoClass(szVal);

@@ -444,56 +444,6 @@
             <Button>Art/Interface/Buttons/Promotions/Charmed.dds</Button>
         </SpellInfo>
         <SpellInfo>
-            <Type>SPELL_COMMANDER_JOIN</Type>
-            <Description>TXT_KEY_SPELL_COMMANDER_JOIN</Description>
-            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <UnitInStackPrereq>UNIT_COMMANDER</UnitInStackPrereq>
-            <bAllowAI>1</bAllowAI>
-            <bCasterNoDuration>1</bCasterNoDuration>
-            <bHasCasted>1</bHasCasted>
-            <AddPromotionType1>PROMOTION_GREAT_COMMANDER</AddPromotionType1>
-            <bBuffCasterOnly>1</bBuffCasterOnly>
-            <bAbility>1</bAbility>
-            <PyResult>spellCommanderJoin(pCaster)</PyResult>
-            <PyRequirement>reqCommanderJoin(pCaster)</PyRequirement>
-            <Effect>EFFECT_SPELL1</Effect>
-            <Sound>AS3D_SPELL_COMMANDER_JOIN</Sound>
-            <Button>Art/Interface/Buttons/Units/Commander.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
-            <Type>SPELL_COMMANDER_JOIN_DECIUS</Type>
-            <Description>TXT_KEY_SPELL_COMMANDER_JOIN</Description>
-            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <UnitInStackPrereq>UNIT_DECIUS</UnitInStackPrereq>
-            <bAllowAI>1</bAllowAI>
-            <bCasterNoDuration>1</bCasterNoDuration>
-            <bHasCasted>1</bHasCasted>
-            <AddPromotionType1>PROMOTION_GREAT_COMMANDER</AddPromotionType1>
-            <bBuffCasterOnly>1</bBuffCasterOnly>
-            <bAbility>1</bAbility>
-            <PyResult>spellCommanderJoinDecius(pCaster)</PyResult>
-            <PyRequirement>reqCommanderJoin(pCaster)</PyRequirement>
-            <Effect>EFFECT_SPELL1</Effect>
-            <Sound>AS3D_SPELL_COMMANDER_JOIN</Sound>
-            <bGraphicalOnly>1</bGraphicalOnly>
-            <Button>Art/Interface/Buttons/Units/Commander.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
-            <Type>SPELL_COMMANDER_SPLIT</Type>
-            <Description>TXT_KEY_SPELL_COMMANDER_SPLIT</Description>
-            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <PromotionPrereq1>PROMOTION_GREAT_COMMANDER</PromotionPrereq1>
-            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
-            <bHasCasted>1</bHasCasted>
-            <RemovePromotionType1>PROMOTION_GREAT_COMMANDER</RemovePromotionType1>
-            <bBuffCasterOnly>1</bBuffCasterOnly>
-            <bAbility>1</bAbility>
-            <PyResult>spellCommanderSplit(pCaster)</PyResult>
-            <Effect>EFFECT_SPELL1</Effect>
-            <Sound>AS3D_SPELL_COMMANDER_SPLIT</Sound>
-            <Button>Art/Interface/Buttons/Units/Commander.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
             <Type>SPELL_CONSUME_SOUL</Type>
             <Description>TXT_KEY_SPELL_CONSUME_SOUL</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
