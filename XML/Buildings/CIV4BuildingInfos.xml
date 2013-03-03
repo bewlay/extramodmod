@@ -22007,8 +22007,8 @@
             <FreeBuilding>NONE</FreeBuilding>
             <FreePromotion>NONE</FreePromotion>
             <CivicOption>NONE</CivicOption>
-            <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
-            <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+            <GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
+            <iGreatPeopleRateChange>1</iGreatPeopleRateChange>
             <iHurryAngerModifier>0</iHurryAngerModifier>
             <bBorderObstacle>0</bBorderObstacle>
             <bTeamShare>0</bTeamShare>
