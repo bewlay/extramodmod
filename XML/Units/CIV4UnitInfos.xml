@@ -74975,6 +74975,10 @@
             <GreatPeoples>
             </GreatPeoples>
             <Buildings>
+                <Building>
+                    <BuildingType>BUILDING_CODE_OF_JUNIL</BuildingType>
+                    <bBuilding>1</bBuilding>
+                </Building>
             </Buildings>
             <ForceBuildings>
                 <ForceBuilding>
