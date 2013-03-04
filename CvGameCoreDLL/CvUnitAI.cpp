@@ -2421,20 +2421,22 @@ void CvUnitAI::AI_workerMove()
 	
 	if (GC.getGame().getSorenRandNum(5, "AI Worker build Fort with Priority"))
 	{
-		bool bCanal = ((100 * area()->getNumCities()) / std::max(1, GC.getGame().getNumCities()) < 85);
+		// Super Forts begin *canal* *choke*
 		CvPlayerAI& kPlayer = GET_PLAYER(getOwnerINLINE());
+		bool bCanal = kPlayer.countNumCoastalCities() > 0; //((100 * area()->getNumCities()) / std::max(1, GC.getGame().getNumCities()) < 85);
 		bool bAirbase = false;
 		bAirbase = (kPlayer.AI_totalUnitAIs(UNITAI_PARADROP) || kPlayer.AI_totalUnitAIs(UNITAI_ATTACK_AIR) || kPlayer.AI_totalUnitAIs(UNITAI_MISSILE_AIR));
 		
-		if (bCanal || bAirbase)
+//		if (bCanal || bAirbase)
+//		{
+		if (AI_fortTerritory(bCanal, bAirbase))
 		{
-			if (AI_fortTerritory(bCanal, bAirbase))
-			{
-				return;
-			}
+			return;
 		}
-		bBuildFort = true;
+//		}
+		bBuildFort = bCanal && bAirbase;
 	}
+	// Super Forts end
 
 	if (bCanRoute && isBarbarian())
 	{
@@ -2513,8 +2515,15 @@ void CvUnitAI::AI_workerMove()
 	{
 		return;
 	}
-	
+	// Super Forts begin *canal* *choke*
 	if (!bBuildFort)
+	{
+		if (AI_fortTerritory(true, true /*bCanal, bAirbase*/))
+		{
+			return;
+		}
+	}
+/*	if (!bBuildFort)
 	{
 		bool bCanal = ((100 * area()->getNumCities()) / std::max(1, GC.getGame().getNumCities()) < 85);
 		CvPlayerAI& kPlayer = GET_PLAYER(getOwnerINLINE());
@@ -2528,8 +2537,8 @@ void CvUnitAI::AI_workerMove()
 				return;
 			}
 		}
-	}
-
+	}*/
+	// Super Forts end
 	if (bCanRoute)
 	{
 		if (AI_routeTerritory())
@@ -20757,20 +20766,69 @@ bool CvUnitAI::AI_fortTerritory(bool bCanal, bool bAirbase)
 
 		if (AI_plotValid(pLoopPlot))
 		{
-			if (pLoopPlot->getOwnerINLINE() == getOwnerINLINE()) // XXX team???
+			if (pLoopPlot->getOwnerINLINE() == getOwnerINLINE()
+				// Super Forts *canal* *choke* begin
+				|| (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS) && pLoopPlot->getOwnerINLINE() == NO_PLAYER && pLoopPlot->isRevealed(getTeam(), false)))
+				// Super Forts end
 			{
-				if (pLoopPlot->getImprovementType() == NO_IMPROVEMENT)
+				if (pLoopPlot->getImprovementType() == NO_IMPROVEMENT
+					// Super Forts *canal* *choke* begin
+					|| !pLoopPlot->isCityRadius())
+					// Super Forts end
 				{
 					int iValue = 0;
 					iValue += bCanal ? kOwner.AI_getPlotCanalValue(pLoopPlot) : 0;
 					iValue += bAirbase ? kOwner.AI_getPlotAirbaseValue(pLoopPlot) : 0;
+					// Super Forts *choke* begin
+					iValue += kOwner.AI_getPlotChokeValue(pLoopPlot);
+					/* The commented lines below weren't in the original BTS code, and shouldn't be necessary because
+						the canal, airbase, and choke functions all consider defense bonus in their values
 					if (pLoopPlot->isHills())
 						iValue += 10;
+					*/
+					if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+					{
+						CvPlot* pAdjacentPlot;
+						for (int iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+						{
+							pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
 
-					if (iValue > 0)
+							if (pAdjacentPlot != NULL)
+							{
+								if(pAdjacentPlot->getOwnerINLINE() == NO_PLAYER)
+								{
+									BonusTypes eNonObsoleteBonus = pAdjacentPlot->getNonObsoleteBonusType(getTeam());
+									if (eNonObsoleteBonus != NO_BONUS)
+									{
+										if (!GET_PLAYER(getOwnerINLINE()).hasBonus(eNonObsoleteBonus) || GC.getBonusInfo(eNonObsoleteBonus).isMana())
+										{
+											iValue += 200;
+										}
+										else
+										{
+											iValue += 50;
+										}
+									}
+								}
+							}
+						}
+					}
+
+					int iMinAcceptableValue = 0;
+					if(pLoopPlot->getOwnerINLINE() == NO_PLAYER)
+					{	// Don't go outside borders for low values
+						iMinAcceptableValue += 150;
+					}
+
+					if (iValue > iMinAcceptableValue)
 					{
 						int iBestTempBuildValue = MAX_INT;
 						BuildTypes eBestTempBuild = NO_BUILD;
+						
+						int iPlotValue = iValue;
+						iPlotValue += bCanal ? 0 : kOwner.AI_getPlotCanalValue(pLoopPlot) / 4;
+						iPlotValue += bAirbase ? 0 : kOwner.AI_getPlotAirbaseValue(pLoopPlot) / 4;
+						// Super Forts end
 
 						for (int iJ = 0; iJ < GC.getNumBuildInfos(); iJ++)
 						{
@@ -20828,13 +20886,26 @@ bool CvUnitAI::AI_fortTerritory(bool bCanal, bool bAirbase)
 
 								if (bValid)
 								{
-									if (GET_PLAYER(getOwnerINLINE()).AI_plotTargetMissionAIs(pLoopPlot, MISSIONAI_BUILD, getGroup(), 3) == 0)
+									// Super Forts begin *canal* *choke*
+									if (GET_PLAYER(getOwnerINLINE()).AI_plotTargetMissionAIs(pLoopPlot, MISSIONAI_BUILD, getGroup(), 1/*3*/) == 0)
 									{
 										int iPathTurns;
 										if (generatePath(pLoopPlot, 0, true, &iPathTurns))
 										{
-											iValue *= 1000;
+											//iValue *= 1000;
+											iValue = iPlotValue * 100;
 											iValue /= (iPathTurns + 1);
+											if(pLoopPlot->getOwnerINLINE() == NO_PLAYER)
+											{
+												CvCity* pNearestCity = GC.getMapINLINE().findCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), getOwnerINLINE(), NO_TEAM, false);
+												if((pNearestCity == NULL) || 
+													(plotDistance(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), pNearestCity->getX_INLINE(), pNearestCity->getY_INLINE()) > GC.getDefineINT("AI_WORKER_MAX_DISTANCE_FROM_CITY_OUT_BORDERS")) ||
+													(iPathTurns > (GC.getDefineINT("AI_WORKER_MAX_DISTANCE_FROM_CITY_OUT_BORDERS") / 2)))
+												{
+													iValue = 0;
+												}
+											}
+											// Super Forts end
 
 											if (iValue > iBestValue)
 											{
@@ -20901,7 +20972,9 @@ bool CvUnitAI::AI_improveBonus(int iMinValue, CvPlot** ppBestPlot, BuildTypes* p
 		pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
 
 		// Super Forts begin *AI_worker*
-		if ((pLoopPlot->getOwnerINLINE() == getOwnerINLINE() || (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS) && pLoopPlot->getOwnerINLINE() == NO_PLAYER)) && AI_plotValid(pLoopPlot))
+		if ((pLoopPlot->getOwnerINLINE() == getOwnerINLINE() || 
+			(GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS) && pLoopPlot->getOwnerINLINE() == NO_PLAYER && pLoopPlot->isRevealed(getTeam(), false))) 
+			&& AI_plotValid(pLoopPlot))
 		//if (pLoopPlot->getOwnerINLINE() == getOwnerINLINE() && AI_plotValid(pLoopPlot)) - Original Code
 		// Super Forts end
 		{
@@ -27969,12 +28042,17 @@ void CvUnitAI::ConquestMove()
 
 		return;
 	}
-	
+
+	if (AI_groupMergeRange(UNITAI_HERO, 0, true, true, bIgnoreFaster))
+	{
+		return;
+	}
+		
 	if (AI_groupMergeRange(UNITAI_ATTACK_CITY, 0, true, true, bIgnoreFaster))
 	{
 		return;
 	}
-	
+
 	// BBAI TODO: Find some way of reliably targetting nearby cities with less defense ...
 	pTargetCity = AI_pickTargetCity(0, MAX_INT, bHuntBarbs);
 	
