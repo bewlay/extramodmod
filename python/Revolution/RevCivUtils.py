@@ -318,7 +318,8 @@ class RevCivDefines :
 #		self.liMinorLeaders[self.iGrigori] = [self.iKoun]
 #		self.liMinorLeaders[self.iHippus] = [self.iOstanes, self.iUldanor]
 #		self.liMinorLeaders[self.iIllians] = [self.iDumannios, self.iRiuros, self.iAnaganios, self.iBraeden]
-#		self.liMinorLeaders[self.iInfernal] = [self.iSallos, self.iJudecca, self.iOuzza, self.iMeresin, self.iStatius, self.iLethe]
+# Except for Infernal leaders
+		self.liMinorLeaders[self.iInfernal] = [self.iSallos, self.iJudecca, self.iOuzza, self.iMeresin, self.iStatius, self.iLethe]
 #		self.liMinorLeaders[self.iMalakim] = [self.iKane]
 #		self.liMinorLeaders[self.iSheaim] = [self.iAverax, self.iGosea, self.iMalchavic]
 #		self.liMinorLeaders[self.iSidar] = [self.iShekinah]
