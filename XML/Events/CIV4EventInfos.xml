@@ -5556,6 +5556,7 @@
 			<PythonCallback>doStrangeAdept</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<iGlobalCounter>1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- STRANGE_ADEPT_3 -->
 			<Type>EVENT_STRANGE_ADEPT_3</Type>
@@ -5567,6 +5568,7 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
+			<iGlobalCounter>1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- STRANGE_ADEPT_4 -->
 			<Type>EVENT_STRANGE_ADEPT_4</Type>
@@ -5577,6 +5579,7 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
+			<iGlobalCounter>-1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- HELL_REFUGEES_1 -->
 			<Type>EVENT_HELL_REFUGEES_1</Type>
@@ -5650,7 +5653,7 @@
 			<Type>EVENT_SCHOLARS_2</Type>
 			<Description>TXT_KEY_EVENT_SCHOLARS_2</Description>
 			<bPickCity>1</bPickCity>
-			<iGold>-200</iGold>
+			<iGold>-100</iGold>
 			<BuildingExtraCommerces>
 				<BuildingExtraCommerce>
 					<BuildingClass>BUILDINGCLASS_LIBRARY</BuildingClass>
@@ -5667,7 +5670,7 @@
 			<Type>EVENT_SCHOLARS_3</Type>
 			<Description>TXT_KEY_EVENT_SCHOLARS_3</Description>
 			<bPickCity>1</bPickCity>
-			<iGold>-150</iGold>
+			<iGold>-75</iGold>
 			<BuildingClass>BUILDINGCLASS_MAGE_GUILD</BuildingClass>
 			<iBuildingChange>1</iBuildingChange>
 			<iMaxNumReligions>-1</iMaxNumReligions>
@@ -5698,12 +5701,12 @@
 			<Help>TXT_KEY_EVENT_TRAPPED_FROSTLINGS_2_HELP</Help>
 			<Description>TXT_KEY_EVENT_TRAPPED_FROSTLINGS_2</Description>
 			<bPickCity>1</bPickCity>
-			<iHappyTurns>5</iHappyTurns>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>DoTrappedFrostlings2</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>100</iAIValue>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
+			<iGlobalCounter>-1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- TRAPPED_FROSTLINGS_3 -->
 			<Type>EVENT_TRAPPED_FROSTLINGS_3</Type>
@@ -5886,9 +5889,9 @@
 				</BuildingExtraHealth>
 			</BuildingExtraHealths>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCanDo>CanDoHangingSisters1</PythonCanDo>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
 		</EventInfo>
 		<EventInfo><!-- HANGING_SISTERS_2 -->
 			<Type>EVENT_HANGING_SISTERS_2</Type>

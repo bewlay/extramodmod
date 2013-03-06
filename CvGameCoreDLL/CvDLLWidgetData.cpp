@@ -1037,8 +1037,13 @@ bool CvDLLWidgetData::executeAltAction( CvWidgetDataStruct &widgetDataStruct )
 	{
 	case WIDGET_HELP_TECH_ENTRY:
 	case WIDGET_HELP_TECH_PREPREQ:
-	case WIDGET_RESEARCH:
 	case WIDGET_TECH_TREE:
+		doPediaTechJump(widgetDataStruct);
+		break;
+	case WIDGET_RESEARCH:
+		// To catch right-clicking on the current research text, which has widgetDataStruct.m_iData1 = -1, because it is supposed to reset research when left-clicked
+		if( widgetDataStruct.m_iData1 == -1 )
+			widgetDataStruct.m_iData1 = GET_PLAYER( GC.getGameINLINE().getActivePlayer() ).getCurrentResearch();
 		doPediaTechJump(widgetDataStruct);
 		break;
 	case WIDGET_TRAIN:
@@ -5101,7 +5106,7 @@ void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStr
 
 // More Naval AI version number
 	// Add string showing version number
-	szTempBuffer.Format(L"%S", "More Naval AI v2.41");
+	szTempBuffer.Format(L"%S", "More Naval AI v2.42");
 	szBuffer.append(szTempBuffer);
 	szBuffer.append(NEWLINE);
 // End More Naval AI

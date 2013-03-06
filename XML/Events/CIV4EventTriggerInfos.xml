@@ -946,7 +946,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_circleofg.dds</EventArt>
+			<EventArt>Art\EventImages\e_circleofgaelan.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -978,7 +978,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_circleofg.dds</EventArt>
+			<EventArt>Art\EventImages\e_circleofgaelan.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -3828,7 +3828,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_MotherLode.dds</EventArt>
+			<EventArt>Art\EventImages\e_Motherlode.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -7670,7 +7670,7 @@
 			<PythonCanDo>canTriggerParith</PythonCanDo>
 		</EventTriggerInfo>
 		<!-- MORE EVENTS MOD STARTS (lfgr: tweaked) -->
-		<EventTriggerInfo><!-- GELA lfgr: fixed -->
+		<EventTriggerInfo><!-- GELA lfgr: tweaked -->
 			<Type>EVENTTRIGGER_GELA</Type>
 			<WorldNewsTexts>
 				<Text />
@@ -7697,7 +7697,7 @@
 			</Events>
 			<bGlobal>1</bGlobal>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- STRANGE_ADEPT lfgr: fixed -->
+		<EventTriggerInfo><!-- STRANGE_ADEPT lfgr: tweaked -->
 			<Type>EVENTTRIGGER_STRANGE_ADEPT</Type>
 			<WorldNewsTexts>
 				<Text />
@@ -7726,7 +7726,7 @@
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- HELL_REFUGEES lfgr: fixed -->
+		<EventTriggerInfo><!-- HELL_REFUGEES lfgr: tweaked -->
 			<Type>EVENTTRIGGER_HELL_REFUGEES</Type>
 			<WorldNewsTexts>
 				<Text />
@@ -7756,7 +7756,7 @@
 			<iPrereqGlobalCounter>20</iPrereqGlobalCounter>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- SCHOLARS lfgr: fixed -->
+		<EventTriggerInfo><!-- SCHOLARS lfgr: tweaked -->
 			<Type>EVENTTRIGGER_SCHOLARS</Type>
 			<WorldNewsTexts>
 				<Text />
@@ -7785,7 +7785,7 @@
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- TRAPPED_FROSTLINGS lfgr: fixed -->
+		<EventTriggerInfo><!-- TRAPPED_FROSTLINGS lfgr: tweaked -->
 			<Type>EVENTTRIGGER_TRAPPED_FROSTLINGS</Type>
 			<WorldNewsTexts>
 				<Text />
@@ -7812,7 +7812,7 @@
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDo>CanTriggerTrappedFrostlings</PythonCanDo>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- PACIFIST_DEMONSTRATION -->
+		<EventTriggerInfo><!-- PACIFIST_DEMONSTRATION lfgr: tweaked -->
 			<Type>EVENTTRIGGER_PACIFIST_DEMONSTRATION</Type>
 			<WorldNewsTexts>
 				<Text /><!-- lfgr: TODO -->
@@ -7841,7 +7841,7 @@
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDo>canTriggerPacifistDemonstration</PythonCanDo>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- DEMON_SIGN -->
+		<EventTriggerInfo><!-- DEMON_SIGN lfgr: tweaked -->
 			<Type>EVENTTRIGGER_DEMON_SIGN</Type>
 			<WorldNewsTexts>
 				<Text />

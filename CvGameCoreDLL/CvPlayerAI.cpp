@@ -789,6 +789,7 @@ void CvPlayerAI::AI_doTurnUnitsPost()
 		//
 		//int iUnitValue;
 
+		/* - Tholal Note: adding this section seems to cause some other issues
 		for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
 		{
             int iSpell = pLoopUnit->chooseSpell();
@@ -797,7 +798,9 @@ void CvPlayerAI::AI_doTurnUnitsPost()
                 pLoopUnit->cast(iSpell);
 			}
 		}
+		*/
 
+		//Tholal ToDo - Manes hit this upgrade section before they ever get a chance to 'cast'
 		// Tholal ToDo - arrange units in a sorted list then try and upgrade rather than running through whole list three times
 		// pass 0
 		for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
@@ -5265,6 +5268,27 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 						//iNumBonuses = getNumAvailableBonuses((BonusTypes)iK);
 						iNumBonuses = countOwnedBonuses((BonusTypes)iK, true);
+
+						//ToDo - count extra rings of capitol
+						if (iCityCount == 1 && pCapitalCity != NULL)
+						{
+							if (pCapitalCity->getCultureLevel() < 2)
+							{
+								CvPlot *pLoopPlot;
+								// check for bonuses in the 2nd culture ring
+								for (int iI = 0; iI < 21; iI++)
+								{
+									pLoopPlot = plotCity(pCapitalCity->getX(), pCapitalCity->getY(), iI);
+									if (pLoopPlot != NULL)
+									{
+										if (pLoopPlot->getBonusType() == iK)
+										{
+											iNumBonuses ++;
+										}
+									}
+								}
+							}
+						}
 
 						// used for debugging
 						int iTotalBonuses = getNumAvailableBonuses((BonusTypes)iK);
@@ -10800,6 +10824,15 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus) const
 								iValue += (bSummoner ? 50 : 25);// ToDo - extract some info about the unit and how useful it will be to us
 							}
 							
+							//Todo - find a way to check for actual need (ie Water mana for desert)
+							if (kSpellInfo.isAllowAutomateTerrain())
+							{
+								iValue += (iCityCount - 1) * 10;
+								if ((BonusTypes)eBonus == GC.getInfoTypeForString("BONUS_MANA_WATER"))
+								{
+									// AI_countNumOwnedTerrainTypes("TERRAIN_DESERT")
+								}
+							}
 
 							// buffs and debuffs
 							if (kSpellInfo.getAddPromotionType1() != NO_PROMOTION)
@@ -11738,7 +11771,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 
 	bValid = kUnitInfo.getUnitAIType(eUnitAI);
 
-	if ((kUnitInfo.getDefaultUnitAIType() == UNITAI_HERO) && (eUnitAI != UNITAI_HERO))
+	if ((kUnitInfo.getDefaultUnitAIType() == UNITAI_HERO) && (eUnitAI != UNITAI_HERO) && !bUpgrade)
 	{
 		return 0;
 	}
@@ -11788,7 +11821,10 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 			{
 				if (!(kUnitInfo.isOnlyDefensive()))
 				{
-					bValid = true;
+					if (!(kUnitInfo.getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_SIEGE")))
+					{
+						bValid = true;
+					}
 				}
 			}
 			break;
@@ -12970,7 +13006,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 	}
 
 
-	if (iCombatValue > 0 && kUnitInfo.getUnitAIType(eUnitAI))
+	if (iCombatValue > 0) //&& kUnitInfo.getUnitAIType(eUnitAI))
 	{
 		//traits
 		int iTraitMod = 0;
@@ -25936,14 +25972,14 @@ int CvPlayerAI::AI_getAttitudeWeight(PlayerTypes ePlayer) const
 int CvPlayerAI::AI_getPlotAirbaseValue(CvPlot* pPlot) const
 {
 	PROFILE_FUNC();
-
+	
 	FAssert(pPlot != NULL);
-
+	
 	if (pPlot->getTeam() != getTeam())
 	{
 		return 0;
 	}
-
+	
 	if (pPlot->isCityRadius())
 	{
 		CvCity* pWorkingCity = pPlot->getWorkingCity();
@@ -25963,15 +25999,15 @@ int CvPlayerAI::AI_getPlotAirbaseValue(CvPlot* pPlot) const
 			}
 		}
 	}
-
+	
 	int iMinOtherCityDistance = MAX_INT;
 	CvPlot* iMinOtherCityPlot = NULL;
-
-	int iMinFriendlyCityDistance = MAX_INT;
-	CvPlot* iMinFriendlyCityPlot = NULL;
-
+	// Super Forts begin *choke* *canal* - commenting out unnecessary code
+//	int iMinFriendlyCityDistance = MAX_INT;
+//	CvPlot* iMinFriendlyCityPlot = NULL;
+	
 	int iOtherCityCount = 0;
-
+	
 	int iRange = 4;
 	for (int iX = -iRange; iX <= iRange; iX++)
 	{
@@ -25981,7 +26017,7 @@ int CvPlayerAI::AI_getPlotAirbaseValue(CvPlot* pPlot) const
 			if ((pLoopPlot != NULL) && (pPlot != pLoopPlot))
 			{
 				int iDistance = plotDistance(pPlot->getX_INLINE(), pPlot->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
-
+				
 				if (pLoopPlot->getTeam() == getTeam())
 				{
 					if (pLoopPlot->isCity(true))
@@ -25990,11 +26026,12 @@ int CvPlayerAI::AI_getPlotAirbaseValue(CvPlot* pPlot) const
 						{
 							return 0;
 						}
-						if (iDistance < iMinFriendlyCityDistance)
-						{
-							iMinFriendlyCityDistance = iDistance;
-							iMinFriendlyCityPlot = pLoopPlot;
-						}
+//						if (iDistance < iMinFriendlyCityDistance)
+//						{
+//							iMinFriendlyCityDistance = iDistance;
+//							iMinFriendlyCityPlot = pLoopPlot;
+//						}
+	// Super Forts end
 					}
 				}
 				else
@@ -26007,20 +26044,22 @@ int CvPlayerAI::AI_getPlotAirbaseValue(CvPlot* pPlot) const
 							{
 								iMinOtherCityDistance = iDistance;
 								iMinOtherCityPlot = pLoopPlot;
-								iOtherCityCount++;
+							// Super Forts begin  *choke* *canal* - move iOtherCityCount outside the if statement
 							}
+							iOtherCityCount++;
+							// Super Forts end
 						}
 					}
 				}
 			}
 		}
 	}
-
+	
 	if (0 == iOtherCityCount)
 	{
 		return 0;
 	}
-
+	
 //	if (iMinFriendlyCityPlot != NULL)
 //	{
 //		FAssert(iMinOtherCityPlot != NULL);
@@ -26029,87 +26068,160 @@ int CvPlayerAI::AI_getPlotAirbaseValue(CvPlot* pPlot) const
 //			return 0;
 //		}
 //	}
-
-//	if (iMinOtherCityPlot != NULL)
-//	{
-//		CvCity* pNearestCity = GC.getMapINLINE().findCity(iMinOtherCityPlot->getX_INLINE(), iMinOtherCityPlot->getY_INLINE(), NO_PLAYER, getTeam(), false);
-//		if (NULL == pNearestCity)
-//		{
-//			return 0;
-//		}
-//		if (plotDistance(pNearestCity->getX_INLINE(), pNearestCity->getY_INLINE(), iMinOtherCityPlot->getX_INLINE(), iMinOtherCityPlot->getY_INLINE()) < iRange)
-//		{
-//			return 0;
-//		}
-//	}
-
-
+	// Super Forts begin *canal* *choke*
+	if(iOtherCityCount == 1)
+	{
+		if (iMinOtherCityPlot != NULL)
+		{
+			CvCity* pNearestCity = GC.getMapINLINE().findCity(iMinOtherCityPlot->getX_INLINE(), iMinOtherCityPlot->getY_INLINE(), NO_PLAYER, getTeam(), false);
+			if (NULL != pNearestCity)
+			{
+				if (plotDistance(pNearestCity->getX_INLINE(), pNearestCity->getY_INLINE(), iMinOtherCityPlot->getX_INLINE(), iMinOtherCityPlot->getY_INLINE()) < iMinOtherCityDistance)
+				{
+					return 0;
+				}
+			}
+		}
+	}		
+	
 	int iDefenseModifier = pPlot->defenseModifier(getTeam(), false);
-//	if (iDefenseModifier <= 0)
-//	{
-//		return 0;
-//	}
-
 	int iValue = iOtherCityCount * 50;
+	iValue += iDefenseModifier;
+/*	Original Code	
 	iValue *= 100 + (2 * (iDefenseModifier + (pPlot->isHills() ? 25 : 0)));
-	iValue /= 100;
-
-	return iValue;
+	iValue /= 100; 
+*/	
+	// Super Forts end
+	return std::max(0,iValue);
 }
 
 int CvPlayerAI::AI_getPlotCanalValue(CvPlot* pPlot) const
 {
 	PROFILE_FUNC();
-
+	
 	FAssert(pPlot != NULL);
 
-	if (pPlot->isOwned())
-	{
-		if (pPlot->getTeam() != getTeam())
-		{
-			return 0;
-		}
-		if (pPlot->isCityRadius())
-		{
-			CvCity* pWorkingCity = pPlot->getWorkingCity();
-			if (pWorkingCity != NULL)
-			{
-				if (pWorkingCity->AI_getBestBuild(pWorkingCity->getCityPlotIndex(pPlot)) != NO_BUILD)
-				{
-					return 0;
-				}
-				if (pPlot->getImprovementType() != NO_IMPROVEMENT)
-				{
-					CvImprovementInfo &kImprovementInfo = GC.getImprovementInfo(pPlot->getImprovementType());
-					if (!kImprovementInfo.isActsAsCity())
-					{
-						return 0;
-					}
-				}
-			}
-		}
-	}
+	// Super Forts begin *canal*
+	int iCanalValue = pPlot->getCanalValue();
 
-	for (int iI = 0; iI < NUM_DIRECTION_TYPES; iI++)
+	if (iCanalValue > 0)
 	{
-		CvPlot* pLoopPlot = plotDirection(pPlot->getX_INLINE(), pPlot->getY_INLINE(), (DirectionTypes)iI);
-		if (pLoopPlot != NULL)
+		if (pPlot->isOwned())
 		{
-			if (pLoopPlot->isCity(true))
+			if (pPlot->getTeam() != getTeam())
 			{
 				return 0;
 			}
+			if (pPlot->isCityRadius())
+			{
+				CvCity* pWorkingCity = pPlot->getWorkingCity();
+				if (pWorkingCity != NULL)
+				{
+					// Left in this part from the original code. Might be needed to avoid workers from getting stuck in a loop?
+					if (pWorkingCity->AI_getBestBuild(pWorkingCity->getCityPlotIndex(pPlot)) != NO_BUILD)
+					{
+						return 0;
+					}
+					if (pPlot->getImprovementType() != NO_IMPROVEMENT)
+					{
+						CvImprovementInfo &kImprovementInfo = GC.getImprovementInfo(pPlot->getImprovementType());
+						if (!kImprovementInfo.isActsAsCity())
+						{
+							return 0;
+						}
+					}
+					// Decrease value when within radius of a city
+					iCanalValue -= 5;
+				}
+			}
 		}
+	
+		for (int iI = 0; iI < NUM_DIRECTION_TYPES; iI++)
+		{
+			CvPlot* pLoopPlot = plotDirection(pPlot->getX_INLINE(), pPlot->getY_INLINE(), (DirectionTypes)iI);
+			if (pLoopPlot != NULL)
+			{
+				if (pLoopPlot->isCity(true) && (pLoopPlot->getCanalValue() > 0))
+				{
+					// Decrease value when adjacent to a city or fort with a canal value
+					iCanalValue -= 10;
+				}
+			}
+		}
+		
+		iCanalValue *= 10;
+		// Favor plots with higher defense
+		int iDefenseModifier = pPlot->defenseModifier(getTeam(), false);
+		iCanalValue += iDefenseModifier;
 	}
 
-	CvArea* pSecondWaterArea = pPlot->secondWaterArea();
-	if (pSecondWaterArea == NULL)
-	{
-		return 0;
-	}
-
-	return 10 * std::min(0, pSecondWaterArea->getNumTiles() - 2);
+	return std::max(0,iCanalValue);
+	// Super Forts end
 }
+
+// Super Forts begin *choke*
+int CvPlayerAI::AI_getPlotChokeValue(CvPlot* pPlot) const
+{
+	PROFILE_FUNC();
+	
+	FAssert(pPlot != NULL);
+
+	int iChokeValue = pPlot->getChokeValue();
+
+	if (iChokeValue > 0)
+	{
+		if (pPlot->isOwned())
+		{
+			if (pPlot->getTeam() != getTeam())
+			{
+				return 0;
+			}
+			if (pPlot->isCityRadius())
+			{
+				CvCity* pWorkingCity = pPlot->getWorkingCity();
+				if (pWorkingCity != NULL)
+				{
+					// Left in this part from the original code. Might be needed to avoid workers from getting stuck in a loop?
+					if (pWorkingCity->AI_getBestBuild(pWorkingCity->getCityPlotIndex(pPlot)) != NO_BUILD)
+					{
+						return 0;
+					}
+					if (pPlot->getImprovementType() != NO_IMPROVEMENT)
+					{
+						CvImprovementInfo &kImprovementInfo = GC.getImprovementInfo(pPlot->getImprovementType());
+						if (!kImprovementInfo.isActsAsCity())
+						{
+							return 0;
+						}
+					}
+					// Decrease value when within radius of a city
+					iChokeValue -= 5;
+				}
+			}
+		}
+	
+		for (int iI = 0; iI < NUM_DIRECTION_TYPES; iI++)
+		{
+			CvPlot* pLoopPlot = plotDirection(pPlot->getX_INLINE(), pPlot->getY_INLINE(), (DirectionTypes)iI);
+			if (pLoopPlot != NULL)
+			{
+				if (pLoopPlot->isCity(true) && (pLoopPlot->getChokeValue() > 0))
+				{
+					// Decrease value when adjacent to a city or fort with a choke value
+					iChokeValue -= 10;
+				}
+			}
+		}
+
+		iChokeValue *= 10;
+		// Favor plots with higher defense
+		int iDefenseModifier = pPlot->defenseModifier(getTeam(), false);
+		iChokeValue += iDefenseModifier;
+	}
+
+	return std::max(0,iChokeValue);
+}
+// Super Forts end
 
 //This returns a positive number equal approximately to the sum
 //of the percentage values of each unit (there is no need to scale the output by iHappy)
@@ -27000,7 +27112,7 @@ int CvPlayerAI::AI_getMojoFactor() const
 			iValue += getNumAvailableBonuses((BonusTypes)iK) * 2;
 			if (getNumAvailableBonuses((BonusTypes)iK) > 1)
 			{
-				iValue ++;
+				iValue += 2;
 			}
 		}
 		if (GC.getBonusInfo((BonusTypes)iK).getBonusClassType() == (GC.getDefineINT("BONUSCLASS_MANA_RAW")))
