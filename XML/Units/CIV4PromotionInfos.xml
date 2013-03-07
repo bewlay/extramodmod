@@ -1955,6 +1955,19 @@
             <iAIWeight>150</iAIWeight>
             <PromotionPrereqAnd>PROMOTION_CHANNELING3</PromotionPrereqAnd>
         </PromotionInfo>
+		<PromotionInfo>
+			<Type>PROMOTION_DECIUS</Type>
+			<Description>TXT_KEY_LEADER_DECIUS</Description>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<LayerAnimationPath>NONE</LayerAnimationPath>
+			<bLeader>1</bLeader>
+			<iUpgradeDiscount>50</iUpgradeDiscount>
+			<iExperiencePercent>50</iExperiencePercent>
+			<bGraphicalOnly>1</bGraphicalOnly>
+			<Button>Art/Interface/Leaderheads/Decius button.dds</Button>
+			<iExtraCombatStr>1</iExtraCombatStr>
+			<iExtraCombatDefense>1</iExtraCombatDefense>
+		</PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_DEFENSIVE</Type>
             <Description>TXT_KEY_PROMOTION_DEFENSIVE</Description>
@@ -8049,13 +8062,13 @@
 				</UnitCombat>
 				<UnitCombat>
 					<UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
-							<bUnitCombat>1</bUnitCombat>
-						</UnitCombat>
-						<UnitCombat>
-							<UnitCombatType>UNITCOMBAT_BEAST</UnitCombatType>
-							<bUnitCombat>1</bUnitCombat>
-						</UnitCombat>
-						<UnitCombat>
+					<bUnitCombat>1</bUnitCombat>
+				</UnitCombat>
+				<UnitCombat>
+					<UnitCombatType>UNITCOMBAT_BEAST</UnitCombatType>
+					<bUnitCombat>1</bUnitCombat>
+				</UnitCombat>
+				<UnitCombat>
 							<UnitCombatType>UNITCOMBAT_BEAST</UnitCombatType>
 					<bUnitCombat>1</bUnitCombat>
 				</UnitCombat>
@@ -8069,8 +8082,8 @@
 				</UnitCombat>
 			</UnitCombats>
 			<Button>,Art/Interface/Buttons/Promotions/Combat5.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,5,10</Button>
-          <iExtraCombatStr>1</iExtraCombatStr>
-          <iExtraCombatDefense>1</iExtraCombatDefense>
+			<iExtraCombatStr>1</iExtraCombatStr>
+			<iExtraCombatDefense>1</iExtraCombatDefense>
 		</PromotionInfo>
 <!-- MORE EVENTS MOD STARTS -->		
 		<PromotionInfo>

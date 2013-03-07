@@ -23075,7 +23075,7 @@
             </DamageTypeCombats>
         </UnitInfo>
         <UnitInfo>
-            <Class>UNITCLASS_GREAT_GENERAL</Class>
+            <Class>UNITCLASS_DECIUS</Class>
             <Type>UNIT_DECIUS</Type>
             <UniqueNames>
             </UniqueNames>
@@ -23286,7 +23286,7 @@
             <iHotKeyPriority>0</iHotKeyPriority>
             <FreePromotions>
             </FreePromotions>
-            <LeaderPromotion>PROMOTION_GREAT_GENERAL</LeaderPromotion>
+            <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
         </UnitInfo>
         <UnitInfo>
