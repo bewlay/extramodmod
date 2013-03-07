@@ -38562,7 +38562,7 @@
             <iAirUnitCap>0</iAirUnitCap>
             <iDropRange>0</iDropRange>
             <iNukeRange>-1</iNukeRange>
-            <iWorkRate>0</iWorkRate>
+            <iWorkRate>200</iWorkRate>
             <iBaseDiscover>0</iBaseDiscover>
             <iDiscoverMultiplier>0</iDiscoverMultiplier>
             <iBaseHurry>0</iBaseHurry>
@@ -58744,7 +58744,7 @@
             <iAirUnitCap>0</iAirUnitCap>
             <iDropRange>0</iDropRange>
             <iNukeRange>-1</iNukeRange>
-            <iWorkRate>0</iWorkRate>
+            <iWorkRate>200</iWorkRate>
             <iBaseDiscover>0</iBaseDiscover>
             <iDiscoverMultiplier>0</iDiscoverMultiplier>
             <iBaseHurry>0</iBaseHurry>
