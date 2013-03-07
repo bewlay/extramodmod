@@ -2114,15 +2114,6 @@
 			<DefaultUnit>UNIT_GREATER_WEREWOLF</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
-			<Type>UNITCLASS_COMMANDER</Type>
-			<Description>TXT_KEY_UNIT_COMMANDER</Description>
-			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
-			<iMaxTeamInstances>-1</iMaxTeamInstances>
-			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
-			<iInstanceCostModifier>0</iInstanceCostModifier>
-			<DefaultUnit>UNIT_COMMANDER</DefaultUnit>
-		</UnitClassInfo>
-		<UnitClassInfo>
 			<Type>UNITCLASS_DUIN</Type>
 			<Description>TXT_KEY_UNIT_DUIN</Description>
 			<iMaxGlobalInstances>1</iMaxGlobalInstances>
