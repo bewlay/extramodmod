@@ -674,6 +674,46 @@ def spellCallOfTheGrave(caster):
 			if bValid:
 				CyEngine().triggerEffect(gc.getInfoTypeForString('EFFECT_SACRIFICE'),pPlot.getPoint())
 
+def reqDeciusJoin(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
+	pPlot = caster.plot()
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_DECIUS')):
+		return False
+	iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
+	pDecius = -1
+	for i in range(pPlot.getNumUnits()):
+		pUnit = pPlot.getUnit(i)
+		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitType() == iDecius):
+			pDecius = pUnit
+	if pDecius == -1:
+		return False
+	if pDecius.isHasCasted():
+		return False
+	if pPlayer.isHuman() == False:
+		if caster.baseCombatStr() <= 5:
+			return False
+	return True
+
+def spellDeciusJoin(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
+	pPlot = caster.plot()
+	iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
+	pDecius = -1
+	for i in range(pPlot.getNumUnits()):
+		pUnit = pPlot.getUnit(i)
+		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitType() == iDecius):
+			pDecius = pUnit
+	if pDecius != -1:
+		caster.setScenarioCounter(iDecius)
+		pDecius.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
+		pDecius.kill(False, PlayerTypes.NO_PLAYER)
+
+def spellDeciusSplit(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
+	iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
+	caster.setScenarioCounter(-1)
+	newUnit = pPlayer.initUnit(iDecius, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+
 def reqConvertCityBasium(caster):
 	pPlot = caster.plot()
 	pCity = pPlot.getPlotCity()

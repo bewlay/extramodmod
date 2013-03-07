@@ -754,6 +754,39 @@
             <Button>Art/Interface/Buttons/Promotions/Danceofblades.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_DECIUS_JOIN</Type>
+            <Description>TXT_KEY_SPELL_DECIUS_JOIN</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitInStackPrereq>UNIT_DECIUS</UnitInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bCasterNoDuration>1</bCasterNoDuration>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_DECIUS</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <PyResult>spellDeciusJoin(pCaster)</PyResult>
+            <PyRequirement>reqDeciusJoin(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_COMMANDER_JOIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Leaderheads/Decius button.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DECIUS_SPLIT</Type>
+            <Description>TXT_KEY_SPELL_DECIUS_SPLIT</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_DECIUS</PromotionPrereq1>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_DECIUS</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <PyResult>spellDeciusSplit(pCaster)</PyResult>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_COMMANDER_SPLIT</Sound>
+            <Button>Art/Interface/Leaderheads/Decius button.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_DECLARE_WAR_BARBS</Type>
             <Description>TXT_KEY_SPELL_DECLARE_BARBS</Description>
             <Civilopedia>TXT_KEY_SPELL_DECLARE_BARBS_HELP</Civilopedia>
