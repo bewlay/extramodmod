@@ -6354,9 +6354,9 @@ def CanDoGela7(argsList):
 			return True
 	return False
 
-######## STRANGE_ADEPT (lfgr: fixed, moved to XML)
+######## STRANGE_ADEPT (lfgr: tweaked, moved to XML)
 
-######## HELL_REFUGEES (lfgr: fixed, moved to XML)
+######## HELL_REFUGEES (lfgr: tweaked, moved to XML)
 
 def CanDoHellRefugees(argsList):
 	for iPlayer2 in range(gc.getMAX_PLAYERS()):
@@ -6381,7 +6381,7 @@ def doHellRefugees5(argsList):
 				if eTeam.isAtWar(i2Team):
 					eTeam.makePeace(i2Team)	
 
-######## SCHOLARS (lfgr: fixed)
+######## SCHOLARS (lfgr: tweaked)
 
 def CanDoScholars2(argsList):
 	return cityHasBuilding( argsList, 'BUILDING_LIBRARY' )
@@ -6395,7 +6395,7 @@ def CanDoScholars4(argsList):
 def helpScholars4( argsList ):
 	return playerReqTraitHelp( argsList, 'TRAIT_BARBARIAN' )
 
-######## TRAPPED_FROSTLINGS
+######## TRAPPED_FROSTLINGS (lfgr: tweaked)
 
 def CanTriggerTrappedFrostlings (argsList):
 	kTriggeredData = argsList[0]
@@ -6446,7 +6446,7 @@ def CanDoTrappedFrostlings3(argsList):
 def helpTrappedFrostlings3(argsList):
 	return cityReqBuildingHelp( argsList, 'BUILDING_FREAK_SHOW' )
 
-######## PACIFIST_DEMONSTRATION (lfgr: fixed)
+######## PACIFIST_DEMONSTRATION (lfgr: tweaked)
 
 def canTriggerPacifistDemonstration(argsList):
 	kTriggeredData = argsList[0]
@@ -6516,7 +6516,7 @@ def DoPacifistDemonstration5(argsList):
 		if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_VAMPIRISM')):
 			pUnit.changeExperience(3, -1, False, False, False)
 
-######## DEMON_SIGN (lfgr: fixed, to test)
+######## DEMON_SIGN (lfgr: tweaked, TOTEST)
 
 def CanTriggerDemonSign (argsList):
 	kTriggeredData = argsList[0]
@@ -6806,6 +6806,7 @@ def doOrphanedGoblin4(argsList):
 	pCity = pPlayer.getCapitalCity()
 	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_GOBLIN'), pCity.getX(),pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 	
+# lfgr: fixed
 def doThatKindOfDay1 (argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -6815,15 +6816,16 @@ def doThatKindOfDay1 (argsList):
 	iY = pCity.getY()
 	pCity.setPopulation(1)
 	
-	for iiX in range(iX-2, iX+2, 1):
-		for iiY in range(iY-2, iY+2, 1):
+	for iiX in range(iX-2, iX+3, 1):
+		for iiY in range(iY-2, iY+3, 1):
 			pPlot2 = CyMap().plot(iiX,iiY)
 			for i in range(pPlot2.getNumUnits()):
 				pUnit2 = pPlot2.getUnit(i)
 				if pUnit2.getOwner()== gc.getBARBARIAN_PLAYER():
 					if not isWorldUnitClass(pUnit2.getUnitClassType()):
 						pUnit2.kill(True, PlayerTypes.NO_PLAYER)
-									
+		
+# lfgr: fixed							
 def doThatKindOfDay2 (argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -6833,8 +6835,8 @@ def doThatKindOfDay2 (argsList):
 	iY = pCity.getY()
 	pCity.setProduction(0)
 
-	for iiX in range(iX-2, iX+2, 1):
-		for iiY in range(iY-2, iY+2, 1):
+	for iiX in range(iX-2, iX+3, 1):
+		for iiY in range(iY-2, iY+3, 1):
 			pPlot2 = CyMap().plot(iiX,iiY)
 			for i in range(pPlot2.getNumUnits()):
 				pUnit2 = pPlot2.getUnit(i)
@@ -6868,6 +6870,7 @@ def doThatKindOfDay3(argsList):
 	
 	CyGame().reassignPlayerAdvanced(iOldPlayer, iNewPlayer, -1)
 	
+# lfgr: fixed
 def doThatKindOfDay4 (argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -6876,8 +6879,8 @@ def doThatKindOfDay4 (argsList):
 	iX = pCity.getX()
 	iY = pCity.getY()
 	
-	for iiX in range(iX-2, iX+2, 1):
-		for iiY in range(iY-2, iY+2, 1):
+	for iiX in range(iX-2, iX+3, 1):
+		for iiY in range(iY-2, iY+3, 1):
 			pPlot2 = CyMap().plot(iiX,iiY)
 			for i in range(pPlot2.getNumUnits()):
 				pUnit2 = pPlot2.getUnit(i)
@@ -6886,6 +6889,7 @@ def doThatKindOfDay4 (argsList):
 						pUnit2.kill(True, PlayerTypes.NO_PLAYER)
 									
 	
+# lfgr: fixed
 def doThatKindOfDay5 (argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -6894,20 +6898,22 @@ def doThatKindOfDay5 (argsList):
 	iX = pCity.getX()
 	iY = pCity.getY()
 	pCity.changePopulation(1)
-	for iiX in range(iX-2, iX+2, 1):
-		for iiY in range(iY-2, iY+2, 1):
+	for iiX in range(iX-2, iX+3, 1):
+		for iiY in range(iY-2, iY+3, 1):
 			pPlot2 = CyMap().plot(iiX,iiY)
 			for i in range(pPlot2.getNumUnits()):
 				pUnit2 = pPlot2.getUnit(i)
 				if pUnit2.getOwner()== gc.getBARBARIAN_PLAYER() :
 					if not isWorldUnitClass(pUnit2.getUnitClassType()):				
 						pUnit2.kill(True, PlayerTypes.NO_PLAYER)
-									
+
+# lfgr: fixed
 def CanTriggerThatKindOfDay(argsList):
 	kTriggeredData = argsList[0]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	
-	if (pPlayer.getCivilizationType() != gc.getInfoTypeForString('CIVILIZATION_CLAN_OF_EMBERS')):
+#	if (pPlayer.getCivilizationType() != gc.getInfoTypeForString('CIVILIZATION_CLAN_OF_EMBERS')):
+	if ( gc.getTeam( pPlayer.getTeam() ).isAtWar( gc.getBARBARIAN_TEAM() ) ):
 		if (gc.getGame().getGameTurnYear())<100:
 			if pPlayer.getNumCities()==1 :
 				pCity = pPlayer.getCapitalCity()
@@ -6916,13 +6922,13 @@ def CanTriggerThatKindOfDay(argsList):
 
 				pPlot=CyMap().plot(iX,iY)
 				if pPlot.getNumUnits() == 0:
-					for iiX in range(iX-2, iX+2, 1):
-						for iiY in range(iY-2, iY+2, 1):
+					for iiX in range(iX-2, iX+3, 1):
+						for iiY in range(iY-2, iY+3, 1):
 							pPlot2 = CyMap().plot(iiX,iiY)
 							for i in range(pPlot2.getNumUnits()):
 								pUnit2 = pPlot2.getUnit(i)
 								if pUnit2.getOwner()== gc.getBARBARIAN_PLAYER():
-									if not isWorldUnitClass(pUnit2.getUnitClassType()):								
+									if not isWorldUnitClass(pUnit2.getUnitClassType()):					
 										return true
 
 	return false

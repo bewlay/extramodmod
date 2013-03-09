@@ -9,6 +9,7 @@ Other:
 	There should be a strategical choice.
 	Lore-Wise inappropriate civs should be blocked
 	World announcements and Unit Names can make even AI Events fun
+	
 
 TODO: AI
 TODO: Block some Events/Eventtriggers for AI
@@ -76,7 +77,7 @@ b)	The equivalent of the Rite of Ogmha occurs.  The Pyre of the Seraphic is dest
 	When the Gela is brought to the Mirror of Heaven. [I]Your people place the Gela in the center of the Mirror of Heaven.  Inky black smoke begins to rise from the weapon in plumes as the sun purifies it.  This will take time, and surely attract the attention of any demons nearby.After some time, the weapon ceases to smoke, and the light of the Mirror shines brilliantly off of its surface.  The taint is removed, and in its place a holy trident of great power remains.[/I][/SPOILER]
 [/SPOILER]
 
-Strange Adept
+Strange Adept [TODO: test]
 [SPOILER]
 Requires: Mage Guild
 AI: Can choose itself
@@ -87,14 +88,16 @@ A strange adept has recently joined the mage guild of (city). While the student 
 - We need all the proficient Adepts we can get our hands on, let him serve the nation.
 	-30 Gold;
 	+2 Unhappy temporary in city
+	+1 to AC
 	gain Adept with Death I and Entropy I
 - You tell me this as if it's a problem. Have him advance immediately.
 	Requires Evil
 	-30Gold
+	+1 to AC
 	gain Adept with Death I and Entropy I
 - Dark arts? Expel him from our country, he is not welcome here!
 	Requires Good
-	+1 Happy temporary in city
+	-1 to AC
 [/SPOILER]
 
 Hell's Refugees 
@@ -125,15 +128,16 @@ A band of haggard refugees has shown up outside (city). The leader of the group 
 
 Scholars 
 [SPOILER]
+Requires: Writing and Knowledge of the Ether
 There has been a recent surge of promising young scholars wishing to study science, magic, and the arcane. <City>’s current facilities will be overcrowded with activity and will suffer material shortages, and need additional funding to expand and accommodate everyone.
 
 - We cannot afford it.
 - Scholarly study is the foundation of advancement! Expand our libraries.
 	Requires: Library
-	-200 Gold
+	-100 Gold
 	+4 science from Library
 - Sounds like good news. Build them a Mage Guild
-	-150 Gold
+	-75 Gold
 	Recieve a a Mage Guild
 - Scholarly societies are for the weak. Press these foolish youths into the service
 	Requires Barbarian trait
@@ -147,10 +151,10 @@ Some Frostlings got trapped and caught by hunters near <City>. What do you want 
 - Just kill them.
 - I pity those miserable creatures. Release them, they are harmless.
 	Requires: Good
-	+1 Happy for 15 turns.
-	Max spawn a barbarian Frostling with Weak promotion near <City>
+	-1 to AC
+	May spawn a barbarian Frostling with Weak promotion near <City>
 - Strange creatures! Add them to the freak show, they are amusing!
-	Requires: Balseraphs
+	Requires: Balseraphs, Freak Show
 	+4 Culture from the Freak Show
 - Eat them.
 	Requires: Calabim
@@ -180,12 +184,13 @@ Some people are demonstrating against the endless war in <City>.
 	+1 Unhappy temporarily in <City>
 	Recieve an [Best Warrior Upgrade] with Weak promotion
 - (Reqs Calabim) Hmm... let's have lunch!
+	[TODO: Design - It's odd to 
 	-1 pop in <City>
 	-10 War Weariness
-	All of your vampires gain 3 XP. [TODO]
+	All of your vampires gain 3 XP.
 [/SPOILER]
 
-Demon Sign
+Demon Sign [TOTEST]
 [SPOILER]
 Requires: 30+ AC
 Blocked for: Infernals and Mercurians; Compact Enforced setting off
@@ -216,19 +221,20 @@ A newborn child in X has been reported to carry the mark of Agares. What should 
 	-10 gold
 [/SPOILER]
 
-Hanging Sisters [TODO:check]
+Hanging Sisters [TOTEST]
 [SPOILER]
+Design Notes:
+	
 Requires: 10+ AC, Carnival
 Crazed citizens are celebrating the "Carnival of the Hanging Sisters" in X. They've raided local graveyards and strung up the dead like puppets!
-- MAKE IT STOP!
-	50% chance for 2 turns anarchy in city
-- Let the carnival commence!
+- Let the carnival begin!
 	Requires: Evil
-	+1 happy in city
-	+2 unhealthy in city for 10 turns
-- Hey, neat idea!
+	+1 happy, +2 unhealthy from Carnival
+- MAKE IT STOP!
+	2 turns of revolt in city
+- A great idea!
 	Requires: Balseraph
-	+1 happy in city
+	+1 happy from Carnival
 [/SPOILER]
 
 Ash Cough [TODO:check]

@@ -4008,112 +4008,23 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
-		<EventInfo><!-- TRAIT_ARCANE -->
+		<EventInfo><!-- TRAIT_AGRARIAN -->
             <Type>EVENT_TRAIT_AGRARIAN</Type>
             <Description>TXT_KEY_EVENT_TRAIT_AGRARIAN</Description>
-            <LocalInfoText></LocalInfoText>
-            <WorldNewsTexts>
-            </WorldNewsTexts>
-            <OtherPlayerPopup></OtherPlayerPopup>
-            <QuestFailText></QuestFailText>
-            <bQuest>0</bQuest>
-            <bGlobal>0</bGlobal>
-            <bTeam>0</bTeam>
-            <bPickCity>0</bPickCity>
-            <bPickOtherPlayerCity>0</bPickOtherPlayerCity>
-            <bDeclareWar>0</bDeclareWar>
-            <iGold>0</iGold>
-            <bGoldToPlayer>0</bGoldToPlayer>
-            <iRandomGold>0</iRandomGold>
-            <iCulture>0</iCulture>
-            <iEspionagePoints>0</iEspionagePoints>
-            <bGoldenAge>0</bGoldenAge>
-            <iFreeUnitSupport>0</iFreeUnitSupport>
-            <iInflationMod>0</iInflationMod>
-            <iSpaceProductionMod>0</iSpaceProductionMod>
-            <Tech>NONE</Tech>
-            <TechFlavors>
-                <TechFlavor>
+			<TechFlavors>
+				<TechFlavor>
                     <FlavorType>FLAVOR_GROWTH</FlavorType>
-                    <iFlavor>1</iFlavor>
-                </TechFlavor>
-            </TechFlavors>
-            <iTechPercent>0</iTechPercent>
-            <iTechCostPercent>0</iTechCostPercent>
-            <iTechMinTurnsLeft>0</iTechMinTurnsLeft>
-            <PrereqTech>NONE</PrereqTech>
-            <UnitClass>NONE</UnitClass>
-            <iNumFreeUnits>0</iNumFreeUnits>
-            <bDisbandUnit>0</bDisbandUnit>
-            <iUnitExperience>0</iUnitExperience>
-            <iUnitImmobileTurns>0</iUnitImmobileTurns>
-            <UnitPromotion></UnitPromotion>
-            <UnitName></UnitName>
-            <UnitCombatPromotions>
-            </UnitCombatPromotions>
-            <UnitClassPromotions>
-            </UnitClassPromotions>
-            <BuildingClass>NONE</BuildingClass>
-            <iBuildingChange>0</iBuildingChange>
-            <BuildingExtraYields>
-            </BuildingExtraYields>
-            <BuildingExtraCommerces>
-            </BuildingExtraCommerces>
-            <BuildingExtraHappies>
-            </BuildingExtraHappies>
-            <BuildingExtraHealths>
-            </BuildingExtraHealths>
-            <iHappy>0</iHappy>
-            <iHealth>0</iHealth>
-            <iHurryAnger>0</iHurryAnger>
-            <iHappyTurns>0</iHappyTurns>
-            <iRevoltTurns>0</iRevoltTurns>
-            <iMinPillage>0</iMinPillage>
-            <iMaxPillage>0</iMaxPillage>
-            <iFood>0</iFood>
-            <iFoodPercent>0</iFoodPercent>
-            <FreeSpecialistCounts>
-            </FreeSpecialistCounts>
-            <FeatureType>NONE</FeatureType>
-            <iFeatureChange>0</iFeatureChange>
-            <ImprovementType>NONE</ImprovementType>
-            <iImprovementChange>0</iImprovementChange>
-            <BonusType>NONE</BonusType>
-            <iBonusChange>0</iBonusChange>
-            <RouteType>NONE</RouteType>
-            <iRouteChange>0</iRouteChange>
-            <BonusRevealed>NONE</BonusRevealed>
-            <BonusGift>NONE</BonusGift>
-            <PlotExtraYields>
-            </PlotExtraYields>
-            <iConvertOwnCities>0</iConvertOwnCities>
-            <iConvertOtherCities>0</iConvertOtherCities>
-            <iMaxNumReligions>-1</iMaxNumReligions>
-            <iOurAttitudeModifier>0</iOurAttitudeModifier>
-            <iAttitudeModifier>0</iAttitudeModifier>
-            <iTheirEnemyAttitudeModifier>0</iTheirEnemyAttitudeModifier>
-            <iPopulationChange>0</iPopulationChange>
-            <AdditionalEvents>
-            </AdditionalEvents>
-            <EventTimes>
-            </EventTimes>
-            <ClearEvents>
-            </ClearEvents>
+					<iFlavor>1</iFlavor>
+				</TechFlavor>
+			</TechFlavors>
+			<iMaxNumReligions>-1</iMaxNumReligions>
             <PythonCallback>doTraitAgrarian</PythonCallback>
-            <PythonExpireCheck></PythonExpireCheck>
             <PythonCanDo>canApplyTraitAgrarian</PythonCanDo>
             <PythonHelp>helpTraitAgrarian</PythonHelp>
-            <Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-            <iAIValue>1000</iAIValue>
-            <iCrime>0</iCrime>
-            <iGlobalCounter>0</iGlobalCounter>
-            <PrereqAlignment>NONE</PrereqAlignment>
-            <PrereqBonus>NONE</PrereqBonus>
-            <PrereqCivilization>NONE</PrereqCivilization>
-            <PrereqReligion>NONE</PrereqReligion>
-            <PrereqStateReligion>NONE</PrereqStateReligion>
-        </EventInfo>
-        <EventInfo>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+		</EventInfo>
+		<EventInfo><!-- TRAIT_ARCANE -->
 			<Type>EVENT_TRAIT_ARCANE</Type>
 			<Description>TXT_KEY_EVENT_TRAIT_ARCANE</Description>
 			<TechFlavors>
@@ -4125,7 +4036,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doTraitArcane</PythonCallback>
 			<PythonCanDo>canApplyTraitArcane</PythonCanDo>
-            <PythonHelp>helpTraitArcane</PythonHelp>
+			<PythonHelp>helpTraitArcane</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -4135,7 +4046,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doTraitCharismatic</PythonCallback>
 			<PythonCanDo>canApplyTraitCharismatic</PythonCanDo>
-            <PythonHelp>helpTraitCharismatic</PythonHelp>
+			<PythonHelp>helpTraitCharismatic</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -4151,7 +4062,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doTraitCreative</PythonCallback>
 			<PythonCanDo>canApplyTraitCreative</PythonCanDo>
-            <PythonHelp>helpTraitCreative</PythonHelp>
+			<PythonHelp>helpTraitCreative</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -4167,7 +4078,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doTraitExpansive</PythonCallback>
 			<PythonCanDo>canApplyTraitExpansive</PythonCanDo>
-            <PythonHelp>helpTraitExpansive</PythonHelp>
+			<PythonHelp>helpTraitExpansive</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -4187,108 +4098,19 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
-		<EventInfo><!-- TRAIT_INDUSTRIOUS -->
+		<EventInfo><!-- TRAIT_IMPERIALISTIC -->
             <Type>EVENT_TRAIT_IMPERIALISTIC</Type>
             <Description>TXT_KEY_EVENT_TRAIT_IMPERIALIST</Description>
-            <LocalInfoText></LocalInfoText>
-            <WorldNewsTexts>
-            </WorldNewsTexts>
-            <OtherPlayerPopup></OtherPlayerPopup>
-            <QuestFailText></QuestFailText>
-            <bQuest>0</bQuest>
-            <bGlobal>0</bGlobal>
-            <bTeam>0</bTeam>
-            <bPickCity>0</bPickCity>
-            <bPickOtherPlayerCity>0</bPickOtherPlayerCity>
-            <bDeclareWar>0</bDeclareWar>
-            <iGold>0</iGold>
-            <bGoldToPlayer>0</bGoldToPlayer>
-            <iRandomGold>0</iRandomGold>
-            <iCulture>0</iCulture>
-            <iEspionagePoints>0</iEspionagePoints>
-            <bGoldenAge>0</bGoldenAge>
-            <iFreeUnitSupport>0</iFreeUnitSupport>
-            <iInflationMod>0</iInflationMod>
-            <iSpaceProductionMod>0</iSpaceProductionMod>
-            <Tech>NONE</Tech>
-            <TechFlavors>
-            </TechFlavors>
-            <iTechPercent>0</iTechPercent>
-            <iTechCostPercent>0</iTechCostPercent>
-            <iTechMinTurnsLeft>0</iTechMinTurnsLeft>
-            <PrereqTech>NONE</PrereqTech>
-            <UnitClass>NONE</UnitClass>
-            <iNumFreeUnits>0</iNumFreeUnits>
-            <bDisbandUnit>0</bDisbandUnit>
-            <iUnitExperience>0</iUnitExperience>
-            <iUnitImmobileTurns>0</iUnitImmobileTurns>
-            <UnitPromotion></UnitPromotion>
-            <UnitName></UnitName>
-            <UnitCombatPromotions>
-            </UnitCombatPromotions>
-            <UnitClassPromotions>
-            </UnitClassPromotions>
-            <BuildingClass>NONE</BuildingClass>
-            <iBuildingChange>0</iBuildingChange>
-            <BuildingExtraYields>
-            </BuildingExtraYields>
-            <BuildingExtraCommerces>
-            </BuildingExtraCommerces>
-            <BuildingExtraHappies>
-            </BuildingExtraHappies>
-            <BuildingExtraHealths>
-            </BuildingExtraHealths>
-            <iHappy>0</iHappy>
-            <iHealth>0</iHealth>
-            <iHurryAnger>0</iHurryAnger>
-            <iHappyTurns>0</iHappyTurns>
-            <iRevoltTurns>0</iRevoltTurns>
-            <iMinPillage>0</iMinPillage>
-            <iMaxPillage>0</iMaxPillage>
-            <iFood>0</iFood>
-            <iFoodPercent>0</iFoodPercent>
-            <FreeSpecialistCounts>
-            </FreeSpecialistCounts>
-            <FeatureType>NONE</FeatureType>
-            <iFeatureChange>0</iFeatureChange>
-            <ImprovementType>NONE</ImprovementType>
-            <iImprovementChange>0</iImprovementChange>
-            <BonusType>NONE</BonusType>
-            <iBonusChange>0</iBonusChange>
-            <RouteType>NONE</RouteType>
-            <iRouteChange>0</iRouteChange>
-            <BonusRevealed>NONE</BonusRevealed>
-            <BonusGift>NONE</BonusGift>
-            <PlotExtraYields>
-            </PlotExtraYields>
-            <iConvertOwnCities>0</iConvertOwnCities>
-            <iConvertOtherCities>0</iConvertOtherCities>
-            <iMaxNumReligions>-1</iMaxNumReligions>
-            <iOurAttitudeModifier>0</iOurAttitudeModifier>
-            <iAttitudeModifier>0</iAttitudeModifier>
-            <iTheirEnemyAttitudeModifier>0</iTheirEnemyAttitudeModifier>
-            <iPopulationChange>0</iPopulationChange>
-            <AdditionalEvents>
-            </AdditionalEvents>
-            <EventTimes>
-            </EventTimes>
-            <ClearEvents>
-            </ClearEvents>
+			<TechFlavors>
+			</TechFlavors>
+			<iMaxNumReligions>-1</iMaxNumReligions>
             <PythonCallback>doTraitImperialistic</PythonCallback>
-            <PythonExpireCheck></PythonExpireCheck>
             <PythonCanDo>canApplyTraitImperialistic</PythonCanDo>
             <PythonHelp>helpTraitImperialistic</PythonHelp>
-            <Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-            <iAIValue>1000</iAIValue>
-            <iCrime>0</iCrime>
-            <iGlobalCounter>0</iGlobalCounter>
-            <PrereqAlignment>NONE</PrereqAlignment>
-            <PrereqBonus>NONE</PrereqBonus>
-            <PrereqCivilization>NONE</PrereqCivilization>
-            <PrereqReligion>NONE</PrereqReligion>
-            <PrereqStateReligion>NONE</PrereqStateReligion>
-        </EventInfo>
-        <EventInfo>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+		</EventInfo>
+		<EventInfo><!-- TRAIT_INDUSTRIOUS -->
 			<Type>EVENT_TRAIT_INDUSTRIOUS</Type>
 			<Description>TXT_KEY_EVENT_TRAIT_INDUSTRIOUS</Description>
 			<TechFlavors>
@@ -4300,7 +4122,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doTraitIndustrious</PythonCallback>
 			<PythonCanDo>canApplyTraitIndustrious</PythonCanDo>
-            <PythonHelp>helpTraitIndustrious</PythonHelp>
+			<PythonHelp>helpTraitIndustrious</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -4318,7 +4140,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doTraitOrganized</PythonCallback>
 			<PythonCanDo>canApplyTraitOrganized</PythonCanDo>
-            <PythonHelp>helpTraitOrganized</PythonHelp>
+			<PythonHelp>helpTraitOrganized</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -4341,212 +4163,30 @@
             <PythonHelp>helpTraitRaiders</PythonHelp>
             <Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
             <iAIValue>1000</iAIValue>
-            <iCrime>0</iCrime>
-            <iGlobalCounter>0</iGlobalCounter>
-            <PrereqAlignment>NONE</PrereqAlignment>
-            <PrereqBonus>NONE</PrereqBonus>
-            <PrereqCivilization>NONE</PrereqCivilization>
-            <PrereqReligion>NONE</PrereqReligion>
-            <PrereqStateReligion>NONE</PrereqStateReligion>
-        </EventInfo>
-        <EventInfo>
+		</EventInfo>
+		<EventInfo><!-- TRAIT_SAGE -->
             <Type>EVENT_TRAIT_SAGE</Type>
             <Description>TXT_KEY_EVENT_TRAIT_SAGE</Description>
-            <LocalInfoText></LocalInfoText>
-            <WorldNewsTexts>
-            </WorldNewsTexts>
-            <OtherPlayerPopup></OtherPlayerPopup>
-            <QuestFailText></QuestFailText>
-            <bQuest>0</bQuest>
-            <bGlobal>0</bGlobal>
-            <bTeam>0</bTeam>
-            <bPickCity>0</bPickCity>
-            <bPickOtherPlayerCity>0</bPickOtherPlayerCity>
-            <bDeclareWar>0</bDeclareWar>
-            <iGold>0</iGold>
-            <bGoldToPlayer>0</bGoldToPlayer>
-            <iRandomGold>0</iRandomGold>
-            <iCulture>0</iCulture>
-            <iEspionagePoints>0</iEspionagePoints>
-            <bGoldenAge>0</bGoldenAge>
-            <iFreeUnitSupport>0</iFreeUnitSupport>
-            <iInflationMod>0</iInflationMod>
-            <iSpaceProductionMod>0</iSpaceProductionMod>
-            <Tech>NONE</Tech>
-            <TechFlavors>
                 <TechFlavor>
                     <FlavorType>FLAVOR_SCIENCE</FlavorType>
                     <iFlavor>1</iFlavor>
                 </TechFlavor>
-            </TechFlavors>
-            <iTechPercent>0</iTechPercent>
-            <iTechCostPercent>0</iTechCostPercent>
-            <iTechMinTurnsLeft>0</iTechMinTurnsLeft>
-            <PrereqTech>NONE</PrereqTech>
-            <UnitClass>NONE</UnitClass>
-            <iNumFreeUnits>0</iNumFreeUnits>
-            <bDisbandUnit>0</bDisbandUnit>
-            <iUnitExperience>0</iUnitExperience>
-            <iUnitImmobileTurns>0</iUnitImmobileTurns>
-            <UnitPromotion></UnitPromotion>
-            <UnitName></UnitName>
-            <UnitCombatPromotions>
-            </UnitCombatPromotions>
-            <UnitClassPromotions>
-            </UnitClassPromotions>
-            <BuildingClass>NONE</BuildingClass>
-            <iBuildingChange>0</iBuildingChange>
-            <BuildingExtraYields>
-            </BuildingExtraYields>
-            <BuildingExtraCommerces>
-            </BuildingExtraCommerces>
-            <BuildingExtraHappies>
-            </BuildingExtraHappies>
-            <BuildingExtraHealths>
-            </BuildingExtraHealths>
-            <iHappy>0</iHappy>
-            <iHealth>0</iHealth>
-            <iHurryAnger>0</iHurryAnger>
-            <iHappyTurns>0</iHappyTurns>
-            <iRevoltTurns>0</iRevoltTurns>
-            <iMinPillage>0</iMinPillage>
-            <iMaxPillage>0</iMaxPillage>
-            <iFood>0</iFood>
-            <iFoodPercent>0</iFoodPercent>
-            <FreeSpecialistCounts>
-            </FreeSpecialistCounts>
-            <FeatureType>NONE</FeatureType>
-            <iFeatureChange>0</iFeatureChange>
-            <ImprovementType>NONE</ImprovementType>
-            <iImprovementChange>0</iImprovementChange>
-            <BonusType>NONE</BonusType>
-            <iBonusChange>0</iBonusChange>
-            <RouteType>NONE</RouteType>
-            <iRouteChange>0</iRouteChange>
-            <BonusRevealed>NONE</BonusRevealed>
-            <BonusGift>NONE</BonusGift>
-            <PlotExtraYields>
-            </PlotExtraYields>
-            <iConvertOwnCities>0</iConvertOwnCities>
-            <iConvertOtherCities>0</iConvertOtherCities>
-            <iMaxNumReligions>-1</iMaxNumReligions>
-            <iOurAttitudeModifier>0</iOurAttitudeModifier>
-            <iAttitudeModifier>0</iAttitudeModifier>
-            <iTheirEnemyAttitudeModifier>0</iTheirEnemyAttitudeModifier>
-            <iPopulationChange>0</iPopulationChange>
-            <AdditionalEvents>
-            </AdditionalEvents>
-            <EventTimes>
-            </EventTimes>
-            <ClearEvents>
-            </ClearEvents>
+			<iMaxNumReligions>-1</iMaxNumReligions>
             <PythonCallback>doTraitSage</PythonCallback>
-            <PythonExpireCheck></PythonExpireCheck>
             <PythonCanDo>canApplyTraitSage</PythonCanDo>
             <PythonHelp>helpTraitSage</PythonHelp>
-            <Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-            <iAIValue>1000</iAIValue>
-            <iCrime>0</iCrime>
-            <iGlobalCounter>0</iGlobalCounter>
-            <PrereqAlignment>NONE</PrereqAlignment>
-            <PrereqBonus>NONE</PrereqBonus>
-            <PrereqCivilization>NONE</PrereqCivilization>
-            <PrereqReligion>NONE</PrereqReligion>
-            <PrereqStateReligion>NONE</PrereqStateReligion>
-        </EventInfo>
-        <EventInfo>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+		</EventInfo>
+		<EventInfo><!-- TRAIT_SLAVER -->
             <Type>EVENT_TRAIT_SLAVER</Type>
             <Description>TXT_KEY_EVENT_TRAIT_SLAVER</Description>
-            <LocalInfoText></LocalInfoText>
-            <WorldNewsTexts>
-            </WorldNewsTexts>
-            <OtherPlayerPopup></OtherPlayerPopup>
-            <QuestFailText></QuestFailText>
-            <bQuest>0</bQuest>
-            <bGlobal>0</bGlobal>
-            <bTeam>0</bTeam>
-            <bPickCity>0</bPickCity>
-            <bPickOtherPlayerCity>0</bPickOtherPlayerCity>
-            <bDeclareWar>0</bDeclareWar>
-            <iGold>0</iGold>
-            <bGoldToPlayer>0</bGoldToPlayer>
-            <iRandomGold>0</iRandomGold>
-            <iCulture>0</iCulture>
-            <iEspionagePoints>0</iEspionagePoints>
-            <bGoldenAge>0</bGoldenAge>
-            <iFreeUnitSupport>0</iFreeUnitSupport>
-            <iInflationMod>0</iInflationMod>
-            <iSpaceProductionMod>0</iSpaceProductionMod>
-            <Tech>NONE</Tech>
-            <TechFlavors>
                 <TechFlavor>
                     <FlavorType>FLAVOR_GOLD</FlavorType>
                     <iFlavor>1</iFlavor>
                 </TechFlavor>
-            </TechFlavors>
-            <iTechPercent>0</iTechPercent>
-            <iTechCostPercent>0</iTechCostPercent>
-            <iTechMinTurnsLeft>0</iTechMinTurnsLeft>
-            <PrereqTech>NONE</PrereqTech>
-            <UnitClass>NONE</UnitClass>
-            <iNumFreeUnits>0</iNumFreeUnits>
-            <bDisbandUnit>0</bDisbandUnit>
-            <iUnitExperience>0</iUnitExperience>
-            <iUnitImmobileTurns>0</iUnitImmobileTurns>
-            <UnitPromotion></UnitPromotion>
-            <UnitName></UnitName>
-            <UnitCombatPromotions>
-            </UnitCombatPromotions>
-            <UnitClassPromotions>
-            </UnitClassPromotions>
-            <BuildingClass>NONE</BuildingClass>
-            <iBuildingChange>0</iBuildingChange>
-            <BuildingExtraYields>
-            </BuildingExtraYields>
-            <BuildingExtraCommerces>
-            </BuildingExtraCommerces>
-            <BuildingExtraHappies>
-            </BuildingExtraHappies>
-            <BuildingExtraHealths>
-            </BuildingExtraHealths>
-            <iHappy>0</iHappy>
-            <iHealth>0</iHealth>
-            <iHurryAnger>0</iHurryAnger>
-            <iHappyTurns>0</iHappyTurns>
-            <iRevoltTurns>0</iRevoltTurns>
-            <iMinPillage>0</iMinPillage>
-            <iMaxPillage>0</iMaxPillage>
-            <iFood>0</iFood>
-            <iFoodPercent>0</iFoodPercent>
-            <FreeSpecialistCounts>
-            </FreeSpecialistCounts>
-            <FeatureType>NONE</FeatureType>
-            <iFeatureChange>0</iFeatureChange>
-            <ImprovementType>NONE</ImprovementType>
-            <iImprovementChange>0</iImprovementChange>
-            <BonusType>NONE</BonusType>
-            <iBonusChange>0</iBonusChange>
-            <RouteType>NONE</RouteType>
-            <iRouteChange>0</iRouteChange>
-            <BonusRevealed>NONE</BonusRevealed>
-            <BonusGift>NONE</BonusGift>
-            <PlotExtraYields>
-            </PlotExtraYields>
-            <iConvertOwnCities>0</iConvertOwnCities>
-            <iConvertOtherCities>0</iConvertOtherCities>
-            <iMaxNumReligions>-1</iMaxNumReligions>
-            <iOurAttitudeModifier>0</iOurAttitudeModifier>
-            <iAttitudeModifier>0</iAttitudeModifier>
-            <iTheirEnemyAttitudeModifier>0</iTheirEnemyAttitudeModifier>
-            <iPopulationChange>0</iPopulationChange>
-            <AdditionalEvents>
-            </AdditionalEvents>
-            <EventTimes>
-            </EventTimes>
-            <ClearEvents>
-            </ClearEvents>
+			<iMaxNumReligions>-1</iMaxNumReligions>
             <PythonCallback>doTraitSlaver</PythonCallback>
-            <PythonExpireCheck></PythonExpireCheck>
             <PythonCanDo>canApplyTraitSlaver</PythonCanDo>
             <PythonHelp>helpTraitSlaver</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
@@ -4564,7 +4204,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doTraitSpiritual</PythonCallback>
 			<PythonCanDo>canApplyTraitSpiritual</PythonCanDo>
-            <PythonHelp>helpTraitSpiritual</PythonHelp>
+			<PythonHelp>helpTraitSpiritual</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -5983,6 +5623,7 @@
 			<PythonCallback>doStrangeAdept</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<iGlobalCounter>1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- STRANGE_ADEPT_3 -->
 			<Type>EVENT_STRANGE_ADEPT_3</Type>
@@ -5994,6 +5635,7 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
+			<iGlobalCounter>1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- STRANGE_ADEPT_4 -->
 			<Type>EVENT_STRANGE_ADEPT_4</Type>
@@ -6004,6 +5646,7 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
+			<iGlobalCounter>-1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- HELL_REFUGEES_1 -->
 			<Type>EVENT_HELL_REFUGEES_1</Type>
@@ -6077,7 +5720,7 @@
 			<Type>EVENT_SCHOLARS_2</Type>
 			<Description>TXT_KEY_EVENT_SCHOLARS_2</Description>
 			<bPickCity>1</bPickCity>
-			<iGold>-200</iGold>
+			<iGold>-100</iGold>
 			<BuildingExtraCommerces>
 				<BuildingExtraCommerce>
 					<BuildingClass>BUILDINGCLASS_LIBRARY</BuildingClass>
@@ -6094,7 +5737,7 @@
 			<Type>EVENT_SCHOLARS_3</Type>
 			<Description>TXT_KEY_EVENT_SCHOLARS_3</Description>
 			<bPickCity>1</bPickCity>
-			<iGold>-150</iGold>
+			<iGold>-75</iGold>
 			<BuildingClass>BUILDINGCLASS_MAGE_GUILD</BuildingClass>
 			<iBuildingChange>1</iBuildingChange>
 			<iMaxNumReligions>-1</iMaxNumReligions>
@@ -6125,12 +5768,12 @@
 			<Help>TXT_KEY_EVENT_TRAPPED_FROSTLINGS_2_HELP</Help>
 			<Description>TXT_KEY_EVENT_TRAPPED_FROSTLINGS_2</Description>
 			<bPickCity>1</bPickCity>
-			<iHappyTurns>5</iHappyTurns>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>DoTrappedFrostlings2</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>100</iAIValue>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
+			<iGlobalCounter>-1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- TRAPPED_FROSTLINGS_3 -->
 			<Type>EVENT_TRAPPED_FROSTLINGS_3</Type>
@@ -6313,9 +5956,9 @@
 				</BuildingExtraHealth>
 			</BuildingExtraHealths>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCanDo>CanDoHangingSisters1</PythonCanDo>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
 		</EventInfo>
 		<EventInfo><!-- HANGING_SISTERS_2 -->
 			<Type>EVENT_HANGING_SISTERS_2</Type>
@@ -7032,6 +6675,22 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
+		</EventInfo>
+		<EventInfo><!-- UNFORTUNATE_ASSASSIN_5 -->
+			<Type>EVENT_UNFORTUNATE_ASSASSIN_5</Type>
+			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_5</Description>
+			<bPickCity>1</bPickCity>
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<PythonCallback>doUnfortunateAssassin5</PythonCallback>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+			<PrereqStateReligion>RELIGION_COUNCIL_OF_ESUS</PrereqStateReligion>
+		</EventInfo>
+		<EventInfo><!-- OVERCROWDED_DUNGEON_1 -->
+			<Type>EVENT_OVERCROWDED_DUNGEON_1</Type>
+			<Description>TXT_KEY_EVENT_OVERCROWDED_DUNGEON_1</Description>
+			<bPickCity>1</bPickCity>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
 		</EventInfo>
 		<EventInfo><!-- UNFORTUNATE_ASSASSIN_5 -->
@@ -7874,6 +7533,30 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<AdditionalEvents>
 				<EventChance>
+					<Event>EVENT_POISONED_WATER_CONT_5</Event>
+					<iEventChance>100</iEventChance>
+				</EventChance>
+			</AdditionalEvents>
+			<EventTimes>
+				<EventTime>
+					<Event>EVENT_POISONED_WATER_CONT_5</Event>
+					<iEventTime>5</iEventTime>
+				</EventTime>
+			</EventTimes>
+			<PythonHelp>helpPoisonedWater3</PythonHelp>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>500</iAIValue>
+		</EventInfo>
+		<EventInfo><!-- POISONED_WATER_4 -->
+			<Type>EVENT_POISONED_WATER_4</Type>
+			<Description>TXT_KEY_EVENT_POISONED_WATER_4</Description>
+			<bPickCity>1</bPickCity>
+			<iHealth>-3</iHealth>
+			<iHurryAnger>1</iHurryAnger>
+			<ImprovementType />
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<AdditionalEvents>
+				<EventChance>
 					<Event>EVENT_POISONED_WATER_CONT_6</Event>
 					<iEventChance>100</iEventChance>
 				</EventChance>
@@ -8127,6 +7810,67 @@
 			<ImprovementType>IMPROVEMENT_FISHING_BOATS</ImprovementType>
 			<iImprovementChange>1</iImprovementChange>
 			<iMaxNumReligions>-1</iMaxNumReligions>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+			<PrereqCivilization>CIVILIZATION_KURIOTATES</PrereqCivilization>
+		</EventInfo>
+		<EventInfo><!-- KURIOTATES_CRAB_1 -->
+			<Type>EVENT_KURIOTATES_CRAB_1</Type>
+			<Description>TXT_KEY_EVENT_KURIOTATES_CRAB_1</Description>
+			<bPickCity>1</bPickCity>
+			<ImprovementType>IMPROVEMENT_FISHING_BOATS</ImprovementType>
+			<iImprovementChange>1</iImprovementChange>
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+			<PrereqCivilization>CIVILIZATION_KURIOTATES</PrereqCivilization>
+		</EventInfo>
+		<EventInfo><!-- HAUNTED_CASTLE_1 -->
+			<Type>EVENT_HAUNTED_CASTLE_1</Type>
+			<Description>TXT_KEY_EVENT_HAUNTED_CASTLE_1</Description>
+			<bPickCity>1</bPickCity>
+			<UnitClass>UNITCLASS_SPECTRE</UnitClass>
+			<iNumFreeUnits>1</iNumFreeUnits>
+			<ImprovementType />
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+			<iGlobalCounter>1</iGlobalCounter>
+			<PrereqBonus>BONUS_MANA_DEATH</PrereqBonus>
+		</EventInfo>
+		<EventInfo><!-- HAUNTED_CASTLE_2 -->
+			<Type>EVENT_HAUNTED_CASTLE_2</Type>
+			<Description>TXT_KEY_EVENT_HAUNTED_CASTLE_2</Description>
+			<bPickCity>1</bPickCity>
+			<ImprovementType />
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>900</iAIValue>
+			<iGlobalCounter>-1</iGlobalCounter>
+			<PrereqBonus>BONUS_MANA_SPIRIT</PrereqBonus>
+		</EventInfo>
+		<EventInfo><!-- HAUNTED_CASTLE_3 -->
+			<Type>EVENT_HAUNTED_CASTLE_3</Type>
+			<Description>TXT_KEY_EVENT_HAUNTED_CASTLE_3</Description>
+			<bPickCity>1</bPickCity>
+			<ImprovementType />
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>900</iAIValue>
+			<iGlobalCounter>-1</iGlobalCounter>
+			<PrereqBonus>BONUS_MANA_LIFE</PrereqBonus>
+		</EventInfo>
+		<EventInfo><!-- HAUNTED_CASTLE_4 -->
+			<Type>EVENT_HAUNTED_CASTLE_4</Type>
+			<Description>TXT_KEY_EVENT_HAUNTED_CASTLE_4</Description>
+			<bPickCity>1</bPickCity>
+			<ImprovementType />
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<PythonCallback>doHauntedCastle4</PythonCallback>
+			<PythonHelp>helpHauntedCastle4</PythonHelp>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>100</iAIValue>
+			<iGlobalCounter>1</iGlobalCounter>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqCivilization>CIVILIZATION_KURIOTATES</PrereqCivilization>
