@@ -1889,6 +1889,16 @@ void CvCityAI::AI_chooseProduction()
 			return;
 		}
 	}
+
+	// Tholal ToDo: figure out a threshold for this function so we dont build useless wonders
+	if (iProductionRank <= std::max(1, (iNumCities / 3)))
+	{
+		if (AI_chooseBuilding(BUILDINGFOCUS_WORLDWONDER, ((iNumCities* 2) + 1)))
+		{
+			if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose QUICK WONDER", getName().GetCString());
+			return;
+		}
+	}
 // End Tholal AI
     
 	
@@ -4620,13 +4630,17 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 	
 	int iValue = 0;
 
-	// Tholal AI - Victory Buildings
+	// Tholal AI - Victory Buildings - HARDCODE
 	// Tholal ToDo: dynamic method of figuring out what victory buildings are
 	if ((iFocusFlags & BUILDINGFOCUS_VICTORY))
 	{
 		int iAltar = GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_FINAL");
 		int iMasteryTower = GC.getInfoTypeForString("BUILDINGCLASS_TOWER_OF_MASTERY");
 
+		if (kBuilding.isVictoryBuilding())
+		{
+			iValue += 5000;
+		}
 		if ((kBuilding.getBuildingClassType() == iAltar) || (kBuilding.getBuildingClassType() == iMasteryTower))
 		{
 			iValue += 10000;
@@ -4658,7 +4672,7 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 		        }
 
 				// Tholal AI - National Wonders are cool too
-				if (isNationalWonderClass(eBuildingClass))
+				if (isNationalWonderClass(eBuildingClass) || isTeamWonderClass(eBuildingClass))
 				{
 				    if (aiYieldRank[YIELD_PRODUCTION] <= 3)
                     {
@@ -4875,6 +4889,8 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 				iValue += (kBuilding.getFreeExperience() * ((iHasMetCount > 0) ? 12 : 6));
 
 				iValue += (kBuilding.getFreePromotionPick() * 5); // Tholal AI
+
+				iValue += kBuilding.getFlavorValue((FlavorTypes)0); // FLAVOR_MILITARY
 
 				for (iI = 0; iI < GC.getNumUnitCombatInfos(); iI++)
 				{
@@ -8404,7 +8420,8 @@ int CvCityAI::AI_getImprovementValue( CvPlot* pPlot, ImprovementTypes eImproveme
 				
 				if (GET_PLAYER(getOwnerINLINE()).isOption(PLAYEROPTION_SAFE_AUTOMATION))
 				{
-					iValue /= 4;	//Greatly prefer builds which are legal.
+					//iValue /= 4;	//Greatly prefer builds which are legal.
+					iValue = 0;
 				}
 			}
 		}
@@ -12200,7 +12217,8 @@ void CvCityAI::AI_bestPlotBuild(CvPlot* pPlot, int* piBestValue, BuildTypes* peB
 
 						if (GET_PLAYER(getOwnerINLINE()).isOption(PLAYEROPTION_SAFE_AUTOMATION))
 						{
-							iValue /= 4;	//Greatly prefer builds which are legal.
+							//iValue /= 4;	//Greatly prefer builds which are legal.
+							iValue = 0;
 						}
 
 //FfH: Added by Kael 02/24/2009 dont build over recently built improvmenets
