@@ -769,16 +769,16 @@ class CustomFunctions:
 		iGrigoriMod 	= pPlayer.getCivCounterMod()
 
 # Initialize the adventurer counter in case it has not been initialized.		
-		if iGrigoriMod < 2000:
-			pPlayer.setCivCounterMod(2000)
-			iGrigoriMod = 2000
+		if iGrigoriMod < 1000:
+			pPlayer.setCivCounterMod(1000)
+			iGrigoriMod = 1000
 
 		if iGrigoriSpawn >= iGrigoriMod:
 # Spawn an adventurer.
 			pCapital = pPlayer.getCapitalCity()
-			pAdventurer = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_ADVENTURER'), pCapital.getX(), pCapital.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+			pAdventurer = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_ADVENTURER'), pCapital.getX(), pCapital.getY(), UnitAITypes.UNITAI_HERO, DirectionTypes.DIRECTION_SOUTH)
 			pPlayer.changeCivCounter(0 - iGrigoriMod)
-			pPlayer.changeCivCounterMod(2000)
+			pPlayer.changeCivCounterMod(1000)
 			pPlot = pCapital.plot()
 			for iPlayer in range(gc.getMAX_PLAYERS()):
 				pPlayer = gc.getPlayer(iPlayer)
@@ -794,7 +794,7 @@ class CustomFunctions:
 		gc = CyGlobalContext() 
 		pPlayer = gc.getPlayer(iPlayer)
 
-		if pPlayer.getNumCities() > 0:
+		if pPlayer.getNumCities() > 0 and pPlayer.getDisableProduction() == 0:
 			iNumTaverns      = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_TAVERN_GRIGORI'))
 			iNumGuilds 		 = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_ADVENTURERS_GUILD'))
 			iNumPalace 		 = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_PALACE_GRIGORI'))
