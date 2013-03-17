@@ -794,7 +794,7 @@ class CustomFunctions:
 		gc = CyGlobalContext() 
 		pPlayer = gc.getPlayer(iPlayer)
 
-		if pPlayer.getNumCities() > 0:
+		if pPlayer.getNumCities() > 0 and pPlayer.getDisableProduction() == 0:
 			iNumTaverns      = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_TAVERN_GRIGORI'))
 			iNumGuilds 		 = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_ADVENTURERS_GUILD'))
 			iNumPalace 		 = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_PALACE_GRIGORI'))
