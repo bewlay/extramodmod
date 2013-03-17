@@ -2400,6 +2400,8 @@ void CvUnit::updateCombat(bool bQuick)
                 gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_OUR_WITHDRAWL", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
                 szBuffer = gDLL->getText("TXT_KEY_MISC_ENEMY_UNIT_FLED", pDefender->getNameKey(), getNameKey());
                 gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_THEIR_WITHDRAWL", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+
+				logBBAI("    %S withdraws from combat! (Unit %d - plot: %d, %d)", pDefender->getName().GetCString(), pDefender->getID(), pDefender->getX(), pDefender->getY());
             }
             if (isFleeWithdrawl())
             {
@@ -2412,6 +2414,8 @@ void CvUnit::updateCombat(bool bQuick)
                 changeMoves(std::max(GC.getMOVE_DENOMINATOR(), pPlot->movementCost(this, plot())));
                 checkRemoveSelectionAfterAttack();
                 getGroup()->clearMissionQueue();
+
+				logBBAI("    %S withdraws from combat! (Unit %d - plot: %d, %d)", getName().GetCString(), getID(), getX(), getY());
             }
 //FfH: End Modify
 
@@ -5726,6 +5730,11 @@ CvPlot* CvUnit::bombardImprovementTarget(const CvPlot* pPlot) const
 	int iBestValue = MAX_INT;
 	CvPlot* pBestPlot = NULL;
 
+	if (!GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+	{
+		return pBestPlot;
+	}
+
 	for (int iI = 0; iI < NUM_DIRECTION_TYPES; iI++)
 	{
 		CvPlot* pLoopPlot = plotDirection(pPlot->getX_INLINE(), pPlot->getY_INLINE(), ((DirectionTypes)iI));
@@ -5773,7 +5782,7 @@ bool CvUnit::canBombard(const CvPlot* pPlot) const
 	}
 
 	// Super Forts begin *bombard*
-	if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS) ? (bombardTarget(pPlot) == NULL && bombardImprovementTarget(pPlot) == NULL) : bombardTarget(pPlot) == NULL)
+	if (bombardTarget(pPlot) == NULL && bombardImprovementTarget(pPlot) == NULL)
 	//if (bombardTarget(pPlot) == NULL) - Original Code
 	// Super Forts end
 	{
@@ -13472,7 +13481,7 @@ void CvUnit::setCombatUnit(CvUnit* pCombatUnit, bool bAttacking)
 		{
 			if( gUnitLogLevel > 0 ) 
 			{
-				logBBAI("      *** KOMBAT!\n                    ATTACKER: %S (Unit %d), CombatStrength=%d\n                    DEFENDER: Player %d Unit %d (%S's %S), CombatStrength=%d\n",
+				logBBAI("      *** KOMBAT! ***\n                    ATTACKER: %S (Unit %d), CombatStrength=%d\n                    DEFENDER: Player %d Unit %d (%S's %S), CombatStrength=%d\n",
 						getName().GetCString(), getID(), currCombatStr(NULL, NULL),
 						pCombatUnit->getOwnerINLINE(), pCombatUnit->getID(), GET_PLAYER(pCombatUnit->getOwnerINLINE()).getNameKey(), pCombatUnit->getName().GetCString(), pCombatUnit->currCombatStr(pCombatUnit->plot(), this));
 			}
