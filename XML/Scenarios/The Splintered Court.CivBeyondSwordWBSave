@@ -7031,7 +7031,7 @@ BeginPlot
 		UnitAIType=UNITAI_SETTLE
 	EndUnit
 	BeginUnit
-		UnitType=UNIT_GENERAL, UnitOwner=5
+		UnitType=UNIT_GREAT_GENERAL, UnitOwner=5
 		UnitName=Rivanna the Wraith Lord
 		Damage=0
 		Level=1, Experience=0
