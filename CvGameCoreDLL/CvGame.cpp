@@ -7256,8 +7256,7 @@ void CvGame::createBarbarianUnits()
 	}
 
 //FfH: Added by Kael 11/27/2007
-//    if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS) && getNumCivCities() < countCivPlayersAlive() * 3)
-	if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS))
+    if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS) && getNumCivCities() < countCivPlayersAlive() * 3)
     {
         bAnimals = true;
     }
@@ -7411,6 +7410,7 @@ void CvGame::createBarbarianUnits()
 							}
 							if (eBestUnit != NO_UNIT)
 							{
+								logBBAI("Spawning Barbarian Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eBestUnit).getDescription(), pPlot->getX(), pPlot->getY());
 								GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), eBarbUnitAI);
 							}
 						}
@@ -7559,6 +7559,8 @@ void CvGame::createAnimals()
 					}
 					if (eBestUnit != NO_UNIT)
 					{
+						logBBAI("Spawning Animal Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eBestUnit).getDescription(), pPlot->getX(), pPlot->getY());
+
                         CvUnit* pUnit;
                         pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), UNITAI_ANIMAL);
                         pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
