@@ -776,7 +776,7 @@ class CustomFunctions:
 		if iGrigoriSpawn >= iGrigoriMod:
 # Spawn an adventurer.
 			pCapital = pPlayer.getCapitalCity()
-			pAdventurer = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_ADVENTURER'), pCapital.getX(), pCapital.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+			pAdventurer = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_ADVENTURER'), pCapital.getX(), pCapital.getY(), UnitAITypes.UNITAI_HERO, DirectionTypes.DIRECTION_SOUTH)
 			pPlayer.changeCivCounter(0 - iGrigoriMod)
 			pPlayer.changeCivCounterMod(2000)
 			pPlot = pCapital.plot()
