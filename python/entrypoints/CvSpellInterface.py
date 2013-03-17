@@ -1316,13 +1316,8 @@ def spellExtort(caster):
 	pPlot = caster.plot()
 	pCity = pPlot.getPlotCity()
 	pPlayer = gc.getPlayer(caster.getOwner())
-	iGoldPerPop = 15
-	if CyGame().getGameSpeedType() == gc.getInfoTypeForString('GAMESPEED_QUICK'):
-		iGoldPerPop = 10
-	if CyGame().getGameSpeedType() == gc.getInfoTypeForString('GAMESPEED_EPIC'):
-		iGoldPerPop = 20
-	if CyGame().getGameSpeedType() == gc.getInfoTypeForString('GAMESPEED_MARATHON'):
-		iGoldPerPop = 30
+	iBaseGoldPerPop = 15
+	iGoldPerPop = (iBaseGoldPerPop * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()) / 100
 	pPlayer.changeGold(pCity.getPopulation()*iGoldPerPop)
 	pCity.changeHurryAngerTimer(3)
 
