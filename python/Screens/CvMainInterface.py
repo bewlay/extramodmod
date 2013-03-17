@@ -1281,14 +1281,12 @@ class CvMainInterface:
 
 # Figure the counter values.
 					fGrigoriActual = pPlayer.getCivCounter()
-					fGrigoriSpawn = (fGrigoriActual / 2)
-					fGrigoriMod = (pPlayer.getCivCounterMod() / 2)
+					fGrigoriMod = pPlayer.getCivCounterMod()
 
-					fSecondPart = fGrigoriActual - (fGrigoriSpawn * 2)
 # Show the calculated values.
-					if fGrigoriSpawn > 0:
+					if fGrigoriActual > 0:
 							iPosition = 270
-							SRstr = u"<font=2i>%s</font>" %(str(" ") + str(fGrigoriSpawn) + str(".") + str(fSecondPart) + str(" / ") + str(fGrigoriMod) + str(" "))
+							SRstr = u"<font=2i>%s</font>" %(str(" ") + str(fGrigoriActual) + str(" / ") + str(fGrigoriMod) + str(" "))
 							screen.setImageButton("AdventurerChance", "Art/Interface/Buttons/Units/Adventurer.dds", iPosition, 7, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 							screen.setText( "SRText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iPosition + 12, 5, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 							screen.setHitTest( "SRText", HitTestTypes.HITTEST_NOHIT )
