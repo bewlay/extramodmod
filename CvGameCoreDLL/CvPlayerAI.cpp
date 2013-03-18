@@ -1791,6 +1791,14 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 					logBBAI("    Player %d (%S) decides not to raze %S because they're going for domination", getID(), getCivilizationDescription(0), pCity->getName().GetCString() );
 				}
 			}
+			else if (GET_PLAYER(pCity->getOriginalOwner()).getTeam() == getTeam())
+			{
+				// Do not raze, was our city
+				if( gPlayerLogLevel >= 1 )
+				{
+					logBBAI("    Player %d (%S) decides not to raze %S because our team were the original owners", getID(), getCivilizationDescription(0), pCity->getName().GetCString() );
+				}
+			}
 			else if( isBarbarian() )
 			{
 				if ( !(pCity->isHolyCity()) && !(pCity->hasActiveWorldWonder()))
@@ -2503,6 +2511,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 
 	// Pirates want a coastal city for their capitol
 	// TODO - make sure this doesnt break them on all-land maps
+	/*
     if (getNumCities() == 0)
     {
 		if (bPirate)
@@ -2513,6 +2522,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
             }
         }
     }
+	*/
 
 	pArea = pPlot->area();
 	iNumAreaCities = pArea->getCitiesPerPlayer(getID());
@@ -2739,7 +2749,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 
 				if (pLoopPlot != NULL)
 				{
-					if (!(pLoopPlot->isOwned()))
+					if (!(pLoopPlot->isOwned()) && (pLoopPlot->isRevealed(getTeam(), false) || pLoopPlot->isAdjacentRevealed(getTeam())))
 					{
 						if (pLoopPlot->isWater() || (pLoopPlot->area() == pArea) || (pLoopPlot->area()->getCitiesPerPlayer(getID()) > 0))
 						{
@@ -2958,7 +2968,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 				iTeammateTakenTiles++;
 			}
 		}
-		else
+		else if (pLoopPlot->isRevealed(getTeam(), false) || pLoopPlot->isAdjacentRevealed(getTeam()))
 		{
 			iTempValue = 0;
 
