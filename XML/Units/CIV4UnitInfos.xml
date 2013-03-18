@@ -50158,7 +50158,7 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
-            <bExplodeInCombat>1</bExplodeInCombat>
+            <bExplodeInCombat>0</bExplodeInCombat>
             <bNoWarWeariness>1</bNoWarWeariness>
             <iTier>3</iTier>
             <DamageTypeCombats>
