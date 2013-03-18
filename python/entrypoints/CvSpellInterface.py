@@ -514,7 +514,7 @@ def spellArdor(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlayer.setGreatPeopleCreated(0)
 	pPlayer.setGreatPeopleThresholdModifier(0)
-	pPlayer.setCivCounterMod(2000)
+	pPlayer.setCivCounterMod(1000)
 
 def reqArenaBattle(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
