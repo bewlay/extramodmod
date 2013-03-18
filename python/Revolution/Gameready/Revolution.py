@@ -4345,10 +4345,10 @@ class Revolution :
 #-------------------------------------------------------------------------------------------------
 # Lemmy101 RevolutionMP edit
 #-------------------------------------------------------------------------------------------------
-				# Enable only for debugging different revolution styles
-		if( self.LOG_DEBUG and self.isHumanPlayerOrAutoPlay(pPlayer.getID()) and game.getAIAutoPlay(pPlayer.getID()) > 0 ) :
-			bCanCancelAuto = SdToolKitCustom.sdObjectGetVal( "AIAutoPlay", game, "bCanCancelAuto" )
-			game.setForcedAIAutoPlay(pPlayer.getID(), 0, false)
+# Enable only for debugging different revolution styles
+#		if( self.LOG_DEBUG and self.isHumanPlayerOrAutoPlay(pPlayer.getID()) and game.getAIAutoPlay(pPlayer.getID()) > 0 ) :
+#			bCanCancelAuto = SdToolKitCustom.sdObjectGetVal( "AIAutoPlay", game, "bCanCancelAuto" )
+#			game.setForcedAIAutoPlay(pPlayer.getID(), 0, false)
 #-------------------------------------------------------------------------------------------------
 # END Lemmy101 RevolutionMP edit
 #-------------------------------------------------------------------------------------------------
@@ -6297,7 +6297,7 @@ class Revolution :
 
 		if( self.LOG_DEBUG ) : CvUtil.pyPrint("  Revolt - Stored revolt spawn data for rev player %d, revolt against player %d idx %d"%(pRevPlayer.getID(),pPlayer.getID(),iRevoltIdx))
 
-		if( self.isLocalHumanPlayer(pPlayer.getID()) ) :
+		if( self.isLocalHumanPlayer(pPlayer.getID()) and (game.getAIAutoPlay(game.getActivePlayer()) == 0 )):
 			# Threatening popup to remind player what's coming
 
 			bodStr = getCityTextList(cityList, bPreCity = True, bPostIs = True) + ' '

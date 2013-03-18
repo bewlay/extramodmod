@@ -2302,7 +2302,7 @@ void CvGameTextMgr::setPlotListHelp(CvWStringBuffer &szString, CvPlot* pPlot, bo
 						{
 							szString.append(CvWString::format(L" + %d cargo", pHeadGroup->getCargo()));
 						}
-						szString.append(CvWString::format(L"]"));
+						szString.append(CvWString::format(L"] (%d power)", pHeadGroup->AI_GroupPower(pHeadGroup->plot(), true)));
 
 						// get average damage
 						int iAverageDamage = 0;
@@ -5625,6 +5625,14 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 			tempChar = 'E';
 		}
 		szTempBuffer.Format(L"\nWERiverFlow: %c", tempChar);
+		szString.append(szTempBuffer);
+
+		// Choke value
+		szTempBuffer.Format(L"\nChoke Value: %d", pPlot->getChokeValue());
+		szString.append(szTempBuffer);
+
+		// Canal value
+		szTempBuffer.Format(L"\nCanal Value: %d", pPlot->getCanalValue());
 		szString.append(szTempBuffer);
 
 		if(pPlot->getRouteType() != NO_ROUTE)
@@ -17908,18 +17916,15 @@ void CvGameTextMgr::setImprovementHelp(CvWStringBuffer &szBuffer, ImprovementTyp
 	}
 
 	// Super Forts begin *text* *bombard*
-	if(GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+	if (info.isBombardable() && (info.getDefenseModifier() > 0))
 	{
-		if (info.isBombardable() && (info.getDefenseModifier() > 0))
-		{
-			szBuffer.append(NEWLINE);
-			szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_BOMBARD"));
-		}
-		if (info.getUniqueRange() > 0)
-		{
-			szBuffer.append(NEWLINE);
-			szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_UNIQUE_RANGE", info.getUniqueRange()));
-		}
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_BOMBARD"));
+	}
+	if (info.getUniqueRange() > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_UNIQUE_RANGE", info.getUniqueRange()));
 	}
 	// Super Forts end
 
@@ -17977,23 +17982,20 @@ void CvGameTextMgr::setImprovementHelp(CvWStringBuffer &szBuffer, ImprovementTyp
 	if (bCivilopediaText)
 	{
 		// Super Forts begin *text*
-		if(GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		if (info.getCulture() > 0)
 		{
-			if (info.getCulture() > 0)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_PLOT_CULTURE", info.getCulture()));
-			}
-			if (info.getCultureRange() > 0 && ((info.getCulture() > 0) || info.isActsAsCity()))
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_CULTURE_RANGE", info.getCultureRange()));
-			}
-			if (info.getSeeFrom() > 0)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_SEE_FROM", info.getSeeFrom()));
-			}
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_PLOT_CULTURE", info.getCulture()));
+		}
+		if (info.getCultureRange() > 0 && ((info.getCulture() > 0) || info.isActsAsCity()))
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_CULTURE_RANGE", info.getCultureRange()));
+		}
+		if (info.getSeeFrom() > 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_SEE_FROM", info.getSeeFrom()));
 		}
 		// Super Forts end
 		if (info.getPillageGold() > 0)

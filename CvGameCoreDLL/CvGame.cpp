@@ -7256,7 +7256,8 @@ void CvGame::createBarbarianUnits()
 	}
 
 //FfH: Added by Kael 11/27/2007
-    if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS) && getNumCivCities() < countCivPlayersAlive() * 3)
+//    if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS) && getNumCivCities() < countCivPlayersAlive() * 3)
+	if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS))
     {
         bAnimals = true;
     }
@@ -7267,11 +7268,33 @@ void CvGame::createBarbarianUnits()
 		bAnimals = true;
 	}
 
+/********************************************************************************/
+/* Improved Wildlands	03/2013											lfgr	*/
+/********************************************************************************/
+// barbs keep spawning
+	bool bBarbs = !bAnimals;
+
+	if( !bBarbs && getNumCivCities() >= countCivPlayersAlive() * 3 )
+		bBarbs = true;
+/********************************************************************************/
+/* Improved Wildlands													END		*/
+/********************************************************************************/
+
 	if (bAnimals)
 	{
 		createAnimals();
 	}
+/********************************************************************************/
+/* Improved Wildlands	03/2013											lfgr	*/
+/********************************************************************************/
+// barbs keep spawning
+/* old
 	else
+*/
+	if( bBarbs )
+/********************************************************************************/
+/* Improved Wildlands													END		*/
+/********************************************************************************/
 	{
 		for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
 		{
@@ -7410,6 +7433,7 @@ void CvGame::createBarbarianUnits()
 							}
 							if (eBestUnit != NO_UNIT)
 							{
+								logBBAI("Spawning Barbarian Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eBestUnit).getDescription(), pPlot->getX(), pPlot->getY());
 								GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), eBarbUnitAI);
 							}
 						}
@@ -7510,7 +7534,19 @@ void CvGame::createAnimals()
 //		}
 	for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
 	{
+/********************************************************************************/
+/* Improved Wildlands	03/2013											lfgr	*/
+/* Count animals independently from other barbs: subtract existing animals		*/
+/* later. Note: maybe need to increase <iUnownedTilesPerGameAnimal> in			*/
+/* CIV4HandicapInfo.xml															*/
+/********************************************************************************/
+	/* old
         iNeededAnimals = ((pLoopArea->getNumUnownedTiles() / GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal()) - pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER));
+	*/
+		iNeededAnimals = pLoopArea->getNumUnownedTiles() / GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal();
+/********************************************************************************/
+/* Improved Wildlands													END		*/
+/********************************************************************************/
         if (pLoopArea->isWater())
         {
             iNeededAnimals = iNeededAnimals / 5;
@@ -7518,7 +7554,17 @@ void CvGame::createAnimals()
             {
                 iNeededAnimals = 0;
             }
-            if (pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) > 3)
+/********************************************************************************/
+/* Improved Wildlands	03/2013											lfgr	*/
+/* Count animals independently from other barbs.								*/
+/********************************************************************************/
+	/* old
+        	if (pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) > 3)
+	*/
+			if ( pLoopArea->getAnimalsPerPlayer( BARBARIAN_PLAYER ) > 3 )
+/********************************************************************************/
+/* Improved Wildlands													END		*/
+/********************************************************************************/
             {
                 iNeededAnimals = 0;
             }
@@ -7530,6 +7576,15 @@ void CvGame::createAnimals()
             {
                 iNeededAnimals *= 2;
             }
+/********************************************************************************/
+/* Improved Wildlands	03/2013											lfgr	*/
+/* Count animals independently from other barbs: now subtract existing animals,	*/
+/* so get really doubled animals.												*/
+/********************************************************************************/
+		iNeededAnimals -= pLoopArea->getAnimalsPerPlayer( BARBARIAN_PLAYER );
+/********************************************************************************/
+/* Improved Wildlands													END		*/
+/********************************************************************************/
             for (iI = 0; iI < iNeededAnimals; iI++)
             {
                 pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_VISIBLE_TO_CIV | RANDPLOT_PASSIBLE), pLoopArea->getID(), GC.getDefineINT("MIN_ANIMAL_STARTING_DISTANCE"));
@@ -7558,6 +7613,8 @@ void CvGame::createAnimals()
 					}
 					if (eBestUnit != NO_UNIT)
 					{
+						logBBAI("Spawning Animal Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eBestUnit).getDescription(), pPlot->getX(), pPlot->getY());
+
                         CvUnit* pUnit;
                         pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), UNITAI_ANIMAL);
                         pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);

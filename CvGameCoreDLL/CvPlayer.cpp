@@ -3048,6 +3048,18 @@ void CvPlayer::killCities()
 		pLoopCity->kill(false);
 	}
 
+	// Super Forts begin *culture* - Clears culture from forts when a player dies
+	PlayerTypes ePlayer = getID();
+	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+	{
+		CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+		if (pLoopPlot->getOwner() == ePlayer)
+		{
+			pLoopPlot->setOwner(pLoopPlot->calculateCulturalOwner(), true, false);
+		}
+	}
+	// Super Forts end
+
 	GC.getGameINLINE().updatePlotGroups();
 }
 
@@ -24289,7 +24301,7 @@ bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
                 pCity->setCultureTimes100(eNewPlayer, iCulture, true, true);
             }
 
-            for (int i = 0; i < GC.getDefineINT("COLONY_NUM_FREE_DEFENDERS"); ++i)
+            for (int i = 0; i < (GC.getDefineINT("COLONY_NUM_FREE_DEFENDERS") * 2); ++i)
             {
                 pCity->initConscriptedUnit();
             }
@@ -27567,3 +27579,26 @@ DenialTypes CvPlayer::AI_militaryUnitTrade(CvUnit* pUnit, PlayerTypes ePlayer) c
 /************************************************************************************************/
 /* Afforess	                     END                                                            */
 /************************************************************************************************/
+
+int CvPlayer::countNumOwnedTerrainTypes(TerrainTypes eTerrain) const
+{
+	PROFILE("CvPlayer::countNumOwnedTerrainTypes");
+
+	CvPlot* pLoopPlot;
+	int iCount = 0;
+
+	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+	{
+		pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+
+		if (pLoopPlot->getOwnerINLINE() == getID())
+		{
+			if (pLoopPlot->getTerrainType() == eTerrain)
+			{
+				iCount++;
+			}
+		}
+	}
+
+	return iCount;
+}
