@@ -1005,13 +1005,6 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 	{
 		GC.getProjectInfo((ProjectTypes)i).readPass3();
 	}
-	for (int i=0; i < GC.getNumTerrainInfos(); ++i)
-/**
-	for (int i=0; i < GC.getNumBuildingInfos(); ++i)
-	{
-		GC.getBuildingInfo((BuildingTypes)i).readPass3();
-	}
-**/
 
 //>>>>Unofficial Bug Fix: Added by Denev 2010/02/27
 //*** prereq civilization of each building is read correctly.
