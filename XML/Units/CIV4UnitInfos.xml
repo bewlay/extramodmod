@@ -72459,7 +72459,7 @@
             <UnitCombatMods>
                 <UnitCombatMod>
                     <UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
-                    <iUnitCombatMod>10</iUnitCombatMod>
+                    <iUnitCombatMod>25</iUnitCombatMod>
                 </UnitCombatMod>
             </UnitCombatMods>
             <UnitCombatCollateralImmunes>
@@ -72508,7 +72508,7 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
-            <iCombatDefense>3</iCombatDefense>
+            <iCombatDefense>2</iCombatDefense>
             <iTier>1</iTier>
             <iWeaponTier>1</iWeaponTier>
         </UnitInfo>
