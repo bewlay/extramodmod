@@ -3531,11 +3531,11 @@ def canTriggerControversialPhilosopherCity(argsList):
 def semiRandomTurnTrigger( iTurns, fChance ) :
 	game = CyGame()
 	print "iTurns: %d" % iTurns
-	iTurns *= gc.getGameSpeedInfo( game.getGameSpeedType() ).getGrowthPercent() / 100
+	iTurns *= gc.getGameSpeedInfo( game.getGameSpeedType() ).getGrowthPercent() / 100.0
 	print "iTurns after gamespeed: %d" % iTurns
 	iTurns = round( iTurns )
 	print "iTurns after rounding: %d" % iTurns
-	if( game.getGameTurn() % iTurns == 0 ) :
+	if( iTurns == 0 or game.getGameTurn() % iTurns == 0 ) :
 		print "Trigger!"
 		return game.getSorenRandNum ( 1000, "Random Event Trigger" ) <= fChance * 1000
 	else :
