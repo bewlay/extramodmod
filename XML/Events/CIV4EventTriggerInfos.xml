@@ -21,9 +21,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<UnitsRequired>
-				<UnitClass>UNITCLASS_ASSASSIN</UnitClass>
-			</UnitsRequired>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
@@ -4217,10 +4214,9 @@
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
+			<iPlotType>1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_SNOW</TerrainType>
-				<TerrainType>TERRAIN_TUNDRA</TerrainType>
 			</TerrainsRequired>
 			<ImprovementsRequired>
 				<ImprovementType>NONE</ImprovementType>
@@ -4963,7 +4959,7 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_sailorsdirge.dds</EventArt>
-			<iPercentGamesActive>20</iPercentGamesActive>
+			<iPercentGamesActive>60</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iPlotType>-1</iPlotType>
@@ -5099,6 +5095,7 @@
 			<Events>
 				<Event>EVENT_SICKNESS_1</Event>
 				<Event>EVENT_SICKNESS_2</Event>
+				<Event>EVENT_SICKNESS_3</Event>
 			</Events>
 			<ObsoleteTechs>
 				<ObsoleteTech>TECH_MEDICINE</ObsoleteTech>
@@ -5125,6 +5122,7 @@
 			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
+				<Event>EVENT_SIGN_AERON_1</Event>
 			</Events>
 			<bRecurring>1</bRecurring>
 			<PythonCallback>doSignAeron</PythonCallback>
@@ -5192,8 +5190,10 @@
 			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
+				<Event>EVENT_SIGN_ARAWN_1</Event>
 			</Events>
 			<bRecurring>1</bRecurring>
+			<PythonCallback>doSignArawn</PythonCallback>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- SIGN_BHALL -->
 			<Type>EVENTTRIGGER_SIGN_BHALL</Type>
@@ -5213,6 +5213,7 @@
 			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
+				<Event>EVENT_SIGN_BHALL_1</Event>
 			</Events>
 			<bRecurring>1</bRecurring>
 			<PythonCallback>doSignBhall</PythonCallback>

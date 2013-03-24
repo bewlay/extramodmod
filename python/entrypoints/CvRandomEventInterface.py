@@ -29,7 +29,14 @@ def canTriggerAeronsChosen(argsList):
 	kTriggeredData = argsList[0]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pUnit = pPlayer.getUnit(kTriggeredData.iUnitId)
+	iMark = gc.getInfoTypeForString('PROMOTION_MARKSMAN')
+	if not pUnit.isHasPromotion(iMark):
+		return False
 	if pUnit.getLevel() < 5:
+		return False
+	if pUnit.getDuration() > 0:
+		return False
+	if pUnit.getSummoner() != -1:
 		return False
 	return True
 
@@ -52,7 +59,7 @@ def applyAmuriteTrial1(argsList):
 	if iPlayer2 != -1:
 		pPlayer2 = gc.getPlayer(iPlayer2)
 		pCity = pPlayer2.getCapitalCity()
-		pUnit.setXY(pCity.getX(), pCity.getY(), false, true, true)
+		pUnit.setXY(pCity.getX(), pCity.getY(), False, True, True)
 
 def doArmageddonApocalypse(argsList):
 	kTriggeredData = argsList[0]
@@ -96,12 +103,14 @@ def doArmageddonBlight(argsList):
 			i = CyGame().getSorenRandNum(15, "Blight")
 #			i = 10
 			i += pCity.getPopulation()
+			i += pCity.getFeatureBadHealth()
+			i -= pCity.getFeatureGoodHealth()
 			i -= pCity.totalGoodBuildingHealth()
 			if i > 0:
 				pCity.changeEspionageHealthCounter(i)
 	for pUnit in py.getUnitList():
 		if pUnit.isAlive():
-			pUnit.doDamageNoCaster(25, 100, gc.getInfoTypeForString('DAMAGE_DEATH'), false)
+			pUnit.doDamageNoCaster(25, 100, gc.getInfoTypeForString('DAMAGE_DEATH'), False)
 
 def doArmageddonBuboes(argsList):
 	kTriggeredData = argsList[0]
@@ -155,7 +164,7 @@ def doArmageddonPestilence(argsList):
 	py = PyPlayer(iPlayer)
 	for pUnit in py.getUnitList():
 		if pUnit.isAlive():
-			pUnit.doDamageNoCaster(25, 100, gc.getInfoTypeForString('DAMAGE_DEATH'), false)
+			pUnit.doDamageNoCaster(25, 100, gc.getInfoTypeForString('DAMAGE_DEATH'), False)
 
 def doArmageddonStephanos(argsList):
 	kTriggeredData = argsList[0]
@@ -191,7 +200,7 @@ def doArmageddonYersinia(argsList):
 def doAzer(argsList):
 	kTriggeredData = argsList[0]
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
-	if pPlot.isNone() == False:
+	if not pPlot.isNone():
 		bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
 		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_AZER'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
@@ -204,6 +213,8 @@ def doBanditNietz3(argsList):
 	newUnit.setName("Nietz the Bandit Lord")
 	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HERO'), True)
 	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_MOBILITY1'), True)
+	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_BOUNTY_HUNTER'), True)
+	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_COMMANDO'), True)
 
 def helpBanditNietz3(argsList):
 	iEvent = argsList[0]
@@ -445,7 +456,7 @@ def applyExploreLairPortal1(argsList):
 						iBestValue = iValue
 						pBestPlot = pPlot
 	if pBestPlot != -1:
-		pUnit.setXY(pBestPlot.getX(), pBestPlot.getY(), false, true, true)
+		pUnit.setXY(pBestPlot.getX(), pBestPlot.getY(), False, True, True)
 		CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_EXPLORE_LAIR_PORTAL",()),'',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pBestPlot.getX(),pBestPlot.getY(),True,True)
 
 def doFlareEntropyNode(argsList):
@@ -457,7 +468,7 @@ def doFlareEntropyNode(argsList):
 	for iX in range(kTriggeredData.iPlotX-1, kTriggeredData.iPlotX+2, 1):
 		for iY in range(kTriggeredData.iPlotY-1, kTriggeredData.iPlotY+2, 1):
 			pPlot = CyMap().plot(iX,iY)
-			if pPlot.isNone() == False:
+			if not pPlot.isNone():
 				pPlot.changePlotCounter(100)
 	CyGame().changeGlobalCounter(2)
 
@@ -473,7 +484,7 @@ def doFlareFireNode(argsList):
 	for iX in range(kTriggeredData.iPlotX-1, kTriggeredData.iPlotX+2, 1):
 		for iY in range(kTriggeredData.iPlotY-1, kTriggeredData.iPlotY+2, 1):
 			pPlot = CyMap().plot(iX,iY)
-			if pPlot.isNone() == False:
+			if not pPlot.isNone():
 				if (pPlot.getFeatureType() == iForest or pPlot.getFeatureType() == iJungle):
 					pPlot.setFeatureType(iFlames, 0)
 					if pPlot.isOwned():
@@ -488,7 +499,7 @@ def doFlareLifeNode(argsList):
 	for iX in range(kTriggeredData.iPlotX-2, kTriggeredData.iPlotX+3, 1):
 		for iY in range(kTriggeredData.iPlotY-2, kTriggeredData.iPlotY+3, 1):
 			pPlot = CyMap().plot(iX,iY)
-			if pPlot.isNone() == False:
+			if not pPlot.isNone():
 				pPlot.changePlotCounter(-100)
 	CyGame().changeGlobalCounter(-2)
 
@@ -499,13 +510,19 @@ def doFlareNatureNode(argsList):
 	CyEngine().triggerEffect(gc.getInfoTypeForString('EFFECT_BLOOM'),point)
 	CyAudioGame().Play3DSound("AS3D_SPELL_BLOOM",point.x,point.y,point.z)
 	iForestNew = gc.getInfoTypeForString('FEATURE_FOREST_NEW')
+	iLjos = gc.getInfoTypeForString('CIVILIZATION_LJOSALFAR')
+	iSvart = gc.getInfoTypeForString('CIVILIZATION_SVARTALFAR')
 	for iX in range(kTriggeredData.iPlotX-1, kTriggeredData.iPlotX+2, 1):
 		for iY in range(kTriggeredData.iPlotY-1, kTriggeredData.iPlotY+2, 1):
 			pPlot = CyMap().plot(iX,iY)
-			if pPlot.isNone() == False:
-				if (pPlot.getImprovementType() == -1 and pPlot.getFeatureType() == -1 and pPlot.isWater() == False):
-					if not pPlot.isPeak():
+			if not pPlot.isNone():
+				if pPlot.canHaveFeature(iForestNew): #This checks for valid terrain and whether there is already a feature on the tile
+					if pPlot.getImprovementType() == -1:
 						pPlot.setFeatureType(iForestNew, 0)
+					elif pPlot.isOwned():
+						iCiv = gc.getPlayer(pPlot.getOwner()).getCivilizationType()
+						if iCiv == iLjos or iCiv == iSvart:
+							pPlot.setFeatureType(iForestNew, 0)
 
 def doFlareWaterNode(argsList):
 	kTriggeredData = argsList[0]
@@ -520,7 +537,7 @@ def doFlareWaterNode(argsList):
 	for iX in range(kTriggeredData.iPlotX-1, kTriggeredData.iPlotX+2, 1):
 		for iY in range(kTriggeredData.iPlotY-1, kTriggeredData.iPlotY+2, 1):
 			pPlot = CyMap().plot(iX,iY)
-			if pPlot.isNone() == False:
+			if not pPlot.isNone():
 				if pPlot.getTerrainType() == iDesert:
 					pPlot.setTerrainType(iPlains,True,True)
 				if pPlot.getFeatureType() == iFlames:
@@ -565,7 +582,7 @@ def doFoodSickness(argsList):
 def doFrostling(argsList):
 	kTriggeredData = argsList[0]
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
-	if pPlot.isNone() == False:
+	if not pPlot.isNone():
 		bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
 		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_FROSTLING'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
@@ -707,7 +724,7 @@ def applyHyboremsWhisper1(argsList):
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pCity = cf.getAshenVeilCity(1)
-	pPlayer.acquireCity(pCity,false,false)
+	pPlayer.acquireCity(pCity,False,False)
 
 def helpHyboremsWhisper1(argsList):
 	iEvent = argsList[0]
@@ -721,7 +738,7 @@ def applyHyboremsWhisper2(argsList):
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pCity = cf.getAshenVeilCity(2)
-	pPlayer.acquireCity(pCity,false,false)
+	pPlayer.acquireCity(pCity,False,False)
 
 def helpHyboremsWhisper2(argsList):
 	iEvent = argsList[0]
@@ -735,7 +752,7 @@ def applyHyboremsWhisper3(argsList):
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pCity = cf.getAshenVeilCity(3)
-	pPlayer.acquireCity(pCity,false,false)
+	pPlayer.acquireCity(pCity,False,False)
 
 def helpHyboremsWhisper3(argsList):
 	iEvent = argsList[0]
@@ -836,7 +853,7 @@ def applyMalakimPilgrimage1(argsList):
 	if iPlayer2 != -1:
 		pPlayer2 = gc.getPlayer(iPlayer2)
 		pCity = pPlayer2.getCapitalCity()
-		pUnit.setXY(pCity.getX(), pCity.getY(), false, true, true)
+		pUnit.setXY(pCity.getX(), pCity.getY(), False, True, True)
 
 def doMarketTheft2(argsList):
 	iEvent = argsList[0]
@@ -910,13 +927,13 @@ def doOrderVsVeil1(argsList):
 	if pCity.isHolyCityByType(iVeil) == False:
 		if gc.getGame().getSorenRandNum(100, "Order vs Veil 1") < 50:
 			pCity.setHasReligion(iVeil, False, False, False)
-	(loopCity, iter) = pPlayer.firstCity(false)
+	(loopCity, iter) = pPlayer.firstCity(False)
 	while(loopCity):
 		if loopCity.isHasReligion(iOrder):
 			loopCity.changeHappinessTimer(5)
 		if loopCity.isHasReligion(iVeil):
 			loopCity.changeHurryAngerTimer(5)
-		(loopCity, iter) = pPlayer.nextCity(iter, false)
+		(loopCity, iter) = pPlayer.nextCity(iter, False)
 
 def doOrderVsVeil2(argsList):
 	iEvent = argsList[0]
@@ -929,13 +946,13 @@ def doOrderVsVeil2(argsList):
 	if pCity.isHolyCityByType(iOrder) == False:
 		if gc.getGame().getSorenRandNum(100, "Order vs Veil 2") < 50:
 			pCity.setHasReligion(iOrder, False, False, False)
-	(loopCity, iter) = pPlayer.firstCity(false)
+	(loopCity, iter) = pPlayer.firstCity(False)
 	while(loopCity):
 		if loopCity.isHasReligion(iVeil):
 			loopCity.changeHappinessTimer(5)
 		if loopCity.isHasReligion(iOrder):
 			loopCity.changeHurryAngerTimer(5)
-		(loopCity, iter) = pPlayer.nextCity(iter, false)
+		(loopCity, iter) = pPlayer.nextCity(iter, False)
 
 def doOrderVsVeil3(argsList):
 	iEvent = argsList[0]
@@ -993,13 +1010,13 @@ def doOrderVsVeilTemple1(argsList):
 	if pCity.isHolyCityByType(iVeil) == False:
 		if gc.getGame().getSorenRandNum(100, "Order vs Veil Temple 1") < 50:
 			pCity.setHasReligion(iVeil, False, False, False)
-	(loopCity, iter) = player.firstCity(false)
+	(loopCity, iter) = player.firstCity(False)
 	while(loopCity):
 		if loopCity.isHasReligion(iOrder):
 			loopCity.changeHappinessTimer(5)
 		if loopCity.isHasReligion(iVeil):
 			loopCity.changeHurryAngerTimer(5)
-		(loopCity, iter) = player.nextCity(iter, false)
+		(loopCity, iter) = player.nextCity(iter, False)
 
 def doOrderVsVeilTemple2(argsList):
 	iEvent = argsList[0]
@@ -1024,13 +1041,13 @@ def doOrderVsVeilTemple3(argsList):
 	pCity.changeOccupationTimer(3)
 	iOrder = gc.getInfoTypeForString('RELIGION_THE_ORDER')
 	iVeil = gc.getInfoTypeForString('RELIGION_THE_ASHEN_VEIL')
-	(loopCity, iter) = pPlayer.firstCity(false)
+	(loopCity, iter) = pPlayer.firstCity(False)
 	while(loopCity):
 		if loopCity.isHasReligion(iVeil):
 			loopCity.changeHappinessTimer(5)
 		if loopCity.isHasReligion(iOrder):
 			loopCity.changeHurryAngerTimer(5)
-		(loopCity, iter) = pPlayer.nextCity(iter, false)
+		(loopCity, iter) = pPlayer.nextCity(iter, False)
 
 def helpOrderVsVeilTemple1(argsList):
 	iEvent = argsList[0]
@@ -1596,6 +1613,15 @@ def doSignAeron(argsList):
 	kTriggeredData = argsList[0]
 	CyGame().changeGlobalCounter(3)
 
+def doSignArawn(argsList):
+	kTriggeredData = argsList[0]
+	iPlayer = kTriggeredData.ePlayer
+	pPlayer = gc.getPlayer(iPlayer)
+	iUndead = gc.getInfoTypeForString('PROMOTION_UNDEAD')
+	apUnitList = PyPlayer(iPlayer).getUnitList()
+	for pUnit in apUnitList:
+		if pUnit.isHasPromotion(iUndead):
+			pUnit.changeImmobileTimer(1)
 def doSignBhall(argsList):
 	kTriggeredData = argsList[0]
 	iPlayer = kTriggeredData.ePlayer
@@ -1791,13 +1817,13 @@ def doVeilVsOrderTemple1(argsList):
 	if pCity.isHolyCityByType(iOrder) == False:
 		if gc.getGame().getSorenRandNum(100, "Veil vs Order Temple 1") < 50:
 			pCity.setHasReligion(iOrder, False, False, False)
-	(loopCity, iter) = pPlayer.firstCity(false)
+	(loopCity, iter) = pPlayer.firstCity(False)
 	while(loopCity):
 		if loopCity.isHasReligion(iVeil):
 			loopCity.changeHappinessTimer(5)
 		if loopCity.isHasReligion(iOrder):
 			loopCity.changeHurryAngerTimer(5)
-		(loopCity, iter) = pPlayer.nextCity(iter, false)
+		(loopCity, iter) = pPlayer.nextCity(iter, False)
 
 def doVeilVsOrderTemple2(argsList):
 	iEvent = argsList[0]
@@ -1822,13 +1848,13 @@ def doVeilVsOrderTemple3(argsList):
 	pCity.changeOccupationTimer(3)
 	iOrder = gc.getInfoTypeForString('RELIGION_THE_ORDER')
 	iVeil = gc.getInfoTypeForString('RELIGION_THE_ASHEN_VEIL')
-	(loopCity, iter) = pPlayer.firstCity(false)
+	(loopCity, iter) = pPlayer.firstCity(False)
 	while(loopCity):
 		if loopCity.isHasReligion(iOrder):
 			loopCity.changeHappinessTimer(5)
 		if loopCity.isHasReligion(iVeil):
 			loopCity.changeHurryAngerTimer(5)
-		(loopCity, iter) = pPlayer.nextCity(iter, false)
+		(loopCity, iter) = pPlayer.nextCity(iter, False)
 
 def helpVeilVsOrderTemple1(argsList):
 	iEvent = argsList[0]
@@ -1881,6 +1907,13 @@ def doSlaveRevolt(argsList):
 		pNewUnit.setHasPromotion(iRace, True)
 	CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_SLAVE_REVOLT", ()),'',1,'Art/Interface/Buttons/Units/Slave.dds',ColorTypes(8),pUnit.getX(),pUnit.getY(),True,True)
 
+# lfgr
+# REPLACE
+# \Qdef canApplyTrait\E([^(]*)\Q(argsList):\E\r\n\t\QiEvent = argsList[0]\E\r\n\t\QkTriggeredData = argsList[1]\E\r\n\t\QpPlayer = gc.getPlayer(kTriggeredData.ePlayer)\E\r\n\t\Qif gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getPermanentTrait() == gc.getInfoTypeForString('\E([^']*)\Q'):\E\r\n\t\t\Qreturn False\E\r\n\t\Qreturn True\E
+# WITH
+# def canApplyTrait\1\(argsList\):\r\n\tiEvent = argsList[0]\r\n\tkTriggeredData = argsList[1]\r\n\tpPlayer = gc.getPlayer\(kTriggeredData.ePlayer\)\r\n\tif gc.getLeaderHeadInfo\(pPlayer.getLeaderType\(\)\).getPermanentTrait\(\) == gc.getInfoTypeForString\('\2'\):\r\n\t\treturn False\r\n\treturn True\r\n\r\n# lfgr: adaptive event help\r\ndef helpTrait\1\(argsList\) :\r\n\treturn CyGameTextMgr\(\).parseTraits\( gc.getInfoTypeForString\('\2'\), CivilizationTypes.NO_CIVILIZATION, False \)\r\n# lfgr end
+# lfgr end
+
 def canApplyTraitAggressive(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -1891,7 +1924,7 @@ def canApplyTraitAggressive(argsList):
 
 # lfgr: adaptive event help
 def helpTraitAggressive(argsList) :
-	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_AGGRESSIVE'), CivilizationTypes.NO_CIVILIZATION, false )
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_AGGRESSIVE'), CivilizationTypes.NO_CIVILIZATION, False )
 # lfgr end
 
 def doTraitAggressive(argsList):
@@ -1916,7 +1949,7 @@ def canApplyTraitArcane(argsList):
 
 # lfgr: adaptive event help
 def helpTraitArcane(argsList) :
-	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_ARCANE'), CivilizationTypes.NO_CIVILIZATION, false )
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_ARCANE'), CivilizationTypes.NO_CIVILIZATION, False )
 # lfgr end
 
 def doTraitArcane(argsList):
@@ -1941,7 +1974,7 @@ def canApplyTraitCharismatic(argsList):
 
 # lfgr: adaptive event help
 def helpTraitCharismatic(argsList) :
-	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_CHARISMATIC'), CivilizationTypes.NO_CIVILIZATION, false )
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_CHARISMATIC'), CivilizationTypes.NO_CIVILIZATION, False )
 # lfgr end
 
 def doTraitCharismatic(argsList):
@@ -1966,7 +1999,7 @@ def canApplyTraitCreative(argsList):
 
 # lfgr: adaptive event help
 def helpTraitCreative(argsList) :
-	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_CREATIVE'), CivilizationTypes.NO_CIVILIZATION, false )
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_CREATIVE'), CivilizationTypes.NO_CIVILIZATION, False )
 # lfgr end
 
 def doTraitCreative(argsList):
@@ -1991,7 +2024,7 @@ def canApplyTraitExpansive(argsList):
 
 # lfgr: adaptive event help
 def helpTraitExpansive(argsList) :
-	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_EXPANSIVE'), CivilizationTypes.NO_CIVILIZATION, false )
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_EXPANSIVE'), CivilizationTypes.NO_CIVILIZATION, False )
 # lfgr end
 
 def doTraitExpansive(argsList):
@@ -2016,7 +2049,7 @@ def canApplyTraitFinancial(argsList):
 
 # lfgr: adaptive event help
 def helpTraitFinancial(argsList) :
-	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_FINANCIAL'), CivilizationTypes.NO_CIVILIZATION, false )
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_FINANCIAL'), CivilizationTypes.NO_CIVILIZATION, False )
 # lfgr end
 
 def doTraitFinancial(argsList):
@@ -2041,7 +2074,7 @@ def canApplyTraitIndustrious(argsList):
 
 # lfgr: adaptive event help
 def helpTraitIndustrious(argsList) :
-	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_INDUSTRIOUS'), CivilizationTypes.NO_CIVILIZATION, false )
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_INDUSTRIOUS'), CivilizationTypes.NO_CIVILIZATION, False )
 # lfgr end
 
 def doTraitIndustrious(argsList):
@@ -2067,8 +2100,8 @@ def doTraitInsane(argsList):
 		if (pPlayer.hasTrait(i) and i != gc.getInfoTypeForString('TRAIT_INSANE')):
 			if (i != pCivilization.getCivTrait()):
 				pPlayer.setHasTrait(i, False)
-				iTraitCount = iTraitCount + 1
-				
+				iTraitCount += 1
+
 	Traits = [ 'TRAIT_AGGRESSIVE','TRAIT_ARCANE','TRAIT_CHARISMATIC','TRAIT_CREATIVE','TRAIT_EXPANSIVE','TRAIT_FINANCIAL','TRAIT_INDUSTRIOUS','TRAIT_ORGANIZED','TRAIT_PHILOSOPHICAL','TRAIT_RAIDERS','TRAIT_SPIRITUAL' ]
 
 	if (iTraitCount > 0):
@@ -2105,7 +2138,7 @@ def canApplyTraitOrganized(argsList):
 
 # lfgr: adaptive event help
 def helpTraitOrganized(argsList) :
-	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_ORGANIZED'), CivilizationTypes.NO_CIVILIZATION, false )
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_ORGANIZED'), CivilizationTypes.NO_CIVILIZATION, False )
 # lfgr end
 
 def doTraitOrganized(argsList):
@@ -2130,7 +2163,7 @@ def canApplyTraitPhilosophical(argsList):
 
 # lfgr: adaptive event help
 def helpTraitPhilosophical(argsList) :
-	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_PHILOSOPHICAL'), CivilizationTypes.NO_CIVILIZATION, false )
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_PHILOSOPHICAL'), CivilizationTypes.NO_CIVILIZATION, False )
 # lfgr end
 
 def doTraitPhilosophical(argsList):
@@ -2155,7 +2188,7 @@ def canApplyTraitRaiders(argsList):
 
 # lfgr: adaptive event help
 def helpTraitRaiders(argsList) :
-	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_RAIDERS'), CivilizationTypes.NO_CIVILIZATION, false )
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_RAIDERS'), CivilizationTypes.NO_CIVILIZATION, False )
 # lfgr end
 
 def doTraitRaiders(argsList):
@@ -2180,7 +2213,7 @@ def canApplyTraitSpiritual(argsList):
 
 # lfgr: adaptive event help
 def helpTraitSpiritual(argsList) :
-	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_SPIRITUAL'), CivilizationTypes.NO_CIVILIZATION, false )
+	return CyGameTextMgr().parseTraits( gc.getInfoTypeForString('TRAIT_SPIRITUAL'), CivilizationTypes.NO_CIVILIZATION, False )
 # lfgr end
 
 def doTraitSpiritual(argsList):
@@ -2224,7 +2257,7 @@ def canTriggerWarGamesUnit(argsList):
 	iUnit = argsList[2]
 	pPlayer = gc.getPlayer(ePlayer)
 	pUnit = pPlayer.getUnit(iUnit)
-	if pUnit.isAlive() == False:
+	if not pUnit.isAlive():
 		return False
 	if pUnit.isOnlyDefensive():
 		return False
@@ -2296,7 +2329,7 @@ def applyWBLordOfTheBalorsTemptJudeccaYes(argsList):
 	eTeam.setPermanentWarPeace(enemyTeam, False)
 	eTeam.setPermanentWarPeace(6, False)
 	eTeam.makePeace(6)
-	eTeam.declareWar(enemyTeam, true, WarPlanTypes.WARPLAN_TOTAL)
+	eTeam.declareWar(enemyTeam, True, WarPlanTypes.WARPLAN_TOTAL)
 	eTeam.setPermanentWarPeace(enemyTeam, True)
 	eTeam.setPermanentWarPeace(6, True)
 
@@ -2345,7 +2378,7 @@ def applyWBLordOfTheBalorsTemptStatiusYes(argsList):
 	eTeam.makePeace(10)
 	eTeam.setPermanentWarPeace(10, True)
 	pPlayer = gc.getPlayer(10)
-	pPlayer.acquireCity(pCity,false,false)
+	pPlayer.acquireCity(pCity,False,False)
 
 def applyWBLordOfTheBalorsTemptLetheYes(argsList):
 	iEvent = argsList[0]
@@ -2381,7 +2414,7 @@ def applyWBSplinteredCourtDefeatedAmelanchier3(argsList):
 		if eTeam.isAtWar(iSvartalfarTeam):
 			eTeam.makePeace(iSvartalfarTeam)
 		if not eTeam.isAtWar(iLjosalfarTeam):
-			eTeam.declareWar(iLjosalfarTeam, false, WarPlanTypes.WARPLAN_LIMITED)
+			eTeam.declareWar(iLjosalfarTeam, False, WarPlanTypes.WARPLAN_LIMITED)
 
 def applyWBSplinteredCourtDefeatedThessa3(argsList):
 	iEvent = argsList[0]
@@ -2405,7 +2438,7 @@ def applyWBSplinteredCourtDefeatedThessa3(argsList):
 		if eTeam.isAtWar(iSvartalfarTeam):
 			eTeam.makePeace(iSvartalfarTeam)
 		if not eTeam.isAtWar(iLjosalfarTeam):
-			eTeam.declareWar(iLjosalfarTeam, false, WarPlanTypes.WARPLAN_LIMITED)
+			eTeam.declareWar(iLjosalfarTeam, False, WarPlanTypes.WARPLAN_LIMITED)
 
 def applyWBSplinteredCourtDefeatedRivanna3(argsList):
 	iEvent = argsList[0]
@@ -2429,7 +2462,7 @@ def applyWBSplinteredCourtDefeatedRivanna3(argsList):
 		if eTeam.isAtWar(iLjosalfarTeam):
 			eTeam.makePeace(iLjosalfarTeam)
 		if not eTeam.isAtWar(iSvartalfarTeam):
-			eTeam.declareWar(iSvartalfarTeam, false, WarPlanTypes.WARPLAN_LIMITED)
+			eTeam.declareWar(iSvartalfarTeam, False, WarPlanTypes.WARPLAN_LIMITED)
 
 def applyWBSplinteredCourtDefeatedVolanna3(argsList):
 	iEvent = argsList[0]
@@ -2453,7 +2486,7 @@ def applyWBSplinteredCourtDefeatedVolanna3(argsList):
 		if eTeam.isAtWar(iLjosalfarTeam):
 			eTeam.makePeace(iLjosalfarTeam)
 		if not eTeam.isAtWar(iSvartalfarTeam):
-			eTeam.declareWar(iSvartalfarTeam, false, WarPlanTypes.WARPLAN_LIMITED)
+			eTeam.declareWar(iSvartalfarTeam, False, WarPlanTypes.WARPLAN_LIMITED)
 
 def applyWBSplinteredCourtParithYes(argsList):
 	iEvent = argsList[0]
@@ -2553,8 +2586,8 @@ def applyWBTheMomusBeerisOfferYes(argsList):
 	eTeam7 = gc.getTeam(7) #Beeri
 	eTeam.setPermanentWarPeace(1, False)
 	eTeam.setPermanentWarPeace(7, False)
-	eTeam.declareWar(1, true, WarPlanTypes.WARPLAN_TOTAL)
-	eTeam7.declareWar(1, true, WarPlanTypes.WARPLAN_TOTAL)
+	eTeam.declareWar(1, True, WarPlanTypes.WARPLAN_TOTAL)
+	eTeam7.declareWar(1, True, WarPlanTypes.WARPLAN_TOTAL)
 	eTeam.makePeace(7)
 	eTeam.setPermanentWarPeace(1, True)
 	eTeam.setPermanentWarPeace(7, True)
@@ -2585,7 +2618,7 @@ def applyWBTheRadiantGuardChooseSidesHyborem(argsList):
 	eTeam = gc.getTeam(0) #Falamar
 	eTeam.setPermanentWarPeace(1, False)
 	eTeam.setPermanentWarPeace(2, False)
-	eTeam.declareWar(1, true, WarPlanTypes.WARPLAN_TOTAL)
+	eTeam.declareWar(1, True, WarPlanTypes.WARPLAN_TOTAL)
 	eTeam.makePeace(2)
 	eTeam.setPermanentWarPeace(1, True)
 	eTeam.setPermanentWarPeace(2, True)
@@ -2618,23 +2651,23 @@ def getHelpBlessedSea1(argsList):
 	
 	map = gc.getMap()
 	iOurMinLandmass = (3 * gc.getWorldInfo(map.getWorldSize()).getDefaultPlayers()) / 2
-	
-	szHelp = localText.getText("TXT_KEY_EVENT_BLESSED_SEA_HELP", (iOurMinLandmass, ))	
+
+	szHelp = localText.getText("TXT_KEY_EVENT_BLESSED_SEA_HELP", (iOurMinLandmass, ))
 
 	return szHelp
 
 def canTriggerBlessedSea(argsList):
 	kTriggeredData = argsList[0]
 	map = gc.getMap()
-		
+
 	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ONE_CITY_CHALLENGE) and gc.getPlayer(kTriggeredData.ePlayer).isHuman():
-		return false
+		return False
 
 	iMapMinLandmass = 2 * gc.getWorldInfo(map.getWorldSize()).getDefaultPlayers()
 	iOurMaxLandmass = gc.getWorldInfo(map.getWorldSize()).getDefaultPlayers() / 2
 	
 	if (map.getNumLandAreas() < iMapMinLandmass):
-		return false
+		return False
 
 	iOurLandmasses = 0
 	for i in range(map.getIndexAfterLastArea()):
@@ -2643,15 +2676,15 @@ def canTriggerBlessedSea(argsList):
 			iOurLandmasses += 1
 			
 	if (iOurLandmasses > iOurMaxLandmass):
-		return false
+		return False
 
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	if player.getUnitClassCount(CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_GALLEY')) == 0:
 		if player.getUnitClassCount(CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_CARAVEL')) == 0:
 			if player.getUnitClassCount(CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_GALLEON')) == 0:
-				return false
-			
-	return true
+				return False
+
+	return True
 
 def canTriggerBlessedSea2(argsList):
 
@@ -2666,9 +2699,9 @@ def canTriggerBlessedSea2(argsList):
 			iOurLandmasses += 1
 			
 	if (iOurLandmasses < iOurMinLandmass):
-		return false
+		return False
 	
-	return true
+	return True
 
 def applyBlessedSea2(argsList):
 	iEvent = argsList[0]
@@ -2688,16 +2721,16 @@ def applyBlessedSea2(argsList):
 		return
 	
 	player = gc.getPlayer(kTriggeredData.ePlayer)
-	(loopCity, iter) = player.firstCity(false)
+	(loopCity, iter) = player.firstCity(False)
 
 	while(loopCity):
 
-		if (loopCity.getPopulation() >= 5):
-			if (loopCity.canConstruct(iBuilding, false, false, true)):
+		if loopCity.getPopulation() >= 5:
+			if (loopCity.canConstruct(iBuilding, False, False, True)):
 				loopCity.setNumRealBuilding(iBuilding, 1)
-				
-		(loopCity, iter) = player.nextCity(iter, false)
-		
+
+		(loopCity, iter) = player.nextCity(iter, False)
+
 
 def canApplyBlessedSea2(argsList):
 	iEvent = argsList[0]
@@ -2711,23 +2744,23 @@ def canApplyBlessedSea2(argsList):
 				if (gc.getBuildingInfo(i).getReligionType() == kTriggeredData.eReligion):
 					iBuilding = i
 					break
-		
-		
-	if (iBuilding == -1):
-		return false
-	
+
+
+	if iBuilding == -1:
+		return False
+
 	player = gc.getPlayer(kTriggeredData.ePlayer)
-	(loopCity, iter) = player.firstCity(false)
-	bFound = false
+	(loopCity, iter) = player.firstCity(False)
+	bFound = False
 
 	while(loopCity):
 
 		if (loopCity.getPopulation() >= 5):
-			if (loopCity.canConstruct(iBuilding, false, false, true)):
-				bFound = true
+			if (loopCity.canConstruct(iBuilding, False, False, True)):
+				bFound = True
 				break
-				
-		(loopCity, iter) = player.nextCity(iter, false)
+
+		(loopCity, iter) = player.nextCity(iter, False)
 
 	return bFound
 
@@ -2761,13 +2794,13 @@ def canTriggerHolyMountain(argsList):
 	map = gc.getMap()
 	
 	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ONE_CITY_CHALLENGE) and gc.getPlayer(kTriggeredData.ePlayer).isHuman():
-		return false
+		return False
 
 	plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	if (plot.getOwner() == -1):
-		return true
+		return True
 	
-	return false
+	return False
 
 def expireHolyMountain1(argsList):
 	iEvent = argsList[0]
@@ -2775,12 +2808,12 @@ def expireHolyMountain1(argsList):
 
 	plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	if (plot == None):
-		return true
+		return True
 	
 	if (plot.getOwner() != kTriggeredData.ePlayer and plot.getOwner() != -1):
-		return true
+		return True
 		
-	return false
+	return False
 
 def canTriggerHolyMountainDone(argsList):
 
@@ -2791,16 +2824,16 @@ def canTriggerHolyMountainDone(argsList):
 	kOrigTriggeredData = player.getEventOccured(trigger.getPrereqEvent(0))
 	
 	if (kOrigTriggeredData == None):
-		return false
+		return False
 		
 	plot = gc.getMap().plot(kOrigTriggeredData.iPlotX, kOrigTriggeredData.iPlotY)
 	if (plot == None):
-		return false
+		return False
 	
 	if (plot.getOwner() != kTriggeredData.ePlayer):
-		return false
+		return False
 	
-	return true
+	return True
 
 def canTriggerHolyMountainRevealed(argsList):
 
@@ -2811,7 +2844,7 @@ def canTriggerHolyMountainRevealed(argsList):
 	kOrigTriggeredData = player.getEventOccured(trigger.getPrereqEvent(0))
 	
 	if (kOrigTriggeredData == None):
-		return false
+		return False
 
 	iNumPoints = 0		
 	
@@ -2825,19 +2858,19 @@ def canTriggerHolyMountainRevealed(argsList):
 				iNumPoints += player.countNumBuildings(i)
 				
 	if (iNumPoints < 2 * gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers()):
-		return false
+		return False
 
 	plot = gc.getMap().plot(kOrigTriggeredData.iPlotX, kOrigTriggeredData.iPlotY)
 	if (plot == None):
-		return false
+		return False
 		
-	plot.setRevealed(player.getTeam(), true, true, -1)
+	plot.setRevealed(player.getTeam(), True, True, -1)
 
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
 	kActualTriggeredDataObject.iPlotX = kOrigTriggeredData.iPlotX
 	kActualTriggeredDataObject.iPlotY = kOrigTriggeredData.iPlotY
 	
-	return true
+	return True
 
 def doHolyMountainRevealed(argsList):
 	iEvent = argsList[0]
@@ -2857,15 +2890,15 @@ def canTriggerMarathon(argsList):
 	team = gc.getTeam(player.getTeam())
 	
 	if (team.AI_getAtWarCounter(otherPlayer.getTeam()) == 1):
-		(loopUnit, iter) = otherPlayer.firstUnit(false)
+		(loopUnit, iter) = otherPlayer.firstUnit(False)
 		while( loopUnit ):
 			plot = loopUnit.plot()
 			if (not plot.isNone()):
 				if (plot.getOwner() == kTriggeredData.ePlayer):
-					return true
-			(loopUnit, iter) = otherPlayer.nextUnit(iter, false)
+					return True
+			(loopUnit, iter) = otherPlayer.nextUnit(iter, False)
 
-	return false
+	return False
 
 ######## WEDDING FEUD ###########
 
@@ -2874,12 +2907,12 @@ def doWeddingFeud2(argsList):
 	kTriggeredData = argsList[1]
 	
 	player = gc.getPlayer(kTriggeredData.ePlayer)
-	(loopCity, iter) = player.firstCity(false)
+	(loopCity, iter) = player.firstCity(False)
 
 	while(loopCity):
 		if loopCity.isHasReligion(kTriggeredData.eReligion):
 			loopCity.changeHappinessTimer(30)
-		(loopCity, iter) = player.nextCity(iter, false)
+		(loopCity, iter) = player.nextCity(iter, False)
 		
 	return 1
 
@@ -2900,9 +2933,9 @@ def canDoWeddingFeud3(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
 	if player.getGold() - 10 * player.getNumCities() < 0:
-		return false
-				
-	return true
+		return False
+
+	return True
 
 def doWeddingFeud3(argsList):
 	iEvent = argsList[0]
@@ -2917,7 +2950,7 @@ def doWeddingFeud3(argsList):
 			loopPlayer.AI_changeAttitudeExtra(kTriggeredData.ePlayer, 1)
 			player.AI_changeAttitudeExtra(iLoopPlayer, 1)
 
-	if gc.getTeam(destPlayer.getTeam()).canDeclareWar(player.getTeam()):			
+	if gc.getTeam(destPlayer.getTeam()).canDeclareWar(player.getTeam()):
 		if destPlayer.isHuman():
 			# this works only because it's a single-player only event
 			popupInfo = CyPopupInfo()
@@ -2931,8 +2964,8 @@ def doWeddingFeud3(argsList):
 			popupInfo.addPythonButton(localText.getText("TXT_KEY_POPUP_NO", ()), "")
 			popupInfo.addPopup(kTriggeredData.eOtherPlayer)
 		else:
-			gc.getTeam(destPlayer.getTeam()).declareWar(player.getTeam(), false, WarPlanTypes.WARPLAN_LIMITED)
-			
+			gc.getTeam(destPlayer.getTeam()).declareWar(player.getTeam(), False, WarPlanTypes.WARPLAN_LIMITED)
+
 	return 1
 
 
@@ -2948,8 +2981,8 @@ def weddingFeud3Callback(argsList):
 	if iButton == 0:
 		destPlayer = gc.getPlayer(iData1)
 		player = gc.getPlayer(iData2)
-		gc.getTeam(destPlayer.getTeam()).declareWar(player.getTeam(), false, WarPlanTypes.WARPLAN_LIMITED)
-	
+		gc.getTeam(destPlayer.getTeam()).declareWar(player.getTeam(), False, WarPlanTypes.WARPLAN_LIMITED)
+
 	return 0
 
 def getHelpWeddingFeud3(argsList):
@@ -2971,7 +3004,7 @@ def canTriggerSpicy(argsList):
 	
 	iSpice = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_SPICES')
 	iHappyBonuses = 0
-	bSpices = false
+	bSpices = False
 	for i in range(gc.getNumBonusInfos()):
 		bonus = gc.getBonusInfo(i)
 		iNum = player.getNumAvailableBonuses(i)
@@ -2979,15 +3012,15 @@ def canTriggerSpicy(argsList):
 			if bonus.getHappiness() > 0:
 				iHappyBonuses += 1
 				if iHappyBonuses > 4:
-					return false
+					return False
 			if i == iSpice:
-				return false
+				return False
 
 	plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
-	if not plot.canHaveBonus(iSpice, false):
-		return false
-	
-	return true
+	if not plot.canHaveBonus(iSpice, False):
+		return False
+
+	return True
 
 def doSpicy2(argsList):
 #	need this because plantations are notmally not allowed unless there are already spices
@@ -3017,15 +3050,15 @@ def canTriggerBabyBoom(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	team = gc.getTeam(player.getTeam())
 
-	if team.getAtWarCount(true) > 0:
-		return false
+	if team.getAtWarCount(True) > 0:
+		return False
 
 	for iLoopTeam in range(gc.getMAX_CIV_TEAMS()):
 		if iLoopTeam != player.getTeam():
 			if team.AI_getAtPeaceCounter(iLoopTeam) == 1:
-				return true
+				return True
 
-	return false
+	return False
 
 ######## BARD TALE ###########
 
@@ -3044,18 +3077,18 @@ def canApplyBardTale3(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
 	if player.getGold() - 10 * player.getNumCities() < 0:
-		return false
-		
-	return true
-	
+		return False
+
+	return True
+
 
 def getHelpBardTale3(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 
 	player = gc.getPlayer(kTriggeredData.ePlayer)
-	
-	szHelp = localText.getText("TXT_KEY_EVENT_GOLD_LOST", (10 * player.getNumCities(), ))	
+
+	szHelp = localText.getText("TXT_KEY_EVENT_GOLD_LOST", (10 * player.getNumCities(), ))
 
 	return szHelp
 
@@ -3078,7 +3111,7 @@ def canApplyLooters3(argsList):
 	otherPlayer = gc.getPlayer(kTriggeredData.eOtherPlayer)
 	city = otherPlayer.getCity(kTriggeredData.iOtherPlayerCityId)
 
-	iNumBuildings = 0	
+	iNumBuildings = 0
 	for iBuilding in range(gc.getNumBuildingInfos()):
 		if (city.getNumRealBuilding(iBuilding) > 0 and gc.getBuildingInfo(iBuilding).getProductionCost() <= 100 and gc.getBuildingInfo(iBuilding).getProductionCost() > 0  and not isLimitedWonderClass(gc.getBuildingInfo(iBuilding).getBuildingClassType())):
 			iNumBuildings += 1
@@ -3096,7 +3129,7 @@ def applyLooters3(argsList):
 	iNumBuildings = gc.getGame().getSorenRandNum(2, "Looters event number of buildings destroyed")
 	iNumBuildingsDestroyed = 0
 
-	listBuildings = []	
+	listBuildings = []
 	for iBuilding in range(gc.getNumBuildingInfos()):
 		if (city.getNumRealBuilding(iBuilding) > 0 and gc.getBuildingInfo(iBuilding).getProductionCost() <= 100 and gc.getBuildingInfo(iBuilding).getProductionCost() > 0  and not isLimitedWonderClass(gc.getBuildingInfo(iBuilding).getBuildingClassType())):
 			listBuildings.append(iBuilding)
@@ -3105,14 +3138,14 @@ def applyLooters3(argsList):
 		if len(listBuildings) > 0:
 			iBuilding = listBuildings[gc.getGame().getSorenRandNum(len(listBuildings), "Looters event building destroyed")]
 			szBuffer = localText.getText("TXT_KEY_EVENT_CITY_IMPROVEMENT_DESTROYED", (gc.getBuildingInfo(iBuilding).getTextKey(), ))
-			CyInterface().addMessage(kTriggeredData.eOtherPlayer, false, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", InterfaceMessageTypes.MESSAGE_TYPE_INFO, gc.getBuildingInfo(iBuilding).getButton(), gc.getInfoTypeForString("COLOR_RED"), city.getX(), city.getY(), true, true)
+			CyInterface().addMessage(kTriggeredData.eOtherPlayer, False, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", InterfaceMessageTypes.MESSAGE_TYPE_INFO, gc.getBuildingInfo(iBuilding).getButton(), gc.getInfoTypeForString("COLOR_RED"), city.getX(), city.getY(), True, True)
 			city.setNumRealBuilding(iBuilding, 0)
 			iNumBuildingsDestroyed += 1
 			listBuildings.remove(iBuilding)
 				
 	if iNumBuildingsDestroyed > 0:
 		szBuffer = localText.getText("TXT_KEY_EVENT_NUM_BUILDINGS_DESTROYED", (iNumBuildingsDestroyed, gc.getPlayer(kTriggeredData.eOtherPlayer).getCivilizationAdjectiveKey(), city.getNameKey()))
-		CyInterface().addMessage(kTriggeredData.ePlayer, false, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", InterfaceMessageTypes.MESSAGE_TYPE_INFO, None, gc.getInfoTypeForString("COLOR_WHITE"), -1, -1, true, true)
+		CyInterface().addMessage(kTriggeredData.ePlayer, False, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", InterfaceMessageTypes.MESSAGE_TYPE_INFO, None, gc.getInfoTypeForString("COLOR_WHITE"), -1, -1, True, True)
 
 ######## BROTHERS IN NEED ###########
 
@@ -3123,7 +3156,7 @@ def canTriggerBrothersInNeed(argsList):
 	otherPlayer = gc.getPlayer(kTriggeredData.eOtherPlayer)
 	
 	if not player.canTradeNetworkWith(kTriggeredData.eOtherPlayer):
-		return false
+		return False
 	
 	listResources = []
 	listResources.append(CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_COPPER'))
@@ -3136,21 +3169,21 @@ def canTriggerBrothersInNeed(argsList):
 #	listResources.append(CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_URANIUM'))
 #FfH: End Modify
 	
-	bFound = false
+	bFound = False
 	for iResource in listResources: 
 		if (player.getNumTradeableBonuses(iResource) > 1 and otherPlayer.getNumAvailableBonuses(iResource) <= 0):
-			bFound = true
+			bFound = True
 			break
 		
 	if not bFound:
-		return false
+		return False
 		
 	for iTeam in range(gc.getMAX_CIV_TEAMS()):
 		if iTeam != player.getTeam() and iTeam != otherPlayer.getTeam() and gc.getTeam(iTeam).isAlive():
 			if gc.getTeam(iTeam).isAtWar(otherPlayer.getTeam()) and not gc.getTeam(iTeam).isAtWar(player.getTeam()):
-				return true
+				return True
 			
-	return false
+	return False
 	
 def canDoBrothersInNeed1(argsList):
 	kTriggeredData = argsList[1]
@@ -3169,18 +3202,18 @@ def canTriggerHurricaneCity(argsList):
 	city = player.getCity(iCity)
 	
 	if city.isNone():
-		return false
+		return False
 		
 	if not city.isCoastal(gc.getMIN_WATER_SIZE_FOR_OCEAN()):
-		return false
+		return False
 		
 	if city.plot().getLatitude() <= 0:
-		return false
+		return False
 		
 	if city.getPopulation() < 2:
-		return false
+		return False
 		
-	return true
+	return True
 
 def canApplyHurricane1(argsList):
 	iEvent = argsList[0]
@@ -3218,13 +3251,13 @@ def applyHurricane1(argsList):
 	if len(listCheapBuildings) > 0:
 		iBuilding = listCheapBuildings[gc.getGame().getSorenRandNum(len(listCheapBuildings), "Hurricane event cheap building destroyed")]
 		szBuffer = localText.getText("TXT_KEY_EVENT_CITY_IMPROVEMENT_DESTROYED", (gc.getBuildingInfo(iBuilding).getTextKey(), ))
-		CyInterface().addMessage(kTriggeredData.ePlayer, false, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", InterfaceMessageTypes.MESSAGE_TYPE_INFO, gc.getBuildingInfo(iBuilding).getButton(), gc.getInfoTypeForString("COLOR_RED"), city.getX(), city.getY(), true, true)
+		CyInterface().addMessage(kTriggeredData.ePlayer, False, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", InterfaceMessageTypes.MESSAGE_TYPE_INFO, gc.getBuildingInfo(iBuilding).getButton(), gc.getInfoTypeForString("COLOR_RED"), city.getX(), city.getY(), True, True)
 		city.setNumRealBuilding(iBuilding, 0)
 
 	if len(listExpensiveBuildings) > 0:
 		iBuilding = listExpensiveBuildings[gc.getGame().getSorenRandNum(len(listExpensiveBuildings), "Hurricane event expensive building destroyed")]
 		szBuffer = localText.getText("TXT_KEY_EVENT_CITY_IMPROVEMENT_DESTROYED", (gc.getBuildingInfo(iBuilding).getTextKey(), ))
-		CyInterface().addMessage(kTriggeredData.ePlayer, false, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", InterfaceMessageTypes.MESSAGE_TYPE_INFO, gc.getBuildingInfo(iBuilding).getButton(), gc.getInfoTypeForString("COLOR_RED"), city.getX(), city.getY(), true, true)
+		CyInterface().addMessage(kTriggeredData.ePlayer, False, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", InterfaceMessageTypes.MESSAGE_TYPE_INFO, gc.getBuildingInfo(iBuilding).getButton(), gc.getInfoTypeForString("COLOR_RED"), city.getX(), city.getY(), True, True)
 		city.setNumRealBuilding(iBuilding, 0)
 
 		
@@ -3239,15 +3272,15 @@ def canTriggerCycloneCity(argsList):
 	city = player.getCity(iCity)
 	
 	if city.isNone():
-		return false
+		return False
 		
 	if not city.isCoastal(gc.getMIN_WATER_SIZE_FOR_OCEAN()):
-		return false
+		return False
 		
 	if city.plot().getLatitude() >= 0:
-		return false
+		return False
 		
-	return true
+	return True
 
 ######## TSUNAMI ###########
 
@@ -3260,12 +3293,12 @@ def canTriggerTsunamiCity(argsList):
 	city = player.getCity(iCity)
 	
 	if city.isNone():
-		return false
+		return False
 		
 	if not city.isCoastal(gc.getMIN_WATER_SIZE_FOR_OCEAN()):
-		return false
+		return False
 				
-	return true
+	return True
 
 def canApplyTsunami1(argsList):
 	iEvent = argsList[0]
@@ -3276,7 +3309,7 @@ def canApplyTsunami1(argsList):
 	
 	return (city.getPopulation() < 6)
 
-def canApplyTsunami2(argsList):			
+def canApplyTsunami2(argsList):
 	return (not canApplyTsunami1(argsList))
 
 		
@@ -3305,7 +3338,7 @@ def applyTsunami2(argsList):
 		if len(listBuildings) > 0:
 			iBuilding = listBuildings[gc.getGame().getSorenRandNum(len(listBuildings), "Tsunami event building destroyed")]
 			szBuffer = localText.getText("TXT_KEY_EVENT_CITY_IMPROVEMENT_DESTROYED", (gc.getBuildingInfo(iBuilding).getTextKey(), ))
-			CyInterface().addMessage(kTriggeredData.ePlayer, false, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", InterfaceMessageTypes.MESSAGE_TYPE_INFO, gc.getBuildingInfo(iBuilding).getButton(), gc.getInfoTypeForString("COLOR_RED"), city.getX(), city.getY(), true, true)
+			CyInterface().addMessage(kTriggeredData.ePlayer, False, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", InterfaceMessageTypes.MESSAGE_TYPE_INFO, gc.getBuildingInfo(iBuilding).getButton(), gc.getInfoTypeForString("COLOR_RED"), city.getX(), city.getY(), True, True)
 			city.setNumRealBuilding(iBuilding, 0)
 			listBuildings.remove(iBuilding)
 					
@@ -3332,10 +3365,10 @@ def canTriggerMonsoonCity(argsList):
 	city = player.getCity(iCity)
 	
 	if city.isNone():
-		return false
+		return False
 		
 	if city.isCoastal(gc.getMIN_WATER_SIZE_FOR_OCEAN()):
-		return false
+		return False
 		
 	iJungleType = CvUtil.findInfoTypeNum(gc.getFeatureInfo, gc.getNumFeatureInfos(),'FEATURE_JUNGLE')
 		
@@ -3343,9 +3376,9 @@ def canTriggerMonsoonCity(argsList):
 		for iDY in range(-3, 4):
 			pLoopPlot = plotXY(city.getX(), city.getY(), iDX, iDY)
 			if not pLoopPlot.isNone() and pLoopPlot.getFeatureType() == iJungleType:
-				return true
+				return True
 				
-	return false
+	return False
 
 ######## VOLCANO ###########
 
@@ -3398,7 +3431,7 @@ def applyVolcano1(argsList):
 			plot = listPlots[gc.getGame().getSorenRandNum(len(listPlots), "Volcano event improvement destroyed")]
 			iImprovement = plot.getImprovementType()
 			szBuffer = localText.getText("TXT_KEY_EVENT_CITY_IMPROVEMENT_DESTROYED", (gc.getImprovementInfo(iImprovement).getTextKey(), ))
-			CyInterface().addMessage(kTriggeredData.ePlayer, false, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", InterfaceMessageTypes.MESSAGE_TYPE_INFO, gc.getImprovementInfo(iImprovement).getButton(), gc.getInfoTypeForString("COLOR_RED"), plot.getX(), plot.getY(), true, true)
+			CyInterface().addMessage(kTriggeredData.ePlayer, False, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", InterfaceMessageTypes.MESSAGE_TYPE_INFO, gc.getImprovementInfo(iImprovement).getButton(), gc.getInfoTypeForString("COLOR_RED"), plot.getX(), plot.getY(), True, True)
 			if iImprovement in listRuins:
 				plot.setImprovementType(iRuins)
 			else:
@@ -3419,7 +3452,7 @@ def canTriggerDustbowlCont(argsList):
 	kOrigTriggeredData = player.getEventOccured(trigger.getPrereqEvent(0))
 	
 	if (kOrigTriggeredData == None):
-		return false
+		return False
 
 	iFarmType = CvUtil.findInfoTypeNum(gc.getImprovementInfo,gc.getNumImprovementInfos(),'IMPROVEMENT_FARM')
 	iPlainsType = CvUtil.findInfoTypeNum(gc.getTerrainInfo,gc.getNumTerrainInfos(),'TERRAIN_PLAINS')
@@ -3441,9 +3474,9 @@ def canTriggerDustbowlCont(argsList):
 		kActualTriggeredDataObject.iPlotY = bestPlot.getY()
 	else:
 		player.resetEventOccured(trigger.getPrereqEvent(0))
-		return false
+		return False
 		
-	return true
+	return True
 
 def getHelpDustBowl2(argsList):
 	iEvent = argsList[0]
@@ -3456,7 +3489,7 @@ def getHelpDustBowl2(argsList):
 ######## SALTPETER ###########
 
 def getSaltpeterNumExtraPlots():
-	map = gc.getMap()	
+	map = gc.getMap()
 	if map.getWorldSize() <= 1:
 		return 1
 	elif map.getWorldSize() <= 3:
@@ -3484,7 +3517,7 @@ def canApplySaltpeter(argsList):
 
 	plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	if (plot == None):
-		return false
+		return False
 		
 	iForest = CvUtil.findInfoTypeNum(gc.getFeatureInfo,gc.getNumFeatureInfos(),'FEATURE_FOREST')
 	
@@ -3528,7 +3561,7 @@ def applySaltpeter(argsList):
 			break
 		iCount -= 1
 		gc.getGame().setPlotExtraYield(loopPlot[1].getX(), loopPlot[1].getY(), YieldTypes.YIELD_COMMERCE, 1)
-		CyInterface().addMessage(kTriggeredData.ePlayer, false, gc.getEVENT_MESSAGE_TIME(), localText.getText("TXT_KEY_EVENT_SALTPETER_DISCOVERED", ()), "", InterfaceMessageTypes.MESSAGE_TYPE_INFO, None, gc.getInfoTypeForString("COLOR_WHITE"), loopPlot[1].getX(), loopPlot[1].getY(), true, true)
+		CyInterface().addMessage(kTriggeredData.ePlayer, False, gc.getEVENT_MESSAGE_TIME(), localText.getText("TXT_KEY_EVENT_SALTPETER_DISCOVERED", ()), "", InterfaceMessageTypes.MESSAGE_TYPE_INFO, None, gc.getInfoTypeForString("COLOR_WHITE"), loopPlot[1].getX(), loopPlot[1].getY(), True, True)
 
 ######## GREAT DEPRESSION ###########
 
@@ -3568,10 +3601,10 @@ def canTriggerChampion(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	team = gc.getTeam(player.getTeam())
 
-	if team.getAtWarCount(true) > 0:
-		return false
+	if team.getAtWarCount(True) > 0:
+		return False
 				
-	return true
+	return True
 	
 def canTriggerChampionUnit(argsList):
 	eTrigger = argsList[0]
@@ -3582,13 +3615,13 @@ def canTriggerChampionUnit(argsList):
 	unit = player.getUnit(iUnit)
 	
 	if unit.isNone():
-		return false
+		return False
 		
 	if unit.getDamage() > 0:
-		return false
+		return False
 		
 	if unit.getExperience() < 3:
-		return false
+		return False
 
 #FfH: Modified by Kael 09/26/2007
 #	iLeadership = CvUtil.findInfoTypeNum(gc.getPromotionInfo,gc.getNumPromotionInfos(),'PROMOTION_LEADERSHIP')
@@ -3596,9 +3629,9 @@ def canTriggerChampionUnit(argsList):
 #FfH: End Modify
 
 	if unit.isHasPromotion(iLeadership):
-		return false
+		return False
 
-	return true
+	return True
 	
 def applyChampion(argsList):
 	iEvent = argsList[0]
@@ -3612,7 +3645,7 @@ def applyChampion(argsList):
 	iLeadership = gc.getInfoTypeForString('PROMOTION_HERO')
 #FfH: End Modify
 	
-	unit.setHasPromotion(iLeadership, true)
+	unit.setHasPromotion(iLeadership, True)
 	
 def getHelpChampion(argsList):
 	iEvent = argsList[0]
@@ -3639,16 +3672,16 @@ def canTriggerElectricCompany(argsList):
 	
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 
-	(loopCity, iter) = player.firstCity(false)
+	(loopCity, iter) = player.firstCity(False)
 
 	while(loopCity):
 
 		if (loopCity.angryPopulation(0) > 0):
-			return false
+			return False
 				
-		(loopCity, iter) = player.nextCity(iter, false)
+		(loopCity, iter) = player.nextCity(iter, False)
 						
-	return true
+	return True
 	
 ######## GOLD RUSH ###########
 
@@ -3660,10 +3693,10 @@ def canTriggerGoldRush(argsList):
 	iIndustrial = CvUtil.findInfoTypeNum(gc.getEraInfo,gc.getNumEraInfos(),'ERA_INDUSTRIAL')
 	
 	if player.getCurrentEra() != iIndustrial:
-		return false
+		return False
 	
 						
-	return true
+	return True
 	
 ######## INFLUENZA ###########
 
@@ -3676,14 +3709,14 @@ def canTriggerInfluenza(argsList):
 	iIndustrial = CvUtil.findInfoTypeNum(gc.getEraInfo,gc.getNumEraInfos(),'ERA_INDUSTRIAL')
 	
 	if player.getCurrentEra() <= iIndustrial:
-		return false
+		return False
 	
 	iMedicine = CvUtil.findInfoTypeNum(gc.getTechInfo,gc.getNumTechInfos(),'TECH_MEDICINE')
 	
 	if team.isHasTech(iMedicine):
-		return false
+		return False
 						
-	return true
+	return True
 	
 def applyInfluenza2(argsList):
 	iEvent = argsList[0]
@@ -3695,13 +3728,13 @@ def applyInfluenza2(argsList):
 	iNumCities = 2 + gc.getGame().getSorenRandNum(3, "Influenza event number of cities")
 
 	listCities = []	
-	(loopCity, iter) = player.firstCity(false)
+	(loopCity, iter) = player.firstCity(False)
 	while(loopCity):
 		if loopCity.getPopulation() > 2:
 			iDistance = plotDistance(eventCity.getX(), eventCity.getY(), loopCity.getX(), loopCity.getY())
 			if iDistance > 0:
 				listCities.append((iDistance, loopCity))
-		(loopCity, iter) = player.nextCity(iter, false)
+		(loopCity, iter) = player.nextCity(iter, False)
 		
 	listCities.sort()
 	
@@ -3712,14 +3745,14 @@ def applyInfluenza2(argsList):
 		(iDist, loopCity) = listCities[i]
 		loopCity.changePopulation(-2)
 		szBuffer = localText.getText("TXT_KEY_EVENT_INFLUENZA_HIT_CITY", (loopCity.getNameKey(), ))
-		CyInterface().addMessage(kTriggeredData.ePlayer, false, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGE", InterfaceMessageTypes.MESSAGE_TYPE_INFO, None, gc.getInfoTypeForString("COLOR_RED"), loopCity.getX(), loopCity.getY(), true, true)
+		CyInterface().addMessage(kTriggeredData.ePlayer, False, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGE", InterfaceMessageTypes.MESSAGE_TYPE_INFO, None, gc.getInfoTypeForString("COLOR_RED"), loopCity.getX(), loopCity.getY(), True, True)
 				
 
 def getHelpInfluenza2(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
-	
-	szHelp = localText.getText("TXT_KEY_EVENT_INFLUENZA_HELP_2", (2, ))	
+
+	szHelp = localText.getText("TXT_KEY_EVENT_INFLUENZA_HELP_2", (2, ))
 
 	return szHelp
 
@@ -3744,12 +3777,12 @@ def canTriggerSoloFlight(argsList):
 		iMinLandmass  = 12
 	
 	if (map.getNumLandAreas() < iMinLandmass):
-		return false
+		return False
 		
 	if gc.getGame().isGameMultiPlayer():
-		return false
+		return False
 	
-	return true
+	return True
 
 def getHelpSoloFlight(argsList):
 	iEvent = argsList[0]
@@ -3780,7 +3813,7 @@ def canTriggerAntelope(argsList):
 	
 	iDeer = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_DEER')
 	iHappyBonuses = 0
-	bDeer = false
+	bDeer = False
 	for i in range(gc.getNumBonusInfos()):
 		bonus = gc.getBonusInfo(i)
 		iNum = player.getNumAvailableBonuses(i)
@@ -3788,15 +3821,15 @@ def canTriggerAntelope(argsList):
 			if bonus.getHappiness() > 0:
 				iHappyBonuses += 1
 				if iHappyBonuses > 5:
-					return false
+					return False
 			if i == iDeer:
-				return false	
+				return False	
 
 	plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
-	if not plot.canHaveBonus(iDeer, false):
-		return false
+	if not plot.canHaveBonus(iDeer, False):
+		return False
 				
-	return true
+	return True
 
 def doAntelope2(argsList):
 #	Need this because camps are not normally allowed unless there is already deer.
@@ -3828,7 +3861,7 @@ def canTriggerWhaleOfAThing(argsList):
 	
 	iWhale = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_WHALE')
 	iHappyBonuses = 0
-	bWhale = false
+	bWhale = False
 	for i in range(gc.getNumBonusInfos()):
 		bonus = gc.getBonusInfo(i)
 		iNum = player.getNumAvailableBonuses(i)
@@ -3836,15 +3869,15 @@ def canTriggerWhaleOfAThing(argsList):
 			if bonus.getHappiness() > 0:
 				iHappyBonuses += 1
 				if iHappyBonuses > 5:
-					return false
+					return False
 			if i == iWhale:
-				return false
+				return False
 
 	plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
-	if not plot.canHaveBonus(iWhale, false):
-		return false
+	if not plot.canHaveBonus(iWhale, False):
+		return False
 		
-	return true
+	return True
 
 
 ######## HIYOSILVER ###########
@@ -3856,7 +3889,7 @@ def canTriggerHiyoSilver(argsList):
 	
 	iSilver = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_SILVER')
 	iHappyBonuses = 0
-	bSilver = false
+	bSilver = False
 	for i in range(gc.getNumBonusInfos()):
 		bonus = gc.getBonusInfo(i)
 		iNum = player.getNumAvailableBonuses(i)
@@ -3864,15 +3897,15 @@ def canTriggerHiyoSilver(argsList):
 			if bonus.getHappiness() > 0:
 				iHappyBonuses += 1
 				if iHappyBonuses > 5:
-					return false
+					return False
 			if i == iSilver:
-				return false
+				return False
 
 	plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
-	if not plot.canHaveBonus(iSilver, false):
-		return false
+	if not plot.canHaveBonus(iSilver, False):
+		return False
 				
-	return true
+	return True
 
 ######## WININGMONKS ###########
 
@@ -3882,9 +3915,9 @@ def canTriggerWiningMonks(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
 	if player.getNumAvailableBonuses(CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_WINE')) > 0:
-		return false
+		return False
 				
-	return true
+	return True
 
 
 def doWiningMonks2(argsList):
@@ -3919,9 +3952,9 @@ def canTriggerIndependentFilms(argsList):
 	for i in range(gc.getNumBuildingInfos()):
 		if gc.getBuildingInfo(i).getFreeBonus() == CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_MOVIES'):
 			if player.countNumBuildings(i) > 0:
-				return false
+				return False
 				
-	return true
+	return True
 
 def doIndependentFilms(argsList):
 	iEvent = argsList[0]
@@ -3959,15 +3992,15 @@ def canTriggerAncientOlympics(argsList):
 	stateReligion = player.getStateReligion()
 	
 	if stateReligion == CvUtil.findInfoTypeNum(gc.getReligionInfo,gc.getNumReligionInfos(),'RELIGION_JUDAISM'):
-		return false
+		return False
 
 	if stateReligion == CvUtil.findInfoTypeNum(gc.getReligionInfo,gc.getNumReligionInfos(),'RELIGION_CHRISTIANITY'):
-		return false
+		return False
 
 	if stateReligion == CvUtil.findInfoTypeNum(gc.getReligionInfo,gc.getNumReligionInfos(),'RELIGION_ISLAM'):
-		return false
+		return False
 
-	return true
+	return True
 
 def doAncientOlympics2(argsList):
 	iEvent = argsList[0]
@@ -3981,7 +4014,7 @@ def doAncientOlympics2(argsList):
 
 			for i in range(map.numPlots()):
 				plot = map.plotByIndex(i)
-				if not plot.isWater() and plot.getOwner() == kTriggeredData.ePlayer and plot.isAdjacentPlayer(j, true):
+				if not plot.isWater() and plot.getOwner() == kTriggeredData.ePlayer and plot.isAdjacentPlayer(j, True):
 					loopPlayer.AI_changeMemoryCount(kTriggeredData.ePlayer, MemoryTypes.MEMORY_EVENT_GOOD_TO_US, 1)
 					break
 		
@@ -4007,14 +4040,14 @@ def canTriggerModernOlympics(argsList):
 	kOrigTriggeredData = player.getEventOccured(trigger.getPrereqEvent(0))
 	
 	if (kOrigTriggeredData == None):
-		return false
+		return False
 
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
 	kActualTriggeredDataObject.iCityId = kOrigTriggeredData.iCityId
 	kActualTriggeredDataObject.iPlotX = kOrigTriggeredData.iPlotX
 	kActualTriggeredDataObject.iPlotY = kOrigTriggeredData.iPlotY
 	
-	return true
+	return True
 
 def getHelpModernOlympics(argsList):
 	iEvent = argsList[0]
@@ -4045,9 +4078,9 @@ def canTriggerInterstate(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
 	if not player.isCivic(CvUtil.findInfoTypeNum(gc.getCivicInfo,gc.getNumCivicInfos(),'CIVIC_EMANCIPATION')):
-		return false
+		return False
 	
-	return true
+	return True
 
 def getHelpInterstate(argsList):
 	iEvent = argsList[0]
@@ -4095,8 +4128,8 @@ def canApplyEarthDay2(argsList):
 				tradeData.iData = iCivic
 				if loopPlayer.canTradeItem(kTriggeredData.ePlayer, tradeData, False):
 					if (loopPlayer.getTradeDenial(kTriggeredData.ePlayer, tradeData) == DenialTypes.NO_DENIAL):
-						return true
-	return false
+						return True
+	return False
 	
 		
 def applyEarthDay2(argsList):
@@ -4147,15 +4180,15 @@ def canApplyFreedomConcert2(argsList):
 	
 	for iReligion in range(gc.getNumReligionInfos()):
 		if eventCity.isHasReligion(iReligion):		
-			(loopCity, iter) = player.firstCity(false)
+			(loopCity, iter) = player.firstCity(False)
 			while(loopCity):
 				if not loopCity.isHasReligion(iReligion):
 					for jReligion in range(gc.getNumReligionInfos()):
 						if loopCity.isHasReligion(jReligion):
-							return true
-				(loopCity, iter) = player.nextCity(iter, false)
+							return True
+				(loopCity, iter) = player.nextCity(iter, False)
 
-	return false
+	return False
 		
 def applyFreedomConcert2(argsList):
 	iEvent = argsList[0]
@@ -4168,13 +4201,13 @@ def applyFreedomConcert2(argsList):
 		
 			bestCity = None
 			iBestDistance = 0
-			(loopCity, iter) = player.firstCity(false)
+			(loopCity, iter) = player.firstCity(False)
 			while(loopCity):
 				if not loopCity.isHasReligion(iReligion):
-					bValid = false
+					bValid = False
 					for jReligion in range(gc.getNumReligionInfos()):
 						if loopCity.isHasReligion(jReligion):
-							bValid = true
+							bValid = True
 							break
 					
 					if bValid:				
@@ -4184,11 +4217,11 @@ def applyFreedomConcert2(argsList):
 							bestCity = loopCity
 							iBestDistance = iDistance
 						
-				(loopCity, iter) = player.nextCity(iter, false)
+				(loopCity, iter) = player.nextCity(iter, False)
 				
 
 			if bestCity != None:									
-				bestCity.setHasReligion(iReligion, true, true, true)
+				bestCity.setHasReligion(iReligion, True, True, True)
 
 ######## HEROIC_GESTURE ###########
 
@@ -4198,15 +4231,15 @@ def canTriggerHeroicGesture(argsList):
 	destPlayer = gc.getPlayer(kTriggeredData.eOtherPlayer)
 
 	if not gc.getTeam(destPlayer.getTeam()).canChangeWarPeace(player.getTeam()):
-		return false
+		return False
 		
 	if gc.getTeam(destPlayer.getTeam()).AI_getWarSuccess(player.getTeam()) <= 0:
-		return false
+		return False
 
 	if gc.getTeam(player.getTeam()).AI_getWarSuccess(destPlayer.getTeam()) <= 0:
-		return false
+		return False
 	
-	return true
+	return True
 
 def doHeroicGesture2(argsList):
 	iEvent = argsList[0]
@@ -4271,12 +4304,12 @@ def canTriggerGreatMediator(argsList):
 	destPlayer = gc.getPlayer(kTriggeredData.eOtherPlayer)
 
 	if not gc.getTeam(player.getTeam()).canChangeWarPeace(destPlayer.getTeam()):
-		return false
+		return False
 		
 	if gc.getTeam(player.getTeam()).AI_getAtWarCounter(destPlayer.getTeam()) < 10:
-		return false
+		return False
 
-	return true
+	return True
 
 def doGreatMediator2(argsList):
 	iEvent = argsList[0]
@@ -4366,13 +4399,13 @@ def canTriggerImpactCrater(argsList):
 	
 	iUranium = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_URANIUM')
 	if player.getNumAvailableBonuses(iUranium) > 0:
-		return false
+		return False
 	
 	plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
-	if not plot.canHaveBonus(iUranium, false):
-		return false
+	if not plot.canHaveBonus(iUranium, False):
+		return False
 	
-	return true
+	return True
 
 def doImpactCrater2(argsList):
 	iEvent = argsList[0]
@@ -4403,9 +4436,9 @@ def canTriggerSecurityTax(argsList):
 	
 	iWalls = CvUtil.findInfoTypeNum(gc.getBuildingClassInfo, gc.getNumBuildingClassInfos(), 'BUILDINGCLASS_WALLS')
 	if player.getNumCities() > player.getBuildingClassCount(iWalls):
-		return false
+		return False
 	
-	return true
+	return True
 
 
 ######## LITERACY ###########
@@ -4417,9 +4450,9 @@ def canTriggerLiteracy(argsList):
 	
 	iLibrary = CvUtil.findInfoTypeNum(gc.getBuildingClassInfo, gc.getNumBuildingClassInfos(), 'BUILDINGCLASS_LIBRARY')
 	if player.getNumCities() > player.getBuildingClassCount(iLibrary):
-		return false
+		return False
 	
-	return true
+	return True
 
 ######## TEA ###########
 
@@ -4429,20 +4462,20 @@ def canTriggerTea(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
 	if player.isCivic(CvUtil.findInfoTypeNum(gc.getCivicInfo,gc.getNumCivicInfos(),'CIVIC_MERCANTILISM')):
-		return false
+		return False
 
-	bCanTrade = false		
+	bCanTrade = False		
 	for iPlayer in range(gc.getMAX_CIV_PLAYERS()):			
 		loopPlayer = gc.getPlayer(iPlayer)
 		if loopPlayer.isAlive() and iPlayer != kTriggeredData.ePlayer:	
 			if player.canHaveTradeRoutesWith(iPlayer):
-				bCanTrade = true	
+				bCanTrade = True	
 				break
 			
 	if not bCanTrade:
-		return false
+		return False
 	
-	return true
+	return True
 
 ######## HORSE WHISPERING ###########
 
@@ -4450,9 +4483,9 @@ def canTriggerHorseWhispering(argsList):
 	kTriggeredData = argsList[0]
 
 	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ONE_CITY_CHALLENGE) and gc.getPlayer(kTriggeredData.ePlayer).isHuman():
-		return false
+		return False
 	
-	return true
+	return True
 
 def getHelpHorseWhispering1(argsList):
 	iEvent = argsList[0]
@@ -4472,9 +4505,9 @@ def canTriggerHorseWhisperingDone(argsList):
 
 	iStable = CvUtil.findInfoTypeNum(gc.getBuildingClassInfo, gc.getNumBuildingClassInfos(), 'BUILDINGCLASS_STABLE')
 	if gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers() > player.getBuildingClassCount(iStable):
-		return false
+		return False
 	
-	return true
+	return True
 
 def getHelpHorseWhisperingDone1(argsList):
 	iEvent = argsList[0]
@@ -4522,7 +4555,7 @@ def canTriggerHarbormaster(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 
 	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ONE_CITY_CHALLENGE) and gc.getPlayer(kTriggeredData.ePlayer).isHuman():
-		return false
+		return False
 
 	map = gc.getMap()
 
@@ -4535,9 +4568,9 @@ def canTriggerHarbormaster(argsList):
 			iNumWater += 1
 			
 		if 100 * iNumWater >= 40 * map.numPlots():
-			return true
+			return True
 		
-	return false
+	return False
 
 def canTriggerHarbormasterDone(argsList):
 	kTriggeredData = argsList[0]
@@ -4547,14 +4580,14 @@ def canTriggerHarbormasterDone(argsList):
 	iHarbor = CvUtil.findInfoTypeNum(gc.getBuildingClassInfo, gc.getNumBuildingClassInfos(), 'BUILDINGCLASS_HARBOR')
 	iHarborsRequired = gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers()
 	if iHarborsRequired > player.getBuildingClassCount(iHarbor):
-		return false
+		return False
 
 	iCaravel = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_CARAVEL')
 	iCaravelsRequired = iHarborsRequired / 2 + 1
 	if iCaravelsRequired > player.getUnitClassCount(iCaravel):
-		return false
+		return False
 	
-	return true
+	return True
 	
 ######## CLASSIC LITERATURE ###########
 
@@ -4562,9 +4595,9 @@ def canTriggerClassicLiterature(argsList):
 	kTriggeredData = argsList[0]
 	
 	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ONE_CITY_CHALLENGE) and gc.getPlayer(kTriggeredData.ePlayer).isHuman():
-		return false
+		return False
 
-	return true
+	return True
 
 def getHelpClassicLiterature1(argsList):
 	iEvent = argsList[0]
@@ -4585,9 +4618,9 @@ def canTriggerClassicLiteratureDone(argsList):
 	iLibrary = CvUtil.findInfoTypeNum(gc.getBuildingClassInfo, gc.getNumBuildingClassInfos(), 'BUILDINGCLASS_LIBRARY')
 	iBuildingsRequired = gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers()
 	if iBuildingsRequired > player.getBuildingClassCount(iLibrary):
-		return false
+		return False
 	
-	return true
+	return True
 
 def getHelpClassicLiteratureDone2(argsList):
 	iEvent = argsList[0]
@@ -4605,10 +4638,10 @@ def canApplyClassicLiteratureDone2(argsList):
 	iEraAncient = CvUtil.findInfoTypeNum(gc.getEraInfo, gc.getNumEraInfos(), 'ERA_ANCIENT')
 
 	for iTech in range(gc.getNumTechInfos()):
-		if gc.getTechInfo(iTech).getEra() == iEraAncient and player.canResearch(iTech, false):
-			return true
+		if gc.getTechInfo(iTech).getEra() == iEraAncient and player.canResearch(iTech, False):
+			return True
 			
-	return false
+	return False
 		
 def applyClassicLiteratureDone2(argsList):
 	iEvent = argsList[0]
@@ -4619,12 +4652,12 @@ def applyClassicLiteratureDone2(argsList):
 
 	listTechs = []
 	for iTech in range(gc.getNumTechInfos()):
-		if gc.getTechInfo(iTech).getEra() == iEraAncient and player.canResearch(iTech, false):
+		if gc.getTechInfo(iTech).getEra() == iEraAncient and player.canResearch(iTech, False):
 			listTechs.append(iTech)
 			
 	if len(listTechs) > 0:
 		iTech = listTechs[gc.getGame().getSorenRandNum(len(listTechs), "Classic Literature Event Tech selection")]
-		gc.getTeam(player.getTeam()).setHasTech(iTech, true, kTriggeredData.ePlayer, true, true)
+		gc.getTeam(player.getTeam()).setHasTech(iTech, True, kTriggeredData.ePlayer, True, True)
 		
 def getHelpClassicLiteratureDone3(argsList):
 	iEvent = argsList[0]
@@ -4635,13 +4668,13 @@ def getHelpClassicLiteratureDone3(argsList):
 	iGreatLibrary = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_GREAT_LIBRARY')
 
 	szCityName = u""
-	(loopCity, iter) = player.firstCity(false)
+	(loopCity, iter) = player.firstCity(False)
 	while(loopCity):
 		if (loopCity.isHasBuilding(iGreatLibrary)):
 			szCityName = loopCity.getNameKey()
 			break
 				
-		(loopCity, iter) = player.nextCity(iter, false)
+		(loopCity, iter) = player.nextCity(iter, False)
 	
 	szHelp = localText.getText("TXT_KEY_EVENT_FREE_SPECIALIST", (1, gc.getSpecialistInfo(iSpecialist).getTextKey(), szCityName))
 
@@ -4654,14 +4687,14 @@ def canApplyClassicLiteratureDone3(argsList):
 	
 	iGreatLibrary = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_GREAT_LIBRARY')
 
-	(loopCity, iter) = player.firstCity(false)
+	(loopCity, iter) = player.firstCity(False)
 	while(loopCity):
 		if (loopCity.isHasBuilding(iGreatLibrary)):
-			return true
+			return True
 				
-		(loopCity, iter) = player.nextCity(iter, false)
+		(loopCity, iter) = player.nextCity(iter, False)
 			
-	return false
+	return False
 		
 def applyClassicLiteratureDone3(argsList):
 	iEvent = argsList[0]
@@ -4671,13 +4704,13 @@ def applyClassicLiteratureDone3(argsList):
 	iSpecialist = CvUtil.findInfoTypeNum(gc.getSpecialistInfo, gc.getNumSpecialistInfos(), 'SPECIALIST_SCIENTIST', )
 	iGreatLibrary = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_GREAT_LIBRARY')
 
-	(loopCity, iter) = player.firstCity(false)
+	(loopCity, iter) = player.firstCity(False)
 	while(loopCity):
 		if (loopCity.isHasBuilding(iGreatLibrary)):
 			loopCity.changeFreeSpecialistCount(iSpecialist, 1)
 			return
 				
-		(loopCity, iter) = player.nextCity(iter, false)
+		(loopCity, iter) = player.nextCity(iter, False)
 
 ######## MASTER BLACKSMITH ###########
 
@@ -4685,9 +4718,9 @@ def canTriggerMasterBlacksmith(argsList):
 	kTriggeredData = argsList[0]
 	
 	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ONE_CITY_CHALLENGE) and gc.getPlayer(kTriggeredData.ePlayer).isHuman():
-		return false
+		return False
 
-	return true
+	return True
 
 def getHelpMasterBlacksmith1(argsList):
 	iEvent = argsList[0]
@@ -4706,9 +4739,9 @@ def expireMasterBlacksmith1(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	city = player.getCity(kTriggeredData.iCityId)	
 	if city == None or city.getOwner() != kTriggeredData.ePlayer:
-		return true
+		return True
 				
-	return false
+	return False
 
 def canTriggerMasterBlacksmithDone(argsList):
 	kTriggeredData = argsList[0]
@@ -4718,18 +4751,18 @@ def canTriggerMasterBlacksmithDone(argsList):
 	iForge = CvUtil.findInfoTypeNum(gc.getBuildingClassInfo, gc.getNumBuildingClassInfos(), 'BUILDINGCLASS_FORGE')
 	iBuildingsRequired = gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers()
 	if iBuildingsRequired > player.getBuildingClassCount(iForge):
-		return false
+		return False
 
 	kOrigTriggeredData = player.getEventOccured(trigger.getPrereqEvent(0))
 
 	city = player.getCity(kOrigTriggeredData.iCityId)	
 	if city == None or city.getOwner() != kTriggeredData.ePlayer:
-		return false
+		return False
 
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
 	kActualTriggeredDataObject.iCityId = kOrigTriggeredData.iCityId
 		
-	return true
+	return True
 
 def canApplyMasterBlacksmithDone1(argsList):
 	iEvent = argsList[0]
@@ -4740,27 +4773,27 @@ def canApplyMasterBlacksmithDone1(argsList):
 	city = player.getCity(kTriggeredData.iCityId)
 	
 	if city == None:
-		return false
+		return False
 	
 	map = gc.getMap()
 	iBestValue = map.getGridWidth() + map.getGridHeight()
 	bestPlot = None
 	for i in range(map.numPlots()):
 		plot = map.plotByIndex(i)
-		if (plot.getOwner() == kTriggeredData.ePlayer and plot.canHaveBonus(iBonus, false)):
+		if (plot.getOwner() == kTriggeredData.ePlayer and plot.canHaveBonus(iBonus, False)):
 			iValue = plotDistance(city.getX(), city.getY(), plot.getX(), plot.getY())
 			if iValue < iBestValue:
 				iBestValue = iValue
 				bestPlot = plot
 				
 	if bestPlot == None:
-		return false
+		return False
 
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
 	kActualTriggeredDataObject.iPlotX = bestPlot.getX()
 	kActualTriggeredDataObject.iPlotY = bestPlot.getY()
 		
-	return true
+	return True
 
 def applyMasterBlacksmithDone1(argsList):
 	iEvent = argsList[0]
@@ -4774,7 +4807,7 @@ def applyMasterBlacksmithDone1(argsList):
 	plot.setBonusType(iBonus)
 
 	szBuffer = localText.getText("TXT_KEY_MISC_DISCOVERED_NEW_RESOURCE", (gc.getBonusInfo(iBonus).getTextKey(), city.getNameKey()))
-	CyInterface().addMessage(kTriggeredData.ePlayer, false, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", InterfaceMessageTypes.MESSAGE_TYPE_MINOR_EVENT, gc.getBonusInfo(iBonus).getButton(), gc.getInfoTypeForString("COLOR_WHITE"), plot.getX(), plot.getY(), true, true)
+	CyInterface().addMessage(kTriggeredData.ePlayer, False, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", InterfaceMessageTypes.MESSAGE_TYPE_MINOR_EVENT, gc.getBonusInfo(iBonus).getButton(), gc.getInfoTypeForString("COLOR_WHITE"), plot.getX(), plot.getY(), True, True)
 
 def canApplyMasterBlacksmithDone3(argsList):
 	iEvent = argsList[0]
@@ -4782,9 +4815,9 @@ def canApplyMasterBlacksmithDone3(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
 	if player.getStateReligion() == -1:		
-		return false
+		return False
 		
-	return true
+	return True
 
 ######## THE BEST DEFENSE ###########
 
@@ -4792,9 +4825,9 @@ def canTriggerBestDefense(argsList):
 	kTriggeredData = argsList[0]
 	
 	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ONE_CITY_CHALLENGE) and gc.getPlayer(kTriggeredData.ePlayer).isHuman():
-		return false
+		return False
 
-	return true
+	return True
 
 def getHelpBestDefense1(argsList):
 	iEvent = argsList[0]
@@ -4815,9 +4848,9 @@ def canTriggerBestDefenseDone(argsList):
 	iCastle = CvUtil.findInfoTypeNum(gc.getBuildingClassInfo, gc.getNumBuildingClassInfos(), 'BUILDINGCLASS_CASTLE')
 	iBuildingsRequired = gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers()
 	if iBuildingsRequired > player.getBuildingClassCount(iCastle):
-		return false
+		return False
 		
-	return true
+	return True
 
 def getHelpBestDefenseDone2(argsList):
 	iEvent = argsList[0]
@@ -4846,14 +4879,14 @@ def canApplyBestDefenseDone3(argsList):
 	
 	iGreatWall = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_GREAT_WALL')
 
-	(loopCity, iter) = player.firstCity(false)
+	(loopCity, iter) = player.firstCity(False)
 	while(loopCity):
 		if (loopCity.isHasBuilding(iGreatWall)):
-			return true
+			return True
 				
-		(loopCity, iter) = player.nextCity(iter, false)
+		(loopCity, iter) = player.nextCity(iter, False)
 			
-	return false
+	return False
 
 ######## NATIONAL SPORTS LEAGUE ###########
 
@@ -4861,9 +4894,9 @@ def canTriggerSportsLeague(argsList):
 	kTriggeredData = argsList[0]
 	
 	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ONE_CITY_CHALLENGE) and gc.getPlayer(kTriggeredData.ePlayer).isHuman():
-		return false
+		return False
 
-	return true
+	return True
 def getHelpSportsLeague1(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -4884,9 +4917,9 @@ def canTriggerSportsLeagueDone(argsList):
 	iCastle = CvUtil.findInfoTypeNum(gc.getBuildingClassInfo, gc.getNumBuildingClassInfos(), 'BUILDINGCLASS_COLOSSEUM')
 	iBuildingsRequired = gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers()
 	if iBuildingsRequired > player.getBuildingClassCount(iCastle):
-		return false
+		return False
 		
-	return true
+	return True
 
 def canApplySportsLeagueDone3(argsList):
 	iEvent = argsList[0]
@@ -4895,14 +4928,14 @@ def canApplySportsLeagueDone3(argsList):
 	
 	iZeus = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_STATUE_OF_ZEUS')
 
-	(loopCity, iter) = player.firstCity(false)
+	(loopCity, iter) = player.firstCity(False)
 	while(loopCity):
 		if (loopCity.isHasBuilding(iZeus)):
-			return true
+			return True
 				
-		(loopCity, iter) = player.nextCity(iter, false)
+		(loopCity, iter) = player.nextCity(iter, False)
 			
-	return false
+	return False
 
 ######## CRUSADE ###########
 
@@ -4914,15 +4947,15 @@ def canTriggerCrusade(argsList):
 	holyCity = gc.getGame().getHolyCity(kTriggeredData.eReligion)
 
 	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ONE_CITY_CHALLENGE) and gc.getPlayer(kTriggeredData.ePlayer).isHuman():
-		return false
+		return False
 
 	if holyCity.getOwner() != kTriggeredData.eOtherPlayer:
-		return false
+		return False
 		
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
 	kActualTriggeredDataObject.iOtherPlayerCityId = holyCity.getID()	
 			
-	return true
+	return True
 
 def getHelpCrusade1(argsList):
 	iEvent = argsList[0]
@@ -4943,18 +4976,18 @@ def expireCrusade1(argsList):
 	holyCity = gc.getGame().getHolyCity(kTriggeredData.eReligion)
 
 	if holyCity.getOwner() == kTriggeredData.ePlayer:
-		return false
+		return False
 
 	if player.getStateReligion() != kTriggeredData.eReligion:
-		return true
+		return True
 
 	if holyCity.getOwner() != kTriggeredData.eOtherPlayer:
-		return true
+		return True
 
 	if not gc.getTeam(player.getTeam()).isAtWar(otherPlayer.getTeam()):
-		return true	
+		return True	
 					
-	return false
+	return False
 
 def canTriggerCrusadeDone(argsList):
 	kTriggeredData = argsList[0]
@@ -4965,7 +4998,7 @@ def canTriggerCrusadeDone(argsList):
 	holyCity = gc.getGame().getHolyCity(kOrigTriggeredData.eReligion)
 
 	if holyCity.getOwner() != kTriggeredData.ePlayer:
-		return false
+		return False
 					
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
 	kActualTriggeredDataObject.iCityId = holyCity.getID()
@@ -4977,7 +5010,7 @@ def canTriggerCrusadeDone(argsList):
 			kActualTriggeredDataObject.eBuilding = BuildingTypes(iBuilding)
 			break	
 			
-	return true
+	return True
 
 def getHelpCrusadeDone1(argsList):
 	iEvent = argsList[0]
@@ -4996,9 +5029,9 @@ def canApplyCrusadeDone1(argsList):
 	
 	holyCity = gc.getGame().getHolyCity(kTriggeredData.eReligion)
 	if -1 == holyCity.getConscriptUnit():
-		return false
+		return False
 	
-	return true
+	return True
 
 def applyCrusadeDone1(argsList):
 	iEvent = argsList[0]
@@ -5030,9 +5063,9 @@ def canApplyCrusadeDone2(argsList):
 	holyCity = gc.getGame().getHolyCity(kTriggeredData.eReligion)
 	
 	if -1 == kTriggeredData.eBuilding or holyCity.isHasBuilding(kTriggeredData.eBuilding):
-		return false			
+		return False			
 	
-	return true
+	return True
 
 def applyCrusadeDone2(argsList):
 	iEvent = argsList[0]
@@ -5068,9 +5101,9 @@ def canApplyCrusadeDone3(argsList):
 	iNumCities = gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers()
 
 	if gc.getGame().getNumCities() == gc.getGame().countReligionLevels(kTriggeredData.eReligion):
-		return false
+		return False
 		
-	return true
+	return True
 
 def applyCrusadeDone3(argsList):
 	iEvent = argsList[0]
@@ -5081,14 +5114,14 @@ def applyCrusadeDone3(argsList):
 	for iPlayer in range(gc.getMAX_CIV_PLAYERS()):			
 		loopPlayer = gc.getPlayer(iPlayer)
 		if loopPlayer.isAlive():			
-			(loopCity, iter) = loopPlayer.firstCity(false)
+			(loopCity, iter) = loopPlayer.firstCity(False)
 
 			while(loopCity):
 				if (not loopCity.isHasReligion(kTriggeredData.eReligion)):
 					iDistance = plotDistance(holyCity.getX(), holyCity.getY(), loopCity.getX(), loopCity.getY())
 					listCities.append((iDistance, loopCity))
 						
-				(loopCity, iter) = loopPlayer.nextCity(iter, false)
+				(loopCity, iter) = loopPlayer.nextCity(iter, False)
 	
 	listCities.sort()
 	
@@ -5096,7 +5129,7 @@ def applyCrusadeDone3(argsList):
 	
 	for i in range(iNumCities):
 		iDistance, loopCity = listCities[i]
-		loopCity.setHasReligion(kTriggeredData.eReligion, true, true, true)	
+		loopCity.setHasReligion(kTriggeredData.eReligion, True, True, True)	
 
 ######## ESTEEMEED_PLAYWRIGHT ###########
 
@@ -5106,9 +5139,9 @@ def canTriggerEsteemedPlaywright(argsList):
 	
 	# If source civ is operating this Civic, disallow the event to trigger.
 	if player.isCivic(CvUtil.findInfoTypeNum(gc.getCivicInfo,gc.getNumCivicInfos(),'CIVIC_SLAVERY')):
-		return false
+		return False
 
-	return true
+	return True
 
 
 ######## SECRET_KNOWLEDGE ###########
@@ -5138,9 +5171,9 @@ def canTriggerHighWarlord(argsList):
 	
 	# If source civ is operating this Civic, disallow the event to trigger.
 	if player.isCivic(CvUtil.findInfoTypeNum(gc.getCivicInfo,gc.getNumCivicInfos(),'CIVIC_EMANCIPATION')):
-		return false
+		return False
 
-	return true
+	return True
 
 
 ######## EXPERIENCED_CAPTAIN ###########
@@ -5152,12 +5185,12 @@ def canTriggerExperiencedCaptain(argsList):
 	unit = player.getUnit(kTriggeredData.iUnitId)
 	
 	if unit.isNone():
-		return false
+		return False
 		
 	if unit.getExperience() < 7:
-		return false
+		return False
 
-	return true
+	return True
 
 ######## PARTISANS ###########
 
@@ -5190,15 +5223,15 @@ def canApplyPartisans1(argsList):
 	plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 
 	if getNumPartisanUnits(plot, kTriggeredData.ePlayer) <= 0:
-		return false
+		return False
 
 	for i in range(3):
 		for j in range(3):
 			loopPlot = gc.getMap().plot(kTriggeredData.iPlotX + i - 1, kTriggeredData.iPlotY + j - 1)
 			if None != loopPlot and not loopPlot.isNone():
 				if not (loopPlot.isVisibleEnemyUnit(kTriggeredData.ePlayer) or loopPlot.isWater() or loopPlot.isImpassable() or loopPlot.isCity()):
-					return true
-	return false
+					return True
+	return False
 	
 
 def applyPartisans1(argsList):
@@ -5268,7 +5301,7 @@ def canTriggerGreed(argsList):
 	otherPlayer = gc.getPlayer(kTriggeredData.eOtherPlayer)
 	
 	if not gc.getTeam(player.getTeam()).canChangeWarPeace(otherPlayer.getTeam()):
-		return false
+		return False
 
 	listBonuses = []
 
@@ -5289,30 +5322,30 @@ def canTriggerGreed(argsList):
 		listBonuses.append(iCopper)
 
 	map = gc.getMap()
-	bFound = false
+	bFound = False
 	listPlots = []
 	for iBonus in listBonuses:
 		for i in range(map.numPlots()):
 			loopPlot = map.plotByIndex(i)
-			if loopPlot.getOwner() == kTriggeredData.eOtherPlayer and loopPlot.getBonusType(player.getTeam()) == iBonus and loopPlot.isRevealed(player.getTeam(), false) and not loopPlot.isWater():
+			if loopPlot.getOwner() == kTriggeredData.eOtherPlayer and loopPlot.getBonusType(player.getTeam()) == iBonus and loopPlot.isRevealed(player.getTeam(), False) and not loopPlot.isWater():
 				listPlots.append(loopPlot)
-				bFound = true
+				bFound = True
 		if bFound:
 			break
 			
 	if not bFound:
-		return false
+		return False
 
 	plot = listPlots[gc.getGame().getSorenRandNum(len(listPlots), "Greed event plot selection")]
 	
 	if -1 == getGreedUnit(player, plot):
-		return false
+		return False
 	
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
 	kActualTriggeredDataObject.iPlotX = plot.getX()
 	kActualTriggeredDataObject.iPlotY = plot.getY()
 				
-	return true
+	return True
 
 def getHelpGreed1(argsList):
 	iEvent = argsList[0]
@@ -5335,15 +5368,15 @@ def expireGreed1(argsList):
 	plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 
 	if plot.getOwner() == kTriggeredData.ePlayer or plot.getOwner() == -1:
-		return false
+		return False
 	
 	if gc.getGame().getGameTurn() >= kTriggeredData.iTurn + gc.getGameSpeedInfo(gc.getGame().getGameSpeedType()).getGrowthPercent():
-		return true
+		return True
 	
 	if plot.getOwner() != kTriggeredData.eOtherPlayer:
-		return true
+		return True
 				
-	return false
+	return False
 
 def canTriggerGreedDone(argsList):
 	kTriggeredData = argsList[0]
@@ -5353,17 +5386,17 @@ def canTriggerGreedDone(argsList):
 	plot = gc.getMap().plot(kOrigTriggeredData.iPlotX, kOrigTriggeredData.iPlotY)
 
 	if plot.getOwner() != kOrigTriggeredData.ePlayer:
-		return false
+		return False
 		
 	if -1 == getGreedUnit(player, plot):
-		return false
+		return False
 
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
 	kActualTriggeredDataObject.iPlotX = kOrigTriggeredData.iPlotX
 	kActualTriggeredDataObject.iPlotY = kOrigTriggeredData.iPlotY
 	kActualTriggeredDataObject.eOtherPlayer = kOrigTriggeredData.eOtherPlayer
 	
-	return true
+	return True
 
 def getGreedUnit(player, plot):
 	iBonus = plot.getBonusType(player.getTeam())
@@ -5371,14 +5404,14 @@ def getGreedUnit(player, plot):
 	iBestUnit = -1
 	for iUnitClass in range(gc.getNumUnitClassInfos()):
 		iUnit = gc.getCivilizationInfo(player.getCivilizationType()).getCivilizationUnits(iUnitClass)
-		if -1 != iUnit and player.canTrain(iUnit, false, false) and (gc.getUnitInfo(iUnit).getDomainType() == DomainTypes.DOMAIN_LAND):
+		if -1 != iUnit and player.canTrain(iUnit, False, False) and (gc.getUnitInfo(iUnit).getDomainType() == DomainTypes.DOMAIN_LAND):
 			iValue = 0
 			if gc.getUnitInfo(iUnit).getPrereqAndBonus() == iBonus:
-				iValue = player.AI_unitValue(iUnit, UnitAITypes.UNITAI_ATTACK, plot.area(), false)
+				iValue = player.AI_unitValue(iUnit, UnitAITypes.UNITAI_ATTACK, plot.area(), False)
 			else:
 				for j in range(gc.getNUM_UNIT_PREREQ_OR_BONUSES()):
 					if (gc.getUnitInfo(iUnit).getPrereqOrBonuses(j) == iBonus):
-						iValue = player.AI_unitValue(iUnit, UnitAITypes.UNITAI_ATTACK, plot.area(), false)
+						iValue = player.AI_unitValue(iUnit, UnitAITypes.UNITAI_ATTACK, plot.area(), False)
 						break
 			if iValue > iBestValue:
 				iBestValue = iValue
@@ -5424,7 +5457,7 @@ def canTriggerWarChariots(argsList):
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
 	kActualTriggeredDataObject.eReligion = ReligionTypes(player.getStateReligion())
 	
-	return true
+	return True
 
 def getHelpWarChariots1(argsList):
 	iEvent = argsList[0]
@@ -5443,13 +5476,13 @@ def canTriggerWarChariotsDone(argsList):
 	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers() + 1
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_CHARIOT')
 	if player.getUnitClassCount(iUnitClassType) < iNumUnits:
-		return false
+		return False
 	
 	kOrigTriggeredData = player.getEventOccured(trigger.getPrereqEvent(0))
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
 	kActualTriggeredDataObject.eReligion = kOrigTriggeredData.eReligion
 		
-	return true
+	return True
 
 ######## ELITE SWORDSMEN ###########
 
@@ -5469,9 +5502,9 @@ def canTriggerEliteSwordsDone(argsList):
 	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers() + 1
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_SWORDSMAN')
 	if player.getUnitClassCount(iUnitClassType) < iNumUnits:
-		return false
+		return False
 			
-	return true
+	return True
 
 
 def canApplyEliteSwordsDone2(argsList):
@@ -5482,9 +5515,9 @@ def canApplyEliteSwordsDone2(argsList):
 	iCivic = CvUtil.findInfoTypeNum(gc.getCivicInfo,gc.getNumCivicInfos(),'CIVIC_HEREDITARY_RULE')
 	
 	if not player.isCivic(iCivic):
-		return false
+		return False
 	
-	return true	
+	return True	
 
 ######## WARSHIPS ###########
 
@@ -5501,9 +5534,9 @@ def canTriggerWarships(argsList):
 			iNumWater += 1
 			
 		if 100 * iNumWater >= 55 * map.numPlots():
-			return true
+			return True
 			
-	return false
+	return False
 
 def getHelpWarships1(argsList):
 	iEvent = argsList[0]
@@ -5524,9 +5557,9 @@ def canTriggerWarshipsDone(argsList):
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_TRIREME')
 
 	if player.getUnitClassCount(iUnitClassType) < iNumUnits:
-		return false
+		return False
 			
-	return true
+	return True
 
 
 def canApplyWarshipsDone2(argsList):
@@ -5536,9 +5569,9 @@ def canApplyWarshipsDone2(argsList):
 		
 	iBuilding = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_GREAT_LIGHTHOUSE')
 	if player.getBuildingClassCount(gc.getBuildingInfo(iBuilding).getBuildingClassType()) == 0:
-		return false
+		return False
 
-	return true	
+	return True	
 
 ######## GUNS NOT BUTTER ###########
 
@@ -5561,9 +5594,9 @@ def canTriggerGunsButterDone(argsList):
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_MUSKETMAN')
 
 	if player.getUnitClassCount(iUnitClassType) < iNumUnits:
-		return false
+		return False
 			
-	return true
+	return True
 
 
 def canApplyGunsButterDone2(argsList):
@@ -5574,9 +5607,9 @@ def canApplyGunsButterDone2(argsList):
 	iCivic = CvUtil.findInfoTypeNum(gc.getCivicInfo,gc.getNumCivicInfos(),'CIVIC_VASSALAGE')
 	
 	if not player.isCivic(iCivic):
-		return false
+		return False
 	
-	return true	
+	return True	
 
 def canApplyGunsButterDone3(argsList):
 	iEvent = argsList[0]
@@ -5585,9 +5618,9 @@ def canApplyGunsButterDone3(argsList):
 		
 	iBuilding = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_TAJ_MAHAL')
 	if player.getBuildingClassCount(gc.getBuildingInfo(iBuilding).getBuildingClassType()) == 0:
-		return false
+		return False
 
-	return true	
+	return True	
 
 ######## NOBLE KNIGHTS ###########
 
@@ -5598,7 +5631,7 @@ def canTriggerNobleKnights(argsList):
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
 	kActualTriggeredDataObject.eReligion = ReligionTypes(player.getStateReligion())
 	
-	return true
+	return True
 
 def getHelpNobleKnights1(argsList):
 	iEvent = argsList[0]
@@ -5619,7 +5652,7 @@ def canTriggerNobleKnightsDone(argsList):
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_KNIGHT')
 
 	if player.getUnitClassCount(iUnitClassType) < iNumUnits:
-		return false
+		return False
 			
 	trigger = gc.getEventTriggerInfo(kTriggeredData.eTrigger)
 	kOrigTriggeredData = player.getEventOccured(trigger.getPrereqEvent(0))
@@ -5628,7 +5661,7 @@ def canTriggerNobleKnightsDone(argsList):
 
 	iBuilding = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_ORACLE')
 	
-	(loopCity, iter) = player.firstCity(false)
+	(loopCity, iter) = player.firstCity(False)
 	while(loopCity):
 		if (loopCity.isHasBuilding(iBuilding)):
 			kActualTriggeredDataObject.iPlotX = loopCity.getX()
@@ -5636,9 +5669,9 @@ def canTriggerNobleKnightsDone(argsList):
 			kActualTriggeredDataObject.iCityId = loopCity.getID()
 			break
 				
-		(loopCity, iter) = player.nextCity(iter, false)
+		(loopCity, iter) = player.nextCity(iter, False)
 
-	return true
+	return True
 
 def canApplyNobleKnightsDone2(argsList):
 	iEvent = argsList[0]
@@ -5648,9 +5681,9 @@ def canApplyNobleKnightsDone2(argsList):
 	iCivic = CvUtil.findInfoTypeNum(gc.getCivicInfo,gc.getNumCivicInfos(),'CIVIC_ORGANIZED_RELIGION')
 	
 	if not player.isCivic(iCivic):
-		return false
+		return False
 	
-	return true	
+	return True	
 
 ######## OVERWHELM DOCTRINE ###########
 
@@ -5665,8 +5698,8 @@ def canTriggerOverwhelm(argsList):
 		if plot.isWater():
 			iNumWater += 1
 		if 100 * iNumWater >= 55 * map.numPlots():
-			return true			
-	return false
+			return True			
+	return False
 
 def getHelpOverwhelm1(argsList):
 	iEvent = argsList[0]
@@ -5693,31 +5726,31 @@ def canTriggerOverwhelmDone(argsList):
 	iDestroyer = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_DESTROYER')
 	iNumDestroyers = 4
 	if player.getUnitClassCount(iDestroyer) < iNumDestroyers:
-		return false
+		return False
 			
 	iBattleship = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_BATTLESHIP')
 	iNumBattleships = 2
 	if player.getUnitClassCount(iBattleship) < iNumBattleships:
-		return false
+		return False
 
 	iCarrier = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_CARRIER')
 	iNumCarriers = 3
 	if player.getUnitClassCount(iCarrier) < iNumCarriers:
-		return false
+		return False
 
 	iFighter = CvUtil.findInfoTypeNum(gc.getSpecialUnitInfo, gc.getNumSpecialUnitInfos(), 'SPECIALUNIT_FIGHTER')
 	iNumFighters = 9
 	iNumPlayerFighters = 0
-	(loopUnit, iter) = player.firstUnit(false)
+	(loopUnit, iter) = player.firstUnit(False)
 	while (loopUnit):
 		if loopUnit.getSpecialUnitType() == iFighter:
 			iNumPlayerFighters += 1
-		(loopUnit, iter) = player.nextUnit(iter, false)
+		(loopUnit, iter) = player.nextUnit(iter, False)
 
 	if iNumPlayerFighters < iNumFighters:
-		return false
+		return False
 			
-	return true
+	return True
 
 def getHelpOverwhelmDone3(argsList):
 	iEvent = argsList[0]
@@ -5734,9 +5767,9 @@ def canApplyOverwhelmDone3(argsList):
 	
 	iProject = CvUtil.findInfoTypeNum(gc.getProjectInfo, gc.getNumProjectInfos(), 'PROJECT_MANHATTAN_PROJECT')
 	if gc.getTeam(player.getTeam()).getProjectCount(iProject) == 0:
-		return false
+		return False
 	
-	return true
+	return True
 
 def applyOverwhelmDone3(argsList):
 	iEvent = argsList[0]
@@ -5752,7 +5785,7 @@ def canTriggerCorporateExpansion(argsList):
 
 	city = gc.getGame().getHeadquarters(kTriggeredData.eCorporation)
 	if None == city or city.isNone():
-		return false
+		return False
 
 	# Hack to remember the number of cities you already have with the Corporation
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
@@ -5761,17 +5794,17 @@ def canTriggerCorporateExpansion(argsList):
 	kActualTriggeredDataObject.iPlotX = city.getX()
 	kActualTriggeredDataObject.iPlotY = city.getY()
 
-	bFound = false
+	bFound = False
 	for iBuilding in range(gc.getNumBuildingInfos()):
 		if gc.getBuildingInfo(iBuilding).getFoundsCorporation() == kTriggeredData.eCorporation:
 			kActualTriggeredDataObject.eBuilding = BuildingTypes(iBuilding)
-			bFound = true
+			bFound = True
 			break
 			
 	if not bFound:
-		return false
+		return False
 	
-	return true
+	return True
 
 def expireCorporateExpansion1(argsList):
 	iEvent = argsList[0]
@@ -5780,9 +5813,9 @@ def expireCorporateExpansion1(argsList):
 
 	city = player.getCity(kTriggeredData.iCityId)
 	if None == city or city.isNone():
-		return true
+		return True
 
-	return false
+	return False
 
 def getHelpCorporateExpansion1(argsList):
 	iEvent = argsList[0]
@@ -5803,7 +5836,7 @@ def canTriggerCorporateExpansionDone(argsList):
 	iNumCitiesRequired = gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers() + 1 + kOrigTriggeredData.iOtherPlayerCityId
 	
 	if iNumCitiesRequired > gc.getGame().countCorporationLevels(kOrigTriggeredData.eCorporation):
-		return false
+		return False
 
 				
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
@@ -5813,7 +5846,7 @@ def canTriggerCorporateExpansionDone(argsList):
 	kActualTriggeredDataObject.iPlotX = kOrigTriggeredData.iPlotX
 	kActualTriggeredDataObject.iPlotY = kOrigTriggeredData.iPlotY
 			
-	return true
+	return True
 
 def getHelpCorporateExpansionDone1(argsList):
 	iEvent = argsList[0]
@@ -5839,11 +5872,11 @@ def canTriggerHostileTakeover(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 
 	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ONE_CITY_CHALLENGE) and gc.getPlayer(kTriggeredData.ePlayer).isHuman():
-		return false
+		return False
 
 	city = gc.getGame().getHeadquarters(kTriggeredData.eCorporation)
 	if None == city or city.isNone():
-		return false
+		return False
 
 	# Hack to remember the number of cities you already have with the Corporation
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
@@ -5851,21 +5884,21 @@ def canTriggerHostileTakeover(argsList):
 	kActualTriggeredDataObject.iPlotX = city.getX()
 	kActualTriggeredDataObject.iPlotY = city.getY()
 
-	bFound = false
+	bFound = False
 	for iBuilding in range(gc.getNumBuildingInfos()):
 		if gc.getBuildingInfo(iBuilding).getFoundsCorporation() == kTriggeredData.eCorporation:
 			kActualTriggeredDataObject.eBuilding = BuildingTypes(iBuilding)
-			bFound = true
+			bFound = True
 			break
 			
 	if not bFound:
-		return false
+		return False
 
 	listResources = getHostileTakeoverListResources(gc.getCorporationInfo(kTriggeredData.eCorporation), player)
 	if len(listResources) == 0:
-		return false
+		return False
 		
-	return true
+	return True
 
 def expireHostileTakeover1(argsList):
 	iEvent = argsList[0]
@@ -5874,9 +5907,9 @@ def expireHostileTakeover1(argsList):
 
 	city = player.getCity(kTriggeredData.iCityId)
 	if None == city or city.isNone():
-		return true
+		return True
 
-	return false
+	return False
 
 def getHostileTakeoverListResources(corporation, player):
 	map = gc.getMap()
@@ -5903,12 +5936,12 @@ def getHelpHostileTakeover1(argsList):
 	
 	listResources = getHostileTakeoverListResources(gc.getCorporationInfo(kTriggeredData.eCorporation), player)
 	szList = u""
-	bFirst = true
+	bFirst = True
 	for iBonus in listResources:
 		if not bFirst:
 			szList += u", "
 		else:
-			bFirst = false
+			bFirst = False
 		szList += u"[COLOR_HIGHLIGHT_TEXT]" + gc.getBonusInfo(iBonus).getDescription() + u"[COLOR_REVERT]"
 		
 	szHelp = localText.getText("TXT_KEY_EVENT_HOSTILE_TAKEOVER_HELP_1", (len(listResources), szList))
@@ -5924,7 +5957,7 @@ def canTriggerHostileTakeoverDone(argsList):
 	listResources = getHostileTakeoverListResources(gc.getCorporationInfo(kOrigTriggeredData.eCorporation), player)
 	
 	if len(listResources) > 0:
-		return false
+		return False
 				
 	kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
 	kActualTriggeredDataObject.eCorporation = kOrigTriggeredData.eCorporation
@@ -5933,7 +5966,7 @@ def canTriggerHostileTakeoverDone(argsList):
 	kActualTriggeredDataObject.iPlotX = kOrigTriggeredData.iPlotX
 	kActualTriggeredDataObject.iPlotY = kOrigTriggeredData.iPlotY
 			
-	return true
+	return True
 
 def getHelpHostileTakeoverDone1(argsList):
 	iEvent = argsList[0]
@@ -5959,12 +5992,12 @@ def doGreatBeast3(argsList):
 	kTriggeredData = argsList[1]
 	
 	player = gc.getPlayer(kTriggeredData.ePlayer)
-	(loopCity, iter) = player.firstCity(false)
+	(loopCity, iter) = player.firstCity(False)
 
 	while(loopCity):
 		if loopCity.isHasReligion(kTriggeredData.eReligion):
 			loopCity.changeHappinessTimer(40)
-		(loopCity, iter) = player.nextCity(iter, false)
+		(loopCity, iter) = player.nextCity(iter, False)
 
 def getHelpGreatBeast3(argsList):
 	kTriggeredData = argsList[1]
@@ -5981,9 +6014,9 @@ def canDoCometFragment(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
 	if (player.getSpaceProductionModifier()) > 10:
-		return false
+		return False
 	
-	return true
+	return True
 
 ####### Immigrants ########
 
@@ -5995,13 +6028,13 @@ def canTriggerImmigrantCity(argsList):
 	city = player.getCity(iCity)
 
 	if city.isNone():
-		return false
+		return False
 
-	if ((city.happyLevel() - city.unhappyLevel(0) < 1) or (city.goodHealth() - city.badHealth(true) < 1)):
-		return false
+	if ((city.happyLevel() - city.unhappyLevel(0) < 1) or (city.goodHealth() - city.badHealth(True) < 1)):
+		return False
 
 	if (city.getCommerceRateTimes100(CommerceTypes.COMMERCE_CULTURE) < 5500):
-		return false
+		return False
 
 ####### Controversial Philosopher ######
 
@@ -6013,13 +6046,13 @@ def canTriggerControversialPhilosopherCity(argsList):
 	city = player.getCity(iCity)
 	
 	if city.isNone():
-		return false
+		return False
 	if (not city.isCapital()):
-		return false
+		return False
 	if (city.getCommerceRateTimes100(CommerceTypes.COMMERCE_RESEARCH) < 3500):
-		return false
+		return False
 
-	return true
+	return True
 
 
 				# More Events Mod starts #
@@ -6261,8 +6294,8 @@ def CanDoHellRefugees(argsList):
 		pPlayer2 = gc.getPlayer(iPlayer2)
 		if (pPlayer2.isAlive()):
 			if pPlayer2.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
-				return true
-	return false
+				return True
+	return False
 
 def doHellRefugees5(argsList):
 	iEvent = argsList[0]
@@ -6308,10 +6341,10 @@ def CanTriggerTrappedFrostlings (argsList):
 					pPlot2 = CyMap().plot(iiX,iiY)
 					iTerrain = pPlot2.getTerrainType()
 					if iTerrain == iTundra:
-						return true
+						return True
 					if iTerrain == iSnow:
-						return true
-	return false
+						return True
+	return False
 	
 def DoTrappedFrostlings2(argsList):
 	iEvent = argsList[0]
@@ -6457,10 +6490,10 @@ def CanDoAshCough2 (argsList):
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pCity = pPlayer.getCity(kTriggeredData.iCityId)
 	if (pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SHEAIM")):
-		return true
+		return True
 	if (pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_KURIOTATES")):
-		return true
-	return false
+		return True
+	return False
 
 def CanDoAshCough4 (argsList):
 	iEvent = argsList[0]
@@ -6490,7 +6523,7 @@ def CanDoDeadAngel2 (argsList):
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	if pPlayer.getAlignment() == gc.getInfoTypeForString('ALIGNMENT_EVIL'):
 		return False
-	return true
+	return True
 	
 def doDeadAngel4 (argsList):
 	iEvent = argsList[0]
@@ -6556,7 +6589,7 @@ def CanDoNecroCannibalism2 (argsList):
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	if pPlayer.getAlignment() == gc.getInfoTypeForString('ALIGNMENT_GOOD'):
 		return False
-	return true
+	return True
 	
 def doNecroCannibalism2(argsList):
 	iEvent = argsList[0]
@@ -6827,9 +6860,9 @@ def CanTriggerThatKindOfDay(argsList):
 								pUnit2 = pPlot2.getUnit(i)
 								if pUnit2.getOwner()== gc.getBARBARIAN_PLAYER():
 									if not isWorldUnitClass(pUnit2.getUnitClassType()):					
-										return true
+										return True
 
-	return false
+	return False
 
 	
 
@@ -7025,12 +7058,12 @@ def CanDoTraveller1(argsList):
 	for i in range (CyMap().numPlots()):
 		pPlot = CyMap().plotByIndex(i)
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_MAELSTROM') :
-			return true
+			return True
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_MIRROR_OF_HEAVEN') :
-			return true
+			return True
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_YGGDRASIL') :
-			return true
-	return false
+			return True
+	return False
 	
 def CanDoTraveller2(argsList):
 	iEvent = argsList[0]
@@ -7041,14 +7074,14 @@ def CanDoTraveller2(argsList):
 	for i in range (CyMap().numPlots()):
 		pPlot = CyMap().plotByIndex(i)
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_AIFON_ISLE') :
-			return true
+			return True
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_BROKEN_SEPULCHER') :
-			return true
+			return True
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_DRAGON_BONES') :
-			return true
+			return True
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_REMNANTS_OF_PATRIA') :
-			return true
-	return false
+			return True
+	return False
 	
 def CanDoTraveller3(argsList):
 	iEvent = argsList[0]
@@ -7059,14 +7092,14 @@ def CanDoTraveller3(argsList):
 	for i in range (CyMap().numPlots()):
 		pPlot = CyMap().plotByIndex(i)
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_LETUM_FRIGUS') :
-			return true
+			return True
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_PYRE_OF_THE_SERAPHIC') :
-			return true
+			return True
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_SEVEN_PINES') :
-			return true
+			return True
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_TOMB_OF_SUCELLUS') :
-			return true
-	return false
+			return True
+	return False
 	
 def CanDoTraveller4(argsList):
 	iEvent = argsList[0]
@@ -7077,12 +7110,12 @@ def CanDoTraveller4(argsList):
 	for i in range (CyMap().numPlots()):
 		pPlot = CyMap().plotByIndex(i)
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_ODIOS_PRISON') :
-			return true
+			return True
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_POOL_OF_TEARS') :
-			return true
+			return True
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_RING_OF_CARCER') :
-			return true
-	return false
+			return True
+	return False
 	
 def CanTriggerUnfortunateAssassinCity(argsList):
 	eTrigger = argsList[0]
@@ -7091,8 +7124,8 @@ def CanTriggerUnfortunateAssassinCity(argsList):
 	pPlayer = gc.getPlayer(ePlayer)
 	pCity = pPlayer.getCity(iCity)
 	if pCity.isCapital():
-		return true
-	return false
+		return True
+	return False
 
 def doUnfortunateAssassin3(argsList):
 	iEvent = argsList[0]
@@ -7127,7 +7160,7 @@ def CanDoOvercrowdedDungeon5 (argsList):
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	if pPlayer.getAlignment() == gc.getInfoTypeForString('ALIGNMENT_GOOD'):
 		return False
-	return true
+	return True
 
 def doOvercrowdedDungeon5 (argsList):
 	iEvent = argsList[0]
@@ -7223,8 +7256,8 @@ def CanDoMonkPilgrimage2 (argsList):
 	iPlayer = kTriggeredData.ePlayer
 	pPlayer = gc.getPlayer(iPlayer)
 	if pPlayer.isHuman():
-		return true
-	return false
+		return True
+	return False
 	
 def doElderDeath3 (argsList): 
 	iEvent = argsList[0]
@@ -7411,18 +7444,18 @@ def canTriggerLanunPirates(argsList):
 	for iPlayer in range(gc.getMAX_PLAYERS()):
 		pPlayer = gc.getPlayer(iPlayer)	
 		if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_LANUN'):
-			return false
-	return true
+			return False
+	return True
 
 
 #   At least one civ on the board must know Optics
-	bFoundValid = false
+	bFoundValid = False
 	iTech = CvUtil.findInfoTypeNum(gc.getTechInfo, gc.getNumTechInfos(), 'TECH_OPTICS')
 	for iPlayer in range(gc.getMAX_CIV_PLAYERS()):			
 		loopPlayer = gc.getPlayer(iPlayer)
 		if loopPlayer.isAlive():
 			if gc.getTeam(loopPlayer.getTeam()).isHasTech(iTech):
-				bFoundValid = true
+				bFoundValid = True
 				break
 
 	if not bFoundValid:
@@ -7433,7 +7466,7 @@ def canTriggerLanunPirates(argsList):
 	map = gc.getMap()
 	for i in range(map.numPlots()):
 		plot = map.plotByIndex(i)
-		if (plot.getOwner() == -1 and plot.isWater() and not plot.isImpassable() and not plot.getNumUnits() > 0 and not plot.isLake() and plot.isAdjacentPlayer(kTriggeredData.ePlayer, true)):
+		if (plot.getOwner() == -1 and plot.isWater() and not plot.isImpassable() and not plot.getNumUnits() > 0 and not plot.isLake() and plot.isAdjacentPlayer(kTriggeredData.ePlayer, True)):
 			return True
 
 	return False
@@ -7455,7 +7488,7 @@ def applyLanunPirates1(argsList):
 	map = gc.getMap()
 	for i in range(map.numPlots()):
 		plot = map.plotByIndex(i)
-		if (plot.getOwner() == -1 and plot.isWater() and not plot.isImpassable() and not plot.getNumUnits() > 0 and not plot.isLake() and plot.isAdjacentPlayer(kTriggeredData.ePlayer, true)):
+		if (plot.getOwner() == -1 and plot.isWater() and not plot.isImpassable() and not plot.getNumUnits() > 0 and not plot.isLake() and plot.isAdjacentPlayer(kTriggeredData.ePlayer, True)):
 			listPlots.append(i)
 
 	if 0 == len(listPlots):
@@ -7483,11 +7516,11 @@ def applyLanunPirates1(argsList):
 	for i in range(iNumUnit1):
 		barbPlayer.initUnit(iUnitType1, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_SEA, DirectionTypes.DIRECTION_SOUTH)
 
-	(loopUnit, iter) = barbPlayer.firstUnit(false)
+	(loopUnit, iter) = barbPlayer.firstUnit(False)
 	while (loopUnit):
 		if loopUnit.getUnitType() == iUnitType1:
 			loopUnit.setName("Lanun Raider")
-		(loopUnit, iter) = barbPlayer.nextUnit(iter, false)
+		(loopUnit, iter) = barbPlayer.nextUnit(iter, False)
 
 
 def canTriggerKuriotatesWorkboat(argsList):

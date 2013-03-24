@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Civ4GameText xmlns="http://www.firaxis.com">
 <!-- Sid Meier's Civilization 4 -->
 <!-- Copyright Firaxis Games 2005 -->
 <!-- -->
 <!-- Game Text - Events -->
+<Civ4GameText xmlns="http://www.firaxis.com">
 <!-- MORE EVENTS MOD STARTS lfgr: changed -->
 	<TEXT><!-- EVENT_NO_BONUS_UNIT_AVAILABLE -->
 		<Tag>TXT_KEY_EVENT_NO_BONUS_UNIT_AVAILABLE</Tag>
@@ -2478,4 +2478,45 @@
 		<Spanish>An immobile barbarian Spectre appears.</Spanish>
 	</TEXT>
 <!-- EXPANDED EVENTS END -->
+<!-- From Magister Modmod START -->
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SICKNESS_3</Tag>
+		<English>We should use this disease to our advantage against our mortal enemies.</English>
+		<French>We should use this disease to our advantage against our mortal enemies.</French>
+		<German>We should use this disease to our advantage against our mortal enemies.</German>
+		<Italian>We should use this disease to our advantage against our mortal enemies.</Italian>
+		<Spanish>We should use this disease to our advantage against our mortal enemies.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SIGN_AERON_1</Tag>
+		<English>The Lord of Murder has chosen us to be his children. Let us rejoice in the power he grants us over the weak.</English>
+		<French>The Lord of Murder has chosen us to be his children. Let us rejoice in the power he grants us over the weak.</French>
+		<German>The Lord of Murder has chosen us to be his children. Let us rejoice in the power he grants us over the weak.</German>
+		<Italian>The Lord of Murder has chosen us to be his children. Let us rejoice in the power he grants us over the weak.</Italian>
+		<Spanish>The Lord of Murder has chosen us to be his children. Let us rejoice in the power he grants us over the weak.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SIGN_ARAWN</Tag>
+		<English>Astrologers report that the Shroud has moved into prominence. This constellation is sacred to Arawn and it is said to be a good time to visit gravesites and remember those that have passed on. Although The God of Death himself does nothing to honor this alignment, his archangel Gyra works to make sure that the dead may rest in peace.</English>
+		<French>Astrologers report that the Shroud has moved into prominence. This constellation is sacred to Arawn and it is said to be a good time to visit gravesites and remember those that have passed on. Although The God of Death himself does nothing to honor this alignment, his archangel Gyra works to make sure that the dead may rest in peace.</French>
+		<German>Eure Sterndeuter berichten, dass das Leichentuch den Nachthimmel beherrscht. Dieses Sternbild ist Arawn geweiht und es heißt, dass dies eine gute Zeit sei, um Grabstätten zu besuchen und den Verblichenen zu gedenken. Although The God of Death himself does nothing to honor this alignment, his archangel Gyra works to make sure that the dead may rest in peace.</German>
+		<Italian>Astrologers report that the Shroud has moved into prominence. This constellation is sacred to Arawn and it is said to be a good time to visit gravesites and remember those that have passed on. Although The God of Death himself does nothing to honor this alignment, his archangel Gyra works to make sure that the dead may rest in peace.</Italian>
+		<Spanish>Astrologers report that the Shroud has moved into prominence. This constellation is sacred to Arawn and it is said to be a good time to visit gravesites and remember those that have passed on. Although The God of Death himself does nothing to honor this alignment, his archangel Gyra works to make sure that the dead may rest in peace.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SIGN_ARAWN_1</Tag>
+		<English>Let us honor the Lord of the Otherworld, though he cares not what we do in this life.</English>
+		<French>Let us honor the Lord of the Otherworld, though he cares not what we do in this life.</French>
+		<German>Let us honor the Lord of the Otherworld, though he cares not what we do in this life.</German>
+		<Italian>Let us honor the Lord of the Otherworld, though he cares not what we do in this life.</Italian>
+		<Spanish>Let us honor the Lord of the Otherworld, though he cares not what we do in this life.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SIGN_BHALL_1</Tag>
+		<English>Bring forth the sacrifices! Let the Bhall-Orcs fuel the Sacred Flame with the blood of our enemies, and ignite us with the passion of our mistress!</English>
+		<French>Bring forth the sacrifices! Let the Bhall-Orcs fuel the Sacred Flame with the blood of our enemies, and ignite us with the passion of our mistress!</French>
+		<German>Bring forth the sacrifices! Let the Bhall-Orcs fuel the Sacred Flame with the blood of our enemies, and ignite us with the passion of our mistress!</German>
+		<Italian>Bring forth the sacrifices! Let the Bhall-Orcs fuel the Sacred Flame with the blood of our enemies, and ignite us with the passion of our mistress!</Italian>
+		<Spanish>Bring forth the sacrifices! Let the Bhall-Orcs fuel the Sacred Flame with the blood of our enemies, and ignite us with the passion of our mistress!</Spanish>
+	</TEXT>
 </Civ4GameText>
