@@ -1791,6 +1791,14 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 					logBBAI("    Player %d (%S) decides not to raze %S because they're going for domination", getID(), getCivilizationDescription(0), pCity->getName().GetCString() );
 				}
 			}
+			else if (GET_PLAYER(pCity->getOriginalOwner()).getTeam() == getTeam())
+			{
+				// Do not raze, was our city
+				if( gPlayerLogLevel >= 1 )
+				{
+					logBBAI("    Player %d (%S) decides not to raze %S because our team were the original owners", getID(), getCivilizationDescription(0), pCity->getName().GetCString() );
+				}
+			}
 			else if( isBarbarian() )
 			{
 				if ( !(pCity->isHolyCity()) && !(pCity->hasActiveWorldWonder()))
@@ -2024,7 +2032,7 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 
 	if( bRaze )
 	{
-		if ((iRazeValue < 60) && canMakePuppet(pCity->getPreviousOwner()))
+		if ((iRazeValue < 150) && canMakePuppet(pCity->getPreviousOwner()))
 		{
 			logBBAI("    Player %d (%S) decides to to create Puppet State in %S!!!", getID(), getCivilizationDescription(0), pCity->getName().GetCString() );
 			makePuppet(pCity->getPreviousOwner(), pCity);
@@ -2503,6 +2511,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 
 	// Pirates want a coastal city for their capitol
 	// TODO - make sure this doesnt break them on all-land maps
+	/*
     if (getNumCities() == 0)
     {
 		if (bPirate)
@@ -2513,6 +2522,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
             }
         }
     }
+	*/
 
 	pArea = pPlot->area();
 	iNumAreaCities = pArea->getCitiesPerPlayer(getID());
@@ -2739,7 +2749,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 
 				if (pLoopPlot != NULL)
 				{
-					if (!(pLoopPlot->isOwned()))
+					if (!(pLoopPlot->isOwned()) && (pLoopPlot->isRevealed(getTeam(), false) || pLoopPlot->isAdjacentRevealed(getTeam())))
 					{
 						if (pLoopPlot->isWater() || (pLoopPlot->area() == pArea) || (pLoopPlot->area()->getCitiesPerPlayer(getID()) > 0))
 						{
@@ -2958,7 +2968,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 				iTeammateTakenTiles++;
 			}
 		}
-		else
+		else if (pLoopPlot->isRevealed(getTeam(), false) || pLoopPlot->isAdjacentRevealed(getTeam()))
 		{
 			iTempValue = 0;
 
@@ -10830,7 +10840,7 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus) const
 								iValue += (iCityCount - 1) * 10;
 								if ((BonusTypes)eBonus == GC.getInfoTypeForString("BONUS_MANA_WATER"))
 								{
-									// AI_countNumOwnedTerrainTypes("TERRAIN_DESERT")
+									iValue += (countNumOwnedTerrainTypes((TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT")) * 5);
 								}
 							}
 
@@ -12427,10 +12437,12 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		
 		iTempValue = ((iCombatValue * iCombatValue) / 75) + (iCombatValue / 2);
 		iValue += iTempValue;
+		/*
 		if (kUnitInfo.isNoDefensiveBonus())
 		{
 			iValue -= iTempValue / 2;
 		}
+		*/
 		if (kUnitInfo.getDropRange() > 0)
 		{
 			iValue -= iTempValue / 2;
@@ -25055,12 +25067,15 @@ void CvPlayerAI::AI_doAdvancedStart(bool bNoExit)
 							//Mildly maphackery but any smart human can see the terrain type of a tile.
 							pLoopPlot2->getTerrainType();
 							int iFoodYield = GC.getTerrainInfo(pLoopPlot2->getTerrainType()).getYield(YIELD_FOOD);
-//FlavourMod: Added by Jean Elcard 03/18/2009 (Civilization Terrain Yield Changes)
-							if (GC.getTerrainInfo(pLoopPlot2->getTerrainType()).getCivilizationYieldType() == getCivilizationType())
-							{
-								iFoodYield += GC.getTerrainInfo(pLoopPlot2->getTerrainType()).getCivilizationYieldChange(YIELD_FOOD);
-							}
-//FlavourMod: End Add
+/*************************************************************************************************/
+/**	CivPlotMods								03/23/09								Jean Elcard	**/
+/**																								**/
+/**			Consider Civilization-specific Terrain Yield Modifications for Advanced Starts.		**/
+/*************************************************************************************************/
+							iFoodYield += GC.getCivilizationInfo(getCivilizationType()).getTerrainYieldChanges(pLoopPlot2->getTerrainType(), YIELD_FOOD, pLoopPlot2->isRiver());
+/*************************************************************************************************/
+/**	CivPlotMods								END													**/
+/*************************************************************************************************/
 							if (pLoopPlot2->getFeatureType() != NO_FEATURE)
 							{
 								iFoodYield += GC.getFeatureInfo(pLoopPlot2->getFeatureType()).getYieldChange(YIELD_FOOD);
@@ -25975,14 +25990,14 @@ int CvPlayerAI::AI_getAttitudeWeight(PlayerTypes ePlayer) const
 int CvPlayerAI::AI_getPlotAirbaseValue(CvPlot* pPlot) const
 {
 	PROFILE_FUNC();
-	
+
 	FAssert(pPlot != NULL);
-	
+
 	if (pPlot->getTeam() != getTeam())
 	{
 		return 0;
 	}
-	
+
 	if (pPlot->isCityRadius())
 	{
 		CvCity* pWorkingCity = pPlot->getWorkingCity();
@@ -26002,7 +26017,7 @@ int CvPlayerAI::AI_getPlotAirbaseValue(CvPlot* pPlot) const
 			}
 		}
 	}
-	
+
 	int iMinOtherCityDistance = MAX_INT;
 	CvPlot* iMinOtherCityPlot = NULL;
 	// Super Forts begin *choke* *canal* - commenting out unnecessary code
@@ -26010,7 +26025,7 @@ int CvPlayerAI::AI_getPlotAirbaseValue(CvPlot* pPlot) const
 //	CvPlot* iMinFriendlyCityPlot = NULL;
 	
 	int iOtherCityCount = 0;
-	
+
 	int iRange = 4;
 	for (int iX = -iRange; iX <= iRange; iX++)
 	{
@@ -26020,7 +26035,7 @@ int CvPlayerAI::AI_getPlotAirbaseValue(CvPlot* pPlot) const
 			if ((pLoopPlot != NULL) && (pPlot != pLoopPlot))
 			{
 				int iDistance = plotDistance(pPlot->getX_INLINE(), pPlot->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
-				
+
 				if (pLoopPlot->getTeam() == getTeam())
 				{
 					if (pLoopPlot->isCity(true))
@@ -26057,12 +26072,12 @@ int CvPlayerAI::AI_getPlotAirbaseValue(CvPlot* pPlot) const
 			}
 		}
 	}
-	
+
 	if (0 == iOtherCityCount)
 	{
 		return 0;
 	}
-	
+
 //	if (iMinFriendlyCityPlot != NULL)
 //	{
 //		FAssert(iMinOtherCityPlot != NULL);
@@ -26101,7 +26116,7 @@ int CvPlayerAI::AI_getPlotAirbaseValue(CvPlot* pPlot) const
 int CvPlayerAI::AI_getPlotCanalValue(CvPlot* pPlot) const
 {
 	PROFILE_FUNC();
-	
+
 	FAssert(pPlot != NULL);
 
 	// Super Forts begin *canal*
