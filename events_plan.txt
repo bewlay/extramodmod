@@ -18,6 +18,9 @@ TODO: World announcements and Unit Names whenever it makes sense.
 TODO: obsolete Techs?
 TODO: look over suppression of some help text when requirement is not met
 
+Vanilla events TODO:
+	- Should state effects
+
 Gela:
 [SPOILER]
 Trigger: One of your units takes Gela
