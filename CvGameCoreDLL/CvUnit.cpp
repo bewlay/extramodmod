@@ -15240,6 +15240,7 @@ void CvUnit::getDefenderCombatValues(CvUnit& kDefender, const CvPlot* pPlot, int
 	iTheirDamage = std::max(1, ((GC.getDefineINT("COMBAT_DAMAGE") * (iOurFirepower + iStrengthFactor)) / (iTheirFirepower + iStrengthFactor)));
 }
 
+// bCheckPlot is always true or CvGameCoreUtils::isPlotEventTrigger(eTrigger), except the call from CvPlot::canTrigger() itself
 int CvUnit::getTriggerValue(EventTriggerTypes eTrigger, const CvPlot* pPlot, bool bCheckPlot) const
 {
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eTrigger);

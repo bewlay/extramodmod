@@ -795,7 +795,6 @@
 		</EventInfo>
 		<EventInfo><!-- CITY_RUINS_3 -->
 			<Type>EVENT_CITY_RUINS_3</Type>
-			<Description>TXT_KEY_EVENT_CITY_RUINS_3</Description>
 			<TechFlavors>
 				<TechFlavor>
 					<FlavorType>FLAVOR_MILITARY</FlavorType>

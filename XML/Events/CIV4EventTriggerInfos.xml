@@ -2722,8 +2722,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>500</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iAngry>-1</iAngry>
-			<iUnhealthy>-1</iUnhealthy>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>-1</iPlotType>
