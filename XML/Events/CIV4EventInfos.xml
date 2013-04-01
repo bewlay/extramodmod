@@ -2076,7 +2076,6 @@
 		</EventInfo>
 		<EventInfo><!-- HORTICULTURE_3 -->
 			<Type>EVENT_HORTICULTURE_3</Type>
-			<Description>TXT_KEY_NEWS_EVENT_HORTICULTURE_3</Description>
 			<bPickCity>1</bPickCity>
 			<iHealth>3</iHealth>
 			<FreeSpecialistCounts>
