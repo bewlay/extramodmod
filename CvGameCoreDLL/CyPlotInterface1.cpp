@@ -283,5 +283,12 @@ void CyPlotPythonInterface1(python::class_<CyPlot>& x)
 		.def("setTempTerrainType", &CyPlot::setTempTerrainType, "void (TerrainTypes eNewValue, int iTimer)")
 		.def("isVisibleToCivTeam", &CyPlot::isVisibleToCivTeam, "bool ()")
 //FfH: End Add
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+		.def("calcTerrainFlavourWeight", &CyPlot::calcTerrainFlavourWeight, "float (TerrainFlavourTypes eTerrainFlavour, int iMaxPlotDistance)")
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 	;
 }

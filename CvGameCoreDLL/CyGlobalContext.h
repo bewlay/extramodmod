@@ -43,6 +43,13 @@ public:
 	CvBonusClassInfo* getBonusClassInfo(int i) const;
 	CvBonusInfo* getBonusInfo(int i) const;
 	CvFeatureInfo* getFeatureInfo(int i) const;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	CvTerrainFlavourInfo* getTerrainFlavourInfo(int i) const;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 	CvCivilizationInfo* getCivilizationInfo(int idx) const;
 	CvLeaderHeadInfo* getLeaderHeadInfo(int i) const;
 	CvTraitInfo* getTraitInfo(int i) const;
@@ -163,6 +170,13 @@ public:
 	int getNumSpecialBuildingInfos() const { return GC.getNumSpecialBuildingInfos(); }
 	int getNumBonusInfos() const { return GC.getNumBonusInfos(); };
 	int getNumPlayableCivilizationInfos() const { return GC.getNumPlayableCivilizationInfos(); }
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	int getNumTerrainFlavourInfos() const { return GC.getNumTerrainFlavourInfos(); }
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 	int getNumCivilizatonInfos() const { return GC.getNumCivilizationInfos(); }
 	int getNumLeaderHeadInfos() const { return GC.getNumLeaderHeadInfos(); }
 	int getNumTraitInfos() const { return GC.getNumTraitInfos(); }

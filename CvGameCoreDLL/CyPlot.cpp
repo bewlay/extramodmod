@@ -1152,3 +1152,14 @@ bool CyPlot::isVisibleToCivTeam() const
 	return m_pPlot ? m_pPlot->isVisibleToCivTeam() : false;
 }
 //FfH: End Add
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+float CyPlot::calcTerrainFlavourWeight( /*TerrainFlavourTypes*/ int eTerrainFlavour, int iMaxPlotDistance )
+{
+	return m_pPlot ? m_pPlot->calcTerrainFlavourWeight( (TerrainFlavourTypes) eTerrainFlavour, iMaxPlotDistance ) : 0;
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/

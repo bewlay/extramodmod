@@ -131,6 +131,17 @@ CvFeatureInfo* CyGlobalContext::getFeatureInfo(int i) const
 	return (i>=0 && i<GC.getNumFeatureInfos()) ? &GC.getFeatureInfo((FeatureTypes) i) : NULL;
 }
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+CvTerrainFlavourInfo* CyGlobalContext::getTerrainFlavourInfo(int i) const
+{
+	return (i>=0 && i<GC.getNumTerrainFlavourInfos()) ? &GC.getTerrainFlavourInfo((TerrainFlavourTypes) i) : NULL;
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
 CvCivilizationInfo* CyGlobalContext::getCivilizationInfo(int i) const
 {
 	return (i>=0 && i<GC.getNumCivilizationInfos()) ? &GC.getCivilizationInfo((CivilizationTypes) i) : NULL;

@@ -393,6 +393,25 @@ class CvEventManager:
 		else:
 			introMovie = CvIntroMovieScreen.CvIntroMovieScreen()
 			introMovie.interfaceScreen()
+		
+		# TERRAIN_FLAVOUR_TEST lfgr
+#		for iPlot in range( CyMap().numPlots() ) :
+#			pPlot = CyMap().plotByIndex( iPlot )
+#			
+#			if( not pPlot.isPeak() and not pPlot.isWater() ) :
+#				fBestWeight = -1000000
+#				eBestTerrainFlavour = -1
+#				for eTerrainFlavour in range( gc.getNumTerrainFlavourInfos() ) :
+#					fWeight = pPlot.calcTerrainFlavourWeight( eTerrainFlavour, 2 )
+#					if( fWeight > fBestWeight ) :
+#						fBestWeight = fWeight
+#						eBestTerrainFlavour = eTerrainFlavour
+#				
+#				if( eBestTerrainFlavour != -1 ) :
+#					str = gc.getTerrainFlavourInfo( eBestTerrainFlavour ).getType()
+#					str = str[len("FLAVOUR_CIV_"):]
+#					CyEngine().addLandmark( pPlot, str )
+		# TERRAIN_FLAVOUR_TEST end
 
 		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_THAW):
 			iDesert = gc.getInfoTypeForString('TERRAIN_DESERT')

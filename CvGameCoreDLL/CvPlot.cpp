@@ -48,6 +48,9 @@ std::set<ImprovementTypes> CvPlot::c_aePirateCoveTypes;
 /**	END	                                        												**/
 /*************************************************************************************************/
 
+// TERRAIN_FLAVOUR_TEST
+#include "BetterBTSAI.h"
+// TERRAIN_FLAVOUR_TEST end
 
 // Public Functions...
 
@@ -12301,3 +12304,219 @@ bool CvPlot::isLair(bool bIgnoreIsAnimal, bool bAnimal) const
 	}
 	return false;
 }
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+
+// LFGR_TODO expose to python
+float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int iMaxPlotDistance )
+{
+	// LFGR_TODO: distance
+
+	// Get city terrain, feature and improvement amounts
+	float *afPlotAmount = new float[NUM_PLOT_TYPES];
+	for( int i = 0; i < NUM_PLOT_TYPES; i++ )
+		afPlotAmount[i] = 0;
+
+	float *afTerrainAmount = new float[GC.getNumTerrainInfos()];
+	for( int i = 0; i < GC.getNumTerrainInfos(); i++ )
+		afTerrainAmount[i] = 0;
+
+	float *afFeatureAmount = new float[GC.getNumFeatureInfos()];
+	for( int i = 0; i < GC.getNumFeatureInfos(); i++ )
+		afFeatureAmount[i] = 0;
+	
+	float *afYieldAmount = new float[NUM_YIELD_TYPES];
+	for( int i = 0; i < NUM_YIELD_TYPES; i++ )
+		afYieldAmount[i] = 0;
+	
+	bool *abImprovementAvailable = new bool[GC.getNumImprovementInfos()];
+	for( int i = 0; i < GC.getNumImprovementInfos(); i++ )
+		abImprovementAvailable[i] = false;
+
+	bool *abBonusAvailable = new bool[GC.getNumBonusInfos()];
+	for( int i = 0; i < GC.getNumBonusInfos(); i++ )
+		abBonusAvailable[i] = false;
+
+	// Used for normalization
+	float fTotalWeight = 0;
+	
+//	logBBAI( "\tGet surrounding Terrain" );
+	for( int iChangeX = -iMaxPlotDistance; iChangeX < iMaxPlotDistance; iChangeX++ )
+		for( int iChangeY = -iMaxPlotDistance; iChangeY < iMaxPlotDistance; iChangeY++ )
+		{
+			int iX = getX_INLINE() + iChangeX;
+			int iY = getY_INLINE() + iChangeY;
+	
+			if( iX < 0 || iY < 0 || iX >= GC.getMapINLINE().getGridWidthINLINE() || iY >= GC.getMapINLINE().getGridHeightINLINE() )
+				continue;
+
+			float fPlotDistance = sqrt( (float) iChangeX * iChangeX + iChangeY * iChangeY );
+			if( fPlotDistance <= iMaxPlotDistance )
+			{
+				CvPlot* pPlot = GC.getMapINLINE().plot( iX, iY );
+
+				// LFGR_TODO: cache?
+				// fWeight(fPlotDistance=0) == 2 * fWeight(fPlotDistance=iMaxPlotDistance)
+				float fWeight = iMaxPlotDistance - fPlotDistance + iMaxPlotDistance; // +x, else plots at iMaxPlotDistance will have fWeight==0
+				
+				fTotalWeight += fWeight;
+
+				if( pPlot->getPlotType() != NO_PLOT )
+					afPlotAmount[pPlot->getPlotType()] += fWeight;
+
+				// if any pPlot->getYield( x ) > 1, the total yield weight after normalization (/fTotalWeight)
+				// may be > 1.0 (as opposed to all other total weights after normalization)
+				for( int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++ )
+					afYieldAmount[iYield] += fWeight * pPlot->getYield( (YieldTypes) iYield );
+				
+				if( pPlot->getTerrainType() != NO_TERRAIN )
+					if( !pPlot->isPeak() ) // peak counts as "no terrain"
+						afTerrainAmount[pPlot->getTerrainType()] += fWeight;
+
+				if( pPlot->getFeatureType() != NO_FEATURE )
+					afFeatureAmount[pPlot->getFeatureType()] += fWeight;
+
+				// LFGR_TODO: Need a way to take distance and (bonus) count into account
+
+				if( pPlot->getImprovementType() != NO_IMPROVEMENT )
+					abImprovementAvailable[pPlot->getImprovementType()] = true;
+
+				if( pPlot->getBonusType() != NO_BONUS )
+					abBonusAvailable[pPlot->getBonusType()] = true;
+			}
+		}
+	
+	// Normalize, to get a total terrain, total feature and total improvement weight (also counting NO_XXX!) of about 1.0
+	for( int i = 0; i < NUM_PLOT_TYPES; i++ )
+		if( afPlotAmount[i] > 0 )
+		{
+//			logBBAI( "\t\tOrig Weight of PlotType #%d: %f", i, afPlotAmount[i] );
+			afPlotAmount[i] /= fTotalWeight;
+//			logBBAI( "\t\tWeight of PlotType #%d: %f", i, afPlotAmount[i] );
+		}
+	for( int i = 0; i < GC.getNumTerrainInfos(); i++ )
+		if( afTerrainAmount[i] > 0 )
+		{
+//			logBBAI( "\t\tOrig Weight of %s: %f", GC.getTerrainInfo( (TerrainTypes) i ).getType(), afTerrainAmount[i] );
+			afTerrainAmount[i] /= fTotalWeight;
+//			logBBAI( "\t\tWeight of %s: %f", GC.getTerrainInfo( (TerrainTypes) i ).getType(), afTerrainAmount[i] );
+		}
+	for( int i = 0; i < GC.getNumFeatureInfos(); i++ )
+		if( afFeatureAmount[i] > 0 )
+		{
+//			logBBAI( "\t\tOrig Weight of %s: %f", GC.getFeatureInfo( (FeatureTypes) i ).getType(), afFeatureAmount[i] );
+			afFeatureAmount[i] /= fTotalWeight;
+//			logBBAI( "\t\tWeight of %s: %f", GC.getFeatureInfo( (FeatureTypes) i ).getType(), afFeatureAmount[i] );
+		}
+	for( int i = 0; i < NUM_YIELD_TYPES; i++ )
+		if( afYieldAmount[i] > 0 )
+		{
+//			logBBAI( "\t\tOrig Weight of YieldType #%d: %f", i, afYieldAmount[i] );
+			afYieldAmount[i] /= fTotalWeight;
+//			logBBAI( "\t\tWeight of YieldType #%d: %f", i, afYieldAmount[i] );
+		}
+	
+	// seperate normalization and below for better reusability
+
+	CvTerrainFlavourInfo &kTerrainFlavour = GC.getTerrainFlavourInfo( eTerrainFlavour );
+
+	// LFGR_TODO: possible loss of data?
+	float fWeight = kTerrainFlavour.getBaseWeight();
+	
+	logBBAI( "\t\tBase Weight: %f", fWeight );
+
+	if( kTerrainFlavour.getCoastalWeight() != 0 )
+	{
+		// check for coastal plot
+		bool bCoastal = false;
+		if ( !isWater() )
+		{
+			for ( int i = 0; i < NUM_DIRECTION_TYPES; i++ )
+			{
+				CvPlot* pAdjacentPlot = plotDirection( getX_INLINE(), getY_INLINE(), ( (DirectionTypes)i ) );
+
+				if (pAdjacentPlot != NULL)
+				{
+					if ( pAdjacentPlot->isWater() && !pAdjacentPlot->isLake() )
+					{
+						bCoastal = true;
+						break;
+					}
+				}
+			}
+		}
+
+		if( bCoastal )
+		{
+			fWeight += kTerrainFlavour.getCoastalWeight();
+			logBBAI( "\t\tAdd %d from Plot being coastal",
+					kTerrainFlavour.getCoastalWeight() );
+		}
+	}
+	
+	for( int i = 0; i < NUM_PLOT_TYPES; i++ )
+		if( kTerrainFlavour.getPlotPercentWeight( i ) != 0 )
+		{
+			fWeight += afPlotAmount[i] *  kTerrainFlavour.getPlotPercentWeight( i );
+			logBBAI( "\t\tAdd %f = %f * %d from Plot #%d",
+					afPlotAmount[i] *  kTerrainFlavour.getPlotPercentWeight( i ),
+					afPlotAmount[i],
+					kTerrainFlavour.getPlotPercentWeight( i ),
+					i );
+		}
+	for( int i = 0; i < GC.getNumTerrainInfos(); i++ )
+		if( kTerrainFlavour.getTerrainPercentWeight( i ) != 0 )
+		{
+			fWeight += afTerrainAmount[i] *  kTerrainFlavour.getTerrainPercentWeight( i );
+			logBBAI( "\t\tAdd %f = %f * %d from Terrain %s",
+					afTerrainAmount[i] *  kTerrainFlavour.getTerrainPercentWeight( i ),
+					afTerrainAmount[i],
+					kTerrainFlavour.getTerrainPercentWeight( i ),
+					GC.getTerrainInfo( (TerrainTypes) i ).getType() );
+		}
+	for( int i = 0; i < GC.getNumFeatureInfos(); i++ )
+		if( kTerrainFlavour.getFeaturePercentWeight( i ) != 0 )
+		{
+			fWeight += afFeatureAmount[i] *  kTerrainFlavour.getFeaturePercentWeight( i );
+			logBBAI( "\t\tAdd %f = %f * %d from Feature %s",
+					afFeatureAmount[i] *  kTerrainFlavour.getFeaturePercentWeight( i ),
+					afFeatureAmount[i], 
+					kTerrainFlavour.getFeaturePercentWeight( i ),
+					GC.getFeatureInfo( (FeatureTypes) i ).getType() );
+		}
+	for( int i = 0; i < NUM_YIELD_TYPES; i++ )
+		if( kTerrainFlavour.getYieldOnPlotPercentWeight( i ) != 0 )
+		{
+			fWeight += afYieldAmount[i] *  kTerrainFlavour.getYieldOnPlotPercentWeight( i );
+			logBBAI( "\t\tAdd %f = %f * %d from Yield %s",
+					afYieldAmount[i] *  kTerrainFlavour.getYieldOnPlotPercentWeight( i ),
+					afYieldAmount[i], 
+					kTerrainFlavour.getYieldOnPlotPercentWeight( i ),
+					GC.getYieldInfo( (YieldTypes) i ).getType() );
+		}
+	for( int i = 0; i < GC.getNumImprovementInfos(); i++ )
+		if( kTerrainFlavour.getImprovementAvailableWeight( i ) != 0 && abImprovementAvailable[i] )
+		{
+			fWeight += kTerrainFlavour.getImprovementAvailableWeight( i );
+			logBBAI( "\t\tAdd %d from Improvement %s",
+					kTerrainFlavour.getImprovementAvailableWeight( i ),
+					GC.getImprovementInfo( (ImprovementTypes) i ).getType() );
+		}
+	for( int i = 0; i < GC.getNumBonusInfos(); i++ )
+		if( kTerrainFlavour.getBonusAvailableWeight( i ) != 0 && abBonusAvailable[i] )
+		{
+			fWeight += kTerrainFlavour.getBonusAvailableWeight( i );
+			logBBAI( "\t\tAdd %d from Bonus %s",
+					kTerrainFlavour.getBonusAvailableWeight( i ),
+					GC.getBonusInfo( (BonusTypes) i ).getType() );
+		}
+
+	logBBAI( "\t\tReturning Weight: %f", fWeight );
+
+	return fWeight;
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/

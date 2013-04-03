@@ -1,0 +1,86 @@
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Alex Mantzaris (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- -->
+<!-- FlavourInfo Schema -->
+<Schema xmlns="urn:schemas-microsoft-com:xml-data" xmlns:dt="urn:schemas-microsoft-com:datatypes">
+	<ElementType name="Type" content="textOnly"/>
+	<ElementType name="iBaseWeight" content="textOnly" dt:type="int"/>
+	<ElementType name="iIsolationPercentWeight" content="textOnly" dt:type="int"/>
+	<ElementType name="iCoastalWeight" content="textOnly" dt:type="int"/>
+	
+	<ElementType name="PlotType" content="textOnly"/>
+	<ElementType name="TerrainType" content="textOnly"/>
+	<ElementType name="FeatureType" content="textOnly"/>
+	<ElementType name="ImprovementType" content="textOnly"/>
+	<ElementType name="BonusType" content="textOnly"/>
+	<ElementType name="YieldType" content="textOnly"/>
+	<ElementType name="iWeight" content="textOnly" dt:type="int"/>
+	
+	<ElementType name="PlotPercentWeight" content="eltOnly">
+		<element type="PlotType" minOccurs="1"/>
+		<element type="iWeight"/>
+	</ElementType>
+	<ElementType name="PlotPercentWeights" content="eltOnly">
+		<element type="PlotPercentWeight" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	
+	<ElementType name="TerrainPercentWeight" content="eltOnly">
+		<element type="TerrainType" minOccurs="1"/>
+		<element type="iWeight"/>
+	</ElementType>
+	<ElementType name="TerrainPercentWeights" content="eltOnly">
+		<element type="TerrainPercentWeight" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	
+	<ElementType name="FeaturePercentWeight" content="eltOnly">
+		<element type="FeatureType" minOccurs="1"/>
+		<element type="iWeight"/>
+	</ElementType>
+	<ElementType name="FeaturePercentWeights" content="eltOnly">
+		<element type="FeaturePercentWeight" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	
+	<ElementType name="ImprovementAvailableWeight" content="eltOnly">
+		<element type="ImprovementType" minOccurs="1"/>
+		<element type="iWeight"/>
+	</ElementType>
+	<ElementType name="ImprovementAvailableWeights" content="eltOnly">
+		<element type="ImprovementAvailableWeight" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	
+	<ElementType name="BonusAvailableWeight" content="eltOnly">
+		<element type="BonusType" minOccurs="1"/>
+		<element type="iWeight"/>
+	</ElementType>
+	<ElementType name="BonusAvailableWeights" content="eltOnly">
+		<element type="BonusAvailableWeight" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	
+	<ElementType name="YieldOnPlotPercentWeight" content="eltOnly">
+		<element type="YieldType" minOccurs="1"/>
+		<element type="iWeight"/>
+	</ElementType>
+	<ElementType name="YieldOnPlotPercentWeights" content="eltOnly">
+		<element type="YieldOnPlotPercentWeight" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	
+	<ElementType name="TerrainFlavourInfo" content="eltOnly">
+		<element type="Type"/>
+		<element type="iBaseWeight" minOccurs="0"/>
+		<element type="iIsolationPercentWeight" minOccurs="0"/>
+		<element type="iCoastalWeight" minOccurs="0"/>
+		<element type="PlotPercentWeights" minOccurs="0"/>
+		<element type="TerrainPercentWeights" minOccurs="0"/>
+		<element type="FeaturePercentWeights" minOccurs="0"/>
+		<element type="ImprovementAvailableWeights" minOccurs="0"/>
+		<element type="BonusAvailableWeights" minOccurs="0"/>
+		<element type="YieldOnPlotPercentWeights" minOccurs="0"/>
+	</ElementType>
+	<ElementType name="TerrainFlavourInfos" content="eltOnly">
+		<element type="TerrainFlavourInfo" minOccurs="1" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="Civ4TerrainFlavourInfos" content="eltOnly">
+		<element type="TerrainFlavourInfos" minOccurs="1" maxOccurs="1"/>
+	</ElementType>
+</Schema>

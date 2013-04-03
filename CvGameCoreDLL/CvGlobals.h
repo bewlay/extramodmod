@@ -66,6 +66,13 @@ class CvTerrainInfo;
 class CvBonusClassInfo;
 class CvBonusInfo;
 class CvFeatureInfo;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+class CvTerrainFlavourInfo;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 class CvCivilizationInfo;
 class CvLeaderHeadInfo;
 class CvTraitInfo;
@@ -329,6 +336,16 @@ public:
 	DllExport int getNumFeatureInfos();
 	std::vector<CvFeatureInfo*>& getFeatureInfo();
 	DllExport CvFeatureInfo& getFeatureInfo(FeatureTypes eFeatureNum);
+	
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        02/17/13                                lfgr          */
+/************************************************************************************************/
+	int getNumTerrainFlavourInfos();
+	std::vector<CvTerrainFlavourInfo*>& getTerrainFlavourInfo();
+	CvTerrainFlavourInfo& getTerrainFlavourInfo( TerrainFlavourTypes eTerrainFlavourNum );
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 
 	DllExport int& getNumPlayableCivilizationInfos();
 	DllExport int& getNumAIPlayableCivilizationInfos();
@@ -1033,6 +1050,13 @@ protected:
 	std::vector<CvHandicapInfo*> m_paHandicapInfo;
 	std::vector<CvGameSpeedInfo*> m_paGameSpeedInfo;
 	std::vector<CvTurnTimerInfo*> m_paTurnTimerInfo;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	std::vector<CvTerrainFlavourInfo*> m_paTerrainFlavourInfo;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 	std::vector<CvCivilizationInfo*> m_paCivilizationInfo;
 	int m_iNumPlayableCivilizationInfos;
 	int m_iNumAIPlayableCivilizationInfos;

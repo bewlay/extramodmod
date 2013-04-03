@@ -7497,4 +7497,66 @@ protected:
 	std::string m_szLoading;
 	std::string m_szLoadingSlideshow;
 };
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+
+// LFGR_TODO expose to python
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//  class: CvTerrainFlavourInfo
+//
+//  DESC: LFGR_TODO
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvTerrainFlavourInfo :
+	public CvInfoBase
+{
+	//---------------------------------------PUBLIC INTERFACE---------------------------------
+public:
+
+	CvTerrainFlavourInfo();
+	virtual ~CvTerrainFlavourInfo();
+	
+	// ints
+	int getBaseWeight() const;
+	int getIsolationPercentWeight() const;
+	int getCoastalWeight() const;
+
+	// Arrays
+	int getPlotPercentWeight( int ePlotType ) const;
+	int getTerrainPercentWeight( int eTerrain ) const;
+	int getFeaturePercentWeight( int eFeature ) const;
+	int getImprovementAvailableWeight( int eImprovement ) const;
+	int getBonusAvailableWeight( int eBonus ) const;
+	int getYieldOnPlotPercentWeight( int eYield ) const;
+
+	bool read(CvXMLLoadUtility* pXML);
+	DllExport void read(FDataStreamBase* stream);
+	DllExport void write(FDataStreamBase* stream);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+
+protected:
+	
+	// ints
+	int m_iBaseWeight;
+	int m_iIsolationPercentWeight;
+	int m_iCoastalWeight;
+
+	// Arrays
+	int* m_piPlotPercentWeight;
+	int* m_piTerrainPercentWeight;
+	int* m_piFeaturePercentWeight;
+	int* m_piImprovementAvailableWeight;
+	int* m_piBonusAvailableWeight;
+	int* m_piYieldOnPlotPercentWeight;
+};
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
 #endif

@@ -627,6 +627,14 @@ public:
 	bool isFeatureRemove(BuildTypes eBuild) const;
 //<<<<Unofficial Bug Fix: End Add
 	bool isLair(bool bIgnoreIsAnimal = true, bool bAnimal = false) const;
+	
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	float calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int iMaxPlotDistance ); // exposed to python
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);

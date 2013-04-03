@@ -2404,6 +2404,34 @@ CvCity* CvPlayer::initCity(int iX, int iY, bool bBumpUnits, bool bUpdatePlotGrou
 
 	pCity->init(pCity->getID(), getID(), iX, iY, bBumpUnits, bUpdatePlotGroups);
 
+	// TERRAIN_FLAVOUR_TEST lfgr
+	/*
+	logBBAI( "Test TerrainFlavour" );
+	
+	float fBestWeight = -1000000;
+	TerrainFlavourTypes eBestTerrainFlavour = NO_TERRAIN_FLAVOUR;
+	for( int i = 0; i < GC.getNumTerrainFlavourInfos(); i++ )
+	{
+		logBBAI( "\tCalc TerrainTerrainFlavour for %s", GC.getTerrainFlavourInfo( (TerrainFlavourTypes) i ).getType() );
+		float fWeight = pCity->plot()->calcTerrainFlavourWeight( (TerrainFlavourTypes) i, isSprawling() ? 3 : 2 );
+
+		if( fWeight > fBestWeight )
+		{
+			eBestTerrainFlavour = (TerrainFlavourTypes) i;
+			fBestWeight = fWeight;
+		}
+	}
+	if( eBestTerrainFlavour != NO_TERRAIN_FLAVOUR )
+		logBBAI( "Best Plot TerrainFlavour: %s\n", GC.getTerrainFlavourInfo( eBestTerrainFlavour ).getType() );
+
+//	szString.append( "Best Plot Flavour: " );
+//	szString.append( GC.getFlavourInfo( eBestFlavour ).getType() );
+//	szString.append( "\n" );
+	
+	//pCity->plot()->calcFlavourWeight( (FlavourTypes) 0, 3 );
+	*/
+	// TERRAIN_FLAVOUR_TEST end
+
 	return pCity;
 }
 

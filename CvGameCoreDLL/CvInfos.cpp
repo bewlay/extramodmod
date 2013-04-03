@@ -27465,3 +27465,309 @@ bool CvMainMenuInfo::read(CvXMLLoadUtility* pXML)
 
 	return true;
 }
+
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+
+//======================================================================================================
+//					CvTerrainFlavourInfo
+//======================================================================================================
+
+CvTerrainFlavourInfo::CvTerrainFlavourInfo():
+m_iBaseWeight(0),
+m_iIsolationPercentWeight(0),
+m_iCoastalWeight(0),
+m_piPlotPercentWeight(NULL),
+m_piTerrainPercentWeight(NULL),
+m_piFeaturePercentWeight(NULL),
+m_piImprovementAvailableWeight(NULL),
+m_piBonusAvailableWeight(NULL),
+m_piYieldOnPlotPercentWeight(NULL)
+{
+}
+
+CvTerrainFlavourInfo::~CvTerrainFlavourInfo()
+{
+	SAFE_DELETE_ARRAY(m_piPlotPercentWeight);
+	SAFE_DELETE_ARRAY(m_piTerrainPercentWeight);
+	SAFE_DELETE_ARRAY(m_piFeaturePercentWeight);
+	SAFE_DELETE_ARRAY(m_piImprovementAvailableWeight);
+	SAFE_DELETE_ARRAY(m_piBonusAvailableWeight);
+	SAFE_DELETE_ARRAY(m_piYieldOnPlotPercentWeight);
+}
+
+//ints
+
+int CvTerrainFlavourInfo::getBaseWeight() const
+{
+	return m_iBaseWeight;
+}
+
+int CvTerrainFlavourInfo::getIsolationPercentWeight() const
+{
+	return m_iIsolationPercentWeight;
+}
+
+int CvTerrainFlavourInfo::getCoastalWeight() const
+{
+	return m_iCoastalWeight;
+}
+
+// Arrays
+
+int CvTerrainFlavourInfo::getPlotPercentWeight( int ePlotType ) const
+{
+	FAssertMsg( ePlotType < NUM_PLOT_TYPES, "Index out of bounds" );
+	FAssertMsg( ePlotType > -1, "Index out of bounds" );
+	return m_piPlotPercentWeight ? m_piPlotPercentWeight[ePlotType] : -1;
+}
+
+int CvTerrainFlavourInfo::getTerrainPercentWeight( int eTerrain ) const
+{
+	FAssertMsg( eTerrain < GC.getNumTerrainInfos(), "Index out of bounds" );
+	FAssertMsg( eTerrain > -1, "Index out of bounds" );
+	return m_piTerrainPercentWeight ? m_piTerrainPercentWeight[eTerrain] : -1;
+}
+
+int CvTerrainFlavourInfo::getFeaturePercentWeight( int eFeature ) const
+{
+	FAssertMsg( eFeature < GC.getNumFeatureInfos(), "Index out of bounds" );
+	FAssertMsg( eFeature > -1, "Index out of bounds" );
+	return m_piFeaturePercentWeight ? m_piFeaturePercentWeight[eFeature] : -1;
+}
+
+int CvTerrainFlavourInfo::getImprovementAvailableWeight( int eImprovement ) const
+{
+	FAssertMsg( eImprovement < GC.getNumImprovementInfos(), "Index out of bounds" );
+	FAssertMsg( eImprovement > -1, "Index out of bounds" );
+	return m_piImprovementAvailableWeight ? m_piImprovementAvailableWeight[eImprovement] : -1;
+}
+
+int CvTerrainFlavourInfo::getBonusAvailableWeight( int eBonus ) const
+{
+	FAssertMsg( eBonus < GC.getNumBonusInfos(), "Index out of bounds" );
+	FAssertMsg( eBonus > -1, "Index out of bounds" );
+	return m_piBonusAvailableWeight ? m_piBonusAvailableWeight[eBonus] : -1;
+}
+
+int CvTerrainFlavourInfo::getYieldOnPlotPercentWeight( int eYield ) const
+{
+	FAssertMsg( eYield < NUM_YIELD_TYPES, "Index out of bounds" );
+	FAssertMsg( eYield > -1, "Index out of bounds" );
+	return m_piYieldOnPlotPercentWeight ? m_piYieldOnPlotPercentWeight[eYield] : -1;
+}
+
+void CvTerrainFlavourInfo::read(FDataStreamBase* stream)
+{
+	CvInfoBase::read(stream);
+
+	// ints
+	stream->Read( &m_iBaseWeight );
+	stream->Read( &m_iIsolationPercentWeight );
+	stream->Read( &m_iCoastalWeight );
+
+	// Arrays
+
+	SAFE_DELETE_ARRAY( m_piPlotPercentWeight );
+	m_piPlotPercentWeight = new int[NUM_PLOT_TYPES];
+	stream->Read( NUM_PLOT_TYPES, m_piPlotPercentWeight );
+
+	SAFE_DELETE_ARRAY( m_piTerrainPercentWeight );
+	m_piTerrainPercentWeight = new int[GC.getNumTerrainInfos()];
+	stream->Read( GC.getNumTerrainInfos(), m_piTerrainPercentWeight );
+
+	SAFE_DELETE_ARRAY( m_piFeaturePercentWeight );
+	m_piFeaturePercentWeight = new int[GC.getNumFeatureInfos()];
+	stream->Read( GC.getNumFeatureInfos(), m_piFeaturePercentWeight );
+	
+	SAFE_DELETE_ARRAY( m_piImprovementAvailableWeight );
+	m_piImprovementAvailableWeight = new int[GC.getNumImprovementInfos()];
+	stream->Read( GC.getNumImprovementInfos(), m_piImprovementAvailableWeight );
+	
+	SAFE_DELETE_ARRAY( m_piBonusAvailableWeight );
+	m_piBonusAvailableWeight = new int[GC.getNumBonusInfos()];
+	stream->Read( GC.getNumBonusInfos(), m_piBonusAvailableWeight );
+	
+	SAFE_DELETE_ARRAY( m_piYieldOnPlotPercentWeight );
+	m_piYieldOnPlotPercentWeight = new int[NUM_YIELD_TYPES];
+	stream->Read( NUM_YIELD_TYPES, m_piYieldOnPlotPercentWeight );
+}
+
+void CvTerrainFlavourInfo::write(FDataStreamBase* stream)
+{
+	CvInfoBase::write(stream);
+	
+	
+	// ints
+	stream->Write( m_iBaseWeight );
+	stream->Write( m_iIsolationPercentWeight );
+	stream->Write( m_iCoastalWeight );
+
+	// Arrays
+	stream->Write( NUM_PLOT_TYPES, m_piPlotPercentWeight );
+	stream->Write( GC.getNumTerrainInfos(), m_piTerrainPercentWeight );
+	stream->Write( GC.getNumFeatureInfos(), m_piFeaturePercentWeight );
+	stream->Write( GC.getNumImprovementInfos(), m_piImprovementAvailableWeight );
+	stream->Write( GC.getNumBonusInfos(), m_piBonusAvailableWeight );
+	stream->Write( NUM_YIELD_TYPES, m_piYieldOnPlotPercentWeight );
+}
+
+bool CvTerrainFlavourInfo::read(CvXMLLoadUtility* pXML)
+{
+	//char szClassVal[256];					// holds the text value of the relevant classinfo
+
+	// same var name is used below
+	//CvString szTextVal;
+
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+
+	// ints
+	
+	pXML->GetChildXmlValByName( &m_iBaseWeight, "iBaseWeight" );
+	pXML->GetChildXmlValByName( &m_iIsolationPercentWeight, "iIsolationPercentWeight" );
+	pXML->GetChildXmlValByName( &m_iCoastalWeight, "iCoastalWeight" );
+
+	// Arrays
+
+	pXML->SetVariableListTagPair( &m_piTerrainPercentWeight, "TerrainPercentWeights",
+				sizeof( GC.getTerrainInfo( (TerrainTypes) 0 ) ), GC.getNumTerrainInfos() );
+	pXML->SetVariableListTagPair( &m_piFeaturePercentWeight, "FeaturePercentWeights",
+				sizeof( GC.getFeatureInfo( (FeatureTypes) 0 ) ), GC.getNumFeatureInfos() );
+	pXML->SetVariableListTagPair( &m_piImprovementAvailableWeight, "ImprovementAvailableWeights",
+				sizeof( GC.getImprovementInfo( (ImprovementTypes) 0 ) ), GC.getNumImprovementInfos() );
+	pXML->SetVariableListTagPair( &m_piBonusAvailableWeight, "BonusAvailableWeights",
+				sizeof( GC.getBonusInfo( (BonusTypes) 0 ) ), GC.getNumBonusInfos() );
+
+	// We have no PLOT_TYPES string anywhere, so we have to read manually
+
+	// copied (and modified) from CvXMLLoadUtility::SetVariableListTagPair(int **ppiList, const TCHAR* szRootTagName, int iInfoBaseSize, int iInfoBaseLength, int iDefaultListVal)
+	//;
+	int iIndexVal;
+	int iNumSibs;
+	TCHAR szTextVal[256];
+
+	pXML->InitList( &m_piPlotPercentWeight, NUM_PLOT_TYPES, 0 );
+
+	if ( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "PlotPercentWeights" ) )
+	{
+		if ( pXML->SkipToNextVal() )
+		{
+			iNumSibs = gDLL->getXMLIFace()->GetNumChildren( pXML->GetXML() );
+
+			if (0 < iNumSibs)
+			{
+				if( !( iNumSibs <= NUM_PLOT_TYPES ) )
+				{
+					char	szMessage[1024];
+					sprintf( szMessage, "There are more siblings than memory allocated for them in CvFlavourInfo::SetVariableListTagPair \n Current XML file is: %s", GC.getCurrentXMLFile().GetCString());
+					gDLL->MessageBox(szMessage, "XML Error");
+				}
+				if ( gDLL->getXMLIFace()->SetToChild( pXML->GetXML() ) )
+				{
+					for ( int i = 0; i < iNumSibs; i++ )
+					{
+						if ( pXML->GetChildXmlVal( szTextVal ) )
+						{
+							iIndexVal = -1;
+
+							// LFGR_TODO: should have defines for this
+
+							if( strcmp ( szTextVal, "PLOT_PEAK") == 0 )
+								iIndexVal = PLOT_PEAK;
+							else if( strcmp ( szTextVal, "PLOT_HILLS") == 0 )
+								iIndexVal = PLOT_HILLS;
+							else if( strcmp ( szTextVal, "PLOT_LAND") == 0 )
+								iIndexVal = PLOT_LAND;
+							else if( strcmp ( szTextVal, "PLOT_OCEAN") == 0 )
+								iIndexVal = PLOT_OCEAN;
+
+							if (iIndexVal != -1)
+							{
+								pXML->GetNextXmlVal(&m_piPlotPercentWeight[iIndexVal]);
+							}
+
+							gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+						}
+
+						if ( !gDLL->getXMLIFace()->NextSibling( pXML->GetXML() ) )
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+	}
+	
+	// same with yield
+	
+	pXML->InitList( &m_piYieldOnPlotPercentWeight, NUM_YIELD_TYPES, 0 );
+
+	if ( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "YieldOnPlotPercentWeights" ) )
+	{
+		if ( pXML->SkipToNextVal() )
+		{
+			iNumSibs = gDLL->getXMLIFace()->GetNumChildren( pXML->GetXML() );
+
+			if (0 < iNumSibs)
+			{
+				if( !( iNumSibs <= NUM_YIELD_TYPES ) )
+				{
+					char	szMessage[1024];
+					sprintf( szMessage, "There are more siblings than memory allocated for them in CvFlavourInfo::SetVariableListTagPair \n Current XML file is: %s", GC.getCurrentXMLFile().GetCString());
+					gDLL->MessageBox(szMessage, "XML Error");
+				}
+				if ( gDLL->getXMLIFace()->SetToChild( pXML->GetXML() ) )
+				{
+					for ( int i = 0; i < iNumSibs; i++ )
+					{
+						if ( pXML->GetChildXmlVal( szTextVal ) )
+						{
+							iIndexVal = -1;
+
+							// LFGR_TODO: should have defines for this
+
+							if( strcmp( szTextVal, "YIELD_FOOD" ) == 0 )
+								iIndexVal = YIELD_FOOD;
+							else if( strcmp( szTextVal, "YIELD_PRODUCTION" ) == 0 )
+								iIndexVal = YIELD_PRODUCTION;
+							else if( strcmp( szTextVal, "YIELD_COMMERCE" ) == 0 )
+								iIndexVal = YIELD_COMMERCE;
+
+							if (iIndexVal != -1)
+							{
+								pXML->GetNextXmlVal(&m_piYieldOnPlotPercentWeight[iIndexVal]);
+							}
+
+							gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+						}
+
+						if ( !gDLL->getXMLIFace()->NextSibling( pXML->GetXML() ) )
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+	}
+	
+
+	return true;
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
