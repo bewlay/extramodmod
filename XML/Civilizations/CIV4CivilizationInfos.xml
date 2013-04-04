@@ -198,6 +198,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_AMURITES</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_BALSERAPHS</Type>
@@ -337,6 +338,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_BALSERAPHS</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_BANNOR</Type>
@@ -449,6 +451,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_BANNOR</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_CALABIM</Type>
@@ -600,6 +603,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_CALABIM</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_CLAN_OF_EMBERS</Type>
@@ -789,6 +793,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_CLAN_OF_EMBERS</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_DOVIELLO</Type>
@@ -961,6 +966,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_DOVIELLO</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_ELOHIM</Type>
@@ -1080,6 +1086,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_ELOHIM</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_GRIGORI</Type>
@@ -1233,6 +1240,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_GRIGORI</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_HIPPUS</Type>
@@ -1359,6 +1367,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_HIPPUS</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_ILLIANS</Type>
@@ -1483,6 +1492,7 @@
 					</TerrainRiverYields>
 				</TerrainYieldChange>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_ILLIANS</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_INFERNAL</Type>
@@ -1810,6 +1820,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_KHAZAD</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_KURIOTATES</Type>
@@ -1952,6 +1963,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_KURIOTATES</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_LANUN</Type>
@@ -2075,6 +2087,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_LANUN</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_LJOSALFAR</Type>
@@ -2237,6 +2250,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_LJOSALFAR</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_LUCHUIRP</Type>
@@ -2423,6 +2437,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_LUCHUIRP</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_MALAKIM</Type>
@@ -2550,6 +2565,7 @@
 					</TerrainYields>
 				</TerrainYieldChange>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_MALAKIM</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_MERCURIANS</Type>
@@ -2821,6 +2837,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_SHEAIM</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_SIDAR</Type>
@@ -2932,6 +2949,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_SIDAR</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_SVARTALFAR</Type>
@@ -3092,6 +3110,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>FLAVOUR_CIV_SVARTALFAR</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_MINOR</Type>

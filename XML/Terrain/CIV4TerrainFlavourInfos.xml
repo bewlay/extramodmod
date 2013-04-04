@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CivFlavourInfos -->
-<!-- Flavour for MNAI by lfgr -->
+<!-- TERRAIN_FLAVOUR 03/2013 lfgr -->
 <!-- Inspiration, some values and some code taken from RifE/FlavourMod (Jean Elcard and others) -->
 <Civ4TerrainFlavourInfos xmlns="x-schema:CIV4TerrainFlavourSchema.xml">
 	<TerrainFlavourInfos>

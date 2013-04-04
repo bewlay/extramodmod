@@ -566,6 +566,9 @@
 	<ElementType name="TerrainYieldChanges" content="eltOnly">
 		<element type="TerrainYieldChange" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+<!-- TERRAIN_FLAVOUR 03/2013 lfgr -->
+	<ElementType name="TerrainFlavour" content="textOnly"/>
+<!-- TERRAIN_FLAVOUR end -->
 	<ElementType name="CivilizationInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description" minOccurs="0"/>
@@ -597,6 +600,9 @@
 		<element type="Help" minOccurs="0"/>
 		<element type="Hero" minOccurs="0"/>
 		<element type="MaintainFeatures" minOccurs="0"/>
+<!-- TERRAIN_FLAVOUR 03/2013 lfgr -->
+		<element type="TerrainFlavour" minOccurs="0"/>
+<!-- TERRAIN_FLAVOUR end -->
 	</ElementType>
 	<ElementType name="CivilizationInfos" content="eltOnly">
 		<element type="CivilizationInfo" maxOccurs="*"/>
