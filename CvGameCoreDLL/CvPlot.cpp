@@ -12310,9 +12310,19 @@ bool CvPlot::isLair(bool bIgnoreIsAnimal, bool bAnimal) const
 /************************************************************************************************/
 
 // LFGR_TODO expose to python
-float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int iMaxPlotDistance )
+float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int iRadius )
 {
-	// LFGR_TODO: distance
+	// LFGR_TODO: distance from other starting locations
+
+	if( iRadius == -1 )
+	{
+		float fMapSize = ( GC.getMapINLINE().getGridWidthINLINE() + GC.getMapINLINE().getGridHeightINLINE() ) / 2.0f;
+		iRadius = (int) ( fMapSize / 12 + 0.5 );
+		if( iRadius < 2 )
+			iRadius = 2;
+		else if( iRadius > 6 )
+			iRadius = 6;
+	}
 
 	// Get city terrain, feature and improvement amounts
 	float *afPlotAmount = new float[NUM_PLOT_TYPES];
@@ -12343,8 +12353,8 @@ float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int
 	float fTotalWeight = 0;
 	
 //	logBBAI( "\tGet surrounding Terrain" );
-	for( int iChangeX = -iMaxPlotDistance; iChangeX < iMaxPlotDistance; iChangeX++ )
-		for( int iChangeY = -iMaxPlotDistance; iChangeY < iMaxPlotDistance; iChangeY++ )
+	for( int iChangeX = -iRadius; iChangeX <= iRadius; iChangeX++ )
+		for( int iChangeY = -iRadius; iChangeY <= iRadius; iChangeY++ )
 		{
 			int iX = getX_INLINE() + iChangeX;
 			int iY = getY_INLINE() + iChangeY;
@@ -12353,13 +12363,17 @@ float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int
 				continue;
 
 			float fPlotDistance = sqrt( (float) iChangeX * iChangeX + iChangeY * iChangeY );
-			if( fPlotDistance <= iMaxPlotDistance )
+			if( fPlotDistance <= iRadius + 0.5 )
 			{
 				CvPlot* pPlot = GC.getMapINLINE().plot( iX, iY );
 
 				// LFGR_TODO: cache?
-				// fWeight(fPlotDistance=0) == 2 * fWeight(fPlotDistance=iMaxPlotDistance)
-				float fWeight = iMaxPlotDistance - fPlotDistance + iMaxPlotDistance; // +x, else plots at iMaxPlotDistance will have fWeight==0
+				
+				// divide by circle perimeter, to avoid that plots farther away just outnumber plots nearer
+				// LFGR_TODO: is the pi unnecessary?
+				float fWeight = 1.0f / ( 1.0f + fPlotDistance * 3.14f );
+
+				logBBAI( "\t\tPlot %d|%d Base Weight: %f", iX, iY, fWeight );
 				
 				fTotalWeight += fWeight;
 

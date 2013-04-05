@@ -631,7 +631,7 @@ public:
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
 /************************************************************************************************/
-	float calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int iMaxPlotDistance ); // exposed to python
+	float calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int iRadius = -1 ); // exposed to python
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                                                                END           */
 /************************************************************************************************/

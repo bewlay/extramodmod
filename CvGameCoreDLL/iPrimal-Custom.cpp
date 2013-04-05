@@ -101,7 +101,6 @@ double getScore( int eAvPlayer, int eAvPlayerStartingPlot )
 	FAssertMsg( getAvailablePlayer( eAvPlayerStartingPlot ).getStartingPlot() != NULL, "player has no starting plot!" );
 
 	TerrainFlavourTypes eTerrainFlavour = (TerrainFlavourTypes) GC.getCivilizationInfo( getAvailablePlayer( eAvPlayer ).getCivilizationType() ).getTerrainFlavour();
-	int iRadius = getAvailablePlayer( eAvPlayer ).isSprawling() ? 3 : 2;
 
-	return getAvailablePlayer( eAvPlayerStartingPlot ).getStartingPlot()->calcTerrainFlavourWeight( eTerrainFlavour, iRadius );
+	return getAvailablePlayer( eAvPlayerStartingPlot ).getStartingPlot()->calcTerrainFlavourWeight( eTerrainFlavour );
 }
