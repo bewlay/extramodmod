@@ -42,20 +42,20 @@
 		<element type="FeaturePercentWeight" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 	
-	<ElementType name="ImprovementAvailableWeight" content="eltOnly">
+	<ElementType name="ImprovementCountWeight" content="eltOnly">
 		<element type="ImprovementType" minOccurs="1"/>
 		<element type="iWeight"/>
 	</ElementType>
-	<ElementType name="ImprovementAvailableWeights" content="eltOnly">
-		<element type="ImprovementAvailableWeight" minOccurs="0" maxOccurs="*"/>
+	<ElementType name="ImprovementCountWeights" content="eltOnly">
+		<element type="ImprovementCountWeight" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 	
-	<ElementType name="BonusAvailableWeight" content="eltOnly">
+	<ElementType name="BonusCountWeight" content="eltOnly">
 		<element type="BonusType" minOccurs="1"/>
 		<element type="iWeight"/>
 	</ElementType>
-	<ElementType name="BonusAvailableWeights" content="eltOnly">
-		<element type="BonusAvailableWeight" minOccurs="0" maxOccurs="*"/>
+	<ElementType name="BonusCountWeights" content="eltOnly">
+		<element type="BonusCountWeight" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 	
 	<ElementType name="YieldOnPlotPercentWeight" content="eltOnly">
@@ -74,8 +74,8 @@
 		<element type="PlotPercentWeights" minOccurs="0"/>
 		<element type="TerrainPercentWeights" minOccurs="0"/>
 		<element type="FeaturePercentWeights" minOccurs="0"/>
-		<element type="ImprovementAvailableWeights" minOccurs="0"/>
-		<element type="BonusAvailableWeights" minOccurs="0"/>
+		<element type="ImprovementCountWeights" minOccurs="0"/>
+		<element type="BonusCountWeights" minOccurs="0"/>
 		<element type="YieldOnPlotPercentWeights" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="TerrainFlavourInfos" content="eltOnly">

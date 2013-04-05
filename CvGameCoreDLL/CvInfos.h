@@ -7546,8 +7546,8 @@ public:
 	int getPlotPercentWeight( int ePlotType ) const;
 	int getTerrainPercentWeight( int eTerrain ) const;
 	int getFeaturePercentWeight( int eFeature ) const;
-	int getImprovementAvailableWeight( int eImprovement ) const;
-	int getBonusAvailableWeight( int eBonus ) const;
+	int getImprovementCountWeight( int eImprovement ) const;
+	int getBonusCountWeight( int eBonus ) const;
 	int getYieldOnPlotPercentWeight( int eYield ) const;
 
 	bool read(CvXMLLoadUtility* pXML);
@@ -7567,8 +7567,8 @@ protected:
 	int* m_piPlotPercentWeight;
 	int* m_piTerrainPercentWeight;
 	int* m_piFeaturePercentWeight;
-	int* m_piImprovementAvailableWeight;
-	int* m_piBonusAvailableWeight;
+	int* m_piImprovementCountWeight;
+	int* m_piBonusCountWeight;
 	int* m_piYieldOnPlotPercentWeight;
 };
 

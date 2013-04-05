@@ -55,26 +55,26 @@
 					<iWeight>100</iWeight>
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_MANA</BonusType>
 					<iWeight>100</iWeight>
-				</BonusAvailableWeight>
-				<BonusAvailableWeight>
+				</BonusCountWeight>
+				<BonusCountWeight>
 					<BonusType>BONUS_GOLD</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-				<BonusAvailableWeight>
+				</BonusCountWeight>
+				<BonusCountWeight>
 					<BonusType>BONUS_PIG</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
-			<ImprovementAvailableWeights>
-				<ImprovementAvailableWeight>
+				</BonusCountWeight>
+			</BonusCountWeights>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_PYRE_OF_THE_SERAPHIC</ImprovementType>
 					<iWeight>400</iWeight>
-				</ImprovementAvailableWeight>
-			</ImprovementAvailableWeights>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
 			<YieldOnPlotPercentWeights>
 				<YieldOnPlotPercentWeight>
 					<YieldType>YIELD_FOOD</YieldType>
@@ -92,60 +92,60 @@
 		</TerrainFlavourInfo-->
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_AMURITES -->
 			<Type>FLAVOUR_CIV_AMURITES</Type>
-			<ImprovementAvailableWeights>
-				<ImprovementAvailableWeight>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_LETUM_FRIGUS</ImprovementType>
 					<iWeight>100</iWeight>
-				</ImprovementAvailableWeight>
-			</ImprovementAvailableWeights>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_MANA</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-				<BonusAvailableWeight>
+				</BonusCountWeight>
+				<BonusCountWeight>
 					<BonusType>BONUS_REAGENTS</BonusType>
 					<iWeight>75</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
+				</BonusCountWeight>
+			</BonusCountWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_BALSERAPHS -->
 			<Type>FLAVOUR_CIV_BALSERAPHS</Type>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_DYE</BonusType>
 					<iWeight>25</iWeight>
-				</BonusAvailableWeight>
-				<BonusAvailableWeight>
+				</BonusCountWeight>
+				<BonusCountWeight>
 					<BonusType>BONUS_SILK</BonusType>
 					<iWeight>25</iWeight>
-				</BonusAvailableWeight>
-				<BonusAvailableWeight>
+				</BonusCountWeight>
+				<BonusCountWeight>
 					<BonusType>BONUS_COTTON</BonusType>
 					<iWeight>25</iWeight>
-				</BonusAvailableWeight>
-				<BonusAvailableWeight>
+				</BonusCountWeight>
+				<BonusCountWeight>
 					<BonusType>BONUS_SHEEP</BonusType>
 					<iWeight>25</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
+				</BonusCountWeight>
+			</BonusCountWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_BANNOR -->
 			<Type>FLAVOUR_CIV_BANNOR</Type>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_COPPER</BonusType>
 					<iWeight>75</iWeight>
-				</BonusAvailableWeight>
-				<BonusAvailableWeight>
+				</BonusCountWeight>
+				<BonusCountWeight>
 					<BonusType>BONUS_IRON</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-				<BonusAvailableWeight>
+				</BonusCountWeight>
+				<BonusCountWeight>
 					<BonusType>BONUS_MITHRIL</BonusType>
 					<iWeight>25</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
+				</BonusCountWeight>
+			</BonusCountWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_CALABIM -->
 			<Type>FLAVOUR_CIV_CALABIM</Type>
@@ -165,18 +165,18 @@
 					<iWeight>150</iWeight>
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
-			<ImprovementAvailableWeights>
-				<ImprovementAvailableWeight>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_PYRE_OF_THE_SERAPHIC</ImprovementType>
 					<iWeight>400</iWeight>
-				</ImprovementAvailableWeight>
-			</ImprovementAvailableWeights>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_COPPER</BonusType>
 					<iWeight>25</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
+				</BonusCountWeight>
+			</BonusCountWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_DOVIELLO -->
 			<Type>FLAVOUR_CIV_DOVIELLO</Type>
@@ -207,70 +207,70 @@
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_ELOHIM -->
 			<Type>FLAVOUR_CIV_ELOHIM</Type>
-			<ImprovementAvailableWeights>
-				<ImprovementAvailableWeight>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_AIFON_ISLE</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-				<ImprovementAvailableWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_BRADELINES_WELL</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-				<ImprovementAvailableWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_DRAGON_BONES</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-				<ImprovementAvailableWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_LETUM_FRIGUS</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-				<ImprovementAvailableWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_MIRROR_OF_HEAVEN</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-				<ImprovementAvailableWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_ODIOS_PRISON</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-				<ImprovementAvailableWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_POOL_OF_TEARS</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-				<ImprovementAvailableWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_PYRE_OF_THE_SERAPHIC</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-				<ImprovementAvailableWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_REMNANTS_OF_PATRIA</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-				<ImprovementAvailableWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_SEVEN_PINES</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-				<ImprovementAvailableWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_STANDING_STONES</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-				<ImprovementAvailableWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_TOMB_OF_SUCELLUS</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-				<ImprovementAvailableWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_YGGDRASIL</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-			</ImprovementAvailableWeights>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_GRIGORI -->
 			<Type>FLAVOUR_CIV_GRIGORI</Type>
 			<iIsolationPercentWeight>100</iIsolationPercentWeight>
-			<ImprovementAvailableWeights>
-				<ImprovementAvailableWeight>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_SEVEN_PINES</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-			</ImprovementAvailableWeights>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_HIPPUS -->
 			<Type>FLAVOUR_CIV_HIPPUS</Type>
@@ -309,12 +309,12 @@
 					<iWeight>-300</iWeight>
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_HORSE</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
+				</BonusCountWeight>
+			</BonusCountWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_ILLIANS -->
 			<Type>FLAVOUR_CIV_ILLIANS</Type>
@@ -334,12 +334,12 @@
 					<iWeight>50</iWeight>
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
-			<ImprovementAvailableWeights>
-				<ImprovementAvailableWeight>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_LETUM_FRIGUS</ImprovementType>
 					<iWeight>600</iWeight>
-				</ImprovementAvailableWeight>
-			</ImprovementAvailableWeights>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_KHAZAD -->
 			<Type>FLAVOUR_CIV_KHAZAD</Type>
@@ -362,16 +362,16 @@
 					<iWeight>-200</iWeight>
 				</PlotPercentWeight>
 			</PlotPercentWeights>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_GOLD</BonusType>
 					<iWeight>75</iWeight>
-				</BonusAvailableWeight>
-				<BonusAvailableWeight>
+				</BonusCountWeight>
+				<BonusCountWeight>
 					<BonusType>BONUS_PIG</BonusType>
 					<iWeight>25</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
+				</BonusCountWeight>
+			</BonusCountWeights>
 			<YieldOnPlotPercentWeights>
 				<YieldOnPlotPercentWeight>
 					<YieldType>YIELD_COMMERCE</YieldType>
@@ -412,12 +412,12 @@
 					<iWeight>200</iWeight>
 				</PlotPercentWeight>
 			</PlotPercentWeights>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_PEARL</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
+				</BonusCountWeight>
+			</BonusCountWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_LJOSALFAR -->
 			<Type>FLAVOUR_CIV_LJOSALFAR</Type>
@@ -433,12 +433,12 @@
 					<iWeight>100</iWeight>
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_DEER</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
+				</BonusCountWeight>
+			</BonusCountWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_LUCHUIRP -->
 			<Type>FLAVOUR_CIV_LUCHUIRP</Type>
@@ -449,20 +449,20 @@
 					<iWeight>100</iWeight>
 				</PlotPercentWeight>
 			</PlotPercentWeights>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_MARBLE</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-				<BonusAvailableWeight>
+				</BonusCountWeight>
+				<BonusCountWeight>
 					<BonusType>BONUS_IVORY</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-				<BonusAvailableWeight>
+				</BonusCountWeight>
+				<BonusCountWeight>
 					<BonusType>BONUS_PIG</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
+				</BonusCountWeight>
+			</BonusCountWeights>
 			<YieldOnPlotPercentWeights>
 				<YieldOnPlotPercentWeight>
 					<YieldType>YIELD_PRODUCTION</YieldType>
@@ -500,31 +500,31 @@
 					<iWeight>-200</iWeight>
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_INCENSE</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
-			<ImprovementAvailableWeights>
-				<ImprovementAvailableWeight>
+				</BonusCountWeight>
+			</BonusCountWeights>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_MIRROR_OF_HEAVEN</ImprovementType>
 					<iWeight>50</iWeight>
-				</ImprovementAvailableWeight>
-			</ImprovementAvailableWeights>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_SHEAIM -->
 			<Type>FLAVOUR_CIV_SHEAIM</Type>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_MANA</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-				<BonusAvailableWeight>
+				</BonusCountWeight>
+				<BonusCountWeight>
 					<BonusType>BONUS_REAGENTS</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
+				</BonusCountWeight>
+			</BonusCountWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- FLAVOUR_CIV_SIDAR -->
 			<Type>FLAVOUR_CIV_SIDAR</Type>
@@ -539,12 +539,12 @@
 					<iWeight>100</iWeight>
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
-			<BonusAvailableWeights>
-				<BonusAvailableWeight>
+			<BonusCountWeights>
+				<BonusCountWeight>
 					<BonusType>BONUS_MANA</BonusType>
 					<iWeight>50</iWeight>
-				</BonusAvailableWeight>
-			</BonusAvailableWeights>
+				</BonusCountWeight>
+			</BonusCountWeights>
 		</TerrainFlavourInfo>
 	</TerrainFlavourInfos>
 </Civ4TerrainFlavourInfos>

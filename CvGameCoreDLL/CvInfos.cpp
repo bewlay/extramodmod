@@ -27523,8 +27523,8 @@ m_iCoastalWeight(0),
 m_piPlotPercentWeight(NULL),
 m_piTerrainPercentWeight(NULL),
 m_piFeaturePercentWeight(NULL),
-m_piImprovementAvailableWeight(NULL),
-m_piBonusAvailableWeight(NULL),
+m_piImprovementCountWeight(NULL),
+m_piBonusCountWeight(NULL),
 m_piYieldOnPlotPercentWeight(NULL)
 {
 }
@@ -27534,8 +27534,8 @@ CvTerrainFlavourInfo::~CvTerrainFlavourInfo()
 	SAFE_DELETE_ARRAY(m_piPlotPercentWeight);
 	SAFE_DELETE_ARRAY(m_piTerrainPercentWeight);
 	SAFE_DELETE_ARRAY(m_piFeaturePercentWeight);
-	SAFE_DELETE_ARRAY(m_piImprovementAvailableWeight);
-	SAFE_DELETE_ARRAY(m_piBonusAvailableWeight);
+	SAFE_DELETE_ARRAY(m_piImprovementCountWeight);
+	SAFE_DELETE_ARRAY(m_piBonusCountWeight);
 	SAFE_DELETE_ARRAY(m_piYieldOnPlotPercentWeight);
 }
 
@@ -27579,18 +27579,18 @@ int CvTerrainFlavourInfo::getFeaturePercentWeight( int eFeature ) const
 	return m_piFeaturePercentWeight ? m_piFeaturePercentWeight[eFeature] : -1;
 }
 
-int CvTerrainFlavourInfo::getImprovementAvailableWeight( int eImprovement ) const
+int CvTerrainFlavourInfo::getImprovementCountWeight( int eImprovement ) const
 {
 	FAssertMsg( eImprovement < GC.getNumImprovementInfos(), "Index out of bounds" );
 	FAssertMsg( eImprovement > -1, "Index out of bounds" );
-	return m_piImprovementAvailableWeight ? m_piImprovementAvailableWeight[eImprovement] : -1;
+	return m_piImprovementCountWeight ? m_piImprovementCountWeight[eImprovement] : -1;
 }
 
-int CvTerrainFlavourInfo::getBonusAvailableWeight( int eBonus ) const
+int CvTerrainFlavourInfo::getBonusCountWeight( int eBonus ) const
 {
 	FAssertMsg( eBonus < GC.getNumBonusInfos(), "Index out of bounds" );
 	FAssertMsg( eBonus > -1, "Index out of bounds" );
-	return m_piBonusAvailableWeight ? m_piBonusAvailableWeight[eBonus] : -1;
+	return m_piBonusCountWeight ? m_piBonusCountWeight[eBonus] : -1;
 }
 
 int CvTerrainFlavourInfo::getYieldOnPlotPercentWeight( int eYield ) const
@@ -27623,13 +27623,13 @@ void CvTerrainFlavourInfo::read(FDataStreamBase* stream)
 	m_piFeaturePercentWeight = new int[GC.getNumFeatureInfos()];
 	stream->Read( GC.getNumFeatureInfos(), m_piFeaturePercentWeight );
 	
-	SAFE_DELETE_ARRAY( m_piImprovementAvailableWeight );
-	m_piImprovementAvailableWeight = new int[GC.getNumImprovementInfos()];
-	stream->Read( GC.getNumImprovementInfos(), m_piImprovementAvailableWeight );
+	SAFE_DELETE_ARRAY( m_piImprovementCountWeight );
+	m_piImprovementCountWeight = new int[GC.getNumImprovementInfos()];
+	stream->Read( GC.getNumImprovementInfos(), m_piImprovementCountWeight );
 	
-	SAFE_DELETE_ARRAY( m_piBonusAvailableWeight );
-	m_piBonusAvailableWeight = new int[GC.getNumBonusInfos()];
-	stream->Read( GC.getNumBonusInfos(), m_piBonusAvailableWeight );
+	SAFE_DELETE_ARRAY( m_piBonusCountWeight );
+	m_piBonusCountWeight = new int[GC.getNumBonusInfos()];
+	stream->Read( GC.getNumBonusInfos(), m_piBonusCountWeight );
 	
 	SAFE_DELETE_ARRAY( m_piYieldOnPlotPercentWeight );
 	m_piYieldOnPlotPercentWeight = new int[NUM_YIELD_TYPES];
@@ -27650,8 +27650,8 @@ void CvTerrainFlavourInfo::write(FDataStreamBase* stream)
 	stream->Write( NUM_PLOT_TYPES, m_piPlotPercentWeight );
 	stream->Write( GC.getNumTerrainInfos(), m_piTerrainPercentWeight );
 	stream->Write( GC.getNumFeatureInfos(), m_piFeaturePercentWeight );
-	stream->Write( GC.getNumImprovementInfos(), m_piImprovementAvailableWeight );
-	stream->Write( GC.getNumBonusInfos(), m_piBonusAvailableWeight );
+	stream->Write( GC.getNumImprovementInfos(), m_piImprovementCountWeight );
+	stream->Write( GC.getNumBonusInfos(), m_piBonusCountWeight );
 	stream->Write( NUM_YIELD_TYPES, m_piYieldOnPlotPercentWeight );
 }
 
@@ -27679,9 +27679,9 @@ bool CvTerrainFlavourInfo::read(CvXMLLoadUtility* pXML)
 				sizeof( GC.getTerrainInfo( (TerrainTypes) 0 ) ), GC.getNumTerrainInfos() );
 	pXML->SetVariableListTagPair( &m_piFeaturePercentWeight, "FeaturePercentWeights",
 				sizeof( GC.getFeatureInfo( (FeatureTypes) 0 ) ), GC.getNumFeatureInfos() );
-	pXML->SetVariableListTagPair( &m_piImprovementAvailableWeight, "ImprovementAvailableWeights",
+	pXML->SetVariableListTagPair( &m_piImprovementCountWeight, "ImprovementCountWeights",
 				sizeof( GC.getImprovementInfo( (ImprovementTypes) 0 ) ), GC.getNumImprovementInfos() );
-	pXML->SetVariableListTagPair( &m_piBonusAvailableWeight, "BonusAvailableWeights",
+	pXML->SetVariableListTagPair( &m_piBonusCountWeight, "BonusCountWeights",
 				sizeof( GC.getBonusInfo( (BonusTypes) 0 ) ), GC.getNumBonusInfos() );
 
 	// We have no PLOT_TYPES string anywhere, so we have to read manually

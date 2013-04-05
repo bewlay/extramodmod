@@ -854,8 +854,8 @@ void CyInfoPythonInterface3()
 		.def("getPlotPercentWeight", &CvTerrainFlavourInfo::getPlotPercentWeight, "int (PlotTypes ePlot)")
 		.def("getTerrainPercentWeight", &CvTerrainFlavourInfo::getTerrainPercentWeight, "int (TerrainTypes eTerrain)")
 		.def("getFeaturePercentWeight", &CvTerrainFlavourInfo::getFeaturePercentWeight, "int (FeatureTypes eFeature)")
-		.def("getImprovementAvailableWeight", &CvTerrainFlavourInfo::getImprovementAvailableWeight, "int (ImprovementTypes eImprovement)")
-		.def("getBonusAvailableWeight", &CvTerrainFlavourInfo::getBonusAvailableWeight, "int (BonusTypes eBonus)")
+		.def("getImprovementCountWeight", &CvTerrainFlavourInfo::getImprovementCountWeight, "int (ImprovementTypes eImprovement)")
+		.def("getBonusCountWeight", &CvTerrainFlavourInfo::getBonusCountWeight, "int (BonusTypes eBonus)")
 		.def("getYieldOnPlotPercentWeight", &CvTerrainFlavourInfo::getYieldOnPlotPercentWeight, "int (YieldTypes eYield)")
 		;
 /************************************************************************************************/
