@@ -385,7 +385,7 @@
 			<PlotPercentWeights>
 				<PlotPercentWeight>
 					<PlotType>PLOT_OCEAN</PlotType>
-					<iWeight>-100</iWeight>
+					<iWeight>-50</iWeight>
 				</PlotPercentWeight>
 			</PlotPercentWeights>
 			<YieldOnPlotPercentWeights>
