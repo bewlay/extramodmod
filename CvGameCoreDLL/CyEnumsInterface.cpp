@@ -647,6 +647,13 @@ void CyEnumsPythonInterface()
 		.value("GAMEOPTION_PUPPET_STATES", GAMEOPTION_PUPPET_STATES) // added by Tholal
 		.value("GAMEOPTION_REVOLUTIONS", GAMEOPTION_REVOLUTIONS) // added by Tholal
 		.value("GAMEOPTION_ADVANCED_TACTICS", GAMEOPTION_ADVANCED_TACTICS) // added by Tholal
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+		.value("GAMEOPTION_FLAVOUR_START", GAMEOPTION_FLAVOUR_START)
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 
 		.value("NUM_GAMEOPTION_TYPES", NUM_GAMEOPTION_TYPES)
 		;
