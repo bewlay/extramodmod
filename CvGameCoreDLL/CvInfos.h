@@ -614,6 +614,12 @@ public:
 	int getBonusAffinity(int i) const;
 	int getDamageTypeCombat(int i) const;
 	int getDamageTypeResist(int i) const;
+
+	// MNAI - additional promotion tags
+	bool isAllowsMoveImpassable() const;
+	bool isCastingBlocked() const;
+	// End MNAI
+
 	bool readPass3();
 //FfH: End Add
 
@@ -753,6 +759,11 @@ protected:
 	int* m_piDamageTypeResist;
 //FfH: End Add
 
+	// MNAI - additional promotion tags
+	bool m_bAllowsMoveImpassable;
+	bool m_bCastingBlocked;
+	// End MNAI
+
 	// Arrays
 
 	int* m_piTerrainAttackPercent;
@@ -870,7 +881,10 @@ public:
 	const TCHAR* getPyRequirement() const;
 	int getCommandType() const;
 	void setCommandType(int iNewType);
-
+	// Tholal AI begin
+	bool getTerrainValid(int i) const;
+	int getTerrainConvert(int i) const;
+	// end
 	void read(FDataStreamBase* stream);
 	void write(FDataStreamBase* stream);
 	bool read(CvXMLLoadUtility* pXML);
@@ -965,6 +979,10 @@ protected:
 	CvString m_szPyResult;
 	CvString m_szPyRequirement;
 	CvString m_szSound;
+	// Tholal AI begin
+	bool* m_pbTerrainValid;
+	int* m_piTerrainConvert;
+	// end
 };
 //FfH: End Add
 
