@@ -42,8 +42,8 @@ Primal::RandSolution(void){
   }
 
   _cout("NOTE: the index of row/col is from 0, NOT 1 !"<<endl);
-  _cout("Update the matrix: "<<endl);
-  DisplayMatrix(oprt_matrix);
+  //_cout("Update the matrix: "<<endl);
+  //DisplayMatrix(oprt_matrix);
 
 }
 
@@ -72,8 +72,8 @@ Primal::InitSolution(const vector<uint>& _asgn){
   }
 
   _cout("NOTE: the index of row/col is from 0, NOT 1 !"<<endl);
-  _cout("Update the matrix: "<<endl);
-  DisplayMatrix(oprt_matrix);
+  //_cout("Update the matrix: "<<endl);
+  //DisplayMatrix(oprt_matrix);
 
 }
 
@@ -103,8 +103,8 @@ Primal::GreedyApprox1(vector<uint>& _asgn){
   //double check if the assignment is meaningful
   set<uint> test(_asgn.begin(), _asgn.end());
   assert(test.size()==row_size);
-  _cout("Approximate assignment: "<<endl);
-  DisplayVec<uint>(_asgn);
+  //_cout("Approximate assignment: "<<endl);
+  //DisplayVec<uint>(_asgn);
 
 }
 
@@ -170,8 +170,8 @@ Primal::GreedyApprox2(vector<uint>& _asgn){
   //double check if the assignment is meaningful
   set<uint> test(_asgn.begin(), _asgn.end());
   assert(test.size()==row_size);
-  _cout("Approximate assignment: "<<endl);
-  DisplayVec<uint>(_asgn);
+  //_cout("Approximate assignment: "<<endl);
+  //DisplayVec<uint>(_asgn);
 
 }
 
@@ -504,7 +504,7 @@ Primal::DualUpdates(cell& _start_cell, queue<tree_node*>& _bfs){
 	      break;
 	    }
             else {
-	      cerr<<"Very weired thing happens."<<endl;
+	      //cerr<<"Very weired thing happens."<<endl;
 	      assert(0);
             }
           }//else
@@ -559,8 +559,8 @@ Primal::DualUpdates(cell& _start_cell, queue<tree_node*>& _bfs){
     if(exploited_cols.find(col_index) != exploited_cols.end())
       deltas[col_index] += epsilon;  
 
-  _cout("Updated deltas: "<<endl);
-  DisplayVec<double>(deltas);
+  //_cout("Updated deltas: "<<endl);
+  //DisplayVec<double>(deltas);
 
   vector<double> tmp_d(row_size);
   
@@ -568,8 +568,8 @@ Primal::DualUpdates(cell& _start_cell, queue<tree_node*>& _bfs){
     tmp_d[row_index] = oprt_matrix[row_index][_start_cell.col_idx] + deltas[_start_cell.col_idx] - deltas[GetAssignedCol(row_index)];
   }
 
-  _cout("Updated column ["<<_start_cell.col_idx<<"]:"<<endl);
-  DisplayVec<double>(tmp_d);
+  //_cout("Updated column ["<<_start_cell.col_idx<<"]:"<<endl);
+  //DisplayVec<double>(tmp_d);
 
   double min_d = std::numeric_limits<double>::infinity();
   uint new_start_row = row_size;
@@ -667,8 +667,8 @@ Primal::SwapTasks(void){
     _cout("Augment delta: "<<augment_delta<<endl);
   }
 
-  _cout("Before swaps:"<<endl);
-  DisplayMatrix(oprt_matrix);
+  //_cout("Before swaps:"<<endl);
+  //DisplayMatrix(oprt_matrix);
 
   // update dual variables
   for(uint i=0; i<col_size; i++){
@@ -680,10 +680,10 @@ Primal::SwapTasks(void){
     dual_col_vars[c_first.col_idx] -= augment_delta;
   }
 
-  _cout("Update dual cols: ");
-  DisplayVec<double>(dual_col_vars);
-  _cout("Update dual rows: ");
-  DisplayVec<double>(dual_row_vars);
+  //_cout("Update dual cols: ");
+  //DisplayVec<double>(dual_col_vars);
+  //_cout("Update dual rows: ");
+  //DisplayVec<double>(dual_row_vars);
 
   UpdateReducedCostMatrix(dual_row_vars, dual_col_vars);
 
@@ -695,9 +695,9 @@ Primal::SwapTasks(void){
     assignment[c_odd.row_idx] = c_odd.col_idx;
   } 
 
-  _cout("After swaps:"<<endl);
-  DisplayMatrix(oprt_matrix);
-  _cout(endl);
+  //_cout("After swaps:"<<endl);
+  //DisplayMatrix(oprt_matrix);
+  //_cout(endl);
 
 }
 
@@ -733,7 +733,7 @@ Primal::PrimalAlgo(void){
 
   // double check the reduced cost to see if all become feasible
   DoubleCheck();
-
+  /*
 //#ifdef DEBUG
   cout<<endl<<"***********************************************"<<endl;
   cout<<"Final solution:"<<endl;
@@ -745,6 +745,7 @@ Primal::PrimalAlgo(void){
 //#else
 //  cout<<"Minimization result: "<<ComputeCostSum(orig_matrix, assignment)<<endl;
 //#endif
+  */
 
 }
 
@@ -757,21 +758,21 @@ Primal::PrimalTest(void){
   RandSolution();
   InitStage();
   cell next = NextStartEntry(0);
-  cout<<"Starting cell_node: ("<<next.row_idx<<", "<<next.col_idx<<")"<<endl;
+  //cout<<"Starting cell_node: ("<<next.row_idx<<", "<<next.col_idx<<")"<<endl;
   next = NextStartEntry(1);
-  cout<<"Starting cell_node: ("<<next.row_idx<<", "<<next.col_idx<<")"<<endl;
+  //cout<<"Starting cell_node: ("<<next.row_idx<<", "<<next.col_idx<<")"<<endl;
 
   SearchSwapCircle(next);
   SwapTasks();
 
   next = NextStartEntry(2);
-  cout<<"Starting cell_node: ("<<next.row_idx<<", "<<next.col_idx<<")"<<endl;
+  //cout<<"Starting cell_node: ("<<next.row_idx<<", "<<next.col_idx<<")"<<endl;
   InitStage();
   SearchSwapCircle(next);
   SwapTasks();
 
   next = NextStartEntry(3);
-  cout<<"Starting cell_node: ("<<next.row_idx<<", "<<next.col_idx<<")"<<endl;
+  //cout<<"Starting cell_node: ("<<next.row_idx<<", "<<next.col_idx<<")"<<endl;
   InitStage();
   SearchSwapCircle(next);
   SwapTasks();
@@ -807,7 +808,7 @@ Primal::ComputeCostSum(const mat& _m, const vector<uint>& _as) const{
 
 }
 
-
+/*
 void
 Primal::DisplayMatrix(const mat& _m) const{
 
@@ -907,7 +908,7 @@ Primal::DisplayTree(tree_node* _root){
   }
 
 }
-
+*/
 
 uint
 Primal::DeleteTree(tree_node* _root){

@@ -25,7 +25,7 @@ template<typename T> class less_comp; //defined later
 
 class Primal{
 public:
-  Primal(){ cerr<<"Not allowed."<<endl; exit(0); }
+  //Primal(){ cerr<<"Not allowed."<<endl; exit(0); }
   Primal(mat& m){ 
 	row_size = m.size();
 	col_size = m[0].size();
@@ -84,6 +84,7 @@ public:
   double ComputeCostSum(const mat& _m, const vector<uint>& _as) const;
 
   // some display functions
+  /*
   void DisplayMatrix(const mat&) const;
   void DisplayMatrix(const mat&, const vector<uint>&) const;
   void DisplayAssignment(void) const;
@@ -91,6 +92,7 @@ public:
   void DisplayTree(tree_node* _root);
   template<typename T>
   void DisplayVec(const vector<T>& _vec);
+  */
 
   // destroy the whole tree, return number of nodes;
   uint DeleteTree(tree_node* _root);
