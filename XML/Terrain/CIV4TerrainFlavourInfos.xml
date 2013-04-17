@@ -4,94 +4,8 @@
 <!-- Inspiration, some values and some code taken from RifE/FlavourMod (Jean Elcard and others) -->
 <Civ4TerrainFlavourInfos xmlns="x-schema:CIV4TerrainFlavourSchema.xml">
 	<TerrainFlavourInfos>
-		<!--TerrainFlavourInfo>< FLAVOUR_CIV_TEST >
-			<Type>FLAVOUR_CIV_TEST</Type>
-			<iBaseWeight>-150</iBaseWeight>
-			<iCoastalWeight>100</iCoastalWeight>
-			<iIsolationPercentWeight>100</iIsolationPercentWeight>
-			<PlotPercentWeights>
-				<PlotPercentWeight>
-					<PlotType>PLOT_PEAK</PlotType>
-					<iWeight>400</iWeight>
-				</PlotPercentWeight>
-				<PlotPercentWeight>
-					<PlotType>PLOT_HILLS</PlotType>
-					<iWeight>200</iWeight>
-				</PlotPercentWeight>
-				<PlotPercentWeight>
-					<PlotType>PLOT_LAND</PlotType>
-					<iWeight>-50</iWeight>
-				</PlotPercentWeight>
-				<PlotPercentWeight>
-					<PlotType>PLOT_OCEAN</PlotType>
-					<iWeight>-100</iWeight>
-				</PlotPercentWeight>
-			</PlotPercentWeights>
-			<TerrainPercentWeights>
-				<TerrainPercentWeight>
-					<TerrainType>TERRAIN_DESERT</TerrainType>
-					<iWeight>-200</iWeight>
-				</TerrainPercentWeight>
-				<TerrainPercentWeight>
-					<TerrainType>TERRAIN_GRASS</TerrainType>
-					<iWeight>-50</iWeight>
-				</TerrainPercentWeight>
-				<TerrainPercentWeight>
-					<TerrainType>TERRAIN_TUNDRA</TerrainType>
-					<iWeight>50</iWeight>
-				</TerrainPercentWeight>
-				<TerrainPercentWeight>
-					<TerrainType>TERRAIN_SNOW</TerrainType>
-					<iWeight>200</iWeight>
-				</TerrainPercentWeight>
-			</TerrainPercentWeights>
-			<FeaturePercentWeights>
-				<FeaturePercentWeight>
-					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iWeight>100</iWeight>
-				</FeaturePercentWeight>
-				<FeaturePercentWeight>
-					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iWeight>100</iWeight>
-				</FeaturePercentWeight>
-			</FeaturePercentWeights>
-			<BonusCountWeights>
-				<BonusCountWeight>
-					<BonusType>BONUS_MANA</BonusType>
-					<iWeight>100</iWeight>
-				</BonusCountWeight>
-				<BonusCountWeight>
-					<BonusType>BONUS_GOLD</BonusType>
-					<iWeight>50</iWeight>
-				</BonusCountWeight>
-				<BonusCountWeight>
-					<BonusType>BONUS_PIG</BonusType>
-					<iWeight>50</iWeight>
-				</BonusCountWeight>
-			</BonusCountWeights>
-			<ImprovementCountWeights>
-				<ImprovementCountWeight>
-					<ImprovementType>IMPROVEMENT_PYRE_OF_THE_SERAPHIC</ImprovementType>
-					<iWeight>400</iWeight>
-				</ImprovementCountWeight>
-			</ImprovementCountWeights>
-			<YieldOnPlotPercentWeights>
-				<YieldOnPlotPercentWeight>
-					<YieldType>YIELD_FOOD</YieldType>
-					<iWeight>50</iWeight>
-				</YieldOnPlotPercentWeight>
-				<YieldOnPlotPercentWeight>
-					<YieldType>YIELD_PRODUCTION</YieldType>
-					<iWeight>50</iWeight>
-				</YieldOnPlotPercentWeight>
-				<YieldOnPlotPercentWeight>
-					<YieldType>YIELD_COMMERCE</YieldType>
-					<iWeight>50</iWeight>
-				</YieldOnPlotPercentWeight>
-			</YieldOnPlotPercentWeights>
-		</TerrainFlavourInfo-->
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_AMURITES -->
-			<Type>FLAVOUR_CIV_AMURITES</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_AMURITES -->
+			<Type>TERRAIN_FLAVOUR_CIV_AMURITES</Type>
 			<ImprovementCountWeights>
 				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_LETUM_FRIGUS</ImprovementType>
@@ -109,8 +23,8 @@
 				</BonusCountWeight>
 			</BonusCountWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_BALSERAPHS -->
-			<Type>FLAVOUR_CIV_BALSERAPHS</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_BALSERAPHS -->
+			<Type>TERRAIN_FLAVOUR_CIV_BALSERAPHS</Type>
 			<BonusCountWeights>
 				<BonusCountWeight>
 					<BonusType>BONUS_DYE</BonusType>
@@ -130,8 +44,8 @@
 				</BonusCountWeight>
 			</BonusCountWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_BANNOR -->
-			<Type>FLAVOUR_CIV_BANNOR</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_BANNOR -->
+			<Type>TERRAIN_FLAVOUR_CIV_BANNOR</Type>
 			<BonusCountWeights>
 				<BonusCountWeight>
 					<BonusType>BONUS_COPPER</BonusType>
@@ -147,8 +61,8 @@
 				</BonusCountWeight>
 			</BonusCountWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_CALABIM -->
-			<Type>FLAVOUR_CIV_CALABIM</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_CALABIM -->
+			<Type>TERRAIN_FLAVOUR_CIV_CALABIM</Type>
 			<iBaseWeight>-50</iBaseWeight>
 			<YieldOnPlotPercentWeights>
 				<YieldOnPlotPercentWeight>
@@ -157,8 +71,8 @@
 				</YieldOnPlotPercentWeight>
 			</YieldOnPlotPercentWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_CLAN_OF_EMBERS -->
-			<Type>FLAVOUR_CIV_CLAN_OF_EMBERS</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_CLAN_OF_EMBERS -->
+			<Type>TERRAIN_FLAVOUR_CIV_CLAN_OF_EMBERS</Type>
 			<FeaturePercentWeights>
 				<FeaturePercentWeight>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
@@ -178,8 +92,8 @@
 				</BonusCountWeight>
 			</BonusCountWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_DOVIELLO -->
-			<Type>FLAVOUR_CIV_DOVIELLO</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_DOVIELLO -->
+			<Type>TERRAIN_FLAVOUR_CIV_DOVIELLO</Type>
 			<TerrainPercentWeights>
 				<TerrainPercentWeight>
 					<TerrainType>TERRAIN_SNOW</TerrainType>
@@ -205,8 +119,8 @@
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_ELOHIM -->
-			<Type>FLAVOUR_CIV_ELOHIM</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_ELOHIM -->
+			<Type>TERRAIN_FLAVOUR_CIV_ELOHIM</Type>
 			<ImprovementCountWeights>
 				<ImprovementCountWeight>
 					<ImprovementType>IMPROVEMENT_AIFON_ISLE</ImprovementType>
@@ -262,8 +176,8 @@
 				</ImprovementCountWeight>
 			</ImprovementCountWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_GRIGORI -->
-			<Type>FLAVOUR_CIV_GRIGORI</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_GRIGORI -->
+			<Type>TERRAIN_FLAVOUR_CIV_GRIGORI</Type>
 			<iIsolationPercentWeight>100</iIsolationPercentWeight>
 			<ImprovementCountWeights>
 				<ImprovementCountWeight>
@@ -272,8 +186,8 @@
 				</ImprovementCountWeight>
 			</ImprovementCountWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_HIPPUS -->
-			<Type>FLAVOUR_CIV_HIPPUS</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_HIPPUS -->
+			<Type>TERRAIN_FLAVOUR_CIV_HIPPUS</Type>
 			<!-- <iMobilityPercentWeight>100</iMobilityPercentWeight>? -->
 			<PlotPercentWeights>
 				<PlotPercentWeight>
@@ -316,8 +230,8 @@
 				</BonusCountWeight>
 			</BonusCountWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_ILLIANS -->
-			<Type>FLAVOUR_CIV_ILLIANS</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_ILLIANS -->
+			<Type>TERRAIN_FLAVOUR_CIV_ILLIANS</Type>
 			<TerrainPercentWeights>
 				<TerrainPercentWeight>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
@@ -341,8 +255,8 @@
 				</ImprovementCountWeight>
 			</ImprovementCountWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_KHAZAD -->
-			<Type>FLAVOUR_CIV_KHAZAD</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_KHAZAD -->
+			<Type>TERRAIN_FLAVOUR_CIV_KHAZAD</Type>
 			<iBaseWeight>-50</iBaseWeight>
 			<PlotPercentWeights>
 				<PlotPercentWeight>
@@ -379,8 +293,8 @@
 				</YieldOnPlotPercentWeight>
 			</YieldOnPlotPercentWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_KURIOTATES -->
-			<Type>FLAVOUR_CIV_KURIOTATES</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_KURIOTATES -->
+			<Type>TERRAIN_FLAVOUR_CIV_KURIOTATES</Type>
 			<iBaseWeight>-200</iBaseWeight>
 			<PlotPercentWeights>
 				<PlotPercentWeight>
@@ -403,8 +317,8 @@
 				</YieldOnPlotPercentWeight>
 			</YieldOnPlotPercentWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_LANUN -->
-			<Type>FLAVOUR_CIV_LANUN</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_LANUN -->
+			<Type>TERRAIN_FLAVOUR_CIV_LANUN</Type>
 			<iCoastalWeight>100</iCoastalWeight>
 			<PlotPercentWeights>
 				<PlotPercentWeight>
@@ -419,8 +333,8 @@
 				</BonusCountWeight>
 			</BonusCountWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_LJOSALFAR -->
-			<Type>FLAVOUR_CIV_LJOSALFAR</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_LJOSALFAR -->
+			<Type>TERRAIN_FLAVOUR_CIV_LJOSALFAR</Type>
 			<TerrainPercentWeights>
 				<TerrainPercentWeight>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
@@ -440,8 +354,8 @@
 				</BonusCountWeight>
 			</BonusCountWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_LUCHUIRP -->
-			<Type>FLAVOUR_CIV_LUCHUIRP</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_LUCHUIRP -->
+			<Type>TERRAIN_FLAVOUR_CIV_LUCHUIRP</Type>
 			<iBaseWeight>-75</iBaseWeight>
 			<PlotPercentWeights>
 				<PlotPercentWeight>
@@ -470,8 +384,8 @@
 				</YieldOnPlotPercentWeight>
 			</YieldOnPlotPercentWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_MALAKIM -->
-			<Type>FLAVOUR_CIV_MALAKIM</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_MALAKIM -->
+			<Type>TERRAIN_FLAVOUR_CIV_MALAKIM</Type>
 			<TerrainPercentWeights>
 				<TerrainPercentWeight>
 					<TerrainType>TERRAIN_DESERT</TerrainType>
@@ -513,8 +427,8 @@
 				</ImprovementCountWeight>
 			</ImprovementCountWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_SHEAIM -->
-			<Type>FLAVOUR_CIV_SHEAIM</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_SHEAIM -->
+			<Type>TERRAIN_FLAVOUR_CIV_SHEAIM</Type>
 			<BonusCountWeights>
 				<BonusCountWeight>
 					<BonusType>BONUS_MANA</BonusType>
@@ -526,12 +440,12 @@
 				</BonusCountWeight>
 			</BonusCountWeights>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_SIDAR -->
-			<Type>FLAVOUR_CIV_SIDAR</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_SIDAR -->
+			<Type>TERRAIN_FLAVOUR_CIV_SIDAR</Type>
 			<iIsolationPercentWeight>200</iIsolationPercentWeight>
 		</TerrainFlavourInfo>
-		<TerrainFlavourInfo><!-- FLAVOUR_CIV_SVARTALFAR -->
-			<Type>FLAVOUR_CIV_SVARTALFAR</Type>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_SVARTALFAR -->
+			<Type>TERRAIN_FLAVOUR_CIV_SVARTALFAR</Type>
 			<iIsolationPercentWeight>50</iIsolationPercentWeight>
 			<FeaturePercentWeights>
 				<FeaturePercentWeight>
