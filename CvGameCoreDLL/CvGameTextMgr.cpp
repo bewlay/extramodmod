@@ -1519,6 +1519,11 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_PROMOTION_RESIST", pUnit->getResist()));
 			}
+			if (pUnit->isCastingBlocked())
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_CASTING_BLOCKED"));
+			}
 			if (bSummoningAbility)
 			{
 				if (pUnit->isTwincast())
@@ -4639,15 +4644,15 @@ It is fine for a human player mouse-over (which is what it is used for).
                 if (iView & getBugOptionINT("ACO__ShowTotalDefenseModifier", 2, "ACO_SHOW_TOTAL_DEFENSE_MODIFIER"))
                 {
                     //szString.append(L' ');//XXX
-                    if (pDefender->maxCombatStr(pPlot,pAttacker)>pDefender->baseCombatStr()*100) // modifier is positive
+                    if (pDefender->maxCombatStr(pPlot,pAttacker) > pDefender->baseCombatStr()*100) // modifier is positive
                     {
                         szTempBuffer.Format(SETCOLR L"%d%%" ENDCOLR,
-                                            TEXT_COLOR("COLOR_NEGATIVE_TEXT"),(((pDefender->maxCombatStr(pPlot,pAttacker)))/pDefender->baseCombatStr())-100);
+							TEXT_COLOR("COLOR_NEGATIVE_TEXT"),(((pDefender->maxCombatStr(pPlot,pAttacker)))/(std::max(pDefender->baseCombatStr(), 1)))-100);
                     }
                     else   // modifier is negative
                     {
                         szTempBuffer.Format(SETCOLR L"%d%%" ENDCOLR,
-                                            TEXT_COLOR("COLOR_POSITIVE_TEXT"),(100-((pDefender->baseCombatStr()*10000)/(pDefender->maxCombatStr(pPlot,pAttacker)))));
+							TEXT_COLOR("COLOR_POSITIVE_TEXT"),(100-((pDefender->baseCombatStr()*10000)/(std::max(pDefender->maxCombatStr(pPlot,pAttacker), 1)))));
                     }
 
                     szString.append(gDLL->getText("TXT_ACO_TotalDefenseModifier"));
@@ -8090,79 +8095,77 @@ void CvGameTextMgr::parseCivInfos(CvWStringBuffer &szInfoText, CivilizationTypes
             }
         }
 
-        //Civ Terrain Modifiers
-        bool bFirst = true;
-        for (int iI = 0; iI < GC.getNumTerrainInfos(); ++iI)
-        {
-            if (GC.getTerrainInfo((TerrainTypes)iI).getCivilizationYieldType() == eCivilization)
-            {
-                for (int iJ = 0; iJ < NUM_YIELD_TYPES; ++iJ)
-                {
-                    if (GC.getTerrainInfo((TerrainTypes)iI).getCivilizationYieldChange(YieldTypes(iJ)) != 0)
-                    {
-                        if (bFirst)
-                        {
-                            szText = gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN");
-                            if (bDawnOfMan)
-                            {
-                                szTempString.Format(L"%s:\n", szText.GetCString());
-                                szInfoText.append(szTempString);
-                            }
-                            else
-                            {
-                                szBuffer.Format(NEWLINE SETCOLR L"%s" ENDCOLR , TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN").GetCString());
-                                szInfoText.append(szBuffer);
-                            }
-                            bFirst = false;
-                        }
-                        szText = gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN_MOD", GC.getTerrainInfo((TerrainTypes)iI).getCivilizationYieldChange(YieldTypes(iJ)), GC.getYieldInfo((YieldTypes) iJ).getChar(), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide());
-                        if (bDawnOfMan)
-                        {
-                            szBuffer.Format(L"    %s\n", szText.GetCString());
-                            szInfoText.append(szBuffer);
-                        }
-                        else
-                        {
-                            szBuffer.Format(L"%s  %c%s", NEWLINE, gDLL->getSymbolID(BULLET_CHAR), szText.GetCString());
-                            szInfoText.append(szBuffer);
-                        }
-                    }
+		// Civilization Terrain Yield Changes
+		bool bFirst = true;
+		for (int iI = 0; iI < GC.getNumTerrainInfos(); iI++)
+		{
+			for (int iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
+			{
+				int iTerrainYieldChange = GC.getCivilizationInfo(eCivilization).getTerrainYieldChanges(iI, iJ, false);
+				if (iTerrainYieldChange != 0) {
+					if (bFirst)
+					{
+						szText = gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN");
+						if (bDawnOfMan)
+						{
+							szTempString.Format(L"%s:\n", szText.GetCString());
+							szInfoText.append(szTempString);
+						}
+						else
+						{
+							szBuffer.Format(NEWLINE SETCOLR L"%s" ENDCOLR , TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN").GetCString());
+							szInfoText.append(szBuffer);
+						}
+						bFirst = false;
+					}
+					
+					szText = gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN_MOD", iTerrainYieldChange, GC.getYieldInfo((YieldTypes) iJ).getChar(), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide());
+					if (bDawnOfMan)
+					{
+						szBuffer.Format(L"    %s\n", szText.GetCString());
+						szInfoText.append(szBuffer);
+					}
+					else
+					{
+						szBuffer.Format(L"%s  %c%s", NEWLINE, gDLL->getSymbolID(BULLET_CHAR), szText.GetCString());
+						szInfoText.append(szBuffer);
+					}
+				}
 
-					// River Yield changes
-					if (GC.getTerrainInfo((TerrainTypes)iI).getCivilizationRiverYieldChange(YieldTypes(iJ)) != 0)
-                    {
-                        if (bFirst)
-                        {
-                            szText = gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN");
-                            if (bDawnOfMan)
-                            {
-                                szTempString.Format(L"%s:", szText.GetCString());
-                                szInfoText.append(szTempString);
-                            }
-                            else
-                            {
-                                szBuffer.Format(NEWLINE SETCOLR L"%s" ENDCOLR , TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN").GetCString());
-                                szInfoText.append(szBuffer);
-                            }
-                            bFirst = false;
-                        }
-                        szText = gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN_RIVER_MOD", GC.getTerrainInfo((TerrainTypes)iI).getCivilizationRiverYieldChange(YieldTypes(iJ)), GC.getYieldInfo((YieldTypes) iJ).getChar(), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide());
-                        if (bDawnOfMan)
-                        {
-                            szBuffer.Format(L"    %s\n", szText.GetCString());
-                            szInfoText.append(szBuffer);
-                        }
-                        else
-                        {
-                            szBuffer.Format(L"%s  %c%s", NEWLINE, gDLL->getSymbolID(BULLET_CHAR), szText.GetCString());
-                            szInfoText.append(szBuffer);
-                        }
-                    }
-					// End River Yield
-                }
-            }
-        }
-//FfH: End Add
+				// River Yield changes
+				int iTerrainRiverYieldChange = GC.getCivilizationInfo(eCivilization).getTerrainYieldChanges(iI, iJ, true);
+				if (iTerrainRiverYieldChange != 0 && iTerrainRiverYieldChange != iTerrainYieldChange)
+				{
+					if (bFirst)
+					{
+						szText = gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN");
+						if (bDawnOfMan)
+						{
+							szTempString.Format(L"%s:", szText.GetCString());
+							szInfoText.append(szTempString);
+						}
+						else
+						{
+							szBuffer.Format(NEWLINE SETCOLR L"%s" ENDCOLR , TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN").GetCString());
+							szInfoText.append(szBuffer);
+						}
+						bFirst = false;
+					}
+					szText = gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN_RIVER_MOD", iTerrainRiverYieldChange, GC.getYieldInfo((YieldTypes) iJ).getChar(), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide());
+					if (bDawnOfMan)
+					{
+						szBuffer.Format(L"    %s\n", szText.GetCString());
+						szInfoText.append(szBuffer);
+					}
+					else
+					{
+						szBuffer.Format(L"%s  %c%s", NEWLINE, gDLL->getSymbolID(BULLET_CHAR), szText.GetCString());
+						szInfoText.append(szBuffer);
+					}
+				}
+				// End River Yield
+			}
+		}
 
 		// Free Units
 		szText = gDLL->getText("TXT_KEY_FREE_UNITS");
@@ -9280,6 +9283,11 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HELD_PEDIA"));
+    }
+	if (kPromotionInfo.isCastingBlocked())
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CASTING_BLOCKED_PEDIA"));
     }
     if (kPromotionInfo.isHiddenNationality())
     {
@@ -11002,6 +11010,14 @@ void CvGameTextMgr::setTechTradeHelp(CvWStringBuffer &szBuffer, TechTypes eTech,
 				{
 					if (!bPlayerContext || !(GET_PLAYER(GC.getGameINLINE().getActivePlayer()).canTrain(eLoopUnit)))
 					{
+						if (GC.getUnitInfo(eLoopUnit).getPrereqCiv() != NO_CIVILIZATION)
+						{
+							if ((GC.getUnitInfo(eLoopUnit).getPrereqCiv() != GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCivilizationType()))
+							{
+								continue;
+							}
+						}
+						
 						if (GC.getUnitInfo(eLoopUnit).getPrereqAndTech() == eTech)
 						{
 							szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_TECH_CAN_TRAIN").c_str());
@@ -18428,7 +18444,26 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 			szBuffer.append(gDLL->getText("TXT_KEY_WAR_WEAR_HELP", iWarWeariness / 10000));
 		}
 	}
-
+	
+	// lfgr: Display no diplo (Crusade) info
+	if( GET_TEAM( GET_PLAYER(ePlayer).getTeam() ).isAtWar( GET_PLAYER(eTargetPlayer).getTeam() ) )
+	{
+		if( GET_PLAYER( eTargetPlayer ).isNoDiplomacyWithEnemies() )
+		{
+			szBuffer.append( NEWLINE );
+			if ( eTargetPlayer == GC.getGameINLINE().getActivePlayer() )
+				szBuffer.append( gDLL->getText("TXT_KEY_MISC_NO_DIPLO_WITH_ENEMIES_YOU") );
+			else
+				szBuffer.append( gDLL->getText( "TXT_KEY_MISC_NO_DIPLO_WITH_ENEMIES_PLAYER", GET_PLAYER( eTargetPlayer ).getName() ) );
+			
+		}
+		if( GET_PLAYER( ePlayer ).isNoDiplomacyWithEnemies() )
+		{
+			szBuffer.append( NEWLINE );
+			szBuffer.append( gDLL->getText("TXT_KEY_MISC_NO_DIPLO_WITH_ENEMIES_OTHER") );
+		}
+	}
+	// lfgr end
 }
 
 void CvGameTextMgr::getEspionageString(CvWStringBuffer& szBuffer, PlayerTypes ePlayer, PlayerTypes eTargetPlayer)
@@ -18641,13 +18676,37 @@ void CvGameTextMgr::setTerrainHelp(CvWStringBuffer &szBuffer, TerrainTypes eTerr
 		aiYields[iI] = terrain.getRiverYieldChange(iI);
 	}
 	setYieldChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_TERRAIN_NEXT_TO_RIVER"), aiYields);
-
 	for (int iI = 0; iI < NUM_YIELD_TYPES; ++iI)
 	{
 		aiYields[iI] = terrain.getHillsYieldChange(iI);
 	}
 	setYieldChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_TERRAIN_ON_HILLS"), aiYields);
 
+/*************************************************************************************************/
+/**	CivPlotMods								03/23/09								Jean Elcard	**/
+/**																								**/
+/**				Terrain Help for Civilization-specific Terrain Yield Modifications.				**/
+/*************************************************************************************************/
+	for (int iCivilization = 0; iCivilization < GC.getNumCivilizationInfos(); iCivilization++)
+	{
+		for (int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
+		{
+			int iChange = GC.getCivilizationInfo((CivilizationTypes)iCivilization).getTerrainYieldChanges(eTerrain, iYield, false);
+			int iChangeRiver = GC.getCivilizationInfo((CivilizationTypes)iCivilization).getTerrainYieldChanges(eTerrain, iYield, true);
+
+			if (iChange != 0)
+			{
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN_MOD_PEDIA", iChange, GC.getYieldInfo((YieldTypes)iYield).getChar(), GC.getCivilizationInfo((CivilizationTypes)iCivilization).getDescription()));
+			}
+			if (iChangeRiver != 0 && iChangeRiver != iChange)
+			{
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_CIV_TERRAIN_RIVER_MOD_PEDIA", iChangeRiver - iChange, GC.getYieldInfo((YieldTypes)iYield).getChar(), GC.getCivilizationInfo((CivilizationTypes)iCivilization).getDescription()));
+			}
+		}
+	}
+/*************************************************************************************************/
+/**	CivPlotMods								END													**/
+/*************************************************************************************************/
 	if (terrain.getMovementCost() != 1)
 	{
 		szBuffer.append(gDLL->getText("TXT_KEY_TERRAIN_MOVEMENT_COST", terrain.getMovementCost()));

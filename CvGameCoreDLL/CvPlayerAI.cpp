@@ -11786,6 +11786,11 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		return 0;
 	}
 
+	if (bUpgrade)
+	{
+		bValid = true;
+	}
+
 	if (!bValid)
 	{
 		switch (eUnitAI)
@@ -12437,10 +12442,12 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		
 		iTempValue = ((iCombatValue * iCombatValue) / 75) + (iCombatValue / 2);
 		iValue += iTempValue;
+		/*
 		if (kUnitInfo.isNoDefensiveBonus())
 		{
 			iValue -= iTempValue / 2;
 		}
+		*/
 		if (kUnitInfo.getDropRange() > 0)
 		{
 			iValue -= iTempValue / 2;
@@ -14611,6 +14618,10 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 		for (CommerceTypes i = (CommerceTypes)0; i < NUM_COMMERCE_TYPES; i = (CommerceTypes)(i+1))
 		{
 			iSpecialistValue += (getSpecialistExtraCommerce(i) + kCivic.getSpecialistExtraCommerce(i)) * AI_commerceWeight(i);
+			for (iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
+			{
+				iSpecialistValue += getSpecialistTypeExtraCommerce((SpecialistTypes)iJ, i) * 100;
+			}
 		}
 		iValue += iCities * iSpecialistValue / 100;
 	}
@@ -14950,13 +14961,18 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 
 	for (iI = 0; iI < GC.getNumHurryInfos(); iI++)
 	{
-		if (kCivic.isHurry(iI) && (!canHurry((HurryTypes)iI))) /* Fuyu: only add value if we can't already use this hurry type */
+		if (kCivic.isHurry(iI) && (!canHurry((HurryTypes)iI) && !isCivic(eCivic))) /* Fuyu: only add value if we can't already use this hurry type */
 		{
 			iTempValue = 0;
 
 			if (GC.getHurryInfo((HurryTypes)iI).getGoldPerProduction() > 0)
 			{
 				iTempValue += ((((AI_avoidScience()) ? 50 : 25) * iCities) / GC.getHurryInfo((HurryTypes)iI).getGoldPerProduction());
+
+				if (AI_isDoVictoryStrategy(AI_VICTORY_ALTAR4) || AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY4))
+				{
+					iTempValue += 5000;
+				}
 			}
 			if (GC.getHurryInfo((HurryTypes)iI).getProductionPerPopulation() > 0)
 			{
@@ -15043,10 +15059,23 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 	{ 
 		iTempValue = 0; 
 		if (kCivic.isSpecialistValid(iI)) 
-		{ 
+		{
+			iTempValue += (iFreeCitizens * iFreeCitizens) / 2; //find jobs for all of the citizens we have sitting around
+		
 			// Tholal Todo - more value for priest specialists when running Altar vic.; more for Bards when running culture vic.
-			iTempValue += ((iCities *  (bCultureVictory3 ? 10 : 1)) + 6);
-			iTempValue += (iFreeCitizens * iFreeCitizens) / 2;
+
+			// Culture specialists
+			//Todo - better valuation for culture victory - we can use bards before we get to Stage 3
+			if (GC.getSpecialistInfo((SpecialistTypes)iI).getCommerceChange(COMMERCE_CULTURE) > 0)
+			{
+				iTempValue += ((iCities *  (bCultureVictory3 ? 10 : 1)) + 6);
+			}
+
+			// account for specialistextracommerce bonuses
+			for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
+			{
+				iTempValue += (getSpecialistTypeExtraCommerce((SpecialistTypes)iI, (CommerceTypes)iJ) * 15) * iCities * (iFreeCitizens + 1);
+			}
 		} 
 		iValue += (iTempValue / 2); 
 	} 
@@ -22016,9 +22045,19 @@ int CvPlayerAI::AI_getAltarVictoryStage() const
 		return 0;
 	}
 
-	if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_EXALTED")) > 0)
+	if (getBuildingClassCountPlusMaking((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_FINAL")) > 0)
 	{
 		return 4;
+	}
+
+	if (canConstruct((BuildingTypes)GC.getInfoTypeForString("BUILDING_ALTAR_OF_THE_LUONNOTAR_FINAL"), true))
+	{
+		return 4;
+	}
+
+	if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_EXALTED")) > 0)
+	{
+		return 3;
 	}
 
 	if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_DIVINE")) > 0)
@@ -22346,7 +22385,7 @@ int CvPlayerAI::AI_getVictoryStrategyHash() const
 				bStartedOtherLevel3 = true;
                 m_iVictoryStrategyHash |= AI_VICTORY_TOWERMASTERY3;
 
-				if (iVictoryStage > 3 && !bStartedOtherLevel4)
+				if (iVictoryStage > 3)// && !bStartedOtherLevel4)
 				{
 					bStartedOtherLevel4 = true;
                 	m_iVictoryStrategyHash |= AI_VICTORY_TOWERMASTERY4;
@@ -22369,7 +22408,7 @@ int CvPlayerAI::AI_getVictoryStrategyHash() const
 				bStartedOtherLevel3 = true;
                 m_iVictoryStrategyHash |= AI_VICTORY_ALTAR3;
 
-				if (iVictoryStage > 3 && !bStartedOtherLevel4)
+				if (iVictoryStage > 3)// && !bStartedOtherLevel4)
 				{
 					bStartedOtherLevel4 = true;
                 	m_iVictoryStrategyHash |= AI_VICTORY_ALTAR4;
@@ -25065,12 +25104,15 @@ void CvPlayerAI::AI_doAdvancedStart(bool bNoExit)
 							//Mildly maphackery but any smart human can see the terrain type of a tile.
 							pLoopPlot2->getTerrainType();
 							int iFoodYield = GC.getTerrainInfo(pLoopPlot2->getTerrainType()).getYield(YIELD_FOOD);
-//FlavourMod: Added by Jean Elcard 03/18/2009 (Civilization Terrain Yield Changes)
-							if (GC.getTerrainInfo(pLoopPlot2->getTerrainType()).getCivilizationYieldType() == getCivilizationType())
-							{
-								iFoodYield += GC.getTerrainInfo(pLoopPlot2->getTerrainType()).getCivilizationYieldChange(YIELD_FOOD);
-							}
-//FlavourMod: End Add
+/*************************************************************************************************/
+/**	CivPlotMods								03/23/09								Jean Elcard	**/
+/**																								**/
+/**			Consider Civilization-specific Terrain Yield Modifications for Advanced Starts.		**/
+/*************************************************************************************************/
+							iFoodYield += GC.getCivilizationInfo(getCivilizationType()).getTerrainYieldChanges(pLoopPlot2->getTerrainType(), YIELD_FOOD, pLoopPlot2->isRiver());
+/*************************************************************************************************/
+/**	CivPlotMods								END													**/
+/*************************************************************************************************/
 							if (pLoopPlot2->getFeatureType() != NO_FEATURE)
 							{
 								iFoodYield += GC.getFeatureInfo(pLoopPlot2->getFeatureType()).getYieldChange(YIELD_FOOD);

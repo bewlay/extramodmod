@@ -880,7 +880,7 @@ void CvUnitAI::AI_upgrade()
 				}
 			}
 
-			if ((iNewValue > iBestValue) && (iNewValue > iCurrentValue))
+			if ((iNewValue > iBestValue) && (iNewValue >= iCurrentValue))
 			{
 				iBestValue = iNewValue;
 				eBestUnit = ((UnitTypes)iI);
@@ -26653,6 +26653,13 @@ void CvUnitAI::AI_feastingmove()
 					{
 						return;
 					}
+				}
+				else
+				{
+					AI_setGroupflag(GROUPFLAG_CONQUEST);
+					AI_setUnitAIType(UNITAI_ATTACK_CITY);
+					getGroup()->pushMission(MISSION_SKIP);
+					return;
 				}
 			}
 		}
