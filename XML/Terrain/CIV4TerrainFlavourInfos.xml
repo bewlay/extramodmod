@@ -295,13 +295,7 @@
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_KURIOTATES -->
 			<Type>TERRAIN_FLAVOUR_CIV_KURIOTATES</Type>
-			<iBaseWeight>-200</iBaseWeight>
-			<PlotPercentWeights>
-				<PlotPercentWeight>
-					<PlotType>PLOT_OCEAN</PlotType>
-					<iWeight>-50</iWeight>
-				</PlotPercentWeight>
-			</PlotPercentWeights>
+			<iBaseWeight>-100</iBaseWeight>
 			<YieldOnPlotPercentWeights>
 				<YieldOnPlotPercentWeight>
 					<YieldType>YIELD_FOOD</YieldType>
@@ -319,6 +313,7 @@
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_LANUN -->
 			<Type>TERRAIN_FLAVOUR_CIV_LANUN</Type>
+			<iBaseWeight>-50</iBaseWeight>
 			<iCoastalWeight>100</iCoastalWeight>
 			<PlotPercentWeights>
 				<PlotPercentWeight>
@@ -335,10 +330,24 @@
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_LJOSALFAR -->
 			<Type>TERRAIN_FLAVOUR_CIV_LJOSALFAR</Type>
+			<PlotPercentWeights>
+				<PlotPercentWeight>
+					<PlotType>PLOT_OCEAN</PlotType>
+					<iWeight>-100</iWeight>
+				</PlotPercentWeight>
+			</PlotPercentWeights>
 			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>-150</iWeight>
+				</TerrainPercentWeight>
 				<TerrainPercentWeight>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
 					<iWeight>-50</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>-150</iWeight>
 				</TerrainPercentWeight>
 			</TerrainPercentWeights>
 			<FeaturePercentWeights>
