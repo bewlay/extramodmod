@@ -12312,7 +12312,7 @@ bool CvPlot::isLair(bool bIgnoreIsAnimal, bool bAnimal) const
 // LFGR_TODO expose to python
 float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int iRadius )
 {
-	// LFGR_TODO: distance from other starting locations
+	// LFGR_TODO: distance weight
 
 	if( iRadius == -1 )
 	{
@@ -12351,6 +12351,7 @@ float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int
 
 	// Used for normalization
 	float fTotalPercentWeight = 0;
+	float fTotalPassablePercentWeight = 0;
 	
 //	logBBAI( "\tGet surrounding Terrain" );
 	for( int iChangeX = -iRadius; iChangeX <= iRadius; iChangeX++ )
@@ -12386,8 +12387,11 @@ float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int
 					afYieldAmount[iYield] += fWeight * pPlot->getYield( (YieldTypes) iYield );
 				
 				if( pPlot->getTerrainType() != NO_TERRAIN )
-					if( !pPlot->isPeak() ) // peak counts as "no terrain"
+					if( !pPlot->isPeak() && !pPlot->isWater() ) // peak and water is left out
+					{
+						fTotalPassablePercentWeight += fWeight;
 						afTerrainAmount[pPlot->getTerrainType()] += fWeight;
+					}
 
 				if( pPlot->getFeatureType() != NO_FEATURE )
 					afFeatureAmount[pPlot->getFeatureType()] += fWeight;
@@ -12414,7 +12418,7 @@ float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int
 		if( afTerrainAmount[i] > 0 )
 		{
 //			logBBAI( "\t\tOrig Weight of %s: %f", GC.getTerrainInfo( (TerrainTypes) i ).getType(), afTerrainAmount[i] );
-			afTerrainAmount[i] /= fTotalPercentWeight;
+			afTerrainAmount[i] /= fTotalPassablePercentWeight;
 //			logBBAI( "\t\tWeight of %s: %f", GC.getTerrainInfo( (TerrainTypes) i ).getType(), afTerrainAmount[i] );
 		}
 	for( int i = 0; i < GC.getNumFeatureInfos(); i++ )
