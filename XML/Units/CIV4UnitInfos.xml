@@ -72268,7 +72268,7 @@
         <UnitInfo>
 			<!-- BARBARIAN_UNITS 02/2013 lfgr -->
             <Class>UNITCLASS_WARRIOR</Class>
-            <Type>UNIT_BRUTE</Type>
+            <Type>UNIT_SAVAGE</Type>
             <UniqueNames>
             </UniqueNames>
             <Special>NONE</Special>
@@ -72278,9 +72278,9 @@
             <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
-            <Description>TXT_KEY_UNIT_BRUTE</Description>
-            <Civilopedia>TXT_KEY_UNIT_BRUTE_PEDIA</Civilopedia>
-            <Strategy>TXT_KEY_UNIT_BRUTE_STRATEGY</Strategy>
+            <Description>TXT_KEY_UNIT_SAVAGE</Description>
+            <Civilopedia>TXT_KEY_UNIT_SAVAGE_PEDIA</Civilopedia>
+            <Strategy>TXT_KEY_UNIT_SAVAGE_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
             <bFood>0</bFood>

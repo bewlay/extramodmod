@@ -6,16 +6,16 @@
 <!-- BARBARIAN_UNITS 02/2013 lfgr -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
-		<Tag>TXT_KEY_UNIT_BRUTE</Tag>
-		<English>Brute</English>
-		<French>Brute</French>
-		<German>Rohling</German>
-		<Italian>Brute</Italian>
-		<Spanish>Brute</Spanish>
-		<Finnish>Brute</Finnish>
+		<Tag>TXT_KEY_UNIT_SAVAGE</Tag>
+		<English>Savage</English>
+		<French>Savage</French>
+		<German>Wildling</German>
+		<Italian>Savage</Italian>
+		<Spanish>Savage</Spanish>
+		<Finnish>Savage</Finnish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_UNIT_BRUTE_PEDIA</Tag>
+		<Tag>TXT_KEY_UNIT_SAVAGE_PEDIA</Tag>
 		<English>TODO</English>
 		<French>TODO</French>
 		<German>TODO</German>
@@ -24,7 +24,7 @@
 		<Finnish>TODO</Finnish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_UNIT_BRUTE_STRATEGY</Tag>
+		<Tag>TXT_KEY_UNIT_SAVAGE_STRATEGY</Tag>
 		<English>TODO</English>
 		<French>TODO</French>
 		<German>TODO</German>
