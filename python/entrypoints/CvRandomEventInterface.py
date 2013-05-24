@@ -26,6 +26,11 @@ localText = CyTranslator()
 PyPlayer = PyHelpers.PyPlayer
 
 def canTriggerAeronsChosen(argsList):
+	"""
+		Unit must have the Marksman promotion
+		Unit must be not summoned
+		Unit must be level 6 or greater
+	"""
 	kTriggeredData = argsList[0]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pUnit = pPlayer.getUnit(kTriggeredData.iUnitId)
@@ -41,6 +46,9 @@ def canTriggerAeronsChosen(argsList):
 	return True
 
 def canTriggerAmuriteTrialUnit(argsList):
+	"""
+		Unit must not be hidden nationality
+	"""
 	eTrigger = argsList[0]
 	ePlayer = argsList[1]
 	iUnit = argsList[2]
@@ -51,6 +59,10 @@ def canTriggerAmuriteTrialUnit(argsList):
 	return True
 
 def applyAmuriteTrial1(argsList):
+	"""
+		Moves the unit to the amurite capital
+	"""
+	# TODO: open borders?
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -62,6 +74,10 @@ def applyAmuriteTrial1(argsList):
 		pUnit.setXY(pCity.getX(), pCity.getY(), False, True, True)
 
 def doArmageddonApocalypse(argsList):
+	"""
+		Kills half of all non-fallow cities' population
+		Kills about 60% of living units. (defined by APOCALYPSE_KILL_CHANCE)
+	"""
 	kTriggeredData = argsList[0]
 	iPlayer = argsList[1]
 	iPercent = gc.getDefineINT('APOCALYPSE_KILL_CHANCE')
@@ -87,12 +103,20 @@ def doArmageddonApocalypse(argsList):
 			CyGame().changeTrophyValue(t, 1)
 
 def doArmageddonArs(argsList):
+	"""
+		Spawns Ars Moriendi
+	"""
 	kTriggeredData = argsList[0]
 	iUnit = gc.getInfoTypeForString('UNIT_ARS')
 	if CyGame().getUnitCreatedCount(iUnit) == 0:
 		cf.addUnit(iUnit)
 
 def doArmageddonBlight(argsList):
+	# TODO: non-fallow?
+	"""
+		Adds an random amount of unhealthiness to all non-infernal cities, increasing with unhealthiness present in city
+		Does about 25% death damage to all living units, to a limit of 50%
+	"""
 	kTriggeredData = argsList[0]
 	iPlayer = argsList[1]
 	pPlayer = gc.getPlayer(iPlayer)
@@ -101,7 +125,6 @@ def doArmageddonBlight(argsList):
 		for pyCity in py.getCityList():
 			pCity = pyCity.GetCy()
 			i = CyGame().getSorenRandNum(15, "Blight")
-#			i = 10
 			i += pCity.getPopulation()
 			i += pCity.getFeatureBadHealth()
 			i -= pCity.getFeatureGoodHealth()
@@ -113,6 +136,9 @@ def doArmageddonBlight(argsList):
 			pUnit.doDamageNoCaster(25, 100, gc.getInfoTypeForString('DAMAGE_DEATH'), False)
 
 def doArmageddonBuboes(argsList):
+	"""
+		Spawns Buobes
+	"""
 	kTriggeredData = argsList[0]
 	iUnit = gc.getInfoTypeForString('UNIT_BUBOES')
 	if CyGame().getUnitCreatedCount(iUnit) == 0:

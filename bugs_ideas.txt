@@ -1,2 +1,4 @@
 "Serial Killer" / "Enlist him" should not be available for Luchuirp / Sheaim (Axeman UU)
 Review "Brothers in need"
+
+Message text for "iTechCostPercent": Convert X% of tech cost to gold
