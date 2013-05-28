@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+	Events Enhanced
+	by Black_Imperator, ostar, xienwolf, lfgr
+-->
+<mod id="EventsEnhanced"
+	 module="EventsEnhanced"
+	 name="Events Enhanced"
+	 author="Black_Imperator, ostar, xienwolf, lfgr"
+	 version="1.2"
+	 date="05/27/2013"
+	 url="https://bitbucket.org/lfgr/some-modcomps-for-civ4-ffh-mnai/wiki/Events%20Enhanced">
+	
+    <options id="EventsEnhanced" file="Events Enhanced.ini">
+        <section id="WorldUnitPopups">
+			<option id="WUPopupHuman" type="boolean" default="True"
+				get="isWUPopupHuman" set="setWUPopupHuman"
+				label="Enable Human's WU Popups" 
+				help="When checked, a popup is displayed every time a human player builds a world unit."/>
+			<option id="WUPopupAI" type="boolean" default="True"
+				get="isWUPopupAI" set="setWUPopupAI"
+				label="Enable AI's WU Popups" 
+				help="When checked, a popup is displayed every time an AI player builds a world unit."/>
+        </section>
+        <section id="GreatPersonMod">
+			<option id="GPPopupHuman" type="boolean" default="True"
+				get="isGPPopupHuman" set="setGPPopupHuman"
+				label="Enable Human's GP Popups" 
+				help="When checked, a popup is displayed every time a human player creates a great person."/>
+			<option id="GPPopupAI" type="boolean" default="False"
+				get="isGPPopupAI" set="setGPPopupAI"
+				label="Enable AI's GP Popups" 
+				help="When checked, a popup is displayed every time an AI player creates a great person."/>
+        </section>
+    </options>
+	
+	
+	<event type="unitBuilt" function="onUnitBuilt"/>
+	<event type="greatPersonBorn" function="onGreatPersonBorn"/>
+</mod>
