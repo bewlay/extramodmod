@@ -178,6 +178,11 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 
 	setGameTurnCreated(GC.getGameINLINE().getGameTurn());
 
+	if (m_pUnitInfo->isCanMoveImpassable())
+	{
+		changeCanMoveImpassable(1);
+	}
+
 	GC.getGameINLINE().incrementUnitCreatedCount(getUnitType());
 
 	GC.getGameINLINE().incrementUnitClassCreatedCount((UnitClassTypes)(m_pUnitInfo->getUnitClassType()));
@@ -488,6 +493,9 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_iTotalDamageTypeCombat = 0;
     m_iUnitArtStyleType = NO_UNIT_ARTSTYLE;
 	m_iWorkRateModify = 0;
+
+	m_iCanMoveImpassable = 0;
+	m_iCastingBlocked = 0;
 //>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	m_bAvatarOfCivLeader = false;
 //<<<<Unofficial Bug Fix: End Add
@@ -9056,7 +9064,7 @@ InvisibleTypes CvUnit::getInvisibleType() const
 			{
 				if (plot()->getTeam() == getTeam())
 				{
-					if (!plot()->isCity())
+					if (!plot()->isCity(GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))) // Super Forts *custom*
 					{
 						return ((InvisibleTypes)GC.getDefineINT("INVISIBLE_TYPE"));
 					}
@@ -9068,7 +9076,7 @@ InvisibleTypes CvUnit::getInvisibleType() const
 	{
 		if (m_pUnitInfo->getEquipmentPromotion() != NO_PROMOTION)
 		{
-			return ((InvisibleTypes)2);
+			return ((InvisibleTypes)2); // HARD CODE !!!
 		}
 		else
 		{
@@ -10735,8 +10743,8 @@ bool CvUnit::canMoveImpassable() const
         return true;
     }
 //FfH: End Add
-
-	return m_pUnitInfo->isCanMoveImpassable();
+	return m_iCanMoveImpassable == 0 ? false : true;
+	//return m_pUnitInfo->isCanMoveImpassable();
 }
 
 bool CvUnit::canMoveAllTerrain() const
@@ -10815,7 +10823,7 @@ bool CvUnit::isInvisible(TeamTypes eTeam, bool bDebug, bool bCheckCargo) const
 //FfH: Added by Kael 04/11/2008
     if (plot() != NULL)
     {
-        if (plot()->isCity())
+        if (plot()->isCity(GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))) // Super Forts *custom*
         {
             if (getTeam() == plot()->getTeam())
             {
@@ -12458,9 +12466,6 @@ void CvUnit::setLevel(int iNewValue)
 		m_iLevel = iNewValue;
 		FAssert(getLevel() >= 0);
 
-		GET_PLAYER(getOwnerINLINE()).changePower(iNewValue);
-		area()->changePower(getOwnerINLINE(), iNewValue);
-
 		if (getLevel() > GET_PLAYER(getOwnerINLINE()).getHighestUnitLevel())
 		{
 			GET_PLAYER(getOwnerINLINE()).setHighestUnitLevel(getLevel());
@@ -13848,49 +13853,51 @@ bool CvUnit::canAcquirePromotion(PromotionTypes ePromotion) const
 		return false;
 	}
 
-	if (GC.getPromotionInfo(ePromotion).getPrereqPromotion() != NO_PROMOTION)
+	CvPromotionInfo &kPromotion = GC.getPromotionInfo(ePromotion);
+
+	if (kPromotion.getPrereqPromotion() != NO_PROMOTION)
 	{
-		if (!isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPrereqPromotion())))
+		if (!isHasPromotion((PromotionTypes)(kPromotion.getPrereqPromotion())))
 		{
 			return false;
 		}
 	}
 
 //FfH: Modified by Kael 07/30/2007
-//	if (GC.getPromotionInfo(ePromotion).getPrereqOrPromotion1() != NO_PROMOTION)
+//	if (kPromotion.getPrereqOrPromotion1() != NO_PROMOTION)
 //	{
-//		if (!isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPrereqOrPromotion1())))
+//		if (!isHasPromotion((PromotionTypes)(kPromotion.getPrereqOrPromotion1())))
 //		{
-//			if ((GC.getPromotionInfo(ePromotion).getPrereqOrPromotion2() == NO_PROMOTION) || !isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPrereqOrPromotion2())))
+//			if ((kPromotion.getPrereqOrPromotion2() == NO_PROMOTION) || !isHasPromotion((PromotionTypes)(kPromotion.getPrereqOrPromotion2())))
 //			{
 //				return false;
 //			}
 //		}
 //	}
-	if (GC.getPromotionInfo(ePromotion).getMinLevel() == -1)
+	if (kPromotion.getMinLevel() == -1)
 	{
 	    return false;
 	}
-	if (GC.getPromotionInfo(ePromotion).isRace())
+	if (kPromotion.isRace())
 	{
 	    return false;
 	}
-	if (GC.getPromotionInfo(ePromotion).isEquipment())
+	if (kPromotion.isEquipment())
 	{
 	    return false;
 	}
-	if (GC.getPromotionInfo(ePromotion).getMinLevel() > getLevel())
+	if (kPromotion.getMinLevel() > getLevel())
 	{
 	    return false;
 	}
-	if (GC.getPromotionInfo(ePromotion).getPromotionPrereqAnd() != NO_PROMOTION)
+	if (kPromotion.getPromotionPrereqAnd() != NO_PROMOTION)
 	{
-		if (!isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPromotionPrereqAnd())))
+		if (!isHasPromotion((PromotionTypes)(kPromotion.getPromotionPrereqAnd())))
 		{
 			return false;
 		}
 	}
-	if (GC.getPromotionInfo(ePromotion).getPrereqOrPromotion1() != NO_PROMOTION)
+	if (kPromotion.getPrereqOrPromotion1() != NO_PROMOTION)
 	{
 	    bool bValid = false;
 		if (isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPrereqOrPromotion1())))
@@ -13899,21 +13906,21 @@ bool CvUnit::canAcquirePromotion(PromotionTypes ePromotion) const
 		}
         if (GC.getPromotionInfo(ePromotion).getPrereqOrPromotion2() != NO_PROMOTION)
         {
-            if (isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPrereqOrPromotion2())))
+            if (isHasPromotion((PromotionTypes)(kPromotion.getPrereqOrPromotion2())))
             {
                 bValid = true;
             }
         }
-        if (GC.getPromotionInfo(ePromotion).getPromotionPrereqOr3() != NO_PROMOTION)
+        if (kPromotion.getPromotionPrereqOr3() != NO_PROMOTION)
         {
-            if (isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPromotionPrereqOr3())))
+            if (isHasPromotion((PromotionTypes)(kPromotion.getPromotionPrereqOr3())))
             {
                 bValid = true;
             }
         }
-        if (GC.getPromotionInfo(ePromotion).getPromotionPrereqOr4() != NO_PROMOTION)
+        if (kPromotion.getPromotionPrereqOr4() != NO_PROMOTION)
         {
-            if (isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPromotionPrereqOr4())))
+            if (isHasPromotion((PromotionTypes)(kPromotion.getPromotionPrereqOr4())))
             {
                 bValid = true;
             }
@@ -13923,9 +13930,9 @@ bool CvUnit::canAcquirePromotion(PromotionTypes ePromotion) const
             return false;
         }
 	}
-	if (GC.getPromotionInfo(ePromotion).getBonusPrereq() != NO_BONUS)
+	if (kPromotion.getBonusPrereq() != NO_BONUS)
 	{
-	    if (!GET_PLAYER(getOwnerINLINE()).hasBonus((BonusTypes)GC.getPromotionInfo(ePromotion).getBonusPrereq()))
+	    if (!GET_PLAYER(getOwnerINLINE()).hasBonus((BonusTypes)kPromotion.getBonusPrereq()))
 	    {
 	        return false;
 	    }
@@ -13948,7 +13955,7 @@ bool CvUnit::canAcquirePromotion(PromotionTypes ePromotion) const
             }
         }
     }
-	if (GC.getPromotionInfo(ePromotion).isPrereqAlive())
+	if (kPromotion.isPrereqAlive())
 	{
 	    if (!isAlive())
 	    {
@@ -13957,17 +13964,17 @@ bool CvUnit::canAcquirePromotion(PromotionTypes ePromotion) const
 	}
 //FfH: End Add
 
-	if (GC.getPromotionInfo(ePromotion).getTechPrereq() != NO_TECH)
+	if (kPromotion.getTechPrereq() != NO_TECH)
 	{
-		if (!(GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getPromotionInfo(ePromotion).getTechPrereq()))))
+		if (!(GET_TEAM(getTeam()).isHasTech((TechTypes)(kPromotion.getTechPrereq()))))
 		{
 			return false;
 		}
 	}
 
-	if (GC.getPromotionInfo(ePromotion).getStateReligionPrereq() != NO_RELIGION)
+	if (kPromotion.getStateReligionPrereq() != NO_RELIGION)
 	{
-		if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != GC.getPromotionInfo(ePromotion).getStateReligionPrereq())
+		if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != kPromotion.getStateReligionPrereq())
 		{
 			return false;
 		}
@@ -14194,6 +14201,11 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 			changeDamageTypeResist(((DamageTypes)iI), (kPromotionInfo.getDamageTypeResist(iI) * iChange));
 		}
 //FfH: End Add
+		// MNAI - additional promotion tags
+		changeCanMoveImpassable((kPromotionInfo.isAllowsMoveImpassable()) ? iChange : 0);
+		changeCastingBlocked((kPromotionInfo.isCastingBlocked()) ? iChange : 0);
+		// End MNAI
+
 		for (iI = 0; iI < GC.getNumTerrainInfos(); iI++)
 		{
 			changeExtraTerrainAttackPercent(((TerrainTypes)iI), (kPromotionInfo.getTerrainAttackPercent(iI) * iChange));
@@ -15691,6 +15703,11 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
 		return false;
 	}
 
+	if (isCastingBlocked())
+	{
+		return false;
+	}
+
 	// objects cant cast spells
 	if (getUnitInfo().isObject())
 	{
@@ -17047,15 +17064,15 @@ void CvUnit::castImmobile(int spell)
                                 if (!pLoopUnit->isResisted(this, spell))
                                 {
                                     pLoopUnit->changeImmobileTimer(iImmobileTurns);
-                                    gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
-                                    gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
+									gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
+									gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
                                 }
                             }
                             else
                             {
                                 pLoopUnit->changeImmobileTimer(iImmobileTurns);
-                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
-                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
+                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
+                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
                             }
                         }
                     }
@@ -17102,15 +17119,15 @@ void CvUnit::castPush(int spell)
                                             if (!pLoopUnit->isResisted(this, spell))
                                             {
                                                 pLoopUnit->setXY(pPushPlot->getX(),pPushPlot->getY(),false,true,true);
-                                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
-                                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
+                                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
+                                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
                                             }
                                         }
                                         else
                                         {
                                             pLoopUnit->setXY(pPushPlot->getX(),pPushPlot->getY(),false,true,true);
-                                            gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
-                                            gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
+                                            gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
+                                            gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
                                         }
                                     }
                                 }
@@ -18870,6 +18887,7 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 			}
 			if (iUnit == GC.getDefineINT("SLAVE_UNIT"))
 			{
+				pUnit->setRace(NO_PROMOTION); // We clear Race to make sure Slaves dont end up with the incorrect Race
 				if (pLoser->getRace() != NO_PROMOTION)
 				{
 					pUnit->setHasPromotion((PromotionTypes)pLoser->getRace(), true);
@@ -19278,6 +19296,29 @@ bool CvUnit::withdrawlToNearestValidPlot()
 }
 //FfH: End Add
 
+// MNAI - additional promotion tags
+void CvUnit::changeCanMoveImpassable(int iNewValue)
+{
+    if (iNewValue != 0)
+    {
+        m_iCanMoveImpassable += iNewValue;
+    }
+}
+
+bool CvUnit::isCastingBlocked() const
+{
+	return m_iCastingBlocked == 0 ? false : true;
+}
+
+void CvUnit::changeCastingBlocked(int iNewValue)
+{
+    if (iNewValue != 0)
+    {
+        m_iCastingBlocked += iNewValue;
+    }
+}
+// End MNAI
+
 void CvUnit::read(FDataStreamBase* pStream)
 {
 	// Init data before load
@@ -19418,10 +19459,14 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumDamageTypeInfos(), m_paiDamageTypeResist);
 //FfH: End Add
 
+	// MNAI - additional promotion tags
+	pStream->Read(&m_iCanMoveImpassable);
+	pStream->Read(&m_iCastingBlocked);
+	// End MNAI
 
-//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
+	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	pStream->Read(&m_bAvatarOfCivLeader);
-//<<<<Unofficial Bug Fix: End Add
+	//<<<<Unofficial Bug Fix: End Add
 
 	pStream->Read((int*)&m_eOwner);
 	pStream->Read((int*)&m_eCapturingPlayer);
@@ -19581,9 +19626,14 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumDamageTypeInfos(), m_paiDamageTypeResist);
 //FfH: End Add
 
-//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
+	// MNAI - additional promotion tags
+	pStream->Write(m_iCanMoveImpassable);
+	pStream->Write(m_iCastingBlocked);
+	// End MNAI
+
+	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	pStream->Write(m_bAvatarOfCivLeader);
-//<<<<Unofficial Bug Fix: End Add
+	//<<<<Unofficial Bug Fix: End Add
 
 	pStream->Write(m_eOwner);
 	pStream->Write(m_eCapturingPlayer);
