@@ -7,12 +7,19 @@ Included Mods:
 	MoreEvents Modmod Expanded (http://forums.civfanatics.com/showthread.php?t=357987)
 	Events with Images for FfH (http://forums.civfanatics.com/showthread.php?t=354770)
 	Some Event changes from MagisterModMod (http://forums.civfanatics.com/showthread.php?t=455111)
+	Great Person Mod (http://forums.civfanatics.com/showthread.php?t=305792), ported by ostar
+	World Unit Popups by ostar
 
 Search Stings for DLL:
 	EVENT_FIXES
 	EVENT_NEW_TAGS
 
 Changes:
+v1.5 (2013/05/28, MNAI r1443)
+	Addition of Great Person Mod (xienwolf, ostar) and World Unit Popups (ostar) with BUG Options Tab
+	Code:
+		Minor comments and code cleanup
+		Some Python Comments for Events Overview utility
 v1.4
 	Changed Events (Gameplay):
 		Aeron's chosen
