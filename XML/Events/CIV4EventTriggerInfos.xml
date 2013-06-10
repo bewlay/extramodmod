@@ -7610,6 +7610,9 @@
 				<Event>EVENT_CLAIRONE_1</Event>
 				<Event>EVENT_CLAIRONE_2</Event>
 			</Events>
+			<OrPreReqs>
+				<PrereqTech>TECH_FESTIVALS</PrereqTech>
+			</OrPreReqs>
 			<bPickPlayer>1</bPickPlayer>
 			<bPickCity>1</bPickCity>
 		</EventTriggerInfo>
