@@ -15,6 +15,12 @@ Search Stings for DLL:
 	EVENT_NEW_TAGS
 
 Changes:
+v1.6 (2013/06/10, MNAI r1443)
+	Changed Events (Gameplay):
+		Clairone (Harpy) Event now requires Festivals.
+	Coed:
+		GPMod callback changed from greatPersonBorn to unitCreated, to cache GPs f.e. from events. 
+		Better EventImages (ostar). Now all images are lower case
 v1.5 (2013/05/28, MNAI r1443)
 	Addition of Great Person Mod (xienwolf, ostar) and World Unit Popups (ostar) with BUG Options Tab
 	Code:

@@ -1,4 +1,5 @@
 "Serial Killer" / "Enlist him" should not be available for Luchuirp / Sheaim (Axeman UU)
 Review "Brothers in need"
+"Clairone" only in cities with at least X extra happiness and size Y (So +5 Unhappiness can only anger Z% of the population)
 
 Message text for "iTechCostPercent": Convert X% of tech cost to gold
