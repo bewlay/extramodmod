@@ -36,5 +36,5 @@
 	
 	
 	<event type="unitBuilt" function="onUnitBuilt"/>
-	<event type="greatPersonBorn" function="onGreatPersonBorn"/>
+	<event type="unitCreated" function="onUnitCreated"/>
 </mod>
