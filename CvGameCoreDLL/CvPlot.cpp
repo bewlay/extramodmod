@@ -549,6 +549,15 @@ void CvPlot::doTurn()
                             {
                                 CvUnit* pUnit;
                                 pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit((UnitTypes)iUnit, getX_INLINE(), getY_INLINE(), UNITAI_ATTACK);
+
+								if (GC.getImprovementInfo(eImprovement).getFreeSpawnPromotion() != NO_PROMOTION)
+								{
+									if ((GC.getPromotionInfo((PromotionTypes)GC.getImprovementInfo(eImprovement).getFreeSpawnPromotion())).isRace())
+									{
+										pUnit->setRace(NO_PROMOTION);
+									}
+									pUnit->setHasPromotion((PromotionTypes)GC.getImprovementInfo(eImprovement).getFreeSpawnPromotion(), true);
+								}
 								if (pUnit->isAnimal())
                                 {
                                     pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
@@ -4832,7 +4841,7 @@ bool CvPlot::isValidRoute(const CvUnit* pUnit) const
 
 bool CvPlot::isTradeNetworkImpassable(TeamTypes eTeam) const
 {
-	return (isImpassable() && !isRiverNetwork(eTeam));
+	return (isImpassable() && !isRiverNetwork(eTeam) && !isRoute());
 }
 
 bool CvPlot::isRiverNetwork(TeamTypes eTeam) const

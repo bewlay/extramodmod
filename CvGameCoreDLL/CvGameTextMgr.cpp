@@ -1154,6 +1154,12 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_UNIT_CAN_MOVE_IMPASSABLE"));
 			}
+
+			if (pUnit->canMoveLimitedBorders())
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_CAN_MOVE_LIMITED_BORDERS"));
+			}
 /*************************************************************************************************/
 /**	FFHBUG denev																				**/
 /**	ADDON (FFHBUG) merged Sephi																	**/
@@ -1519,6 +1525,16 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_PROMOTION_RESIST", pUnit->getResist()));
+			}
+			if (pUnit->isCastingBlocked())
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_CASTING_BLOCKED"));
+			}
+			if (pUnit->isUpgradeOutsideBorders())
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_UPGRADE_OUTSIDE_BORDERS"));
 			}
 			if (bSummoningAbility)
 			{
@@ -4640,15 +4656,15 @@ It is fine for a human player mouse-over (which is what it is used for).
                 if (iView & getBugOptionINT("ACO__ShowTotalDefenseModifier", 2, "ACO_SHOW_TOTAL_DEFENSE_MODIFIER"))
                 {
                     //szString.append(L' ');//XXX
-                    if (pDefender->maxCombatStr(pPlot,pAttacker)>pDefender->baseCombatStr()*100) // modifier is positive
+                    if (pDefender->maxCombatStr(pPlot,pAttacker) > pDefender->baseCombatStr()*100) // modifier is positive
                     {
                         szTempBuffer.Format(SETCOLR L"%d%%" ENDCOLR,
-                                            TEXT_COLOR("COLOR_NEGATIVE_TEXT"),(((pDefender->maxCombatStr(pPlot,pAttacker)))/pDefender->baseCombatStr())-100);
+							TEXT_COLOR("COLOR_NEGATIVE_TEXT"),(((pDefender->maxCombatStr(pPlot,pAttacker)))/(std::max(pDefender->baseCombatStr(), 1)))-100);
                     }
                     else   // modifier is negative
                     {
                         szTempBuffer.Format(SETCOLR L"%d%%" ENDCOLR,
-                                            TEXT_COLOR("COLOR_POSITIVE_TEXT"),(100-((pDefender->baseCombatStr()*10000)/(pDefender->maxCombatStr(pPlot,pAttacker)))));
+							TEXT_COLOR("COLOR_POSITIVE_TEXT"),(100-((pDefender->baseCombatStr()*10000)/(std::max(pDefender->maxCombatStr(pPlot,pAttacker), 1)))));
                     }
 
                     szString.append(gDLL->getText("TXT_ACO_TotalDefenseModifier"));
@@ -8685,6 +8701,18 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 
 	CvPromotionInfo &kPromotionInfo = GC.getPromotionInfo(ePromotion);
 
+	if (kPromotionInfo.isAllowsMoveImpassable())
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CAN_MOVE_IMPASSABLE_TEXT"));
+	}
+
+	if (kPromotionInfo.isAllowsMoveLimitedBorders())
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CAN_MOVE_LIMITED_BORDERS_TEXT"));
+	}
+
 	if (kPromotionInfo.isBlitz())
 	{
 		szBuffer.append(pcNewline);
@@ -9279,6 +9307,16 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HELD_PEDIA"));
+    }
+	if (kPromotionInfo.isCastingBlocked())
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CASTING_BLOCKED_PEDIA"));
+    }
+	if (kPromotionInfo.isUpgradeOutsideBorders())
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_UPGRADE_OUTSIDE_BORDERS_PEDIA"));
     }
     if (kPromotionInfo.isHiddenNationality())
     {
@@ -11007,6 +11045,14 @@ void CvGameTextMgr::setTechTradeHelp(CvWStringBuffer &szBuffer, TechTypes eTech,
 				{
 					if (!bPlayerContext || !(GET_PLAYER(GC.getGameINLINE().getActivePlayer()).canTrain(eLoopUnit)))
 					{
+						if (GC.getUnitInfo(eLoopUnit).getPrereqCiv() != NO_CIVILIZATION)
+						{
+							if ((GC.getUnitInfo(eLoopUnit).getPrereqCiv() != GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCivilizationType()))
+							{
+								continue;
+							}
+						}
+						
 						if (GC.getUnitInfo(eLoopUnit).getPrereqAndTech() == eTech)
 						{
 							szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_TECH_CAN_TRAIN").c_str());
@@ -11538,6 +11584,11 @@ void CvGameTextMgr::setBasicUnitHelpWithCity(CvWStringBuffer &szBuffer, UnitType
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_CAN_MOVE_IMPASSABLE"));
 	}
 
+	if (kUnitInfo.isCanMoveLimitedBorders())
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_CAN_MOVE_LIMITED_BORDERS"));
+	}
 
 	if (kUnitInfo.isNoBadGoodies())
 	{
@@ -18446,7 +18497,26 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 			szBuffer.append(gDLL->getText("TXT_KEY_WAR_WEAR_HELP", iWarWeariness / 10000));
 		}
 	}
-
+	
+	// lfgr: Display no diplo (Crusade) info
+	if( GET_TEAM( GET_PLAYER(ePlayer).getTeam() ).isAtWar( GET_PLAYER(eTargetPlayer).getTeam() ) )
+	{
+		if( GET_PLAYER( eTargetPlayer ).isNoDiplomacyWithEnemies() )
+		{
+			szBuffer.append( NEWLINE );
+			if ( eTargetPlayer == GC.getGameINLINE().getActivePlayer() )
+				szBuffer.append( gDLL->getText("TXT_KEY_MISC_NO_DIPLO_WITH_ENEMIES_YOU") );
+			else
+				szBuffer.append( gDLL->getText( "TXT_KEY_MISC_NO_DIPLO_WITH_ENEMIES_PLAYER", GET_PLAYER( eTargetPlayer ).getName() ) );
+			
+		}
+		if( GET_PLAYER( ePlayer ).isNoDiplomacyWithEnemies() )
+		{
+			szBuffer.append( NEWLINE );
+			szBuffer.append( gDLL->getText("TXT_KEY_MISC_NO_DIPLO_WITH_ENEMIES_OTHER") );
+		}
+	}
+	// lfgr end
 }
 
 void CvGameTextMgr::getEspionageString(CvWStringBuffer& szBuffer, PlayerTypes ePlayer, PlayerTypes eTargetPlayer)

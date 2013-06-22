@@ -2130,7 +2130,8 @@ class CvMainInterface:
 							szFileName = ArtFileMgr.getInterfaceArtInfo("OVERLAY_NOMOVE").getPath()
 
 						szString = "PlotListButton" + str(iCount)
-						screen.changeImageButton( szString, gc.getUnitInfo(pLoopUnit.getUnitType()).getButton() )
+#						screen.changeImageButton( szString, gc.getUnitInfo(pLoopUnit.getUnitType()).getButton() )
+						screen.changeImageButton( szString, pLoopUnit.getButton() )
 						if ( pLoopUnit.getOwner() == gc.getGame().getActivePlayer() ):
 							bEnable = True
 						else:
@@ -2487,6 +2488,9 @@ class CvMainInterface:
 				# Units to construct
 				for i in range ( g_NumUnitClassInfos ):
 					eLoopUnit = gc.getCivilizationInfo(pHeadSelectedCity.getCivilizationType()).getCivilizationUnits(i)
+					
+					if eLoopUnit == -1:
+						eLoopUnit = gc.getCivilizationInfo(gc.getPlayer(pHeadSelectedCity.getOwner()).getCivilizationType()).getCivilizationUnits(i)
 
 #FfH: Added by Kael 10/05/2007
 					if eLoopUnit != -1:

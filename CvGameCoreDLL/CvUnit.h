@@ -268,7 +268,8 @@ public:
 	bool hasUpgrade(UnitTypes eUnit, bool bSearch = false) const;
 	CvCity* getUpgradeCity(bool bSearch = false) const;
 	CvCity* getUpgradeCity(UnitTypes eUnit, bool bSearch = false, int* iSearchValue = NULL) const;
-	void upgrade(UnitTypes eUnit);
+	//void upgrade(UnitTypes eUnit);
+	CvUnit* upgrade(UnitTypes eUnit); // K-Mod
 
 	HandicapTypes getHandicapType() const;																// Exposed to Python
 	CivilizationTypes getCivilizationType() const;							// Exposed to Python
@@ -374,6 +375,7 @@ public:
 	bool ignoreBuildingDefense() const;																								// Exposed to Python
 	bool canMoveImpassable() const;																										// Exposed to Python
 	bool canMoveAllTerrain() const;																										// Exposed to Python
+	bool canMoveLimitedBorders() const;																										// Exposed to Python
 	bool flatMovementCost() const;																										// Exposed to Python
 	bool ignoreTerrainCost() const;																										// Exposed to Python
 	bool isNeverInvisible() const;																										// Exposed to Python
@@ -821,7 +823,8 @@ public:
 	virtual void AI_uninit() = 0;
 	virtual void AI_reset(UnitAITypes eUnitAI = NO_UNITAI) = 0;
 	virtual bool AI_update() = 0;
-	virtual bool AI_follow() = 0;
+	//virtual bool AI_follow() = 0;
+	virtual bool AI_follow(bool bFirst = true) = 0; // K-Mod
 	virtual void AI_upgrade() = 0;
 	virtual void AI_promote() = 0;
 	virtual int AI_getBirthmark() const = 0;
@@ -871,6 +874,7 @@ public:
 	bool canImmobile(int spell);
 	bool canPush(int spell);
 	bool canRemovePromotion(int spell);
+	//bool canTerraform(int spell, const CvPlot* pPlot) const;	// MNAI
 
 	void cast(int spell);
 	void castAddPromotion(int spell);
@@ -881,6 +885,7 @@ public:
     void castImmobile(int spell);
     void castPush(int spell);
 	void castRemovePromotion(int spell);
+	//void castTerraform(int spell);	// MNAI
 
 	bool isImmuneToSpell(CvUnit* pCaster, int spell) const;
 	int getDelayedSpell() const;
@@ -1006,6 +1011,15 @@ public:
 	void updateTerraformer();
     bool isTerraformer() const;
     bool withdrawlToNearestValidPlot();
+
+	// MNAI - additional promotion tags
+	void changeCanMoveImpassable(int iNewValue);
+	void changeCanMoveLimitedBorders(int iNewValue);
+	bool isCastingBlocked() const;
+	void changeCastingBlocked(int iNewValue);
+	bool isUpgradeOutsideBorders() const;
+	void changeUpgradeOutsideBorders(int iNewValue);
+	// End MNAI
 
 	virtual int AI_promotionValue(PromotionTypes ePromotion) = 0;
 
@@ -1138,6 +1152,13 @@ protected:
 	int* m_paiDamageTypeCombat;
 	int* m_paiDamageTypeResist;
 //FfH: End Add
+	
+	// MNAI - Additional promotion tags
+	int m_iCanMoveImpassable;
+	int m_iCanMoveLimitedBorders;
+	int m_iCastingBlocked;
+	int m_iUpgradeOutsideBorders;
+	// End MNAI
 
 //>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	bool m_bAvatarOfCivLeader;
