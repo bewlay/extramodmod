@@ -158,42 +158,55 @@ class CvGameUtils:
 		iCiv = pPlayer.getCivilizationType()
 		eTeam = gc.getTeam(pPlayer.getTeam())
 		
+		bNonReligiousPlayer = false
+		if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+			bNonReligiousPlayer = true
+		elif pPlayer.isBarbarian():
+			bNonReligiousPlayer = true
+		
 		if eTech == gc.getInfoTypeForString('TECH_ORDERS_FROM_HEAVEN'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_RELIGION_1):
 				return True
-			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+			if bNonReligiousPlayer:
 				return True
 
 		if eTech == gc.getInfoTypeForString('TECH_WAY_OF_THE_EARTHMOTHER'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_RELIGION_3):
 				return True
-			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+			if bNonReligiousPlayer:
 				return True
 				
 		if eTech == gc.getInfoTypeForString('TECH_WAY_OF_THE_FORESTS'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_RELIGION_0):
 				return True
-			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+			if bNonReligiousPlayer:
 				return True
 				
 		if eTech == gc.getInfoTypeForString('TECH_MESSAGE_FROM_THE_DEEP'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_RELIGION_2):
 				return True
-			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+			if bNonReligiousPlayer:
 				return True
 				
 		if eTech == gc.getInfoTypeForString('TECH_CORRUPTION_OF_SPIRIT'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_RELIGION_4):
 				return True
-			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+			if bNonReligiousPlayer:
 				return True
 				
 		if eTech == gc.getInfoTypeForString('TECH_HONOR'):
-			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+			if bNonReligiousPlayer:
 				return True		
 				
 		if eTech == gc.getInfoTypeForString('TECH_DECEPTION'):
-			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
+			if bNonReligiousPlayer:
 				return True		
 
 		if eTech == gc.getInfoTypeForString('TECH_SEAFARING'):
@@ -712,7 +725,12 @@ class CvGameUtils:
 		
 	def getWidgetHelp(self, argsList):
 		eWidgetType, iData1, iData2, bOption = argsList
-		
+## Platy WorldBuilder ##
+		if eWidgetType == WidgetTypes.WIDGET_GENERAL:
+			if iData1 == 1029:
+				sHelp = str(iData2)
+				return CyTranslator().getText("TXT_KEY_WB_HELP" + sHelp,())
+## Platy WorldBuilder ##
 		return u""
 		
 	def getUpgradePriceOverride(self, argsList):

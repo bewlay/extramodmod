@@ -4321,7 +4321,7 @@ void CvPlayer::doTurn()
 /* City AI                                                                                      */
 /************************************************************************************************/
     // New function to handle wonder construction in a centralized manner
-	GET_PLAYER(getID()).AI_doCentralizedProduction();
+	//GET_PLAYER(getID()).AI_doCentralizedProduction();
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
@@ -6024,7 +6024,7 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 				//		if (GET_PLAYER(eWhoTo).canTrain(eUnit))
 				//		{
 							pTradingCity = pUnitTraded->plot()->getPlotCity();
-							if (GC.getUnitInfo(pUnitTraded->getUnitType()).isMechUnit() && pUnitTraded->canMove() && (pTradingCity != NULL) && (pTheirCapitalCity != NULL))
+							if (pUnitTraded->canMove() && pUnitTraded->canTradeUnit(eWhoTo) && (pTradingCity != NULL) && (pTheirCapitalCity != NULL))
 							{
 								if (pTradingCity->getOwnerINLINE() == getID())
 								{
@@ -6111,6 +6111,11 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
     case TRADE_EMBASSY:
 		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
 		{
+			if (getNumCities() == 0)
+			{
+				return false;
+			}
+
 			if (getTeam() != GET_PLAYER(eWhoTo).getTeam())
 			{
 				if (!atWar(getTeam(), GET_PLAYER(eWhoTo).getTeam()))
@@ -6259,6 +6264,11 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 	case TRADE_RIGHT_OF_PASSAGE:
 		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
 		{
+			if (getNumCities() == 0)
+			{
+				return false;
+			}
+
 			if (getTeam() != GET_PLAYER(eWhoTo).getTeam())
 			{
 				if (!atWar(getTeam(), GET_PLAYER(eWhoTo).getTeam()))
@@ -7729,7 +7739,10 @@ bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool
 	{
         if (getCivilizationType() != kUnit.getPrereqCiv())
         {
-            return false;
+			if (!isAssimilation() || (GC.getUnitClassInfo(eUnitClass).getMaxGlobalInstances() > 0))
+			{
+	            return false;
+			}
         }
 //FfH: End Add
 	}
@@ -9525,12 +9538,14 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
 /* UNOFFICIAL_PATCH                        END                                                  */
 /************************************************************************************************/	
 
+	CvCivicInfo &kCivic = GC.getCivicInfo(eCivic);
+	
 //FfH: Added by Kael 11/23/2007
     if (isFullMember((VoteSourceTypes)0))
     {
 //FfH: End Add
 
-        if (GC.getGameINLINE().isForceCivicOption((CivicOptionTypes)(GC.getCivicInfo(eCivic).getCivicOptionType())))
+        if (GC.getGameINLINE().isForceCivicOption((CivicOptionTypes)(kCivic.getCivicOptionType())))
         {
             return GC.getGameINLINE().isForceCivic(eCivic);
         }
@@ -9552,43 +9567,43 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
 		}
 	}
 
-	if (!isHasCivicOption((CivicOptionTypes)(GC.getCivicInfo(eCivic).getCivicOptionType())) && !(GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getCivicInfo(eCivic).getTechPrereq()))))
+	if (!isHasCivicOption((CivicOptionTypes)(kCivic.getCivicOptionType())) && !(GET_TEAM(getTeam()).isHasTech((TechTypes)(kCivic.getTechPrereq()))))
 	{
 		return false;
 	}
 
 //FfH Civics: Added by Kael 08/11/2007
-    if (GC.getCivicInfo(eCivic).isPrereqWar())
+    if (kCivic.isPrereqWar())
     {
         if (GET_TEAM(getTeam()).getAtWarCount(true) == 0)
         {
             return false;
 		}
     }
-    if (GC.getCivicInfo(eCivic).getBlockAlignment() != NO_ALIGNMENT)
+    if (kCivic.getBlockAlignment() != NO_ALIGNMENT)
     {
-        if (getAlignment() == GC.getCivicInfo(eCivic).getBlockAlignment())
+        if (getAlignment() == kCivic.getBlockAlignment())
         {
             return false;
         }
     }
-    if (GC.getCivicInfo(eCivic).getPrereqAlignment() != NO_ALIGNMENT)
+    if (kCivic.getPrereqAlignment() != NO_ALIGNMENT)
     {
-        if (getAlignment() != GC.getCivicInfo(eCivic).getPrereqAlignment())
+        if (getAlignment() != kCivic.getPrereqAlignment())
         {
             return false;
         }
     }
-    if (GC.getCivicInfo(eCivic).getPrereqCivilization() != NO_CIVILIZATION)
+    if (kCivic.getPrereqCivilization() != NO_CIVILIZATION)
     {
-        if (getCivilizationType() != GC.getCivicInfo(eCivic).getPrereqCivilization())
+        if (getCivilizationType() != kCivic.getPrereqCivilization())
         {
             return false;
         }
     }
-    if (GC.getCivicInfo(eCivic).getPrereqReligion() != NO_RELIGION)
+    if (kCivic.getPrereqReligion() != NO_RELIGION)
     {
-        if (getStateReligion() != GC.getCivicInfo(eCivic).getPrereqReligion())
+        if (getStateReligion() != kCivic.getPrereqReligion())
         {
             return false;
         }
@@ -12786,9 +12801,10 @@ void CvPlayer::setAlive(bool bNewValue)
 
 			if (GC.getGameINLINE().getElapsedGameTurns() > 0)
 			{
-				if (!isBarbarian() && !isRebel())
+				if (!isBarbarian())// && !isRebel())
 				{
-					szBuffer = gDLL->getText("TXT_KEY_MISC_CIV_DESTROYED", getCivilizationAdjectiveKey());
+					//szBuffer = gDLL->getText("TXT_KEY_MISC_CIV_DESTROYED", getCivilizationAdjectiveKey());
+					szBuffer = gDLL->getText("TXT_KEY_MISC_CIV_DESTROYED", getCivilizationDescription());
 
 					for (iI = 0; iI < MAX_PLAYERS; iI++)
 					{
@@ -13056,15 +13072,6 @@ void CvPlayer::setTurnActive(bool bNewValue, bool bDoTurn)
 
 		if (isTurnActive())
 		{
-			if (GC.getLogging())
-			{
-				if (gDLL->getChtLvl() > 0)
-				{
-					TCHAR szOut[1024];
-					sprintf(szOut, "Player %d Turn ON\n", getID());
-					gDLL->messageControlLog(szOut);
-				}
-			}
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/26/09                                jdog5000      */
 /*                                                                                              */
@@ -13259,16 +13266,6 @@ void CvPlayer::setTurnActive(bool bNewValue, bool bDoTurn)
 		}
 		else
 		{
-			if (GC.getLogging())
-			{
-				if (gDLL->getChtLvl() > 0)
-				{
-					TCHAR szOut[1024];
-					sprintf(szOut, "Player %d Turn OFF\n", getID());
-					gDLL->messageControlLog(szOut);
-				}
-			}
-
 			if (getID() == GC.getGameINLINE().getActivePlayer())
 			{
 				gDLL->getInterfaceIFace()->setForcePopup(false);
@@ -21800,6 +21797,10 @@ void CvPlayer::applyEvent(EventTypes eEvent, int iEventTriggeredId, bool bUpdate
 		deleteEventTriggered(iEventTriggeredId);
 		return;
 	}
+	else
+	{
+		//logBBAI("    Event Trigger - %S", GC.getEventInfo((EventTypes)iEventTriggeredId).getDescription());
+	}
 
 	logBBAI("    Event result - %S", GC.getEventInfo((EventTypes)eEvent).getDescription() );
 
@@ -24997,7 +24998,10 @@ int CvPlayer::getVotes(VoteTypes eVote, VoteSourceTypes eVoteSource) const
 		if (GC.getUnitInfo(pLoopUnit->getUnitTypeINLINE()).getDiploVoteType() != NO_VOTESOURCE)
 #endif
 		{
-		    iVotes += 1;
+			if (GC.getUnitInfo(pLoopUnit->getUnitTypeINLINE()).getDiploVoteType() == eVoteSource)
+			{
+			    iVotes += 1;
+			}
 		}
 	}
 //FfH: End Add
@@ -27324,15 +27328,6 @@ bool CvPlayer::isPuppetState() const
 void CvPlayer::setPuppetState(bool newvalue)
 {
     m_bPuppetState = newvalue;
-	if (GC.getLogging())
-	{
-		if (gDLL->getChtLvl() > 0)
-		{
-			char szOut[1024];
-			sprintf(szOut, "Puppet state set to %d\n", newvalue);
-			gDLL->messageControlLog(szOut);
-		}
-	}
 }
 // End Puppet State Functions
 

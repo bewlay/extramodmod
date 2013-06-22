@@ -481,6 +481,7 @@ public:
 
 	int getTechPrereq() const;				// Exposed to Python
 	int getStateReligionPrereq() const;				// Exposed to Python
+	int getUnitReligionPrereq() const;				// MNAI - Exposed to Python
 	int getVisibilityChange() const;				// Exposed to Python
 	int getMovesChange() const;				// Exposed to Python
 	int getMoveDiscountChange() const;				// Exposed to Python
@@ -614,6 +615,14 @@ public:
 	int getBonusAffinity(int i) const;
 	int getDamageTypeCombat(int i) const;
 	int getDamageTypeResist(int i) const;
+
+	// MNAI - additional promotion tags
+	bool isAllowsMoveImpassable() const;
+	bool isAllowsMoveLimitedBorders() const;
+	bool isCastingBlocked() const;
+	bool isUpgradeOutsideBorders() const;
+	// End MNAI
+
 	bool readPass3();
 //FfH: End Add
 
@@ -634,6 +643,7 @@ protected:
 
 	int m_iTechPrereq;
 	int m_iStateReligionPrereq;
+	int m_iUnitReligionPrereq; // MNAI
 	int m_iVisibilityChange;
 	int m_iMovesChange;
 	int m_iMoveDiscountChange;
@@ -753,6 +763,13 @@ protected:
 	int* m_piDamageTypeResist;
 //FfH: End Add
 
+	// MNAI - additional promotion tags
+	bool m_bAllowsMoveImpassable;
+	bool m_bAllowsMoveLimitedBorders;
+	bool m_bCastingBlocked;
+	bool m_bUpgradeOutsideBorders;
+	// End MNAI
+
 	// Arrays
 
 	int* m_piTerrainAttackPercent;
@@ -799,6 +816,7 @@ public:
 	int getPromotionInStackPrereq() const;
 	int getReligionPrereq() const;
 	int getStateReligionPrereq() const;
+	int getUnitReligionPrereq() const; // MNAI
 	int getTechPrereq() const;
 	int getRange() const;
     int getEffect() const;
@@ -863,14 +881,22 @@ public:
 	bool isRemoveHasCasted() const;
 	bool isResistable() const;
 	bool isSacrificeCaster() const;
+	bool isRemoveInvalidFeature() const;	// MNAI
 
 	const TCHAR* getSound() const;
 	const TCHAR* getPyMiscast() const;
 	const TCHAR* getPyResult() const;
 	const TCHAR* getPyRequirement() const;
+	const TCHAR* getPyAlternateReq() const;	// MNAI
 	int getCommandType() const;
 	void setCommandType(int iNewType);
-
+	// MNAI begin
+	/*
+	int getTerrainConvert(int i) const;
+	int getFeatureConvert(int i) const;
+	bool isFeatureInvalid(int i) const;
+	*/
+	// MNAI end
 	void read(FDataStreamBase* stream);
 	void write(FDataStreamBase* stream);
 	bool read(CvXMLLoadUtility* pXML);
@@ -955,6 +981,7 @@ protected:
     bool m_bPush;
     bool m_bRemoveHasCasted;
     bool m_bSacrificeCaster;
+	bool m_bRemoveInvalidFeature;	// MNAI
     int m_iChangePopulation;
     int m_iCost;
     int m_iImmobileTurns;
@@ -964,7 +991,15 @@ protected:
 	CvString m_szPyMiscast;
 	CvString m_szPyResult;
 	CvString m_szPyRequirement;
+	CvString m_szPyAlternateReq;	// MNAI
 	CvString m_szSound;
+	// MNAI begin
+	/*
+	int* m_piTerrainConvert;
+	int* m_piFeatureConvert;
+	bool* m_pbFeatureInvalid;
+	*/
+	// MNAI end
 };
 //FfH: End Add
 
@@ -1293,6 +1328,7 @@ public:
 	bool isIgnoreBuildingDefense() const;				// Exposed to Python
 	bool isCanMoveImpassable() const;				// Exposed to Python
 	bool isCanMoveAllTerrain() const;				// Exposed to Python
+	bool isCanMoveLimitedBorders() const;				// Exposed to Python
 	bool isFlatMovementCost() const;				// Exposed to Python
 	bool isIgnoreTerrainCost() const;				// Exposed to Python
 	bool isNukeImmune() const;				// Exposed to Python
@@ -1546,6 +1582,7 @@ protected:
 	bool m_bIgnoreBuildingDefense;
 	bool m_bCanMoveImpassable;
 	bool m_bCanMoveAllTerrain;
+	bool m_bCanMoveLimitedBorders; // MNAI
 	bool m_bFlatMovementCost;
 	bool m_bIgnoreTerrainCost;
 	bool m_bNukeImmune;
@@ -2865,6 +2902,17 @@ public:
 	bool isMaintainFeatures(int i) const;
 //FfH: End Add
 
+/*************************************************************************************************/
+/**	New Tag Defs	(CivilizationInfos)		01/12/09								Xienwolf	**/
+/**																								**/
+/**								Defines Function for Use in .cpp								**/
+/*************************************************************************************************/
+	int getTerrainYieldChanges(int i, int j, bool is_river) const;
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
+
+
 	bool read(CvXMLLoadUtility* pXML);
 	DllExport bool readPass2(CvXMLLoadUtility* pXML);
 	DllExport void read(FDataStreamBase* stream);
@@ -2907,6 +2955,18 @@ protected:
 	int m_iHero;
 	bool* m_pbMaintainFeatures;
 //FfH: End Add
+
+/*************************************************************************************************/
+/**	New Tag Defs	(CivilizationInfos)		01/12/09								Xienwolf	**/
+/**																								**/
+/**								Defines Variable for Use in .cpp								**/
+/*************************************************************************************************/
+	int** m_ppiTerrainYieldChanges;
+	int** m_ppiTerrainRiverYieldChanges;
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
+
 
 	CvString* m_paszCityNames;
 
@@ -3608,6 +3668,7 @@ public:
 	const TCHAR* getPythonAtRange() const;
 	const TCHAR* getPythonOnMove() const;
 	int getSpawnUnitType() const;
+	int getFreeSpawnPromotion() const;
 	int getVisibilityChange() const;
 	bool readPass3();
 //FfH: End Add
@@ -3679,6 +3740,7 @@ protected:
 	CvString m_szPythonAtRange;
 	CvString m_szPythonOnMove;
 	int m_iSpawnUnitType;
+	int m_iFreeSpawnPromotion;
 	int m_iVisibilityChange;
 
 	std::vector<CvString> m_aszExtraXML2forPass3;
@@ -4150,12 +4212,7 @@ public:
 	int getPlotCounterUp() const;
 	int getTerrainUp() const;
 	bool readPass2(CvXMLLoadUtility* pXML);
-    int getCivilizationYieldType() const;
-    int getCivilizationYieldChange(int i) const;
-	bool readPass3();
 //FfH: End Add
-
-	int getCivilizationRiverYieldChange(int i) const;
 
 
 	DllExport const TCHAR* getArtDefineTag() const;
@@ -4196,16 +4253,12 @@ protected:
 
 //FfH: Added by Kael 08/02/2007
 	bool m_bNormalize;
-	int m_iCivilizationYieldType;
 	int m_iPlotCounterDown;
 	int m_iTerrainDown;
 	int m_iPlotCounterUp;
 	int m_iTerrainUp;
 
-	int* m_piCivilizationYieldChange;
 //FfH: End Add
-
-	int* m_piCivilizationYieldRiverChange;
 
 	// Arrays
 

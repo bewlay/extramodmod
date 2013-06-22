@@ -178,6 +178,16 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 
 	setGameTurnCreated(GC.getGameINLINE().getGameTurn());
 
+	if (m_pUnitInfo->isCanMoveImpassable())
+	{
+		changeCanMoveImpassable(1);
+	}
+
+	if (m_pUnitInfo->isCanMoveLimitedBorders())
+	{
+		changeCanMoveLimitedBorders(1);
+	}
+
 	GC.getGameINLINE().incrementUnitCreatedCount(getUnitType());
 
 	GC.getGameINLINE().incrementUnitClassCreatedCount((UnitClassTypes)(m_pUnitInfo->getUnitClassType()));
@@ -488,6 +498,11 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_iTotalDamageTypeCombat = 0;
     m_iUnitArtStyleType = NO_UNIT_ARTSTYLE;
 	m_iWorkRateModify = 0;
+
+	m_iCanMoveImpassable = 0;
+	m_iCanMoveLimitedBorders = 0;
+	m_iCastingBlocked = 0;
+	m_iUpgradeOutsideBorders = 0;
 //>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	m_bAvatarOfCivLeader = false;
 //<<<<Unofficial Bug Fix: End Add
@@ -2323,7 +2338,7 @@ void CvUnit::updateCombat(bool bQuick)
                         pUnitNode = pPlot->nextUnitNode(pUnitNode);
                         if (pLoopUnit->isEnemy(getTeam()))
                         {
-                            if (!pLoopUnit->isImmuneToFear())
+							if (!pLoopUnit->isImmuneToFear() && !pLoopUnit->isCargo())
                             {
                                 if (GC.getGameINLINE().getSorenRandNum(20, "Im afeared!") <= (baseCombatStr() + 10 - pLoopUnit->baseCombatStr()))
                                 {
@@ -3119,29 +3134,10 @@ bool CvUnit::canEnterTerritory(TeamTypes eTeam, bool bIgnoreRightOfPassage) cons
 /************************************************************************************************/
 		if (GET_TEAM(getTeam()).isLimitedBorders(eTeam))
 		{
-			if (isOnlyDefensive() || !canFight())
+			if (canMoveLimitedBorders())
 			{
 				return true;
 			}
-
-			// disciples
-			for (int iI = 0; iI < GC.getNumReligionInfos(); iI++)
-			{
-				if (m_pUnitInfo->getReligionSpreads((ReligionTypes)iI) > 0)
-				{
-					return true;
-				}
-			}
-
-			// scouts
-			if (m_pUnitInfo->getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_RECON"))
-			{
-				if (m_pUnitInfo->getTier() == 1)
-				{
-					return true;
-				}
-			}
-
 		}
 /************************************************************************************************/
 /* Afforess	                     END                                                            */
@@ -4313,6 +4309,11 @@ bool CvUnit::canLoadUnit(const CvUnit* pUnit, const CvPlot* pPlot) const
 		return false;
 	}
 
+	if (isHeld())
+	{
+		return false;
+	}
+
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                       06/23/10                     Mongoose & jdog5000      */
 /*                                                                                              */
@@ -5008,6 +5009,22 @@ bool CvUnit::canAirliftAt(const CvPlot* pPlot, int iX, int iY) const
 		return false;
 	}
 
+	// Super Forts begin *airlift*
+	if (pTargetPlot->getTeam() != NO_TEAM)
+	{
+		if (pTargetPlot->getTeam() == getTeam() || GET_TEAM(pTargetPlot->getTeam()).isVassal(getTeam()))
+		{
+			if (pTargetPlot->getImprovementType() != NO_IMPROVEMENT)
+			{
+				if (GC.getImprovementInfo(pTargetPlot->getImprovementType()).isActsAsCity())
+				{
+					return true;
+				}
+			}
+		}
+	}
+	// Super Forts end
+
 	pTargetCity = pTargetPlot->getPlotCity();
 
 	if (pTargetCity == NULL)
@@ -5044,15 +5061,20 @@ bool CvUnit::airlift(int iX, int iY)
 	FAssert(pCity != NULL);
 	pTargetPlot = GC.getMapINLINE().plotINLINE(iX, iY);
 	FAssert(pTargetPlot != NULL);
-	pTargetCity = pTargetPlot->getPlotCity();
-	FAssert(pTargetCity != NULL);
-	FAssert(pCity != pTargetCity);
-
-	pCity->changeCurrAirlift(1);
-	if (pTargetCity->getMaxAirlift() == 0)
+	// Super Forts begin *airlift* - added if statement to allow airlifts to plots that aren't cities
+	if (pTargetPlot->isCity())
 	{
-		pTargetCity->setAirliftTargeted(true);
+		pTargetCity = pTargetPlot->getPlotCity();
+		FAssert(pTargetCity != NULL);
+		FAssert(pCity != pTargetCity);
+
+		if (pTargetCity->getMaxAirlift() == 0)
+		{
+			pTargetCity->setAirliftTargeted(true);
+		}
 	}
+	pCity->changeCurrAirlift(1);
+	// Super Forts end
 
 	finishMoves();
 
@@ -5836,7 +5858,8 @@ bool CvUnit::bombard()
 		int iTotalBombard = (-(bombardRate() * std::max(0, 100 + iBombardModifier)) / 100);
 		pBombardCity->changeDefenseModifier(iTotalBombard);
 
-		CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_DEFENSES_IN_CITY_REDUCED_TO", pBombardCity->getNameKey(), pBombardCity->getDefenseModifier(false), GET_PLAYER(getOwnerINLINE()).getNameKey());
+		//CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_DEFENSES_IN_CITY_REDUCED_TO", pBombardCity->getNameKey(), pBombardCity->getDefenseModifier(false), GET_PLAYER(getOwnerINLINE()).getNameKey());
+		CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_DEFENSES_IN_CITY_REDUCED_TO", pBombardCity->getNameKey(), pBombardCity->getDefenseModifier(false), getNameKey());
 		gDLL->getInterfaceIFace()->addMessage(pBombardCity->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BOMBARDED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pBombardCity->getX_INLINE(), pBombardCity->getY_INLINE(), true, true);
 	
 		szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_REDUCE_CITY_DEFENSES", getNameKey(), pBombardCity->getNameKey(), pBombardCity->getDefenseModifier(false));
@@ -8630,7 +8653,7 @@ bool CvUnit::isReadyForUpgrade() const
 		return false;
 	}
 
-	if (plot()->getTeam() != getTeam())
+	if (plot()->getTeam() != getTeam() && !isUpgradeOutsideBorders())
 	{
 		return false;
 	}
@@ -8913,13 +8936,13 @@ CvCity* CvUnit::getUpgradeCity(UnitTypes eUnit, bool bSearch, int* iSearchValue)
 	return pBestCity;
 }
 
-void CvUnit::upgrade(UnitTypes eUnit)
+CvUnit* CvUnit::upgrade(UnitTypes eUnit) // K-Mod: this now returns the new unit.
 {
 	CvUnit* pUpgradeUnit;
 
 	if (!canUpgrade(eUnit))
 	{
-		return;
+		return this;
 	}
 
 // BUG - Upgrade Unit Event - start
@@ -8958,9 +8981,8 @@ void CvUnit::upgrade(UnitTypes eUnit)
 
 	FAssertMsg(pUpgradeUnit != NULL, "UpgradeUnit is not assigned a valid value");
 
-	pUpgradeUnit->joinGroup(getGroup());
-
 	pUpgradeUnit->convert(this);
+	pUpgradeUnit->joinGroup(getGroup()); // K-Mod, swapped order with convert. (otherwise units on boats would be ungrouped.)
 
 	pUpgradeUnit->finishMoves();
 
@@ -8984,12 +9006,13 @@ void CvUnit::upgrade(UnitTypes eUnit)
 	if( gUnitLogLevel > 2 )
 	{
 		CvWString szString;
-		getUnitAIString(szString, pUpgradeUnit->AI_getUnitAIType());
+		getUnitAIString(szString, AI_getUnitAIType());
 		logBBAI("    %S spends %d to upgrade %S to %S, unit AI %S", GET_PLAYER(getOwnerINLINE()).getCivilizationDescription(0), upgradePrice(eUnit), getName(0).GetCString(), pUpgradeUnit->getName(0).GetCString(), szString.GetCString());
 	}
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
+	return pUpgradeUnit; // K-Mod
 }
 
 
@@ -9056,7 +9079,7 @@ InvisibleTypes CvUnit::getInvisibleType() const
 			{
 				if (plot()->getTeam() == getTeam())
 				{
-					if (!plot()->isCity())
+					if (!plot()->isCity(GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))) // Super Forts *custom*
 					{
 						return ((InvisibleTypes)GC.getDefineINT("INVISIBLE_TYPE"));
 					}
@@ -9068,7 +9091,7 @@ InvisibleTypes CvUnit::getInvisibleType() const
 	{
 		if (m_pUnitInfo->getEquipmentPromotion() != NO_PROMOTION)
 		{
-			return ((InvisibleTypes)2);
+			return ((InvisibleTypes)2); // HARD CODE !!!
 		}
 		else
 		{
@@ -10735,8 +10758,8 @@ bool CvUnit::canMoveImpassable() const
         return true;
     }
 //FfH: End Add
-
-	return m_pUnitInfo->isCanMoveImpassable();
+	return m_iCanMoveImpassable == 0 ? false : true;
+	//return m_pUnitInfo->isCanMoveImpassable();
 }
 
 bool CvUnit::canMoveAllTerrain() const
@@ -10750,6 +10773,11 @@ bool CvUnit::canMoveAllTerrain() const
 //FfH: End Add
 
 	return m_pUnitInfo->isCanMoveAllTerrain();
+}
+
+bool CvUnit::canMoveLimitedBorders() const
+{
+	return m_iCanMoveLimitedBorders == 0 ? false : true;
 }
 
 bool CvUnit::flatMovementCost() const
@@ -10815,7 +10843,7 @@ bool CvUnit::isInvisible(TeamTypes eTeam, bool bDebug, bool bCheckCargo) const
 //FfH: Added by Kael 04/11/2008
     if (plot() != NULL)
     {
-        if (plot()->isCity())
+        if (plot()->isCity(GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))) // Super Forts *custom*
         {
             if (getTeam() == plot()->getTeam())
             {
@@ -11335,7 +11363,110 @@ bool CvUnit::canJoinGroup(const CvPlot* pPlot, CvSelectionGroup* pSelectionGroup
 	return true;
 }
 
+// K-Mod has edited this function to increase readability and robustness
 
+void CvUnit::joinGroup(CvSelectionGroup* pSelectionGroup, bool bRemoveSelected, bool bRejoin)
+{
+	CvSelectionGroup* pOldSelectionGroup = GET_PLAYER(getOwnerINLINE()).getSelectionGroup(getGroupID());
+
+	if (pOldSelectionGroup && pSelectionGroup == pOldSelectionGroup)
+		return; // attempting to join the group we are already in
+
+	CvPlot* pPlot = plot();
+	CvSelectionGroup* pNewSelectionGroup = pSelectionGroup;
+
+	if (pNewSelectionGroup == NULL && bRejoin)
+	{
+		pNewSelectionGroup = GET_PLAYER(getOwnerINLINE()).addSelectionGroup();
+		pNewSelectionGroup->init(pNewSelectionGroup->getID(), getOwnerINLINE());
+	}
+
+	if (pNewSelectionGroup == NULL || canJoinGroup(pPlot, pNewSelectionGroup))
+	{
+		if (pOldSelectionGroup != NULL)
+		{
+			bool bWasHead = false;
+			if (!isHuman())
+			{
+				if (pOldSelectionGroup->getNumUnits() > 1)
+				{
+					if (pOldSelectionGroup->getHeadUnit() == this)
+					{
+						bWasHead = true;
+					}
+				}
+			}
+
+			pOldSelectionGroup->removeUnit(this);
+
+			// if we were the head, if the head unitAI changed, then force the group to separate (non-humans)
+			if (bWasHead)
+			{
+				FAssert(pOldSelectionGroup->getHeadUnit() != NULL);
+				if (pOldSelectionGroup->getHeadUnit()->AI_getUnitAIType() != AI_getUnitAIType())
+				{
+						pOldSelectionGroup->AI_makeForceSeparate();
+				}
+			}
+		}
+
+		if ((pNewSelectionGroup != NULL) && pNewSelectionGroup->addUnit(this, false))
+		{
+			m_iGroupID = pNewSelectionGroup->getID();
+		}
+		else
+		{
+			m_iGroupID = FFreeList::INVALID_INDEX;
+		}
+
+		if (getGroup() != NULL)
+		{
+			// K-Mod
+			if (isGroupHead())
+				GET_PLAYER(getOwnerINLINE()).updateGroupCycle(this);
+			// K-Mod end
+			if (getGroup()->getNumUnits() > 1)
+			{
+				// K-Mod
+				// For the AI, only wake the group in particular circumstances. This is to avoid AI deadlocks where they just keep grouping and ungroup indefinitely.
+				// If the activity type is not changed at all, then that would enable exploits such as adding new units to air patrol groups to bypass the movement conditions.
+				if (isHuman())
+				{
+					getGroup()->setAutomateType(NO_AUTOMATE);
+					getGroup()->setActivityType(ACTIVITY_AWAKE);
+					getGroup()->clearMissionQueue();
+					// K-Mod note. the mission queue has to be cleared, because when the shift key is released, the exe automatically sends the autoMission net message.
+					// (if the mission queue isn't cleared, the units will immediately begin their message whenever units are added using shift.)
+				}
+				else if (getGroup()->AI_getMissionAIType() == MISSIONAI_GROUP || getLastMoveTurn() == GC.getGameINLINE().getTurnSlice())
+					getGroup()->setActivityType(ACTIVITY_AWAKE);
+				else if (getGroup()->getActivityType() != ACTIVITY_AWAKE)
+					getGroup()->setActivityType(ACTIVITY_HOLD); // don't let them cheat.
+				// K-Mod end
+			}
+		}
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			if (pPlot != NULL)
+			{
+				pPlot->setFlagDirty(true);
+			}
+		}
+
+		if (pPlot == gDLL->getInterfaceIFace()->getSelectionPlot())
+		{
+			gDLL->getInterfaceIFace()->setDirty(PlotListButtons_DIRTY_BIT, true);
+		}
+	}
+
+	if (bRemoveSelected && IsSelected())
+	{
+		gDLL->getInterfaceIFace()->removeFromSelectionList(this);
+	}
+}
+
+/*
 void CvUnit::joinGroup(CvSelectionGroup* pSelectionGroup, bool bRemoveSelected, bool bRejoin)
 {
 	CvSelectionGroup* pOldSelectionGroup;
@@ -11385,13 +11516,7 @@ void CvUnit::joinGroup(CvSelectionGroup* pSelectionGroup, bool bRemoveSelected, 
 
 				// if we were the head, if the head unitAI changed, then force the group to separate (non-humans)
 
-/*************************************************************************************************/
-/**	BETTER AI (Stop some groups from forceseperating) Sephi                        	            **/
-/**																								**/
-/**						                                            							**/
-/*************************************************************************************************/
-//				if (bWasHead)
-//				{
+
                 bool bValid = true;
                 if (pSelectionGroup != NULL && pSelectionGroup->getHeadUnit())
                 {
@@ -11411,10 +11536,6 @@ void CvUnit::joinGroup(CvSelectionGroup* pSelectionGroup, bool bRemoveSelected, 
 
                 if (bWasHead && bValid)
                 {
-/*************************************************************************************************/
-/**	END                                                                  						**/
-/*************************************************************************************************/
-
 					FAssert(pOldSelectionGroup->getHeadUnit() != NULL);
 					if (pOldSelectionGroup->getHeadUnit()->AI_getUnitAIType() != AI_getUnitAIType())
 					{
@@ -11467,7 +11588,7 @@ void CvUnit::joinGroup(CvSelectionGroup* pSelectionGroup, bool bRemoveSelected, 
 		}
 	}
 }
-
+*/
 
 int CvUnit::getHotKeyNumber()
 {
@@ -12131,7 +12252,11 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 //FfH: End Add
 
 	FAssert(pOldPlot != pNewPlot);
-	GET_PLAYER(getOwnerINLINE()).updateGroupCycle(this);
+	//GET_PLAYER(getOwnerINLINE()).updateGroupCycle(this);
+	// K-Mod. Only update the group cycle here if we are placing this unit on the map for the first time.
+	if (!pOldPlot)
+		GET_PLAYER(getOwnerINLINE()).updateGroupCycle(this);
+	// K-Mod end
 
 	setInfoBarDirty(true);
 
@@ -12457,9 +12582,6 @@ void CvUnit::setLevel(int iNewValue)
 	{
 		m_iLevel = iNewValue;
 		FAssert(getLevel() >= 0);
-
-		GET_PLAYER(getOwnerINLINE()).changePower(iNewValue);
-		area()->changePower(getOwnerINLINE(), iNewValue);
 
 		if (getLevel() > GET_PLAYER(getOwnerINLINE()).getHighestUnitLevel())
 		{
@@ -13848,49 +13970,51 @@ bool CvUnit::canAcquirePromotion(PromotionTypes ePromotion) const
 		return false;
 	}
 
-	if (GC.getPromotionInfo(ePromotion).getPrereqPromotion() != NO_PROMOTION)
+	CvPromotionInfo &kPromotion = GC.getPromotionInfo(ePromotion);
+
+	if (kPromotion.getPrereqPromotion() != NO_PROMOTION)
 	{
-		if (!isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPrereqPromotion())))
+		if (!isHasPromotion((PromotionTypes)(kPromotion.getPrereqPromotion())))
 		{
 			return false;
 		}
 	}
 
 //FfH: Modified by Kael 07/30/2007
-//	if (GC.getPromotionInfo(ePromotion).getPrereqOrPromotion1() != NO_PROMOTION)
+//	if (kPromotion.getPrereqOrPromotion1() != NO_PROMOTION)
 //	{
-//		if (!isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPrereqOrPromotion1())))
+//		if (!isHasPromotion((PromotionTypes)(kPromotion.getPrereqOrPromotion1())))
 //		{
-//			if ((GC.getPromotionInfo(ePromotion).getPrereqOrPromotion2() == NO_PROMOTION) || !isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPrereqOrPromotion2())))
+//			if ((kPromotion.getPrereqOrPromotion2() == NO_PROMOTION) || !isHasPromotion((PromotionTypes)(kPromotion.getPrereqOrPromotion2())))
 //			{
 //				return false;
 //			}
 //		}
 //	}
-	if (GC.getPromotionInfo(ePromotion).getMinLevel() == -1)
+	if (kPromotion.getMinLevel() == -1)
 	{
 	    return false;
 	}
-	if (GC.getPromotionInfo(ePromotion).isRace())
+	if (kPromotion.isRace())
 	{
 	    return false;
 	}
-	if (GC.getPromotionInfo(ePromotion).isEquipment())
+	if (kPromotion.isEquipment())
 	{
 	    return false;
 	}
-	if (GC.getPromotionInfo(ePromotion).getMinLevel() > getLevel())
+	if (kPromotion.getMinLevel() > getLevel())
 	{
 	    return false;
 	}
-	if (GC.getPromotionInfo(ePromotion).getPromotionPrereqAnd() != NO_PROMOTION)
+	if (kPromotion.getPromotionPrereqAnd() != NO_PROMOTION)
 	{
-		if (!isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPromotionPrereqAnd())))
+		if (!isHasPromotion((PromotionTypes)(kPromotion.getPromotionPrereqAnd())))
 		{
 			return false;
 		}
 	}
-	if (GC.getPromotionInfo(ePromotion).getPrereqOrPromotion1() != NO_PROMOTION)
+	if (kPromotion.getPrereqOrPromotion1() != NO_PROMOTION)
 	{
 	    bool bValid = false;
 		if (isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPrereqOrPromotion1())))
@@ -13899,21 +14023,21 @@ bool CvUnit::canAcquirePromotion(PromotionTypes ePromotion) const
 		}
         if (GC.getPromotionInfo(ePromotion).getPrereqOrPromotion2() != NO_PROMOTION)
         {
-            if (isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPrereqOrPromotion2())))
+            if (isHasPromotion((PromotionTypes)(kPromotion.getPrereqOrPromotion2())))
             {
                 bValid = true;
             }
         }
-        if (GC.getPromotionInfo(ePromotion).getPromotionPrereqOr3() != NO_PROMOTION)
+        if (kPromotion.getPromotionPrereqOr3() != NO_PROMOTION)
         {
-            if (isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPromotionPrereqOr3())))
+            if (isHasPromotion((PromotionTypes)(kPromotion.getPromotionPrereqOr3())))
             {
                 bValid = true;
             }
         }
-        if (GC.getPromotionInfo(ePromotion).getPromotionPrereqOr4() != NO_PROMOTION)
+        if (kPromotion.getPromotionPrereqOr4() != NO_PROMOTION)
         {
-            if (isHasPromotion((PromotionTypes)(GC.getPromotionInfo(ePromotion).getPromotionPrereqOr4())))
+            if (isHasPromotion((PromotionTypes)(kPromotion.getPromotionPrereqOr4())))
             {
                 bValid = true;
             }
@@ -13923,9 +14047,9 @@ bool CvUnit::canAcquirePromotion(PromotionTypes ePromotion) const
             return false;
         }
 	}
-	if (GC.getPromotionInfo(ePromotion).getBonusPrereq() != NO_BONUS)
+	if (kPromotion.getBonusPrereq() != NO_BONUS)
 	{
-	    if (!GET_PLAYER(getOwnerINLINE()).hasBonus((BonusTypes)GC.getPromotionInfo(ePromotion).getBonusPrereq()))
+	    if (!GET_PLAYER(getOwnerINLINE()).hasBonus((BonusTypes)kPromotion.getBonusPrereq()))
 	    {
 	        return false;
 	    }
@@ -13948,7 +14072,7 @@ bool CvUnit::canAcquirePromotion(PromotionTypes ePromotion) const
             }
         }
     }
-	if (GC.getPromotionInfo(ePromotion).isPrereqAlive())
+	if (kPromotion.isPrereqAlive())
 	{
 	    if (!isAlive())
 	    {
@@ -13957,17 +14081,25 @@ bool CvUnit::canAcquirePromotion(PromotionTypes ePromotion) const
 	}
 //FfH: End Add
 
-	if (GC.getPromotionInfo(ePromotion).getTechPrereq() != NO_TECH)
+	if (kPromotion.getTechPrereq() != NO_TECH)
 	{
-		if (!(GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getPromotionInfo(ePromotion).getTechPrereq()))))
+		if (!(GET_TEAM(getTeam()).isHasTech((TechTypes)(kPromotion.getTechPrereq()))))
 		{
 			return false;
 		}
 	}
 
-	if (GC.getPromotionInfo(ePromotion).getStateReligionPrereq() != NO_RELIGION)
+	if (kPromotion.getStateReligionPrereq() != NO_RELIGION)
 	{
-		if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != GC.getPromotionInfo(ePromotion).getStateReligionPrereq())
+		if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != kPromotion.getStateReligionPrereq())
+		{
+			return false;
+		}
+	}
+
+	if (kPromotion.getUnitReligionPrereq() != NO_RELIGION)
+	{
+		if (getReligion() != kPromotion.getUnitReligionPrereq())
 		{
 			return false;
 		}
@@ -14194,6 +14326,13 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 			changeDamageTypeResist(((DamageTypes)iI), (kPromotionInfo.getDamageTypeResist(iI) * iChange));
 		}
 //FfH: End Add
+		// MNAI - additional promotion tags
+		changeCanMoveImpassable((kPromotionInfo.isAllowsMoveImpassable()) ? iChange : 0);
+		changeCanMoveLimitedBorders((kPromotionInfo.isAllowsMoveLimitedBorders()) ? iChange : 0);
+		changeCastingBlocked((kPromotionInfo.isCastingBlocked()) ? iChange : 0);
+		changeUpgradeOutsideBorders((kPromotionInfo.isUpgradeOutsideBorders()) ? iChange : 0);
+		// End MNAI
+
 		for (iI = 0; iI < GC.getNumTerrainInfos(); iI++)
 		{
 			changeExtraTerrainAttackPercent(((TerrainTypes)iI), (kPromotionInfo.getTerrainAttackPercent(iI) * iChange));
@@ -15660,7 +15799,39 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
     CvUnit* pLoopUnit;
     CLLNode<IDInfo>* pUnitNode;
     bool bValid = false;
+
 	if (getImmobileTimer() > 0 && !isHeld())
+	{
+		return false;
+	}
+
+	if (isCastingBlocked())
+	{
+		return false;
+	}
+
+	if (kSpell.isGlobal())
+    {
+        if (GC.getGameINLINE().isOption(GAMEOPTION_NO_WORLD_SPELLS))
+        {
+            return false;
+        }
+        if (GET_PLAYER(getOwnerINLINE()).isFeatAccomplished(FEAT_GLOBAL_SPELL))
+        {
+            return false;
+        }
+    }
+
+	if (GET_PLAYER(getOwnerINLINE()).getDisableSpellcasting() > 0)
+    {
+        if (!kSpell.isAbility())
+        {
+            return false;
+        }
+    }
+
+	// Rebels cant cast World spells
+	if (kSpell.isGlobal() && GET_PLAYER(getOwnerINLINE()).isRebel())
 	{
 		return false;
 	}
@@ -15802,17 +15973,6 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
             return false;
         }
     }
-    if (kSpell.isGlobal())
-    {
-        if (GC.getGameINLINE().isOption(GAMEOPTION_NO_WORLD_SPELLS))
-        {
-            return false;
-        }
-        if (GET_PLAYER(getOwnerINLINE()).isFeatAccomplished(FEAT_GLOBAL_SPELL))
-        {
-            return false;
-        }
-    }
     if (kSpell.isPrereqSlaveTrade())
     {
         if (!GET_PLAYER(getOwnerINLINE()).isSlaveTrade())
@@ -15849,13 +16009,6 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
     if (kSpell.isCasterNoDuration())
     {
         if (getDuration() != 0)
-        {
-            return false;
-        }
-    }
-    if (GET_PLAYER(getOwnerINLINE()).getDisableSpellcasting() > 0)
-    {
-        if (!kSpell.isAbility())
         {
             return false;
         }
@@ -15921,6 +16074,30 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
 			return true;
 		}
 	}
+	if (!kSpell.isIgnoreHasCasted())
+	{
+		if (isHasCasted())
+		{
+			return false;
+		}
+	}
+	// MNAI begin - eveything before this point (right after the check to bTestVisible and isHasCasted()) shall be considered
+	// a hard requirement that PyAlternateReq cannot get around. Consider carefully what should go before or after this.
+	if (!CvString(kSpell.getPyAlternateReq()).empty())
+    {
+        CyUnit* pyUnit = new CyUnit(this);
+        CyArgsList argsList;
+        argsList.add(gDLL->getPythonIFace()->makePythonObject(pyUnit));	// pass in unit class
+        argsList.add(spell);//the spell #
+        long lResult=0;
+        gDLL->getPythonIFace()->callFunction(PYSpellModule, "canCastAlternate", argsList.makeFunctionArgs(), &lResult);
+        delete pyUnit; // python fxn must not hold on to this pointer
+        if (lResult != 0)
+        {
+            return true;
+        }
+    }
+	// MNAI end
 	if (kSpell.getFeatureOrPrereq1() != NO_FEATURE)
 	{
 		if (pPlot->getFeatureType() != kSpell.getFeatureOrPrereq1())
@@ -15929,13 +16106,6 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
 			{
 				return false;
 			}
-		}
-	}
-	if (!kSpell.isIgnoreHasCasted())
-	{
-		if (isHasCasted())
-		{
-			return false;
 		}
 	}
 	if (kSpell.isAdjacentToWaterOnly())
@@ -16035,6 +16205,17 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
 			return false;
 		}
 	}
+	// MNAI begin
+	/*
+	if (pPlot->getFeatureType() != NO_FEATURE)
+	{
+		if (kSpell.isFeatureInvalid(pPlot->getFeatureType()))
+		{
+			return false;
+		}
+	}
+	*/
+	// MNAI end
 	if (!CvString(kSpell.getPyRequirement()).empty())
     {
         CyUnit* pyUnit = new CyUnit(this);
@@ -16075,6 +16256,14 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
     {
         return true;
     }
+	// MNAI begin
+	/*
+	if (canTerraform(spell, pPlot))
+	{
+		return true;
+	}
+	*/
+	// MNAI end
     if (kSpell.getCreateFeatureType() != NO_FEATURE)
     {
         if (canCreateFeature(spell))
@@ -16133,7 +16322,7 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
     {
         return true;
     }
-	if (!CvString(kSpell.getPyResult()).empty())
+	if (!CvString(kSpell.getPyResult()).empty() && CvString(kSpell.getPyAlternateReq()).empty())
     {
         return true;
     }
@@ -16544,6 +16733,43 @@ bool CvUnit::canSpreadReligion(int spell) const
 	return true;
 }
 
+// MNAI begin
+/*
+bool CvUnit::canTerraform(int spell, const CvPlot* pPlot) const
+{
+	CvSpellInfo& kSpell = GC.getSpellInfo((SpellTypes) spell);
+	int iRange = kSpell.getRange();
+	for (int iDX = -iRange; iDX <= iRange; ++iDX)
+	{
+		for (int iDY = -iRange; iDY <= iRange; ++iDY)
+		{
+			CvPlot* pLoopPlot = plotXY(pPlot->getX_INLINE(), pPlot->getY_INLINE(), iDX, iDY);
+			if (pLoopPlot != NULL)
+			{
+				FeatureTypes eFeature = pLoopPlot->getFeatureType();
+				if (eFeature != NO_FEATURE)
+				{
+					if (kSpell.isFeatureInvalid(eFeature))
+					{
+						continue;
+					}
+					if (kSpell.getFeatureConvert(eFeature) != eFeature)
+					{
+						return true;
+					}
+				}
+				if (kSpell.getTerrainConvert(pLoopPlot->getTerrainType()) != NO_TERRAIN)
+				{
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+*/
+// MNAI end
+
 void CvUnit::cast(int spell)
 {
 	CvWString szBuffer;
@@ -16552,7 +16778,7 @@ void CvUnit::cast(int spell)
 
 	if( gUnitLogLevel > 2 )
 	{
-		logBBAI("     %S casting %S \n",  getName().GetCString(), kSpellInfo.getDescription());
+		logBBAI("     %S casting %S (plot %d, %d)\n",  getName().GetCString(), kSpellInfo.getDescription(), getX(), getY());
 	}
 
     if (kSpellInfo.isHasCasted())
@@ -16642,6 +16868,14 @@ void CvUnit::cast(int spell)
             plot()->getPlotCity()->setNumRealBuilding((BuildingTypes)kSpellInfo.getCreateBuildingType(), true);
         }
     }
+	// MNAI begin
+	/*
+	if (canTerraform(spell, plot()))
+	{
+		castTerraform(spell);
+	}
+	*/
+	// MNAI end
     if (kSpellInfo.getCreateFeatureType() != NO_FEATURE)
     {
         if (canCreateFeature(spell))
@@ -17021,15 +17255,15 @@ void CvUnit::castImmobile(int spell)
                                 if (!pLoopUnit->isResisted(this, spell))
                                 {
                                     pLoopUnit->changeImmobileTimer(iImmobileTurns);
-                                    gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
-                                    gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
+									gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
+									gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
                                 }
                             }
                             else
                             {
                                 pLoopUnit->changeImmobileTimer(iImmobileTurns);
-                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
-                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
+                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
+                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_IMMOBILE", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
                             }
                         }
                     }
@@ -17076,15 +17310,15 @@ void CvUnit::castPush(int spell)
                                             if (!pLoopUnit->isResisted(this, spell))
                                             {
                                                 pLoopUnit->setXY(pPushPlot->getX(),pPushPlot->getY(),false,true,true);
-                                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
-                                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
+                                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
+                                                gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
                                             }
                                         }
                                         else
                                         {
                                             pLoopUnit->setXY(pPushPlot->getX(),pPushPlot->getY(),false,true,true);
-                                            gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
-                                            gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH"), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
+                                            gDLL->getInterfaceIFace()->addMessage((PlayerTypes)pLoopUnit->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
+                                            gDLL->getInterfaceIFace()->addMessage((PlayerTypes)getOwner(), false, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MESSAGE_SPELL_PUSH", pLoopUnit->getName().GetCString()), "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, GC.getSpellInfo((SpellTypes)spell).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
                                         }
                                     }
                                 }
@@ -17341,6 +17575,65 @@ void CvUnit::castCreateUnit(int spell)
 	}
 //<<<<Unofficial Bug Fix: End Add
 }
+
+// MNAI begin
+/*
+void CvUnit::castTerraform(int spell)
+{
+	CvSpellInfo& kSpellInfo = GC.getSpellInfo((SpellTypes) spell);
+	CvPlot* pPlot = plot();
+	int iRange = kSpellInfo.getRange();
+
+	for (int iDX = -iRange; iDX <= iRange; ++iDX)
+	{
+		for (int iDY = -iRange; iDY <= iRange; ++iDY)
+		{
+			CvPlot* pLoopPlot = plotXY(pPlot->getX_INLINE(), pPlot->getY_INLINE(), iDX, iDY);
+			if (pLoopPlot != NULL)
+			{
+				FeatureTypes eFeature = pLoopPlot->getFeatureType();
+				if (eFeature != NO_FEATURE)
+				{
+					if (kSpellInfo.isFeatureInvalid(eFeature))
+					{
+						continue;
+					}
+					if (kSpellInfo.getFeatureConvert(eFeature) != eFeature)
+					{
+						pLoopPlot->setFeatureType((FeatureTypes) kSpellInfo.getFeatureConvert(eFeature));
+					}
+				}
+				if (kSpellInfo.getTerrainConvert(pLoopPlot->getTerrainType()) != NO_TERRAIN)
+				{
+					pLoopPlot->setTerrainType((TerrainTypes) kSpellInfo.getTerrainConvert(pLoopPlot->getTerrainType()));
+					if (kSpellInfo.isRemoveInvalidFeature() && pLoopPlot->getFeatureType() != NO_FEATURE)
+					{
+						if (!GC.getFeatureInfo(pLoopPlot->getFeatureType()).isTerrain(pLoopPlot->getTerrainType()))
+						{
+							pLoopPlot->setFeatureType(NO_FEATURE);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	if (kSpellInfo.isCausesWar())
+	{
+		if (pPlot->getTeam() != getTeam() && pPlot->getTeam() != NO_TEAM)
+		{
+			if (!isHiddenNationality())
+			{
+				if (!GET_TEAM(getTeam()).isPermanentWarPeace(pPlot->getTeam()))
+                {
+                    GET_TEAM(getTeam()).declareWar(pPlot->getTeam(), false, WARPLAN_TOTAL);
+                }
+			}
+		}
+	}
+}
+*/
+// MNAI end
 
 bool CvUnit::isHasCasted() const
 {
@@ -18330,7 +18623,7 @@ int CvUnit::chooseSpell()
 				{
 					if (kSpellInfo.getChangePopulation() == 0) // Tholal AI - temporary gate to make sure Manes use the Add to City ability
 					{
-						iValue -= (getLevel() * 20) * GET_PLAYER(getOwnerINLINE()).AI_unitValue((UnitTypes)getUnitType(), UNITAI_ATTACK, area());
+						iValue -= (getLevel() * 20) * GET_PLAYER(getOwnerINLINE()).AI_unitValue((UnitTypes)getUnitType(), AI_getUnitAIType(), area());
 					}
 				}
 				if (kSpellInfo.isResistable())
@@ -18350,7 +18643,7 @@ int CvUnit::chooseSpell()
 	
 	if( gUnitLogLevel > 2 && (iBestSpell != -1))
 	{
-		logBBAI("     %S (Unit %d - %S) Best Spell - %S (value: %d) \n",  getName().GetCString(), getID(), GC.getUnitAIInfo(AI_getUnitAIType()).getDescription(), GC.getSpellInfo((SpellTypes)iBestSpell).getDescription(), iBestSpellValue);
+		logBBAI("    %S (Unit %d - %S) Best Spell - %S (value: %d) \n",  getName().GetCString(), getID(), GC.getUnitAIInfo(AI_getUnitAIType()).getDescription(), GC.getSpellInfo((SpellTypes)iBestSpell).getDescription(), iBestSpellValue);
 	}
 
     return iBestSpell;
@@ -18844,6 +19137,7 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 			}
 			if (iUnit == GC.getDefineINT("SLAVE_UNIT"))
 			{
+				pUnit->setRace(NO_PROMOTION); // We clear Race to make sure Slaves dont end up with the incorrect Race
 				if (pLoser->getRace() != NO_PROMOTION)
 				{
 					pUnit->setHasPromotion((PromotionTypes)pLoser->getRace(), true);
@@ -19252,6 +19546,50 @@ bool CvUnit::withdrawlToNearestValidPlot()
 }
 //FfH: End Add
 
+// MNAI - additional promotion tags
+void CvUnit::changeCanMoveImpassable(int iNewValue)
+{
+    if (iNewValue != 0)
+    {
+        m_iCanMoveImpassable += iNewValue;
+    }
+}
+
+void CvUnit::changeCanMoveLimitedBorders(int iNewValue)
+{
+    if (iNewValue != 0)
+    {
+        m_iCanMoveLimitedBorders += iNewValue;
+    }
+}
+
+bool CvUnit::isCastingBlocked() const
+{
+	return m_iCastingBlocked == 0 ? false : true;
+}
+
+void CvUnit::changeCastingBlocked(int iNewValue)
+{
+    if (iNewValue != 0)
+    {
+        m_iCastingBlocked += iNewValue;
+    }
+}
+
+bool CvUnit::isUpgradeOutsideBorders() const
+{
+	return m_iUpgradeOutsideBorders == 0 ? false : true;
+}
+
+void CvUnit::changeUpgradeOutsideBorders(int iNewValue)
+{
+    if (iNewValue != 0)
+    {
+        m_iUpgradeOutsideBorders += iNewValue;
+    }
+}
+// End MNAI
+
 void CvUnit::read(FDataStreamBase* pStream)
 {
 	// Init data before load
@@ -19392,10 +19730,16 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumDamageTypeInfos(), m_paiDamageTypeResist);
 //FfH: End Add
 
+	// MNAI - additional promotion tags
+	pStream->Read(&m_iCanMoveImpassable);
+	pStream->Read(&m_iCanMoveLimitedBorders);
+	pStream->Read(&m_iCastingBlocked);
+	pStream->Read(&m_iUpgradeOutsideBorders);
+	// End MNAI
 
-//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
+	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	pStream->Read(&m_bAvatarOfCivLeader);
-//<<<<Unofficial Bug Fix: End Add
+	//<<<<Unofficial Bug Fix: End Add
 
 	pStream->Read((int*)&m_eOwner);
 	pStream->Read((int*)&m_eCapturingPlayer);
@@ -19555,9 +19899,16 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumDamageTypeInfos(), m_paiDamageTypeResist);
 //FfH: End Add
 
-//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
+	// MNAI - additional promotion tags
+	pStream->Write(m_iCanMoveImpassable);
+	pStream->Write(m_iCanMoveLimitedBorders);
+	pStream->Write(m_iCastingBlocked);
+	pStream->Write(m_iUpgradeOutsideBorders);
+	// End MNAI
+
+	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	pStream->Write(m_bAvatarOfCivLeader);
-//<<<<Unofficial Bug Fix: End Add
+	//<<<<Unofficial Bug Fix: End Add
 
 	pStream->Write(m_eOwner);
 	pStream->Write(m_eCapturingPlayer);
@@ -19688,7 +20039,17 @@ bool CvUnit::canTradeUnit(PlayerTypes eReceivingPlayer)
 	{
 		return false;
 	}
-
+	
+	if (!isMechUnit() && !isAnimal())
+	{
+		return false;
+	}
+	
+	if (getDuration() > 0 || isPermanentSummon())
+	{
+		return false;
+	}
+	
 	if (isWorldUnitClass((UnitClassTypes)(m_pUnitInfo->getUnitClassType())))
 	{
 		return false;
@@ -19751,11 +20112,10 @@ void CvUnit::tradeUnit(PlayerTypes eReceivingPlayer)
 
 		pTradeUnit->convert(this);
 
-		pTradeUnit->setImmobileTimer(10);
+		pTradeUnit->setImmobileTimer(10); //ToDo - better way to decide how long the unit should be immobile; scale by gamespeed
 		
-		 szBuffer = gDLL->getText("TXT_KEY_MISC_TRADED_UNIT_TO_YOU", GET_PLAYER(eOwner).getNameKey(), pTradeUnit->getNameKey());
-		 gDLL->getInterfaceIFace()->addMessage(pTradeUnit->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITGIFTED", MESSAGE_TYPE_INFO, pTradeUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), pTradeUnit->getX_INLINE(), pTradeUnit->getY_INLINE(), true, true);
-		 
+		szBuffer = gDLL->getText("TXT_KEY_MISC_TRADED_UNIT_TO_YOU", GET_PLAYER(eOwner).getNameKey(), pTradeUnit->getNameKey());
+		gDLL->getInterfaceIFace()->addMessage(pTradeUnit->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITGIFTED", MESSAGE_TYPE_INFO, pTradeUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), pTradeUnit->getX_INLINE(), pTradeUnit->getY_INLINE(), true, true); 
 	 }
 }
 
@@ -19774,16 +20134,16 @@ bool CvUnit::isRangedCollateral()
     {
         if (canCast(iSpell, false))
         {
-			CvSpellInfo kSpellInfo = GC.getSpellInfo((SpellTypes)iSpell);
+			CvSpellInfo kSpell = GC.getSpellInfo((SpellTypes)iSpell);
 			{
-				if (kSpellInfo.getDamage() > 0 && kSpellInfo.getRange() > 0)
+				if (kSpell.getDamage() > 0 && kSpell.getRange() > 0)
 				{
 					return true;
 				}
 
-				if (kSpellInfo.getCreateUnitType() != NO_UNIT)
+				if (kSpell.getCreateUnitType() != NO_UNIT)
 				{
-					if (GC.getUnitInfo((UnitTypes)kSpellInfo.getCreateUnitType()).getCollateralDamage() > 0)
+					if (GC.getUnitInfo((UnitTypes)kSpell.getCreateUnitType()).getCollateralDamage() > 0)
 					{
 						return true;
 					}

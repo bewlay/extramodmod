@@ -21,7 +21,8 @@ public:
 	void AI_uninit();
 	void AI_reset(UnitAITypes eUnitAI = NO_UNITAI);
 	bool AI_update();
-	bool AI_follow();
+	//bool AI_follow();
+	bool AI_follow(bool bFirst = true); // K-Mod
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      04/05/10                                jdog5000      */
 /*                                                                                              */
@@ -55,9 +56,9 @@ public:
 // Sephi AI (New Functions Definition)
     bool AI_groupheal(int iDamagePercent = 0, int iMaxPath = MAX_INT);
     void AI_feastingmove();
-    void ConquestMove();
-    void PatrolMove();
-    void HNgroupMove();
+    void AI_ConquestMove();
+    void AI_PatrolMove();
+    void AI_HiddenNationalityMove();
 	bool AI_exploreLairSea(int iRange = 0); // added by Tholal
 	bool AI_exploreLair(int iRange = 0); // added by Tholal
 	bool AI_pickupEquipment(int iRange = 0); // added by Tholal

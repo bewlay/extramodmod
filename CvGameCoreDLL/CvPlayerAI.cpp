@@ -803,6 +803,7 @@ void CvPlayerAI::AI_doTurnUnitsPost()
 		//Tholal ToDo - Manes hit this upgrade section before they ever get a chance to 'cast'
 		// Tholal ToDo - arrange units in a sorted list then try and upgrade rather than running through whole list three times
 		// pass 0
+		logBBAI("Checking for Upgrades...");
 		for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
 		{
 			if (!pLoopUnit->isDelayedDeath())
@@ -840,6 +841,7 @@ void CvPlayerAI::AI_doTurnUnitsPost()
 #endif
     }
 	// do AI promotions after upgrade
+	logBBAI("Checking for Promotions...");
 	for(pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
 	{
 		if (!pLoopUnit->isDelayedDeath())
@@ -1583,6 +1585,8 @@ void CvPlayerAI::AI_updateAssignWork()
 /*                                                                                              */
 /* City AI                                                                                      */
 /************************************************************************************************/
+
+// Tholal Note - The following function was never completed in BBAI is is currently unused
 void CvPlayerAI::AI_doCentralizedProduction()
 {
 	PROFILE_FUNC();
@@ -1862,7 +1866,7 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 					}
 					else
 					{
-						iRazeValue += 40;
+						iRazeValue += 30;
 
 						CvCity* pNearestTeamAreaCity = GC.getMapINLINE().findCity(pCity->getX_INLINE(), pCity->getY_INLINE(), NO_PLAYER, getTeam(), true, false, NO_TEAM, NO_DIRECTION, pCity);
 
@@ -2090,6 +2094,21 @@ bool CvPlayerAI::AI_acceptUnit(CvUnit* pUnit) const
 		{
 			return true; //XXX
 		}
+
+		// K-Mod
+		switch (pUnit->AI_getUnitAIType())
+		{
+		case UNITAI_PROPHET:
+		case UNITAI_ARTIST:
+		case UNITAI_SCIENTIST:
+		case UNITAI_GENERAL:
+		case UNITAI_MERCHANT:
+		case UNITAI_ENGINEER:
+			return true;
+		default:
+			break;
+		}
+		// K-Mod end
 		return false;
 	}
 
@@ -4877,7 +4896,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	pCapitalCity = getCapitalCity();
 
-	CvTeam& kTeam = GET_TEAM(getTeam());
+	const CvTeamAI& kTeam = GET_TEAM(getTeam());
 
 	bool bDom3 = AI_isDoVictoryStrategy(AI_VICTORY_DOMINATION3);
 	bool bWarPlan = (kTeam.getAnyWarPlanCount(true) > 0);
@@ -4946,21 +4965,89 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	}
 
 	// Expand trading options
-	if (kTech.isMapTrading())
+	//if (kTechInfo.isMapTrading())
+	if (kTech.isMapTrading() && !kTeam.isMapTrading()) // K-Mod
 	{
+		/* original bts code
 		iValue += 100;
 
 		if (bCapitalAlone)
 		{
 			iValue += 400;
+		} */
+		// K-Mod. increase the bonus for each known civ that we can't already tech trade with
+		int iMapTradeValue = 0;
+		int iNewTrade = 0;
+		int iExistingTrade = 0;
+		for (TeamTypes i = (TeamTypes)0; i < MAX_CIV_TEAMS; i = (TeamTypes)(i+1))
+		{
+			if (i == getTeam() || !kTeam.isHasMet(i))
+				continue;
+			const CvTeamAI& kLoopTeam = GET_TEAM(i);
+			if (!kLoopTeam.isMapTrading())
+			{
+				if (kLoopTeam.AI_mapTrade(getTeam()) == NO_DENIAL && kTeam.AI_mapTrade(i) == NO_DENIAL)
+					iNewTrade += kLoopTeam.getAliveCount();
+			}
+			else
+				iExistingTrade += kLoopTeam.getAliveCount();
 		}
+		// The value could be scaled based on how much map we're missing; but I don't want to waste time calculating that.
+		iMapTradeValue += 50;
+		if (iNewTrade > 0)
+		{
+			if (bCapitalAlone) // (or rather, have we met anyone from overseas)
+			{
+				iMapTradeValue += 250; // a stronger chance of getting the map for a different island
+			}
+
+			if (iExistingTrade == 0 && iNewTrade > 1)
+			{
+				iMapTradeValue += 150; // we have the possibility of being a map broker.
+			}
+			iMapTradeValue += 75 + 75 * iNewTrade;
+			if ((gPlayerLogLevel > 3) && bDebugLog)
+			{
+				logBBAI("   Map Trade Value: %d\n", iMapTradeValue);
+			}
+		}
+		iValue += iMapTradeValue;
+		// K-Mod end
 	}
 
-	if (kTech.isTechTrading() && !GC.getGameINLINE().isOption(GAMEOPTION_NO_TECH_TRADING))
+	//if (kTechInfo.isTechTrading() && !GC.getGameINLINE().isOption(GAMEOPTION_NO_TECH_TRADING))
+	if (kTech.isTechTrading() && !GC.getGameINLINE().isOption(GAMEOPTION_NO_TECH_TRADING) && !kTeam.isTechTrading()) // K-Mod
 	{
 		iValue += 500;
 
-		iValue += 500 * iHasMetCount;
+		//iValue += 500 * iHasMetCount;
+		// K-Mod. increase the bonus for each known civ that we can't already tech trade with
+		int iTechTradeValue = 0;
+		int iNewTrade = 0;
+		int iExistingTrade = 0;
+		for (TeamTypes i = (TeamTypes)0; i < MAX_CIV_TEAMS; i = (TeamTypes)(i+1))
+		{
+			if (i == getTeam() || !kTeam.isHasMet(i))
+				continue;
+			const CvTeamAI& kLoopTeam = GET_TEAM(i);
+			if (!kLoopTeam.isTechTrading())
+			{
+				//if (kLoopTeam.AI_techTrade(NO_TECH, getTeam()) == NO_DENIAL && kTeam.AI_techTrade(NO_TECH, i) == NO_DENIAL)
+					iNewTrade += kLoopTeam.getAliveCount();
+			}
+			else
+			{
+				iExistingTrade += kLoopTeam.getAliveCount();
+			}
+		}
+		iTechTradeValue += std::max(0, iNewTrade * 750 - iExistingTrade * 250);
+		if ((gPlayerLogLevel > 3) && bDebugLog)
+		{
+			logBBAI("   Tech Trade Value: %d\n", iTechTradeValue);
+		}
+		
+		iValue += iTechTradeValue;
+		// K-Mod end
 	}
 
 	if (kTech.isGoldTrading())
@@ -5004,11 +5091,54 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		}	
 	}
 
-	if (kTech.isDefensivePactTrading())
+	/* original bts code
+	if (kTechInfo.isDefensivePactTrading())
 	{
 		iValue += 400;
-		//Todo - more value if at war and have close allies
+	} */
+
+	// K-Mod. Value pact trading based on how many civs are willing, and on how much we think we need it!
+	if (kTech.isDefensivePactTrading() && !kTeam.isDefensivePactTrading())
+	{
+		int iDefPactTradeValue = 0;
+		int iNewTrade = 0;
+		int iExistingTrade = 0;
+		for (TeamTypes i = (TeamTypes)0; i < MAX_CIV_TEAMS; i = (TeamTypes)(i+1))
+		{
+			if (i == getTeam() || !kTeam.isHasMet(i))
+				continue;
+			const CvTeamAI& kLoopTeam = GET_TEAM(i);
+			if (!kLoopTeam.isDefensivePactTrading())
+			{
+				if (kLoopTeam.AI_defensivePactTrade(getTeam()) == NO_DENIAL && kTeam.AI_defensivePactTrade(i) == NO_DENIAL)
+					iNewTrade += kLoopTeam.getAliveCount();
+			}
+			else
+				iExistingTrade += kLoopTeam.getAliveCount();
+		}
+		if (iNewTrade > 0)
+		{
+			int iPactValue = 300;
+			if (AI_isDoStrategy(AI_STRATEGY_ALERT1))
+				iPactValue += 100;
+			if (AI_isDoStrategy(AI_STRATEGY_ALERT2))
+				iPactValue += 100;
+			if (AI_isDoVictoryStrategy(AI_VICTORY_DIPLOMACY2))
+				iPactValue += 200;
+			if (AI_isDoVictoryStrategy(AI_VICTORY_CULTURE3 | AI_VICTORY_TOWERMASTERY3 | AI_VICTORY_ALTAR3 | AI_VICTORY_DIPLOMACY3))
+				iPactValue += 100;
+
+			iDefPactTradeValue += iNewTrade * iPactValue;
+		}
+		if ((gPlayerLogLevel > 3) && bDebugLog)
+		{
+			logBBAI("   Defensive Pact Trade Value: %d\n", iDefPactTradeValue);
+		}
+		
+		iValue += iDefPactTradeValue;
 	}
+	// K-Mod end
+
 
 	if (kTech.isPermanentAllianceTrading() && (GC.getGameINLINE().isOption(GAMEOPTION_PERMANENT_ALLIANCES)))
 	{
@@ -5046,7 +5176,14 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	if (kTech.isWaterWork())
 	{
-		iValue += ((isPirate() ? 15000: 350) * iCoastalCities);
+		iValue += (350 * iCoastalCities);
+		if (pCapitalCity != NULL)
+		{
+			if (pCapitalCity->isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+			{
+				iValue += 500;
+			}
+		}
 	}
 
 	iValue += (kTech.getFeatureProductionModifier() * 2);
@@ -5202,7 +5339,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 						if (iCityCount == 1)
 						{
-							iTempValue *= 5;
+							iTempValue *= 10;
 						}
 					}
 					
@@ -5236,7 +5373,10 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					iBonusValue = 0;
 
 					//iBonusValue += ((kImprovement.isImprovementBonusMakesValid(iK)) ? 150 : 0);
-					iBonusValue += ((kImprovement.isImprovementBonusTrade(iK)) ? (45 * AI_bonusVal((BonusTypes) iK)) : 0);
+					if (isHasTech(GC.getBonusInfo((BonusTypes)iK).getTechReveal()))
+					{
+						iBonusValue += ((kImprovement.isImprovementBonusTrade(iK)) ? (45 * AI_bonusVal((BonusTypes) iK)) : 0);
+					}
 
 					if (iBonusValue > 0)
 					{
@@ -5279,7 +5419,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 						//iNumBonuses = getNumAvailableBonuses((BonusTypes)iK);
 						iNumBonuses = countOwnedBonuses((BonusTypes)iK, true);
 
-						//ToDo - count extra rings of capitol
+						//ToDo - make sure we dont double up the bonus value for close bonuses
 						if (iCityCount == 1 && pCapitalCity != NULL)
 						{
 							if (pCapitalCity->getCultureLevel() < 2)
@@ -5293,7 +5433,10 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 									{
 										if (pLoopPlot->getBonusType() == iK)
 										{
-											iNumBonuses ++;
+											if (isHasTech(GC.getBonusInfo((BonusTypes)iK).getTechReveal()))
+											{
+												iNumBonuses ++;
+											}
 										}
 									}
 								}
@@ -5311,15 +5454,18 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 							iBonusValue /= 2;
 
 							// make sure AI develops its starting resources
+							/*
 							if (GC.getBonusInfo((BonusTypes)iK).getYieldChange(YIELD_COMMERCE) > 1)
 							{
 								iBonusValue *= 2;
 							}
+						
 							else
 							{
 								//iBonusValue *= 2;
 							}
-							iBonusValue /= std::min(2, iCityCount);
+							*/
+							//iBonusValue /= std::min(2, iCityCount);
 						}
 						else
 						{
@@ -5341,6 +5487,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				if (kImprovement.getBonusConvert() != NO_BONUS)
 				{
 					iImprovementValue += AI_getMojoFactor() * ((iNumMages > 0) ? 30 : 10);
+					iImprovementValue += AI_bonusVal((BonusTypes)kImprovement.getBonusConvert()) * 25;
 					// if not losing a war, bump up the value of mana techs for our unimproved mana nodes
 					if (GET_TEAM(getTeam()).AI_getWarSuccessRating() > -25)
 					{
@@ -5431,6 +5578,24 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
         if (bIsFeatureRemove)
         {
             iBuildValue += 200;
+			// ToDo - add value if we have resources that this feature is blocking
+
+			CvPlot *pLoopPlot;
+			// check for blocked bonuses in the 2nd culture ring
+			for (int iI = 0; iI < 21; iI++)
+			{
+				if (pCapitalCity != NULL)
+				{
+					pLoopPlot = plotCity(pCapitalCity->getX(), pCapitalCity->getY(), iI);
+					if (pLoopPlot != NULL)
+					{
+						if ((pLoopPlot->getBonusType() != NO_BONUS) && (pLoopPlot->getFeatureType() == iJ))
+						{
+							iBuildValue += 400; // TODo better evaluation
+						}
+					}
+				}
+			}
 
             if ((GC.getFeatureInfo(FeatureTypes(iJ)).getHealthPercent() < 0) ||
                 ((GC.getFeatureInfo(FeatureTypes(iJ)).getYieldChange(YIELD_FOOD) + GC.getFeatureInfo(FeatureTypes(iJ)).getYieldChange(YIELD_PRODUCTION) + GC.getFeatureInfo(FeatureTypes(iJ)).getYieldChange(YIELD_COMMERCE)) < 0))
@@ -6514,7 +6679,7 @@ int CvPlayerAI::AI_techBuildingValue( TechTypes eTech, int iPathLength, bool &bE
 				}
 
 				// free techs (ie, Grimoire)
-				iBuildingValue += kLoopBuilding.getFreeTechs() * 3000;
+				iBuildingValue += kLoopBuilding.getFreeTechs() * (3000 * GC.getGameINLINE().getCurrentPeriod());
 
 				if (!isIgnoreFood())
 				{
@@ -7050,8 +7215,9 @@ int CvPlayerAI::AI_techUnitValue( TechTypes eTech, int iPathLength, bool &bEnabl
 					case UNITAI_WORKER_SEA:
 						if (iCoastalCities > 0)
 						{
-							iUnitValue += 200;
+							iUnitValue += (isPirate() ? 2000 : 200);
 							// note, workboat improvements are already counted in the improvement section
+							// Tholal note: added a bonus for Pirates since creating Pirate Coves is a spell not a build
 						}
 						break;
 
@@ -7413,15 +7579,15 @@ int CvPlayerAI::AI_techUnitValue( TechTypes eTech, int iPathLength, bool &bEnabl
 									
 									if (iBestAreaValue == 0)
 									{
-										iUnitValue += 2400;
+										iUnitValue += 6000;
 									}
 									else if (iBestAreaValue < iBestOtherValue)
 									{
-										iUnitValue += 1200;
+										iUnitValue += 2400;
 									}
 									else if (iBestOtherValue > 0)
 									{
-										iUnitValue += 600;
+										iUnitValue += 1200;
 									}
 								}
 							}
@@ -10468,13 +10634,13 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus) const
 		int iI, iJ;
 		
 		CvBonusInfo& kBonusInfo = GC.getBonusInfo(eBonus);
-		//bool bMana = (kBonusInfo.getBonusClassType() == GC.getDefineINT("BONUSCLASS_MANA"));
 		bool bMana = kBonusInfo.isMana();
+		int iNumCities = AI_getNumRealCities();
 
 		if (!GET_TEAM(getTeam()).isBonusObsolete(eBonus))
 		{
-			iValue += (kBonusInfo.getHappiness() * (bDemon ? 0 : 100));
-			iValue += (kBonusInfo.getHealth() * (isIgnoreFood() ? 0 : 100));
+			iValue += kBonusInfo.getHappiness() * ((bDemon ? 0 : 20) * iNumCities);
+			iValue += kBonusInfo.getHealth() * ((isIgnoreFood() ? 0 : 10) * iNumCities);
 
 			// Tholal ToDo - better valuation of yield changes
 			for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
@@ -10807,14 +10973,13 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus) const
 
 			if (bMana)
 			{
+				int iNumBonuses = countOwnedBonuses(eBonus);
 				if (AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY1))
 				{
-					iValue += 50;
-				}
-
-				if (iValue == 0)
-				{
-					iValue += 25;
+					if (iNumBonuses == 0)
+					{
+						iValue += 50;
+					}
 				}
 
 				bool bSummoner = hasTrait((TraitTypes)GC.getInfoTypeForString("TRAIT_SUMMONER"));
@@ -10912,16 +11077,19 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus) const
 
 				if ((BonusTypes)eBonus == GC.getInfoTypeForString("BONUS_MANA_METAMAGIC"))
 				{
-					iValue += (AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY1) ? 100 : 0);
+					if (iNumBonuses == 0)
+					{
+						iValue += (AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY1) ? 1550 : 50);
+					}
 				}
 
 				if ((BonusTypes)eBonus == GC.getInfoTypeForString("BONUS_MANA_DEATH"))
 				{
 					if (getCivilizationType() == GC.getInfoTypeForString("CIVILIZATION_SHEAIM") ||
-						countOwnedBonuses(eBonus) > 0)
+						iNumBonuses > 0)
 					{
 						bStack = true;
-						iValue += 100;
+						iValue += 150;
 					}
 				}
 
@@ -10929,7 +11097,6 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus) const
 
 				iValue += 100 * AI_getTowerManaValue(eBonus);
 
-				int iNumBonuses = countOwnedBonuses(eBonus);
 				if (iNumBonuses > 0)
 				{
 					if (!kBonusInfo.isModifierPerBonus() && !bStack)
@@ -11786,6 +11953,11 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		return 0;
 	}
 
+	if (bUpgrade)
+	{
+		bValid = true;
+	}
+
 	if (!bValid)
 	{
 		switch (eUnitAI)
@@ -12437,10 +12609,12 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		
 		iTempValue = ((iCombatValue * iCombatValue) / 75) + (iCombatValue / 2);
 		iValue += iTempValue;
+		/*
 		if (kUnitInfo.isNoDefensiveBonus())
 		{
 			iValue -= iTempValue / 2;
 		}
+		*/
 		if (kUnitInfo.getDropRange() > 0)
 		{
 			iValue -= iTempValue / 2;
@@ -12857,6 +13031,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 	case UNITAI_ENGINEER:
 	case UNITAI_INQUISITOR:
 	case UNITAI_FEASTING:
+		iValue += 1500;
 		break;
 
 	case UNITAI_SPY:
@@ -14611,6 +14786,10 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 		for (CommerceTypes i = (CommerceTypes)0; i < NUM_COMMERCE_TYPES; i = (CommerceTypes)(i+1))
 		{
 			iSpecialistValue += (getSpecialistExtraCommerce(i) + kCivic.getSpecialistExtraCommerce(i)) * AI_commerceWeight(i);
+			for (iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
+			{
+				iSpecialistValue += getSpecialistTypeExtraCommerce((SpecialistTypes)iJ, i) * 100;
+			}
 		}
 		iValue += iCities * iSpecialistValue / 100;
 	}
@@ -14950,13 +15129,18 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 
 	for (iI = 0; iI < GC.getNumHurryInfos(); iI++)
 	{
-		if (kCivic.isHurry(iI) && (!canHurry((HurryTypes)iI))) /* Fuyu: only add value if we can't already use this hurry type */
+		if (kCivic.isHurry(iI) && (!canHurry((HurryTypes)iI) && !isCivic(eCivic))) /* Fuyu: only add value if we can't already use this hurry type */
 		{
 			iTempValue = 0;
 
 			if (GC.getHurryInfo((HurryTypes)iI).getGoldPerProduction() > 0)
 			{
 				iTempValue += ((((AI_avoidScience()) ? 50 : 25) * iCities) / GC.getHurryInfo((HurryTypes)iI).getGoldPerProduction());
+
+				if (AI_isDoVictoryStrategy(AI_VICTORY_ALTAR4) || AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY4))
+				{
+					iTempValue += 5000;
+				}
 			}
 			if (GC.getHurryInfo((HurryTypes)iI).getProductionPerPopulation() > 0)
 			{
@@ -15043,10 +15227,23 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 	{ 
 		iTempValue = 0; 
 		if (kCivic.isSpecialistValid(iI)) 
-		{ 
+		{
+			iTempValue += (iFreeCitizens * iFreeCitizens) / 2; //find jobs for all of the citizens we have sitting around
+		
 			// Tholal Todo - more value for priest specialists when running Altar vic.; more for Bards when running culture vic.
-			iTempValue += ((iCities *  (bCultureVictory3 ? 10 : 1)) + 6);
-			iTempValue += (iFreeCitizens * iFreeCitizens) / 2;
+
+			// Culture specialists
+			//Todo - better valuation for culture victory - we can use bards before we get to Stage 3
+			if (GC.getSpecialistInfo((SpecialistTypes)iI).getCommerceChange(COMMERCE_CULTURE) > 0)
+			{
+				iTempValue += ((iCities *  (bCultureVictory3 ? 10 : 1)) + 6);
+			}
+
+			// account for specialistextracommerce bonuses
+			for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
+			{
+				iTempValue += (getSpecialistTypeExtraCommerce((SpecialistTypes)iI, (CommerceTypes)iJ) * 15) * iCities * (iFreeCitizens + 1);
+			}
 		} 
 		iValue += (iTempValue / 2); 
 	} 
@@ -17178,7 +17375,7 @@ void CvPlayerAI::AI_doCivics()
 	}
 
 	// FAssertMsg(AI_getCivicTimer() == 0, "AI Civic timer is expected to be 0"); // Disabled by K-Mod
-	if (gPlayerLogLevel > 0) logBBAI("%S checking civics...", getCivilizationDescription(0));
+	if (gPlayerLogLevel > 0) logBBAI("Checking Civics...");
 
 	std::vector<CivicTypes> aeBestCivic(GC.getNumCivicOptionInfos());
 	std::vector<int> aiCurrentValue(GC.getNumCivicOptionInfos());
@@ -21243,6 +21440,11 @@ int CvPlayerAI::AI_getCultureVictoryStage() const
 		}
 	}
 
+	if (AI_isDoVictoryStrategyLevel3())
+	{
+		return 0;
+	}
+
 	if( isHuman() && !(GC.getGameINLINE().isDebugMode()) )
 	{
 		return 0;
@@ -21614,6 +21816,11 @@ int CvPlayerAI::AI_getConquestVictoryStage() const
 		}
 	}
 
+	if (AI_isDoVictoryStrategyLevel3())
+	{
+		return 0;
+	}
+
 	if( isHuman() && !(GC.getGameINLINE().isDebugMode()) )
 	{
 		return 0;
@@ -21720,6 +21927,11 @@ int CvPlayerAI::AI_getDominationVictoryStage() const
 	if( iPercentOfDomination > 50 )
 	{
 		return 3;
+	}
+
+	if (AI_isDoVictoryStrategyLevel3())
+	{
+		return 0;
 	}
 
 	if( isHuman() && !(GC.getGameINLINE().isDebugMode()) )
@@ -21948,6 +22160,11 @@ int CvPlayerAI::AI_getTowerMasteryVictoryStage() const
 		return iNumTowers;
 	}
 
+	if (AI_isDoVictoryStrategyLevel3())
+	{
+		return 0;
+	}
+
 	// if we have magic type traits, pursue a Tower victory - HARDCODE
 	bool bHasMageTrait = false;
 
@@ -22016,9 +22233,19 @@ int CvPlayerAI::AI_getAltarVictoryStage() const
 		return 0;
 	}
 
-	if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_EXALTED")) > 0)
+	if (getBuildingClassCountPlusMaking((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_FINAL")) > 0)
 	{
 		return 4;
+	}
+
+	if (canConstruct((BuildingTypes)GC.getInfoTypeForString("BUILDING_ALTAR_OF_THE_LUONNOTAR_FINAL"), true))
+	{
+		return 4;
+	}
+
+	if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_EXALTED")) > 0)
+	{
+		return 3;
 	}
 
 	if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_DIVINE")) > 0)
@@ -22034,6 +22261,11 @@ int CvPlayerAI::AI_getAltarVictoryStage() const
 	if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_BLESSED")) > 0)
 	{
 		return 2;
+	}
+
+	if (AI_isDoVictoryStrategyLevel3())
+	{
+		return 0;
 	}
 
 	if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_ANOINTED")) > 0)
@@ -22346,7 +22578,7 @@ int CvPlayerAI::AI_getVictoryStrategyHash() const
 				bStartedOtherLevel3 = true;
                 m_iVictoryStrategyHash |= AI_VICTORY_TOWERMASTERY3;
 
-				if (iVictoryStage > 3 && !bStartedOtherLevel4)
+				if (iVictoryStage > 3)// && !bStartedOtherLevel4)
 				{
 					bStartedOtherLevel4 = true;
                 	m_iVictoryStrategyHash |= AI_VICTORY_TOWERMASTERY4;
@@ -22369,7 +22601,7 @@ int CvPlayerAI::AI_getVictoryStrategyHash() const
 				bStartedOtherLevel3 = true;
                 m_iVictoryStrategyHash |= AI_VICTORY_ALTAR3;
 
-				if (iVictoryStage > 3 && !bStartedOtherLevel4)
+				if (iVictoryStage > 3)// && !bStartedOtherLevel4)
 				{
 					bStartedOtherLevel4 = true;
                 	m_iVictoryStrategyHash |= AI_VICTORY_ALTAR4;
@@ -25065,12 +25297,15 @@ void CvPlayerAI::AI_doAdvancedStart(bool bNoExit)
 							//Mildly maphackery but any smart human can see the terrain type of a tile.
 							pLoopPlot2->getTerrainType();
 							int iFoodYield = GC.getTerrainInfo(pLoopPlot2->getTerrainType()).getYield(YIELD_FOOD);
-//FlavourMod: Added by Jean Elcard 03/18/2009 (Civilization Terrain Yield Changes)
-							if (GC.getTerrainInfo(pLoopPlot2->getTerrainType()).getCivilizationYieldType() == getCivilizationType())
-							{
-								iFoodYield += GC.getTerrainInfo(pLoopPlot2->getTerrainType()).getCivilizationYieldChange(YIELD_FOOD);
-							}
-//FlavourMod: End Add
+/*************************************************************************************************/
+/**	CivPlotMods								03/23/09								Jean Elcard	**/
+/**																								**/
+/**			Consider Civilization-specific Terrain Yield Modifications for Advanced Starts.		**/
+/*************************************************************************************************/
+							iFoodYield += GC.getCivilizationInfo(getCivilizationType()).getTerrainYieldChanges(pLoopPlot2->getTerrainType(), YIELD_FOOD, pLoopPlot2->isRiver());
+/*************************************************************************************************/
+/**	CivPlotMods								END													**/
+/*************************************************************************************************/
 							if (pLoopPlot2->getFeatureType() != NO_FEATURE)
 							{
 								iFoodYield += GC.getFeatureInfo(pLoopPlot2->getFeatureType()).getYieldChange(YIELD_FOOD);

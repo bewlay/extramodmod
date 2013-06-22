@@ -1709,6 +1709,7 @@ m_iPrereqOrPromotion1(NO_PROMOTION),
 m_iPrereqOrPromotion2(NO_PROMOTION),
 m_iTechPrereq(NO_TECH),
 m_iStateReligionPrereq(NO_RELIGION),
+m_iUnitReligionPrereq(NO_RELIGION),
 m_iVisibilityChange(0),
 m_iMovesChange(0),
 m_iMoveDiscountChange(0),
@@ -1830,8 +1831,16 @@ m_iPromotionCombatType(NO_PROMOTION),
 m_iPromotionCombatMod(0),
 m_piBonusAffinity(NULL),
 m_piDamageTypeCombat(NULL),
-m_piDamageTypeResist(NULL)
+m_piDamageTypeResist(NULL),
 //FfH: End Add
+
+// MNAI - additional promotion tags
+m_bAllowsMoveImpassable(false),
+m_bAllowsMoveLimitedBorders(false),
+m_bCastingBlocked(false),
+m_bUpgradeOutsideBorders(false)
+// End MNAI
+
 {
 }
 
@@ -1905,6 +1914,11 @@ int CvPromotionInfo::getTechPrereq() const
 int CvPromotionInfo::getStateReligionPrereq() const
 {
 	return m_iStateReligionPrereq;
+}
+
+int CvPromotionInfo::getUnitReligionPrereq() const
+{
+	return m_iUnitReligionPrereq;
 }
 
 int CvPromotionInfo::getVisibilityChange() const
@@ -2484,6 +2498,28 @@ int CvPromotionInfo::getDamageTypeResist(int i) const
 }
 //FfH: End Add
 
+// MNAI - additional promotion tags
+bool CvPromotionInfo::isAllowsMoveImpassable() const
+{
+	return m_bAllowsMoveImpassable;
+}
+
+bool CvPromotionInfo::isAllowsMoveLimitedBorders() const
+{
+	return m_bAllowsMoveLimitedBorders;
+}
+
+bool CvPromotionInfo::isCastingBlocked() const
+{
+	return m_bCastingBlocked;
+}
+
+bool CvPromotionInfo::isUpgradeOutsideBorders() const
+{
+	return m_bUpgradeOutsideBorders;
+}
+// End MNAI
+
 // Arrays
 
 int CvPromotionInfo::getTerrainAttackPercent(int i) const
@@ -2563,6 +2599,7 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 
 	stream->Read(&m_iTechPrereq);
 	stream->Read(&m_iStateReligionPrereq);
+	stream->Read(&m_iUnitReligionPrereq); // MNAI
 	stream->Read(&m_iVisibilityChange);
 	stream->Read(&m_iMovesChange);
 	stream->Read(&m_iMoveDiscountChange);
@@ -2691,6 +2728,13 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(GC.getNumDamageTypeInfos(), m_piDamageTypeResist);
 //FfH: End Add
 
+	// MNAI - additional promotion tags
+	stream->Read(&m_bAllowsMoveImpassable);
+	stream->Read(&m_bAllowsMoveLimitedBorders);
+	stream->Read(&m_bCastingBlocked);
+	stream->Read(&m_bUpgradeOutsideBorders);
+	// End MNAI
+
 	// Arrays
 
 	SAFE_DELETE_ARRAY(m_piTerrainAttackPercent);
@@ -2744,6 +2788,7 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 
 	stream->Write(m_iTechPrereq);
 	stream->Write(m_iStateReligionPrereq);
+	stream->Write(m_iUnitReligionPrereq); // MNAI
 	stream->Write(m_iVisibilityChange);
 	stream->Write(m_iMovesChange);
 	stream->Write(m_iMoveDiscountChange);
@@ -2863,6 +2908,13 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumDamageTypeInfos(), m_piDamageTypeResist);
 //FfH: End Add
 
+	// MNAI - new promotion tags
+	stream->Write(m_bAllowsMoveImpassable);
+	stream->Write(m_bAllowsMoveLimitedBorders);
+	stream->Write(m_bCastingBlocked);
+	stream->Write(m_bUpgradeOutsideBorders);
+	// End MNAI
+
 	// Arrays
 
 	stream->Write(GC.getNumTerrainInfos(), m_piTerrainAttackPercent);
@@ -2895,6 +2947,9 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "StateReligionPrereq");
 	m_iStateReligionPrereq = pXML->FindInInfoClass(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "UnitReligionPrereq");
+	m_iUnitReligionPrereq = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_bLeader, "bLeader");
 	if (m_bLeader)
@@ -3017,6 +3072,14 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_piDamageTypeCombat, "DamageTypeCombats", sizeof(GC.getDamageTypeInfo((DamageTypes)0)), GC.getNumDamageTypeInfos());
 	pXML->SetVariableListTagPair(&m_piDamageTypeResist, "DamageTypeResists", sizeof(GC.getDamageTypeInfo((DamageTypes)0)), GC.getNumDamageTypeInfos());
 //FfH: End Add
+
+	// MNAI - additional promotion tags
+	pXML->GetChildXmlValByName(&m_bAllowsMoveImpassable, "bAllowsMoveImpassable");
+	pXML->GetChildXmlValByName(&m_bAllowsMoveLimitedBorders, "bAllowsMoveLimitedBorders");
+	pXML->GetChildXmlValByName(&m_bCastingBlocked, "bCastingBlocked");
+	pXML->GetChildXmlValByName(&m_bUpgradeOutsideBorders, "bUpgradeOutsideBorders");
+
+	// End MNAI
 
 	return true;
 }
@@ -3165,6 +3228,7 @@ m_bDispel(false),
 m_bPush(false),
 m_bRemoveHasCasted(false),
 m_bSacrificeCaster(false),
+m_bRemoveInvalidFeature(false),	// MNAI
 m_iChangePopulation(0),
 m_iCost(0),
 m_iDelay(0),
@@ -3173,6 +3237,13 @@ m_iMiscastChance(0),
 m_iEffect(NO_EFFECT),
 m_szSound(NULL),
 m_iCommandType(NO_COMMAND)
+// MNAI begin
+/*
+m_piTerrainConvert(NULL),
+m_piFeatureConvert(NULL),
+m_pbFeatureInvalid(NULL)
+*/
+// MNAI end
 {
 }
 
@@ -3185,6 +3256,11 @@ m_iCommandType(NO_COMMAND)
 //------------------------------------------------------------------------------------------------------
 CvSpellInfo::~CvSpellInfo()
 {
+	// MNAI begin
+	//SAFE_DELETE_ARRAY(m_piTerrainConvert);
+	//SAFE_DELETE_ARRAY(m_piFeatureConvert);
+	//SAFE_DELETE_ARRAY(m_pbFeatureInvalid);
+	// MNAI end
 }
 
 int CvSpellInfo::getPromotionPrereq1() const
@@ -3435,6 +3511,13 @@ bool CvSpellInfo::isSacrificeCaster() const
 	return m_bSacrificeCaster;
 }
 
+// MNAI begin
+bool CvSpellInfo::isRemoveInvalidFeature() const
+{
+	return m_bRemoveInvalidFeature;
+}
+// MNAI end
+
 int CvSpellInfo::getAIWeight() const
 {
 	return m_iAIWeight;
@@ -3575,6 +3658,13 @@ const TCHAR *CvSpellInfo::getPyRequirement() const
 	return m_szPyRequirement;
 }
 
+// MNAI begin
+const TCHAR *CvSpellInfo::getPyAlternateReq() const
+{
+	return m_szPyAlternateReq;
+}
+// MNAI end
+
 int CvSpellInfo::getCommandType() const
 {
 	return m_iCommandType;
@@ -3584,6 +3674,31 @@ void CvSpellInfo::setCommandType(int iNewType)
 {
 	m_iCommandType = iNewType;
 }
+
+// MNAI begin
+/*
+int CvSpellInfo::getTerrainConvert(int i) const		
+{
+	FAssertMsg(i < GC.getNumTerrainInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piTerrainConvert ? m_piTerrainConvert[i] : -1;
+}
+
+int CvSpellInfo::getFeatureConvert(int i) const
+{
+	FAssertMsg(i < GC.getNumFeatureInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piFeatureConvert ? m_piFeatureConvert[i] : i;
+}
+
+bool CvSpellInfo::isFeatureInvalid(int i) const
+{
+	FAssertMsg(i < GC.getNumFeatureInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_pbFeatureInvalid ? m_pbFeatureInvalid[i] : false;
+}
+*/
+// MNAI end
 
 void CvSpellInfo::read(FDataStreamBase* stream)
 {
@@ -3667,6 +3782,7 @@ void CvSpellInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bPush);
 	stream->Read(&m_bRemoveHasCasted);
 	stream->Read(&m_bSacrificeCaster);
+	stream->Read(&m_bRemoveInvalidFeature);	// MNAI
 	stream->Read(&m_iChangePopulation);
 	stream->Read(&m_iCost);
 	stream->Read(&m_iDelay);
@@ -3675,9 +3791,25 @@ void CvSpellInfo::read(FDataStreamBase* stream)
 	stream->ReadString(m_szPyMiscast);
 	stream->ReadString(m_szPyResult);
 	stream->ReadString(m_szPyRequirement);
+	stream->ReadString(m_szPyAlternateReq);	// MNAI
 	stream->Read(&m_iEffect);
 	stream->ReadString(m_szSound);
 	stream->Read(&m_iCommandType);
+	// MNAI begin
+	/*
+	SAFE_DELETE_ARRAY(m_piTerrainConvert);
+	m_piTerrainConvert = new int[GC.getNumTerrainInfos()];
+	stream->Read(GC.getNumTerrainInfos(), m_piTerrainConvert);
+
+	SAFE_DELETE_ARRAY(m_piFeatureConvert);
+	m_piFeatureConvert = new int[GC.getNumFeatureInfos()];
+	stream->Read(GC.getNumFeatureInfos(), m_piFeatureConvert);
+
+	SAFE_DELETE_ARRAY(m_pbFeatureInvalid);
+	m_pbFeatureInvalid = new bool[GC.getNumFeatureInfos()];
+	stream->Read(GC.getNumFeatureInfos(), m_pbFeatureInvalid);
+	*/
+	// MNAI end
 }
 
 void CvSpellInfo::write(FDataStreamBase* stream)
@@ -3763,6 +3895,7 @@ void CvSpellInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bPush);
 	stream->Write(m_bRemoveHasCasted);
 	stream->Write(m_bSacrificeCaster);
+	stream->Write(m_bRemoveInvalidFeature);	// MNAI
 	stream->Write(m_iChangePopulation);
 	stream->Write(m_iCost);
 	stream->Write(m_iDelay);
@@ -3771,9 +3904,17 @@ void CvSpellInfo::write(FDataStreamBase* stream)
 	stream->WriteString(m_szPyMiscast);
 	stream->WriteString(m_szPyResult);
 	stream->WriteString(m_szPyRequirement);
+	stream->WriteString(m_szPyAlternateReq);	// MNAI
 	stream->Write(m_iEffect);
 	stream->WriteString(m_szSound);
 	stream->Write(m_iCommandType);
+	// MNAI begin
+	/*
+	stream->Write(GC.getNumTerrainInfos(), m_piTerrainConvert);
+	stream->Write(GC.getNumFeatureInfos(), m_piFeatureConvert);
+	stream->Write(GC.getNumFeatureInfos(), m_pbFeatureInvalid);
+	*/
+	// MNAI end
 }
 
 bool CvSpellInfo::read(CvXMLLoadUtility* pXML)
@@ -3895,6 +4036,7 @@ bool CvSpellInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bPush, "bPush");
 	pXML->GetChildXmlValByName(&m_bRemoveHasCasted, "bRemoveHasCasted");
 	pXML->GetChildXmlValByName(&m_bSacrificeCaster, "bSacrificeCaster");
+	pXML->GetChildXmlValByName(&m_bRemoveInvalidFeature, "bRemoveInvalidFeature");	// MNAI
 	pXML->GetChildXmlValByName(&m_iChangePopulation, "iChangePopulation");
 	pXML->GetChildXmlValByName(&m_iCost, "iCost");
 	pXML->GetChildXmlValByName(&m_iDelay, "iDelay");
@@ -3904,9 +4046,33 @@ bool CvSpellInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(m_szPyMiscast, "PyMiscast");
 	pXML->GetChildXmlValByName(m_szPyResult, "PyResult");
 	pXML->GetChildXmlValByName(m_szPyRequirement, "PyRequirement");
+	pXML->GetChildXmlValByName(m_szPyAlternateReq, "PyAlternateReq");	// MNAI
 	pXML->GetChildXmlValByName(szTextVal, "Effect");
 	if (szTextVal != "") m_iEffect = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(m_szSound, "Sound");
+
+	// MNAI begin
+	/*
+	CvString* pszTemp = NULL;
+	pXML->SetVariableListTagPair(&pszTemp, "TerrainConversions", sizeof(GC.getTerrainInfo((TerrainTypes)0)), GC.getNumTerrainInfos());
+	m_piTerrainConvert = new int[GC.getNumTerrainInfos()];
+	for (int i = 0; i < GC.getNumTerrainInfos(); ++i)
+	{
+		m_piTerrainConvert[i] = pszTemp[i].IsEmpty() ? NO_TERRAIN : pXML->FindInInfoClass(pszTemp[i]);
+	}
+	SAFE_DELETE_ARRAY(pszTemp);
+
+	pXML->SetVariableListTagPair(&pszTemp, "FeatureConversions", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
+	m_piFeatureConvert = new int[GC.getNumFeatureInfos()];
+	for (int i = 0; i < GC.getNumFeatureInfos(); ++i)
+	{
+		m_piFeatureConvert[i] = pszTemp[i].IsEmpty() ? i : pXML->FindInInfoClass(pszTemp[i], true);
+	}
+	SAFE_DELETE_ARRAY(pszTemp);
+
+	pXML->SetVariableListTagPair(&m_pbFeatureInvalid, "FeatureInvalids", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
+	*/
+	// MNAI end
 
 	return true;
 }
@@ -4791,6 +4957,7 @@ m_bFirstStrikeImmune(false),
 m_bNoDefensiveBonus(false),
 m_bIgnoreBuildingDefense(false),
 m_bCanMoveImpassable(false),
+m_bCanMoveLimitedBorders(false), // MNAI
 m_bCanMoveAllTerrain(false),
 m_bFlatMovementCost(false),
 m_bIgnoreTerrainCost(false),
@@ -5445,6 +5612,13 @@ bool CvUnitInfo::isCanMoveAllTerrain() const
 {
 	return m_bCanMoveAllTerrain;
 }
+
+// MNAI Start
+bool CvUnitInfo::isCanMoveLimitedBorders() const
+{
+	return m_bCanMoveLimitedBorders;
+}
+// MNAI End
 
 bool CvUnitInfo::isFlatMovementCost() const
 {
@@ -6309,6 +6483,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bIgnoreBuildingDefense);
 	stream->Read(&m_bCanMoveImpassable);
 	stream->Read(&m_bCanMoveAllTerrain);
+	stream->Read(&m_bCanMoveLimitedBorders); // MNAI
 	stream->Read(&m_bFlatMovementCost);
 	stream->Read(&m_bIgnoreTerrainCost);
 	stream->Read(&m_bNukeImmune);
@@ -6655,6 +6830,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bIgnoreBuildingDefense);
 	stream->Write(m_bCanMoveImpassable);
 	stream->Write(m_bCanMoveAllTerrain);
+	stream->Write(m_bCanMoveLimitedBorders); // MNAI
 	stream->Write(m_bFlatMovementCost);
 	stream->Write(m_bIgnoreTerrainCost);
 	stream->Write(m_bNukeImmune);
@@ -6842,6 +7018,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bIgnoreBuildingDefense, "bIgnoreBuildingDefense");
 	pXML->GetChildXmlValByName(&m_bCanMoveImpassable, "bCanMoveImpassable");
 	pXML->GetChildXmlValByName(&m_bCanMoveAllTerrain, "bCanMoveAllTerrain");
+	pXML->GetChildXmlValByName(&m_bCanMoveLimitedBorders, "bCanMoveLimitedBorders"); // MNAI
 	pXML->GetChildXmlValByName(&m_bFlatMovementCost, "bFlatMovementCost");
 	pXML->GetChildXmlValByName(&m_bIgnoreTerrainCost, "bIgnoreTerrainCost");
 	pXML->GetChildXmlValByName(&m_bNukeImmune, "bNukeImmune");
@@ -12082,9 +12259,18 @@ m_paszCityNames(NULL),
 m_iCivTrait(NO_TRAIT),
 m_iDefaultRace(NO_PROMOTION),
 m_iHero(NO_UNIT),
-m_pbMaintainFeatures(NULL)
+m_pbMaintainFeatures(NULL),
 //FfH: End Add
-
+/*************************************************************************************************/
+/**	New Tag Defs	(CivilizationInfos)		01/12/09								Xienwolf	**/
+/**																								**/
+/**										Initial Values											**/
+/*************************************************************************************************/
+m_ppiTerrainYieldChanges(NULL),
+m_ppiTerrainRiverYieldChanges(NULL)
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 {
 }
 
@@ -12110,6 +12296,31 @@ CvCivilizationInfo::~CvCivilizationInfo()
 //FfH: Added by Kael 05/27/2008
 	SAFE_DELETE_ARRAY(m_pbMaintainFeatures);
 //FfH: End Add
+
+/*************************************************************************************************/
+/**	New Tag Defs	(CivilizationInfos)		03/23/09								Jean Elcard	**/
+/**																								**/
+/**										Clear Arrays											**/
+/*************************************************************************************************/
+	if (m_ppiTerrainYieldChanges != NULL)
+	{
+		for (int iI = 0; iI < GC.getNumTerrainInfos(); iI++)
+		{
+			SAFE_DELETE_ARRAY(m_ppiTerrainYieldChanges[iI]);
+		}
+		SAFE_DELETE_ARRAY(m_ppiTerrainYieldChanges);
+	}
+	if (m_ppiTerrainRiverYieldChanges != NULL)
+	{
+		for (int iI = 0; iI < GC.getNumTerrainInfos(); iI++)
+		{
+			SAFE_DELETE_ARRAY(m_ppiTerrainRiverYieldChanges[iI]);
+		}
+		SAFE_DELETE_ARRAY(m_ppiTerrainRiverYieldChanges);
+	}
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 
 }
 
@@ -12349,6 +12560,23 @@ void CvCivilizationInfo::setDerivativeCiv(int iCiv)
 	m_iDerivativeCiv = iCiv;
 }
 
+/*************************************************************************************************/
+/**	New Tag Defs	(CivilizationInfos)		03/23/09								Jean Elcard	**/
+/**																								**/
+/**							Methods for accessing member variables.								**/
+/*************************************************************************************************/
+int CvCivilizationInfo::getTerrainYieldChanges(int i, int j, bool is_river) const
+{
+	FAssertMsg(i < GC.getNumTerrainInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	FAssertMsg(j < NUM_YIELD_TYPES, "Index out of bounds");
+	FAssertMsg(j > -1, "Index out of bounds");
+	return is_river ? m_ppiTerrainYieldChanges[i][j] + m_ppiTerrainRiverYieldChanges[i][j]: m_ppiTerrainYieldChanges[i][j];
+}
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
+
 void CvCivilizationInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
@@ -12481,6 +12709,78 @@ bool CvCivilizationInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(m_szAdjectiveKey, "Adjective");
 	// Get the Text from Text/Civ4GameTextXML.xml
+
+/*************************************************************************************************/
+/**	New Tag Defs	(CivilizationInfos)		01/12/09								Xienwolf	**/
+/**																								**/
+/**									Loads Information from XML									**/
+/*************************************************************************************************/
+	FAssertMsg((GC.getNumTerrainInfos() > 0) && (NUM_YIELD_TYPES) > 0, "either the number of terrain infos is zero or less or the number of yield types is zero or less");
+	pXML->Init2DIntList(&m_ppiTerrainYieldChanges, GC.getNumTerrainInfos(), NUM_YIELD_TYPES);
+	pXML->Init2DIntList(&m_ppiTerrainRiverYieldChanges, GC.getNumTerrainInfos(), NUM_YIELD_TYPES);
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(), "TerrainYieldChanges"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+			if (gDLL->getXMLIFace()->SetToChild(pXML->GetXML()))
+			{
+				if (0 < iNumSibs)
+				{
+					int iIndex;
+
+					for (j = 0; j < iNumSibs; j++)
+					{
+						pXML->GetChildXmlValByName(szTextVal, "TerrainType");
+						iIndex = pXML->FindInInfoClass(szTextVal);
+
+						if (iIndex > -1)
+						{
+							// Delete the array since it will be reallocated.
+							SAFE_DELETE_ARRAY(m_ppiTerrainYieldChanges[iIndex]);
+							// if we can set the current XML node to it's next sibling.
+							if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"TerrainYields"))
+							{
+								// call the function that sets the yield change variable
+								pXML->SetYields(&m_ppiTerrainYieldChanges[iIndex]);
+								gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+							}
+							else
+							{
+								pXML->InitList(&m_ppiTerrainYieldChanges[iIndex], NUM_YIELD_TYPES);
+							}
+
+							// Delete the array since it will be reallocated.
+							SAFE_DELETE_ARRAY(m_ppiTerrainRiverYieldChanges[iIndex]);
+							// if we can set the current XML node to it's next sibling.
+							if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"TerrainRiverYields"))
+							{
+								// call the function that sets the yield change variable
+								pXML->SetYields(&m_ppiTerrainRiverYieldChanges[iIndex]);
+								gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+							}
+							else
+							{
+								pXML->InitList(&m_ppiTerrainRiverYieldChanges[iIndex], NUM_YIELD_TYPES);
+							}
+						}
+
+						if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+						{
+							break;
+						}
+					}
+				}
+
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 
 	pXML->GetChildXmlValByName(szTextVal, "DefaultPlayerColor");
 	m_iDefaultPlayerColor = pXML->FindInInfoClass(szTextVal);
@@ -14506,6 +14806,7 @@ m_iBonusConvert(NO_BONUS),
 m_iFeatureUpgrade(NO_FEATURE),
 m_iPrereqCivilization(NO_CIVILIZATION),
 m_iSpawnUnitType(NO_UNIT),
+m_iFreeSpawnPromotion(NO_PROMOTION),
 m_iVisibilityChange(0)
 //FfH: End Add
 
@@ -14801,6 +15102,11 @@ int CvImprovementInfo::getSpawnUnitType() const
 	return m_iSpawnUnitType;
 }
 
+int CvImprovementInfo::getFreeSpawnPromotion() const
+{
+	return m_iFreeSpawnPromotion;
+}
+
 int CvImprovementInfo::getVisibilityChange() const
 {
 	return m_iVisibilityChange;
@@ -15044,6 +15350,7 @@ void CvImprovementInfo::read(FDataStreamBase* stream)
 	stream->ReadString(m_szPythonAtRange);
 	stream->ReadString(m_szPythonOnMove);
 	stream->Read(&m_iSpawnUnitType);
+	stream->Read(&m_iFreeSpawnPromotion);
 	stream->Read(&m_iVisibilityChange);
 //FfH: End Add
 
@@ -15181,6 +15488,7 @@ void CvImprovementInfo::write(FDataStreamBase* stream)
 	stream->WriteString(m_szPythonAtRange);
 	stream->WriteString(m_szPythonOnMove);
 	stream->Write(m_iSpawnUnitType);
+	stream->Write(m_iFreeSpawnPromotion);
 	stream->Write(m_iVisibilityChange);
 //FfH: End Add
 
@@ -15463,6 +15771,9 @@ bool CvImprovementInfo::readPass2(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "ImprovementUpgrade");
 	m_iImprovementUpgrade = GC.getInfoTypeForString(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "FreeSpawnPromotion");
+	m_iFreeSpawnPromotion = GC.getInfoTypeForString(szTextVal);
 
 	return true;
 }
@@ -16836,7 +17147,6 @@ m_pi3DAudioScriptFootstepIndex(NULL),
 
 //FfH: Added By Kael 08/02/2007
 m_bNormalize(false),
-m_iCivilizationYieldType(NO_CIVILIZATION),
 m_iPlotCounterDown(-1),
 m_iTerrainDown(NO_TERRAIN),
 m_iPlotCounterUp(-1),
@@ -16859,15 +17169,6 @@ CvTerrainInfo::~CvTerrainInfo()
 	SAFE_DELETE_ARRAY(m_piRiverYieldChange);
 	SAFE_DELETE_ARRAY(m_piHillsYieldChange);
 	SAFE_DELETE_ARRAY(m_pi3DAudioScriptFootstepIndex);
-
-//FfH: Added by Kael 09/18/2008
-	SAFE_DELETE_ARRAY(m_piCivilizationYieldChange);
-//FfH: End Add
-
-//FfH Illians commerce on rivers fix: Added by Terkhen 6/12/2011
-	SAFE_DELETE_ARRAY(m_piCivilizationYieldRiverChange);
-//FfH: End Add
-
 }
 
 int CvTerrainInfo::getMovementCost() const
@@ -16940,23 +17241,6 @@ bool CvTerrainInfo::isNormalize() const
 {
 	return m_bNormalize;
 }
-
-int CvTerrainInfo::getCivilizationYieldType() const
-{
-	return m_iCivilizationYieldType;
-}
-
-int CvTerrainInfo::getCivilizationYieldChange(int i) const
-{
-	return m_piCivilizationYieldChange ? m_piCivilizationYieldChange[i] : -1;
-}
-
-//FfH Illians commerce on rivers fix: Added by Terkhen 6/12/2011
-int CvTerrainInfo::getCivilizationRiverYieldChange(int i) const
-{
-	return m_piCivilizationYieldRiverChange ? m_piCivilizationYieldRiverChange[i] : -1;
-}
-//FfH end
 
 int CvTerrainInfo::getPlotCounterDown() const
 {
@@ -17074,29 +17358,8 @@ bool CvTerrainInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bNormalize, "bNormalize");
 	pXML->GetChildXmlValByName(&m_iPlotCounterDown, "iPlotCounterDown");
 	pXML->GetChildXmlValByName(&m_iPlotCounterUp, "iPlotCounterUp");
-	pXML->GetChildXmlValByName(szTextVal, "CivilizationYieldType");
-	m_aszExtraXMLforPass3.push_back(szTextVal);
-	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"CivilizationYieldChange"))
-	{
-		pXML->SetYields(&m_piCivilizationYieldChange);
-		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
-	}
-	else
-	{
-		pXML->InitList(&m_piCivilizationYieldChange, NUM_YIELD_TYPES);
-	}
 //FfH: End Add
  
-	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"CivilizationYieldRiverChange"))
-	{
-		pXML->SetYields(&m_piCivilizationYieldRiverChange);
-		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
-	}
-	else
-	{
-		pXML->InitList(&m_piCivilizationYieldRiverChange, NUM_YIELD_TYPES);
-	}
-
 	return true;
 }
 
@@ -17110,17 +17373,6 @@ bool CvTerrainInfo::readPass2(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "TerrainUp");
 	m_iTerrainUp = GC.getInfoTypeForString(szTextVal);
 
-	return true;
-}
-
-bool CvTerrainInfo::readPass3()
-{
-	if (m_aszExtraXMLforPass3.size() < 1)
-	{
-		return false;
-	}
-	m_iCivilizationYieldType = GC.getInfoTypeForString(m_aszExtraXMLforPass3[0]);
-	m_aszExtraXMLforPass3.clear();
 	return true;
 }
 //FfH: End Add

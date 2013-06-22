@@ -549,6 +549,15 @@ void CvPlot::doTurn()
                             {
                                 CvUnit* pUnit;
                                 pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit((UnitTypes)iUnit, getX_INLINE(), getY_INLINE(), UNITAI_ATTACK);
+
+								if (GC.getImprovementInfo(eImprovement).getFreeSpawnPromotion() != NO_PROMOTION)
+								{
+									if ((GC.getPromotionInfo((PromotionTypes)GC.getImprovementInfo(eImprovement).getFreeSpawnPromotion())).isRace())
+									{
+										pUnit->setRace(NO_PROMOTION);
+									}
+									pUnit->setHasPromotion((PromotionTypes)GC.getImprovementInfo(eImprovement).getFreeSpawnPromotion(), true);
+								}
 								if (pUnit->isAnimal())
                                 {
                                     pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
@@ -4832,7 +4841,7 @@ bool CvPlot::isValidRoute(const CvUnit* pUnit) const
 
 bool CvPlot::isTradeNetworkImpassable(TeamTypes eTeam) const
 {
-	return (isImpassable() && !isRiverNetwork(eTeam));
+	return (isImpassable() && !isRiverNetwork(eTeam) && !isRoute());
 }
 
 bool CvPlot::isRiverNetwork(TeamTypes eTeam) const
@@ -7293,19 +7302,11 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 		}
 	}
 
-//FfH: Added by Kael 09/25/2008
-    if (isOwned())
-    {
-        if (GET_PLAYER(getOwnerINLINE()).getCivilizationType() == GC.getTerrainInfo((TerrainTypes)getTerrainType()).getCivilizationYieldType())
-        {
-            iYield += GC.getTerrainInfo((TerrainTypes)getTerrainType()).getCivilizationYieldChange(eYield);
-			if (isRiver())
-			{
-				iYield += GC.getTerrainInfo(getTerrainType()).getCivilizationRiverYieldChange(eYield);
-			}
-        }
+	// Take into account civilization specific changes to terrain yields.
+	if (isOwned())
+	{
+		iYield += GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getTerrainYieldChanges(getTerrainType(), eYield, isRiver());
 	}
-//FfH: End Add
 
 	return std::max(0, iYield);
 }

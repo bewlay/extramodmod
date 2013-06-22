@@ -10392,6 +10392,7 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+            <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_ASSASSIN</Class>
@@ -23238,6 +23239,7 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+            <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_COMMANDER</Class>
@@ -30032,6 +30034,7 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+            <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_EURABATRES</Class>
@@ -52454,6 +52457,7 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+            <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_MESHABBER</Class>
@@ -56930,6 +56934,10 @@
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
                 <UnitAI>
+                    <UnitAIType>UNITAI_INQUISITOR</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
                     <UnitAIType>UNITAI_ATTACK</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
@@ -57182,6 +57190,10 @@
             <UnitAIs>
                 <UnitAI>
                     <UnitAIType>UNITAI_MEDIC</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+		<UnitAI>
+                    <UnitAIType>UNITAI_INQUISITOR</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
                 <UnitAI>
@@ -57437,6 +57449,10 @@
             <UnitAIs>
                 <UnitAI>
                     <UnitAIType>UNITAI_MEDIC</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+		<UnitAI>
+                    <UnitAIType>UNITAI_INQUISITOR</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
                 <UnitAI>
@@ -57698,6 +57714,10 @@
             <UnitAIs>
                 <UnitAI>
                     <UnitAIType>UNITAI_MEDIC</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+		<UnitAI>
+                    <UnitAIType>UNITAI_INQUISITOR</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
                 <UnitAI>
@@ -57965,6 +57985,10 @@
                     <UnitAIType>UNITAI_MEDIC</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
+	        <UnitAI>
+                    <UnitAIType>UNITAI_INQUISITOR</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
                 <UnitAI>
                     <UnitAIType>UNITAI_ATTACK</UnitAIType>
                     <bUnitAI>1</bUnitAI>
@@ -58222,6 +58246,10 @@
             <UnitAIs>
                 <UnitAI>
                     <UnitAIType>UNITAI_MEDIC</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+		<UnitAI>
+                    <UnitAIType>UNITAI_INQUISITOR</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
                 <UnitAI>
@@ -59390,13 +59418,14 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+            <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_PUPPET</Class>
             <Type>UNIT_PUPPET</Type>
             <UniqueNames>
             </UniqueNames>
-            <Special>NONE</Special>
+            <Special>SPECIALUNIT_SPELL</Special>
             <Capture>NONE</Capture>
             <Combat>NONE</Combat>
             <Domain>DOMAIN_LAND</Domain>
@@ -64303,6 +64332,7 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+            <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_SCORPION</Class>
@@ -64740,6 +64770,7 @@
             <iCombatDefense>2</iCombatDefense>
             <iTier>1</iTier>
             <UpgradeCiv>CIVILIZATION_CLAN_OF_EMBERS</UpgradeCiv>
+            <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
             <PythonPostCombatWon>postCombatWolfRider(pCaster,pOpponent)</PythonPostCombatWon>
         </UnitInfo>
         <UnitInfo>
@@ -64959,6 +64990,7 @@
             <iCombatDefense>2</iCombatDefense>
             <iTier>1</iTier>
             <UpgradeCiv>CIVILIZATION_CLAN_OF_EMBERS</UpgradeCiv>
+            <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
             <PythonPostCombatWon>postCombatWolfRider(pCaster,pOpponent)</PythonPostCombatWon>
             <DamageTypeCombats>
                 <DamageTypeCombat>
@@ -65187,6 +65219,7 @@
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>2</iCombatDefense>
             <iTier>1</iTier>
+            <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_SEA_SERPENT</Class>
@@ -66360,10 +66393,6 @@
                     <UnitAIType>UNITAI_COUNTER</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
-                <UnitAI>
-                    <UnitAIType>UNITAI_SPY</UnitAIType>
-                    <bUnitAI>1</bUnitAI>
-                </UnitAI>
             </UnitAIs>
             <NotUnitAIs>
             </NotUnitAIs>
@@ -66591,10 +66620,6 @@
                 </UnitAI>
                 <UnitAI>
                     <UnitAIType>UNITAI_COUNTER</UnitAIType>
-                    <bUnitAI>1</bUnitAI>
-                </UnitAI>
-                <UnitAI>
-                    <UnitAIType>UNITAI_SPY</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
             </UnitAIs>
@@ -66827,10 +66852,6 @@
                 </UnitAI>
                 <UnitAI>
                     <UnitAIType>UNITAI_COUNTER</UnitAIType>
-                    <bUnitAI>1</bUnitAI>
-                </UnitAI>
-                <UnitAI>
-                    <UnitAIType>UNITAI_SPY</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
             </UnitAIs>
@@ -75332,6 +75353,7 @@
             </FreePromotions>
             <LeaderPromotion>PROMOTION_GREAT_GENERAL</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+            <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
         </UnitInfo>
     </UnitInfos>
 </Civ4UnitInfos>
