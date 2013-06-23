@@ -2191,7 +2191,7 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_goblinwaste.dds</EventArt>
-			<iPercentGamesActive>100</iPercentGamesActive>
+			<iPercentGamesActive>33</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
