@@ -3048,6 +3048,18 @@ void CvPlayer::killCities()
 		pLoopCity->kill(false);
 	}
 
+	// Super Forts begin *culture* - Clears culture from forts when a player dies
+	PlayerTypes ePlayer = getID();
+	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+	{
+		CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+		if (pLoopPlot->getOwner() == ePlayer)
+		{
+			pLoopPlot->setOwner(pLoopPlot->calculateCulturalOwner(), true, false);
+		}
+	}
+	// Super Forts end
+
 	GC.getGameINLINE().updatePlotGroups();
 }
 
@@ -6099,6 +6111,11 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
     case TRADE_EMBASSY:
 		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
 		{
+			if (getNumCities() == 0)
+			{
+				return false;
+			}
+
 			if (getTeam() != GET_PLAYER(eWhoTo).getTeam())
 			{
 				if (!atWar(getTeam(), GET_PLAYER(eWhoTo).getTeam()))
@@ -6247,6 +6264,11 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 	case TRADE_RIGHT_OF_PASSAGE:
 		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
 		{
+			if (getNumCities() == 0)
+			{
+				return false;
+			}
+
 			if (getTeam() != GET_PLAYER(eWhoTo).getTeam())
 			{
 				if (!atWar(getTeam(), GET_PLAYER(eWhoTo).getTeam()))
@@ -7717,7 +7739,10 @@ bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool
 	{
         if (getCivilizationType() != kUnit.getPrereqCiv())
         {
-            return false;
+			if (!isAssimilation() || (GC.getUnitClassInfo(eUnitClass).getMaxGlobalInstances() > 0))
+			{
+	            return false;
+			}
         }
 //FfH: End Add
 	}
@@ -9513,12 +9538,14 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
 /* UNOFFICIAL_PATCH                        END                                                  */
 /************************************************************************************************/	
 
+	CvCivicInfo &kCivic = GC.getCivicInfo(eCivic);
+	
 //FfH: Added by Kael 11/23/2007
     if (isFullMember((VoteSourceTypes)0))
     {
 //FfH: End Add
 
-        if (GC.getGameINLINE().isForceCivicOption((CivicOptionTypes)(GC.getCivicInfo(eCivic).getCivicOptionType())))
+        if (GC.getGameINLINE().isForceCivicOption((CivicOptionTypes)(kCivic.getCivicOptionType())))
         {
             return GC.getGameINLINE().isForceCivic(eCivic);
         }
@@ -9540,43 +9567,43 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
 		}
 	}
 
-	if (!isHasCivicOption((CivicOptionTypes)(GC.getCivicInfo(eCivic).getCivicOptionType())) && !(GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getCivicInfo(eCivic).getTechPrereq()))))
+	if (!isHasCivicOption((CivicOptionTypes)(kCivic.getCivicOptionType())) && !(GET_TEAM(getTeam()).isHasTech((TechTypes)(kCivic.getTechPrereq()))))
 	{
 		return false;
 	}
 
 //FfH Civics: Added by Kael 08/11/2007
-    if (GC.getCivicInfo(eCivic).isPrereqWar())
+    if (kCivic.isPrereqWar())
     {
         if (GET_TEAM(getTeam()).getAtWarCount(true) == 0)
         {
             return false;
 		}
     }
-    if (GC.getCivicInfo(eCivic).getBlockAlignment() != NO_ALIGNMENT)
+    if (kCivic.getBlockAlignment() != NO_ALIGNMENT)
     {
-        if (getAlignment() == GC.getCivicInfo(eCivic).getBlockAlignment())
+        if (getAlignment() == kCivic.getBlockAlignment())
         {
             return false;
         }
     }
-    if (GC.getCivicInfo(eCivic).getPrereqAlignment() != NO_ALIGNMENT)
+    if (kCivic.getPrereqAlignment() != NO_ALIGNMENT)
     {
-        if (getAlignment() != GC.getCivicInfo(eCivic).getPrereqAlignment())
+        if (getAlignment() != kCivic.getPrereqAlignment())
         {
             return false;
         }
     }
-    if (GC.getCivicInfo(eCivic).getPrereqCivilization() != NO_CIVILIZATION)
+    if (kCivic.getPrereqCivilization() != NO_CIVILIZATION)
     {
-        if (getCivilizationType() != GC.getCivicInfo(eCivic).getPrereqCivilization())
+        if (getCivilizationType() != kCivic.getPrereqCivilization())
         {
             return false;
         }
     }
-    if (GC.getCivicInfo(eCivic).getPrereqReligion() != NO_RELIGION)
+    if (kCivic.getPrereqReligion() != NO_RELIGION)
     {
-        if (getStateReligion() != GC.getCivicInfo(eCivic).getPrereqReligion())
+        if (getStateReligion() != kCivic.getPrereqReligion())
         {
             return false;
         }
@@ -12774,9 +12801,10 @@ void CvPlayer::setAlive(bool bNewValue)
 
 			if (GC.getGameINLINE().getElapsedGameTurns() > 0)
 			{
-				if (!isBarbarian() && !isRebel())
+				if (!isBarbarian())// && !isRebel())
 				{
-					szBuffer = gDLL->getText("TXT_KEY_MISC_CIV_DESTROYED", getCivilizationAdjectiveKey());
+					//szBuffer = gDLL->getText("TXT_KEY_MISC_CIV_DESTROYED", getCivilizationAdjectiveKey());
+					szBuffer = gDLL->getText("TXT_KEY_MISC_CIV_DESTROYED", getCivilizationDescription());
 
 					for (iI = 0; iI < MAX_PLAYERS; iI++)
 					{
@@ -20881,6 +20909,7 @@ void CvPlayer::setTriggerFired(const EventTriggeredData& kTriggeredData, bool bO
 	}
 }
 
+// lfgr cmt: here affected units, cities etc. are chosen
 EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger, bool bFire, int iCityId, int iPlotX, int iPlotY, PlayerTypes eOtherPlayer, int iOtherPlayerCityId, ReligionTypes eReligion, CorporationTypes eCorporation, int iUnitId, BuildingTypes eBuilding)
 {
 	// lfgr EVENT_DEBUG
@@ -21188,6 +21217,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 		return NULL;
 	}
 
+	// LFGR_TODO: kTrigger.getNumUnits() > 0 ? (kTrigger.getNumUnits() <= 0 -> pLoopUnit->getTriggerValue() == MIN_INT)
 	if (kTrigger.getNumUnitsGlobal() > 0)
 	{
 		int iNumUnits = 0;
@@ -22725,6 +22755,7 @@ void CvPlayer::doEvents()
 		return;
 	}
 
+	// LFGR_TODO: Figure out what this does
 	CvEventMap::iterator it = m_mapEventsOccured.begin();
 	while (it != m_mapEventsOccured.end())
 	{
@@ -22738,6 +22769,8 @@ void CvPlayer::doEvents()
 			++it;
 		}
 	}
+
+	// lfgr cmt: check whether any event can trigger (weight==-1 triggers anyway)
 
 	bool bNewEventEligible = true;
 	if (GC.getGameINLINE().getElapsedGameTurns() < GC.getDefineINT("FIRST_EVENT_DELAY_TURNS"))
@@ -22763,6 +22796,8 @@ void CvPlayer::doEvents()
 		}
 	}
 
+	// lfgr cmt: get all event weights, trigger all with weight == -1, create triggeredData for all weight > 0
+
 	std::vector< std::pair<EventTriggeredData*, int> > aePossibleEventTriggerWeights;
 	int iTotalWeight = 0;
 	for (int i = 0; i < GC.getNumEventTriggerInfos(); ++i)
@@ -22782,6 +22817,8 @@ void CvPlayer::doEvents()
 			}
 		}
 	}
+
+	// lfgr cmt: fire one semi-random event, clean up the others
 
 	if (iTotalWeight > 0)
 	{
@@ -22804,6 +22841,8 @@ void CvPlayer::doEvents()
 			}
 		}
 	}
+
+	// lfgr cmt: apply countdown events and clean them up
 
 	std::vector<int> aCleanup;
 	for (int i = 0; i < GC.getNumEventInfos(); ++i)
@@ -23159,9 +23198,12 @@ CvUnit* CvPlayer::pickTriggerUnit(EventTriggerTypes eTrigger, CvPlot* pPlot, boo
 	return pUnit;
 }
 
+// lfgr cmt: Most important function for event triggering. 0 means don't trigger, -1 means always trigger
 int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
 {
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eTrigger);
+
+	// lfgr cmt: check simple requirements
 
 	if (NO_HANDICAP != kTrigger.getMinDifficulty())
 	{
@@ -23385,6 +23427,8 @@ int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
 			return 0;
 		}
 	}
+
+	// lfgr cmt: calc weight (probability)
 
 	if (kTrigger.getProbability() < 0)
 	{
@@ -24312,7 +24356,7 @@ bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
                 pCity->setCultureTimes100(eNewPlayer, iCulture, true, true);
             }
 
-            for (int i = 0; i < GC.getDefineINT("COLONY_NUM_FREE_DEFENDERS"); ++i)
+            for (int i = 0; i < (GC.getDefineINT("COLONY_NUM_FREE_DEFENDERS") * 2); ++i)
             {
                 pCity->initConscriptedUnit();
             }
@@ -27590,3 +27634,26 @@ DenialTypes CvPlayer::AI_militaryUnitTrade(CvUnit* pUnit, PlayerTypes ePlayer) c
 /************************************************************************************************/
 /* Afforess	                     END                                                            */
 /************************************************************************************************/
+
+int CvPlayer::countNumOwnedTerrainTypes(TerrainTypes eTerrain) const
+{
+	PROFILE("CvPlayer::countNumOwnedTerrainTypes");
+
+	CvPlot* pLoopPlot;
+	int iCount = 0;
+
+	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+	{
+		pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+
+		if (pLoopPlot->getOwnerINLINE() == getID())
+		{
+			if (pLoopPlot->getTerrainType() == eTerrain)
+			{
+				iCount++;
+			}
+		}
+	}
+
+	return iCount;
+}

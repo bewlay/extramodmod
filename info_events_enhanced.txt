@@ -1,34 +1,82 @@
 Events Enhanced
 Adjusted for MNAI by lfgr
-Additions by lfgr
+Additions by lfgr, MagisterCultuum
 Thread: http://forums.civfanatics.com/showthread.php?p=12095057#post12095057
 
-Based on: MoreEvents Modmod Expanded
-	Original Thread: http://forums.civfanatics.com/showthread.php?t=357987
+Included Mods:
+	MoreEvents Modmod Expanded (http://forums.civfanatics.com/showthread.php?t=357987)
+	Events with Images for FfH (http://forums.civfanatics.com/showthread.php?t=354770)
+	Some Event changes from MagisterModMod (http://forums.civfanatics.com/showthread.php?t=455111)
+	Great Person Mod (http://forums.civfanatics.com/showthread.php?t=305792), ported by ostar
+	World Unit Popups by ostar
 
 Search Stings for DLL:
 	EVENT_FIXES
 	EVENT_NEW_TAGS
 
 Changes:
-v1.4 (in development)
+v1.6 (2013/06/10, MNAI r1443)
 	Changed Events (Gameplay):
+		Clairone (Harpy) Event now requires Festivals.
+	Coed:
+		GPMod callback changed from greatPersonBorn to unitCreated, to cache GPs f.e. from events. 
+		Better EventImages (ostar). Now all images are lower case
+v1.5 (2013/05/28, MNAI r1443)
+	Addition of Great Person Mod (xienwolf, ostar) and World Unit Popups (ostar) with BUG Options Tab
+	Code:
+		Minor comments and code cleanup
+		Some Python Comments for Events Overview utility
+v1.4
+	Changed Events (Gameplay):
+		Aeron's chosen
+			- Can trigger for any non-summon Marksman unit instead of only Assassin (MagisterCultuum)
+		Blight
+			- Now takes feature health into account (MagisterCultuum)
+		Flare Nature Node
+			- Now takes elven forest on imrpovements into account (MagisterCultuum)
+		Dedicate Monument
+			- Sucellus now gives +3 Health instead of +1 (Balance against +2 Food from Amathaon) (MagisterCultuum)
+		Penguins
+			- Triggers on flat snow only, instead of Snow or Tundra (MagisterCultuum)
+		Sailor's Dirge
+			- Now 60% of games active, instead of 20% (MagisterCultuum)
+		Sickness
+			- Added option for Infernals: Receive Champion (No sickness for Infernals) (MagisterCultuum)
+		Sign of Arawn
+			- Immobilizes all unded units for 1 turn (MagisterCultuum/Changed)
+			- Added option for Sidar: Golden Age (MagisterCultuum)
+		Sign of Aeron
+			- Added option for Calabim: Golden Age (MagisterCultuum)
+		Sign of Bhall
+			- Added option for Clan: Golden Age (MagisterCultuum)
+		Sign of Mammon
+			- Now gives 100 Gold instead of 40 (MagisterCultuum/Changed)
+		Sign of Mulcarn
+			- Now gives +1 Production from Temple of the Hand (MagisterCultuum)
+		Traitor
+			- Calabim feast option gives 50 Culture and -10 Crime (MagisterCultuum)
+		Undercouncil
+			- Option 2 gives all recon units City Raider 1 instead of Magic Resistance
 		Witch
 			- Executing Witch now adds +2 to AC
-		Pacifist demonstration
-			- 4th option gives the best available non-national-unit warrior upgrade instead of an Axeman
-			- 5th option gives 3 XP to all vampires instead of only to the ones in the city, removed +food in city (you don't get it from feast either)
+		
 		Demon Sign
 			- 3rd option gives priest instead of high priest (was OP, I don't want national units to be given)
 			- Grigori no longer receive a luonnotar for 50G and 1 temp unhappy (see above), instead they can pay 10G to let nothing happen.
 		Hanging Sisters
 			- 1st option now properly only for evil
+		Pacifist demonstration
+			- 4th option gives the best available non-national-unit warrior upgrade instead of an Axeman
+			- 5th option gives 3 XP to all vampires instead of only to the ones in the city, removed +food in city (you don't get it from feast either)
 		Strange Adept
 			- Recruiting the Adept now adds +1 to AC (Make it more a "sin" for Good Civs)
 			- Expelling the Adept now gives -1 to AC instead of +1 temporary happiness
 		Scholars
 			- Now requires Writing AND Knowledge of the Ether (Just being able to click "We cannot afford it", because only having Writing and no library is not fun)
 			- Prices halved (was far too much)
+		That Kind of Day
+			- Does not trigger for players with peace with the barbs
+			- Now searches plots around the city properly
 		Trapped Frostlings
 			- Releasing Frostlings now gives -1 to AC instead of +1 Happy for 15 turns (mercy)
 	Code:

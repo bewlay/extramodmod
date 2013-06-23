@@ -2587,7 +2587,7 @@ void CvCityAI::AI_chooseProduction()
         {
 			if (kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_EXPLORE) < (kPlayer.AI_neededExplorers(pArea)))
 			{
-				if (AI_chooseUnit(UNITAI_EXPLORE, 25))
+				if (AI_chooseUnit(UNITAI_EXPLORE, 75))
 				{
 					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose UNITAI_EXPLORE 1", getName().GetCString());
 					return;
@@ -7273,6 +7273,15 @@ void CvCityAI::AI_setEmphasize(EmphasizeTypes eIndex, bool bNewValue)
 			gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
 		}
 	}
+
+	// lfgr BUGFIX 02/2013: Update growth bar text
+	if ((getOwnerINLINE() == GC.getGameINLINE().getActivePlayer()) && isCitySelected())
+	{
+		gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
+	}
+	// lfgr end
+
+
 }
 
 void CvCityAI::AI_forceEmphasizeCulture(bool bNewValue)
@@ -9464,6 +9473,17 @@ void CvCityAI::AI_doHurry(bool bForce)
 			if (eProductionBuilding != NO_BUILDING)
 			{
 				CvBuildingInfo& kBuildingInfo = GC.getBuildingInfo(eProductionBuilding);
+
+				if (kBuildingInfo.isVictoryBuilding())
+				{
+						if( gCityLogLevel >= 2 )
+						{
+							logBBAI("      City %S hurry to complete Victory building", getName().GetCString() );
+						}
+
+						hurry((HurryTypes)iI);
+						break;
+				}
 
 				if (isWorldWonderClass((BuildingClassTypes)(kBuildingInfo.getBuildingClassType())))
 				{

@@ -193,7 +193,8 @@ void CvGame::init(HandicapTypes eHandicap)
 		// Determine the civilization and leader to use for each player slot.
         for (int iPlayer = 0; iPlayer < MAX_CIV_PLAYERS; iPlayer++)
         {
-			if ((GC.getInitCore().getSlotStatus((PlayerTypes)iPlayer) == SS_COMPUTER) || (GC.getInitCore().getSlotStatus((PlayerTypes)iPlayer) == SS_TAKEN))
+			SlotStatus playerType = GC.getInitCore().getSlotStatus((PlayerTypes)iPlayer);
+			if (playerType == SS_COMPUTER || playerType == SS_TAKEN)
 			{
 				// Selections made for this player slot.
 				int iSelectedCiv = GC.getInitCore().getCiv((PlayerTypes)iPlayer);
@@ -213,34 +214,40 @@ void CvGame::init(HandicapTypes eHandicap)
 
                     for (int iCiv = 0; iCiv < GC.getNumCivilizationInfos(); iCiv++)
                     {
-                        if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isAIPlayable())
-                        {
-							for (int iLeader = 0; iLeader < GC.getNumLeaderHeadInfos(); iLeader++)
+						// Graphical only civs are not allowed.
+						// Civilizations that are not playable by the AI must be ignored if this slot is for an AI.
+						// Civilizations that are not playable should be ignored always too.
+						if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isGraphicalOnly() ||
+							(!GC.getCivilizationInfo((CivilizationTypes)iCiv).isAIPlayable()) && playerType == SS_COMPUTER ||
+							!GC.getCivilizationInfo((CivilizationTypes)iCiv).isPlayable())
+						{
+							continue;
+						}
+						for (int iLeader = 0; iLeader < GC.getNumLeaderHeadInfos(); iLeader++)
+						{
+							if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isLeaders(iLeader) ||
+								(isOption(GAMEOPTION_LEAD_ANY_CIV) && !GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).isGraphicalOnly()) )
 							{
-								if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isLeaders(iLeader) ||
-									(isOption(GAMEOPTION_LEAD_ANY_CIV) && !GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).isGraphicalOnly()) )
+								if (iSelectedAlignment == NO_ALIGNMENT || iSelectedAlignment == GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getAlignment())
 								{
-									if (iSelectedAlignment == NO_ALIGNMENT || iSelectedAlignment == GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getAlignment())
+									int iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Leader");
+									for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
 									{
-										int iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Leader");
-										for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
+										if (GC.getInitCore().getLeader((PlayerTypes)iI) == iLeader)
 										{
-											if (GC.getInitCore().getLeader((PlayerTypes)iI) == iLeader)
-											{
-												iValue -= 2000;
-											}
-											if (GC.getInitCore().getCiv((PlayerTypes)iI) == iCiv)
-											{
-												iValue -= 1000;
-											}
+											iValue -= 2000;
 										}
+										if (GC.getInitCore().getCiv((PlayerTypes)iI) == iCiv)
+										{
+											iValue -= 1000;
+										}
+									}
 
-										if (iValue > iBestValue)
-										{
-											iSelectedCiv = iCiv;
-											iSelectedLeader = iLeader;
-											iBestValue = iValue;
-										}
+									if (iValue > iBestValue)
+									{
+										iSelectedCiv = iCiv;
+										iSelectedLeader = iLeader;
+										iBestValue = iValue;
 									}
 								}
 							}
@@ -254,24 +261,30 @@ void CvGame::init(HandicapTypes eHandicap)
 
                     for (int iCiv = 0; iCiv < GC.getNumCivilizationInfos(); iCiv++)
                     {
-                        if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isAIPlayable())
-                        {
-							if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isLeaders(iSelectedLeader) || isOption(GAMEOPTION_LEAD_ANY_CIV))
+						// Graphical only civs are not allowed.
+						// Civilizations that are not playable by the AI must be ignored if this slot is for an AI.
+						// Civilizations that are not playable should be ignored always too.
+						if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isGraphicalOnly() ||
+							(!GC.getCivilizationInfo((CivilizationTypes)iCiv).isAIPlayable()) && playerType == SS_COMPUTER ||
+							!GC.getCivilizationInfo((CivilizationTypes)iCiv).isPlayable())
+						{
+							continue;
+						}
+						if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isLeaders(iSelectedLeader) || isOption(GAMEOPTION_LEAD_ANY_CIV))
+						{
+							int iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Leader");
+							for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
 							{
-								int iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Leader");
-								for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
+								if (GC.getInitCore().getCiv((PlayerTypes)iI) == iCiv)
 								{
-									if (GC.getInitCore().getCiv((PlayerTypes)iI) == iCiv)
-									{
-										iValue -= 1000;
-									}
+									iValue -= 1000;
 								}
+							}
 
-								if (iValue > iBestValue)
-								{
-									iSelectedCiv = iCiv;
-									iBestValue = iValue;
-								}
+							if (iValue > iBestValue)
+							{
+								iSelectedCiv = iCiv;
+								iBestValue = iValue;
 							}
 						}
 					}
@@ -1654,15 +1667,16 @@ void CvGame::normalizeRemoveBadTerrain()
                                 {
                                     iPlotFood = GC.getTerrainInfo(pLoopPlot->getTerrainType()).getYield(YIELD_FOOD);
                                     iPlotProduction = GC.getTerrainInfo(pLoopPlot->getTerrainType()).getYield(YIELD_PRODUCTION);
-//FlavourMod: Added by Jean Elcard 03/18/2009 (take Civilization Terrain Yield Changes into account)
-						            if (GC.getTerrainInfo(pLoopPlot->getTerrainType()).getCivilizationYieldType() == GET_PLAYER((PlayerTypes)iI).getCivilizationType())
-						            {
-										{
-											iPlotFood += GC.getTerrainInfo(pLoopPlot->getTerrainType()).getCivilizationYieldChange(YIELD_FOOD);
-											iPlotProduction += GC.getTerrainInfo(pLoopPlot->getTerrainType()).getCivilizationYieldChange(YIELD_PRODUCTION);
-										}
-									}
-//FlavourMod: End Add
+/*************************************************************************************************/
+/**	CivPlotMods								03/23/09								Jean Elcard	**/
+/**																								**/
+/**					Consider Civilization-specific Terrain Yield Modifications.					**/
+/*************************************************************************************************/
+									iPlotFood += GC.getCivilizationInfo(GET_PLAYER((PlayerTypes)iI).getCivilizationType()).getTerrainYieldChanges(pLoopPlot->getTerrainType(), YIELD_FOOD, pLoopPlot->isRiver());
+									iPlotProduction += GC.getCivilizationInfo(GET_PLAYER((PlayerTypes)iI).getCivilizationType()).getTerrainYieldChanges(pLoopPlot->getTerrainType(), YIELD_PRODUCTION, pLoopPlot->isRiver());
+/*************************************************************************************************/
+/**	CivPlotMods								END													**/
+/*************************************************************************************************/
                                     if ((iPlotFood + iPlotProduction) <= 1)
                                     {
                                         iTargetFood = 1;
@@ -1687,16 +1701,19 @@ void CvGame::normalizeRemoveBadTerrain()
                                         {
                                             if (!(GC.getTerrainInfo((TerrainTypes)iK).isWater()))
                                             {
-//FlavourMod: Added by Jean Elcard 03/18/2009 (take Civilization Terrain Yield Changes into account)
 												iPlotFood = GC.getTerrainInfo((TerrainTypes)iK).getYield(YIELD_FOOD);
 												iPlotProduction = GC.getTerrainInfo((TerrainTypes)iK).getYield(YIELD_PRODUCTION);
-												if (GC.getTerrainInfo(pLoopPlot->getTerrainType()).getCivilizationYieldType() == GET_PLAYER((PlayerTypes)iI).getCivilizationType())
-												{
-													iPlotFood +=  GC.getTerrainInfo(pLoopPlot->getTerrainType()).getCivilizationYieldChange(YIELD_FOOD);
-													iPlotProduction +=  GC.getTerrainInfo(pLoopPlot->getTerrainType()).getCivilizationYieldChange(YIELD_PRODUCTION);
-												}
+/*************************************************************************************************/
+/**	CivPlotMods								03/23/09								Jean Elcard	**/
+/**																								**/
+/**					Consider Civilization-specific Terrain Yield Modifications.					**/
+/*************************************************************************************************/
+												iPlotFood += GC.getCivilizationInfo(GET_PLAYER((PlayerTypes)iI).getCivilizationType()).getTerrainYieldChanges(iK, YIELD_FOOD, pLoopPlot->isRiver());
+												iPlotProduction += GC.getCivilizationInfo(GET_PLAYER((PlayerTypes)iI).getCivilizationType()).getTerrainYieldChanges(iK, YIELD_PRODUCTION, pLoopPlot->isRiver());
+/*************************************************************************************************/
+/**	CivPlotMods								END													**/
+/*************************************************************************************************/
 												if ((iPlotFood >= iTargetFood) && (iPlotFood + iPlotProduction == iTargetTotal))
-//FlavourMod: End Add
 												{
                                                     if ((pLoopPlot->getFeatureType() == NO_FEATURE) || GC.getFeatureInfo(pLoopPlot->getFeatureType()).isTerrain(iK))
                                                     {
@@ -1816,6 +1833,7 @@ void CvGame::normalizeAddFoodBonuses()
 												{
 													if (pLoopPlot->canHaveBonus(((BonusTypes)iK), bIgnoreLatitude))
 													{
+														logBBAI("  (ADD FOOD BONUSES): Adding Bonus %S to plot %d, %d for %S", GC.getBonusInfo((BonusTypes)iK).getDescription(), pLoopPlot->getX(), pLoopPlot->getY(), GC.getCivilizationInfo((CivilizationTypes)GET_PLAYER((PlayerTypes)iI).getCivilizationType()).getDescription());
 														pLoopPlot->setBonusType((BonusTypes)iK);
 														if (pLoopPlot->isWater())
 														{
@@ -1907,14 +1925,17 @@ void CvGame::normalizeAddGoodTerrain()
 											{
 												if (!(GC.getTerrainInfo((TerrainTypes)iK).isWater()))
 												{
-//FlavourMod: Changed by Jean Elcard 03/18/2009 (take Civilization Terrain Yield Changes into account)
 													iPlotFood = GC.getTerrainInfo((TerrainTypes)iK).getYield(YIELD_FOOD);
-													if (GC.getTerrainInfo(pLoopPlot->getTerrainType()).getCivilizationYieldType() == GET_PLAYER((PlayerTypes)iI).getCivilizationType())
-													{
-														iPlotFood += GC.getTerrainInfo(pLoopPlot->getTerrainType()).getCivilizationYieldChange(YIELD_FOOD);
-													}
+/*************************************************************************************************/
+/**	CivPlotMods								03/23/09								Jean Elcard	**/
+/**																								**/
+/**					Consider Civilization-specific Terrain Yield Modifications.					**/
+/*************************************************************************************************/
+													iPlotFood += GC.getCivilizationInfo(GET_PLAYER((PlayerTypes)iI).getCivilizationType()).getTerrainYieldChanges(iK, YIELD_FOOD, pLoopPlot->isRiver());
+/*************************************************************************************************/
+/**	CivPlotMods								END													**/
+/*************************************************************************************************/
 													if (iPlotFood >= GC.getFOOD_CONSUMPTION_PER_POPULATION())
-//FlavourMod: End Change
 													{
 														pLoopPlot->setTerrainType((TerrainTypes)iK);
 														bChanged = true;
@@ -1933,9 +1954,13 @@ void CvGame::normalizeAddGoodTerrain()
 												{
 													if (GC.getFeatureInfo((FeatureTypes)iK).isTerrain(pLoopPlot->getTerrainType()))
 													{
-														pLoopPlot->setFeatureType((FeatureTypes)iK);
-														bChanged = true;
-														break;
+														if (GC.getCivilizationInfo((CivilizationTypes)GET_PLAYER((PlayerTypes)iI).getCivilizationType()).isMaintainFeatures(iK))
+														{
+															logBBAI("  (ADD GOOD TERRAIN): Adding feature %S to plot %d, %d for %S", GC.getFeatureInfo((FeatureTypes)iK).getDescription(), pLoopPlot->getX(), pLoopPlot->getY(), GC.getCivilizationInfo((CivilizationTypes)GET_PLAYER((PlayerTypes)iI).getCivilizationType()).getDescription());
+															pLoopPlot->setFeatureType((FeatureTypes)iK);
+															bChanged = true;
+															break;
+														}
 													}
 												}
 											}
@@ -2023,11 +2048,15 @@ void CvGame::normalizeAddExtras()
 										{
 											if ((GC.getFeatureInfo((FeatureTypes)iK).getYieldChange(YIELD_FOOD) + GC.getFeatureInfo((FeatureTypes)iK).getYieldChange(YIELD_PRODUCTION)) > 0)
 											{
-												if (pLoopPlot->canHaveFeature((FeatureTypes)iK))
+												if (GC.getCivilizationInfo((CivilizationTypes)GET_PLAYER((PlayerTypes)iI).getCivilizationType()).isMaintainFeatures(iK))
 												{
-													pLoopPlot->setFeatureType((FeatureTypes)iK);
-													iCount++;
-													break;
+													if (pLoopPlot->canHaveFeature((FeatureTypes)iK))
+													{
+														logBBAI("  (ADD EXTRAS): Adding feature %S to plot %d, %d for %S", GC.getFeatureInfo((FeatureTypes)iK).getDescription(), pLoopPlot->getX(), pLoopPlot->getY(), GC.getCivilizationInfo((CivilizationTypes)GET_PLAYER((PlayerTypes)iI).getCivilizationType()).getDescription());
+														pLoopPlot->setFeatureType((FeatureTypes)iK);
+														iCount++;
+														break;
+													}
 												}
 											}
 										}
@@ -2123,6 +2152,7 @@ void CvGame::normalizeAddExtras()
 														{
 															if ((iPass == 0) ? CvMapGenerator::GetInstance().canPlaceBonusAt(((BonusTypes)iK), pLoopPlot->getX(), pLoopPlot->getY(), bIgnoreLatitude) : pLoopPlot->canHaveBonus(((BonusTypes)iK), bIgnoreLatitude))
 															{
+																logBBAI("  (ADD EXTRAS): Adding Bonus %S to plot %d, %d for %S", GC.getBonusInfo((BonusTypes)iK).getDescription(), pLoopPlot->getX(), pLoopPlot->getY(), GC.getCivilizationInfo((CivilizationTypes)GET_PLAYER((PlayerTypes)iI).getCivilizationType()).getDescription());
 																pLoopPlot->setBonusType((BonusTypes)iK);
 																iCoastFoodCount += bCoast ? 1 : 0;
 																iOceanFoodCount += bOcean ? 1 : 0;
@@ -2156,6 +2186,7 @@ void CvGame::normalizeAddExtras()
 																{
 																	if ((iPass == 0) ? CvMapGenerator::GetInstance().canPlaceBonusAt(((BonusTypes)iK), pLoopPlot->getX(), pLoopPlot->getY(), bIgnoreLatitude) : pLoopPlot->canHaveBonus(((BonusTypes)iK), bIgnoreLatitude))
 																	{
+																		logBBAI("  (ADD EXTRAS): Adding Bonus %S to plot %d, %d for %S", GC.getBonusInfo((BonusTypes)iK).getDescription(), pLoopPlot->getX(), pLoopPlot->getY(), GC.getCivilizationInfo((CivilizationTypes)GET_PLAYER((PlayerTypes)iI).getCivilizationType()).getDescription());
 																		pLoopPlot->setBonusType((BonusTypes)iK);
 																		iOtherCount++;
 																		break;
@@ -2197,10 +2228,14 @@ void CvGame::normalizeAddExtras()
 									{
 										if ((GC.getFeatureInfo((FeatureTypes)iK).getYieldChange(YIELD_FOOD) + GC.getFeatureInfo((FeatureTypes)iK).getYieldChange(YIELD_PRODUCTION)) > 0)
 										{
-											if (pLoopPlot->canHaveFeature((FeatureTypes)iK))
+											if (GC.getCivilizationInfo((CivilizationTypes)GET_PLAYER((PlayerTypes)iI).getCivilizationType()).isMaintainFeatures(iK))
 											{
-												pLoopPlot->setFeatureType((FeatureTypes)iK);
-												break;
+												if (pLoopPlot->canHaveFeature((FeatureTypes)iK))
+												{
+													logBBAI("  (ADD EXTRAS): Adding Feature(2) %S to plot %d, %d for %S", GC.getFeatureInfo((FeatureTypes)iK).getDescription(), pLoopPlot->getX(), pLoopPlot->getY(), GC.getCivilizationInfo((CivilizationTypes)GET_PLAYER((PlayerTypes)iI).getCivilizationType()).getDescription());
+													pLoopPlot->setFeatureType((FeatureTypes)iK);
+													break;
+												}
 											}
 										}
 									}
@@ -2243,6 +2278,7 @@ void CvGame::normalizeAddExtras()
 									if ((pLoopPlot->getBonusType() == NO_BONUS) ||
 										GC.getBonusInfo(pLoopPlot->getBonusType()).isHills())
 									{
+										logBBAI("  (ADD EXTRAS): Adding Hills to plot %d, %d for %S", pLoopPlot->getX(), pLoopPlot->getY(), GC.getCivilizationInfo((CivilizationTypes)GET_PLAYER((PlayerTypes)iI).getCivilizationType()).getDescription());
 										pLoopPlot->setPlotType(PLOT_HILLS, false, true);
 										iHillsCount++;
 									}
@@ -2260,6 +2296,8 @@ void CvGame::normalizeAddExtras()
 void CvGame::normalizeStartingPlots()
 {
 	PROFILE_FUNC();
+
+	logBBAI("NORMALIZING STARTING PLOTS...");
 
 	if (!(GC.getInitCore().getWBMapScript()) || GC.getInitCore().getWBMapNoPlayers())
 	{
@@ -3098,8 +3136,18 @@ TeamTypes CvGame::findHighestVoteTeam(const VoteTriggeredData& kData) const
 			if (GET_TEAM((TeamTypes)iI).isAlive())
 			{
 				int iCount = countVote(kData, (PlayerVoteTypes)iI);
-
+				
+/********************************************************************************/
+/* Improved Councils    03/2013                                         lfgr    */
+/* Old head councilor is preferred                                              */
+/********************************************************************************/
+/* old
 				if (iCount > iBestCount)
+*/
+				if ( iCount > iBestCount || ( iCount >= iBestCount && getSecretaryGeneral( kData.eVoteSource ) == (TeamTypes) iI ) )
+/********************************************************************************/
+/* Improved Councils                                                    END     */
+/********************************************************************************/
 				{
 					iBestCount = iCount;
 					eBestTeam = (TeamTypes)iI;
@@ -3114,7 +3162,17 @@ TeamTypes CvGame::findHighestVoteTeam(const VoteTriggeredData& kData) const
 
 int CvGame::getVoteRequired(VoteTypes eVote, VoteSourceTypes eVoteSource) const
 {
+/********************************************************************************/
+/* Improved Councils    03/2013                                         lfgr    */
+/* Required Votes are rounded up, rather than down.                             */
+/********************************************************************************/
+/* old
 	return ((countPossibleVote(eVote, eVoteSource) * GC.getVoteInfo(eVote).getPopulationThreshold()) / 100);
+*/
+	return ( ( countPossibleVote(eVote, eVoteSource) * GC.getVoteInfo(eVote).getPopulationThreshold() + 50 ) / 100 );
+/********************************************************************************/
+/* Improved Councils                                                    END     */
+/********************************************************************************/
 }
 
 
@@ -7238,7 +7296,8 @@ void CvGame::createBarbarianUnits()
 	}
 
 //FfH: Added by Kael 11/27/2007
-    if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS) && getNumCivCities() < countCivPlayersAlive() * 3)
+//    if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS) && getNumCivCities() < countCivPlayersAlive() * 3)
+	if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS))
     {
         bAnimals = true;
     }
@@ -7249,11 +7308,33 @@ void CvGame::createBarbarianUnits()
 		bAnimals = true;
 	}
 
+/********************************************************************************/
+/* Improved Wildlands	03/2013											lfgr	*/
+/********************************************************************************/
+// barbs keep spawning
+	bool bBarbs = !bAnimals;
+
+	if( !bBarbs && getNumCivCities() >= countCivPlayersAlive() * 3 )
+		bBarbs = true;
+/********************************************************************************/
+/* Improved Wildlands													END		*/
+/********************************************************************************/
+
 	if (bAnimals)
 	{
 		createAnimals();
 	}
+/********************************************************************************/
+/* Improved Wildlands	03/2013											lfgr	*/
+/********************************************************************************/
+// barbs keep spawning
+/* old
 	else
+*/
+	if( bBarbs )
+/********************************************************************************/
+/* Improved Wildlands													END		*/
+/********************************************************************************/
 	{
 		for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
 		{
@@ -7392,6 +7473,7 @@ void CvGame::createBarbarianUnits()
 							}
 							if (eBestUnit != NO_UNIT)
 							{
+								logBBAI("Spawning Barbarian Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eBestUnit).getDescription(), pPlot->getX(), pPlot->getY());
 								GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), eBarbUnitAI);
 							}
 						}
@@ -7492,7 +7574,19 @@ void CvGame::createAnimals()
 //		}
 	for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
 	{
+/********************************************************************************/
+/* Improved Wildlands	03/2013											lfgr	*/
+/* Count animals independently from other barbs: subtract existing animals		*/
+/* later. Note: maybe need to increase <iUnownedTilesPerGameAnimal> in			*/
+/* CIV4HandicapInfo.xml															*/
+/********************************************************************************/
+	/* old
         iNeededAnimals = ((pLoopArea->getNumUnownedTiles() / GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal()) - pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER));
+	*/
+		iNeededAnimals = pLoopArea->getNumUnownedTiles() / GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal();
+/********************************************************************************/
+/* Improved Wildlands													END		*/
+/********************************************************************************/
         if (pLoopArea->isWater())
         {
             iNeededAnimals = iNeededAnimals / 5;
@@ -7500,7 +7594,17 @@ void CvGame::createAnimals()
             {
                 iNeededAnimals = 0;
             }
-            if (pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) > 3)
+/********************************************************************************/
+/* Improved Wildlands	03/2013											lfgr	*/
+/* Count animals independently from other barbs.								*/
+/********************************************************************************/
+	/* old
+        	if (pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) > 3)
+	*/
+			if ( pLoopArea->getAnimalsPerPlayer( BARBARIAN_PLAYER ) > 3 )
+/********************************************************************************/
+/* Improved Wildlands													END		*/
+/********************************************************************************/
             {
                 iNeededAnimals = 0;
             }
@@ -7512,6 +7616,15 @@ void CvGame::createAnimals()
             {
                 iNeededAnimals *= 2;
             }
+/********************************************************************************/
+/* Improved Wildlands	03/2013											lfgr	*/
+/* Count animals independently from other barbs: now subtract existing animals,	*/
+/* so get really doubled animals.												*/
+/********************************************************************************/
+		iNeededAnimals -= pLoopArea->getAnimalsPerPlayer( BARBARIAN_PLAYER );
+/********************************************************************************/
+/* Improved Wildlands													END		*/
+/********************************************************************************/
             for (iI = 0; iI < iNeededAnimals; iI++)
             {
                 pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_VISIBLE_TO_CIV | RANDPLOT_PASSIBLE), pLoopArea->getID(), GC.getDefineINT("MIN_ANIMAL_STARTING_DISTANCE"));
@@ -7540,6 +7653,8 @@ void CvGame::createAnimals()
 					}
 					if (eBestUnit != NO_UNIT)
 					{
+						logBBAI("Spawning Animal Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eBestUnit).getDescription(), pPlot->getX(), pPlot->getY());
+
                         CvUnit* pUnit;
                         pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), UNITAI_ANIMAL);
                         pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
@@ -10109,6 +10224,16 @@ void CvGame::doVoteResults()
 		VoteTypes eVote = pVoteTriggered->kVoteOption.eVote;
 		VoteSourceTypes eVoteSource = pVoteTriggered->eVoteSource;
 		bool bPassed = false;
+		
+/********************************************************************************/
+/* Improved Councils    03/2013                                         lfgr    */
+/* If tie vote, whatever choice the Head Councillor made is implemented.        */
+/* Informative message.                                                         */
+/********************************************************************************/
+		bool bTieVoteSecretaryGeneral = false;
+/********************************************************************************/
+/* Improved Councils                                                    END     */
+/********************************************************************************/
 
 		if (!canDoResolution(eVoteSource, pVoteTriggered->kVoteOption))
 		{
@@ -10158,6 +10283,23 @@ void CvGame::doVoteResults()
 				if (NO_TEAM != eTeam)
 				{
 					bPassed = countVote(*pVoteTriggered, (PlayerVoteTypes)eTeam) >= getVoteRequired(eVote, eVoteSource);
+/********************************************************************************/
+/* Improved Councils    03/2013                                         lfgr    */
+/* If tie vote, whatever choice the Head Councillor made is implemented.        */
+/* Informative message.                                                         */
+/********************************************************************************/
+					if( bPassed && ( countPossibleVote(eVote, eVoteSource) - countVote(*pVoteTriggered, PLAYER_VOTE_ABSTAIN) ) % 2 == 0 /* even */ && countVote(*pVoteTriggered, (PlayerVoteTypes)eTeam) == getVoteRequired(eVote, eVoteSource) )
+					{
+						// tie vote
+						if( getSecretaryGeneral( eVoteSource ) != NO_TEAM )
+						{
+							// if tie vote, findHighestVoteTeam(), anyway chooses old secretary general
+							bTieVoteSecretaryGeneral = true;
+						}
+					}
+/********************************************************************************/
+/* Improved Councils                                                    END     */
+/********************************************************************************/
 				}
 
 				szBuffer = GC.getVoteInfo(eVote).getDescription();
@@ -10165,6 +10307,18 @@ void CvGame::doVoteResults()
 				if (eTeam != NO_TEAM)
 				{
 					szBuffer += NEWLINE + gDLL->getText("TXT_KEY_POPUP_DIPLOMATIC_VOTING_VICTORY", GET_TEAM(eTeam).getName().GetCString(), countVote(*pVoteTriggered, (PlayerVoteTypes)eTeam), getVoteRequired(eVote, eVoteSource), countPossibleVote(eVote, eVoteSource));
+/********************************************************************************/
+/* Improved Councils    03/2013                                         lfgr    */
+/* If tie vote, whatever choice the Head Councillor made is implemented.        */
+/* Informative message.                                                         */
+/********************************************************************************/
+					if( !bPassed )
+						szBuffer += NEWLINE + gDLL->getText( "TXT_KEY_POPUP_DIPLOMATIC_VOTING_VICTORY_NOT_PASSED", GC.getVoteSourceInfo( eVoteSource ).getSecretaryGeneralText().GetCString() );
+					if( bTieVoteSecretaryGeneral )
+						szBuffer += NEWLINE + gDLL->getText( "TXT_KEY_POPUP_VOTE_TIE_SECRETARY_GENERAL_DECIDES", GC.getVoteSourceInfo( eVoteSource ).getSecretaryGeneralText().GetCString() );
+/********************************************************************************/
+/* Improved Councils                                                    END     */
+/********************************************************************************/
 				}
 
 				for (int iI = MAX_CIV_TEAMS; iI >= 0; --iI)
@@ -10204,6 +10358,23 @@ void CvGame::doVoteResults()
 			else
 			{
 				bPassed = countVote(*pVoteTriggered, PLAYER_VOTE_YES) >= getVoteRequired(eVote, eVoteSource);
+/********************************************************************************/
+/* Improved Councils    03/2013                                         lfgr    */
+/* If tie vote, whatever choice the Head Councillor made is implemented.        */
+/********************************************************************************/
+				if( bPassed && ( countPossibleVote(eVote, eVoteSource) - countVote(*pVoteTriggered, PLAYER_VOTE_ABSTAIN) ) % 2 == 0 /* even */ && countVote(*pVoteTriggered, PLAYER_VOTE_YES) == getVoteRequired(eVote, eVoteSource) )
+				{
+					// tie vote
+					// if secretary general abstains, vote will succeede
+					if( getSecretaryGeneral( eVoteSource ) != NO_TEAM )
+					{
+						bPassed = getPlayerVote( GET_TEAM( getSecretaryGeneral( eVoteSource ) ).getSecretaryID(), pVoteTriggered->getID() ) == PLAYER_VOTE_YES;
+							bTieVoteSecretaryGeneral = true;
+					}
+				}
+/********************************************************************************/
+/* Improved Councils                                                    END     */
+/********************************************************************************/
 
 				// Defying resolution
 				if (bPassed)
@@ -10234,6 +10405,17 @@ void CvGame::doVoteResults()
 				}
 
 				szBuffer += NEWLINE + gDLL->getText((bPassed ? "TXT_KEY_POPUP_DIPLOMATIC_VOTING_SUCCEEDS" : "TXT_KEY_POPUP_DIPLOMATIC_VOTING_FAILURE"), GC.getVoteInfo(eVote).getTextKeyWide(), countVote(*pVoteTriggered, PLAYER_VOTE_YES), getVoteRequired(eVote, eVoteSource), countPossibleVote(eVote, eVoteSource));
+				
+/********************************************************************************/
+/* Improved Councils    03/2013                                         lfgr    */
+/* If tie vote, whatever choice the Head Councillor made is implemented.        */
+/* Informative message.                                                         */
+/********************************************************************************/
+					if( bTieVoteSecretaryGeneral )
+						szBuffer += NEWLINE + gDLL->getText( "TXT_KEY_POPUP_VOTE_TIE_SECRETARY_GENERAL_DECIDES", GC.getVoteSourceInfo( eVoteSource ).getSecretaryGeneralText().GetCString() );
+/********************************************************************************/
+/* Improved Councils                                                    END     */
+/********************************************************************************/
 
 				for (int iI = PLAYER_VOTE_NEVER; iI <= PLAYER_VOTE_YES; ++iI)
 				{

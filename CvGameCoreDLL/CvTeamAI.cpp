@@ -4564,15 +4564,7 @@ int CvTeamAI::AI_maxWarMinAdjacentLandPercent() const
 	{
 		iRand /= iCount;
 	}
-/************************************************************************************************/
-/* Afforess	                  Start		 02/19/10                                               */
-/* Ruthless AI: The AI Favors closer targets                                                    */
-/************************************************************************************************/
-	//if (GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI))
-		iRand /= 4;
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
+
 	return iRand;
 }
 
@@ -5362,7 +5354,7 @@ void CvTeamAI::AI_doWar()
 
 												if ((iPass > 1) || AI_isLandTarget((TeamTypes)iI) || AI_isAnyCapitalAreaAlone() || GET_TEAM((TeamTypes)iI).AI_isAnyMemberDoVictoryStrategyLevel4())
 												{
-													if ((iPass > 0) || (AI_calculateAdjacentLandPlots((TeamTypes)iI) >= ((getTotalLand() * AI_maxWarMinAdjacentLandPercent()) / 100)) || GET_TEAM((TeamTypes)iI).AI_isAnyMemberDoVictoryStrategyLevel4())
+													if ((iPass > 0) || (AI_calculateAdjacentLandPlots((TeamTypes)iI) > ((getTotalLand() * AI_maxWarMinAdjacentLandPercent()) / 100)) || GET_TEAM((TeamTypes)iI).AI_isAnyMemberDoVictoryStrategyLevel4())
 													{
 														iValue = AI_startWarVal((TeamTypes)iI);
 
