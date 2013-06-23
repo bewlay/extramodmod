@@ -23077,7 +23077,6 @@
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_DECIUS</Class>
-            <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
             <Type>UNIT_DECIUS</Type>
             <UniqueNames>
             </UniqueNames>
@@ -23290,6 +23289,7 @@
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+            <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_CORLINDALE</Class>

@@ -11930,11 +11930,6 @@ bool CvPlayerAI::AI_unitValueValid(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea*
 
 	int iI;
 
-	if (bUpgrade)
-	{
-		bValid = true;
-	}
-
 	switch (eUnitAI)
 	{
 		case UNITAI_UNKNOWN:
