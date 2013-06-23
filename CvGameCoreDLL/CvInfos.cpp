@@ -1832,7 +1832,7 @@ m_iPromotionCombatMod(0),
 m_piBonusAffinity(NULL),
 m_piDamageTypeCombat(NULL),
 m_piDamageTypeResist(NULL),
-m_iEnslavementChance(0)
+m_iEnslavementChance(0),
 //FfH: End Add
 
 // MNAI - additional promotion tags
