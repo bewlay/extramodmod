@@ -795,7 +795,6 @@
 		</EventInfo>
 		<EventInfo><!-- CITY_RUINS_3 -->
 			<Type>EVENT_CITY_RUINS_3</Type>
-			<Description>TXT_KEY_EVENT_CITY_RUINS_3</Description>
 			<TechFlavors>
 				<TechFlavor>
 					<FlavorType>FLAVOR_MILITARY</FlavorType>
@@ -1035,7 +1034,7 @@
 			<BuildingExtraHealths>
 				<BuildingExtraHealth>
 					<BuildingClass>BUILDINGCLASS_MONUMENT</BuildingClass>
-					<iHealth>1</iHealth>
+					<iHealth>3</iHealth>
 				</BuildingExtraHealth>
 			</BuildingExtraHealths>
 			<iMaxNumReligions>-1</iMaxNumReligions>
@@ -3606,6 +3605,17 @@
 			<iAIValue>1000</iAIValue>
 			<PrereqBonus>BONUS_MANA_BODY</PrereqBonus>
 		</EventInfo>
+		<EventInfo><!-- SICKNESS_3 -->
+			<Type>EVENT_SICKNESS_3</Type>
+			<Description>TXT_KEY_EVENT_SICKNESS_3</Description>
+			<bPickCity>1</bPickCity>
+			<UnitClass>UNITCLASS_CHAMPION</UnitClass>
+			<iNumFreeUnits>1</iNumFreeUnits>
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+			<PrereqCivilization>CIVILIZATION_INFERNAL</PrereqCivilization>
+		</EventInfo>
 		<EventInfo><!-- SIGN_2 -->
 			<Type>EVENT_SIGN_2</Type>
 			<Description>TXT_KEY_EVENT_SIGN_2</Description>
@@ -3641,6 +3651,33 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
+		</EventInfo>
+		<EventInfo><!-- SIGN_ARAWN_1 -->
+			<Type>EVENT_SIGN_ARAWN_1</Type>
+			<Description>TXT_KEY_EVENT_SIGN_ARAWN_1</Description>
+			<bGoldenAge>1</bGoldenAge>
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+			<PrereqCivilization>CIVILIZATION_SIDAR</PrereqCivilization>
+		</EventInfo>
+		<EventInfo><!-- SIGN_AERON_1 -->
+			<Type>EVENT_SIGN_AERON_1</Type>
+			<Description>TXT_KEY_EVENT_SIGN_AERON_1</Description>
+			<bGoldenAge>1</bGoldenAge>
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+			<PrereqCivilization>CIVILIZATION_CALABIM</PrereqCivilization>
+		</EventInfo>
+		<EventInfo><!-- SIGN_BHALL_1 -->
+			<Type>EVENT_SIGN_BHALL_1</Type>
+			<Description>TXT_KEY_EVENT_SIGN_BHALL_1</Description>
+			<bGoldenAge>1</bGoldenAge>
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+			<PrereqCivilization>CIVILIZATION_CLAN_OF_EMBERS</PrereqCivilization>
 		</EventInfo>
 		<EventInfo><!-- SIGN_CERIDWEN_1 -->
 			<Type>EVENT_SIGN_CERIDWEN_1</Type>
@@ -3719,7 +3756,7 @@
 		<EventInfo><!-- SIGN_MAMMON_1 -->
 			<Type>EVENT_SIGN_MAMMON_1</Type>
 			<Description>TXT_KEY_EVENT_CONTINUE</Description>
-			<iGold>40</iGold>
+			<iGold>100</iGold>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -3728,6 +3765,13 @@
 			<Type>EVENT_SIGN_MULCARN_1</Type>
 			<Description>TXT_KEY_EVENT_SIGN_MULCARN_1</Description>
 			<bGoldenAge>1</bGoldenAge>
+			<BuildingExtraYields>
+				<BuildingExtraYield>
+					<BuildingClass>BUILDINGCLASS_PAGAN_TEMPLE</BuildingClass>
+					<YieldType>YIELD_PRODUCTION</YieldType>
+					<iExtraYield>1</iExtraYield>
+				</BuildingExtraYield>
+			</BuildingExtraYields>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -4004,7 +4048,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doTraitAggressive</PythonCallback>
 			<PythonCanDo>canApplyTraitAggressive</PythonCanDo>
-            <PythonHelp>helpTraitAggressive</PythonHelp>
+			<PythonHelp>helpTraitAggressive</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -4094,7 +4138,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doTraitFinancial</PythonCallback>
 			<PythonCanDo>canApplyTraitFinancial</PythonCanDo>
-            <PythonHelp>helpTraitFinancial</PythonHelp>
+			<PythonHelp>helpTraitFinancial</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -4150,7 +4194,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doTraitPhilosophical</PythonCallback>
 			<PythonCanDo>canApplyTraitPhilosophical</PythonCanDo>
-            <PythonHelp>helpTraitPhilosophical</PythonHelp>
+			<PythonHelp>helpTraitPhilosophical</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -4160,9 +4204,9 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doTraitRaiders</PythonCallback>
 			<PythonCanDo>canApplyTraitRaiders</PythonCanDo>
-            <PythonHelp>helpTraitRaiders</PythonHelp>
-            <Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-            <iAIValue>1000</iAIValue>
+			<PythonHelp>helpTraitRaiders</PythonHelp>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- TRAIT_SAGE -->
             <Type>EVENT_TRAIT_SAGE</Type>
@@ -4227,9 +4271,11 @@
 			<Type>EVENT_TRAITOR_3</Type>
 			<Description>TXT_KEY_EVENT_TRAITOR_3</Description>
 			<bPickCity>1</bPickCity>
+			<iCulture>50</iCulture>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<iPopulationChange>-2</iPopulationChange>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iCrime>-10</iCrime>
 			<PrereqCivilization>CIVILIZATION_CALABIM</PrereqCivilization>
 		</EventInfo>
 		<EventInfo><!-- TRANSMUTATION_2 -->
@@ -4320,7 +4366,7 @@
 			<UnitCombatPromotions>
 				<UnitCombatPromotion>
 					<UnitCombat>UNITCOMBAT_RECON</UnitCombat>
-					<UnitPromotion>PROMOTION_MAGIC_RESISTANCE</UnitPromotion>
+					<UnitPromotion>PROMOTION_CITY_RAIDER1</UnitPromotion>
 				</UnitCombatPromotion>
 			</UnitCombatPromotions>
 			<iMaxNumReligions>-1</iMaxNumReligions>
@@ -6691,22 +6737,6 @@
 			<Type>EVENT_OVERCROWDED_DUNGEON_1</Type>
 			<Description>TXT_KEY_EVENT_OVERCROWDED_DUNGEON_1</Description>
 			<bPickCity>1</bPickCity>
-			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
-		</EventInfo>
-		<EventInfo><!-- UNFORTUNATE_ASSASSIN_5 -->
-			<Type>EVENT_UNFORTUNATE_ASSASSIN_5</Type>
-			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_5</Description>
-			<bPickCity>1</bPickCity>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doUnfortunateAssassin5</PythonCallback>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-			<PrereqStateReligion>RELIGION_COUNCIL_OF_ESUS</PrereqStateReligion>
-		</EventInfo>
-		<EventInfo><!-- OVERCROWDED_DUNGEON_1 -->
-			<Type>EVENT_OVERCROWDED_DUNGEON_1</Type>
-			<Description>TXT_KEY_EVENT_OVERCROWDED_DUNGEON_1</Description>
-			<bPickCity>1</bPickCity>
 			<BuildingExtraHappies>
 				<BuildingExtraHappy>
 					<BuildingClass>BUILDINGCLASS_DUNGEON</BuildingClass>
@@ -7533,30 +7563,6 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<AdditionalEvents>
 				<EventChance>
-					<Event>EVENT_POISONED_WATER_CONT_5</Event>
-					<iEventChance>100</iEventChance>
-				</EventChance>
-			</AdditionalEvents>
-			<EventTimes>
-				<EventTime>
-					<Event>EVENT_POISONED_WATER_CONT_5</Event>
-					<iEventTime>5</iEventTime>
-				</EventTime>
-			</EventTimes>
-			<PythonHelp>helpPoisonedWater3</PythonHelp>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>500</iAIValue>
-		</EventInfo>
-		<EventInfo><!-- POISONED_WATER_4 -->
-			<Type>EVENT_POISONED_WATER_4</Type>
-			<Description>TXT_KEY_EVENT_POISONED_WATER_4</Description>
-			<bPickCity>1</bPickCity>
-			<iHealth>-3</iHealth>
-			<iHurryAnger>1</iHurryAnger>
-			<ImprovementType />
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<AdditionalEvents>
-				<EventChance>
 					<Event>EVENT_POISONED_WATER_CONT_6</Event>
 					<iEventChance>100</iEventChance>
 				</EventChance>
@@ -7810,67 +7816,6 @@
 			<ImprovementType>IMPROVEMENT_FISHING_BOATS</ImprovementType>
 			<iImprovementChange>1</iImprovementChange>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-			<PrereqCivilization>CIVILIZATION_KURIOTATES</PrereqCivilization>
-		</EventInfo>
-		<EventInfo><!-- KURIOTATES_CRAB_1 -->
-			<Type>EVENT_KURIOTATES_CRAB_1</Type>
-			<Description>TXT_KEY_EVENT_KURIOTATES_CRAB_1</Description>
-			<bPickCity>1</bPickCity>
-			<ImprovementType>IMPROVEMENT_FISHING_BOATS</ImprovementType>
-			<iImprovementChange>1</iImprovementChange>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-			<PrereqCivilization>CIVILIZATION_KURIOTATES</PrereqCivilization>
-		</EventInfo>
-		<EventInfo><!-- HAUNTED_CASTLE_1 -->
-			<Type>EVENT_HAUNTED_CASTLE_1</Type>
-			<Description>TXT_KEY_EVENT_HAUNTED_CASTLE_1</Description>
-			<bPickCity>1</bPickCity>
-			<UnitClass>UNITCLASS_SPECTRE</UnitClass>
-			<iNumFreeUnits>1</iNumFreeUnits>
-			<ImprovementType />
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-			<iGlobalCounter>1</iGlobalCounter>
-			<PrereqBonus>BONUS_MANA_DEATH</PrereqBonus>
-		</EventInfo>
-		<EventInfo><!-- HAUNTED_CASTLE_2 -->
-			<Type>EVENT_HAUNTED_CASTLE_2</Type>
-			<Description>TXT_KEY_EVENT_HAUNTED_CASTLE_2</Description>
-			<bPickCity>1</bPickCity>
-			<ImprovementType />
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>900</iAIValue>
-			<iGlobalCounter>-1</iGlobalCounter>
-			<PrereqBonus>BONUS_MANA_SPIRIT</PrereqBonus>
-		</EventInfo>
-		<EventInfo><!-- HAUNTED_CASTLE_3 -->
-			<Type>EVENT_HAUNTED_CASTLE_3</Type>
-			<Description>TXT_KEY_EVENT_HAUNTED_CASTLE_3</Description>
-			<bPickCity>1</bPickCity>
-			<ImprovementType />
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>900</iAIValue>
-			<iGlobalCounter>-1</iGlobalCounter>
-			<PrereqBonus>BONUS_MANA_LIFE</PrereqBonus>
-		</EventInfo>
-		<EventInfo><!-- HAUNTED_CASTLE_4 -->
-			<Type>EVENT_HAUNTED_CASTLE_4</Type>
-			<Description>TXT_KEY_EVENT_HAUNTED_CASTLE_4</Description>
-			<bPickCity>1</bPickCity>
-			<ImprovementType />
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doHauntedCastle4</PythonCallback>
-			<PythonHelp>helpHauntedCastle4</PythonHelp>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>100</iAIValue>
-			<iGlobalCounter>1</iGlobalCounter>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqCivilization>CIVILIZATION_KURIOTATES</PrereqCivilization>

@@ -20931,6 +20931,7 @@ void CvPlayer::setTriggerFired(const EventTriggeredData& kTriggeredData, bool bO
 	}
 }
 
+// lfgr cmt: here affected units, cities etc. are chosen
 EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger, bool bFire, int iCityId, int iPlotX, int iPlotY, PlayerTypes eOtherPlayer, int iOtherPlayerCityId, ReligionTypes eReligion, CorporationTypes eCorporation, int iUnitId, BuildingTypes eBuilding)
 {
 	// lfgr EVENT_DEBUG
@@ -21238,6 +21239,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 		return NULL;
 	}
 
+	// LFGR_TODO: kTrigger.getNumUnits() > 0 ? (kTrigger.getNumUnits() <= 0 -> pLoopUnit->getTriggerValue() == MIN_INT)
 	if (kTrigger.getNumUnitsGlobal() > 0)
 	{
 		int iNumUnits = 0;
@@ -22779,6 +22781,7 @@ void CvPlayer::doEvents()
 		return;
 	}
 
+	// LFGR_TODO: Figure out what this does
 	CvEventMap::iterator it = m_mapEventsOccured.begin();
 	while (it != m_mapEventsOccured.end())
 	{
@@ -22792,6 +22795,8 @@ void CvPlayer::doEvents()
 			++it;
 		}
 	}
+
+	// lfgr cmt: check whether any event can trigger (weight==-1 triggers anyway)
 
 	bool bNewEventEligible = true;
 	if (GC.getGameINLINE().getElapsedGameTurns() < GC.getDefineINT("FIRST_EVENT_DELAY_TURNS"))
@@ -22817,6 +22822,8 @@ void CvPlayer::doEvents()
 		}
 	}
 
+	// lfgr cmt: get all event weights, trigger all with weight == -1, create triggeredData for all weight > 0
+
 	std::vector< std::pair<EventTriggeredData*, int> > aePossibleEventTriggerWeights;
 	int iTotalWeight = 0;
 	for (int i = 0; i < GC.getNumEventTriggerInfos(); ++i)
@@ -22836,6 +22843,8 @@ void CvPlayer::doEvents()
 			}
 		}
 	}
+
+	// lfgr cmt: fire one semi-random event, clean up the others
 
 	if (iTotalWeight > 0)
 	{
@@ -22858,6 +22867,8 @@ void CvPlayer::doEvents()
 			}
 		}
 	}
+
+	// lfgr cmt: apply countdown events and clean them up
 
 	std::vector<int> aCleanup;
 	for (int i = 0; i < GC.getNumEventInfos(); ++i)
@@ -23213,9 +23224,12 @@ CvUnit* CvPlayer::pickTriggerUnit(EventTriggerTypes eTrigger, CvPlot* pPlot, boo
 	return pUnit;
 }
 
+// lfgr cmt: Most important function for event triggering. 0 means don't trigger, -1 means always trigger
 int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
 {
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eTrigger);
+
+	// lfgr cmt: check simple requirements
 
 	if (NO_HANDICAP != kTrigger.getMinDifficulty())
 	{
@@ -23439,6 +23453,8 @@ int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
 			return 0;
 		}
 	}
+
+	// lfgr cmt: calc weight (probability)
 
 	if (kTrigger.getProbability() < 0)
 	{

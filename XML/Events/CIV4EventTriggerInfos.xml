@@ -21,9 +21,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<UnitsRequired>
-				<UnitClass>UNITCLASS_ASSASSIN</UnitClass>
-			</UnitsRequired>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
@@ -172,7 +169,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_Olympics.dds</EventArt>
+			<EventArt>Art\EventImages\e_olympics.dds</EventArt>
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
@@ -609,7 +606,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_BabyBoom.dds</EventArt>
+			<EventArt>Art\EventImages\e_babyboom.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -1221,7 +1218,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_CrabCakes.dds</EventArt>
+			<EventArt>Art\EventImages\e_crabcakes.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -1448,7 +1445,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_Dustbowl.dds</EventArt>
+			<EventArt>Art\EventImages\e_dustbowl.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -1480,7 +1477,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_Dustbowl.dds</EventArt>
+			<EventArt>Art\EventImages\e_dustbowl.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -1865,7 +1862,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_FavoriteSon.dds</EventArt>
+			<EventArt>Art\EventImages\e_favoriteson.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -2725,8 +2722,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>500</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iAngry>-1</iAngry>
-			<iUnhealthy>-1</iUnhealthy>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>-1</iPlotType>
@@ -2861,7 +2856,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_Horseshoe.dds</EventArt>
+			<EventArt>Art\EventImages\e_horseshoe.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>50</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -3016,7 +3011,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_IceSculpture.dds</EventArt>
+			<EventArt>Art\EventImages\e_icesculpture.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -3166,7 +3161,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_Jade.dds</EventArt>
+			<EventArt>Art\EventImages\e_jade.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -3332,7 +3327,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_Literacy.dds</EventArt>
+			<EventArt>Art\EventImages\e_literacy.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -3455,7 +3450,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_Marathon.dds</EventArt>
+			<EventArt>Art\EventImages\e_marathon.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -3828,7 +3823,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_Motherlode.dds</EventArt>
+			<EventArt>Art\EventImages\e_motherlode.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -4217,10 +4212,9 @@
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
+			<iPlotType>1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_SNOW</TerrainType>
-				<TerrainType>TERRAIN_TUNDRA</TerrainType>
 			</TerrainsRequired>
 			<ImprovementsRequired>
 				<ImprovementType>NONE</ImprovementType>
@@ -4963,7 +4957,7 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_sailorsdirge.dds</EventArt>
-			<iPercentGamesActive>20</iPercentGamesActive>
+			<iPercentGamesActive>60</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iPlotType>-1</iPlotType>
@@ -5099,6 +5093,7 @@
 			<Events>
 				<Event>EVENT_SICKNESS_1</Event>
 				<Event>EVENT_SICKNESS_2</Event>
+				<Event>EVENT_SICKNESS_3</Event>
 			</Events>
 			<ObsoleteTechs>
 				<ObsoleteTech>TECH_MEDICINE</ObsoleteTech>
@@ -5125,6 +5120,7 @@
 			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
+				<Event>EVENT_SIGN_AERON_1</Event>
 			</Events>
 			<bRecurring>1</bRecurring>
 			<PythonCallback>doSignAeron</PythonCallback>
@@ -5192,8 +5188,10 @@
 			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
+				<Event>EVENT_SIGN_ARAWN_1</Event>
 			</Events>
 			<bRecurring>1</bRecurring>
+			<PythonCallback>doSignArawn</PythonCallback>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- SIGN_BHALL -->
 			<Type>EVENTTRIGGER_SIGN_BHALL</Type>
@@ -5213,6 +5211,7 @@
 			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
+				<Event>EVENT_SIGN_BHALL_1</Event>
 			</Events>
 			<bRecurring>1</bRecurring>
 			<PythonCallback>doSignBhall</PythonCallback>
@@ -5918,7 +5917,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
-			<EventArt>Art\EventImages\e_Tin.dds</EventArt>
+			<EventArt>Art\EventImages\e_tin.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -7615,6 +7614,9 @@
 				<Event>EVENT_CLAIRONE_1</Event>
 				<Event>EVENT_CLAIRONE_2</Event>
 			</Events>
+			<OrPreReqs>
+				<PrereqTech>TECH_FESTIVALS</PrereqTech>
+			</OrPreReqs>
 			<bPickPlayer>1</bPickPlayer>
 			<bPickCity>1</bPickCity>
 		</EventTriggerInfo>

@@ -24690,16 +24690,19 @@ int CvEventTriggerInfo::getUnhealthy() const
 	return m_iUnhealthy;
 }
 
+// lfgr cmt - must be > 0
 int CvEventTriggerInfo::getUnitDamagedWeight() const
 {
 	return m_iUnitDamagedWeight;
 }
 
+// lfgr cmt - can be < 0
 int CvEventTriggerInfo::getUnitDistanceWeight() const
 {
 	return m_iUnitDistanceWeight;
 }
 
+// lfgr cmt - can be < 0
 int CvEventTriggerInfo::getUnitExperienceWeight() const
 {
 	return m_iUnitExperienceWeight;
