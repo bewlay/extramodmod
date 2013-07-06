@@ -2,7 +2,7 @@
 
 modName = "Fall from Heaven 2 - ExtraModMod"
 displayName = "Fall from Heaven 2 - ExtraModMod"
-modVersion = "0.2"
+modVersion = "0.3.0"
 
 civName = "BtS"
 civVersion = "3.19"
