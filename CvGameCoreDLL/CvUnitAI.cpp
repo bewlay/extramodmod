@@ -21900,7 +21900,7 @@ bool CvUnitAI::AI_travelToUpgradeCity()
 		bool bShouldSkipToUpgrade = (getDomainType() != DOMAIN_AIR);
 
 		// if we at the upgrade city, stop, wait to get upgraded
-		if (pUpgradeCity->plot() == pPlot)
+		if (pUpgradeCity->plot() == pPlot || isUpgradeOutsideBorders())
 		{
 			if (!bShouldSkipToUpgrade)
 			{
