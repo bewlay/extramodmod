@@ -10975,12 +10975,6 @@ bool CvGame::isNoBonus(BonusTypes eIndex) const
 void CvGame::setNoBonus(BonusTypes eIndex, bool bNewValue)
 {
 	m_pabNoBonus[eIndex] = bNewValue;
-	// Performance improvements for MNAI: Start
-	for (int iI = 0; iI < MAX_PLAYERS; iI++)
-	{
-		GET_PLAYER((PlayerTypes)iI).AI_invalidateCombatValueCache();
-	}
-	// Performance improvements for MNAI: End
 }
 
 bool CvGame::isNoOutsideTechTrades(VoteSourceTypes eIndex) const
