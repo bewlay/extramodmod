@@ -20601,7 +20601,7 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 	CvUnit* pGreatPeopleUnit = initUnit(eGreatPersonUnit, iX, iY);
 */
 	// If no names left, name is simply ""
-	CvWString name = GC.getGameINLINE().getNewGreatBornPersonName( eGreatPersonUnit );
+	CvWString name = GC.getGameINLINE().getNewGreatPersonBornName( eGreatPersonUnit );
 	CvUnit* pGreatPeopleUnit = initUnit(eGreatPersonUnit, iX, iY, NO_UNITAI, NO_DIRECTION, true, name);
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */

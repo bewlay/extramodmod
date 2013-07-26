@@ -6308,7 +6308,7 @@ void CvGame::addGreatPersonBornName(const CvWString& szName)
 /* GP_NAMES                                 07/2013                                 lfgr        */
 /* From CvUnit::init()                                                                          */
 /************************************************************************************************/
-CvWString CvGame::getNewGreatBornPersonName( UnitTypes iUnitType )
+CvWString CvGame::getNewGreatPersonBornName( UnitTypes iUnitType )
 {
 	int iUnitName = GC.getGameINLINE().getUnitCreatedCount(iUnitType);
 	int iNumNames = GC.getUnitInfo( iUnitType ).getNumUnitNames();
