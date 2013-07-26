@@ -10,6 +10,10 @@ import PyHelpers
 import CustomFunctions
 import ScenarioFunctions
 
+# lfgr GP_NAMES 07/2013
+import SdToolKitCustom as SDTK
+# lfgr end
+
 PyInfo = PyHelpers.PyInfo
 PyPlayer = PyHelpers.PyPlayer
 gc = CyGlobalContext()
@@ -356,7 +360,7 @@ def reqAddToFleshGolem(caster):
 			if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitClassType() == iFleshGolem):
 				pFleshGolem = pUnit
 		if pFleshGolem != -1:
-			if not caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HERO')):
+			if not caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HERO')) and (not (caster.getLevel() > 5)) and (not caster.getUnitAIType == gc.getInfoTypeForString('UNITAI_HERO')):
 				if caster.baseCombatStr() > pFleshGolem.baseCombatStr():
 					return True
 				if caster.baseCombatStrDefense() > pFleshGolem.baseCombatStrDefense():
@@ -704,6 +708,13 @@ def spellCommanderJoin(caster):
 		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitClassType() == iCommander):
 			pCommander = pUnit
 	if pCommander != -1:
+		# lfgr GP_NAMES 07/2013
+		if( not SDTK.sdObjectExists( "GPNames", caster ) ) :
+			SDTK.sdObjectInit( "GPNames", caster, {} )
+		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", pCommander.getName() )
+		if( caster.getNameNoDesc() != "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
+			caster.setName( pCommander.getName() )
+		# lfgr end
 		pCommander.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
 		pCommander.kill(False, PlayerTypes.NO_PLAYER)
 
@@ -728,6 +739,12 @@ def spellCommanderSplit(caster):
 		iCommander = gc.getInfoTypeForString('UNIT_DECIUS')
 		caster.setScenarioCounter(-1)
 	newUnit = pPlayer.initUnit(iCommander, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+	# lfgr GP_NAMES 07/2013
+	if( SDTK.sdObjectExists( "GPNames", caster ) ) :
+		szName = SDTK.sdObjectGetVal( "GPNames", caster, "CommanderName" )
+		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", "" )
+		newUnit.setName( szName )
+	# lfgr end
 
 def reqConvertCityBasium(caster):
 	pPlot = caster.plot()

@@ -3206,10 +3206,20 @@ bool CvPlayer::isCityNameValid(CvWString& szName, bool bTestDestroyed) const
 }
 
 
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Added parameter szName                                                                       */
+/************************************************************************************************/
+/*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection)
 CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection, bool bPushOutExistingUnit)
 //<<<<Unofficial Bug Fix: End Modify
+*/
+CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, CvWString szName)
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 {
 	PROFILE_FUNC();
 
@@ -3219,10 +3229,20 @@ CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI,
 	FAssertMsg(pUnit != NULL, "Unit is not assigned a valid value");
 	if (NULL != pUnit)
 	{
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Added parameter szName                                                                       */
+/************************************************************************************************/
+/*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //		pUnit->init(pUnit->getID(), eUnit, ((eUnitAI == NO_UNITAI) ? ((UnitAITypes)(GC.getUnitInfo(eUnit).getDefaultUnitAIType())) : eUnitAI), getID(), iX, iY, eFacingDirection);
 		pUnit->init(pUnit->getID(), eUnit, ((eUnitAI == NO_UNITAI) ? (UnitAITypes)GC.getUnitInfo(eUnit).getDefaultUnitAIType() : eUnitAI), getID(), iX, iY, eFacingDirection, bPushOutExistingUnit);
 //<<<<Unofficial Bug Fix: End Modify
+*/
+		pUnit->init(pUnit->getID(), eUnit, ((eUnitAI == NO_UNITAI) ? (UnitAITypes)GC.getUnitInfo(eUnit).getDefaultUnitAIType() : eUnitAI), getID(), iX, iY, eFacingDirection, bPushOutExistingUnit, szName);
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	}
 
 	return pUnit;
@@ -4321,7 +4341,7 @@ void CvPlayer::doTurn()
 /* City AI                                                                                      */
 /************************************************************************************************/
     // New function to handle wonder construction in a centralized manner
-	GET_PLAYER(getID()).AI_doCentralizedProduction();
+	//GET_PLAYER(getID()).AI_doCentralizedProduction();
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
@@ -6024,7 +6044,7 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 				//		if (GET_PLAYER(eWhoTo).canTrain(eUnit))
 				//		{
 							pTradingCity = pUnitTraded->plot()->getPlotCity();
-							if (GC.getUnitInfo(pUnitTraded->getUnitType()).isMechUnit() && pUnitTraded->canMove() && (pTradingCity != NULL) && (pTheirCapitalCity != NULL))
+							if (pUnitTraded->canMove() && pUnitTraded->canTradeUnit(eWhoTo) && (pTradingCity != NULL) && (pTheirCapitalCity != NULL))
 							{
 								if (pTradingCity->getOwnerINLINE() == getID())
 								{
@@ -13072,15 +13092,6 @@ void CvPlayer::setTurnActive(bool bNewValue, bool bDoTurn)
 
 		if (isTurnActive())
 		{
-			if (GC.getLogging())
-			{
-				if (gDLL->getChtLvl() > 0)
-				{
-					TCHAR szOut[1024];
-					sprintf(szOut, "Player %d Turn ON\n", getID());
-					gDLL->messageControlLog(szOut);
-				}
-			}
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/26/09                                jdog5000      */
 /*                                                                                              */
@@ -13275,16 +13286,6 @@ void CvPlayer::setTurnActive(bool bNewValue, bool bDoTurn)
 		}
 		else
 		{
-			if (GC.getLogging())
-			{
-				if (gDLL->getChtLvl() > 0)
-				{
-					TCHAR szOut[1024];
-					sprintf(szOut, "Player %d Turn OFF\n", getID());
-					gDLL->messageControlLog(szOut);
-				}
-			}
-
 			if (getID() == GC.getGameINLINE().getActivePlayer())
 			{
 				gDLL->getInterfaceIFace()->setForcePopup(false);
@@ -20592,7 +20593,19 @@ void CvPlayer::write(FDataStreamBase* pStream)
 
 void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThreshold, bool bIncrementExperience, int iX, int iY)
 {
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Only GPs created here get a name (or if explicitly stated elsewhere)                         */
+/************************************************************************************************/
+/*
 	CvUnit* pGreatPeopleUnit = initUnit(eGreatPersonUnit, iX, iY);
+*/
+	// If no names left, name is simply ""
+	CvWString name = GC.getGameINLINE().getNewGreatPersonBornName( eGreatPersonUnit );
+	CvUnit* pGreatPeopleUnit = initUnit(eGreatPersonUnit, iX, iY, NO_UNITAI, NO_DIRECTION, true, name);
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	if (NULL == pGreatPeopleUnit)
 	{
 		FAssert(false);
@@ -21821,6 +21834,10 @@ void CvPlayer::applyEvent(EventTypes eEvent, int iEventTriggeredId, bool bUpdate
 	{
 		deleteEventTriggered(iEventTriggeredId);
 		return;
+	}
+	else
+	{
+		//logBBAI("    Event Trigger - %S", GC.getEventInfo((EventTypes)iEventTriggeredId).getDescription());
 	}
 
 	logBBAI("    Event result - %S", GC.getEventInfo((EventTypes)eEvent).getDescription() );
@@ -25052,7 +25069,10 @@ int CvPlayer::getVotes(VoteTypes eVote, VoteSourceTypes eVoteSource) const
 		if (GC.getUnitInfo(pLoopUnit->getUnitTypeINLINE()).getDiploVoteType() != NO_VOTESOURCE)
 #endif
 		{
-		    iVotes += 1;
+			if (GC.getUnitInfo(pLoopUnit->getUnitTypeINLINE()).getDiploVoteType() == eVoteSource)
+			{
+			    iVotes += 1;
+			}
 		}
 	}
 //FfH: End Add
@@ -27379,15 +27399,6 @@ bool CvPlayer::isPuppetState() const
 void CvPlayer::setPuppetState(bool newvalue)
 {
     m_bPuppetState = newvalue;
-	if (GC.getLogging())
-	{
-		if (gDLL->getChtLvl() > 0)
-		{
-			char szOut[1024];
-			sprintf(szOut, "Puppet state set to %d\n", newvalue);
-			gDLL->messageControlLog(szOut);
-		}
-	}
 }
 // End Puppet State Functions
 
