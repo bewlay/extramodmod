@@ -745,6 +745,8 @@ def spellCommanderSplit(caster):
 		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", "" )
 		newUnit.setName( szName )
 	# lfgr end
+	# TEST
+	pPlayer.receiveGoody(caster.plot(),gc.getInfoTypeForString('GOODY_EXPLORE_LAIR_PRISONER_ADVENTURER'), caster)
 
 def reqConvertCityBasium(caster):
 	pPlot = caster.plot()
