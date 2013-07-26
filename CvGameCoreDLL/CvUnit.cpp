@@ -117,13 +117,32 @@ void CvUnit::reloadEntity()
 }
 
 
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Added parameter szName                                                                       */
+/************************************************************************************************/
+/*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection)
 void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit)
 //<<<<Unofficial Bug Fix: End Modify
+*/
+void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, CvWString szName)
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 {
 	CvWString szBuffer;
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Moved to CvGame::getNewGreatPersonBornName() (Used in CvPlayer::createGreatPeople())         */
+/************************************************************************************************/
+/*
 	int iUnitName;
+*/
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	int iI, iJ;
 
 	FAssert(NO_UNIT != eUnit);
@@ -157,6 +176,11 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 
 	plot()->setFlagDirty(true);
 
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Moved to CvGame::getNewGreatPersonBornName() (Used in CvPlayer::createGreatPeople())         */
+/************************************************************************************************/
+/*
 	iUnitName = GC.getGameINLINE().getUnitCreatedCount(getUnitType());
 	int iNumNames = m_pUnitInfo->getNumUnitNames();
 	if (iUnitName < iNumNames)
@@ -175,6 +199,11 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 			}
 		}
 	}
+*/
+	setName( szName ); // use parameter
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	setGameTurnCreated(GC.getGameINLINE().getGameTurn());
 
