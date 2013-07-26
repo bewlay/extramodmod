@@ -449,6 +449,14 @@ public:
 
 	bool isGreatPersonBorn(CvWString& szName) const;
 	void addGreatPersonBornName(const CvWString& szName);
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* From CvUnit::init()                                                                          */
+/************************************************************************************************/
+	CvWString getNewGreatBornPersonName( UnitTypes iUnitType );
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	DllExport int getIndexAfterLastDeal();																								// Exposed to Python
 	DllExport int getNumDeals();																													// Exposed to Python

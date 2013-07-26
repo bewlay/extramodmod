@@ -6304,6 +6304,36 @@ void CvGame::addGreatPersonBornName(const CvWString& szName)
 	m_aszGreatPeopleBorn.push_back(szName);
 }
 
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* From CvUnit::init()                                                                          */
+/************************************************************************************************/
+CvWString CvGame::getNewGreatBornPersonName( UnitTypes iUnitType )
+{
+	int iUnitName = GC.getGameINLINE().getUnitCreatedCount(iUnitType);
+	int iNumNames = GC.getUnitInfo( iUnitType ).getNumUnitNames();
+	if (iUnitName < iNumNames)
+	{
+		int iOffset = GC.getGameINLINE().getSorenRandNum(iNumNames, "Unit name selection");
+
+		for ( int iI = 0; iI < iNumNames; iI++ )
+		{
+			int iIndex = (iI + iOffset) % iNumNames;
+			CvWString szName;
+			szName = gDLL->getText( GC.getUnitInfo( iUnitType ).getUnitNames(iIndex) );
+			if (!GC.getGameINLINE().isGreatPersonBorn(szName))
+			{
+				GC.getGameINLINE().addGreatPersonBornName(szName);
+				return szName;
+			}
+		}
+	}
+	return CvWString("");
+}
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
+
 
 // Protected Functions...
 
