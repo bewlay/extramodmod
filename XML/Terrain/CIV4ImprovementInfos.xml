@@ -2094,6 +2094,7 @@
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
             <SpawnUnitType>UNIT_CHAMPION</SpawnUnitType>
+            <FreeSpawnPromotion>PROMOTION_DEMON</FreeSpawnPromotion>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_JUNGLE_ALTAR</Type>

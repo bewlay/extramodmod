@@ -1153,6 +1153,12 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_UNIT_CAN_MOVE_IMPASSABLE"));
 			}
+
+			if (pUnit->canMoveLimitedBorders())
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_CAN_MOVE_LIMITED_BORDERS"));
+			}
 /*************************************************************************************************/
 /**	FFHBUG denev																				**/
 /**	ADDON (FFHBUG) merged Sephi																	**/
@@ -1523,6 +1529,11 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_UNIT_CASTING_BLOCKED"));
+			}
+			if (pUnit->isUpgradeOutsideBorders())
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_UPGRADE_OUTSIDE_BORDERS"));
 			}
 			if (bSummoningAbility)
 			{
@@ -8689,6 +8700,18 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 
 	CvPromotionInfo &kPromotionInfo = GC.getPromotionInfo(ePromotion);
 
+	if (kPromotionInfo.isAllowsMoveImpassable())
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CAN_MOVE_IMPASSABLE_TEXT"));
+	}
+
+	if (kPromotionInfo.isAllowsMoveLimitedBorders())
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CAN_MOVE_LIMITED_BORDERS_TEXT"));
+	}
+
 	if (kPromotionInfo.isBlitz())
 	{
 		szBuffer.append(pcNewline);
@@ -9288,6 +9311,11 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CASTING_BLOCKED_PEDIA"));
+    }
+	if (kPromotionInfo.isUpgradeOutsideBorders())
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_UPGRADE_OUTSIDE_BORDERS_PEDIA"));
     }
     if (kPromotionInfo.isHiddenNationality())
     {
@@ -11549,6 +11577,11 @@ void CvGameTextMgr::setBasicUnitHelpWithCity(CvWStringBuffer &szBuffer, UnitType
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_CAN_MOVE_IMPASSABLE"));
 	}
 
+	if (kUnitInfo.isCanMoveLimitedBorders())
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_CAN_MOVE_LIMITED_BORDERS"));
+	}
 
 	if (kUnitInfo.isNoBadGoodies())
 	{

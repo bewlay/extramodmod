@@ -1610,7 +1610,7 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 			AI_setWarPlan(eTeam, eWarPlan);
 		}
 
-		FAssert(!(AI_isSneakAttackPreparing(eTeam)));
+		//FAssert(!(AI_isSneakAttackPreparing(eTeam))); - Tholal Note: commenting this out since Wars can now be declared due to a trade deal
 		if ((AI_getWarPlan(eTeam) == NO_WARPLAN) || AI_isSneakAttackPreparing(eTeam))
 		{
 			if (isHuman())
@@ -5218,6 +5218,18 @@ void CvTeam::setVassal(TeamTypes eIndex, bool bNewValue, bool bCapitulated)
 /************************************************************************************************/
 	}
 }
+
+// K-Mod. Return the team which is the master of this team. (if this team is free, return getID())
+TeamTypes CvTeam::getMasterTeam() const
+{
+	for (TeamTypes i = (TeamTypes)0; i < MAX_CIV_TEAMS; i=(TeamTypes)(i+1))
+	{
+		if (isVassal(i))
+			return i;
+	}
+	return getID();
+}
+// K-Mod end
 
 void CvTeam::assignVassal(TeamTypes eVassal, bool bSurrender) const
 {

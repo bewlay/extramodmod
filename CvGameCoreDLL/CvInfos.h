@@ -481,6 +481,7 @@ public:
 
 	int getTechPrereq() const;				// Exposed to Python
 	int getStateReligionPrereq() const;				// Exposed to Python
+	int getUnitReligionPrereq() const;				// MNAI - Exposed to Python
 	int getVisibilityChange() const;				// Exposed to Python
 	int getMovesChange() const;				// Exposed to Python
 	int getMoveDiscountChange() const;				// Exposed to Python
@@ -617,7 +618,9 @@ public:
 
 	// MNAI - additional promotion tags
 	bool isAllowsMoveImpassable() const;
+	bool isAllowsMoveLimitedBorders() const;
 	bool isCastingBlocked() const;
+	bool isUpgradeOutsideBorders() const;
 	// End MNAI
 
 	bool readPass3();
@@ -640,6 +643,7 @@ protected:
 
 	int m_iTechPrereq;
 	int m_iStateReligionPrereq;
+	int m_iUnitReligionPrereq; // MNAI
 	int m_iVisibilityChange;
 	int m_iMovesChange;
 	int m_iMoveDiscountChange;
@@ -761,7 +765,9 @@ protected:
 
 	// MNAI - additional promotion tags
 	bool m_bAllowsMoveImpassable;
+	bool m_bAllowsMoveLimitedBorders;
 	bool m_bCastingBlocked;
+	bool m_bUpgradeOutsideBorders;
 	// End MNAI
 
 	// Arrays
@@ -810,6 +816,7 @@ public:
 	int getPromotionInStackPrereq() const;
 	int getReligionPrereq() const;
 	int getStateReligionPrereq() const;
+	int getUnitReligionPrereq() const; // MNAI
 	int getTechPrereq() const;
 	int getRange() const;
     int getEffect() const;
@@ -874,17 +881,22 @@ public:
 	bool isRemoveHasCasted() const;
 	bool isResistable() const;
 	bool isSacrificeCaster() const;
+	bool isRemoveInvalidFeature() const;	// MNAI
 
 	const TCHAR* getSound() const;
 	const TCHAR* getPyMiscast() const;
 	const TCHAR* getPyResult() const;
 	const TCHAR* getPyRequirement() const;
+	const TCHAR* getPyAlternateReq() const;	// MNAI
 	int getCommandType() const;
 	void setCommandType(int iNewType);
-	// Tholal AI begin
-	bool getTerrainValid(int i) const;
+	// MNAI begin
+	/*
 	int getTerrainConvert(int i) const;
-	// end
+	int getFeatureConvert(int i) const;
+	bool isFeatureInvalid(int i) const;
+	*/
+	// MNAI end
 	void read(FDataStreamBase* stream);
 	void write(FDataStreamBase* stream);
 	bool read(CvXMLLoadUtility* pXML);
@@ -969,6 +981,7 @@ protected:
     bool m_bPush;
     bool m_bRemoveHasCasted;
     bool m_bSacrificeCaster;
+	bool m_bRemoveInvalidFeature;	// MNAI
     int m_iChangePopulation;
     int m_iCost;
     int m_iImmobileTurns;
@@ -978,11 +991,15 @@ protected:
 	CvString m_szPyMiscast;
 	CvString m_szPyResult;
 	CvString m_szPyRequirement;
+	CvString m_szPyAlternateReq;	// MNAI
 	CvString m_szSound;
-	// Tholal AI begin
-	bool* m_pbTerrainValid;
+	// MNAI begin
+	/*
 	int* m_piTerrainConvert;
-	// end
+	int* m_piFeatureConvert;
+	bool* m_pbFeatureInvalid;
+	*/
+	// MNAI end
 };
 //FfH: End Add
 
@@ -1311,6 +1328,7 @@ public:
 	bool isIgnoreBuildingDefense() const;				// Exposed to Python
 	bool isCanMoveImpassable() const;				// Exposed to Python
 	bool isCanMoveAllTerrain() const;				// Exposed to Python
+	bool isCanMoveLimitedBorders() const;				// Exposed to Python
 	bool isFlatMovementCost() const;				// Exposed to Python
 	bool isIgnoreTerrainCost() const;				// Exposed to Python
 	bool isNukeImmune() const;				// Exposed to Python
@@ -1564,6 +1582,7 @@ protected:
 	bool m_bIgnoreBuildingDefense;
 	bool m_bCanMoveImpassable;
 	bool m_bCanMoveAllTerrain;
+	bool m_bCanMoveLimitedBorders; // MNAI
 	bool m_bFlatMovementCost;
 	bool m_bIgnoreTerrainCost;
 	bool m_bNukeImmune;
@@ -3666,6 +3685,7 @@ public:
 	const TCHAR* getPythonAtRange() const;
 	const TCHAR* getPythonOnMove() const;
 	int getSpawnUnitType() const;
+	int getFreeSpawnPromotion() const;
 	int getVisibilityChange() const;
 	bool readPass3();
 //FfH: End Add
@@ -3737,6 +3757,7 @@ protected:
 	CvString m_szPythonAtRange;
 	CvString m_szPythonOnMove;
 	int m_iSpawnUnitType;
+	int m_iFreeSpawnPromotion;
 	int m_iVisibilityChange;
 
 	std::vector<CvString> m_aszExtraXML2forPass3;
