@@ -12309,10 +12309,11 @@ bool CvPlot::isLair(bool bIgnoreIsAnimal, bool bAnimal) const
 /* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
 /************************************************************************************************/
 
-// LFGR_TODO expose to python
 float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int iRadius )
 {
 	// LFGR_TODO: distance weight
+
+	// LFGR_TODO: required central plot type/terrain/feature/improvement
 
 	if( iRadius == -1 )
 	{
