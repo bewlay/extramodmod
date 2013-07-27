@@ -3263,6 +3263,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_ATHAME</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_ATHAME</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3297,6 +3298,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_BLACK_MIRROR</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_BLACK_MIRROR</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3350,6 +3352,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_CROWN_OF_AKHARIEN</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_CROWN_OF_AKHARIEN</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3384,6 +3387,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_CROWN_OF_COMMAND</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_CROWN_OF_COMMAND</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3437,6 +3441,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_DRAGONS_HORDE</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_DRAGONS_HORDE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3472,7 +3477,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_EMPTY_BIER</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_EMPTY_BIER</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3508,7 +3513,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_GELA</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_GELA</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3544,7 +3549,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_GOLDEN_HAMMER</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_GOLDEN_HAMMER</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3599,7 +3604,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_HEALING_SALVE</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_HEALING_SALVE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3651,6 +3656,8 @@
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_INFERNAL_GRIMOIRE</UnitInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_INFERNAL_GRIMOIRE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3686,7 +3693,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_JADE_TORC</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_JADE_TORC</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3722,7 +3729,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_NETHER_BLADE</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_NETHER_BLADE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3758,7 +3765,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_ORTHUSS_AXE</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_ORTHUSS_AXE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3794,7 +3801,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_PIECES_OF_BARNAXUS</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_PIECES_OF_BARNAXUS</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3830,7 +3837,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_POTION_OF_INVISIBILITY</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_POTION_OF_INVISIBILITY</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3866,7 +3873,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_POTION_OF_RESTORATION</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_POTION_OF_RESTORATION</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3902,7 +3909,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_ROD_OF_WINDS</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_ROD_OF_WINDS</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3938,7 +3945,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_SCORCHED_STAFF</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_SCORCHED_STAFF</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -3974,7 +3981,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_STAFF_OF_SOULS</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_STAFF_OF_SOULS</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -4029,7 +4036,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_SYLIVENS_PERFECT_LYRE</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_SYLIVENS_PERFECT_LYRE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -4065,7 +4072,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_TIMOR_MASK</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_TIMOR_MASK</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -4101,7 +4108,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_GODSLAYER</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_GODSLAYER</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
@@ -4137,7 +4144,7 @@
             <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
             <UnitInStackPrereq>EQUIPMENT_WAR</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>50</iAIWeight>
+            <iAIWeight>500</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_WAR</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>

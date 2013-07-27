@@ -4321,7 +4321,7 @@ void CvPlayer::doTurn()
 /* City AI                                                                                      */
 /************************************************************************************************/
     // New function to handle wonder construction in a centralized manner
-	GET_PLAYER(getID()).AI_doCentralizedProduction();
+	//GET_PLAYER(getID()).AI_doCentralizedProduction();
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
@@ -6024,7 +6024,7 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 				//		if (GET_PLAYER(eWhoTo).canTrain(eUnit))
 				//		{
 							pTradingCity = pUnitTraded->plot()->getPlotCity();
-							if (GC.getUnitInfo(pUnitTraded->getUnitType()).isMechUnit() && pUnitTraded->canMove() && (pTradingCity != NULL) && (pTheirCapitalCity != NULL))
+							if (pUnitTraded->canMove() && pUnitTraded->canTradeUnit(eWhoTo) && (pTradingCity != NULL) && (pTheirCapitalCity != NULL))
 							{
 								if (pTradingCity->getOwnerINLINE() == getID())
 								{
@@ -13072,15 +13072,6 @@ void CvPlayer::setTurnActive(bool bNewValue, bool bDoTurn)
 
 		if (isTurnActive())
 		{
-			if (GC.getLogging())
-			{
-				if (gDLL->getChtLvl() > 0)
-				{
-					TCHAR szOut[1024];
-					sprintf(szOut, "Player %d Turn ON\n", getID());
-					gDLL->messageControlLog(szOut);
-				}
-			}
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/26/09                                jdog5000      */
 /*                                                                                              */
@@ -13275,16 +13266,6 @@ void CvPlayer::setTurnActive(bool bNewValue, bool bDoTurn)
 		}
 		else
 		{
-			if (GC.getLogging())
-			{
-				if (gDLL->getChtLvl() > 0)
-				{
-					TCHAR szOut[1024];
-					sprintf(szOut, "Player %d Turn OFF\n", getID());
-					gDLL->messageControlLog(szOut);
-				}
-			}
-
 			if (getID() == GC.getGameINLINE().getActivePlayer())
 			{
 				gDLL->getInterfaceIFace()->setForcePopup(false);
@@ -21816,6 +21797,10 @@ void CvPlayer::applyEvent(EventTypes eEvent, int iEventTriggeredId, bool bUpdate
 		deleteEventTriggered(iEventTriggeredId);
 		return;
 	}
+	else
+	{
+		//logBBAI("    Event Trigger - %S", GC.getEventInfo((EventTypes)iEventTriggeredId).getDescription());
+	}
 
 	logBBAI("    Event result - %S", GC.getEventInfo((EventTypes)eEvent).getDescription() );
 
@@ -25013,7 +24998,10 @@ int CvPlayer::getVotes(VoteTypes eVote, VoteSourceTypes eVoteSource) const
 		if (GC.getUnitInfo(pLoopUnit->getUnitTypeINLINE()).getDiploVoteType() != NO_VOTESOURCE)
 #endif
 		{
-		    iVotes += 1;
+			if (GC.getUnitInfo(pLoopUnit->getUnitTypeINLINE()).getDiploVoteType() == eVoteSource)
+			{
+			    iVotes += 1;
+			}
 		}
 	}
 //FfH: End Add
@@ -27340,15 +27328,6 @@ bool CvPlayer::isPuppetState() const
 void CvPlayer::setPuppetState(bool newvalue)
 {
     m_bPuppetState = newvalue;
-	if (GC.getLogging())
-	{
-		if (gDLL->getChtLvl() > 0)
-		{
-			char szOut[1024];
-			sprintf(szOut, "Puppet state set to %d\n", newvalue);
-			gDLL->messageControlLog(szOut);
-		}
-	}
 }
 // End Puppet State Functions
 
