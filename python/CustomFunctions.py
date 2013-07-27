@@ -773,21 +773,11 @@ class CustomFunctions:
 			iGrigoriMod = 1000
 
 		if iGrigoriSpawn >= iGrigoriMod:
-# Spawn an adventurer.
+			# Spawn an adventurer.
 			pCapital = pPlayer.getCapitalCity()
-			pAdventurer = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_ADVENTURER'), pCapital.getX(), pCapital.getY(), UnitAITypes.UNITAI_HERO, DirectionTypes.DIRECTION_SOUTH)
+			pAdventurer = pPlayer.createGreatPeople(gc.getInfoTypeForString('UNIT_ADVENTURER'), False, False, pCapital.getX(), pCapital.getY())
 			pPlayer.changeCivCounter(0 - iGrigoriMod)
 			pPlayer.changeCivCounterMod(1000)
-			pPlot = pCapital.plot()
-			for iPlayer in range(gc.getMAX_PLAYERS()):
-				pPlayer = gc.getPlayer(iPlayer)
-				if not pPlayer.isAlive():
-					continue
-				iTeam = pPlayer.getTeam()
-				if pPlot.isRevealed(iTeam, False):
-					CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MISC_GP_BORN",(pAdventurer.getName(),pCapital.getName(),)),'AS2D_UNIT_GREATPEOPLE',1,pAdventurer.getButton(),ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
-				else:
-					CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MISC_GP_BORN_SOMEWHERE",(pAdventurer.getName(),)),'AS2D_UNIT_GREATPEOPLE',1,pAdventurer.getButton(),ColorTypes(8), -1, -1, False, False)
 
 	def doChanceAdventurerSpawn(self, iPlayer):
 		gc = CyGlobalContext() 

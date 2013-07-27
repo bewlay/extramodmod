@@ -705,13 +705,6 @@ def reqDeciusJoin(caster):
 def spellDeciusJoin(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlot = caster.plot()
-		# lfgr GP_NAMES 07/2013
-		if( not SDTK.sdObjectExists( "GPNames", caster ) ) :
-			SDTK.sdObjectInit( "GPNames", caster, {} )
-		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", pCommander.getName() )
-		if( caster.getNameNoDesc() != "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
-			caster.setName( pCommander.getName() )
-		# lfgr end
 	iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
 	pDecius = -1
 	for i in range(pPlot.getNumUnits()):
@@ -728,12 +721,6 @@ def spellDeciusSplit(caster):
 	iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
 	caster.setScenarioCounter(-1)
 	newUnit = pPlayer.initUnit(iDecius, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-	# lfgr GP_NAMES 07/2013
-	if( SDTK.sdObjectExists( "GPNames", caster ) ) :
-		szName = SDTK.sdObjectGetVal( "GPNames", caster, "CommanderName" )
-		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", "" )
-		newUnit.setName( szName )
-	# lfgr end
 
 def reqConvertCityBasium(caster):
 	pPlot = caster.plot()
@@ -4391,12 +4378,59 @@ def voteFundDissidents():
 						pCity = pyCity.GetCy()
 						pCity.changeHurryAngerTimer(1 + CyGame().getSorenRandNum(3, "Fund Dissidents"))
 
+def reqGreatGeneralJoin(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
+	pPlot = caster.plot()
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GREAT_GENERAL')):
+		return False
+	iGeneral = gc.getInfoTypeForString('UNITCLASS_GREAT_GENERAL')
+	pGeneral = -1
+	for i in range(pPlot.getNumUnits()):
+		pUnit = pPlot.getUnit(i)
+		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitClassType() == iGeneral):
+			pGeneral = pUnit
+	if pGeneral == -1:
+		return False
+	if pGeneral.isHasCasted():
+		return False
+	if pPlayer.isHuman() == False:
+		if not caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HERO')) and (caster.baseCombatStr() <= 5) and (not caster.getUnitAIType == gc.getInfoTypeForString('UNITAI_HERO')):
+			return False
+
+	return True
+
+def spellGreatGeneralJoin(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
+	pPlot = caster.plot()
+	iGeneral = gc.getInfoTypeForString('UNITCLASS_GREAT_GENERAL')
+	pGeneral = -1
+	for i in range(pPlot.getNumUnits()):
+		pUnit = pPlot.getUnit(i)
+		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitClassType() == iGeneral):
+			pGeneral = pUnit
+	if pGeneral != -1:
+		# lfgr GP_NAMES 07/2013
+		if( not SDTK.sdObjectExists( "GPNames", caster ) ) :
+			SDTK.sdObjectInit( "GPNames", caster, {} )
+		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", pGeneral.getName() )
+		if( caster.getNameNoDesc() != "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
+			caster.setName( pGeneral.getName() )
+		# lfgr end
+		pGeneral.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
+		pGeneral.kill(False, PlayerTypes.NO_PLAYER)
+
 def spellGreatGeneralSplit(caster):
-       pPlayer = gc.getPlayer(caster.getOwner())
-       iCommander = gc.getInfoTypeForString('UNIT_GREAT_GENERAL')
-       newUnit = pPlayer.initUnit(iCommander, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-       newUnit.setHasCasted(True)
-       newUnit.setImmobileTimer(1)
+	pPlayer = gc.getPlayer(caster.getOwner())
+	iGeneral = gc.getInfoTypeForString('UNIT_GREAT_GENERAL')
+	newUnit = pPlayer.initUnit(iGeneral, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+	newUnit.setHasCasted(True)
+	newUnit.setImmobileTimer(1)
+	# lfgr GP_NAMES 07/2013
+	if( SDTK.sdObjectExists( "GPNames", caster ) ) :
+		szName = SDTK.sdObjectGetVal( "GPNames", caster, "GeneralName" )
+		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", "" )
+		newUnit.setName( szName )
+	# lfgr end
 
 def reqDeclareBarbs(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
