@@ -14562,7 +14562,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 	/** ExtraModMod: Great Generals are available unconditionally.
 	if ( bWarPlan && GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
 	*/
-	if ( bWarPlan)
+	if (bWarPlan)
 	{
 		iValue += ((kCivic.getGreatGeneralRateModifier() * getNumMilitaryUnits()) / 50);
 		iValue += ((kCivic.getDomesticGreatGeneralRateModifier() * getNumMilitaryUnits()) / 100);

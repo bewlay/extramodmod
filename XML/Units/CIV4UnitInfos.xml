@@ -76121,7 +76121,7 @@
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
             </FreePromotions>
-            <LeaderPromotion>NONE</LeaderPromotion>
+            <LeaderPromotion>PROMOTION_GREAT_GENERAL</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
             <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
         </UnitInfo>
