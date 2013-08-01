@@ -1446,5 +1446,98 @@ void CvMap::calculateAreas()
 	}
 }
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+void CvMap::calculateWilderness()
+{
+	CvPlot* pLoopPlot;
+	int iValue=MAX_INT;
+	int iI;
+
+	for (iI = 0; iI < numPlotsINLINE(); iI++)
+	{
+		pLoopPlot = plotByIndexINLINE(iI);
+		pLoopPlot->setWilderness(-1);
+
+		for(int iJ = 0; iJ < GC.getMAX_CIV_PLAYERS(); iJ++)
+		{
+			CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iJ);
+			if(kPlayer.isEverAlive() && kPlayer.getStartingPlot() == pLoopPlot)
+			{
+				pLoopPlot->setWilderness(0);
+			}
+		}
+	}
+
+	// LFGR_TODO better formula
+	for(int iPass = 1; iPass <= 33; iPass++)
+	{
+		for(int iJ = 0;iJ < GC.getMAX_CIV_PLAYERS(); iJ++)
+		{
+			CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iJ);
+			if(kPlayer.isEverAlive())
+			{
+				CvPlot* pStartPlot=kPlayer.getStartingPlot();
+				//found a Starting Plot
+				for (iI = 0; iI < numPlotsINLINE(); iI++)
+				{
+					pLoopPlot = plotByIndexINLINE(iI);
+
+					//need a new value?
+					if(pLoopPlot->getWilderness()==-1 && stepDistance(pLoopPlot->getX_INLINE(),pLoopPlot->getY_INLINE(),pStartPlot->getX_INLINE(),pStartPlot->getY_INLINE())==iPass)
+					{		
+/**
+deactivated random increase  
+						int iValue=0;
+						int iCount=0;
+						for (int iK = 0; iK < NUM_DIRECTION_TYPES; iK++)
+						{
+							CvPlot* pAdjacentPlot = plotDirection(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), (DirectionTypes) iK);
+							if(pAdjacentPlot!=NULL && pAdjacentPlot->getWilderness()!=-1)
+							{
+								if(stepDistance(pAdjacentPlot->getX_INLINE(),pAdjacentPlot->getY_INLINE(),pStartPlot->getX_INLINE(),pStartPlot->getY_INLINE()==iPass-1))
+								{
+									iValue+=pAdjacentPlot->getWilderness();
+									iCount++;
+								}
+							}
+						}
+					
+						if(iCount>0)
+						{
+							int iNewValue=iValue/iCount;
+							if(iPass>7)
+							{
+								iNewValue+=GC.getGameINLINE().getMapRandNum(5, "Wilderness");
+							}
+							else if(iPass%3!=0)
+							{							
+								iNewValue++;
+							}
+							iNewValue=std::max(1,iNewValue);
+							pLoopPlot->setWilderness(iNewValue);
+						}
+**/
+						pLoopPlot->setWilderness((3 * stepDistance(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), pStartPlot->getX_INLINE(), pStartPlot->getY_INLINE())) / 2);
+					}
+				}
+			}
+		}
+	}
+
+	for (iI = 0; iI < numPlotsINLINE(); iI++)
+	{
+		pLoopPlot = plotByIndexINLINE(iI);
+		if(pLoopPlot->getWilderness()==-1)
+			pLoopPlot->setWilderness(100);
+	}
+
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 
 // Private Functions...

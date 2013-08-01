@@ -435,6 +435,15 @@ void CvGame::setInitialItems()
 	initFreeState();
 	assignStartingPlots();
 	normalizeStartingPlots();
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	GC.getMapINLINE().calculateWilderness();
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 //FfH: Added by Kael 09/16/2008
     if (isOption(GAMEOPTION_BARBARIAN_WORLD))
@@ -6601,6 +6610,22 @@ void CvGame::doTurn()
 	PROFILE_END();
 
 	stopProfilingDLL();
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+	//LordShaggynator: workaround for wilderness values in scenario
+	if(getElapsedGameTurns() == 1)
+	{
+		if(GC.getInitCore().getType() == GAME_SP_SCENARIO || GC.getInitCore().getType() == GAME_MP_SCENARIO 
+			|| GC.getInitCore().getType() == GAME_HOTSEAT_SCENARIO || GC.getInitCore().getType() == GAME_PBEM_SCENARIO)
+		{
+			GC.getMapINLINE().calculateWilderness();
+		}
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	gDLL->getEngineIFace()->AutoSave();
 }

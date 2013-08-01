@@ -5650,6 +5650,16 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		// Canal value
 		szTempBuffer.Format(L"\nCanal Value: %d", pPlot->getCanalValue());
 		szString.append(szTempBuffer);
+		
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* Original by Sephi                                                                            */
+	/************************************************************************************************/
+		szTempBuffer.Format(L"\nWilderness Value: %d", pPlot->getWilderness());
+		szString.append(szTempBuffer);
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
 
 		if(pPlot->getRouteType() != NO_ROUTE)
 		{
