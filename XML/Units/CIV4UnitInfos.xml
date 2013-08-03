@@ -75885,6 +75885,9 @@
 			<bNeverObsolete>1</bNeverObsolete>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>1</iTier>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>20</iMinWilderness>
+            <iMaxWilderness>60</iMaxWilderness>
 		</UnitInfo>
     </UnitInfos>
 </Civ4UnitInfos>
