@@ -4933,6 +4933,15 @@ m_iUnitMeleeWaveSize(0),
 m_iUnitRangedWaveSize(0),
 m_iNumUnitNames(0),
 m_iCommandType(NO_COMMAND),
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+m_iMinWilderness(0),
+m_iMaxWilderness(MAX_INT),
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 m_bAnimal(false),
 m_bFoodProduction(false),
 m_bNoBadGoodies(false),
@@ -5936,6 +5945,23 @@ bool CvUnitInfo::canAcquireExperience() const
 }
 // BUG - Unit Experience - end
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+int CvUnitInfo::getMinWilderness() const
+{
+	return m_iMinWilderness;
+}
+
+int CvUnitInfo::getMaxWilderness() const
+{
+	return m_iMaxWilderness;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 
 // Arrays
 
@@ -6551,6 +6577,16 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(GC.getNumDamageTypeInfos(), m_piDamageTypeCombat);
 //FfH: End Add
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	stream->Read(&m_iMinWilderness);
+	stream->Read(&m_iMaxWilderness);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 	SAFE_DELETE_ARRAY(m_piPrereqAndTechs);
 	m_piPrereqAndTechs = new int[GC.getNUM_UNIT_AND_TECH_PREREQS()];
 	stream->Read(GC.getNUM_UNIT_AND_TECH_PREREQS(), m_piPrereqAndTechs);
@@ -6892,6 +6928,15 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumBonusInfos(), m_piBonusAffinity);
 	stream->Write(GC.getNumDamageTypeInfos(), m_piDamageTypeCombat);
 //FfH: End Add
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	stream->Write(m_iMinWilderness);
+	stream->Write(m_iMaxWilderness);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	stream->Write(GC.getNUM_UNIT_AND_TECH_PREREQS(), m_piPrereqAndTechs);
 	stream->Write(GC.getNUM_UNIT_PREREQ_OR_BONUSES(), m_piPrereqOrBonuses);
@@ -7330,6 +7375,17 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_piDamageTypeCombat, "DamageTypeCombats", sizeof(GC.getDamageTypeInfo((DamageTypes)0)), GC.getNumDamageTypeInfos());
 	pXML->SetVariableListTagPair(&m_piBonusAffinity, "BonusAffinities", sizeof(GC.getBonusInfo((BonusTypes)0)), GC.getNumBonusInfos());
 //FfH: End Add
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iMinWilderness, "iMinWilderness");
+	pXML->GetChildXmlValByName(&m_iMaxWilderness, "iMaxWilderness",MAX_INT);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+	
 	updateArtDefineButton();
 	return true;
 }

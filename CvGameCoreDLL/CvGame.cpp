@@ -7666,12 +7666,31 @@ void CvGame::createAnimals()
 							{
 								if ((pPlot->getFeatureType() != NO_FEATURE) ? GC.getUnitInfo(eLoopUnit).getFeatureNative(pPlot->getFeatureType()) : GC.getUnitInfo(eLoopUnit).getTerrainNative(pPlot->getTerrainType()))
 								{
+								/************************************************************************************************/
+								/* WILDERNESS                             08/2013                                 lfgr          */
+								/* Original by Sephi                                                                            */
+								/************************************************************************************************/
+								/*
 									iValue = (1 + getSorenRandNum(1000, "Animal Unit Selection"));
 									if (iValue > iBestValue)
 									{
 										eBestUnit = eLoopUnit;
 										iBestValue = iValue;
 									}
+								*/
+									if(pPlot->getWilderness()>GC.getUnitInfo(eLoopUnit).getMinWilderness() && 
+										pPlot->getWilderness()<GC.getUnitInfo(eLoopUnit).getMaxWilderness())
+									{
+										iValue = (1 + getSorenRandNum(1000, "Animal Unit Selection"));
+										if (iValue > iBestValue)
+										{
+											eBestUnit = eLoopUnit;
+											iBestValue = iValue;
+										}
+									}
+								/************************************************************************************************/
+								/* WILDERNESS                                                                     END           */
+								/************************************************************************************************/
 								}
 							}
 						}

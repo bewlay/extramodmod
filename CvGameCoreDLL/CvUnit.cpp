@@ -3645,6 +3645,24 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
         }
     }
 //FfH: End Add
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	if(isBarbarian())
+	{
+		if(isAnimal())
+		{
+			if(GC.getUnitInfo(getUnitType()).getMinWilderness()>pPlot->getWilderness())
+			{
+				return false;
+			}
+		}
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (GC.getUSE_UNIT_CANNOT_MOVE_INTO_CALLBACK())
 	{

@@ -567,6 +567,10 @@
 	<ElementType name="BonusAffinities" content="eltOnly">
 		<element type="BonusAffinity" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<!-- WILDERNESS 08/2013 Sephi/lfgr -->
+	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
+	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
+	<!-- WILDERNESS end -->
 	<ElementType name="UnitInfo" content="eltOnly">
 		<element type="Class"/>
 		<element type="Type"/>
@@ -766,6 +770,10 @@
 		<element type="DamageTypeCombats" minOccurs="0"/>
 		<element type="BonusAffinities" minOccurs="0"/>
 		<element type="iOrderPriority" minOccurs="0"/>
+		<!-- WILDERNESS 08/2013 Sephi/lfgr -->
+		<element type="iMinWilderness" minOccurs="0"/>
+		<element type="iMaxWilderness" minOccurs="0"/>
+		<!-- WILDERNESS end -->
 	</ElementType>
 	<ElementType name="UnitInfos" content="eltOnly">
 		<element type="UnitInfo" maxOccurs="*"/>

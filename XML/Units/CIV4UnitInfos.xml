@@ -14348,6 +14348,9 @@
                     <iCombat>1</iCombat>
                 </DamageTypeCombat>
             </DamageTypeCombats>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>0</iMinWilderness>
+            <iMaxWilderness>15</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_BAMBUR</Class>
@@ -15437,6 +15440,9 @@
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>5</iCombatDefense>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>15</iMinWilderness>
+            <iMaxWilderness>30</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_BEAR</Class>
@@ -15661,6 +15667,9 @@
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>5</iCombatDefense>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>15</iMinWilderness>
+            <iMaxWilderness>30</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_BEAST_OF_AGARES</Class>
@@ -29795,6 +29804,9 @@
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>8</iCombatDefense>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>0</iMinWilderness>
+            <iMaxWilderness>30</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_ENGINEER</Class>
@@ -33691,6 +33703,9 @@
                     <iCombat>1</iCombat>
                 </DamageTypeCombat>
             </DamageTypeCombats>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>15</iMinWilderness>
+            <iMaxWilderness>50</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_GIANT_TORTOISE</Class>
@@ -34559,6 +34574,9 @@
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>4</iCombatDefense>
             <iTier>1</iTier>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+            <iMaxWilderness>30</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_GOVANNON</Class>
@@ -35303,6 +35321,9 @@
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>4</iCombatDefense>
             <iTier>3</iTier>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+            <iMaxWilderness>30</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_GRIGORI_MEDIC</Class>
@@ -39032,6 +39053,9 @@
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>7</iCombatDefense>
             <iTier>2</iTier>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>25</iMinWilderness>
+            <iMaxWilderness>100</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_HORSE_ARCHER</Class>
@@ -47063,6 +47087,9 @@
             <iTier>1</iTier>
             <UnitConvertFromCombat>UNIT_LION_PRIDE</UnitConvertFromCombat>
             <iUnitConvertFromCombatChance>10</iUnitConvertFromCombatChance>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>0</iMinWilderness>
+            <iMaxWilderness>15</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_LION_PRIDE</Class>
@@ -47215,6 +47242,19 @@
             <iHillsAttack>0</iHillsAttack>
             <iHillsDefense>0</iHillsDefense>
             <TerrainNatives>
+				<!-- WILDERNESS 08/2013 lfgr -->
+                <TerrainNative>
+                    <TerrainType>TERRAIN_GRASS</TerrainType>
+                    <bTerrainNative>1</bTerrainNative>
+                </TerrainNative>
+                <TerrainNative>
+                    <TerrainType>TERRAIN_PLAINS</TerrainType>
+                    <bTerrainNative>1</bTerrainNative>
+                </TerrainNative>
+                <TerrainNative>
+                    <TerrainType>TERRAIN_DESERT</TerrainType>
+                    <bTerrainNative>1</bTerrainNative>
+                </TerrainNative>
             </TerrainNatives>
             <FeatureNatives>
             </FeatureNatives>
@@ -47276,6 +47316,9 @@
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+            <iMaxWilderness>30</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_LOKI</Class>
@@ -64556,6 +64599,9 @@
                     <iCombat>1</iCombat>
                 </DamageTypeCombat>
             </DamageTypeCombats>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+            <iMaxWilderness>40</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_SCOUT</Class>
@@ -70082,6 +70128,9 @@
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>4</iCombatDefense>
             <iTier>1</iTier>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>5</iMinWilderness>
+            <iMaxWilderness>30</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_TREANT</Class>
@@ -73217,6 +73266,9 @@
             <iTier>1</iTier>
             <UnitConvertFromCombat>UNIT_WOLF_PACK</UnitConvertFromCombat>
             <iUnitConvertFromCombatChance>10</iUnitConvertFromCombatChance>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>0</iMinWilderness>
+            <iMaxWilderness>15</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_WOLF_PACK</Class>
@@ -73369,8 +73421,22 @@
             <iHillsAttack>0</iHillsAttack>
             <iHillsDefense>0</iHillsDefense>
             <TerrainNatives>
+				<!-- WILDERNESS 08/2013 lfgr -->
+                <TerrainNative>
+                    <TerrainType>TERRAIN_TUNDRA</TerrainType>
+                    <bTerrainNative>1</bTerrainNative>
+                </TerrainNative>
+                <TerrainNative>
+                    <TerrainType>TERRAIN_SNOW</TerrainType>
+                    <bTerrainNative>1</bTerrainNative>
+                </TerrainNative>
             </TerrainNatives>
             <FeatureNatives>
+				<!-- WILDERNESS 08/2013 lfgr -->
+                <FeatureNative>
+                    <FeatureType>FEATURE_FOREST</FeatureType>
+                    <bFeatureNative>1</bFeatureNative>
+                </FeatureNative>
             </FeatureNatives>
             <TerrainAttacks>
             </TerrainAttacks>
@@ -73428,6 +73494,9 @@
             <iTier>2</iTier>
             <UnitCreateFromCombat>UNIT_WOLF</UnitCreateFromCombat>
             <iUnitCreateFromCombatChance>10</iUnitCreateFromCombatChance>
+            <!-- WILDERNESS 08/2013 Sephi/lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+            <iMaxWilderness>30</iMaxWilderness>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_WORKBOAT</Class>
