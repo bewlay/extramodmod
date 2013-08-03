@@ -2239,5 +2239,15 @@
 			<iInstanceCostModifier>0</iInstanceCostModifier>
 			<DefaultUnit>UNIT_GREAT_GENERAL</DefaultUnit>
 		</UnitClassInfo>
+		<UnitClassInfo>
+			<!-- BARBARIAN_UNITS 08/2013 lfgr -->
+			<Type>UNITCLASS_PANTHER</Type>
+			<Description>TXT_KEY_UNIT_PANTHER</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_PANTHER</DefaultUnit>
+		</UnitClassInfo>
 	</UnitClassInfos>
 </Civ4UnitClassInfos>
