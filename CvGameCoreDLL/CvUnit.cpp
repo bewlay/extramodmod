@@ -3652,13 +3652,16 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 /************************************************************************************************/
 	if(isBarbarian())
 	{
-		if(isAnimal())
-		{
-			if(GC.getUnitInfo(getUnitType()).getMinWilderness()>pPlot->getWilderness())
-			{
-				return false;
-			}
-		}
+		int iMinWilderness = pPlot->getWilderness() - 5;
+
+		if( !isAnimal() )
+			iMinWilderness -= 5;
+
+		if( GC.getGameINLINE().isOption( GAMEOPTION_RAGING_BARBARIANS ) )
+			iMinWilderness -= 10;
+
+		if( GC.getUnitInfo(getUnitType()).getMinWilderness() > iMinWilderness )
+			return false;
 	}
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

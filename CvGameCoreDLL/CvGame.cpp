@@ -7481,6 +7481,11 @@ void CvGame::createBarbarianUnits()
 
 									if (bValid)
 									{
+									/************************************************************************************************/
+									/* WILDERNESS                             08/2013                                 lfgr          */
+									/* Original by Sephi                                                                            */
+									/************************************************************************************************/
+									/*
 										iValue = (1 + getSorenRandNum(1000, "Barb Unit Selection"));
 
 										if (kUnit.getUnitAIType(eBarbUnitAI))
@@ -7493,6 +7498,26 @@ void CvGame::createBarbarianUnits()
 											eBestUnit = eLoopUnit;
 											iBestValue = iValue;
 										}
+									*/
+										if(pPlot->getWilderness()>=GC.getUnitInfo(eLoopUnit).getMinWilderness() && 
+											pPlot->getWilderness()<=GC.getUnitInfo(eLoopUnit).getMaxWilderness())
+										{
+											iValue = (1 + getSorenRandNum(1000, "Barb Unit Selection"));
+
+											if (kUnit.getUnitAIType(eBarbUnitAI))
+											{
+												iValue += 200;
+											}
+
+											if (iValue > iBestValue)
+											{
+												eBestUnit = eLoopUnit;
+												iBestValue = iValue;
+											}
+										}
+									/************************************************************************************************/
+									/* WILDERNESS                                                                     END           */
+									/************************************************************************************************/
 									}
 								}
 							}
@@ -7678,8 +7703,8 @@ void CvGame::createAnimals()
 										iBestValue = iValue;
 									}
 								*/
-									if(pPlot->getWilderness()>GC.getUnitInfo(eLoopUnit).getMinWilderness() && 
-										pPlot->getWilderness()<GC.getUnitInfo(eLoopUnit).getMaxWilderness())
+									if(pPlot->getWilderness()>=GC.getUnitInfo(eLoopUnit).getMinWilderness() && 
+										pPlot->getWilderness()<=GC.getUnitInfo(eLoopUnit).getMaxWilderness())
 									{
 										iValue = (1 + getSorenRandNum(1000, "Animal Unit Selection"));
 										if (iValue > iBestValue)
