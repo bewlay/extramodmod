@@ -7419,7 +7419,19 @@ void CvGame::createBarbarianUnits()
                                         bValid = false;
                                     }
 //FfH: End Add
-
+								/************************************************************************************************/
+								/* WILDERNESS                             08/2013                                 lfgr          */
+								/* Cannot spawn units with prereq Religion                                                      */
+								/************************************************************************************************/
+									if( bValid )
+									{
+										if( kUnit.getPrereqReligion() != NO_RELIGION )
+											bValid = false;
+									}
+								/************************************************************************************************/
+								/* WILDERNESS                                                                     END           */
+								/************************************************************************************************/
+									
 									if (bValid)
 									{
 										if (pLoopArea->isWater() && kUnit.getDomainType() != DOMAIN_SEA)
