@@ -26900,7 +26900,7 @@ bool CvEventInfo::read(CvXMLLoadUtility* pXML)
 					for ( int i = 0; i < iNumSibs; i++)
 					{
 						int iPromotion = pXML->FindInInfoClass(szTextVal);
-						if( iPromotion > 0 && iPromotion < GC.getNumPromotionInfos() )
+						if( iPromotion > -1 && iPromotion < GC.getNumPromotionInfos() )
 							m_pbUnitPromotions[iPromotion] = true;
 						if (!pXML->GetNextXmlVal(szTextVal))
 						{
