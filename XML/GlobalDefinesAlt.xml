@@ -971,4 +971,14 @@
 		<DefineName>PUPPET_CULTURE_MULTIPLIER</DefineName> 
 		<iDefineIntVal>50</iDefineIntVal>
 	</Define>
+<!-- WILDERNESS 08/2013 lfgr -->
+	<Define>
+		<DefineName>WILDERNESS_MIN_MAX_INHABITED_WILDERNESS</DefineName>
+		<iDefineIntVal>25</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>WILDERNESS_MAX_MAX_INHABITED_WILDERNESS</DefineName>
+		<iDefineIntVal>75</iDefineIntVal>
+	</Define>
+<!-- WILDERNESS 08/2013 lfgr end -->
 </Civ4Defines>
