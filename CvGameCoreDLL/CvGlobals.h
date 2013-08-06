@@ -133,6 +133,13 @@ class CvEspionageMissionInfo;
 class CvUnitArtStyleTypeInfo;
 class CvVoteSourceInfo;
 class CvMainMenuInfo;
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+class CvSpawnInfo;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 
 class CvGlobals
@@ -304,6 +311,16 @@ public:
 	DllExport int getNumUnitFormationInfos();
 	std::vector<CvUnitFormationInfo*>& getUnitFormationInfo();
 	DllExport CvUnitFormationInfo& getUnitFormationInfo(int i);
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+	int getNumSpawnInfos();
+	std::vector<CvSpawnInfo*>& getSpawnInfo();
+	CvSpawnInfo& getSpawnInfo(SpawnTypes eSpawnNum);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	int getNumGameTextXML();
 	std::vector<CvGameText*>& getGameTextXML();
@@ -867,6 +884,15 @@ public:
 
 	DllExport bool readEventTriggerInfoArray(FDataStreamBase* pStream);
 	DllExport void writeEventTriggerInfoArray(FDataStreamBase* pStream);
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+	bool readSpawnInfoArray(FDataStreamBase* pStream);
+	void writeSpawnInfoArray(FDataStreamBase* pStream);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	//
 	// additional accessors for initting globals
@@ -1120,6 +1146,13 @@ protected:
 	std::vector<CvEventInfo*> m_paEventInfo;
 	std::vector<CvEspionageMissionInfo*> m_paEspionageMissionInfo;
     std::vector<CvUnitArtStyleTypeInfo*> m_paUnitArtStyleTypeInfo;
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+    std::vector<CvSpawnInfo*> m_paSpawnInfo;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// Game Text
 	std::vector<CvGameText*> m_paGameTextXML;

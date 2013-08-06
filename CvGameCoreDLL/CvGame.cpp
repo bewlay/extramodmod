@@ -7274,16 +7274,31 @@ void CvGame::createBarbarianUnits()
 	CvArea* pLoopArea;
 	CvPlot* pPlot;
 	UnitAITypes eBarbUnitAI;
-	UnitTypes eBestUnit;
-	UnitTypes eLoopUnit;
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Vars not needed                                                                              */
+/************************************************************************************************/
+//	UnitTypes eBestUnit;
+//	UnitTypes eLoopUnit;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	bool bAnimals;
 	long lResult;
 	int iNeededBarbs;
 	int iDivisor;
-	int iValue;
-	int iBestValue;
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Vars not needed                                                                              */
+/************************************************************************************************/
+//	int iValue;
+//	int iBestValue;
 	int iLoop;
-	int iI, iJ;
+//	int iI, iJ;
+	int iI;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (isOption(GAMEOPTION_NO_BARBARIANS))
 	{
@@ -7399,145 +7414,76 @@ void CvGame::createBarbarianUnits()
 
 						if (pPlot != NULL)
 						{
-							eBestUnit = NO_UNIT;
-							iBestValue = 0;
+						/************************************************************************************************/
+						/* WILDERNESS                             08/2013                                 lfgr          */
+						/* Original by Sephi                                                                            */
+						/* Use SpawnInfos instead of Unitclasses.                                                       */
+						/* (Left out old code)                                                                          */
+						/************************************************************************************************/
+							SpawnTypes eBestSpawn = NO_SPAWN;
+							int iBestValue = 0;
 
-							for (iJ = 0; iJ < GC.getNumUnitClassInfos(); iJ++)
+							for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
 							{
-								bool bValid = false;
-								eLoopUnit = ((UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(BARBARIAN_PLAYER).getCivilizationType()).getCivilizationUnits(iJ)));
+								CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
 
-								if (eLoopUnit != NO_UNIT)
+								bool bValid = true;
+
+								if( pLoopArea->isWater() != kLoopSpawn.isWater() )
+									bValid = false;
+
+								if( bValid )
 								{
-									CvUnitInfo& kUnit = GC.getUnitInfo(eLoopUnit);
-
-									bValid = (kUnit.getCombat() > 0 && !kUnit.isOnlyDefensive());
-
-//FfH: Added by Kael 08/14/2007
-                                    if (GC.getUnitClassInfo((UnitClassTypes)iJ).getMaxGlobalInstances() == 1)
-                                    {
-                                        bValid = false;
-                                    }
-//FfH: End Add
-								/************************************************************************************************/
-								/* WILDERNESS                             08/2013                                 lfgr          */
-								/* Cannot spawn units with prereq Religion                                                      */
-								/************************************************************************************************/
-									if( bValid )
+									for( int eTech = 0; eTech < GC.getNumTechInfos(); eTech++ )
 									{
-										if( kUnit.getPrereqReligion() != NO_RELIGION )
-											bValid = false;
-									}
-								/************************************************************************************************/
-								/* WILDERNESS                                                                     END           */
-								/************************************************************************************************/
-									
-									if (bValid)
-									{
-										if (pLoopArea->isWater() && kUnit.getDomainType() != DOMAIN_SEA)
+										if( kLoopSpawn.getPrereqTechs( (TechTypes) eTech ) && !GET_TEAM(BARBARIAN_TEAM).isHasTech( (TechTypes) eTech ) )
 										{
 											bValid = false;
+											break;
 										}
-										else if (!pLoopArea->isWater() && kUnit.getDomainType() != DOMAIN_LAND)
+										if( kLoopSpawn.getObsoleteTechs( (TechTypes) eTech ) && GET_TEAM(BARBARIAN_TEAM).isHasTech( (TechTypes) eTech ) )
 										{
 											bValid = false;
+											break;
 										}
 									}
+								}
 
-									if (bValid)
+								// LFGR_TODO: check limited units?
+								
+								if( bValid )
+								{
+									if(pPlot->getWilderness() >= kLoopSpawn.getMinWilderness() && 
+										pPlot->getWilderness() <= kLoopSpawn.getMaxWilderness())
 									{
-										if (!GET_PLAYER(BARBARIAN_PLAYER).canTrain(eLoopUnit))
-										{
-											bValid = false;
-										}
-									}
-
-									if (bValid)
-									{
-										if (NO_BONUS != kUnit.getPrereqAndBonus())
-										{
-											if (!GET_TEAM(BARBARIAN_TEAM).isHasTech((TechTypes)GC.getBonusInfo((BonusTypes)kUnit.getPrereqAndBonus()).getTechCityTrade()))
-											{
-												bValid = false;
-											}
-										}
-									}
-
-									if (bValid)
-									{
-										bool bFound = false;
-										bool bRequires = false;
-										for (int i = 0; i < GC.getNUM_UNIT_PREREQ_OR_BONUSES(); ++i)
-										{
-											if (NO_BONUS != kUnit.getPrereqOrBonuses(i))
-											{
-												TechTypes eTech = (TechTypes)GC.getBonusInfo((BonusTypes)kUnit.getPrereqOrBonuses(i)).getTechCityTrade();
-												if (NO_TECH != eTech)
-												{
-													bRequires = true;
-
-													if (GET_TEAM(BARBARIAN_TEAM).isHasTech(eTech))
-													{
-														bFound = true;
-														break;
-													}
-												}
-											}
-										}
-
-										if (bRequires && !bFound)
-										{
-											bValid = false;
-										}
-									}
-
-									if (bValid)
-									{
-									/************************************************************************************************/
-									/* WILDERNESS                             08/2013                                 lfgr          */
-									/* Original by Sephi                                                                            */
-									/************************************************************************************************/
-									/*
-										iValue = (1 + getSorenRandNum(1000, "Barb Unit Selection"));
-
-										if (kUnit.getUnitAIType(eBarbUnitAI))
-										{
-											iValue += 200;
-										}
+										int iValue = kLoopSpawn.getWeight() + getSorenRandNum(100, "Barb Unit Selection");
 
 										if (iValue > iBestValue)
 										{
-											eBestUnit = eLoopUnit;
+											eBestSpawn = (SpawnTypes) eLoopSpawn;
 											iBestValue = iValue;
 										}
-									*/
-										if(pPlot->getWilderness()>=GC.getUnitInfo(eLoopUnit).getMinWilderness() && 
-											pPlot->getWilderness()<=GC.getUnitInfo(eLoopUnit).getMaxWilderness())
-										{
-											iValue = (1 + getSorenRandNum(1000, "Barb Unit Selection"));
-
-											if (kUnit.getUnitAIType(eBarbUnitAI))
-											{
-												iValue += 200;
-											}
-
-											if (iValue > iBestValue)
-											{
-												eBestUnit = eLoopUnit;
-												iBestValue = iValue;
-											}
-										}
-									/************************************************************************************************/
-									/* WILDERNESS                                                                     END           */
-									/************************************************************************************************/
+									}
+								}
+							}	
+							if ( eBestSpawn != NO_SPAWN )
+							{
+								CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
+								logBBAI("SpawnInfo %s chosen!", kBestSpawn.getType() );
+								// init spawn units
+								for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
+								{
+									for( int j = 0; j < kBestSpawn.getNumSpawnUnits( (UnitTypes) eUnit ); j++ )
+									{
+										logBBAI("Spawning Barbarian Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eUnit).getDescription(), pPlot->getX(), pPlot->getY());
+										GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), eBarbUnitAI);
+										// LFGR_TODO: Set wilderness, don't let them roam freely!
 									}
 								}
 							}
-							if (eBestUnit != NO_UNIT)
-							{
-								logBBAI("Spawning Barbarian Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eBestUnit).getDescription(), pPlot->getX(), pPlot->getY());
-								GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), eBarbUnitAI);
-							}
+						/************************************************************************************************/
+						/* WILDERNESS                                                                     END           */
+						/************************************************************************************************/
 						}
 					}
 				}

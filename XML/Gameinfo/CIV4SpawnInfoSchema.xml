@@ -1,0 +1,46 @@
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Alex Mantzaris (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- -->
+<!-- Game Info Schema -->
+<Schema xmlns="urn:schemas-microsoft-com:xml-data" xmlns:dt="urn:schemas-microsoft-com:datatypes">
+	<ElementType name="Type" content="textOnly"/>
+	<ElementType name="iWeight" content="textOnly" dt:type="int"/>
+	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
+	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
+	<ElementType name="bWater" content="textOnly" dt:type="boolean"/>
+	
+	<ElementType name="Unit" content="textOnly"/>
+	<ElementType name="iNumUnits" content="textOnly" dt:type="int"/>
+	<ElementType name="SpawnUnit" content="eltOnly">
+		<element type="Unit"/>
+		<element type="iNumUnits"/>
+	</ElementType>
+	<ElementType name="SpawnUnits" content="eltOnly">
+		<element type="SpawnUnit" maxOccurs="*"/>
+	</ElementType>
+	
+	<ElementType name="Tech" content="textOnly"/>
+	<ElementType name="PrereqTechs" content="eltOnly">
+		<element type="Tech" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="ObsoleteTechs" content="eltOnly">
+		<element type="Tech" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="SpawnInfo" content="eltOnly">
+		<element type="Type"/>
+		<element type="iWeight"/>
+		<element type="iMinWilderness"/>
+		<element type="iMaxWilderness"/>
+		<element type="bWater" minOccurs="0"/>
+		<element type="SpawnUnits"/>
+		<element type="PrereqTechs" minOccurs="0"/>
+		<element type="ObsoleteTechs" minOccurs="0"/>
+	</ElementType>
+	<ElementType name="SpawnInfos" content="eltOnly">
+		<element type="SpawnInfo" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="Civ4SpawnInfos" content="eltOnly">
+		<element type="SpawnInfos"/>
+	</ElementType>
+</Schema>

@@ -27709,3 +27709,202 @@ bool CvMainMenuInfo::read(CvXMLLoadUtility* pXML)
 
 	return true;
 }
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+
+//======================================================================================================
+//					CvSpawnInfo
+//======================================================================================================
+
+CvSpawnInfo::CvSpawnInfo():
+	m_iWeight( 0 ),
+	m_iMinWilderness( 0 ),
+	m_iMaxWilderness( 0 ),
+	m_bWater( false ),
+	m_piNumSpawnUnits( NULL ),
+	m_pbPrereqTechs( NULL ),
+	m_pbObsoleteTechs( NULL )
+{
+}
+
+CvSpawnInfo::~CvSpawnInfo()
+{
+	SAFE_DELETE_ARRAY( m_piNumSpawnUnits );
+	SAFE_DELETE_ARRAY( m_pbPrereqTechs );
+	SAFE_DELETE_ARRAY( m_pbObsoleteTechs );
+
+}
+
+int CvSpawnInfo::getWeight() const
+{
+	return m_iWeight;
+}
+
+int CvSpawnInfo::getMinWilderness() const
+{
+	return m_iMinWilderness;
+}
+
+int CvSpawnInfo::getMaxWilderness() const
+{
+	return m_iMaxWilderness;
+}
+
+bool CvSpawnInfo::isWater() const
+{
+	return m_bWater;
+}
+
+int CvSpawnInfo::getNumSpawnUnits( int i ) const
+{
+	FAssertMsg( i < GC.getNumUnitInfos(), "Index out of bounds" );
+	FAssertMsg( i > -1, "Index out of bounds" );
+	return m_piNumSpawnUnits ? m_piNumSpawnUnits[i] : 0;
+}
+
+bool CvSpawnInfo::getPrereqTechs( int i ) const
+{
+	FAssertMsg( i < GC.getNumTechInfos(), "Index out of bounds" );
+	FAssertMsg( i > -1, "Index out of bounds" );
+	return m_pbPrereqTechs ? m_pbPrereqTechs[i] : false;
+}
+
+bool CvSpawnInfo::getObsoleteTechs( int i ) const
+{
+	FAssertMsg( i < GC.getNumTechInfos(), "Index out of bounds" );
+	FAssertMsg( i > -1, "Index out of bounds" );
+	return m_pbObsoleteTechs ? m_pbObsoleteTechs[i] : false;
+}
+
+void CvSpawnInfo::read(FDataStreamBase* stream)
+{
+	CvInfoBase::read(stream);
+
+	stream->Read(&m_iWeight);
+	stream->Read(&m_iMinWilderness);
+	stream->Read(&m_iMaxWilderness);
+	stream->Read(&m_bWater);
+
+	// Arrays
+	
+	SAFE_DELETE_ARRAY(m_piNumSpawnUnits);
+	m_piNumSpawnUnits = new int[GC.getNumUnitInfos()];
+	stream->Read(GC.getNumUnitInfos(), m_piNumSpawnUnits);
+	
+	SAFE_DELETE_ARRAY(m_pbPrereqTechs);
+	m_pbPrereqTechs = new bool[GC.getNumTechInfos()];
+	stream->Read(GC.getNumTechInfos(), m_pbPrereqTechs);
+	
+	SAFE_DELETE_ARRAY(m_pbObsoleteTechs);
+	m_pbObsoleteTechs = new bool[GC.getNumTechInfos()];
+	stream->Read(GC.getNumTechInfos(), m_pbObsoleteTechs);
+}
+
+void CvSpawnInfo::write(FDataStreamBase* stream)
+{
+	CvInfoBase::write(stream);
+
+	stream->Write(m_iWeight);
+	stream->Write(m_iMinWilderness);
+	stream->Write(m_iMaxWilderness);
+	stream->Write(m_bWater);
+
+	// Arrays
+
+	stream->Write(GC.getNumUnitInfos(), m_piNumSpawnUnits);
+	stream->Write(GC.getNumTechInfos(), m_pbPrereqTechs);
+	stream->Write(GC.getNumTechInfos(), m_pbObsoleteTechs);
+}
+
+bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
+{
+	char szClassVal[256];					// holds the text value of the relevant classinfo
+
+	CvString szTextVal;
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+
+	// set the current xml node to it's next sibling and then
+	pXML->GetChildXmlValByName(&m_iWeight, "iWeight");
+	pXML->GetChildXmlValByName(&m_iMinWilderness, "iMinWilderness");
+	pXML->GetChildXmlValByName(&m_iMaxWilderness, "iMaxWilderness");
+	pXML->GetChildXmlValByName(&m_bWater, "bWater");
+
+	pXML->SetVariableListTagPair( &m_piNumSpawnUnits, "SpawnUnits",sizeof( GC.getUnitInfo( (UnitTypes) 0 ) ), GC.getNumUnitInfos() );
+
+	m_pbPrereqTechs = new bool[GC.getNumTechInfos()];
+	m_pbObsoleteTechs = new bool[GC.getNumTechInfos()];
+	for (int i = 0; i < GC.getNumTechInfos(); ++i)
+	{
+		m_pbPrereqTechs[i] = false;
+		m_pbObsoleteTechs[i] = false;
+	}
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"PrereqTechs"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						int iTech = pXML->FindInInfoClass(szTextVal);
+						if( iTech > -1 && iTech < GC.getNumPromotionInfos() )
+							m_pbPrereqTechs[iTech] = true;
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"ObsoleteTechs"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						int iTech = pXML->FindInInfoClass(szTextVal);
+						if( iTech > -1 && iTech < GC.getNumPromotionInfos() )
+							m_pbObsoleteTechs[iTech] = true;
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	return true;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/

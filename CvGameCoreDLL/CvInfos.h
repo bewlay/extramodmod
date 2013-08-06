@@ -7557,3 +7557,57 @@ protected:
 	std::string m_szLoadingSlideshow;
 };
 #endif
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//  class : CvSpawnInfo
+//
+//  DESC: Controls barbarian unit spawning
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvSpawnInfo :
+	public CvInfoBase
+{
+	//---------------------------------------PUBLIC INTERFACE---------------------------------
+public:
+
+	CvSpawnInfo();
+	virtual ~CvSpawnInfo();
+	
+	int getWeight() const;
+	int getMinWilderness() const;
+	int getMaxWilderness() const;
+	
+	bool isWater() const;
+
+	int getNumSpawnUnits( int eUnit ) const;
+	
+	bool getPrereqTechs( int eTech ) const;
+	bool getObsoleteTechs( int eTech ) const;
+
+	bool read(CvXMLLoadUtility* pXML);
+	void read(FDataStreamBase* stream);
+	void write(FDataStreamBase* stream);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+
+protected:
+	
+	int m_iWeight;
+	int m_iMinWilderness;
+	int m_iMaxWilderness;
+	int m_bWater;
+
+	// Arrays
+
+	int* m_piNumSpawnUnits;
+
+	bool* m_pbPrereqTechs;
+	bool* m_pbObsoleteTechs;
+};
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/

@@ -2562,6 +2562,29 @@ CvUnitArtStyleTypeInfo& CvGlobals::getUnitArtStyleTypeInfo(UnitArtStyleTypes eUn
 	return *(m_paUnitArtStyleTypeInfo[eUnitArtStyleTypeNum]);
 }
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+int CvGlobals::getNumSpawnInfos()
+{
+    return (int)m_paSpawnInfo.size();
+}
+
+std::vector<CvSpawnInfo*>& CvGlobals::getSpawnInfo()
+{
+	return m_paSpawnInfo;
+}
+
+CvSpawnInfo& CvGlobals::getSpawnInfo(SpawnTypes eSpawnNum)
+{
+	FAssert(eSpawnNum > -1);
+	FAssert(eSpawnNum < GC.getNumSpawnInfos());
+	return *(m_paSpawnInfo[eSpawnNum]);
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 int& CvGlobals::getNumCitySizeTypes()
 {
 	return m_iNumCitySizeTypes;
@@ -3458,6 +3481,22 @@ void CvGlobals::writeEventTriggerInfoArray(FDataStreamBase* pStream)
 	writeInfoArray(pStream, m_paEventTriggerInfo);
 }
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+bool CvGlobals::readSpawnInfoArray(FDataStreamBase* pStream)
+{
+	return readInfoArray(pStream, m_paSpawnInfo, "CvSpawnInfo");
+}
+
+void CvGlobals::writeSpawnInfoArray(FDataStreamBase* pStream)
+{
+	writeInfoArray(pStream, m_paSpawnInfo);
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 
 //
 // Global Types Hash Map
@@ -3669,6 +3708,13 @@ void CvGlobals::deleteInfoArrays()
 	deleteInfoArray(m_paEntityEventInfo);
 	deleteInfoArray(m_paAnimationCategoryInfo);
 	deleteInfoArray(m_paAnimationPathInfo);
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+	deleteInfoArray(m_paSpawnInfo);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	clearTypesMap();
 	m_aInfoVectors.clear();
