@@ -506,6 +506,15 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 //>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	m_bAvatarOfCivLeader = false;
 //<<<<Unofficial Bug Fix: End Add
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Control min wilderness to enter                                                              */
+/************************************************************************************************/
+	m_iMinWilderness = 0;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (!bConstructorCall)
 	{
@@ -3648,19 +3657,20 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* Control min wilderness to enter                                                              */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
 	if(isBarbarian())
 	{
-		int iMinWilderness = pPlot->getWilderness() - 5;
+		int iMinWilderness = GC.getUnitInfo(getUnitType()).getMinWilderness() + GC.getDefineINT( "UNIT_MOVE_MIN_WILDERNESS_RANGE", 5 );
 
 		if( !isAnimal() )
-			iMinWilderness -= 5;
+			iMinWilderness += GC.getDefineINT( "UNIT_MOVE_MIN_WILDERNESS_RANGE_NO_ANIMAL_EXTRA", 5 );
 
 		if( GC.getGameINLINE().isOption( GAMEOPTION_RAGING_BARBARIANS ) )
-			iMinWilderness -= 10;
+			iMinWilderness += GC.getDefineINT( "UNIT_MOVE_MIN_WILDERNESS_RANGE_RAGING_BARBARIANS_EXTRA", 10 );
 
-		if( GC.getUnitInfo(getUnitType()).getMinWilderness() > iMinWilderness )
+		if( iMinWilderness > pPlot->getWilderness() )
 			return false;
 	}
 /************************************************************************************************/
@@ -19761,6 +19771,15 @@ void CvUnit::read(FDataStreamBase* pStream)
 	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	pStream->Read(&m_bAvatarOfCivLeader);
 	//<<<<Unofficial Bug Fix: End Add
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Control min wilderness to enter                                                              */
+/************************************************************************************************/
+	pStream->Read(&m_iMinWilderness);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	pStream->Read((int*)&m_eOwner);
 	pStream->Read((int*)&m_eCapturingPlayer);
@@ -19930,6 +19949,14 @@ void CvUnit::write(FDataStreamBase* pStream)
 	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	pStream->Write(m_bAvatarOfCivLeader);
 	//<<<<Unofficial Bug Fix: End Add
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Control min wilderness to enter                                                              */
+/************************************************************************************************/
+	pStream->Write(m_iMinWilderness);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	pStream->Write(m_eOwner);
 	pStream->Write(m_eCapturingPlayer);
@@ -20174,3 +20201,19 @@ bool CvUnit::isRangedCollateral()
 	}
 	return false;
 }
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Control min wilderness to enter                                                              */
+/************************************************************************************************/
+int CvUnit::getMinWilderness() const
+{
+	return m_iMinWilderness;
+}
+
+void CvUnit::setMinWilderness( int iNewValue )
+{
+	m_iMinWilderness = iNewValue;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/

@@ -7476,8 +7476,9 @@ void CvGame::createBarbarianUnits()
 									for( int j = 0; j < kBestSpawn.getNumSpawnUnits( (UnitTypes) eUnit ); j++ )
 									{
 										logBBAI("Spawning Barbarian Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eUnit).getDescription(), pPlot->getX(), pPlot->getY());
-										GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), eBarbUnitAI);
-										// LFGR_TODO: Set wilderness, don't let them roam freely!
+										
+										CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), eBarbUnitAI);
+										pUnit->setMinWilderness( kBestSpawn.getMinWilderness() );
 									}
 								}
 							}

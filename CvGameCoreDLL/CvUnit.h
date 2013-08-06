@@ -1020,6 +1020,15 @@ public:
 	bool isUpgradeOutsideBorders() const;
 	void changeUpgradeOutsideBorders(int iNewValue);
 	// End MNAI
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Control min wilderness to enter                                                              */
+/************************************************************************************************/
+	int getMinWilderness() const;
+	void setMinWilderness( int iNewValue );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	virtual int AI_promotionValue(PromotionTypes ePromotion) = 0;
 //FfH: End Add
@@ -1185,6 +1194,14 @@ protected:
 	int* m_paiExtraFeatureAttackPercent;
 	int* m_paiExtraFeatureDefensePercent;
 	int* m_paiExtraUnitCombatModifier;
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Control min wilderness to enter                                                              */
+/************************************************************************************************/
+	int m_iMinWilderness;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	bool canAdvance(const CvPlot* pPlot, int iThreshold) const;
 	void collateralCombat(const CvPlot* pPlot, CvUnit* pSkipUnit = NULL);

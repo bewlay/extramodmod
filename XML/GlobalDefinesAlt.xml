@@ -980,5 +980,17 @@
 		<DefineName>WILDERNESS_MAX_MAX_INHABITED_WILDERNESS</DefineName>
 		<iDefineIntVal>75</iDefineIntVal>
 	</Define>
-<!-- WILDERNESS 08/2013 lfgr end -->
+	<Define>
+		<DefineName>UNIT_MOVE_MIN_WILDERNESS_RANGE</DefineName>
+		<iDefineIntVal>5</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>UNIT_MOVE_MIN_WILDERNESS_RANGE_NO_ANIMAL_EXTRA</DefineName>
+		<iDefineIntVal>5</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>UNIT_MOVE_MIN_WILDERNESS_RANGE_RAGING_BARBARIANS_EXTRA</DefineName>
+		<iDefineIntVal>10</iDefineIntVal>
+	</Define>
+<!-- WILDERNESS end -->
 </Civ4Defines>
