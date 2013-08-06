@@ -5,7 +5,7 @@
 		<!-- Basic Water -->
         <SpawnInfo>
 			<Type>SPAWN_GALLEY</Type>
-			<iWeight>100</iWeight>
+			<iWeight>50</iWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bWater>1</bWater>
@@ -15,15 +15,177 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<ObsoleteTechs>
+				<Tech>TECH_OPTICS</Tech>
+				<Tech>TECH_ASTRONOMY</Tech>
+			</ObsoleteTechs>
         </SpawnInfo>
-		<!-- TODO -->
+        <SpawnInfo>
+			<Type>SPAWN_CARAVEL</Type>
+			<iWeight>50</iWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bWater>1</bWater>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_CARAVEL</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_OPTICS</Tech>
+			</PrereqTechs>
+        </SpawnInfo>
+        <SpawnInfo>
+			<Type>SPAWN_GALLEON</Type>
+			<iWeight>50</iWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bWater>1</bWater>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GALLEON</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_ASTRONOMY</Tech>
+			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_ENGINEERING</Tech>
+			</ObsoleteTechs>
+        </SpawnInfo>
+        <SpawnInfo>
+			<Type>SPAWN_QUEEN_OF_THE_LINE</Type>
+			<iWeight>50</iWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bWater>1</bWater>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_QUEEN_OF_THE_LINE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_ASTRONOMY</Tech>
+				<Tech>TECH_ENGINEERING</Tech>
+			</PrereqTechs>
+        </SpawnInfo>
+        <SpawnInfo>
+			<Type>SPAWN_TRIREME</Type>
+			<iWeight>100</iWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bWater>1</bWater>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_TRIREME</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_SAILING</Tech>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_OPTICS</Tech>
+			</ObsoleteTechs>
+        </SpawnInfo>
+        <SpawnInfo>
+			<Type>SPAWN_PRIVATEER</Type>
+			<iWeight>100</iWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bWater>1</bWater>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_PRIVATEER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_OPTICS</Tech>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</PrereqTechs>
+        </SpawnInfo>
+        <SpawnInfo>
+			<Type>SPAWN_FRIGATE</Type>
+			<iWeight>75</iWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bWater>1</bWater>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_FRIGATE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_OPTICS</Tech>
+				<Tech>TECH_IRON_WORKING</Tech>
+			</PrereqTechs>
+        </SpawnInfo>
+        <SpawnInfo>
+			<Type>SPAWN_MAN_O_WAR</Type>
+			<iWeight>75</iWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bWater>1</bWater>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_MAN_O_WAR</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_ASTRONOMY</Tech>
+				<Tech>TECH_BLASTING_POWDER</Tech>
+			</PrereqTechs>
+        </SpawnInfo>
+        <SpawnInfo>
+			<Type>SPAWN_ARCANE_BARGE</Type>
+			<iWeight>50</iWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bWater>1</bWater>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_ARCANE_BARGE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_ASTRONOMY</Tech>
+				<Tech>TECH_SORCERY</Tech>
+			</PrereqTechs>
+        </SpawnInfo>
+		
+		<!-- Early Water -->
+        <SpawnInfo>
+			<Type>SPAWN_PRIVATEER_EARLY</Type>
+			<iWeight>100</iWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bWater>1</bWater>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_PRIVATEER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_SAILING</Tech>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</PrereqTechs>
+        </SpawnInfo>
 		
 		<!-- Basic Melee -->
         <SpawnInfo>
 			<Type>SPAWN_WARRIOR</Type>
 			<iWeight>100</iWeight>
 			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>30</iMaxWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_WARRIOR</Unit>
@@ -38,7 +200,7 @@
 			<Type>SPAWN_AXEMAN</Type>
 			<iWeight>100</iWeight>
 			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>30</iMaxWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_AXEMAN</Unit>
@@ -56,7 +218,7 @@
 			<Type>SPAWN_OGRE</Type>
 			<iWeight>100</iWeight>
 			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>40</iMaxWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_OGRE</Unit>
@@ -70,7 +232,7 @@
         <SpawnInfo>
 			<Type>SPAWN_BERSERKER</Type>
 			<iWeight>25</iWeight><!-- National limit ignored -->
-			<iMinWilderness>20</iMinWilderness>
+			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -85,7 +247,7 @@
         <SpawnInfo>
 			<Type>SPAWN_OGRE_WARCHIEF</Type>
 			<iWeight>25</iWeight><!-- National limit ignored -->
-			<iMinWilderness>20</iMinWilderness>
+			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -100,7 +262,7 @@
         <SpawnInfo>
 			<Type>SPAWN_STONESKIN_OGRE</Type>
 			<iWeight>25</iWeight><!-- National limit ignored -->
-			<iMinWilderness>20</iMinWilderness>
+			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -117,7 +279,7 @@
         <SpawnInfo>
 			<Type>SPAWN_AXEMAN_EARLY</Type>
 			<iWeight>50</iWeight>
-			<iMinWilderness>50</iMinWilderness>
+			<iMinWilderness>60</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -132,7 +294,7 @@
         <SpawnInfo>
 			<Type>SPAWN_OGRE_EARLY</Type>
 			<iWeight>50</iWeight>
-			<iMinWilderness>50</iMinWilderness>
+			<iMinWilderness>60</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -147,7 +309,7 @@
         <SpawnInfo>
 			<Type>SPAWN_OGRE_WARCHIEF_EARLY</Type>
 			<iWeight>25</iWeight><!-- National limit ignored -->
-			<iMinWilderness>50</iMinWilderness>
+			<iMinWilderness>75</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -165,19 +327,22 @@
 			<Type>SPAWN_GOBLIN</Type>
 			<iWeight>100</iWeight>
 			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>30</iMaxWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_GOBLIN</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<ObsoleteTechs>
+				<Tech>TECH_HUNTING</Tech>
+			</ObsoleteTechs>
         </SpawnInfo>
         <SpawnInfo>
 			<Type>SPAWN_GOBLIN_SCORPION_CLAN</Type>
 			<iWeight>100</iWeight>
-			<iMinWilderness>10</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<iMinWilderness>20</iMinWilderness>
+			<iMaxWilderness>60</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_GOBLIN_SCORPION_CLAN</Unit>
@@ -189,7 +354,7 @@
 			<Type>SPAWN_LIZARDMAN</Type>
 			<iWeight>100</iWeight>
 			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>30</iMaxWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_LIZARDMAN</Unit>
@@ -204,7 +369,7 @@
 			<Type>SPAWN_LIZARDMAN_RANGER</Type>
 			<iWeight>100</iWeight>
 			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>30</iMaxWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_LIZARDMAN_RANGER</Unit>
@@ -219,7 +384,7 @@
 			<Type>SPAWN_LIZARDMAN_ASSASSIN</Type>
 			<iWeight>100</iWeight>
 			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>30</iMaxWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_LIZARDMAN_ASSASSIN</Unit>
@@ -233,8 +398,8 @@
         <SpawnInfo>
 			<Type>SPAWN_LIZARDMAN_BEASTMASTER</Type>
 			<iWeight>25</iWeight><!-- National limit ignored -->
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_LIZARDMAN_BEASTMASTER</Unit>
@@ -290,6 +455,9 @@
 			<PrereqTechs>
 				<Tech>TECH_ARCHERY</Tech>
 			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_BOWYERS</Tech>
+			</ObsoleteTechs>
         </SpawnInfo>
         <SpawnInfo>
 			<Type>SPAWN_LONGBOWMAN</Type>
@@ -303,9 +471,72 @@
 				</SpawnUnit>
 			</SpawnUnits>
 			<PrereqTechs>
-				<Tech>TECH_ARCHERY</Tech>
+				<Tech>TECH_BOWYERS</Tech>
 			</PrereqTechs>
         </SpawnInfo>
         <!-- Crossbowmen are only built in city -->
+        <SpawnInfo>
+			<Type>SPAWN_MARKSMAN</Type>
+			<iWeight>20</iWeight><!-- National limit ignored -->
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LONGBOWMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_PRECISION</Tech>
+			</PrereqTechs>
+        </SpawnInfo>
+		
+		<!-- Mounted -->
+        <SpawnInfo>
+			<Type>SPAWN_WOLF_RIDER</Type>
+			<iWeight>100</iWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WOLF_RIDER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_HORSEBACK_RIDING</Tech>
+			</PrereqTechs>
+        </SpawnInfo>
+        <SpawnInfo>
+			<Type>SPAWN_WOLF_RIDER_SCORPION_CLAN</Type>
+			<iWeight>100</iWeight>
+			<iMinWilderness>20</iMinWilderness>
+			<iMaxWilderness>60</iMaxWilderness>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WOLF_RIDER_SCORPION_CLAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_HORSEBACK_RIDING</Tech>
+			</PrereqTechs>
+        </SpawnInfo>
+        <SpawnInfo>
+			<Type>SPAWN_CHARIOT</Type>
+			<iWeight>100</iWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_CHARIOT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_TRADE</Tech>
+				<Tech>TECH_CONSTRUCTION</Tech>
+			</PrereqTechs>
+        </SpawnInfo>
     </SpawnInfos>
 </Civ4SpawnInfos>
