@@ -7581,9 +7581,12 @@ public:
 	int getMinWilderness() const;
 	int getMaxWilderness() const;
 	
+	bool isAnimal() const;
 	bool isWater() const;
-
+	
 	int getNumSpawnUnits( int eUnit ) const;
+	int getTerrainWeights( int eTerrain ) const;
+	int getFeatureWeights( int eFeature ) const;
 	
 	bool getPrereqTechs( int eTech ) const;
 	bool getObsoleteTechs( int eTech ) const;
@@ -7599,11 +7602,14 @@ protected:
 	int m_iWeight;
 	int m_iMinWilderness;
 	int m_iMaxWilderness;
+	int m_bAnimal;
 	int m_bWater;
 
 	// Arrays
-
+	
 	int* m_piNumSpawnUnits;
+	int* m_piTerrainWeights;
+	int* m_piFeatureWeights;
 
 	bool* m_pbPrereqTechs;
 	bool* m_pbObsoleteTechs;

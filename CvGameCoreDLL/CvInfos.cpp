@@ -27722,8 +27722,11 @@ CvSpawnInfo::CvSpawnInfo():
 	m_iWeight( 0 ),
 	m_iMinWilderness( 0 ),
 	m_iMaxWilderness( 0 ),
+	m_bAnimal( false ),
 	m_bWater( false ),
 	m_piNumSpawnUnits( NULL ),
+	m_piTerrainWeights( NULL ),
+	m_piFeatureWeights( NULL ),
 	m_pbPrereqTechs( NULL ),
 	m_pbObsoleteTechs( NULL )
 {
@@ -27732,9 +27735,10 @@ CvSpawnInfo::CvSpawnInfo():
 CvSpawnInfo::~CvSpawnInfo()
 {
 	SAFE_DELETE_ARRAY( m_piNumSpawnUnits );
+	SAFE_DELETE_ARRAY( m_piTerrainWeights );
+	SAFE_DELETE_ARRAY( m_piFeatureWeights );
 	SAFE_DELETE_ARRAY( m_pbPrereqTechs );
 	SAFE_DELETE_ARRAY( m_pbObsoleteTechs );
-
 }
 
 int CvSpawnInfo::getWeight() const
@@ -27752,6 +27756,11 @@ int CvSpawnInfo::getMaxWilderness() const
 	return m_iMaxWilderness;
 }
 
+bool CvSpawnInfo::isAnimal() const
+{
+	return m_bAnimal;
+}
+
 bool CvSpawnInfo::isWater() const
 {
 	return m_bWater;
@@ -27762,6 +27771,20 @@ int CvSpawnInfo::getNumSpawnUnits( int i ) const
 	FAssertMsg( i < GC.getNumUnitInfos(), "Index out of bounds" );
 	FAssertMsg( i > -1, "Index out of bounds" );
 	return m_piNumSpawnUnits ? m_piNumSpawnUnits[i] : 0;
+}
+
+int CvSpawnInfo::getTerrainWeights( int i ) const
+{
+	FAssertMsg( i < GC.getNumTerrainInfos(), "Index out of bounds" );
+	FAssertMsg( i > -1, "Index out of bounds" );
+	return m_piTerrainWeights ? m_piTerrainWeights[i] : 0;
+}
+
+int CvSpawnInfo::getFeatureWeights( int i ) const
+{
+	FAssertMsg( i < GC.getNumFeatureInfos(), "Index out of bounds" );
+	FAssertMsg( i > -1, "Index out of bounds" );
+	return m_piFeatureWeights ? m_piFeatureWeights[i] : 0;
 }
 
 bool CvSpawnInfo::getPrereqTechs( int i ) const
@@ -27785,6 +27808,7 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iWeight);
 	stream->Read(&m_iMinWilderness);
 	stream->Read(&m_iMaxWilderness);
+	stream->Read(&m_bAnimal);
 	stream->Read(&m_bWater);
 
 	// Arrays
@@ -27792,6 +27816,14 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_piNumSpawnUnits);
 	m_piNumSpawnUnits = new int[GC.getNumUnitInfos()];
 	stream->Read(GC.getNumUnitInfos(), m_piNumSpawnUnits);
+	
+	SAFE_DELETE_ARRAY(m_piTerrainWeights);
+	m_piTerrainWeights = new int[GC.getNumTerrainInfos()];
+	stream->Read(GC.getNumTerrainInfos(), m_piTerrainWeights);
+	
+	SAFE_DELETE_ARRAY(m_piFeatureWeights);
+	m_piFeatureWeights = new int[GC.getNumFeatureInfos()];
+	stream->Read(GC.getNumFeatureInfos(), m_piFeatureWeights);
 	
 	SAFE_DELETE_ARRAY(m_pbPrereqTechs);
 	m_pbPrereqTechs = new bool[GC.getNumTechInfos()];
@@ -27809,11 +27841,14 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iWeight);
 	stream->Write(m_iMinWilderness);
 	stream->Write(m_iMaxWilderness);
+	stream->Write(m_bAnimal);
 	stream->Write(m_bWater);
 
 	// Arrays
-
+	
 	stream->Write(GC.getNumUnitInfos(), m_piNumSpawnUnits);
+	stream->Write(GC.getNumTerrainInfos(), m_piTerrainWeights);
+	stream->Write(GC.getNumFeatureInfos(), m_piFeatureWeights);
 	stream->Write(GC.getNumTechInfos(), m_pbPrereqTechs);
 	stream->Write(GC.getNumTechInfos(), m_pbObsoleteTechs);
 }
@@ -27829,12 +27864,15 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	}
 
 	// set the current xml node to it's next sibling and then
-	pXML->GetChildXmlValByName(&m_iWeight, "iWeight");
+	pXML->GetChildXmlValByName(&m_iWeight, "iBaseWeight");
 	pXML->GetChildXmlValByName(&m_iMinWilderness, "iMinWilderness");
 	pXML->GetChildXmlValByName(&m_iMaxWilderness, "iMaxWilderness");
+	pXML->GetChildXmlValByName(&m_bWater, "bAnimal");
 	pXML->GetChildXmlValByName(&m_bWater, "bWater");
-
-	pXML->SetVariableListTagPair( &m_piNumSpawnUnits, "SpawnUnits",sizeof( GC.getUnitInfo( (UnitTypes) 0 ) ), GC.getNumUnitInfos() );
+	
+	pXML->SetVariableListTagPair( &m_piNumSpawnUnits, "SpawnUnits", sizeof( GC.getUnitInfo( (UnitTypes) 0 ) ), GC.getNumUnitInfos() );
+	pXML->SetVariableListTagPair( &m_piTerrainWeights, "TerrainWeights", sizeof( GC.getTerrainInfo( (TerrainTypes) 0 ) ), GC.getNumTerrainInfos() );
+	pXML->SetVariableListTagPair( &m_piFeatureWeights, "FeatureWeights", sizeof( GC.getFeatureInfo( (FeatureTypes) 0 ) ), GC.getNumFeatureInfos() );
 
 	m_pbPrereqTechs = new bool[GC.getNumTechInfos()];
 	m_pbObsoleteTechs = new bool[GC.getNumTechInfos()];

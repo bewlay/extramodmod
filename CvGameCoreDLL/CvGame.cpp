@@ -7420,68 +7420,7 @@ void CvGame::createBarbarianUnits()
 						/* Use SpawnInfos instead of Unitclasses.                                                       */
 						/* (Left out old code)                                                                          */
 						/************************************************************************************************/
-							SpawnTypes eBestSpawn = NO_SPAWN;
-							int iBestValue = 0;
-
-							for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
-							{
-								CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
-
-								bool bValid = true;
-
-								if( pLoopArea->isWater() != kLoopSpawn.isWater() )
-									bValid = false;
-
-								if( bValid )
-								{
-									for( int eTech = 0; eTech < GC.getNumTechInfos(); eTech++ )
-									{
-										if( kLoopSpawn.getPrereqTechs( (TechTypes) eTech ) && !GET_TEAM(BARBARIAN_TEAM).isHasTech( (TechTypes) eTech ) )
-										{
-											bValid = false;
-											break;
-										}
-										if( kLoopSpawn.getObsoleteTechs( (TechTypes) eTech ) && GET_TEAM(BARBARIAN_TEAM).isHasTech( (TechTypes) eTech ) )
-										{
-											bValid = false;
-											break;
-										}
-									}
-								}
-
-								// LFGR_TODO: check limited units?
-								
-								if( bValid )
-								{
-									if(pPlot->getWilderness() >= kLoopSpawn.getMinWilderness() && 
-										pPlot->getWilderness() <= kLoopSpawn.getMaxWilderness())
-									{
-										int iValue = kLoopSpawn.getWeight() + getSorenRandNum(100, "Barb Unit Selection");
-
-										if (iValue > iBestValue)
-										{
-											eBestSpawn = (SpawnTypes) eLoopSpawn;
-											iBestValue = iValue;
-										}
-									}
-								}
-							}	
-							if ( eBestSpawn != NO_SPAWN )
-							{
-								CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
-								logBBAI("SpawnInfo %s chosen!", kBestSpawn.getType() );
-								// init spawn units
-								for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
-								{
-									for( int j = 0; j < kBestSpawn.getNumSpawnUnits( (UnitTypes) eUnit ); j++ )
-									{
-										logBBAI("Spawning Barbarian Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eUnit).getDescription(), pPlot->getX(), pPlot->getY());
-										
-										CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), eBarbUnitAI);
-										pUnit->setMinWilderness( kBestSpawn.getMinWilderness() );
-									}
-								}
-							}
+							createSpawn( pPlot, false );
 						/************************************************************************************************/
 						/* WILDERNESS                                                                     END           */
 						/************************************************************************************************/
@@ -7505,18 +7444,25 @@ void CvGame::createBarbarianUnits()
 	}
 }
 
-
 void CvGame::createAnimals()
 {
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Some Variables unused                                                                        */
+/************************************************************************************************/
 	CvArea* pLoopArea;
 	CvPlot* pPlot;
-	UnitTypes eBestUnit;
-	UnitTypes eLoopUnit;
+//	UnitTypes eBestUnit;
+//	UnitTypes eLoopUnit;
 	int iNeededAnimals;
-	int iValue;
-	int iBestValue;
+//	int iValue;
+//	int iBestValue;
 	int iLoop;
-	int iI, iJ;
+//	int iI, iJ;
+	int iI;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (GC.getEraInfo(getCurrentEra()).isNoAnimals())
 	{
@@ -7639,54 +7585,16 @@ void CvGame::createAnimals()
                 pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_VISIBLE_TO_CIV | RANDPLOT_PASSIBLE), pLoopArea->getID(), GC.getDefineINT("MIN_ANIMAL_STARTING_DISTANCE"));
 				if (pPlot != NULL)
 				{
-					eBestUnit = NO_UNIT;
-					iBestValue = 0;
-					for (iJ = 0; iJ < GC.getNumUnitClassInfos(); iJ++)
-					{
-						eLoopUnit = ((UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(BARBARIAN_PLAYER).getCivilizationType()).getCivilizationUnits(iJ)));
-						if (eLoopUnit != NO_UNIT)
-						{
-							if (GC.getUnitInfo(eLoopUnit).getUnitAIType(UNITAI_ANIMAL))
-							{
-								if ((pPlot->getFeatureType() != NO_FEATURE) ? GC.getUnitInfo(eLoopUnit).getFeatureNative(pPlot->getFeatureType()) : GC.getUnitInfo(eLoopUnit).getTerrainNative(pPlot->getTerrainType()))
-								{
-								/************************************************************************************************/
-								/* WILDERNESS                             08/2013                                 lfgr          */
-								/* Original by Sephi                                                                            */
-								/************************************************************************************************/
-								/*
-									iValue = (1 + getSorenRandNum(1000, "Animal Unit Selection"));
-									if (iValue > iBestValue)
-									{
-										eBestUnit = eLoopUnit;
-										iBestValue = iValue;
-									}
-								*/
-									if(pPlot->getWilderness()>=GC.getUnitInfo(eLoopUnit).getMinWilderness() && 
-										pPlot->getWilderness()<=GC.getUnitInfo(eLoopUnit).getMaxWilderness())
-									{
-										iValue = (1 + getSorenRandNum(1000, "Animal Unit Selection"));
-										if (iValue > iBestValue)
-										{
-											eBestUnit = eLoopUnit;
-											iBestValue = iValue;
-										}
-									}
-								/************************************************************************************************/
-								/* WILDERNESS                                                                     END           */
-								/************************************************************************************************/
-								}
-							}
-						}
-					}
-					if (eBestUnit != NO_UNIT)
-					{
-						logBBAI("Spawning Animal Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eBestUnit).getDescription(), pPlot->getX(), pPlot->getY());
-
-                        CvUnit* pUnit;
-                        pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), UNITAI_ANIMAL);
-                        pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
-                    }
+				/************************************************************************************************/
+				/* WILDERNESS                             08/2013                                 lfgr          */
+				/* Original by Sephi                                                                            */
+				/* Use SpawnInfos instead of Unitclasses.                                                       */
+				/* (Left out old code)                                                                          */
+				/************************************************************************************************/
+					createSpawn( pPlot, true );
+				/************************************************************************************************/
+				/* WILDERNESS                                                                     END           */
+				/************************************************************************************************/
                 }
             }
         }
@@ -7694,6 +7602,101 @@ void CvGame::createAnimals()
 
 	}
 }
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Original by Sephi                                                                            */
+/* Use SpawnInfos instead of Unitclasses.                                                       */
+/************************************************************************************************/
+void CvGame::createSpawn( CvPlot* pPlot, bool bAnimal )
+{
+	SpawnTypes eBestSpawn = NO_SPAWN;
+	int iBestValue = 0;
+
+	for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+	{
+		CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
+
+		bool bValid = true;
+		
+		if( bAnimal != kLoopSpawn.isAnimal() )
+			bValid = false;
+
+		if( pPlot->area()->isWater() != kLoopSpawn.isWater() )
+			bValid = false;
+
+		if( bValid )
+		{
+			for( int eTech = 0; eTech < GC.getNumTechInfos(); eTech++ )
+			{
+				if( kLoopSpawn.getPrereqTechs( (TechTypes) eTech ) && !GET_TEAM(BARBARIAN_TEAM).isHasTech( (TechTypes) eTech ) )
+				{
+					bValid = false;
+					break;
+				}
+				if( kLoopSpawn.getObsoleteTechs( (TechTypes) eTech ) && GET_TEAM(BARBARIAN_TEAM).isHasTech( (TechTypes) eTech ) )
+				{
+					bValid = false;
+					break;
+				}
+			}
+		}
+
+		// LFGR_TODO: check limited units?
+		
+		if( bValid )
+		{
+			if(pPlot->getWilderness() < kLoopSpawn.getMinWilderness() ||
+				pPlot->getWilderness() > kLoopSpawn.getMaxWilderness())
+			{
+				bValid = false;
+			}
+		}
+
+		if( bValid )
+		{
+			int iValue = kLoopSpawn.getWeight();
+			
+			iValue += kLoopSpawn.getTerrainWeights( pPlot->getTerrainType() );
+			iValue += kLoopSpawn.getFeatureWeights( pPlot->getFeatureType() );
+
+			if( iValue > 0 )
+			{
+				iValue += getSorenRandNum(100, "Barb Unit Selection");
+
+				if (iValue > iBestValue)
+				{
+					eBestSpawn = (SpawnTypes) eLoopSpawn;
+					iBestValue = iValue;
+				}
+			}
+		}
+	}	
+	if ( eBestSpawn != NO_SPAWN )
+	{
+		CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
+		logBBAI("SpawnInfo %s chosen!", kBestSpawn.getType() );
+		// init spawn units
+		for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
+		{
+			for( int j = 0; j < kBestSpawn.getNumSpawnUnits( (UnitTypes) eUnit ); j++ )
+			{
+				logBBAI("Spawning Barbarian Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eUnit).getDescription(), pPlot->getX(), pPlot->getY());
+				
+				UnitAITypes eUnitAI = bAnimal ? UNITAI_ANIMAL : ( pPlot->area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
+				CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), eUnitAI );
+				pUnit->setMinWilderness( kBestSpawn.getMinWilderness() );
+			}
+		}
+	}
+	else
+	{
+		logBBAI("NO SpawnInfo chosen!!!" );
+	}
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 
 void CvGame::updateWar()

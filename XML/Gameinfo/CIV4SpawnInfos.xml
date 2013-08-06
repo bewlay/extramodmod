@@ -1,11 +1,384 @@
 <?xml version="1.0"?>
 <Civ4SpawnInfos xmlns="x-schema:CIV4SpawnInfoSchema.xml">
     <SpawnInfos>
-		<!-- NORMAL SPAWNS -->
+		<!-- ANIMAL SPAWNS -->
+		
+		<!-- Land -->
+        <SpawnInfo> <!-- SPAWN_BEAR -->
+			<Type>SPAWN_BEAR</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>20</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_BEAR</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <FeatureWeights>
+                <FeatureWeight>
+                    <FeatureType>FEATURE_FOREST</FeatureType>
+                    <iWeight>100</iWeight>
+                </FeatureWeight>
+                <FeatureWeight>
+                    <FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+                    <iWeight>50</iWeight>
+                </FeatureWeight>
+            </FeatureWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_POLAR_BEAR -->
+			<Type>SPAWN_POLAR_BEAR</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>20</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_POLAR_BEAR</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <TerrainWeights>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_SNOW</TerrainType>
+                    <iWeight>100</iWeight>
+                </TerrainWeight>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_TUNDRA</TerrainType>
+                    <iWeight>50</iWeight>
+                </TerrainWeight>
+            </TerrainWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_ELEPHANT -->
+			<Type>SPAWN_ELEPHANT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>10</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_ELEPHANT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <TerrainWeights>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_GRASS</TerrainType>
+                    <iWeight>100</iWeight>
+                </TerrainWeight>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_PLAINS</TerrainType>
+                    <iWeight>100</iWeight>
+                </TerrainWeight>
+            </TerrainWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_GIANT_SPIDER -->
+			<Type>SPAWN_GIANT_SPIDER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>30</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GIANT_SPIDER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <FeatureWeights>
+                <FeatureWeight>
+                    <FeatureType>FEATURE_JUNGLE</FeatureType>
+                    <iWeight>100</iWeight>
+                </FeatureWeight>
+                <FeatureWeight>
+                    <FeatureType>FEATURE_FOREST</FeatureType>
+                    <iWeight>100</iWeight>
+                </FeatureWeight>
+                <FeatureWeight>
+                    <FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+                    <iWeight>100</iWeight>
+                </FeatureWeight>
+            </FeatureWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_GRIFFON -->
+			<Type>SPAWN_GRIFFON</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>30</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GRIFFON</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <TerrainWeights>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_GRASS</TerrainType>
+                    <iWeight>100</iWeight>
+                </TerrainWeight>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_PLAINS</TerrainType>
+                    <iWeight>100</iWeight>
+                </TerrainWeight>
+            </TerrainWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_HILL_GIANT -->
+			<Type>SPAWN_HILL_GIANT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HILL_GIANT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <TerrainWeights>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_DESERT</TerrainType>
+                    <iWeight>100</iWeight>
+                </TerrainWeight>
+            </TerrainWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_GORILLA -->
+			<Type>SPAWN_GORILLA</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>20</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GORILLA</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <FeatureWeights>
+                <FeatureWeight>
+                    <FeatureType>FEATURE_JUNGLE</FeatureType>
+                    <iWeight>100</iWeight>
+                </FeatureWeight>
+            </FeatureWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_LION -->
+			<Type>SPAWN_LION</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>30</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LION</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <TerrainWeights>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_GRASS</TerrainType>
+                    <iWeight>100</iWeight>
+                </TerrainWeight>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_PLAINS</TerrainType>
+                    <iWeight>100</iWeight>
+                </TerrainWeight>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_DESERT</TerrainType>
+                    <iWeight>50</iWeight>
+                </TerrainWeight>
+            </TerrainWeights>
+            <FeatureWeights>
+                <FeatureWeight>
+                    <FeatureType>FEATURE_JUNGLE</FeatureType>
+                    <iWeight>-100</iWeight>
+                </FeatureWeight>
+            </FeatureWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_LION_PRIDE -->
+			<Type>SPAWN_LION_PRIDE</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>20</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LION_PRIDE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <TerrainWeights>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_GRASS</TerrainType>
+                    <iWeight>100</iWeight>
+                </TerrainWeight>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_PLAINS</TerrainType>
+                    <iWeight>100</iWeight>
+                </TerrainWeight>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_DESERT</TerrainType>
+                    <iWeight>50</iWeight>
+                </TerrainWeight>
+            </TerrainWeights>
+            <FeatureWeights>
+                <FeatureWeight>
+                    <FeatureType>FEATURE_JUNGLE</FeatureType>
+                    <iWeight>-100</iWeight>
+                </FeatureWeight>
+            </FeatureWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_PANTHER -->
+			<Type>SPAWN_PANTHER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>30</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_PANTHER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <FeatureWeights>
+                <FeatureWeight>
+                    <FeatureType>FEATURE_JUNGLE</FeatureType>
+                    <iWeight>75</iWeight>
+                </FeatureWeight>
+            </FeatureWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_SCORPION -->
+			<Type>SPAWN_SCORPION</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>25</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SCORPION</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <TerrainWeights>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_DESERT</TerrainType>
+                    <iWeight>100</iWeight>
+                </TerrainWeight>
+            </TerrainWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_TIGER -->
+			<Type>SPAWN_TIGER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>20</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_PANTHER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <FeatureWeights>
+                <FeatureWeight>
+                    <FeatureType>FEATURE_JUNGLE</FeatureType>
+                    <iWeight>75</iWeight>
+                </FeatureWeight>
+            </FeatureWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_WOLF -->
+			<Type>SPAWN_WOLF</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>30</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WOLF</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <TerrainWeights>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_SNOW</TerrainType>
+                    <iWeight>50</iWeight>
+                </TerrainWeight>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_TUNDRA</TerrainType>
+                    <iWeight>75</iWeight>
+                </TerrainWeight>
+            </TerrainWeights>
+            <FeatureWeights>
+                <FeatureWeight>
+                    <FeatureType>FEATURE_FOREST</FeatureType>
+                    <iWeight>75</iWeight>
+                </FeatureWeight>
+            </FeatureWeights>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_WOLF_PACK -->
+			<Type>SPAWN_WOLF_PACK</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>20</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WOLF_PACK</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+            <TerrainWeights>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_SNOW</TerrainType>
+                    <iWeight>50</iWeight>
+                </TerrainWeight>
+                <TerrainWeight>
+                    <TerrainType>TERRAIN_TUNDRA</TerrainType>
+                    <iWeight>50</iWeight>
+                </TerrainWeight>
+            </TerrainWeights>
+            <FeatureWeights>
+                <FeatureWeight>
+                    <FeatureType>FEATURE_FOREST</FeatureType>
+                    <iWeight>50</iWeight>
+                </FeatureWeight>
+            </FeatureWeights>
+        </SpawnInfo>
+		
+		<!-- Water -->
+        <SpawnInfo> <!-- SPAWN_GIANT_TORTOISE -->
+			<Type>SPAWN_GIANT_TORTOISE</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<bWater>1</bWater>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GIANT_TORTOISE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+        </SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_SEA_SERPENT -->
+			<Type>SPAWN_SEA_SERPENT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<bWater>1</bWater>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SEA_SERPENT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+        </SpawnInfo>
+		
+		<!-- BARB SPAWNS -->
+		
 		<!-- Basic Water -->
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_GALLEY -->
 			<Type>SPAWN_GALLEY</Type>
-			<iWeight>50</iWeight>
+			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bWater>1</bWater>
@@ -20,9 +393,9 @@
 				<Tech>TECH_ASTRONOMY</Tech>
 			</ObsoleteTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_CARAVEL -->
 			<Type>SPAWN_CARAVEL</Type>
-			<iWeight>50</iWeight>
+			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bWater>1</bWater>
@@ -36,9 +409,9 @@
 				<Tech>TECH_OPTICS</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_GALLEON -->
 			<Type>SPAWN_GALLEON</Type>
-			<iWeight>50</iWeight>
+			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bWater>1</bWater>
@@ -55,9 +428,9 @@
 				<Tech>TECH_ENGINEERING</Tech>
 			</ObsoleteTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_QUEEN_OF_THE_LINE -->
 			<Type>SPAWN_QUEEN_OF_THE_LINE</Type>
-			<iWeight>50</iWeight>
+			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bWater>1</bWater>
@@ -72,9 +445,9 @@
 				<Tech>TECH_ENGINEERING</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_TRIREME -->
 			<Type>SPAWN_TRIREME</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bWater>1</bWater>
@@ -92,9 +465,9 @@
 				<Tech>TECH_OPTICS</Tech>
 			</ObsoleteTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_PRIVATEER -->
 			<Type>SPAWN_PRIVATEER</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bWater>1</bWater>
@@ -109,9 +482,9 @@
 				<Tech>TECH_BRONZE_WORKING</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_FRIGATE -->
 			<Type>SPAWN_FRIGATE</Type>
-			<iWeight>75</iWeight>
+			<iBaseWeight>75</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bWater>1</bWater>
@@ -126,9 +499,9 @@
 				<Tech>TECH_IRON_WORKING</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_MAN_O_WAR -->
 			<Type>SPAWN_MAN_O_WAR</Type>
-			<iWeight>75</iWeight>
+			<iBaseWeight>75</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bWater>1</bWater>
@@ -143,9 +516,9 @@
 				<Tech>TECH_BLASTING_POWDER</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_ARCANE_BARGE -->
 			<Type>SPAWN_ARCANE_BARGE</Type>
-			<iWeight>50</iWeight>
+			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bWater>1</bWater>
@@ -162,9 +535,9 @@
         </SpawnInfo>
 		
 		<!-- Early Water -->
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_PRIVATEER_EARLY -->
 			<Type>SPAWN_PRIVATEER_EARLY</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bWater>1</bWater>
@@ -181,9 +554,9 @@
         </SpawnInfo>
 		
 		<!-- Basic Melee -->
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_WARRIOR -->
 			<Type>SPAWN_WARRIOR</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>50</iMaxWilderness>
 			<SpawnUnits>
@@ -196,9 +569,9 @@
 				<Tech>TECH_BRONZE_WORKING</Tech>
 			</ObsoleteTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_AXEMAN -->
 			<Type>SPAWN_AXEMAN</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>50</iMaxWilderness>
 			<SpawnUnits>
@@ -214,9 +587,9 @@
 				<Tech>TECH_IRON_WORKING</Tech>
 			</ObsoleteTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_OGRE -->
 			<Type>SPAWN_OGRE</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>75</iMaxWilderness>
 			<SpawnUnits>
@@ -229,9 +602,9 @@
 				<Tech>TECH_IRON_WORKING</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_BERSERKER -->
 			<Type>SPAWN_BERSERKER</Type>
-			<iWeight>25</iWeight><!-- National limit ignored -->
+			<iBaseWeight>25</iBaseWeight><!-- National limit ignored -->
 			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
@@ -244,9 +617,9 @@
 				<Tech>TECH_RAGE</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_OGRE_WARCHIEF -->
 			<Type>SPAWN_OGRE_WARCHIEF</Type>
-			<iWeight>25</iWeight><!-- National limit ignored -->
+			<iBaseWeight>25</iBaseWeight><!-- National limit ignored -->
 			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
@@ -259,9 +632,9 @@
 				<Tech>TECH_DIVINE_ESSENCE</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_STONESKIN_OGRE -->
 			<Type>SPAWN_STONESKIN_OGRE</Type>
-			<iWeight>25</iWeight><!-- National limit ignored -->
+			<iBaseWeight>25</iBaseWeight><!-- National limit ignored -->
 			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
@@ -276,9 +649,9 @@
         </SpawnInfo>
 		
 		<!-- Early Melee -->
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_AXEMAN_EARLY -->
 			<Type>SPAWN_AXEMAN_EARLY</Type>
-			<iWeight>50</iWeight>
+			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>60</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
@@ -291,9 +664,9 @@
 				<Tech>TECH_BRONZE_WORKING</Tech>
 			</ObsoleteTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_OGRE_EARLY -->
 			<Type>SPAWN_OGRE_EARLY</Type>
-			<iWeight>50</iWeight>
+			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>60</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
@@ -306,9 +679,9 @@
 				<Tech>TECH_BRONZE_WORKING</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_OGRE_WARCHIEF_EARLY -->
 			<Type>SPAWN_OGRE_WARCHIEF_EARLY</Type>
-			<iWeight>25</iWeight><!-- National limit ignored -->
+			<iBaseWeight>25</iBaseWeight><!-- National limit ignored -->
 			<iMinWilderness>75</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
@@ -323,9 +696,9 @@
         </SpawnInfo>
 		
 		<!-- Basic Recon -->
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_GOBLIN -->
 			<Type>SPAWN_GOBLIN</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>50</iMaxWilderness>
 			<SpawnUnits>
@@ -338,9 +711,9 @@
 				<Tech>TECH_HUNTING</Tech>
 			</ObsoleteTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_GOBLIN_SCORPION_CLAN -->
 			<Type>SPAWN_GOBLIN_SCORPION_CLAN</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>20</iMinWilderness>
 			<iMaxWilderness>60</iMaxWilderness>
 			<SpawnUnits>
@@ -350,9 +723,9 @@
 				</SpawnUnit>
 			</SpawnUnits>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_LIZARDMAN -->
 			<Type>SPAWN_LIZARDMAN</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>50</iMaxWilderness>
 			<SpawnUnits>
@@ -365,9 +738,9 @@
 				<Tech>TECH_HUNTING</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_LIZARDMAN_RANGER -->
 			<Type>SPAWN_LIZARDMAN_RANGER</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>75</iMaxWilderness>
 			<SpawnUnits>
@@ -380,9 +753,9 @@
 				<Tech>TECH_FERAL_BOND</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_LIZARDMAN_ASSASSIN -->
 			<Type>SPAWN_LIZARDMAN_ASSASSIN</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>75</iMaxWilderness>
 			<SpawnUnits>
@@ -395,9 +768,9 @@
 				<Tech>TECH_POISONS</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_LIZARDMAN_BEASTMASTER -->
 			<Type>SPAWN_LIZARDMAN_BEASTMASTER</Type>
-			<iWeight>25</iWeight><!-- National limit ignored -->
+			<iBaseWeight>25</iBaseWeight><!-- National limit ignored -->
 			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
@@ -412,9 +785,9 @@
         </SpawnInfo>
 		
 		<!-- Early Recon -->
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_LIZARDMAN_EARLY -->
 			<Type>SPAWN_LIZARDMAN_EARLY</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>30</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
@@ -424,9 +797,9 @@
 				</SpawnUnit>
 			</SpawnUnits>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_LIZARDMAN_RANGER_EARLY -->
 			<Type>SPAWN_LIZARDMAN_RANGER_EARLY</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
@@ -440,10 +813,10 @@
 			</PrereqTechs>
         </SpawnInfo>
 		
-		<!-- Archery -->
-        <SpawnInfo>
+		<!-- Basic Archery -->
+        <SpawnInfo> <!-- SPAWN_ARCHER -->
 			<Type>SPAWN_ARCHER</Type>
-			<iWeight>50</iWeight>
+			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>30</iMaxWilderness>
 			<SpawnUnits>
@@ -459,9 +832,9 @@
 				<Tech>TECH_BOWYERS</Tech>
 			</ObsoleteTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_LONGBOWMAN -->
 			<Type>SPAWN_LONGBOWMAN</Type>
-			<iWeight>50</iWeight>
+			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>40</iMaxWilderness>
 			<SpawnUnits>
@@ -475,9 +848,9 @@
 			</PrereqTechs>
         </SpawnInfo>
         <!-- Crossbowmen are only built in city -->
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_MARKSMAN -->
 			<Type>SPAWN_MARKSMAN</Type>
-			<iWeight>20</iWeight><!-- National limit ignored -->
+			<iBaseWeight>20</iBaseWeight><!-- National limit ignored -->
 			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
@@ -491,10 +864,10 @@
 			</PrereqTechs>
         </SpawnInfo>
 		
-		<!-- Mounted -->
-        <SpawnInfo>
+		<!-- Basic Mounted -->
+        <SpawnInfo> <!-- SPAWN_WOLF_RIDER -->
 			<Type>SPAWN_WOLF_RIDER</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>50</iMaxWilderness>
 			<SpawnUnits>
@@ -507,9 +880,9 @@
 				<Tech>TECH_HORSEBACK_RIDING</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_WOLF_RIDER_SCORPION_CLAN -->
 			<Type>SPAWN_WOLF_RIDER_SCORPION_CLAN</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>20</iMinWilderness>
 			<iMaxWilderness>60</iMaxWilderness>
 			<SpawnUnits>
@@ -522,9 +895,9 @@
 				<Tech>TECH_HORSEBACK_RIDING</Tech>
 			</PrereqTechs>
         </SpawnInfo>
-        <SpawnInfo>
+        <SpawnInfo> <!-- SPAWN_CHARIOT -->
 			<Type>SPAWN_CHARIOT</Type>
-			<iWeight>100</iWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>50</iMaxWilderness>
 			<SpawnUnits>
