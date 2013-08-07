@@ -1271,7 +1271,26 @@ void CvMapGenerator::addImprovements()
                     {
                         if (pPlot->canHaveImprovement((ImprovementTypes)iJ, NO_TEAM))
                         {
+						/************************************************************************************************/
+						/* WILDERNESS                             08/2013                                 lfgr          */
+						/* Use SpawnInfos                                                                               */
+						/************************************************************************************************/
+						/*
 							if (GC.getImprovementInfo((ImprovementTypes)iJ).getSpawnUnitType() != NO_UNIT)
+						*/
+							bool bValid = false;
+							for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+							{
+								if( GC.getImprovementInfo((ImprovementTypes)iJ).getSpawnTypes( eSpawn ) )
+								{
+									bValid = true;
+									break;
+								}
+							}
+							if( bValid )
+						/************************************************************************************************/
+						/* WILDERNESS                                                                     END           */
+						/************************************************************************************************/
 							{
 								if (!pPlot->isVisibleToCivTeam())
 								{

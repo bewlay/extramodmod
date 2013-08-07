@@ -64,7 +64,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_BARROW</Type>
@@ -165,7 +164,12 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>UNIT_SKELETON</SpawnUnitType>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_BARROW_SKELETON</SpawnType>
+				<SpawnType>SPAWN_BARROW_SPECTRE</SpawnType>
+			</SpawnTypes>
+		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_BEAR_DEN</Type>
@@ -225,7 +229,12 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>UNIT_BEAR</SpawnUnitType>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_BEAR_DEN_BEAR</SpawnType>
+				<SpawnType>SPAWN_BEAR_DEN_POLAR_BEAR</SpawnType>
+			</SpawnTypes>
+		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_BRADELINES_WELL</Type>
@@ -321,7 +330,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_BROKEN_SEPULCHER</Type>
@@ -430,7 +438,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_CAGE</Type>
@@ -486,7 +493,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_CAMP</Type>
@@ -577,7 +583,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_CASTLE</Type>
@@ -674,7 +679,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<iCulture>2</iCulture>
 			<iCultureRange>1</iCultureRange>
 			<iSeeFrom>1</iSeeFrom>
@@ -778,7 +782,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<iCulture>3</iCulture>
 			<iCultureRange>1</iCultureRange>
 			<iSeeFrom>1</iSeeFrom>
@@ -840,7 +843,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_COTTAGE</Type>
@@ -931,7 +933,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_DRAGON_BONES</Type>
@@ -1057,7 +1058,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_DUNGEON</Type>
@@ -1153,7 +1153,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_ENCLAVE</Type>
@@ -1223,7 +1222,6 @@
             <PrereqCivilization>CIVILIZATION_KURIOTATES</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_FARM</Type>
@@ -1357,7 +1355,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_FISHING_BOATS</Type>
@@ -1460,7 +1457,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_FORT</Type>
@@ -1557,7 +1553,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<iCulture>1</iCulture>
 			<iCultureRange>0</iCultureRange>
 			<iUnique>2</iUnique>
@@ -1648,7 +1643,11 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>UNIT_GOBLIN_SCORPION_CLAN</SpawnUnitType>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_GOBLIN_FORT_GOBLIN_SCORPION_CLAN</SpawnType>
+			</SpawnTypes>
+		<!-- WILDERNESS end -->
 			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
@@ -1750,7 +1749,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_GRAVEYARD</Type>
@@ -1842,7 +1840,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_GUARDIAN</Type>
@@ -1934,7 +1931,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange>atRangeGuardian(pCaster, pPlot)</PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_HAMLET</Type>
@@ -1996,7 +1992,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_HELLFIRE</Type>
@@ -2093,8 +2088,11 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>UNIT_CHAMPION</SpawnUnitType>
-            <FreeSpawnPromotion>PROMOTION_DEMON</FreeSpawnPromotion>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_HELLFIRE_CHAMPION</SpawnType>
+			</SpawnTypes>
+		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_JUNGLE_ALTAR</Type>
@@ -2151,7 +2149,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange>atRangeJungleAltar(pCaster, pPlot)</PythonAtRange>
             <PythonOnMove>onMoveJungleAltar(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_LAND_WORKED</Type>
@@ -2207,7 +2204,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_LETUM_FRIGUS</Type>
@@ -2284,7 +2280,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMoveLetumFrigus(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_LION_DEN</Type>
@@ -2344,7 +2339,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>UNIT_LION</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_LUMBERMILL</Type>
@@ -2414,7 +2408,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MAELSTROM</Type>
@@ -2474,7 +2467,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMoveMaelstrom(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_AIR</Type>
@@ -2555,7 +2547,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_BODY</Type>
@@ -2636,7 +2627,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_CHAOS</Type>
@@ -2717,7 +2707,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_DEATH</Type>
@@ -2798,7 +2787,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_EARTH</Type>
@@ -2879,7 +2867,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_ENCHANTMENT</Type>
@@ -2960,7 +2947,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_ENTROPY</Type>
@@ -3041,7 +3027,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_FIRE</Type>
@@ -3122,7 +3107,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_LAW</Type>
@@ -3203,7 +3187,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_LIFE</Type>
@@ -3284,7 +3267,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_METAMAGIC</Type>
@@ -3365,7 +3347,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_MIND</Type>
@@ -3446,7 +3427,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_NATURE</Type>
@@ -3527,7 +3507,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_SHADOW</Type>
@@ -3608,7 +3587,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_SPIRIT</Type>
@@ -3689,7 +3667,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_SUN</Type>
@@ -3770,7 +3747,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_WATER</Type>
@@ -3851,7 +3827,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MINE</Type>
@@ -3988,7 +3963,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MIRROR_OF_HEAVEN</Type>
@@ -4066,7 +4040,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMoveMirrorOfHeaven(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MONSTER_SKELETON</Type>
@@ -4122,7 +4095,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MUSHROOMS</Type>
@@ -4199,7 +4171,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_NECROTOTEM</Type>
@@ -4256,7 +4227,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange>atRangeNecrototem(pCaster, pPlot)</PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_ODIOS_PRISON</Type>
@@ -4348,7 +4318,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_PASTURE</Type>
@@ -4472,7 +4441,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_PENGUINS</Type>
@@ -4528,7 +4496,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_PIRATE_COVE</Type>
@@ -4594,7 +4561,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
@@ -4661,7 +4627,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
@@ -4728,7 +4693,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
@@ -4887,7 +4851,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_POOL_OF_TEARS</Type>
@@ -4955,7 +4918,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMovePoolOfTears(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_PYRE_OF_THE_SERAPHIC</Type>
@@ -5040,7 +5002,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_QUARRY</Type>
@@ -5120,7 +5081,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_REMNANTS_OF_PATRIA</Type>
@@ -5217,7 +5177,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_RING_OF_CARCER</Type>
@@ -5277,7 +5236,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_RUINS</Type>
@@ -5357,7 +5315,11 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>UNIT_LIZARDMAN</SpawnUnitType>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_RUINS_LIZARDMAN</SpawnType>
+			</SpawnTypes>
+		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_SEVEN_PINES</Type>
@@ -5429,7 +5391,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_SHIP_WRECK</Type>
@@ -5489,7 +5450,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_SMOKE</Type>
@@ -5586,7 +5546,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_SNAKE_PILLAR</Type>
@@ -5662,7 +5621,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_STANDING_STONES</Type>
@@ -5771,7 +5729,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_TOMB_OF_SUCELLUS</Type>
@@ -5856,7 +5813,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_TOWER</Type>
@@ -5948,7 +5904,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<iSeeFrom>1</iSeeFrom>
 			<bBombardable>1</bBombardable>
         </ImprovementInfo>
@@ -6020,7 +5975,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_VILLAGE</Type>
@@ -6090,7 +6044,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_WARNING_POST</Type>
@@ -6147,7 +6100,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMoveWarningPost(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_WATER_WORKED</Type>
@@ -6203,7 +6155,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_WHALING_BOATS</Type>
@@ -6272,7 +6223,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_WINDMILL</Type>
@@ -6341,7 +6291,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_WINERY</Type>
@@ -6411,7 +6360,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_WORKSHOP</Type>
@@ -6525,7 +6473,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_YGGDRASIL</Type>
@@ -6631,7 +6578,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_PORTAL</Type>
@@ -6687,7 +6633,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMovePortal(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
     </ImprovementInfos>
 </Civ4ImprovementInfos>

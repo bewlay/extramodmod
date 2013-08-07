@@ -18026,11 +18026,29 @@ void CvGameTextMgr::setImprovementHelp(CvWStringBuffer &szBuffer, ImprovementTyp
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_VISIBILITY_CHANGE", info.getVisibilityChange()));
 	}
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+/*
 	if (info.getSpawnUnitType() != NO_UNIT)
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_SPAWN_UNIT_TYPE", GC.getUnitInfo((UnitTypes)info.getSpawnUnitType()).getDescription()));
 	}
+*/
+	for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+	{
+		if( info.getSpawnTypes( eSpawn ) )
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append( gDLL->getText( "TXT_KEY_IMPROVEMENT_SPAWN_UNITS" ) );
+			break;
+		}
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	if (!CvWString(info.getHelp()).empty())
     {
         szBuffer.append(NEWLINE);

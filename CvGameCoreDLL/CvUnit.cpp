@@ -6024,7 +6024,16 @@ bool CvUnit::canPillage(const CvPlot* pPlot) const
     {
         if (pPlot->getImprovementType() != NO_IMPROVEMENT)
         {
+		/************************************************************************************************/
+		/* WILDERNESS                             08/2013                                 lfgr          */
+		/************************************************************************************************/
+		/*
             if (GC.getImprovementInfo(pPlot->getImprovementType()).getSpawnUnitType() != NO_UNIT)
+		*/
+			if ( pPlot->isLair() )
+		/************************************************************************************************/
+		/* WILDERNESS                                                                     END           */
+		/************************************************************************************************/
             {
                 return false;
             }
@@ -12173,9 +12182,12 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
         if (iImprovement != NO_IMPROVEMENT)
         {
 			CvImprovementInfo& kImprovementInfo = GC.getImprovementInfo((ImprovementTypes)iImprovement);
-
-            if (kImprovementInfo.getSpawnUnitType() != NO_UNIT)
-            {
+		/************************************************************************************************/
+		/* WILDERNESS                             08/2013                                 lfgr          */
+		/************************************************************************************************/
+		/*
+			if (kImprovementInfo.getSpawnUnitType() != NO_UNIT)
+			{
 				bool bAnimalLair = false;
 
 				if (GC.getUnitInfo((UnitTypes)kImprovementInfo.getSpawnUnitType()).isAnimal())
@@ -12183,18 +12195,34 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 					bAnimalLair = true;
 				}
 
-                if (!isHuman() || kImprovementInfo.isPermanent() == false)
-                {
-                    if (atWar(getTeam(), GET_PLAYER(BARBARIAN_PLAYER).getTeam()) || (bAnimalLair && !isBarbarian()))
-                    {
-                        if (isHuman())
-                        {
-                            gDLL->getInterfaceIFace()->addMessage(getOwner(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), gDLL->getText("TXT_KEY_MESSAGE_LAIR_DESTROYED"), "AS2D_CITYRAZE", MESSAGE_TYPE_MAJOR_EVENT, GC.getImprovementInfo((ImprovementTypes)iImprovement).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pNewPlot->getX(), pNewPlot->getY(), true, true);
-                        }
-                        pNewPlot->setImprovementType(NO_IMPROVEMENT);
-                    }
-                }
-            }
+				if (!isHuman() || kImprovementInfo.isPermanent() == false)
+				{
+					if (atWar(getTeam(), GET_PLAYER(BARBARIAN_PLAYER).getTeam()) || (bAnimalLair && !isBarbarian()))
+					{
+						if (isHuman())
+						{
+							gDLL->getInterfaceIFace()->addMessage(getOwner(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), gDLL->getText("TXT_KEY_MESSAGE_LAIR_DESTROYED"), "AS2D_CITYRAZE", MESSAGE_TYPE_MAJOR_EVENT, GC.getImprovementInfo((ImprovementTypes)iImprovement).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pNewPlot->getX(), pNewPlot->getY(), true, true);
+						}
+						pNewPlot->setImprovementType(NO_IMPROVEMENT);
+					}
+				}
+			}
+		*/
+			bool bAnimalLair =  pNewPlot->isLair( false, true );
+			if (!isHuman() || kImprovementInfo.isPermanent() == false)
+			{
+				if (atWar(getTeam(), GET_PLAYER(BARBARIAN_PLAYER).getTeam()) || (bAnimalLair && !isBarbarian()))
+				{
+					if (isHuman())
+					{
+						gDLL->getInterfaceIFace()->addMessage(getOwner(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), gDLL->getText("TXT_KEY_MESSAGE_LAIR_DESTROYED"), "AS2D_CITYRAZE", MESSAGE_TYPE_MAJOR_EVENT, GC.getImprovementInfo((ImprovementTypes)iImprovement).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pNewPlot->getX(), pNewPlot->getY(), true, true);
+					}
+					pNewPlot->setImprovementType(NO_IMPROVEMENT);
+				}
+			}
+		/************************************************************************************************/
+		/* WILDERNESS                                                                     END           */
+		/************************************************************************************************/
         }
         iImprovement = pNewPlot->getImprovementType(); // rechecking because the previous function may have deleted the improvement
         if (iImprovement != NO_IMPROVEMENT)

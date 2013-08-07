@@ -14861,8 +14861,18 @@ m_iRangeDefenseModifier(0),
 m_iBonusConvert(NO_BONUS),
 m_iFeatureUpgrade(NO_FEATURE),
 m_iPrereqCivilization(NO_CIVILIZATION),
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+/*
 m_iSpawnUnitType(NO_UNIT),
 m_iFreeSpawnPromotion(NO_PROMOTION),
+*/
+m_pbSpawnTypes( NULL ),
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 m_iVisibilityChange(0)
 //FfH: End Add
 
@@ -15153,6 +15163,11 @@ const TCHAR *CvImprovementInfo::getPythonOnMove() const
 	return m_szPythonOnMove;
 }
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+/*
 int CvImprovementInfo::getSpawnUnitType() const
 {
 	return m_iSpawnUnitType;
@@ -15162,6 +15177,10 @@ int CvImprovementInfo::getFreeSpawnPromotion() const
 {
 	return m_iFreeSpawnPromotion;
 }
+*/
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 int CvImprovementInfo::getVisibilityChange() const
 {
@@ -15318,6 +15337,20 @@ int CvImprovementInfo::getImprovementBonusDiscoverRand(int i) const
 	return m_paImprovementBonus[i].m_iDiscoverRand;
 }
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+bool CvImprovementInfo::getSpawnTypes( int i ) const
+{
+	FAssertMsg(i < GC.getNumSpawnInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_pbSpawnTypes ? m_pbSpawnTypes[i] : false;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 const TCHAR* CvImprovementInfo::getButton() const
 {
 	const CvArtInfoImprovement * pImprovementArtInfo;
@@ -15342,6 +15375,7 @@ void CvArtInfoImprovement::setShaderNIF(const TCHAR* szDesc)
 {
 	m_szShaderNIF = szDesc;
 }
+
 
 void CvImprovementInfo::read(FDataStreamBase* stream)
 {
@@ -15405,8 +15439,17 @@ void CvImprovementInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iPrereqCivilization);
 	stream->ReadString(m_szPythonAtRange);
 	stream->ReadString(m_szPythonOnMove);
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+/*
 	stream->Read(&m_iSpawnUnitType);
 	stream->Read(&m_iFreeSpawnPromotion);
+*/
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	stream->Read(&m_iVisibilityChange);
 //FfH: End Add
 
@@ -15439,6 +15482,17 @@ void CvImprovementInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_pbFeatureMakesValid);
 	m_pbFeatureMakesValid = new bool[GC.getNumFeatureInfos()];
 	stream->Read(GC.getNumFeatureInfos(), m_pbFeatureMakesValid);
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+	SAFE_DELETE_ARRAY(m_pbSpawnTypes);
+	m_pbSpawnTypes = new bool[GC.getNumSpawnInfos()];
+	stream->Read(GC.getNumSpawnInfos(), m_pbSpawnTypes);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	SAFE_DELETE_ARRAY(m_paImprovementBonus);
 	m_paImprovementBonus = new CvImprovementBonusInfo[GC.getNumBonusInfos()];
@@ -15543,8 +15597,17 @@ void CvImprovementInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iPrereqCivilization);
 	stream->WriteString(m_szPythonAtRange);
 	stream->WriteString(m_szPythonOnMove);
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+/*
 	stream->Write(m_iSpawnUnitType);
 	stream->Write(m_iFreeSpawnPromotion);
+*/
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	stream->Write(m_iVisibilityChange);
 //FfH: End Add
 
@@ -15557,6 +15620,14 @@ void CvImprovementInfo::write(FDataStreamBase* stream)
 	stream->Write(NUM_YIELD_TYPES, m_piIrrigatedChange);
 	stream->Write(GC.getNumTerrainInfos(), m_pbTerrainMakesValid);
 	stream->Write(GC.getNumFeatureInfos(), m_pbFeatureMakesValid);
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+	stream->Write(GC.getNumSpawnInfos(), m_pbSpawnTypes);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	int i;
 	for (i = 0; i < GC.getNumBonusInfos(); i++)
@@ -15811,8 +15882,43 @@ bool CvImprovementInfo::read(CvXMLLoadUtility* pXML)
 	m_aszExtraXML2forPass3.push_back(szTextVal);
 	pXML->GetChildXmlValByName(m_szPythonAtRange, "PythonAtRange");
 	pXML->GetChildXmlValByName(m_szPythonOnMove, "PythonOnMove");
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+/*
 	pXML->GetChildXmlValByName(szTextVal, "SpawnUnitType");
 	m_aszExtraXMLforPass3.push_back(szTextVal);
+*/
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"SpawnTypes"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						m_aszExtraXMLforPass3.push_back(szTextVal);
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 //FfH: End Add
 
 	return true;
@@ -15827,9 +15933,18 @@ bool CvImprovementInfo::readPass2(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "ImprovementUpgrade");
 	m_iImprovementUpgrade = GC.getInfoTypeForString(szTextVal);
-
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+/*
 	pXML->GetChildXmlValByName(szTextVal, "FreeSpawnPromotion");
 	m_iFreeSpawnPromotion = GC.getInfoTypeForString(szTextVal);
+*/
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	return true;
 }
@@ -15837,16 +15952,47 @@ bool CvImprovementInfo::readPass2(CvXMLLoadUtility* pXML)
 //FfH Improvements: Added by Kael 05/12/2007
 bool CvImprovementInfo::readPass3()
 {
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* It's OK                                                                                      */
+/************************************************************************************************/
+/*
 	if (m_aszExtraXMLforPass3.size() < 1)
 	{
 		FAssert(false);
 		return false;
 	}
+*/
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	m_iPrereqCivilization = GC.getInfoTypeForString(m_aszExtraXML2forPass3[0]);
 	m_aszExtraXML2forPass3.clear();
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+/*
 	m_iSpawnUnitType = GC.getInfoTypeForString(m_aszExtraXMLforPass3[0]);
+*/
+	m_pbSpawnTypes = new bool[GC.getNumSpawnInfos()];
+	for( int eSpawnType = 0; eSpawnType < GC.getNumSpawnInfos(); eSpawnType++ )
+		m_pbSpawnTypes[eSpawnType] = false;
+
+	for( unsigned int i = 0; i < m_aszExtraXMLforPass3.size(); i++ )
+	{
+		int eSpawnType = GC.getInfoTypeForString (m_aszExtraXMLforPass3[i] );
+		if( eSpawnType >= 0 && eSpawnType < GC.getNumSpawnInfos() )
+			m_pbSpawnTypes[eSpawnType] = true;
+		else
+			FAssert( false );
+	}
+
 	m_aszExtraXMLforPass3.clear();
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	return true;
 }
@@ -27722,6 +27868,7 @@ CvSpawnInfo::CvSpawnInfo():
 	m_iWeight( 0 ),
 	m_iMinWilderness( 0 ),
 	m_iMaxWilderness( 0 ),
+	m_bNeverSpawn( false ),
 	m_bAnimal( false ),
 	m_bWater( false ),
 	m_piNumSpawnUnits( NULL ),
@@ -27754,6 +27901,11 @@ int CvSpawnInfo::getMinWilderness() const
 int CvSpawnInfo::getMaxWilderness() const
 {
 	return m_iMaxWilderness;
+}
+
+bool CvSpawnInfo::isNeverSpawn() const
+{
+	return m_bNeverSpawn;
 }
 
 bool CvSpawnInfo::isAnimal() const
@@ -27808,6 +27960,7 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iWeight);
 	stream->Read(&m_iMinWilderness);
 	stream->Read(&m_iMaxWilderness);
+	stream->Read(&m_bNeverSpawn);
 	stream->Read(&m_bAnimal);
 	stream->Read(&m_bWater);
 
@@ -27841,6 +27994,7 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iWeight);
 	stream->Write(m_iMinWilderness);
 	stream->Write(m_iMaxWilderness);
+	stream->Write(m_bNeverSpawn);
 	stream->Write(m_bAnimal);
 	stream->Write(m_bWater);
 
@@ -27855,8 +28009,6 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 
 bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 {
-	char szClassVal[256];					// holds the text value of the relevant classinfo
-
 	CvString szTextVal;
 	if (!CvInfoBase::read(pXML))
 	{
@@ -27867,7 +28019,8 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iWeight, "iBaseWeight");
 	pXML->GetChildXmlValByName(&m_iMinWilderness, "iMinWilderness");
 	pXML->GetChildXmlValByName(&m_iMaxWilderness, "iMaxWilderness");
-	pXML->GetChildXmlValByName(&m_bWater, "bAnimal");
+	pXML->GetChildXmlValByName(&m_bNeverSpawn, "bNeverSpawn");
+	pXML->GetChildXmlValByName(&m_bAnimal, "bAnimal");
 	pXML->GetChildXmlValByName(&m_bWater, "bWater");
 	
 	pXML->SetVariableListTagPair( &m_piNumSpawnUnits, "SpawnUnits", sizeof( GC.getUnitInfo( (UnitTypes) 0 ) ), GC.getNumUnitInfos() );
@@ -27895,7 +28048,7 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 					for ( int i = 0; i < iNumSibs; i++)
 					{
 						int iTech = pXML->FindInInfoClass(szTextVal);
-						if( iTech > -1 && iTech < GC.getNumPromotionInfos() )
+						if( iTech > -1 && iTech < GC.getNumTechInfos() )
 							m_pbPrereqTechs[iTech] = true;
 						if (!pXML->GetNextXmlVal(szTextVal))
 						{
@@ -27925,7 +28078,7 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 					for ( int i = 0; i < iNumSibs; i++)
 					{
 						int iTech = pXML->FindInInfoClass(szTextVal);
-						if( iTech > -1 && iTech < GC.getNumPromotionInfos() )
+						if( iTech > -1 && iTech < GC.getNumTechInfos() )
 							m_pbObsoleteTechs[iTech] = true;
 						if (!pXML->GetNextXmlVal(szTextVal))
 						{

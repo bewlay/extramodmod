@@ -474,8 +474,13 @@
 	<ElementType name="BonusConvert" content="textOnly"/>
 	<ElementType name="PrereqCivilization" content="textOnly"/>
 	<ElementType name="PythonAtRange" content="textOnly"/>
-	<ElementType name="SpawnUnitType" content="textOnly"/>
-	<ElementType name="FreeSpawnPromotion" content="textOnly"/>
+	<!-- WILDERNESS 08/2013 lfgr -->
+	<!-- Removed ElementTypes SpawnUnitType and FreeSpawnPromotion -->
+	<ElementType name="SpawnType" content="textOnly"/>
+	<ElementType name="SpawnTypes" content="eltOnly">
+		<element type="SpawnType" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<!-- WILDERNESS end -->
 	<ElementType name="ImprovementInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -543,8 +548,10 @@
 		<element type="PrereqCivilization"/>
 		<element type="PythonAtRange"/>
 		<element type="PythonOnMove"/>
-		<element type="SpawnUnitType"/>
-		<element type="FreeSpawnPromotion" minOccurs="0"/>
+	<!-- WILDERNESS 08/2013 lfgr -->
+	<!-- Removed elements SpawnUnitType and FreeSpawnPromotion -->
+		<element type="SpawnTypes" minOccurs="0"/>
+	<!-- WILDERNESS end -->
 	</ElementType>
 	<ElementType name="ImprovementInfos" content="eltOnly">
 		<element type="ImprovementInfo" maxOccurs="*"/>

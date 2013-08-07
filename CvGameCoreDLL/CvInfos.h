@@ -3687,8 +3687,18 @@ public:
 	int getPrereqCivilization() const;
 	const TCHAR* getPythonAtRange() const;
 	const TCHAR* getPythonOnMove() const;
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+/*
 	int getSpawnUnitType() const;
 	int getFreeSpawnPromotion() const;
+*/
+	bool getSpawnTypes( int eSpawn ) const;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	int getVisibilityChange() const;
 	bool readPass3();
 //FfH: End Add
@@ -3759,8 +3769,18 @@ protected:
 	int m_iPrereqCivilization;
 	CvString m_szPythonAtRange;
 	CvString m_szPythonOnMove;
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+/*
 	int m_iSpawnUnitType;
 	int m_iFreeSpawnPromotion;
+*/
+	bool* m_pbSpawnTypes;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	int m_iVisibilityChange;
 
 	std::vector<CvString> m_aszExtraXML2forPass3;
@@ -7581,6 +7601,7 @@ public:
 	int getMinWilderness() const;
 	int getMaxWilderness() const;
 	
+	bool isNeverSpawn() const;
 	bool isAnimal() const;
 	bool isWater() const;
 	
@@ -7602,6 +7623,7 @@ protected:
 	int m_iWeight;
 	int m_iMinWilderness;
 	int m_iMaxWilderness;
+	int m_bNeverSpawn;
 	int m_bAnimal;
 	int m_bWater;
 

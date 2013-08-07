@@ -289,5 +289,12 @@ void CyPlotPythonInterface1(python::class_<CyPlot>& x)
 		.def("getChokeValue", &CyPlot::getChokeValue, "int ()")
 		.def("calculateChokeValue", &CyPlot::calculateChokeValue, "void ()")
 		// Super Forts end
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+		.def("isLair", &CyPlot::isLair, "bool ( bool bIgnoreAnimal, bool bAnimal )")
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	;
 }

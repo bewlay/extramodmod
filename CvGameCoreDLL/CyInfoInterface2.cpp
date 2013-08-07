@@ -342,8 +342,17 @@ void CyInfoPythonInterface2()
 		.def("getPrereqCivilization", &CvImprovementInfo::getPrereqCivilization, "bool ()")
 		.def("getPythonAtRange", &CvImprovementInfo::getPythonAtRange, "string ()")
 		.def("getPythonOnMove", &CvImprovementInfo::getPythonOnMove, "string ()")
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* Functions removed. Use CyPlot.isLair().                                                      */
+	/************************************************************************************************/
+	/*
 		.def("getSpawnUnitType", &CvImprovementInfo::getSpawnUnitType, "string ()")
 		.def("getFreeSpawnPromotion", &CvImprovementInfo::getFreeSpawnPromotion, "string ()")
+	*/
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
 //FfH: End Add
 
 		// Arrays

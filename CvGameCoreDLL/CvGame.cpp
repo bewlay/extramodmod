@@ -7420,7 +7420,7 @@ void CvGame::createBarbarianUnits()
 						/* Use SpawnInfos instead of Unitclasses.                                                       */
 						/* (Left out old code)                                                                          */
 						/************************************************************************************************/
-							createSpawn( pPlot, false );
+							createBarbarianSpawn( pPlot, false );
 						/************************************************************************************************/
 						/* WILDERNESS                                                                     END           */
 						/************************************************************************************************/
@@ -7591,7 +7591,7 @@ void CvGame::createAnimals()
 				/* Use SpawnInfos instead of Unitclasses.                                                       */
 				/* (Left out old code)                                                                          */
 				/************************************************************************************************/
-					createSpawn( pPlot, true );
+					createBarbarianSpawn( pPlot, true );
 				/************************************************************************************************/
 				/* WILDERNESS                                                                     END           */
 				/************************************************************************************************/
@@ -7608,7 +7608,7 @@ void CvGame::createAnimals()
 /* Original by Sephi                                                                            */
 /* Use SpawnInfos instead of Unitclasses.                                                       */
 /************************************************************************************************/
-void CvGame::createSpawn( CvPlot* pPlot, bool bAnimal )
+void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 {
 	SpawnTypes eBestSpawn = NO_SPAWN;
 	int iBestValue = 0;
@@ -7622,43 +7622,12 @@ void CvGame::createSpawn( CvPlot* pPlot, bool bAnimal )
 		if( bAnimal != kLoopSpawn.isAnimal() )
 			bValid = false;
 
-		if( pPlot->area()->isWater() != kLoopSpawn.isWater() )
+		if( kLoopSpawn.isNeverSpawn() )
 			bValid = false;
 
 		if( bValid )
 		{
-			for( int eTech = 0; eTech < GC.getNumTechInfos(); eTech++ )
-			{
-				if( kLoopSpawn.getPrereqTechs( (TechTypes) eTech ) && !GET_TEAM(BARBARIAN_TEAM).isHasTech( (TechTypes) eTech ) )
-				{
-					bValid = false;
-					break;
-				}
-				if( kLoopSpawn.getObsoleteTechs( (TechTypes) eTech ) && GET_TEAM(BARBARIAN_TEAM).isHasTech( (TechTypes) eTech ) )
-				{
-					bValid = false;
-					break;
-				}
-			}
-		}
-
-		// LFGR_TODO: check limited units?
-		
-		if( bValid )
-		{
-			if(pPlot->getWilderness() < kLoopSpawn.getMinWilderness() ||
-				pPlot->getWilderness() > kLoopSpawn.getMaxWilderness())
-			{
-				bValid = false;
-			}
-		}
-
-		if( bValid )
-		{
-			int iValue = kLoopSpawn.getWeight();
-			
-			iValue += kLoopSpawn.getTerrainWeights( pPlot->getTerrainType() );
-			iValue += kLoopSpawn.getFeatureWeights( pPlot->getFeatureType() );
+			int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn, true );
 
 			if( iValue > 0 )
 			{

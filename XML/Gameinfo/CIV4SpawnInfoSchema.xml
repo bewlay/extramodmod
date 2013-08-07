@@ -5,9 +5,11 @@
 <!-- Game Info Schema -->
 <Schema xmlns="urn:schemas-microsoft-com:xml-data" xmlns:dt="urn:schemas-microsoft-com:datatypes">
 	<ElementType name="Type" content="textOnly"/>
+	<ElementType name="Description" content="textOnly"/>
 	<ElementType name="iBaseWeight" content="textOnly" dt:type="int"/>
 	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
+	<ElementType name="bNeverSpawn" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAnimal" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bWater" content="textOnly" dt:type="boolean"/>
 	
@@ -48,9 +50,11 @@
 	</ElementType>
 	<ElementType name="SpawnInfo" content="eltOnly">
 		<element type="Type"/>
+		<element type="Description" minOccurs="0"/>
 		<element type="iBaseWeight"/>
 		<element type="iMinWilderness"/>
 		<element type="iMaxWilderness"/>
+		<element type="bNeverSpawn" minOccurs="0"/>
 		<element type="bAnimal" minOccurs="0"/>
 		<element type="bWater" minOccurs="0"/>
 		<element type="SpawnUnits"/>
