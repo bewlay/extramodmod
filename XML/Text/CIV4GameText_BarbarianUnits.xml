@@ -41,4 +41,58 @@
 		<Spanish>TODO</Spanish>
 		<Finnish>TODO</Finnish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_BANDIT</Tag>
+		<English>Bandit</English>
+		<French>Bandit</French>
+		<German>Bandit</German>
+		<Italian>Bandit</Italian>
+		<Spanish>Bandit</Spanish>
+		<Finnish>Bandit</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_BANDIT_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_BANDIT_STRATEGY</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_BANDIT_LORD</Tag>
+		<English>Bandit Lord</English>
+		<French>Bandit Lord</French>
+		<German>Bandit Lord</German>
+		<Italian>Bandit Lord</Italian>
+		<Spanish>Bandit Lord</Spanish>
+		<Finnish>Bandit Lord</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_BANDIT_LORD_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_BANDIT_LORD_STRATEGY</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
 </Civ4GameText>
