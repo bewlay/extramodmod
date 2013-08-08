@@ -244,7 +244,6 @@
 				<Event>EVENT_ANGELIC_PROCESSION_1</Event>
 				<Event>EVENT_ANGELIC_PROCESSION_2</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bShowPlot>1</bShowPlot>
 			<iPrereqGlobalCounter>5</iPrereqGlobalCounter>
 		</EventTriggerInfo>
@@ -1344,7 +1343,6 @@
 				<Event>EVENT_DEDICATE_MONUMENT_5</Event>
 				<Event>EVENT_DEDICATE_MONUMENT_6</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
