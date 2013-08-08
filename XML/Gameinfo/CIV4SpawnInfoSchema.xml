@@ -41,6 +41,11 @@
 		<element type="FeatureWeight" maxOccurs="*"/>
 	</ElementType>
 	
+	<ElementType name="PromotionType" content="textOnly"/>
+	<ElementType name="UnitPromotions" content="eltOnly">
+		<element type="PromotionType" maxOccurs="*"/>
+	</ElementType>
+	
 	<ElementType name="Tech" content="textOnly"/>
 	<ElementType name="PrereqTechs" content="eltOnly">
 		<element type="Tech" maxOccurs="*"/>
@@ -48,6 +53,7 @@
 	<ElementType name="ObsoleteTechs" content="eltOnly">
 		<element type="Tech" maxOccurs="*"/>
 	</ElementType>
+	
 	<ElementType name="SpawnInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description" minOccurs="0"/>
@@ -60,6 +66,7 @@
 		<element type="SpawnUnits"/>
 		<element type="TerrainWeights" minOccurs="0"/>
 		<element type="FeatureWeights" minOccurs="0"/>
+		<element type="UnitPromotions" minOccurs="0"/>
 		<element type="PrereqTechs" minOccurs="0"/>
 		<element type="ObsoleteTechs" minOccurs="0"/>
 	</ElementType>

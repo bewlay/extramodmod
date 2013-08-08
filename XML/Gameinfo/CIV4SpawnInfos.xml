@@ -102,6 +102,9 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
 		</SpawnInfo>
 		
 		<!-- Ruins -->

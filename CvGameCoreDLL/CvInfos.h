@@ -7609,6 +7609,7 @@ public:
 	int getTerrainWeights( int eTerrain ) const;
 	int getFeatureWeights( int eFeature ) const;
 	
+	bool getUnitPromotions( int ePromotion ) const;
 	bool getPrereqTechs( int eTech ) const;
 	bool getObsoleteTechs( int eTech ) const;
 
@@ -7632,7 +7633,8 @@ protected:
 	int* m_piNumSpawnUnits;
 	int* m_piTerrainWeights;
 	int* m_piFeatureWeights;
-
+	
+	bool* m_pbUnitPromotions;
 	bool* m_pbPrereqTechs;
 	bool* m_pbObsoleteTechs;
 };

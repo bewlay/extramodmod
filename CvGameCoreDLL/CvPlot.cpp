@@ -657,6 +657,10 @@ void CvPlot::doTurn()
 										
 										if ( kBestSpawn.isAnimal() )
 											pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
+										
+										for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ )
+											if( kBestSpawn.getUnitPromotions( ePromotion ) )
+												pUnit->setHasPromotion( (PromotionTypes) ePromotion, true );
 									}
 								}
 							/************************************************************************************************/
