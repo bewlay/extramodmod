@@ -7605,6 +7605,8 @@ public:
 	bool isAnimal() const;
 	bool isWater() const;
 	
+	bool isNoRace() const;
+	
 	int getNumSpawnUnits( int eUnit ) const;
 	int getTerrainWeights( int eTerrain ) const;
 	int getFeatureWeights( int eFeature ) const;
@@ -7627,6 +7629,8 @@ protected:
 	int m_bNeverSpawn;
 	int m_bAnimal;
 	int m_bWater;
+	
+	int m_bNoRace;
 
 	// Arrays
 	

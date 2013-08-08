@@ -27871,6 +27871,7 @@ CvSpawnInfo::CvSpawnInfo():
 	m_bNeverSpawn( false ),
 	m_bAnimal( false ),
 	m_bWater( false ),
+	m_bNoRace( false ),
 	m_piNumSpawnUnits( NULL ),
 	m_piTerrainWeights( NULL ),
 	m_piFeatureWeights( NULL ),
@@ -27918,6 +27919,11 @@ bool CvSpawnInfo::isAnimal() const
 bool CvSpawnInfo::isWater() const
 {
 	return m_bWater;
+}
+
+bool CvSpawnInfo::isNoRace() const
+{
+	return m_bNoRace;
 }
 
 int CvSpawnInfo::getNumSpawnUnits( int i ) const
@@ -27972,7 +27978,8 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bNeverSpawn);
 	stream->Read(&m_bAnimal);
 	stream->Read(&m_bWater);
-
+	stream->Read(&m_bNoRace);
+	
 	// Arrays
 	
 	SAFE_DELETE_ARRAY(m_piNumSpawnUnits);
@@ -28010,6 +28017,7 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bNeverSpawn);
 	stream->Write(m_bAnimal);
 	stream->Write(m_bWater);
+	stream->Write(m_bNoRace);
 
 	// Arrays
 	
@@ -28036,6 +28044,7 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bNeverSpawn, "bNeverSpawn");
 	pXML->GetChildXmlValByName(&m_bAnimal, "bAnimal");
 	pXML->GetChildXmlValByName(&m_bWater, "bWater");
+	pXML->GetChildXmlValByName(&m_bNoRace, "bNoRace");
 	
 	pXML->SetVariableListTagPair( &m_piNumSpawnUnits, "SpawnUnits", sizeof( GC.getUnitInfo( (UnitTypes) 0 ) ), GC.getNumUnitInfos() );
 	pXML->SetVariableListTagPair( &m_piTerrainWeights, "TerrainWeights", sizeof( GC.getTerrainInfo( (TerrainTypes) 0 ) ), GC.getNumTerrainInfos() );

@@ -640,29 +640,15 @@ void CvPlot::doTurn()
 								}
 							*/
 								// init spawn units
-								for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
-								{
-									for( int j = 0; j < kBestSpawn.getNumSpawnUnits( (UnitTypes) eUnit ); j++ )
-									{
-										UnitAITypes eUnitAI = NO_UNITAI;
-										if( !bDefended )
-											eUnitAI = UNITAI_LAIRGUARDIAN;
-										else if( kBestSpawn.isAnimal() )
-											eUnitAI = UNITAI_ANIMAL;
-										else
-											eUnitAI = area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK;
-										
-										CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, getX_INLINE(), getY_INLINE(), eUnitAI );
-										pUnit->setMinWilderness( kBestSpawn.getMinWilderness() );
-										
-										if ( kBestSpawn.isAnimal() )
-											pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
-										
-										for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ )
-											if( kBestSpawn.getUnitPromotions( ePromotion ) )
-												pUnit->setHasPromotion( (PromotionTypes) ePromotion, true );
-									}
-								}
+								UnitAITypes eUnitAI = NO_UNITAI;
+								if( !bDefended )
+									eUnitAI = UNITAI_LAIRGUARDIAN;
+								else if( kBestSpawn.isAnimal() )
+									eUnitAI = UNITAI_ANIMAL;
+								else
+									eUnitAI = area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK;
+
+								createSpawn( eBestSpawn, eUnitAI );
 							/************************************************************************************************/
 							/* WILDERNESS                                                                     END           */
 							/************************************************************************************************/
@@ -12523,6 +12509,40 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bBarbTech )
 		iValue += kSpawn.getFeatureWeights( getFeatureType() );
 
 	return iValue;
+}
+
+void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI )
+{
+	if( eSpawn == NO_SPAWN )
+		return;
+
+	CvSpawnInfo& kSpawn = GC.getSpawnInfo( (SpawnTypes) eSpawn );
+
+	CvUnit* pHeadUnit = NULL;
+
+	for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
+	{
+		for( int j = 0; j < kSpawn.getNumSpawnUnits( (UnitTypes) eUnit ); j++ )
+		{
+			CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, getX_INLINE(), getY_INLINE(), eUnitAI );
+			pUnit->setMinWilderness( kSpawn.getMinWilderness() );
+			
+			if ( kSpawn.isAnimal() )
+				pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
+			
+			if( kSpawn.isNoRace() )
+				pUnit->setRace( NO_PROMOTION );
+
+			for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ )
+				if( kSpawn.getUnitPromotions( ePromotion ) )
+					pUnit->setHasPromotion( (PromotionTypes) ePromotion, true );
+
+			if( pHeadUnit == NULL )
+				pHeadUnit = pUnit;
+			else
+				pUnit->joinGroup( pHeadUnit->getGroup() );
+		}
+	}
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

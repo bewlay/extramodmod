@@ -12,6 +12,7 @@
 	<ElementType name="bNeverSpawn" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAnimal" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bWater" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bNoRace" content="textOnly" dt:type="boolean"/>
 	
 	<ElementType name="Unit" content="textOnly"/>
 	<ElementType name="iNumUnits" content="textOnly" dt:type="int"/>
@@ -63,6 +64,7 @@
 		<element type="bNeverSpawn" minOccurs="0"/>
 		<element type="bAnimal" minOccurs="0"/>
 		<element type="bWater" minOccurs="0"/>
+		<element type="bNoRace" minOccurs="0"/>
 		<element type="SpawnUnits"/>
 		<element type="TerrainWeights" minOccurs="0"/>
 		<element type="FeatureWeights" minOccurs="0"/>

@@ -636,6 +636,7 @@ public:
 	void setWilderness(int iNewValue);
 
 	int getSpawnValue( SpawnTypes eSpawnType, bool bBarbTech );
+	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

@@ -7645,22 +7645,9 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 	{
 		CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
 		logBBAI("SpawnInfo %s chosen!", kBestSpawn.getType() );
-		// init spawn units
-		for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
-		{
-			for( int j = 0; j < kBestSpawn.getNumSpawnUnits( (UnitTypes) eUnit ); j++ )
-			{
-				logBBAI("Spawning Barbarian Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eUnit).getDescription(), pPlot->getX(), pPlot->getY());
-				
-				UnitAITypes eUnitAI = bAnimal ? UNITAI_ANIMAL : ( pPlot->area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
-				CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), eUnitAI );
-				pUnit->setMinWilderness( kBestSpawn.getMinWilderness() );
-				
-				for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ )
-					if( kBestSpawn.getUnitPromotions( ePromotion ) )
-						pUnit->setHasPromotion( (PromotionTypes) ePromotion, true );
-			}
-		}
+		
+		UnitAITypes eUnitAI = bAnimal ? UNITAI_ANIMAL : ( pPlot->area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
+		pPlot->createSpawn( eBestSpawn, eUnitAI );
 	}
 	else
 	{

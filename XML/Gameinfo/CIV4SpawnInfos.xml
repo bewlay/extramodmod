@@ -675,8 +675,8 @@
 		</SpawnInfo>
 		
 		<!-- Basic Melee -->
-		<SpawnInfo> <!-- SPAWN_WARRIOR -->
-			<Type>SPAWN_WARRIOR</Type>
+		<SpawnInfo> <!-- SPAWN_ORC_WARRIOR -->
+			<Type>SPAWN_ORC_WARRIOR</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>50</iMaxWilderness>
@@ -689,9 +689,15 @@
 			<ObsoleteTechs>
 				<Tech>TECH_BRONZE_WORKING</Tech>
 			</ObsoleteTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_AXEMAN -->
-			<Type>SPAWN_AXEMAN</Type>
+		<SpawnInfo> <!-- SPAWN_ORC_AXEMAN -->
+			<Type>SPAWN_ORC_AXEMAN</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>50</iMaxWilderness>
@@ -707,6 +713,37 @@
 			<ObsoleteTechs>
 				<Tech>TECH_IRON_WORKING</Tech>
 			</ObsoleteTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_BANDIT -->
+			<Type>SPAWN_BANDIT</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_BANDIT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_IRON_WORKING</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_OGRE -->
 			<Type>SPAWN_OGRE</Type>
@@ -722,9 +759,15 @@
 			<PrereqTechs>
 				<Tech>TECH_IRON_WORKING</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_BERSERKER -->
-			<Type>SPAWN_BERSERKER</Type>
+		<SpawnInfo> <!-- SPAWN_ORC_BERSERKER -->
+			<Type>SPAWN_ORC_BERSERKER</Type>
 			<iBaseWeight>25</iBaseWeight><!-- National limit ignored -->
 			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
@@ -737,6 +780,12 @@
 			<PrereqTechs>
 				<Tech>TECH_RAGE</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_OGRE_WARCHIEF -->
 			<Type>SPAWN_OGRE_WARCHIEF</Type>
@@ -752,6 +801,12 @@
 			<PrereqTechs>
 				<Tech>TECH_DIVINE_ESSENCE</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_STONESKIN_OGRE -->
 			<Type>SPAWN_STONESKIN_OGRE</Type>
@@ -767,11 +822,17 @@
 			<PrereqTechs>
 				<Tech>TECH_MITHRIL_WEAPONS</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		
 		<!-- Early Melee -->
-		<SpawnInfo> <!-- SPAWN_AXEMAN_EARLY -->
-			<Type>SPAWN_AXEMAN_EARLY</Type>
+		<SpawnInfo> <!-- SPAWN_ORC_AXEMAN_EARLY -->
+			<Type>SPAWN_ORC_AXEMAN_EARLY</Type>
 			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>60</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
@@ -784,6 +845,12 @@
 			<ObsoleteTechs>
 				<Tech>TECH_BRONZE_WORKING</Tech>
 			</ObsoleteTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_OGRE_EARLY -->
 			<Type>SPAWN_OGRE_EARLY</Type>
@@ -799,6 +866,12 @@
 			<PrereqTechs>
 				<Tech>TECH_BRONZE_WORKING</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_OGRE_WARCHIEF_EARLY -->
 			<Type>SPAWN_OGRE_WARCHIEF_EARLY</Type>
@@ -814,6 +887,12 @@
 			<PrereqTechs>
 				<Tech>TECH_IRON_WORKING</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		
 		<!-- Basic Recon -->
@@ -831,6 +910,12 @@
 			<ObsoleteTechs>
 				<Tech>TECH_HUNTING</Tech>
 			</ObsoleteTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_GOBLIN_SCORPION_CLAN -->
 			<Type>SPAWN_GOBLIN_SCORPION_CLAN</Type>
@@ -843,6 +928,12 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LIZARDMAN -->
 			<Type>SPAWN_LIZARDMAN</Type>
@@ -858,6 +949,12 @@
 			<PrereqTechs>
 				<Tech>TECH_HUNTING</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LIZARDMAN_RANGER -->
 			<Type>SPAWN_LIZARDMAN_RANGER</Type>
@@ -873,6 +970,12 @@
 			<PrereqTechs>
 				<Tech>TECH_FERAL_BOND</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LIZARDMAN_ASSASSIN -->
 			<Type>SPAWN_LIZARDMAN_ASSASSIN</Type>
@@ -888,6 +991,12 @@
 			<PrereqTechs>
 				<Tech>TECH_POISONS</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LIZARDMAN_BEASTMASTER -->
 			<Type>SPAWN_LIZARDMAN_BEASTMASTER</Type>
@@ -903,6 +1012,12 @@
 			<PrereqTechs>
 				<Tech>TECH_ANIMAL_MASTERY</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		
 		<!-- Early Recon -->
@@ -917,6 +1032,12 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LIZARDMAN_RANGER_EARLY -->
 			<Type>SPAWN_LIZARDMAN_RANGER_EARLY</Type>
@@ -932,11 +1053,17 @@
 			<PrereqTechs>
 				<Tech>TECH_HUNTING</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		
 		<!-- Basic Archery -->
-		<SpawnInfo> <!-- SPAWN_ARCHER -->
-			<Type>SPAWN_ARCHER</Type>
+		<SpawnInfo> <!-- SPAWN_ORC_ARCHER -->
+			<Type>SPAWN_ORC_ARCHER</Type>
 			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>30</iMaxWilderness>
@@ -952,9 +1079,15 @@
 			<ObsoleteTechs>
 				<Tech>TECH_BOWYERS</Tech>
 			</ObsoleteTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_LONGBOWMAN -->
-			<Type>SPAWN_LONGBOWMAN</Type>
+		<SpawnInfo> <!-- SPAWN_ORC_LONGBOWMAN -->
+			<Type>SPAWN_ORC_LONGBOWMAN</Type>
 			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>40</iMaxWilderness>
@@ -967,10 +1100,17 @@
 			<PrereqTechs>
 				<Tech>TECH_BOWYERS</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<!-- Crossbowmen are only built in city -->
-		<SpawnInfo> <!-- SPAWN_MARKSMAN -->
-			<Type>SPAWN_MARKSMAN</Type>
+		<SpawnInfo> <!-- SPAWN_ORC_MARKSMAN -->
+			<!-- LFGR_TODO: is there an unique marksman art? -->
+			<Type>SPAWN_ORC_MARKSMAN</Type>
 			<iBaseWeight>20</iBaseWeight><!-- National limit ignored -->
 			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
@@ -983,6 +1123,12 @@
 			<PrereqTechs>
 				<Tech>TECH_PRECISION</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		
 		<!-- Basic Mounted -->
@@ -1000,6 +1146,12 @@
 			<PrereqTechs>
 				<Tech>TECH_HORSEBACK_RIDING</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WOLF_RIDER_SCORPION_CLAN -->
 			<Type>SPAWN_WOLF_RIDER_SCORPION_CLAN</Type>
@@ -1015,9 +1167,15 @@
 			<PrereqTechs>
 				<Tech>TECH_HORSEBACK_RIDING</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_CHARIOT -->
-			<Type>SPAWN_CHARIOT</Type>
+		<SpawnInfo> <!-- SPAWN_ORC_CHARIOT -->
+			<Type>SPAWN_ORC_CHARIOT</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>50</iMaxWilderness>
@@ -1031,6 +1189,40 @@
 				<Tech>TECH_TRADE</Tech>
 				<Tech>TECH_CONSTRUCTION</Tech>
 			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
+		</SpawnInfo>
+		
+		<!-- Groups -->
+		<SpawnInfo> <!-- SPAWN_GROUP_BANDIT_LORD -->
+			<Type>SPAWN_GROUP_BANDIT_LORD</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_BANDIT_LORD</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+				<SpawnUnit>
+					<Unit>UNIT_BANDIT</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_SMELTING</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 		</SpawnInfo>
 	</SpawnInfos>
 </Civ4SpawnInfos>
