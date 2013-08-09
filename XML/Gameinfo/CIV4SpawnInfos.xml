@@ -89,7 +89,6 @@
 		</SpawnInfo>
 		
 		<!-- Hellfire -->
-		<!-- LFGR_TODO: Demon Promotion! -->
 		<SpawnInfo> <!-- SPAWN_HELLFIRE_CHAMPION -->
 			<Type>SPAWN_HELLFIRE_CHAMPION</Type>
 			<iBaseWeight>100</iBaseWeight>

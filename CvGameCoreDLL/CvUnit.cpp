@@ -12208,16 +12208,19 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 				}
 			}
 		*/
-			bool bAnimalLair =  pNewPlot->isLair( false, true );
-			if (!isHuman() || kImprovementInfo.isPermanent() == false)
+			if( pNewPlot->isLair() )
 			{
-				if (atWar(getTeam(), GET_PLAYER(BARBARIAN_PLAYER).getTeam()) || (bAnimalLair && !isBarbarian()))
+				bool bAnimalLair =  pNewPlot->isLair( false, true );
+				if (!isHuman() || kImprovementInfo.isPermanent() == false)
 				{
-					if (isHuman())
+					if (atWar(getTeam(), GET_PLAYER(BARBARIAN_PLAYER).getTeam()) || (bAnimalLair && !isBarbarian()))
 					{
-						gDLL->getInterfaceIFace()->addMessage(getOwner(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), gDLL->getText("TXT_KEY_MESSAGE_LAIR_DESTROYED"), "AS2D_CITYRAZE", MESSAGE_TYPE_MAJOR_EVENT, GC.getImprovementInfo((ImprovementTypes)iImprovement).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pNewPlot->getX(), pNewPlot->getY(), true, true);
+						if (isHuman())
+						{
+							gDLL->getInterfaceIFace()->addMessage(getOwner(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), gDLL->getText("TXT_KEY_MESSAGE_LAIR_DESTROYED"), "AS2D_CITYRAZE", MESSAGE_TYPE_MAJOR_EVENT, GC.getImprovementInfo((ImprovementTypes)iImprovement).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pNewPlot->getX(), pNewPlot->getY(), true, true);
+						}
+						pNewPlot->setImprovementType(NO_IMPROVEMENT);
 					}
-					pNewPlot->setImprovementType(NO_IMPROVEMENT);
 				}
 			}
 		/************************************************************************************************/
