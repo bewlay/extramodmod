@@ -9400,7 +9400,7 @@
             </PrereqBonuses>
             <ProductionTraits>
                 <ProductionTrait>
-                    <ProductionTraitType>TRAIT_PHILOSOPHICAL</ProductionTraitType>
+                    <ProductionTraitType>TRAIT_ORGANIZED</ProductionTraitType>
                     <iProductionTrait>100</iProductionTrait>
                 </ProductionTrait>
             </ProductionTraits>
