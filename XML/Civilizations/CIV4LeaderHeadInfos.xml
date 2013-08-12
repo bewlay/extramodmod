@@ -12546,11 +12546,11 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				 <Trait>
-					<TraitType>TRAIT_FINANCIAL</TraitType>
+					<TraitType>TRAIT_SPIRITUAL</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
-					<TraitType>TRAIT_SPIRITUAL</TraitType>
+					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 			</Traits>
@@ -16698,7 +16698,7 @@
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
-					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<TraitType>TRAIT_CHARISMATIC</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
@@ -22269,7 +22269,7 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				 <Trait>
-					<TraitType>TRAIT_CHARISMATIC</TraitType>
+					<TraitType>TRAIT_SPIRITUAL</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
@@ -33449,11 +33449,11 @@
 			<FavoriteReligion>RELIGION_RUNES_OF_KILMORPH</FavoriteReligion>
 			<Traits>
 				 <Trait>
-					<TraitType>TRAIT_AGGRESSIVE</TraitType>
+					<TraitType>TRAIT_FINANCIAL</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
-					<TraitType>TRAIT_FINANCIAL</TraitType>
+					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 			</Traits>
@@ -57233,11 +57233,11 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				 <Trait>
-					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
+					<TraitType>TRAIT_CHARISMATIC</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
-					<TraitType>TRAIT_SPIRITUAL</TraitType>
+					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 			</Traits>
