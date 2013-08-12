@@ -53345,9 +53345,9 @@
             </UniqueNames>
             <Special>NONE</Special>
             <Capture>NONE</Capture>
-            <Combat>UNITCOMBAT_MELEE</Combat>
+            <Combat>UNITCOMBAT_RECON</Combat>
             <Domain>DOMAIN_LAND</Domain>
-            <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+            <DefaultUnitAI>UNITAI_ANIMAL</DefaultUnitAI>
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_MISTFORM</Description>
@@ -53551,6 +53551,10 @@
                 </FreePromotion>
                 <FreePromotion>
                     <PromotionType>PROMOTION_HIDDEN_NATIONALITY</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_MARKSMAN</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
             </FreePromotions>
