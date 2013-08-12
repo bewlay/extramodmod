@@ -14,7 +14,7 @@
 			<TechPrereq>TECH_WAY_OF_THE_FORESTS</TechPrereq>
 			<FreeUnitClass>UNITCLASS_DISCIPLE_FELLOWSHIP_OF_LEAVES</FreeUnitClass>
 			<iFreeUnits>1</iFreeUnits>
-			<iSpreadFactor>100</iSpreadFactor>
+			<iSpreadFactor>80</iSpreadFactor>
 			<GlobalReligionCommerces>
 				<iGlobalReligionCommerce>1</iGlobalReligionCommerce>
 				<iGlobalReligionCommerce>0</iGlobalReligionCommerce>
@@ -142,7 +142,7 @@
 			<TechPrereq>TECH_WAY_OF_THE_EARTHMOTHER</TechPrereq>
 			<FreeUnitClass>UNITCLASS_DISCIPLE_RUNES_OF_KILMORPH</FreeUnitClass>
 			<iFreeUnits>1</iFreeUnits>
-			<iSpreadFactor>100</iSpreadFactor>
+			<iSpreadFactor>80</iSpreadFactor>
 			<GlobalReligionCommerces>
 				<iGlobalReligionCommerce>1</iGlobalReligionCommerce>
 				<iGlobalReligionCommerce>0</iGlobalReligionCommerce>
