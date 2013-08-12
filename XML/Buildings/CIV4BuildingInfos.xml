@@ -8007,6 +8007,10 @@
             <PrereqBonuses>
             </PrereqBonuses>
             <ProductionTraits>
+                <ProductionTrait>
+                    <ProductionTraitType>TRAIT_CREATIVE</ProductionTraitType>
+                    <iProductionTrait>100</iProductionTrait>
+                </ProductionTrait>
             </ProductionTraits>
             <HappinessTraits>
             </HappinessTraits>
