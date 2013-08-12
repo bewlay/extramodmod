@@ -28758,7 +28758,7 @@
             <bNeverObsolete>1</bNeverObsolete>
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
-            <iWeaponTier>3</iWeaponTier>
+            <iWeaponTier>2</iWeaponTier>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_EARTH_ELEMENTAL</Class>
@@ -55887,7 +55887,7 @@
             </TerrainPassableTechs>
             <FeaturePassableTechs>
             </FeaturePassableTechs>
-            <iCombat>6</iCombat>
+            <iCombat>4</iCombat>
             <iCombatLimit>100</iCombatLimit>
             <iAirCombat>0</iAirCombat>
             <iAirCombatLimit>0</iAirCombatLimit>
@@ -55967,12 +55967,21 @@
                     <PromotionType>PROMOTION_DEMON_SLAYING</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_IRON_WEAPONS</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_DWARF</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
             <bNeverObsolete>1</bNeverObsolete>
-            <iCombatDefense>8</iCombatDefense>
+            <iCombatDefense>6</iCombatDefense>
             <iTier>3</iTier>
+			<iWeaponTier>3</iWeaponTier>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_PHALANX</Class>
