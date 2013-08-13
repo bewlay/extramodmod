@@ -2339,6 +2339,13 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_LION</SpawnType>
+				<SpawnType>SPAWN_LION_PRIDE</SpawnType>
+				<SpawnType>SPAWN_LION_DEN_STRONG_LION_PRIDE</SpawnType>
+			</SpawnTypes>
+		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_LUMBERMILL</Type>

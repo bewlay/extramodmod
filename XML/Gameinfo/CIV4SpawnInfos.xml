@@ -106,6 +106,25 @@
 			</UnitPromotions>
 		</SpawnInfo>
 		
+		<!-- Lion Den -->
+		<SpawnInfo> <!-- SPAWN_LION_DEN_STRONG_LION_PRIDE -->
+			<Type>SPAWN_LION_DEN_STRONG_LION_PRIDE</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LION</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+
 		<!-- Ruins -->
 		<SpawnInfo> <!-- SPAWN_RUINS_LIZARDMAN -->
 			<Type>SPAWN_RUINS_LIZARDMAN</Type>
