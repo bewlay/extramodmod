@@ -14341,7 +14341,7 @@
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>2</iCombatDefense>
             <UnitConvertFromCombat>UNIT_GIANT_SPIDER</UnitConvertFromCombat>
-            <iUnitConvertFromCombatChance>2</iUnitConvertFromCombatChance>
+            <iUnitConvertFromCombatChance>20</iUnitConvertFromCombatChance>
             <DamageTypeCombats>
                 <DamageTypeCombat>
                     <DamageType>DAMAGE_POISON</DamageType>
@@ -53157,7 +53157,7 @@
             <Capture>NONE</Capture>
             <Combat>UNITCOMBAT_MELEE</Combat>
             <Domain>DOMAIN_LAND</Domain>
-            <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+            <DefaultUnitAI>UNITAI_ANIMAL</DefaultUnitAI>
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_MISTFORM</Description>
