@@ -168,7 +168,7 @@
 				</SpawnUnit>
 			</SpawnUnits>
 			<PrereqTechs>
-				<Tech>TECH_TRADE</Tech>
+				<Tech>TECH_HORSEBACK_RIDING</Tech>
 				<Tech>TECH_CONSTRUCTION</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
@@ -1407,7 +1407,7 @@
 				</SpawnUnit>
 			</SpawnUnits>
 			<PrereqTechs>
-				<Tech>TECH_TRADE</Tech>
+				<Tech>TECH_HORSEBACK_RIDING</Tech>
 				<Tech>TECH_CONSTRUCTION</Tech>
 			</PrereqTechs>
 			<FeatureWeights>
