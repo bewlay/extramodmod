@@ -166,8 +166,10 @@
             <PythonOnMove></PythonOnMove>
 		<!-- WILDERNESS 08/2013 lfgr -->
             <SpawnTypes>
-				<SpawnType>SPAWN_BARROW_SKELETON</SpawnType>
-				<SpawnType>SPAWN_BARROW_SPECTRE</SpawnType>
+				<SpawnType>SPAWN_BARROW_EARLY_SKELETON</SpawnType>
+				<SpawnType>SPAWN_BARROW_EARLY_SPECTRE</SpawnType>
+				<SpawnType>SPAWN_BARROW_LATE_SPECTRE</SpawnType>
+				<SpawnType>SPAWN_BARROW_LATE_WRAITH</SpawnType>
 			</SpawnTypes>
 		<!-- WILDERNESS end -->
         </ImprovementInfo>
@@ -233,6 +235,7 @@
             <SpawnTypes>
 				<SpawnType>SPAWN_BEAR_DEN_BEAR</SpawnType>
 				<SpawnType>SPAWN_BEAR_DEN_POLAR_BEAR</SpawnType>
+				<SpawnType>SPAWN_BEAR_DEN_CAVE_BEAR</SpawnType>
 			</SpawnTypes>
 		<!-- WILDERNESS end -->
         </ImprovementInfo>
@@ -1646,6 +1649,9 @@
 		<!-- WILDERNESS 08/2013 lfgr -->
             <SpawnTypes>
 				<SpawnType>SPAWN_GOBLIN_FORT_GOBLIN_SCORPION_CLAN</SpawnType>
+				<SpawnType>SPAWN_GOBLIN_FORT_WOLF_RIDER_SCORPION_CLAN</SpawnType>
+				<SpawnType>SPAWN_GOBLIN_FORT_CHARIOT_SCORPION_CLAN</SpawnType>
+				<SpawnType>SPAWN_GOBLIN_FORT_ARCHER_SCORPION_CLAN</SpawnType>
 			</SpawnTypes>
 		<!-- WILDERNESS end -->
 			<bBombardable>1</bBombardable>
@@ -2341,8 +2347,8 @@
             <PythonOnMove></PythonOnMove>
 		<!-- WILDERNESS 08/2013 lfgr -->
             <SpawnTypes>
-				<SpawnType>SPAWN_LION</SpawnType>
-				<SpawnType>SPAWN_LION_PRIDE</SpawnType>
+				<SpawnType>SPAWN_LION_DEN_LION</SpawnType>
+				<SpawnType>SPAWN_LION_DEN_LION_PRIDE</SpawnType>
 				<SpawnType>SPAWN_LION_DEN_STRONG_LION_PRIDE</SpawnType>
 			</SpawnTypes>
 		<!-- WILDERNESS end -->
@@ -5324,7 +5330,10 @@
             <PythonOnMove></PythonOnMove>
 		<!-- WILDERNESS 08/2013 lfgr -->
             <SpawnTypes>
-				<SpawnType>SPAWN_RUINS_LIZARDMAN</SpawnType>
+				<SpawnType>SPAWN_RUINS_EARLY_LIZARDMAN</SpawnType>
+				<SpawnType>SPAWN_RUINS_MIDDLE_LIZARDMAN</SpawnType>
+				<SpawnType>SPAWN_RUINS_MIDDLE_LIZARDMAN_RANGER</SpawnType>
+				<SpawnType>SPAWN_RUINS_LATE_LIZARDMAN_RANGER</SpawnType>
 			</SpawnTypes>
 		<!-- WILDERNESS end -->
         </ImprovementInfo>
