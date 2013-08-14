@@ -1149,6 +1149,9 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<ObsoleteTechs>
+				<Tech>TECH_ANIMAL_HANDLING</Tech>
+			</ObsoleteTechs>
 			<FeatureWeights>
 				<FeatureWeight>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
@@ -1170,10 +1173,57 @@
 			<PrereqTechs>
 				<Tech>TECH_HUNTING</Tech>
 			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_FERAL_BOND</Tech>
+			</ObsoleteTechs>
 			<FeatureWeights>
 				<FeatureWeight>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_FAWN -->
+			<Type>SPAWN_FAWN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>60</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_FAWN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_HUNTING</Tech>
+			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>125</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_SATYR -->
+			<Type>SPAWN_SATYR</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>40</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SATYR</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_FERAL_BOND</Tech>
+			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>125</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
@@ -1267,7 +1317,7 @@
 			<iMaxWilderness>100</iMaxWilderness>
 			<SpawnUnits>
 				<SpawnUnit>
-					<Unit>SPAWN_LIZARDMAN_RANGER</Unit>
+					<Unit>UNIT_LIZARDMAN_RANGER</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
