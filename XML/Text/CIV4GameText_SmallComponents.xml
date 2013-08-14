@@ -1,0 +1,14 @@
+<Civ4GameText>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_MUSEUM</Tag>
+		<English>Museum</English>
+		<French>Museum</French>
+		<German>Museum</German>
+		<Italian>Museum</Italian>
+		<Spanish>
+			<Text>Museo:Museos</Text>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</Spanish>
+	</TEXT>
+</Civ4GameText>

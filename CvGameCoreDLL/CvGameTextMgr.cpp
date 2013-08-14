@@ -842,6 +842,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			szString.append(gDLL->getText("TXT_KEY_UNIT_DURATION", pUnit->getDuration()));
             szString.append(CvWString::format(ENDCOLR));
 		}
+
 /*************************************************************************************************/
 /**	FFHBUG denev																				**/
 /**	ADDON (FFHBUG) merged Sephi																	**/
@@ -1597,7 +1598,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			}
 
 			int iEnslavementChance = 0;
-			iEnslavementChance += kUnitInfo.getEnslavementChance();
+			iEnslavementChance += pUnit->getEnslavementChance();
 			iEnslavementChance += GET_PLAYER(pUnit->getOwnerINLINE()).getEnslavementChance();
 			if (iEnslavementChance > 0)
 			{
@@ -9470,6 +9471,12 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_PREREQ_ALIVE"));
     }
+
+	if (GC.getPromotionInfo(ePromotion).getEnslavementChance() != 0)
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_UNIT_ENSLAVEMENT_CHANCE", GC.getPromotionInfo(ePromotion).getEnslavementChance()));
+    }
 //FfH: End Add
 
 	if (wcslen(kPromotionInfo.getHelp()) > 0)
@@ -13740,6 +13747,19 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_MILITARY_MOD", kBuilding.getMilitaryProductionModifier()));
 	}
+
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	if (kBuilding.getLivingProductionModifier() != 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_LIVING_MOD", kBuilding.getLivingProductionModifier()));
+	}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 
 	if (kBuilding.getSpaceProductionModifier() != 0)
 	{
@@ -19352,6 +19372,25 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 			}
 		}
 
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+		// Living
+		if (unit.isAlive(GET_PLAYER(city.getOwnerINLINE()).getCivilizationType()))
+		{
+			int iLivingMod = city.getLivingProductionModifier();
+			if (0 != iLivingMod)
+			{
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_LIVING", iLivingMod));
+				szBuffer.append(NEWLINE);
+				iBaseModifier += iLivingMod;
+			}
+		}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
+
 		// Bonus
 		for (int i = 0; i < GC.getNumBonusInfos(); i++)
 		{
@@ -21575,6 +21614,19 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_EVENT_UNIT_PROMOTION", szUnit.GetCString(), GC.getPromotionInfo((PromotionTypes)kEvent.getUnitPromotion()).getTextKeyWide()));
 	}
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+		if( kEvent.isUnitPromotion( i ) )
+		{
+			szBuffer.append( NEWLINE );
+			szBuffer.append( gDLL->getText( "TXT_KEY_EVENT_UNIT_PROMOTION", szUnit.GetCString(), GC.getPromotionInfo( (PromotionTypes)i ).getTextKeyWide() ) );
+		}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	for (int i = 0; i < GC.getNumUnitCombatInfos(); ++i)
 	{
@@ -21698,6 +21750,18 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
 		szBuffer.append(gDLL->getText("TXT_KEY_EVENT_GLOBAL_COUNTER", kEvent.getGlobalCounter()));
 	}
 //FfH: End Add
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/20/13                                lfgr        */
+/************************************************************************************************/
+	if( !CvWString( kEvent.getHelp() ).empty() )
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(CvWString( kEvent.getHelp() ));
+	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	if (!CvWString(kEvent.getPythonHelp()).empty())
 	{
@@ -21707,9 +21771,23 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
 		argsList.add(gDLL->getPythonIFace()->makePythonObject(pTriggeredData));
 
 		gDLL->getPythonIFace()->callFunction(PYRandomEventModule, kEvent.getPythonHelp(), argsList.makeFunctionArgs(), &szHelp);
-
-		szBuffer.append(NEWLINE);
-		szBuffer.append(szHelp);
+		
+/************************************************************************************************/
+/* EVENT_FIXES                              01/20/13                                lfgr        */
+/* Avoid empty newline                                                                          */
+/************************************************************************************************/
+/* Old:                                                                                         */
+//		szBuffer.append(NEWLINE);
+//		szBuffer.append(szHelp);
+/************************************************************************************************/
+		if( !szHelp.empty() )
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(szHelp);
+		}
+/************************************************************************************************/
+/* EVENT_FIXES                             END                                                  */
+/************************************************************************************************/
 	}
 
 	CvWStringBuffer szTemp;

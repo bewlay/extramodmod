@@ -99,7 +99,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>10</iPillageGold>
+            <iPillageGold>20</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -429,7 +429,7 @@
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
-            <PythonOnMove></PythonOnMove>
+            <PythonOnMove>onMoveBrokenSepulcher(pCaster, pPlot)</PythonOnMove>
             <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
@@ -516,7 +516,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -556,6 +556,17 @@
                         <iYieldChange>1</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
+				<BonusTypeStruct>
+					<BonusType>BONUS_PENGUINS</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>4</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
             </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -608,7 +619,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>25</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>10</iPillageGold>
+            <iPillageGold>20</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -712,7 +723,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>40</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>15</iPillageGold>
+            <iPillageGold>30</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -881,7 +892,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>10</iPillageGold>
+            <iPillageGold>20</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -1189,7 +1200,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>30</iPillageGold>
+            <iPillageGold>60</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -1264,7 +1275,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -1388,7 +1399,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -1439,10 +1450,29 @@
                         <iYieldChange>2</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_SHRIMP</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
             </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
+                <TechYieldChange>
+                    <PrereqTech>TECH_SEAFARING</PrereqTech>
+                    <TechYields>
+                        <iYield>0</iYield>
+                        <iYield>0</iYield>
+                        <iYield>1</iYield>
+                    </TechYields>
+                </TechYieldChange>
             </TechYieldChanges>
             <RouteYieldChanges>
             </RouteYieldChanges>
@@ -1491,7 +1521,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>10</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -1970,7 +2000,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>15</iPillageGold>
+            <iPillageGold>30</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -2026,7 +2056,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>10</iPillageGold>
+            <iPillageGold>20</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -2384,13 +2414,17 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
             <FeatureMakesValids>
                 <FeatureMakesValid>
                     <FeatureType>FEATURE_FOREST</FeatureType>
+                    <bMakesValid>1</bMakesValid>
+                </FeatureMakesValid>
+                <FeatureMakesValid>
+                    <FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
                     <bMakesValid>1</bMakesValid>
                 </FeatureMakesValid>
             </FeatureMakesValids>
@@ -2719,6 +2753,87 @@
             <PythonOnMove></PythonOnMove>
             <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
+		<ImprovementInfo>
+			<Type>IMPROVEMENT_MANA_CREATION</Type>
+			<Description>TXT_KEY_IMPROVEMENT_MANA_CREATION</Description>
+			<Civilopedia></Civilopedia>
+			<Help></Help>
+			<ArtDefineTag>ART_DEF_IMPROVEMENT_MANA_CREATION</ArtDefineTag>
+			<bActsAsCity>0</bActsAsCity>
+			<bHillsMakesValid>0</bHillsMakesValid>
+			<bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+			<bRiverSideMakesValid>0</bRiverSideMakesValid>
+			<bNoFreshWater>0</bNoFreshWater>
+			<bRequiresFlatlands>0</bRequiresFlatlands>
+			<bRequiresRiverSide>0</bRequiresRiverSide>
+			<bRequiresIrrigation>0</bRequiresIrrigation>
+			<bCarriesIrrigation>0</bCarriesIrrigation>
+			<bRequiresFeature>0</bRequiresFeature>
+			<bWater>0</bWater>
+			<bGoody>0</bGoody>
+			<bPermanent>1</bPermanent>
+			<bUseLSystem>1</bUseLSystem>
+			<iAdvancedStartCost>40</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>40</iAdvancedStartCostIncrease>
+			<iTilesPerGoody>0</iTilesPerGoody>
+			<iGoodyRange>0</iGoodyRange>
+			<iFeatureGrowth>0</iFeatureGrowth>
+			<iUpgradeTime>0</iUpgradeTime>
+			<iAirBombDefense>0</iAirBombDefense>
+			<iDefenseModifier>0</iDefenseModifier>
+			<iHappiness>0</iHappiness>
+			<iPillageGold>0</iPillageGold>
+			<bOutsideBorders>0</bOutsideBorders>
+			<TerrainMakesValids>
+			</TerrainMakesValids>
+			<FeatureMakesValids>
+			</FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>0</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_CREATION</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
+			<ImprovementPillage></ImprovementPillage>
+			<ImprovementUpgrade></ImprovementUpgrade>
+			<TechYieldChanges>
+			</TechYieldChanges>
+			<RouteYieldChanges>
+			</RouteYieldChanges>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<bRequiresPeak>0</bRequiresPeak>
+			<bUnique>0</bUnique>
+			<bExploreTarget>0</bExploreTarget>
+			<iAppearanceProbability>0</iAppearanceProbability>
+			<iHealRateChange>0</iHealRateChange>
+			<iRange>0</iRange>
+			<iRangeDefenseModifier>0</iRangeDefenseModifier>
+			<iVisibilityChange>0</iVisibilityChange>
+			<BonusConvert>BONUS_MANA_CREATION</BonusConvert>
+			<FeatureUpgrade>NONE</FeatureUpgrade>
+			<PrereqCivilization>NONE</PrereqCivilization>
+			<PythonAtRange></PythonAtRange>
+			<PythonOnMove></PythonOnMove>
+			<SpawnUnitType>NONE</SpawnUnitType>
+		</ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_DEATH</Type>
             <Description>TXT_KEY_IMPROVEMENT_MANA_DEATH</Description>
@@ -2800,6 +2915,87 @@
             <PythonOnMove></PythonOnMove>
             <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
+		<ImprovementInfo>
+			<Type>IMPROVEMENT_MANA_DIMENSIONAL</Type>
+			<Description>TXT_KEY_IMPROVEMENT_MANA_DIMENSIONAL</Description>
+			<Civilopedia></Civilopedia>
+			<Help></Help>
+			<ArtDefineTag>ART_DEF_IMPROVEMENT_MANA_DIMENSIONAL</ArtDefineTag>
+			<bActsAsCity>0</bActsAsCity>
+			<bHillsMakesValid>0</bHillsMakesValid>
+			<bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+			<bRiverSideMakesValid>0</bRiverSideMakesValid>
+			<bNoFreshWater>0</bNoFreshWater>
+			<bRequiresFlatlands>0</bRequiresFlatlands>
+			<bRequiresRiverSide>0</bRequiresRiverSide>
+			<bRequiresIrrigation>0</bRequiresIrrigation>
+			<bCarriesIrrigation>0</bCarriesIrrigation>
+			<bRequiresFeature>0</bRequiresFeature>
+			<bWater>0</bWater>
+			<bGoody>0</bGoody>
+			<bPermanent>1</bPermanent>
+			<bUseLSystem>1</bUseLSystem>
+			<iAdvancedStartCost>40</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>40</iAdvancedStartCostIncrease>
+			<iTilesPerGoody>0</iTilesPerGoody>
+			<iGoodyRange>0</iGoodyRange>
+			<iFeatureGrowth>0</iFeatureGrowth>
+			<iUpgradeTime>0</iUpgradeTime>
+			<iAirBombDefense>0</iAirBombDefense>
+			<iDefenseModifier>0</iDefenseModifier>
+			<iHappiness>0</iHappiness>
+			<iPillageGold>0</iPillageGold>
+			<bOutsideBorders>0</bOutsideBorders>
+			<TerrainMakesValids>
+			</TerrainMakesValids>
+			<FeatureMakesValids>
+			</FeatureMakesValids>
+			<BonusTypeStructs>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA_DIMENSIONAL</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+			</BonusTypeStructs>
+			<ImprovementPillage></ImprovementPillage>
+			<ImprovementUpgrade></ImprovementUpgrade>
+			<TechYieldChanges>
+			</TechYieldChanges>
+			<RouteYieldChanges>
+			</RouteYieldChanges>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<bRequiresPeak>0</bRequiresPeak>
+			<bUnique>0</bUnique>
+			<bExploreTarget>0</bExploreTarget>
+			<iAppearanceProbability>0</iAppearanceProbability>
+			<iHealRateChange>0</iHealRateChange>
+			<iRange>0</iRange>
+			<iRangeDefenseModifier>0</iRangeDefenseModifier>
+			<iVisibilityChange>0</iVisibilityChange>
+			<BonusConvert>BONUS_MANA_DIMENSIONAL</BonusConvert>
+			<FeatureUpgrade>NONE</FeatureUpgrade>
+			<PrereqCivilization>NONE</PrereqCivilization>
+			<PythonAtRange></PythonAtRange>
+			<PythonOnMove></PythonOnMove>
+			<SpawnUnitType>NONE</SpawnUnitType>
+		</ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_EARTH</Type>
             <Description>TXT_KEY_IMPROVEMENT_MANA_EARTH</Description>
@@ -3124,6 +3320,168 @@
             <PythonOnMove></PythonOnMove>
             <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
+		<ImprovementInfo>
+			<Type>IMPROVEMENT_MANA_FORCE</Type>
+			<Description>TXT_KEY_IMPROVEMENT_MANA_FORCE</Description>
+			<Civilopedia></Civilopedia>
+			<Help></Help>
+			<ArtDefineTag>ART_DEF_IMPROVEMENT_MANA_FORCE</ArtDefineTag>
+			<bActsAsCity>0</bActsAsCity>
+			<bHillsMakesValid>0</bHillsMakesValid>
+			<bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+			<bRiverSideMakesValid>0</bRiverSideMakesValid>
+			<bNoFreshWater>0</bNoFreshWater>
+			<bRequiresFlatlands>0</bRequiresFlatlands>
+			<bRequiresRiverSide>0</bRequiresRiverSide>
+			<bRequiresIrrigation>0</bRequiresIrrigation>
+			<bCarriesIrrigation>0</bCarriesIrrigation>
+			<bRequiresFeature>0</bRequiresFeature>
+			<bWater>0</bWater>
+			<bGoody>0</bGoody>
+			<bPermanent>1</bPermanent>
+			<bUseLSystem>1</bUseLSystem>
+			<iAdvancedStartCost>40</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>40</iAdvancedStartCostIncrease>
+			<iTilesPerGoody>0</iTilesPerGoody>
+			<iGoodyRange>0</iGoodyRange>
+			<iFeatureGrowth>0</iFeatureGrowth>
+			<iUpgradeTime>0</iUpgradeTime>
+			<iAirBombDefense>0</iAirBombDefense>
+			<iDefenseModifier>0</iDefenseModifier>
+			<iHappiness>0</iHappiness>
+			<iPillageGold>0</iPillageGold>
+			<bOutsideBorders>0</bOutsideBorders>
+			<TerrainMakesValids>
+			</TerrainMakesValids>
+			<FeatureMakesValids>
+			</FeatureMakesValids>
+			<BonusTypeStructs>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA_FORCE</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+			</BonusTypeStructs>
+			<ImprovementPillage></ImprovementPillage>
+			<ImprovementUpgrade></ImprovementUpgrade>
+			<TechYieldChanges>
+			</TechYieldChanges>
+			<RouteYieldChanges>
+			</RouteYieldChanges>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<bRequiresPeak>0</bRequiresPeak>
+			<bUnique>0</bUnique>
+			<bExploreTarget>0</bExploreTarget>
+			<iAppearanceProbability>0</iAppearanceProbability>
+			<iHealRateChange>0</iHealRateChange>
+			<iRange>0</iRange>
+			<iRangeDefenseModifier>0</iRangeDefenseModifier>
+			<iVisibilityChange>0</iVisibilityChange>
+			<BonusConvert>BONUS_MANA_FORCE</BonusConvert>
+			<FeatureUpgrade>NONE</FeatureUpgrade>
+			<PrereqCivilization>NONE</PrereqCivilization>
+			<PythonAtRange></PythonAtRange>
+			<PythonOnMove></PythonOnMove>
+			<SpawnUnitType>NONE</SpawnUnitType>
+		</ImprovementInfo>
+		<ImprovementInfo>
+			<Type>IMPROVEMENT_MANA_ICE</Type>
+			<Description>TXT_KEY_IMPROVEMENT_MANA_ICE</Description>
+			<Civilopedia></Civilopedia>
+			<Help></Help>
+			<ArtDefineTag>ART_DEF_IMPROVEMENT_MANA_ICE</ArtDefineTag>
+			<bActsAsCity>0</bActsAsCity>
+			<bHillsMakesValid>0</bHillsMakesValid>
+			<bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+			<bRiverSideMakesValid>0</bRiverSideMakesValid>
+			<bNoFreshWater>0</bNoFreshWater>
+			<bRequiresFlatlands>0</bRequiresFlatlands>
+			<bRequiresRiverSide>0</bRequiresRiverSide>
+			<bRequiresIrrigation>0</bRequiresIrrigation>
+			<bCarriesIrrigation>0</bCarriesIrrigation>
+			<bRequiresFeature>0</bRequiresFeature>
+			<bWater>0</bWater>
+			<bGoody>0</bGoody>
+			<bPermanent>1</bPermanent>
+			<bUseLSystem>1</bUseLSystem>
+			<iAdvancedStartCost>40</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>40</iAdvancedStartCostIncrease>
+			<iTilesPerGoody>0</iTilesPerGoody>
+			<iGoodyRange>0</iGoodyRange>
+			<iFeatureGrowth>0</iFeatureGrowth>
+			<iUpgradeTime>0</iUpgradeTime>
+			<iAirBombDefense>0</iAirBombDefense>
+			<iDefenseModifier>0</iDefenseModifier>
+			<iHappiness>0</iHappiness>
+			<iPillageGold>0</iPillageGold>
+			<bOutsideBorders>0</bOutsideBorders>
+			<TerrainMakesValids>
+			</TerrainMakesValids>
+			<FeatureMakesValids>
+			</FeatureMakesValids>
+			<BonusTypeStructs>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA_ICE</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+			</BonusTypeStructs>
+			<ImprovementPillage></ImprovementPillage>
+			<ImprovementUpgrade></ImprovementUpgrade>
+			<TechYieldChanges>
+			</TechYieldChanges>
+			<RouteYieldChanges>
+			</RouteYieldChanges>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<bRequiresPeak>0</bRequiresPeak>
+			<bUnique>0</bUnique>
+			<bExploreTarget>0</bExploreTarget>
+			<iAppearanceProbability>0</iAppearanceProbability>
+			<iHealRateChange>0</iHealRateChange>
+			<iRange>0</iRange>
+			<iRangeDefenseModifier>0</iRangeDefenseModifier>
+			<iVisibilityChange>0</iVisibilityChange>
+			<BonusConvert>BONUS_MANA_ICE</BonusConvert>
+			<FeatureUpgrade>NONE</FeatureUpgrade>
+			<PrereqCivilization>NONE</PrereqCivilization>
+			<PythonAtRange></PythonAtRange>
+			<PythonOnMove></PythonOnMove>
+			<SpawnUnitType>NONE</SpawnUnitType>
+		</ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_LAW</Type>
             <Description>TXT_KEY_IMPROVEMENT_MANA_LAW</Description>
@@ -3886,7 +4244,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>10</iPillageGold>
+            <iPillageGold>20</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -3957,6 +4315,28 @@
                         <iYieldChange>0</iYieldChange>
                         <iYieldChange>3</iYieldChange>
                         <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MUSHROOMS</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>5000</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>-1</iYieldChange>
+                        <iYieldChange>1</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_AMBER</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>10000</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>-1</iYieldChange>
+                        <iYieldChange>5</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
             </BonusTypeStructs>
@@ -4378,7 +4758,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -4564,7 +4944,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>10</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -4631,7 +5011,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>20</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -4698,7 +5078,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>30</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -4760,7 +5140,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -5039,7 +5419,7 @@
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
-            <PythonOnMove></PythonOnMove>
+            <PythonOnMove>onMovePyreOfTheSeraphic(pCaster, pPlot)</PythonOnMove>
             <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
@@ -5070,7 +5450,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -5097,6 +5477,28 @@
                         <iYieldChange>0</iYieldChange>
                         <iYieldChange>2</iYieldChange>
                         <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_STONE</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>1</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                 <BonusTypeStruct>
+                    <BonusType>BONUS_SALT</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>1</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>2</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
             </BonusTypeStructs>
@@ -5630,7 +6032,7 @@
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
                 <TechYieldChange>
-                    <PrereqTech>TECH_WAY_OF_THE_WICKED</PrereqTech>
+                    <PrereqTech>TECH_PHILOSOPHY</PrereqTech>
                     <TechYields>
                         <iYield>0</iYield>
                         <iYield>1</iYield>
@@ -5986,7 +6388,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>25</iPillageGold>
+            <iPillageGold>50</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -6056,7 +6458,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>20</iPillageGold>
+            <iPillageGold>40</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -6233,7 +6635,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -6307,7 +6709,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -6372,7 +6774,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>10</iPillageGold>
+            <iPillageGold>20</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -6451,7 +6853,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
