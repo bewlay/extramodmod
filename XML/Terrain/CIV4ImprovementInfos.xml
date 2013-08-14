@@ -2834,7 +2834,6 @@
 			<PrereqCivilization>NONE</PrereqCivilization>
 			<PythonAtRange></PythonAtRange>
 			<PythonOnMove></PythonOnMove>
-			<SpawnUnitType>NONE</SpawnUnitType>
 		</ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_DEATH</Type>
@@ -2995,7 +2994,6 @@
 			<PrereqCivilization>NONE</PrereqCivilization>
 			<PythonAtRange></PythonAtRange>
 			<PythonOnMove></PythonOnMove>
-			<SpawnUnitType>NONE</SpawnUnitType>
 		</ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_EARTH</Type>
@@ -3396,7 +3394,6 @@
 			<PrereqCivilization>NONE</PrereqCivilization>
 			<PythonAtRange></PythonAtRange>
 			<PythonOnMove></PythonOnMove>
-			<SpawnUnitType>NONE</SpawnUnitType>
 		</ImprovementInfo>
 		<ImprovementInfo>
 			<Type>IMPROVEMENT_MANA_ICE</Type>
@@ -3477,7 +3474,6 @@
 			<PrereqCivilization>NONE</PrereqCivilization>
 			<PythonAtRange></PythonAtRange>
 			<PythonOnMove></PythonOnMove>
-			<SpawnUnitType>NONE</SpawnUnitType>
 		</ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_LAW</Type>
