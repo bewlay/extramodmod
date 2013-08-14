@@ -1620,7 +1620,7 @@ class PLE:
 		lPromos = mt.getPossiblePromos(pUnit)
 		# remove the 'Lead by Warlord' promotion, if any
 		for i in range(len(lPromos)):
-			if (gc.getPromotionInfo(lPromos[i]).getType() == 'PROMOTION_GREAT_COMMANDER'):
+			if (gc.getPromotionInfo(lPromos[i]).getType() == 'PROMOTION_GREAT_GENERAL'):
 				lPromos.pop(i)
 				break
 		# determine which dimension is the unit and which the promotion
@@ -2168,7 +2168,7 @@ class PLE:
 		# Units lead by a GG will get a star instead of a dot.
 		if (self.bShowGreatGeneralIndicator):
 			# is unit lead by a GG?
-			iLeaderPromo = gc.getInfoTypeForString('PROMOTION_GREAT_COMMANDER')
+			iLeaderPromo = gc.getInfoTypeForString('PROMOTION_GREAT_GENERAL')
 			if (iLeaderPromo != -1 and pLoopUnit.isHasPromotion(iLeaderPromo)):
 				szDotState += "_GG"
 				xSize = 16

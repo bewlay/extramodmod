@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Civ4GameText xmlns="http://www.firaxis.com">
+ 	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_ATHAME</Tag>
+		<English>Drop Athame</English>
+		<French>Drop Athame</French>
+		<German>Drop Athame</German>
+		<Italian>Drop Athame</Italian>
+		<Spanish>Dejar Athame</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_BLACK_MIRROR</Tag>
+		<English>Drop Black Mirror</English>
+		<French>Drop Black Mirror</French>
+		<German>Drop Black Mirror</German>
+		<Italian>Drop Black Mirror</Italian>
+		<Spanish>Dejar Espejo Negro</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_CROWN_OF_COMMAND</Tag>
+		<English>Drop Crown of Command</English>
+		<French>Drop Crown of Command</French>
+		<German>Drop Crown of Command</German>
+		<Italian>Drop Crown of Command</Italian>
+		<Spanish>Dejar Corona de Mando</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_EMPTY_BIER</Tag>
+		<English>Drop Empty Bier</English>
+		<French>Drop Empty Bier</French>
+		<German>Drop Empty Bier</German>
+		<Italian>Drop Empty Bier</Italian>
+		<Spanish>Dejar Ataúd vacío</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Tag>
+		<English>[ICON_BULLET]Drop a piece of equipment</English>
+		<French>[ICON_BULLET]Drop a piece of equipment</French>
+		<German>[ICON_BULLET]Drop a piece of equipment</German>
+		<Italian>[ICON_BULLET]Drop a piece of equipment</Italian>
+		<Spanish>[ICON_BULLET]Dejar una pieza de equipo</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_GELA</Tag>
+		<English>Drop Gela</English>
+		<French>Drop Gela</French>
+		<German>Drop Gela</German>
+		<Italian>Drop Gela</Italian>
+		<Spanish>Dejar Gela</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_GODSLAYER</Tag>
+		<English>Drop Godslayer</English>
+		<French>Drop Godslayer</French>
+		<German>Drop Godslayer</German>
+		<Italian>Drop Godslayer</Italian>
+		<Spanish>Dejar Matadioses</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_GOLDEN_HAMMER</Tag>
+		<English>Drop Golden Hammer</English>
+		<French>Drop Golden Hammer</French>
+		<German>Drop Golden Hammer</German>
+		<Italian>Drop Golden Hammer</Italian>
+		<Spanish>Dejar Martillo Dorado</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_HEALING_SALVE</Tag>
+		<English>Drop Healing Salve</English>
+		<French>Drop Healing Salve</French>
+		<German>Drop Healing Salve</German>
+		<Italian>Drop Healing Salve</Italian>
+		<Spanish>Dejar Bálsamo de Curación</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_INFERNAL_GRIMOIRE</Tag>
+		<English>Drop Infernal Grimoire</English>
+		<French>Drop Infernal Grimoire</French>
+		<German>Drop Infernal Grimoire</German>
+		<Italian>Drop Infernal Grimoire</Italian>
+		<Spanish>Dejar Grimorio Infernal</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_JADE_TORC</Tag>
+		<English>Drop Jade Torc</English>
+		<French>Drop Jade Torc</French>
+		<German>Drop Jade Torc</German>
+		<Italian>Drop Jade Torc</Italian>
+		<Spanish>Dejar Collar de Jade</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_NETHER_BLADE</Tag>
+		<English>Drop Nether Blade</English>
+		<French>Drop Nether Blade</French>
+		<German>Drop Nether Blade</German>
+		<Italian>Drop Nether Blade</Italian>
+		<Spanish>Dejar Espada de la Perdición</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_ORTHUSS_AXE</Tag>
+		<English>Drop Orthus's Axe</English>
+		<French>Drop Orthus's Axe</French>
+		<German>Drop Orthus's Axe</German>
+		<Italian>Drop Orthus's Axe</Italian>
+		<Spanish>Dejar Hacha de Orthus</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_PIECES_OF_BARNAXUS</Tag>
+		<English>Drop Pieces of Barnaxus</English>
+		<French>Drop Pieces of Barnaxus</French>
+		<German>Drop Pieces of Barnaxus</German>
+		<Italian>Drop Pieces of Barnaxus</Italian>
+		<Spanish>Dejar Piezas de Barnaxus</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_PIKE_OF_TEARS</Tag>
+		<English>Drop Pike of Tears</English>
+		<French>Drop Pike of Tears</French>
+		<German>Drop Pike of Tears</German>
+		<Italian>Drop Pike of Tears</Italian>
+		<Spanish>Drop Pike of Tears</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_POTION_OF_INVISIBILITY</Tag>
+		<English>Drop Potion of Invisibility</English>
+		<French>Drop Potion of Invisibility</French>
+		<German>Drop Potion of Invisibility</German>
+		<Italian>Drop Potion of Invisibility</Italian>
+		<Spanish>Dejar Poción de Invisibilidad</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_POTION_OF_RESTORATION</Tag>
+		<English>Drop Potion of Restoration</English>
+		<French>Drop Potion of Restoration</French>
+		<German>Drop Potion of Restoration</German>
+		<Italian>Drop Potion of Restoration</Italian>
+		<Spanish>Dejar Poción de Restauración</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_ROD_OF_WINDS</Tag>
+		<English>Drop Rod of Winds</English>
+		<French>Drop Rod of Winds</French>
+		<German>Drop Rod of Winds</German>
+		<Italian>Drop Rod of Winds</Italian>
+		<Spanish>Dejar Báculo de los Vientos</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_SCORCHED_STAFF</Tag>
+		<English>Drop Scorched Staff</English>
+		<French>Drop Scorched Staff</French>
+		<German>Drop Scorched Staff</German>
+		<Italian>Drop Scorched Staff</Italian>
+		<Spanish>Dejar Báculo Quemado</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_SOL</Tag>
+		<English>Drop Sol</English>
+		<French>Drop Sol</French>
+		<German>Drop Sol</German>
+		<Italian>Drop Sol</Italian>
+		<Spanish>Drop Sol</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_STAFF_OF_SOULS</Tag>
+		<English>Drop Staff of Souls</English>
+		<French>Drop Staff of Souls</French>
+		<German>Drop Staff of Souls</German>
+		<Italian>Drop Staff of Souls</Italian>
+		<Spanish>Dejar Bastón de las Almas</Spanish>
+	</TEXT>
+</Civ4GameText>

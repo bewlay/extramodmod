@@ -32,7 +32,7 @@ class SevoPediaCivilization:
 		X_MERGIN = self.top.X_MERGIN
 		Y_MERGIN = self.top.Y_MERGIN
 
-		self.W_CIV_TRAIT = 150
+		self.W_CIV_TRAIT = 280
 		self.H_CIV_TRAIT = 116
 		self.X_CIV_TRAIT = self.top.R_PEDIA_PAGE - self.W_CIV_TRAIT
 		self.Y_CIV_TRAIT = self.top.Y_PEDIA_PAGE
@@ -55,12 +55,12 @@ class SevoPediaCivilization:
 
 		self.X_HEROES = self.X_MAIN_PANE
 		self.Y_HEROES = self.Y_MAIN_PANE + self.H_MAIN_PANE + Y_MERGIN
-		self.W_HEROES = 155
+		self.W_HEROES = 83
 		self.H_HEROES = 110
 
 		self.X_SPELLS = self.X_HEROES + self.W_HEROES + X_MERGIN
 		self.Y_SPELLS = self.Y_HEROES
-		self.W_SPELLS = 155
+		self.W_SPELLS = 122
 		self.H_SPELLS = self.H_HEROES
 
 		self.X_LEADERS = self.X_SPELLS + self.W_SPELLS + X_MERGIN
@@ -272,7 +272,8 @@ class SevoPediaCivilization:
 	def placeTrait(self):
 		screen = self.top.getScreen()
 		panelName = self.top.getNextWidgetName()
-
+		screen.addPanel(panelName, localText.getText("TXT_KEY_CIV_TRAIT", ()), "", False, True, self.X_CIV_TRAIT, self.Y_CIV_TRAIT, self.W_CIV_TRAIT, self.H_CIV_TRAIT, PanelStyles.PANEL_STYLE_BLUE50)
+		screen.attachLabel(panelName, "", "  ")
 
 		#terrain yield modifier
 		ltTerrainModifier = []
@@ -302,7 +303,6 @@ class SevoPediaCivilization:
 			screen.attachPanel(panelName, childPanelName, "", "", False, False, PanelStyles.PANEL_STYLE_EMPTY)
 			screen.attachImageButton(childPanelName, "", gc.getTerrainInfo(iTerrain).getButton(), GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_TERRAIN, iTerrain, 1, False)
 			screen.attachLabel(childPanelName, "", szYield)
-
 
 	def placeHero(self):
 		screen = self.top.getScreen()

@@ -147,8 +147,10 @@ class CvMilitaryAdvisor:
 		self.selectedUnitList = []
 		self.selectedPlayerList.append(self.iActivePlayer)
 
+		## ExtraModMod: Great Generals are available unconditionally.
 		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS): ## Suppress display of Great General bar
 			self.drawCombatExperience()
+		## ExtraModMod end
 
 		self.refresh(true)
 		

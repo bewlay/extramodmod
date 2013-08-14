@@ -1211,7 +1211,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -1228,6 +1236,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -1360,7 +1372,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -1377,6 +1397,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -1524,7 +1548,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -1541,6 +1573,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -2106,7 +2142,7 @@
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<DomainCargo>DOMAIN_LAND</DomainCargo>
-			<iCargo>3</iCargo>
+			<iCargo>1</iCargo>
 			<iAsset>7</iAsset>
 			<iPower>10</iPower>
 			<UnitMeshGroups>
@@ -2173,7 +2209,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqTech>TECH_ARCHERY</PrereqTech>
-			<iCost>60</iCost>
+			<iCost>45</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -2325,7 +2361,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqTech>TECH_ARCHERY</PrereqTech>
-			<iCost>60</iCost>
+			<iCost>45</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -2408,7 +2444,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqTech>TECH_ARCHERY</PrereqTech>
-			<iCost>90</iCost>
+			<iCost>45</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -2485,7 +2521,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -2502,6 +2546,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -2639,7 +2687,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -2656,6 +2712,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -2973,6 +3033,10 @@
 					<PromotionType>PROMOTION_DWARF</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_MEDIC3</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<bAbandon>1</bAbandon>
 			<iCombatDefense>9</iCombatDefense>
@@ -3239,6 +3303,10 @@
 					<PromotionType>PROMOTION_MARKSMAN</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_DIMENSIONAL1</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<bImmuneToDefensiveStrike>1</bImmuneToDefensiveStrike>
 			<bNeverObsolete>1</bNeverObsolete>
@@ -3340,6 +3408,10 @@
 				</FreePromotion>
 				<FreePromotion>
 					<PromotionType>PROMOTION_LIFE1</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_CHANNELING2</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -3846,7 +3918,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
-			<iCost>60</iCost>
+			<iCost>45</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -4032,6 +4104,7 @@
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<bNeverObsolete>1</bNeverObsolete>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
 			<iWeaponTier>3</iWeaponTier>
@@ -4167,7 +4240,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
-			<iCost>60</iCost>
+			<iCost>45</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -4253,7 +4326,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
-			<iCost>60</iCost>
+			<iCost>45</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -4321,7 +4394,7 @@
 			</UnitAIs>
 			<PrereqBuilding>BUILDING_SCULPTORS_STUDIO</PrereqBuilding>
 			<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
-			<iCost>90</iCost>
+			<iCost>60</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -4509,7 +4582,7 @@
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>5</iCombat>
+			<iCombat>6</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
@@ -4551,7 +4624,7 @@
 				</FreePromotion>
 			</FreePromotions>
 			<bAbandon>1</bAbandon>
-			<iCombatDefense>5</iCombatDefense>
+			<iCombatDefense>6</iCombatDefense>
 			<iTier>3</iTier>
 			<iWeaponTier>3</iWeaponTier>
 			<Image>Art/Interface/Popups/Bambur.dds</Image>
@@ -4570,10 +4643,10 @@
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
 			<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
-			<iCost>180</iCost>
+			<iCost>90</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
-			<iMoves>1</iMoves>
+			<iMoves>2</iMoves>
 			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
 			<iCombatLimit>100</iCombatLimit>
@@ -4792,7 +4865,7 @@
 			<FormationType>FORMATION_TYPE_ANIMAL</FormationType>
 			<iCombatDefense>5</iCombatDefense>
 		</UnitInfo>
-		<UnitInfo> <!-- UNIT_CAVE_BEAR -->
+		<UnitInfo> <!-- UNIT_CAVE_BEAR // BARBARIAN_UNITS 08/2013 lfgr -->
 			<Class>UNITCLASS_BEAR</Class>
 			<Type>UNIT_CAVE_BEAR</Type>
 			<Combat>UNITCOMBAT_ANIMAL</Combat>
@@ -5032,7 +5105,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqBuilding>BUILDING_GROVE</PrereqBuilding>
+			<PrereqBuilding>BUILDING_HUNTING_LODGE</PrereqBuilding>
 			<PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -5107,7 +5180,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqBuilding>BUILDING_GROVE</PrereqBuilding>
+			<PrereqBuilding>BUILDING_HUNTING_LODGE</PrereqBuilding>
 			<PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -5188,7 +5261,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqBuilding>BUILDING_GROVE</PrereqBuilding>
+			<PrereqBuilding>BUILDING_HUNTING_LODGE</PrereqBuilding>
 			<PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -5401,8 +5474,8 @@
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCollateralDamage>40</iCollateralDamage>
-			<iCollateralDamageLimit>20</iCollateralDamageLimit>
-			<iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
+			<iCollateralDamageLimit>60</iCollateralDamageLimit>
+			<iCollateralDamageMaxUnits>6</iCollateralDamageMaxUnits>
 			<iConscription>4</iConscription>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iAsset>22</iAsset>
@@ -5463,9 +5536,8 @@
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCollateralDamage>40</iCollateralDamage>
-			<iCollateralDamageLimit>20</iCollateralDamageLimit>
-			<iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
-			<iConscription>4</iConscription>
+			<iCollateralDamageLimit>60</iCollateralDamageLimit>
+			<iCollateralDamageMaxUnits>6</iCollateralDamageMaxUnits>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iAsset>22</iAsset>
 			<iPower>26</iPower>
@@ -5548,8 +5620,8 @@
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCollateralDamage>40</iCollateralDamage>
-			<iCollateralDamageLimit>20</iCollateralDamageLimit>
-			<iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
+			<iCollateralDamageLimit>60</iCollateralDamageLimit>
+			<iCollateralDamageMaxUnits>6</iCollateralDamageMaxUnits>
 			<iConscription>4</iConscription>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iAsset>22</iAsset>
@@ -5608,8 +5680,8 @@
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCollateralDamage>40</iCollateralDamage>
-			<iCollateralDamageLimit>20</iCollateralDamageLimit>
-			<iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
+			<iCollateralDamageLimit>60</iCollateralDamageLimit>
+			<iCollateralDamageMaxUnits>6</iCollateralDamageMaxUnits>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iAsset>30</iAsset>
 			<iPower>26</iPower>
@@ -5938,11 +6010,11 @@
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
-			<iWithdrawalProb>25</iWithdrawalProb>
+			<iWithdrawalProb>60</iWithdrawalProb>
 			<iCollateralDamage>100</iCollateralDamage>
 			<iCollateralDamageLimit>60</iCollateralDamageLimit>
-			<iCollateralDamageMaxUnits>7</iCollateralDamageMaxUnits>
-			<iBombardRate>20</iBombardRate>
+			<iCollateralDamageMaxUnits>10</iCollateralDamageMaxUnits>
+			<iBombardRate>40</iBombardRate>
 			<iCultureGarrison>7</iCultureGarrison>
 			<iAsset>16</iAsset>
 			<iPower>15</iPower>
@@ -6000,11 +6072,11 @@
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
-			<iWithdrawalProb>25</iWithdrawalProb>
+			<iWithdrawalProb>60</iWithdrawalProb>
 			<iCollateralDamage>100</iCollateralDamage>
 			<iCollateralDamageLimit>60</iCollateralDamageLimit>
-			<iCollateralDamageMaxUnits>7</iCollateralDamageMaxUnits>
-			<iBombardRate>30</iBombardRate>
+			<iCollateralDamageMaxUnits>10</iCollateralDamageMaxUnits>
+			<iBombardRate>60</iBombardRate>
 			<iCultureGarrison>7</iCultureGarrison>
 			<iAsset>20</iAsset>
 			<iPower>18</iPower>
@@ -6230,7 +6302,7 @@
 			<ReligionType>RELIGION_THE_EMPYREAN</ReligionType>
 			<StateReligion>RELIGION_THE_EMPYREAN</StateReligion>
 			<PrereqReligion>RELIGION_THE_EMPYREAN</PrereqReligion>
-			<PrereqTech>TECH_RELIGIOUS_LAW</PrereqTech>
+			<PrereqTech>TECH_RIGHTEOUSNESS</PrereqTech>
 			<iAIWeight>200</iAIWeight>
 			<iCost>300</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
@@ -6464,7 +6536,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
-			<iCost>150</iCost>
+			<iCost>120</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -6611,6 +6683,10 @@
 			<FreePromotions>
 				<FreePromotion>
 					<PromotionType>PROMOTION_BOARDING</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_AMPHIBIOUS</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -7171,7 +7247,6 @@
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
-			<iConscription>3</iConscription>
 			<iCultureGarrison>6</iCultureGarrison>
 			<iAsset>7</iAsset>
 			<iPower>10</iPower>
@@ -7213,6 +7288,7 @@
 			<iCombatDefense>5</iCombatDefense>
 			<iTier>3</iTier>
 			<iWeaponTier>3</iWeaponTier>
+			<PrereqBuildingClass>BUILDINGCLASS_TRAINING_YARD</PrereqBuildingClass>
 			<UpgradeCiv>CIVILIZATION_CALABIM</UpgradeCiv>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_CHAOS_MARAUDER -->
@@ -7303,7 +7379,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_TRADE</PrereqTech>
+			<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
 			<TechTypes>
 				<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
 			</TechTypes>
@@ -7375,7 +7451,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqBuilding>BUILDING_SIEGE_WORKSHOP</PrereqBuilding>
-			<PrereqTech>TECH_TRADE</PrereqTech>
+			<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
 			<TechTypes>
 				<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
 			</TechTypes>
@@ -7451,7 +7527,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqBuilding>BUILDING_SIEGE_WORKSHOP</PrereqBuilding>
-			<PrereqTech>TECH_TRADE</PrereqTech>
+			<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
 			<TechTypes>
 				<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
 			</TechTypes>
@@ -7497,106 +7573,19 @@
 				</DamageTypeCombat>
 			</DamageTypeCombats>
 		</UnitInfo>
-		<UnitInfo> <!-- UNIT_COMMANDER -->
-			<Class>UNITCLASS_COMMANDER</Class>
-			<Type>UNIT_COMMANDER</Type>
-			<UniqueNames>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_1</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_2</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_3</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_4</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_5</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_6</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_7</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_8</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_9</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_10</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_11</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_12</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_13</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_14</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_15</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_16</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_17</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_18</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_19</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_20</UniqueName>
-			</UniqueNames>
+		<UnitInfo> <!-- UNIT_DECIUS -->
+			<Class>UNITCLASS_DECIUS</Class>
+			<Type>UNIT_DECIUS</Type>
 			<Special>SPECIALUNIT_PEOPLE</Special>
 			<Domain>DOMAIN_LAND</Domain>
-			<DefaultUnitAI>UNITAI_ENGINEER</DefaultUnitAI>
-			<Description>TXT_KEY_UNIT_COMMANDER</Description>
-			<Civilopedia>TXT_KEY_UNIT_COMMANDER_PEDIA</Civilopedia>
-			<Advisor>ADVISOR_MILITARY</Advisor>
-			<bOnlyDefensive>1</bOnlyDefensive>
-			<bGoldenAge>1</bGoldenAge>
-			<UnitAIs>
-				<UnitAI>
-					<UnitAIType>UNITAI_ENGINEER</UnitAIType>
-					<bUnitAI>1</bUnitAI>
-				</UnitAI>
-			</UnitAIs>
-			<ForceBuildings>
-				<ForceBuilding>
-					<BuildingType>BUILDING_COMMAND_POST</BuildingType>
-					<bForceBuilding>1</bForceBuilding>
-				</ForceBuilding>
-			</ForceBuildings>
-			<Flavors>
-				<Flavor>
-					<FlavorType>FLAVOR_GROWTH</FlavorType>
-					<iFlavor>2</iFlavor>
-				</Flavor>
-				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>3</iFlavor>
-				</Flavor>
-				<Flavor>
-					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
-					<iFlavor>1</iFlavor>
-				</Flavor>
-			</Flavors>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
-			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
-			<iXPValueAttack>8</iXPValueAttack>
-			<iXPValueDefense>4</iXPValueDefense>
-			<UnitMeshGroups>
-				<iGroupSize>1</iGroupSize>
-				<fMaxSpeed>1.25</fMaxSpeed>
-				<fPadTime>1</fPadTime>
-				<iMeleeWaveSize>1</iMeleeWaveSize>
-				<iRangedWaveSize>0</iRangedWaveSize>
-				<UnitMeshGroup>
-					<iRequired>1</iRequired>
-					<EarlyArtDefineTag>ART_DEF_UNIT_GREAT_COMMANDER</EarlyArtDefineTag>
-				</UnitMeshGroup>
-			</UnitMeshGroups>
-			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
-			<FreePromotions>
-				<FreePromotion>
-					<PromotionType>PROMOTION_RECRUITER</PromotionType>
-					<bFreePromotion>1</bFreePromotion>
-				</FreePromotion>
-			</FreePromotions>
-			<bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
-		</UnitInfo>
-		<UnitInfo> <!-- UNIT_DECIUS -->
-			<Class>UNITCLASS_COMMANDER</Class>
-			<Type>UNIT_DECIUS</Type>
-			<Domain>DOMAIN_LAND</Domain>
-			<DefaultUnitAI>UNITAI_ENGINEER</DefaultUnitAI>
+			<DefaultUnitAI>UNITAI_GENERAL</DefaultUnitAI>
 			<Description>TXT_KEY_LEADER_DECIUS</Description>
 			<Civilopedia>TXT_KEY_LEADER_DECIUS_PEDIA</Civilopedia>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bOnlyDefensive>1</bOnlyDefensive>
 			<UnitAIs>
 				<UnitAI>
-					<UnitAIType>UNITAI_ENGINEER</UnitAIType>
+					<UnitAIType>UNITAI_GENERAL</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
@@ -7635,6 +7624,7 @@
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_CORLINDALE -->
 			<Class>UNITCLASS_CORLINDALE</Class>
@@ -7898,11 +7888,17 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
+			<ReligionSpreads>
+				<ReligionSpread>
+					<ReligionType>RELIGION_THE_ORDER</ReligionType>
+					<iReligionSpread>80</iReligionSpread>
+				</ReligionSpread>
+			</ReligionSpreads>
 			<ReligionType>RELIGION_THE_ORDER</ReligionType>
 			<StateReligion>RELIGION_THE_ORDER</StateReligion>
 			<PrereqReligion>RELIGION_THE_ORDER</PrereqReligion>
 			<PrereqBuilding>BUILDING_TEMPLE_OF_THE_ORDER</PrereqBuilding>
-			<PrereqTech>TECH_FANATICISM</PrereqTech>
+			<PrereqTech>TECH_ORDERS_FROM_HEAVEN</PrereqTech>
 			<BonusType>NONE</BonusType>
 			<PrereqBonuses>
 				<BonusType>BONUS_COPPER</BonusType>
@@ -7910,12 +7906,12 @@
 				<BonusType>BONUS_MITHRIL</BonusType>
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
-			<iCost>120</iCost>
+			<iCost>80</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>6</iCombat>
+			<iCombat>4</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -7948,8 +7944,9 @@
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
-			<iCombatDefense>6</iCombatDefense>
+			<iCombatDefense>4</iCombatDefense>
 			<iTier>3</iTier>
+			<iWeaponTier>3</iWeaponTier>
 			<DamageTypeCombats>
 				<DamageTypeCombat>
 					<DamageType>DAMAGE_HOLY</DamageType>
@@ -7988,7 +7985,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
+			<PrereqTech>TECH_SMELTING</PrereqTech>
 			<iCost>60</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -8760,7 +8757,7 @@
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>1</iCombat>
+			<iCombat>5</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -8785,7 +8782,7 @@
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
-			<iCombatDefense>1</iCombatDefense>
+			<iCombatDefense>5</iCombatDefense>
 			<iTier>4</iTier>
 			<BonusAffinities>
 				<BonusAffinity>
@@ -8858,6 +8855,18 @@
 				</BonusAffinity>
 				<BonusAffinity>
 					<BonusType>BONUS_MANA_ICE</BonusType>
+					<iAffinity>1</iAffinity>
+				</BonusAffinity>
+				<BonusAffinity>
+					<BonusType>BONUS_MANA_CREATION</BonusType>
+					<iAffinity>1</iAffinity>
+				</BonusAffinity>
+				<BonusAffinity>
+					<BonusType>BONUS_MANA_FORCE</BonusType>
+					<iAffinity>1</iAffinity>
+				</BonusAffinity>
+				<BonusAffinity>
+					<BonusType>BONUS_MANA_DIMENSIONAL</BonusType>
 					<iAffinity>1</iAffinity>
 				</BonusAffinity>
 			</BonusAffinities>
@@ -9510,7 +9519,7 @@
 			<bMilitaryHappiness>1</bMilitaryHappiness>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
-			<PrereqTech>TECH_FERAL_BOND</PrereqTech>
+			<PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
 			<iAIWeight>200</iAIWeight>
 			<iCost>500</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
@@ -9625,7 +9634,7 @@
 			<bNeverObsolete>1</bNeverObsolete>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
-			<iWeaponTier>3</iWeaponTier>
+			<iWeaponTier>2</iWeaponTier>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_EARTH_ELEMENTAL -->
 			<Class>UNITCLASS_EARTH_ELEMENTAL</Class>
@@ -9716,7 +9725,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_MALEVOLENT_DESIGNS</PrereqTech>
+			<PrereqTech>TECH_FANATICISM</PrereqTech>
 			<BonusType>NONE</BonusType>
 			<PrereqBonuses>
 				<BonusType>BONUS_IRON</BonusType>
@@ -9724,12 +9733,12 @@
 				<BonusType>NONE</BonusType>
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
-			<iCost>240</iCost>
+			<iCost>160</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>11</iCombat>
+			<iCombat>8</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -9758,9 +9767,10 @@
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
-			<iCombatDefense>11</iCombatDefense>
+			<iCombatDefense>8</iCombatDefense>
 			<iModifyGlobalCounter>1</iModifyGlobalCounter>
 			<iTier>4</iTier>
+			<iWeaponTier>3</iWeaponTier>
 			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
 			<DamageTypeCombats>
 				<DamageTypeCombat>
@@ -10122,7 +10132,7 @@
 			<StateReligion>RELIGION_FELLOWSHIP_OF_LEAVES</StateReligion>
 			<PrereqReligion>RELIGION_FELLOWSHIP_OF_LEAVES</PrereqReligion>
 			<PrereqTech>TECH_WAY_OF_THE_FORESTS</PrereqTech>
-			<iCost>90</iCost>
+			<iCost>60</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
@@ -10131,6 +10141,16 @@
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
+			<FeatureAttacks>
+				<FeatureAttack>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iFeatureAttack>25</iFeatureAttack>
+				</FeatureAttack>
+				<FeatureAttack>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iFeatureAttack>25</iFeatureAttack>
+				</FeatureAttack>
+			</FeatureAttacks>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iAsset>4</iAsset>
 			<iPower>4</iPower>
@@ -10352,7 +10372,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_FANATICISM</PrereqTech>
+			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<iCost>120</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -10846,7 +10866,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -10863,6 +10891,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -11259,7 +11291,7 @@
 			<ReligionType>RELIGION_COUNCIL_OF_ESUS</ReligionType>
 			<StateReligion>RELIGION_COUNCIL_OF_ESUS</StateReligion>
 			<PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
-			<PrereqTech>TECH_DECEPTION</PrereqTech>
+			<PrereqTech>TECH_SORCERY</PrereqTech>
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_SCIENCE</FlavorType>
@@ -11472,7 +11504,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -11489,6 +11529,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -11983,7 +12027,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_HUNTING</PrereqTech>
+			<PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
 			<iCost>20</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -12048,7 +12092,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -12065,6 +12117,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -12833,6 +12889,12 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<Builds>
+				<Build>
+					<BuildType>BUILD_MANA_ICE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+			</Builds>
 			<PrereqTech>TECH_THEOLOGY</PrereqTech>
 			<Flavors>
 				<Flavor>
@@ -12846,6 +12908,7 @@
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
+			<iWorkRate>200</iWorkRate>
 			<iCombat>6</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
@@ -13462,6 +13525,10 @@
 			<UnitCombatMods>
 				<UnitCombatMod>
 					<UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
+					<iUnitCombatMod>40</iUnitCombatMod>
+				</UnitCombatMod>
+				<UnitCombatMod>
+					<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
 					<iUnitCombatMod>40</iUnitCombatMod>
 				</UnitCombatMod>
 			</UnitCombatMods>
@@ -14771,7 +14838,7 @@
 			<ReligionType>RELIGION_FELLOWSHIP_OF_LEAVES</ReligionType>
 			<StateReligion>RELIGION_FELLOWSHIP_OF_LEAVES</StateReligion>
 			<PrereqReligion>RELIGION_FELLOWSHIP_OF_LEAVES</PrereqReligion>
-			<PrereqTech>TECH_FERAL_BOND</PrereqTech>
+			<PrereqTech>TECH_HIDDEN_PATHS</PrereqTech>
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
@@ -15378,7 +15445,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -15395,6 +15470,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -15486,6 +15565,7 @@
 			<Civilopedia>TXT_KEY_UNIT_LIGHTBRINGER_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_LIGHTBRINGER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_RELIGION</Advisor>
+			<bNoBadGoodies>1</bNoBadGoodies>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
@@ -15561,6 +15641,7 @@
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
+			<bFreeXP>1</bFreeXP>
 			<bNeverObsolete>1</bNeverObsolete>
 			<iCombatDefense>2</iCombatDefense>
 			<iTier>1</iTier>
@@ -15916,7 +15997,7 @@
 				</FreePromotion>
 			</FreePromotions>
 			<bNeverObsolete>1</bNeverObsolete>
-			<iCombatDefense>4</iCombatDefense>
+			<iCombatDefense>5</iCombatDefense>
 			<iDefensiveStrikeChance>30</iDefensiveStrikeChance>
 			<iDefensiveStrikeDamage>15</iDefensiveStrikeDamage>
 			<iTier>3</iTier>
@@ -15951,9 +16032,9 @@
 			<iCost>180</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
-			<iMoves>1</iMoves>
+			<iMoves>2</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>8</iCombat>
+			<iCombat>6</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -16062,7 +16143,7 @@
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_RANGED</FormationType>
 			<bNeverObsolete>1</bNeverObsolete>
-			<iCombatDefense>6</iCombatDefense>
+			<iCombatDefense>7</iCombatDefense>
 			<iDefensiveStrikeChance>30</iDefensiveStrikeChance>
 			<iDefensiveStrikeDamage>15</iDefensiveStrikeDamage>
 			<iTier>3</iTier>
@@ -16153,12 +16234,13 @@
 			<bMilitaryHappiness>1</bMilitaryHappiness>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqTech>TECH_NEVER</PrereqTech>
 			<iCost>60</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>4</iCombat>
+			<iCombat>3</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
@@ -16180,11 +16262,15 @@
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
 			<FreePromotions>
 				<FreePromotion>
+					<PromotionType>PROMOTION_STRONG_LUCIAN</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
 					<PromotionType>PROMOTION_WINTERBORN</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
-			<iCombatDefense>4</iCombatDefense>
+			<iCombatDefense>3</iCombatDefense>
 			<iTier>2</iTier>
 			<iWeaponTier>3</iWeaponTier>
 			<PrereqCiv>CIVILIZATION_DOVIELLO</PrereqCiv>
@@ -16310,7 +16396,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -16327,6 +16421,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -16469,7 +16567,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -16486,6 +16592,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -16624,7 +16734,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -16641,6 +16759,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -16809,6 +16931,78 @@
 			<iWeaponTier>3</iWeaponTier>
 			<PrereqCiv>CIVILIZATION_HIPPUS</PrereqCiv>
 			<Image>Art/Interface/Popups/Magnadine.dds</Image>
+		</UnitInfo>
+		<UnitInfo> <!-- UNIT_MAGIC_MISSILE -->
+			<Class>UNITCLASS_MAGIC_MISSILE</Class>
+			<Type>UNIT_MAGIC_MISSILE</Type>
+			<Special>SPECIALUNIT_SPELL</Special>
+			<Domain>DOMAIN_LAND</Domain>
+			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+			<Description>TXT_KEY_UNIT_MAGIC_MISSILE</Description>
+			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Advisor>ADVISOR_MILITARY</Advisor>
+			<bNoCapture>1</bNoCapture>
+			<bQuickCombat>1</bQuickCombat>
+			<bFirstStrikeImmune>1</bFirstStrikeImmune>
+			<bFlatMovementCost>1</bFlatMovementCost>
+			<bIgnoreTerrainCost>1</bIgnoreTerrainCost>
+			<bSuicide>1</bSuicide>
+			<UnitAIs>
+				<UnitAI>
+					<UnitAIType>UNITAI_ATTACK_CITY_LEMMING</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+			</UnitAIs>
+			<Flavors>
+				<Flavor>
+					<FlavorType>FLAVOR_SCIENCE</FlavorType>
+					<iFlavor>1</iFlavor>
+				</Flavor>
+			</Flavors>
+			<iCost>-1</iCost>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iMoves>1</iMoves>
+			<iNukeRange>-1</iNukeRange>
+			<iCombat>0</iCombat>
+			<iCombatLimit>100</iCombatLimit>
+			<iCultureGarrison>3</iCultureGarrison>
+			<iPower>6</iPower>
+			<UnitMeshGroups>
+				<iGroupSize>1</iGroupSize>
+				<fMaxSpeed>1.75</fMaxSpeed>
+				<fPadTime>1</fPadTime>
+				<iMeleeWaveSize>1</iMeleeWaveSize>
+				<iRangedWaveSize>0</iRangedWaveSize>
+				<UnitMeshGroup>
+					<iRequired>1</iRequired>
+					<EarlyArtDefineTag>ART_DEF_UNIT_FIREBALL</EarlyArtDefineTag>
+				</UnitMeshGroup>
+			</UnitMeshGroups>
+			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<FreePromotions>
+				<FreePromotion>
+					<PromotionType>PROMOTION_ELEMENTAL</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_FLYING</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_MARKSMAN</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			</FreePromotions>
+			<bExplodeInCombat>0</bExplodeInCombat>
+			<bNoWarWeariness>1</bNoWarWeariness>
+			<iTier>3</iTier>
+			<DamageTypeCombats>
+				<DamageTypeCombat>
+					<DamageType>DAMAGE_FORCE</DamageType>
+					<iCombat>5</iCombat>
+				</DamageTypeCombat>
+			</DamageTypeCombats>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_MAN_O_WAR -->
 			<Class>UNITCLASS_MAN_O_WAR</Class>
@@ -17254,6 +17448,7 @@
 			<iDefensiveStrikeDamage>20</iDefensiveStrikeDamage>
 			<iMinLevel>6</iMinLevel>
 			<iTier>4</iTier>
+			<iWeaponTier>3</iWeaponTier>
 			<PrereqBuildingClass>BUILDINGCLASS_ARCHERY_RANGE</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_MAROS -->
@@ -17536,6 +17731,10 @@
 					<BuildingType>BUILDING_NOX_NOCTIS</BuildingType>
 					<bBuilding>1</bBuilding>
 				</Building>
+				<Building>
+					<BuildingType>BUILDING_TABLETS_OF_BAMBUR</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
 			</Buildings>
 			<Flavors>
 				<Flavor>
@@ -17797,9 +17996,9 @@
 		<UnitInfo> <!-- UNIT_MISTFORM -->
 			<Class>UNITCLASS_MISTFORM</Class>
 			<Type>UNIT_MISTFORM</Type>
-			<Combat>UNITCOMBAT_MELEE</Combat>
+			<Combat>UNITCOMBAT_RECON</Combat>
 			<Domain>DOMAIN_LAND</Domain>
-			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+			<DefaultUnitAI>UNITAI_ANIMAL</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_MISTFORM</Description>
 			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_MISTFORM_STRATEGY</Strategy>
@@ -17855,6 +18054,10 @@
 					<PromotionType>PROMOTION_HIDDEN_NATIONALITY</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_MARKSMAN</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<iCombatDefense>6</iCombatDefense>
 			<iTier>4</iTier>
@@ -17881,9 +18084,9 @@
 			<ReligionType>RELIGION_RUNES_OF_KILMORPH</ReligionType>
 			<StateReligion>RELIGION_RUNES_OF_KILMORPH</StateReligion>
 			<PrereqReligion>RELIGION_RUNES_OF_KILMORPH</PrereqReligion>
-			<PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
+			<PrereqTech>TECH_MITHRIL_WEAPONS</PrereqTech>
 			<BonusType>BONUS_MITHRIL</BonusType>
-			<iCost>1200</iCost>
+			<iCost>400</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -17983,7 +18186,15 @@
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
+					<BuildType>BUILD_MANA_CREATION</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
 					<BuildType>BUILD_MANA_DEATH</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_DIMENSIONAL</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -18000,6 +18211,10 @@
 				</Build>
 				<Build>
 					<BuildType>BUILD_MANA_FIRE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+				<Build>
+					<BuildType>BUILD_MANA_FORCE</BuildType>
 					<bBuild>1</bBuild>
 				</Build>
 				<Build>
@@ -18358,13 +18573,16 @@
 			<ReligionType>RELIGION_COUNCIL_OF_ESUS</ReligionType>
 			<StateReligion>RELIGION_COUNCIL_OF_ESUS</StateReligion>
 			<PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
+			<PrereqTech>TECH_DECEPTION</PrereqTech>
+			<TechTypes>
 			<PrereqTech>TECH_BOWYERS</PrereqTech>
+			</TechTypes>
 			<iCost>120</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>3</iCombat>
+			<iCombat>4</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -18388,6 +18606,10 @@
 			<FreePromotions>
 				<FreePromotion>
 					<PromotionType>PROMOTION_HIDDEN_NATIONALITY</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_ESUS_AGENT</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -18585,7 +18807,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_RIGHTEOUSNESS</PrereqTech>
+			<PrereqTech>TECH_FANATICISM</PrereqTech>
 			<BonusType>NONE</BonusType>
 			<PrereqBonuses>
 				<BonusType>BONUS_IRON</BonusType>
@@ -18593,12 +18815,12 @@
 				<BonusType>NONE</BonusType>
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
-			<iCost>240</iCost>
+			<iCost>160</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>11</iCombat>
+			<iCombat>8</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -18635,8 +18857,9 @@
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
-			<iCombatDefense>11</iCombatDefense>
+			<iCombatDefense>8</iCombatDefense>
 			<iTier>4</iTier>
+			<iWeaponTier>3</iWeaponTier>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
 			<DamageTypeCombats>
 				<DamageTypeCombat>
@@ -18764,7 +18987,7 @@
 			<StateReligion>RELIGION_RUNES_OF_KILMORPH</StateReligion>
 			<PrereqReligion>RELIGION_RUNES_OF_KILMORPH</PrereqReligion>
 			<PrereqBuilding>BUILDING_TEMPLE_OF_KILMORPH</PrereqBuilding>
-			<PrereqTech>TECH_FANATICISM</PrereqTech>
+			<PrereqTech>TECH_ARETE</PrereqTech>
 			<BonusType>NONE</BonusType>
 			<PrereqBonuses>
 				<BonusType>BONUS_COPPER</BonusType>
@@ -18777,7 +19000,7 @@
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>7</iCombat>
+			<iCombat>4</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -18805,10 +19028,19 @@
 					<PromotionType>PROMOTION_DEMON_SLAYING</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_IRON_WEAPONS</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_DWARF</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<bNeverObsolete>1</bNeverObsolete>
-			<iCombatDefense>7</iCombatDefense>
+			<iCombatDefense>6</iCombatDefense>
 			<iTier>3</iTier>
+			<iWeaponTier>3</iWeaponTier>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_NULLSTONE_GOLEM -->
 			<Class>UNITCLASS_PHALANX</Class>
@@ -18833,7 +19065,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_MITHRIL_WEAPONS</PrereqTech>
+			<PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -18907,7 +19139,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_MITHRIL_WEAPONS</PrereqTech>
+			<PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -18918,6 +19150,12 @@
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>25</iCityAttack>
+			<UnitCombatMods>
+				<UnitCombatMod>
+					<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+					<iUnitCombatMod>40</iUnitCombatMod>
+				</UnitCombatMod>
+			</UnitCombatMods>
 			<iConscription>4</iConscription>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iAsset>24</iAsset>
@@ -18967,7 +19205,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_MITHRIL_WEAPONS</PrereqTech>
+			<PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -18978,6 +19216,12 @@
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>25</iCityAttack>
+			<UnitCombatMods>
+				<UnitCombatMod>
+					<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+					<iUnitCombatMod>40</iUnitCombatMod>
+				</UnitCombatMod>
+			</UnitCombatMods>
 			<iConscription>4</iConscription>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iAsset>26</iAsset>
@@ -19038,7 +19282,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_MITHRIL_WEAPONS</PrereqTech>
+			<PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -19049,6 +19293,12 @@
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>25</iCityAttack>
+			<UnitCombatMods>
+				<UnitCombatMod>
+					<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+					<iUnitCombatMod>40</iUnitCombatMod>
+				</UnitCombatMod>
+			</UnitCombatMods>
 			<iConscription>4</iConscription>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iAsset>24</iAsset>
@@ -19580,6 +19830,10 @@
 					<PromotionType>PROMOTION_SPIRIT_GUIDE</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_INQUISITOR</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<bFreeXP>1</bFreeXP>
 			<bNeverObsolete>1</bNeverObsolete>
@@ -19847,11 +20101,18 @@
 					<bUnitClassUpgrade>1</bUnitClassUpgrade>
 				</UnitClassUpgrade>
 			</UnitClassUpgrades>
+			<Builds>
+				<Build>
+					<BuildType>BUILD_MANA_ICE</BuildType>
+					<bBuild>1</bBuild>
+				</Build>
+			</Builds>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
+			<iWorkRate>200</iWorkRate>
 			<iCombat>5</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
@@ -20501,11 +20762,17 @@
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>4</iCombat>
+			<iCombat>3</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>10</iCityAttack>
+			<UnitCombatMods>
+				<UnitCombatMod>
+					<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+					<iUnitCombatMod>25</iUnitCombatMod>
+				</UnitCombatMod>
+			</UnitCombatMods>
 			<iConscription>2</iConscription>
 			<iCultureGarrison>6</iCultureGarrison>
 			<iAsset>4</iAsset>
@@ -20532,6 +20799,63 @@
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
 			<iWeaponTier>3</iWeaponTier>
+		</UnitInfo>
+		<UnitInfo> <!-- UNIT_RIFT -->
+			<Class>UNITCLASS_SEVERED_SOUL</Class>
+			<Type>UNIT_RIFT</Type>
+			<Domain>DOMAIN_LAND</Domain>
+			<DefaultUnitAI>UNITAI_EXPLORE</DefaultUnitAI>
+			<Invisible>INVISIBLE_ALL</Invisible>
+			<Description>TXT_KEY_UNIT_RIFT</Description>
+			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Strategy>
+			<Advisor>ADVISOR_MILITARY</Advisor>
+			<bOnlyDefensive>1</bOnlyDefensive>
+			<bNoCapture>1</bNoCapture>
+			<bRivalTerritory>1</bRivalTerritory>
+			<bCanMoveImpassable>1</bCanMoveImpassable>
+			<bCanMoveAllTerrain>1</bCanMoveAllTerrain>
+			<bIgnoreTerrainCost>1</bIgnoreTerrainCost>
+			<bHiddenNationality>1</bHiddenNationality>
+			<UnitAIs>
+				<UnitAI>
+					<UnitAIType>UNITAI_EXPLORE</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+			</UnitAIs>
+			<iCost>-1</iCost>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iMoves>12</iMoves>
+			<bNoRevealMap>1</bNoRevealMap>
+			<iNukeRange>-1</iNukeRange>
+			<iCombat>1</iCombat>
+			<iCombatLimit>100</iCombatLimit>
+			<iAsset>2</iAsset>
+			<UnitMeshGroups>
+				<iGroupSize>1</iGroupSize>
+				<fMaxSpeed>1.75</fMaxSpeed>
+				<fPadTime>1</fPadTime>
+				<iMeleeWaveSize>1</iMeleeWaveSize>
+				<iRangedWaveSize>0</iRangedWaveSize>
+				<UnitMeshGroup>
+					<iRequired>1</iRequired>
+					<EarlyArtDefineTag>ART_DEF_UNIT_LIGHTNING_ELEMENTAL</EarlyArtDefineTag>
+				</UnitMeshGroup>
+			</UnitMeshGroups>
+			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<FreePromotions>
+				<FreePromotion>
+					<PromotionType>PROMOTION_RIFT</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_DIMENSIONAL3</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			</FreePromotions>
+			<iCombatDefense>1</iCombatDefense>
+			<iTier>2</iTier>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_HARLEQUIN -->
 			<Class>UNITCLASS_RANGER</Class>
@@ -20569,7 +20893,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqBuilding>BUILDING_CARNIVAL</PrereqBuilding>
-			<PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
+			<PrereqTech>TECH_FERAL_BOND</PrereqTech>
 			<iCost>150</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -20636,7 +20960,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
+			<PrereqTech>TECH_FERAL_BOND</PrereqTech>
 			<iCost>150</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -20716,7 +21040,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
+			<PrereqTech>TECH_FERAL_BOND</PrereqTech>
 			<iCost>150</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -20855,7 +21179,7 @@
 			<ReligionType>RELIGION_THE_EMPYREAN</ReligionType>
 			<StateReligion>RELIGION_THE_EMPYREAN</StateReligion>
 			<PrereqReligion>RELIGION_THE_EMPYREAN</PrereqReligion>
-			<PrereqTech>TECH_TRADE</PrereqTech>
+			<PrereqTech>TECH_HONOR</PrereqTech>
 			<TechTypes>
 				<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
 			</TechTypes>
@@ -21343,7 +21667,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_FEUDALISM</PrereqTech>
+			<PrereqTech>TECH_STIRRUPS</PrereqTech>
 			<BonusType>NONE</BonusType>
 			<PrereqBonuses>
 				<BonusType>BONUS_HORSE</BonusType>
@@ -21391,6 +21715,113 @@
 			<iTier>3</iTier>
 			<iWeaponTier>3</iWeaponTier>
 			<PrereqCivic>CIVIC_ARISTOCRACY</PrereqCivic>
+		</UnitInfo>
+		<UnitInfo> <!-- UNIT_RUNEWYN -->
+			<Class>UNITCLASS_RUNEWYN</Class>
+			<Type>UNIT_RUNEWYN</Type>
+			<Combat>UNITCOMBAT_MELEE</Combat>
+			<Domain>DOMAIN_LAND</Domain>
+			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+			<Description>TXT_KEY_UNIT_RUNEWYN</Description>
+			<Civilopedia>TXT_KEY_UNIT_RUNEWYN_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_SUMMON_RUNEWYN_HELP</Strategy>
+			<Advisor>ADVISOR_MILITARY</Advisor>
+			<bMilitaryHappiness>1</bMilitaryHappiness>
+			<bMilitaryProduction>1</bMilitaryProduction>
+			<bPillage>1</bPillage>
+			<UnitClassTargets>
+				<UnitClassTarget>
+					<UnitClassTargetType>UNITCLASS_ARCHMAGE</UnitClassTargetType>
+					<bUnitClassTarget>1</bUnitClassTarget>
+				</UnitClassTarget>
+			</UnitClassTargets>
+			<UnitCombatTargets>
+				<UnitCombatTarget>
+					<UnitCombatTargetType>UNITCOMBAT_ADEPT</UnitCombatTargetType>
+					<bUnitCombatTarget>1</bUnitCombatTarget>
+				</UnitCombatTarget>
+			</UnitCombatTargets>
+			<UnitCombatDefenders>
+				<UnitCombatDefender>
+					<UnitCombatDefenderType>UNITCOMBAT_ADEPT</UnitCombatDefenderType>
+					<bUnitCombatDefender>1</bUnitCombatDefender>
+				</UnitCombatDefender>
+			</UnitCombatDefenders>
+			<UnitAIs>
+				<UnitAI>
+					<UnitAIType>UNITAI_ATTACK</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+				<UnitAI>
+					<UnitAIType>UNITAI_ATTACK_CITY</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+			</UnitAIs>
+			<iCost>-1</iCost>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iMoves>1</iMoves>
+			<iNukeRange>-1</iNukeRange>
+			<iCombat>6</iCombat>
+			<iCombatLimit>100</iCombatLimit>
+			<iXPValueAttack>8</iXPValueAttack>
+			<iXPValueDefense>4</iXPValueDefense>
+			<iFirstStrikes>1</iFirstStrikes>
+			<iCultureGarrison>6</iCultureGarrison>
+			<iAsset>10</iAsset>
+			<iPower>12</iPower>
+			<UnitMeshGroups>
+				<iGroupSize>1</iGroupSize>
+				<fMaxSpeed>1.75</fMaxSpeed>
+				<fPadTime>1</fPadTime>
+				<iMeleeWaveSize>1</iMeleeWaveSize>
+				<iRangedWaveSize>0</iRangedWaveSize>
+				<UnitMeshGroup>
+					<iRequired>1</iRequired>
+					<EarlyArtDefineTag>ART_DEF_UNIT_ANGEL_OF_DEATH</EarlyArtDefineTag>
+				</UnitMeshGroup>
+			</UnitMeshGroups>
+			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<FreePromotions>
+				<FreePromotion>
+					<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_ANGEL</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_MAGIC_RESISTANCE</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_METAMAGIC2</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_FLYING</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_TEMPERANCE</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			</FreePromotions>
+			<iCombatDefense>4</iCombatDefense>
+			<iTier>4</iTier>
+			<DamageTypeCombats>
+				<DamageTypeCombat>
+					<DamageType>DAMAGE_FORCE</DamageType>
+					<iCombat>2</iCombat>
+				</DamageTypeCombat>
+			</DamageTypeCombats>
+			<BonusAffinities>
+				<BonusAffinity>
+					<BonusType>BONUS_MANA_FORCE</BonusType>
+					<iAffinity>1</iAffinity>
+				</BonusAffinity>
+			</BonusAffinities>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_SAILORS_DIRGE -->
 			<Class>UNITCLASS_SAILORS_DIRGE</Class>
@@ -21566,7 +21997,7 @@
 			<ReligionType>RELIGION_FELLOWSHIP_OF_LEAVES</ReligionType>
 			<StateReligion>RELIGION_FELLOWSHIP_OF_LEAVES</StateReligion>
 			<PrereqReligion>RELIGION_FELLOWSHIP_OF_LEAVES</PrereqReligion>
-			<PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
+			<PrereqTech>TECH_HIDDEN_PATHS</PrereqTech>
 			<iCost>150</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -21820,6 +22251,12 @@
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<FreePromotions>
+				<FreePromotion>
+					<PromotionType>PROMOTION_NATURE2</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			</FreePromotions>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
 			<DamageTypeCombats>
@@ -22210,6 +22647,10 @@
 					<ProductionTraitType>TRAIT_EXPANSIVE</ProductionTraitType>
 					<iProductionTrait>100</iProductionTrait>
 				</ProductionTrait>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_IMPERIALISTIC</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
 			</ProductionTraits>
 			<iCost>120</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -22246,15 +22687,19 @@
 		<UnitInfo> <!-- UNIT_SEVERED_SOUL -->
 			<Class>UNITCLASS_SEVERED_SOUL</Class>
 			<Type>UNIT_SEVERED_SOUL</Type>
-			<Special>SPECIALUNIT_SPELL</Special>
 			<Domain>DOMAIN_LAND</Domain>
-			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+			<DefaultUnitAI>UNITAI_EXPLORE</DefaultUnitAI>
 			<Invisible>INVISIBLE_ALL</Invisible>
 			<Description>TXT_KEY_UNIT_SEVERED_SOUL</Description>
 			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_SEVERED_SOUL_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bOnlyDefensive>1</bOnlyDefensive>
+			<bNoCapture>1</bNoCapture>
+			<bRivalTerritory>1</bRivalTerritory>
+			<bInvestigate>1</bInvestigate>
+			<bCanMoveImpassable>1</bCanMoveImpassable>
+			<bIgnoreTerrainCost>1</bIgnoreTerrainCost>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_EXPLORE</UnitAIType>
@@ -22264,9 +22709,9 @@
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
-			<iMoves>1</iMoves>
+			<iMoves>2</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>0</iCombat>
+			<iCombat>1</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -22288,11 +22733,8 @@
 					<PromotionType>PROMOTION_ELEMENTAL</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
-				<FreePromotion>
-					<PromotionType>PROMOTION_FLYING</PromotionType>
-					<bFreePromotion>1</bFreePromotion>
-				</FreePromotion>
 			</FreePromotions>
+			<iCombatDefense>1</iCombatDefense>
 			<iTier>2</iTier>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_SHADE -->
@@ -22382,6 +22824,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<ReligionType>RELIGION_COUNCIL_OF_ESUS</ReligionType>
+			<StateReligion>RELIGION_COUNCIL_OF_ESUS</StateReligion>
 			<PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
 			<PrereqTech>TECH_GUILDS</PrereqTech>
 			<iCost>240</iCost>
@@ -22417,6 +22860,10 @@
 				</FreePromotion>
 				<FreePromotion>
 					<PromotionType>PROMOTION_INVISIBLE</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_ESUS_AGENT</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -22463,6 +22910,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<ReligionType>RELIGION_COUNCIL_OF_ESUS</ReligionType>
+			<StateReligion>RELIGION_COUNCIL_OF_ESUS</StateReligion>
 			<PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
 			<PrereqTech>TECH_GUILDS</PrereqTech>
 			<iCost>240</iCost>
@@ -22505,6 +22953,10 @@
 				</FreePromotion>
 				<FreePromotion>
 					<PromotionType>PROMOTION_INVISIBLE</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_ESUS_AGENT</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -22550,6 +23002,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<ReligionType>RELIGION_COUNCIL_OF_ESUS</ReligionType>
+			<StateReligion>RELIGION_COUNCIL_OF_ESUS</StateReligion>
 			<PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
 			<PrereqTech>TECH_GUILDS</PrereqTech>
 			<iCost>240</iCost>
@@ -22585,6 +23038,10 @@
 				</FreePromotion>
 				<FreePromotion>
 					<PromotionType>PROMOTION_INVISIBLE</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_ESUS_AGENT</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -22667,6 +23124,10 @@
 			<FreePromotions>
 				<FreePromotion>
 					<PromotionType>PROMOTION_HIDDEN_NATIONALITY</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_ESUS_AGENT</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -22991,10 +23452,6 @@
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
 			<FreePromotions>
 				<FreePromotion>
-					<PromotionType>PROMOTION_FEAR</PromotionType>
-					<bFreePromotion>1</bFreePromotion>
-				</FreePromotion>
-				<FreePromotion>
 					<PromotionType>PROMOTION_UNDEAD</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
@@ -23238,13 +23695,13 @@
 			<StateReligion>RELIGION_OCTOPUS_OVERLORDS</StateReligion>
 			<PrereqReligion>RELIGION_OCTOPUS_OVERLORDS</PrereqReligion>
 			<PrereqBuilding>BUILDING_TEMPLE_OF_THE_OVERLORDS</PrereqBuilding>
-			<PrereqTech>TECH_FANATICISM</PrereqTech>
-			<iCost>120</iCost>
+			<PrereqTech>TECH_MALEVOLENT_DESIGNS</PrereqTech>
+			<iCost>200</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>5</iCombat>
+			<iCombat>6</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -23278,13 +23735,13 @@
 				</FreePromotion>
 			</FreePromotions>
 			<bNeverObsolete>1</bNeverObsolete>
-			<iCombatDefense>5</iCombatDefense>
+			<iCombatDefense>6</iCombatDefense>
 			<iTier>3</iTier>
 			<iWeaponTier>3</iWeaponTier>
 			<DamageTypeCombats>
 				<DamageTypeCombat>
 					<DamageType>DAMAGE_UNHOLY</DamageType>
-					<iCombat>2</iCombat>
+					<iCombat>4</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
 		</UnitInfo>
@@ -24024,7 +24481,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
+			<PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
 			<iCost>90</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -24327,6 +24784,7 @@
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<bNeverObsolete>1</bNeverObsolete>
 			<iCombatDefense>3</iCombatDefense>
 			<iTier>1</iTier>
 			<iWeaponTier>1</iWeaponTier>
@@ -24894,7 +25352,13 @@
 					<bBuild>1</bBuild>
 				</Build>
 			</Builds>
-			<iCost>100</iCost>
+			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_INDUSTRIOUS</ProductionTraitType>
+					<iProductionTrait>25</iProductionTrait>
+				</ProductionTrait>
+			</ProductionTraits>
+			<iCost>75</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
@@ -25006,6 +25470,12 @@
 					<bBuild>1</bBuild>
 				</Build>
 			</Builds>
+			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_INDUSTRIOUS</ProductionTraitType>
+					<iProductionTrait>25</iProductionTrait>
+				</ProductionTrait>
+			</ProductionTraits>
 			<iCost>75</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -25378,19 +25848,54 @@
 		<UnitInfo> <!-- UNIT_GREAT_GENERAL -->
 			<Class>UNITCLASS_GREAT_GENERAL</Class>
 			<Type>UNIT_GREAT_GENERAL</Type>
+			<UniqueNames>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_1</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_2</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_3</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_4</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_5</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_6</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_7</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_8</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_9</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_10</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_11</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_12</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_13</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_14</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_15</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_16</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_17</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_18</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_19</UniqueName>
+				<UniqueName>TXT_KEY_UNIT_COMMANDER_20</UniqueName>
+			</UniqueNames>
 			<Special>SPECIALUNIT_PEOPLE</Special>
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_GENERAL</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_GREAT_GENERAL</Description>
-			<Civilopedia>TXT_KEY_UNIT_COMMANDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_GREAT_GENERAL_PEDIA</Civilopedia>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bOnlyDefensive>1</bOnlyDefensive>
+			<bGoldenAge>1</bGoldenAge>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_GENERAL</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
+			<Buildings>
+				<Building>
+					<BuildingType>BUILDING_CODE_OF_JUNIL</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+			</Buildings>
+			<ForceBuildings>
+				<ForceBuilding>
+					<BuildingType>BUILDING_COMMAND_POST</BuildingType>
+					<bForceBuilding>1</bForceBuilding>
+				</ForceBuilding>
+			</ForceBuildings>
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -25426,8 +25931,138 @@
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<FreePromotions>
+				<FreePromotion>
+					<PromotionType>PROMOTION_RECRUITER</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			</FreePromotions>
 			<LeaderPromotion>PROMOTION_GREAT_GENERAL</LeaderPromotion>
 			<bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
+		</UnitInfo>
+		<!-- MORE EVENTS MOD STARTS -->
+		<UnitInfo> <!-- EQUIPMENT_PIKE_OF_TEARS -->
+			<Class>EQUIPMENTCLASS_PIKE_OF_TEARS</Class>
+			<Type>EQUIPMENT_PIKE_OF_TEARS</Type>
+			<Capture>EQUIPMENTCLASS_PIKE_OF_TEARS</Capture>
+			<Domain>DOMAIN_IMMOBILE</Domain>
+			<DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
+			<Description>TXT_KEY_EQUIPMENT_PIKE_OF_TEARS</Description>
+			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Advisor>ADVISOR_MILITARY</Advisor>
+			<bQuickCombat>1</bQuickCombat>
+			<bMechanized>1</bMechanized>
+			<UnitAIs>
+				<UnitAI>
+					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+			</UnitAIs>
+			<iCost>-1</iCost>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iNukeRange>-1</iNukeRange>
+			<iCombat>0</iCombat>
+			<iCombatLimit>100</iCombatLimit>
+			<UnitMeshGroups>
+				<iGroupSize>1</iGroupSize>
+				<fMaxSpeed>1.75</fMaxSpeed>
+				<fPadTime>1</fPadTime>
+				<iMeleeWaveSize>1</iMeleeWaveSize>
+				<iRangedWaveSize>0</iRangedWaveSize>
+				<UnitMeshGroup>
+					<iRequired>1</iRequired>
+					<EarlyArtDefineTag>ART_DEF_EQUIPMENT_GELA</EarlyArtDefineTag>
+				</UnitMeshGroup>
+			</UnitMeshGroups>
+			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<bGraphicalOnly>1</bGraphicalOnly>
+			<bObject>1</bObject>
+			<EquipmentPromotion>PROMOTION_PIKE_OF_TEARS</EquipmentPromotion>
+		</UnitInfo>
+		<UnitInfo> <!-- EQUIPMENT_FROZEN_FLAME -->
+			<Class>EQUIPMENTCLASS_FROZEN_FLAME</Class>
+			<Type>EQUIPMENT_FROZEN_FLAME</Type>
+			<Capture>EQUIPMENTCLASS_FROZEN_FLAME</Capture>
+			<Domain>DOMAIN_IMMOBILE</Domain>
+			<DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
+			<Description>TXT_KEY_EQUIPMENT_FROZEN_FLAME</Description>
+			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Advisor>ADVISOR_MILITARY</Advisor>
+			<bQuickCombat>1</bQuickCombat>
+			<bMechanized>1</bMechanized>
+			<UnitAIs>
+				<UnitAI>
+					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+			</UnitAIs>
+			<Buildings>
+				<Building>
+					<BuildingType>BUILDING_FROZEN_FLAME</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+			</Buildings>
+			<iCost>-1</iCost>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iNukeRange>-1</iNukeRange>
+			<iCombat>0</iCombat>
+			<iCombatLimit>100</iCombatLimit>
+			<UnitMeshGroups>
+				<iGroupSize>1</iGroupSize>
+				<fMaxSpeed>1.75</fMaxSpeed>
+				<fPadTime>1</fPadTime>
+				<iMeleeWaveSize>1</iMeleeWaveSize>
+				<iRangedWaveSize>0</iRangedWaveSize>
+				<UnitMeshGroup>
+					<iRequired>1</iRequired>
+					<EarlyArtDefineTag>ART_DEF_EQUIPMENT_DRAGONS_HORDE</EarlyArtDefineTag>
+				</UnitMeshGroup>
+			</UnitMeshGroups>
+			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<bGraphicalOnly>1</bGraphicalOnly>
+			<bObject>1</bObject>
+			<EquipmentPromotion>PROMOTION_FROZEN_FLAME</EquipmentPromotion>
+		</UnitInfo>
+		<UnitInfo> <!-- EQUIPMENT_SOL -->
+			<Class>EQUIPMENTCLASS_SOL</Class>
+			<Type>EQUIPMENT_SOL</Type>
+			<Capture>EQUIPMENTCLASS_SOL</Capture>
+			<Domain>DOMAIN_IMMOBILE</Domain>
+			<DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
+			<Description>TXT_KEY_EQUIPMENT_SOL</Description>
+			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Advisor>ADVISOR_MILITARY</Advisor>
+			<bQuickCombat>1</bQuickCombat>
+			<bMechanized>1</bMechanized>
+			<UnitAIs>
+				<UnitAI>
+					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+			</UnitAIs>
+			<iCost>-1</iCost>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iNukeRange>-1</iNukeRange>
+			<iCombat>0</iCombat>
+			<iCombatLimit>100</iCombatLimit>
+			<UnitMeshGroups>
+				<iGroupSize>1</iGroupSize>
+				<fMaxSpeed>1.75</fMaxSpeed>
+				<fPadTime>1</fPadTime>
+				<iMeleeWaveSize>1</iMeleeWaveSize>
+				<iRangedWaveSize>0</iRangedWaveSize>
+				<UnitMeshGroup>
+					<iRequired>1</iRequired>
+					<EarlyArtDefineTag>ART_DEF_EQUIPMENT_GELA</EarlyArtDefineTag>
+				</UnitMeshGroup>
+			</UnitMeshGroups>
+			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<bGraphicalOnly>1</bGraphicalOnly>
+			<bObject>1</bObject>
+			<EquipmentPromotion>PROMOTION_SOL</EquipmentPromotion>
 		</UnitInfo>
 	</UnitInfos>
 </Civ4UnitInfos>

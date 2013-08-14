@@ -1150,6 +1150,7 @@
 		<element type="bCastingBlocked" minOccurs="0"/>
 		<element type="bUpgradeOutsideBorders" minOccurs="0"/>
 		<element type="iOrderPriority" minOccurs="0"/>
+		<element type="iEnslavementChance" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="PromotionInfos" content="eltOnly">
 		<element type="PromotionInfo" maxOccurs="*"/>

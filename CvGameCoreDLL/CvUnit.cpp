@@ -117,13 +117,32 @@ void CvUnit::reloadEntity()
 }
 
 
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Added parameter szName                                                                       */
+/************************************************************************************************/
+/*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection)
 void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit)
 //<<<<Unofficial Bug Fix: End Modify
+*/
+void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, CvWString szName)
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 {
 	CvWString szBuffer;
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Moved to CvGame::getNewGreatPersonBornName() (Used in CvPlayer::createGreatPeople())         */
+/************************************************************************************************/
+/*
 	int iUnitName;
+*/
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	int iI, iJ;
 
 	FAssert(NO_UNIT != eUnit);
@@ -157,6 +176,11 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 
 	plot()->setFlagDirty(true);
 
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Moved to CvGame::getNewGreatPersonBornName() (Used in CvPlayer::createGreatPeople())         */
+/************************************************************************************************/
+/*
 	iUnitName = GC.getGameINLINE().getUnitCreatedCount(getUnitType());
 	int iNumNames = m_pUnitInfo->getNumUnitNames();
 	if (iUnitName < iNumNames)
@@ -175,6 +199,11 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 			}
 		}
 	}
+*/
+	setName( szName ); // use parameter
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	setGameTurnCreated(GC.getGameINLINE().getGameTurn());
 
@@ -739,7 +768,10 @@ void CvUnit::convert(CvUnit* pUnit)
 	setLeaderUnitType(pUnit->getLeaderUnitType());
 
 //FfH: Added by Kael 10/03/2008
-	if (!isWorldUnitClass((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) && isWorldUnitClass((UnitClassTypes)(pUnit->getUnitClassType())))
+	if (!pUnit->m_szName.empty()) {
+		setName(pUnit->m_szName);
+	}
+	else if (!isWorldUnitClass((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) && isWorldUnitClass((UnitClassTypes)(pUnit->getUnitClassType())))
 	{
 	    setName(pUnit->getName());
 	}
@@ -12603,9 +12635,11 @@ void CvUnit::changeExperience(int iChange, int iMax, bool bFromCombat, bool bInB
 			iUnitExperience += (iChange * kPlayer.getExpInBorderModifier()) / 100;
 		}
 
+		/** ExtraModMod: Great Generals are available unconditionally.
 		// Great General experience - limit this to the Advanced Tactics option
 		if (bUpdateGlobal && GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
-		//if (bUpdateGlobal)
+		*/
+		if (bUpdateGlobal)
 		{
 			kPlayer.changeCombatExperience((iChange * iCombatExperienceMod) / 100);
 		}
@@ -15437,6 +15471,7 @@ void CvUnit::getDefenderCombatValues(CvUnit& kDefender, const CvPlot* pPlot, int
 	iTheirDamage = std::max(1, ((GC.getDefineINT("COMBAT_DAMAGE") * (iOurFirepower + iStrengthFactor)) / (iTheirFirepower + iStrengthFactor)));
 }
 
+// bCheckPlot is always true or CvGameCoreUtils::isPlotEventTrigger(eTrigger), except the call from CvPlot::canTrigger() itself
 int CvUnit::getTriggerValue(EventTriggerTypes eTrigger, const CvPlot* pPlot, bool bCheckPlot) const
 {
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eTrigger);
@@ -15541,6 +15576,20 @@ bool CvUnit::canApplyEvent(EventTypes eEvent) const
         }
 //FfH: End Modify
 
+		
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+		for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+			if( kEvent.isUnitPromotion( i ) )
+			{
+				if( isHasPromotion( (PromotionTypes)i ) )
+					return false;
+			}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
+
 	}
 
 	if (kEvent.getUnitImmobileTurns() > 0)
@@ -15581,6 +15630,17 @@ void CvUnit::applyEvent(EventTypes eEvent)
 //FfH: End Modify
 
 	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/22/13                                lfgr        */
+/************************************************************************************************/
+	for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+		if( kEvent.isUnitPromotion( i ) )
+		{
+			setHasPromotion((PromotionTypes)i, true);
+		}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	if (kEvent.getUnitImmobileTurns() > 0)
 	{
@@ -15851,6 +15911,7 @@ int CvUnit::getSelectionSoundScript() const
 //FfH Spell System: Added by Kael 07/23/2007
 bool CvUnit::canCast(int spell, bool bTestVisible)
 {
+	PROFILE_FUNC();
     SpellTypes eSpell = (SpellTypes)spell;
 	CvSpellInfo& kSpell = GC.getSpellInfo(eSpell);
     CvPlot* pPlot = plot();
@@ -17575,7 +17636,7 @@ void CvUnit::castCreateUnit(int spell)
 	    {
             if (GC.getSpellInfo((SpellTypes)spell).isCopyCastersPromotions())
             {
-                if (!GC.getPromotionInfo((PromotionTypes)iI).isEquipment() && !GC.getPromotionInfo((PromotionTypes)iI).isRace() && iI != GC.getDefineINT("GREAT_COMMANDER_PROMOTION"))
+                if (!GC.getPromotionInfo((PromotionTypes)iI).isEquipment() && !GC.getPromotionInfo((PromotionTypes)iI).isRace() && iI != GC.getDefineINT("GREAT_GENERAL_PROMOTION"))
                 {
                     pUnit->setHasPromotion((PromotionTypes)iI, true);
                 }
@@ -18925,6 +18986,21 @@ void CvUnit::doImmortalRebirth()
 	// Sephi AI End
 }
 
+int CvUnit::getEnslavementChance() const
+{
+	int enslavementChance = m_pUnitInfo->getEnslavementChance();
+
+	for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); iPromotion++)
+	{
+		if (isHasPromotion((PromotionTypes)iPromotion))
+		{
+			enslavementChance += GC.getPromotionInfo((PromotionTypes)iPromotion).getEnslavementChance();
+		}
+	}
+
+	return enslavementChance;
+}
+
 void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 {
 	PromotionTypes ePromotion;
@@ -19090,12 +19166,14 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 	}
 	if (!bUnitAutoCapture) // Tholal Bugfix - we dont also get slaves from units we capture
 	{
-		if ((m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()) > 0)
+		int iEnslavementChance = this->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance();
+
+		if (iEnslavementChance > 0)
 		{
 			// Summons, non-Alive units, Animals and World class units cannot become slaves
 			if (getDuration() == 0 && pLoser->isAlive() && !pLoser->isAnimal() && iUnit == NO_UNIT && !isWorldUnitClass((UnitClassTypes)pLoser->getUnitClassType()))
 			{
-				if (GC.getGameINLINE().getSorenRandNum(100, "Enslavement") < (m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()))
+				if (GC.getGameINLINE().getSorenRandNum(100, "Enslavement") < iEnslavementChance)
 				{
 					iUnit = GC.getDefineINT("SLAVE_UNIT");
 				}

@@ -13284,7 +13284,6 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 	return std::max(0, iValue);
 }
 
-
 int CvPlayerAI::AI_totalUnitAIs(UnitAITypes eUnitAI) const
 {
 	return (AI_getNumTrainAIUnits(eUnitAI) + AI_getNumAIUnits(eUnitAI));
@@ -14560,8 +14559,10 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 
 	iValue += ((kCivic.getGreatPeopleRateModifier() * iGreatPeopleTotalDelta) / (((AI_isDoVictoryStrategy(AI_VICTORY_ALTAR2 || AI_VICTORY_CULTURE2)) ? 10 : 50) + iCities));
 //<<<<Better AI: End Modify
-	
+	/** ExtraModMod: Great Generals are available unconditionally.
 	if ( bWarPlan && GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+	*/
+	if (bWarPlan)
 	{
 		iValue += ((kCivic.getGreatGeneralRateModifier() * getNumMilitaryUnits()) / 50);
 		iValue += ((kCivic.getDomesticGreatGeneralRateModifier() * getNumMilitaryUnits()) / 100);
