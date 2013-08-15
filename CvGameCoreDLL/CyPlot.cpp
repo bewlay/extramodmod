@@ -1181,7 +1181,12 @@ void CyPlot::calculateChokeValue()
 /************************************************************************************************/
 bool CyPlot::isLair( bool bIgnoreIsAnimal, bool bAnimal ) const
 {
-	return m_pPlot ? m_pPlot->isLair( bIgnoreIsAnimal, bAnimal ) : -1;
+	return m_pPlot ? m_pPlot->isLair( bIgnoreIsAnimal, bAnimal ) : false;
+}
+
+int CyPlot::getWilderness() const
+{
+	return m_pPlot ? m_pPlot->getWilderness() : -1;
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

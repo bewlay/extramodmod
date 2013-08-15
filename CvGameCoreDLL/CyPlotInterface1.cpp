@@ -293,6 +293,7 @@ void CyPlotPythonInterface1(python::class_<CyPlot>& x)
 /* WILDERNESS                             08/2013                                 lfgr          */
 /************************************************************************************************/
 		.def("isLair", &CyPlot::isLair, "bool ( bool bIgnoreAnimal, bool bAnimal )")
+		.def("getWilderness", &CyPlot::getWilderness, "int ()")
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
