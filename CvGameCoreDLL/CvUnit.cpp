@@ -711,6 +711,29 @@ void CvUnit::convert(CvUnit* pUnit)
 	setGameTurnCreated(pUnit->getGameTurnCreated());
 	setDamage(pUnit->getDamage());
 	setMoves(pUnit->getMoves());
+//>>>>Advanced Rules: Added by Denev 2010/02/04
+	setMadeAttack(pUnit->isMadeAttack());
+	setImmobileTimer(pUnit->getImmobileTimer());
+	setIgnoreHide(pUnit->isIgnoreHide());
+	if (getOwnerINLINE() == pUnit->getOwnerINLINE())
+	{
+		setSummoner(pUnit->getSummoner());
+
+		int iLoop;
+		for (CvUnit* pLoopUnit = GET_PLAYER(getOwnerINLINE()).firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = GET_PLAYER(getOwnerINLINE()).nextUnit(&iLoop))
+		{
+			if (pLoopUnit->getSummoner() == pUnit->getID())
+			{
+				pLoopUnit->setSummoner(getID());
+			}
+		}
+	}
+
+	if (bHero || isWorldUnitClass((UnitClassTypes)getUnitInfo().getUnitClassType()))
+	{
+		AI_setUnitAIType(UNITAI_HERO);
+	}
+//<<<<Advanced Rules: End Add
 
 	setLevel(pUnit->getLevel());
 	int iOldModifier = std::max(1, 100 + GET_PLAYER(pUnit->getOwnerINLINE()).getLevelExperienceModifier());
@@ -8952,30 +8975,23 @@ CvUnit* CvUnit::upgrade(UnitTypes eUnit) // K-Mod: this now returns the new unit
 
 //FfH: Modified by Kael 04/18/2009
 //	pUpgradeUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eUnit, getX_INLINE(), getY_INLINE(), AI_getUnitAIType());
-    UnitAITypes eUnitAI = AI_getUnitAIType();
-    if (eUnitAI == UNITAI_MISSIONARY)
-    {
-        ReligionTypes eReligion = GET_PLAYER(getOwnerINLINE()).getStateReligion();
-        if (eReligion == NO_RELIGION || GC.getUnitInfo(eUnit).getReligionSpreads(eReligion) == 0)
-        {
-            eUnitAI = UNITAI_RESERVE;
-        }
-    }
-
-	// Tholal AI - AI switch for upgraded Slaves
-	if (eUnitAI == UNITAI_WORKER && GC.getUnitInfo(eUnit).getWorkRate() == 0)
-    {
-		eUnitAI = UNITAI_ATTACK_CITY;
-    }
-
-	// when we upgrade units that have AI_HERO as their default AI, we should switch to that AI
-	if (GC.getUnitInfo(eUnit).getDefaultUnitAIType() == UNITAI_HERO)
+	UnitAITypes eUnitAI = AI_getUnitAIType();
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/02/23
+/*
+	if (eUnitAI == UNITAI_MISSIONARY)
 	{
-		eUnitAI = UNITAI_HERO;
+		ReligionTypes eReligion = GET_PLAYER(getOwnerINLINE()).getStateReligion();
+		if (eReligion == NO_RELIGION || GC.getUnitInfo(eUnit).getReligionSpreads(eReligion) == 0)
+		{
+			eUnitAI = UNITAI_RESERVE;
+		}
 	}
-	// End Tholal AI
-
-
+*/
+	if (!GC.getUnitInfo(eUnit).getUnitAIType(eUnitAI))
+	{
+		eUnitAI = (UnitAITypes)GC.getUnitInfo(eUnit).getDefaultUnitAIType();
+	}
+//<<<<Unofficial Bug Fix: End Modify
 	pUpgradeUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eUnit, getX_INLINE(), getY_INLINE(), eUnitAI);
 //FfH: End Modify
 
@@ -19120,7 +19136,7 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //*** captured or enslaved  unit is pushed out if enemy unit exists in the same tile.
 //			pUnit = GET_PLAYER(getOwnerINLINE()).initUnit((UnitTypes)iUnit, plot()->getX_INLINE(), plot()->getY_INLINE());
-			if (isBoarding())
+			if (isBoarding() && !pLoser->plot()->isCity())
 			{
 				// boarded ships stay in their plot
 				pUnit = GET_PLAYER(getOwnerINLINE()).initUnit((UnitTypes)iUnit, pLoser->plot()->getX_INLINE(), pLoser->plot()->getY_INLINE(), NO_UNITAI, DIRECTION_SOUTH, true);
