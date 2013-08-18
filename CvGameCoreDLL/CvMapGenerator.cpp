@@ -1303,7 +1303,19 @@ void CvMapGenerator::addImprovements()
 							{
 								if (!pPlot->isVisibleToCivTeam())
 								{
+								/************************************************************************************************/
+								/* WILDERNESS                             08/2013                                 lfgr          */
+								/* Use SpawnInfos                                                                               */
+								/************************************************************************************************/
+								/*
 									if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement") < GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability())
+								*/
+									int iProbability = GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability();
+									iProbability += (int) ( iProbability * ( pPlot->getWilderness() * 2 / 100.0 ) );
+									if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement") < iProbability)
+								/************************************************************************************************/
+								/* WILDERNESS                                                                     END           */
+								/************************************************************************************************/
 									{
 										pPlot->setImprovementType((ImprovementTypes)iJ);
 										pPlot->setFeatureType(NO_FEATURE);
