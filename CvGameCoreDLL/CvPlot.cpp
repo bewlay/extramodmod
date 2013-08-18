@@ -2655,17 +2655,26 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 /* Check min and max wilderness for lairs and Unique Improvements                               */
 /************************************************************************************************/
 	
-	for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
-	{
-		if( GC.getImprovementInfo( eImprovement ).getSpawnTypes( eSpawn ) && (
-				GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMinWilderness() > getWilderness() ||
-				GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMaxWilderness() < getWilderness() ) )
-		{
-			return false;
-		}
-	}
 	if( GC.getImprovementInfo( eImprovement ).getMinWilderness() > getWilderness() ||
 			GC.getImprovementInfo( eImprovement ).getMaxWilderness() < getWilderness() )
+	{
+		return false;
+	}
+
+	int iMinWilderness = 0;
+	int iMaxWilderness = MAX_INT;
+	for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+	{
+		if( GC.getImprovementInfo( eImprovement ).getSpawnTypes( eSpawn ) )
+		{
+			if( GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMinWilderness() < iMinWilderness )
+				iMinWilderness = GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMinWilderness();
+			if( GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMaxWilderness() > iMaxWilderness )
+				iMaxWilderness = GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMaxWilderness();
+		}
+	}
+	
+	if( iMinWilderness > getWilderness() || iMaxWilderness < getWilderness() )
 	{
 		return false;
 	}
