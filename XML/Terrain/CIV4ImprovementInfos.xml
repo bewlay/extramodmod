@@ -171,8 +171,11 @@
             <SpawnTypes>
 				<SpawnType>SPAWN_BARROW_EARLY_SKELETON</SpawnType>
 				<SpawnType>SPAWN_BARROW_EARLY_SPECTRE</SpawnType>
+				<SpawnType>SPAWN_BARROW_EARLY_GHOUL</SpawnType>
+				<SpawnType>SPAWN_BARROW_EARLY_WIGHT</SpawnType>
 				<SpawnType>SPAWN_BARROW_LATE_SPECTRE</SpawnType>
 				<SpawnType>SPAWN_BARROW_LATE_WRAITH</SpawnType>
+				<SpawnType>SPAWN_BARROW_LATE_WIGHT</SpawnType>
 			</SpawnTypes>
 		<!-- WILDERNESS end -->
         </ImprovementInfo>
@@ -2337,6 +2340,11 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMoveLetumFrigus(pCaster, pPlot)</PythonOnMove>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_LETUM_FRIGUS_HOLLOW_MAN</SpawnType>
+			</SpawnTypes>
+		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_LION_DEN</Type>

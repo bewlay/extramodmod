@@ -38,6 +38,47 @@
 				<Tech>TECH_NECROMANCY</Tech>
 			</ObsoleteTechs>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_BARROW_EARLY_GHOUL -->
+			<Type>SPAWN_BARROW_EARLY_GHOUL</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GHOUL</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>175</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_BARROW_EARLY_WIGHT -->
+			<Type>SPAWN_BARROW_EARLY_WIGHT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>60</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WIGHT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<ObsoleteTechs>
+				<Tech>TECH_NECROMANCY</Tech>
+			</ObsoleteTechs>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_BARROW_LATE_SPECTRE -->
 			<Type>SPAWN_BARROW_LATE_SPECTRE</Type>
 			<iBaseWeight>100</iBaseWeight>
@@ -66,6 +107,28 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_NECROMANCY</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_BARROW_LATE_WIGHT -->
+			<Type>SPAWN_BARROW_LATE_WIGHT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>30</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WIGHT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 			<PrereqTechs>
 				<Tech>TECH_NECROMANCY</Tech>
 			</PrereqTechs>
@@ -320,6 +383,21 @@
 			</PrereqTechs>
 		</SpawnInfo>
 		
+		<!-- Letum Frigus -->
+		<SpawnInfo> <!-- SPAWN_LETUM_FRIGUS_HOLLOW_MAN -->
+			<Type>SPAWN_LETUM_FRIGUS_HOLLOW_MAN</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>80</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HOLLOW_MAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+
 		<!-- ANIMAL SPAWNS -->
 		
 		<!-- Land -->
