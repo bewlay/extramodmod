@@ -761,7 +761,6 @@ def spellCreateBatteringRam(caster):
 	pPlot.setFeatureType(-1, -1)
 
 def reqCreateDenBear(caster):
-	# LFGR_TODO check plot.getWilderness() >= unit.getWilderness(), else no units may spawn in den
 	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_LAIRS):
 		return False
 	iImprovement = gc.getInfoTypeForString('IMPROVEMENT_BEAR_DEN')
