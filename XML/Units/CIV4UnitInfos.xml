@@ -11245,6 +11245,75 @@
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
 		</UnitInfo>
+		<UnitInfo> <!-- UNIT_GHOUL // BARBARIAN_UNITS 08/2013 lfgr -->
+			<!-- Art from Master of Mana -->
+			<Class>UNITCLASS_GHOUL</Class>
+			<Type>UNIT_GHOUL</Type>
+			<Combat>UNITCOMBAT_MELEE</Combat>
+			<Domain>DOMAIN_LAND</Domain>
+			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+			<Description>TXT_KEY_UNIT_GHOUL</Description>
+			<Civilopedia>TXT_KEY_UNIT_GHOUL_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_UNIT_GHOUL_STRATEGY</Strategy>
+			<Advisor>ADVISOR_MILITARY</Advisor>
+			<bMilitarySupport>1</bMilitarySupport>
+			<bMilitaryProduction>1</bMilitaryProduction>
+			<bPillage>1</bPillage>
+			<UnitAIs>
+				<UnitAI>
+					<UnitAIType>UNITAI_ATTACK</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+				<UnitAI>
+					<UnitAIType>UNITAI_COUNTER</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+				<UnitAI>
+					<UnitAIType>UNITAI_ATTACK_CITY</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+			</UnitAIs>
+			<iCost>-1</iCost>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iMoves>1</iMoves>
+			<iNukeRange>-1</iNukeRange>
+			<iCombat>3</iCombat>
+			<iCombatLimit>100</iCombatLimit>
+			<iXPValueAttack>8</iXPValueAttack>
+			<iXPValueDefense>4</iXPValueDefense>
+			<iCultureGarrison>6</iCultureGarrison>
+			<iAsset>4</iAsset>
+			<iPower>5</iPower>
+			<UnitMeshGroups>
+				<iGroupSize>1</iGroupSize>
+				<fMaxSpeed>1.75</fMaxSpeed>
+				<fPadTime>1</fPadTime>
+				<iMeleeWaveSize>1</iMeleeWaveSize>
+				<iRangedWaveSize>0</iRangedWaveSize>
+				<UnitMeshGroup>
+					<iRequired>1</iRequired>
+					<EarlyArtDefineTag>ART_DEF_UNIT_GHOUL</EarlyArtDefineTag>
+				</UnitMeshGroup>
+			</UnitMeshGroups>
+			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<FreePromotions>
+				<FreePromotion>
+					<PromotionType>PROMOTION_UNDEAD</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			</FreePromotions>
+			<bNeverObsolete>1</bNeverObsolete>
+			<iCombatDefense>3</iCombatDefense>
+			<iTier>2</iTier>
+			<iWeaponTier>3</iWeaponTier>
+			<DamageTypeCombats>
+				<DamageTypeCombat>
+					<DamageType>DAMAGE_DEATH</DamageType>
+					<iCombat>1</iCombat>
+				</DamageTypeCombat>
+			</DamageTypeCombats>
+		</UnitInfo>
 		<UnitInfo> <!-- UNIT_GIANT_SPIDER -->
 			<Class>UNITCLASS_GIANT_SPIDER</Class>
 			<Type>UNIT_GIANT_SPIDER</Type>
@@ -25098,6 +25167,81 @@
 			<iUnitConvertFromCombatChance>5</iUnitConvertFromCombatChance>
 			<UnitCreateFromCombat>UNIT_RAVENOUS_WEREWOLF</UnitCreateFromCombat>
 			<iUnitCreateFromCombatChance>30</iUnitCreateFromCombatChance>
+		</UnitInfo>
+		<UnitInfo> <!-- UNIT_WIGHT // BARBARIAN_UNITS 08/2013 lfgr -->
+			<!-- Art from Master of Mana -->
+			<Class>UNITCLASS_WIGHT</Class>
+			<Type>UNIT_WIGHT</Type>
+			<Combat>UNITCOMBAT_MELEE</Combat>
+			<Domain>DOMAIN_LAND</Domain>
+			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+			<Description>TXT_KEY_UNIT_WIGHT</Description>
+			<Civilopedia>TXT_KEY_UNIT_WIGHT_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_UNIT_WIGHT_STRATEGY</Strategy>
+			<Advisor>ADVISOR_MILITARY</Advisor>
+			<bMilitarySupport>1</bMilitarySupport>
+			<bMilitaryProduction>1</bMilitaryProduction>
+			<bPillage>1</bPillage>
+			<UnitAIs>
+				<UnitAI>
+					<UnitAIType>UNITAI_ATTACK</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+				<UnitAI>
+					<UnitAIType>UNITAI_COUNTER</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+				<UnitAI>
+					<UnitAIType>UNITAI_ATTACK_CITY</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+			</UnitAIs>
+			<iCost>-1</iCost>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iMoves>1</iMoves>
+			<iNukeRange>-1</iNukeRange>
+			<iCombat>3</iCombat>
+			<iCombatLimit>100</iCombatLimit>
+			<iXPValueAttack>8</iXPValueAttack>
+			<iXPValueDefense>4</iXPValueDefense>
+			<iCultureGarrison>6</iCultureGarrison>
+			<iAsset>4</iAsset>
+			<iPower>10</iPower>
+			<UnitMeshGroups>
+				<iGroupSize>1</iGroupSize>
+				<fMaxSpeed>1.75</fMaxSpeed>
+				<fPadTime>1</fPadTime>
+				<iMeleeWaveSize>1</iMeleeWaveSize>
+				<iRangedWaveSize>0</iRangedWaveSize>
+				<UnitMeshGroup>
+					<iRequired>1</iRequired>
+					<EarlyArtDefineTag>ART_DEF_UNIT_WIGHT</EarlyArtDefineTag>
+				</UnitMeshGroup>
+			</UnitMeshGroups>
+			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<FreePromotions>
+				<FreePromotion>
+					<PromotionType>PROMOTION_UNDEAD</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			</FreePromotions>
+			<bNeverObsolete>1</bNeverObsolete>
+			<iCombatDefense>3</iCombatDefense>
+			<iTier>2</iTier>
+			<iWeaponTier>3</iWeaponTier>
+			<UnitCreateFromCombat>UNIT_GHOUL</UnitCreateFromCombat>
+			<iUnitCreateFromCombatChance>75</iUnitCreateFromCombatChance>
+			<DamageTypeCombats>
+				<DamageTypeCombat>
+					<DamageType>DAMAGE_DEATH</DamageType>
+					<iCombat>3</iCombat>
+				</DamageTypeCombat>
+			</DamageTypeCombats>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_WILBOMAN -->
 			<Class>UNITCLASS_WILBOMAN</Class>
