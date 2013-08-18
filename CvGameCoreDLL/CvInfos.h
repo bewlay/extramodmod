@@ -7651,8 +7651,11 @@ public:
 
 	CvSpawnInfo();
 	virtual ~CvSpawnInfo();
+
+	int getUnitArtStyleType() const;
 	
 	int getWeight() const;
+	int getProbability() const;
 	int getMinWilderness() const;
 	int getMaxWilderness() const;
 	
@@ -7678,14 +7681,17 @@ public:
 
 protected:
 	
+	int m_eUnitArtStyleType;
+	
 	int m_iWeight;
+	int m_iProbability;
 	int m_iMinWilderness;
 	int m_iMaxWilderness;
-	int m_bNeverSpawn;
-	int m_bAnimal;
-	int m_bWater;
+	bool m_bNeverSpawn;
+	bool m_bAnimal;
+	bool m_bWater;
 	
-	int m_bNoRace;
+	bool m_bNoRace;
 
 	// Arrays
 	

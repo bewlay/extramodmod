@@ -609,7 +609,17 @@ void CvPlot::doTurn()
 							iChance /= 3;
 						}
 						
-                        if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Unit") < iChance)
+					/************************************************************************************************/
+					/* WILDERNESS                             08/2013                                 lfgr          */
+					/* Alter chance                                                                                 */
+					/************************************************************************************************/
+                    /*
+						if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Unit") < iChance)
+					*/
+						if  (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Unit") < iChance * kBestSpawn.getProbability() / 100 )
+					/************************************************************************************************/
+					/* WILDERNESS                                                                     END           */
+					/************************************************************************************************/
                         {
                             if (!isVisibleOtherUnit(BARBARIAN_PLAYER))
                             {
@@ -12569,6 +12579,8 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI )
 			for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ )
 				if( kSpawn.getUnitPromotions( ePromotion ) )
 					pUnit->setHasPromotion( (PromotionTypes) ePromotion, true );
+			
+			pUnit->setUnitArtStyleType( kSpawn.getUnitArtStyleType() );
 
 			if( pHeadUnit == NULL )
 				pHeadUnit = pUnit;

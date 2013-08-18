@@ -28072,7 +28072,9 @@ bool CvMainMenuInfo::read(CvXMLLoadUtility* pXML)
 //======================================================================================================
 
 CvSpawnInfo::CvSpawnInfo():
+	m_eUnitArtStyleType( NO_UNIT_ARTSTYLE ),
 	m_iWeight( 0 ),
+	m_iProbability( 100 ),
 	m_iMinWilderness( 0 ),
 	m_iMaxWilderness( 0 ),
 	m_bNeverSpawn( false ),
@@ -28098,9 +28100,19 @@ CvSpawnInfo::~CvSpawnInfo()
 	SAFE_DELETE_ARRAY( m_pbObsoleteTechs );
 }
 
+int CvSpawnInfo::getUnitArtStyleType() const
+{
+	return m_eUnitArtStyleType;
+}
+
 int CvSpawnInfo::getWeight() const
 {
 	return m_iWeight;
+}
+
+int CvSpawnInfo::getProbability() const
+{
+	return m_iProbability;
 }
 
 int CvSpawnInfo::getMinWilderness() const
@@ -28178,8 +28190,10 @@ bool CvSpawnInfo::getObsoleteTechs( int i ) const
 void CvSpawnInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
-
+	
+	stream->Read(&m_eUnitArtStyleType);
 	stream->Read(&m_iWeight);
+	stream->Read(&m_iProbability);
 	stream->Read(&m_iMinWilderness);
 	stream->Read(&m_iMaxWilderness);
 	stream->Read(&m_bNeverSpawn);
@@ -28217,8 +28231,10 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 void CvSpawnInfo::write(FDataStreamBase* stream)
 {
 	CvInfoBase::write(stream);
-
+	
+	stream->Write(m_eUnitArtStyleType);
 	stream->Write(m_iWeight);
+	stream->Write(m_iProbability);
 	stream->Write(m_iMinWilderness);
 	stream->Write(m_iMaxWilderness);
 	stream->Write(m_bNeverSpawn);
@@ -28244,8 +28260,11 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 		return false;
 	}
 
-	// set the current xml node to it's next sibling and then
+	pXML->GetChildXmlValByName(szTextVal, "UnitArtStyleType");
+	m_eUnitArtStyleType = pXML->FindInInfoClass(szTextVal);
+
 	pXML->GetChildXmlValByName(&m_iWeight, "iBaseWeight");
+	pXML->GetChildXmlValByName(&m_iProbability, "iProbability", 100 );
 	pXML->GetChildXmlValByName(&m_iMinWilderness, "iMinWilderness");
 	pXML->GetChildXmlValByName(&m_iMaxWilderness, "iMaxWilderness");
 	pXML->GetChildXmlValByName(&m_bNeverSpawn, "bNeverSpawn");
