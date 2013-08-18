@@ -14,7 +14,7 @@
 	<ElementType name="bAnimal" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bWater" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoRace" content="textOnly" dt:type="boolean"/>
-	<ElementType name="UnitArtStyleType" content="textOnly" dt:type="int"/>
+	<ElementType name="UnitArtStyleType" content="textOnly"/>
 	
 	<ElementType name="Unit" content="textOnly"/>
 	<ElementType name="iNumUnits" content="textOnly" dt:type="int"/>
