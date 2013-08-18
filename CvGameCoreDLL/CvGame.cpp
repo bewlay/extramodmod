@@ -7446,7 +7446,17 @@ void CvGame::createBarbarianUnits()
 				iNeededBarbs = ((pLoopArea->getNumUnownedTiles() / iDivisor) - (pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) - pLoopArea->getAnimalsPerPlayer(BARBARIAN_PLAYER)));
 				if (iNeededBarbs > 0)
 				{
+				/************************************************************************************************/
+				/* WILDERNESS                             08/2013                                 lfgr          */
+				/* Defines for barbarian spawning speed                                                         */
+				/************************************************************************************************/
+				/*
 					iNeededBarbs = ((iNeededBarbs / 6) + 1);
+				*/
+					iNeededBarbs = (int) ( (iNeededBarbs * GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED" ) ) + 1 );
+				/************************************************************************************************/
+				/* WILDERNESS                                                                     END           */
+				/************************************************************************************************/
 //FfH: End Modify
 
 					for (iI = 0; iI < iNeededBarbs; iI++)
@@ -7607,7 +7617,17 @@ void CvGame::createAnimals()
         }
         if (iNeededAnimals > 0)
         {
+		/************************************************************************************************/
+		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* Defines for barbarian spawning speed                                                         */
+		/************************************************************************************************/
+		/*
             iNeededAnimals = ((iNeededAnimals / 5) + 1);
+		*/
+			iNeededAnimals = (int) ( (iNeededAnimals * GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED" ) ) + 1 );
+		/************************************************************************************************/
+		/* WILDERNESS                                                                     END           */
+		/************************************************************************************************/
             if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS))
             {
                 iNeededAnimals *= 2;

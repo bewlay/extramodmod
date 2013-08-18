@@ -992,5 +992,13 @@
 		<DefineName>UNIT_MOVE_MIN_WILDERNESS_RANGE_RAGING_BARBARIANS_EXTRA</DefineName>
 		<iDefineIntVal>10</iDefineIntVal>
 	</Define>
+    <Define>
+        <DefineName>BARBARIAN_SPAWNING_SPEED</DefineName>
+        <fDefineFloatVal>0.25</fDefineFloatVal>
+    </Define>
+    <Define>
+        <DefineName>ANIMAL_SPAWNING_SPEED</DefineName>
+        <fDefineFloatVal>0.2</fDefineFloatVal>
+    </Define>
 <!-- WILDERNESS end -->
 </Civ4Defines>
