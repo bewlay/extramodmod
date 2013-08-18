@@ -122,4 +122,31 @@
 		<Spanish>TODO</Spanish>
 		<Finnish>TODO</Finnish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_HOLLOW_MAN</Tag>
+		<English>Hollow Man</English>
+		<French>Hollow Man</French>
+		<German>Hollow Man</German>
+		<Italian>Hollow Man</Italian>
+		<Spanish>Hollow Man</Spanish>
+		<Finnish>Hollow Man</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_HOLLOW_MAN_PEDIA</Tag>
+		<English>Hollow men are the ghosts of those who served Mulcarn in the Age of Ice. They are most common around Letum Frigus and typically appear and thin, pale, indefinite creatures that are nearly invisible in a snowstorm. They rarely attack formidable opponents, preferring to find those freezing in the wastes and steal the last bits of warmth from their bodies.</English>
+		<French>Hollow men are the ghosts of those who served Mulcarn in the Age of Ice. They are most common around Letum Frigus and typically appear and thin, pale, indefinite creatures that are nearly invisible in a snowstorm. They rarely attack formidable opponents, preferring to find those freezing in the wastes and steal the last bits of warmth from their bodies.</French>
+		<German>Hollow men are the ghosts of those who served Mulcarn in the Age of Ice. They are most common around Letum Frigus and typically appear and thin, pale, indefinite creatures that are nearly invisible in a snowstorm. They rarely attack formidable opponents, preferring to find those freezing in the wastes and steal the last bits of warmth from their bodies.</German>
+		<Italian>Hollow men are the ghosts of those who served Mulcarn in the Age of Ice. They are most common around Letum Frigus and typically appear and thin, pale, indefinite creatures that are nearly invisible in a snowstorm. They rarely attack formidable opponents, preferring to find those freezing in the wastes and steal the last bits of warmth from their bodies.</Italian>
+		<Spanish>Hollow men are the ghosts of those who served Mulcarn in the Age of Ice. They are most common around Letum Frigus and typically appear and thin, pale, indefinite creatures that are nearly invisible in a snowstorm. They rarely attack formidable opponents, preferring to find those freezing in the wastes and steal the last bits of warmth from their bodies.</Spanish>
+		<Finnish>Hollow men are the ghosts of those who served Mulcarn in the Age of Ice. They are most common around Letum Frigus and typically appear and thin, pale, indefinite creatures that are nearly invisible in a snowstorm. They rarely attack formidable opponents, preferring to find those freezing in the wastes and steal the last bits of warmth from their bodies.</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_HOLLOW_MAN_STRATEGY</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
 </Civ4GameText>
