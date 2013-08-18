@@ -59,6 +59,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -328,6 +331,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>20</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -436,6 +442,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>50</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_DEATH</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -1067,6 +1076,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_IVORY</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -1671,6 +1683,9 @@
             <iRange>1</iRange>
             <iRangeDefenseModifier>5</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -1962,6 +1977,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>20</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -2311,6 +2329,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>30</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_ICE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -2509,6 +2530,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -4424,6 +4448,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>6</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_SUN</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -4702,6 +4729,9 @@
             <iRange>3</iRange>
             <iRangeDefenseModifier>25</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>20</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -5302,6 +5332,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -5386,6 +5419,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_FIRE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -5583,6 +5619,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -5642,6 +5681,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>20</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -5800,6 +5842,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -6138,6 +6183,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_EARTH</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -6222,6 +6270,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_LIFE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
@@ -6987,6 +7038,9 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_FRUIT_OF_YGGDRASIL</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>

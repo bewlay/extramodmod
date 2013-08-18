@@ -2649,6 +2649,30 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 	{
 		return false;
 	}
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Check min and max wilderness for lairs and Unique Improvements                               */
+/************************************************************************************************/
+	
+	for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+	{
+		if( GC.getImprovementInfo( eImprovement ).getSpawnTypes( eSpawn ) && (
+				GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMinWilderness() > getWilderness() ||
+				GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMaxWilderness() < getWilderness() ) )
+		{
+			return false;
+		}
+	}
+	if( GC.getImprovementInfo( eImprovement ).getMinWilderness() > getWilderness() ||
+			GC.getImprovementInfo( eImprovement ).getMaxWilderness() < getWilderness() )
+	{
+		return false;
+	}
+	
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (GC.getImprovementInfo(eImprovement).isHillsMakesValid() && isHills())
 	{

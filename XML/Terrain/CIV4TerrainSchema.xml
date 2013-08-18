@@ -471,16 +471,20 @@
 	<ElementType name="iRange" content="textOnly" dt:type="int"/>
 	<ElementType name="iRangeDefenseModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iVisibilityChange" content="textOnly" dt:type="int"/>
+<!-- WILDERNESS 08/2013 lfgr -->
+	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
+	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
+<!-- WILDERNESS end -->
 	<ElementType name="BonusConvert" content="textOnly"/>
 	<ElementType name="PrereqCivilization" content="textOnly"/>
 	<ElementType name="PythonAtRange" content="textOnly"/>
-	<!-- WILDERNESS 08/2013 lfgr -->
+<!-- WILDERNESS 08/2013 lfgr -->
 	<!-- Removed ElementTypes SpawnUnitType and FreeSpawnPromotion -->
 	<ElementType name="SpawnType" content="textOnly"/>
 	<ElementType name="SpawnTypes" content="eltOnly">
 		<element type="SpawnType" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
-	<!-- WILDERNESS end -->
+<!-- WILDERNESS end -->
 	<ElementType name="ImprovementInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -543,6 +547,10 @@
 		<element type="iRange"/>
 		<element type="iRangeDefenseModifier"/>
 		<element type="iVisibilityChange"/>
+	<!-- WILDERNESS 08/2013 lfgr -->
+		<element type="iMinWilderness" minOccurs="0"/>
+		<element type="iMaxWilderness" minOccurs="0"/>
+	<!-- WILDERNESS end -->
 		<element type="BonusConvert"/>
 		<element type="FeatureUpgrade"/>
 		<element type="PrereqCivilization"/>

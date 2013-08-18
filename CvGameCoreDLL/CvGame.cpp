@@ -441,6 +441,17 @@ void CvGame::setInitialItems()
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
 	GC.getMapINLINE().calculateWilderness();
+	// Moved from CvMapGenerator::addGameElements(), to have it after Wilderness generation
+//FfH: Added by Kael 10/04/2008
+    if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_IMPROVEMENTS))
+    {
+       CvMapGenerator::GetInstance().addUniqueImprovements();
+    }
+    if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_LAIRS))
+    {
+        CvMapGenerator::GetInstance().addImprovements();
+    }
+//FfH: End Add
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

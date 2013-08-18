@@ -14966,6 +14966,8 @@ m_iSpawnUnitType(NO_UNIT),
 m_iFreeSpawnPromotion(NO_PROMOTION),
 */
 m_pbSpawnTypes( NULL ),
+m_iMinWilderness(0),
+m_iMaxWilderness(MAX_INT),
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -15092,6 +15094,21 @@ void CvImprovementInfo::setImprovementUpgrade(int i)
 {
 	m_iImprovementUpgrade = i;
 }
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+int CvImprovementInfo::getMinWilderness() const
+{
+	return m_iMinWilderness;
+}
+int CvImprovementInfo::getMaxWilderness() const
+{
+	return m_iMaxWilderness;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 // Super Forts begin *XML*
 int CvImprovementInfo::getCulture() const
@@ -15543,6 +15560,8 @@ void CvImprovementInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iSpawnUnitType);
 	stream->Read(&m_iFreeSpawnPromotion);
 */
+	stream->Read(&m_iMinWilderness);
+	stream->Read(&m_iMaxWilderness);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -15701,6 +15720,8 @@ void CvImprovementInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iSpawnUnitType);
 	stream->Write(m_iFreeSpawnPromotion);
 */
+	stream->Write(m_iMinWilderness);
+	stream->Write(m_iMaxWilderness);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -15842,6 +15863,15 @@ bool CvImprovementInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bBombardable, "bBombardable");
 	pXML->GetChildXmlValByName(&m_bUpgradeRequiresFortify, "bUpgradeRequiresFortify");
 	// Super Forts end
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Use SpawnInfos                                                                               */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName( &m_iMinWilderness, "iMinWilderness" );
+	pXML->GetChildXmlValByName( &m_iMaxWilderness, "iMaxWilderness", MAX_INT );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	pXML->SetVariableListTagPair(&m_pbTerrainMakesValid, "TerrainMakesValids", sizeof(GC.getTerrainInfo((TerrainTypes)0)), GC.getNumTerrainInfos());
 	pXML->SetVariableListTagPair(&m_pbFeatureMakesValid, "FeatureMakesValids", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());

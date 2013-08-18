@@ -3715,13 +3715,16 @@ public:
 	const TCHAR* getPythonOnMove() const;
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* Use SpawnInfos                                                                               */
+/* Use SpawnInfos, min and max wilderness                                                       */
 /************************************************************************************************/
 /*
 	int getSpawnUnitType() const;
 	int getFreeSpawnPromotion() const;
 */
 	bool getSpawnTypes( int eSpawn ) const;
+
+	int getMinWilderness() const;
+	int getMaxWilderness() const;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -3797,13 +3800,16 @@ protected:
 	CvString m_szPythonOnMove;
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* Use SpawnInfos                                                                               */
+/* Use SpawnInfos, wilderness                                                                   */
 /************************************************************************************************/
 /*
 	int m_iSpawnUnitType;
 	int m_iFreeSpawnPromotion;
 */
 	bool* m_pbSpawnTypes;
+	
+	int m_iMinWilderness;
+	int m_iMaxWilderness;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

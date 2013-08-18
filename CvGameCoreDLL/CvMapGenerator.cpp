@@ -252,7 +252,12 @@ void CvMapGenerator::addGameElements()
 
 	addGoodies();
 	gDLL->logMemState("CvMapGen after add goodies");
-
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Moved to CvGame::setInitialItems() (after wilderness calculation)                            */
+/************************************************************************************************/
+/*
 //FfH: Added by Kael 10/04/2008
     if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_IMPROVEMENTS))
     {
@@ -263,6 +268,10 @@ void CvMapGenerator::addGameElements()
         addImprovements();
     }
 //FfH: End Add
+*/
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// Call for Python to make map modifications after it's been generated
 	afterGeneration();
