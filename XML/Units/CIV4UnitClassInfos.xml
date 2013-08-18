@@ -2267,6 +2267,26 @@
 			<iInstanceCostModifier>0</iInstanceCostModifier>
 			<DefaultUnit>UNIT_PANTHER</DefaultUnit>
 		</UnitClassInfo>
+		<UnitClassInfo>
+			<!-- BARBARIAN_UNITS 08/2013 lfgr -->
+			<Type>UNITCLASS_GHOUL</Type>
+			<Description>TXT_KEY_UNIT_GHOUL</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_GHOUL</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
+			<!-- BARBARIAN_UNITS 08/2013 lfgr -->
+			<Type>UNITCLASS_WIGHT</Type>
+			<Description>TXT_KEY_UNIT_WIGHT</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_WIGHT</DefaultUnit>
+		</UnitClassInfo>
 <!-- MORE EVENTS MOD STARTS -->		
 		<UnitClassInfo>
 			<Type>EQUIPMENTCLASS_PIKE_OF_TEARS</Type>
