@@ -68,6 +68,10 @@
 					<Unit>UNIT_WIGHT</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
+				<SpawnUnit>
+					<Unit>UNIT_GHOUL</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
 			</SpawnUnits>
 			<TerrainWeights>
 				<TerrainWeight>
@@ -121,6 +125,10 @@
 				<SpawnUnit>
 					<Unit>UNIT_WIGHT</Unit>
 					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+				<SpawnUnit>
+					<Unit>UNIT_GHOUL</Unit>
+					<iNumUnits>3</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
 			<TerrainWeights>
@@ -397,6 +405,9 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_POISONS</Tech>
+			</PrereqTechs>
 		</SpawnInfo>
 
 		<!-- ANIMAL SPAWNS -->
@@ -996,11 +1007,84 @@
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_WARRIOR -->
+			<Type>SPAWN_NOMAD_WARRIOR</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WARRIOR</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<ObsoleteTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_WARRIOR -->
+			<Type>SPAWN_WINTERBORN_WARRIOR</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WARRIOR</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<ObsoleteTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_SAVAGE -->
+			<Type>SPAWN_SAVAGE</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SAVAGE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<ObsoleteTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</ObsoleteTechs>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_ORC_AXEMAN -->
 			<Type>SPAWN_ORC_AXEMAN</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_AXEMAN</Unit>
@@ -1019,6 +1103,68 @@
 					<iWeight>50</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_SWORDSMAN -->
+			<Type>SPAWN_NOMAD_SWORDSMAN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_AXEMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_IRON_WORKING</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_AXEMAN -->
+			<Type>SPAWN_WINTERBORN_AXEMAN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_AXEMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_IRON_WORKING</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_BANDIT -->
 			<Type>SPAWN_BANDIT</Type>
@@ -1066,6 +1212,62 @@
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_CHAMPION -->
+			<Type>SPAWN_NOMAD_CHAMPION</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_CHAMPION</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_IRON_WORKING</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_CHAMPION -->
+			<Type>SPAWN_WINTERBORN_CHAMPION</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_CHAMPION</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_IRON_WORKING</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_ORC_BERSERKER -->
 			<Type>SPAWN_ORC_BERSERKER</Type>
 			<iBaseWeight>25</iBaseWeight><!-- National limit ignored -->
@@ -1086,6 +1288,32 @@
 					<iWeight>50</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_BERSERKER -->
+			<Type>SPAWN_NOMAD_BERSERKER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SCOUT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_RAGE</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_OGRE_WARCHIEF -->
 			<Type>SPAWN_OGRE_WARCHIEF</Type>
@@ -1130,6 +1358,8 @@
 			</FeatureWeights>
 		</SpawnInfo>
 		
+		<!-- Phalanx and Immortal don't spawn-->
+		
 		<!-- Early Melee -->
 		<SpawnInfo> <!-- SPAWN_ORC_AXEMAN_EARLY -->
 			<Type>SPAWN_ORC_AXEMAN_EARLY</Type>
@@ -1151,6 +1381,84 @@
 					<iWeight>50</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_SWORDSMAN_EARLY -->
+			<Type>SPAWN_NOMAD_SWORDSMAN_EARLY</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>60</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SWORDSMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<ObsoleteTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_AXEMAN_EARLY -->
+			<Type>SPAWN_WINTERBORN_AXEMAN_EARLY</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>60</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_AXEMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<ObsoleteTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_BANDIT_EARLY -->
+			<Type>SPAWN_BANDIT_EARLY</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<iMinWilderness>60</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_BANDIT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<ObsoleteTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_OGRE_EARLY -->
 			<Type>SPAWN_OGRE_EARLY</Type>
@@ -1238,6 +1546,62 @@
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_SCOUT -->
+			<Type>SPAWN_NOMAD_SCOUT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SCOUT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<ObsoleteTechs>
+				<Tech>TECH_HUNTING</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_SCOUT -->
+			<Type>SPAWN_WINTERBORN_SCOUT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SCOUT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<ObsoleteTechs>
+				<Tech>TECH_HUNTING</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LIZARDMAN -->
 			<Type>SPAWN_LIZARDMAN</Type>
 			<iBaseWeight>100</iBaseWeight>
@@ -1261,6 +1625,299 @@
 					<iWeight>50</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_HUNTER -->
+			<Type>SPAWN_NOMAD_HUNTER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HUNTER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_HUNTING</Tech>
+			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_FERAL_BOND</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_HUNTER -->
+			<Type>SPAWN_WINTERBORN_HUNTER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HUNTER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_HUNTING</Tech>
+			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_FERAL_BOND</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_LIZARDMAN_RANGER -->
+			<Type>SPAWN_LIZARDMAN_RANGER</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LIZARDMAN_RANGER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_FERAL_BOND</Tech>
+			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_RANGER -->
+			<Type>SPAWN_NOMAD_RANGER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_RANGER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_FERAL_BOND</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_RANGER -->
+			<Type>SPAWN_WINTERBORN_RANGER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_RANGER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_FERAL_BOND</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_LIZARDMAN_ASSASSIN -->
+			<Type>SPAWN_LIZARDMAN_ASSASSIN</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LIZARDMAN_ASSASSIN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_POISONS</Tech>
+			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_ASSASSIN -->
+			<Type>SPAWN_NOMAD_ASSASSIN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_ASSASSIN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_POISONS</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_ASSASSIN -->
+			<Type>SPAWN_WINTERBORN_ASSASSIN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_ASSASSIN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_POISONS</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_LIZARDMAN_BEASTMASTER -->
+			<Type>SPAWN_LIZARDMAN_BEASTMASTER</Type>
+			<iBaseWeight>25</iBaseWeight><!-- National limit ignored -->
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LIZARDMAN_BEASTMASTER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_ANIMAL_MASTERY</Tech>
+			</PrereqTechs>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_BEASTMASTER -->
+			<Type>SPAWN_NOMAD_BEASTMASTER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_BEASTMASTER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_ANIMAL_MASTERY</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_BEASTMASTER -->
+			<Type>SPAWN_WINTERBORN_BEASTMASTER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_BEASTMASTER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_ANIMAL_MASTERY</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>10</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_FAWN -->
 			<Type>SPAWN_FAWN</Type>
@@ -1306,69 +1963,6 @@
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_LIZARDMAN_RANGER -->
-			<Type>SPAWN_LIZARDMAN_RANGER</Type>
-			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_LIZARDMAN_RANGER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</PrereqTechs>
-			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iWeight>50</iWeight>
-				</FeatureWeight>
-			</FeatureWeights>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_LIZARDMAN_ASSASSIN -->
-			<Type>SPAWN_LIZARDMAN_ASSASSIN</Type>
-			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_LIZARDMAN_ASSASSIN</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_POISONS</Tech>
-			</PrereqTechs>
-			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iWeight>50</iWeight>
-				</FeatureWeight>
-			</FeatureWeights>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_LIZARDMAN_BEASTMASTER -->
-			<Type>SPAWN_LIZARDMAN_BEASTMASTER</Type>
-			<iBaseWeight>25</iBaseWeight><!-- National limit ignored -->
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_LIZARDMAN_BEASTMASTER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_ANIMAL_MASTERY</Tech>
-			</PrereqTechs>
-			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iWeight>50</iWeight>
-				</FeatureWeight>
-			</FeatureWeights>
-		</SpawnInfo>
 		
 		<!-- Early Recon -->
 		<SpawnInfo> <!-- SPAWN_LIZARDMAN_EARLY -->
@@ -1410,6 +2004,62 @@
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_RANGER_EARLY -->
+			<Type>SPAWN_NOMAD_RANGER_EARLY</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_RANGER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_HUNTING</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_RANGER_EARLY -->
+			<Type>SPAWN_WINTERBORN_RANGER_EARLY</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_RANGER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_HUNTING</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
 		
 		<!-- Basic Archery -->
 		<SpawnInfo> <!-- SPAWN_ORC_ARCHER -->
@@ -1436,6 +2086,68 @@
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_ARCHER -->
+			<Type>SPAWN_NOMAD_ARCHER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_ARCHER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_ARCHERY</Tech>
+			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_BOWYERS</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_ARCHER -->
+			<Type>SPAWN_WINTERBORN_ARCHER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_ARCHER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_ARCHERY</Tech>
+			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_BOWYERS</Tech>
+			</ObsoleteTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_ORC_LONGBOWMAN -->
 			<Type>SPAWN_ORC_LONGBOWMAN</Type>
 			<iBaseWeight>50</iBaseWeight>
@@ -1457,9 +2169,64 @@
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_LONGBOWMAN -->
+			<Type>SPAWN_NOMAD_LONGBOWMAN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LONGBOWMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_BOWYERS</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_LONGBOWMAN -->
+			<Type>SPAWN_WINTERBORN_LONGBOWMAN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LONGBOWMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_BOWYERS</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
 		<!-- Crossbowmen are only built in city -->
 		<SpawnInfo> <!-- SPAWN_ORC_MARKSMAN -->
-			<!-- LFGR_TODO: is there an unique marksman art? -->
 			<Type>SPAWN_ORC_MARKSMAN</Type>
 			<iBaseWeight>20</iBaseWeight><!-- National limit ignored -->
 			<iMinWilderness>50</iMinWilderness>
@@ -1480,6 +2247,7 @@
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
+
 		
 		<!-- Basic Mounted -->
 		<SpawnInfo> <!-- SPAWN_WOLF_RIDER -->
@@ -1524,6 +2292,117 @@
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_HORSEMAN -->
+			<Type>SPAWN_NOMAD_HORSEMAN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HORSEMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_HORSEBACK_RIDING</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_HORSEMAN -->
+			<Type>SPAWN_WINTERBORN_HORSEMAN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HORSEMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_HORSEBACK_RIDING</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_CAMEL_ARCHER -->
+			<Type>SPAWN_CAMEL_ARCHER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_CAMEL_ARCHER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_STIRRUPS</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_HORSE_ARCHER -->
+			<Type>SPAWN_WINTERBORN_HORSE_ARCHER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HORSE_ARCHER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_STIRRUPS</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_ORC_CHARIOT -->
 			<Type>SPAWN_ORC_CHARIOT</Type>
 			<iBaseWeight>100</iBaseWeight>
@@ -1546,12 +2425,70 @@
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_NOMAD_CHARIOT -->
+			<Type>SPAWN_NOMAD_CHARIOT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_CHARIOT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_HORSEBACK_RIDING</Tech>
+				<Tech>TECH_CONSTRUCTION</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_CHARIOT -->
+			<Type>SPAWN_WINTERBORN_CHARIOT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_CHARIOT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_HORSEBACK_RIDING</Tech>
+				<Tech>TECH_CONSTRUCTION</Tech>
+			</PrereqTechs>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>125</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
 		
 		<!-- Groups -->
-		<SpawnInfo> <!-- SPAWN_GROUP_BANDIT_LORD -->
-			<Type>SPAWN_GROUP_BANDIT_LORD</Type>
+		<SpawnInfo> <!-- SPAWN_GROUP_BANDIT_LORD_EARLY -->
+			<Type>SPAWN_GROUP_BANDIT_LORD_EARLY</Type>
 			<iBaseWeight>75</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
+			<iMinWilderness>60</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
@@ -1565,7 +2502,7 @@
 				</SpawnUnit>
 			</SpawnUnits>
 			<PrereqTechs>
-				<Tech>TECH_SMELTING</Tech>
+				<Tech>TECH_BRONZE_WORKING</Tech>
 			</PrereqTechs>
 			<TerrainWeights>
 				<TerrainWeight>
