@@ -59,7 +59,7 @@ def applyAmuriteTrial1(argsList):
 	"""
 		Moves the unit to the amurite capital
 	"""
-	# TODO: open borders?
+	# LFGR_TODO: open borders?
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -227,6 +227,8 @@ def doAzer(argsList):
 		bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
 		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_AZER'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
+######## BANDIT_NIETZ (lfgr: moved to XML)
+
 def doBanditNietz3(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -239,11 +241,7 @@ def doBanditNietz3(argsList):
 	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_BOUNTY_HUNTER'), True)
 	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_COMMANDO'), True)
 
-def helpBanditNietz3(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_BANDIT_NIETZ_3_HELP", ())
-	return szHelp
+######## CALABIM_SANCTUARY
 
 def doCalabimSanctuary1(argsList):
 	iEvent = argsList[0]
@@ -255,6 +253,8 @@ def doCalabimSanctuary1(argsList):
 	if iPlayer2 != -1:
 		pPlayer2 = gc.getPlayer(iPlayer2)
 		pPlayer2.AI_changeAttitudeExtra(iPlayer,-4)
+
+######## CITY_FEUD_ARSON (lfgr: moved to XML)
 
 def canTriggerCityFeud(argsList):
 	eTrigger = argsList[0]
@@ -288,21 +288,7 @@ def doCityFeudStart3(argsList):
 	pCapitalCity = pPlayer.getCapitalCity()
 	pCapitalCity.changeOccupationTimer(5)
 
-def helpCityFeudStart1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pCity = pPlayer.getCapitalCity()
-	szHelp = localText.getText("TXT_KEY_EVENT_CITY_FEUD_START_1_HELP", (pCity.getName(), ))
-	return szHelp
-
-def helpCityFeudStart3(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pCity = pPlayer.getCapitalCity()
-	szHelp = localText.getText("TXT_KEY_EVENT_CITY_FEUD_START_3_HELP", (pCity.getName(), ))
-	return szHelp
+######## CITY_SPLIT
 
 def canTriggerCitySplit(argsList):
 	eTrigger = argsList[0]
@@ -333,12 +319,16 @@ def doCitySplit1(argsList):
 	pSplitPlayer = cf.formEmpire(pPlayer.getCivilizationType(), gc.getInfoTypeForString('LEADER_KOUN'), TeamTypes.NO_TEAM, pCity, pPlayer.getAlignment(), pPlayer)
 	pSplitPlayer.setParent(kTriggeredData.ePlayer)
 
+######## SOVERIGN_CITY
+
 def doSoverignCity1(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pCity = pPlayer.getCity(kTriggeredData.iCityId)
 	cf.formEmpire(pPlayer.getCivilizationType(), gc.getInfoTypeForString('LEADER_KOUN'), pPlayer.getTeam(), pCity, pPlayer.getAlignment(), pPlayer)
+
+######## DISSENT (lfgr: moved to XML)
 
 def doDissent1(argsList):
 	iEvent = argsList[0]
@@ -349,12 +339,6 @@ def doDissent1(argsList):
 	if gc.getGame().getSorenRandNum(100, "Dissent 1") < 50:
 		pCity.changeOccupationTimer(2)
 		CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_DISSENT_1", ()),'',1,'Art/Interface/Buttons/Actions/Pillage.dds',ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
-
-def helpDissent1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_DISSENT_1_HELP", ())
-	return szHelp
 
 def doDissent2(argsList):
 	iEvent = argsList[0]
@@ -369,12 +353,6 @@ def doDissent2(argsList):
 		pCity.changeHappinessTimer(5)
 		CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_DISSENT_2_GOOD", ()),'',1,'Art/Interface/Buttons/General/happy_person.dds',ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
 
-def helpDissent2(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_DISSENT_2_HELP", ())
-	return szHelp
-
 def canApplyDissent4(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -382,6 +360,8 @@ def canApplyDissent4(argsList):
 	if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) != gc.getInfoTypeForString('CIVIC_SOCIAL_ORDER'):
 		return False
 	return True
+
+######## (lfgr: not reviewed)
 
 def applyExploreLairDepths1(argsList):
 	iEvent = argsList[0]
@@ -810,6 +790,8 @@ def doJudgementWrong(argsList):
 	CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_JUDGEMENT_WRONG", ()),'',1,'Art/Interface/Buttons/General/unhealthy_person.dds',ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
 	pCity.changeCrime(3)
 
+######## LETUM_FRIGUS (lfgr: moved to XML)
+
 def doLetumFrigus3(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -817,11 +799,7 @@ def doLetumFrigus3(argsList):
 	pPlayer = gc.getPlayer(iPlayer)
 	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_AGGRESSIVE'),True)
 
-def helpLetumFrigus3(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_LETUM_FRIGUS_3_HELP", ())
-	return szHelp
+######## (lfgr: not reviewed)
 
 def canTriggerLunaticCity(argsList):
 	eTrigger = argsList[0]
@@ -878,6 +856,8 @@ def applyMalakimPilgrimage1(argsList):
 		pCity = pPlayer2.getCapitalCity()
 		pUnit.setXY(pCity.getX(), pCity.getY(), False, True, True)
 
+######## MARKET_THEFT (lfgr: moved to XML)
+
 def doMarketTheft2(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -887,14 +867,7 @@ def doMarketTheft2(argsList):
 	iRnd = gc.getGame().getSorenRandNum(21, "Market Theft 2") - 10
 	pCity.changeCrime(iRnd)
 
-def helpMarketTheft2(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	iPlayer = kTriggeredData.ePlayer
-	pPlayer = gc.getPlayer(iPlayer)
-	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	szHelp = localText.getText("TXT_KEY_EVENT_MARKET_THEFT_2_HELP", ())
-	return szHelp
+######## (lfgr: not reviewed)
 
 def canTriggerMerchantKeep(argsList):
 	eTrigger = argsList[0]
@@ -938,6 +911,8 @@ def canApplyNoOrder(argsList):
 	if pPlayer.getStateReligion() == gc.getInfoTypeForString('RELIGION_THE_ORDER'):
 		return False
 	return True
+
+######## ORDER_VS_VEIL (lfgr: moved to XML)
 
 def doOrderVsVeil1(argsList):
 	iEvent = argsList[0]
@@ -1003,23 +978,7 @@ def canApplyOrderVsVeil4(argsList):
 		return False
 	return True
 
-def helpOrderVsVeil1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_ORDER_VS_VEIL_1_HELP", ())
-	return szHelp
-
-def helpOrderVsVeil2(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_ORDER_VS_VEIL_2_HELP", ())
-	return szHelp
-
-def helpOrderVsVeil3(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_ORDER_VS_VEIL_3_HELP", ())
-	return szHelp
+######## ORDER_VS_VEIL_TEMPLE (lfgr: moved to XML)
 
 def doOrderVsVeilTemple1(argsList):
 	iEvent = argsList[0]
@@ -1072,23 +1031,7 @@ def doOrderVsVeilTemple3(argsList):
 			loopCity.changeHurryAngerTimer(5)
 		(loopCity, iter) = pPlayer.nextCity(iter, False)
 
-def helpOrderVsVeilTemple1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_ORDER_VS_VEIL_TEMPLE_1_HELP", ())
-	return szHelp
-
-def helpOrderVsVeilTemple2(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_ORDER_VS_VEIL_TEMPLE_2_HELP", ())
-	return szHelp
-
-def helpOrderVsVeilTemple3(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_ORDER_VS_VEIL_TEMPLE_3_HELP", ())
-	return szHelp
+######## (lfgr: not reviewed)
 
 # lfgr added
 def canTriggerOvercouncil(argsList):
@@ -1828,6 +1771,8 @@ def canTriggerUndercouncil(argsList):
 	return semiRandomTurnTrigger( 9, 0.15 )
 # lfgr end
 
+######## VEIL_VS_ORDER_TEMPLE (lfgr: moved to XML)
+
 def doVeilVsOrderTemple1(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -1879,23 +1824,7 @@ def doVeilVsOrderTemple3(argsList):
 			loopCity.changeHurryAngerTimer(5)
 		(loopCity, iter) = pPlayer.nextCity(iter, False)
 
-def helpVeilVsOrderTemple1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_VEIL_VS_ORDER_TEMPLE_1_HELP", ())
-	return szHelp
-
-def helpVeilVsOrderTemple2(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_VEIL_VS_ORDER_TEMPLE_2_HELP", ())
-	return szHelp
-
-def helpVeilVsOrderTemple3(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_VEIL_VS_ORDER_TEMPLE_3_HELP", ())
-	return szHelp
+######## (lfgr: not reviewed)
 
 def doSlaveEscape(argsList):
 	kTriggeredData = argsList[0]
@@ -3016,17 +2945,9 @@ def canTriggerMonsoonCity(argsList):
 				
 	return False
 
-######## VOLCANO ###########
+######## VOLCANO ########### lfgr: moved to XML
 
 # LFGR_TODO: canApply should be in Trigger
-
-def getHelpVolcano1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-
-	szHelp = localText.getText("TXT_KEY_EVENT_VOLCANO_1_HELP", ())
-
-	return szHelp
 
 def canApplyVolcano1(argsList):
 	iEvent = argsList[0]
@@ -3079,7 +3000,7 @@ def applyVolcano1(argsList):
 			if i == 1 and gc.getGame().getSorenRandNum(100, "Volcano event num improvements destroyed") < 50:
 				break
 
-######## DUSTBOWL ###########
+######## DUSTBOWL ########### (lfgr: moved to XML)
 
 def canTriggerDustbowlCont(argsList):
 	kTriggeredData = argsList[0]
@@ -3115,14 +3036,6 @@ def canTriggerDustbowlCont(argsList):
 		return False
 		
 	return True
-
-def getHelpDustBowl2(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-
-	szHelp = localText.getText("TXT_KEY_EVENT_DUSTBOWL_2_HELP", ())
-
-	return szHelp
 
 ######## CHAMPION ########### (lfgr: tweaked, moved to XML)
 
@@ -3440,6 +3353,9 @@ def getHelpGreatMediator2(argsList):
 ######## ANCIENT_TEXTS ###########
 
 def doAncientTexts2(argsList):
+	"""
+		+1 Attitude from all known players
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 
@@ -3956,7 +3872,7 @@ def	doDemonSign5(argsList):
 	
 	initBestUnitFromUpgrades( gc.getInfoTypeForString( "UNITCLASS_WARRIOR" ), pPlayer, pCity, -1, -1, ['PROMOTION_PROPHECY_MARK'] )
 	
-######## (lfgr: not fixed)
+######## (lfgr: not reviewed)
 
 def CanDoAshCough2 (argsList):
 	iEvent = argsList[0]
@@ -4782,18 +4698,9 @@ def CanDoOil3(argsList):
 		return True
 	return False
 	
-def helpPoisonedWater3(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_POISONED_WATER_HELP_3", ())
-	return szHelp
+######## POISONED_WATER (lfgr: moved to XML)
 
-def helpPoisonedWater4(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_POISONED_WATER_HELP_4", ())
-	return szHelp
-
+######## DEMONIC_TOWER (lfgr: moved to XML)
 
 def canTriggerDemonicTower(argsList):
 	kTriggeredData = argsList[0]
@@ -4819,13 +4726,7 @@ def doDemonicTower1(argsList):
       	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
       	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PLAGUED'), True)
 
-
-def helpDemonicTower1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_DEMONIC_TOWER_HELP_1", ())
-	return szHelp
-
+######## RALPH_AND_SAM (lfgr: moved to XML)
 
 def canTriggerRalphAndSam(argsList):
 	kTriggeredData = argsList[0]
@@ -4848,13 +4749,8 @@ def doRalphAndSam1(argsList):
 		bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
 		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_WOLF_PACK'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
       	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
-
-def helpRalphAndSam1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_RALPH_AND_SAM_HELP_1", ())
-	return szHelp
 	
+######## CENTAUR_TRIBE (lfgr: moved to XML)
 	
 def doCentaurTribe1(argsList):
 	iEvent = argsList[0]
@@ -4865,13 +4761,7 @@ def doCentaurTribe1(argsList):
 		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_CENTAUR_ARCHER'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
       	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
 
-
-def helpCentaurTribe1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_CENTAUR_TRIBE_HELP_1", ())
-	return szHelp
-
+######## SEASERPENT (lfgr: moved to XML)
 
 def doSeaSerpent1(argsList):
 	iEvent = argsList[0]
@@ -4882,12 +4772,7 @@ def doSeaSerpent1(argsList):
 		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_SEA_SERPENT'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
       	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
 
-
-def helpSeaSerpent1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_SEASERPENT_HELP_1", ())
-	return szHelp
+######## MONKEY_SEE (lfgr: moved to XML)
 
 def doMonkeySee1(argsList):
 	iEvent = argsList[0]
@@ -4896,13 +4781,8 @@ def doMonkeySee1(argsList):
 	if pPlot.getNumUnits() == 0:
 		bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
 		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_GORILLA'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-
-
-def helpMonkeySee1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_MONKEY_SEE_HELP_1", ())
-	return szHelp
+		
+######## MONKEY_SEE (lfgr: moved to XML)
 
 def canTriggerLanunPirates(argsList):
 
@@ -4944,14 +4824,6 @@ def canTriggerLanunPirates(argsList):
 			return True
 
 	return False
-
-def getHelpLanunPirates1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-
-	szHelp = localText.getText("TXT_KEY_EVENT_LANUN_PIRATES_HELP_1", ())	
-
-	return szHelp
 
 def applyLanunPirates1(argsList):
 	iEvent = argsList[0]
@@ -4995,7 +4867,8 @@ def applyLanunPirates1(argsList):
 		if loopUnit.getUnitType() == iUnitType1:
 			loopUnit.setName("Lanun Raider")
 		(loopUnit, iter) = barbPlayer.nextUnit(iter, False)
-
+	
+######## KURIOTATES_FISH/KURIOTATES_CLAM/KURIOTATES_CRAB
 
 def canTriggerKuriotatesWorkboat(argsList):
 	kTriggeredData = argsList[0]
@@ -5016,6 +4889,8 @@ def canTriggerCityKuriotatesWorkboat(argsList):
 		return False
 	return True
 	
+######## HAUNTED_CASTLE (lfgr: moved to XML)
+	
 def doHauntedCastle4(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -5025,12 +4900,6 @@ def doHauntedCastle4(argsList):
 		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_SPECTRE'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 		newUnit.setName("Vengeful Dead")
 		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HEROIC_DEFENSE'), True)
-		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)			
-
-def helpHauntedCastle4(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	szHelp = localText.getText("TXT_KEY_EVENT_HAUNTED_CASTLE_HELP_4", ())
-	return szHelp
+		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
 	
 ######## MORE EVENTS MOD EXPANDED ENDS ########
