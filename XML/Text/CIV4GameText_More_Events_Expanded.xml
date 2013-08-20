@@ -1237,11 +1237,11 @@
 	</TEXT>
 	<TEXT><!-- EVENT_TRAVELLER_5 -->
 		<Tag>TXT_KEY_EVENT_TRAVELLER_5</Tag>
-		<English>Tell me about the biggest city he has ever seen.</English>
-		<French>Tell me about the biggest city he has ever seen.</French>
-		<German>Tell me about the biggest city he has ever seen.</German>
-		<Italian>Tell me about the biggest city he has ever seen.</Italian>
-		<Spanish>Tell me about the biggest city he has ever seen.</Spanish>
+		<English>Tell me about the biggest city you have ever seen.</English>
+		<French>Tell me about the biggest city you have ever seen.</French>
+		<German>Tell me about the biggest city you have ever seen.</German>
+		<Italian>Tell me about the biggest city you have ever seen.</Italian>
+		<Spanish>Tell me about the biggest city you have ever seen.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_TRAVELLER_6 -->
 		<Tag>TXT_KEY_EVENT_TRAVELLER_6</Tag>
