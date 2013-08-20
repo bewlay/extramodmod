@@ -403,7 +403,7 @@
 		<EventInfo><!-- CALABIM_SANCTUARY_1 -->
 			<Type>EVENT_CALABIM_SANCTUARY_1</Type>
 			<Description>TXT_KEY_EVENT_CALABIM_SANCTUARY_1</Description>
-			<Description>TXT_KEY_EVENT_CALABIM_SANCTUARY_1_HELP</Description>
+			<Help>TXT_KEY_EVENT_CALABIM_SANCTUARY_1_HELP</Help>
 			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<iPopulationChange>1</iPopulationChange>
