@@ -2159,11 +2159,11 @@
 	</TEXT>
 	<TEXT><!-- EVENT_DEMONIC_TOWER_HELP_1 -->
 		<Tag>TXT_KEY_EVENT_DEMONIC_TOWER_HELP_1</Tag>
-		<English>A weakened (-60% strength) and immobile demon appears in the tower.</English>
-		<French>A weakened (-60% strength) and immobile demon appears in the tower.</French>
-		<German>A weakened (-60% strength) and immobile demon appears in the tower.</German>
-		<Italian>A weakened (-60% strength) and immobile demon appears in the tower.</Italian>
-		<Spanish>A weakened (-60% strength) and immobile demon appears in the tower.</Spanish>
+		<English>A weakened and immobile demon appears in the tower.</English>
+		<French>A weakened and immobile demon appears in the tower.</French>
+		<German>A weakened and immobile demon appears in the tower.</German>
+		<Italian>A weakened and immobile demon appears in the tower.</Italian>
+		<Spanish>A weakened and immobile demon appears in the tower.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_ANCIENT_TOWER_LORE -->
 		<Tag>TXT_KEY_EVENT_ANCIENT_TOWER_LORE</Tag>
@@ -2518,5 +2518,13 @@
 		<German>Bring forth the sacrifices! Let the Bhall-Orcs fuel the Sacred Flame with the blood of our enemies, and ignite us with the passion of our mistress!</German>
 		<Italian>Bring forth the sacrifices! Let the Bhall-Orcs fuel the Sacred Flame with the blood of our enemies, and ignite us with the passion of our mistress!</Italian>
 		<Spanish>Bring forth the sacrifices! Let the Bhall-Orcs fuel the Sacred Flame with the blood of our enemies, and ignite us with the passion of our mistress!</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_CALABIM_SANCTUARY_1_HELP</Tag>
+		<English>[ICON_BULLET]Receive [COLOR_NEGATIVE_TEXT]-4[COLOR_REVERT] attitude from the Calabim</English>
+		<French>[ICON_BULLET]Receive [COLOR_NEGATIVE_TEXT]-4[COLOR_REVERT] attitude from the Calabim</French>
+		<German>[ICON_BULLET]Receive [COLOR_NEGATIVE_TEXT]-4[COLOR_REVERT] attitude from the Calabim</German>
+		<Italian>[ICON_BULLET]Receive [COLOR_NEGATIVE_TEXT]-4[COLOR_REVERT] attitude from the Calabim</Italian>
+		<Spanish>[ICON_BULLET]Receive [COLOR_NEGATIVE_TEXT]-4[COLOR_REVERT] attitude from the Calabim</Spanish>
 	</TEXT>
 </Civ4GameText>
