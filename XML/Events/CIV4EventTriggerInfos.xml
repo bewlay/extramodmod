@@ -6,7 +6,7 @@
 <!-- Event Trigger Infos -->
 <Civ4EventTriggerInfos xmlns="x-schema:CIV4EventSchema.xml">
 	<EventTriggerInfos>
-		<EventTriggerInfo><!-- AERONS_CHOSEN -->
+		<EventTriggerInfo><!-- AERONS_CHOSEN lfgr: tweaked -->
 			<Type>EVENTTRIGGER_AERONS_CHOSEN</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_AERONS_CHOSEN</Text>
@@ -23,6 +23,7 @@
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
+			<iUnitMinLevel>5</iUnitMinLevel>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>-1</iPlotType>
@@ -890,6 +891,7 @@
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
+			<iUnitMinLevel>3</iUnitMinLevel>
 			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CHAMPION_1</Event>
@@ -1633,6 +1635,7 @@
 			</UnitsRequired>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
+			<iUnitMinLevel>5</iUnitMinLevel>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_SHIPYARD</BuildingClass>
 			</BuildingsRequired>
@@ -1645,7 +1648,6 @@
 			<bGlobal>1</bGlobal>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDo>canTriggerExperiencedCaptain</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- FAMINE -->
 			<Type>EVENTTRIGGER_FAMINE</Type>

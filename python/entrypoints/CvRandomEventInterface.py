@@ -29,15 +29,12 @@ def canTriggerAeronsChosen(argsList):
 	"""
 		Unit must have the Marksman promotion
 		Unit must be not summoned
-		Unit must be level 6 or greater
 	"""
 	kTriggeredData = argsList[0]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pUnit = pPlayer.getUnit(kTriggeredData.iUnitId)
 	iMark = gc.getInfoTypeForString('PROMOTION_MARKSMAN')
 	if not pUnit.isHasPromotion(iMark):
-		return False
-	if pUnit.getLevel() < 5:
 		return False
 	if pUnit.getDuration() > 0:
 		return False
@@ -3127,7 +3124,7 @@ def getHelpDustBowl2(argsList):
 
 	return szHelp
 
-######## CHAMPION ###########
+######## CHAMPION ########### (lfgr: tweaked, moved to XML)
 
 def canTriggerChampion(argsList):	
 	kTriggeredData = argsList[0]
@@ -3152,9 +3149,6 @@ def canTriggerChampionUnit(argsList):
 		return False
 		
 	if unit.getDamage() > 0:
-		return False
-		
-	if unit.getExperience() < 3:
 		return False
 
 #FfH: Modified by Kael 09/26/2007
@@ -3491,21 +3485,7 @@ def canTriggerEsteemedPlaywright(argsList):
 
 	return True
 
-######## EXPERIENCED_CAPTAIN ###########
-
-def canTriggerExperiencedCaptain(argsList):
-	kTriggeredData = argsList[0]
-	
-	player = gc.getPlayer(kTriggeredData.ePlayer)
-	unit = player.getUnit(kTriggeredData.iUnitId)
-	
-	if unit.isNone():
-		return False
-		
-	if unit.getExperience() < 7:
-		return False
-
-	return True
+######## EXPERIENCED_CAPTAIN ########### (lfgr: tweaked, moved to XML)
 
 ######## HOSTILE TAKEOVER ###########
 
