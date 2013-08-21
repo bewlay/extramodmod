@@ -1762,7 +1762,7 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 							if (GET_PLAYER(pCity->getPreviousOwner()).AI_isDoVictoryStrategy(AI_VICTORY_CULTURE3))
 							{
 								//Raze city enemy needs for cultural victory unless we greatly over power them
-								logBBAI( "  Razing enemy cultural victory city" );
+								logBBAI( "  Razing enemy cultural victory city!" );
 								bRaze = true;
 							}
 						}
@@ -1778,7 +1778,7 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 			{
 				if( gPlayerLogLevel >= 1 )
 				{
-					logBBAI("    Player %d (%S) decides not to raze %S because they have few cities", getID(), getCivilizationDescription(0), pCity->getName().GetCString() );
+					logBBAI("    ...decides not to raze %S because they have few cities", pCity->getName().GetCString() );
 				}
 			}
 			else if (getFavoriteReligion() != NO_RELIGION)
@@ -1787,7 +1787,7 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 				{
 					if( gPlayerLogLevel >= 1 )
 					{
-						logBBAI("    Player %d (%S) decides not to raze %S because it's the Holy City for their favorite religion", getID(), getCivilizationDescription(0), pCity->getName().GetCString() );
+						logBBAI("    ...decides not to raze %S because it's the Holy City for their favorite religion", pCity->getName().GetCString() );
 					}
 				}
 			}
@@ -1796,7 +1796,7 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 				// Do not raze, going for domination
 				if( gPlayerLogLevel >= 1 )
 				{
-					logBBAI("    Player %d (%S) decides not to raze %S because they're going for domination", getID(), getCivilizationDescription(0), pCity->getName().GetCString() );
+					logBBAI("    ...decides not to raze %S because they're going for domination", pCity->getName().GetCString() );
 				}
 			}
 			else if (GET_PLAYER(pCity->getOriginalOwner()).getTeam() == getTeam())
@@ -1804,7 +1804,7 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 				// Do not raze, was our city
 				if( gPlayerLogLevel >= 1 )
 				{
-					logBBAI("    Player %d (%S) decides not to raze %S because our team were the original owners", getID(), getCivilizationDescription(0), pCity->getName().GetCString() );
+					logBBAI("    ...decides not to raze %S because our team were the original owners", pCity->getName().GetCString() );
 				}
 			}
 			else if( isBarbarian() )
@@ -2017,7 +2017,7 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 
 			if( gPlayerLogLevel >= 1 )
 			{
-				logBBAI("    Player %d (%S) has odds %d to raze city %S", getID(), getCivilizationDescription(0), iRazeValue, pCity->getName().GetCString() );
+				logBBAI("    ...odds %d to raze city %S", iRazeValue, pCity->getName().GetCString() );
 			}
 			
 			if (iRazeValue > 0)
@@ -2047,7 +2047,7 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 		}
 		else
 		{
-			logBBAI("    Player %d (%S) decides to to raze city %S!!!", getID(), getCivilizationDescription(0), pCity->getName().GetCString() );
+			logBBAI("    ...decides to to raze city %S!!!", pCity->getName().GetCString() );
 			pCity->doTask(TASK_RAZE);
 		}
 	}
@@ -2061,6 +2061,7 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 /* original bts code
 		CvEventReporter::getInstance().cityAcquiredAndKept(GC.getGameINLINE().getActivePlayer(), pCity);
 */
+		logBBAI("    ...decides to to keep city %S", pCity->getName().GetCString() );
 		CvEventReporter::getInstance().cityAcquiredAndKept(getID(), pCity);
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                        END                                                  */
@@ -14533,7 +14534,8 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 	int iMaintenanceFactor =  AI_commerceWeight(COMMERCE_GOLD) * std::max(0, calculateInflationRate() + 100) / 100; // K-Mod
 
 	//iValue = (getNumCities() * 6);
-	iValue = 1 + AI_getNumRealCities();
+	//iValue = 1 + AI_getNumRealCities();
+	iValue = 0;
 	//iValue = 1;
 
 	// account for civic-specfic units with the <bAbandon> tag
@@ -14886,7 +14888,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 	iValue += (getTotalPopulation() * 4 * getCivicPercentAnger(eCivic, true)) / GC.getPERCENT_ANGER_DIVISOR();
 //>>>>Better AI: End Modify
 
-	if (kCivic.getExtraHealth() != 0)
+	if ((kCivic.getExtraHealth() != 0) && !isIgnoreFood())
 	{
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                       10/21/09                                jdog5000      */
@@ -15043,7 +15045,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 			if (kCivic.getCapitalYieldModifier(iI) != 0)
 			{
 				iTemp = (kCivic.getCapitalYieldModifier(iI)) * pCapital->getBaseYieldRate((YieldTypes)iI);
-				iTemp /= (iCities * 35);
+				iTemp /= (iCities * 25);
 				iTempValue += iTemp;
 			}
 			//iTemp *= 4;
@@ -15062,11 +15064,15 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 		{
 			if (AI_isDoVictoryStrategy(AI_VICTORY_DOMINATION2))
 			{
-				iTempValue *= 3; 
+				iTempValue *= 4; 
+			}
+			else if (isIgnoreFood())
+			{
+				iTempValue = 0;
 			}
 			else
 			{
-				iTempValue *= 2;
+				iTempValue *= 3;
 			}
 		} 
 		else if (iI == YIELD_PRODUCTION) 
@@ -15095,7 +15101,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 			if (kCivic.getCapitalCommerceModifier(iI) != 0)
 			{
 				iTemp = (kCivic.getCapitalCommerceModifier(iI)) * pCapital->getBaseCommerceRate((CommerceTypes)iI);
-				iTemp /= (iCities * 35);
+				iTemp /= (iCities * 25);
 	
 				//iTemp *= 4;
 				//iTemp /= std::max(1, iCities);
