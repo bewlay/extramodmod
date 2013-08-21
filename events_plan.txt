@@ -21,6 +21,14 @@ TODO: look over suppression of some help text when requirement is not met
 Vanilla events TODO:
 	- Should state effects
 
+###################
+# EVENTS OVERVIEW #
+###################
+
+###
+### Outdated! Replaced by https://bitbucket.org/lfgr/some-modcomps-for-civ4-ffh-mnai/wiki/Events%20Overview
+### Suggestions should still be considered
+
 Gela:
 [SPOILER]
 Trigger: One of your units takes Gela
@@ -1048,8 +1056,16 @@ The barbarian hordes are at our gates! Our armies have failed us! We’re doomed
 	Gain 1 population
 [/SPOILER]
 
+###############
+# EVENT IDEAS #
+###############
+
 ################################ TO INCLUDE: Event Series by Xienwolf from http://forums.civfanatics.com/showthread.php?t=262009
 I'd like to include some of this event series. The chances of the "story alternatives" should be based on environment (religions, alignment, civs... at best even player actions). The player has to think what f.e. the "passing stranger" could want; in an evil CoE city with high crime rate it will probably be a thief...
+
+Edit: But on the other hand, it should encourage role-playing. Role-playing for an order civ would be to stop the "passing stranger", but from the view above an order-civ shouldn't have many thieves.
+
+
 
 Note: For this next series of events, there are no tooltips to announce the rewards. Or alternatively, it is a single event with 3 possible outcomes from each decision (33% chance of each), and the player is allowed to see a tooltip stating what the possible outcomes are & the percent chances.
 
@@ -1063,6 +1079,7 @@ Chance changes:
 	Undercouncil (+?)
 	High Crime Rate (+/++)
 	Evil (+)
+	Elohim (-)
 	Good (-)
 	Empearean (-)
 	Low Crime Rate (-/--)
