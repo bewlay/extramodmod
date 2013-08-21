@@ -2519,12 +2519,4 @@
 		<Italian>Bring forth the sacrifices! Let the Bhall-Orcs fuel the Sacred Flame with the blood of our enemies, and ignite us with the passion of our mistress!</Italian>
 		<Spanish>Bring forth the sacrifices! Let the Bhall-Orcs fuel the Sacred Flame with the blood of our enemies, and ignite us with the passion of our mistress!</Spanish>
 	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_EVENT_CALABIM_SANCTUARY_1_HELP</Tag>
-		<English>[ICON_BULLET]Receive [COLOR_NEGATIVE_TEXT]-4[COLOR_REVERT] attitude from the Calabim</English>
-		<French>[ICON_BULLET]Receive [COLOR_NEGATIVE_TEXT]-4[COLOR_REVERT] attitude from the Calabim</French>
-		<German>[ICON_BULLET]Receive [COLOR_NEGATIVE_TEXT]-4[COLOR_REVERT] attitude from the Calabim</German>
-		<Italian>[ICON_BULLET]Receive [COLOR_NEGATIVE_TEXT]-4[COLOR_REVERT] attitude from the Calabim</Italian>
-		<Spanish>[ICON_BULLET]Receive [COLOR_NEGATIVE_TEXT]-4[COLOR_REVERT] attitude from the Calabim</Spanish>
-	</TEXT>
 </Civ4GameText>

@@ -241,15 +241,7 @@ def doBanditNietz3(argsList):
 	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_BOUNTY_HUNTER'), True)
 	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_COMMANDO'), True)
 
-######## CALABIM_SANCTUARY (lfgr: fixed)
-
-def doCalabimSanctuary1(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	iPlayer = kTriggeredData.ePlayer
-	if kTriggeredData.eOtherPlayer != -1:
-		pOtherPlayer = gc.getPlayer(kTriggeredData.eOtherPlayer)
-		pOtherPlayer.AI_changeAttitudeExtra(iPlayer,-4)
+######## CALABIM_SANCTUARY (lfgr: fixed, moved to XML)
 
 ######## CITY_FEUD_ARSON (lfgr: moved to XML)
 
