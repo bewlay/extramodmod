@@ -4509,33 +4509,7 @@ def CanDoTraveller4(argsList):
 			return True
 	return False
 
-######## UNFORTUNATE_ASSASSIN (lfgr: moved to general functions)
-
-def doUnfortunateAssassin3(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pdestPlayer = pPlayer
-	minattitude=0
-	for iLoopPlayer in range(gc.getMAX_PLAYERS()):
-		pLoopPlayer = gc.getPlayer(iLoopPlayer)
-		if pLoopPlayer.isAlive():
-			if pLoopPlayer != pPlayer :
-				test= CyGame().getSorenRandNum(100, "Pick CIV")
-				if test > minattitude :
-					pdestPlayer=pLoopPlayer
-					minattitude = test
-	if CyGame().getSorenRandNum(100, "Pick Plot")<50 :
-		pdestPlayer.AI_changeAttitudeExtra(kTriggeredData.ePlayer,-1)
-	else:
-		pdestPlayer.AI_changeAttitudeExtra(kTriggeredData.ePlayer,1)
-
-def doUnfortunateAssassin5(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	newUnit1 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_ASSASSIN'), pCity.getX(),pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+######## UNFORTUNATE_ASSASSIN (lfgr: moved to general functions, changed, moved to XML)
 
 ######## (lfgr: not reviewed)
 

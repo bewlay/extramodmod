@@ -1277,19 +1277,19 @@
 	</TEXT>
 	<TEXT><!-- EVENT_UNFORTUNATE_ASSASSIN_3 -->
 		<Tag>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_3</Tag>
-		<English>Find out who sent her and make her spy on them for us.</English>
-		<French>Find out who sent her and make her spy on them for us.</French>
-		<German>Find out who sent her and make her spy on them for us.</German>
-		<Italian>Find out who sent her and make her spy on them for us.</Italian>
-		<Spanish>Find out who sent her and make her spy on them for us.</Spanish>
+		<English>Throw her into jail, and make sure she is properly guarded.</English>
+		<French>Throw her into jail, and make sure she is properly guarded.</French>
+		<German>Throw her into jail, and make sure she is properly guarded.</German>
+		<Italian>Throw her into jail, and make sure she is properly guarded.</Italian>
+		<Spanish>Throw her into jail, and make sure she is properly guarded.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_UNFORTUNATE_ASSASSIN_4 -->
 		<Tag>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4</Tag>
-		<English>Let her go.</English>
-		<French>Let her go.</French>
-		<German>Let her go.</German>
-		<Italian>Let her go.</Italian>
-		<Spanish>Let her go.</Spanish>
+		<English>Let her go. I shall not fight violence with more violence.</English>
+		<French>Let her go. I shall not fight violence with more violence.</French>
+		<German>Let her go. I shall not fight violence with more violence.</German>
+		<Italian>Let her go. I shall not fight violence with more violence.</Italian>
+		<Spanish>Let her go. I shall not fight violence with more violence.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_UNFORTUNATE_ASSASSIN_5 -->
 		<Tag>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_5</Tag>

@@ -6645,7 +6645,7 @@
 			<Type>EVENT_UNFORTUNATE_ASSASSIN_2</Type>
 			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_2</Description>
 			<bPickCity>1</bPickCity>
-			<iHappy>-1</iHappy>
+			<iHurryAnger>1</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -6654,8 +6654,8 @@
 			<Type>EVENT_UNFORTUNATE_ASSASSIN_3</Type>
 			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_3</Description>
 			<bPickCity>1</bPickCity>
+			<iGold>-20</iGold>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doUnfortunateAssassin3</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -6663,18 +6663,18 @@
 			<Type>EVENT_UNFORTUNATE_ASSASSIN_4</Type>
 			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4</Description>
 			<bPickCity>1</bPickCity>
-			<iHappy>1</iHappy>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
-			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
+			<PrereqCivilization>CIVILIZATION_ELOHIM</PrereqCivilization>
 		</EventInfo>
 		<EventInfo><!-- UNFORTUNATE_ASSASSIN_5 -->
 			<Type>EVENT_UNFORTUNATE_ASSASSIN_5</Type>
 			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_5</Description>
 			<bPickCity>1</bPickCity>
+			<UnitClass>UNITCLASS_ASSASSIN</UnitClass>
+			<iNumFreeUnits>1</iNumFreeUnits>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doUnfortunateAssassin5</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqStateReligion>RELIGION_COUNCIL_OF_ESUS</PrereqStateReligion>

@@ -1,5 +1,6 @@
 Code
 	cf.getCivilization() doesn't work correctly with rev etc.
+	"Food stores" seems not to work.
 
 Events
 	"Serial Killer" / "Enlist him" should not be available for Luchuirp / Sheaim (Axeman UU)
@@ -20,6 +21,8 @@ Events
 		/2: -
 	Inn To Housing/1: +1 temp unhappy
 	Looters: Add an option for esus
+	
+	Following event for UnfAssassin/3
 
 EVENTTRIGGER_GROUPs
 	NON_RANDOM

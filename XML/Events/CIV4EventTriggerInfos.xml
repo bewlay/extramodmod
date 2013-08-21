@@ -8346,7 +8346,7 @@
 				<Event>EVENT_TRAVELLER_6</Event>
 			</Events>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- UNFORTUNATE_ASSASSIN -->
+		<EventTriggerInfo><!-- UNFORTUNATE_ASSASSIN lfgr: reworked -->
 			<Type>EVENTTRIGGER_UNFORTUNATE_ASSASSIN</Type>
 			<WorldNewsTexts>
 				<Text />
@@ -8369,6 +8369,9 @@
 				<Event>EVENT_UNFORTUNATE_ASSASSIN_4</Event>
 				<Event>EVENT_UNFORTUNATE_ASSASSIN_5</Event>
 			</Events>
+			<OrPreReqs>
+				<PrereqTech>TECH_POISONS</PrereqTech>
+			</OrPreReqs>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDoCity>canTriggerCityCapital</PythonCanDoCity>
