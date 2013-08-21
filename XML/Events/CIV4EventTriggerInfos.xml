@@ -2434,10 +2434,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_1_1</Event>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_1_2</Event>
@@ -2467,10 +2467,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_2_1</Event>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_2_2</Event>
@@ -2500,10 +2500,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_3_1</Event>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_3_2</Event>
@@ -2533,10 +2533,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_4_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
@@ -2564,10 +2564,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_5_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
@@ -2595,10 +2595,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_6_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
@@ -2625,10 +2625,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_7_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
@@ -2655,10 +2655,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_8_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
@@ -2685,10 +2685,10 @@
 			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_9_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
