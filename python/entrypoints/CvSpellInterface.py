@@ -4614,3 +4614,10 @@ def spellFertility(caster):
  		pPlot.setBonusType(iShrimp)
  	elif pBonus == iShrimp:
  		pPlot.setBonusType(iClam)
+
+def spellUpgradeLucian(pCaster):
+	pPlayer = gc.getPlayer(pCaster.getOwner())
+	pCaster.setName("Lucian")
+	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_SONS_OF_ASENA'), pCaster.getX(), pCaster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+	newUnit.convert(pCaster)
+	newUnit.changeImmobileTimer(1)

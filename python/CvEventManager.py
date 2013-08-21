@@ -1421,9 +1421,6 @@ class CvEventManager:
 			if pPlayer.getNumBuilding(gc.getInfoTypeForString('BUILDING_TOWER_OF_NECROMANCY')) > 0:
 				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_STRONG'), True)
 
-		if unit.getUnitClassType() == gc.getInfoTypeForString('UNITCLASS_LUCIAN'):
-			unit.setName("Lucian")
-
 #UNITAI for Adepts and Terraformers
 		if ((not pPlayer.isHuman()) and (not pPlayer.isBarbarian())):
 			if unit.getUnitType() == gc.getInfoTypeForString('UNIT_DEVOUT'):			
