@@ -2462,6 +2462,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
+			<EventArt>Art\EventImages\e_guildmerc1.dds</EventArt>
 			<EventArt />
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
@@ -2495,6 +2496,7 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
+			<EventArt>Art\EventImages\e_guildmerc1.dds</EventArt>
 			<EventArt />
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
