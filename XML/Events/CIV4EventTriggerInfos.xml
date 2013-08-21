@@ -781,7 +781,7 @@
 			<bOtherPlayerHasReligion>1</bOtherPlayerHasReligion>
 			<PythonCanDo>canTriggerBrothersInNeed</PythonCanDo>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- CALABIM_SANCTUARY -->
+		<EventTriggerInfo><!-- CALABIM_SANCTUARY lfgr: tweaked-->
 			<Type>EVENTTRIGGER_CALABIM_SANCTUARY</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_CALABIM_SANCTUARY</Text>
@@ -794,7 +794,7 @@
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_calabimsanctuary.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
-			<iWeight>200</iWeight>
+			<iWeight>-1</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iPlotType>-1</iPlotType>
