@@ -803,6 +803,8 @@
 				<Event>EVENT_CALABIM_SANCTUARY_2</Event>
 			</Events>
 			<bRecurring>1</bRecurring>
+			<bPickPlayer>1</bPickPlayer>
+			<iOtherPlayerShareBorders>1</iOtherPlayerShareBorders>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<PrereqCivilizationPleased>CIVILIZATION_CALABIM</PrereqCivilizationPleased>
