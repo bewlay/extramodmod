@@ -1020,12 +1020,12 @@ def doOrderVsVeilTemple3(argsList):
 			loopCity.changeHurryAngerTimer(5)
 		(loopCity, iter) = pPlayer.nextCity(iter, False)
 
-######## (lfgr: not reviewed)
-
 # lfgr added
 def canTriggerOvercouncil(argsList):
 	return semiRandomTurnTrigger( 10, 0.25 )
 # lfgr end
+
+######## (lfgr: not reviewed)
 
 def canTriggerParith(argsList):
 	kTriggeredData = argsList[0]
@@ -3437,6 +3437,19 @@ def canTriggerControversialPhilosopherCity(argsList):
 				# More Events Mod starts #
 # Modified by lfgr
 
+######## General Functions (lfgr)
+
+# original: CanTriggerUnfortunateAssassinCity
+def canTriggerCityCapital(argsList):
+	eTrigger = argsList[0]
+	ePlayer = argsList[1]
+	iCity = argsList[2]
+	pPlayer = gc.getPlayer(ePlayer)
+	pCity = pPlayer.getCity(iCity)
+	if pCity.isCapital():
+		return True
+	return False
+
 ######## Utility Functions (lfgr)
 
 def semiRandomTurnTrigger( iTurns, fChance ) :
@@ -4495,16 +4508,8 @@ def CanDoTraveller4(argsList):
 		if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_RING_OF_CARCER') :
 			return True
 	return False
-	
-def CanTriggerUnfortunateAssassinCity(argsList):
-	eTrigger = argsList[0]
-	ePlayer = argsList[1]
-	iCity = argsList[2]
-	pPlayer = gc.getPlayer(ePlayer)
-	pCity = pPlayer.getCity(iCity)
-	if pCity.isCapital():
-		return True
-	return False
+
+######## UNFORTUNATE_ASSASSIN (lfgr: moved to general functions)
 
 def doUnfortunateAssassin3(argsList):
 	iEvent = argsList[0]
@@ -4531,6 +4536,8 @@ def doUnfortunateAssassin5(argsList):
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pCity = pPlayer.getCity(kTriggeredData.iCityId)
 	newUnit1 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_ASSASSIN'), pCity.getX(),pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+
+######## (lfgr: not reviewed)
 
 def CanDoOvercrowdedDungeon5 (argsList):
 	iEvent = argsList[0]

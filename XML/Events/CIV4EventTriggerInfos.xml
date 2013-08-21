@@ -8371,7 +8371,7 @@
 			</Events>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDoCity>CanTriggerUnfortunateAssassinCity</PythonCanDoCity>
+			<PythonCanDoCity>canTriggerCityCapital</PythonCanDoCity>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- OVERCROWDED_DUNGEON -->
 			<Type>EVENTTRIGGER_OVERCROWDED_DUNGEON</Type>
