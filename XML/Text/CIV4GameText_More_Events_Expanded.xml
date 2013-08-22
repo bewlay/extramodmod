@@ -1299,6 +1299,22 @@
 		<Italian>She managed to sneak past my guards? We need people with such potential. Make her an offer she can't refuse.</Italian>
 		<Spanish>She managed to sneak past my guards? We need people with such potential. Make her an offer she can't refuse.</Spanish>
 	</TEXT>
+	<TEXT><!-- EVENT_UNFORTUNATE_ASSASSIN_4_CONT -->
+		<Tag>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4_CONT</Tag>
+		<English>A stranger asks for an audience.[NEWLINE][TAB]"I was once hired to kill you, but I failed and you forgave me. I've seen much of the world and I learned that mercy is the only thing that can save erebus. Please accept me in your service."</English>
+		<French>A stranger asks for an audience.[NEWLINE][TAB]"I was once hired to kill you, but I failed and you forgave me. I've seen much of the world and I learned that mercy is the only thing that can save erebus. Please accept me in your service."</French>
+		<German>A stranger asks for an audience.[NEWLINE][TAB]"I was once hired to kill you, but I failed and you forgave me. I've seen much of the world and I learned that mercy is the only thing that can save erebus. Please accept me in your service."</German>
+		<Italian>A stranger asks for an audience.[NEWLINE][TAB]"I was once hired to kill you, but I failed and you forgave me. I've seen much of the world and I learned that mercy is the only thing that can save erebus. Please accept me in your service."</Italian>
+		<Spanish>A stranger asks for an audience.[NEWLINE][TAB]"I was once hired to kill you, but I failed and you forgave me. I've seen much of the world and I learned that mercy is the only thing that can save erebus. Please accept me in your service."</Spanish>
+	</TEXT>
+	<TEXT><!-- EVENT_UNFORTUNATE_ASSASSIN_4_CONT_1 -->
+		<Tag>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4_CONT_1</Tag>
+		<English>I'm glad you finally understand.</English>
+		<French>I'm glad you finally understand.</French>
+		<German>I'm glad you finally understand.</German>
+		<Italian>I'm glad you finally understand.</Italian>
+		<Spanish>I'm glad you finally understand.</Spanish>
+	</TEXT>
 	<TEXT><!-- EVENT_OVERCROWDED_DUNGEON -->
 		<Tag>TXT_KEY_EVENT_OVERCROWDED_DUNGEON</Tag>
 		<English>Our dungeon in %s2_city is so full of criminals that there is barely enough room for all inmates. Escapes, fights and assaults on guards are all reported.</English>

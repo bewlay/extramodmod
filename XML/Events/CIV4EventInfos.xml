@@ -6686,6 +6686,21 @@
 			<iAIValue>1000</iAIValue>
 			<PrereqStateReligion>RELIGION_COUNCIL_OF_ESUS</PrereqStateReligion>
 		</EventInfo>
+		<EventInfo><!-- UNFORTUNATE_ASSASSIN_4_CONT_1 -->
+			<Type>EVENT_UNFORTUNATE_ASSASSIN_4_CONT_1</Type>
+			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4_CONT_1</Description>
+			<bPickCity>1</bPickCity>
+			<UnitClass>UNITCLASS_ASSASSIN</UnitClass><!-- that means Devout -->
+			<UnitPromotions>
+				<UnitPromotion>PROMOTION_DEMON_SLAYING</UnitPromotion>
+				<UnitPromotion>PROMOTION_HEROIC_DEFENSE</UnitPromotion>
+				<UnitPromotion>PROMOTION_HEROIC_DEFENSE2</UnitPromotion>
+			</UnitPromotions>
+			<iNumFreeUnits>1</iNumFreeUnits>
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+		</EventInfo>
 		<EventInfo><!-- OVERCROWDED_DUNGEON_1 -->
 			<Type>EVENT_OVERCROWDED_DUNGEON_1</Type>
 			<Description>TXT_KEY_EVENT_OVERCROWDED_DUNGEON_1</Description>

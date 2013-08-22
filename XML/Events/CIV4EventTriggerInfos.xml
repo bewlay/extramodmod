@@ -8377,6 +8377,36 @@
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDoCity>canTriggerCityCapital</PythonCanDoCity>
 		</EventTriggerInfo>
+		<EventTriggerInfo><!-- UNFORTUNATE_ASSASSIN_4_CONT lfgr: added -->
+			<!-- LFGR_TODO: Add minimum turns between events -->
+			<Type>EVENTTRIGGER_UNFORTUNATE_ASSASSIN_4_CONT</Type>
+			<WorldNewsTexts>
+				<Text />
+			</WorldNewsTexts>
+			<TriggerTexts>
+				<TriggerText>
+					<Text>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4_CONT</Text>
+					<Era>NONE</Era>
+				</TriggerText>
+			</TriggerTexts>
+			<iPercentGamesActive>100</iPercentGamesActive>
+			<iWeight>-1</iWeight>
+			<iMaxOurLandmass>-1</iMaxOurLandmass>
+			<iPlotType>-1</iPlotType>
+			<Events>
+				<Event>EVENT_UNFORTUNATE_ASSASSIN_4_CONT_1</Event>
+			</Events>
+			<PrereqEvents>
+				<Event>EVENT_UNFORTUNATE_ASSASSIN_4</Event>
+			</PrereqEvents>
+			<OrPreReqs>
+				<PrereqTech>TECH_POISONS</PrereqTech>
+			</OrPreReqs>
+			<bPickCity>1</bPickCity>
+			<bShowPlot>1</bShowPlot>
+			<PythonCanDoCity>canTriggerCityCapital</PythonCanDoCity>
+			<iPrereqGlobalCounter>50</iPrereqGlobalCounter>
+		</EventTriggerInfo>
 		<EventTriggerInfo><!-- OVERCROWDED_DUNGEON -->
 			<Type>EVENTTRIGGER_OVERCROWDED_DUNGEON</Type>
 			<WorldNewsTexts>
