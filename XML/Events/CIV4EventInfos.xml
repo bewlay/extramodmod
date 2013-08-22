@@ -1287,6 +1287,8 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iGlobalCounter>-3</iGlobalCounter>
+			<iOurAttitudeModifier>1</iOurAttitudeModifier>
+			<iAttitudeModifier>1</iAttitudeModifier>
 		</EventInfo>
 		<EventInfo><!-- ELOHIM_HALLOWING_2 -->
 			<Type>EVENT_ELOHIM_HALLOWING_2</Type>
@@ -1294,6 +1296,8 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<iOurAttitudeModifier>-1</iOurAttitudeModifier>
+			<iAttitudeModifier>-1</iAttitudeModifier>
 		</EventInfo>
 		<EventInfo><!-- ELOHIM_HALLOWING_3 -->
 			<Type>EVENT_ELOHIM_HALLOWING_3</Type>
@@ -1303,6 +1307,9 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iGlobalCounter>3</iGlobalCounter>
+			<iOurAttitudeModifier>-4</iOurAttitudeModifier>
+			<iAttitudeModifier>-4</iAttitudeModifier>
+			<PrereqStateReligion>RELIGION_THE_ASHEN_VEIL</PrereqStateReligion>
 		</EventInfo>
 		<EventInfo><!-- ENCHANTER_1 -->
 			<Type>EVENT_ENCHANTER_1</Type>

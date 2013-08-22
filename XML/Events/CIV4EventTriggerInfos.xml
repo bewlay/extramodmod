@@ -1528,7 +1528,7 @@
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- ELOHIM_HALLOWING -->
+		<EventTriggerInfo><!-- ELOHIM_HALLOWING lfgr: tweaked -->
 			<Type>EVENTTRIGGER_ELOHIM_HALLOWING</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_ELOHIM_HALLOWING</Text>
@@ -1550,6 +1550,7 @@
 				<Event>EVENT_ELOHIM_HALLOWING_3</Event>
 			</Events>
 			<bRecurring>1</bRecurring>
+			<bPickPlayer>1</bPickPlayer>
 			<iPrereqGlobalCounter>10</iPrereqGlobalCounter>
 			<PrereqCivilizationPleased>CIVILIZATION_ELOHIM</PrereqCivilizationPleased>
 		</EventTriggerInfo>
