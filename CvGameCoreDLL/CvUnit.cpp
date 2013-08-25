@@ -12248,6 +12248,8 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 					{
 						gDLL->getInterfaceIFace()->addMessage(getOwner(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), gDLL->getText("TXT_KEY_MESSAGE_LAIR_DESTROYED"), "AS2D_CITYRAZE", MESSAGE_TYPE_MAJOR_EVENT, GC.getImprovementInfo((ImprovementTypes)iImprovement).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pNewPlot->getX(), pNewPlot->getY(), true, true);
 					}
+					// Give a bit XP
+					changeExperience( 1 + GC.getGameINLINE().getSorenRandNum( 3, "Animal Lair XP" ) );
 					pNewPlot->setImprovementType(NO_IMPROVEMENT);
 				}
 			}
