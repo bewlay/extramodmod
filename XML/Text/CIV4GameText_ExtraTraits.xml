@@ -14,4 +14,44 @@
 		<Italian>Civilization Traits</Italian>
 		<Spanish>Habilidades de Civilización</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TRAIT_WINTERBORN</Tag>
+		<English>Winterborn</English>
+		<French>Winterborn</French>
+		<German>Winterhart</German>
+		<Italian>Winterborn</Italian>
+		<Spanish>Invernal</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TRAIT_WINTERBORN_SHORT</Tag>
+		<English>Win</English>
+		<French>Win</French>
+		<German>Win</German>
+		<Italian>Win</Italian>
+		<Spanish>Inv</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TRAIT_NOMAD</Tag>
+		<English>Nomad</English>
+		<French>Nomade</French>
+		<German>Nomade</German>
+		<Italian>Nomad</Italian>
+		<Spanish>Nómada</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TRAIT_NOMAD_SHORT</Tag>
+		<English>Nom</English>
+		<French>Nom</French>
+		<German>Nom</German>
+		<Italian>Nom</Italian>
+		<Spanish>Nom</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TRAIT_FREE_PROMOTIONS_ALL_UNITS</Tag>
+		<English>All Units</English>
+		<French>All Units</French>
+		<German>Alle Einheiten</German>
+		<Italian>All Units</Italian>
+		<Spanish>All Units</Spanish>
+	</TEXT>
 </Civ4GameText>

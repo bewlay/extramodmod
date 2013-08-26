@@ -1005,8 +1005,9 @@
 			<bGraphicalOnly>0</bGraphicalOnly>
 			<CivTraits>
 				<TraitType>TRAIT_SAVAGE</TraitType>
+				<TraitType>TRAIT_WINTERBORN</TraitType>
 			</CivTraits>
-			<DefaultRace>PROMOTION_WINTERBORN</DefaultRace>
+			<DefaultRace>NONE</DefaultRace>
 			<Help/>
 			<Hero>UNIT_WAR_MACHINE</Hero>
 			<MaintainFeatures>
@@ -1582,8 +1583,9 @@
 			<bGraphicalOnly>0</bGraphicalOnly>
 			<CivTraits>
 				<TraitType>TRAIT_AGNOSTIC</TraitType>
+				<TraitType>TRAIT_WINTERBORN</TraitType>
 			</CivTraits>
-			<DefaultRace>PROMOTION_WINTERBORN</DefaultRace>
+			<DefaultRace>NONEs</DefaultRace>
 			<Help>TXT_KEY_CIV_ILLIANS_HELP</Help>
 			<Hero>UNIT_WILBOMAN</Hero>
 			<MaintainFeatures>
@@ -2664,7 +2666,10 @@
 			<CivilizationSelectionSound>AS3D_AZTEC_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_AZTEC_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<DefaultRace>PROMOTION_NOMAD</DefaultRace>
+			<CivTraits>
+				<TraitType>TRAIT_NOMAD</TraitType>
+			</CivTraits>
+			<DefaultRace>NONE</DefaultRace>
 			<Help/>
 			<Hero>UNIT_TEUTORIX</Hero>
 			<MaintainFeatures>
