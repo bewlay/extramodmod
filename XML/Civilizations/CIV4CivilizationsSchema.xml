@@ -407,6 +407,9 @@
 	<ElementType name="FreePromotionUnitCombats" content="eltOnly">
 		<element type="FreePromotionUnitCombat" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+<!-- EXTRA_TRAITS 08/2013 lfgr -->
+	<ElementType name="Button" content="textOnly"/>
+<!-- EXTRA_TRAITS -->
 	<ElementType name="TraitInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -455,6 +458,9 @@
 		<element type="CommerceModifiers"/>
 		<element type="FreePromotions"/>
 		<element type="FreePromotionUnitCombats"/>
+<!-- EXTRA_TRAITS 08/2013 lfgr -->
+		<element type="Button" minOccurs="0"/>
+<!-- EXTRA_TRAITS -->
 	</ElementType>
 	<ElementType name="TraitInfos" content="eltOnly">
 		<element type="TraitInfo" maxOccurs="*"/>
