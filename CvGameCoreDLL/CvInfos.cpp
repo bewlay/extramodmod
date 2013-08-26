@@ -20656,6 +20656,13 @@ m_bIgnoreFood(false),
 m_bInsane(false),
 m_bSelectable(false),
 m_bSprawling(false),
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+m_bAllUnitsFreePromotion(false),
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 m_iFreeXPFromCombat(0),
 m_iMaxCities(-1),
 m_iPillagingGold(0),
@@ -20796,6 +20803,16 @@ bool CvTraitInfo::isSprawling() const
 {
 	return m_bSprawling;
 }
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+bool CvTraitInfo::isAllUnitsFreePromotion() const
+{
+	return m_bAllUnitsFreePromotion;
+}
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 
 int CvTraitInfo::getFreeXPFromCombat() const
 {
@@ -20891,6 +20908,13 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bIgnoreFood, "bIgnoreFood");
 	pXML->GetChildXmlValByName(&m_bInsane, "bInsane");
 	pXML->GetChildXmlValByName(&m_bSelectable, "bSelectable");
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+	pXML->GetChildXmlValByName(&m_bAllUnitsFreePromotion, "bAllUnitsFreePromotion");
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	pXML->GetChildXmlValByName(&m_bSprawling, "bSprawling");
 	pXML->GetChildXmlValByName(&m_iFreeXPFromCombat, "iFreeXPFromCombat");
 	pXML->GetChildXmlValByName(&m_iMaxCities, "iMaxCities");

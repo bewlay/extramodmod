@@ -257,7 +257,17 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 			{
 				if (GC.getTraitInfo((TraitTypes) iI).isFreePromotion(iJ))
 				{
+				/********************************************************************************/
+				/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+				/********************************************************************************/
+				/* old
 					if ((getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iI).isFreePromotionUnitCombat(getUnitCombatType()))
+				*/
+					if ( GC.getTraitInfo((TraitTypes) iI).isAllUnitsFreePromotion() ||
+						((getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iI).isFreePromotionUnitCombat(getUnitCombatType())))
+				/********************************************************************************/
+				/* EXTRA_CIV_TRAITS                                                     END     */
+				/********************************************************************************/
 					{
 						setHasPromotion(((PromotionTypes)iJ), true);
 					}

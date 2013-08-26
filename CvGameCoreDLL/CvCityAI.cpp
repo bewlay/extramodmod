@@ -4206,7 +4206,17 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync, AdvisorTypes
 											{
 												if (GC.getTraitInfo((TraitTypes) iJ).isFreePromotion(iK) && !GC.getUnitInfo(eLoopUnit).getFreePromotions((PromotionTypes)iK))
 												{
+												/********************************************************************************/
+												/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+												/********************************************************************************/
+												/* old
 													if ((GC.getUnitInfo(eLoopUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eLoopUnit).getUnitCombatType()))
+												*/
+													if ( GC.getTraitInfo((TraitTypes) iJ).isAllUnitsFreePromotion() ||
+														((GC.getUnitInfo(eLoopUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eLoopUnit).getUnitCombatType())))
+												/********************************************************************************/
+												/* EXTRA_CIV_TRAITS                                                     END     */
+												/********************************************************************************/
 													{
 														iPromotionValue += 10;
 														break;
@@ -4998,7 +5008,17 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 											{
 												if (GC.getTraitInfo((TraitTypes) iJ).isFreePromotion(iK))
 												{
+												/********************************************************************************/
+												/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+												/********************************************************************************/
+												/* old
 													if ((GC.getUnitInfo(eLoopUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eLoopUnit).getUnitCombatType()))
+												*/
+													if ( GC.getTraitInfo((TraitTypes) iJ).isAllUnitsFreePromotion() ||
+														((GC.getUnitInfo(eLoopUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eLoopUnit).getUnitCombatType())))
+												/********************************************************************************/
+												/* EXTRA_CIV_TRAITS                                                     END     */
+												/********************************************************************************/
 													{
 														iUnitTempValue += 3;
 													}

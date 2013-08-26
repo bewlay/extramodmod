@@ -7596,7 +7596,19 @@ void CvGameTextMgr::parseTraits(CvWStringBuffer &szHelpString, TraitTypes eTrait
 		if (bFoundPromotion)
 		{
 			szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_FREE_PROMOTIONS", szTempBuffer.GetCString()));
-
+			
+			/********************************************************************************/
+			/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+			/********************************************************************************/
+			if( kTraitInfo.isAllUnitsFreePromotion() )
+			{
+				szTempBuffer.Format(L"\n        %c", gDLL->getSymbolID(BULLET_CHAR));
+				szHelpString.append( szTempBuffer );
+				szHelpString.append( gDLL->getText("TXT_KEY_TRAIT_FREE_PROMOTIONS_ALL_UNITS" ) );
+			}
+			/********************************************************************************/
+			/* EXTRA_CIV_TRAITS                                                     END     */
+			/********************************************************************************/
 			for (iJ = 0; iJ < GC.getNumUnitCombatInfos(); iJ++)
 			{
 				if (kTraitInfo.isFreePromotionUnitCombat(iJ))
