@@ -1637,7 +1637,7 @@
             <Button>Art/Interface/Buttons/Civics/Aristocracy.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
-			<!-- EXTRA_CIV_TRAITS 08/2013 lfgr-->
+			<!-- EXTRA_CIV_TRAITS 08/2013 lfgr -->
 			<Type>TRAIT_WINTERBORN</Type>
 			<Description>TXT_KEY_TRAIT_WINTERBORN</Description>
 			<ShortDescription>TXT_KEY_TRAIT_WINTERBORN_SHORT</ShortDescription>
@@ -1725,6 +1725,45 @@
 			<FreePromotionUnitCombats/>
 			<bAllUnitsFreePromotion>1</bAllUnitsFreePromotion>
             <Button>Art/Interface/Buttons/Promotions/Nomad.dds</Button>
+		</TraitInfo>
+		<TraitInfo>
+			<!-- EXTRA_CIV_TRAITS 08/2013 lfgr-->
+			<Type>TRAIT_DIVERSE</Type>
+			<Description>TXT_KEY_TRAIT_DIVERSE</Description>
+			<ShortDescription>TXT_KEY_TRAIT_DIVERSE_SHORT</ShortDescription>
+			<Help>TXT_KEY_TRAIT_DIVERSE_HELP</Help>
+			<iHealth>0</iHealth>
+			<iHappiness>0</iHappiness>
+			<iMaxAnarchy>-1</iMaxAnarchy>
+			<iUpkeepModifier>0</iUpkeepModifier>
+			<iLevelExperienceModifier>0</iLevelExperienceModifier>
+			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+			<iMaxGlobalBuildingProductionModifier>0</iMaxGlobalBuildingProductionModifier>
+			<iMaxTeamBuildingProductionModifier>0</iMaxTeamBuildingProductionModifier>
+			<iMaxPlayerBuildingProductionModifier>0</iMaxPlayerBuildingProductionModifier>
+			<bAdaptive>0</bAdaptive>
+			<bAgnostic>0</bAgnostic>
+			<bAssimilation>0</bAssimilation>
+			<bBarbarianAlly>0</bBarbarianAlly>
+			<bIgnoreFood>0</bIgnoreFood>
+			<bInsane>0</bInsane>
+			<bSelectable>1</bSelectable>
+			<bSprawling>0</bSprawling>
+			<iFreeXPFromCombat>0</iFreeXPFromCombat>
+			<iMaxCities>-1</iMaxCities>
+			<iPillagingGold>0</iPillagingGold>
+			<iStartingGold>0</iStartingGold>
+			<iSummonDuration>0</iSummonDuration>
+			<iUpgradeCostModifier>0</iUpgradeCostModifier>
+			<ExtraYieldThresholds/>
+			<TradeYieldModifiers/>
+			<CommerceChanges/>
+			<CommerceModifiers/>
+			<FreePromotions/>
+			<FreePromotionUnitCombats/>
+            <Button>Art/Interface/Buttons/Promotions/Centaur.dds</Button>
 		</TraitInfo>
 	</TraitInfos>
 </Civ4TraitInfos>

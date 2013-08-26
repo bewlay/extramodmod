@@ -1318,6 +1318,7 @@
 			<bGraphicalOnly>0</bGraphicalOnly>
 			<CivTraits>
 				<TraitType>TRAIT_AGNOSTIC</TraitType>
+				<TraitType>TRAIT_DIVERSE</TraitType>
 			</CivTraits>
 			<DefaultRace>NONE</DefaultRace>
 			<Help/>

@@ -1512,8 +1512,11 @@ class CvEventManager:
 
 		# Advanced Tactics - Diverse Grigori (idea and base code taken from FFH Tweakmod)
 		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS):
-			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI'):	
+			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI'):
 				unit.setReligion(-1)
+		# EXTRA_CIV_TRAITS 08/2013 lfgr
+			if( pPlayer.hasTrait( gc.getInfoTypeForString( 'TRAIT_DIVERSE' ) ) ) :
+		# EXTRA_CIV_TRAITS end
 				if unit.getRace() == -1:
 					iChance = 40
 					if CyGame().getSorenRandNum(100, "Grigori Racial Diversity") <= iChance:
