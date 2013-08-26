@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+	Advanced Combat Odds
+	Options Game Text
+
+	Copyright (c) 2009 The BUG Mod.
+-->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_CIV_TRAITS</Tag>
+		<English>Civilization Traits</English>
+		<French>Civilization Traits</French>
+		<German>Zivilisationseigenschaften</German>
+		<Italian>Civilization Traits</Italian>
+		<Spanish>Habilidades de Civilización</Spanish>
+	</TEXT>
+</Civ4GameText>

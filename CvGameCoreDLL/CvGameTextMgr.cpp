@@ -8030,6 +8030,10 @@ void CvGameTextMgr::parseCivInfos(CvWStringBuffer &szInfoText, CivilizationTypes
 
 //FfH: Added by Kael 09/02/2008
         //Civ Trait
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+	/********************************************************************************/
+	/* old
         if (GC.getCivilizationInfo(eCivilization).getCivTrait() != NO_TRAIT)
         {
             szText = gDLL->getText("TXT_KEY_CIV_TRAIT");
@@ -8049,6 +8053,44 @@ void CvGameTextMgr::parseCivInfos(CvWStringBuffer &szInfoText, CivilizationTypes
                 szInfoText.append(szBuffer);
             }
         }
+	*/
+		bool bWroteTitle = false;
+		for( int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++ )
+		{
+			if ( GC.getCivilizationInfo(eCivilization).isCivTraits( iTrait ) )
+			{
+				if (bDawnOfMan)
+				{
+					if( !bWroteTitle )
+					{
+						szTempString.Format(L"%s:", gDLL->getText("TXT_KEY_CIV_TRAITS").GetCString());
+						szInfoText.append(szTempString);
+						bWroteTitle = true;
+					}
+					else
+						szInfoText.append( L", " );
+					szBuffer.Format(L" %s", GC.getTraitInfo((TraitTypes)iTrait).getDescription());
+					szInfoText.append(szBuffer);
+				}
+				else
+				{
+					if( !bWroteTitle )
+					{
+						szBuffer.Format(NEWLINE SETCOLR L"%s" ENDCOLR , TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), gDLL->getText("TXT_KEY_CIV_TRAITS").GetCString());
+						szInfoText.append(szBuffer);
+						bWroteTitle = true;
+					}
+					szText.Format((bLinks ? L"%s" : L"%s"), GC.getTraitInfo((TraitTypes)iTrait).getDescription());
+					szBuffer.Format(L"%s  %c%s", NEWLINE, gDLL->getSymbolID(BULLET_CHAR), szText.GetCString());
+					szInfoText.append(szBuffer);
+				}
+			}
+		}
+		if (bDawnOfMan)
+			szInfoText.append( L"\n" );
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 
         //Civ Hero
         if (GC.getCivilizationInfo(eCivilization).getHero() != NO_UNIT)

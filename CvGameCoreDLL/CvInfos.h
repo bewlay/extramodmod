@@ -2922,7 +2922,16 @@ public:
 	void setDerivativeCiv(int iCiv);
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	int getCivTrait() const;
+*/
+	bool isCivTraits( int i ) const;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	int getDefaultRace() const;
 	int getHero() const;
 	bool isMaintainFeatures(int i) const;
@@ -2976,6 +2985,16 @@ protected:
 	bool* m_pbCivilizationDisableTechs;
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+/* old
+	int m_iCivTrait;
+*/
+	bool* m_pbCivTraits;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	int m_iCivTrait;
 	int m_iDefaultRace;
 	int m_iHero;

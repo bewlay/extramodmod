@@ -12352,7 +12352,16 @@ m_pbCivilizationDisableTechs(NULL),
 m_paszCityNames(NULL),
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 m_iCivTrait(NO_TRAIT),
+*/
+m_pbCivTraits(NULL),
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 m_iDefaultRace(NO_PROMOTION),
 m_iHero(NO_UNIT),
 m_pbMaintainFeatures(NULL),
@@ -12547,10 +12556,24 @@ void CvCivilizationInfo::setArtDefineTag(const TCHAR* szVal)
 }
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 int CvCivilizationInfo::getCivTrait() const
 {
 	return m_iCivTrait;
 }
+*/
+bool CvCivilizationInfo::isCivTraits( int i ) const
+{
+	FAssertMsg(i < GC.getNumTraitInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_pbCivTraits ? m_pbCivTraits[i] : false;
+}
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 
 int CvCivilizationInfo::getDefaultRace() const
 {
@@ -12697,7 +12720,18 @@ void CvCivilizationInfo::read(FDataStreamBase* stream)
 	stream->ReadString(m_szAdjectiveKey);
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	stream->Read(&m_iCivTrait);
+*/
+	SAFE_DELETE_ARRAY(m_pbCivTraits);
+	m_pbCivTraits = new bool[GC.getNumTraitInfos()];
+	stream->Read(GC.getNumTraitInfos(), m_pbCivTraits);
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 	stream->Read(&m_iDefaultRace);
 	stream->Read(&m_iHero);
 
@@ -12769,7 +12803,16 @@ void CvCivilizationInfo::write(FDataStreamBase* stream)
 	stream->WriteString(m_szAdjectiveKey);
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	stream->Write(m_iCivTrait);
+*/
+	stream->Write(GC.getNumTraitInfos(), m_pbCivTraits);
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 	stream->Write(m_iDefaultRace);
 	stream->Write(m_iHero);
 	stream->Write(GC.getNumFeatureInfos(), m_pbMaintainFeatures);
@@ -13066,8 +13109,50 @@ bool CvCivilizationInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "CivilizationSelectionSound");
 
 //FfH: Added by Kael 08/06/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	pXML->GetChildXmlValByName(szTextVal, "CivTrait");
 	m_iCivTrait = GC.getInfoTypeForString(szTextVal);
+*/
+	m_pbCivTraits = new bool[GC.getNumTraitInfos()];
+	for (int i = 0; i < GC.getNumTraitInfos(); ++i)
+	{
+		m_pbCivTraits[i] = false;
+	}
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"CivTraits"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						int iTrait = pXML->FindInInfoClass(szTextVal);
+						if( iTrait > -1 && iTrait < GC.getNumTraitInfos() )
+							m_pbCivTraits[iTrait] = true;
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 	pXML->GetChildXmlValByName(szTextVal, "DefaultRace");
 	m_iDefaultRace = GC.getInfoTypeForString(szTextVal);
 	pXML->GetChildXmlValByName(szTextVal, "Hero");

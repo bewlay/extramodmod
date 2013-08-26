@@ -84,7 +84,16 @@ void CyInfoPythonInterface2()
 		.def("getUnitArtStyleType", &CvCivilizationInfo::getUnitArtStyleType, "int ()")
 		.def("getDefaultRace", &CvCivilizationInfo::getDefaultRace, "int ()")
 		.def("isMaintainFeatures", &CvCivilizationInfo::isMaintainFeatures, "bool (int i)")
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+	/********************************************************************************/
+	/* old
 		.def("getCivTrait", &CvCivilizationInfo::getCivTrait, "int ()")
+	*/
+		.def("isCivTraits", &CvCivilizationInfo::isCivTraits, "bool (int i)")
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                                                     END     */
+	/********************************************************************************/
 //FfH: End Add
 
 /*************************************************************************************************/

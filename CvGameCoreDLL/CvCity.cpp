@@ -17023,6 +17023,10 @@ void CvCity::applyBuildEffects(CvUnit* pUnit)
 				}
 			}
 		}
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+	/********************************************************************************/
+	/* old
 		if (GC.getCivilizationInfo(getCivilizationType()).getCivTrait() != NO_TRAIT)
 		{
 			for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
@@ -17036,6 +17040,26 @@ void CvCity::applyBuildEffects(CvUnit* pUnit)
 				}
 			}
 		}
+	*/
+		for( int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++ )
+		{
+			if( GC.getCivilizationInfo(getCivilizationType()).isCivTraits( iTrait ) )
+			{
+				for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); iPromotion++)
+				{
+					if (GC.getTraitInfo((TraitTypes) iTrait).isFreePromotion(iPromotion))
+					{
+						if ((pUnit->getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iTrait).isFreePromotionUnitCombat(pUnit->getUnitCombatType()))
+						{
+							pUnit->setHasPromotion(((PromotionTypes)iPromotion), true);
+						}
+					}
+				}
+			}
+		}
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                                                     END     */
+	/********************************************************************************/
 	}
 	if (pUnit->isAlive() && !pUnit->isAnimal()) // Tholal AI - Animals shouldnt be assigned a religion
 	{

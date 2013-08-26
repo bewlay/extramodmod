@@ -1096,6 +1096,10 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 		if (!bConvert)
 		{
 			CvLeaderHeadInfo& kLeaderHeadInfo = GC.getLeaderHeadInfo(GET_PLAYER(getOwnerINLINE()).getLeaderType());
+		/********************************************************************************/
+		/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+		/********************************************************************************/
+		/* old
 			const TraitTypes eCivTrait = (TraitTypes)GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getCivTrait();
 
 			for (int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++)
@@ -1103,6 +1107,15 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 				if (kLeaderHeadInfo.hasTrait(iTrait))
 				{
 					if (iTrait != eCivTrait)
+		*/
+			for (int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++)
+			{
+				if (kLeaderHeadInfo.hasTrait(iTrait))
+				{
+					if ( !GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).isCivTraits( iTrait ) )
+		/********************************************************************************/
+		/* EXTRA_CIV_TRAITS                                                     END     */
+		/********************************************************************************/
 					{
 						GET_PLAYER(getOwnerINLINE()).setHasTrait((TraitTypes)iTrait, false);
 					}

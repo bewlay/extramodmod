@@ -2174,7 +2174,10 @@ def doTraitInsane(argsList):
 	iTraitCount = 0
 	for i in range(gc.getNumTraitInfos()):
 		if (pPlayer.hasTrait(i) and i != gc.getInfoTypeForString('TRAIT_INSANE')):
-			if (i != pCivilization.getCivTrait()):
+		# EXTRA_CIV_TRAITS 08/2013 lfgr
+		#	if (i != pCivilization.getCivTrait()):
+			if( not pCivilization.isCivTraits( i ) ) :
+		# EXTRA_CIV_TRAITS end
 				pPlayer.setHasTrait(i, False)
 				iTraitCount += 1
 
