@@ -293,6 +293,9 @@ public:
 /************************************************************************************************/
 	bool isLair( bool bIgnoreIsAnimal, bool bAnimal ) const;
 	int getWilderness() const;
+
+	int getSpawnValue( int /*SpawnTypes*/ eSpawnType, bool bBarbTech ) const;
+	void createSpawn( int /*SpawnTypes*/ eSpawnType, int /*UnitAITypes*/ eUnitAI );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
