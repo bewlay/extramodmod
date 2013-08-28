@@ -2519,7 +2519,7 @@ def spellReligiousFervor(caster):
 	if iReligion == gc.getInfoTypeForString('RELIGION_THE_ASHEN_VEIL'):
 		iUnit = gc.getInfoTypeForString('UNIT_PRIEST_OF_THE_VEIL')
 	if iReligion == gc.getInfoTypeForString('RELIGION_COUNCIL_OF_ESUS'):
-		iUnit = gc.getInfoTypeForString('UNIT_ASSASSIN')
+		iUnit = gc.getInfoTypeForString('UNIT_NIGHTWATCH')
 	iCount = 0
 	for pyCity in PyPlayer(iPlayer).getCityList() :
 		pCity = pyCity.GetCy()
