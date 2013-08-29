@@ -12622,7 +12622,7 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI )
 			if( bRandPromotions )
 			{
 				std::vector<PromotionTypes> veTmpPromotions = vePromotions;
-				int iNumPromotions = iMinRandPromotions + GC.getGameINLINE().getSorenRandNum( iMaxRandPromotions - iMinRandPromotions, "SpawnInfo num promotions" );
+				int iNumPromotions = iMinRandPromotions + GC.getGameINLINE().getSorenRandNum( iMaxRandPromotions - iMinRandPromotions + 1, "SpawnInfo num promotions" );
 				while( iNumPromotions > 0 && veTmpPromotions.size() > 0 )
 				{
 					int iRnd = GC.getGameINLINE().getSorenRandNum( veTmpPromotions.size(), "SpawnInfo rand promotion" );
