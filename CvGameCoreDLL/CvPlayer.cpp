@@ -7004,6 +7004,14 @@ bool CvPlayer::canReceiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit) 
 
 	if (GC.getGoodyInfo(eGoody).getUnitClassType() != NO_UNITCLASS)
 	{
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/************************************************************************************************/
+		if( GC.getGameINLINE().isUnitClassMaxedOut( (UnitClassTypes) GC.getGoodyInfo(eGoody).getUnitClassType() ) )
+			return false;
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
 		eUnit = ((UnitTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(GC.getGoodyInfo(eGoody).getUnitClassType())));
 
 		if (eUnit == NO_UNIT)
