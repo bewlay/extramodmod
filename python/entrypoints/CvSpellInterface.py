@@ -911,16 +911,18 @@ def reqCrush(caster):
 	for iiX in range(iX-2, iX+3, 1):
 		for iiY in range(iY-2, iY+3, 1):
 			pPlot = CyMap().plot(iiX,iiY)
-			bEnemy = False
-			bNeutral = False
-			for i in range(pPlot.getNumUnits()):
-				pUnit = pPlot.getUnit(i)
-				if eTeam.isAtWar(pUnit.getTeam()):
-					bEnemy = True
-				else:
-					bNeutral = True
-			if (bEnemy and bNeutral == False):
-				return True
+			if pPlot.isVisible(iTeam, False):
+				bEnemy = False
+				bNeutral = False
+				for i in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(i)
+					if not pUnit.isInvisible(iTeam, False):
+						if eTeam.isAtWar(pUnit.getTeam()):
+							bEnemy = True
+						else:
+							bNeutral = True
+				if (bEnemy and not bNeutral):
+					return True
 	return False
 
 def spellCrush(caster):
@@ -936,19 +938,21 @@ def spellCrush(caster):
 			bNeutral = False
 			iValue = 0
 			pPlot = CyMap().plot(iiX,iiY)
-			for i in range(pPlot.getNumUnits()):
-				pUnit = pPlot.getUnit(i)
-				if eTeam.isAtWar(pUnit.getTeam()):
-					iValue = iValue + 10
-				else:
-					bNeutral = True
-			if (iValue > iBestValue and bNeutral == False):
-				iBestValue = iValue
-				pBestPlot = pPlot
+			if pPlot.isVisible(iTeam, False):
+				for i in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(i)
+					if not pUnit.isInvisible(iTeam, False):
+						if eTeam.isAtWar(pUnit.getTeam()):
+							iValue = iValue + 10
+						else:
+							bNeutral = True
+				if (iValue > iBestValue and not bNeutral):
+					iBestValue = iValue
+					pBestPlot = pPlot
 	if pBestPlot != -1:
 		for i in range(pBestPlot.getNumUnits()):
 			pUnit = pBestPlot.getUnit(i)
-			pUnit.doDamage(50, 75, caster, gc.getInfoTypeForString('DAMAGE_PHYSICAL'), True)
+			pUnit.doDamage(30, 50, caster, gc.getInfoTypeForString('DAMAGE_PHYSICAL'), True)
 		CyEngine().triggerEffect(gc.getInfoTypeForString('EFFECT_CRUSH'),pBestPlot.getPoint())
 
 def reqDeclareNationality(caster):
@@ -1979,16 +1983,18 @@ def reqPillarofFire(caster):
 	for iiX in range(iX-2, iX+3, 1):
 		for iiY in range(iY-2, iY+3, 1):
 			pPlot = CyMap().plot(iiX,iiY)
-			bEnemy = false
-			bNeutral = false
-			for i in range(pPlot.getNumUnits()):
-				pUnit = pPlot.getUnit(i)
-				if eTeam.isAtWar(pUnit.getTeam()):
-					bEnemy = true
-				else:
-					bNeutral = true
-			if (bEnemy and bNeutral == false):
-				return true
+			if pPlot.isVisible(iTeam, False):
+				bEnemy = False
+				bNeutral = False
+				for i in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(i)
+					if not pUnit.isInvisible(iTeam, False):
+						if eTeam.isAtWar(pUnit.getTeam()):
+							bEnemy = True
+						else:
+							bNeutral = True
+				if (bEnemy and not bNeutral):
+					return True
 	return false
 
 def spellPillarofFire(caster):
@@ -2004,15 +2010,17 @@ def spellPillarofFire(caster):
 			bNeutral = False
 			iValue = 0
 			pPlot = CyMap().plot(iiX,iiY)
-			for i in range(pPlot.getNumUnits()):
-				pUnit = pPlot.getUnit(i)
-				if eTeam.isAtWar(pUnit.getTeam()):
-					iValue += 5 * pUnit.baseCombatStr()
-				else:
-					bNeutral = True
-			if (iValue > iBestValue and bNeutral == False):
-				iBestValue = iValue
-				pBestPlot = pPlot
+			if pPlot.isVisible(iTeam, False):
+				for i in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(i)
+					if not pUnit.isInvisible(iTeam, False):
+						if eTeam.isAtWar(pUnit.getTeam()):
+							iValue += 5 * pUnit.baseCombatStr()
+						else:
+							bNeutral = True
+				if (iValue > iBestValue and not bNeutral):
+					iBestValue = iValue
+					pBestPlot = pPlot
 	if pBestPlot != -1:
 		for i in range(pBestPlot.getNumUnits()):
 			pUnit = pBestPlot.getUnit(i)
@@ -2027,6 +2035,7 @@ def spellPillarofFire(caster):
 				if CyGame().getSorenRandNum(100, "Flames Spread") < gc.getDefineINT('FLAMES_SPREAD_CHANCE'):
 					pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_SMOKE'))
 		CyEngine().triggerEffect(gc.getInfoTypeForString('EFFECT_PILLAR_OF_FIRE'),pBestPlot.getPoint())
+
 
 def reqPirateCove(caster):
 	pPlot = caster.plot()
