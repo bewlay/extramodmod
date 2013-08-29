@@ -12550,6 +12550,8 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bBarbTech )
 		iValue += kSpawn.getTerrainWeights( getTerrainType() );
 	if( getFeatureType() != NO_FEATURE )
 		iValue += kSpawn.getFeatureWeights( getFeatureType() );
+	if( getImprovementType() != NO_FEATURE )
+		iValue += kSpawn.getImprovementWeights( getImprovementType() );
 
 	return iValue;
 }

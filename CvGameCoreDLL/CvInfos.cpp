@@ -28085,6 +28085,7 @@ CvSpawnInfo::CvSpawnInfo():
 	m_piNumSpawnUnits( NULL ),
 	m_piTerrainWeights( NULL ),
 	m_piFeatureWeights( NULL ),
+	m_piImprovementWeights( NULL ),
 	m_pbUnitPromotions( NULL ),
 	m_pbPrereqTechs( NULL ),
 	m_pbObsoleteTechs( NULL )
@@ -28096,6 +28097,7 @@ CvSpawnInfo::~CvSpawnInfo()
 	SAFE_DELETE_ARRAY( m_piNumSpawnUnits );
 	SAFE_DELETE_ARRAY( m_piTerrainWeights );
 	SAFE_DELETE_ARRAY( m_piFeatureWeights );
+	SAFE_DELETE_ARRAY( m_piImprovementWeights );
 	SAFE_DELETE_ARRAY( m_pbUnitPromotions );
 	SAFE_DELETE_ARRAY( m_pbPrereqTechs );
 	SAFE_DELETE_ARRAY( m_pbObsoleteTechs );
@@ -28172,6 +28174,13 @@ int CvSpawnInfo::getFeatureWeights( int i ) const
 	return m_piFeatureWeights ? m_piFeatureWeights[i] : 0;
 }
 
+int CvSpawnInfo::getImprovementWeights( int i ) const
+{
+	FAssertMsg( i < GC.getNumImprovementInfos(), "Index out of bounds" );
+	FAssertMsg( i > -1, "Index out of bounds" );
+	return m_piImprovementWeights ? m_piImprovementWeights[i] : 0;
+}
+
 bool CvSpawnInfo::getUnitPromotions( int i ) const
 {
 	FAssertMsg( i < GC.getNumPromotionInfos(), "Index out of bounds" );
@@ -28222,6 +28231,10 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	m_piFeatureWeights = new int[GC.getNumFeatureInfos()];
 	stream->Read(GC.getNumFeatureInfos(), m_piFeatureWeights);
 	
+	SAFE_DELETE_ARRAY(m_piImprovementWeights);
+	m_piImprovementWeights = new int[GC.getNumImprovementInfos()];
+	stream->Read(GC.getNumImprovementInfos(), m_piImprovementWeights);
+	
 	SAFE_DELETE_ARRAY(m_pbUnitPromotions);
 	m_pbUnitPromotions = new bool[GC.getNumPromotionInfos()];
 	stream->Read(GC.getNumPromotionInfos(), m_pbUnitPromotions);
@@ -28255,6 +28268,7 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumUnitInfos(), m_piNumSpawnUnits);
 	stream->Write(GC.getNumTerrainInfos(), m_piTerrainWeights);
 	stream->Write(GC.getNumFeatureInfos(), m_piFeatureWeights);
+	stream->Write(GC.getNumFeatureInfos(), m_piImprovementWeights);
 	stream->Write(GC.getNumPromotionInfos(), m_pbUnitPromotions);
 	stream->Write(GC.getNumTechInfos(), m_pbPrereqTechs);
 	stream->Write(GC.getNumTechInfos(), m_pbObsoleteTechs);
@@ -28284,6 +28298,7 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair( &m_piNumSpawnUnits, "SpawnUnits", sizeof( GC.getUnitInfo( (UnitTypes) 0 ) ), GC.getNumUnitInfos() );
 	pXML->SetVariableListTagPair( &m_piTerrainWeights, "TerrainWeights", sizeof( GC.getTerrainInfo( (TerrainTypes) 0 ) ), GC.getNumTerrainInfos() );
 	pXML->SetVariableListTagPair( &m_piFeatureWeights, "FeatureWeights", sizeof( GC.getFeatureInfo( (FeatureTypes) 0 ) ), GC.getNumFeatureInfos() );
+	pXML->SetVariableListTagPair( &m_piImprovementWeights, "ImprovementWeights", sizeof( GC.getImprovementInfo( (ImprovementTypes) 0 ) ), GC.getNumImprovementInfos() );
 
 	m_pbUnitPromotions = new bool[GC.getNumPromotionInfos()];
 	for (int i = 0; i < GC.getNumPromotionInfos(); ++i)

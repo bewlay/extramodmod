@@ -7669,6 +7669,7 @@ public:
 	int getNumSpawnUnits( int eUnit ) const;
 	int getTerrainWeights( int eTerrain ) const;
 	int getFeatureWeights( int eFeature ) const;
+	int getImprovementWeights( int eImprovement ) const;
 	
 	bool getUnitPromotions( int ePromotion ) const;
 	bool getPrereqTechs( int eTech ) const;
@@ -7700,6 +7701,7 @@ protected:
 	int* m_piNumSpawnUnits;
 	int* m_piTerrainWeights;
 	int* m_piFeatureWeights;
+	int* m_piImprovementWeights;
 	
 	bool* m_pbUnitPromotions;
 	bool* m_pbPrereqTechs;

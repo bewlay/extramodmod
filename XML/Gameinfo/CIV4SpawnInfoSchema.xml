@@ -29,6 +29,7 @@
 	
 	<ElementType name="TerrainType" content="textOnly"/>
 	<ElementType name="FeatureType" content="textOnly"/>
+	<ElementType name="ImprovementType" content="textOnly"/>
 	<ElementType name="iWeight" content="textOnly" dt:type="int"/>
 	<ElementType name="TerrainWeight" content="eltOnly">
 		<element type="TerrainType"/>
@@ -38,11 +39,18 @@
 		<element type="FeatureType"/>
 		<element type="iWeight"/>
 	</ElementType>
+	<ElementType name="ImprovementWeight" content="eltOnly">
+		<element type="ImprovementType"/>
+		<element type="iWeight"/>
+	</ElementType>
 	<ElementType name="TerrainWeights" content="eltOnly">
 		<element type="TerrainWeight" maxOccurs="*"/>
 	</ElementType>
 	<ElementType name="FeatureWeights" content="eltOnly">
 		<element type="FeatureWeight" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="ImprovementWeights" content="eltOnly">
+		<element type="ImprovementWeight" maxOccurs="*"/>
 	</ElementType>
 	
 	<ElementType name="PromotionType" content="textOnly"/>
@@ -74,6 +82,7 @@
 		<element type="SpawnUnits"/>
 		<element type="TerrainWeights" minOccurs="0"/>
 		<element type="FeatureWeights" minOccurs="0"/>
+		<element type="ImprovementWeights" minOccurs="0"/>
 		<element type="UnitPromotions" minOccurs="0"/>
 		<element type="PrereqTechs" minOccurs="0"/>
 		<element type="ObsoleteTechs" minOccurs="0"/>
