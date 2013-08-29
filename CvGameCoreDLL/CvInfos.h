@@ -7661,6 +7661,8 @@ public:
 	
 	int getMinRandomPromotions() const;
 	int getMaxRandomPromotions() const;
+
+	int getNumRandomIncludedSpawns() const;
 	
 	bool isNeverSpawn() const;
 	bool isExplorationResult() const;
@@ -7675,11 +7677,14 @@ public:
 	int getFeatureWeights( int eFeature ) const;
 	int getImprovementWeights( int eImprovement ) const;
 	
+	// LFGR_TODO: is...
 	bool getUnitPromotions( int ePromotion ) const;
+	bool isIncludedSpawns( int eSpawn ) const;
 	bool getPrereqTechs( int eTech ) const;
 	bool getObsoleteTechs( int eTech ) const;
 
 	bool read(CvXMLLoadUtility* pXML);
+	bool readPass2(CvXMLLoadUtility* pXML);
 	void read(FDataStreamBase* stream);
 	void write(FDataStreamBase* stream);
 
@@ -7695,6 +7700,7 @@ protected:
 	int m_iMaxWilderness;
 	int m_iMinRandomPromotions;
 	int m_iMaxRandomPromotions;
+	int m_iNumRandomIncludedSpawns;
 	bool m_bNeverSpawn;
 	bool m_bExplorationResult;
 	bool m_bExplorationNoPush;
@@ -7711,6 +7717,7 @@ protected:
 	int* m_piImprovementWeights;
 	
 	bool* m_pbUnitPromotions;
+	bool* m_pbIncludedSpawns;
 	bool* m_pbPrereqTechs;
 	bool* m_pbObsoleteTechs;
 };

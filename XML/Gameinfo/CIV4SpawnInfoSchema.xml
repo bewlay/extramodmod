@@ -12,6 +12,7 @@
 	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="iMinRandomPromotions" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxRandomPromotions" content="textOnly" dt:type="int"/>
+	<ElementType name="iNumRandomIncludedSpawns" content="textOnly" dt:type="int"/>
 	<ElementType name="bNeverSpawn" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bExplorationResult" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bExplorationNoPush" content="textOnly" dt:type="boolean"/>
@@ -61,6 +62,11 @@
 		<element type="PromotionType" maxOccurs="*"/>
 	</ElementType>
 	
+	<ElementType name="SpawnType" content="textOnly"/>
+	<ElementType name="IncludedSpawns" content="eltOnly">
+		<element type="SpawnType" maxOccurs="*"/>
+	</ElementType>
+	
 	<ElementType name="Tech" content="textOnly"/>
 	<ElementType name="PrereqTechs" content="eltOnly">
 		<element type="Tech" maxOccurs="*"/>
@@ -84,12 +90,14 @@
 		<element type="bNoRace" minOccurs="0"/>
 		<element type="UnitArtStyleType" minOccurs="0"/>
 		<element type="SpawnUnits"/>
-		<element type="TerrainWeights" minOccurs="0"/>
-		<element type="FeatureWeights" minOccurs="0"/>
-		<element type="ImprovementWeights" minOccurs="0"/>
 		<element type="iMinRandomPromotions" minOccurs="0"/>
 		<element type="iMaxRandomPromotions" minOccurs="0"/>
 		<element type="UnitPromotions" minOccurs="0"/>
+		<element type="iNumRandomIncludedSpawns" minOccurs="0"/>
+		<element type="IncludedSpawns" minOccurs="0"/>
+		<element type="TerrainWeights" minOccurs="0"/>
+		<element type="FeatureWeights" minOccurs="0"/>
+		<element type="ImprovementWeights" minOccurs="0"/>
 		<element type="PrereqTechs" minOccurs="0"/>
 		<element type="ObsoleteTechs" minOccurs="0"/>
 	</ElementType>

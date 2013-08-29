@@ -36,6 +36,13 @@ void CyMapGeneratorPythonInterface();
 void CyInfoPythonInterface1();
 void CyInfoPythonInterface2();
 void CyInfoPythonInterface3();
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+void CyInfoPythonInterface4();
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 void CySelectionGroupInterface();
 void CyArtFileMgrPythonInterface();
 void CyGameTextMgrInterface();
@@ -62,6 +69,13 @@ DllExport void DLLPublishToPython()
 	CyInfoPythonInterface1();
 	CyInfoPythonInterface2();
 	CyInfoPythonInterface3();
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+	CyInfoPythonInterface4();
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	CyHallOfFameInterface();
 	CyGameCoreUtilsPythonInterface();
 	CyMessageControlInterface();

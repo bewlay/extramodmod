@@ -12565,6 +12565,7 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI )
 
 	CvUnit* pHeadUnit = NULL;
 
+	// Random Promotions
 	std::vector<PromotionTypes> vePromotions;
 	for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ )
 		if( kSpawn.getUnitPromotions( ePromotion ) )
@@ -12586,6 +12587,24 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI )
 		if( iMaxRandPromotions != vePromotions.size() || iMaxRandPromotions != vePromotions.size() )
 			bRandPromotions = true;
 	}
+
+	// Random Included Spawns
+	std::vector< std::pair<SpawnTypes,int> > veIncludedSpawns;
+	for( int eIncSpawn = 0; eIncSpawn < GC.getNumSpawnInfos(); eIncSpawn++ )
+		if( kSpawn.isIncludedSpawns( eIncSpawn ) )
+		{
+			int iValue = getSpawnValue( (SpawnTypes) eIncSpawn, true );
+			if( iValue > 0 )
+				veIncludedSpawns.push_back( std::pair<SpawnTypes,int>( (SpawnTypes) eIncSpawn, iValue ) );
+		}
+
+	FAssertMsg( iRandomIncludedSpawns > (int) veIncludedSpawns.size(), "" );
+
+	int iRandomIncludedSpawns = 0;
+	if( kSpawn.getNumRandomIncludedSpawns() == -1 )
+		iRandomIncludedSpawns = (int) veIncludedSpawns.size();
+	else
+		iRandomIncludedSpawns = std::min( (int) veIncludedSpawns.size(), kSpawn.getNumRandomIncludedSpawns() );
 
 	for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
 	{
@@ -12617,6 +12636,32 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI )
 				for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ )
 					if( kSpawn.getUnitPromotions( ePromotion ) )
 						pUnit->setHasPromotion( (PromotionTypes) ePromotion, true );
+			}
+
+			if( iRandomIncludedSpawns > 0 )
+			{
+				std::vector< std::pair<SpawnTypes,int> > veTmpIncSpawns = veIncludedSpawns;
+				while( iRandomIncludedSpawns > 0 && veIncludedSpawns.size() > 0 )
+				{
+					int iBestIndex = -1;
+					int iBestValue = 0;
+					for( unsigned int i = 0; i < veTmpIncSpawns.size(); i++ )
+					{
+						int iLoopVal = veTmpIncSpawns[i].second;
+						iLoopVal += GC.getGameINLINE().getSorenRandNum( 100, "SpawnInfo rand weight" );
+						if( iLoopVal > iBestValue )
+						{
+							iBestValue = iLoopVal;
+							iBestIndex = i;
+						}
+					}
+					if( iBestIndex != -1 )
+					{
+						createSpawn( veTmpIncSpawns[iBestIndex].first, eUnitAI );
+						veIncludedSpawns.erase( veIncludedSpawns.begin() + iBestIndex );
+						iRandomIncludedSpawns--;
+					}
+				}
 			}
 			
 			pUnit->setUnitArtStyleType( kSpawn.getUnitArtStyleType() );

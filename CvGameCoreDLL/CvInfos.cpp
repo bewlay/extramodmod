@@ -28079,6 +28079,7 @@ CvSpawnInfo::CvSpawnInfo():
 	m_iMaxWilderness( 0 ),
 	m_iMinRandomPromotions( -1 ),
 	m_iMaxRandomPromotions( -1 ),
+	m_iNumRandomIncludedSpawns( -1 ),
 	m_bNeverSpawn( false ),
 	m_bExplorationResult( false ),
 	m_bExplorationNoPush( false ),
@@ -28090,6 +28091,7 @@ CvSpawnInfo::CvSpawnInfo():
 	m_piFeatureWeights( NULL ),
 	m_piImprovementWeights( NULL ),
 	m_pbUnitPromotions( NULL ),
+	m_pbIncludedSpawns( NULL ),
 	m_pbPrereqTechs( NULL ),
 	m_pbObsoleteTechs( NULL )
 {
@@ -28102,6 +28104,7 @@ CvSpawnInfo::~CvSpawnInfo()
 	SAFE_DELETE_ARRAY( m_piFeatureWeights );
 	SAFE_DELETE_ARRAY( m_piImprovementWeights );
 	SAFE_DELETE_ARRAY( m_pbUnitPromotions );
+	SAFE_DELETE_ARRAY( m_pbIncludedSpawns );
 	SAFE_DELETE_ARRAY( m_pbPrereqTechs );
 	SAFE_DELETE_ARRAY( m_pbObsoleteTechs );
 }
@@ -28139,6 +28142,11 @@ int CvSpawnInfo::getMinRandomPromotions() const
 int CvSpawnInfo::getMaxRandomPromotions() const
 {
 	return m_iMaxRandomPromotions;
+}
+
+int CvSpawnInfo::getNumRandomIncludedSpawns() const
+{
+	return m_iNumRandomIncludedSpawns;
 }
 
 bool CvSpawnInfo::isNeverSpawn() const
@@ -28206,6 +28214,13 @@ bool CvSpawnInfo::getUnitPromotions( int i ) const
 	return m_pbUnitPromotions ? m_pbUnitPromotions[i] : false;
 }
 
+bool CvSpawnInfo::isIncludedSpawns( int i ) const
+{
+	FAssertMsg( i < GC.getNumSpawnInfos(), "Index out of bounds" );
+	FAssertMsg( i > -1, "Index out of bounds" );
+	return m_pbIncludedSpawns ? m_pbIncludedSpawns[i] : false;
+}
+
 bool CvSpawnInfo::getPrereqTechs( int i ) const
 {
 	FAssertMsg( i < GC.getNumTechInfos(), "Index out of bounds" );
@@ -28231,6 +28246,7 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iMaxWilderness);
 	stream->Read(&m_iMinRandomPromotions);
 	stream->Read(&m_iMaxRandomPromotions);
+	stream->Read(&m_iNumRandomIncludedSpawns);
 	stream->Read(&m_bNeverSpawn);
 	stream->Read(&m_bExplorationResult);
 	stream->Read(&m_bExplorationNoPush);
@@ -28260,6 +28276,10 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	m_pbUnitPromotions = new bool[GC.getNumPromotionInfos()];
 	stream->Read(GC.getNumPromotionInfos(), m_pbUnitPromotions);
 	
+	SAFE_DELETE_ARRAY(m_pbIncludedSpawns);
+	m_pbIncludedSpawns = new bool[GC.getNumSpawnInfos()];
+	stream->Read(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
+	
 	SAFE_DELETE_ARRAY(m_pbPrereqTechs);
 	m_pbPrereqTechs = new bool[GC.getNumTechInfos()];
 	stream->Read(GC.getNumTechInfos(), m_pbPrereqTechs);
@@ -28280,6 +28300,7 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iMaxWilderness);
 	stream->Write(m_iMinRandomPromotions);
 	stream->Write(m_iMaxRandomPromotions);
+	stream->Write(m_iNumRandomIncludedSpawns);
 	stream->Write(m_bNeverSpawn);
 	stream->Write(m_bExplorationResult);
 	stream->Write(m_bExplorationNoPush);
@@ -28294,6 +28315,7 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumFeatureInfos(), m_piFeatureWeights);
 	stream->Write(GC.getNumFeatureInfos(), m_piImprovementWeights);
 	stream->Write(GC.getNumPromotionInfos(), m_pbUnitPromotions);
+	stream->Write(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
 	stream->Write(GC.getNumTechInfos(), m_pbPrereqTechs);
 	stream->Write(GC.getNumTechInfos(), m_pbObsoleteTechs);
 }
@@ -28315,6 +28337,7 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iMaxWilderness, "iMaxWilderness");
 	pXML->GetChildXmlValByName(&m_iMinRandomPromotions, "iMinRandomPromotions", -1);
 	pXML->GetChildXmlValByName(&m_iMaxRandomPromotions, "iMaxRandomPromotions", -1);
+	pXML->GetChildXmlValByName(&m_iNumRandomIncludedSpawns, "iNumRandomIncludedSpawns", -1);
 	pXML->GetChildXmlValByName(&m_bNeverSpawn, "bNeverSpawn");
 	pXML->GetChildXmlValByName(&m_bExplorationResult, "bExplorationResult");
 	pXML->GetChildXmlValByName(&m_bExplorationNoPush, "bExplorationNoPush");
@@ -28419,6 +28442,46 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 						{
 							break;
 						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	return true;
+}
+
+bool CvSpawnInfo::readPass2(CvXMLLoadUtility* pXML)
+{
+	CvString szTextVal;
+
+	m_pbIncludedSpawns = new bool[GC.getNumSpawnInfos()];
+	for (int i = 0; i < GC.getNumSpawnInfos(); ++i)
+	{
+		m_pbIncludedSpawns[i] = false;
+	}
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"IncludedSpawns"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						int iSpawn = pXML->FindInInfoClass(szTextVal);
+						if( iSpawn > -1 && iSpawn < GC.getNumSpawnInfos() )
+							m_pbIncludedSpawns[iSpawn] = true;
+						if (!pXML->GetNextXmlVal(szTextVal))
+							break;
 					}
 
 					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
