@@ -1568,6 +1568,20 @@ class CvEventManager:
 			if unit.isAlive() and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_WORKER') and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_SETTLE'):
 				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_STRONG'), True)
 
+		# Paramander with metal weapons fix
+		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_PARAMANDER'):
+			iBronze = gc.getInfoTypeForString('PROMOTION_BRONZE_WEAPONS')
+			iIron = gc.getInfoTypeForString('PROMOTION_IRON_WEAPONS')
+			iMithril = gc.getInfoTypeForString('PROMOTION_MITHRIL_WEAPONS')
+			if city.hasBonus(gc.getInfoTypeForString('BONUS_MITHRIL')):
+				unit.setHasPromotion(iBronze, False)
+				unit.setHasPromotion(iIron, False)
+				unit.setHasPromotion(iMithril, True)
+			else:
+				unit.setHasPromotion(iBronze, False)
+				unit.setHasPromotion(iIron, True)
+				unit.setHasPromotion(iMithril, False)
+
 		CvAdvisorUtils.unitBuiltFeats(city, unit)
 		
 		if (not self.__LOG_UNITBUILD):
