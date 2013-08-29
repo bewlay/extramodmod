@@ -130,6 +130,13 @@ public:
 
 	CvGraphicOptionInfo* getGraphicOptionInfo(int i) const;
 	CvGraphicOptionInfo* getGraphicOptionsInfoByIndex(int i) const;
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+	CvSpawnInfo* getSpawnInfo(int i) const;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// ArtInfos
 	CvArtInfoInterface* getInterfaceArtInfo(int i) const;
@@ -230,6 +237,13 @@ public:
 	int getNumMainMenus() const { return GC.getNumMainMenus(); }
 	int getNumInvisibleInfos() const { return GC.getNumInvisibleInfos(); }
 	int getNumVoteSourceInfos() const { return GC.getNumVoteSourceInfos(); }
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+	int getNumSpawnInfos() const { return GC.getNumSpawnInfos(); }
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// ArtInfos
 	int getNumInterfaceArtInfos() const { return ARTFILEMGR.getNumInterfaceArtInfos(); }

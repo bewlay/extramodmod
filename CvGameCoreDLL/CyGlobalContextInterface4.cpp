@@ -116,6 +116,15 @@ void CyGlobalContextPythonInterface4(python::class_<CyGlobalContext>& x)
 
 		.def("getNumVoteSourceInfos", &CyGlobalContext::getNumVoteSourceInfos, "int ()")
 		.def("getVoteSourceInfo", &CyGlobalContext::getVoteSourceInfo, python::return_value_policy<python::reference_existing_object>(), "Returns info object")
+		
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+		.def("getNumSpawnInfos", &CyGlobalContext::getNumSpawnInfos, "int ()")
+		.def("getSpawnInfo", &CyGlobalContext::getSpawnInfo, python::return_value_policy<python::reference_existing_object>(), "Returns info object")
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 		// ArtInfos
 		.def("getNumInterfaceArtInfos", &CyGlobalContext::getNumInterfaceArtInfos, "() - Total InterfaceArtnology Infos XML\\InterfaceArtnologies\\CIV4InterfaceArtInfos.xml")

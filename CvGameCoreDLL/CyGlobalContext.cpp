@@ -467,6 +467,17 @@ CvGraphicOptionInfo* CyGlobalContext::getGraphicOptionsInfoByIndex(int i) const
 	return &GC.getGraphicOptionInfo((GraphicOptionTypes) i);
 }
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+CvSpawnInfo* CyGlobalContext::getSpawnInfo(int i) const
+{
+	return &GC.getSpawnInfo((SpawnTypes) i);
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 
 CvInfoBase* CyGlobalContext::getConceptInfo(int i) const
 {

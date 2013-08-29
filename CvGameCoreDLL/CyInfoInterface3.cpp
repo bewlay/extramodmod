@@ -844,4 +844,28 @@ void CyInfoPythonInterface3()
 		.def("getLoading", &CvMainMenuInfo::getLoading, "string ()")
 		.def("getLoadingSlideshow", &CvMainMenuInfo::getLoadingSlideshow, "string ()")
 		;
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+	python::class_<CvSpawnInfo, python::bases<CvInfoBase> >("CvSpawnInfo")
+		.def("getUnitArtStyleType", &CvSpawnInfo::getUnitArtStyleType, "UnitArtStyleTypes ()")
+		.def("getWeight", &CvSpawnInfo::getWeight, "int ()")
+		.def("getProbability", &CvSpawnInfo::getProbability, "int ()")
+		.def("getMinWilderness", &CvSpawnInfo::getMinWilderness, "int ()")
+		.def("getMaxWilderness", &CvSpawnInfo::getMaxWilderness, "int ()")
+		.def("isNeverSpawn", &CvSpawnInfo::isNeverSpawn, "bool ()")
+		.def("isAnimal", &CvSpawnInfo::isAnimal, "bool ()")
+		.def("isWater", &CvSpawnInfo::isWater, "bool ()")
+		.def("isNoRace", &CvSpawnInfo::isNoRace, "bool ()")
+		.def("getNumSpawnUnits", &CvSpawnInfo::getNumSpawnUnits, "int ( UnitTypes eID )")
+		.def("getTerrainWeights", &CvSpawnInfo::getTerrainWeights, "int ( TerrainTypes eID )")
+		.def("getFeatureWeights", &CvSpawnInfo::getFeatureWeights, "int ( FeatureTypes eID )")
+		.def("getUnitPromotions", &CvSpawnInfo::getUnitPromotions, "int ( PromotionTypes eID )")
+		.def("getPrereqTechs", &CvSpawnInfo::getPrereqTechs, "int ( TechTypes eID )")
+		.def("getObsoleteTechs", &CvSpawnInfo::getObsoleteTechs, "int ( TechTypes eID )")
+		;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 }
