@@ -1260,18 +1260,21 @@ def reqExploreLair(caster):
 
 def spellExploreLair(caster):
 	pPlot = caster.plot()
-	iRnd = CyGame().getSorenRandNum(100, "Explore Lair") + caster.getLevel()
-	iDestroyLair = 0
-	if iRnd < 14:
-		iDestroyLair = cf.exploreLairBigBad(caster)
-	if iRnd >= 14 and iRnd < 44:
-		iDestroyLair = cf.exploreLairBad(caster)
-	if iRnd >= 44 and iRnd < 74:
-		iDestroyLair = cf.exploreLairNeutral(caster)
-	if iRnd >= 74 and iRnd < 94:
-		iDestroyLair = cf.exploreLairGood(caster)
-	if iRnd >= 94:
-		iDestroyLair = cf.exploreLairBigGood(caster)
+# WILDERNESS 08/2013 lfgr
+#	iRnd = CyGame().getSorenRandNum(100, "Explore Lair") + caster.getLevel()
+#	iDestroyLair = 0
+#	if iRnd < 14:
+#		iDestroyLair = cf.exploreLairBigBad(caster)
+#	if iRnd >= 14 and iRnd < 44:
+#		iDestroyLair = cf.exploreLairBad(caster)
+#	if iRnd >= 44 and iRnd < 74:
+#		iDestroyLair = cf.exploreLairNeutral(caster)
+#	if iRnd >= 74 and iRnd < 94:
+#		iDestroyLair = cf.exploreLairGood(caster)
+#	if iRnd >= 94:
+#		iDestroyLair = cf.exploreLairBigGood(caster)
+	iDestroyLair = cf.exploreLair( caster, False )
+# WILDERNESS end
 	if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
 		CyInterface().addMessage(caster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
 		pPlot.setImprovementType(-1)
@@ -1280,12 +1283,15 @@ def spellExploreLair(caster):
 
 def spellExploreLairEpic(caster):
 	pPlot = caster.plot()
-	iRnd = CyGame().getSorenRandNum(100, "Explore Lair") + caster.getLevel()
-	iDestroyLair = 0
-	if iRnd < 54:
-		iDestroyLair = cf.exploreLairBigBad(caster)
-	if iRnd >= 54:
-		iDestroyLair = cf.exploreLairBigGood(caster)
+# WILDERNESS 08/2013 lfgr
+#	iRnd = CyGame().getSorenRandNum(100, "Explore Lair") + caster.getLevel()
+#	iDestroyLair = 0
+#	if iRnd < 54:
+#		iDestroyLair = cf.exploreLairBigBad(caster)
+#	if iRnd >= 54:
+#		iDestroyLair = cf.exploreLairBigGood(caster)
+	iDestroyLair = cf.exploreLair( caster, True )
+# WILDERNESS end
 	if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
 		CyInterface().addMessage(caster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
 		pPlot.setImprovementType(-1)
