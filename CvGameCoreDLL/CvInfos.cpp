@@ -28078,6 +28078,7 @@ CvSpawnInfo::CvSpawnInfo():
 	m_iMinWilderness( 0 ),
 	m_iMaxWilderness( 0 ),
 	m_bNeverSpawn( false ),
+	m_bExplorationResult( false ),
 	m_bAnimal( false ),
 	m_bWater( false ),
 	m_bNoRace( false ),
@@ -28128,6 +28129,11 @@ int CvSpawnInfo::getMaxWilderness() const
 bool CvSpawnInfo::isNeverSpawn() const
 {
 	return m_bNeverSpawn;
+}
+
+bool CvSpawnInfo::isExplorationResult() const
+{
+	return m_bExplorationResult;
 }
 
 bool CvSpawnInfo::isAnimal() const
@@ -28197,6 +28203,7 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iMinWilderness);
 	stream->Read(&m_iMaxWilderness);
 	stream->Read(&m_bNeverSpawn);
+	stream->Read(&m_bExplorationResult);
 	stream->Read(&m_bAnimal);
 	stream->Read(&m_bWater);
 	stream->Read(&m_bNoRace);
@@ -28238,6 +28245,7 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iMinWilderness);
 	stream->Write(m_iMaxWilderness);
 	stream->Write(m_bNeverSpawn);
+	stream->Write(m_bExplorationResult);
 	stream->Write(m_bAnimal);
 	stream->Write(m_bWater);
 	stream->Write(m_bNoRace);
@@ -28268,6 +28276,7 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iMinWilderness, "iMinWilderness");
 	pXML->GetChildXmlValByName(&m_iMaxWilderness, "iMaxWilderness");
 	pXML->GetChildXmlValByName(&m_bNeverSpawn, "bNeverSpawn");
+	pXML->GetChildXmlValByName(&m_bExplorationResult, "bExplorationResult");
 	pXML->GetChildXmlValByName(&m_bAnimal, "bAnimal");
 	pXML->GetChildXmlValByName(&m_bWater, "bWater");
 	pXML->GetChildXmlValByName(&m_bNoRace, "bNoRace");

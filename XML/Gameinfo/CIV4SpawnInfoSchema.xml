@@ -11,6 +11,7 @@
 	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="bNeverSpawn" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bExplorationResult" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAnimal" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bWater" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoRace" content="textOnly" dt:type="boolean"/>
@@ -65,6 +66,7 @@
 		<element type="iMinWilderness"/>
 		<element type="iMaxWilderness"/>
 		<element type="bNeverSpawn" minOccurs="0"/>
+		<element type="bExplorationResult" minOccurs="0"/>
 		<element type="bAnimal" minOccurs="0"/>
 		<element type="bWater" minOccurs="0"/>
 		<element type="bNoRace" minOccurs="0"/>

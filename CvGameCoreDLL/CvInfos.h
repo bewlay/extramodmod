@@ -7660,6 +7660,7 @@ public:
 	int getMaxWilderness() const;
 	
 	bool isNeverSpawn() const;
+	bool isExplorationResult() const;
 	bool isAnimal() const;
 	bool isWater() const;
 	
@@ -7688,6 +7689,7 @@ protected:
 	int m_iMinWilderness;
 	int m_iMaxWilderness;
 	bool m_bNeverSpawn;
+	bool m_bExplorationResult;
 	bool m_bAnimal;
 	bool m_bWater;
 	
