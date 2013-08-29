@@ -12565,6 +12565,28 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI )
 
 	CvUnit* pHeadUnit = NULL;
 
+	std::vector<PromotionTypes> vePromotions;
+	for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ )
+		if( kSpawn.getUnitPromotions( ePromotion ) )
+			vePromotions.push_back( (PromotionTypes) ePromotion );
+
+	bool bRandPromotions = false;
+	int iMinRandPromotions = kSpawn.getMinRandomPromotions();
+	int iMaxRandPromotions = kSpawn.getMaxRandomPromotions();
+
+	FAssertMsg( iMaxRandPromotions == -1 || iMaxRandPromotions >= iMaxRandPromotions, "" );
+
+	if( iMinRandPromotions != -1 || iMaxRandPromotions != 1 )
+	{
+		if( iMaxRandPromotions == -1 )
+			iMaxRandPromotions = vePromotions.size();
+		if( iMinRandPromotions == -1 )
+			iMinRandPromotions = 0;
+		
+		if( iMaxRandPromotions != vePromotions.size() || iMaxRandPromotions != vePromotions.size() )
+			bRandPromotions = true;
+	}
+
 	for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
 	{
 		for( int j = 0; j < kSpawn.getNumSpawnUnits( (UnitTypes) eUnit ); j++ )
@@ -12578,9 +12600,24 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI )
 			if( kSpawn.isNoRace() )
 				pUnit->setRace( NO_PROMOTION );
 
-			for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ )
-				if( kSpawn.getUnitPromotions( ePromotion ) )
-					pUnit->setHasPromotion( (PromotionTypes) ePromotion, true );
+			if( bRandPromotions )
+			{
+				std::vector<PromotionTypes> veTmpPromotions = vePromotions;
+				int iNumPromotions = iMinRandPromotions + GC.getGameINLINE().getSorenRandNum( iMaxRandPromotions - iMinRandPromotions, "SpawnInfo num promotions" );
+				while( iNumPromotions > 0 && veTmpPromotions.size() > 0 )
+				{
+					int iRnd = GC.getGameINLINE().getSorenRandNum( veTmpPromotions.size(), "SpawnInfo rand promotion" );
+					pUnit->setHasPromotion( veTmpPromotions[iRnd], true );
+					veTmpPromotions.erase( veTmpPromotions.begin() + iRnd );
+					iNumPromotions--;
+				}
+			}
+			else
+			{
+				for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ )
+					if( kSpawn.getUnitPromotions( ePromotion ) )
+						pUnit->setHasPromotion( (PromotionTypes) ePromotion, true );
+			}
 			
 			pUnit->setUnitArtStyleType( kSpawn.getUnitArtStyleType() );
 

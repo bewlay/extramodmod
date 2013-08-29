@@ -28077,6 +28077,8 @@ CvSpawnInfo::CvSpawnInfo():
 	m_iProbability( 100 ),
 	m_iMinWilderness( 0 ),
 	m_iMaxWilderness( 0 ),
+	m_iMinRandomPromotions( -1 ),
+	m_iMaxRandomPromotions( -1 ),
 	m_bNeverSpawn( false ),
 	m_bExplorationResult( false ),
 	m_bAnimal( false ),
@@ -28126,6 +28128,16 @@ int CvSpawnInfo::getMinWilderness() const
 int CvSpawnInfo::getMaxWilderness() const
 {
 	return m_iMaxWilderness;
+}
+
+int CvSpawnInfo::getMinRandomPromotions() const
+{
+	return m_iMinRandomPromotions;
+}
+
+int CvSpawnInfo::getMaxRandomPromotions() const
+{
+	return m_iMaxRandomPromotions;
 }
 
 bool CvSpawnInfo::isNeverSpawn() const
@@ -28211,6 +28223,8 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iProbability);
 	stream->Read(&m_iMinWilderness);
 	stream->Read(&m_iMaxWilderness);
+	stream->Read(&m_iMinRandomPromotions);
+	stream->Read(&m_iMaxRandomPromotions);
 	stream->Read(&m_bNeverSpawn);
 	stream->Read(&m_bExplorationResult);
 	stream->Read(&m_bAnimal);
@@ -28257,6 +28271,8 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iProbability);
 	stream->Write(m_iMinWilderness);
 	stream->Write(m_iMaxWilderness);
+	stream->Write(m_iMinRandomPromotions);
+	stream->Write(m_iMaxRandomPromotions);
 	stream->Write(m_bNeverSpawn);
 	stream->Write(m_bExplorationResult);
 	stream->Write(m_bAnimal);
@@ -28289,6 +28305,8 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iProbability, "iProbability", 100 );
 	pXML->GetChildXmlValByName(&m_iMinWilderness, "iMinWilderness");
 	pXML->GetChildXmlValByName(&m_iMaxWilderness, "iMaxWilderness");
+	pXML->GetChildXmlValByName(&m_iMinRandomPromotions, "iMinRandomPromotions", -1);
+	pXML->GetChildXmlValByName(&m_iMaxRandomPromotions, "iMaxRandomPromotions", -1);
 	pXML->GetChildXmlValByName(&m_bNeverSpawn, "bNeverSpawn");
 	pXML->GetChildXmlValByName(&m_bExplorationResult, "bExplorationResult");
 	pXML->GetChildXmlValByName(&m_bAnimal, "bAnimal");

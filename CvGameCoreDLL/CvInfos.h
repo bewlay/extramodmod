@@ -7659,6 +7659,9 @@ public:
 	int getMinWilderness() const;
 	int getMaxWilderness() const;
 	
+	int getMinRandomPromotions() const;
+	int getMaxRandomPromotions() const;
+	
 	bool isNeverSpawn() const;
 	bool isExplorationResult() const;
 	bool isAnimal() const;
@@ -7689,6 +7692,8 @@ protected:
 	int m_iProbability;
 	int m_iMinWilderness;
 	int m_iMaxWilderness;
+	int m_iMinRandomPromotions;
+	int m_iMaxRandomPromotions;
 	bool m_bNeverSpawn;
 	bool m_bExplorationResult;
 	bool m_bAnimal;

@@ -10,6 +10,8 @@
 	<ElementType name="iProbability" content="textOnly" dt:type="int"/>
 	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
+	<ElementType name="iMinRandomPromotions" content="textOnly" dt:type="int"/>
+	<ElementType name="iMaxRandomPromotions" content="textOnly" dt:type="int"/>
 	<ElementType name="bNeverSpawn" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bExplorationResult" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAnimal" content="textOnly" dt:type="boolean"/>
@@ -83,6 +85,8 @@
 		<element type="TerrainWeights" minOccurs="0"/>
 		<element type="FeatureWeights" minOccurs="0"/>
 		<element type="ImprovementWeights" minOccurs="0"/>
+		<element type="iMinRandomPromotions" minOccurs="0"/>
+		<element type="iMaxRandomPromotions" minOccurs="0"/>
 		<element type="UnitPromotions" minOccurs="0"/>
 		<element type="PrereqTechs" minOccurs="0"/>
 		<element type="ObsoleteTechs" minOccurs="0"/>
