@@ -145,6 +145,7 @@ class CustomFunctions:
 				iSpawnProb = 1
 			else :
 				iSpawnProb = 2
+			#iSpawnProb = 3 # TEST
 			if( CyGame().getSorenRandNum( 3, "Explore Lair" ) < iSpawnProb ) :
 				iDestroyLair = self.doSpawn( pUnit, eSpawn )
 			else :
@@ -167,8 +168,10 @@ class CustomFunctions:
 		# Spawn
 		pPlot.createSpawn( eSpawn, UnitAITypes.NO_UNITAI )
 		
-		# TODO: Specific texts for spawns
-		CyInterface().addMessage( pUnit.getOwner(), True, 25, CyTranslator().getText( "TXT_KEY_MESSAGE_EXPLORE_LAIR_BIGBAD", () ), '', 1, 'Art/Interface/Buttons/Spells/Explore Lair.dds', ColorTypes( 7 ), pPlot.getX(), pPlot.getY(), True, True )
+		sMessage = gc.getSpawnInfo( eSpawn ).getDescription()
+		if( sMessage == "" ) :
+			sMessage = CyTranslator().getText( "TXT_KEY_MESSAGE_EXPLORE_LAIR_BIGBAD", () )
+		CyInterface().addMessage( pUnit.getOwner(), True, 25, sMessage, '', 1, 'Art/Interface/Buttons/Spells/Explore Lair.dds', ColorTypes( 7 ), pPlot.getX(), pPlot.getY(), True, True )
 		
 		if( pPlot.getWilderness() >= 50 ) :
 			return 0
