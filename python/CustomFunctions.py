@@ -156,17 +156,22 @@ class CustomFunctions:
 	def doSpawn( self, pUnit, eSpawn ) :
 		pPlot = pUnit.plot()
 		
-		# Push units out
+		# Push units out or set spawn plot
+		pSpawnPlot = pPlot
+		
 		pPlot2 = self.findClearPlot( -1, pPlot )
 		if pPlot2 != -1:
-			for i in range( pPlot.getNumUnits(), -1, -1 ):
-				pUnit = pPlot.getUnit( i )
-				pUnit.setXY( pPlot2.getX(), pPlot2.getY(), True, True, True )
+			if( gc.getSpawnInfo( eSpawn ).isExplorationNoPush() ) :
+				pSpawnPlot = pPlot2
+			else :
+				for i in range( pPlot.getNumUnits(), -1, -1 ):
+					pUnit = pPlot.getUnit( i )
+					pUnit.setXY( pPlot2.getX(), pPlot2.getY(), True, True, True )
 		else:
 			raise Exception( "Couldn't find clear plot to move unit (we shouldn't have reached this point then)" )
 		
 		# Spawn
-		pPlot.createSpawn( eSpawn, UnitAITypes.NO_UNITAI )
+		pSpawnPlot.createSpawn( eSpawn, UnitAITypes.NO_UNITAI )
 		
 		sMessage = gc.getSpawnInfo( eSpawn ).getDescription()
 		if( sMessage == "" ) :

@@ -7668,6 +7668,7 @@ public:
 	bool isWater() const;
 	
 	bool isNoRace() const;
+	bool isExplorationNoPush() const;
 	
 	int getNumSpawnUnits( int eUnit ) const;
 	int getTerrainWeights( int eTerrain ) const;
@@ -7696,6 +7697,7 @@ protected:
 	int m_iMaxRandomPromotions;
 	bool m_bNeverSpawn;
 	bool m_bExplorationResult;
+	bool m_bExplorationNoPush;
 	bool m_bAnimal;
 	bool m_bWater;
 	
