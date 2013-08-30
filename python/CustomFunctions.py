@@ -467,7 +467,7 @@ class CustomFunctions:
 		if pPlayer.canReceiveGoody(pPlot, gc.getInfoTypeForString('GOODY_GRAVE_TECH'), caster):
 			lList = lList + ['TECH']
 		if not pPlot.isWater():
-			lList = lList + ['ITEM_JADE_TORC', 'ITEM_ROD_OF_WINDS', 'ITEM_TIMOR_MASK', 'PRISONER_ADVENTURER', 'PRISONER_ARTIST', 'PRISONER_COMMANDER', 'PRISONER_ENGINEER', 'PRISONER_MERCHANT', 'PRISONER_PROPHET', 'PRISONER_SCIENTIST']
+			lList = lList + ['ITEM_JADE_TORC', 'ITEM_ROD_OF_WINDS', 'ITEM_TIMOR_MASK', 'PRISONER_ADVENTURER', 'PRISONER_ARTIST', 'PRISONER_GENERAL', 'PRISONER_ENGINEER', 'PRISONER_MERCHANT', 'PRISONER_PROPHET', 'PRISONER_SCIENTIST']
 			if pPlot.getBonusType(-1) == -1:
 				lList = lList + ['BONUS_MANA']
 				if pPlayer.isHasTech(gc.getInfoTypeForString('TECH_MINING')):
@@ -545,8 +545,8 @@ class CustomFunctions:
 		if sGoody == 'PRISONER_CHAMPION':
 			pPlayer.receiveGoody(pPlot, gc.getInfoTypeForString('GOODY_EXPLORE_LAIR_PRISONER_CHAMPION'), caster)
 			return 100
-		if sGoody == 'PRISONER_COMMANDER':
-			pPlayer.receiveGoody(pPlot,gc.getInfoTypeForString('GOODY_EXPLORE_LAIR_PRISONER_COMMANDER'), caster)
+		if sGoody == 'PRISONER_GENERAL':
+			pPlayer.receiveGoody(pPlot,gc.getInfoTypeForString('GOODY_EXPLORE_LAIR_PRISONER_GENERAL'), caster)
 			return 100
 		if sGoody == 'PRISONER_ENGINEER':
 			pPlayer.receiveGoody(pPlot,gc.getInfoTypeForString('GOODY_EXPLORE_LAIR_PRISONER_ENGINEER'), caster)
@@ -757,6 +757,112 @@ class CustomFunctions:
 						if CyGame().getSorenRandNum(100, "Flames") < iFlamesSpreadChance:
 							pPlot.setFeatureType(iFlames, 0)
 
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+	def doTurnGrigori(self, iPlayer):
+		gc = CyGlobalContext() 
+		pPlayer = gc.getPlayer(iPlayer)
+	
+		self.doChanceAdventurerSpawn(iPlayer)
+
+		iGrigoriSpawn 	= pPlayer.getCivCounter()
+		iGrigoriMod 	= pPlayer.getCivCounterMod()
+
+# Initialize the adventurer counter in case it has not been initialized.		
+		if iGrigoriMod < 1000:
+			pPlayer.setCivCounterMod(1000)
+			iGrigoriMod = 1000
+
+		if iGrigoriSpawn >= iGrigoriMod:
+			# Spawn an adventurer.
+			pCapital = pPlayer.getCapitalCity()
+			pAdventurer = pPlayer.createGreatPeople(gc.getInfoTypeForString('UNIT_ADVENTURER'), False, False, pCapital.getX(), pCapital.getY())
+			pPlayer.changeCivCounter(0 - iGrigoriMod)
+			pPlayer.changeCivCounterMod(1000)
+
+	def doChanceAdventurerSpawn(self, iPlayer):
+		gc = CyGlobalContext() 
+		pPlayer = gc.getPlayer(iPlayer)
+
+		if pPlayer.getNumCities() > 0 and pPlayer.getDisableProduction() == 0:
+			iNumTaverns      = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_TAVERN_GRIGORI'))
+			iNumGuilds 		 = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_ADVENTURERS_GUILD'))
+			iNumPalace 		 = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_PALACE_GRIGORI'))
+
+			iNumArchery      = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_ARCHERY_RANGE'))
+			iNumHunting      = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_HUNTING_LODGE'))
+			iNumInfirmary    = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_INFIRMARY'))
+			iNumMageGuild    = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_MAGE_GUILD'))
+			iNumStable       = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_STABLE'))
+			iNumTrainingYard = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_TRAINING_YARD'))
+
+			iNumCommandPost  = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_COMMAND_POST'))
+			iNumNationalEpic = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_NATIONAL_EPIC'))
+			iNumHeroicEpic   = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_HEROIC_EPIC'))
+			iNumDragonsHoard = pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_THE_DRAGONS_HORDE'))
+			
+# Different buildings give different modifiers.
+			iMinor           = 1
+			iSmall           = 6
+			iMedium          = 10
+			iBig             = 20
+			iHuge            = 40
+
+# Original "adventurer" buildings.
+			iPalaceMod       = iNumPalace       * iHuge
+			iTavernsMod      = iNumTaverns      * iMedium
+			iGuildsMod 		 = iNumGuilds       * iBig
+
+# Additional buildings.
+			iArcheryMod      = iNumArchery      * iMinor
+			iHuntingMod      = iNumHunting      * iMinor
+			iInfirmaryMod    = iNumInfirmary    * iMinor
+			iMageGuildMod    = iNumMageGuild    * iMinor
+			iStableMod       = iNumStable       * iMinor
+			iTrainingYardMod = iNumTrainingYard * iMinor
+
+			iCommandPostMod  = iNumCommandPost  * iSmall
+			iNationalEpicMod = iNumNationalEpic * iBig
+			iHeroicEpicMod   = iNumHeroicEpic   * iBig
+			iDragonsHoardMod = iNumDragonsHoard * iHuge
+
+			iBuildingMod = iPalaceMod + iTavernsMod + iGuildsMod + iArcheryMod + iHuntingMod + iMageGuildMod + iStableMod + iTrainingYardMod + iCommandPostMod + iNationalEpicMod + iHeroicEpicMod + iDragonsHoardMod
+
+# Allows specialists to influence the adventurer counter after their city has built a Citizen's Forum.
+			iForum          = gc.getInfoTypeForString('BUILDING_FORUM')
+			iNumSpecialists = 0
+
+			for pyCity in PyPlayer(iPlayer).getCityList():
+				pCity = pyCity.GetCy()
+				if pCity.getNumBuilding(iForum) > 0:
+					for eSpec in range(gc.getNumSpecialistInfos()):
+						iNumSpecialists += pCity.getSpecialistCount(eSpec) + pCity.getFreeSpecialistCount(eSpec)
+
+			iSpecialistMod = (iNumSpecialists * iMinor)
+
+# AI modifier
+			iAImod = 1
+			if not pPlayer.isHuman():
+				iAImod = 1.20
+
+# Civics can give a multiplier.
+			iCivicMult       = 1
+
+			iRepublic        = gc.getInfoTypeForString('CIVIC_REPUBLIC')
+			iPacifism        = gc.getInfoTypeForString('CIVIC_PACIFISM')
+
+			if pPlayer.isCivic(iRepublic):
+				iCivicMult   = 1.10
+			elif pPlayer.isCivic(iPacifism):
+				iCivicMult   = 1.10
+
+# Actual value
+			iGrigoriSpawn = round(((iBuildingMod + iSpecialistMod) * iCivicMult * iAImod), 2)
+			iGrigoriSpawn = int(iGrigoriSpawn)
+			iGrigoriSpawn = self.scaleInverse(iGrigoriSpawn)
+			
+			pPlayer.changeCivCounter(iGrigoriSpawn)
+#AdventurerCounter End
+
 	def doTurnKhazad(self, iPlayer):
 		pPlayer = gc.getPlayer(iPlayer)
 		if pPlayer.getNumCities() > 0:
@@ -958,6 +1064,9 @@ class CustomFunctions:
 				continue
 
 			if pTargetPlayer.getTeam() == pCasterPlayer.getTeam():
+				continue
+
+			if (gc.getTeam(pCasterPlayer.getTeam()).isVassal(pTargetPlayer.getTeam())):
 				continue
 
 			iBaseModifier = 100
@@ -1512,3 +1621,16 @@ class CustomFunctions:
 		#CyInterface().addMessage(caster.getOwner(),True,25,"NAME : "+sFull,'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Rob Grave.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
 
 		return sFull
+
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+	def scaleInverse(self, iGameTurns):
+		#Scales things by gamespeed; Longer game speeds yield smaller amounts. Use for incremental effects (Spawn Functions, for instance)
+		gc 			 	= CyGlobalContext() #Cause local variables are faster
+		getInfoType	 	= gc.getInfoTypeForString
+		gameSpeedInfo 	= gc.getGameSpeedInfo
+		iNumTurnsChosenSpeed = gameSpeedInfo(CyGame().getGameSpeedType()).getGameTurnInfo(0).iNumGameTurnsPerIncrement
+		iNumTurnsNormalSpeed = gameSpeedInfo(getInfoType("GAMESPEED_NORMAL")).getGameTurnInfo(0).iNumGameTurnsPerIncrement
+		fScalingFactor = float(iNumTurnsNormalSpeed) / float(iNumTurnsChosenSpeed)
+		iGameTurnsScaled = int(fScalingFactor * iGameTurns)
+		return max(1, iGameTurnsScaled)
+#AdventurerCounter End

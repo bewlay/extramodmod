@@ -114,11 +114,21 @@ public:
 	CvWString getNewCityName() const;																																								// Exposed to Python
 	void getCivilizationCityName(CvWString& szBuffer, CivilizationTypes eCivilization) const;
 	bool isCityNameValid(CvWString& szName, bool bTestDestroyed = true) const;
-
+	
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Added parameter szName                                                                       */
+/************************************************************************************************/
+/*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION);							// Exposed to Python
 	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true);
 //<<<<Unofficial Bug Fix: End Modify
+*/
+	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, CvWString szName = "");
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	void disbandUnit(bool bAnnounce);																																					// Exposed to Python
 	void killUnits();																																													// Exposed to Python
 
@@ -1227,6 +1237,19 @@ public:
     int getNumSettlements() const;
 	bool isNoDiplomacyWithEnemies() const;
 	void changeNoDiplomacyWithEnemies(int iChange);
+/*************************************************************************************************/
+/**	CivCounter			               		10/27/09    						Valkrionn		**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+    int getCivCounter() const;
+    void changeCivCounter(int iChange);
+	void setCivCounter(int iNewValue);
+    int getCivCounterMod() const;
+    void changeCivCounterMod(int iChange);
+	void setCivCounterMod(int iNewValue);
+/*************************************************************************************************/
+/**	CivCounter								END													**/
+/*************************************************************************************************/
 	bool isHideUnits() const;
 	void setHideUnits(bool bNewValue);
 	bool isSeeInvisible() const;
@@ -1583,6 +1606,15 @@ protected:
     bool m_bAssimilation;
     bool m_bDeclaringWar;
 	//bool m_bDisableHuman;				// Set to true to disable isHuman() check
+/*************************************************************************************************/
+/**	CivCounter			               		10/27/09    						Valkrionn		**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+    int m_iCivCounter;
+    int m_iCivCounterMod;
+/*************************************************************************************************/
+/**	CivCounter								END													**/
+/*************************************************************************************************/
     bool m_bHideUnits;
     bool m_bIgnoreFood;
     bool m_bInsane;
