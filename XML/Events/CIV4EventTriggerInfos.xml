@@ -8261,6 +8261,9 @@
 				<Event>EVENT_WAYWARD_ELVES_4</Event>
 				<Event>EVENT_WAYWARD_ELVES_5</Event>
 			</Events>
+			<OrPreReqs>
+				<PrereqTech>TECH_EDUCATION</PrereqTech>
+			</OrPreReqs>
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDo>canTriggerPlotEmpty</PythonCanDo>
 		</EventTriggerInfo>
