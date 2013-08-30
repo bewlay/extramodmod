@@ -659,7 +659,7 @@
 					<iWeight>30</iWeight>
 				</FeatureWeight>
 				<FeatureWeight>
-					<FeatureType>FEATURE_ANCIENT_FOREST</FeatureType>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
 					<iWeight>100</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
@@ -703,7 +703,7 @@
 					<iWeight>30</iWeight>
 				</FeatureWeight>
 				<FeatureWeight>
-					<FeatureType>FEATURE_ANCIENT_FOREST</FeatureType>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
 					<iWeight>30</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
