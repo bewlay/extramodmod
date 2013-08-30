@@ -7658,6 +7658,7 @@ public:
 	int getProbability() const;
 	int getMinWilderness() const;
 	int getMaxWilderness() const;
+	int getPrereqGlobalCounter() const;
 	
 	int getMinRandomPromotions() const;
 	int getMaxRandomPromotions() const;
@@ -7698,6 +7699,7 @@ protected:
 	int m_iProbability;
 	int m_iMinWilderness;
 	int m_iMaxWilderness;
+	int m_iPrereqGlobalCounter;
 	int m_iMinRandomPromotions;
 	int m_iMaxRandomPromotions;
 	int m_iNumRandomIncludedSpawns;

@@ -28076,7 +28076,8 @@ CvSpawnInfo::CvSpawnInfo():
 	m_iWeight( 0 ),
 	m_iProbability( 100 ),
 	m_iMinWilderness( 0 ),
-	m_iMaxWilderness( 0 ),
+	m_iMaxWilderness( MAX_INT ),
+	m_iPrereqGlobalCounter( 0 ),
 	m_iMinRandomPromotions( -1 ),
 	m_iMaxRandomPromotions( -1 ),
 	m_iNumRandomIncludedSpawns( -1 ),
@@ -28132,6 +28133,11 @@ int CvSpawnInfo::getMinWilderness() const
 int CvSpawnInfo::getMaxWilderness() const
 {
 	return m_iMaxWilderness;
+}
+
+int CvSpawnInfo::getPrereqGlobalCounter() const
+{
+	return m_iPrereqGlobalCounter;
 }
 
 int CvSpawnInfo::getMinRandomPromotions() const
@@ -28244,6 +28250,7 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iProbability);
 	stream->Read(&m_iMinWilderness);
 	stream->Read(&m_iMaxWilderness);
+	stream->Read(&m_iPrereqGlobalCounter);
 	stream->Read(&m_iMinRandomPromotions);
 	stream->Read(&m_iMaxRandomPromotions);
 	stream->Read(&m_iNumRandomIncludedSpawns);
@@ -28298,6 +28305,7 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iProbability);
 	stream->Write(m_iMinWilderness);
 	stream->Write(m_iMaxWilderness);
+	stream->Write(m_iPrereqGlobalCounter);
 	stream->Write(m_iMinRandomPromotions);
 	stream->Write(m_iMaxRandomPromotions);
 	stream->Write(m_iNumRandomIncludedSpawns);
@@ -28335,6 +28343,7 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iProbability, "iProbability", 100 );
 	pXML->GetChildXmlValByName(&m_iMinWilderness, "iMinWilderness");
 	pXML->GetChildXmlValByName(&m_iMaxWilderness, "iMaxWilderness");
+	pXML->GetChildXmlValByName(&m_iPrereqGlobalCounter, "iPrereqGlobalCounter");
 	pXML->GetChildXmlValByName(&m_iMinRandomPromotions, "iMinRandomPromotions", -1);
 	pXML->GetChildXmlValByName(&m_iMaxRandomPromotions, "iMaxRandomPromotions", -1);
 	pXML->GetChildXmlValByName(&m_iNumRandomIncludedSpawns, "iNumRandomIncludedSpawns", -1);

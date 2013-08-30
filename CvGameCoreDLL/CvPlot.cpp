@@ -12533,6 +12533,10 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bBarbTech )
 	{
 		return 0;
 	}
+
+	if( GC.getGameINLINE().getGlobalCounter() < kSpawn.getPrereqGlobalCounter() )
+		return 0;
+
 	if( bBarbTech )
 	{
 		for( int eTech = 0; eTech < GC.getNumTechInfos(); eTech++ )

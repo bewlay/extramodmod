@@ -10,6 +10,7 @@
 	<ElementType name="iProbability" content="textOnly" dt:type="int"/>
 	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
+	<ElementType name="iPrereqGlobalCounter" content="textOnly" dt:type="int"/>
 	<ElementType name="iMinRandomPromotions" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxRandomPromotions" content="textOnly" dt:type="int"/>
 	<ElementType name="iNumRandomIncludedSpawns" content="textOnly" dt:type="int"/>
@@ -82,6 +83,7 @@
 		<element type="iProbability" minOccurs="0"/>
 		<element type="iMinWilderness"/>
 		<element type="iMaxWilderness"/>
+		<element type="iPrereqGlobalCounter" minOccurs="0"/>
 		<element type="bNeverSpawn" minOccurs="0"/>
 		<element type="bExplorationResult" minOccurs="0"/>
 		<element type="bExplorationNoPush" minOccurs="0"/>
