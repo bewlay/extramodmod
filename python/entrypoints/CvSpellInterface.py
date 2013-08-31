@@ -705,13 +705,6 @@ def reqDeciusJoin(caster):
 def spellDeciusJoin(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlot = caster.plot()
-		# lfgr GP_NAMES 07/2013
-		if( not SDTK.sdObjectExists( "GPNames", caster ) ) :
-			SDTK.sdObjectInit( "GPNames", caster, {} )
-		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", pCommander.getName() )
-		if( caster.getNameNoDesc() != "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
-			caster.setName( pCommander.getName() )
-		# lfgr end
 	iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
 	pDecius = -1
 	for i in range(pPlot.getNumUnits()):
