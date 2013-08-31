@@ -124,7 +124,7 @@ class CustomFunctions:
 # WILDERNESS 08/2013 lfgr
 	def exploreLair( self, pUnit, bEpic ) :
 		pPlot = pUnit.plot()
-		iRnd = CyGame().getSorenRandNum( 200, "Explore Lair" ) - 100 + min( 75, pUnit.getLevel() * 2 )
+		iRnd = CyGame().getSorenRandNum( 150, "Explore Lair" ) - 75 + min( 75, ( pUnit.getLevel() - 5 ) * 3 )
 		if( iRnd >= 0 ) : # Good
 			iRnd += pPlot.getWilderness() / 2
 			if( bEpic ) :
@@ -202,10 +202,10 @@ class CustomFunctions:
 			if( sType == 'DEATH' ) :
 				pUnit.kill( True, 0 )
 			elif( sType == 'COLLAPSE' ) :
-				pUnit.doDamageNoCaster( 50, 90, self.saveGetInfoType( gc.getNumDamageTypeInfos(), 'DAMAGE_PHYSICAL' ), False )
+				pUnit.doDamageNoCaster( 50, 90, self.getInfoTypeForString( 'DAMAGE_PHYSICAL' ), False )
 			elif( sType == 'POISONED' ) :
 				pUnit.setHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_POISONED' ), True )
-				pUnit.doDamageNoCaster( 25, 90, self.saveGetInfoType( gc.getNumDamageTypeInfos(), 'DAMAGE_POISON' ), False )
+				pUnit.doDamageNoCaster( 25, 90, gc.getInfoTypeForString( 'DAMAGE_POISON' ), False )
 			elif( sType == 'NOTHING' ) :
 				pass
 			elif( sType == 'CAGE' ) :
@@ -264,7 +264,7 @@ class CustomFunctions:
 			pPlot.setBonusType( eBonus )
 		
 		else :
-			raise Exception( "Unknown outcome type: %s" % ( tOutcome[0] ) )
+			raise Exception( "Unknown outcome type: %s" % ( str( tOutcome[0] ) ) )
 		
 		if( sMessage != None ) :
 			eColor = -1
@@ -289,10 +289,12 @@ class CustomFunctions:
 		for eSpawn in range( gc.getNumSpawnInfos() ) :
 			pSpawn = gc.getSpawnInfo( eSpawn )
 			if( pSpawn.isExplorationResult() ) :
-				iValue = pPlot.getSpawnValue( eSpawn, True ) + CyGame().getSorenRandNum( 100, "Pick SpawnInfo" )
-				if( eBestSpawn == None or iValue > iBestValue ) :
-					eBestSpawn = eSpawn
-					iBestValue = iValue
+				iValue = pPlot.getSpawnValue( eSpawn, True )
+				if( iValue > 0 ) :
+					iValue += CyGame().getSorenRandNum( 100, "Pick SpawnInfo" )
+					if( eBestSpawn == None or iValue > iBestValue ) :
+						eBestSpawn = eSpawn
+						iBestValue = iValue
 		
 		return eBestSpawn
 		
@@ -411,9 +413,6 @@ class CustomFunctions:
 			if( not pPlot.isWater() ) :
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ADVENTURER' ) )
 		
-		if( len( lOutcomes ) == 0 ) :
-			lOutcomes.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
-		
 		lResult = []
 		for tOutcome in lOutcomes :
 			bValid = True
@@ -437,9 +436,10 @@ class CustomFunctions:
 				lResult.append( tOutcome )
 		
 		if( len( lResult ) == 0 ) :
-			raise Exception( "No outcome available, at last 'NOTHING' should be there" )
-		else :
-			return lResult[CyGame().getSorenRandNum( len( lResult ), "Pick Outcome" )]
+			CvUtil.pyPrint( "No outcome available, adding 'NOTHING'" )
+			lResult.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
+		
+		return lResult[CyGame().getSorenRandNum( len( lResult ), "Pick Outcome" )]
 	
 	def saveGetInfoType( self, iNum, sInfo ) :
 		eID = gc.getInfoTypeForString( sInfo )
