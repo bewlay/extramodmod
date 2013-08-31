@@ -7321,10 +7321,10 @@ void CvGame::createBarbarianUnits()
 /************************************************************************************************/
 //	UnitTypes eBestUnit;
 //	UnitTypes eLoopUnit;
+//	bool bAnimals;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
-	bool bAnimals;
 	long lResult;
 	int iNeededBarbs;
 	int iDivisor;
@@ -7363,59 +7363,19 @@ void CvGame::createBarbarianUnits()
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Animals spawn all game. Removed some old code                                                */
+/************************************************************************************************/
+	createAnimals();
 
-	bAnimals = false;
-
-	if (GC.getEraInfo(getCurrentEra()).isNoBarbUnits())
-	{
-		bAnimals = true;
-	}
-
-	if (getNumCivCities() < ((countCivPlayersAlive() * 3) / 2) && !isOption(GAMEOPTION_ONE_CITY_CHALLENGE))
-	{
-		bAnimals = true;
-	}
-
-//FfH: Added by Kael 11/27/2007
-//    if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS) && getNumCivCities() < countCivPlayersAlive() * 3)
-	if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS))
-    {
-        bAnimals = true;
-    }
-//FfH: End Add
-
-	if (getElapsedGameTurns() < ((GC.getHandicapInfo(getHandicapType()).getBarbarianCreationTurnsElapsed() * GC.getGameSpeedInfo(getGameSpeedType()).getBarbPercent()) / 100))
-	{
-		bAnimals = true;
-	}
-
-/********************************************************************************/
-/* Improved Wildlands	03/2013											lfgr	*/
-/********************************************************************************/
-// barbs keep spawning
-	bool bBarbs = !bAnimals;
-
-	if( !bBarbs && getNumCivCities() >= countCivPlayersAlive() * 3 )
-		bBarbs = true;
-/********************************************************************************/
-/* Improved Wildlands													END		*/
-/********************************************************************************/
-
-	if (bAnimals)
-	{
-		createAnimals();
-	}
-/********************************************************************************/
-/* Improved Wildlands	03/2013											lfgr	*/
-/********************************************************************************/
-// barbs keep spawning
-/* old
-	else
-*/
+	bool bBarbs = getNumCivCities() >= countCivPlayersAlive() * 3;
+	
 	if( bBarbs )
-/********************************************************************************/
-/* Improved Wildlands													END		*/
-/********************************************************************************/
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	{
 		for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
 		{
