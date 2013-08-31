@@ -1212,9 +1212,9 @@ public:
 
 	int getBestYieldAvailable(YieldTypes eYield) const;
 
-	/*** PUPPET STATES 07/15/08 by DPII ***/
+	// MNAI - Puppet States
 	bool canJoinPuppetState(PlayerTypes eOfPlayer) const;
-	/**************************************/
+	// MNAI End
 protected:
 
 	int m_iID;

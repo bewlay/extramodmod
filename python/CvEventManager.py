@@ -1145,9 +1145,12 @@ class CvEventManager:
 			pPlayer.initUnit(gc.getInfoTypeForString('UNIT_DRIFA'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
 		if iProjectType == gc.getInfoTypeForString('PROJECT_THE_DRAW'):
-			pPlayer.changeNoDiplomacyWithEnemies(1)
 			iTeam = pPlayer.getTeam()
 			eTeam = gc.getTeam(iTeam)
+			for iLoopPlayer in range(gc.getMAX_PLAYERS()):
+				pLoopPlayer = gc.getPlayer(iLoopPlayer)
+				if pLoopPlayer.isAlive() and pLoopPlayer.getTeam() == iTeam:
+					pLoopPlayer.changeNoDiplomacyWithEnemies(1)
 			for iLoopTeam in range(gc.getMAX_TEAMS()):
 				if iLoopTeam != iTeam:
 					if iLoopTeam != gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam():
@@ -1564,6 +1567,20 @@ class CvEventManager:
 		if city.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_BLESSING')) > 0:
 			if unit.isAlive() and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_WORKER') and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_SETTLE'):
 				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_STRONG'), True)
+
+		# Paramander with metal weapons fix
+		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_PARAMANDER'):
+			iBronze = gc.getInfoTypeForString('PROMOTION_BRONZE_WEAPONS')
+			iIron = gc.getInfoTypeForString('PROMOTION_IRON_WEAPONS')
+			iMithril = gc.getInfoTypeForString('PROMOTION_MITHRIL_WEAPONS')
+			if city.hasBonus(gc.getInfoTypeForString('BONUS_MITHRIL')):
+				unit.setHasPromotion(iBronze, False)
+				unit.setHasPromotion(iIron, False)
+				unit.setHasPromotion(iMithril, True)
+			else:
+				unit.setHasPromotion(iBronze, False)
+				unit.setHasPromotion(iIron, True)
+				unit.setHasPromotion(iMithril, False)
 
 		CvAdvisorUtils.unitBuiltFeats(city, unit)
 		

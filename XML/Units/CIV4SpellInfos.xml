@@ -280,24 +280,24 @@
 			<Sound>AS2D_BUILD_GRANARY</Sound>
 			<Button>Art/Interface/Buttons/Spells/birth.dds</Button>
 		</SpellInfo>
-        <SpellInfo>
-            <Type>SPELL_BLINDING_LIGHT</Type>
-            <Description>TXT_KEY_SPELL_BLINDING_LIGHT</Description>
-            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <PromotionPrereq1>PROMOTION_SUN2</PromotionPrereq1>
-            <bAllowAI>1</bAllowAI>
-            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
-            <bHasCasted>1</bHasCasted>
-            <bResistable>1</bResistable>
-            <iRange>1</iRange>
-            <iResistModify>60</iResistModify>
-            <bImmuneTeam>1</bImmuneTeam>
-            <bImmuneNeutral>1</bImmuneNeutral>
-            <iImmobileTurns>1</iImmobileTurns>
-            <Effect>EFFECT_SPELL1</Effect>
-            <Sound>AS3D_SPELL_CHARM_PERSON</Sound>
-            <Button>Art/Interface/Buttons/Spells/Blinding Light.dds</Button>
-        </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_BLINDING_LIGHT</Type>
+			<Description>TXT_KEY_SPELL_BLINDING_LIGHT</Description>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<PromotionPrereq1>PROMOTION_SUN2</PromotionPrereq1>
+			<bAllowAI>1</bAllowAI>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bHasCasted>1</bHasCasted>
+			<bResistable>1</bResistable>
+			<iRange>1</iRange>
+			<iResistModify>45</iResistModify>
+			<AddPromotionType1>PROMOTION_BLINDED</AddPromotionType1>
+			<bImmuneTeam>1</bImmuneTeam>
+			<bImmuneNeutral>1</bImmuneNeutral>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS3D_SPELL_CHARM_PERSON</Sound>
+			<Button>Art/Interface/Buttons/Spells/Blinding Light.dds</Button>
+		</SpellInfo>
         <SpellInfo>
             <Type>SPELL_BLOOM</Type>
             <Description>TXT_KEY_SPELL_BLOOM</Description>
@@ -2123,6 +2123,7 @@
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <RemovePromotionType1>PROMOTION_POISONED</RemovePromotionType1>
+            <RemovePromotionType2>PROMOTION_BLINDED</RemovePromotionType2>
             <PyResult>spellHeal(pCaster,20)</PyResult>
             <PyRequirement>reqHeal(pCaster)</PyRequirement>
             <Effect>EFFECT_CREATION</Effect>
@@ -3603,8 +3604,8 @@
             <Button>Art/Interface/Buttons/Spells/Snowfall.dds</Button>
         </SpellInfo>
         <SpellInfo>
-            <Type>SPELL_SNOWFALL_GREATOR</Type>
-            <Description>TXT_KEY_SPELL_SNOWFALL</Description>
+            <Type>SPELL_SNOWFALL_GREATER</Type>
+            <Description>TXT_KEY_SPELL_SNOWFALL_GREATER</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_SNOWFALL_HELP</Help>
             <UnitClassPrereq>UNITCLASS_AURIC_ASCENDED</UnitClassPrereq>
@@ -5135,6 +5136,25 @@
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Units/Axeman Doviello.dds</Button>
+        </SpellInfo>
+		<SpellInfo>
+            <Type>SPELL_UPGRADE_DOVIELLO_BATTLEMASTER</Type>
+            <Description>TXT_KEY_SPELL_UPGRADE_DOVIELLO_CHAMPION</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitClassPrereq>UNITCLASS_WARRIOR</UnitClassPrereq>
+            <CivilizationPrereq>CIVILIZATION_DOVIELLO</CivilizationPrereq>
+            <TechPrereq>TECH_IRON_WORKING</TechPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>150</iAIWeight>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <ConvertUnitType>UNIT_BATTLEMASTER</ConvertUnitType>
+            <bAbility>1</bAbility>
+            <iCost>120</iCost>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Units/Battlemaster.dds</Button>
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_UPGRADE_DOVIELLO_CHAMPION</Type>
