@@ -81,6 +81,9 @@ void CyInfoPythonInterface1()
 		.def("isDefensivePactTrading", &CvTechInfo::isDefensivePactTrading, "bool ()")
 		.def("isPermanentAllianceTrading", &CvTechInfo::isPermanentAllianceTrading, "bool ()")
 		.def("isVassalStateTrading", &CvTechInfo::isVassalStateTrading, "bool ()")
+// MNAI - Puppet States
+		.def("isPuppetStateTrading", &CvTechInfo::isPuppetStateTrading, "bool ()")
+// MNAI End
 		.def("isBridgeBuilding", &CvTechInfo::isBridgeBuilding, "bool ()")
 		.def("isIrrigation", &CvTechInfo::isIrrigation, "bool ()")
 		.def("isIgnoreIrrigation", &CvTechInfo::isIgnoreIrrigation, "bool ()")
@@ -168,12 +171,10 @@ void CyInfoPythonInterface1()
 		.def("isEquipment", &CvPromotionInfo::isEquipment, "bool ()")
 		.def("isRace", &CvPromotionInfo::isRace, "bool ()")
 		.def("isImmuneToDefensiveStrike", &CvPromotionInfo::isImmuneToDefensiveStrike, "bool ()")
+		.def("getAIWeight", &CvPromotionInfo::getAIWeight, "int ()") //MNAI
 		.def("getDefensiveStrikeChance", &CvPromotionInfo::getDefensiveStrikeChance, "int ()")
 		.def("getDefensiveStrikeDamage", &CvPromotionInfo::getDefensiveStrikeDamage, "int ()")
-
-		// Tholal AI
-		.def("getExpireChance", &CvPromotionInfo::getExpireChance, "int ()")
-		// End Tholal AI
+		.def("getExpireChance", &CvPromotionInfo::getExpireChance, "int ()") //MNAI
 //FfH: End Add
 
 		// Arrays

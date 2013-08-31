@@ -3593,6 +3593,7 @@ def canTriggerEsteemedPlaywright(argsList):
 ######## EXPERIENCED_CAPTAIN ###########
 def canTriggerExperiencedCaptain(argsList):
 	kTriggeredData = argsList[0]
+	player = gc.getPlayer(kTriggeredData.ePlayer) 
 	
 	unit = player.getUnit(kTriggeredData.iUnitId)
 	

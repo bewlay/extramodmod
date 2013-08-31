@@ -1145,9 +1145,12 @@ class CvEventManager:
 			pPlayer.initUnit(gc.getInfoTypeForString('UNIT_DRIFA'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
 		if iProjectType == gc.getInfoTypeForString('PROJECT_THE_DRAW'):
-			pPlayer.changeNoDiplomacyWithEnemies(1)
 			iTeam = pPlayer.getTeam()
 			eTeam = gc.getTeam(iTeam)
+			for iLoopPlayer in range(gc.getMAX_PLAYERS()):
+				pLoopPlayer = gc.getPlayer(iLoopPlayer)
+				if pLoopPlayer.isAlive() and pLoopPlayer.getTeam() == iTeam:
+					pLoopPlayer.changeNoDiplomacyWithEnemies(1)
 			for iLoopTeam in range(gc.getMAX_TEAMS()):
 				if iLoopTeam != iTeam:
 					if iLoopTeam != gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam():
@@ -1421,9 +1424,6 @@ class CvEventManager:
 			if pPlayer.getNumBuilding(gc.getInfoTypeForString('BUILDING_TOWER_OF_NECROMANCY')) > 0:
 				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_STRONG'), True)
 
-		if unit.getUnitClassType() == gc.getInfoTypeForString('UNITCLASS_LUCIAN'):
-			unit.setName("Lucian")
-
 #UNITAI for Adepts and Terraformers
 		if ((not pPlayer.isHuman()) and (not pPlayer.isBarbarian())):
 			if unit.getUnitType() == gc.getInfoTypeForString('UNIT_DEVOUT'):			
@@ -1567,6 +1567,20 @@ class CvEventManager:
 		if city.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_BLESSING')) > 0:
 			if unit.isAlive() and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_WORKER') and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_SETTLE'):
 				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_STRONG'), True)
+
+		# Paramander with metal weapons fix
+		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_PARAMANDER'):
+			iBronze = gc.getInfoTypeForString('PROMOTION_BRONZE_WEAPONS')
+			iIron = gc.getInfoTypeForString('PROMOTION_IRON_WEAPONS')
+			iMithril = gc.getInfoTypeForString('PROMOTION_MITHRIL_WEAPONS')
+			if city.hasBonus(gc.getInfoTypeForString('BONUS_MITHRIL')):
+				unit.setHasPromotion(iBronze, False)
+				unit.setHasPromotion(iIron, False)
+				unit.setHasPromotion(iMithril, True)
+			else:
+				unit.setHasPromotion(iBronze, False)
+				unit.setHasPromotion(iIron, True)
+				unit.setHasPromotion(iMithril, False)
 
 		CvAdvisorUtils.unitBuiltFeats(city, unit)
 		
@@ -2500,7 +2514,7 @@ class CvEventManager:
 					newUnit = pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 					CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_PLANAR_GATE",()),'AS2D_DISCOVERBONUS',1,gc.getUnitInfo(newUnit.getUnitType()).getButton(),ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
 					if iUnit == gc.getInfoTypeForString('UNIT_MOBIUS_WITCH'):
-						promotions = [ 'PROMOTION_AIR1','PROMOTION_BODY1','PROMOTION_CHAOS1','PROMOTION_DEATH1','PROMOTION_EARTH1','PROMOTION_ENCHANTMENT1','PROMOTION_ENTROPY1','PROMOTION_FIRE1','PROMOTION_LAW1','PROMOTION_LIFE1','PROMOTION_MIND1','PROMOTION_NATURE1','PROMOTION_SHADOW1','PROMOTION_SPIRIT1','PROMOTION_SUN1','PROMOTION_WATER1' ]
+						promotions = [ 'PROMOTION_AIR1','PROMOTION_BODY1','PROMOTION_CHAOS1','PROMOTION_CREATION1','PROMOTION_DEATH1','PROMOTION_DIMENSIONAL1','PROMOTION_EARTH1','PROMOTION_ENCHANTMENT1','PROMOTION_ENTROPY1','PROMOTION_FORCE1','PROMOTION_FIRE1','PROMOTION_LAW1','PROMOTION_LIFE1','PROMOTION_MIND1','PROMOTION_NATURE1','PROMOTION_SHADOW1','PROMOTION_SPIRIT1','PROMOTION_SUN1','PROMOTION_WATER1' ]
 						newUnit.setLevel(4)
 						newUnit.setExperience(14, -1)
 						for i in promotions:

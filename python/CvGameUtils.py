@@ -495,7 +495,7 @@ class CvGameUtils:
 						return 1
 			## Clan should build Warrens
 			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_CLAN_OF_EMBERS'):
-				if (pCity.getCultureLevel() > 1):
+				if (pCity.getCultureLevel() > 1) and (pCity.getPopulation() > 3):
 					if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_WARRENS'), True, False, False):
 						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_WARRENS'),-1, False, False, False, False)
 						return 1
@@ -726,10 +726,12 @@ class CvGameUtils:
 	def getWidgetHelp(self, argsList):
 		eWidgetType, iData1, iData2, bOption = argsList
 ## Platy WorldBuilder ##
-		if eWidgetType == WidgetTypes.WIDGET_GENERAL:
+		if eWidgetType == WidgetTypes.WIDGET_PYTHON:
 			if iData1 == 1029:
 				sHelp = str(iData2)
 				return CyTranslator().getText("TXT_KEY_WB_HELP" + sHelp,())
+			elif iData1 > 1029 and iData1 < 1046:
+				return " "
 ## Platy WorldBuilder ##
 		return u""
 		
