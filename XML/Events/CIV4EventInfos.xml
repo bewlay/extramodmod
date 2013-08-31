@@ -306,10 +306,10 @@
 		<EventInfo><!-- BANDIT_NIETZ_3 -->
 			<Type>EVENT_BANDIT_NIETZ_3</Type>
 			<Description>TXT_KEY_EVENT_BANDIT_NIETZ_3</Description>
+			<Help>TXT_KEY_EVENT_BANDIT_NIETZ_3_HELP</Help>
 			<iHurryAnger>5</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doBanditNietz3</PythonCallback>
-			<PythonHelp>helpBanditNietz3</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iCrime>10</iCrime>
@@ -406,7 +406,8 @@
 			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<iPopulationChange>1</iPopulationChange>
-			<PythonCallback>doCalabimSanctuary1</PythonCallback>
+			<iOurAttitudeModifier>-4</iOurAttitudeModifier>
+			<iAttitudeModifier>-4</iAttitudeModifier>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -669,34 +670,34 @@
 		<EventInfo><!-- CITY_FEUD_START_1 -->
 			<Type>EVENT_CITY_FEUD_START_1</Type>
 			<Description>TXT_KEY_EVENT_CITY_FEUD_START_1</Description>
+			<Help>TXT_KEY_EVENT_CITY_FEUD_START_1_HELP</Help>
 			<bPickCity>1</bPickCity>
 			<iGold>-150</iGold>
 			<iHappyTurns>5</iHappyTurns>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doCityFeudStart1</PythonCallback>
-			<PythonHelp>helpCityFeudStart1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- CITY_FEUD_START_2 -->
 			<Type>EVENT_CITY_FEUD_START_2</Type>
 			<Description>TXT_KEY_EVENT_CITY_FEUD_START_2</Description>
+			<Help>TXT_KEY_EVENT_CITY_FEUD_START_1_HELP</Help>
 			<bPickCity>1</bPickCity>
 			<iHurryAnger>5</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doCityFeudStart1</PythonCallback>
-			<PythonHelp>helpCityFeudStart1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- CITY_FEUD_START_3 -->
 			<Type>EVENT_CITY_FEUD_START_3</Type>
 			<Description>TXT_KEY_EVENT_CITY_FEUD_START_3</Description>
+			<Help>TXT_KEY_EVENT_CITY_FEUD_START_3_HELP</Help>
 			<bPickCity>1</bPickCity>
 			<iHappyTurns>5</iHappyTurns>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doCityFeudStart3</PythonCallback>
-			<PythonHelp>helpCityFeudStart3</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -1121,19 +1122,19 @@
 		<EventInfo><!-- DISSENT_1 -->
 			<Type>EVENT_DISSENT_1</Type>
 			<Description>TXT_KEY_EVENT_DISSENT_1</Description>
+			<Help>TXT_KEY_EVENT_DISSENT_1_HELP</Help>
 			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doDissent1</PythonCallback>
-			<PythonHelp>helpDissent1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 		</EventInfo>
 		<EventInfo><!-- DISSENT_2 -->
 			<Type>EVENT_DISSENT_2</Type>
 			<Description>TXT_KEY_EVENT_DISSENT_2</Description>
+			<Help>TXT_KEY_EVENT_DISSENT_2_HELP</Help>
 			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doDissent2</PythonCallback>
-			<PythonHelp>helpDissent2</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 		</EventInfo>
 		<EventInfo><!-- DISSENT_3 -->
@@ -1216,6 +1217,7 @@
 		<EventInfo><!-- DUSTBOWL_2 -->
 			<Type>EVENT_DUSTBOWL_2</Type>
 			<Description>TXT_KEY_EVENT_DUSTBOWL_2</Description>
+			<Help>TXT_KEY_EVENT_DUSTBOWL_2_HELP</Help>
 			<bPickCity>1</bPickCity>
 			<iImprovementChange>-1</iImprovementChange>
 			<iMaxNumReligions>-1</iMaxNumReligions>
@@ -1225,7 +1227,6 @@
 					<iEventChance>25</iEventChance>
 				</EventChance>
 			</ClearEvents>
-			<PythonHelp>getHelpDustBowl2</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -1286,6 +1287,8 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iGlobalCounter>-3</iGlobalCounter>
+			<iOurAttitudeModifier>1</iOurAttitudeModifier>
+			<iAttitudeModifier>1</iAttitudeModifier>
 		</EventInfo>
 		<EventInfo><!-- ELOHIM_HALLOWING_2 -->
 			<Type>EVENT_ELOHIM_HALLOWING_2</Type>
@@ -1293,6 +1296,8 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<iOurAttitudeModifier>-1</iOurAttitudeModifier>
+			<iAttitudeModifier>-1</iAttitudeModifier>
 		</EventInfo>
 		<EventInfo><!-- ELOHIM_HALLOWING_3 -->
 			<Type>EVENT_ELOHIM_HALLOWING_3</Type>
@@ -1302,6 +1307,9 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iGlobalCounter>3</iGlobalCounter>
+			<iOurAttitudeModifier>-4</iOurAttitudeModifier>
+			<iAttitudeModifier>-4</iAttitudeModifier>
+			<PrereqStateReligion>RELIGION_THE_ASHEN_VEIL</PrereqStateReligion>
 		</EventInfo>
 		<EventInfo><!-- ENCHANTER_1 -->
 			<Type>EVENT_ENCHANTER_1</Type>
@@ -2076,7 +2084,6 @@
 		</EventInfo>
 		<EventInfo><!-- HORTICULTURE_3 -->
 			<Type>EVENT_HORTICULTURE_3</Type>
-			<Description>TXT_KEY_NEWS_EVENT_HORTICULTURE_3</Description>
 			<bPickCity>1</bPickCity>
 			<iHealth>3</iHealth>
 			<FreeSpecialistCounts>
@@ -2493,9 +2500,9 @@
 		<EventInfo><!-- LETUM_FRIGUS_3 -->
 			<Type>EVENT_LETUM_FRIGUS_3</Type>
 			<Description>TXT_KEY_EVENT_LETUM_FRIGUS_3</Description>
+			<Help>TXT_KEY_EVENT_LETUM_FRIGUS_3_HELP</Help>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doLetumFrigus3</PythonCallback>
-			<PythonHelp>helpLetumFrigus3</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqCivilization>CIVILIZATION_ILLIANS</PrereqCivilization>
@@ -2669,10 +2676,10 @@
 		<EventInfo><!-- MARKET_THEFT_2 -->
 			<Type>EVENT_MARKET_THEFT_2</Type>
 			<Description>TXT_KEY_EVENT_MARKET_THEFT_2</Description>
+			<Help>TXT_KEY_EVENT_MARKET_THEFT_2_HELP</Help>
 			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doMarketTheft2</PythonCallback>
-			<PythonHelp>helpMarketTheft2</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -2992,6 +2999,7 @@
 		<EventInfo><!-- ORDER_VS_VEIL_1 -->
 			<Type>EVENT_ORDER_VS_VEIL_1</Type>
 			<Description>TXT_KEY_EVENT_ORDER_VS_VEIL_1</Description>
+			<Help>TXT_KEY_EVENT_ORDER_VS_VEIL_1_HELP</Help>
 			<iRevoltTurns>3</iRevoltTurns>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doOrderVsVeil1</PythonCallback>
@@ -3002,20 +3010,20 @@
 		<EventInfo><!-- ORDER_VS_VEIL_2 -->
 			<Type>EVENT_ORDER_VS_VEIL_2</Type>
 			<Description>TXT_KEY_EVENT_ORDER_VS_VEIL_2</Description>
+			<Help>TXT_KEY_EVENT_ORDER_VS_VEIL_2_HELP</Help>
 			<iRevoltTurns>3</iRevoltTurns>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doOrderVsVeil2</PythonCallback>
-			<PythonHelp>helpOrderVsVeil2</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>200</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- ORDER_VS_VEIL_3 -->
 			<Type>EVENT_ORDER_VS_VEIL_3</Type>
 			<Description>TXT_KEY_EVENT_ORDER_VS_VEIL_3</Description>
+			<Help>TXT_KEY_EVENT_ORDER_VS_VEIL_3_HELP</Help>
 			<iRevoltTurns>3</iRevoltTurns>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doOrderVsVeil3</PythonCallback>
-			<PythonHelp>helpOrderVsVeil3</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>200</iAIValue>
 		</EventInfo>
@@ -3030,30 +3038,30 @@
 		<EventInfo><!-- ORDER_VS_VEIL_TEMPLE_1 -->
 			<Type>EVENT_ORDER_VS_VEIL_TEMPLE_1</Type>
 			<Description>TXT_KEY_EVENT_ORDER_VS_VEIL_TEMPLE_1</Description>
+			<Help>TXT_KEY_EVENT_ORDER_VS_VEIL_TEMPLE_1_HELP</Help>
 			<iHurryAnger>3</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doOrderVsVeilTemple1</PythonCallback>
-			<PythonHelp>helpOrderVsVeilTemple1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>200</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- ORDER_VS_VEIL_TEMPLE_2 -->
 			<Type>EVENT_ORDER_VS_VEIL_TEMPLE_2</Type>
 			<Description>TXT_KEY_EVENT_ORDER_VS_VEIL_TEMPLE_2</Description>
+			<Help>TXT_KEY_EVENT_ORDER_VS_VEIL_TEMPLE_2_HELP</Help>
 			<iHurryAnger>3</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doOrderVsVeilTemple2</PythonCallback>
-			<PythonHelp>helpOrderVsVeilTemple2</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- ORDER_VS_VEIL_TEMPLE_3 -->
 			<Type>EVENT_ORDER_VS_VEIL_TEMPLE_3</Type>
 			<Description>TXT_KEY_EVENT_ORDER_VS_VEIL_TEMPLE_3</Description>
+			<Help>TXT_KEY_EVENT_ORDER_VS_VEIL_TEMPLE_3_HELP</Help>
 			<iHurryAnger>3</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doOrderVsVeilTemple3</PythonCallback>
-			<PythonHelp>helpOrderVsVeilTemple3</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>200</iAIValue>
 		</EventInfo>
@@ -4390,6 +4398,7 @@
 		<EventInfo><!-- VEIL_VS_ORDER_TEMPLE_1 -->
 			<Type>EVENT_VEIL_VS_ORDER_TEMPLE_1</Type>
 			<Description>TXT_KEY_EVENT_VEIL_VS_ORDER_TEMPLE_1</Description>
+			<Help>TXT_KEY_EVENT_VEIL_VS_ORDER_TEMPLE_1_HELP</Help>
 			<iHurryAnger>3</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doVeilVsOrderTemple1</PythonCallback>
@@ -4400,31 +4409,31 @@
 		<EventInfo><!-- VEIL_VS_ORDER_TEMPLE_2 -->
 			<Type>EVENT_VEIL_VS_ORDER_TEMPLE_2</Type>
 			<Description>TXT_KEY_EVENT_VEIL_VS_ORDER_TEMPLE_2</Description>
+			<Help>TXT_KEY_EVENT_VEIL_VS_ORDER_TEMPLE_2_HELP</Help>
 			<iHurryAnger>3</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doVeilVsOrderTemple2</PythonCallback>
-			<PythonHelp>helpVeilVsOrderTemple2</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- VEIL_VS_ORDER_TEMPLE_3 -->
 			<Type>EVENT_VEIL_VS_ORDER_TEMPLE_3</Type>
 			<Description>TXT_KEY_EVENT_VEIL_VS_ORDER_TEMPLE_3</Description>
+			<Help>TXT_KEY_EVENT_VEIL_VS_ORDER_TEMPLE_3_HELP</Help>
 			<iHurryAnger>3</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doVeilVsOrderTemple3</PythonCallback>
-			<PythonHelp>helpVeilVsOrderTemple3</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>200</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- VOLCANO_1 -->
 			<Type>EVENT_VOLCANO_1</Type>
 			<Description>TXT_KEY_EVENT_VOLCANO_1</Description>
+			<Help>TXT_KEY_EVENT_VOLCANO_1_HELP</Help>
 			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>applyVolcano1</PythonCallback>
 			<PythonCanDo>canApplyVolcano1</PythonCanDo>
-			<PythonHelp>getHelpVolcano1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -6699,7 +6708,7 @@
 			<Type>EVENT_UNFORTUNATE_ASSASSIN_2</Type>
 			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_2</Description>
 			<bPickCity>1</bPickCity>
-			<iHappy>-1</iHappy>
+			<iHurryAnger>1</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -6708,8 +6717,8 @@
 			<Type>EVENT_UNFORTUNATE_ASSASSIN_3</Type>
 			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_3</Description>
 			<bPickCity>1</bPickCity>
+			<iGold>-20</iGold>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doUnfortunateAssassin3</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -6717,21 +6726,36 @@
 			<Type>EVENT_UNFORTUNATE_ASSASSIN_4</Type>
 			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4</Description>
 			<bPickCity>1</bPickCity>
-			<iHappy>1</iHappy>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
-			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
+			<PrereqCivilization>CIVILIZATION_ELOHIM</PrereqCivilization>
 		</EventInfo>
 		<EventInfo><!-- UNFORTUNATE_ASSASSIN_5 -->
 			<Type>EVENT_UNFORTUNATE_ASSASSIN_5</Type>
 			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_5</Description>
 			<bPickCity>1</bPickCity>
+			<UnitClass>UNITCLASS_ASSASSIN</UnitClass>
+			<iNumFreeUnits>1</iNumFreeUnits>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doUnfortunateAssassin5</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqStateReligion>RELIGION_COUNCIL_OF_ESUS</PrereqStateReligion>
+		</EventInfo>
+		<EventInfo><!-- UNFORTUNATE_ASSASSIN_4_CONT_1 -->
+			<Type>EVENT_UNFORTUNATE_ASSASSIN_4_CONT_1</Type>
+			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4_CONT_1</Description>
+			<bPickCity>1</bPickCity>
+			<UnitClass>UNITCLASS_ASSASSIN</UnitClass><!-- that means Devout -->
+			<UnitPromotions>
+				<UnitPromotion>PROMOTION_DEMON_SLAYING</UnitPromotion>
+				<UnitPromotion>PROMOTION_HEROIC_DEFENSE</UnitPromotion>
+				<UnitPromotion>PROMOTION_HEROIC_DEFENSE2</UnitPromotion>
+			</UnitPromotions>
+			<iNumFreeUnits>1</iNumFreeUnits>
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- OVERCROWDED_DUNGEON_1 -->
 			<Type>EVENT_OVERCROWDED_DUNGEON_1</Type>
@@ -7532,6 +7556,7 @@
 		<EventInfo><!-- POISONED_WATER_3 -->
 			<Type>EVENT_POISONED_WATER_3</Type>
 			<Description>TXT_KEY_EVENT_POISONED_WATER_3</Description>
+			<Help>TXT_KEY_EVENT_POISONED_WATER_HELP_3</Help>
 			<bPickCity>1</bPickCity>
 			<iGold>-50</iGold>
 			<iHealth>-2</iHealth>
@@ -7549,13 +7574,13 @@
 					<iEventTime>5</iEventTime>
 				</EventTime>
 			</EventTimes>
-			<PythonHelp>helpPoisonedWater3</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>500</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- POISONED_WATER_4 -->
 			<Type>EVENT_POISONED_WATER_4</Type>
 			<Description>TXT_KEY_EVENT_POISONED_WATER_4</Description>
+			<Help>TXT_KEY_EVENT_POISONED_WATER_HELP_3</Help>
 			<bPickCity>1</bPickCity>
 			<iHealth>-3</iHealth>
 			<iHurryAnger>1</iHurryAnger>
@@ -7573,7 +7598,6 @@
 					<iEventTime>10</iEventTime>
 				</EventTime>
 			</EventTimes>
-			<PythonHelp>helpPoisonedWater4</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>100</iAIValue>
 		</EventInfo>
@@ -7640,10 +7664,10 @@
 		<EventInfo><!-- DEMONIC_TOWER_1 -->
 			<Type>EVENT_DEMONIC_TOWER_1</Type>
 			<Description>TXT_KEY_EVENT_DEMONIC_TOWER_1</Description>
+			<Help>TXT_KEY_EVENT_DEMONIC_TOWER_HELP_1</Help>
 			<ImprovementType />
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doDemonicTower1</PythonCallback>
-			<PythonHelp>helpDemonicTower1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -7689,11 +7713,11 @@
 		<EventInfo><!-- RALPH_AND_SAM_1 -->
 			<Type>EVENT_RALPH_AND_SAM_1</Type>
 			<Description>TXT_KEY_EVENT_RALPH_AND_SAM_1</Description>
+			<Help>TXT_KEY_EVENT_RALPH_AND_SAM_HELP_1</Help>
 			<bPickCity>1</bPickCity>
 			<ImprovementType />
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doRalphAndSam1</PythonCallback>
-			<PythonHelp>helpRalphAndSam1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>500</iAIValue>
 		</EventInfo>
@@ -7722,23 +7746,23 @@
 		<EventInfo><!-- LANUN_PIRATES_1 -->
 			<Type>EVENT_LANUN_PIRATES_1</Type>
 			<Description>TXT_KEY_EVENT_LANUN_PIRATES_1</Description>
+			<Help>TXT_KEY_EVENT_LANUN_PIRATES_HELP_1</Help>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENT_WORLD_LANUN_PIRATES</Text>
 			</WorldNewsTexts>
 			<ImprovementType />
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>applyLanunPirates1</PythonCallback>
-			<PythonHelp>getHelpLanunPirates1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- CENTAUR_TRIBE_1 -->
 			<Type>EVENT_CENTAUR_TRIBE_1</Type>
 			<Description>TXT_KEY_EVENT_CENTAUR_TRIBE_1</Description>
+			<Help>TXT_KEY_EVENT_CENTAUR_TRIBE_HELP_1</Help>
 			<ImprovementType />
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doCentaurTribe1</PythonCallback>
-			<PythonHelp>helpCentaurTribe1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>100</iAIValue>
 		</EventInfo>
@@ -7779,6 +7803,7 @@
 		<EventInfo><!-- SEASERPENT_1 -->
 			<Type>EVENT_SEASERPENT_1</Type>
 			<Description>TXT_KEY_EVENT_SEASERPENT_1</Description>
+			<Help>TXT_KEY_EVENT_SEASERPENT_HELP_1</Help>
 			<bPickCity>1</bPickCity>
 			<ImprovementType />
 			<iMaxNumReligions>-1</iMaxNumReligions>
@@ -7790,11 +7815,11 @@
 		<EventInfo><!-- MONKEY_SEE_1 -->
 			<Type>EVENT_MONKEY_SEE_1</Type>
 			<Description>TXT_KEY_EVENT_MONKEY_SEE_1</Description>
+			<Help>TXT_KEY_EVENT_MONKEY_SEE_HELP_1</Help>
 			<bPickCity>1</bPickCity>
 			<ImprovementType />
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doMonkeySee1</PythonCallback>
-			<PythonHelp>helpMonkeySee1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -7869,11 +7894,11 @@
 		<EventInfo><!-- HAUNTED_CASTLE_4 -->
 			<Type>EVENT_HAUNTED_CASTLE_4</Type>
 			<Description>TXT_KEY_EVENT_HAUNTED_CASTLE_4</Description>
+			<Help>TXT_KEY_EVENT_HAUNTED_CASTLE_HELP_4</Help>
 			<bPickCity>1</bPickCity>
 			<ImprovementType />
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doHauntedCastle4</PythonCallback>
-			<PythonHelp>helpHauntedCastle4</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>100</iAIValue>
 			<iGlobalCounter>1</iGlobalCounter>
