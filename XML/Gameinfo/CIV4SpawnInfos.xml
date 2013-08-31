@@ -353,6 +353,86 @@
 				<Tech>TECH_KNOWLEDGE_OF_THE_ETHER</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_BALOR -->
+			<Type>SPAWN_EXPLO_BOSS_BALOR</Type>
+			<iBaseWeight>80</iBaseWeight>
+			<iMinWilderness>60</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<iPrereqGlobalCounter>40</iPrereqGlobalCounter>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_BALOR</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_COMMAND1</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_VALOR</PromotionType>
+				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
+			</IncludedSpawns>
+			<PrereqTechs>
+				<Tech>TECH_FANATICISM</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_DEATH_KNIGHT -->
+			<Type>SPAWN_EXPLO_BOSS_DEATH_KNIGHT</Type>
+			<iBaseWeight>80</iBaseWeight>
+			<iMinWilderness>40</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<iPrereqGlobalCounter>40</iPrereqGlobalCounter>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_DEATH_KNIGHT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>3</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_COMMAND1</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_VALOR</PromotionType>
+				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
+			</IncludedSpawns>
+			<PrereqTechs>
+				<Tech>TECH_WARHORSES</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_EIDOLON_EARLY -->
 			<Type>SPAWN_EXPLO_BOSS_EIDOLON_EARLY</Type>
 			<iBaseWeight>80</iBaseWeight>
@@ -384,11 +464,9 @@
 			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
 			<IncludedSpawns>
 				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_LATE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_LATE</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
 			</IncludedSpawns>
 			<PrereqTechs>
 				<Tech>TECH_MYSTICISM</Tech>
@@ -397,7 +475,7 @@
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_EIDOLON_LATE -->
 			<Type>SPAWN_EXPLO_BOSS_EIDOLON_LATE</Type>
 			<iBaseWeight>80</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
+			<iMinWilderness>40</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<iPrereqGlobalCounter>20</iPrereqGlobalCounter>
 			<bNeverSpawn>1</bNeverSpawn>
@@ -425,11 +503,9 @@
 			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
 			<IncludedSpawns>
 				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_LATE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_LATE</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
 			</IncludedSpawns>
 			<PrereqTechs>
 				<Tech>TECH_FANATICISM</Tech>
@@ -463,6 +539,83 @@
 			</ImprovementWeights>
 			<PrereqTechs>
 				<Tech>TECH_CONSTRUCTION</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_LICH -->
+			<Type>SPAWN_EXPLO_BOSS_LICH</Type>
+			<iBaseWeight>10</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LICH</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEATH1</PromotionType>
+				<PromotionType>PROMOTION_DEATH2</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_EARLY</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_LATE</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_EARLY</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_LATE</SpawnType>
+			</IncludedSpawns>
+			<ImprovementWeights>
+				<ImprovementWeight>
+					<ImprovementType>IMPROVEMENT_BARROW</ImprovementType>
+					<iWeight>70</iWeight>
+				</ImprovementWeight>
+			</ImprovementWeights>
+			<PrereqTechs>
+				<Tech>TECH_SORCERY</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_MANTICORE -->
+			<Type>SPAWN_EXPLO_BOSS_MANTICORE</Type>
+			<iBaseWeight>80</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_MANTICORE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_MUTATED</PromotionType>
+				<PromotionType>PROMOTION_SHADOWWALK</PromotionType>
+				<PromotionType>PROMOTION_STONESKIN</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_VALOR</PromotionType>
+				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
+			</IncludedSpawns>
+			<PrereqTechs>
+				<Tech>TECH_FERAL_BOND</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_OGRE_EARLY -->
@@ -667,50 +820,6 @@
 				<Tech>TECH_ANIMAL_HANDLING</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WEREWOLF -->
-			<Type>SPAWN_EXPLO_BOSS_WEREWOLF</Type>
-			<iBaseWeight>50</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_WEREWOLF</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<iMinRandomPromotions>1</iMinRandomPromotions>
-			<iMaxRandomPromotions>2</iMaxRandomPromotions>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_BLITZ</PromotionType>
-				<PromotionType>PROMOTION_COMMAND1</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
-				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
-				<PromotionType>PROMOTION_MARKSMAN</PromotionType>
-				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
-				<PromotionType>PROMOTION_POISONED_BLADE</PromotionType>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
-			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_RAVENOUS_WEREWOLF</SpawnType>
-			</IncludedSpawns>
-			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iWeight>30</iWeight>
-				</FeatureWeight>
-				<FeatureWeight>
-					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
-					<iWeight>30</iWeight>
-				</FeatureWeight>
-			</FeatureWeights>
-			<PrereqTechs>
-				<Tech>TECH_ANIMAL_HANDLING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_SPECTRE -->
 			<Type>SPAWN_EXPLO_BOSS_SPECTRE</Type>
 			<iBaseWeight>10</iBaseWeight>
@@ -798,6 +907,50 @@
 					<iWeight>30</iWeight>
 				</ImprovementWeight>
 			</ImprovementWeights>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WEREWOLF -->
+			<Type>SPAWN_EXPLO_BOSS_WEREWOLF</Type>
+			<iBaseWeight>50</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WEREWOLF</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_COMMAND1</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_MARKSMAN</PromotionType>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_POISONED_BLADE</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_RAVENOUS_WEREWOLF</SpawnType>
+			</IncludedSpawns>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>30</iWeight>
+				</FeatureWeight>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>30</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
+			<PrereqTechs>
+				<Tech>TECH_ANIMAL_HANDLING</Tech>
+			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WRAITH -->
 			<Type>SPAWN_EXPLO_BOSS_WRAITH</Type>
@@ -978,6 +1131,46 @@
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_HELLHOUND -->
+			<Type>SPAWN_EXPLO_COMP_HELLHOUND</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<iPrereqGlobalCounter>20</iPrereqGlobalCounter>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HELLHOUND</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_IMP -->
+			<Type>SPAWN_EXPLO_COMP_IMP</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<iPrereqGlobalCounter>40</iPrereqGlobalCounter>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_IMP</Unit>
+					<iNumUnits>2</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_CHAOS1</PromotionType>
+				<PromotionType>PROMOTION_DEATH1</PromotionType>
+				<PromotionType>PROMOTION_ENCHANTMENT1</PromotionType>
+				<PromotionType>PROMOTION_ENTROPY1</PromotionType>
+				<PromotionType>PROMOTION_FIRE1</PromotionType>
+				<PromotionType>PROMOTION_SHADOW1</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_OGRE_EARLY -->
 			<Type>SPAWN_EXPLO_COMP_OGRE_EARLY</Type>
 			<iBaseWeight>100</iBaseWeight>
@@ -1021,6 +1214,21 @@
 			<PrereqTechs>
 				<Tech>TECH_IRON_WORKING</Tech>
 			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_PIT_BEAST -->
+			<Type>SPAWN_EXPLO_COMP_PIT_BEAST</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>40</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_PIT_BEAST</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_PYRE_ZOMBIE -->
 			<Type>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</Type>
@@ -1236,7 +1444,7 @@
 			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_DROWN</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
 			<SpawnUnits>
@@ -1268,6 +1476,145 @@
 				<SpawnUnit>
 					<Unit>UNIT_SEA_SERPENT</Unit>
 					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_STYGIAN_GUARD -->
+			<Type>SPAWN_EXPLO_BOSS_STYGIAN_GUARD</Type>
+			<iBaseWeight>80</iBaseWeight>
+			<iMinWilderness>30</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_STYGIAN_GUARD</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_SHADOWWALK</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_VALOR</PromotionType>
+				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_DROWN_EARLY</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_DROWN_LATE</SpawnType>
+			</IncludedSpawns>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<PrereqTechs>
+				<Tech>TECH_FANATICISM</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_KRAKEN -->
+			<Type>SPAWN_EXPLO_BOSS_KRAKEN</Type>
+			<iBaseWeight>80</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_KRAKEN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_MUTATED</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
+			</UnitPromotions>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_SEA_SERPENT</SpawnType>
+			</IncludedSpawns>
+			<PrereqTechs>
+				<Tech>TECH_SORCERY</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_DROWN_EARLY -->
+			<Type>SPAWN_EXPLO_COMP_DROWN_EARLY</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_DROWN</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<ObsoleteTechs>
+				<Tech>TECH_SORCERY</Tech>
+			</ObsoleteTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_DROWN_LATE -->
+			<Type>SPAWN_EXPLO_COMP_DROWN_LATE</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_DROWN</Unit>
+					<iNumUnits>5</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<PrereqTechs>
+				<Tech>TECH_KNOWLEDGE_OF_THE_ETHER</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_SEA_SERPENT -->
+			<Type>SPAWN_EXPLO_COMP_SEA_SERPENT</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SEA_SERPENT</Unit>
+					<iNumUnits>2</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
@@ -1514,7 +1861,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_GOBLIN_FORT_ARCHER_SCORPION_CLAN -->
 			<Type>SPAWN_GOBLIN_FORT_ARCHER_SCORPION_CLAN</Type>
-			<iBaseWeight>100</iBaseWeight>
+			<iBaseWeight>50</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
@@ -1882,7 +2229,29 @@
 					<TerrainType>TERRAIN_DESERT</TerrainType>
 					<iWeight>100</iWeight>
 				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainWeight>
 			</TerrainWeights>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeatureWeight>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST_NEW</FeatureType>
+					<iWeight>-50</iWeight>
+				</FeatureWeight>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeatureWeight>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LION -->
 			<Type>SPAWN_LION</Type>
@@ -1915,6 +2284,22 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<iWeight>-100</iWeight>
 				</FeatureWeight>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST_NEW</FeatureType>
+					<iWeight>-50</iWeight>
+				</FeatureWeight>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST_BURNT</FeatureType>
+					<iWeight>-75</iWeight>
+				</FeatureWeight>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>-75</iWeight>
+				</FeatureWeight>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>-75</iWeight>
+				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LION_PRIDE -->
@@ -1946,6 +2331,22 @@
 			<FeatureWeights>
 				<FeatureWeight>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeatureWeight>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST_NEW</FeatureType>
+					<iWeight>-50</iWeight>
+				</FeatureWeight>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST_BURNT</FeatureType>
+					<iWeight>-75</iWeight>
+				</FeatureWeight>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeatureWeight>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
 					<iWeight>-100</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
