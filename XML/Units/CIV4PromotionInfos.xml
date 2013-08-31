@@ -366,6 +366,50 @@
                 </DamageTypeCombat>
             </DamageTypeCombats>
         </PromotionInfo>
+		<PromotionInfo>
+			<Type>PROMOTION_BLINDED</Type>
+			<Description>TXT_KEY_PROMOTION_BLINDED</Description>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<UnitCombats>
+				<UnitCombat>
+					<UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
+					<bUnitCombat>1</bUnitCombat>
+				</UnitCombat>
+				<UnitCombat>
+					<UnitCombatType>UNITCOMBAT_ANIMAL</UnitCombatType>
+					<bUnitCombat>1</bUnitCombat>
+				</UnitCombat>
+				<UnitCombat>
+					<UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
+					<bUnitCombat>1</bUnitCombat>
+				</UnitCombat>
+				<UnitCombat>
+					<UnitCombatType>UNITCOMBAT_BEAST</UnitCombatType>
+					<bUnitCombat>1</bUnitCombat>
+				</UnitCombat>
+				<UnitCombat>
+					<UnitCombatType>UNITCOMBAT_DISCIPLE</UnitCombatType>
+					<bUnitCombat>1</bUnitCombat>
+				</UnitCombat>
+				<UnitCombat>
+					<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+					<bUnitCombat>1</bUnitCombat>
+				</UnitCombat>
+				<UnitCombat>
+					<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+					<bUnitCombat>1</bUnitCombat>
+				</UnitCombat>
+				<UnitCombat>
+					<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+					<bUnitCombat>1</bUnitCombat>
+				</UnitCombat>
+			</UnitCombats>
+			<Button>Art/Interface/Buttons/Spells/Blinding Light.dds</Button>
+			<bHeld>1</bHeld>	
+			<iAIWeight>-100</iAIWeight>
+			<iExpireChance>50</iExpireChance>
+			<iMinLevel>-1</iMinLevel>
+		</PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_BLITZ</Type>
             <Description>TXT_KEY_PROMOTION_BLITZ</Description>

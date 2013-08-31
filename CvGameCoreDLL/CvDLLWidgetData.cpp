@@ -672,6 +672,12 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 		parseSpellHelp(widgetDataStruct, szBuffer);
 		break;
 //FfH: End Add
+
+// MNAI - Puppet States
+	case WIDGET_HELP_PUPPET_STATE:
+		parsePuppetStateHelp(widgetDataStruct, szBuffer);
+		break;
+// MNAI End
 	}
 }
 
@@ -1021,6 +1027,9 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 	case WIDGET_HELP_SPELL:
 //FfH: End Add
 
+// MNAI - Puppet States
+	case WIDGET_HELP_PUPPET_STATE:
+// MNAI End
 		break;
 	}
 
@@ -5685,6 +5694,13 @@ void CvDLLWidgetData::parseVassalStateHelp(CvWidgetDataStruct &widgetDataStruct,
 	GAMETEXT.buildVassalStateString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
 }
 
+// MNAI - Puppet States
+void CvDLLWidgetData::parsePuppetStateHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
+{
+	GAMETEXT.buildPuppetStateString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
+}
+// MNAI End
+
 void CvDLLWidgetData::parseBuildBridgeHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
 {
 	GAMETEXT.buildBridgeString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
@@ -6008,10 +6024,19 @@ void CvDLLWidgetData::parseCivilizationHelp(CvWidgetDataStruct &widgetDataStruct
 
 void CvDLLWidgetData::parseLeaderHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
 {
+/************************************************************************************************/
+/* MINOR_LEADERS_PEDIA                            08/2013                         DPII          */
+/************************************************************************************************/
+/*
 	if (widgetDataStruct.m_iData2 != -1)
 	{
 		GAMETEXT.parseLeaderTraits(szBuffer, (LeaderHeadTypes)widgetDataStruct.m_iData1, (CivilizationTypes)widgetDataStruct.m_iData2, false, true);
 	}
+*/
+	GAMETEXT.parseLeaderTraits(szBuffer, (LeaderHeadTypes)widgetDataStruct.m_iData1, (CivilizationTypes)widgetDataStruct.m_iData2, false, true);
+/************************************************************************************************/
+/* MINOR_LEADERS_PEDIA                            END                                           */
+/************************************************************************************************/
 }
 
 void CvDLLWidgetData::parseCloseScreenHelp(CvWStringBuffer& szBuffer)

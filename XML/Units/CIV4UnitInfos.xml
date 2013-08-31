@@ -4646,7 +4646,7 @@
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
 			<iCombatDefense>2</iCombatDefense>
 			<UnitConvertFromCombat>UNIT_GIANT_SPIDER</UnitConvertFromCombat>
-			<iUnitConvertFromCombatChance>2</iUnitConvertFromCombatChance>
+			<iUnitConvertFromCombatChance>20</iUnitConvertFromCombatChance>
 			<DamageTypeCombats>
 				<DamageTypeCombat>
 					<DamageType>DAMAGE_POISON</DamageType>
@@ -18739,7 +18739,7 @@
 			<PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
 			<PrereqTech>TECH_DECEPTION</PrereqTech>
 			<TechTypes>
-			<PrereqTech>TECH_BOWYERS</PrereqTech>
+				<PrereqTech>TECH_BOWYERS</PrereqTech>
 			</TechTypes>
 			<iCost>120</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
