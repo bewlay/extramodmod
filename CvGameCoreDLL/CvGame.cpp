@@ -7370,7 +7370,12 @@ void CvGame::createBarbarianUnits()
 /************************************************************************************************/
 	createAnimals();
 
-	bool bBarbs = getNumCivCities() >= countCivPlayersAlive() * 3;
+	int iCitiesPerPlayer = 3;
+
+	if( isOption( GAMEOPTION_RAGING_BARBARIANS ) )
+		iCitiesPerPlayer -= 1;
+
+	bool bBarbs = getNumCivCities() >= countCivPlayersAlive() * iCitiesPerPlayer;
 	
 	if( bBarbs )
 /************************************************************************************************/
