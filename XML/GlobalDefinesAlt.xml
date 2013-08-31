@@ -994,7 +994,7 @@
 	</Define>
     <Define>
         <DefineName>BARBARIAN_SPAWNING_SPEED</DefineName>
-        <fDefineFloatVal>0.25</fDefineFloatVal>
+        <fDefineFloatVal>0.17</fDefineFloatVal>
     </Define>
     <Define>
         <DefineName>ANIMAL_SPAWNING_SPEED</DefineName>
