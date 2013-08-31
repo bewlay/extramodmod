@@ -4565,7 +4565,7 @@ def reqFertility(caster):
  	iFish   = gc.getInfoTypeForString('BONUS_FISH')
  	iShrimp = gc.getInfoTypeForString('BONUS_SHRIMP')
 
-	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or onus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish or pBonus == iShrimp:
+	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or pBonus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish or pBonus == iShrimp:
 		return True
 
 	return False
