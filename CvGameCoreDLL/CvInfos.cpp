@@ -24544,6 +24544,13 @@ CvEventTriggerInfo::CvEventTriggerInfo() :
 	m_iUnitDamagedWeight(0),
 	m_iUnitDistanceWeight(0),
 	m_iUnitExperienceWeight(0),
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	m_iUnitMinLevel(0),
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	m_iMinTreasury(0),
 	m_bSinglePlayer(false),
 	m_bTeam(false),
@@ -24727,6 +24734,17 @@ int CvEventTriggerInfo::getUnitExperienceWeight() const
 {
 	return m_iUnitExperienceWeight;
 }
+
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+int CvEventTriggerInfo::getUnitMinLevel() const
+{
+	return m_iUnitMinLevel;
+}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 int CvEventTriggerInfo::getMinTreasury() const
 {
@@ -25096,6 +25114,13 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iUnitDamagedWeight);
 	stream->Read(&m_iUnitDistanceWeight);
 	stream->Read(&m_iUnitExperienceWeight);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	stream->Read(&m_iUnitMinLevel);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	stream->Read(&m_iMinTreasury);
 
 	stream->Read(&iNumElements);
@@ -25308,6 +25333,13 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iUnitDamagedWeight);
 	stream->Write(m_iUnitDistanceWeight);
 	stream->Write(m_iUnitExperienceWeight);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	stream->Write(m_iUnitMinLevel);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	stream->Write(m_iMinTreasury);
 
 	stream->Write(m_aiUnitsRequired.size());
@@ -25479,6 +25511,13 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iUnitDamagedWeight, "iUnitDamagedWeight");
 	pXML->GetChildXmlValByName(&m_iUnitDistanceWeight, "iUnitDistanceWeight");
 	pXML->GetChildXmlValByName(&m_iUnitExperienceWeight, "iUnitExperienceWeight");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iUnitMinLevel, "iUnitMinLevel");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_iMinTreasury, "iMinTreasury");
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"UnitsRequired"))
@@ -27016,7 +27055,7 @@ bool CvEventInfo::read(CvXMLLoadUtility* pXML)
 					for ( int i = 0; i < iNumSibs; i++)
 					{
 						int iPromotion = pXML->FindInInfoClass(szTextVal);
-						if( iPromotion > 0 && iPromotion < GC.getNumPromotionInfos() )
+						if( iPromotion > -1 && iPromotion < GC.getNumPromotionInfos() )
 							m_pbUnitPromotions[iPromotion] = true;
 						if (!pXML->GetNextXmlVal(szTextVal))
 						{

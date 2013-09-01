@@ -16752,6 +16752,15 @@ void CvPlayerAI::AI_changeMemoryCount(PlayerTypes eIndex1, MemoryTypes eIndex2, 
 // BUG - Update Attitude Icons - end
 	GET_PLAYER(getID()).AI_invalidateAttitudeCache(eIndex1);
 	FAssert(AI_getMemoryCount(eIndex1, eIndex2) >= 0);
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           08/21/13                                lfgr        */
+/* Really update attitude                                                                       */
+/************************************************************************************************/
+	GET_PLAYER(getID()).AI_invalidateAttitudeCache(eIndex1);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 }
 
 int CvPlayerAI::AI_calculateGoldenAgeValue() const

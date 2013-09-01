@@ -76139,8 +76139,7 @@
             <iLeaderExperience>0</iLeaderExperience>
             <bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
         </UnitInfo>
-<!-- MORE EVENTS MOD STARTS -->
-		<UnitInfo>
+<!-- MORE EVENTS MOD STARTS -->		<UnitInfo>
             <Class>EQUIPMENTCLASS_PIKE_OF_TEARS</Class>
             <Type>EQUIPMENT_PIKE_OF_TEARS</Type>
             <UniqueNames>
