@@ -4985,6 +4985,10 @@
 					<BuildingType>BUILDING_DANCING_BEAR</BuildingType>
 					<bBuilding>1</bBuilding>
 				</Building>
+				<Building>
+					<BuildingType>BUILDING_BEAR_TROPHY</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
@@ -15969,6 +15973,10 @@
 					<BuildingType>BUILDING_LION_CAGE</BuildingType>
 					<bBuilding>1</bBuilding>
 				</Building>
+				<Building>
+					<BuildingType>BUILDING_LION_TROPHY</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
@@ -25422,6 +25430,10 @@
 			<Buildings>
 				<Building>
 					<BuildingType>BUILDING_WOLF_PEN</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+				<Building>
+					<BuildingType>BUILDING_WOLF_TROPHY</BuildingType>
 					<bBuilding>1</bBuilding>
 				</Building>
 			</Buildings>
