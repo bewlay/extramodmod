@@ -60,7 +60,7 @@
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
 		<!-- WILDERNESS 08/2013 lfgr -->
-            <iMinWilderness>10</iMinWilderness>
+            <iMinWilderness>50</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
@@ -335,7 +335,7 @@
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
 		<!-- WILDERNESS 08/2013 lfgr -->
-            <iMinWilderness>20</iMinWilderness>
+            <iMinWilderness>40</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
@@ -1981,7 +1981,7 @@
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
 		<!-- WILDERNESS 08/2013 lfgr -->
-            <iMinWilderness>20</iMinWilderness>
+            <iMinWilderness>30</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
@@ -2333,7 +2333,7 @@
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
 		<!-- WILDERNESS 08/2013 lfgr -->
-            <iMinWilderness>30</iMinWilderness>
+            <iMinWilderness>40</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_ICE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
@@ -2539,7 +2539,7 @@
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
 		<!-- WILDERNESS 08/2013 lfgr -->
-            <iMinWilderness>10</iMinWilderness>
+            <iMinWilderness>30</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
@@ -4738,7 +4738,7 @@
             <iRangeDefenseModifier>25</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
 		<!-- WILDERNESS 08/2013 lfgr -->
-            <iMinWilderness>20</iMinWilderness>
+            <iMinWilderness>30</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
@@ -5341,7 +5341,7 @@
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
 		<!-- WILDERNESS 08/2013 lfgr -->
-            <iMinWilderness>10</iMinWilderness>
+            <iMinWilderness>20</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
@@ -5428,7 +5428,7 @@
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
 		<!-- WILDERNESS 08/2013 lfgr -->
-            <iMinWilderness>10</iMinWilderness>
+            <iMinWilderness>20</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_FIRE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
@@ -5690,7 +5690,7 @@
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
 		<!-- WILDERNESS 08/2013 lfgr -->
-            <iMinWilderness>20</iMinWilderness>
+            <iMinWilderness>50</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
@@ -6279,7 +6279,7 @@
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
 		<!-- WILDERNESS 08/2013 lfgr -->
-            <iMinWilderness>10</iMinWilderness>
+            <iMinWilderness>20</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_LIFE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
@@ -7047,7 +7047,7 @@
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
 		<!-- WILDERNESS 08/2013 lfgr -->
-            <iMinWilderness>10</iMinWilderness>
+            <iMinWilderness>30</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_FRUIT_OF_YGGDRASIL</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
