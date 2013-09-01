@@ -3107,5 +3107,35 @@
 			<KFM/>
 			<Button>Art/Interface/Buttons/Buildings/museum.dds</Button>
 		</BuildingArtInfo>
+		<BuildingArtInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+			<Type>ART_DEF_BUILDING_BEAR_TROPHY</Type>
+			<LSystem>LSYSTEM_1x1</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Units/Cave_Bear.dds</Button>
+		</BuildingArtInfo>
+		<BuildingArtInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+			<Type>ART_DEF_BUILDING_LION_TROPHY</Type>
+			<LSystem>LSYSTEM_1x1</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Units/Lion.dds</Button>
+		</BuildingArtInfo>
+		<BuildingArtInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+			<Type>ART_DEF_BUILDING_WOLF_TROPHY</Type>
+			<LSystem>LSYSTEM_1x1</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Units/Wolf Pack.dds</Button>
+		</BuildingArtInfo>
 	</BuildingArtInfos>
 </Civ4ArtDefines>

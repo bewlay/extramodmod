@@ -721,6 +721,14 @@ def spellDeciusSplit(caster):
 	iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
 	caster.setScenarioCounter(-1)
 	newUnit = pPlayer.initUnit(iDecius, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+	# lfgr GP_NAMES 07/2013
+	if( SDTK.sdObjectExists( "GPNames", caster ) ) :
+		szName = SDTK.sdObjectGetVal( "GPNames", caster, "CommanderName" )
+		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", "" )
+		newUnit.setName( szName )
+	# lfgr end
+	# TEST
+	pPlayer.receiveGoody(caster.plot(),gc.getInfoTypeForString('GOODY_EXPLORE_LAIR_PRISONER_ADVENTURER'), caster)
 
 def reqConvertCityBasium(caster):
 	pPlot = caster.plot()
@@ -4563,7 +4571,7 @@ def reqFertility(caster):
  	iFish   = gc.getInfoTypeForString('BONUS_FISH')
  	iShrimp = gc.getInfoTypeForString('BONUS_SHRIMP')
 
-	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or onus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish or pBonus == iShrimp:
+	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or pBonus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish or pBonus == iShrimp:
 		return True
 
 	return False

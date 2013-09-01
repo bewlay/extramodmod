@@ -7046,6 +7046,13 @@ public:
 	int getUnitDamagedWeight() const;			// Exposed to Python
 	int getUnitDistanceWeight() const;		// Exposed to Python
 	int getUnitExperienceWeight() const;		// Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	int getUnitMinLevel() const; // Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	int getMinTreasury() const;				// Exposed to Python
 
 	int getBuildingRequired(int i) const;		// Exposed to Python
@@ -7155,6 +7162,13 @@ private:
 	int m_iUnitDamagedWeight;
 	int m_iUnitDistanceWeight;
 	int m_iUnitExperienceWeight;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	int m_iUnitMinLevel;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	int m_iMinTreasury;
 
 	std::vector<int> m_aiUnitsRequired;

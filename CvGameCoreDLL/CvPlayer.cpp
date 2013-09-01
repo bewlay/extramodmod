@@ -7251,7 +7251,22 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 		{
 			eUnit = ((UnitTypes)(GC.getUnitClassInfo((UnitClassTypes)GC.getGoodyInfo(eGoody).getUnitClassType()).getDefaultUnitIndex()));
 		}
+	/************************************************************************************************/
+	/* GP_NAMES                                 07/2013                                 lfgr        */
+	/* Random name for GPs                                                                          */
+	/************************************************************************************************/
+	/*
         pNewUnit = initUnit(eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE());
+	*/
+		CvWString szName;
+		if( GC.getUnitInfo( eUnit ).getNumUnitNames() > 0 )
+			szName = GC.getGameINLINE().getNewGreatPersonBornName( eUnit );
+		else
+			szName = "";
+        pNewUnit = initUnit(eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), NO_UNITAI, NO_DIRECTION, true, szName);
+	/************************************************************************************************/
+	/* GP_NAMES                                END                                                  */
+	/************************************************************************************************/
         pNewUnit->changeExperience(GC.getGoodyInfo(eGoody).getExperience());
 //FfH: End Modify
 
@@ -23112,6 +23127,7 @@ void CvPlayer::trigger(const EventTriggeredData& kData)
 	}
 }
 
+// lfgr cmt: this is the OTHER player
 bool CvPlayer::canTrigger(EventTriggerTypes eTrigger, PlayerTypes ePlayer, ReligionTypes eReligion) const
 {
 	if (!isAlive())
@@ -23209,6 +23225,16 @@ bool CvPlayer::canTrigger(EventTriggerTypes eTrigger, PlayerTypes ePlayer, Relig
 
 		}
 	}
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           08/21/13                                lfgr        */
+/************************************************************************************************/
+	if ( kTrigger.getPrereqCivilizationPleased() != NO_CIVILIZATION )
+		if( getCivilizationType() != kTrigger.getPrereqCivilizationPleased() )
+			return false;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	return true;
 }

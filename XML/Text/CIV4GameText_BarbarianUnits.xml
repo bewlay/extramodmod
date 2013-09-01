@@ -203,4 +203,85 @@
 		<Spanish>Wights spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, along with some [LINK=UNIT_GHOUL]Ghouls[\LINK].</Spanish>
 		<Finnish>Wights spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, along with some [LINK=UNIT_GHOUL]Ghouls[\LINK].</Finnish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_BEAR_TROPHY</Tag>
+		<English>Bear Trophy</English>
+		<French>Bear Trophy</French>
+		<German>Bear Trophy</German>
+		<Italian>Bear Trophy</Italian>
+		<Spanish>Bear Trophy</Spanish>
+		<Finnish>Bear Trophy</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_BEAR_TROPHY_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_BEAR_TROPHY_STRATEGY</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_LION_TROPHY</Tag>
+		<English>Lion Trophy</English>
+		<French>Lion Trophy</French>
+		<German>Lion Trophy</German>
+		<Italian>Lion Trophy</Italian>
+		<Spanish>Lion Trophy</Spanish>
+		<Finnish>Lion Trophy</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_LION_TROPHY_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_LION_TROPHY_STRATEGY</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_WOLF_TROPHY</Tag>
+		<English>Wolf Trophy</English>
+		<French>Wolf Trophy</French>
+		<German>Wolf Trophy</German>
+		<Italian>Wolf Trophy</Italian>
+		<Spanish>Wolf Trophy</Spanish>
+		<Finnish>Wolf Trophy</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_WOLF_TROPHY_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_WOLF_TROPHY_STRATEGY</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
 </Civ4GameText>
