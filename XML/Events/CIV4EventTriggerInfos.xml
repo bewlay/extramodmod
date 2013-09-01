@@ -6,7 +6,7 @@
 <!-- Event Trigger Infos -->
 <Civ4EventTriggerInfos xmlns="x-schema:CIV4EventSchema.xml">
 	<EventTriggerInfos>
-		<EventTriggerInfo><!-- AERONS_CHOSEN -->
+		<EventTriggerInfo><!-- AERONS_CHOSEN lfgr: tweaked -->
 			<Type>EVENTTRIGGER_AERONS_CHOSEN</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_AERONS_CHOSEN</Text>
@@ -23,6 +23,7 @@
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
+			<iUnitMinLevel>5</iUnitMinLevel>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>-1</iPlotType>
@@ -244,7 +245,6 @@
 				<Event>EVENT_ANGELIC_PROCESSION_1</Event>
 				<Event>EVENT_ANGELIC_PROCESSION_2</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bShowPlot>1</bShowPlot>
 			<iPrereqGlobalCounter>5</iPrereqGlobalCounter>
 		</EventTriggerInfo>
@@ -781,7 +781,7 @@
 			<bOtherPlayerHasReligion>1</bOtherPlayerHasReligion>
 			<PythonCanDo>canTriggerBrothersInNeed</PythonCanDo>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- CALABIM_SANCTUARY -->
+		<EventTriggerInfo><!-- CALABIM_SANCTUARY lfgr: tweaked-->
 			<Type>EVENTTRIGGER_CALABIM_SANCTUARY</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_CALABIM_SANCTUARY</Text>
@@ -803,6 +803,8 @@
 				<Event>EVENT_CALABIM_SANCTUARY_2</Event>
 			</Events>
 			<bRecurring>1</bRecurring>
+			<bPickPlayer>1</bPickPlayer>
+			<iOtherPlayerShareBorders>1</iOtherPlayerShareBorders>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<PrereqCivilizationPleased>CIVILIZATION_CALABIM</PrereqCivilizationPleased>
@@ -891,6 +893,7 @@
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
+			<iUnitMinLevel>3</iUnitMinLevel>
 			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CHAMPION_1</Event>
@@ -1344,7 +1347,6 @@
 				<Event>EVENT_DEDICATE_MONUMENT_5</Event>
 				<Event>EVENT_DEDICATE_MONUMENT_6</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
@@ -1526,7 +1528,7 @@
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- ELOHIM_HALLOWING -->
+		<EventTriggerInfo><!-- ELOHIM_HALLOWING lfgr: tweaked -->
 			<Type>EVENTTRIGGER_ELOHIM_HALLOWING</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_ELOHIM_HALLOWING</Text>
@@ -1548,6 +1550,7 @@
 				<Event>EVENT_ELOHIM_HALLOWING_3</Event>
 			</Events>
 			<bRecurring>1</bRecurring>
+			<bPickPlayer>1</bPickPlayer>
 			<iPrereqGlobalCounter>10</iPrereqGlobalCounter>
 			<PrereqCivilizationPleased>CIVILIZATION_ELOHIM</PrereqCivilizationPleased>
 		</EventTriggerInfo>
@@ -1635,6 +1638,7 @@
 			</UnitsRequired>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
+			<iUnitMinLevel>5</iUnitMinLevel>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_SHIPYARD</BuildingClass>
 			</BuildingsRequired>
@@ -1647,7 +1651,6 @@
 			<bGlobal>1</bGlobal>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDo>canTriggerExperiencedCaptain</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- FAMINE -->
 			<Type>EVENTTRIGGER_FAMINE</Type>
@@ -2434,10 +2437,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_1_1</Event>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_1_2</Event>
@@ -2462,15 +2465,16 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
+			<EventArt>Art\EventImages\e_guildmerc1.dds</EventArt>
 			<EventArt />
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_2_1</Event>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_2_2</Event>
@@ -2495,15 +2499,16 @@
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
+			<EventArt>Art\EventImages\e_guildmerc1.dds</EventArt>
 			<EventArt />
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_3_1</Event>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_3_2</Event>
@@ -2533,10 +2538,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_4_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
@@ -2564,10 +2569,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_5_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
@@ -2595,10 +2600,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_6_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
@@ -2625,10 +2630,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_7_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
@@ -2655,10 +2660,10 @@
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_8_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
@@ -2685,10 +2690,10 @@
 			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
-			<iNumCorporations>1</iNumCorporations>
+			<BuildingsRequired>
+				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
+			</BuildingsRequired>
+			<iNumBuildings>1</iNumBuildings>
 			<Events>
 				<Event>EVENT_GUILD_OF_THE_NINE_MERC_9_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
@@ -8260,6 +8265,9 @@
 				<Event>EVENT_WAYWARD_ELVES_4</Event>
 				<Event>EVENT_WAYWARD_ELVES_5</Event>
 			</Events>
+			<OrPreReqs>
+				<PrereqTech>TECH_EDUCATION</PrereqTech>
+			</OrPreReqs>
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDo>canTriggerPlotEmpty</PythonCanDo>
 		</EventTriggerInfo>
@@ -8346,7 +8354,7 @@
 				<Event>EVENT_TRAVELLER_6</Event>
 			</Events>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- UNFORTUNATE_ASSASSIN -->
+		<EventTriggerInfo><!-- UNFORTUNATE_ASSASSIN lfgr: reworked -->
 			<Type>EVENTTRIGGER_UNFORTUNATE_ASSASSIN</Type>
 			<WorldNewsTexts>
 				<Text />
@@ -8369,9 +8377,42 @@
 				<Event>EVENT_UNFORTUNATE_ASSASSIN_4</Event>
 				<Event>EVENT_UNFORTUNATE_ASSASSIN_5</Event>
 			</Events>
+			<OrPreReqs>
+				<PrereqTech>TECH_POISONS</PrereqTech>
+			</OrPreReqs>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDoCity>CanTriggerUnfortunateAssassinCity</PythonCanDoCity>
+			<PythonCanDoCity>canTriggerCityCapital</PythonCanDoCity>
+		</EventTriggerInfo>
+		<EventTriggerInfo><!-- UNFORTUNATE_ASSASSIN_4_CONT lfgr: added -->
+			<!-- LFGR_TODO: Add minimum turns between events -->
+			<Type>EVENTTRIGGER_UNFORTUNATE_ASSASSIN_4_CONT</Type>
+			<WorldNewsTexts>
+				<Text />
+			</WorldNewsTexts>
+			<TriggerTexts>
+				<TriggerText>
+					<Text>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4_CONT</Text>
+					<Era>NONE</Era>
+				</TriggerText>
+			</TriggerTexts>
+			<iPercentGamesActive>100</iPercentGamesActive>
+			<iWeight>-1</iWeight>
+			<iMaxOurLandmass>-1</iMaxOurLandmass>
+			<iPlotType>-1</iPlotType>
+			<Events>
+				<Event>EVENT_UNFORTUNATE_ASSASSIN_4_CONT_1</Event>
+			</Events>
+			<PrereqEvents>
+				<Event>EVENT_UNFORTUNATE_ASSASSIN_4</Event>
+			</PrereqEvents>
+			<OrPreReqs>
+				<PrereqTech>TECH_POISONS</PrereqTech>
+			</OrPreReqs>
+			<bPickCity>1</bPickCity>
+			<bShowPlot>1</bShowPlot>
+			<PythonCanDoCity>canTriggerCityCapital</PythonCanDoCity>
+			<iPrereqGlobalCounter>50</iPrereqGlobalCounter>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- OVERCROWDED_DUNGEON -->
 			<Type>EVENTTRIGGER_OVERCROWDED_DUNGEON</Type>

@@ -21622,22 +21622,38 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_EVENT_UNIT_DISBAND", szUnit.GetCString()));
 	}
-
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+/*	
 	if (NO_PROMOTION != kEvent.getUnitPromotion())
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_EVENT_UNIT_PROMOTION", szUnit.GetCString(), GC.getPromotionInfo((PromotionTypes)kEvent.getUnitPromotion()).getTextKeyWide()));
 	}
+*/
+	CvWString szPromotionBuffer = L"";
+	if (NO_PROMOTION != kEvent.getUnitPromotion())
+	{
+		szPromotionBuffer.append( GC.getPromotionInfo((PromotionTypes)kEvent.getUnitPromotion()).getDescription() );
+	}
 	
-/************************************************************************************************/
-/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
-/************************************************************************************************/
 	for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+	{
 		if( kEvent.isUnitPromotion( i ) )
 		{
-			szBuffer.append( NEWLINE );
-			szBuffer.append( gDLL->getText( "TXT_KEY_EVENT_UNIT_PROMOTION", szUnit.GetCString(), GC.getPromotionInfo( (PromotionTypes)i ).getTextKeyWide() ) );
+			if( !szPromotionBuffer.IsEmpty() )
+				szPromotionBuffer.append( L", " );
+			szPromotionBuffer.append( GC.getPromotionInfo((PromotionTypes)i).getDescription() );
 		}
+	}
+
+	if( !szPromotionBuffer.IsEmpty() )
+	{
+		szBuffer.append( NEWLINE );
+		szBuffer.append( gDLL->getText( "TXT_KEY_EVENT_UNIT_PROMOTION", szUnit.GetCString(), szPromotionBuffer.GetCString() ) );
+	}
 /************************************************************************************************/
 /* EVENT_NEW_TAGS                          END                                                  */
 /************************************************************************************************/

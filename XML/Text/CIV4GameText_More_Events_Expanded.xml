@@ -1237,11 +1237,11 @@
 	</TEXT>
 	<TEXT><!-- EVENT_TRAVELLER_5 -->
 		<Tag>TXT_KEY_EVENT_TRAVELLER_5</Tag>
-		<English>Tell me about the biggest city he has ever seen.</English>
-		<French>Tell me about the biggest city he has ever seen.</French>
-		<German>Tell me about the biggest city he has ever seen.</German>
-		<Italian>Tell me about the biggest city he has ever seen.</Italian>
-		<Spanish>Tell me about the biggest city he has ever seen.</Spanish>
+		<English>Tell me about the biggest city you have ever seen.</English>
+		<French>Tell me about the biggest city you have ever seen.</French>
+		<German>Tell me about the biggest city you have ever seen.</German>
+		<Italian>Tell me about the biggest city you have ever seen.</Italian>
+		<Spanish>Tell me about the biggest city you have ever seen.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_TRAVELLER_6 -->
 		<Tag>TXT_KEY_EVENT_TRAVELLER_6</Tag>
@@ -1277,19 +1277,19 @@
 	</TEXT>
 	<TEXT><!-- EVENT_UNFORTUNATE_ASSASSIN_3 -->
 		<Tag>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_3</Tag>
-		<English>Find out who sent her and make her spy on them for us.</English>
-		<French>Find out who sent her and make her spy on them for us.</French>
-		<German>Find out who sent her and make her spy on them for us.</German>
-		<Italian>Find out who sent her and make her spy on them for us.</Italian>
-		<Spanish>Find out who sent her and make her spy on them for us.</Spanish>
+		<English>Throw her into jail, and make sure she is properly guarded.</English>
+		<French>Throw her into jail, and make sure she is properly guarded.</French>
+		<German>Throw her into jail, and make sure she is properly guarded.</German>
+		<Italian>Throw her into jail, and make sure she is properly guarded.</Italian>
+		<Spanish>Throw her into jail, and make sure she is properly guarded.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_UNFORTUNATE_ASSASSIN_4 -->
 		<Tag>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4</Tag>
-		<English>Let her go.</English>
-		<French>Let her go.</French>
-		<German>Let her go.</German>
-		<Italian>Let her go.</Italian>
-		<Spanish>Let her go.</Spanish>
+		<English>Let her go. I shall not fight violence with more violence.</English>
+		<French>Let her go. I shall not fight violence with more violence.</French>
+		<German>Let her go. I shall not fight violence with more violence.</German>
+		<Italian>Let her go. I shall not fight violence with more violence.</Italian>
+		<Spanish>Let her go. I shall not fight violence with more violence.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_UNFORTUNATE_ASSASSIN_5 -->
 		<Tag>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_5</Tag>
@@ -1298,6 +1298,22 @@
 		<German>She managed to sneak past my guards? We need people with such potential. Make her an offer she can't refuse.</German>
 		<Italian>She managed to sneak past my guards? We need people with such potential. Make her an offer she can't refuse.</Italian>
 		<Spanish>She managed to sneak past my guards? We need people with such potential. Make her an offer she can't refuse.</Spanish>
+	</TEXT>
+	<TEXT><!-- EVENT_UNFORTUNATE_ASSASSIN_4_CONT -->
+		<Tag>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4_CONT</Tag>
+		<English>A stranger asks for an audience.[NEWLINE][TAB]"I was once hired to kill you, but I failed and you forgave me. I've seen much of the world and I learned that mercy is the only thing that can save erebus. Please accept me in your service."</English>
+		<French>A stranger asks for an audience.[NEWLINE][TAB]"I was once hired to kill you, but I failed and you forgave me. I've seen much of the world and I learned that mercy is the only thing that can save erebus. Please accept me in your service."</French>
+		<German>A stranger asks for an audience.[NEWLINE][TAB]"I was once hired to kill you, but I failed and you forgave me. I've seen much of the world and I learned that mercy is the only thing that can save erebus. Please accept me in your service."</German>
+		<Italian>A stranger asks for an audience.[NEWLINE][TAB]"I was once hired to kill you, but I failed and you forgave me. I've seen much of the world and I learned that mercy is the only thing that can save erebus. Please accept me in your service."</Italian>
+		<Spanish>A stranger asks for an audience.[NEWLINE][TAB]"I was once hired to kill you, but I failed and you forgave me. I've seen much of the world and I learned that mercy is the only thing that can save erebus. Please accept me in your service."</Spanish>
+	</TEXT>
+	<TEXT><!-- EVENT_UNFORTUNATE_ASSASSIN_4_CONT_1 -->
+		<Tag>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4_CONT_1</Tag>
+		<English>I'm glad you finally understand.</English>
+		<French>I'm glad you finally understand.</French>
+		<German>I'm glad you finally understand.</German>
+		<Italian>I'm glad you finally understand.</Italian>
+		<Spanish>I'm glad you finally understand.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_OVERCROWDED_DUNGEON -->
 		<Tag>TXT_KEY_EVENT_OVERCROWDED_DUNGEON</Tag>
@@ -2159,11 +2175,11 @@
 	</TEXT>
 	<TEXT><!-- EVENT_DEMONIC_TOWER_HELP_1 -->
 		<Tag>TXT_KEY_EVENT_DEMONIC_TOWER_HELP_1</Tag>
-		<English>A weakened (-60% strength) and immobile demon appears in the tower.</English>
-		<French>A weakened (-60% strength) and immobile demon appears in the tower.</French>
-		<German>A weakened (-60% strength) and immobile demon appears in the tower.</German>
-		<Italian>A weakened (-60% strength) and immobile demon appears in the tower.</Italian>
-		<Spanish>A weakened (-60% strength) and immobile demon appears in the tower.</Spanish>
+		<English>A weakened and immobile demon appears in the tower.</English>
+		<French>A weakened and immobile demon appears in the tower.</French>
+		<German>A weakened and immobile demon appears in the tower.</German>
+		<Italian>A weakened and immobile demon appears in the tower.</Italian>
+		<Spanish>A weakened and immobile demon appears in the tower.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_ANCIENT_TOWER_LORE -->
 		<Tag>TXT_KEY_EVENT_ANCIENT_TOWER_LORE</Tag>
