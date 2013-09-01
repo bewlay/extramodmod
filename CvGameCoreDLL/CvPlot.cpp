@@ -12602,8 +12602,6 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI )
 				veIncludedSpawns.push_back( std::pair<SpawnTypes,int>( (SpawnTypes) eIncSpawn, iValue ) );
 		}
 
-	FAssertMsg( iRandomIncludedSpawns > (int) veIncludedSpawns.size(), "" );
-
 	int iRandomIncludedSpawns = 0;
 	if( kSpawn.getNumRandomIncludedSpawns() == -1 )
 		iRandomIncludedSpawns = (int) veIncludedSpawns.size();
