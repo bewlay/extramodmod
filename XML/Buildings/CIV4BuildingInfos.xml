@@ -40424,10 +40424,6 @@
             <PrereqBuildingClasses>
             </PrereqBuildingClasses>
             <BuildingClassNeededs>
-                <BuildingClassNeeded>
-                    <BuildingClassType>BUILDINGCLASS_CARNIVAL</BuildingClassType>
-                    <bNeededInCity>1</bNeededInCity>
-                </BuildingClassNeeded>
             </BuildingClassNeededs>
             <SpecialistYieldChanges>
             </SpecialistYieldChanges>
