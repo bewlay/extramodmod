@@ -408,7 +408,7 @@ class CustomFunctions:
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_MERCHANT' ) )
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_PROPHET' ) )
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_SCIENTIST' ) )
-				lOutcomes.append( 3 * [( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_MANA', 'BONUS_MANA' )] )
+				lOutcomes.extend( 3 * [( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_MANA', 'BONUS_MANA' )] )
 		if( iRnd > 80 ) :
 			if( not pPlot.isWater() ) :
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ADVENTURER' ) )
