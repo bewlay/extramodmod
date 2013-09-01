@@ -136,8 +136,11 @@ class CustomFunctions:
 		
 		iDestroyLair = 0
 		
+		ePillageImprovement = gc.getImprovementInfo( pPlot.getImprovementType() ).getImprovementPillage()
+		bNoDestroy = ( ePillageImprovement != -1 )
+		
 		eSpawn = self.getExploreSpawn( pUnit, iRnd )
-		tOutcome = self.getExploreNonSpawnOutcome( pUnit, iRnd )
+		tOutcome = self.getExploreNonSpawnOutcome( pUnit, iRnd, bNoDestroy )
 		if( eSpawn == None ) :
 			iDestroyLair = self.doNonSpawnOutcome( pUnit, tOutcome )
 		else :
@@ -151,7 +154,16 @@ class CustomFunctions:
 			else :
 				iDestroyLair = self.doNonSpawnOutcome( pUnit, tOutcome )
 		
-		return iDestroyLair
+		if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
+			if( bNoDestroy ) :
+				CyInterface().addMessage(pUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_EXPLORED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+				pPlot.setImprovementType(-1) # to remove landmark
+				pPlot.setImprovementType(ePillageImprovement)
+			else :
+				CyInterface().addMessage(pUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+				pPlot.setImprovementType(-1)
+		pUnit.finishMoves()
+		pUnit.changeExperience(1, -1, False, False, False)
 	
 	def doSpawn( self, pUnit, eSpawn ) :
 		pPlot = pUnit.plot()
@@ -298,7 +310,7 @@ class CustomFunctions:
 		
 		return eBestSpawn
 		
-	def getExploreNonSpawnOutcome( self, pUnit, iRnd ) :
+	def getExploreNonSpawnOutcome( self, pUnit, iRnd, bNoDestroy ) :
 		pPlot = pUnit.plot()
 		pPlayer = gc.getPlayer( pUnit.getOwner() )
 		lOutcomes = []
@@ -314,7 +326,8 @@ class CustomFunctions:
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_WITHERED', ['PROMOTION_WITHERED'] ) )
 		if( iRnd > -40 and iRnd <= -20 ) :
 			if( pUnit.isAlive() ) :
-				lOutcomes.append( ( 'Special', 100, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 'COLLAPSE' ) )
+				if( not bNoDestroy ) :
+					lOutcomes.append( ( 'Special', 100, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 'COLLAPSE' ) )
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENRAGED', ['PROMOTION_ENRAGED'] ) )
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DISEASED', ['PROMOTION_DISEASED'] ) )
 		if( iRnd > -30 and iRnd <= -10 ) :
@@ -328,7 +341,8 @@ class CustomFunctions:
 				lOutcomes.append( ( 'Event', 0, 'EVENTTRIGGER_EXPLORE_LAIR_PORTAL' ) )
 				lOutcomes.append( ( 'Event', 100, 'EVENTTRIGGER_EXPLORE_LAIR_DEPTHS' ) )
 				lOutcomes.append( ( 'Event', 80, 'EVENTTRIGGER_EXPLORE_LAIR_DWARF_VS_LIZARDMEN' ) )
-				lOutcomes.append( ( 'Special', 100, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CAGE', 'CAGE' ) )
+				if( not bNoDestroy ) :
+					lOutcomes.append( ( 'Special', 100, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CAGE', 'CAGE' ) )
 		if( iRnd > 20 and iRnd <= 50 ) :
 			lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_HIGH_GOLD' ) )
 			if( pUnit.isAlive() ) :

@@ -719,7 +719,11 @@ class CvEventManager:
 		pPlot = CyMap().plot(iX, iY)
 
 		if gc.getImprovementInfo(iImprovement).isUnique():
-			CyEngine().addLandmark(pPlot, CvUtil.convertToStr(gc.getImprovementInfo(iImprovement).getDescription()))
+		# lfgr fix
+		#	CyEngine().addLandmark(pPlot, CvUtil.convertToStr(gc.getImprovementInfo(iImprovement).getDescription()))
+			CyEngine().removeSign(pPlot, -1)
+			CyEngine().addSign(pPlot, -1, CvUtil.convertToStr(gc.getImprovementInfo(iImprovement).getDescription()))
+		# lfgr end
 
 			if iImprovement == gc.getInfoTypeForString('IMPROVEMENT_RING_OF_CARCER'):
 				pPlot.setMinLevel(15)

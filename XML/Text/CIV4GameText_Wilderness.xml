@@ -46,4 +46,44 @@
 		<Italian>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</Italian>
 		<Spanish>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_LAIR_EXPLORED</Tag>
+		<English>There seems not to be anything left to explore in the lair.</English>
+		<French>There seems not to be anything left to explore in the lair.</French>
+		<German>There seems not to be anything left to explore in the lair.</German>
+		<Italian>There seems not to be anything left to explore in the lair.</Italian>
+		<Spanish>There seems not to be anything left to explore in the lair.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_AIFON_ISLE_EXPLORED</Tag>
+		<English>Maenalus (Explored)</English>
+		<French>Maenalus (Explored)</French>
+		<German>Maenalus (Explored)</German>
+		<Italian>Maenalus (Explored)</Italian>
+		<Spanish>Maenalus (Explored)</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_BRADELINES_WELL_EXPLORED</Tag>
+		<English>Bradeline's Well (Expl.)</English>
+		<French>Bradeline's Well (Expl.)</French>
+		<German>Bradeline's Well (Expl.)</German>
+		<Italian>Bradeline's Well (Expl.)</Italian>
+		<Spanish>Bradeline's Well (Expl.)</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_BROKEN_SEPULCHER_EXPLORED</Tag>
+		<English>Broken Sepulcher (Expl.)</English>
+		<French>Broken Sepulcher (Expl.)</French>
+		<German>Broken Sepulcher (Expl.)</German>
+		<Italian>Broken Sepulcher (Expl.)</Italian>
+		<Spanish>Broken Sepulcher (Expl.)</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_PYRE_OF_THE_SERAPHIC_EXPLORED</Tag>
+		<English>Pyre of the Seraphic (E.)</English>
+		<French>Pyre of the Seraphic (E.)</French>
+		<German>Pyre of the Seraphic (E.)</German>
+		<Italian>Pyre of the Seraphic (E.)</Italian>
+		<Spanish>Pyre of the Seraphic (E.)</Spanish>
+	</TEXT>
 </Civ4GameText>

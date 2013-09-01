@@ -6560,10 +6560,22 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
                  GC.getGameINLINE().getActivePlayer() == NO_PLAYER ||
                  GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCivilizationType() == GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getPrereqCivilization())
                 {
+				/************************************************************************************************/
+				/* WILDERNESS                             08/2013                                 lfgr          */
+				/* Original by Sephi                                                                            */
+				/************************************************************************************************/
+				/*
                     // Super Forts begin *text* *upgrade*
 					if ((pPlot->getUpgradeProgress() > 0) || (pPlot->isBeingWorked() && !GC.getImprovementInfo(eImprovement).isUpgradeRequiresFortify()))
 					// if ((pPlot->getUpgradeProgress() > 0) || pPlot->isBeingWorked()) - Original Code
 					// Super Forts end
+				*/
+					if ( pPlot->getUpgradeProgress() > 0 || (
+							(pPlot->isBeingWorked() || GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).isOutsideBorders()) 
+							&& !GC.getImprovementInfo(eImprovement).isUpgradeRequiresFortify()))
+				/************************************************************************************************/
+				/* WILDERNESS                                                                     END           */
+				/************************************************************************************************/
                     {
                         iTurns = pPlot->getUpgradeTimeLeft(eImprovement, eRevealOwner);
                         szString.append(gDLL->getText("TXT_KEY_PLOT_IMP_UPGRADE", iTurns, GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getTextKeyWide()));
@@ -10065,7 +10077,17 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 
 		for (iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
 		{
+		/************************************************************************************************/
+		/* WILDERNESS                             08/2013                                 lfgr          */
+		/************************************************************************************************/
+		/*
 			if (GC.getImprovementInfo((ImprovementTypes)iI).getImprovementUpgrade() != NO_IMPROVEMENT)
+		*/
+			if (GC.getImprovementInfo((ImprovementTypes)iI).getImprovementUpgrade() != NO_IMPROVEMENT
+					&& ( !GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo((ImprovementTypes)iI).getImprovementUpgrade()).isOutsideBorders() || GC.getImprovementInfo((ImprovementTypes)iI).isUpgradeRequiresFortify()))
+		/************************************************************************************************/
+		/* WILDERNESS                                                                     END           */
+		/************************************************************************************************/
 			{
 				szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_CIVIC_IMPROVEMENT_UPGRADE", kCivic.getImprovementUpgradeRateModifier()).c_str());
 				CvWString szImprovement;

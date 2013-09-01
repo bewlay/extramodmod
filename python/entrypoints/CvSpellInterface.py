@@ -1271,8 +1271,8 @@ def reqExploreLair(caster):
 	return True
 
 def spellExploreLair(caster):
-	pPlot = caster.plot()
 # WILDERNESS 08/2013 lfgr
+#	pPlot = caster.plot()
 #	iRnd = CyGame().getSorenRandNum(100, "Explore Lair") + caster.getLevel()
 #	iDestroyLair = 0
 #	if iRnd < 14:
@@ -1285,30 +1285,30 @@ def spellExploreLair(caster):
 #		iDestroyLair = cf.exploreLairGood(caster)
 #	if iRnd >= 94:
 #		iDestroyLair = cf.exploreLairBigGood(caster)
-	iDestroyLair = cf.exploreLair( caster, False )
+#	if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
+#		CyInterface().addMessage(caster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+#		pPlot.setImprovementType(-1)
+#	caster.finishMoves()
+#	caster.changeExperience(1, -1, False, False, False)
+	cf.exploreLair( caster, False )
 # WILDERNESS end
-	if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
-		CyInterface().addMessage(caster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
-		pPlot.setImprovementType(-1)
-	caster.finishMoves()
-	caster.changeExperience(1, -1, False, False, False)
 
 def spellExploreLairEpic(caster):
-	pPlot = caster.plot()
 # WILDERNESS 08/2013 lfgr
+#	pPlot = caster.plot()
 #	iRnd = CyGame().getSorenRandNum(100, "Explore Lair") + caster.getLevel()
 #	iDestroyLair = 0
 #	if iRnd < 54:
 #		iDestroyLair = cf.exploreLairBigBad(caster)
 #	if iRnd >= 54:
 #		iDestroyLair = cf.exploreLairBigGood(caster)
-	iDestroyLair = cf.exploreLair( caster, True )
+#	if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
+#		CyInterface().addMessage(caster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+#		pPlot.setImprovementType(-1)
+#	caster.finishMoves()
+#	caster.changeExperience(1, -1, False, False, False)
+	cf.exploreLair( caster, True )
 # WILDERNESS end
-	if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
-		CyInterface().addMessage(caster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
-		pPlot.setImprovementType(-1)
-	caster.finishMoves()
-	caster.changeExperience(1, -1, False, False, False)
 
 def reqFeast(caster):
 	pPlot = caster.plot()
