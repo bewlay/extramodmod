@@ -3003,7 +3003,6 @@
 			<iRevoltTurns>3</iRevoltTurns>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doOrderVsVeil1</PythonCallback>
-			<PythonHelp>helpOrderVsVeil1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>200</iAIValue>
 		</EventInfo>
