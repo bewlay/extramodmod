@@ -2479,7 +2479,7 @@
 		<!-- Water -->
 		<SpawnInfo> <!-- SPAWN_GIANT_TORTOISE -->
 			<Type>SPAWN_GIANT_TORTOISE</Type>
-			<iBaseWeight>0</iBaseWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bAnimal>1</bAnimal>
@@ -2493,7 +2493,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_SEA_SERPENT -->
 			<Type>SPAWN_SEA_SERPENT</Type>
-			<iBaseWeight>0</iBaseWeight>
+			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bAnimal>1</bAnimal>
