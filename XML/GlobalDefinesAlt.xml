@@ -978,7 +978,34 @@
 	</Define>
 	<Define>
 		<DefineName>WILDERNESS_MAX_MAX_INHABITED_WILDERNESS</DefineName>
-		<iDefineIntVal>75</iDefineIntVal>
+		<iDefineIntVal>70</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- If the amount of uninhabited continents ("islands") is lower than this, use WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_NO_ISLANDS -->
+		<DefineName>WILDERNESS_NO_ISLANDS_THRESHOLD</DefineName>
+		<fDefineFloatVal>0.01</fDefineFloatVal>
+	</Define>
+	<Define>
+		<DefineName>WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_NO_ISLANDS</DefineName>
+		<iDefineIntVal>100</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- If the amount of uninhabited continents ("islands") is lower than this, use WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_FEW_ISLANDS -->
+		<DefineName>WILDERNESS_FEW_ISLANDS_THRESHOLD</DefineName>
+		<fDefineFloatVal>0.05</fDefineFloatVal>
+	</Define>
+	<Define>
+		<DefineName>WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_FEW_ISLANDS</DefineName>
+		<iDefineIntVal>85</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- If the amount of uninhabited continents ("islands") is greater than this, use WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_MANY_ISLANDS -->
+		<DefineName>WILDERNESS_MANY_ISLANDS_THRESHOLD</DefineName>
+		<fDefineFloatVal>0.3</fDefineFloatVal>
+	</Define>
+	<Define>
+		<DefineName>WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_MANY_ISLANDS</DefineName>
+		<iDefineIntVal>55</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>UNIT_MOVE_MIN_WILDERNESS_RANGE</DefineName>

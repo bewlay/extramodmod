@@ -1479,6 +1479,9 @@ void CvMap::calculateWilderness()
 	// Find geometric mean for uninhabited continents
 	int* piUAreaMeanX = new int[getNumAreas()];
 	int* piUAreaMeanY = new int[getNumAreas()];
+
+	// Count number of uninhabited continent tiles
+	int iNumUAreaTiles = 0;
 	
 	for( int iArea = 0; iArea < getNumAreas(); iArea++ )
 	{
@@ -1486,6 +1489,7 @@ void CvMap::calculateWilderness()
 		{
 			piUAreaMeanX[iArea] = 0;
 			piUAreaMeanY[iArea] = 0;
+			iNumUAreaTiles += getArea( iArea )->getNumTiles();
 		}
 		else
 		{
@@ -1702,10 +1706,16 @@ void CvMap::calculateWilderness()
 	}
 
 	// NORMALIZATION
-
-	// LFGR_TODO: Make it defines
 	int MIN_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MIN_MAX_INHABITED_WILDERNESS" );
-	int MAX_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MAX_MAX_INHABITED_WILDERNESS" );
+	int MAX_MAX_INHABITED_WILDERNESS = 0;
+	if( iNumUAreaTiles <= getLandPlots() * GC.getDefineFLOAT( "WILDERNESS_NO_ISLANDS_THRESHOLD" ) )
+		MAX_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_NO_ISLANDS" );
+	else if( iNumUAreaTiles <= getLandPlots() * GC.getDefineFLOAT( "WILDERNESS_FEW_ISLANDS_THRESHOLD" ) )
+		MAX_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_FEW_ISLANDS" );
+	else if( iNumUAreaTiles >= getLandPlots() * GC.getDefineFLOAT( "WILDERNESS_MANY_ISLANDS_THRESHOLD" ) )
+		MAX_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_MANY_ISLANDS" );
+	else
+		MAX_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MAX_MAX_INHABITED_WILDERNESS" );
 	/*
 		General normalization formula:
 		We have a factor (f) and a shift (s) value for each area. The formula for the wilderness (w) of a plot is:
@@ -1805,12 +1815,10 @@ void CvMap::calculateWilderness()
 					pLoopPlot->setPlotType( PLOT_LAND );
 				pLoopPlot->setBonusType( NO_BONUS );
 				pLoopPlot->setFeatureType( NO_FEATURE );
-				if( iWilderness == 0 )
+				if( iWilderness <= 10 )
 					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_DESERT" ) );
-				else if( iWilderness <= 10 )
-					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_PLAINS" ) );
 				else if( iWilderness <= 20 )
-					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_GRASS" ) );
+					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_PLAINS" ) );
 				else if( iWilderness <= 30 )
 					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_GRASS" ) );
 				else if( iWilderness <= 40 )
