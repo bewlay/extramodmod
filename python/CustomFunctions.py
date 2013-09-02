@@ -221,8 +221,8 @@ class CustomFunctions:
 			elif( sType == 'NOTHING' ) :
 				pass
 			elif( sType == 'CAGE' ) :
-				# LFGR_TODO: This would cause unique features/improvements to vanish completely
-				#pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_CAGE'))
+				CyInterface().addMessage(pUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+				pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_CAGE'))
 				for i in range( pPlot.getNumUnits() ) :
 					pUnit2 = pPlot.getUnit( i )
 					if( pUnit2.getOwner() == pUnit.getOwner() ) :
@@ -342,7 +342,7 @@ class CustomFunctions:
 				lOutcomes.append( ( 'Event', 100, 'EVENTTRIGGER_EXPLORE_LAIR_DEPTHS' ) )
 				lOutcomes.append( ( 'Event', 80, 'EVENTTRIGGER_EXPLORE_LAIR_DWARF_VS_LIZARDMEN' ) )
 				if( not bNoDestroy ) :
-					lOutcomes.append( ( 'Special', 100, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CAGE', 'CAGE' ) )
+					lOutcomes.append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CAGE', 'CAGE' ) )
 		if( iRnd > 20 and iRnd <= 50 ) :
 			lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_HIGH_GOLD' ) )
 			if( pUnit.isAlive() ) :
@@ -440,11 +440,10 @@ class CustomFunctions:
 			elif( tOutcome[0] == 'Goody' ) :
 				eGoody = self.saveGetInfoType( gc.getNumGoodyInfos(), tOutcome[2] )
 				bValid = pPlayer.canReceiveGoody( pPlot, eGoody, pUnit )
-				# LFGR_TODO: equipment maxed out (do in CvPlayer.recceiveGoody)
 			elif( tOutcome[0] == 'Bonus' ) :
 				eBonus = self.saveGetInfoType( gc.getNumBonusInfos(), tOutcome[3] )
 				bValid = ( pPlot.getBonusType( -1 ) == -1 ) and pPlot.canHaveBonus( eBonus, False )
-				# LFGR_TODO: bonus nearby
+				# LFGR_TODO: bonus nearby (when a mechanic to spawn lairs is implemented)
 			
 			if( bValid ) :
 				lResult.append( tOutcome )
