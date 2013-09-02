@@ -1447,6 +1447,7 @@
 			<iMaxWilderness>50</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_DROWN</Unit>
@@ -1472,6 +1473,7 @@
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
 			<bAnimal>1</bAnimal>
+			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_SEA_SERPENT</Unit>
@@ -1487,6 +1489,7 @@
 			<iMaxWilderness>100</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_STYGIAN_GUARD</Unit>
@@ -1530,6 +1533,7 @@
 			<iMaxWilderness>100</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_KRAKEN</Unit>
@@ -1563,6 +1567,7 @@
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
+			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_DROWN</Unit>
@@ -1585,6 +1590,7 @@
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
+			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_DROWN</Unit>
@@ -1611,6 +1617,7 @@
 			<iMaxWilderness>100</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
+			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_SEA_SERPENT</Unit>
@@ -1900,6 +1907,7 @@
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>30</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1913,6 +1921,7 @@
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>20</iMinWilderness>
 			<iMaxWilderness>60</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
