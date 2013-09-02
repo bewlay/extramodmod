@@ -1741,7 +1741,7 @@
 		<SpawnInfo> <!-- SPAWN_BARROW_LATE_WIGHT -->
 			<Type>SPAWN_BARROW_LATE_WIGHT</Type>
 			<iBaseWeight>0</iBaseWeight>
-			<iMinWilderness>30</iMinWilderness>
+			<iMinWilderness>40</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
@@ -1807,13 +1807,13 @@
 		<SpawnInfo> <!-- SPAWN_BEAR_DEN_CAVE_BEAR -->
 			<Type>SPAWN_BEAR_DEN_CAVE_BEAR</Type>
 			<iBaseWeight>0</iBaseWeight>
-			<iMinWilderness>80</iMinWilderness>
+			<iMinWilderness>70</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
-					<Unit>UNIT_POLAR_BEAR</Unit>
+					<Unit>UNIT_CAVE_BEAR</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
@@ -1919,7 +1919,7 @@
 		<SpawnInfo> <!-- SPAWN_LION_DEN_LION_PRIDE -->
 			<Type>SPAWN_LION_DEN_LION_PRIDE</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>20</iMinWilderness>
+			<iMinWilderness>35</iMinWilderness>
 			<iMaxWilderness>60</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
@@ -1933,7 +1933,7 @@
 		<SpawnInfo> <!-- SPAWN_LION_DEN_STRONG_LION_PRIDE -->
 			<Type>SPAWN_LION_DEN_STRONG_LION_PRIDE</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
+			<iMinWilderness>60</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
@@ -2421,7 +2421,7 @@
 			<Type>SPAWN_WOLF</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>30</iMaxWilderness>
+			<iMaxWilderness>35</iMaxWilderness>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2449,8 +2449,8 @@
 		<SpawnInfo> <!-- SPAWN_WOLF_PACK -->
 			<Type>SPAWN_WOLF_PACK</Type>
 			<iBaseWeight>0</iBaseWeight>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<iMinWilderness>30</iMinWilderness>
+			<iMaxWilderness>65</iMaxWilderness>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
