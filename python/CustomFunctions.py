@@ -320,20 +320,20 @@ class CustomFunctions:
 			if( pUnit.isAlive() ) :
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CRAZED', ['PROMOTION_CRAZED'] ) )
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POSSESSED', ['PROMOTION_ENRAGED', 'PROMOTION_CRAZED', 'PROMOTION_DEMON'] ) )
-		if( iRnd > -50 and iRnd <= -30 ) :
+		if( iRnd <= -30 ) :
 			if( pUnit.isAlive() ) :
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_PLAGUED', ['PROMOTION_PLAGUED'] ) )
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_WITHERED', ['PROMOTION_WITHERED'] ) )
-		if( iRnd > -40 and iRnd <= -20 ) :
+		if( iRnd <= -20 ) :
 			if( pUnit.isAlive() ) :
 				if( not bNoDestroy ) :
 					lOutcomes.append( ( 'Special', 100, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 'COLLAPSE' ) )
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENRAGED', ['PROMOTION_ENRAGED'] ) )
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DISEASED', ['PROMOTION_DISEASED'] ) )
-		if( iRnd > -30 and iRnd <= -10 ) :
+		if( iRnd <= -10 ) :
 			if( pUnit.isAlive() ) :
 				lOutcomes.append( ( 'Special', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POISONED', 'POISONED' ) )
-		if( iRnd > -20 and iRnd <= 20 ) :
+		if( iRnd > -25 and iRnd <= 25 ) :
 			lOutcomes.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
 			if( pUnit.isAlive() ) :
 				lOutcomes.append( ( 'Promotions', 50, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_MUTATED', ['PROMOTION_MUTATED'] ) )
@@ -353,14 +353,6 @@ class CustomFunctions:
 				lOutcomes.append( ( 'Goody', 80, 'GOODY_EXPLORE_LAIR_ITEM_HEALING_SALVE' ) )
 				lOutcomes.append( ( 'Special', 80, True, None, 'TREASURE' ) )
 		if( iRnd > 30 and iRnd <= 60 ) :
-			if( not pPlot.isWater() ) :
-				if( pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_MYSTICISM' ) ) ) :
-					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ASHEN' ) )
-					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_EMPYREAN' ) )
-					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_LEAVES' ) )
-					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_OVERLORDS' ) )
-					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_RUNES' ) )
-					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ORDER' ) )
 			if( pUnit.getUnitCombatType() == gc.getInfoTypeForString( 'UNITCOMBAT_MELEE' ) ) :
 				lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENCHANTED_BLADE', ['PROMOTION_ENCHANTED_BLADE'] ) )
 			if( pUnit.getUnitCombatType() == gc.getInfoTypeForString( 'UNITCOMBAT_ADEPT' ) ) :
@@ -380,11 +372,20 @@ class CustomFunctions:
 							lOutcomes.append( ( 'Special', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_IRON_WEAPONS', 'IRON_WEAPONS' ) )
 						if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_BRONZE_WEAPONS' ) ) ):
 							lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BRONZE_WEAPONS', ['PROMOTION_BRONZE_WEAPONS'] ) )
-		if( iRnd > 50 and iRnd <= 70 ) :
+		if( iRnd > 50 and iRnd <= 60 ) :
+			if( not pPlot.isWater() ) :
+				if( pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_MYSTICISM' ) ) ) :
+					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ASHEN' ) )
+					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_EMPYREAN' ) )
+					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_LEAVES' ) )
+					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_OVERLORDS' ) )
+					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_RUNES' ) )
+					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ORDER' ) )
+		if( iRnd > 50 ) :
 			lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_TREASURE_VAULT' ) )
 			lOutcomes.append( ( 'Goody', 100, 'GOODY_GRAVE_TECH' ) )
 			lOutcomes.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_GOLDEN_AGE', 'GOLDEN_AGE' ) )
-		if( iRnd > 60 and iRnd <= 75 ) :
+		if( iRnd > 60 ) :
 			if( not pPlot.isWater() ) :
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_JADE_TORC' ) )
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_ROD_OF_WINDS' ) )
