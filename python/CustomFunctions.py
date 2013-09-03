@@ -214,7 +214,7 @@ class CustomFunctions:
 			if( sType == 'DEATH' ) :
 				pUnit.kill( True, 0 )
 			elif( sType == 'COLLAPSE' ) :
-				pUnit.doDamageNoCaster( 50, 90, self.getInfoTypeForString( 'DAMAGE_PHYSICAL' ), False )
+				pUnit.doDamageNoCaster( 50, 90, gc.getInfoTypeForString( 'DAMAGE_PHYSICAL' ), False )
 			elif( sType == 'POISONED' ) :
 				pUnit.setHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_POISONED' ), True )
 				pUnit.doDamageNoCaster( 25, 90, gc.getInfoTypeForString( 'DAMAGE_POISON' ), False )
