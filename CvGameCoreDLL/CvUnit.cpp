@@ -12262,7 +12262,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 				}
 			}
 		*/
-			if( pNewPlot->isLair( false, true ) && !kImprovementInfo.isPermanent() )
+			if( pNewPlot->isLair() && !kImprovementInfo.isPermanent() )
 			{
 				if ( !isBarbarian() )
 				{

@@ -2037,7 +2037,7 @@
 		
 		<!-- Wolf Den -->
 		<SpawnInfo> <!-- SPAWN_WOLF_DEN_WOLF -->
-			<Type>SPAWN_WOLF</Type>
+			<Type>SPAWN_WOLF_DEN_WOLF</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>40</iMaxWilderness>
@@ -2050,7 +2050,7 @@
 			</SpawnUnits>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WOLF_DEN_WOLF_PACK -->
-			<Type>SPAWN_WOLF_PACK</Type>
+			<Type>SPAWN_WOLF_DEN_WOLF_PACK</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>30</iMinWilderness>
 			<iMaxWilderness>70</iMaxWilderness>
@@ -2063,7 +2063,7 @@
 			</SpawnUnits>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WOLF_DEN_STRONG_WOLF_PACK -->
-			<Type>SPAWN_WOLF_PACK</Type>
+			<Type>SPAWN_WOLF_DEN_STRONG_WOLF_PACK</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>30</iMinWilderness>
 			<iMaxWilderness>70</iMaxWilderness>
