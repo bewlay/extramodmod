@@ -2034,7 +2034,51 @@
 				<Tech>TECH_POISONS</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
-
+		
+		<!-- Wolf Den -->
+		<SpawnInfo> <!-- SPAWN_WOLF_DEN_WOLF -->
+			<Type>SPAWN_WOLF</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>40</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WOLF</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WOLF_DEN_WOLF_PACK -->
+			<Type>SPAWN_WOLF_PACK</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>30</iMinWilderness>
+			<iMaxWilderness>70</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WOLF_PACK</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_WOLF_DEN_STRONG_WOLF_PACK -->
+			<Type>SPAWN_WOLF_PACK</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>30</iMinWilderness>
+			<iMaxWilderness>70</iMaxWilderness>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WOLF_PACK</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		
 		<!-- ANIMAL SPAWNS -->
 		
 		<!-- Land -->
@@ -2266,7 +2310,7 @@
 			<Type>SPAWN_LION</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>30</iMaxWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2314,8 +2358,8 @@
 		<SpawnInfo> <!-- SPAWN_LION_PRIDE -->
 			<Type>SPAWN_LION_PRIDE</Type>
 			<iBaseWeight>0</iBaseWeight>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<iMinWilderness>35</iMinWilderness>
+			<iMaxWilderness>70</iMaxWilderness>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2465,13 +2509,13 @@
 				</TerrainWeight>
 				<TerrainWeight>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
-					<iWeight>50</iWeight>
+					<iWeight>75</iWeight>
 				</TerrainWeight>
 			</TerrainWeights>
 			<FeatureWeights>
 				<FeatureWeight>
 					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iWeight>50</iWeight>
+					<iWeight>75</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>

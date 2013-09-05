@@ -7096,7 +7096,75 @@
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
         </ImprovementInfo>
-        <ImprovementInfo>
+        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr -->
+            <Type>IMPROVEMENT_WOLF_DEN</Type>
+            <Description>TXT_KEY_IMPROVEMENT_WOLF_DEN</Description>
+            <Civilopedia>TXT_KEY_IMPROVEMENT_WOLF_DEN_PEDIA</Civilopedia>
+            <Help></Help>
+            <ArtDefineTag>ART_DEF_IMPROVEMENT_WOLF_DEN</ArtDefineTag>
+            <bActsAsCity>0</bActsAsCity>
+            <bHillsMakesValid>0</bHillsMakesValid>
+            <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+            <bRiverSideMakesValid>0</bRiverSideMakesValid>
+            <bNoFreshWater>0</bNoFreshWater>
+            <bRequiresFlatlands>1</bRequiresFlatlands>
+            <bRequiresRiverSide>0</bRequiresRiverSide>
+            <bRequiresIrrigation>0</bRequiresIrrigation>
+            <bCarriesIrrigation>0</bCarriesIrrigation>
+            <bRequiresFeature>0</bRequiresFeature>
+            <bWater>0</bWater>
+            <bGoody>0</bGoody>
+            <bPermanent>0</bPermanent>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+            <iTilesPerGoody>0</iTilesPerGoody>
+            <iGoodyRange>0</iGoodyRange>
+            <iFeatureGrowth>0</iFeatureGrowth>
+            <iUpgradeTime>0</iUpgradeTime>
+            <iAirBombDefense>0</iAirBombDefense>
+            <iDefenseModifier>0</iDefenseModifier>
+            <iHappiness>0</iHappiness>
+            <iPillageGold>0</iPillageGold>
+            <bOutsideBorders>1</bOutsideBorders>
+            <TerrainMakesValids>
+            </TerrainMakesValids>
+            <FeatureMakesValids>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_TUNDRA</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_SNOW</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+            </FeatureMakesValids>
+            <ImprovementPillage></ImprovementPillage>
+            <ImprovementUpgrade></ImprovementUpgrade>
+            <TechYieldChanges>
+            </TechYieldChanges>
+            <RouteYieldChanges>
+            </RouteYieldChanges>
+            <bGraphicalOnly>0</bGraphicalOnly>
+            <bRequiresPeak>0</bRequiresPeak>
+            <bUnique>0</bUnique>
+            <bExploreTarget>0</bExploreTarget>
+            <iAppearanceProbability>0</iAppearanceProbability>
+            <iHealRateChange>0</iHealRateChange>
+            <iRange>0</iRange>
+            <iRangeDefenseModifier>0</iRangeDefenseModifier>
+            <iVisibilityChange>0</iVisibilityChange>
+            <BonusConvert>NONE</BonusConvert>
+            <FeatureUpgrade>NONE</FeatureUpgrade>
+            <PrereqCivilization>NONE</PrereqCivilization>
+            <PythonAtRange></PythonAtRange>
+            <PythonOnMove></PythonOnMove>
+            <SpawnTypes>
+				<SpawnType>SPAWN_WOLF_DEN_WOLF</SpawnType>
+				<SpawnType>SPAWN_WOLF_DEN_WOLF_PACK</SpawnType>
+				<SpawnType>SPAWN_WOLF_DEN_STRONG_WOLF_PACK</SpawnType>
+			</SpawnTypes>
+        </ImprovementInfo>
+		<ImprovementInfo>
             <Type>IMPROVEMENT_WORKSHOP</Type>
             <Description>TXT_KEY_IMPROVEMENT_WORKSHOP</Description>
             <Civilopedia></Civilopedia>

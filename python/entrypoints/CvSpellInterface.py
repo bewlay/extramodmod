@@ -842,6 +842,47 @@ def spellCreateDenLion(caster):
 		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HIDDEN_NATIONALITY'), True)
 #		newUnit.convert(caster)
 
+# WILDERNESS 09/2013 lfgr
+
+def reqCreateDenWolf(caster):
+	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_LAIRS):
+		return False
+	iImprovement = gc.getInfoTypeForString('IMPROVEMENT_WOLF_DEN')
+	if caster.getDamage() > 0:
+		return False
+	pPlot = caster.plot()
+	if pPlot.isOwned():
+		return False
+	if pPlot.getNumUnits() != 1:
+		return False
+	if pPlot.getImprovementType() != -1:
+		return False
+	if pPlot.canHaveImprovement(iImprovement, caster.getOwner(), True) == False:
+		return False
+	iX = pPlot.getX()
+	iY = pPlot.getY()
+	for iiX in range(iX-4, iX+5, 1):
+		for iiY in range(iY-4, iY+5, 1):
+			pPlot2 = CyMap().plot(iiX,iiY)
+			if pPlot2.getImprovementType() == iImprovement:
+				return False
+	return True
+
+def spellCreateDenWolf(caster):
+	pPlot = caster.plot()
+	iImprovement = gc.getInfoTypeForString('IMPROVEMENT_WOLF_DEN')
+	iUnit = gc.getInfoTypeForString('UNIT_WOLF')
+	pPlot.setImprovementType(iImprovement)
+	pPlot2 = findClearPlot(-1, caster.plot())
+	if pPlot2 != -1:
+		caster.setXY(pPlot2.getX(), pPlot2.getY(), False, True, True)
+		pPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
+		newUnit = pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_LAIRGUARDIAN, DirectionTypes.DIRECTION_SOUTH)
+		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HIDDEN_NATIONALITY'), True)
+#		newUnit.convert(caster)
+
+# WILDERNESS end
+
 def reqCrewBuccaneers(caster):
 	pPlot = caster.plot()
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_BUCCANEERS')):

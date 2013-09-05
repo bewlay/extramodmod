@@ -86,4 +86,20 @@
 		<Italian>Pyre of the Seraphic (E.)</Italian>
 		<Spanish>Pyre of the Seraphic (E.)</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_WOLF_DEN</Tag>
+		<English>Wolf Den</English>
+		<French>Wolf Den</French>
+		<German>Wolf Den</German>
+		<Italian>Wolf Den</Italian>
+		<Spanish>Wolf Den</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_WOLF_DEN_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+	</TEXT>
 </Civ4GameText>
