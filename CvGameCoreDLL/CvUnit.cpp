@@ -3723,7 +3723,7 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 /************************************************************************************************/
 	if(isBarbarian())
 	{
-		int iMinWilderness = GC.getUnitInfo(getUnitType()).getMinWilderness() - GC.getDefineINT( "UNIT_MOVE_MIN_WILDERNESS_RANGE", 5 );
+		int iMinWilderness = getMinWilderness() - GC.getDefineINT( "UNIT_MOVE_MIN_WILDERNESS_RANGE", 5 );
 
 		if( !isAnimal() )
 			iMinWilderness -= GC.getDefineINT( "UNIT_MOVE_MIN_WILDERNESS_RANGE_NO_ANIMAL_EXTRA", 5 );
