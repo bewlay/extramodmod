@@ -2041,6 +2041,7 @@
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>40</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2054,6 +2055,7 @@
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>30</iMinWilderness>
 			<iMaxWilderness>70</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2067,6 +2069,7 @@
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>30</iMinWilderness>
 			<iMaxWilderness>70</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2565,6 +2568,9 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<PrereqTechs>
+				<Tech>TECH_SAILING</Tech>
+			</PrereqTechs>
 			<ObsoleteTechs>
 				<Tech>TECH_OPTICS</Tech>
 				<Tech>TECH_ASTRONOMY</Tech>
