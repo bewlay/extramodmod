@@ -2088,8 +2088,8 @@
 		<SpawnInfo> <!-- SPAWN_BEAR -->
 			<Type>SPAWN_BEAR</Type>
 			<iBaseWeight>0</iBaseWeight>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<iMinWilderness>25</iMinWilderness>
+			<iMaxWilderness>60</iMaxWilderness>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2111,8 +2111,8 @@
 		<SpawnInfo> <!-- SPAWN_POLAR_BEAR -->
 			<Type>SPAWN_POLAR_BEAR</Type>
 			<iBaseWeight>0</iBaseWeight>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<iMinWilderness>25</iMinWilderness>
+			<iMaxWilderness>60</iMaxWilderness>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
