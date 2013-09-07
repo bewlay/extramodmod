@@ -181,6 +181,20 @@
             <Button>Art/Interface/Buttons/Units/Wolf.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_ANIMATE_FROSTLINGS</Type>
+            <Description>TXT_KEY_SPELL_ANIMATE_FROSTLINGS</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitClassPrereq>UNITCLASS_AURIC_ASCENDED</UnitClassPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+			<iDelay>3</iDelay>
+			<PyResult>spellAnimateFrostlings(pCaster)</PyResult>
+            <Effect>EFFECT_ICE_SUMMON</Effect>
+            <Sound>AS3D_SPELL_SPRING</Sound>
+            <Button>Art/Interface/Buttons/Units/Frostling.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_ARCANE_LACUNA</Type>
             <Description>TXT_KEY_SPELL_ARCANE_LACUNA</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -3609,6 +3623,24 @@
             <bHasCasted>1</bHasCasted>
             <bResistable>1</bResistable>
             <iRange>1</iRange>
+            <AddPromotionType1>PROMOTION_SLOW</AddPromotionType1>
+            <RemovePromotionType1>PROMOTION_HASTED</RemovePromotionType1>
+            <bImmuneTeam>1</bImmuneTeam>
+            <bImmuneNeutral>1</bImmuneNeutral>
+            <Effect>EFFECT_SLOW</Effect>
+            <Sound>AS3D_SPELL_SPRING</Sound>
+            <Button>Art/Interface/Buttons/Promotions/Slow.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_SLOW_GREATER</Type>
+            <Description>TXT_KEY_SPELL_SLOW_GREATER</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitClassPrereq>UNITCLASS_AURIC_ASCENDED</UnitClassPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <bResistable>1</bResistable>
+            <iRange>3</iRange>
             <AddPromotionType1>PROMOTION_SLOW</AddPromotionType1>
             <RemovePromotionType1>PROMOTION_HASTED</RemovePromotionType1>
             <bImmuneTeam>1</bImmuneTeam>
