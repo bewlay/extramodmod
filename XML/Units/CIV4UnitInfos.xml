@@ -12804,7 +12804,7 @@
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
-            <iWeaponTier>3</iWeaponTier>
+            <iWeaponTier>2</iWeaponTier>
             <PrereqBuildingClass>BUILDINGCLASS_TRAINING_YARD</PrereqBuildingClass>
         </UnitInfo>
         <UnitInfo>
@@ -13036,7 +13036,7 @@
             <bNeverObsolete>1</bNeverObsolete>
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
-            <iWeaponTier>3</iWeaponTier>
+            <iWeaponTier>2</iWeaponTier>
             <PrereqBuildingClass>BUILDINGCLASS_TRAINING_YARD</PrereqBuildingClass>
         </UnitInfo>
         <UnitInfo>
@@ -13514,7 +13514,7 @@
             <bDisableUpgradeTo>1</bDisableUpgradeTo>
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
-            <iWeaponTier>3</iWeaponTier>
+            <iWeaponTier>2</iWeaponTier>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_AXEMAN</Class>
@@ -13744,7 +13744,7 @@
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
-            <iWeaponTier>3</iWeaponTier>
+            <iWeaponTier>2</iWeaponTier>
             <PrereqBuildingClass>BUILDINGCLASS_TRAINING_YARD</PrereqBuildingClass>
         </UnitInfo>
         <UnitInfo>
