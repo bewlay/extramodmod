@@ -768,16 +768,16 @@ class CustomFunctions:
 		iGrigoriMod 	= pPlayer.getCivCounterMod()
 
 # Initialize the adventurer counter in case it has not been initialized.		
-		if iGrigoriMod < 1000:
-			pPlayer.setCivCounterMod(1000)
-			iGrigoriMod = 1000
+		if iGrigoriMod < 600:
+			pPlayer.setCivCounterMod(600)
+			iGrigoriMod = 600
 
 		if iGrigoriSpawn >= iGrigoriMod:
 			# Spawn an adventurer.
 			pCapital = pPlayer.getCapitalCity()
 			pAdventurer = pPlayer.createGreatPeople(gc.getInfoTypeForString('UNIT_ADVENTURER'), False, False, pCapital.getX(), pCapital.getY())
 			pPlayer.changeCivCounter(0 - iGrigoriMod)
-			pPlayer.changeCivCounterMod(1000)
+			pPlayer.changeCivCounterMod(600)
 
 	def doChanceAdventurerSpawn(self, iPlayer):
 		gc = CyGlobalContext() 
@@ -802,15 +802,15 @@ class CustomFunctions:
 			
 # Different buildings give different modifiers.
 			iMinor           = 1
-			iSmall           = 6
-			iMedium          = 10
-			iBig             = 20
-			iHuge            = 40
+			iSmall           = 3
+			iMedium          = 6
+			iBig             = 12
+			iHuge            = 20
 
 # Original "adventurer" buildings.
 			iPalaceMod       = iNumPalace       * iHuge
 			iTavernsMod      = iNumTaverns      * iMedium
-			iGuildsMod 		 = iNumGuilds       * iBig
+			iGuildsMod 		 = iNumGuilds       * iMedium
 
 # Additional buildings.
 			iArcheryMod      = iNumArchery      * iMinor
