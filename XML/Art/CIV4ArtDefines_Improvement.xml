@@ -133,15 +133,6 @@
 			<Button>Art/Interface/Buttons/Improvements/Guardian.dds</Button>
 		</ImprovementArtInfo>
 		<ImprovementArtInfo>
-			<Type>ART_DEF_IMPROVEMENT_MUSHROOMS</Type>
-			<bExtraAnimations>0</bExtraAnimations>
-			<fScale>0.5</fScale>
-			<fInterfaceScale>1.0</fInterfaceScale>
-			<NIF>Art/Structures/Improvements/Mushrooms/Mushrooms.nif</NIF>
-			<KFM/>
-			<Button>Art/Interface/Buttons/Improvements/Mushrooms.dds</Button>
-		</ImprovementArtInfo>
-		<ImprovementArtInfo>
 			<Type>ART_DEF_IMPROVEMENT_STANDING_STONES</Type>
 			<bExtraAnimations>0</bExtraAnimations>
 			<fScale>2.0</fScale>
