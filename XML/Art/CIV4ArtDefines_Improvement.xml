@@ -780,5 +780,14 @@
 			<KFM/>
 			<Button>Art/Interface/Buttons/Improvements/Portal.dds</Button>
 		</ImprovementArtInfo>
+		<ImprovementArtInfo>
+			<Type>ART_DEF_IMPROVEMENT_TARCHS_TOWER</Type>
+			<bExtraAnimations>0</bExtraAnimations>
+			<fScale>1.3</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Tower of Complacency/greytower.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Improvements/Tower.dds</Button>
+		</ImprovementArtInfo>
 	</ImprovementArtInfos>
 </Civ4ArtDefines>
