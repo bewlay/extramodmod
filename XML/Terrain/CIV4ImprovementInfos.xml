@@ -410,6 +410,19 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_ENTROPY</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
@@ -425,7 +438,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+            <BonusConvert>BONUS_MANA_ENTROPY</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
