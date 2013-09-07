@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Extra Resources ModComp for MNAI -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+    <TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_BAIR_OF_LACUNA</Tag>
+		<English>Bair of Lacuna</English>
+		<French>Bair of Lacuna</French>
+		<German>Bair of Lacuna</German>
+		<Italian>Bair of Lacuna</Italian>
+		<Spanish>Bair of Lacuna</Spanish>
+    </TEXT>
+</Civ4GameText>

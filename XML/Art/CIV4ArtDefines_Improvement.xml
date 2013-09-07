@@ -16,6 +16,15 @@
 			<Button>Art/Interface/Buttons/Improvements/Monster Skeleton.dds</Button>
 		</ImprovementArtInfo>
 		<ImprovementArtInfo>
+			<Type>ART_DEF_IMPROVEMENT_BAIR_OF_LACUNA</Type>
+			<bExtraAnimations>0</bExtraAnimations>
+			<fScale>0.6</fScale>
+			<fInterfaceScale>0.3</fInterfaceScale>
+			<NIF>Art/Structures/Improvements/Bair of Lacuna/Blair of Lacuna.NIF</NIF>
+			<KFM/>
+			<Button>Art/Structures/Improvements/Bair of Lacuna/bair_of_lacuna.dds</Button>
+		</ImprovementArtInfo>
+		<ImprovementArtInfo>
 			<Type>ART_DEF_IMPROVEMENT_BRADELINES_WELL</Type>
 			<bExtraAnimations>0</bExtraAnimations>
 			<fScale>0.4</fScale>
