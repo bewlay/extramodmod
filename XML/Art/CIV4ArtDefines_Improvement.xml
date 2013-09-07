@@ -789,5 +789,14 @@
 			<KFM/>
 			<Button>Art/Interface/Buttons/Improvements/Tower.dds</Button>
 		</ImprovementArtInfo>
+		<ImprovementArtInfo>
+			<Type>ART_DEF_IMPROVEMENT_PALUS</Type>
+			<bExtraAnimations>0</bExtraAnimations>
+			<fScale>0.15</fScale>
+			<fInterfaceScale>0.6</fInterfaceScale>
+			<NIF>Art/Structures/Improvements/towereyes/tower of eyes.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Improvements/tower of eyes.dds</Button>
+		</ImprovementArtInfo>
 	</ImprovementArtInfos>
 </Civ4ArtDefines>
