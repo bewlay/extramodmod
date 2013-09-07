@@ -44,6 +44,19 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_WATER</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
@@ -59,7 +72,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+            <BonusConvert>BONUS_MANA_WATER</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
@@ -2610,6 +2623,19 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_AIR</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
@@ -2625,7 +2651,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+            <BonusConvert>BONUS_MANA_AIR</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
@@ -4753,6 +4779,19 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_BODY</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
@@ -4768,7 +4807,7 @@
             <iRange>3</iRange>
             <iRangeDefenseModifier>25</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+            <BonusConvert>BONUS_MANA_BODY</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
@@ -5304,6 +5343,19 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_SPIRIT</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
@@ -5319,7 +5371,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+            <BonusConvert>BONUS_MANA_SPIRIT</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
@@ -5572,6 +5624,19 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_METAMAGIC</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
@@ -5603,7 +5668,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+            <BonusConvert>BONUS_MANA_METAMAGIC</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
@@ -5800,6 +5865,19 @@
                     <bMakesValid>1</bMakesValid>
                 </FeatureMakesValid>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_FORCE</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
@@ -5815,7 +5893,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+            <BonusConvert>BONUS_MANA_FORCE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
