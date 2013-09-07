@@ -839,11 +839,6 @@ class CustomFunctions:
 
 			iSpecialistMod = (iNumSpecialists * iMinor)
 
-# AI modifier
-			iAImod = 1
-			if not pPlayer.isHuman():
-				iAImod = 1.20
-
 # Civics can give a multiplier.
 			iCivicMult       = 1
 
@@ -856,7 +851,7 @@ class CustomFunctions:
 				iCivicMult   = 1.10
 
 # Actual value
-			iGrigoriSpawn = round(((iBuildingMod + iSpecialistMod) * iCivicMult * iAImod), 2)
+			iGrigoriSpawn = round(((iBuildingMod + iSpecialistMod) * iCivicMult), 2)
 			iGrigoriSpawn = int(iGrigoriSpawn)
 			iGrigoriSpawn = self.scaleInverse(iGrigoriSpawn)
 			
