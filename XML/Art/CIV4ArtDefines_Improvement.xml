@@ -151,15 +151,6 @@
 			<Button>Art/Interface/Buttons/Improvements/Graveyard.dds</Button>
 		</ImprovementArtInfo>
 		<ImprovementArtInfo>
-			<Type>ART_DEF_IMPROVEMENT_PENGUINS</Type>
-			<bExtraAnimations>0</bExtraAnimations>
-			<fScale>1.2</fScale>
-			<fInterfaceScale>1.0</fInterfaceScale>
-			<NIF>Art/Structures/Improvements/Penguins/pig.nif</NIF>
-			<KFM/>
-			<Button>Art/Interface/Buttons/Improvements/penguins.dds</Button>
-		</ImprovementArtInfo>
-		<ImprovementArtInfo>
 			<Type>ART_DEF_IMPROVEMENT_CASTLE</Type>
 			<bExtraAnimations>0</bExtraAnimations>
 			<fScale>1.2</fScale>
