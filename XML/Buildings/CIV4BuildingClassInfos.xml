@@ -1669,6 +1669,18 @@
 			<VictoryThresholds/>
 		</BuildingClassInfo>
 		<BuildingClassInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+			<Type>BUILDINGCLASS_PANTHER_TROPHY</Type>
+			<Description>TXT_KEY_BUILDING_PANTHER_TROPHY</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_PANTHER_TROPHY</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
 			<Type>BUILDINGCLASS_WOLF_TROPHY</Type>
 			<Description>TXT_KEY_BUILDING_WOLF_TROPHY</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>

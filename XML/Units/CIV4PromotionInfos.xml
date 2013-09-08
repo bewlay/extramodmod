@@ -8128,6 +8128,72 @@
 			<iExtraCombatStr>1</iExtraCombatStr>
 			<iExtraCombatDefense>1</iExtraCombatDefense>
 		</PromotionInfo>
+		<PromotionInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr-->
+            <Type>PROMOTION_BEAR_TROPHY</Type>
+            <Description>TXT_KEY_BUILDING_BEAR_TROPHY</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <TechPrereq>TECH_NEVER</TechPrereq>
+            <iCombatPercent>15</iCombatPercent>
+            <UnitCombats>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+            </UnitCombats>
+            <Button>Art/Interface/Buttons/Units/Cave_Bear.dds</Button>
+            <iCombatPercentDefense>15</iCombatPercentDefense>
+            <iMinLevel>-1</iMinLevel>
+        </PromotionInfo>
+		<PromotionInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+            <Type>PROMOTION_LION_TROPHY</Type>
+            <Description>TXT_KEY_BUILDING_LION_TROPHY</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <TechPrereq>TECH_NEVER</TechPrereq>
+            <UnitCombats>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+            </UnitCombats>
+            <Button>Art/Interface/Buttons/Units/Lion.dds</Button>
+            <bImmuneToFear>1</bImmuneToFear>
+            <iMinLevel>-1</iMinLevel>
+            <iExplorationResultBonus>5</iExplorationResultBonus>
+        </PromotionInfo>
+		<PromotionInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+            <Type>PROMOTION_PANTHER_TROPHY</Type>
+            <Description>TXT_KEY_BUILDING_PANTHER_TROPHY</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <TechPrereq>TECH_NEVER</TechPrereq>
+            <iFirstStrikesChange>1</iFirstStrikesChange>
+            <UnitCombats>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+            </UnitCombats>
+            <Button>Art/Interface/Buttons/Units/Panther.dds</Button>
+            <iMinLevel>-1</iMinLevel>
+        </PromotionInfo>
+		<PromotionInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+            <Type>PROMOTION_WOLF_TROPHY</Type>
+            <Description>TXT_KEY_BUILDING_WOLF_TROPHY</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <TechPrereq>TECH_NEVER</TechPrereq>
+            <iWithdrawalChange>10</iWithdrawalChange>
+            <UnitCombats>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+            </UnitCombats>
+            <Button>Art/Interface/Buttons/Units/Wolf Pack2.dds</Button>
+            <iMinLevel>-1</iMinLevel>
+        </PromotionInfo>
 <!-- MORE EVENTS MOD STARTS -->		
 		<PromotionInfo>
             <Type>PROMOTION_PIKE_OF_TEARS</Type>

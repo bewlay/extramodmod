@@ -258,6 +258,33 @@
 		<Finnish>TODO</Finnish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_BUILDING_PANTHER_TROPHY</Tag>
+		<English>Panther Trophy</English>
+		<French>Panther Trophy</French>
+		<German>Panther Trophy</German>
+		<Italian>Panther Trophy</Italian>
+		<Spanish>Panther Trophy</Spanish>
+		<Finnish>Panther Trophy</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_PANTHER_TROPHY_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_PANTHER_TROPHY_STRATEGY</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_WOLF_TROPHY</Tag>
 		<English>Wolf Trophy</English>
 		<French>Wolf Trophy</French>
