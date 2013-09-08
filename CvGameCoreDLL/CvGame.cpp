@@ -7561,7 +7561,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal, int iHeldTurns )
 			{
 				iValue += getSorenRandNum(100, "Barb Unit Selection");
 
-				if (iValue > iBestValue)
+				if( iValue > iBestValue || ( iValue == iBestValue && getSorenRandNum( 2, "Bob" ) == 1 ) )
 				{
 					eBestSpawn = (SpawnTypes) eLoopSpawn;
 					iBestValue = iValue;
