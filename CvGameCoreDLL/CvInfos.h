@@ -622,6 +622,15 @@ public:
 	int getDamageTypeCombat(int i) const;
 	int getDamageTypeResist(int i) const;
 	int getEnslavementChance() const;
+	
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/************************************************************************************************/
+	int getExplorationResultBonus() const;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 	// MNAI - additional promotion tags
 	bool isAllowsMoveImpassable() const;
 	bool isAllowsMoveLimitedBorders() const;
@@ -769,6 +778,14 @@ protected:
 	int* m_piDamageTypeResist;
 	int m_iEnslavementChance;
 //FfH: End Add
+	
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/************************************************************************************************/
+	int m_iExplorationResultBonus;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// MNAI - additional promotion tags
 	bool m_bAllowsMoveImpassable;

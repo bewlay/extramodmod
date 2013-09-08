@@ -125,6 +125,10 @@ class CustomFunctions:
 	def exploreLair( self, pUnit, bEpic ) :
 		pPlot = pUnit.plot()
 		iRnd = CyGame().getSorenRandNum( 150, "Explore Lair" ) - 75 + min( 75, ( pUnit.getLevel() - 5 ) * 3 )
+		
+		for ePromotion in range( gc.getNumPromotionInfos() ) :
+			if( pUnit.isHasPromotion( ePromotion ) ) :
+				iRnd += gc.getPromotionInfo( ePromotion ).getExplorationResultBonus()
 		if( iRnd >= 0 ) : # Good
 			iRnd += pPlot.getWilderness() / 2
 			if( bEpic ) :

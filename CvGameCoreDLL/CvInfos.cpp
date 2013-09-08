@@ -1855,6 +1855,14 @@ m_piDamageTypeResist(NULL),
 m_iEnslavementChance(0),
 //FfH: End Add
 
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/************************************************************************************************/
+m_iExplorationResultBonus(0),
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 // MNAI - additional promotion tags
 m_bAllowsMoveImpassable(false),
 m_bAllowsMoveLimitedBorders(false),
@@ -2525,6 +2533,17 @@ int CvPromotionInfo::getEnslavementChance() const
 
 //FfH: End Add
 
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/************************************************************************************************/
+int CvPromotionInfo::getExplorationResultBonus() const
+{
+	return m_iExplorationResultBonus;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 // MNAI - additional promotion tags
 bool CvPromotionInfo::isAllowsMoveImpassable() const
 {
@@ -2758,6 +2777,14 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 
 //FfH: End Add
 
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/************************************************************************************************/
+	stream->Read(&m_iExplorationResultBonus);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 	// MNAI - additional promotion tags
 	stream->Read(&m_bAllowsMoveImpassable);
 	stream->Read(&m_bAllowsMoveLimitedBorders);
@@ -2940,6 +2967,14 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iEnslavementChance);
 //FfH: End Add
 
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/************************************************************************************************/
+	stream->Write(m_iExplorationResultBonus);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 	// MNAI - new promotion tags
 	stream->Write(m_bAllowsMoveImpassable);
 	stream->Write(m_bAllowsMoveLimitedBorders);
@@ -3106,6 +3141,14 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(&m_iEnslavementChance,"iEnslavementChance");
 //FfH: End Add
+
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iExplorationResultBonus,"iExplorationResultBonus");
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// MNAI - additional promotion tags
 	pXML->GetChildXmlValByName(&m_bAllowsMoveImpassable, "bAllowsMoveImpassable");

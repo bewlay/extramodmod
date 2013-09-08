@@ -102,4 +102,12 @@
 		<Italian>TODO</Italian>
 		<Spanish>TODO</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_EXPLORATION_RESULT_BONUS</Tag>
+		<English>[ICON_BULLET]%D1%% better results from lair exploration</English>
+		<French>[ICON_BULLET]%D1%% better results from lair exploration</French>
+		<German>[ICON_BULLET]%D1%% better results from lair exploration</German>
+		<Italian>[ICON_BULLET]%D1%% better results from lair exploration</Italian>
+		<Spanish>[ICON_BULLET]%D1%% better results from lair exploration</Spanish>
+	</TEXT>
 </Civ4GameText>
