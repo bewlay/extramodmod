@@ -8191,7 +8191,7 @@
                     <bUnitCombat>1</bUnitCombat>
                 </UnitCombat>
             </UnitCombats>
-            <Button>Art/Interface/Buttons/Units/Wolf Pack2.dds</Button>
+            <Button>Art/Interface/Buttons/Units/Wolf_Pack.dds</Button>
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
 <!-- MORE EVENTS MOD STARTS -->		
