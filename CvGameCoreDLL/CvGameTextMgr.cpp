@@ -9057,8 +9057,7 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 	if (kPromotionInfo.getExplorationResultBonus() != 0)
 	{
 		szBuffer.append(pcNewline);
-		// Lair exploration results are on a scale from -100 to 100, that means an iExplorationResultBonus of 10 means about 5% better lair results
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXPLORATION_RESULT_BONUS", kPromotionInfo.getExplorationResultBonus() / 2));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXPLORATION_RESULT_BONUS", kPromotionInfo.getExplorationResultBonus()));
 	}
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

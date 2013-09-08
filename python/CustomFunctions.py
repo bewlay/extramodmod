@@ -128,7 +128,7 @@ class CustomFunctions:
 		
 		for ePromotion in range( gc.getNumPromotionInfos() ) :
 			if( pUnit.isHasPromotion( ePromotion ) ) :
-				iRnd += gc.getPromotionInfo( ePromotion ).getExplorationResultBonus()
+				iRnd += gc.getPromotionInfo( ePromotion ).getExplorationResultBonus() * 2
 		if( iRnd >= 0 ) : # Good
 			iRnd += pPlot.getWilderness() / 2
 			if( bEpic ) :
