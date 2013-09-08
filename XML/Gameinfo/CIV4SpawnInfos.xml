@@ -259,11 +259,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_MARSH</FeatureType>
-					<iWeight>75</iWeight>
-				</FeatureWeight>
 				<FeatureWeight>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<iWeight>50</iWeight>
@@ -294,11 +296,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_MARSH</FeatureType>
-					<iWeight>75</iWeight>
-				</FeatureWeight>
 				<FeatureWeight>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<iWeight>50</iWeight>
@@ -332,11 +336,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_MARSH</FeatureType>
-					<iWeight>75</iWeight>
-				</FeatureWeight>
 				<FeatureWeight>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<iWeight>50</iWeight>
@@ -3138,10 +3144,16 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 			<FeatureWeights>
 				<FeatureWeight>
-					<FeatureType>FEATURE_MARSH</FeatureType>
-					<iWeight>50</iWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>25</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
 			<PrereqTechs>
@@ -3162,10 +3174,16 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 			<FeatureWeights>
 				<FeatureWeight>
-					<FeatureType>FEATURE_MARSH</FeatureType>
-					<iWeight>50</iWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>25</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
 		</SpawnInfo>
@@ -3180,10 +3198,16 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 			<FeatureWeights>
 				<FeatureWeight>
-					<FeatureType>FEATURE_MARSH</FeatureType>
-					<iWeight>50</iWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>25</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
 			<PrereqTechs>
@@ -3201,10 +3225,16 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 			<FeatureWeights>
 				<FeatureWeight>
-					<FeatureType>FEATURE_MARSH</FeatureType>
-					<iWeight>50</iWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>25</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
 			<PrereqTechs>
@@ -3222,10 +3252,16 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 			<FeatureWeights>
 				<FeatureWeight>
-					<FeatureType>FEATURE_MARSH</FeatureType>
-					<iWeight>50</iWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>25</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
 			<PrereqTechs>
@@ -3243,10 +3279,16 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>40</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
 			<FeatureWeights>
 				<FeatureWeight>
-					<FeatureType>FEATURE_MARSH</FeatureType>
-					<iWeight>50</iWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>40</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
 			<PrereqTechs>
@@ -4149,32 +4191,6 @@
 				<Tech>TECH_BRONZE_WORKING</Tech>
 			</ObsoleteTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_BANDIT_LORD_EARLY -->
-			<Type>SPAWN_BANDIT_LORD_EARLY</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_BANDIT_LORD</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-				<SpawnUnit>
-					<Unit>UNIT_BANDIT</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iWeight>50</iWeight>
-				</FeatureWeight>
-			</FeatureWeights>
-			<PrereqTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_BANDIT_LORD -->
 			<Type>SPAWN_BANDIT_LORD</Type>
 			<iBaseWeight>75</iBaseWeight>
@@ -4199,6 +4215,32 @@
 			</FeatureWeights>
 			<PrereqTechs>
 				<Tech>TECH_IRON_WORKING</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_BANDIT_LORD_EARLY -->
+			<Type>SPAWN_BANDIT_LORD_EARLY</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_BANDIT_LORD</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+				<SpawnUnit>
+					<Unit>UNIT_BANDIT</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<FeatureWeights>
+				<FeatureWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>50</iWeight>
+				</FeatureWeight>
+			</FeatureWeights>
+			<PrereqTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
 		
