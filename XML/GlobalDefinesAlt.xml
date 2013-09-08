@@ -1039,6 +1039,18 @@
         <DefineName>ANIMAL_SPAWNING_SPEED</DefineName>
         <fDefineFloatVal>0.2</fDefineFloatVal>
     </Define>
+    <Define>
+        <DefineName>VISIBLE_TILE_SPAWNING_MIN_WILDERNESS</DefineName>
+        <iDefineIntVal>30</iDefineIntVal>
+    </Define>
+    <Define>
+        <DefineName>VISIBLE_TILE_SPAWNING_NOT_HELD_MIN_WILDERNESS</DefineName>
+        <iDefineIntVal>70</iDefineIntVal>
+    </Define>
+    <Define>
+        <DefineName>LAIR_SPAWN_LIMIT_MULTIPLIER</DefineName>
+        <fDefineFloatVal>5.0</fDefineFloatVal>
+    </Define>
 	<Define>
 		<!-- Overriding default value (3). Barbarians get X% of tech each turn * playersResearched / totalAlivePlayers -->
 		<!-- Since in FfH there are several military tech paths, players will have different military technologies. With the default value, they will be much weaker than players. -->

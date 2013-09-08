@@ -550,14 +550,17 @@ void CvPlot::doTurn()
                 CvArea* pArea = GC.getMapINLINE().getArea(getArea());
                 if (pArea->getNumUnownedTiles() > 0)
                 {
-                    int iTiles = GC.getDefineINT("TILES_PER_SPAWN");
 				/************************************************************************************************/
 				/* WILDERNESS                             08/2013                                 lfgr          */
 				/* Use SpawnInfos                                                                               */
+				/* TILES_PER_SPAWN was not defined.
 				/************************************************************************************************/
 				/*
+                    int iTiles = GC.getDefineINT("TILES_PER_SPAWN");
                     if (GC.getUnitInfo((UnitTypes)iUnit).isAnimal())
 				*/
+					int iTiles = GC.getHandicapInfo( GC.getGameINLINE().getHandicapType() ).getUnownedTilesPerBarbarianUnit();
+					iTiles = (int) ( iTiles / GC.getDefineFLOAT( "LAIR_SPAWN_LIMIT_MULTIPLIER" ) );
 					CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
 					if ( kBestSpawn.isAnimal())
 				/************************************************************************************************/
@@ -12560,7 +12563,7 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bBarbTech )
 	return iValue;
 }
 
-void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI )
+void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns )
 {
 	if( eSpawn == NO_SPAWN )
 		return;
@@ -12659,19 +12662,25 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI )
 					}
 					if( iBestIndex != -1 )
 					{
-						createSpawn( veTmpIncSpawns[iBestIndex].first, eUnitAI );
+						createSpawn( veTmpIncSpawns[iBestIndex].first, eUnitAI, iHeldTurns );
 						veIncludedSpawns.erase( veIncludedSpawns.begin() + iBestIndex );
 						iRandomIncludedSpawns--;
 					}
 				}
 			}
 			
-			pUnit->setUnitArtStyleType( kSpawn.getUnitArtStyleType() );
+			if( kSpawn.getUnitArtStyleType() != NO_UNIT_ARTSTYLE )
+				pUnit->setUnitArtStyleType( kSpawn.getUnitArtStyleType() );
+
+			pUnit->reloadEntity();
 
 			if( pHeadUnit == NULL )
 				pHeadUnit = pUnit;
 			else
 				pUnit->joinGroup( pHeadUnit->getGroup() );
+
+			if( iHeldTurns > 0 )
+				pUnit->changeImmobileTimer( iHeldTurns );
 		}
 	}
 }
