@@ -171,6 +171,7 @@ class CustomFunctions:
 		# Push units out or set spawn plot
 		pSpawnPlot = pPlot
 		
+		# LFGR_TODO: try to push other units out of way to ensure abusing by surrounding the lair with units is not possible
 		pPlot2 = self.findClearPlot( -1, pPlot )
 		if pPlot2 != -1:
 			if( gc.getSpawnInfo( eSpawn ).isExplorationNoPush() ) :
@@ -293,6 +294,7 @@ class CustomFunctions:
 		if( iRnd >= 50 ) :
 			return None
 		
+		# LFGR_TODO: try to push other units out of way to ensure abusing by surrounding the lair with units is not possible
 		if( self.findClearPlot( -1, pPlot ) == -1 ) :
 			return None
 		

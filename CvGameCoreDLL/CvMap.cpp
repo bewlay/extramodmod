@@ -1474,6 +1474,8 @@ void CvMap::calculateWilderness()
 #endif
 	
 	logBBAI( "  Plot wilderness reset" );
+
+	// LFGR_TODO: The method of using an area array will probably cause trouble if an area was deleted before.
 	
 	// Continents
 	// Find geometric mean for uninhabited continents
