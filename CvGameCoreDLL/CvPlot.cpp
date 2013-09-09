@@ -2674,22 +2674,25 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 		return false;
 	}
 
-	int iMinWilderness = 0;
-	int iMaxWilderness = MAX_INT;
-	for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+	if( !GC.getImprovementInfo( eImprovement ).isUnique() )
 	{
-		if( GC.getImprovementInfo( eImprovement ).getSpawnTypes( eSpawn ) )
+		int iMinWilderness = 0;
+		int iMaxWilderness = MAX_INT;
+		for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
 		{
-			if( GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMinWilderness() < iMinWilderness )
-				iMinWilderness = GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMinWilderness();
-			if( GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMaxWilderness() > iMaxWilderness )
-				iMaxWilderness = GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMaxWilderness();
+			if( GC.getImprovementInfo( eImprovement ).getSpawnTypes( eSpawn ) )
+			{
+				if( GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMinWilderness() < iMinWilderness )
+					iMinWilderness = GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMinWilderness();
+				if( GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMaxWilderness() > iMaxWilderness )
+					iMaxWilderness = GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMaxWilderness();
+			}
 		}
-	}
 	
-	if( iMinWilderness > getWilderness() || iMaxWilderness < getWilderness() )
-	{
-		return false;
+		if( iMinWilderness > getWilderness() || iMaxWilderness < getWilderness() )
+		{
+			return false;
+		}
 	}
 	
 /************************************************************************************************/
