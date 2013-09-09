@@ -2026,7 +2026,7 @@
 		<!-- Letum Frigus -->
 		<SpawnInfo> <!-- SPAWN_LETUM_FRIGUS_HOLLOW_MAN -->
 			<Type>SPAWN_LETUM_FRIGUS_HOLLOW_MAN</Type>
-			<iBaseWeight>100</iBaseWeight>
+			<iBaseWeight>0</iBaseWeight>
 			<iProbability>25</iProbability>
 			<iMinWilderness>80</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
