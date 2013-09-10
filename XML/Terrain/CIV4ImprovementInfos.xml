@@ -119,6 +119,19 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
+			<BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_WATER</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade>IMPROVEMENT_AIFON_ISLE</ImprovementUpgrade>
             <TechYieldChanges>
@@ -134,7 +147,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+            <BonusConvert>BONUS_MANA_WATER</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
@@ -169,7 +182,9 @@
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
             <iPillageGold>0</iPillageGold>
-            <bOutsideBorders>0</bOutsideBorders>
+		<!-- WILDERNESS 09/2013 lfgr: To let its explored version upgrade to it -->
+            <bOutsideBorders>1</bOutsideBorders>
+		<!-- WILDERNESS end -->
             <TerrainMakesValids>
                 <TerrainMakesValid>
                     <TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
@@ -227,8 +242,81 @@
                     </YieldChanges>
                 </BonusTypeStruct>
             </BonusTypeStructs>
-            <ImprovementPillage></ImprovementPillage>
+		<!-- WILDERNESS 09/2013 lfgr -->
+            <ImprovementPillage>IMPROVEMENT_BAIR_OF_LACUNA_EXPLORED</ImprovementPillage>
+		<!-- WILDERNESS end -->
             <ImprovementUpgrade></ImprovementUpgrade>
+            <TechYieldChanges>
+            </TechYieldChanges>
+            <RouteYieldChanges>
+            </RouteYieldChanges>
+            <bGraphicalOnly>0</bGraphicalOnly>
+            <bRequiresPeak>0</bRequiresPeak>
+            <bUnique>1</bUnique>
+            <bExploreTarget>1</bExploreTarget>
+            <iAppearanceProbability>0</iAppearanceProbability>
+            <iHealRateChange>0</iHealRateChange>
+            <iRange>0</iRange>
+            <iRangeDefenseModifier>0</iRangeDefenseModifier>
+            <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>80</iMinWilderness>
+		<!-- WILDERNESS end -->
+            <BonusConvert>BONUS_MANA_DIMENSIONAL</BonusConvert>
+            <FeatureUpgrade>NONE</FeatureUpgrade>
+            <PrereqCivilization>NONE</PrereqCivilization>
+            <PythonAtRange></PythonAtRange>
+            <PythonOnMove></PythonOnMove>
+        </ImprovementInfo>
+        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr -->
+            <Type>IMPROVEMENT_BAIR_OF_LACUNA_EXPLORED</Type>
+            <Description>TXT_KEY_IMPROVEMENT_BAIR_OF_LACUNA_EXPLORED</Description>
+            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help></Help>
+            <ArtDefineTag>ART_DEF_IMPROVEMENT_BAIR_OF_LACUNA</ArtDefineTag>
+            <bActsAsCity>0</bActsAsCity>
+            <bHillsMakesValid>0</bHillsMakesValid>
+            <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+            <bRiverSideMakesValid>0</bRiverSideMakesValid>
+            <bNoFreshWater>0</bNoFreshWater>
+            <bRequiresFlatlands>0</bRequiresFlatlands>
+            <bRequiresRiverSide>0</bRequiresRiverSide>
+            <bRequiresIrrigation>0</bRequiresIrrigation>
+            <bCarriesIrrigation>0</bCarriesIrrigation>
+            <bRequiresFeature>0</bRequiresFeature>
+            <bWater>0</bWater>
+            <bGoody>0</bGoody>
+            <bPermanent>1</bPermanent>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+            <iTilesPerGoody>0</iTilesPerGoody>
+            <iGoodyRange>0</iGoodyRange>
+            <iFeatureGrowth>0</iFeatureGrowth>
+            <iUpgradeTime>100</iUpgradeTime>
+            <iAirBombDefense>0</iAirBombDefense>
+            <iDefenseModifier>0</iDefenseModifier>
+            <iHappiness>0</iHappiness>
+            <iPillageGold>0</iPillageGold>
+            <bOutsideBorders>0</bOutsideBorders>
+            <TerrainMakesValids>
+            </TerrainMakesValids>
+            <FeatureMakesValids>
+            </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_DIMENSIONAL</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
+            <ImprovementPillage></ImprovementPillage>
+            <ImprovementUpgrade>IMPROVEMENT_BAIR_OF_LACUNA</ImprovementUpgrade>
             <TechYieldChanges>
             </TechYieldChanges>
             <RouteYieldChanges>
@@ -574,6 +662,19 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_ENTROPY</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade>IMPROVEMENT_BRADELINES_WELL</ImprovementUpgrade>
             <TechYieldChanges>
@@ -589,7 +690,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+            <BonusConvert>BONUS_MANA_ENTROPY</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
@@ -5049,7 +5150,9 @@
 			<iDefenseModifier>50</iDefenseModifier>
 			<iHappiness>0</iHappiness>
 			<iPillageGold>0</iPillageGold>
-			<bOutsideBorders>1</bOutsideBorders>
+		<!-- WILDERNESS 09/2013 lfgr: To let its explored version upgrade to it -->
+            <bOutsideBorders>1</bOutsideBorders>
+		<!-- WILDERNESS end -->
 			<TerrainMakesValids>
 				<TerrainMakesValid>
 					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
@@ -5095,8 +5198,81 @@
 					</YieldChanges>
 				</BonusTypeStruct>
 			</BonusTypeStructs>
-			<ImprovementPillage/>
+		<!-- WILDERNESS 09/2013 lfgr -->
+            <ImprovementPillage>IMPROVEMENT_IMPROVEMENT_PALUS_EXPLORED</ImprovementPillage>
+		<!-- WILDERNESS end -->
 			<ImprovementUpgrade/>
+			<TechYieldChanges>
+			</TechYieldChanges>
+			<RouteYieldChanges>
+			</RouteYieldChanges>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<bRequiresPeak>0</bRequiresPeak>
+			<bUnique>1</bUnique>
+			<bExploreTarget>1</bExploreTarget>
+			<iAppearanceProbability>0</iAppearanceProbability>
+			<iHealRateChange>0</iHealRateChange>
+			<iRange>0</iRange>
+			<iRangeDefenseModifier>0</iRangeDefenseModifier>
+			<iVisibilityChange>3</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>30</iMinWilderness>
+		<!-- WILDERNESS end -->
+			<BonusConvert>BONUS_MANA_MIND</BonusConvert>
+			<FeatureUpgrade/>
+			<PrereqCivilization/>
+			<PythonAtRange/>
+			<PythonOnMove></PythonOnMove>
+		</ImprovementInfo>
+        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr -->
+			<Type>IMPROVEMENT_PALUS_EXPLORED</Type>
+			<Description>TXT_KEY_IMPROVEMENT_PALUS_EXPLORED</Description>
+			<Civilopedia>TXT_KEY_LEADER_PERPENTACH_PEDIA</Civilopedia>
+			<Help/>
+			<ArtDefineTag>ART_DEF_IMPROVEMENT_PALUS</ArtDefineTag>
+			<bActsAsCity>0</bActsAsCity>
+			<bHillsMakesValid>0</bHillsMakesValid>
+			<bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+			<bRiverSideMakesValid>0</bRiverSideMakesValid>
+			<bNoFreshWater>1</bNoFreshWater>
+			<bRequiresFlatlands>0</bRequiresFlatlands>
+			<bRequiresRiverSide>0</bRequiresRiverSide>
+			<bRequiresIrrigation>0</bRequiresIrrigation>
+			<bCarriesIrrigation>0</bCarriesIrrigation>
+			<bRequiresFeature>0</bRequiresFeature>
+			<bWater>0</bWater>
+			<bGoody>0</bGoody>
+			<bPermanent>1</bPermanent>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iTilesPerGoody>0</iTilesPerGoody>
+			<iGoodyRange>0</iGoodyRange>
+			<iFeatureGrowth>0</iFeatureGrowth>
+			<iUpgradeTime>100</iUpgradeTime>
+			<iAirBombDefense>0</iAirBombDefense>
+			<iDefenseModifier>50</iDefenseModifier>
+			<iHappiness>0</iHappiness>
+			<iPillageGold>0</iPillageGold>
+			<bOutsideBorders>1</bOutsideBorders>
+			<TerrainMakesValids>
+			</TerrainMakesValids>
+			<FeatureMakesValids>
+			</FeatureMakesValids>
+			<BonusTypeStructs>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA_MIND</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+			</BonusTypeStructs>
+			<ImprovementPillage/>
+			<ImprovementUpgrade>IMPROVEMENT_PALUS</ImprovementUpgrade>
 			<TechYieldChanges>
 			</TechYieldChanges>
 			<RouteYieldChanges>
@@ -6704,6 +6880,9 @@
 			<iRange>0</iRange>
 			<iRangeDefenseModifier>0</iRangeDefenseModifier>
 			<iVisibilityChange>2</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr -->
+            <iMinWilderness>30</iMinWilderness>
+		<!-- WILDERNESS end -->
 			<BonusConvert>BONUS_MANA_AIR</BonusConvert>
 			<FeatureUpgrade/>
 			<PrereqCivilization/>

@@ -63,6 +63,14 @@
 		<Spanish>Maenalus (Explored)</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_BAIR_OF_LACUNA_EXPLORED</Tag>
+		<English>Bair of Lacuna (Expl.)</English>
+		<French>Bair of Lacuna (Expl.)</French>
+		<German>Bair of Lacuna (Expl.)</German>
+		<Italian>Bair of Lacuna (Expl.)</Italian>
+		<Spanish>Bair of Lacuna (Expl.)</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_BRADELINES_WELL_EXPLORED</Tag>
 		<English>Bradeline's Well (Expl.)</English>
 		<French>Bradeline's Well (Expl.)</French>
@@ -77,6 +85,14 @@
 		<German>Broken Sepulcher (Expl.)</German>
 		<Italian>Broken Sepulcher (Expl.)</Italian>
 		<Spanish>Broken Sepulcher (Expl.)</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_PALUS_EXPLORED</Tag>
+		<English>The Palus (Explored)</English>
+		<French>The Palus (Explored)</French>
+		<German>The Palus (Explored)</German>
+		<Italian>The Palus (Explored)</Italian>
+		<Spanish>The Palus (Explored)</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_PYRE_OF_THE_SERAPHIC_EXPLORED</Tag>
