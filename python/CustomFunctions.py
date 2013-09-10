@@ -266,6 +266,16 @@ class CustomFunctions:
 				ePromotion = self.saveGetInfoType( gc.getNumPromotionInfos(), sPromotion )
 				pUnit.setHasPromotion( ePromotion, True )
 		
+		elif( tOutcome[0] == 'RemovePromotions' ) :
+			iDestroyLair = tOutcome[1]
+			bGood = tOutcome[2]
+			sMessage = tOutcome[3]
+			lsPromotions = tOutcome[4]
+			
+			for sPromotion in lsPromotions :
+				ePromotion = self.saveGetInfoType( gc.getNumPromotionInfos(), sPromotion )
+				pUnit.setHasPromotion( ePromotion, False )
+		
 		elif( tOutcome[0] == 'Event' ) :
 			iDestroyLair = tOutcome[1]
 			sEvent = tOutcome[2]
@@ -405,6 +415,9 @@ class CustomFunctions:
 			lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_TREASURE_VAULT' ) )
 			lOutcomes.append( ( 'Goody', 100, 'GOODY_GRAVE_TECH' ) )
 			lOutcomes.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_GOLDEN_AGE', 'GOLDEN_AGE' ) )
+			if( pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_CRAZED' ) ) ) : # Enraged isn't sufficient
+				if( not pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_DEMON' ) ) ) : # For the possessed outcome (we don't know the former race); LFGR_TODO: Save former race in SDTK or create new "Demonic Possession promo
+					lOutcomes.append( ( 'RemovePromotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_REMOVE_CRAZED', ['PROMOTION_ENRAGED', 'PROMOTION_CRAZED'] ) )
 		if( iRnd > 60 ) :
 			if( not pPlot.isWater() ) :
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_JADE_TORC' ) )
@@ -458,6 +471,13 @@ class CustomFunctions:
 						bValid = False
 						break
 					# LFGR_TODO: promotion immunity
+			if( tOutcome[0] == 'RemovePromotions' ) :
+				lPromotions = tOutcome[4]
+				bValid = False
+				for sPromotion in lPromotions :
+					if( pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), sPromotion ) ) ) :
+						bValid = True
+						break
 			elif( tOutcome[0] == 'Goody' ) :
 				eGoody = self.saveGetInfoType( gc.getNumGoodyInfos(), tOutcome[2] )
 				bValid = pPlayer.canReceiveGoody( pPlot, eGoody, pUnit )
