@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Extra Resources ModComp for MNAI -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_BAIR_OF_LACUNA</Tag>
+		<English>Bair of Lacuna</English>
+		<French>Bair of Lacuna</French>
+		<German>Bair of Lacuna</German>
+		<Italian>Bair of Lacuna</Italian>
+		<Spanish>Bair of Lacuna</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_PALUS</Tag>
+		<English>The Palus</English>
+		<French>The Palus</French>
+		<German>The Palus</German>
+		<Italian>The Palus</Italian>
+		<Spanish>The Palus</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_TARCHS_TOWER</Tag>
+		<English>Tarch's Tower</English>
+		<French>Tour de Tarch</French>
+		<German>Tarch's Tower</German>
+		<Italian>Tarch's Tower</Italian>
+		<Spanish>Tarch's Tower</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_TARCHS_TOWER_PEDIA</Tag>
+		<English>Past the farm Dain stopped briefly to look at Tarch's Tower, a three story stone tower which appeared to have no door and only a single window on its top floor. Earlier that summer Dain discovered the door to the tower; stairs led down to it at the towers base but the adults in his village had heaped enough dirt around the tower to bury it. Unable to reach the window, and noticing that even the hardest thrown rocks simply bounced off of the glass, Dain once dug up the door and attempted to pick the doors triangular lock with a thin knife. Just as he inserted the knife he was struck with a blast like lightning. Dain awoke to find himself flat on his back nearly 15 foot from the tower with one of his shoes knocked completely off. It was perhaps the most exciting event of his life. Still he hadn't been able to work up the courage to try it again. Not yet at least. - from The Ashes of Brigdarrow</English>
+		<French>Past the farm Dain stopped briefly to look at Tarch's Tower, a three story stone tower which appeared to have no door and only a single window on its top floor. Earlier that summer Dain discovered the door to the tower; stairs led down to it at the towers base but the adults in his village had heaped enough dirt around the tower to bury it. Unable to reach the window, and noticing that even the hardest thrown rocks simply bounced off of the glass, Dain once dug up the door and attempted to pick the doors triangular lock with a thin knife. Just as he inserted the knife he was struck with a blast like lightning. Dain awoke to find himself flat on his back nearly 15 foot from the tower with one of his shoes knocked completely off. It was perhaps the most exciting event of his life. Still he hadn't been able to work up the courage to try it again. Not yet at least. -  from The Ashes of Brigdarrow</French>
+		<German>Past the farm Dain stopped briefly to look at Tarch's Tower, a three story stone tower which appeared to have no door and only a single window on its top floor. Earlier that summer Dain discovered the door to the tower; stairs led down to it at the towers base but the adults in his village had heaped enough dirt around the tower to bury it. Unable to reach the window, and noticing that even the hardest thrown rocks simply bounced off of the glass, Dain once dug up the door and attempted to pick the doors triangular lock with a thin knife. Just as he inserted the knife he was struck with a blast like lightning. Dain awoke to find himself flat on his back nearly 15 foot from the tower with one of his shoes knocked completely off. It was perhaps the most exciting event of his life. Still he hadn't been able to work up the courage to try it again. Not yet at least. -  from The Ashes of Brigdarrow</German>
+		<Italian>Past the farm Dain stopped briefly to look at Tarch's Tower, a three story stone tower which appeared to have no door and only a single window on its top floor. Earlier that summer Dain discovered the door to the tower; stairs led down to it at the towers base but the adults in his village had heaped enough dirt around the tower to bury it. Unable to reach the window, and noticing that even the hardest thrown rocks simply bounced off of the glass, Dain once dug up the door and attempted to pick the doors triangular lock with a thin knife. Just as he inserted the knife he was struck with a blast like lightning. Dain awoke to find himself flat on his back nearly 15 foot from the tower with one of his shoes knocked completely off. It was perhaps the most exciting event of his life. Still he hadn't been able to work up the courage to try it again. Not yet at least. -  from The Ashes of Brigdarrow</Italian>
+		<Spanish>Past the farm Dain stopped briefly to look at Tarch's Tower, a three story stone tower which appeared to have no door and only a single window on its top floor. Earlier that summer Dain discovered the door to the tower; stairs led down to it at the towers base but the adults in his village had heaped enough dirt around the tower to bury it. Unable to reach the window, and noticing that even the hardest thrown rocks simply bounced off of the glass, Dain once dug up the door and attempted to pick the doors triangular lock with a thin knife. Just as he inserted the knife he was struck with a blast like lightning. Dain awoke to find himself flat on his back nearly 15 foot from the tower with one of his shoes knocked completely off. It was perhaps the most exciting event of his life. Still he hadn't been able to work up the courage to try it again. Not yet at least. -  from The Ashes of Brigdarrow</Spanish>
+	</TEXT>
+
+</Civ4GameText>

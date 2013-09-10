@@ -170,11 +170,19 @@
 		<Spanish>Nodo de Hielo</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_ANIMATE_FROSTLINGS</Tag>
+		<English>Frostlings appear in the wilderness!</English>
+		<French>Frostlings appear in the wilderness!</French>
+		<German>Frostlings appear in the wilderness!</German>
+		<Italian>Frostlings appear in the wilderness!</Italian>
+		<Spanish>¡Aparecen frostlings en las zonas salvajes!</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_PROD_LIVING</Tag>
 		<English>[ICON_BULLET]%D1%%[ICON_PRODUCTION] for living units</English>
 		<French>[ICON_BULLET]%D1%%[ICON_PRODUCTION] for living units</French>
 		<German>[ICON_BULLET]%D1%%[ICON_PRODUCTION] for living units</German>
-		<Italian>[ICON_BULLET]%D1%%[ICON_PRODUCTION] for living unitsi</Italian>
+		<Italian>[ICON_BULLET]%D1%%[ICON_PRODUCTION] for living units</Italian>
 		<Spanish>[ICON_BULLET]%D1%% a la [ICON_PRODUCTION] de unidades vivas</Spanish>
 	</TEXT>
 	<TEXT>
@@ -264,6 +272,14 @@
 		<German>Treetop</German>
 		<Italian>Treetop Defense</Italian>
 		<Spanish>Tácticas Arbóreas</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_ANIMATE_FROSTLINGS</Tag>
+		<English>Animate Frostlings</English>
+		<French>Animate Frostlings</French>
+		<German>Animate Frostlings</German>
+		<Italian>Animate Frostlings</Italian>
+		<Spanish>Invocar Frostlings</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_BLESSING</Tag>
@@ -409,6 +425,14 @@
 		<German>A rift has been opened. It can be used to transport %d1 units</German>
 		<Italian>A rift has been opened. It can be used to transport %d1 units</Italian>
 		<Spanish>A rift has been opened. It can be used to transport %d1 units</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_SLOW_GREATER</Tag>
+		<English>Greater Slow</English>
+		<French>Greater Slow</French>
+		<German>Greater Slow</German>
+		<Italian>Greater Slow</Italian>
+		<Spanish>Ralentizar Mayor</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_SUMMON_RUNEWYN</Tag>
