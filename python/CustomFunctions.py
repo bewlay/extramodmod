@@ -126,15 +126,19 @@ class CustomFunctions:
 		pPlot = pUnit.plot()
 		iRnd = CyGame().getSorenRandNum( 150, "Explore Lair" ) - 75 + min( 75, ( pUnit.getLevel() - 5 ) * 3 )
 		
+		if( bEpic ) :
+			iRnd -= 10
+		
 		for ePromotion in range( gc.getNumPromotionInfos() ) :
 			if( pUnit.isHasPromotion( ePromotion ) ) :
 				iRnd += gc.getPromotionInfo( ePromotion ).getExplorationResultBonus() * 2
+		
 		if( iRnd >= 0 ) : # Good
-			iRnd += pPlot.getWilderness() / 2
+			iRnd += pPlot.getWilderness() / 2.5
 			if( bEpic ) :
 				iRnd += 30
 		else : # Bad
-			iRnd -= pPlot.getWilderness() / 2
+			iRnd -= pPlot.getWilderness() / 2.5
 			if( bEpic ) :
 				iRnd -= 30
 		
@@ -144,9 +148,8 @@ class CustomFunctions:
 		bNoDestroy = ( ePillageImprovement != -1 )
 		
 		eSpawn = self.getExploreSpawn( pUnit, iRnd )
-		tOutcome = self.getExploreNonSpawnOutcome( pUnit, iRnd, bNoDestroy )
 		if( eSpawn == None ) :
-			iDestroyLair = self.doNonSpawnOutcome( pUnit, tOutcome )
+			iDestroyLair = self.doNonSpawnOutcome( pUnit, self.getExploreNonSpawnOutcome( pUnit, iRnd, bNoDestroy ) )
 		else :
 			if( iRnd >= 0 ) :
 				iSpawnProb = 1
@@ -156,7 +159,7 @@ class CustomFunctions:
 			if( CyGame().getSorenRandNum( 3, "Explore Lair" ) < iSpawnProb ) :
 				iDestroyLair = self.doSpawn( pUnit, eSpawn )
 			else :
-				iDestroyLair = self.doNonSpawnOutcome( pUnit, tOutcome )
+				iDestroyLair = self.doNonSpawnOutcome( pUnit, self.getExploreNonSpawnOutcome( pUnit, iRnd, bNoDestroy ) )
 		
 		if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
 			if( bNoDestroy ) :
@@ -320,6 +323,7 @@ class CustomFunctions:
 		pPlot = pUnit.plot()
 		pPlayer = gc.getPlayer( pUnit.getOwner() )
 		lOutcomes = []
+		# BAD
 		if( iRnd <= -50 ) :
 			if( pUnit.getLevel() == 1 ) :
 				lOutcomes.append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DEATH', 'DEATH' ) )
@@ -339,6 +343,7 @@ class CustomFunctions:
 		if( iRnd <= -10 ) :
 			if( pUnit.isAlive() ) :
 				lOutcomes.append( ( 'Special', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POISONED', 'POISONED' ) )
+		# NEUTRAL
 		if( iRnd > -25 and iRnd <= 25 ) :
 			lOutcomes.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
 			if( pUnit.isAlive() ) :
@@ -349,6 +354,7 @@ class CustomFunctions:
 				lOutcomes.append( ( 'Event', 80, 'EVENTTRIGGER_EXPLORE_LAIR_DWARF_VS_LIZARDMEN' ) )
 				if( not bNoDestroy ) :
 					lOutcomes.append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CAGE', 'CAGE' ) )
+		# GOOD
 		if( iRnd > 20 and iRnd <= 50 ) :
 			lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_HIGH_GOLD' ) )
 			if( pUnit.isAlive() ) :
