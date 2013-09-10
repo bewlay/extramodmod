@@ -5199,7 +5199,7 @@
 				</BonusTypeStruct>
 			</BonusTypeStructs>
 		<!-- WILDERNESS 09/2013 lfgr -->
-            <ImprovementPillage>IMPROVEMENT_IMPROVEMENT_PALUS_EXPLORED</ImprovementPillage>
+            <ImprovementPillage>IMPROVEMENT_PALUS_EXPLORED</ImprovementPillage>
 		<!-- WILDERNESS end -->
 			<ImprovementUpgrade/>
 			<TechYieldChanges>
