@@ -1055,7 +1055,7 @@
 		<!-- Overriding default value (3). Barbarians get X% of tech each turn * playersResearched / totalAlivePlayers -->
 		<!-- Since in FfH there are several military tech paths, players will have different military technologies. With the default value, they will be much weaker than players. -->
 		<DefineName>BARBARIAN_FREE_TECH_PERCENT</DefineName>
-		<iDefineIntVal>10</iDefineIntVal>
+		<iDefineIntVal>7</iDefineIntVal>
 	</Define>
 <!-- WILDERNESS end -->
 </Civ4Defines>
