@@ -6,40 +6,13 @@
 <!-- BARBARIAN_UNITS 02/2013 lfgr -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
-		<Tag>TXT_KEY_UNIT_SAVAGE</Tag>
-		<English>Savage</English>
-		<French>Savage</French>
-		<German>Wildling</German>
-		<Italian>Savage</Italian>
-		<Spanish>Savage</Spanish>
-		<Finnish>Savage</Finnish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_UNIT_SAVAGE_PEDIA</Tag>
-		<English>TODO</English>
-		<French>TODO</French>
-		<German>TODO</German>
-		<Italian>TODO</Italian>
-		<Spanish>TODO</Spanish>
-		<Finnish>TODO</Finnish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_UNIT_SAVAGE_STRATEGY</Tag>
-		<English>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</English>
-		<French>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</French>
-		<German>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</German>
-		<Italian>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</Italian>
-		<Spanish>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</Spanish>
-		<Finnish>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</Finnish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_UNIT_PANTHER_PEDIA</Tag>
-		<English>TODO</English>
-		<French>TODO</French>
-		<German>TODO</German>
-		<Italian>TODO</Italian>
-		<Spanish>TODO</Spanish>
-		<Finnish>TODO</Finnish>
+		<Tag>TXT_KEY_UNIT_ARCHER_SCORPION_CLAN</Tag>
+		<English>Scorpion Clan Archer</English>
+		<French>Scorpion Clan Archer</French>
+		<German>Scorpion Clan Archer</German>
+		<Italian>Scorpion Clan Archer</Italian>
+		<Spanish>Scorpion Clan Archer</Spanish>
+		<Finnish>Scorpion Clan Archer</Finnish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_BANDIT</Tag>
@@ -123,6 +96,33 @@
 		<Finnish>Cave Bears are strong bears spawning in the remote wilderness.</Finnish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_UNIT_GHOUL</Tag>
+		<English>Ghoul</English>
+		<French>Ghoul</French>
+		<German>Ghoul</German>
+		<Italian>Ghoul</Italian>
+		<Spanish>Ghoul</Spanish>
+		<Finnish>Ghoul</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_GHOUL_PEDIA</Tag>
+		<English>[TAB]The Dybbuk are malicious spirits that can control the soul of someone who recently died. They have little power over the just, though those burdened with sin are easy prey for them. The Dybbuk can force the soul to possess a living or dead host.[NEWLINE][TAB]When a Dybbuk leaves a corrupted soul in the body of a dead host it becomes a ghoul.</English>
+		<French>[TAB]The Dybbuk are malicious spirits that can control the soul of someone who recently died. They have little power over the just, though those burdened with sin are easy prey for them. The Dybbuk can force the soul to possess a living or dead host.[NEWLINE][TAB]When a Dybbuk leaves a corrupted soul in the body of a dead host it becomes a ghoul.</French>
+		<German>[TAB]The Dybbuk are malicious spirits that can control the soul of someone who recently died. They have little power over the just, though those burdened with sin are easy prey for them. The Dybbuk can force the soul to possess a living or dead host.[NEWLINE][TAB]When a Dybbuk leaves a corrupted soul in the body of a dead host it becomes a ghoul.</German>
+		<Italian>[TAB]The Dybbuk are malicious spirits that can control the soul of someone who recently died. They have little power over the just, though those burdened with sin are easy prey for them. The Dybbuk can force the soul to possess a living or dead host.[NEWLINE][TAB]When a Dybbuk leaves a corrupted soul in the body of a dead host it becomes a ghoul.</Italian>
+		<Spanish>[TAB]The Dybbuk are malicious spirits that can control the soul of someone who recently died. They have little power over the just, though those burdened with sin are easy prey for them. The Dybbuk can force the soul to possess a living or dead host.[NEWLINE][TAB]When a Dybbuk leaves a corrupted soul in the body of a dead host it becomes a ghoul.</Spanish>
+		<Finnish>[TAB]The Dybbuk are malicious spirits that can control the soul of someone who recently died. They have little power over the just, though those burdened with sin are easy prey for them. The Dybbuk can force the soul to possess a living or dead host.[NEWLINE][TAB]When a Dybbuk leaves a corrupted soul in the body of a dead host it becomes a ghoul.</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_GHOUL_STRATEGY</Tag>
+		<English>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</English>
+		<French>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</French>
+		<German>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</German>
+		<Italian>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</Italian>
+		<Spanish>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</Spanish>
+		<Finnish>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</Finnish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_UNIT_HOLLOW_MAN</Tag>
 		<English>Hollow Man</English>
 		<French>Hollow Man</French>
@@ -150,31 +150,40 @@
 		<Finnish>Hollow Man can rarely spawn from the Letum Frigus, if it is isolated enough. They are dangerous due to their invisibility.</Finnish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_UNIT_GHOUL</Tag>
-		<English>Ghoul</English>
-		<French>Ghoul</French>
-		<German>Ghoul</German>
-		<Italian>Ghoul</Italian>
-		<Spanish>Ghoul</Spanish>
-		<Finnish>Ghoul</Finnish>
+		<Tag>TXT_KEY_UNIT_PANTHER_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_UNIT_GHOUL_PEDIA</Tag>
-		<English>[TAB]The Dybbuk are malicious spirits that can control the soul of someone who recently died. They have little power over the just, though those burdened with sin are easy prey for them. The Dybbuk can force the soul to possess a living or dead host.[NEWLINE][TAB]When a Dybbuk leaves a corrupted soul in the body of a dead host it becomes a ghoul.</English>
-		<French>[TAB]The Dybbuk are malicious spirits that can control the soul of someone who recently died. They have little power over the just, though those burdened with sin are easy prey for them. The Dybbuk can force the soul to possess a living or dead host.[NEWLINE][TAB]When a Dybbuk leaves a corrupted soul in the body of a dead host it becomes a ghoul.</French>
-		<German>[TAB]The Dybbuk are malicious spirits that can control the soul of someone who recently died. They have little power over the just, though those burdened with sin are easy prey for them. The Dybbuk can force the soul to possess a living or dead host.[NEWLINE][TAB]When a Dybbuk leaves a corrupted soul in the body of a dead host it becomes a ghoul.</German>
-		<Italian>[TAB]The Dybbuk are malicious spirits that can control the soul of someone who recently died. They have little power over the just, though those burdened with sin are easy prey for them. The Dybbuk can force the soul to possess a living or dead host.[NEWLINE][TAB]When a Dybbuk leaves a corrupted soul in the body of a dead host it becomes a ghoul.</Italian>
-		<Spanish>[TAB]The Dybbuk are malicious spirits that can control the soul of someone who recently died. They have little power over the just, though those burdened with sin are easy prey for them. The Dybbuk can force the soul to possess a living or dead host.[NEWLINE][TAB]When a Dybbuk leaves a corrupted soul in the body of a dead host it becomes a ghoul.</Spanish>
-		<Finnish>[TAB]The Dybbuk are malicious spirits that can control the soul of someone who recently died. They have little power over the just, though those burdened with sin are easy prey for them. The Dybbuk can force the soul to possess a living or dead host.[NEWLINE][TAB]When a Dybbuk leaves a corrupted soul in the body of a dead host it becomes a ghoul.</Finnish>
+		<Tag>TXT_KEY_UNIT_SAVAGE</Tag>
+		<English>Savage</English>
+		<French>Savage</French>
+		<German>Wildling</German>
+		<Italian>Savage</Italian>
+		<Spanish>Savage</Spanish>
+		<Finnish>Savage</Finnish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_UNIT_GHOUL_STRATEGY</Tag>
-		<English>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</English>
-		<French>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</French>
-		<German>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</German>
-		<Italian>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</Italian>
-		<Spanish>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</Spanish>
-		<Finnish>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</Finnish>
+		<Tag>TXT_KEY_UNIT_SAVAGE_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_SAVAGE_STRATEGY</Tag>
+		<English>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</English>
+		<French>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</French>
+		<German>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</German>
+		<Italian>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</Italian>
+		<Spanish>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</Spanish>
+		<Finnish>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</Finnish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_WIGHT</Tag>

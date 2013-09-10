@@ -1,50 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!--
-	Advanced Combat Odds
-	Options Game Text
-
-	Copyright (c) 2009 The BUG Mod.
+	WILDERNESS 09/2013 lfgr
 -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
-		<Tag>TXT_KEY_IMPROVEMENT_SPAWN_UNITS</Tag>
-		<English>[ICON_BULLET]Spawns barbarian units until eliminated</English>
-		<French>[ICON_BULLET]Spawns barbarian units until eliminated</French>
-		<German>[ICON_BULLET]Erzeugt Barbaren-Einheiten bis es zerstört wird</German>
-		<Italian>[ICON_BULLET]Spawns barbarian units until eliminated</Italian>
-		<Spanish>[ICON_BULLET]Genera unidades bárbaras hasta que es eliminado.</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_PEARL</Tag>
-		<English>A colony of clams makes its home beneath the wreckage. Opening one, your unit discovers pearls inside.</English>
-		<French>A colony of clams makes its home beneath the wreckage. Opening one, your unit discovers pearls inside.</French>
-		<German>A colony of clams makes its home beneath the wreckage. Opening one, your unit discovers pearls inside.</German>
-		<Italian>A colony of clams makes its home beneath the wreckage. Opening one, your unit discovers pearls inside.</Italian>
-		<Spanish>A colony of clams makes its home beneath the wreckage. Opening one, your unit discovers pearls inside.</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_SHRIMP</Tag>
-		<English>Plenty of Shrimps make their home beneath the wreckage.</English>
-		<French>Plenty of Shrimps make their home beneath the wreckage.</French>
-		<German>Plenty of Shrimps make their home beneath the wreckage.</German>
-		<Italian>Plenty of Shrimps make their home beneath the wreckage.</Italian>
-		<Spanish>Plenty of Shrimps make their home beneath the wreckage.</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_MITHRIL</Tag>
-		<English>You discover a thick vein of mithril ore beneath the lair.</English>
-		<French>You discover a thick vein of mithril ore beneath the lair.</French>
-		<German>You discover a thick vein of mithril ore beneath the lair.</German>
-		<Italian>You discover a thick vein of mithril ore beneath the lair.</Italian>
-		<Spanish>You discover a thick vein of mithril ore beneath the lair.</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_GARGOYLE</Tag>
-		<English>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</English>
-		<French>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</French>
-		<German>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</German>
-		<Italian>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</Italian>
-		<Spanish>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</Spanish>
+		<Tag>TXT_KEY_PROMOTION_EXPLORATION_RESULT_BONUS</Tag>
+		<English>[ICON_BULLET]%D1%% better results from lair exploration</English>
+		<French>[ICON_BULLET]%D1%% better results from lair exploration</French>
+		<German>[ICON_BULLET]%D1%% better results from lair exploration</German>
+		<Italian>[ICON_BULLET]%D1%% better results from lair exploration</Italian>
+		<Spanish>[ICON_BULLET]%D1%% better results from lair exploration</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_LAIR_EXPLORED</Tag>
@@ -53,6 +18,14 @@
 		<German>There seems not to be anything left to explore in the lair.</German>
 		<Italian>There seems not to be anything left to explore in the lair.</Italian>
 		<Spanish>There seems not to be anything left to explore in the lair.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_SPAWN_UNITS</Tag>
+		<English>[ICON_BULLET]Spawns barbarian units until eliminated</English>
+		<French>[ICON_BULLET]Spawns barbarian units until eliminated</French>
+		<German>[ICON_BULLET]Erzeugt Barbaren-Einheiten bis es zerstört wird</German>
+		<Italian>[ICON_BULLET]Spawns barbarian units until eliminated</Italian>
+		<Spanish>[ICON_BULLET]Genera unidades bárbaras hasta que es eliminado.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_AIFON_ISLE_EXPLORED</Tag>
@@ -117,13 +90,5 @@
 		<German>TODO</German>
 		<Italian>TODO</Italian>
 		<Spanish>TODO</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_PROMOTION_EXPLORATION_RESULT_BONUS</Tag>
-		<English>[ICON_BULLET]%D1%% better results from lair exploration</English>
-		<French>[ICON_BULLET]%D1%% better results from lair exploration</French>
-		<German>[ICON_BULLET]%D1%% better results from lair exploration</German>
-		<Italian>[ICON_BULLET]%D1%% better results from lair exploration</Italian>
-		<Spanish>[ICON_BULLET]%D1%% better results from lair exploration</Spanish>
 	</TEXT>
 </Civ4GameText>
