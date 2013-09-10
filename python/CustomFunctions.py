@@ -148,8 +148,15 @@ class CustomFunctions:
 		bNoDestroy = ( ePillageImprovement != -1 )
 		
 		eSpawn = self.getExploreSpawn( pUnit, iRnd )
-		if( eSpawn == None ) :
-			iDestroyLair = self.doNonSpawnOutcome( pUnit, self.getExploreNonSpawnOutcome( pUnit, iRnd, bNoDestroy ) )
+		tOutcome = self.getExploreNonSpawnOutcome( pUnit, iRnd, bNoDestroy )
+		
+		if( eSpawn == None and tOutcome == None ) :
+			CvUtil.pyPrint( "WARNING: Neither spawn nor non-spawn outcome available, adding 'NOTHING'" )
+			iDestroyLair = self.doNonSpawnOutcome( pUnit, ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
+		elif( eSpawn == None ) :
+			iDestroyLair = self.doNonSpawnOutcome( pUnit, tOutcome )
+		elif( tOutcome == None ) :
+			iDestroyLair = self.doSpawn( pUnit, eSpawn )
 		else :
 			if( iRnd >= 0 ) :
 				iSpawnProb = 1
@@ -345,7 +352,7 @@ class CustomFunctions:
 				lOutcomes.append( ( 'Special', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POISONED', 'POISONED' ) )
 		# NEUTRAL
 		if( iRnd > -25 and iRnd <= 25 ) :
-			lOutcomes.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
+			#lOutcomes.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
 			if( pUnit.isAlive() ) :
 				lOutcomes.append( ( 'Promotions', 50, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_MUTATED', ['PROMOTION_MUTATED'] ) )
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_PROPHECY_MARK', ['PROMOTION_PROPHECY_MARK'] ) )
@@ -463,8 +470,7 @@ class CustomFunctions:
 				lResult.append( tOutcome )
 		
 		if( len( lResult ) == 0 ) :
-			CvUtil.pyPrint( "No outcome available, adding 'NOTHING'" )
-			lResult.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
+			return None
 		
 		return lResult[CyGame().getSorenRandNum( len( lResult ), "Pick Outcome" )]
 	
