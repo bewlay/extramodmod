@@ -6765,8 +6765,19 @@ int CvCityAI::AI_neededDefenders()
 		iDefenders += ((getPopulation() + 2) / 7);
 		return std::max(1, iDefenders);
 	}
-
+	
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
+/************************************************************************************************/
+/* old
 	if (GET_TEAM(getTeam()).isBarbarianAlly() && !bAtWar)
+*/
+	// LFGR_TODO: Multibarb
+	if (GET_TEAM(getTeam()).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) && !bAtWar)
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	{
 		iDefenders = 1;
 	}

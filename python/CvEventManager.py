@@ -588,16 +588,26 @@ class CvEventManager:
 					iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_TRAIT_ADAPTIVE')
 					triggerData = pPlayer.initTriggeredData(iEvent, true, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1)
 
-		if pPlayer.isHuman():
-			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_BARBARIAN')):
-				eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
-				iTeam = pPlayer.getTeam()
-				if eTeam.isAtWar(iTeam) == False:
-					if 2 * CyGame().getPlayerScore(iPlayer) >= 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)):
-						if iGameTurn >= 20:
-							eTeam.declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
-							if iPlayer == CyGame().getActivePlayer():
-								cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
+	# WILDERNESS 09/2013 lfgr
+	#	if pPlayer.isHuman():
+	#		if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_BARBARIAN')):
+	#			eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
+	#			iTeam = pPlayer.getTeam()
+	#			if eTeam.isAtWar(iTeam) == False:
+	#				if 2 * CyGame().getPlayerScore(iPlayer) >= 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)):
+	#					if iGameTurn >= 20:
+	#						eTeam.declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
+	#						if iPlayer == CyGame().getActivePlayer():
+	#							cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
+		eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
+		iTeam = pPlayer.getTeam()
+		if eTeam.isAtWar(iTeam) == False:
+			if 2 * CyGame().getPlayerScore(iPlayer) >= 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)):
+				if iGameTurn >= 20:
+					eTeam.declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
+					if iPlayer == CyGame().getActivePlayer():
+						cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
+	# WILDERNESS end
 
 
 	def onEndPlayerTurn(self, argsList):
