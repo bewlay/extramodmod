@@ -3912,15 +3912,20 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<bIgnoreBuildingDefense>1</bIgnoreBuildingDefense>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
-			<iMoves>3</iMoves>
+			<iMoves>6</iMoves>
 			<iNukeRange>-1</iNukeRange>
 			<iCombat>30</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>80</iXPValueAttack>
 			<iXPValueDefense>40</iXPValueDefense>
+			<iFirstStrikes>4</iFirstStrikes>
+			<iCollateralDamage>60</iCollateralDamage>
+			<iCollateralDamageLimit>60</iCollateralDamageLimit>
+			<iCollateralDamageMaxUnits>12</iCollateralDamageMaxUnits>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iAsset>400</iAsset>
 			<iPower>200</iPower>
@@ -3953,7 +3958,12 @@
 					<PromotionType>PROMOTION_SENTRY2</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_MARCH</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
+			<bImmortal>1</bImmortal>
 			<iCombatDefense>30</iCombatDefense>
 			<iTier>4</iTier>
 			<Image>Art/Interface/Popups/Auric Ascended.dds</Image>
@@ -3965,6 +3975,12 @@
 					<iCombat>30</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<BonusAffinities>
+				<BonusAffinity>
+					<BonusType>BONUS_MANA_ICE</BonusType>
+					<iAffinity>10</iAffinity>
+				</BonusAffinity>
+			</BonusAffinities>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_AXEMAN -->
 			<Class>UNITCLASS_AXEMAN</Class>
@@ -4049,7 +4065,7 @@
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
-			<iWeaponTier>3</iWeaponTier>
+			<iWeaponTier>2</iWeaponTier>
 			<PrereqBuildingClass>BUILDINGCLASS_TRAINING_YARD</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_BANDIT // BARBARIAN_UNITS 08/2013 lfgr -->
@@ -4202,7 +4218,7 @@
 			<bNeverObsolete>1</bNeverObsolete>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
-			<iWeaponTier>3</iWeaponTier>
+			<iWeaponTier>2</iWeaponTier>
 			<PrereqBuildingClass>BUILDINGCLASS_TRAINING_YARD</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_PYRE_ZOMBIE -->
@@ -4372,7 +4388,7 @@
 			<bDisableUpgradeTo>1</bDisableUpgradeTo>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
-			<iWeaponTier>3</iWeaponTier>
+			<iWeaponTier>2</iWeaponTier>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_SWORDSMAN -->
 			<Class>UNITCLASS_AXEMAN</Class>
@@ -4449,7 +4465,7 @@
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
-			<iWeaponTier>3</iWeaponTier>
+			<iWeaponTier>2</iWeaponTier>
 			<PrereqBuildingClass>BUILDINGCLASS_TRAINING_YARD</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_WOOD_GOLEM -->
