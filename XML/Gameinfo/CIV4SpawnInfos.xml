@@ -2923,7 +2923,6 @@
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>0</iMinWilderness>
 			<iMaxWilderness>75</iMaxWilderness>
-			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_AXEMAN</Unit>
