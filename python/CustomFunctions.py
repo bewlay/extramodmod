@@ -348,6 +348,7 @@ class CustomFunctions:
 			lOutcomes.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
 			if( pUnit.isAlive() ) :
 				lOutcomes.append( ( 'Promotions', 50, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_MUTATED', ['PROMOTION_MUTATED'] ) )
+				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_PROPHECY_MARK', ['PROMOTION_PROPHECY_MARK'] ) )
 			if( not pPlot.isWater() ) :
 				lOutcomes.append( ( 'Event', 0, 'EVENTTRIGGER_EXPLORE_LAIR_PORTAL' ) )
 				lOutcomes.append( ( 'Event', 100, 'EVENTTRIGGER_EXPLORE_LAIR_DEPTHS' ) )

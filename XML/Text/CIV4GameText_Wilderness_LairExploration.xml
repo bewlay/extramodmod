@@ -28,6 +28,14 @@
 		<Spanish>You discover a thick vein of mithril ore beneath the lair.</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_PROPHECY_MARK</Tag>
+		<English>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</English>
+		<French>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</French>
+		<German>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</German>
+		<Italian>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</Italian>
+		<Spanish>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_GARGOYLE</Tag>
 		<English>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</English>
 		<French>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</French>
