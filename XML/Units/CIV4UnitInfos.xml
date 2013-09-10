@@ -12380,7 +12380,7 @@
             <bInvisible>0</bInvisible>
             <bFirstStrikeImmune>0</bFirstStrikeImmune>
             <bNoDefensiveBonus>0</bNoDefensiveBonus>
-            <bIgnoreBuildingDefense>0</bIgnoreBuildingDefense>
+            <bIgnoreBuildingDefense>1</bIgnoreBuildingDefense>
             <bCanMoveImpassable>0</bCanMoveImpassable>
             <bCanMoveAllTerrain>0</bCanMoveAllTerrain>
             <bFlatMovementCost>0</bFlatMovementCost>
@@ -12442,7 +12442,7 @@
             <iAdvancedStartCost>-1</iAdvancedStartCost>
             <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
             <iMinAreaSize>-1</iMinAreaSize>
-            <iMoves>3</iMoves>
+            <iMoves>6</iMoves>
             <bNoRevealMap>0</bNoRevealMap>
             <iAirRange>0</iAirRange>
             <iAirUnitCap>0</iAirUnitCap>
@@ -12471,14 +12471,14 @@
             <iAirCombatLimit>0</iAirCombatLimit>
             <iXPValueAttack>80</iXPValueAttack>
             <iXPValueDefense>40</iXPValueDefense>
-            <iFirstStrikes>0</iFirstStrikes>
+            <iFirstStrikes>4</iFirstStrikes>
             <iChanceFirstStrikes>0</iChanceFirstStrikes>
             <iInterceptionProbability>0</iInterceptionProbability>
             <iEvasionProbability>0</iEvasionProbability>
             <iWithdrawalProb>0</iWithdrawalProb>
-            <iCollateralDamage>0</iCollateralDamage>
-            <iCollateralDamageLimit>0</iCollateralDamageLimit>
-            <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
+            <iCollateralDamage>60</iCollateralDamage>
+            <iCollateralDamageLimit>60</iCollateralDamageLimit>
+            <iCollateralDamageMaxUnits>12</iCollateralDamageMaxUnits>
             <iCityAttack>0</iCityAttack>
             <iCityDefense>0</iCityDefense>
             <iAnimalCombat>0</iAnimalCombat>
@@ -12553,9 +12553,14 @@
                     <PromotionType>PROMOTION_SENTRY2</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_MARCH</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
             </FreePromotions>
             <LeaderPromotion>NONE</LeaderPromotion>
             <iLeaderExperience>0</iLeaderExperience>
+			<bImmortal>1</bImmortal>
             <iCombatDefense>30</iCombatDefense>
             <iTier>4</iTier>
             <Image>Art/Interface/Popups/Auric Ascended.dds</Image>
@@ -12567,6 +12572,12 @@
                     <iCombat>30</iCombat>
                 </DamageTypeCombat>
             </DamageTypeCombats>
+            <BonusAffinities>
+                <BonusAffinity>
+                    <BonusType>BONUS_MANA_ICE</BonusType>
+                    <iAffinity>10</iAffinity>
+                </BonusAffinity>
+            </BonusAffinities>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_AXEMAN</Class>
@@ -12804,7 +12815,7 @@
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
-            <iWeaponTier>3</iWeaponTier>
+            <iWeaponTier>2</iWeaponTier>
             <PrereqBuildingClass>BUILDINGCLASS_TRAINING_YARD</PrereqBuildingClass>
         </UnitInfo>
         <UnitInfo>
@@ -13036,7 +13047,7 @@
             <bNeverObsolete>1</bNeverObsolete>
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
-            <iWeaponTier>3</iWeaponTier>
+            <iWeaponTier>2</iWeaponTier>
             <PrereqBuildingClass>BUILDINGCLASS_TRAINING_YARD</PrereqBuildingClass>
         </UnitInfo>
         <UnitInfo>
@@ -13514,7 +13525,7 @@
             <bDisableUpgradeTo>1</bDisableUpgradeTo>
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
-            <iWeaponTier>3</iWeaponTier>
+            <iWeaponTier>2</iWeaponTier>
         </UnitInfo>
         <UnitInfo>
             <Class>UNITCLASS_AXEMAN</Class>
@@ -13744,7 +13755,7 @@
             <iLeaderExperience>0</iLeaderExperience>
             <iCombatDefense>4</iCombatDefense>
             <iTier>2</iTier>
-            <iWeaponTier>3</iWeaponTier>
+            <iWeaponTier>2</iWeaponTier>
             <PrereqBuildingClass>BUILDINGCLASS_TRAINING_YARD</PrereqBuildingClass>
         </UnitInfo>
         <UnitInfo>

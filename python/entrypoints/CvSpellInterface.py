@@ -4639,3 +4639,13 @@ def spellUpgradeLucian(pCaster):
 	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_SONS_OF_ASENA'), pCaster.getX(), pCaster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 	newUnit.convert(pCaster)
 	newUnit.changeImmobileTimer(1)
+
+def spellAnimateFrostlings(pCaster):
+	for iPlayer in range(gc.getMAX_PLAYERS()):
+		pPlayer = gc.getPlayer(iPlayer)
+		if pPlayer.isAlive():
+			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING'))
+			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING'))
+			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING_ARCHER'))
+			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING_WOLF_RIDER'))
+			CyInterface().addMessage(iPlayer, False, 25, CyTranslator().getText("TXT_KEY_MESSAGE_ANIMATE_FROSTLINGS", ()),'',1, None, ColorTypes(7), -1, -1, False, False)

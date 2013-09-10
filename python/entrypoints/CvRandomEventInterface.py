@@ -880,7 +880,7 @@ def doMistforms(argsList):
 def doMushrooms(argsList):
 	kTriggeredData = argsList[0]
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
-	pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_MUSHROOMS'))
+	pPlot.setBonusType(gc.getInfoTypeForString('BONUS_MUSHROOMS'))
 
 def canTriggerMutateUnit(argsList):
 	eTrigger = argsList[0]
