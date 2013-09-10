@@ -599,14 +599,15 @@ class CvEventManager:
 	#						eTeam.declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
 	#						if iPlayer == CyGame().getActivePlayer():
 	#							cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
-		eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
-		iTeam = pPlayer.getTeam()
-		if eTeam.isAtWar(iTeam) == False:
-			if 2 * CyGame().getPlayerScore(iPlayer) >= 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)):
-				if iGameTurn >= 20:
-					eTeam.declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
-					if iPlayer == CyGame().getActivePlayer():
-						cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
+		if( pPlayer.isHuman() or gc.getGame().isOption( GameOptionTypes.GAMEOPTION_RAGING_BARBARIANS ) ) :
+			eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
+			iTeam = pPlayer.getTeam()
+			if eTeam.isAtWar(iTeam) == False:
+				if 2 * CyGame().getPlayerScore(iPlayer) >= 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)):
+					if iGameTurn >= 20:
+						eTeam.declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
+						if iPlayer == CyGame().getActivePlayer():
+							cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
 	# WILDERNESS end
 
 
