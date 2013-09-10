@@ -1049,7 +1049,7 @@
     </Define>
     <Define>
         <DefineName>LAIR_SPAWN_LIMIT_MULTIPLIER</DefineName>
-        <fDefineFloatVal>5.0</fDefineFloatVal>
+        <fDefineFloatVal>2.0</fDefineFloatVal>
     </Define>
 	<Define>
 		<!-- Overriding default value (3). Barbarians get X% of tech each turn * playersResearched / totalAlivePlayers -->
