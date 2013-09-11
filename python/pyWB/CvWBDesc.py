@@ -871,7 +871,7 @@ class CvCityDesc:
 						if pLoopPlot.getImprovementType() != -1:
 						# WILDERNESS 08/2013 lfgr
 						#	if gc.getImprovementInfo(pLoopPlot.getImprovementType()).getSpawnUnitType() != -1 or gc.getImprovementInfo(pLoopPlot.getImprovementType()).isGoody():
-							if gc.getImprovementInfo(pLoopPlot.getImprovementType()).isLair( True, False ) or gc.getImprovementInfo(pLoopPlot.getImprovementType()).isGoody():
+							if pLoopPlot.isLair( True, False ) or gc.getImprovementInfo(pLoopPlot.getImprovementType()).isGoody():
 						# WILDERNESS end
 								pLoopPlot.setImprovementType(-1)
 #FfH: End Add
