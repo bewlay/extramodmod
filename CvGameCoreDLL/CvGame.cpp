@@ -7404,7 +7404,7 @@ void CvGame::createBarbarianUnits()
 			
 			if( bBarbs )
 			{
-				float fNeededBarbsPerPlot = (float) ( bDoubleAnimals ? 1 : 2 );
+				float fNeededBarbsPerPlot = (float) ( bRagingBarbs ? 1 : 2 );
 
 				if (pLoopArea->isWater())
 					fNeededBarbsPerPlot /= (float) GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerBarbarianUnit();
