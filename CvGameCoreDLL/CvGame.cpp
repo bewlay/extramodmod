@@ -7496,7 +7496,7 @@ void CvGame::createBarbarianUnits()
 
 					if( fNeededAnimals > 0 )
 					{
-						// This will not work correctly if we have areas with a size greater than 256*256. In this case, exactly one animals will spawn to less.
+						// This will not work correctly if we have f.e. areas with a size greater than 256*256. In this case, exactly one animals will spawn to less.
 						// Another random method should maybe used.
 						float fAnimalRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
 
@@ -7507,7 +7507,7 @@ void CvGame::createBarbarianUnits()
 				
 				if( bBarbs )
 				{
-					float fNeededBarbs = afAreaNeededAnimalsPerPlot[iAreaIndex];
+					float fNeededBarbs = afAreaNeededBarbsPerPlot[iAreaIndex];
 			
 					if( fNeededBarbs > 0 )
 					{
