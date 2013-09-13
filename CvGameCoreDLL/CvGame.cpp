@@ -7428,7 +7428,7 @@ void CvGame::createBarbarianUnits()
 			
 			bool bValid = true;
 			bool bVisible = false;
-			bool bAdjacentOwned = false;
+			//bool bAdjacentOwned = false;
 
 			if( pPlot->isOwned() || pPlot->isImpassable() || ( pPlot->isWater() && !pPlot->isAdjacentToLand() ) )
 				bValid = false;
@@ -7448,7 +7448,7 @@ void CvGame::createBarbarianUnits()
 						}
 					}
 				}
-
+				/*
 				// Adjacent owned
 				for( int iChangeX = -1; !bAdjacentOwned && iChangeX <= 1; iChangeX++ )
 				{
@@ -7460,6 +7460,7 @@ void CvGame::createBarbarianUnits()
 								bAdjacentOwned = true;
 					}
 				}
+				*/
 			}
 
 			if( bValid )
