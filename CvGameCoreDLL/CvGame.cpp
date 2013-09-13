@@ -7496,6 +7496,9 @@ void CvGame::createBarbarianUnits()
 
 					if( fNeededAnimals > 0 )
 					{
+						// Faster respawning in higher wilderness
+						fNeededAnimals *= ( 1 + pPlot->getWilderness() / 100.0f );
+
 						// This will not work correctly if we have f.e. areas with a size greater than 256*256. In this case, exactly one animals will spawn to less.
 						// Another random method should maybe used.
 						float fAnimalRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
@@ -7511,6 +7514,9 @@ void CvGame::createBarbarianUnits()
 			
 					if( fNeededBarbs > 0 )
 					{
+						// Faster respawning in higher wilderness
+						fNeededBarbs *= ( 1 + pPlot->getWilderness() / 100.0f );
+
 						// See above
 						float fBarbRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
 						if( fNeededBarbs >= fBarbRand )
