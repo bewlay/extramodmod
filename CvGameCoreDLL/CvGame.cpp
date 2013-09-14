@@ -7358,6 +7358,8 @@ void CvGame::createBarbarianUnits()
 			bBarbs = false;
 	}
 
+	logBBAI( "WILDERNESS - Spawning at turn %d", GC.getGameINLINE().getGameTurn() );
+
 	if( bAnimals )
 		logBBAI( "WILDERNESS - Spawning Animals" );
 
@@ -7540,7 +7542,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal, int iHeldTurns )
 {
 	bool bVerbose = true;
 
-	logBBAI( "WILDERNESS - Creating Semi-Random Spawn" );
+	logBBAI( "WILDERNESS - Creating Semi-Random %s Spawn", bAnimal ? "animal" : "barb" );
 
 	SpawnTypes eBestSpawn = NO_SPAWN;
 	int iBestValue = 0;
@@ -7561,7 +7563,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal, int iHeldTurns )
 		{
 			int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn, true );
 
-			if( bVerbose )
+			if( bVerbose && iValue > 0 )
 				logBBAI( "WILDERNESS - SpawnInfo %s: %d", kLoopSpawn.getType(), iValue );
 
 			if( iValue > 0 )
