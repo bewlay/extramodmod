@@ -3,12 +3,6 @@
 #ifndef BETTERBTSAI_H
 #define BETTERBTSAI_H
 
-// lfgr EVENT_DEBUG
-#ifndef LOG_AI
-	#define LOG_AI
-#endif
-// lfgr end
-
 // AI decision making logging
 
 // Log levels:
