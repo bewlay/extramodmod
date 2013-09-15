@@ -280,6 +280,7 @@ void CvPlot::reset(int iX, int iY, bool bConstructorCall)
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
     m_iWilderness = 0;
+    m_iLairUnitCount = 0;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -511,12 +512,10 @@ void CvPlot::doTurn()
 		}
 	/************************************************************************************************/
 	/* WILDERNESS                             08/2013                                 lfgr          */
-	/* Use SpawnInfos                                                                               */
+	/* Changed system, removed some old code.                                                       */
 	/************************************************************************************************/
-	/*
-        int iUnit = GC.getImprovementInfo(eImprovement).getSpawnUnitType();
-        if (iUnit != NO_UNIT)
-	*/
+		bool bDoubleAnimals = GC.getGameINLINE().isOption( GAMEOPTION_DOUBLE_ANIMALS );
+
 		SpawnTypes eBestSpawn = NO_SPAWN;
 		int iBestValue = 0;
 
@@ -539,138 +538,67 @@ void CvPlot::doTurn()
 					}
 				}
 			}
-		}	
+		}
 		if( eBestSpawn != NO_SPAWN )
-	/************************************************************************************************/
-	/* WILDERNESS                                                                     END           */
-	/************************************************************************************************/
         {
-            if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_BARBARIANS))
+			if ( !GC.getGameINLINE().isOption( GAMEOPTION_NO_BARBARIANS ) )
             {
-                CvArea* pArea = GC.getMapINLINE().getArea(getArea());
-                if (pArea->getNumUnownedTiles() > 0)
-                {
-				/************************************************************************************************/
-				/* WILDERNESS                             08/2013                                 lfgr          */
-				/* Use SpawnInfos                                                                               */
-				/* TILES_PER_SPAWN was not defined.
-				/************************************************************************************************/
-				/*
-                    int iTiles = GC.getDefineINT("TILES_PER_SPAWN");
-                    if (GC.getUnitInfo((UnitTypes)iUnit).isAnimal())
-				*/
-					int iTiles = GC.getHandicapInfo( GC.getGameINLINE().getHandicapType() ).getUnownedTilesPerBarbarianUnit();
-					iTiles = (int) ( iTiles / GC.getDefineFLOAT( "LAIR_SPAWN_LIMIT_MULTIPLIER" ) );
-					CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
-					if ( kBestSpawn.isAnimal())
-				/************************************************************************************************/
-				/* WILDERNESS                                                                     END           */
-				/************************************************************************************************/
-                    {
-                        iTiles *= 2;
-                    }
-					// Tholal - put more rage into Raging Barbarians
-					else if (bRagingBarbs)
+				CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
+
+				int iChance = GC.getDefineINT( "BASE_BARBS_PER_LAIR" );
+				iChance *= GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getLairSpawnRate();
+				if ( kBestSpawn.isAnimal() && !bDoubleAnimals )
+					iChance /= 2;
+				// Tholal - put more rage into Raging Barbarians
+				else if( !kBestSpawn.isAnimal() && bRagingBarbs)
+					iChance *= 2;
+				iChance -= getLairUnitCount();
+				
+				// ALN - increase spawn rate if not defended
+				bool bFort = (GC.getImprovementInfo(eImprovement).getDefenseModifier() > 0);
+				int iDefenders = plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER);
+				bool bDefended = iDefenders > (bFort ? 1 : 0);
+
+				if( iChance < 1 && !bDefended )
+					iChance = 1;
+
+				if( iChance > 0 )
+				{
+                    iChance *= 10000;
+					
+				// lfgr fix 08/2013
+					if ( !bDefended || bRagingBarbs ) // Tholal - put more rage into Raging Barbarians
+				// lfgr end
 					{
-						iTiles /= 2;
+						iChance *= 2;
 					}
 
-                    if (pArea->getUnitsPerPlayer((PlayerTypes)BARBARIAN_PLAYER) == 0 || (pArea->getNumUnownedTiles() / pArea->getUnitsPerPlayer((PlayerTypes)BARBARIAN_PLAYER)) > iTiles)
+					iChance = (int) ( iChance * GC.getDefineFLOAT( "LAIR_SPAWNING_SPEED" ) );
+
+                    iChance /= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
+					
+					if  (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Unit") < iChance )
                     {
-                        int iChance = GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getLairSpawnRate();
-						
-						// ALN - increase spawn rate if not defended
-						bool bGoblinFort = (GC.getImprovementInfo(eImprovement).getDefenseModifier() > 0);
-						int iDefenders = plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER);
-						bool bDefended = iDefenders > (bGoblinFort ? 1 : 0);
-						
-                        iChance *= 10000;
-						
-					// lfgr fix 08/2013
-					//	if (iDefenders == 0 || bRagingBarbs) // Tholal - put more rage into Raging Barbarians
-						if ( !bDefended || bRagingBarbs ) // Tholal - put more rage into Raging Barbarians
-					// lfgr end
-						{
-							iChance *= 2;
-						}
-
-                        iChance /= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
-						
-						// ALN - reduce 'bear den' overspawning
-					/************************************************************************************************/
-					/* WILDERNESS                             08/2013                                 lfgr          */
-					/* Use SpawnInfos                                                                               */
-					/************************************************************************************************/
-					/*
-						if (GC.getUnitInfo((UnitTypes)iUnit).isAnimal())
-					*/
-						if ( kBestSpawn.isAnimal())
-					/************************************************************************************************/
-					/* WILDERNESS                                                                     END           */
-					/************************************************************************************************/
-						{
-							iChance /= 3;
-						}
-						
-					/************************************************************************************************/
-					/* WILDERNESS                             08/2013                                 lfgr          */
-					/* Alter chance                                                                                 */
-					/************************************************************************************************/
-                    /*
-						if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Unit") < iChance)
-					*/
-						if  (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Unit") < iChance * kBestSpawn.getProbability() / 100 )
-					/************************************************************************************************/
-					/* WILDERNESS                                                                     END           */
-					/************************************************************************************************/
+                        if (!isVisibleOtherUnit(BARBARIAN_PLAYER))
                         {
-                            if (!isVisibleOtherUnit(BARBARIAN_PLAYER))
-                            {
-							/************************************************************************************************/
-							/* WILDERNESS                             08/2013                                 lfgr          */
-							/* Use SpawnInfos                                                                               */
-							/************************************************************************************************/
-							/*
-                                CvUnit* pUnit;
-                                pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit((UnitTypes)iUnit, getX_INLINE(), getY_INLINE(), UNITAI_ATTACK);
+							// init spawn units
+							UnitAITypes eUnitAI = NO_UNITAI;
+							if( !bDefended )
+								eUnitAI = UNITAI_LAIRGUARDIAN;
+							else if( kBestSpawn.isAnimal() )
+								eUnitAI = UNITAI_ANIMAL;
+							else
+								eUnitAI = area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK;
 
-								if (GC.getImprovementInfo(eImprovement).getFreeSpawnPromotion() != NO_PROMOTION)
-								{
-									if ((GC.getPromotionInfo((PromotionTypes)GC.getImprovementInfo(eImprovement).getFreeSpawnPromotion())).isRace())
-									{
-										pUnit->setRace(NO_PROMOTION);
-									}
-									pUnit->setHasPromotion((PromotionTypes)GC.getImprovementInfo(eImprovement).getFreeSpawnPromotion(), true);
-								}
-								if (pUnit->isAnimal())
-                                {
-                                    pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
-									pUnit->AI_setUnitAIType(UNITAI_ANIMAL);		
-                                }
-								if (!bDefended)
-								{
-									pUnit->AI_setUnitAIType(UNITAI_LAIRGUARDIAN);
-								}
-							*/
-								// init spawn units
-								UnitAITypes eUnitAI = NO_UNITAI;
-								if( !bDefended )
-									eUnitAI = UNITAI_LAIRGUARDIAN;
-								else if( kBestSpawn.isAnimal() )
-									eUnitAI = UNITAI_ANIMAL;
-								else
-									eUnitAI = area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK;
-
-								createSpawn( eBestSpawn, eUnitAI );
-							/************************************************************************************************/
-							/* WILDERNESS                                                                     END           */
-							/************************************************************************************************/
-                            }
+							createSpawn( eBestSpawn, eUnitAI, 0, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
                         }
                     }
                 }
             }
         }
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
         if (GC.getImprovementInfo(getImprovementType()).getFeatureUpgrade() != NO_FEATURE)
         {
             if (GC.getGameINLINE().getSorenRandNum(100, "Feature Upgrade") < GC.getDefineINT("FEATURE_UPGRADE_CHANCE"))
@@ -6888,6 +6816,28 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 {
 	int iI;
 	ImprovementTypes eOldImprovement = getImprovementType();
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Update Lair count                                                                            */
+/************************************************************************************************/
+	if( isLair() && eNewValue != GC.getImprovementInfo( eOldImprovement ).getImprovementUpgrade() && eNewValue != GC.getImprovementInfo( eOldImprovement ).getImprovementPillage() )
+	{
+		for( int ePlayer = 0; ePlayer < GC.getMAX_CIV_PLAYERS(); ePlayer++ )
+		{
+			CvPlayer& kPlayer = GET_PLAYER( (PlayerTypes) ePlayer );
+			if( kPlayer.isBarbarian() )
+			{
+				int iLoop;
+				for (CvUnit* pLoopUnit = kPlayer.firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = kPlayer.nextUnit(&iLoop))
+					if( pLoopUnit->getLairPlot() == GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) )
+						pLoopUnit->setLairPlot( -1 );
+			}
+		}
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (getImprovementType() != eNewValue)
 	{
@@ -10530,6 +10480,7 @@ void CvPlot::read(FDataStreamBase* pStream)
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
 	pStream->Read(&m_iWilderness);
+	pStream->Read(&m_iLairUnitCount);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -10791,6 +10742,7 @@ void CvPlot::write(FDataStreamBase* pStream)
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
 	pStream->Write(m_iWilderness);
+	pStream->Write(m_iLairUnitCount);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -12524,6 +12476,16 @@ void CvPlot::setWilderness(int iNewValue)
 	m_iWilderness = iNewValue;
 }
 
+int CvPlot::getLairUnitCount() const
+{
+	return m_iLairUnitCount;
+}
+
+void CvPlot::setLairUnitCount(int iNewValue)
+{
+	m_iLairUnitCount = iNewValue;
+}
+
 int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bBarbTech )
 {
 	if( eSpawn == NO_SPAWN )
@@ -12566,7 +12528,7 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bBarbTech )
 	return iValue;
 }
 
-void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns )
+void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns, int iLairPlot )
 {
 	if( eSpawn == NO_SPAWN )
 		return;
@@ -12670,6 +12632,12 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns
 						iRandomIncludedSpawns--;
 					}
 				}
+			}
+
+			if( iLairPlot != -1 )
+			{
+				pUnit->setLairPlot( iLairPlot );
+				GC.getMapINLINE().plotByIndexINLINE( iLairPlot )->setLairUnitCount( GC.getMapINLINE().plotByIndexINLINE( iLairPlot )->getLairUnitCount() + 1 );
 			}
 			
 			if( kSpawn.getUnitArtStyleType() != NO_UNIT_ARTSTYLE )

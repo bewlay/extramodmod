@@ -635,8 +635,11 @@ public:
 	int getWilderness() const;
 	void setWilderness(int iNewValue);
 
+	int getLairUnitCount() const;
+	void setLairUnitCount(int iNewValue);
+
 	int getSpawnValue( SpawnTypes eSpawnType, bool bBarbTech );
-	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI, int iHeldTurns = 0 );
+	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI, int iHeldTurns = 0, int iLairPlot = -1 );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -789,6 +792,7 @@ protected:
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
 	int m_iWilderness;
+	int m_iLairUnitCount;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

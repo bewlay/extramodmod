@@ -1040,6 +1040,10 @@
         <fDefineFloatVal>0.23</fDefineFloatVal>
     </Define>
     <Define>
+        <DefineName>LAIR_SPAWNING_SPEED</DefineName>
+        <fDefineFloatVal>0.2</fDefineFloatVal>
+    </Define>
+    <Define>
         <DefineName>VISIBLE_TILE_SPAWNING_MIN_WILDERNESS</DefineName>
         <iDefineIntVal>30</iDefineIntVal>
     </Define>
@@ -1060,6 +1064,10 @@
     <Define>
         <DefineName>LAKE_SPAWNING_ENABLED</DefineName>
         <iDefineIntVal>0</iDefineIntVal>
+    </Define>
+    <Define>
+        <DefineName>BASE_BARBS_PER_LAIR</DefineName>
+        <iDefineIntVal>2</iDefineIntVal>
     </Define>
 <!-- WILDERNESS end -->
 </Civ4Defines>

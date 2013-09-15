@@ -1032,10 +1032,12 @@ public:
 	// End MNAI
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* Control min wilderness to enter                                                              */
 /************************************************************************************************/
-	int getMinWilderness() const;
-	void setMinWilderness( int iNewValue );
+	int getMinWilderness() const; // DEPRECATED
+	void setMinWilderness( int iNewValue ); // DEPRECATED
+
+	int getLairPlot() const;
+	void setLairPlot( int iPlot );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -1208,9 +1210,10 @@ protected:
 	int* m_paiExtraUnitCombatModifier;
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* Control min wilderness to enter                                                              */
 /************************************************************************************************/
-	int m_iMinWilderness;
+	int m_iMinWilderness; // DEPRECATED
+
+	int m_iLairPlot;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

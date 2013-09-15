@@ -2266,6 +2266,14 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
             szString.append(szTempBuffer);
             szTempBuffer.Format(L"\nSacrifice Value = %d.", pUnit->AI_sacrificeValue(NULL));
             szString.append(szTempBuffer);
+		// LFGR_TEST
+			CvPlot* pLairPlot = GC.getMapINLINE().plotByIndexINLINE( pUnit->getLairPlot() );
+			if( pLairPlot != NULL )
+			{
+				szTempBuffer.Format(L"\nLair Plot = %d|%d.", pLairPlot->getX_INLINE(), pLairPlot->getY_INLINE() );
+				szString.append(szTempBuffer);
+			}
+		// LFGR_TEST end
         }
 	}
 }
@@ -5595,6 +5603,8 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		szString.append( NEWLINE );
 		szString.append( "Barb Spawning: " );
 		szString.append( pPlot->bPlotBarbValid ? L"Valid" : ( pPlot->bPlotBarbEverValid ? L"Invalid" : L"Never valid" ) );
+		szString.append( NEWLINE );
+		szString.append( CvWString::format( L"Lair unit count: %d", pPlot->getLairUnitCount() ) );
 		szString.append( NEWLINE );
 	// LFGR_TEST end
 

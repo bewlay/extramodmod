@@ -541,6 +541,7 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 /* Control min wilderness to enter                                                              */
 /************************************************************************************************/
 	m_iMinWilderness = 0;
+	m_iLairPlot = -1;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -879,6 +880,16 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 
 	pPlot = plot();
 	FAssertMsg(pPlot != NULL, "Plot is not assigned a valid value");
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	if( !bConvert && getLairPlot() != -1 )
+		GC.getMapINLINE().plotByIndexINLINE( getLairPlot() )->setLairUnitCount( GC.getMapINLINE().plotByIndexINLINE( getLairPlot() )->getLairUnitCount() -1 );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	static std::vector<IDInfo> oldUnits;
 	oldUnits.clear();
@@ -19918,6 +19929,7 @@ void CvUnit::read(FDataStreamBase* pStream)
 /* Control min wilderness to enter                                                              */
 /************************************************************************************************/
 	pStream->Read(&m_iMinWilderness);
+	pStream->Read(&m_iLairPlot);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -20095,6 +20107,7 @@ void CvUnit::write(FDataStreamBase* pStream)
 /* Control min wilderness to enter                                                              */
 /************************************************************************************************/
 	pStream->Write(m_iMinWilderness);
+	pStream->Write(m_iLairPlot);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -20349,7 +20362,6 @@ bool CvUnit::isRangedCollateral()
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* Control min wilderness to enter                                                              */
 /************************************************************************************************/
 int CvUnit::getMinWilderness() const
 {
@@ -20359,6 +20371,16 @@ int CvUnit::getMinWilderness() const
 void CvUnit::setMinWilderness( int iNewValue )
 {
 	m_iMinWilderness = iNewValue;
+}
+
+int CvUnit::getLairPlot() const
+{
+	return m_iLairPlot;
+}
+
+void CvUnit::setLairPlot( int iPlot )
+{
+	m_iLairPlot = iPlot;
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
