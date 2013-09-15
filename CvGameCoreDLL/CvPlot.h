@@ -643,6 +643,13 @@ public:
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
+	
+// LFGR_TEST
+	bool bPlotAnimalEverValid;
+	bool bPlotAnimalValid;
+	bool bPlotBarbEverValid;
+	bool bPlotBarbValid;
+// LFGR_TEST end
 
 protected:
 

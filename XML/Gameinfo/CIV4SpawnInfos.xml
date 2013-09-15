@@ -3237,7 +3237,7 @@
 				</FeatureWeight>
 			</FeatureWeights>
 			<PrereqTechs>
-				<Tech>TECH_HUNTING</Tech>
+				<Tech>TECH_ANIMAL_HANDLING</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LIZARDMAN_ASSASSIN -->

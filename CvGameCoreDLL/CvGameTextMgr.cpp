@@ -5589,8 +5589,17 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 	}
 	else if (bShift && !bAlt && (gDLL->getChtLvl() > 0))
 	{
-		szString.append(GC.getTerrainInfo(pPlot->getTerrainType()).getDescription());
+	// LFGR_TEST
+		szString.append( "Animal Spawning: " );
+		szString.append( pPlot->bPlotAnimalValid ? L"Valid" : ( pPlot->bPlotAnimalEverValid ? L"Invalid" : L"Never valid" ) );
+		szString.append( NEWLINE );
+		szString.append( "Barb Spawning: " );
+		szString.append( pPlot->bPlotBarbValid ? L"Valid" : ( pPlot->bPlotBarbEverValid ? L"Invalid" : L"Never valid" ) );
+		szString.append( NEWLINE );
+	// LFGR_TEST end
 
+		szString.append(GC.getTerrainInfo(pPlot->getTerrainType()).getDescription());
+		
 		if (pPlot->getTempTerrainTimer() > 0)
 		{
 			szString.append(CvWString::format(L" (temp terrain (%d turns left))", pPlot->getTempTerrainTimer()));

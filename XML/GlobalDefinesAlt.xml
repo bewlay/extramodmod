@@ -1033,11 +1033,11 @@
 	</Define>
     <Define>
         <DefineName>BARBARIAN_SPAWNING_SPEED</DefineName>
-        <fDefineFloatVal>0.17</fDefineFloatVal>
+        <fDefineFloatVal>0.20</fDefineFloatVal>
     </Define>
     <Define>
         <DefineName>ANIMAL_SPAWNING_SPEED</DefineName>
-        <fDefineFloatVal>0.2</fDefineFloatVal>
+        <fDefineFloatVal>0.23</fDefineFloatVal>
     </Define>
     <Define>
         <DefineName>VISIBLE_TILE_SPAWNING_MIN_WILDERNESS</DefineName>
@@ -1049,7 +1049,7 @@
     </Define>
     <Define>
         <DefineName>LAIR_SPAWN_LIMIT_MULTIPLIER</DefineName>
-        <fDefineFloatVal>2.0</fDefineFloatVal>
+        <fDefineFloatVal>0.75</fDefineFloatVal>
     </Define>
 	<Define>
 		<!-- Overriding default value (3). Barbarians get X% of tech each turn * playersResearched / totalAlivePlayers -->
@@ -1057,5 +1057,9 @@
 		<DefineName>BARBARIAN_FREE_TECH_PERCENT</DefineName>
 		<iDefineIntVal>7</iDefineIntVal>
 	</Define>
+    <Define>
+        <DefineName>LAKE_SPAWNING_ENABLED</DefineName>
+        <iDefineIntVal>0</iDefineIntVal>
+    </Define>
 <!-- WILDERNESS end -->
 </Civ4Defines>

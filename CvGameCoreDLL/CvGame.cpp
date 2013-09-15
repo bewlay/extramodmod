@@ -101,6 +101,12 @@ CvGame::~CvGame()
 
 void CvGame::init(HandicapTypes eHandicap)
 {
+#ifdef FP_PROFILE_ENABLE
+// Profiling
+	GC.enableDLLProfiler(true);
+	startProfilingDLL();
+// Profiling end
+#endif
 	bool bValid;
 	int iStartTurn;
 	int iEstimateEndTurn;
@@ -7311,6 +7317,8 @@ void CvGame::createBarbarianCities()
 /************************************************************************************************/
 void CvGame::createBarbarianUnits()
 {
+	PROFILE_FUNC();
+
 	if (isOption(GAMEOPTION_NO_BARBARIANS))
 		return;
 
@@ -7371,72 +7379,40 @@ void CvGame::createBarbarianUnits()
 	
 	if( bAnimals || bBarbs )
 	{
-		int* aiAreaIDs = new int[GC.getMapINLINE().getNumAreas()];
-		float* afAreaNeededAnimalsPerPlot = new float[GC.getMapINLINE().getNumAreas()];
-		float* afAreaNeededBarbsPerPlot = new float[GC.getMapINLINE().getNumAreas()];
-
-		int iArea = 0;
-		int iLoop;
-		for( CvArea* pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop), iArea++ )
-		{
-			aiAreaIDs[iArea] = pLoopArea->getID();
-
-			if( bAnimals )
-			{
-				float fNeededAnimalsPerPlot = (float) ( bDoubleAnimals ? 1 : 2 ) / (float) GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerGameAnimal();
-			
-				if (pLoopArea->isWater())
-				{
-					// LFGR_TODO: remove these limitations, but count only coast tiles or allow water animals only with wide gaps
-					fNeededAnimalsPerPlot /= 5.0f;
-					if (pLoopArea->getNumUnownedTiles() < 20)
-						fNeededAnimalsPerPlot = 0;
-					if ( pLoopArea->getAnimalsPerPlayer( BARBARIAN_PLAYER ) > 3 )
-						fNeededAnimalsPerPlot = 0;
-				}
-
-				fNeededAnimalsPerPlot -= pLoopArea->getAnimalsPerPlayer( BARBARIAN_PLAYER ) / (float) pLoopArea->getNumTiles();
-				if( fNeededAnimalsPerPlot > 0 )
-					fNeededAnimalsPerPlot *= GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED" );
-				
-				logBBAI( "WILDERNESS - Area #%d animals per plot: %f", iArea, fNeededAnimalsPerPlot );
-
-				afAreaNeededAnimalsPerPlot[iArea] = fNeededAnimalsPerPlot;
-			}
-			
-			if( bBarbs )
-			{
-				float fNeededBarbsPerPlot = (float) ( bRagingBarbs ? 1 : 2 );
-
-				if (pLoopArea->isWater())
-					fNeededBarbsPerPlot /= (float) GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerBarbarianUnit();
-				else
-					fNeededBarbsPerPlot /= (float) GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerBarbarianUnit();
-			
-				fNeededBarbsPerPlot -= ( pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) - pLoopArea->getAnimalsPerPlayer( BARBARIAN_PLAYER ) ) / (float) pLoopArea->getNumTiles();
-			
-				if( fNeededBarbsPerPlot > 0 )
-					fNeededBarbsPerPlot *= GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED" );
-				
-				logBBAI( "WILDERNESS - Area #%d barbs per plot: %f", iArea, fNeededBarbsPerPlot );
-
-				afAreaNeededBarbsPerPlot[iArea] = fNeededBarbsPerPlot;
-			}
-		}
+		// LFGR_TODO Multibarb: Have an array/value for each barbarian civ / "spawning group"?
+		int VALID_TILES_PER_BARB = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerBarbarianUnit();
+		int VALID_TILES_PER_BARB_WATER = GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerBarbarianUnit();
+		int VALID_TILES_PER_ANIMAL = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerGameAnimal();
+		int VALID_TILES_PER_ANIMAL_WATER = VALID_TILES_PER_ANIMAL * VALID_TILES_PER_BARB_WATER / VALID_TILES_PER_BARB; // LFGR_TODO: Extra tag for handicap infos
 		
+		float PLOT_CHANCE_BARB = ( bRagingBarbs ? 2 : 1 ) / (float) VALID_TILES_PER_BARB;
+		float PLOT_CHANCE_BARB_WATER = ( bRagingBarbs ? 2 : 1 ) / (float) VALID_TILES_PER_BARB_WATER;
+		float PLOT_CHANCE_ANIMAL = ( bDoubleAnimals ? 2 : 1 ) / (float) VALID_TILES_PER_ANIMAL;
+		float PLOT_CHANCE_ANIMAL_WATER = ( bDoubleAnimals ? 2 : 1 ) / (float) VALID_TILES_PER_ANIMAL_WATER;
+
+		// Find barbs and animals already there
+		bool* abPlotAnimalValid = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		bool* abPlotBarbValid = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		bool* abPlotVisible = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		
+		// Find general valid plots
 		for( int iPlot = 0; iPlot < GC.getMapINLINE().numPlotsINLINE(); iPlot++ )
 		{
 			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
-			
+
 			bool bValid = true;
-			bool bVisible = false;
-			//bool bAdjacentOwned = false;
 
 			if( pPlot->isOwned() || pPlot->isImpassable() || ( pPlot->isWater() && !pPlot->isAdjacentToLand() ) )
 				bValid = false;
 
 			if( bValid )
+				if( pPlot->isLake() && GC.getDefineINT( "LAKE_SPAWNING_ENABLED" ) == 0 )
+					bValid = false;
+
+			if( bValid )
 			{
+				bool bVisible = false;
+
 				// Visibility
 				// Not sure if isVisibleToCivTeam is sufficient here, it doesn't check isBarbarian().
 				for( int iTeam = 0; iTeam < MAX_CIV_TEAMS; iTeam++ )
@@ -7450,83 +7426,200 @@ void CvGame::createBarbarianUnits()
 						}
 					}
 				}
-				/*
-				// Adjacent owned
-				for( int iChangeX = -1; !bAdjacentOwned && iChangeX <= 1; iChangeX++ )
-				{
-					for( int iChangeY = -1; !bAdjacentOwned && iChangeY <= 1; iChangeY++ )
-					{
-						CvPlot* pLoopPlot = GC.getMapINLINE().plotINLINE( pPlot->getX_INLINE() + iChangeX, pPlot->getY_INLINE() + iChangeY );
-						if( pLoopPlot != NULL )
-							if( pPlot->isWater() == pLoopPlot->isWater() && pLoopPlot->isOwned() )
-								bAdjacentOwned = true;
-					}
-				}
-				*/
-			}
+				abPlotVisible[iPlot] = bVisible;
 
-			if( bValid )
 				if( bVisible && pPlot->getWilderness() < GC.getDefineINT( "VISIBLE_TILE_SPAWNING_MIN_WILDERNESS" ) )
 					bValid = false;
+			}
 			
 			if( bValid )
 			{
+				// Check for non-barbarian units on the plot
+				// LFGR_TODO: only units at war with barbs, reqs at least separation barbs/animals
 				for( int iUnit = 0; iUnit < pPlot->getNumUnits(); iUnit++ )
 				{
-					if( !GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).isBarbarian() )
+					if( !GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).getTeam() )
 					{
 						bValid = false;
 						break;
 					}
 				}
 			}
-			if( bValid )
+			
+			abPlotAnimalValid[iPlot] = bValid; // LFGR_TODO: && !bVisible?
+			abPlotBarbValid[iPlot] = bValid;
+
+		// LFGR_TEST
+			pPlot->bPlotAnimalEverValid = abPlotAnimalValid[iPlot];
+			pPlot->bPlotBarbEverValid = abPlotBarbValid[iPlot];
+		// LFGR_TEST end
+		}
+		
+		// Find existing units and make plots based on number of units invalid
+		for( int iPlot = 0; iPlot < GC.getMapINLINE().numPlotsINLINE(); iPlot++ )
+		{
+			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
+
+			int iNumAnimals = 0;
+			int iNumBarbs = 0;
+
+			// Barb units on the plot
+			for( int iUnit = 0; iUnit < pPlot->getNumUnits(); iUnit++ )
 			{
-				// Get Area
-				int iAreaIndex = 0;
-				while( aiAreaIDs[iAreaIndex] != pPlot->getArea() )
+				if( pPlot->getUnitByIndex( iUnit )->canDefend() && GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).isBarbarian() )
 				{
-					iAreaIndex++;
-					FAssertMsg( iAreaIndex < GC.getMapINLINE().getNumAreas(), "Index out of bounds" );
+					if( bAnimals && pPlot->getUnitByIndex( iUnit )->isAnimal() )
+						iNumAnimals++;
+					if( bBarbs && !pPlot->getUnitByIndex( iUnit )->isAnimal() )
+						iNumBarbs++;
+				}
+			}
+			
+			iNumAnimals *= ( pPlot->isWater() ? VALID_TILES_PER_ANIMAL_WATER : VALID_TILES_PER_ANIMAL );
+			iNumBarbs *= ( pPlot->isWater() ? VALID_TILES_PER_BARB_WATER : VALID_TILES_PER_BARB );
+			
+			if( abPlotAnimalValid[iPlot] && iNumAnimals > 0 )
+			{
+				iNumAnimals--;
+				abPlotAnimalValid[iPlot] = false;
+			}
+
+			if( abPlotBarbValid[iPlot] && iNumBarbs > 0 )
+			{
+				iNumBarbs--;
+				abPlotBarbValid[iPlot] = false;
+			}
+			
+			if( iNumAnimals > 0 )
+				logBBAI( "Animals to spread at %d|%d: %d", pPlot->getX_INLINE(), pPlot->getY_INLINE(), iNumAnimals );
+			if( iNumBarbs > 0 )
+				logBBAI( "Barbs to spread at %d|%d: %d", pPlot->getX_INLINE(), pPlot->getY_INLINE(), iNumBarbs );
+
+			// Spread barbarians
+			for( int iRadius = 1; iNumAnimals > 0 || iNumBarbs > 0; iRadius++ )
+			{
+				if( iRadius > 100 )
+				{
+					FAssertMsg( false, "Warning: Endless loop danger!" );
+					break;
 				}
 
-				bool bHeld = bVisible && pPlot->getWilderness() < GC.getDefineINT( "VISIBLE_TILE_SPAWNING_NOT_HELD_MIN_WILDERNESS" );
-			
-				if( bAnimals )
+				bool bFoundPotentialValidPlot = false;
+				std::vector<int> viAnimalValidRingPlots;
+				std::vector<int> viBarbValidRingPlots;
+
+				for( int iChangeX = -iRadius; iChangeX <= iRadius; iChangeX++ )
 				{
-					float fNeededAnimals = afAreaNeededAnimalsPerPlot[iAreaIndex];
-
-					if( fNeededAnimals > 0 )
+					for( int iChangeY = -iRadius; iChangeY <= iRadius; iChangeY++ )
 					{
-						// Faster respawning in higher wilderness
-						fNeededAnimals *= ( 1 + pPlot->getWilderness() / 100.0f );
-
-						// This will not work correctly if we have f.e. areas with a size greater than 256*256. In this case, exactly one animals will spawn to less.
-						// Another random method should maybe used.
-						float fAnimalRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
-
-						if( fNeededAnimals >= fAnimalRand )
-							createBarbarianSpawn( pPlot, true, bHeld ? 2 : 0 );
+						if( std::max( abs( iChangeX ), abs( iChangeY ) ) == iRadius )
+						{
+							int iX = pPlot->getX_INLINE() + iChangeX;
+							int iY = pPlot->getY_INLINE() + iChangeY;
+							int iRingPlot = GC.getMapINLINE().plotNumINLINE( iX, iY );
+							if( GC.getMapINLINE().plotINLINE( iX, iY ) != NULL && GC.getMapINLINE().plotINLINE( iX, iY )->getArea() == pPlot->getArea() )
+							{
+								bFoundPotentialValidPlot = true;
+								if( abPlotAnimalValid[iRingPlot] )
+									viAnimalValidRingPlots.push_back( iRingPlot );
+								if( abPlotBarbValid[iRingPlot] )
+									viBarbValidRingPlots.push_back( iRingPlot );
+							}
+						}
 					}
 				}
-				
-				if( bBarbs )
-				{
-					float fNeededBarbs = afAreaNeededBarbsPerPlot[iAreaIndex];
-			
-					if( fNeededBarbs > 0 )
-					{
-						// Faster respawning in higher wilderness
-						fNeededBarbs *= ( 1 + pPlot->getWilderness() / 100.0f );
 
-						// See above
-						float fBarbRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
-						if( fNeededBarbs >= fBarbRand )
-							createBarbarianSpawn( pPlot, false, bHeld ? 2 : 0 );
+				if( !bFoundPotentialValidPlot )
+				{
+					logBBAI( "We seem to already have too much units for this area." );
+					break;
+				}
+
+				while( iNumAnimals > 0 && viAnimalValidRingPlots.size() > 0 )
+				{
+					int iVRingPlot = GC.getGameINLINE().getSorenRandNum( viAnimalValidRingPlots.size(), "Choose ring plot" );
+					int iRingPlot = viAnimalValidRingPlots[iVRingPlot];
+
+					FAssertMsg( abPlotAnimalValid[iRingPlot], "Trying to invalidate already invalid plot!" );
+
+					abPlotAnimalValid[iRingPlot] = false;
+
+					viAnimalValidRingPlots.erase( viAnimalValidRingPlots.begin() + iVRingPlot );
+					iNumAnimals--;
+				}
+				
+				while( iNumBarbs > 0 && viBarbValidRingPlots.size() > 0 )
+				{
+					int iVRingPlot = GC.getGameINLINE().getSorenRandNum( viBarbValidRingPlots.size(), "Choose ring plot" );
+					int iRingPlot = viBarbValidRingPlots[iVRingPlot];
+
+					FAssertMsg( abPlotBarbValid[iRingPlot], "Trying to invalidate already invalid plot!" );
+
+					abPlotBarbValid[iRingPlot] = false;
+
+					viBarbValidRingPlots.erase( viBarbValidRingPlots.begin() + iVRingPlot );
+					iNumBarbs--;
+				}
+			}
+		}
+		
+		for( int iPlot = 0; iPlot < GC.getMapINLINE().numPlotsINLINE(); iPlot++ )
+		{
+			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
+			
+		// LFGR_TEST
+			pPlot->bPlotAnimalValid = abPlotAnimalValid[iPlot];
+			pPlot->bPlotBarbValid = abPlotBarbValid[iPlot];
+		// LFGR_TEST end
+			
+			bool bHeld = abPlotVisible[iPlot] && pPlot->getWilderness() < GC.getDefineINT( "VISIBLE_TILE_SPAWNING_NOT_HELD_MIN_WILDERNESS" );
+			
+			if( bAnimals && abPlotAnimalValid[iPlot] )
+			{
+				float fAnimalChance = ( pPlot->isWater() ? PLOT_CHANCE_ANIMAL_WATER : PLOT_CHANCE_ANIMAL );
+				
+				// Faster respawning in higher wilderness
+				fAnimalChance *= std::min( 1.0f, GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED" ) * ( 1 + pPlot->getWilderness() / 100.0f ) );
+
+				if( fAnimalChance > 0 )
+				{
+					// This will not work correctly if we have spawning chances < 1 / MAX_UNSIGNED_SHORT. In this case, exactly one animals will spawn to less.
+					// Another random method should maybe used. Not sure if it even matters with the accuracy of float.
+					FAssert( fAnimalChance >= 1.0 / MAX_UNSIGNED_SHORT )
+
+					float fAnimalRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
+					if( fAnimalChance >= fAnimalRand )
+					{
+						logBBAI( "Creating spawn with chance %f", fAnimalChance );
+						createBarbarianSpawn( pPlot, true, bHeld ? 2 : 0 );
+					}
+				}
+			}
+			
+			if( bBarbs && abPlotBarbValid[iPlot] )
+			{
+				float fBarbChance = ( pPlot->isWater() ? PLOT_CHANCE_BARB_WATER : PLOT_CHANCE_BARB );
+				
+				// Faster respawning in higher wilderness
+				fBarbChance *= std::min( 1.0f, GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED" ) * ( 1 + pPlot->getWilderness() / 100.0f ) );
+
+				if( fBarbChance > 0 )
+				{
+					// See above
+					FAssert( fBarbChance >= 1.0 / MAX_UNSIGNED_SHORT )
+
+					float fBarbRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
+					if( fBarbChance >= fBarbRand )
+					{
+						logBBAI( "Creating spawn with chance %f", fBarbChance );
+						createBarbarianSpawn( pPlot, false, bHeld ? 2 : 0 );
 					}
 				}
 			}
 		}
+		SAFE_DELETE_ARRAY( abPlotAnimalValid );
+		SAFE_DELETE_ARRAY( abPlotBarbValid );
+		SAFE_DELETE_ARRAY( abPlotVisible );
 	}
 }
 /************************************************************************************************/
@@ -8806,6 +8899,12 @@ uint CvGame::getNumReplayMessages() const
 
 void CvGame::read(FDataStreamBase* pStream)
 {
+#ifdef FP_PROFILE_ENABLE
+// Profiling
+	GC.enableDLLProfiler(true);
+	startProfilingDLL();
+// Profiling end
+#endif
 	int iI;
 
 	reset(NO_HANDICAP);
