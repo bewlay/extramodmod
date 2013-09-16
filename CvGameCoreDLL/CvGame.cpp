@@ -7438,7 +7438,7 @@ void CvGame::createBarbarianUnits()
 				// LFGR_TODO: only units at war with barbs, reqs at least separation barbs/animals
 				for( int iUnit = 0; iUnit < pPlot->getNumUnits(); iUnit++ )
 				{
-					if( !GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).getTeam() )
+					if( !GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).isBarbarian() )
 					{
 						bValid = false;
 						break;
