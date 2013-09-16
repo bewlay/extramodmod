@@ -3440,7 +3440,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
 			<SpawnUnits>
 				<SpawnUnit>
-					<Unit>UNIT_AXEMAN</Unit>
+					<Unit>UNIT_SWORDSMAN</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
