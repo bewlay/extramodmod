@@ -12483,6 +12483,7 @@ int CvPlot::getLairUnitCount() const
 
 void CvPlot::setLairUnitCount(int iNewValue)
 {
+	FAssert( iNewValue > 0 );
 	m_iLairUnitCount = iNewValue;
 }
 

@@ -1198,8 +1198,8 @@ void CvTeam::doTurn()
 					// From Mongoose SDK, BarbarianPassiveTechFix
 				/************************************************************************************************/
 				/* WILDERNESS                             09/2013                                 lfgr          */
-				/* No modifiers like gamespeed included here. Barbs get now standard research cost also on e.g. */
-				/* slower game speeds, thus need more time to get the same percent of a technology.             */
+				/* No modifiers like gamespeed included here. Barbs get now research based on standard research */
+				/* cost also on e.g. slower game speeds, thus need more time to get the same percent of a tech. */
 				/************************************************************************************************/
 					changeResearchProgress((TechTypes)iI, std::max((GC.getTechInfo((TechTypes)iI).getResearchCost() * GC.getDefineINT("BARBARIAN_FREE_TECH_PERCENT") * iCount) / (100 * iPossibleCount), 1), getLeaderID());
 				/************************************************************************************************/
