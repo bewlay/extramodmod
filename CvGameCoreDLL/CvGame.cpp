@@ -7466,7 +7466,8 @@ void CvGame::createBarbarianUnits()
 			// Barb units on the plot
 			for( int iUnit = 0; iUnit < pPlot->getNumUnits(); iUnit++ )
 			{
-				if( pPlot->getUnitByIndex( iUnit )->canDefend() && GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).isBarbarian() )
+				if( pPlot->getUnitByIndex( iUnit )->canDefend() && pPlot->getUnitByIndex( iUnit )->getLairPlot() == -1
+						&& GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).isBarbarian() )
 				{
 					if( bAnimals && pPlot->getUnitByIndex( iUnit )->isAnimal() )
 						iNumAnimals++;
