@@ -7586,7 +7586,7 @@ void CvGame::createBarbarianUnits()
 					if( fAnimalChance >= fAnimalRand )
 					{
 						logBBAI( "Creating spawn with chance %f", fAnimalChance );
-						createBarbarianSpawn( pPlot, true, bHeld ? 2 : 0 );
+						createBarbarianSpawn( pPlot, true, bHeld ? 1 : 0 );
 					}
 				}
 			}
@@ -7607,7 +7607,7 @@ void CvGame::createBarbarianUnits()
 					if( fBarbChance >= fBarbRand )
 					{
 						logBBAI( "Creating spawn with chance %f", fBarbChance );
-						createBarbarianSpawn( pPlot, false, bHeld ? 2 : 0 );
+						createBarbarianSpawn( pPlot, false, bHeld ? 1 : 0 );
 					}
 				}
 			}
