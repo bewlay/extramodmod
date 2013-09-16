@@ -7497,14 +7497,8 @@ void CvGame::createBarbarianUnits()
 				logBBAI( "Barbs to spread at %d|%d: %d", pPlot->getX_INLINE(), pPlot->getY_INLINE(), iNumBarbs );
 
 			// Spread barbarians
-			for( int iRadius = 1; iNumAnimals > 0 || iNumBarbs > 0; iRadius++ )
+			for( int iRadius = 1; iRadius < GC.getDefineINT( "MAX_BARB_BLOCK_RADIUS" ) && ( iNumAnimals > 0 || iNumBarbs > 0 ); iRadius++ )
 			{
-				if( iRadius > 100 )
-				{
-					FAssertMsg( false, "Warning: Endless loop danger!" );
-					break;
-				}
-
 				bool bFoundPotentialValidPlot = false;
 				std::vector<int> viAnimalValidRingPlots;
 				std::vector<int> viBarbValidRingPlots;

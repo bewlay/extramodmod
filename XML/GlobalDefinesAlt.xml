@@ -1069,5 +1069,10 @@
         <DefineName>BASE_BARBS_PER_LAIR</DefineName>
         <iDefineIntVal>2</iDefineIntVal>
     </Define>
+    <Define>
+		<!-- The maximum radius in which a group of barbarians can block other barbarians to spawn. -->
+        <DefineName>MAX_BARB_BLOCK_RADIUS</DefineName>
+        <iDefineIntVal>6</iDefineIntVal>
+    </Define>
 <!-- WILDERNESS end -->
 </Civ4Defines>
