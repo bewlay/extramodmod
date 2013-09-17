@@ -3027,90 +3027,6 @@
 				<Tech>TECH_BRONZE_WORKING</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_ORC_BERSERKER -->
-			<Type>SPAWN_ORC_BERSERKER</Type>
-			<iBaseWeight>0</iBaseWeight><!-- National limit ignored -->
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_BERSERKER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iWeight>50</iWeight>
-				</FeatureWeight>
-			</FeatureWeights>
-			<PrereqTechs>
-				<Tech>TECH_RAGE</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_OGRE_WARCHIEF -->
-			<Type>SPAWN_OGRE_WARCHIEF</Type>
-			<iBaseWeight>0</iBaseWeight><!-- National limit ignored -->
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_OGRE_WARCHIEF</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iWeight>50</iWeight>
-				</FeatureWeight>
-			</FeatureWeights>
-			<PrereqTechs>
-				<Tech>TECH_DIVINE_ESSENCE</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_OGRE_WARCHIEF_EARLY -->
-			<Type>SPAWN_OGRE_WARCHIEF_EARLY</Type>
-			<iBaseWeight>0</iBaseWeight><!-- National limit ignored -->
-			<iMinWilderness>75</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_OGRE_WARCHIEF</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iWeight>50</iWeight>
-				</FeatureWeight>
-			</FeatureWeights>
-			<PrereqTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_STONESKIN_OGRE -->
-			<Type>SPAWN_STONESKIN_OGRE</Type>
-			<iBaseWeight>0</iBaseWeight><!-- National limit ignored -->
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_STONESKIN_OGRE</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iWeight>50</iWeight>
-				</FeatureWeight>
-			</FeatureWeights>
-			<PrereqTechs>
-				<Tech>TECH_MITHRIL_WEAPONS</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
 		
 		<SpawnInfo> <!-- SPAWN_GOBLIN -->
 			<Type>SPAWN_GOBLIN</Type>
@@ -3287,33 +3203,6 @@
 			</FeatureWeights>
 			<PrereqTechs>
 				<Tech>TECH_POISONS</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_LIZARDMAN_BEASTMASTER -->
-			<Type>SPAWN_LIZARDMAN_BEASTMASTER</Type>
-			<iBaseWeight>0</iBaseWeight><!-- National limit ignored -->
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_LIZARDMAN_BEASTMASTER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<TerrainWeights>
-				<TerrainWeight>
-					<TerrainType>TERRAIN_MARSH</TerrainType>
-					<iWeight>40</iWeight>
-				</TerrainWeight>
-			</TerrainWeights>
-			<FeatureWeights>
-				<FeatureWeight>
-					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iWeight>40</iWeight>
-				</FeatureWeight>
-			</FeatureWeights>
-			<PrereqTechs>
-				<Tech>TECH_ANIMAL_MASTERY</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
 		
@@ -3534,32 +3423,7 @@
 				<Tech>TECH_IRON_WORKING</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_NOMAD_BERSERKER -->
-			<Type>SPAWN_NOMAD_BERSERKER</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SCOUT</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_NOMAD</PromotionType>
-			</UnitPromotions>
-			<TerrainWeights>
-				<TerrainWeight>
-					<TerrainType>TERRAIN_DESERT</TerrainType>
-					<iWeight>25</iWeight>
-				</TerrainWeight>
-			</TerrainWeights>
-			<PrereqTechs>
-				<Tech>TECH_RAGE</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
+		
 		<SpawnInfo> <!-- SPAWN_NOMAD_HUNTER -->
 			<Type>SPAWN_NOMAD_HUNTER</Type>
 			<iBaseWeight>0</iBaseWeight>
@@ -3667,32 +3531,7 @@
 				<Tech>TECH_POISONS</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_NOMAD_BEASTMASTER -->
-			<Type>SPAWN_NOMAD_BEASTMASTER</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_BEASTMASTER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_NOMAD</PromotionType>
-			</UnitPromotions>
-			<TerrainWeights>
-				<TerrainWeight>
-					<TerrainType>TERRAIN_DESERT</TerrainType>
-					<iWeight>25</iWeight>
-				</TerrainWeight>
-			</TerrainWeights>
-			<PrereqTechs>
-				<Tech>TECH_ANIMAL_MASTERY</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
+		
 		<SpawnInfo> <!-- SPAWN_NOMAD_HORSEMAN -->
 			<Type>SPAWN_NOMAD_HORSEMAN</Type>
 			<iBaseWeight>0</iBaseWeight>
@@ -3896,6 +3735,7 @@
 				<Tech>TECH_IRON_WORKING</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
+		
 		<SpawnInfo> <!-- SPAWN_WINTERBORN_HUNTER -->
 			<Type>SPAWN_WINTERBORN_HUNTER</Type>
 			<iBaseWeight>0</iBaseWeight>
@@ -4019,36 +3859,6 @@
 				<Tech>TECH_POISONS</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_WINTERBORN_BEASTMASTER -->
-			<Type>SPAWN_WINTERBORN_BEASTMASTER</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_BEASTMASTER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
-			</UnitPromotions>
-			<TerrainWeights>
-				<TerrainWeight>
-					<TerrainType>TERRAIN_SNOW</TerrainType>
-					<iWeight>50</iWeight>
-				</TerrainWeight>
-				<TerrainWeight>
-					<TerrainType>TERRAIN_TUNDRA</TerrainType>
-					<iWeight>40</iWeight>
-				</TerrainWeight>
-			</TerrainWeights>
-			<PrereqTechs>
-				<Tech>TECH_ANIMAL_MASTERY</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
 		
 		<SpawnInfo> <!-- SPAWN_WINTERBORN_HORSEMAN -->
 			<Type>SPAWN_WINTERBORN_HORSEMAN</Type>
@@ -4142,7 +3952,422 @@
 			</PrereqTechs>
 		</SpawnInfo>
 		
-		<!-- Outlaws -->
+		<!-- Demons -->
+		<SpawnInfo> <!-- SPAWN_DEMON_WARRIOR -->
+			<Type>SPAWN_DEMON_WARRIOR</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WARRIOR</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<ObsoleteTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</ObsoleteTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_DEMON_AXEMAN -->
+			<Type>SPAWN_DEMON_AXEMAN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_AXEMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<PrereqTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_IRON_WORKING</Tech>
+			</ObsoleteTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_DEMON_AXEMAN_EARLY -->
+			<Type>SPAWN_DEMON_AXEMAN_EARLY</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>60</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_AXEMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<ObsoleteTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</ObsoleteTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_DEMON_CHAMPION -->
+			<Type>SPAWN_DEMON_CHAMPION</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_CHAMPION</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<PrereqTechs>
+				<Tech>TECH_IRON_WORKING</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		
+		<SpawnInfo> <!-- SPAWN_HELLHOUND -->
+			<Type>SPAWN_HELLHOUND</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HELLHOUND</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<PrereqTechs>
+				<Tech>TECH_HUNTING</Tech>
+			</PrereqTechs>
+			<ObsoleteTechs>
+				<Tech>TECH_FERAL_BOND</Tech>
+			</ObsoleteTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_DEMON_RANGER -->
+			<Type>SPAWN_DEMON_RANGER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_RANGER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<PrereqTechs>
+				<Tech>TECH_FERAL_BOND</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_DEMON_RANGER_EARLY -->
+			<Type>SPAWN_DEMON_RANGER_EARLY</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_RANGER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<PrereqTechs>
+				<Tech>TECH_HUNTING</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_DEMON_ASSASSIN -->
+			<Type>SPAWN_DEMON_ASSASSIN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_ASSASSIN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<PrereqTechs>
+				<Tech>TECH_POISONS</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		
+		<SpawnInfo> <!-- SPAWN_DEMON_HORSEMAN -->
+			<Type>SPAWN_DEMON_HORSEMAN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HORSEMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<PrereqTechs>
+				<Tech>TECH_HORSEBACK_RIDING</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_DEMON_HORSE_ARCHER -->
+			<Type>SPAWN_DEMON_HORSE_ARCHER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HORSE_ARCHER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<PrereqTechs>
+				<Tech>TECH_STIRRUPS</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_DEMON_CHARIOT -->
+			<Type>SPAWN_DEMON_CHARIOT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>75</iMaxWilderness>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_CHARIOT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
+			<TerrainWeights>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+				<TerrainWeight>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<iWeight>150</iWeight>
+				</TerrainWeight>
+			</TerrainWeights>
+			<PrereqTechs>
+				<Tech>TECH_HORSEBACK_RIDING</Tech>
+				<Tech>TECH_CONSTRUCTION</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		
+		<!-- Savages -->
 		<SpawnInfo> <!-- SPAWN_SAVAGE -->
 			<Type>SPAWN_SAVAGE</Type>
 			<iBaseWeight>75</iBaseWeight>
