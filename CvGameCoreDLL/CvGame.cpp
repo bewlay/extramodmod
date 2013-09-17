@@ -7379,6 +7379,8 @@ void CvGame::createBarbarianUnits()
 	
 	if( bAnimals || bBarbs )
 	{
+		int MAX_BARB_BLOCK_RADIUS = GC.getDefineINT( "MAX_BARB_BLOCK_RADIUS" );
+
 		// LFGR_TODO Multibarb: Have an array/value for each barbarian civ / "spawning group"?
 		int VALID_TILES_PER_BARB = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerBarbarianUnit();
 		int VALID_TILES_PER_BARB_WATER = GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerBarbarianUnit();
@@ -7497,7 +7499,7 @@ void CvGame::createBarbarianUnits()
 				logBBAI( "Barbs to spread at %d|%d: %d", pPlot->getX_INLINE(), pPlot->getY_INLINE(), iNumBarbs );
 
 			// Spread barbarians
-			for( int iRadius = 1; iRadius < GC.getDefineINT( "MAX_BARB_BLOCK_RADIUS" ) && ( iNumAnimals > 0 || iNumBarbs > 0 ); iRadius++ )
+			for( int iRadius = 1; ( MAX_BARB_BLOCK_RADIUS == -1 || iRadius < MAX_BARB_BLOCK_RADIUS ) && ( iNumAnimals > 0 || iNumBarbs > 0 ); iRadius++ )
 			{
 				bool bFoundPotentialValidPlot = false;
 				std::vector<int> viAnimalValidRingPlots;

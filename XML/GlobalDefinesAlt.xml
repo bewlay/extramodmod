@@ -1067,6 +1067,7 @@
     </Define>
     <Define>
 		<!-- The maximum radius in which a group of barbarians can block other barbarians to spawn. -->
+		<!-- -1 for no maximum. -->
         <DefineName>MAX_BARB_BLOCK_RADIUS</DefineName>
         <iDefineIntVal>6</iDefineIntVal>
     </Define>
