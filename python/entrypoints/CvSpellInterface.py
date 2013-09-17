@@ -507,10 +507,10 @@ def spellArcaneLacuna(caster):
 
 def reqArdor(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
-	if pPlayer.getGreatPeopleCreated() == 0 and pPlayer.getCivCounterMod() <= 1000:
+	if pPlayer.getGreatPeopleCreated() == 0 and pPlayer.getCivCounterMod() <= 600:
 		return False
 	if pPlayer.isHuman() == False:
-		if pPlayer.getGreatPeopleCreated() < 6 and pPlayer.getCivCounterMod() <= 4000:
+		if pPlayer.getGreatPeopleCreated() < 6 and pPlayer.getCivCounterMod() <= 2400:
 			return False
 	return True
 
@@ -518,7 +518,7 @@ def spellArdor(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlayer.setGreatPeopleCreated(0)
 	pPlayer.setGreatPeopleThresholdModifier(0)
-	pPlayer.setCivCounterMod(1000)
+	pPlayer.setCivCounterMod(600)
 
 def reqArenaBattle(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
