@@ -551,7 +551,8 @@ void CvPlot::doTurn()
 					iChance /= 2;
 				// Tholal - put more rage into Raging Barbarians
 				else if( !kBestSpawn.isAnimal() && bRagingBarbs)
-					iChance *= 2;
+					iChance = iChance * 3 / 2;
+				iChance = std::max( 1, iChance );
 				iChance -= getLairUnitCount();
 				
 				// ALN - increase spawn rate if not defended
@@ -574,6 +575,9 @@ void CvPlot::doTurn()
 					}
 
 					iChance = (int) ( iChance * GC.getDefineFLOAT( "LAIR_SPAWNING_SPEED" ) );
+
+					if( kBestSpawn.isAnimal() )
+						iChance /= 2;
 
                     iChance /= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
 					
