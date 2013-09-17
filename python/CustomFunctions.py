@@ -368,7 +368,8 @@ class CustomFunctions:
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_PROPHECY_MARK', ['PROMOTION_PROPHECY_MARK'] ) )
 			if( not pPlot.isWater() ) :
 				lOutcomes.append( ( 'Event', 0, 'EVENTTRIGGER_EXPLORE_LAIR_PORTAL' ) )
-				lOutcomes.append( ( 'Event', 100, 'EVENTTRIGGER_EXPLORE_LAIR_DEPTHS' ) )
+				# LFGR_TODO: disabled until fixed
+				# lOutcomes.append( ( 'Event', 100, 'EVENTTRIGGER_EXPLORE_LAIR_DEPTHS' ) )
 				lOutcomes.append( ( 'Event', 80, 'EVENTTRIGGER_EXPLORE_LAIR_DWARF_VS_LIZARDMEN' ) )
 				if( not bNoDestroy ) :
 					lOutcomes.append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CAGE', 'CAGE' ) )
