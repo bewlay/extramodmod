@@ -1955,10 +1955,29 @@
 		</SpawnInfo>
 
 		<!-- Ruins -->
+		<SpawnInfo> <!-- SPAWN_RUINS_EARLY_LIZARDMAN_WEAK -->
+			<Type>SPAWN_RUINS_EARLY_LIZARDMAN_WEAK</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>70</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LIZARDMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WEAK</PromotionType>
+			</UnitPromotions>
+			<ObsoleteTechs>
+				<Tech>TECH_HUNTING</Tech>
+			</ObsoleteTechs>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_RUINS_EARLY_LIZARDMAN -->
 			<Type>SPAWN_RUINS_EARLY_LIZARDMAN</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
+			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
@@ -1967,6 +1986,9 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<ObsoleteTechs>
+				<Tech>TECH_HUNTING</Tech>
+			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_RUINS_MIDDLE_LIZARDMAN -->
 			<Type>SPAWN_RUINS_MIDDLE_LIZARDMAN</Type>

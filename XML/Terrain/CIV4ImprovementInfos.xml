@@ -6367,6 +6367,7 @@
             <PythonOnMove></PythonOnMove>
 		<!-- WILDERNESS 08/2013 lfgr -->
             <SpawnTypes>
+				<SpawnType>SPAWN_RUINS_EARLY_LIZARDMAN_WEAK</SpawnType>
 				<SpawnType>SPAWN_RUINS_EARLY_LIZARDMAN</SpawnType>
 				<SpawnType>SPAWN_RUINS_MIDDLE_LIZARDMAN</SpawnType>
 				<SpawnType>SPAWN_RUINS_MIDDLE_LIZARDMAN_RANGER</SpawnType>
