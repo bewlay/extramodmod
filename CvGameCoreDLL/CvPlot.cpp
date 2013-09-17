@@ -6820,31 +6820,25 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 {
 	int iI;
 	ImprovementTypes eOldImprovement = getImprovementType();
-	
-/************************************************************************************************/
-/* WILDERNESS                             08/2013                                 lfgr          */
-/* Update Lair count                                                                            */
-/************************************************************************************************/
-	if( isLair() && eNewValue != GC.getImprovementInfo( eOldImprovement ).getImprovementUpgrade() && eNewValue != GC.getImprovementInfo( eOldImprovement ).getImprovementPillage() )
-	{
-		for( int ePlayer = 0; ePlayer < GC.getMAX_CIV_PLAYERS(); ePlayer++ )
-		{
-			CvPlayer& kPlayer = GET_PLAYER( (PlayerTypes) ePlayer );
-			if( kPlayer.isBarbarian() )
-			{
-				int iLoop;
-				for (CvUnit* pLoopUnit = kPlayer.firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = kPlayer.nextUnit(&iLoop))
-					if( pLoopUnit->getLairPlot() == GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) )
-						pLoopUnit->setLairPlot( -1 );
-			}
-		}
-	}
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
 
 	if (getImprovementType() != eNewValue)
 	{
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* Update Lair count                                                                            */
+	/************************************************************************************************/
+		if( isLair() && ( eNewValue == NO_IMPROVEMENT || ( eNewValue != GC.getImprovementInfo( eOldImprovement ).getImprovementUpgrade() && eNewValue != GC.getImprovementInfo( eOldImprovement ).getImprovementPillage() ) ) )
+		{
+			// LFGR_TODO: Multibarb
+			CvPlayer& kBarbPlayer = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() );
+			int iLoop;
+			for (CvUnit* pLoopUnit = kBarbPlayer.firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = kBarbPlayer.nextUnit(&iLoop))
+				if( pLoopUnit->getLairPlot() == GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) )
+					pLoopUnit->setLairPlot( -1 );
+		}
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
 		if (getImprovementType() != NO_IMPROVEMENT)
 		{
 			if (area())
