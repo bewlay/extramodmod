@@ -814,6 +814,16 @@ void CvUnit::convert(CvUnit* pUnit)
 	reloadEntity();
 	// lfgr end
 
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* Lair unit counter - Upgrade units                                                            */
+/************************************************************************************************/
+	if( getOwnerINLINE() == pUnit->getOwnerINLINE() && pUnit->getLairPlot() != -1 )
+		setLairPlot( pUnit->getLairPlot() );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 	// Avatars
 	if (pUnit->isAvatarOfCivLeader())
 	{
@@ -882,11 +892,11 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 	FAssertMsg(pPlot != NULL, "Plot is not assigned a valid value");
 	
 /************************************************************************************************/
-/* WILDERNESS                             08/2013                                 lfgr          */
-/* Original by Sephi                                                                            */
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* Lair unit counter                                                                            */
 /************************************************************************************************/
-	if( !bConvert && getLairPlot() != -1 )
-		GC.getMapINLINE().plotByIndexINLINE( getLairPlot() )->setLairUnitCount( GC.getMapINLINE().plotByIndexINLINE( getLairPlot() )->getLairUnitCount() -1 );
+	if( getLairPlot() != -1 )
+		setLairPlot( -1 ); // To decrease plot lair unit counter.
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -20373,6 +20383,7 @@ void CvUnit::setMinWilderness( int iNewValue )
 	m_iMinWilderness = iNewValue;
 }
 
+// Lair unit counter
 int CvUnit::getLairPlot() const
 {
 	return m_iLairPlot;
@@ -20380,7 +20391,14 @@ int CvUnit::getLairPlot() const
 
 void CvUnit::setLairPlot( int iPlot )
 {
-	m_iLairPlot = iPlot;
+	if( iPlot != m_iLairPlot )
+	{
+		if( m_iLairPlot != -1 ) // Decrease old Plot
+			GC.getMapINLINE().plotByIndexINLINE( m_iLairPlot )->setLairUnitCount( GC.getMapINLINE().plotByIndexINLINE( m_iLairPlot )->getLairUnitCount() - 1 );
+		if( iPlot != -1 ) // Increase new Plot
+			GC.getMapINLINE().plotByIndexINLINE( iPlot )->setLairUnitCount( GC.getMapINLINE().plotByIndexINLINE( iPlot )->getLairUnitCount() + 1 );
+		m_iLairPlot = iPlot;
+	}
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

@@ -12476,6 +12476,8 @@ void CvPlot::setWilderness(int iNewValue)
 	m_iWilderness = iNewValue;
 }
 
+// Lair unit counter
+
 int CvPlot::getLairUnitCount() const
 {
 	return m_iLairUnitCount;
@@ -12483,7 +12485,7 @@ int CvPlot::getLairUnitCount() const
 
 void CvPlot::setLairUnitCount(int iNewValue)
 {
-	FAssert( iNewValue > 0 );
+	FAssert( iNewValue >= 0 );
 	m_iLairUnitCount = iNewValue;
 }
 
@@ -12634,11 +12636,11 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns
 					}
 				}
 			}
-
+			
+			// Lair unit counter
 			if( iLairPlot != -1 )
 			{
 				pUnit->setLairPlot( iLairPlot );
-				GC.getMapINLINE().plotByIndexINLINE( iLairPlot )->setLairUnitCount( GC.getMapINLINE().plotByIndexINLINE( iLairPlot )->getLairUnitCount() + 1 );
 			}
 			
 			if( kSpawn.getUnitArtStyleType() != NO_UNIT_ARTSTYLE )
