@@ -404,7 +404,7 @@
 					<bUnitCombat>1</bUnitCombat>
 				</UnitCombat>
 			</UnitCombats>
-			<Button>Art/Interface/Buttons/Spells/Blinding Light.dds</Button>
+			<Button>Art/Interface/Buttons/Promotions/blinded.dds</Button>
 			<bHeld>1</bHeld>	
 			<iAIWeight>-100</iAIWeight>
 			<iExpireChance>50</iExpireChance>
