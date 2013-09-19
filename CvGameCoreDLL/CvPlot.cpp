@@ -12532,7 +12532,10 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bBarbTech )
 void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns, int iLairPlot )
 {
 	if( eSpawn == NO_SPAWN )
+	{
+		FAssert( false );
 		return;
+	}
 
 	CvSpawnInfo& kSpawn = GC.getSpawnInfo( (SpawnTypes) eSpawn );
 
@@ -12608,32 +12611,6 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns
 					if( kSpawn.getUnitPromotions( ePromotion ) )
 						pUnit->setHasPromotion( (PromotionTypes) ePromotion, true );
 			}
-
-			if( iRandomIncludedSpawns > 0 )
-			{
-				std::vector< std::pair<SpawnTypes,int> > veTmpIncSpawns = veIncludedSpawns;
-				while( iRandomIncludedSpawns > 0 && veIncludedSpawns.size() > 0 )
-				{
-					int iBestIndex = -1;
-					int iBestValue = 0;
-					for( unsigned int i = 0; i < veTmpIncSpawns.size(); i++ )
-					{
-						int iLoopVal = veTmpIncSpawns[i].second;
-						iLoopVal += GC.getGameINLINE().getSorenRandNum( 100, "SpawnInfo rand weight" );
-						if( iLoopVal > iBestValue )
-						{
-							iBestValue = iLoopVal;
-							iBestIndex = i;
-						}
-					}
-					if( iBestIndex != -1 )
-					{
-						createSpawn( veTmpIncSpawns[iBestIndex].first, eUnitAI, iHeldTurns );
-						veIncludedSpawns.erase( veIncludedSpawns.begin() + iBestIndex );
-						iRandomIncludedSpawns--;
-					}
-				}
-			}
 			
 			// Lair unit counter
 			if( iLairPlot != -1 )
@@ -12653,6 +12630,33 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns
 
 			if( iHeldTurns > 0 )
 				pUnit->changeImmobileTimer( iHeldTurns );
+		}
+	}
+
+	// LFGR_TODO: Join Group
+	if( iRandomIncludedSpawns > 0 )
+	{
+		std::vector< std::pair<SpawnTypes,int> > veTmpIncSpawns = veIncludedSpawns;
+		while( iRandomIncludedSpawns > 0 && veIncludedSpawns.size() > 0 )
+		{
+			int iBestIndex = -1;
+			int iBestValue = 0;
+			for( unsigned int i = 0; i < veTmpIncSpawns.size(); i++ )
+			{
+				int iLoopVal = veTmpIncSpawns[i].second;
+				iLoopVal += GC.getGameINLINE().getSorenRandNum( 100, "SpawnInfo rand weight" );
+				if( iLoopVal > iBestValue )
+				{
+					iBestValue = iLoopVal;
+					iBestIndex = i;
+				}
+			}
+			if( iBestIndex != -1 )
+			{
+				createSpawn( veTmpIncSpawns[iBestIndex].first, eUnitAI, iHeldTurns );
+				veIncludedSpawns.erase( veIncludedSpawns.begin() + iBestIndex );
+				iRandomIncludedSpawns--;
+			}
 		}
 	}
 }
