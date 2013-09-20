@@ -7393,13 +7393,20 @@ void CvGame::createBarbarianUnits()
 		float PLOT_CHANCE_ANIMAL_WATER = ( bDoubleAnimals ? 2 : 1 ) / (float) VALID_TILES_PER_ANIMAL_WATER;
 
 		// Find barbs and animals already there
-		bool* abPlotAnimalValid = new bool[GC.getMapINLINE().numPlotsINLINE()];
-		bool* abPlotBarbValid = new bool[GC.getMapINLINE().numPlotsINLINE()];
-		bool* abPlotVisible = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		//bool* abPlotAnimalValid = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		//bool* abPlotBarbValid = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		//bool* abPlotVisible = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		std::vector<bool> vbPlotAnimalValid;
+		std::vector<bool> vbPlotBarbValid;
+		std::vector<bool> vbPlotVisible;
 		
 		// Find general valid plots
 		for( int iPlot = 0; iPlot < GC.getMapINLINE().numPlotsINLINE(); iPlot++ )
 		{
+			vbPlotAnimalValid.push_back( false );
+			vbPlotBarbValid.push_back( false );
+			vbPlotVisible.push_back( false );
+
 			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
 
 			bool bValid = true;
@@ -7428,7 +7435,7 @@ void CvGame::createBarbarianUnits()
 						}
 					}
 				}
-				abPlotVisible[iPlot] = bVisible;
+				vbPlotVisible[iPlot] = bVisible;
 
 				if( bVisible && pPlot->getWilderness() < GC.getDefineINT( "VISIBLE_TILE_SPAWNING_MIN_WILDERNESS" ) )
 					bValid = false;
@@ -7448,12 +7455,12 @@ void CvGame::createBarbarianUnits()
 				}
 			}
 			
-			abPlotAnimalValid[iPlot] = bValid; // LFGR_TODO: && !bVisible?
-			abPlotBarbValid[iPlot] = bValid;
+			vbPlotAnimalValid[iPlot] = bValid; // LFGR_TODO: && !bVisible?
+			vbPlotBarbValid[iPlot] = bValid;
 
 		// LFGR_TEST
-			pPlot->bPlotAnimalEverValid = abPlotAnimalValid[iPlot];
-			pPlot->bPlotBarbEverValid = abPlotBarbValid[iPlot];
+			pPlot->bPlotAnimalEverValid = vbPlotAnimalValid[iPlot];
+			pPlot->bPlotBarbEverValid = vbPlotBarbValid[iPlot];
 		// LFGR_TEST end
 		}
 		
@@ -7481,16 +7488,16 @@ void CvGame::createBarbarianUnits()
 			iNumAnimals *= ( pPlot->isWater() ? VALID_TILES_PER_ANIMAL_WATER : VALID_TILES_PER_ANIMAL );
 			iNumBarbs *= ( pPlot->isWater() ? VALID_TILES_PER_BARB_WATER : VALID_TILES_PER_BARB );
 			
-			if( abPlotAnimalValid[iPlot] && iNumAnimals > 0 )
+			if( vbPlotAnimalValid[iPlot] && iNumAnimals > 0 )
 			{
 				iNumAnimals--;
-				abPlotAnimalValid[iPlot] = false;
+				vbPlotAnimalValid[iPlot] = false;
 			}
 
-			if( abPlotBarbValid[iPlot] && iNumBarbs > 0 )
+			if( vbPlotBarbValid[iPlot] && iNumBarbs > 0 )
 			{
 				iNumBarbs--;
-				abPlotBarbValid[iPlot] = false;
+				vbPlotBarbValid[iPlot] = false;
 			}
 			
 			if( iNumAnimals > 0 )
@@ -7517,9 +7524,9 @@ void CvGame::createBarbarianUnits()
 							if( GC.getMapINLINE().plotINLINE( iX, iY ) != NULL && GC.getMapINLINE().plotINLINE( iX, iY )->getArea() == pPlot->getArea() )
 							{
 								bFoundPotentialValidPlot = true;
-								if( abPlotAnimalValid[iRingPlot] )
+								if( vbPlotAnimalValid[iRingPlot] )
 									viAnimalValidRingPlots.push_back( iRingPlot );
-								if( abPlotBarbValid[iRingPlot] )
+								if( vbPlotBarbValid[iRingPlot] )
 									viBarbValidRingPlots.push_back( iRingPlot );
 							}
 						}
@@ -7537,9 +7544,9 @@ void CvGame::createBarbarianUnits()
 					int iVRingPlot = GC.getGameINLINE().getSorenRandNum( viAnimalValidRingPlots.size(), "Choose ring plot" );
 					int iRingPlot = viAnimalValidRingPlots[iVRingPlot];
 
-					FAssertMsg( abPlotAnimalValid[iRingPlot], "Trying to invalidate already invalid plot!" );
+					FAssertMsg( vbPlotAnimalValid[iRingPlot], "Trying to invalidate already invalid plot!" );
 
-					abPlotAnimalValid[iRingPlot] = false;
+					vbPlotAnimalValid[iRingPlot] = false;
 
 					viAnimalValidRingPlots.erase( viAnimalValidRingPlots.begin() + iVRingPlot );
 					iNumAnimals--;
@@ -7550,9 +7557,9 @@ void CvGame::createBarbarianUnits()
 					int iVRingPlot = GC.getGameINLINE().getSorenRandNum( viBarbValidRingPlots.size(), "Choose ring plot" );
 					int iRingPlot = viBarbValidRingPlots[iVRingPlot];
 
-					FAssertMsg( abPlotBarbValid[iRingPlot], "Trying to invalidate already invalid plot!" );
+					FAssertMsg( vbPlotBarbValid[iRingPlot], "Trying to invalidate already invalid plot!" );
 
-					abPlotBarbValid[iRingPlot] = false;
+					vbPlotBarbValid[iRingPlot] = false;
 
 					viBarbValidRingPlots.erase( viBarbValidRingPlots.begin() + iVRingPlot );
 					iNumBarbs--;
@@ -7565,13 +7572,13 @@ void CvGame::createBarbarianUnits()
 			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
 			
 		// LFGR_TEST
-			pPlot->bPlotAnimalValid = abPlotAnimalValid[iPlot];
-			pPlot->bPlotBarbValid = abPlotBarbValid[iPlot];
+			pPlot->bPlotAnimalValid = vbPlotAnimalValid[iPlot];
+			pPlot->bPlotBarbValid = vbPlotBarbValid[iPlot];
 		// LFGR_TEST end
 			
-			bool bHeld = abPlotVisible[iPlot] && pPlot->getWilderness() < GC.getDefineINT( "VISIBLE_TILE_SPAWNING_NOT_HELD_MIN_WILDERNESS" );
+			bool bHeld = vbPlotVisible[iPlot] && pPlot->getWilderness() < GC.getDefineINT( "VISIBLE_TILE_SPAWNING_NOT_HELD_MIN_WILDERNESS" );
 			
-			if( bAnimals && abPlotAnimalValid[iPlot] )
+			if( bAnimals && vbPlotAnimalValid[iPlot] )
 			{
 				float fAnimalChance = ( pPlot->isWater() ? PLOT_CHANCE_ANIMAL_WATER : PLOT_CHANCE_ANIMAL );
 				
@@ -7593,7 +7600,7 @@ void CvGame::createBarbarianUnits()
 				}
 			}
 			
-			if( bBarbs && abPlotBarbValid[iPlot] )
+			if( bBarbs && vbPlotBarbValid[iPlot] )
 			{
 				float fBarbChance = ( pPlot->isWater() ? PLOT_CHANCE_BARB_WATER : PLOT_CHANCE_BARB );
 				
@@ -7614,9 +7621,9 @@ void CvGame::createBarbarianUnits()
 				}
 			}
 		}
-		SAFE_DELETE_ARRAY( abPlotAnimalValid );
-		SAFE_DELETE_ARRAY( abPlotBarbValid );
-		SAFE_DELETE_ARRAY( abPlotVisible );
+		//SAFE_DELETE_ARRAY( abPlotAnimalValid );
+		//SAFE_DELETE_ARRAY( abPlotBarbValid );
+		//SAFE_DELETE_ARRAY( abPlotVisible );
 	}
 }
 /************************************************************************************************/
