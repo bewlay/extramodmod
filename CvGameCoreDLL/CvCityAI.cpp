@@ -6768,6 +6768,7 @@ int CvCityAI::AI_neededDefenders()
 	
 /************************************************************************************************/
 /* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
 /* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
 /************************************************************************************************/
 /* old

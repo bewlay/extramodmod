@@ -768,7 +768,7 @@ def spellCreateBatteringRam(caster):
 	pPlot = caster.plot()
 	pPlot.setFeatureType(-1, -1)
 
-# WILDERNESS 09/2013 lfgr: removed create den functions
+# WILDERNESS 09/2013 lfgr / CreateLair - Removed create den functions
 
 def reqCrewBuccaneers(caster):
 	pPlot = caster.plot()
@@ -1199,7 +1199,7 @@ def reqExploreLair(caster):
 	return True
 
 def spellExploreLair(caster):
-# WILDERNESS 08/2013 lfgr
+# WILDERNESS 08/2013 lfgr / WildernessExploration
 #	pPlot = caster.plot()
 #	iRnd = CyGame().getSorenRandNum(100, "Explore Lair") + caster.getLevel()
 #	iDestroyLair = 0
@@ -1222,7 +1222,7 @@ def spellExploreLair(caster):
 # WILDERNESS end
 
 def spellExploreLairEpic(caster):
-# WILDERNESS 08/2013 lfgr
+# WILDERNESS 08/2013 lfgr / WildernessExploration
 #	pPlot = caster.plot()
 #	iRnd = CyGame().getSorenRandNum(100, "Explore Lair") + caster.getLevel()
 #	iDestroyLair = 0

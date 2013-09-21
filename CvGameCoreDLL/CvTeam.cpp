@@ -1198,6 +1198,7 @@ void CvTeam::doTurn()
 					// From Mongoose SDK, BarbarianPassiveTechFix
 				/************************************************************************************************/
 				/* WILDERNESS                             09/2013                                 lfgr          */
+				/* WildernessMisc                                                                               */
 				/* No modifiers like gamespeed included here. Barbs get now research based on standard research */
 				/* cost also on e.g. slower game speeds, thus need more time to get the same percent of a tech. */
 				/************************************************************************************************/

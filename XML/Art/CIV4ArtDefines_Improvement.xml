@@ -231,7 +231,7 @@
 			<KFM/>
 			<Button>Art/Interface/Buttons/Units/Lion.dds</Button>
 		</ImprovementArtInfo>
-		<ImprovementArtInfo> <!-- WILDERNESS 09/2013 lfgr: from RifE -->
+		<ImprovementArtInfo> <!-- WILDERNESS 09/2013 lfgr: from RifE / NewLairs -->
 			<Type>ART_DEF_IMPROVEMENT_WOLF_DEN</Type>
 			<bExtraAnimations>0</bExtraAnimations>
 			<fScale>11.0</fScale>

@@ -2564,6 +2564,7 @@ CvUnitArtStyleTypeInfo& CvGlobals::getUnitArtStyleTypeInfo(UnitArtStyleTypes eUn
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
 /************************************************************************************************/
 int CvGlobals::getNumSpawnInfos()
 {
@@ -3483,6 +3484,7 @@ void CvGlobals::writeEventTriggerInfoArray(FDataStreamBase* pStream)
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
 /************************************************************************************************/
 bool CvGlobals::readSpawnInfoArray(FDataStreamBase* pStream)
 {
@@ -3710,6 +3712,7 @@ void CvGlobals::deleteInfoArrays()
 	deleteInfoArray(m_paAnimationPathInfo);
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
 /************************************************************************************************/
 	deleteInfoArray(m_paSpawnInfo);
 /************************************************************************************************/

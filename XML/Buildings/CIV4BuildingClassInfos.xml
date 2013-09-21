@@ -1644,7 +1644,7 @@
 			<DefaultBuilding>BUILDING_THE_NEXUS</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
-		<BuildingClassInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
 			<Type>BUILDINGCLASS_BEAR_TROPHY</Type>
 			<Description>TXT_KEY_BUILDING_BEAR_TROPHY</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -1656,7 +1656,7 @@
 			<DefaultBuilding>BUILDING_BEAR_TROPHY</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
-		<BuildingClassInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
 			<Type>BUILDINGCLASS_LION_TROPHY</Type>
 			<Description>TXT_KEY_BUILDING_LION_TROPHY</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -1668,7 +1668,7 @@
 			<DefaultBuilding>BUILDING_LION_TROPHY</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
-		<BuildingClassInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
 			<Type>BUILDINGCLASS_PANTHER_TROPHY</Type>
 			<Description>TXT_KEY_BUILDING_PANTHER_TROPHY</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -1680,7 +1680,7 @@
 			<DefaultBuilding>BUILDING_PANTHER_TROPHY</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
-		<BuildingClassInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
 			<Type>BUILDINGCLASS_WOLF_TROPHY</Type>
 			<Description>TXT_KEY_BUILDING_WOLF_TROPHY</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>

@@ -3517,7 +3517,7 @@
 				</DamageTypeCombat>
 			</DamageTypeCombats>
 		</UnitInfo>
-		<UnitInfo> <!-- UNIT_HOLLOW_MAN // BARBARIAN_UNITS 08/2013 MagisterCultuum/lfgr -->
+		<UnitInfo> <!-- UNIT_HOLLOW_MAN // WILDERNESS 08/2013 MagisterCultuum/lfgr / NewUnits -->
 			<Class>UNITCLASS_ASSASSIN</Class>
 			<Type>UNIT_HOLLOW_MAN</Type>
 			<Combat>UNITCOMBAT_RECON</Combat>
@@ -4068,7 +4068,7 @@
 			<iWeaponTier>2</iWeaponTier>
 			<PrereqBuildingClass>BUILDINGCLASS_TRAINING_YARD</PrereqBuildingClass>
 		</UnitInfo>
-		<UnitInfo> <!-- UNIT_BANDIT // BARBARIAN_UNITS 08/2013 lfgr -->
+		<UnitInfo> <!-- UNIT_BANDIT // WILDERNESS 08/2013 lfgr / NewUnits -->
 			<Class>UNITCLASS_AXEMAN</Class>
 			<Type>UNIT_BANDIT</Type>
 			<Combat>UNITCOMBAT_MELEE</Combat>
@@ -4976,7 +4976,7 @@
 			<FormationType>FORMATION_TYPE_ANIMAL</FormationType>
 			<iCombatDefense>5</iCombatDefense>
 		</UnitInfo>
-		<UnitInfo> <!-- UNIT_CAVE_BEAR // BARBARIAN_UNITS 08/2013 lfgr -->
+		<UnitInfo> <!-- UNIT_CAVE_BEAR // WILDERNESS 08/2013 lfgr / NewUnits -->
 			<Class>UNITCLASS_BEAR</Class>
 			<Type>UNIT_CAVE_BEAR</Type>
 			<Combat>UNITCOMBAT_ANIMAL</Combat>
@@ -6489,7 +6489,7 @@
 				</BonusAffinity>
 			</BonusAffinities>
 		</UnitInfo>
-		<UnitInfo> <!-- UNIT_BANDIT_LORD // BARBARIAN_UNITS 08/2013 lfgr -->
+		<UnitInfo> <!-- UNIT_BANDIT_LORD // WILDERNESS 08/2013 lfgr / NewUnits -->
 			<Class>UNITCLASS_CHAMPION</Class>
 			<Type>UNIT_BANDIT_LORD</Type>
 			<Combat>UNITCOMBAT_MELEE</Combat>
@@ -11265,7 +11265,7 @@
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
 		</UnitInfo>
-		<UnitInfo> <!-- UNIT_GHOUL // BARBARIAN_UNITS 08/2013 lfgr -->
+		<UnitInfo> <!-- UNIT_GHOUL // WILDERNESS 08/2013 lfgr / NewUnits -->
 			<!-- Art from Master of Mana -->
 			<Class>UNITCLASS_GHOUL</Class>
 			<Type>UNIT_GHOUL</Type>
@@ -19056,7 +19056,7 @@
 				</DamageTypeCombat>
 			</DamageTypeCombats>
 		</UnitInfo>
-		<UnitInfo> <!-- UNIT_PANTHER // BARBARIAN_UNITS 08/2013 MagisterCultuum/lfgr -->
+		<UnitInfo> <!-- UNIT_PANTHER // WILDERNESS 08/2013 MagisterCultuum/lfgr / NewUnits -->
 			<Class>UNITCLASS_PANTHER</Class>
 			<Type>UNIT_PANTHER</Type>
 			<Special />
@@ -24983,7 +24983,7 @@
 			<iTier>1</iTier>
 			<iWeaponTier>1</iWeaponTier>
 		</UnitInfo>
-		<UnitInfo> <!-- UNIT_SAVAGE // BARBARIAN_UNITS 02/2013 lfgr -->
+		<UnitInfo> <!-- UNIT_SAVAGE // WILDERNESS 02/2013 lfgr / NewUnits -->
 			<Class>UNITCLASS_WARRIOR</Class>
 			<Type>UNIT_SAVAGE</Type>
 			<Combat>UNITCOMBAT_MELEE</Combat>
@@ -25198,7 +25198,7 @@
 			<UnitCreateFromCombat>UNIT_RAVENOUS_WEREWOLF</UnitCreateFromCombat>
 			<iUnitCreateFromCombatChance>30</iUnitCreateFromCombatChance>
 		</UnitInfo>
-		<UnitInfo> <!-- UNIT_WIGHT // BARBARIAN_UNITS 08/2013 lfgr -->
+		<UnitInfo> <!-- UNIT_WIGHT // WILDERNESS 08/2013 lfgr / NewUnits -->
 			<!-- Art from Master of Mana -->
 			<Class>UNITCLASS_WIGHT</Class>
 			<Type>UNIT_WIGHT</Type>

@@ -277,6 +277,7 @@ void CvPlot::reset(int iX, int iY, bool bConstructorCall)
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, LairUnitCounter                                                              */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
     m_iWilderness = 0;
@@ -512,6 +513,7 @@ void CvPlot::doTurn()
 		}
 	/************************************************************************************************/
 	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* ImprovementSpawnTypes                                                                        */
 	/* Changed system, removed some old code.                                                       */
 	/************************************************************************************************/
 		bool bDoubleAnimals = GC.getGameINLINE().isOption( GAMEOPTION_DOUBLE_ANIMALS );
@@ -2604,7 +2606,7 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* Check min and max wilderness for lairs and Unique Improvements                               */
+/* ImprovementWilderness                                                                        */
 /************************************************************************************************/
 	
 	if( GC.getImprovementInfo( eImprovement ).getMinWilderness() > getWilderness() ||
@@ -4604,7 +4606,7 @@ bool CvPlot::isRevealedGoody(TeamTypes eTeam) const
     {
 	/************************************************************************************************/
 	/* WILDERNESS                             08/2013                                 lfgr          */
-	/* Use SpawnInfos                                                                               */
+	/* ImprovementSpawnTypes                                                                        */
 	/************************************************************************************************/
 	/*
         if (GC.getImprovementInfo((ImprovementTypes)getImprovementType()).getSpawnUnitType() != NO_UNIT)
@@ -6832,7 +6834,8 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 	{
 	/************************************************************************************************/
 	/* WILDERNESS                             08/2013                                 lfgr          */
-	/* Update Lair count                                                                            */
+	/* LairUnitCounter                                                                              */
+	/* Update Lair counter                                                                          */
 	/************************************************************************************************/
 		if( isLair() && ( eNewValue == NO_IMPROVEMENT || ( eNewValue != GC.getImprovementInfo( eOldImprovement ).getImprovementUpgrade() && eNewValue != GC.getImprovementInfo( eOldImprovement ).getImprovementPillage() ) ) )
 		{
@@ -10482,6 +10485,7 @@ void CvPlot::read(FDataStreamBase* pStream)
 //FfH: End Add
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, LairUnitCounter                                                              */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
 	pStream->Read(&m_iWilderness);
@@ -10744,6 +10748,7 @@ void CvPlot::write(FDataStreamBase* pStream)
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, LairUnitCounter                                                              */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
 	pStream->Write(m_iWilderness);
@@ -12421,6 +12426,7 @@ bool CvPlot::isFeatureRemove(BuildTypes eBuild) const
 }
 //<<<<Unofficial Bug Fix: End Add
 
+// LFGR_TODO: Is the animal/not animal separation really needed?
 bool CvPlot::isLair(bool bIgnoreIsAnimal, bool bAnimal) const
 {
 	ImprovementTypes eImprovement = getImprovementType();
@@ -12428,9 +12434,9 @@ bool CvPlot::isLair(bool bIgnoreIsAnimal, bool bAnimal) const
 	{
 	/************************************************************************************************/
 	/* WILDERNESS                             08/2013                                 lfgr          */
-	/* Use SpawnInfos                                                                               */
-	/* Now upports improvements with animal AND no-animal spawns, although this should normally not */
-	/* occur. WARNING: Lairs with animal spawns will be pillaged automatically!                     */
+	/* ImprovementSpawnTypes                                                                        */
+	/* Now supports improvements with animal AND no-animal spawns, although this should normally    */
+	/* not occur.                                                                                   */
 	/************************************************************************************************/
 	/*
 		int iUnit = GC.getImprovementInfo(eImprovement).getSpawnUnitType();
@@ -12469,6 +12475,7 @@ bool CvPlot::isLair(bool bIgnoreIsAnimal, bool bAnimal) const
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, LairUnitCounter, SpawnInfo                                                   */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
 int CvPlot::getWilderness() const
@@ -12480,8 +12487,6 @@ void CvPlot::setWilderness(int iNewValue)
 {
 	m_iWilderness = iNewValue;
 }
-
-// Lair unit counter
 
 int CvPlot::getLairUnitCount() const
 {

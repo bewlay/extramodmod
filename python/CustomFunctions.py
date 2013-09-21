@@ -121,7 +121,7 @@ class CustomFunctions:
 			return True
 		return False
 
-# WILDERNESS 08/2013 lfgr
+# WILDERNESS 08/2013 lfgr / WildernessExploration, PromotionExplResultBonus
 	def exploreLair( self, pUnit, bEpic ) :
 		pPlot = pUnit.plot()
 		iRnd = CyGame().getSorenRandNum( 150, "Explore Lair" ) - 75 + min( 75, ( pUnit.getLevel() - 5 ) * 3 )

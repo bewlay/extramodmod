@@ -255,6 +255,7 @@ void CvMapGenerator::addGameElements()
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness                                                                               */
 /* Moved to CvGame::setInitialItems() (after wilderness calculation)                            */
 /************************************************************************************************/
 /*
@@ -1282,7 +1283,7 @@ void CvMapGenerator::addImprovements()
                         {
 						/************************************************************************************************/
 						/* WILDERNESS                             08/2013                                 lfgr          */
-						/* Use SpawnInfos                                                                               */
+						/* ImprovementSpawnTypes                                                                        */
 						/************************************************************************************************/
 						/*
 							if (GC.getImprovementInfo((ImprovementTypes)iJ).getSpawnUnitType() != NO_UNIT)
@@ -1305,7 +1306,8 @@ void CvMapGenerator::addImprovements()
 								{
 								/************************************************************************************************/
 								/* WILDERNESS                             08/2013                                 lfgr          */
-								/* Use SpawnInfos                                                                               */
+								/* WildernessMisc                                                                               */
+								/* More Lairs in higher wilderness                                                              */
 								/************************************************************************************************/
 								/*
 									if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement") < GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability())

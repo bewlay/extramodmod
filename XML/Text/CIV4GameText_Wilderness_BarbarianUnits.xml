@@ -3,7 +3,7 @@
 <!-- Sid Meier's Civilization 4 -->
 <!-- Copyright Firaxis Games 2005 -->
 <!-- -->
-<!-- BARBARIAN_UNITS 02/2013 lfgr -->
+<!-- WILDERNESS 02/2013 lfgr / NewUnits -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_ARCHER_SCORPION_CLAN</Tag>

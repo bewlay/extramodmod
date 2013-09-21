@@ -14,6 +14,7 @@ void CyInfoPythonInterface4()
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
 /************************************************************************************************/
 	python::class_<CvSpawnInfo, python::bases<CvInfoBase> >("CvSpawnInfo")
 		.def("getUnitArtStyleType", &CvSpawnInfo::getUnitArtStyleType, "UnitArtStyleTypes ()")

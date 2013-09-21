@@ -969,6 +969,7 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
 /************************************************************************************************/
 	LoadGlobalClassInfo(GC.getSpawnInfo(), "CIV4SpawnInfos", "GameInfo", "Civ4SpawnInfos/SpawnInfos/SpawnInfo", true);
 /************************************************************************************************/

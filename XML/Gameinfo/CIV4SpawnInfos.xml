@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <Civ4SpawnInfos xmlns="x-schema:CIV4SpawnInfoSchema.xml">
 	<SpawnInfos>
+		<!-- WILDERNESS / SpawnInfo -->
 		<!-- TODO: Descriptions -->
 		
 		<!-- EXPLORATION SPAWNS -->

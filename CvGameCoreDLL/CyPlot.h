@@ -291,6 +291,7 @@ public:
 	// Super Forts end
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, PlotWilderness, SpawnInfo                                             */
 /************************************************************************************************/
 	bool isLair( bool bIgnoreIsAnimal, bool bAnimal ) const;
 	int getWilderness() const;

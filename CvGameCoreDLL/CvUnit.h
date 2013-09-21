@@ -1032,15 +1032,14 @@ public:
 	// End MNAI
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType                                            */
 /************************************************************************************************/
 	int getMinWilderness() const;
 	void setMinWilderness( int iNewValue );
 	
-	// LairUnitCounter
 	int getLairPlot() const;
 	void setLairPlot( int iPlot );
 	
-	// UnitSpawnType
 	SpawnTypes getSpawnType() const;
 	void setSpawnType( SpawnTypes eNewValue );
 /************************************************************************************************/
@@ -1215,13 +1214,12 @@ protected:
 	int* m_paiExtraUnitCombatModifier;
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType                                            */
 /************************************************************************************************/
 	int m_iMinWilderness;
 
-	// Lair Unit Counter
 	int m_iLairPlot;
 	
-	// UnitSpawnType
 	SpawnTypes m_eSpawnType;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

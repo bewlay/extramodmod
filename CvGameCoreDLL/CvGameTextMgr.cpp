@@ -2268,6 +2268,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
             szString.append(szTempBuffer);
 	/************************************************************************************************/
 	/* WILDERNESS                             09/2013                                 lfgr          */
+	/* Debug - LairUnitCounter, UnitSpawnType, CreateLair                                           */	
 	/************************************************************************************************/
 			CvPlot* pLairPlot = GC.getMapINLINE().plotByIndexINLINE( pUnit->getLairPlot() );
 			if( pLairPlot != NULL )
@@ -5694,6 +5695,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		
 	/************************************************************************************************/
 	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* Debug - PlotWilderness                                                                       */	
 	/* Original by Sephi                                                                            */
 	/************************************************************************************************/
 		szTempBuffer.Format(L"\nWilderness Value: %d", pPlot->getWilderness());
@@ -6602,7 +6604,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
                 {
 				/************************************************************************************************/
 				/* WILDERNESS                             08/2013                                 lfgr          */
-				/* Original by Sephi                                                                            */
+				/* WildernessMisc                                                                               */
 				/************************************************************************************************/
 				/*
                     // Super Forts begin *text* *upgrade*
@@ -9093,6 +9095,7 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 	
 /************************************************************************************************/
 /* WILDERNESS                             09/2013                                 lfgr          */
+/* PromotionExpResultBonus                                                                      */
 /************************************************************************************************/
 	if (kPromotionInfo.getExplorationResultBonus() != 0)
 	{
@@ -10132,6 +10135,8 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 		{
 		/************************************************************************************************/
 		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* WildernessFix                                                                                */
+		/* Only display really affected improvements                                                    */
 		/************************************************************************************************/
 		/*
 			if (GC.getImprovementInfo((ImprovementTypes)iI).getImprovementUpgrade() != NO_IMPROVEMENT)
@@ -18136,7 +18141,7 @@ void CvGameTextMgr::setImprovementHelp(CvWStringBuffer &szBuffer, ImprovementTyp
 	}
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* Use SpawnInfos                                                                               */
+/* SpawnInfo                                                                                    */
 /************************************************************************************************/
 /*
 	if (info.getSpawnUnitType() != NO_UNIT)

@@ -2822,7 +2822,7 @@
             </AudioRunSounds>
         </UnitArtInfo>
 		<UnitArtInfo>
-			<!-- BARBARIAN_UNITS 08/2013 lfgr -->
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
 			<!-- Art by Ploeperpengel -->
 			<Type>ART_DEF_UNIT_BANDIT_LORD</Type>
 			<Button>Art/Interface/Buttons/Units/Bandit_Lord.dds</Button>
@@ -3830,7 +3830,7 @@
             <ActionSound>AS3D_UN_CATAPULT_FORT</ActionSound>
         </UnitArtInfo>
 		<UnitArtInfo>
-			<!-- BARBARIAN_UNITS 08/2013 lfgr -->
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
 			<!-- From RifE -->
 			<Type>ART_DEF_UNIT_CAVE_BEAR</Type>
 			<Button>Art/Interface/Buttons/Units/Cave_Bear.dds</Button>
@@ -6715,7 +6715,7 @@
             </AudioRunSounds>
         </UnitArtInfo>
 		<UnitArtInfo>
-			<!-- BARBARIAN_UNITS 08/2013 lfgr -->
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
 			<!-- Art from Master of Mana, Artist unknown -->
 			<Type>ART_DEF_UNIT_GHOUL</Type>
             <Button>Art/Interface/Buttons/Units/Diseased Corpse.dds</Button>
@@ -15568,7 +15568,7 @@
             </AudioRunSounds>
         </UnitArtInfo>
 		<UnitArtInfo>
-			<!-- BARBARIAN_UNITS 08/2013 lfgr -->
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
 			<!-- Art from Master of Mana, Artist unknown -->
 			<Type>ART_DEF_UNIT_WIGHT</Type>
             <Button>Art/Interface/Buttons/Units/Diseased Corpse.dds</Button>

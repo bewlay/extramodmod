@@ -2011,6 +2011,7 @@ void CvUnitAI::AI_settleMove()
 	
 /************************************************************************************************/
 /* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
 /* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
 /************************************************************************************************/
 /* old
@@ -16918,6 +16919,7 @@ bool CvUnitAI::AI_goToTargetBarbCity(int iMaxPathTurns)
 	
 /************************************************************************************************/
 /* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
 /* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
 /************************************************************************************************/
 /* old
@@ -27456,6 +27458,7 @@ bool CvUnitAI::AI_exploreLairSea(int iRange)
 {
 /************************************************************************************************/
 /* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
 /* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
 /************************************************************************************************/
 /* old
@@ -27579,6 +27582,7 @@ bool CvUnitAI::AI_exploreLair(int iRange)
 {
 /************************************************************************************************/
 /* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
 /* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
 /************************************************************************************************/
 /* old
@@ -27978,6 +27982,7 @@ void CvUnitAI::AI_ConquestMove()
 	bool bHuntBarbs = false;
 /************************************************************************************************/
 /* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
 /* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
 /************************************************************************************************/
 /* old
@@ -28535,6 +28540,7 @@ void CvUnitAI::AI_ConquestMove()
 	bHuntBarbs = false;
 /************************************************************************************************/
 /* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
 /* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
 /************************************************************************************************/
 /* old
@@ -28903,6 +28909,7 @@ void CvUnitAI::AI_heromove()
     {
 	/************************************************************************************************/
 	/* WILDERNESS                             09/2013                                 lfgr          */
+	/* WildernessMisc                                                                               */
 	/* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
 	/************************************************************************************************/
 	/* old

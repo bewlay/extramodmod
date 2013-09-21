@@ -40708,7 +40708,7 @@
             <SpecialistCommerceChanges>
             </SpecialistCommerceChanges>
         </BuildingInfo>
-		<BuildingInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+		<BuildingInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
             <BuildingClass>BUILDINGCLASS_BEAR_TROPHY</BuildingClass>
             <Type>BUILDING_BEAR_TROPHY</Type>
             <SpecialBuildingType>NONE</SpecialBuildingType>
@@ -40928,7 +40928,7 @@
             <SpecialistCommerceChanges>
             </SpecialistCommerceChanges>
         </BuildingInfo>
-        <BuildingInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+        <BuildingInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
             <BuildingClass>BUILDINGCLASS_LION_TROPHY</BuildingClass>
             <Type>BUILDING_LION_TROPHY</Type>
             <SpecialBuildingType>NONE</SpecialBuildingType>
@@ -41148,7 +41148,7 @@
             <SpecialistCommerceChanges>
             </SpecialistCommerceChanges>
         </BuildingInfo>
-        <BuildingInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+        <BuildingInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
             <BuildingClass>BUILDINGCLASS_PANTHER_TROPHY</BuildingClass>
             <Type>BUILDING_PANTHER_TROPHY</Type>
             <SpecialBuildingType>NONE</SpecialBuildingType>
@@ -41368,7 +41368,7 @@
             <SpecialistCommerceChanges>
             </SpecialistCommerceChanges>
         </BuildingInfo>
-        <BuildingInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+        <BuildingInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
             <BuildingClass>BUILDINGCLASS_WOLF_TROPHY</BuildingClass>
             <Type>BUILDING_WOLF_TROPHY</Type>
             <SpecialBuildingType>NONE</SpecialBuildingType>

@@ -539,10 +539,10 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* Control min wilderness to enter                                                              */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType                                            */
 /************************************************************************************************/
 	m_iMinWilderness = 0;
 	m_iLairPlot = -1;
-	// UnitSpawnType
 	m_eSpawnType = NO_SPAWN;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
@@ -818,7 +818,8 @@ void CvUnit::convert(CvUnit* pUnit)
 
 /************************************************************************************************/
 /* WILDERNESS                             09/2013                                 lfgr          */
-/* Lair unit counter - Upgrade units                                                            */
+/* LairUnitCounter                                                                              */
+/* Consider upgraded units                                                                      */
 /************************************************************************************************/
 	if( getOwnerINLINE() == pUnit->getOwnerINLINE() && pUnit->getLairPlot() != -1 )
 		setLairPlot( pUnit->getLairPlot() );
@@ -895,7 +896,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 	
 /************************************************************************************************/
 /* WILDERNESS                             09/2013                                 lfgr          */
-/* Lair unit counter                                                                            */
+/* LairUnitCounter                                                                              */
 /************************************************************************************************/
 	if( getLairPlot() != -1 )
 		setLairPlot( -1 ); // To decrease plot lair unit counter.
@@ -3790,7 +3791,7 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* Control min wilderness to enter                                                              */
+/* UnitMinWilderness                                                                            */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
 	if(isBarbarian())
@@ -6159,6 +6160,7 @@ bool CvUnit::canPillage(const CvPlot* pPlot) const
         {
 		/************************************************************************************************/
 		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* ImprovementSpawnTypes                                                                        */
 		/************************************************************************************************/
 		/*
             if (GC.getImprovementInfo(pPlot->getImprovementType()).getSpawnUnitType() != NO_UNIT)
@@ -12310,6 +12312,8 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 			CvImprovementInfo& kImprovementInfo = GC.getImprovementInfo((ImprovementTypes)iImprovement);
 		/************************************************************************************************/
 		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* ImprovementSpawnTypes                                                                        */
+		/* Raze all non-permanent lairs, independent from whether they spawn animals                    */
 		/************************************************************************************************/
 		/*
 			if (kImprovementInfo.getSpawnUnitType() != NO_UNIT)
@@ -19987,11 +19991,10 @@ void CvUnit::read(FDataStreamBase* pStream)
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* Control min wilderness to enter                                                              */
+/* UnitMinWilderness, UnitSpawnType                                                             */
 /************************************************************************************************/
 	pStream->Read(&m_iMinWilderness);
 	pStream->Read(&m_iLairPlot);
-	// UnitSpawnType
 	pStream->Read((int*)&m_eSpawnType);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
@@ -20167,7 +20170,7 @@ void CvUnit::write(FDataStreamBase* pStream)
 	//<<<<Unofficial Bug Fix: End Add
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* Control min wilderness to enter                                                              */
+/* UnitMinWilderness, UnitSpawnType                                                             */
 /************************************************************************************************/
 	pStream->Write(m_iMinWilderness);
 	pStream->Write(m_iLairPlot);
@@ -20426,6 +20429,7 @@ bool CvUnit::isRangedCollateral()
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType                                            */
 /************************************************************************************************/
 int CvUnit::getMinWilderness() const
 {
@@ -20437,7 +20441,6 @@ void CvUnit::setMinWilderness( int iNewValue )
 	m_iMinWilderness = iNewValue;
 }
 
-// Lair unit counter
 int CvUnit::getLairPlot() const
 {
 	return m_iLairPlot;
@@ -20455,7 +20458,6 @@ void CvUnit::setLairPlot( int iPlot )
 	}
 }
 
-// UnitSpawnType
 SpawnTypes CvUnit::getSpawnType() const
 {
 	return m_eSpawnType;

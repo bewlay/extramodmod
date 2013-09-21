@@ -567,7 +567,7 @@
 	<ElementType name="BonusAffinities" content="eltOnly">
 		<element type="BonusAffinity" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
-<!-- WILDERNESS 08/2013 Sephi/lfgr -->
+<!-- WILDERNESS 08/2013 Sephi/lfgr / PromotionExplResultBonus -->
 	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="iExplorationResultBonus" content="textOnly" dt:type="int"/>
@@ -1152,7 +1152,7 @@
 		<element type="bUpgradeOutsideBorders" minOccurs="0"/>
 		<element type="iOrderPriority" minOccurs="0"/>
 		<element type="iEnslavementChance" minOccurs="0"/>
-	<!-- WILDERNESS 08/2013 lfgr -->
+	<!-- WILDERNESS 08/2013 lfgr / PromotionExplResultBonus -->
 		<element type="iExplorationResultBonus" minOccurs="0"/>
 	<!-- WILDERNESS end -->
 	</ElementType>

@@ -8128,7 +8128,7 @@
 			<iExtraCombatStr>1</iExtraCombatStr>
 			<iExtraCombatDefense>1</iExtraCombatDefense>
 		</PromotionInfo>
-		<PromotionInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr-->
+		<PromotionInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits-->
             <Type>PROMOTION_BEAR_TROPHY</Type>
             <Description>TXT_KEY_BUILDING_BEAR_TROPHY</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
@@ -8148,7 +8148,7 @@
             <iCombatPercentDefense>15</iCombatPercentDefense>
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
-		<PromotionInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+		<PromotionInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
             <Type>PROMOTION_LION_TROPHY</Type>
             <Description>TXT_KEY_BUILDING_LION_TROPHY</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
@@ -8164,7 +8164,7 @@
             <iMinLevel>-1</iMinLevel>
             <iExplorationResultBonus>5</iExplorationResultBonus>
         </PromotionInfo>
-		<PromotionInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+		<PromotionInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
             <Type>PROMOTION_PANTHER_TROPHY</Type>
             <Description>TXT_KEY_BUILDING_PANTHER_TROPHY</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
@@ -8179,7 +8179,7 @@
             <Button>Art/Interface/Buttons/Units/Panther.dds</Button>
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
-		<PromotionInfo> <!-- BARBARIAN_UNITS 09/2013 lfgr -->
+		<PromotionInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
             <Type>PROMOTION_WOLF_TROPHY</Type>
             <Description>TXT_KEY_BUILDING_WOLF_TROPHY</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>

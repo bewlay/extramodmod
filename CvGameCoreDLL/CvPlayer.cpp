@@ -7024,6 +7024,8 @@ bool CvPlayer::canReceiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit) 
 	{
 	/************************************************************************************************/
 	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* WildernessMisc                                                                               */
+	/* Don't give world equipments twice                                                            */
 	/************************************************************************************************/
 		if( GC.getGameINLINE().isUnitClassMaxedOut( (UnitClassTypes) GC.getGoodyInfo(eGoody).getUnitClassType() ) )
 			return false;

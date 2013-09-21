@@ -471,14 +471,14 @@
 	<ElementType name="iRange" content="textOnly" dt:type="int"/>
 	<ElementType name="iRangeDefenseModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iVisibilityChange" content="textOnly" dt:type="int"/>
-<!-- WILDERNESS 08/2013 lfgr -->
+<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
 	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
 <!-- WILDERNESS end -->
 	<ElementType name="BonusConvert" content="textOnly"/>
 	<ElementType name="PrereqCivilization" content="textOnly"/>
 	<ElementType name="PythonAtRange" content="textOnly"/>
-<!-- WILDERNESS 08/2013 lfgr -->
+<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
 	<!-- Removed ElementTypes SpawnUnitType and FreeSpawnPromotion -->
 	<ElementType name="SpawnType" content="textOnly"/>
 	<ElementType name="SpawnTypes" content="eltOnly">
@@ -547,7 +547,7 @@
 		<element type="iRange"/>
 		<element type="iRangeDefenseModifier"/>
 		<element type="iVisibilityChange"/>
-	<!-- WILDERNESS 08/2013 lfgr -->
+	<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
 		<element type="iMinWilderness" minOccurs="0"/>
 		<element type="iMaxWilderness" minOccurs="0"/>
 	<!-- WILDERNESS end -->
@@ -556,7 +556,7 @@
 		<element type="PrereqCivilization"/>
 		<element type="PythonAtRange"/>
 		<element type="PythonOnMove"/>
-	<!-- WILDERNESS 08/2013 lfgr -->
+	<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
 	<!-- Removed elements SpawnUnitType and FreeSpawnPromotion -->
 		<element type="SpawnTypes" minOccurs="0"/>
 	<!-- WILDERNESS end -->

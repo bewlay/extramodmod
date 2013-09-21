@@ -3171,6 +3171,7 @@ bool CvSelectionGroup::calculateIsStranded()
 			// units guarding lairs shouldnt be flagged as stranded
 		/************************************************************************************************/
 		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* ImprovementSpawnTypes                                                                        */
 		/************************************************************************************************/
 		/*
 			if (GC.getImprovementInfo(plot()->getImprovementType()).getSpawnUnitType() == getHeadUnit()->getUnitType())

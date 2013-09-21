@@ -1183,6 +1183,7 @@ void CyPlot::calculateChokeValue()
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, PlotWilderness, SpawnInfo                                             */
 /************************************************************************************************/
 bool CyPlot::isLair( bool bIgnoreIsAnimal, bool bAnimal ) const
 {

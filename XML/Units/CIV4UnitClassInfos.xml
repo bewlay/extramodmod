@@ -2258,7 +2258,7 @@
 			<DefaultUnit>UNIT_GREAT_GENERAL</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
-			<!-- BARBARIAN_UNITS 08/2013 lfgr -->
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
 			<Type>UNITCLASS_PANTHER</Type>
 			<Description>TXT_KEY_UNIT_PANTHER</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -2268,7 +2268,7 @@
 			<DefaultUnit>UNIT_PANTHER</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
-			<!-- BARBARIAN_UNITS 08/2013 lfgr -->
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
 			<Type>UNITCLASS_GHOUL</Type>
 			<Description>TXT_KEY_UNIT_GHOUL</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -2278,7 +2278,7 @@
 			<DefaultUnit>UNIT_GHOUL</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
-			<!-- BARBARIAN_UNITS 08/2013 lfgr -->
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
 			<Type>UNITCLASS_WIGHT</Type>
 			<Description>TXT_KEY_UNIT_WIGHT</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>

@@ -444,6 +444,7 @@ void CvGame::setInitialItems()
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, ImprovementWilderness                                                        */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
 	GC.getMapINLINE().calculateWilderness();
@@ -6660,6 +6661,7 @@ void CvGame::doTurn()
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness                                                                               */
 /************************************************************************************************/
 	//LordShaggynator: workaround for wilderness values in scenario
 	if(getElapsedGameTurns() == 1)
@@ -7313,6 +7315,7 @@ void CvGame::createBarbarianCities()
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
 /* Changed much, completely removed old code.                                                   */
 /************************************************************************************************/
 void CvGame::createBarbarianUnits()
@@ -7632,8 +7635,7 @@ void CvGame::createBarbarianUnits()
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* Original by Sephi                                                                            */
-/* Use SpawnInfos instead of Unitclasses.                                                       */
+/* SpawnInfo                                                                                    */
 /************************************************************************************************/
 void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal, int iHeldTurns )
 {
@@ -10994,6 +10996,7 @@ void CvGame::foundBarbarianCity()
             }
 		/************************************************************************************************/
 		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* WildernessMisc                                                                               */
 		/* Place barb cities far away from other barb cities                                            */
 		/************************************************************************************************/
 			int iDivisor = std::max( 5, (int) ( sqrt( (double) GC.getMapINLINE().getGridWidthINLINE() * GC.getMapINLINE().getGridHeightINLINE() ) / 8.0 + 0.5 ) );

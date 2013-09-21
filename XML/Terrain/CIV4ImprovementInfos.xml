@@ -35,7 +35,7 @@
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
             <iPillageGold>0</iPillageGold>
-		<!-- WILDERNESS 09/2013 lfgr: To let its explored version upgrade to it -->
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration - To let its explored version upgrade to it -->
             <bOutsideBorders>1</bOutsideBorders>
 		<!-- WILDERNESS end -->
             <TerrainMakesValids>
@@ -59,7 +59,7 @@
                     </YieldChanges>
                 </BonusTypeStruct>
             </BonusTypeStructs>
-		<!-- WILDERNESS 09/2013 lfgr -->
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
             <ImprovementPillage>IMPROVEMENT_AIFON_ISLE_EXPLORED</ImprovementPillage>
 		<!-- WILDERNESS end -->
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -76,7 +76,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr  / ImprovementWilderness -->
             <iMinWilderness>50</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_WATER</BonusConvert>
@@ -182,7 +182,7 @@
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
             <iPillageGold>0</iPillageGold>
-		<!-- WILDERNESS 09/2013 lfgr: To let its explored version upgrade to it -->
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration - To let its explored version upgrade to it -->
             <bOutsideBorders>1</bOutsideBorders>
 		<!-- WILDERNESS end -->
             <TerrainMakesValids>
@@ -242,7 +242,7 @@
                     </YieldChanges>
                 </BonusTypeStruct>
             </BonusTypeStructs>
-		<!-- WILDERNESS 09/2013 lfgr -->
+		<!-- WILDERNESS 09/2013 lfgr / ImprovementWilderness -->
             <ImprovementPillage>IMPROVEMENT_BAIR_OF_LACUNA_EXPLORED</ImprovementPillage>
 		<!-- WILDERNESS end -->
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -259,7 +259,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>80</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_DIMENSIONAL</BonusConvert>
@@ -550,7 +550,7 @@
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
             <iPillageGold>0</iPillageGold>
-		<!-- WILDERNESS 09/2013 lfgr: To let its explored version upgrade to it -->
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration - To let its explored version upgrade to it -->
             <bOutsideBorders>1</bOutsideBorders>
 		<!-- WILDERNESS end -->
             <TerrainMakesValids>
@@ -610,7 +610,7 @@
                     </YieldChanges>
                 </BonusTypeStruct>
             </BonusTypeStructs>
-		<!-- WILDERNESS 09/2013 lfgr -->
+		<!-- WILDERNESS 09/2013 lfgr / ImprovementWilderness -->
             <ImprovementPillage>IMPROVEMENT_BRADELINES_WELL_EXPLORED</ImprovementPillage>
 		<!-- WILDERNESS end -->
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -627,7 +627,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>40</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_ENTROPY</BonusConvert>
@@ -636,7 +636,7 @@
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
         </ImprovementInfo>
-        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr -->
+        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
             <Type>IMPROVEMENT_BRADELINES_WELL_EXPLORED</Type>
             <Description>TXT_KEY_IMPROVEMENT_BRADELINES_WELL_EXPLORED</Description>
             <Civilopedia>TXT_KEY_IMPROVEMENT_BRADELINES_WELL_PEDIA</Civilopedia>
@@ -733,7 +733,7 @@
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
             <iPillageGold>0</iPillageGold>
-		<!-- WILDERNESS 09/2013 lfgr: To let its explored version upgrade to it -->
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration - To let its explored version upgrade to it -->
             <bOutsideBorders>1</bOutsideBorders>
 		<!-- WILDERNESS end -->
             <TerrainMakesValids>
@@ -793,7 +793,7 @@
                     </YieldChanges>
                 </BonusTypeStruct>
             </BonusTypeStructs>
-		<!-- WILDERNESS 09/2013 lfgr -->
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
             <ImprovementPillage>IMPROVEMENT_BROKEN_SEPULCHER_EXPLORED</ImprovementPillage>
 		<!-- WILDERNESS end -->
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -810,7 +810,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>50</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_DEATH</BonusConvert>
@@ -1512,7 +1512,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>10</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_IVORY</BonusConvert>
@@ -2119,7 +2119,7 @@
             <iRange>1</iRange>
             <iRangeDefenseModifier>5</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>10</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
@@ -2127,7 +2127,7 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
             <SpawnTypes>
 				<SpawnType>SPAWN_GOBLIN_FORT_GOBLIN_SCORPION_CLAN</SpawnType>
 				<SpawnType>SPAWN_GOBLIN_FORT_WOLF_RIDER_SCORPION_CLAN</SpawnType>
@@ -2413,7 +2413,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>30</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
@@ -2578,7 +2578,7 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
             <SpawnTypes>
 				<SpawnType>SPAWN_HELLFIRE_CHAMPION</SpawnType>
 			</SpawnTypes>
@@ -2765,7 +2765,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>40</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_ICE</BonusConvert>
@@ -2773,7 +2773,7 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMoveLetumFrigus(pCaster, pPlot)</PythonOnMove>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
             <SpawnTypes>
 				<SpawnType>SPAWN_LETUM_FRIGUS_HOLLOW_MAN</SpawnType>
 			</SpawnTypes>
@@ -2841,7 +2841,7 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
             <SpawnTypes>
 				<SpawnType>SPAWN_LION_DEN_LION</SpawnType>
 				<SpawnType>SPAWN_LION_DEN_LION_PRIDE</SpawnType>
@@ -2988,7 +2988,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>30</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_AIR</BonusConvert>
@@ -4906,7 +4906,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>6</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>10</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_SUN</BonusConvert>
@@ -5124,7 +5124,7 @@
             <iRange>3</iRange>
             <iRangeDefenseModifier>25</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>30</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_BODY</BonusConvert>
@@ -5162,7 +5162,7 @@
 			<iDefenseModifier>50</iDefenseModifier>
 			<iHappiness>0</iHappiness>
 			<iPillageGold>0</iPillageGold>
-		<!-- WILDERNESS 09/2013 lfgr: To let its explored version upgrade to it -->
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration - To let its explored version upgrade to it -->
             <bOutsideBorders>1</bOutsideBorders>
 		<!-- WILDERNESS end -->
 			<TerrainMakesValids>
@@ -5210,7 +5210,7 @@
 					</YieldChanges>
 				</BonusTypeStruct>
 			</BonusTypeStructs>
-		<!-- WILDERNESS 09/2013 lfgr -->
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
             <ImprovementPillage>IMPROVEMENT_PALUS_EXPLORED</ImprovementPillage>
 		<!-- WILDERNESS end -->
 			<ImprovementUpgrade/>
@@ -5227,7 +5227,7 @@
 			<iRange>0</iRange>
 			<iRangeDefenseModifier>0</iRangeDefenseModifier>
 			<iVisibilityChange>3</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>30</iMinWilderness>
 		<!-- WILDERNESS end -->
 			<BonusConvert>BONUS_MANA_MIND</BonusConvert>
@@ -5856,7 +5856,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>20</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_SPIRIT</BonusConvert>
@@ -5894,7 +5894,7 @@
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
             <iPillageGold>0</iPillageGold>
-		<!-- WILDERNESS 09/2013 lfgr: To let its explored version upgrade to it -->
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration - To let its explored version upgrade to it -->
             <bOutsideBorders>1</bOutsideBorders>
 		<!-- WILDERNESS end -->
             <TerrainMakesValids>
@@ -5930,7 +5930,7 @@
                     </YieldChanges>
                 </BonusTypeStruct>
             </BonusTypeStructs>
-		<!-- WILDERNESS 09/2013 lfgr -->
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
             <ImprovementPillage>IMPROVEMENT_PYRE_OF_THE_SERAPHIC_EXPLORED</ImprovementPillage>
 		<!-- WILDERNESS end -->
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -5947,7 +5947,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
             <iMinWilderness>20</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_FIRE</BonusConvert>
@@ -5956,7 +5956,7 @@
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMovePyreOfTheSeraphic(pCaster, pPlot)</PythonOnMove>
         </ImprovementInfo>
-		<ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr -->
+		<ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
             <Type>IMPROVEMENT_PYRE_OF_THE_SERAPHIC_EXPLORED</Type>
             <Description>TXT_KEY_IMPROVEMENT_PYRE_OF_THE_SERAPHIC_EXPLORED</Description>
             <Civilopedia>TXT_KEY_IMPROVEMENT_PYRE_OF_THE_SERAPHIC_PEDIA</Civilopedia>
@@ -6228,7 +6228,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
             <iMinWilderness>10</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_METAMAGIC</BonusConvert>
@@ -6290,7 +6290,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
             <iMinWilderness>50</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
@@ -6377,7 +6377,7 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes ImprovementMinWilderness WildernessExploration -->
             <SpawnTypes>
 				<SpawnType>SPAWN_RUINS_EARLY_LIZARDMAN_WEAK</SpawnType>
 				<SpawnType>SPAWN_RUINS_EARLY_LIZARDMAN</SpawnType>
@@ -6465,7 +6465,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
             <iMinWilderness>10</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_FORCE</BonusConvert>
@@ -6806,7 +6806,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
             <iMinWilderness>10</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_EARTH</BonusConvert>
@@ -6893,7 +6893,7 @@
 			<iRange>0</iRange>
 			<iRangeDefenseModifier>0</iRangeDefenseModifier>
 			<iVisibilityChange>2</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
             <iMinWilderness>30</iMinWilderness>
 		<!-- WILDERNESS end -->
 			<BonusConvert>BONUS_MANA_AIR</BonusConvert>
@@ -6981,7 +6981,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
             <iMinWilderness>20</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_LIFE</BonusConvert>
@@ -7537,7 +7537,7 @@
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
         </ImprovementInfo>
-        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr -->
+        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr / NewLairs -->
             <Type>IMPROVEMENT_WOLF_DEN</Type>
             <Description>TXT_KEY_IMPROVEMENT_WOLF_DEN</Description>
             <Civilopedia>TXT_KEY_IMPROVEMENT_WOLF_DEN_PEDIA</Civilopedia>
@@ -7817,7 +7817,7 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
             <iMinWilderness>30</iMinWilderness>
 		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_FRUIT_OF_YGGDRASIL</BonusConvert>

@@ -588,7 +588,7 @@ class CvEventManager:
 					iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_TRAIT_ADAPTIVE')
 					triggerData = pPlayer.initTriggeredData(iEvent, true, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1)
 
-	# WILDERNESS 09/2013 lfgr
+	# WILDERNESS 09/2013 lfgr / WildernessMisc - Also BarbarianAlly AI will declare war against barbs if too strong.
 	#	if pPlayer.isHuman():
 	#		if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_BARBARIAN')):
 	#			eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())

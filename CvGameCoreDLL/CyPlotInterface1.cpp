@@ -292,6 +292,7 @@ void CyPlotPythonInterface1(python::class_<CyPlot>& x)
 		// Super Forts end
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, PlotWilderness, SpawnInfo                                             */
 /************************************************************************************************/
 		.def("isLair", &CyPlot::isLair, "bool ( bool bIgnoreAnimal, bool bAnimal )")
 		.def("getWilderness", &CyPlot::getWilderness, "int ()")

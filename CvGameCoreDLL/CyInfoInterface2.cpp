@@ -344,6 +344,7 @@ void CyInfoPythonInterface2()
 		.def("getPythonOnMove", &CvImprovementInfo::getPythonOnMove, "string ()")
 	/************************************************************************************************/
 	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* ImprovementSpawnTypes                                                                        */
 	/* Functions removed. Use CyPlot.isLair().                                                      */
 	/************************************************************************************************/
 	/*
