@@ -2276,6 +2276,8 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				szTempBuffer.Format(L"\nLair Plot = %d|%d.", pLairPlot->getX_INLINE(), pLairPlot->getY_INLINE() );
 				szString.append(szTempBuffer);
 			}
+			szTempBuffer.Format(L"\nMin Wilderness = %d.", pUnit->getMinWilderness() );
+			szString.append(szTempBuffer);
 
 			if( pUnit->getSpawnType() != NO_SPAWN )
 			{

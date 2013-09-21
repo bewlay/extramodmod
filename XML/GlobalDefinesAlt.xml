@@ -1029,7 +1029,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIT_MOVE_MIN_WILDERNESS_RANGE_RAGING_BARBARIANS_EXTRA</DefineName>
-		<iDefineIntVal>10</iDefineIntVal>
+		<iDefineIntVal>5</iDefineIntVal>
 	</Define>
     <Define>
         <DefineName>BARBARIAN_SPAWNING_SPEED</DefineName>
