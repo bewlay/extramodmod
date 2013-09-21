@@ -1033,11 +1033,16 @@ public:
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
 /************************************************************************************************/
-	int getMinWilderness() const; // DEPRECATED
-	void setMinWilderness( int iNewValue ); // DEPRECATED
-
+	int getMinWilderness() const;
+	void setMinWilderness( int iNewValue );
+	
+	// LairUnitCounter
 	int getLairPlot() const;
 	void setLairPlot( int iPlot );
+	
+	// UnitSpawnType
+	SpawnTypes getSpawnType() const;
+	void setSpawnType( SpawnTypes eNewValue );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -1211,9 +1216,13 @@ protected:
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
 /************************************************************************************************/
-	int m_iMinWilderness; // DEPRECATED
+	int m_iMinWilderness;
 
+	// Lair Unit Counter
 	int m_iLairPlot;
+	
+	// UnitSpawnType
+	SpawnTypes m_eSpawnType;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

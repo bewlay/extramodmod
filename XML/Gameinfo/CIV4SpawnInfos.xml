@@ -1785,6 +1785,9 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<CreateLair>IMPROVEMENT_BEAR_DEN</CreateLair>
+			<iCreateLairAge>30</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_BEAR_DEN_POLAR_BEAR -->
 			<Type>SPAWN_BEAR_DEN_POLAR_BEAR</Type>
@@ -1809,6 +1812,9 @@
 					<iWeight>100</iWeight>
 				</TerrainWeight>
 			</TerrainWeights>
+			<CreateLair>IMPROVEMENT_BEAR_DEN</CreateLair>
+			<iCreateLairAge>30</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_BEAR_DEN_CAVE_BEAR -->
 			<Type>SPAWN_BEAR_DEN_CAVE_BEAR</Type>
@@ -1823,6 +1829,9 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<CreateLair>IMPROVEMENT_BEAR_DEN</CreateLair>
+			<iCreateLairAge>40</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 
 		<!-- Goblin Fort -->
@@ -1921,6 +1930,9 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<CreateLair>IMPROVEMENT_LION_DEN</CreateLair>
+			<iCreateLairAge>50</iCreateLairAge>
+			<iCreateLairLevel>5</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LION_DEN_LION_PRIDE -->
 			<Type>SPAWN_LION_DEN_LION_PRIDE</Type>
@@ -1935,6 +1947,9 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<CreateLair>IMPROVEMENT_LION_DEN</CreateLair>
+			<iCreateLairAge>30</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LION_DEN_STRONG_LION_PRIDE -->
 			<Type>SPAWN_LION_DEN_STRONG_LION_PRIDE</Type>
@@ -1952,6 +1967,9 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_STRONG</PromotionType>
 			</UnitPromotions>
+			<CreateLair>IMPROVEMENT_LION_DEN</CreateLair>
+			<iCreateLairAge>30</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 
 		<!-- Ruins -->
@@ -2078,6 +2096,9 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<CreateLair>IMPROVEMENT_WOLF_DEN</CreateLair>
+			<iCreateLairAge>60</iCreateLairAge>
+			<iCreateLairLevel>5</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WOLF_DEN_WOLF_PACK -->
 			<Type>SPAWN_WOLF_DEN_WOLF_PACK</Type>
@@ -2092,6 +2113,9 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<CreateLair>IMPROVEMENT_WOLF_DEN</CreateLair>
+			<iCreateLairAge>40</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WOLF_DEN_STRONG_WOLF_PACK -->
 			<Type>SPAWN_WOLF_DEN_STRONG_WOLF_PACK</Type>
@@ -2109,6 +2133,9 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_STRONG</PromotionType>
 			</UnitPromotions>
+			<CreateLair>IMPROVEMENT_WOLF_DEN</CreateLair>
+			<iCreateLairAge>40</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 		
 		<!-- ANIMAL SPAWNS -->
@@ -2136,6 +2163,9 @@
 					<iWeight>50</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
+			<CreateLair>IMPROVEMENT_BEAR_DEN</CreateLair>
+			<iCreateLairAge>30</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_POLAR_BEAR -->
 			<Type>SPAWN_POLAR_BEAR</Type>
@@ -2159,6 +2189,9 @@
 					<iWeight>50</iWeight>
 				</TerrainWeight>
 			</TerrainWeights>
+			<CreateLair>IMPROVEMENT_BEAR_DEN</CreateLair>
+			<iCreateLairAge>40</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_STRONG_POLAR_BEAR -->
 			<Type>SPAWN_STRONG_POLAR_BEAR</Type>
@@ -2185,6 +2218,9 @@
 					<iWeight>50</iWeight>
 				</TerrainWeight>
 			</TerrainWeights>
+			<CreateLair>IMPROVEMENT_BEAR_DEN</CreateLair>
+			<iCreateLairAge>40</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_CAVE_BEAR -->
 			<Type>SPAWN_CAVE_BEAR</Type>
@@ -2208,6 +2244,9 @@
 					<iWeight>50</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
+			<CreateLair>IMPROVEMENT_BEAR_DEN</CreateLair>
+			<iCreateLairAge>30</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_ELEPHANT -->
 			<Type>SPAWN_ELEPHANT</Type>
@@ -2464,6 +2503,9 @@
 					<iWeight>-75</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
+			<CreateLair>IMPROVEMENT_LION_DEN</CreateLair>
+			<iCreateLairAge>50</iCreateLairAge>
+			<iCreateLairLevel>5</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LION_PRIDE -->
 			<Type>SPAWN_LION_PRIDE</Type>
@@ -2513,6 +2555,9 @@
 					<iWeight>-100</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
+			<CreateLair>IMPROVEMENT_LION_DEN</CreateLair>
+			<iCreateLairAge>30</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_PANTHER -->
 			<Type>SPAWN_PANTHER</Type>
@@ -2673,6 +2718,9 @@
 					<iWeight>75</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
+			<CreateLair>IMPROVEMENT_WOLF_DEN</CreateLair>
+			<iCreateLairAge>50</iCreateLairAge>
+			<iCreateLairLevel>5</iCreateLairLevel>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WOLF_PACK -->
 			<Type>SPAWN_WOLF_PACK</Type>
@@ -2702,6 +2750,9 @@
 					<iWeight>75</iWeight>
 				</FeatureWeight>
 			</FeatureWeights>
+			<CreateLair>IMPROVEMENT_WOLF_DEN</CreateLair>
+			<iCreateLairAge>30</iCreateLairAge>
+			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
 		
 		<!-- Water -->

@@ -12537,7 +12537,7 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns
 		return;
 	}
 
-	CvSpawnInfo& kSpawn = GC.getSpawnInfo( (SpawnTypes) eSpawn );
+	CvSpawnInfo& kSpawn = GC.getSpawnInfo( eSpawn );
 
 	CvUnit* pHeadUnit = NULL;
 
@@ -12627,6 +12627,9 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns
 				pHeadUnit = pUnit;
 			else
 				pUnit->joinGroup( pHeadUnit->getGroup() );
+
+			// CreateLair
+			pUnit->setSpawnType( eSpawn );
 
 			if( iHeldTurns > 0 )
 				pUnit->changeImmobileTimer( iHeldTurns );

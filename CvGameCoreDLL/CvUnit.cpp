@@ -542,6 +542,8 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 /************************************************************************************************/
 	m_iMinWilderness = 0;
 	m_iLairPlot = -1;
+	// UnitSpawnType
+	m_eSpawnType = NO_SPAWN;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -1510,7 +1512,56 @@ void CvUnit::doTurn()
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* CreateLair                                                                                   */
+/************************************************************************************************/
+	if( getSpawnType() != NO_SPAWN )
+	{
+		CvSpawnInfo& kSpawnInfo = GC.getSpawnInfo( getSpawnType() );
+		if( isBarbarian() && kSpawnInfo.getCreateLair() != NO_IMPROVEMENT )
+		{
+			if( getDamage() == 0 && !plot()->isOwned() && plot()->getImprovementType() == NO_IMPROVEMENT && plot()->canHaveImprovement( (ImprovementTypes) kSpawnInfo.getCreateLair() ) )
+			{
+				int iAge = ( GC.getGameINLINE().getGameTurn() - getGameTurnCreated() ) * 100 / GC.getGameSpeedInfo( GC.getGameINLINE().getGameSpeedType() ).getGrowthPercent();
 
+				if( iAge >= kSpawnInfo.getCreateLairAge() || getLevel() >= kSpawnInfo.getCreateLairLevel() )
+				{
+					bool bValid = true;
+
+					int iRadius = GC.getDefineINT( "AV_LAIR_DISTANCE", 5 );
+					iRadius = std::max( 1, (int) ( iRadius * ( 1.4 - 0.8 * plot()->getWilderness() / 100 ) + 0.5 ) );
+					for( int iChangeX = -iRadius; bValid && iChangeX <= iRadius; iChangeX++ )
+					{
+						for( int iChangeY = -iRadius; bValid && iChangeY <= iRadius; iChangeY++ )
+						{
+							CvPlot* pLoopPlot = GC.getMapINLINE().plotINLINE( plot()->getX_INLINE() + iChangeX, plot()->getY_INLINE() + iChangeY );
+							// LFGR_TODO: Move that to canHaveImprovement?
+							if( pLoopPlot != NULL )
+							{
+								if( pLoopPlot->isLair() && GC.getImprovementInfo( pLoopPlot->getImprovementType() ).isPermanent() == GC.getImprovementInfo( (ImprovementTypes) kSpawnInfo.getCreateLair() ).isPermanent() )
+									bValid = false;
+								else if( std::max( abs( iChangeX ), abs( iChangeY ) ) == 1 )
+									for( int iUnit = 0; iUnit < pPlot->getNumUnits(); iUnit++ )
+										if( !GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).isBarbarian() )
+											bValid = false;
+							}
+						}
+					}
+
+					if( bValid )
+					{
+						plot()->setImprovementType( (ImprovementTypes) kSpawnInfo.getCreateLair() );
+						AI_setUnitAIType( UNITAI_LAIRGUARDIAN );
+					}
+				}
+			}
+		}
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 }
 
 
@@ -19940,6 +19991,8 @@ void CvUnit::read(FDataStreamBase* pStream)
 /************************************************************************************************/
 	pStream->Read(&m_iMinWilderness);
 	pStream->Read(&m_iLairPlot);
+	// UnitSpawnType
+	pStream->Read((int*)&m_eSpawnType);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -20118,6 +20171,7 @@ void CvUnit::write(FDataStreamBase* pStream)
 /************************************************************************************************/
 	pStream->Write(m_iMinWilderness);
 	pStream->Write(m_iLairPlot);
+	pStream->Write(m_eSpawnType);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -20399,6 +20453,17 @@ void CvUnit::setLairPlot( int iPlot )
 			GC.getMapINLINE().plotByIndexINLINE( iPlot )->setLairUnitCount( GC.getMapINLINE().plotByIndexINLINE( iPlot )->getLairUnitCount() + 1 );
 		m_iLairPlot = iPlot;
 	}
+}
+
+// UnitSpawnType
+SpawnTypes CvUnit::getSpawnType() const
+{
+	return m_eSpawnType;
+}
+
+void CvUnit::setSpawnType( SpawnTypes eNewValue )
+{
+	m_eSpawnType = eNewValue;
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

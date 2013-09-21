@@ -484,6 +484,14 @@
                 </TerrainMakesValid>
             </TerrainMakesValids>
             <FeatureMakesValids>
+                <FeatureMakesValid>
+                    <FeatureType>FEATURE_FOREST</FeatureType>
+                    <bMakesValid>1</bMakesValid>
+                </FeatureMakesValid>
+                <FeatureMakesValid>
+                    <FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+                    <bMakesValid>1</bMakesValid>
+                </FeatureMakesValid>
             </FeatureMakesValids>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -2808,6 +2816,10 @@
                 </TerrainMakesValid>
             </TerrainMakesValids>
             <FeatureMakesValids>
+                <FeatureMakesValid>
+                    <FeatureType>FEATURE_SCRUB</FeatureType>
+                    <bMakesValid>1</bMakesValid>
+                </FeatureMakesValid>
             </FeatureMakesValids>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -7536,7 +7548,7 @@
             <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
             <bRiverSideMakesValid>0</bRiverSideMakesValid>
             <bNoFreshWater>0</bNoFreshWater>
-            <bRequiresFlatlands>1</bRequiresFlatlands>
+            <bRequiresFlatlands>0</bRequiresFlatlands>
             <bRequiresRiverSide>0</bRequiresRiverSide>
             <bRequiresIrrigation>0</bRequiresIrrigation>
             <bCarriesIrrigation>0</bCarriesIrrigation>

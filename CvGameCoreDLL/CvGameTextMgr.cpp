@@ -2266,13 +2266,34 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
             szString.append(szTempBuffer);
             szTempBuffer.Format(L"\nSacrifice Value = %d.", pUnit->AI_sacrificeValue(NULL));
             szString.append(szTempBuffer);
-		// LFGR_TEST
+	/************************************************************************************************/
+	/* WILDERNESS                             09/2013                                 lfgr          */
+	/************************************************************************************************/
 			CvPlot* pLairPlot = GC.getMapINLINE().plotByIndexINLINE( pUnit->getLairPlot() );
 			if( pLairPlot != NULL )
 			{
 				szTempBuffer.Format(L"\nLair Plot = %d|%d.", pLairPlot->getX_INLINE(), pLairPlot->getY_INLINE() );
 				szString.append(szTempBuffer);
 			}
+
+			if( pUnit->getSpawnType() != NO_SPAWN )
+			{
+				szTempBuffer.Format(L"\nSpawnInfo = %s.", GC.getSpawnInfo( pUnit->getSpawnType() ).getDescription() );
+				szString.append(szTempBuffer);
+				if( GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLair() != NO_IMPROVEMENT )
+				{
+					szTempBuffer.Format(L"\nCreate Lair = %s.", GC.getImprovementInfo( (ImprovementTypes) GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLair() ).getDescription() );
+					szString.append(szTempBuffer);
+					int iAge = ( GC.getGameINLINE().getGameTurn() - pUnit->getGameTurnCreated() ) * 100 / GC.getGameSpeedInfo( GC.getGameINLINE().getGameSpeedType() ).getGrowthPercent();
+					szTempBuffer.Format(L"\n  Age = %d/%d.", iAge, GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLairAge() );
+					szString.append(szTempBuffer);
+					szTempBuffer.Format(L"\n  Level = %d/%d.", pUnit->getLevel(), GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLairLevel() );
+					szString.append(szTempBuffer);
+				}
+			}
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
 		// LFGR_TEST end
         }
 	}

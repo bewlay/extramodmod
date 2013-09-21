@@ -21,6 +21,9 @@
 	<ElementType name="bWater" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoRace" content="textOnly" dt:type="boolean"/>
 	<ElementType name="UnitArtStyleType" content="textOnly"/>
+	<ElementType name="CreateLair" content="textOnly"/>
+	<ElementType name="iCreateLairAge" content="textOnly" dt:type="int"/>
+	<ElementType name="iCreateLairLevel" content="textOnly" dt:type="int"/>
 	
 	<ElementType name="Unit" content="textOnly"/>
 	<ElementType name="iNumUnits" content="textOnly" dt:type="int"/>
@@ -102,6 +105,9 @@
 		<element type="ImprovementWeights" minOccurs="0"/>
 		<element type="PrereqTechs" minOccurs="0"/>
 		<element type="ObsoleteTechs" minOccurs="0"/>
+		<element type="CreateLair" minOccurs="0"/>
+		<element type="iCreateLairAge" minOccurs="0"/>
+		<element type="iCreateLairLevel" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="SpawnInfos" content="eltOnly">
 		<element type="SpawnInfo" maxOccurs="*"/>

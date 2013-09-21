@@ -28175,6 +28175,7 @@ bool CvMainMenuInfo::read(CvXMLLoadUtility* pXML)
 
 CvSpawnInfo::CvSpawnInfo():
 	m_eUnitArtStyleType( NO_UNIT_ARTSTYLE ),
+	m_eCreateLair(NO_IMPROVEMENT),
 	m_iWeight( 0 ),
 	m_iProbability( 100 ),
 	m_iMinWilderness( 0 ),
@@ -28183,6 +28184,8 @@ CvSpawnInfo::CvSpawnInfo():
 	m_iMinRandomPromotions( -1 ),
 	m_iMaxRandomPromotions( -1 ),
 	m_iNumRandomIncludedSpawns( -1 ),
+	m_iCreateLairAge(0),
+	m_iCreateLairLevel(0),
 	m_bNeverSpawn( false ),
 	m_bExplorationResult( false ),
 	m_bExplorationNoPush( false ),
@@ -28215,6 +28218,11 @@ CvSpawnInfo::~CvSpawnInfo()
 int CvSpawnInfo::getUnitArtStyleType() const
 {
 	return m_eUnitArtStyleType;
+}
+
+int CvSpawnInfo::getCreateLair() const
+{
+	return m_eCreateLair;
 }
 
 int CvSpawnInfo::getWeight() const
@@ -28255,6 +28263,16 @@ int CvSpawnInfo::getMaxRandomPromotions() const
 int CvSpawnInfo::getNumRandomIncludedSpawns() const
 {
 	return m_iNumRandomIncludedSpawns;
+}
+
+int CvSpawnInfo::getCreateLairAge() const
+{
+	return m_iCreateLairAge;
+}
+
+int CvSpawnInfo::getCreateLairLevel() const
+{
+	return m_iCreateLairLevel;
 }
 
 bool CvSpawnInfo::isNeverSpawn() const
@@ -28348,6 +28366,7 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	CvInfoBase::read(stream);
 	
 	stream->Read(&m_eUnitArtStyleType);
+	stream->Read(&m_eCreateLair);
 	stream->Read(&m_iWeight);
 	stream->Read(&m_iProbability);
 	stream->Read(&m_iMinWilderness);
@@ -28356,6 +28375,8 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iMinRandomPromotions);
 	stream->Read(&m_iMaxRandomPromotions);
 	stream->Read(&m_iNumRandomIncludedSpawns);
+	stream->Read(&m_iCreateLairAge);
+	stream->Read(&m_iCreateLairLevel);
 	stream->Read(&m_bNeverSpawn);
 	stream->Read(&m_bExplorationResult);
 	stream->Read(&m_bExplorationNoPush);
@@ -28403,6 +28424,7 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	CvInfoBase::write(stream);
 	
 	stream->Write(m_eUnitArtStyleType);
+	stream->Write(m_eCreateLair);
 	stream->Write(m_iWeight);
 	stream->Write(m_iProbability);
 	stream->Write(m_iMinWilderness);
@@ -28411,6 +28433,8 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iMinRandomPromotions);
 	stream->Write(m_iMaxRandomPromotions);
 	stream->Write(m_iNumRandomIncludedSpawns);
+	stream->Write(m_iCreateLairAge);
+	stream->Write(m_iCreateLairLevel);
 	stream->Write(m_bNeverSpawn);
 	stream->Write(m_bExplorationResult);
 	stream->Write(m_bExplorationNoPush);
@@ -28440,6 +28464,8 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "UnitArtStyleType");
 	m_eUnitArtStyleType = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "CreateLair");
+	m_eCreateLair = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iWeight, "iBaseWeight");
 	pXML->GetChildXmlValByName(&m_iProbability, "iProbability", 100 );
@@ -28449,6 +28475,8 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iMinRandomPromotions, "iMinRandomPromotions", -1);
 	pXML->GetChildXmlValByName(&m_iMaxRandomPromotions, "iMaxRandomPromotions", -1);
 	pXML->GetChildXmlValByName(&m_iNumRandomIncludedSpawns, "iNumRandomIncludedSpawns", -1);
+	pXML->GetChildXmlValByName(&m_iCreateLairAge, "iCreateLairAge" );
+	pXML->GetChildXmlValByName(&m_iCreateLairLevel, "iCreateLairLevel" );
 	pXML->GetChildXmlValByName(&m_bNeverSpawn, "bNeverSpawn");
 	pXML->GetChildXmlValByName(&m_bExplorationResult, "bExplorationResult");
 	pXML->GetChildXmlValByName(&m_bExplorationNoPush, "bExplorationNoPush");

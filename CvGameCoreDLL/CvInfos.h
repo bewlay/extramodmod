@@ -1438,8 +1438,8 @@ public:
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
-	int getMinWilderness() const;
-	int getMaxWilderness() const;
+	int getMinWilderness() const; // Deprecated
+	int getMaxWilderness() const; // Deprecated
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -1693,8 +1693,8 @@ protected:
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
-	int m_iMinWilderness;
-	int m_iMaxWilderness;
+	int m_iMinWilderness; // Deprecated
+	int m_iMaxWilderness; // Deprecated
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -7690,6 +7690,8 @@ public:
 	virtual ~CvSpawnInfo();
 
 	int getUnitArtStyleType() const;
+
+	int getCreateLair() const;
 	
 	int getWeight() const;
 	int getProbability() const;
@@ -7701,6 +7703,9 @@ public:
 	int getMaxRandomPromotions() const;
 
 	int getNumRandomIncludedSpawns() const;
+	
+	int getCreateLairAge() const;
+	int getCreateLairLevel() const;
 	
 	bool isNeverSpawn() const;
 	bool isExplorationResult() const;
@@ -7731,6 +7736,7 @@ public:
 protected:
 	
 	int m_eUnitArtStyleType;
+	int m_eCreateLair;
 	
 	int m_iWeight;
 	int m_iProbability;
@@ -7740,6 +7746,8 @@ protected:
 	int m_iMinRandomPromotions;
 	int m_iMaxRandomPromotions;
 	int m_iNumRandomIncludedSpawns;
+	int m_iCreateLairLevel;
+	int m_iCreateLairAge;
 	bool m_bNeverSpawn;
 	bool m_bExplorationResult;
 	bool m_bExplorationNoPush;
