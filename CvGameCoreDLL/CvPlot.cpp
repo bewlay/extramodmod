@@ -547,11 +547,18 @@ void CvPlot::doTurn()
 
 				int iChance = GC.getDefineINT( "BASE_BARBS_PER_LAIR" );
 				iChance *= GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getLairSpawnRate();
-				if ( kBestSpawn.isAnimal() && !bDoubleAnimals )
+				if ( kBestSpawn.isAnimal() )
+				{
+					if( bDoubleAnimals )
+						iChance = iChance * 3 / 2;
 					iChance /= 2;
+				}
 				// Tholal - put more rage into Raging Barbarians
-				else if( !kBestSpawn.isAnimal() && bRagingBarbs)
-					iChance = iChance * 3 / 2;
+				else if( !kBestSpawn.isAnimal() )
+				{
+					if( bRagingBarbs )
+						iChance = iChance * 3 / 2;
+				}
 				iChance = std::max( 1, iChance );
 				iChance -= getLairUnitCount();
 				
