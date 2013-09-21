@@ -2279,7 +2279,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 
 			if( pUnit->getSpawnType() != NO_SPAWN )
 			{
-				szTempBuffer.Format(L"\nSpawnInfo = %s.", GC.getSpawnInfo( pUnit->getSpawnType() ).getDescription() );
+				szTempBuffer.Format(L"\nSpawnInfo = %S.", GC.getSpawnInfo( pUnit->getSpawnType() ).getType() );
 				szString.append(szTempBuffer);
 				if( GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLair() != NO_IMPROVEMENT )
 				{
@@ -2289,6 +2289,8 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 					szTempBuffer.Format(L"\n  Age = %d/%d.", iAge, GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLairAge() );
 					szString.append(szTempBuffer);
 					szTempBuffer.Format(L"\n  Level = %d/%d.", pUnit->getLevel(), GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLairLevel() );
+					szString.append(szTempBuffer);
+					szTempBuffer.Format(L"\n  Plot canHaveImprovement(): %s.", pUnit->plot()->canHaveImprovement( (ImprovementTypes) GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLair() ) ? L"Yes" : L"No" );
 					szString.append(szTempBuffer);
 				}
 			}
