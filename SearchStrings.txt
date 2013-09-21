@@ -1,17 +1,21 @@
-WILDERNESS
+General Search String: WILDERNESS
 
-(Components)
+Components:
 	WildernessMisc
 	WildernessFix
 	Debug
 
-	PlotWilderness - Each plot has a wilderness value assigned, Original by Sephi
+	CreateLair - DLL / New system for creating lairs
+	ImprovementSpawnTypes - DLL, Python / Lairs spawns are chosen from a set of SpawnTypes
+	ImprovementWilderness - DLL / Min and Max plot wilderness for placing improvements / Original by Sephi
+	LairUnitCounter - DLL / Lairs have a maximum of spawned units existing at once
+	NewLairs - XML
+	NewUnits - XML / New Barbarian Units and associated buildings
+	PlotWilderness - DLL / Each plot has a wilderness value assigned / Original by Sephi
+	PromotionExplResultBonus - DLL, Python / Promotions can alter lair exploration results / Idea from RifE
+	SpawnInfo - DLL / An info type to handle randoms spawns, spawns from lairs and spawns from exploration results, changes to random spawning
+	UnitSpawnType - DLL / When a unit is spawned, the SpawnType is assigned to it to better identification used by other components
+	UnitMinWilderness - DLL / Units have a min wilderness to enter
+	WildernessExploration - Python / New System for Lair Exploration, unique features don't vanish
 
-	CreateLair - New system for creating lairs
-	ImprovementSpawnTypes - Lairs spawns are chosen from a set of SpawnTypes
-	ImprovementWilderness
-	LairUnitCounter
-	PromotionExplResultBonus
-	SpawnInfo
-	UnitSpawnType
-	UnitMinWilderness
+The components may be dependent on each other.
