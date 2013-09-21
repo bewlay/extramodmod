@@ -1898,6 +1898,35 @@
 				<Tech>TECH_BOWYERS</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN_WEAK -->
+			<Type>SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN_WEAK</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_ARCHER_SCORPION_CLAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WEAK</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN -->
+			<Type>SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_ARCHER_SCORPION_CLAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
 		
 		<!-- Hellfire -->
 		<SpawnInfo> <!-- SPAWN_HELLFIRE_CHAMPION -->
@@ -2028,8 +2057,8 @@
 				<Tech>TECH_FERAL_BOND</Tech>
 			</ObsoleteTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_RUINS_MIDDLE_LIZARDMAN_RANGER -->
-			<Type>SPAWN_RUINS_MIDDLE_LIZARDMAN_RANGER</Type>
+		<SpawnInfo> <!-- SPAWN_RUINS_MIDDLE_LIZARDMAN_RANGER_WEAK -->
+			<Type>SPAWN_RUINS_MIDDLE_LIZARDMAN_RANGER_WEAK</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<iMinWilderness>50</iMinWilderness>
 			<iMaxWilderness>100</iMaxWilderness>
@@ -2040,6 +2069,9 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WEAK</PromotionType>
+			</UnitPromotions>
 			<PrereqTechs>
 				<Tech>TECH_HUNTING</Tech>
 			</PrereqTechs>
@@ -2062,6 +2094,32 @@
 			<PrereqTechs>
 				<Tech>TECH_FERAL_BOND</Tech>
 			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_RUINS_GUARDIAN_LIZARDMAN -->
+			<Type>SPAWN_RUINS_GUARDIAN_LIZARDMAN</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>70</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LIZARDMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_RUINS_GUARDIAN_LIZARDMAN_RANGER -->
+			<Type>SPAWN_RUINS_GUARDIAN_LIZARDMAN_RANGER</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>70</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LIZARDMAN_RANGER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
 		</SpawnInfo>
 		
 		<!-- Letum Frigus -->

@@ -15032,13 +15032,14 @@ m_iFeatureUpgrade(NO_FEATURE),
 m_iPrereqCivilization(NO_CIVILIZATION),
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementSpawnTypes, ImprovementWilderness                                                 */
+/* ImprovementSpawnTypes, LairGuardians, ImprovementWilderness                                  */
 /************************************************************************************************/
 /*
 m_iSpawnUnitType(NO_UNIT),
 m_iFreeSpawnPromotion(NO_PROMOTION),
 */
 m_pbSpawnTypes( NULL ),
+m_pbGuardianSpawnTypes( NULL ),
 m_iMinWilderness(0),
 m_iMaxWilderness(MAX_INT),
 /************************************************************************************************/
@@ -15526,13 +15527,20 @@ int CvImprovementInfo::getImprovementBonusDiscoverRand(int i) const
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementSpawnTypes                                                                        */
+/* ImprovementSpawnTypes, GuardianSpawnTypes                                                    */
 /************************************************************************************************/
 bool CvImprovementInfo::getSpawnTypes( int i ) const
 {
 	FAssertMsg(i < GC.getNumSpawnInfos(), "Index out of bounds");
 	FAssertMsg(i > -1, "Index out of bounds");
 	return m_pbSpawnTypes ? m_pbSpawnTypes[i] : false;
+}
+
+bool CvImprovementInfo::isGuardianSpawnType( int i ) const
+{
+	FAssertMsg(i < GC.getNumSpawnInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_pbGuardianSpawnTypes ? m_pbGuardianSpawnTypes[i] : false;
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
@@ -15674,11 +15682,15 @@ void CvImprovementInfo::read(FDataStreamBase* stream)
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementSpawnTypes                                                                        */
+/* ImprovementSpawnTypes, LairGuardians                                                         */
 /************************************************************************************************/
 	SAFE_DELETE_ARRAY(m_pbSpawnTypes);
 	m_pbSpawnTypes = new bool[GC.getNumSpawnInfos()];
 	stream->Read(GC.getNumSpawnInfos(), m_pbSpawnTypes);
+
+	SAFE_DELETE_ARRAY(m_pbGuardianSpawnTypes);
+	m_pbGuardianSpawnTypes = new bool[GC.getNumSpawnInfos()];
+	stream->Read(GC.getNumSpawnInfos(), m_pbGuardianSpawnTypes);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -15816,6 +15828,7 @@ void CvImprovementInfo::write(FDataStreamBase* stream)
 /* ImprovementSpawnTypes                                                                        */
 /************************************************************************************************/
 	stream->Write(GC.getNumSpawnInfos(), m_pbSpawnTypes);
+	stream->Write(GC.getNumSpawnInfos(), m_pbGuardianSpawnTypes);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -16116,6 +16129,33 @@ bool CvImprovementInfo::read(CvXMLLoadUtility* pXML)
 
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
+	
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"GuardianSpawnTypes"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						m_aszExtraXML3forPass3.push_back(szTextVal);
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -16191,6 +16231,21 @@ bool CvImprovementInfo::readPass3()
 	}
 
 	m_aszExtraXMLforPass3.clear();
+	
+	m_pbGuardianSpawnTypes = new bool[GC.getNumSpawnInfos()];
+	for( int eSpawnType = 0; eSpawnType < GC.getNumSpawnInfos(); eSpawnType++ )
+		m_pbGuardianSpawnTypes[eSpawnType] = false;
+
+	for( unsigned int i = 0; i < m_aszExtraXML3forPass3.size(); i++ )
+	{
+		int eSpawnType = GC.getInfoTypeForString (m_aszExtraXML3forPass3[i] );
+		if( eSpawnType >= 0 && eSpawnType < GC.getNumSpawnInfos() )
+			m_pbGuardianSpawnTypes[eSpawnType] = true;
+		else
+			FAssert( false );
+	}
+
+	m_aszExtraXML3forPass3.clear();
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

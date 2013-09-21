@@ -1554,7 +1554,9 @@ void CvUnit::doTurn()
 					if( bValid )
 					{
 						plot()->setImprovementType( (ImprovementTypes) kSpawnInfo.getCreateLair() );
-						AI_setUnitAIType( UNITAI_LAIRGUARDIAN );
+						// LairGuardian
+						if( plot()->plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER) == 0 )
+							AI_setUnitAIType( UNITAI_LAIRGUARDIAN );
 					}
 				}
 			}

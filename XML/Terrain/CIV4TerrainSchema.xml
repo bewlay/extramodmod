@@ -484,6 +484,9 @@
 	<ElementType name="SpawnTypes" content="eltOnly">
 		<element type="SpawnType" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="GuardianSpawnTypes" content="eltOnly">
+		<element type="SpawnType" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
 <!-- WILDERNESS end -->
 	<ElementType name="ImprovementInfo" content="eltOnly">
 		<element type="Type"/>
@@ -559,6 +562,7 @@
 	<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
 	<!-- Removed elements SpawnUnitType and FreeSpawnPromotion -->
 		<element type="SpawnTypes" minOccurs="0"/>
+		<element type="GuardianSpawnTypes" minOccurs="0"/>
 	<!-- WILDERNESS end -->
 	</ElementType>
 	<ElementType name="ImprovementInfos" content="eltOnly">

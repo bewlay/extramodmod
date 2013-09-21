@@ -971,7 +971,7 @@
 		<DefineName>PUPPET_CULTURE_MULTIPLIER</DefineName> 
 		<iDefineIntVal>50</iDefineIntVal>
 	</Define>
-<!-- WILDERNESS 08/2013 lfgr / PlotWilderness, SpawnInfo, LairUnitCount, CreateLair -->
+<!-- WILDERNESS 08/2013 lfgr / PlotWilderness, SpawnInfo, LairUnitCount, CreateLair, LairGuardian -->
 	<Define>
 		<DefineName>WILDERNESS_MIN_MAX_INHABITED_WILDERNESS</DefineName>
 		<iDefineIntVal>30</iDefineIntVal>
@@ -1073,6 +1073,10 @@
     </Define>
     <Define>
         <DefineName>AV_LAIR_DISTANCE</DefineName>
+        <iDefineIntVal>5</iDefineIntVal>
+    </Define>
+    <Define>
+        <DefineName>LAIR_GUARDIAN_STARTING_PLOT_MIN_DISTANCE</DefineName>
         <iDefineIntVal>5</iDefineIntVal>
     </Define>
 <!-- WILDERNESS end -->

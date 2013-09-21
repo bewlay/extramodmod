@@ -435,7 +435,7 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr ImprovementSpawnTypes -->
             <SpawnTypes>
 				<SpawnType>SPAWN_BARROW_EARLY_SKELETON</SpawnType>
 				<SpawnType>SPAWN_BARROW_EARLY_SPECTRE</SpawnType>
@@ -513,12 +513,17 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-		<!-- WILDERNESS 08/2013 lfgr -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes, LairGuardians -->
             <SpawnTypes>
 				<SpawnType>SPAWN_BEAR_DEN_BEAR</SpawnType>
 				<SpawnType>SPAWN_BEAR_DEN_POLAR_BEAR</SpawnType>
 				<SpawnType>SPAWN_BEAR_DEN_CAVE_BEAR</SpawnType>
 			</SpawnTypes>
+            <GuardianSpawnTypes>
+				<SpawnType>SPAWN_BEAR_DEN_BEAR</SpawnType>
+				<SpawnType>SPAWN_BEAR_DEN_POLAR_BEAR</SpawnType>
+				<SpawnType>SPAWN_BEAR_DEN_CAVE_BEAR</SpawnType>
+			</GuardianSpawnTypes>
 		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
@@ -2127,13 +2132,17 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes, LairGuardians -->
             <SpawnTypes>
 				<SpawnType>SPAWN_GOBLIN_FORT_GOBLIN_SCORPION_CLAN</SpawnType>
 				<SpawnType>SPAWN_GOBLIN_FORT_WOLF_RIDER_SCORPION_CLAN</SpawnType>
 				<SpawnType>SPAWN_GOBLIN_FORT_CHARIOT_SCORPION_CLAN</SpawnType>
 				<SpawnType>SPAWN_GOBLIN_FORT_ARCHER_SCORPION_CLAN</SpawnType>
 			</SpawnTypes>
+            <GuardianSpawnTypes>
+				<SpawnType>SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN_WEAK</SpawnType>
+				<SpawnType>SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN</SpawnType>
+			</GuardianSpawnTypes>
 		<!-- WILDERNESS end -->
 			<bBombardable>1</bBombardable>
         </ImprovementInfo>
@@ -2841,12 +2850,17 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes, LairGuardians -->
             <SpawnTypes>
 				<SpawnType>SPAWN_LION_DEN_LION</SpawnType>
 				<SpawnType>SPAWN_LION_DEN_LION_PRIDE</SpawnType>
 				<SpawnType>SPAWN_LION_DEN_STRONG_LION_PRIDE</SpawnType>
 			</SpawnTypes>
+            <GuardianSpawnTypes>
+				<SpawnType>SPAWN_LION_DEN_LION</SpawnType>
+				<SpawnType>SPAWN_LION_DEN_LION_PRIDE</SpawnType>
+				<SpawnType>SPAWN_LION_DEN_STRONG_LION_PRIDE</SpawnType>
+			</GuardianSpawnTypes>
 		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
@@ -6377,14 +6391,18 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes ImprovementMinWilderness WildernessExploration -->
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes, LairGuardians -->
             <SpawnTypes>
 				<SpawnType>SPAWN_RUINS_EARLY_LIZARDMAN_WEAK</SpawnType>
 				<SpawnType>SPAWN_RUINS_EARLY_LIZARDMAN</SpawnType>
 				<SpawnType>SPAWN_RUINS_MIDDLE_LIZARDMAN</SpawnType>
-				<SpawnType>SPAWN_RUINS_MIDDLE_LIZARDMAN_RANGER</SpawnType>
+				<SpawnType>SPAWN_RUINS_MIDDLE_LIZARDMAN_RANGER_WEAK</SpawnType>
 				<SpawnType>SPAWN_RUINS_LATE_LIZARDMAN_RANGER</SpawnType>
 			</SpawnTypes>
+            <GuardianSpawnTypes>
+				<SpawnType>SPAWN_RUINS_GUARDIAN_LIZARDMAN</SpawnType>
+				<SpawnType>SPAWN_RUINS_GUARDIAN_LIZARDMAN_RANGER</SpawnType>
+			</GuardianSpawnTypes>
 		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
@@ -7537,7 +7555,7 @@
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
         </ImprovementInfo>
-        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr / NewLairs -->
+        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr / NewLairs, ImprovementSpawnTypes -->
             <Type>IMPROVEMENT_WOLF_DEN</Type>
             <Description>TXT_KEY_IMPROVEMENT_WOLF_DEN</Description>
             <Civilopedia>TXT_KEY_IMPROVEMENT_WOLF_DEN_PEDIA</Civilopedia>
@@ -7599,11 +7617,18 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
+		<!-- WILDERNESS 09/2013 lfgr / ImprovementSpawnTypes, LairGuardians -->
             <SpawnTypes>
 				<SpawnType>SPAWN_WOLF_DEN_WOLF</SpawnType>
 				<SpawnType>SPAWN_WOLF_DEN_WOLF_PACK</SpawnType>
 				<SpawnType>SPAWN_WOLF_DEN_STRONG_WOLF_PACK</SpawnType>
 			</SpawnTypes>
+            <GuardianSpawnTypes>
+				<SpawnType>SPAWN_WOLF_DEN_WOLF</SpawnType>
+				<SpawnType>SPAWN_WOLF_DEN_WOLF_PACK</SpawnType>
+				<SpawnType>SPAWN_WOLF_DEN_STRONG_WOLF_PACK</SpawnType>
+			</GuardianSpawnTypes>
+		<!-- WILDERNESS end -->
         </ImprovementInfo>
 		<ImprovementInfo>
             <Type>IMPROVEMENT_WORKSHOP</Type>

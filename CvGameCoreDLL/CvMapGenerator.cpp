@@ -1306,21 +1306,48 @@ void CvMapGenerator::addImprovements()
 								{
 								/************************************************************************************************/
 								/* WILDERNESS                             08/2013                                 lfgr          */
-								/* WildernessMisc                                                                               */
-								/* More Lairs in higher wilderness                                                              */
+								/* WildernessMisc, LairGuardian                                                                 */
+								/* More Lairs in higher wilderness, Lairs with guardians have a min distance to starting plots  */
 								/************************************************************************************************/
 								/*
 									if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement") < GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability())
+									{
+										pPlot->setImprovementType((ImprovementTypes)iJ);
+										pPlot->setFeatureType(NO_FEATURE);
 								*/
 									int iProbability = GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability();
 									iProbability += (int) ( iProbability * ( pPlot->getWilderness() * 2 / 100.0 ) );
 									if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement") < iProbability)
+									{
+										bool bValid = true;
+
+										// Lair Guardian min distance from starting plots
+										bool bGuardian = false;
+										for( int eLoopSpawn = 0; !bGuardian && eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+											if( GC.getImprovementInfo( (ImprovementTypes) iJ ).isGuardianSpawnType( eLoopSpawn ) )
+												if( int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn, true ) > 0 )
+													bGuardian = true;
+
+										if( bGuardian )
+										{
+											int iRadius = GC.getDefineINT( "LAIR_GUARDIAN_STARTING_PLOT_MIN_DISTANCE", 5 );
+											for( int iPlayer = 0; bValid && iPlayer < GC.getMAX_CIV_PLAYERS(); iPlayer++ )
+											{
+												CvPlot* pStartingPlot = GET_PLAYER( (PlayerTypes) iPlayer ).getStartingPlot();
+												if( pStartingPlot != NULL && stepDistance( pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), pPlot->getX_INLINE(), pPlot->getY_INLINE() ) <= iRadius )
+													bValid = false;
+											}
+
+										}
+										
+										if( bValid )
+										{
+											pPlot->setImprovementType( (ImprovementTypes) iJ );
+											pPlot->setFeatureType( NO_FEATURE );
+										}
 								/************************************************************************************************/
 								/* WILDERNESS                                                                     END           */
 								/************************************************************************************************/
-									{
-										pPlot->setImprovementType((ImprovementTypes)iJ);
-										pPlot->setFeatureType(NO_FEATURE);
 									}
 								}
 							}

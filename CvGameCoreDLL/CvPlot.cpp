@@ -6894,6 +6894,41 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 
 		if (getImprovementType() != NO_IMPROVEMENT)
 		{
+		/************************************************************************************************/
+		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* LairGuardian                                                                                 */
+		/************************************************************************************************/
+			if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_BARBARIANS ) )
+			{
+				SpawnTypes eBestSpawn = NO_SPAWN;
+				int iBestValue = 0;
+
+				for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+				{
+					if( GC.getImprovementInfo( getImprovementType() ).isGuardianSpawnType( eLoopSpawn ) )
+					{
+						CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
+
+						int iValue = getSpawnValue( (SpawnTypes) eLoopSpawn, true );
+
+						if( iValue > 0 )
+						{
+							iValue += GC.getGameINLINE().getSorenRandNum(100, "Spawn selection");
+
+							if (iValue > iBestValue)
+							{
+								eBestSpawn = (SpawnTypes) eLoopSpawn;
+								iBestValue = iValue;
+							}
+						}
+					}
+				}
+				if( eBestSpawn != NO_SPAWN )
+					createSpawn( eBestSpawn, UNITAI_LAIRGUARDIAN, 0, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
+			}
+		/************************************************************************************************/
+		/* WILDERNESS                                                                     END           */
+		/************************************************************************************************/
 			if (area())
 			{
 				area()->changeNumImprovements(getImprovementType(), 1);

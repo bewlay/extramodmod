@@ -3742,13 +3742,14 @@ public:
 	const TCHAR* getPythonOnMove() const;
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementSpawnTypes, ImprovementWilderness                                                 */
+/* ImprovementSpawnTypes, LairGuardians, ImprovementWilderness                                  */
 /************************************************************************************************/
 /*
 	int getSpawnUnitType() const;
 	int getFreeSpawnPromotion() const;
 */
 	bool getSpawnTypes( int eSpawn ) const;
+	bool isGuardianSpawnType( int eSpawn ) const;
 
 	int getMinWilderness() const;
 	int getMaxWilderness() const;
@@ -3827,13 +3828,14 @@ protected:
 	CvString m_szPythonOnMove;
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementSpawnTypes, ImprovementWilderness                                                 */
+/* ImprovementSpawnTypes, LairGuardians, ImprovementWilderness                                  */
 /************************************************************************************************/
 /*
 	int m_iSpawnUnitType;
 	int m_iFreeSpawnPromotion;
 */
 	bool* m_pbSpawnTypes;
+	bool* m_pbGuardianSpawnTypes;
 	
 	int m_iMinWilderness;
 	int m_iMaxWilderness;
@@ -3841,8 +3843,9 @@ protected:
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 	int m_iVisibilityChange;
-
+	
 	std::vector<CvString> m_aszExtraXML2forPass3;
+	std::vector<CvString> m_aszExtraXML3forPass3;
 //FfH: End Add
 
 	// Arrays
