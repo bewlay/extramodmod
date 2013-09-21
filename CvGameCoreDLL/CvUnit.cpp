@@ -12313,7 +12313,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 		/************************************************************************************************/
 		/* WILDERNESS                             08/2013                                 lfgr          */
 		/* ImprovementSpawnTypes                                                                        */
-		/* Raze all non-permanent lairs, independent from whether they spawn animals                    */
+		/* Raze all non-permanent lairs. BarbAllies only raze animal lairs                              */
 		/************************************************************************************************/
 		/*
 			if (kImprovementInfo.getSpawnUnitType() != NO_UNIT)
@@ -12340,7 +12340,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 		*/
 			if( pNewPlot->isLair() && !kImprovementInfo.isPermanent() )
 			{
-				if ( !isBarbarian() )
+				if ( !isBarbarian() && ( pNewPlot->isLair( false, true ) || GET_TEAM( GET_PLAYER( getOwnerINLINE() ).getTeam() ).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) ) )
 				{
 					if (isHuman())
 					{
