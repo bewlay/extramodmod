@@ -2685,7 +2685,7 @@ bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 	}
 // End EmperorFool: Events with Images
 
-	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, pTriggeredData->m_szText);
+	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, pTriggeredData->m_szText + "\n");
 
 	bool bEventAvailable = false;
 	for (int i = 0; i < kTrigger.getNumEvents(); i++)
