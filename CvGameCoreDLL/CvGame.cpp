@@ -7521,11 +7521,11 @@ void CvGame::createBarbarianUnits()
 					{
 						if( std::max( abs( iChangeX ), abs( iChangeY ) ) == iRadius )
 						{
-							int iX = pPlot->getX_INLINE() + iChangeX;
-							int iY = pPlot->getY_INLINE() + iChangeY;
-							int iRingPlot = GC.getMapINLINE().plotNumINLINE( iX, iY );
-							if( GC.getMapINLINE().plotINLINE( iX, iY ) != NULL && GC.getMapINLINE().plotINLINE( iX, iY )->getArea() == pPlot->getArea() )
+							CvPlot* pRingPlot = GC.getMapINLINE().plotINLINE( pPlot->getX_INLINE() + iChangeX, pPlot->getY_INLINE() + iChangeY );
+							if( pRingPlot != NULL && pRingPlot->getArea() == pPlot->getArea() )
 							{
+								// Use CvPlot::getX for wrapped worlds
+								int iRingPlot = GC.getMapINLINE().plotNumINLINE( pRingPlot->getX_INLINE(), pRingPlot->getY_INLINE() );
 								bFoundPotentialValidPlot = true;
 								if( vbPlotAnimalValid[iRingPlot] )
 									viAnimalValidRingPlots.push_back( iRingPlot );
