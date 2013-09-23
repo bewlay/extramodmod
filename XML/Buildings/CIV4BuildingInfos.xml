@@ -6761,7 +6761,7 @@
             <iFreePromotionPick>0</iFreePromotionPick>
             <iGlobalResistEnemyModify>0</iGlobalResistEnemyModify>
             <iGlobalResistModify>0</iGlobalResistModify>
-            <iModifyGlobalCounter>0</iModifyGlobalCounter>
+            <iModifyGlobalCounter>1</iModifyGlobalCounter>
             <iPlotRadius>0</iPlotRadius>
             <iResistMagic>0</iResistMagic>
             <FreeBonus2>NONE</FreeBonus2>
@@ -8200,7 +8200,7 @@
             <iFreePromotionPick>0</iFreePromotionPick>
             <iGlobalResistEnemyModify>0</iGlobalResistEnemyModify>
             <iGlobalResistModify>0</iGlobalResistModify>
-            <iModifyGlobalCounter>0</iModifyGlobalCounter>
+            <iModifyGlobalCounter>-1</iModifyGlobalCounter>
             <iPlotRadius>0</iPlotRadius>
             <iResistMagic>0</iResistMagic>
             <FreeBonus2>NONE</FreeBonus2>
