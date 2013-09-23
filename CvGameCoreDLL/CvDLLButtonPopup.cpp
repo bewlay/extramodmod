@@ -910,7 +910,7 @@ void CvDLLButtonPopup::OnFocus(CvPopup* pPopup, CvPopupInfo &info)
 bool CvDLLButtonPopup::launchButtonPopup(CvPopup* pPopup, CvPopupInfo &info)
 {
 	// lfgr EVENT_DEBUG
-	logBBAI( "EVENT_DEBUG - Launching Button Popup (Type %d) \"%s\"", info.getButtonPopupType(), info.getText().c_str() );
+	//logBBAI( "EVENT_DEBUG - Launching Button Popup (Type %d) \"%s\"", info.getButtonPopupType(), info.getText().c_str() );
 	// lfgr end
 
 	bool bLaunched = false;
@@ -2653,7 +2653,7 @@ bool CvDLLButtonPopup::launchVassalGrantTributePopup(CvPopup* pPopup, CvPopupInf
 bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 {
 	// lfgr EVENT_DEBUG
-	logBBAI( "EVENT_DEBUG - Launching Popup \"%s\"", info.getText().c_str() );
+	//logBBAI( "EVENT_DEBUG - Launching Popup \"%s\"", info.getText().c_str() );
 	// lfgr end
 
 	CvPlayer& kActivePlayer = GET_PLAYER(GC.getGameINLINE().getActivePlayer());
@@ -2662,6 +2662,7 @@ bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 	{
 		// lfgr EVENT_DEBUG
 		logBBAI( "EVENT_DEBUG - ABORTED! No Triggered Data." );
+		FAssertMsg( false, "EVENT_DEBUG - ABORTED! No Triggered Data." );
 		// lfgr end
 		return false;
 	}
@@ -2670,6 +2671,7 @@ bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 	{
 		// lfgr EVENT_DEBUG
 		logBBAI( "EVENT_DEBUG - ABORTED! No EventTrigger." );
+		FAssertMsg( false, "EVENT_DEBUG - ABORTED! No EventTrigger." );
 		// lfgr end
 		return false;
 	}
@@ -2703,8 +2705,11 @@ bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 	{
 		// lfgr EVENT_DEBUG
 		logBBAI( "EVENT_DEBUG - ABORTED! No available Event." );
-		// lfgr end
+		FAssertMsg( false, "EVENT_DEBUG - ABORTED! No available Event." );
+		/* commented out to better find bugs; its launched with OK button then
 		return false;
+		*/
+		// lfgr end
 	}
 
 	if (kTrigger.isPickCity())
