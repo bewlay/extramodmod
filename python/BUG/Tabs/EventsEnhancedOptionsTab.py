@@ -19,6 +19,7 @@ class EventsEnhancedOptionsTab(BugOptionsTab.BugOptionsTab):
 		panel = self.createMainPanel(screen)
 		column = self.addOneColumnLayout(screen, panel)
 		
+		self.addCheckbox(screen, column, "EventsEnhanced__HideUnavailableOptions")
 		self.addCheckbox(screen, column, "EventsEnhanced__WUPopupHuman")
 		self.addCheckbox(screen, column, "EventsEnhanced__WUPopupAI")
 		self.addCheckbox(screen, column, "EventsEnhanced__GPPopupHuman")

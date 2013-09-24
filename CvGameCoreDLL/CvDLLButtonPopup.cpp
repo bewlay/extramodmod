@@ -2697,7 +2697,18 @@ bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 		}
 		else
 		{
+		/************************************************************************************************/
+		/* EVENTS_ENHANCED                          09/2013                                 lfgr        */
+		/* Hide unavailable event options if BugOption is checked. Idea by Ronkhar                      */
+		/************************************************************************************************/
+		/* old
 			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, GC.getEventInfo((EventTypes)kTrigger.getEvent(i)).getDescription(), ARTFILEMGR.getInterfaceArtInfo("INTERFACE_EVENT_UNAVAILABLE_BULLET")->getPath(), -1, WIDGET_CHOOSE_EVENT, kTrigger.getEvent(i), info.getData1(), false);
+		*/
+		if( !getBugOptionBOOL("EventsEnhanced__HideUnavailableOptions", false ) )
+			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, GC.getEventInfo((EventTypes)kTrigger.getEvent(i)).getDescription(), ARTFILEMGR.getInterfaceArtInfo("INTERFACE_EVENT_UNAVAILABLE_BULLET")->getPath(), -1, WIDGET_CHOOSE_EVENT, kTrigger.getEvent(i), info.getData1(), false);
+		/************************************************************************************************/
+		/* EVENTS_ENHANCED                          END                                                 */
+		/************************************************************************************************/
 		}
 	}
 
