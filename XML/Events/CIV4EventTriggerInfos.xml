@@ -7807,7 +7807,8 @@
 		<EventTriggerInfo><!-- PACIFIST_DEMONSTRATION lfgr: tweaked -->
 			<Type>EVENTTRIGGER_PACIFIST_DEMONSTRATION</Type>
 			<WorldNewsTexts>
-				<Text /><!-- lfgr: TODO -->
+				<!-- lfgr: TODO -->
+				<Text />
 			</WorldNewsTexts>
 			<TriggerTexts>
 				<TriggerText>
