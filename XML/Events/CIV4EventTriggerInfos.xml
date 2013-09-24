@@ -99,7 +99,7 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_amuritetrial.dds</EventArt>
-			<iPercentGamesActive>20</iPercentGamesActive>
+			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
@@ -3222,8 +3222,8 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_khazadforge.dds</EventArt>
-			<iPercentGamesActive>20</iPercentGamesActive>
-			<iWeight>400</iWeight>
+			<iPercentGamesActive>100</iPercentGamesActive>
+			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iPlotType>-1</iPlotType>
@@ -3411,8 +3411,8 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_malakimpilgramage.dds</EventArt>
-			<iPercentGamesActive>20</iPercentGamesActive>
-			<iWeight>400</iWeight>
+			<iPercentGamesActive>100</iPercentGamesActive>
+			<iWeight>200</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_PRIEST_OF_KILMORPH</UnitClass>
@@ -5055,8 +5055,8 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_sheaimelegy.dds</EventArt>
-			<iPercentGamesActive>20</iPercentGamesActive>
-			<iWeight>400</iWeight>
+			<iPercentGamesActive>100</iPercentGamesActive>
+			<iWeight>200</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iPlotType>-1</iPlotType>
 			<Events>
