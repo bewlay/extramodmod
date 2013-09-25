@@ -48,6 +48,14 @@ std::set<ImprovementTypes> CvPlot::c_aePirateCoveTypes;
 /**	END	                                        												**/
 /*************************************************************************************************/
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Debug                                                                                        */
+/************************************************************************************************/
+#include "BetterBTSAI.h"
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 // Public Functions...
 
@@ -520,11 +528,13 @@ void CvPlot::doTurn()
 
 		SpawnTypes eBestSpawn = NO_SPAWN;
 		int iBestValue = 0;
+		bool bSpawnAvailable = false;
 
 		for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
 		{
 			if( GC.getImprovementInfo( getImprovementType() ).getSpawnTypes( eLoopSpawn ) )
 			{
+				bSpawnAvailable = true;
 				CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
 
 				int iValue = getSpawnValue( (SpawnTypes) eLoopSpawn, true );
@@ -609,6 +619,17 @@ void CvPlot::doTurn()
                 }
             }
         }
+		else
+		{
+			if( bSpawnAvailable && !GC.getImprovementInfo( getImprovementType() ).isUnique() )
+			{
+				logBBAI("WILDERNESS - ImprovementSpawnTypes - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
+						getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( getTerrainType() ).getType() : "NONE",
+						getFeatureType() != NO_FEATURE ? GC.getFeatureInfo( getFeatureType() ).getType() : "NONE",
+						getImprovementType() != NO_IMPROVEMENT ? GC.getImprovementInfo( getImprovementType() ).getType() : "NONE" );
+				FAssertMsg( false, "See BBAI.log" );
+			}
+		}
 	/************************************************************************************************/
 	/* WILDERNESS                                                                     END           */
 	/************************************************************************************************/
@@ -2617,22 +2638,30 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 
 	if( !GC.getImprovementInfo( eImprovement ).isUnique() )
 	{
-		int iMinWilderness = 0;
-		int iMaxWilderness = MAX_INT;
+		bool bHasSpawn = false;
+
+		int iMinWilderness = -1;
+		int iMaxWilderness = -1;
 		for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
 		{
 			if( GC.getImprovementInfo( eImprovement ).getSpawnTypes( eSpawn ) )
 			{
-				if( GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMinWilderness() < iMinWilderness )
+				bHasSpawn = true;
+				if( iMinWilderness == -1 || GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMinWilderness() < iMinWilderness )
 					iMinWilderness = GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMinWilderness();
-				if( GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMaxWilderness() > iMaxWilderness )
+				if( iMaxWilderness == -1 || GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMaxWilderness() > iMaxWilderness )
 					iMaxWilderness = GC.getSpawnInfo( (SpawnTypes) eSpawn ).getMaxWilderness();
 			}
 		}
-	
-		if( iMinWilderness > getWilderness() || iMaxWilderness < getWilderness() )
+
+		if( bHasSpawn )
 		{
-			return false;
+			logBBAI( "WILDERNESS - Computed lair wilderness for non-unique lair %s: %d-%d", GC.getImprovementInfo( eImprovement ).getType(), iMinWilderness, iMaxWilderness );
+			
+			FAssert( iMinWilderness >= 0 );
+			FAssert( iMaxWilderness >= 0 );
+			if( iMinWilderness > getWilderness() || iMaxWilderness < getWilderness() )
+				return false;
 		}
 	}
 	
@@ -6902,11 +6931,12 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 			{
 				SpawnTypes eBestSpawn = NO_SPAWN;
 				int iBestValue = 0;
-
+				bool bSpawnAvailable = false;
 				for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
 				{
 					if( GC.getImprovementInfo( getImprovementType() ).isGuardianSpawnType( eLoopSpawn ) )
 					{
+						bSpawnAvailable = true;
 						CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
 
 						int iValue = getSpawnValue( (SpawnTypes) eLoopSpawn, true );
@@ -6925,6 +6955,17 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 				}
 				if( eBestSpawn != NO_SPAWN )
 					createSpawn( eBestSpawn, UNITAI_LAIRGUARDIAN, 0, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
+				else
+				{
+					if( bSpawnAvailable )
+					{
+						logBBAI("WILDERNESS - LairGuardian - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
+								getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( getTerrainType() ).getType() : "NONE",
+								getFeatureType() != NO_FEATURE ? GC.getFeatureInfo( getFeatureType() ).getType() : "NONE",
+								getImprovementType() != NO_IMPROVEMENT ? GC.getImprovementInfo( getImprovementType() ).getType() : "NONE" );
+						FAssertMsg( false, "See BBAI.log" );
+					}
+				}
 			}
 		/************************************************************************************************/
 		/* WILDERNESS                                                                     END           */
