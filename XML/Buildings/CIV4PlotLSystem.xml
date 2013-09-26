@@ -4053,6 +4053,20 @@
 		<Height>4</Height>
 		<Attribute Class="Scalar">bNotBFS:1</Attribute>
 		<Attribute Class="RegionTest">0NW</Attribute>
+		<!-- Barrow // WILDERNESS 09/2013 lfgr / WildernessMisc  -->
+		<ArtRef Name="goal:IMPROVEMENT_BARROW">
+			<Attribute Class="Improvement">IMPROVEMENT_BARROW</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_COUN,ERA_ORDE,ERA_EMPY,ERA_RUNE,ERA_LEAF,ERA_OCTO,ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bCutTrees:1</Attribute>
+			<Attribute Class="Scalar">fCenterCut:30</Attribute>
+		</ArtRef>
+		<!-- Dungeon // WILDERNESS 09/2013 lfgr / WildernessMisc  -->
+		<ArtRef Name="goal:IMPROVEMENT_DUNGEON">
+			<Attribute Class="Improvement">IMPROVEMENT_DUNGEON</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_COUN,ERA_ORDE,ERA_EMPY,ERA_RUNE,ERA_LEAF,ERA_OCTO,ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bCutTrees:1</Attribute>
+			<Attribute Class="Scalar">fCenterCut:40</Attribute>
+		</ArtRef>
 		<!-- mine -->
 		<ArtRef Name="goal:IMPROVEMENT_MINE">
 			<Attribute Class="Improvement">IMPROVEMENT_MINE</Attribute>
@@ -5375,6 +5389,13 @@
 			<Attribute Class="Scalar">bZMode_Ground:1</Attribute>
 			<Attribute Class="Scalar">szForceContourGeometry:shadow</Attribute>
 		</ArtRef>
+		<!-- Goblin Fort // WILDERNESS 09/2013 lfgr / WildernessMisc  -->
+		<ArtRef Name="goal:IMPROVEMENT_GOBLIN_FORT">
+			<Attribute Class="Improvement">IMPROVEMENT_GOBLIN_FORT</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_COUN,ERA_ORDE,ERA_EMPY,ERA_RUNE,ERA_LEAF,ERA_OCTO,ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bCutTrees:1</Attribute>
+			<Attribute Class="Scalar">fCenterCut:50</Attribute>
+		</ArtRef>
 		<!-- Pasture -->
 		<ArtRef Name="goal:IMPROVEMENT_PASTURE">
 			<Attribute Class="Improvement">IMPROVEMENT_PASTURE</Attribute>
@@ -5390,6 +5411,13 @@
 			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
 			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/Quarry/Quarry.nif</Attribute>
 			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/Quarry/Quarry.kfm</Attribute>
+		</ArtRef>
+		<!-- Ruins // WILDERNESS 09/2013 lfgr / WildernessMisc  -->
+		<ArtRef Name="goal:IMPROVEMENT_RUINS">
+			<Attribute Class="Improvement">IMPROVEMENT_RUINS</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_COUN,ERA_ORDE,ERA_EMPY,ERA_RUNE,ERA_LEAF,ERA_OCTO,ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bCutTrees:1</Attribute>
+			<Attribute Class="Scalar">fCenterCut:30</Attribute>
 		</ArtRef>
 		<!-- Windmill -->
 		<ArtRef Name="goal:IMPROVEMENT_WINDMILL">

@@ -1307,7 +1307,8 @@ void CvMapGenerator::addImprovements()
 								/************************************************************************************************/
 								/* WILDERNESS                             08/2013                                 lfgr          */
 								/* WildernessMisc, LairGuardian                                                                 */
-								/* More Lairs in higher wilderness, Lairs with guardians have a min distance to starting plots  */
+								/* More Lairs in higher wilderness, Lairs with guardians have a min distance to starting plots. */
+								/* Features are not erased when placing lairs (from Orbis by Ahwaric)                           */
 								/************************************************************************************************/
 								/*
 									if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement") < GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability())
@@ -1343,7 +1344,7 @@ void CvMapGenerator::addImprovements()
 										if( bValid )
 										{
 											pPlot->setImprovementType( (ImprovementTypes) iJ );
-											pPlot->setFeatureType( NO_FEATURE );
+											// pPlot->setFeatureType( NO_FEATURE );
 										}
 								/************************************************************************************************/
 								/* WILDERNESS                                                                     END           */
