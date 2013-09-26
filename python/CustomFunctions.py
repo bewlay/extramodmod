@@ -168,16 +168,16 @@ class CustomFunctions:
 			else :
 				iDestroyLair = self.doNonSpawnOutcome( pUnit, self.getExploreNonSpawnOutcome( pUnit, iRnd, bNoDestroy ) )
 		
-		if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
+		if iDestroyLair > CyGame().getSorenRandNum( 100, "Explore Lair" ):
 			if( bNoDestroy ) :
-				CyInterface().addMessage(pUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_EXPLORED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
-				pPlot.setImprovementType(-1) # to remove landmark
-				pPlot.setImprovementType(ePillageImprovement)
+				CyInterface().addMessage( pUnit.getOwner(), True, 25, CyTranslator().getText( "TXT_KEY_MESSAGE_LAIR_EXPLORED", () ), 'AS2D_POSITIVE_DINK', 1, 'Art/Interface/Buttons/Spells/Explore Lair.dds', ColorTypes( 8 ), pPlot.getX(), pPlot.getY(), True, True )
+				pPlot.setImprovementType( -1 ) # to remove landmark
+				pPlot.setImprovementType( ePillageImprovement )
 			else :
-				CyInterface().addMessage(pUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
-				pPlot.setImprovementType(-1)
+				CyInterface().addMessage( pUnit.getOwner(), True, 25, CyTranslator().getText( "TXT_KEY_MESSAGE_LAIR_DESTROYED", () ), 'AS2D_POSITIVE_DINK', 1, 'Art/Interface/Buttons/Spells/Explore Lair.dds', ColorTypes( 8 ), pPlot.getX(), pPlot.getY(), True, True )
+				pPlot.setImprovementType( -1 )
 		pUnit.finishMoves()
-		pUnit.changeExperience(1, -1, False, False, False)
+		pUnit.changeExperience( 1, -1, False, False, False )
 	
 	def doSpawn( self, pUnit, eSpawn ) :
 		pPlot = pUnit.plot()
@@ -228,16 +228,14 @@ class CustomFunctions:
 			
 			if( sType == 'DEATH' ) :
 				pUnit.kill( True, 0 )
-			elif( sType == 'COLLAPSE' ) :
-				pUnit.doDamageNoCaster( 50, 90, gc.getInfoTypeForString( 'DAMAGE_PHYSICAL' ), False )
 			elif( sType == 'POISONED' ) :
 				pUnit.setHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_POISONED' ), True )
 				pUnit.doDamageNoCaster( 25, 90, gc.getInfoTypeForString( 'DAMAGE_POISON' ), False )
 			elif( sType == 'NOTHING' ) :
 				pass
 			elif( sType == 'CAGE' ) :
-				CyInterface().addMessage(pUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
-				pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_CAGE'))
+				CyInterface().addMessage( pUnit.getOwner(), True, 25, CyTranslator().getText( "TXT_KEY_MESSAGE_LAIR_DESTROYED", () ), 'AS2D_POSITIVE_DINK', 1, 'Art/Interface/Buttons/Spells/Explore Lair.dds', ColorTypes( 8 ), pPlot.getX(), pPlot.getY(), True, True )
+				pPlot.setImprovementType( gc.getInfoTypeForString( 'IMPROVEMENT_CAGE' ) )
 				for i in range( pPlot.getNumUnits() ) :
 					pUnit2 = pPlot.getUnit( i )
 					if( pUnit2.getOwner() == pUnit.getOwner() ) :
@@ -300,15 +298,25 @@ class CustomFunctions:
 			eBonus = self.saveGetInfoType( gc.getNumBonusInfos(), sBonus )
 			pPlot.setBonusType( eBonus )
 		
+		elif( tOutcome[0] == 'Damage' ) :
+			iDestroyLair = tOutcome[1]
+			bGood = False
+			sMessage = tOutcome[2]
+			iDamage = tOutcome[3]
+			iDamageLimit = tOutcome[4]
+			sDamageType = tOutcome[5]
+			
+			pUnit.doDamageNoCaster( iDamage, iDamageLimit, gc.getInfoTypeForString( sDamageType ), False )
+		
 		else :
 			raise Exception( "Unknown outcome type: %s" % ( str( tOutcome[0] ) ) )
 		
 		if( sMessage != None ) :
 			eColor = -1
 			if( bGood ) :
-				eColor = ColorTypes(8)
+				eColor = ColorTypes( 8 )
 			else :
-				eColor = ColorTypes(7)
+				eColor = ColorTypes( 7 )
 			CyInterface().addMessage( pUnit.getOwner(), True, 25, CyTranslator().getText( sMessage, () ), '', 1, 'Art/Interface/Buttons/Spells/Explore Lair.dds', eColor, pPlot.getX(), pPlot.getY(), True, True )
 		
 		return iDestroyLair
@@ -340,6 +348,37 @@ class CustomFunctions:
 		pPlot = pUnit.plot()
 		pPlayer = gc.getPlayer( pUnit.getOwner() )
 		lOutcomes = []
+		
+		bMelee = ( pUnit.getUnitCombatType() == self.saveGetInfoType( gc.getNumUnitCombatInfos(), 'UNITCOMBAT_MELEE' ) )
+		bAdept = ( pUnit.getUnitCombatType() == self.saveGetInfoType( gc.getNumUnitCombatInfos(), 'UNITCOMBAT_ADEPT' ) )
+		bRecon = ( pUnit.getUnitCombatType() == self.saveGetInfoType( gc.getNumUnitCombatInfos(), 'UNITCOMBAT_RECON' ) )
+		bArcher = ( pUnit.getUnitCombatType() == self.saveGetInfoType( gc.getNumUnitCombatInfos(), 'UNITCOMBAT_ARCHER' ) )
+		bDisciple = ( pUnit.getUnitCombatType() == self.saveGetInfoType( gc.getNumUnitCombatInfos(), 'UNITCOMBAT_DISCIPLE' ) )
+		
+		bHasBronzeWorking = ( pPlayer.isHasTech( self.saveGetInfoType( gc.getNumTechInfos(), 'TECH_BRONZE_WORKING' ) ) )
+		bHasCodeOfLaws = ( pPlayer.isHasTech( self.saveGetInfoType( gc.getNumTechInfos(), 'TECH_CODE_OF_LAWS' ) ) )
+		bHasFishing = ( pPlayer.isHasTech( self.saveGetInfoType( gc.getNumTechInfos(), 'TECH_FISHING' ) ) )
+		bHasHunting = ( pPlayer.isHasTech( self.saveGetInfoType( gc.getNumTechInfos(), 'TECH_HUNTING' ) ) )
+		bHasIronWorking = ( pPlayer.isHasTech( self.saveGetInfoType( gc.getNumTechInfos(), 'TECH_IRON_WORKING' ) ) )
+		bHasKnowledgeOfTheEther = ( pPlayer.isHasTech( self.saveGetInfoType( gc.getNumTechInfos(), 'TECH_KNOWLEDGE_OF_THE_ETHER' ) ) )
+		bHasMining = ( pPlayer.isHasTech( self.saveGetInfoType( gc.getNumTechInfos(), 'TECH_MINING' ) ) )
+		bHasMysticism = ( pPlayer.isHasTech( self.saveGetInfoType( gc.getNumTechInfos(), 'TECH_MYSTICISM' ) ) )
+		bHasPoisons = pPlayer.isHasTech( self.saveGetInfoType( gc.getNumTechInfos(), 'TECH_POISONS' ) )
+		bHasPriesthood = pPlayer.isHasTech( self.saveGetInfoType( gc.getNumTechInfos(), 'TECH_PRIESTHOOD' ) )
+		bHasSorcery = pPlayer.isHasTech( self.saveGetInfoType( gc.getNumTechInfos(), 'TECH_SORCERY' ) )
+		bHasTrade = ( pPlayer.isHasTech( self.saveGetInfoType( gc.getNumTechInfos(), 'TECH_TRADE' ) ) )
+		
+		bBannor = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_BANNOR" ) )
+		bElohim = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_ELOHIM" ) )
+		bKhazad = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_KHAZAD" ) )
+		bLanun = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_LANUN" ) )
+		bLjosalfar = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_LJOSALFAR" ) )
+		bMalakim = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_MALAKIM" ) )
+		bMercurians = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_MERCURIANS" ) )
+		bSheaim = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_SHEAIM" ) )
+		
+		bGood = ( pPlayer.getAlignment() == gc.getInfoTypeForString( 'ALIGNMENT_GOOD' ) )
+		
 		# BAD
 		if( iRnd <= -50 ) :
 			if( pUnit.getLevel() == 1 ) :
@@ -352,14 +391,17 @@ class CustomFunctions:
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_PLAGUED', ['PROMOTION_PLAGUED'] ) )
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_WITHERED', ['PROMOTION_WITHERED'] ) )
 		if( iRnd <= -20 ) :
+			if( not bNoDestroy ) :
+				lOutcomes.append( ( 'Damage', 100, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 50, 90, 'DAMAGE_PHYSICAL' ) )
 			if( pUnit.isAlive() ) :
-				if( not bNoDestroy ) :
-					lOutcomes.append( ( 'Special', 100, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 'COLLAPSE' ) )
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENRAGED', ['PROMOTION_ENRAGED'] ) )
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DISEASED', ['PROMOTION_DISEASED'] ) )
 		if( iRnd <= -10 ) :
 			if( pUnit.isAlive() ) :
 				lOutcomes.append( ( 'Special', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POISONED', 'POISONED' ) )
+			if( not bNoDestroy ) :
+				lOutcomes.append( ( 'Damage', 100, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 50, 90, 'DAMAGE_PHYSICAL' ) )
+			# LFGR_TODO: Should add damage outcomes for non-alive units here.
 		# NEUTRAL
 		if( iRnd > -25 and iRnd <= 25 ) :
 			#lOutcomes.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
@@ -384,34 +426,42 @@ class CustomFunctions:
 				lOutcomes.append( ( 'Goody', 80, 'GOODY_EXPLORE_LAIR_ITEM_HEALING_SALVE' ) )
 				lOutcomes.append( ( 'Special', 80, True, None, 'TREASURE' ) )
 		if( iRnd > 30 and iRnd <= 60 ) :
-			if( pUnit.getUnitCombatType() == gc.getInfoTypeForString( 'UNITCOMBAT_MELEE' ) ) :
+			if( bMelee ) :
 				lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENCHANTED_BLADE', ['PROMOTION_ENCHANTED_BLADE'] ) )
-			if( pUnit.getUnitCombatType() == gc.getInfoTypeForString( 'UNITCOMBAT_ADEPT' ) ) :
+			if( bAdept ) :
 				lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_SPELLSTAFF', ['PROMOTION_SPELLSTAFF'] ) )
-			if( pUnit.getUnitCombatType() == gc.getInfoTypeForString( 'UNITCOMBAT_RECON' ) ) :
+			if( bRecon ) :
 				lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POISONED_BLADE', ['PROMOTION_POISONED_BLADE'] ) )
-			if( pUnit.getUnitCombatType() == gc.getInfoTypeForString( 'UNITCOMBAT_ARCHER' ) ) :
+			if( bArcher ) :
 				lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_FLAMING_ARROWS', ['PROMOTION_FLAMING_ARROWS'] ) )
-			if( pUnit.getUnitCombatType() == gc.getInfoTypeForString( 'UNITCOMBAT_DISCIPLE' ) ) :
+			if( bDisciple ) :
 				lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_SHIELD_OF_FAITH', ['PROMOTION_SHIELD_OF_FAITH'] ) )
+			
 			if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 1 ) :
 				if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_MITHRIL_WEAPONS' ) ) ) :
-					if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 3 and pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_IRON_WORKING' ) ) ) :
+					if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 3 and bHasIronWorking ) :
 						lOutcomes.append( ( 'Special', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_MITHRIL_WEAPONS', 'MITHRIL_WEAPONS' ) )
 					if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_IRON_WEAPONS' ) ) ) :
-						if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 2 and pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_BRONZE_WORKING' ) ) ) :
+						if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 2 and bHasBronzeWorking ) :
 							lOutcomes.append( ( 'Special', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_IRON_WEAPONS', 'IRON_WEAPONS' ) )
 						if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_BRONZE_WEAPONS' ) ) ):
 							lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BRONZE_WEAPONS', ['PROMOTION_BRONZE_WEAPONS'] ) )
 		if( iRnd > 50 and iRnd <= 60 ) :
 			if( not pPlot.isWater() ) :
-				if( pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_MYSTICISM' ) ) ) :
-					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ASHEN' ) )
-					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_EMPYREAN' ) )
+				if( bLjosalfar or bHasHunting ) :
 					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_LEAVES' ) )
+				if( bLanun or bHasFishing ) :
 					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_OVERLORDS' ) )
+				if( bKhazad or bHasMining ) :
 					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_RUNES' ) )
-					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ORDER' ) )
+				if( bHasMysticism ) :
+					if( bSheaim or bHasKnowledgeOfTheEther ) :
+						lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ASHEN' ) )
+					if( bMalakim or bHasTrade ) :
+						lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_EMPYREAN' ) )
+					# LFGR_TODO: Council of Esus: Svartalfar or Trade
+					if( bBannor or bHasCodeOfLaws ) :
+						lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ORDER' ) )
 		if( iRnd > 50 ) :
 			lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_TREASURE_VAULT' ) )
 			lOutcomes.append( ( 'Goody', 100, 'GOODY_GRAVE_TECH' ) )
@@ -424,33 +474,31 @@ class CustomFunctions:
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_JADE_TORC' ) )
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_ROD_OF_WINDS' ) )
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_TIMOR_MASK' ) )
-				if( pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_HUNTING' ) ) and not pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_POISONS' ) ) ) :
+				if( bHasHunting and not bHasPoisons ) :
 					lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ASSASSIN' ) )
-				if( pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_BRONZE_WORKING' ) ) and not pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_IRON_WORKING' ) ) ) :
+				if( bHasBronzeWorking and not bHasIronWorking ) :
 					lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_CHAMPION' ) )
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_MAGE' ) )
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_MONK' ) )
-				if( pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_MINING' ) ) ) :
-					lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_COPPER', 'BONUS_COPPER' ) )
-					lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_GEMS', 'BONUS_GEMS' ) )
-					lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_GOLD', 'BONUS_GOLD' ) )
-				if( pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_SMELTING' ) ) ) :
-					lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_IRON', 'BONUS_IRON' ) )
-				if( pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_MITHRIL_WORKING' ) ) ) :
-					lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_MITHRIL', 'BONUS_MITHRIL' ) )
+				if( bHasKnowledgeOfTheEther and not bHasSorcery ) :
+					lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_MAGE' ) )
+				if( bGood and bHasMysticism and ( not bElohim or not bHasPriesthood ) ) :
+					lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_MONK' ) )
+				if( bGood and bHasMysticism and not bMercurians ) :
+					lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ANGEL' ) )
+				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_COPPER', 'BONUS_COPPER' ) )
+				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_GEMS', 'BONUS_GEMS' ) )
+				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_GOLD', 'BONUS_GOLD' ) )
+				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_IRON', 'BONUS_IRON' ) )
+				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_MITHRIL', 'BONUS_MITHRIL' ) )
 		if( iRnd > 60 ) :
 			if( pPlot.isWater() ) :
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_SEA_SERPENT' ) )
-				if( pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_SAILING' ) ) ) :
-					lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_PEARL', 'BONUS_PEARL' ) )
-				if( pPlayer.isHasTech( gc.getInfoTypeForString( 'TECH_FISHING' ) ) ) :
-					lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_CLAM', 'BONUS_CLAM' ) )
-					lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_CRAB', 'BONUS_CRAB' ) )
-					lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_FISH', 'BONUS_FISH' ) )
-					lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_SHRIMP', 'BONUS_SHRIMP' ) )
+				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_PEARL', 'BONUS_PEARL' ) )
+				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_CLAM', 'BONUS_CLAM' ) )
+				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_CRAB', 'BONUS_CRAB' ) )
+				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_FISH', 'BONUS_FISH' ) )
+				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_SHRIMP', 'BONUS_SHRIMP' ) )
 		if( iRnd > 75 ) :
 			if( not pPlot.isWater() ) :
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ANGEL' ) )
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ARTIST' ) )
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_GENERAL' ) )
 				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ENGINEER' ) )
@@ -484,7 +532,7 @@ class CustomFunctions:
 				bValid = pPlayer.canReceiveGoody( pPlot, eGoody, pUnit )
 			elif( tOutcome[0] == 'Bonus' ) :
 				eBonus = self.saveGetInfoType( gc.getNumBonusInfos(), tOutcome[3] )
-				bValid = ( pPlot.getBonusType( -1 ) == -1 ) and pPlot.canHaveBonus( eBonus, False )
+				bValid = ( pPlot.getBonusType( -1 ) == -1 ) and pPlot.canHaveBonus( eBonus, False ) and pPlayer.isHasTech( gc.getBonusInfo( eBonus ).getTechReveal() )
 				# LFGR_TODO: bonus nearby (when a mechanic to spawn lairs is implemented)
 			
 			if( bValid ) :
@@ -701,7 +749,7 @@ class CustomFunctions:
 
 # Initialize the adventurer counter in case it has not been initialized.		
 		if iGrigoriMod < 600:
-			pPlayer.setCivCounterMod(600)
+			pPlayer.setCivCounterMod( 600 )
 			iGrigoriMod = 600
 
 		if iGrigoriSpawn >= iGrigoriMod:
@@ -709,7 +757,7 @@ class CustomFunctions:
 			pCapital = pPlayer.getCapitalCity()
 			pAdventurer = pPlayer.createGreatPeople( gc.getInfoTypeForString( 'UNIT_ADVENTURER' ), False, False, pCapital.getX(), pCapital.getY() )
 			pPlayer.changeCivCounter( 0 - iGrigoriMod )
-			pPlayer.changeCivCounterMod(600)
+			pPlayer.changeCivCounterMod( 600 )
 
 	def doChanceAdventurerSpawn( self, iPlayer ):
 		gc = CyGlobalContext() 
@@ -734,15 +782,15 @@ class CustomFunctions:
 			
 # Different buildings give different modifiers.
 			iMinor = 1
-			iSmall           = 3
-			iMedium          = 6
-			iBig             = 12
-			iHuge            = 20
+			iSmall = 3
+			iMedium = 6
+			iBig = 12
+			iHuge = 20
 
 # Original "adventurer" buildings.
 			iPalaceMod = iNumPalace * iHuge
 			iTavernsMod = iNumTaverns * iMedium
-			iGuildsMod 		 = iNumGuilds       * iMedium
+			iGuildsMod 		 = iNumGuilds * iMedium
 
 # Additional buildings.
 			iArcheryMod = iNumArchery * iMinor
@@ -783,7 +831,7 @@ class CustomFunctions:
 				iCivicMult = 1.10
 
 # Actual value
-			iGrigoriSpawn = round(((iBuildingMod + iSpecialistMod) * iCivicMult), 2)
+			iGrigoriSpawn = round( ( ( iBuildingMod + iSpecialistMod ) * iCivicMult ), 2 )
 			iGrigoriSpawn = int( iGrigoriSpawn )
 			iGrigoriSpawn = self.scaleInverse( iGrigoriSpawn )
 			
@@ -993,7 +1041,7 @@ class CustomFunctions:
 			if pTargetPlayer.getTeam() == pCasterPlayer.getTeam():
 				continue
 
-			if (gc.getTeam(pCasterPlayer.getTeam()).isVassal(pTargetPlayer.getTeam())):
+			if ( gc.getTeam( pCasterPlayer.getTeam() ).isVassal( pTargetPlayer.getTeam() ) ):
 				continue
 
 			iBaseModifier = 100
