@@ -15909,6 +15909,27 @@ bool CvUnitAI::AI_patrol()
 								iValue += 10000;
 								}
 							}
+						/************************************************************************************************/
+						/* WILDERNESS                             08/2013                                 lfgr          */
+						/* WildernessMisc                                                                               */
+						/* Animals stay in appropriate territory if possible and nothing to attack.                     */
+						/************************************************************************************************/
+							if ( AI_getUnitAIType() == UNITAI_ANIMAL && getSpawnType() != NO_SPAWN )
+							{
+								int iTerrainValue = 0;
+								if( pAdjacentPlot->getTerrainType() != NO_TERRAIN )
+									iTerrainValue += GC.getSpawnInfo( getSpawnType() ).getTerrainWeights( pAdjacentPlot->getTerrainType() );
+								if( pAdjacentPlot->getFeatureType() != NO_FEATURE )
+									iTerrainValue += GC.getSpawnInfo( getSpawnType() ).getFeatureWeights( pAdjacentPlot->getFeatureType() );
+								if( pAdjacentPlot->getImprovementType() != NO_IMPROVEMENT )
+									iTerrainValue += GC.getSpawnInfo( getSpawnType() ).getImprovementWeights( pAdjacentPlot->getImprovementType() );
+								
+								if( iTerrainValue > 0 )
+									iValue += 100000;
+							}
+						/************************************************************************************************/
+						/* WILDERNESS                                                                     END           */
+						/************************************************************************************************/
 						}
 						else
 						{
