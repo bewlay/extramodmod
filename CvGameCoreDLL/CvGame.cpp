@@ -7414,7 +7414,7 @@ void CvGame::createBarbarianUnits()
 
 			bool bValid = true;
 
-			if( pPlot->isOwned() || pPlot->isImpassable() || ( pPlot->isWater() && !pPlot->isAdjacentToLand() ) )
+			if( pPlot->isOwned() || pPlot->isAdjacentOwned() || pPlot->isImpassable() || ( pPlot->isWater() && !pPlot->isAdjacentToLand() ) )
 				bValid = false;
 
 			if( bValid )
@@ -7439,9 +7439,6 @@ void CvGame::createBarbarianUnits()
 					}
 				}
 				vbPlotVisible[iPlot] = bVisible;
-
-				if( bVisible && pPlot->getWilderness() < GC.getDefineINT( "VISIBLE_TILE_SPAWNING_MIN_WILDERNESS" ) )
-					bValid = false;
 			}
 			
 			if( bValid )
@@ -7579,14 +7576,18 @@ void CvGame::createBarbarianUnits()
 			pPlot->bPlotBarbValid = vbPlotBarbValid[iPlot];
 		// LFGR_TEST end
 			
-			bool bHeld = vbPlotVisible[iPlot] && pPlot->getWilderness() < GC.getDefineINT( "VISIBLE_TILE_SPAWNING_NOT_HELD_MIN_WILDERNESS" );
-			
 			if( bAnimals && vbPlotAnimalValid[iPlot] )
 			{
 				float fAnimalChance = ( pPlot->isWater() ? PLOT_CHANCE_ANIMAL_WATER : PLOT_CHANCE_ANIMAL );
 				
 				// Faster respawning in higher wilderness
-				fAnimalChance *= std::min( 1.0f, GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED" ) * ( 1 + pPlot->getWilderness() / 100.0f ) );
+				float fSpeedMod = GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED" ) * ( 1 + pPlot->getWilderness() / 100.0f );
+				// Slower Respawning on visible tiles
+				if( vbPlotVisible[iPlot] )
+					fSpeedMod *= GC.getDefineFLOAT( "VISIBLE_TILE_SPAWNING_SPEED_MOD" );
+
+				fAnimalChance *= std::min( 1.0f, fSpeedMod );
+
 
 				if( fAnimalChance > 0 )
 				{
@@ -7598,7 +7599,7 @@ void CvGame::createBarbarianUnits()
 					if( fAnimalChance >= fAnimalRand )
 					{
 						logBBAI( "Creating spawn with chance %f", fAnimalChance );
-						createBarbarianSpawn( pPlot, true, bHeld ? 1 : 0 );
+						createBarbarianSpawn( pPlot, true );
 					}
 				}
 			}
@@ -7608,7 +7609,12 @@ void CvGame::createBarbarianUnits()
 				float fBarbChance = ( pPlot->isWater() ? PLOT_CHANCE_BARB_WATER : PLOT_CHANCE_BARB );
 				
 				// Faster respawning in higher wilderness
-				fBarbChance *= std::min( 1.0f, GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED" ) * ( 1 + pPlot->getWilderness() / 100.0f ) );
+				float fSpeedMod = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED" ) * ( 1 + pPlot->getWilderness() / 100.0f );
+				// Slower Respawning on visible tiles
+				if( vbPlotVisible[iPlot] )
+					fSpeedMod *= GC.getDefineFLOAT( "VISIBLE_TILE_SPAWNING_SPEED_MOD" );
+				
+				fBarbChance *= std::min( 1.0f, fSpeedMod );
 
 				if( fBarbChance > 0 )
 				{
@@ -7619,7 +7625,7 @@ void CvGame::createBarbarianUnits()
 					if( fBarbChance >= fBarbRand )
 					{
 						logBBAI( "Creating spawn with chance %f", fBarbChance );
-						createBarbarianSpawn( pPlot, false, bHeld ? 1 : 0 );
+						createBarbarianSpawn( pPlot, false );
 					}
 				}
 			}

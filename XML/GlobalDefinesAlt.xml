@@ -1044,12 +1044,8 @@
         <fDefineFloatVal>0.2</fDefineFloatVal>
     </Define>
     <Define>
-        <DefineName>VISIBLE_TILE_SPAWNING_MIN_WILDERNESS</DefineName>
-        <iDefineIntVal>30</iDefineIntVal>
-    </Define>
-    <Define>
-        <DefineName>VISIBLE_TILE_SPAWNING_NOT_HELD_MIN_WILDERNESS</DefineName>
-        <iDefineIntVal>70</iDefineIntVal>
+        <DefineName>VISIBLE_TILE_SPAWNING_SPEED_MOD</DefineName>
+        <fDefineFloatVal>0.75</fDefineFloatVal>
     </Define>
 	<Define>
 		<!-- Overriding default value (3). Barbarians get X% of tech each turn * playersResearched / totalAlivePlayers -->
