@@ -506,8 +506,8 @@
             <bNoNonStateReligionSpread>1</bNoNonStateReligionSpread>
             <iStateReligionHappiness>1</iStateReligionHappiness>
             <iNonStateReligionHappiness>0</iNonStateReligionHappiness>
-            <iStateReligionUnitProductionModifier>0</iStateReligionUnitProductionModifier>
-            <iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
+            <iStateReligionUnitProductionModifier>10</iStateReligionUnitProductionModifier>
+            <iStateReligionBuildingProductionModifier>20</iStateReligionBuildingProductionModifier>
             <iStateReligionFreeExperience>2</iStateReligionFreeExperience>
             <YieldModifiers>
             </YieldModifiers>
