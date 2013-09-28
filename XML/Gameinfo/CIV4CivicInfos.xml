@@ -1569,8 +1569,8 @@
             <bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
             <iExpInBorderModifier>0</iExpInBorderModifier>
             <bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
-            <iLargestCityHappiness>0</iLargestCityHappiness>
-            <iWarWearinessModifier>50</iWarWearinessModifier>
+            <iLargestCityHappiness>1</iLargestCityHappiness>
+            <iWarWearinessModifier>25</iWarWearinessModifier>
             <iFreeSpecialist>1</iFreeSpecialist>
             <iTradeRoutes>0</iTradeRoutes>
             <bNoForeignTrade>0</bNoForeignTrade>
