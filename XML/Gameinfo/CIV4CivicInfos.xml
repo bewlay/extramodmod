@@ -2406,6 +2406,14 @@
             <FeatureHappinessChanges>
             </FeatureHappinessChanges>
             <ImprovementYieldChanges>
+                <ImprovementYieldChange>
+                    <ImprovementType>IMPROVEMENT_WORKSHOP</ImprovementType>
+                    <ImprovementYields>
+                        <iYield>0</iYield>
+                        <iYield>1</iYield>
+                        <iYield>0</iYield>
+                    </ImprovementYields>
+                </ImprovementYieldChange>
             </ImprovementYieldChanges>
 						<!-- Revolution Mod Start -->
 						<iRevIdxLocal>1</iRevIdxLocal>
