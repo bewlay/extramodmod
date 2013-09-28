@@ -1074,7 +1074,7 @@
             <Upkeep>NONE</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>-20</iGreatPeopleRateModifier>
-            <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+            <iGreatGeneralRateModifier>-25</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
             <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
