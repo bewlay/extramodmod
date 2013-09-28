@@ -850,7 +850,7 @@
             <Upkeep>UPKEEP_LOW</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>50</iGreatPeopleRateModifier>
-            <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+            <iGreatGeneralRateModifier>-25</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
             <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
@@ -860,7 +860,7 @@
             <iFreeExperience>0</iFreeExperience>
             <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
             <iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
-            <iMilitaryProductionModifier>-20</iMilitaryProductionModifier>
+            <iMilitaryProductionModifier>-10</iMilitaryProductionModifier>
             <iBaseFreeUnits>0</iBaseFreeUnits>
             <iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
             <iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
@@ -895,6 +895,9 @@
             <TradeYieldModifiers>
             </TradeYieldModifiers>
             <CommerceModifiers>
+                <iCommerce>0</iCommerce>
+                <iCommerce>0</iCommerce>
+                <iCommerce>10</iCommerce>
             </CommerceModifiers>
             <CapitalCommerceModifiers>
             </CapitalCommerceModifiers>
