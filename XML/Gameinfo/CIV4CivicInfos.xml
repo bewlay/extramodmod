@@ -1646,7 +1646,7 @@
             <PrereqReligion>NONE</PrereqReligion>
         </CivicInfo>
         <CivicInfo>
-            <CivicOptionType>CIVICOPTION_CULTURAL_VALUES</CivicOptionType>
+            <CivicOptionType>CIVICOPTION_MEMBERSHIP</CivicOptionType>
             <Type>CIVIC_CRUSADE</Type>
             <Description>TXT_KEY_CIVIC_CRUSADE</Description>
             <Civilopedia>TXT_KEY_CIVIC_CRUSADE_PEDIA</Civilopedia>
@@ -1658,7 +1658,7 @@
             <Upkeep>UPKEEP_MEDIUM</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
-            <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+            <iGreatGeneralRateModifier>50</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
             <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
