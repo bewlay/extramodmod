@@ -156,7 +156,7 @@
             <iLargestCityHappiness>0</iLargestCityHappiness>
             <iWarWearinessModifier>25</iWarWearinessModifier>
             <iFreeSpecialist>0</iFreeSpecialist>
-            <iTradeRoutes>0</iTradeRoutes>
+            <iTradeRoutes>1</iTradeRoutes>
             <bNoForeignTrade>0</bNoForeignTrade>
             <bNoCorporations>0</bNoCorporations>
             <bNoForeignCorporations>0</bNoForeignCorporations>
@@ -177,7 +177,7 @@
             <CommerceModifiers>
                 <iCommerce>0</iCommerce>
                 <iCommerce>0</iCommerce>
-                <iCommerce>-20</iCommerce>
+                <iCommerce>10</iCommerce>
             </CommerceModifiers>
             <CapitalCommerceModifiers>
             </CapitalCommerceModifiers>
