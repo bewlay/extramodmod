@@ -1852,6 +1852,7 @@ m_iPromotionCombatMod(0),
 m_piBonusAffinity(NULL),
 m_piDamageTypeCombat(NULL),
 m_piDamageTypeResist(NULL),
+m_iEnslavementChance(0),
 //FfH: End Add
 
 // MNAI - additional promotion tags
@@ -2516,6 +2517,12 @@ int CvPromotionInfo::getDamageTypeResist(int i) const
 {
 	return m_piDamageTypeResist ? m_piDamageTypeResist[i] : -1;
 }
+
+int CvPromotionInfo::getEnslavementChance() const
+{
+	return m_iEnslavementChance;
+}
+
 //FfH: End Add
 
 // MNAI - additional promotion tags
@@ -2746,6 +2753,9 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_piDamageTypeResist);
 	m_piDamageTypeResist = new int[GC.getNumDamageTypeInfos()];
 	stream->Read(GC.getNumDamageTypeInfos(), m_piDamageTypeResist);
+
+	stream->Read(&m_iEnslavementChance);
+
 //FfH: End Add
 
 	// MNAI - additional promotion tags
@@ -2926,6 +2936,8 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumBonusInfos(), m_piBonusAffinity);
 	stream->Write(GC.getNumDamageTypeInfos(), m_piDamageTypeCombat);
 	stream->Write(GC.getNumDamageTypeInfos(), m_piDamageTypeResist);
+
+	stream->Write(m_iEnslavementChance);
 //FfH: End Add
 
 	// MNAI - new promotion tags
@@ -3091,6 +3103,8 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_piBonusAffinity, "BonusAffinities", sizeof(GC.getBonusInfo((BonusTypes)0)), GC.getNumBonusInfos());
 	pXML->SetVariableListTagPair(&m_piDamageTypeCombat, "DamageTypeCombats", sizeof(GC.getDamageTypeInfo((DamageTypes)0)), GC.getNumDamageTypeInfos());
 	pXML->SetVariableListTagPair(&m_piDamageTypeResist, "DamageTypeResists", sizeof(GC.getDamageTypeInfo((DamageTypes)0)), GC.getNumDamageTypeInfos());
+
+	pXML->GetChildXmlValByName(&m_iEnslavementChance,"iEnslavementChance");
 //FfH: End Add
 
 	// MNAI - additional promotion tags
@@ -5932,6 +5946,44 @@ int CvUnitInfo::getDamageTypeCombat(int i) const
 {
 	return m_piDamageTypeCombat ? m_piDamageTypeCombat[i] : -1;
 }
+
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+/*
+ * A unit is alive if it is not mechanized, and if it does not get any free promotion which makes it not alive.
+ */
+bool CvUnitInfo::isAlive(CivilizationTypes eCiv) const
+{
+	if (this->isMechUnit()) {
+		return false;
+	}
+
+	for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
+	{
+		if (this->getFreePromotions(iI))
+		{
+			if (GC.getPromotionInfo((PromotionTypes)iI).isNotAlive())
+            {
+				return false;
+			}
+		}
+	}
+
+	if (NO_CIVILIZATION != eCiv && GC.getCivilizationInfo(eCiv).getDefaultRace() != NO_PROMOTION) {
+		if (GC.getPromotionInfo((PromotionTypes)GC.getCivilizationInfo(eCiv).getDefaultRace()).isNotAlive())
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
+
 //FfH: End Add
 
 
@@ -9181,6 +9233,14 @@ m_iGlobalHappiness(0),
 m_iStateReligionHappiness(0),
 m_iWorkerSpeedModifier(0),
 m_iMilitaryProductionModifier(0),
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+m_iLivingProductionModifier(0),
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 m_iSpaceProductionModifier(0),
 m_iGlobalSpaceProductionModifier(0),
 m_iTradeRoutes(0),
@@ -9654,6 +9714,18 @@ int CvBuildingInfo::getMilitaryProductionModifier() const
 {
 	return m_iMilitaryProductionModifier;
 }
+
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+int CvBuildingInfo::getLivingProductionModifier() const
+{
+	return m_iLivingProductionModifier;
+}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 
 int CvBuildingInfo::getSpaceProductionModifier() const
 {
@@ -10604,6 +10676,14 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iStateReligionHappiness);
 	stream->Read(&m_iWorkerSpeedModifier);
 	stream->Read(&m_iMilitaryProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	stream->Read(&m_iLivingProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	stream->Read(&m_iSpaceProductionModifier);
 	stream->Read(&m_iGlobalSpaceProductionModifier);
 	stream->Read(&m_iTradeRoutes);
@@ -10971,6 +11051,14 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iStateReligionHappiness);
 	stream->Write(m_iWorkerSpeedModifier);
 	stream->Write(m_iMilitaryProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	stream->Write(m_iLivingProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	stream->Write(m_iSpaceProductionModifier);
 	stream->Write(m_iGlobalSpaceProductionModifier);
 	stream->Write(m_iTradeRoutes);
@@ -11382,6 +11470,14 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iStateReligionHappiness, "iStateReligionHappiness");
 	pXML->GetChildXmlValByName(&m_iWorkerSpeedModifier, "iWorkerSpeedModifier");
 	pXML->GetChildXmlValByName(&m_iMilitaryProductionModifier, "iMilitaryProductionModifier");
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iLivingProductionModifier, "iLivingProductionModifier");
+	/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_iSpaceProductionModifier, "iSpaceProductionModifier");
 	pXML->GetChildXmlValByName(&m_iGlobalSpaceProductionModifier, "iGlobalSpaceProductionModifier");
 	pXML->GetChildXmlValByName(&m_iTradeRoutes, "iTradeRoutes");
@@ -24448,6 +24544,13 @@ CvEventTriggerInfo::CvEventTriggerInfo() :
 	m_iUnitDamagedWeight(0),
 	m_iUnitDistanceWeight(0),
 	m_iUnitExperienceWeight(0),
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	m_iUnitMinLevel(0),
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	m_iMinTreasury(0),
 	m_bSinglePlayer(false),
 	m_bTeam(false),
@@ -24614,20 +24717,34 @@ int CvEventTriggerInfo::getUnhealthy() const
 	return m_iUnhealthy;
 }
 
+// lfgr cmt - must be > 0
 int CvEventTriggerInfo::getUnitDamagedWeight() const
 {
 	return m_iUnitDamagedWeight;
 }
 
+// lfgr cmt - can be < 0
 int CvEventTriggerInfo::getUnitDistanceWeight() const
 {
 	return m_iUnitDistanceWeight;
 }
 
+// lfgr cmt - can be < 0
 int CvEventTriggerInfo::getUnitExperienceWeight() const
 {
 	return m_iUnitExperienceWeight;
 }
+
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+int CvEventTriggerInfo::getUnitMinLevel() const
+{
+	return m_iUnitMinLevel;
+}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 int CvEventTriggerInfo::getMinTreasury() const
 {
@@ -24753,6 +24870,18 @@ int CvEventTriggerInfo::getNumCorporationsRequired() const
 {
 	return (int)m_aiCorporationsRequired.size();
 }
+
+// Begin EmperorFool: Events with Images
+const TCHAR* CvEventTriggerInfo::getEventArt() const
+{
+	if (m_szEventArt.empty())
+	{
+		return NULL;
+	}
+
+	return m_szEventArt;
+}
+// End EmperorFool: Events with Images
 
 bool CvEventTriggerInfo::isSinglePlayer() const
 {
@@ -24985,6 +25114,13 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iUnitDamagedWeight);
 	stream->Read(&m_iUnitDistanceWeight);
 	stream->Read(&m_iUnitExperienceWeight);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	stream->Read(&m_iUnitMinLevel);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	stream->Read(&m_iMinTreasury);
 
 	stream->Read(&iNumElements);
@@ -25099,6 +25235,10 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 		m_aiCorporationsRequired.push_back(iElement);
 	}
 
+// Begin EmperorFool: Events with Images
+	stream->ReadString(m_szEventArt);
+// End EmperorFool: Events with Images
+
 	stream->Read(&m_bSinglePlayer);
 	stream->Read(&m_bTeam);
 	stream->Read(&m_bRecurring);
@@ -25193,6 +25333,13 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iUnitDamagedWeight);
 	stream->Write(m_iUnitDistanceWeight);
 	stream->Write(m_iUnitExperienceWeight);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	stream->Write(m_iUnitMinLevel);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	stream->Write(m_iMinTreasury);
 
 	stream->Write(m_aiUnitsRequired.size());
@@ -25265,6 +25412,10 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 	{
 		stream->Write(*it);
 	}
+
+// Begin EmperorFool: Events with Images
+	stream->WriteString(m_szEventArt);
+// End EmperorFool: Events with Images
 
 	stream->Write(m_bSinglePlayer);
 	stream->Write(m_bTeam);
@@ -25360,6 +25511,13 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iUnitDamagedWeight, "iUnitDamagedWeight");
 	pXML->GetChildXmlValByName(&m_iUnitDistanceWeight, "iUnitDistanceWeight");
 	pXML->GetChildXmlValByName(&m_iUnitExperienceWeight, "iUnitExperienceWeight");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iUnitMinLevel, "iUnitMinLevel");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_iMinTreasury, "iMinTreasury");
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"UnitsRequired"))
@@ -25827,6 +25985,10 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
 
+// Begin EmperorFool: Events with Images
+	pXML->GetChildXmlValByName(m_szEventArt, "EventArt");
+// End EmperorFool: Events with Images
+
 	pXML->GetChildXmlValByName(&m_bSinglePlayer, "bSinglePlayer");
 	pXML->GetChildXmlValByName(&m_bTeam, "bTeam");
 	pXML->GetChildXmlValByName(&m_bRecurring, "bRecurring");
@@ -26285,6 +26447,18 @@ int CvEventInfo::getPrereqStateReligion() const
 	return m_iPrereqStateReligion;
 }
 //FfH: End Add
+
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+bool CvEventInfo::isUnitPromotion( int iUnitPromotion )
+{
+	FAssert (iUnitPromotion >= 0 && iUnitPromotion < GC.getNumPromotionInfos());
+	return m_pbUnitPromotions ? m_pbUnitPromotions[iUnitPromotion] : false;
+}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 int CvEventInfo::getAdditionalEventChance(int i) const
 {
@@ -26857,6 +27031,48 @@ bool CvEventInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "PrereqStateReligion");
 	m_iPrereqStateReligion = pXML->FindInInfoClass(szTextVal);
 //FfH: End Add
+
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	m_pbUnitPromotions = new bool[GC.getNumPromotionInfos()];
+	for (int i = 0; i < GC.getNumPromotionInfos(); ++i)
+	{
+		m_pbUnitPromotions[i] = false;
+	}
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"UnitPromotions"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						int iPromotion = pXML->FindInInfoClass(szTextVal);
+						if( iPromotion > -1 && iPromotion < GC.getNumPromotionInfos() )
+							m_pbUnitPromotions[iPromotion] = true;
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	CvString* pszPromotions = NULL;
 	FAssertMsg(NULL == m_piUnitCombatPromotions, "Memory leak");

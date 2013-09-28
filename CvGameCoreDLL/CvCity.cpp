@@ -486,6 +486,14 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_iOverflowProduction = 0;
 	m_iFeatureProduction = 0;
 	m_iMilitaryProductionModifier = 0;
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	m_iLivingProductionModifier = 0;
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	m_iSpaceProductionModifier = 0;
 	m_iExtraTradeRoutes = 0;
 	m_iTradeRouteModifier = 0;
@@ -3691,6 +3699,19 @@ int CvCity::getProductionModifier(UnitTypes eUnit) const
 		iMultiplier += getMilitaryProductionModifier();
 	}
 
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	if (kUnitInfo.isAlive(GET_PLAYER(getOwnerINLINE()).getCivilizationType()))
+	{
+		iMultiplier += getLivingProductionModifier();
+	}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
+
+
 	for (iI = 0; iI < GC.getNumBonusInfos(); iI++)
 	{
 		if (hasBonus((BonusTypes)iI))
@@ -4573,6 +4594,14 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 			changeStateReligionHappiness(((ReligionTypes)(kBuildingInfo.getReligionType())), (kBuildingInfo.getStateReligionHappiness() * iChange));
 		}
 		changeMilitaryProductionModifier(kBuildingInfo.getMilitaryProductionModifier() * iChange);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+		changeLivingProductionModifier(kBuildingInfo.getLivingProductionModifier() * iChange);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 		changeSpaceProductionModifier(kBuildingInfo.getSpaceProductionModifier() * iChange);
 		changeExtraTradeRoutes(kBuildingInfo.getTradeRoutes() * iChange);
 		changeTradeRouteModifier(kBuildingInfo.getTradeRouteModifier() * iChange);
@@ -8473,6 +8502,24 @@ void CvCity::changeMilitaryProductionModifier(int iChange)
 }
 
 
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+int CvCity::getLivingProductionModifier() const
+{
+	return m_iLivingProductionModifier;
+}
+
+
+void CvCity::changeLivingProductionModifier(int iChange)
+{
+	m_iLivingProductionModifier = (m_iLivingProductionModifier + iChange);
+}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
+
 int CvCity::getSpaceProductionModifier() const
 {
 	return m_iSpaceProductionModifier;
@@ -9589,6 +9636,14 @@ int CvCity::getAdditionalYieldRateModifierByBuilding(YieldTypes eIndex, Building
 		if (eIndex == YIELD_PRODUCTION)
 		{
 			iExtraModifier += kBuilding.getMilitaryProductionModifier();
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+			iExtraModifier += kBuilding.getLivingProductionModifier();
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 			iExtraModifier += kBuilding.getSpaceProductionModifier();
 			iExtraModifier += kBuilding.getGlobalSpaceProductionModifier();
 
@@ -14674,6 +14729,14 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iOverflowProduction);
 	pStream->Read(&m_iFeatureProduction);
 	pStream->Read(&m_iMilitaryProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	pStream->Read(&m_iLivingProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	pStream->Read(&m_iSpaceProductionModifier);
 	pStream->Read(&m_iExtraTradeRoutes);
 	pStream->Read(&m_iTradeRouteModifier);
@@ -14950,6 +15013,14 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(m_iOverflowProduction);
 	pStream->Write(m_iFeatureProduction);
 	pStream->Write(m_iMilitaryProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	pStream->Write(m_iLivingProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	pStream->Write(m_iSpaceProductionModifier);
 	pStream->Write(m_iExtraTradeRoutes);
 	pStream->Write(m_iTradeRouteModifier);
@@ -15930,6 +16001,30 @@ void CvCity::applyEvent(EventTypes eEvent, const EventTriggeredData& kTriggeredD
                     pUnit->setHasPromotion((PromotionTypes)kEvent.getUnitPromotion(), true);
                 }
 //FfH: End Modify
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+				for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+					if( kEvent.isUnitPromotion( i ) )
+					{
+						pUnit->setHasPromotion((PromotionTypes)i, true);
+					}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
+
+
+/************************************************************************************************/
+/* EVENT_FIXES                              01/21/13                                lfgr        */
+/************************************************************************************************/
+				if (0 != kEvent.getUnitExperience())
+				{
+					pUnit->setDamage(0);
+					pUnit->changeExperience(kEvent.getUnitExperience());
+				}
+/************************************************************************************************/
+/* EVENT_FIXES                             END                                                  */
+/************************************************************************************************/
 
 			}
 		}

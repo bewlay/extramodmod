@@ -181,6 +181,20 @@
             <Button>Art/Interface/Buttons/Units/Wolf.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_ANIMATE_FROSTLINGS</Type>
+            <Description>TXT_KEY_SPELL_ANIMATE_FROSTLINGS</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitClassPrereq>UNITCLASS_AURIC_ASCENDED</UnitClassPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+			<iDelay>3</iDelay>
+			<PyResult>spellAnimateFrostlings(pCaster)</PyResult>
+            <Effect>EFFECT_ICE_SUMMON</Effect>
+            <Sound>AS3D_SPELL_SPRING</Sound>
+            <Button>Art/Interface/Buttons/Units/Frostling.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_ARCANE_LACUNA</Type>
             <Description>TXT_KEY_SPELL_ARCANE_LACUNA</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -265,24 +279,39 @@
             <Sound>AS3D_SPELL_BLESS</Sound>
             <Button>Art/Interface/Buttons/Promotions/Blessed.dds</Button>
         </SpellInfo>
-        <SpellInfo>
-            <Type>SPELL_BLINDING_LIGHT</Type>
-            <Description>TXT_KEY_SPELL_BLINDING_LIGHT</Description>
-            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <PromotionPrereq1>PROMOTION_SUN2</PromotionPrereq1>
-            <bAllowAI>1</bAllowAI>
-            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
-            <bHasCasted>1</bHasCasted>
-            <bResistable>1</bResistable>
-            <iRange>1</iRange>
-            <iResistModify>30</iResistModify>
-            <bImmuneTeam>1</bImmuneTeam>
-            <bImmuneNeutral>1</bImmuneNeutral>
-            <iImmobileTurns>2</iImmobileTurns>
-            <Effect>EFFECT_SPELL1</Effect>
-            <Sound>AS3D_SPELL_CHARM_PERSON</Sound>
-            <Button>Art/Interface/Buttons/Spells/Blinding Light.dds</Button>
-        </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_BLESSING</Type>
+			<Description>TXT_KEY_SPELL_BLESSING</Description>
+			<Civilopedia>TXT_KEY_SPELL_BLESSING_PEDIA</Civilopedia>
+			<PromotionPrereq1>PROMOTION_CREATION3</PromotionPrereq1>
+			<bAllowAI>1</bAllowAI>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bInBordersOnly>1</bInBordersOnly>
+			<bInCityOnly>1</bInCityOnly>
+			<bHasCasted>1</bHasCasted>
+			<CreateBuildingType>BUILDING_BLESSING</CreateBuildingType>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS2D_BUILD_GRANARY</Sound>
+			<Button>Art/Interface/Buttons/Spells/birth.dds</Button>
+		</SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_BLINDING_LIGHT</Type>
+			<Description>TXT_KEY_SPELL_BLINDING_LIGHT</Description>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<PromotionPrereq1>PROMOTION_SUN2</PromotionPrereq1>
+			<bAllowAI>1</bAllowAI>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bHasCasted>1</bHasCasted>
+			<bResistable>1</bResistable>
+			<iRange>1</iRange>
+			<iResistModify>45</iResistModify>
+			<AddPromotionType1>PROMOTION_BLINDED</AddPromotionType1>
+			<bImmuneTeam>1</bImmuneTeam>
+			<bImmuneNeutral>1</bImmuneNeutral>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS3D_SPELL_CHARM_PERSON</Sound>
+			<Button>Art/Interface/Buttons/Spells/Blinding Light.dds</Button>
+		</SpellInfo>
         <SpellInfo>
             <Type>SPELL_BLOOM</Type>
             <Description>TXT_KEY_SPELL_BLOOM</Description>
@@ -427,56 +456,6 @@
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_CHARM_PERSON</Sound>
             <Button>Art/Interface/Buttons/Promotions/Charmed.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
-            <Type>SPELL_COMMANDER_JOIN</Type>
-            <Description>TXT_KEY_SPELL_COMMANDER_JOIN</Description>
-            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <UnitInStackPrereq>UNIT_COMMANDER</UnitInStackPrereq>
-            <bAllowAI>1</bAllowAI>
-            <bCasterNoDuration>1</bCasterNoDuration>
-            <bHasCasted>1</bHasCasted>
-            <AddPromotionType1>PROMOTION_GREAT_COMMANDER</AddPromotionType1>
-            <bBuffCasterOnly>1</bBuffCasterOnly>
-            <bAbility>1</bAbility>
-            <PyResult>spellCommanderJoin(pCaster)</PyResult>
-            <PyRequirement>reqCommanderJoin(pCaster)</PyRequirement>
-            <Effect>EFFECT_SPELL1</Effect>
-            <Sound>AS3D_SPELL_COMMANDER_JOIN</Sound>
-            <Button>Art/Interface/Buttons/Units/Commander.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
-            <Type>SPELL_COMMANDER_JOIN_DECIUS</Type>
-            <Description>TXT_KEY_SPELL_COMMANDER_JOIN</Description>
-            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <UnitInStackPrereq>UNIT_DECIUS</UnitInStackPrereq>
-            <bAllowAI>1</bAllowAI>
-            <bCasterNoDuration>1</bCasterNoDuration>
-            <bHasCasted>1</bHasCasted>
-            <AddPromotionType1>PROMOTION_GREAT_COMMANDER</AddPromotionType1>
-            <bBuffCasterOnly>1</bBuffCasterOnly>
-            <bAbility>1</bAbility>
-            <PyResult>spellCommanderJoinDecius(pCaster)</PyResult>
-            <PyRequirement>reqCommanderJoin(pCaster)</PyRequirement>
-            <Effect>EFFECT_SPELL1</Effect>
-            <Sound>AS3D_SPELL_COMMANDER_JOIN</Sound>
-            <bGraphicalOnly>1</bGraphicalOnly>
-            <Button>Art/Interface/Buttons/Units/Commander.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
-            <Type>SPELL_COMMANDER_SPLIT</Type>
-            <Description>TXT_KEY_SPELL_COMMANDER_SPLIT</Description>
-            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <PromotionPrereq1>PROMOTION_GREAT_COMMANDER</PromotionPrereq1>
-            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
-            <bHasCasted>1</bHasCasted>
-            <RemovePromotionType1>PROMOTION_GREAT_COMMANDER</RemovePromotionType1>
-            <bBuffCasterOnly>1</bBuffCasterOnly>
-            <bAbility>1</bAbility>
-            <PyResult>spellCommanderSplit(pCaster)</PyResult>
-            <Effect>EFFECT_SPELL1</Effect>
-            <Sound>AS3D_SPELL_COMMANDER_SPLIT</Sound>
-            <Button>Art/Interface/Buttons/Units/Commander.dds</Button>
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_CONSUME_SOUL</Type>
@@ -804,6 +783,39 @@
             <Button>Art/Interface/Buttons/Promotions/Danceofblades.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_DECIUS_JOIN</Type>
+            <Description>TXT_KEY_SPELL_DECIUS_JOIN</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitInStackPrereq>UNIT_DECIUS</UnitInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bCasterNoDuration>1</bCasterNoDuration>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_DECIUS</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <PyResult>spellDeciusJoin(pCaster)</PyResult>
+            <PyRequirement>reqDeciusJoin(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_COMMANDER_JOIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Leaderheads/Decius button.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DECIUS_SPLIT</Type>
+            <Description>TXT_KEY_SPELL_DECIUS_SPLIT</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_DECIUS</PromotionPrereq1>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_DECIUS</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <PyResult>spellDeciusSplit(pCaster)</PyResult>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_COMMANDER_SPLIT</Sound>
+            <Button>Art/Interface/Leaderheads/Decius button.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_DECLARE_WAR_BARBS</Type>
             <Description>TXT_KEY_SPELL_DECLARE_BARBS</Description>
             <Civilopedia>TXT_KEY_SPELL_DECLARE_BARBS_HELP</Civilopedia>
@@ -924,9 +936,52 @@
             <Button>Art/Interface/Buttons/Spells/Domination.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_DROP_ATHAME_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_ATHAME</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_ATHAME</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_ATHAME</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_ATHAME</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_ATHAME')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/Athame.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_BLACK_MIRROR_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_BLACK_MIRROR</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_BLACK_MIRROR</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_BLACK_MIRROR</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_BLACK_MIRROR</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_BLACK_MIRROR')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/BlackMirror.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_DROP_CROWN_OF_AKHARIEN</Type>
             <Description>TXT_KEY_SPELL_DROP_CROWN_OF_AKHARIEN</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
             <PromotionPrereq1>PROMOTION_CROWN_OF_AKHARIEN</PromotionPrereq1>
             <bAllowAI>1</bAllowAI>
             <bInBordersOnly>1</bInBordersOnly>
@@ -943,9 +998,52 @@
             <Button>Art/Interface/Buttons/Equipment/CrownOfAkharien.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_DROP_CROWN_OF_AKHARIEN_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_CROWN_OF_AKHARIEN</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_CROWN_OF_AKHARIEN</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_CROWN_OF_AKHARIEN</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_CROWN_OF_AKHARIEN</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_CROWN_OF_AKHARIEN')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/CrownOfAkharien.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_CROWN_OF_COMMAND_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_CROWN_OF_COMMAND</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_CROWN_OF_COMMAND</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_CROWN_OF_COMMAND</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_CROWN_OF_COMMAND</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_CROWN_OF_COMMAND')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/CrownOfCommand.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_DROP_DRAGONS_HORDE</Type>
             <Description>TXT_KEY_SPELL_DROP_DRAGONS_HORDE</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
             <PromotionPrereq1>PROMOTION_DRAGONS_HORDE</PromotionPrereq1>
             <bAllowAI>1</bAllowAI>
             <bInBordersOnly>1</bInBordersOnly>
@@ -962,9 +1060,325 @@
             <Button>Art/Interface/Buttons/Equipment/DragonsHorde.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_DROP_DRAGONS_HORDE_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_DRAGONS_HORDE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_DRAGONS_HORDE</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_DRAGONS_HORDE</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_DRAGONS_HORDE</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_DRAGONS_HORDE')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/DragonsHorde.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_EMPTY_BIER_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_EMPTY_BIER</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_EMPTY_BIER</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_EMPTY_BIER</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_EMPTY_BIER</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_EMPTY_BIER')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/EmptyBier.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_GELA_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_GELA</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_GELA</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_GELA</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_GELA</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_GELA')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/Gela.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_GOLDEN_HAMMER_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_GOLDEN_HAMMER</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_GOLDEN_HAMMER</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_GOLDEN_HAMMER</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_GOLDEN_HAMMER</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_GOLDEN_HAMMER')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/GoldenHammer.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_HEALING_SALVE_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_HEALING_SALVE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_HEALING_SALVE</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_HEALING_SALVE</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_HEALING_SALVE</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_HEALING_SALVE')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/HealingSalve.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_INFERNAL_GRIMOIRE_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_INFERNAL_GRIMOIRE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_INFERNAL_GRIMOIRE</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_INFERNAL_GRIMOIRE</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_INFERNAL_GRIMOIRE</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_INFERNAL_GRIMOIRE')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/InfernalGrimoire.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_JADE_TORC_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_JADE_TORC</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_JADE_TORC</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_JADE_TORC</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_JADE_TORC</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_JADE_TORC')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/JadeTorc.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_NETHER_BLADE_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_NETHER_BLADE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_NETHER_BLADE</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_NETHER_BLADE</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_NETHER_BLADE</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_NETHER_BLADE')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/NetherBlade.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_ORTHUSS_AXE_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_ORTHUSS_AXE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_ORTHUSS_AXE</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_ORTHUSS_AXE</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_ORTHUSS_AXE</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_ORTHUSS_AXE')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/Orthussaxe.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_PIECES_OF_BARNAXUS_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_PIECES_OF_BARNAXUS</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_PIECES_OF_BARNAXUS</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_PIECES_OF_BARNAXUS</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_PIECES_OF_BARNAXUS</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+			<PyRequirement>reqDropEquipmentPiecesBarnaxus(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Units/Barnaxus.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_POTION_OF_INVISIBILITY_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_POTION_OF_INVISIBILITY</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_POTION_OF_INVISIBILITY</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_POTION_OF_INVISIBILITY</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_POTION_OF_INVISIBILITY</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_POTION_OF_INVISIBILITY')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/PotionOfInvisibility.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_POTION_OF_RESTORATION_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_POTION_OF_RESTORATION</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_POTION_OF_RESTORATION</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_POTION_OF_RESTORATION</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_POTION_OF_RESTORATION</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_POTION_OF_RESTORATION')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/PotionOfRestoration.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_ROD_OF_WINDS_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_ROD_OF_WINDS</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_ROD_OF_WINDS</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_ROD_OF_WINDS</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_ROD_OF_WINDS</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_ROD_OF_WINDS')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/RodOfWinds.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_SCORCHED_STAFF_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_SCORCHED_STAFF</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_SCORCHED_STAFF</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_SCORCHED_STAFF</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_SCORCHED_STAFF</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_SCORCHED_STAFF')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/ScorchedStaff.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_STAFF_OF_SOULS_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_STAFF_OF_SOULS</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_STAFF_OF_SOULS</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_STAFF_OF_SOULS</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_STAFF_OF_SOULS</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_STAFF_OF_SOULS')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/StaffOfSouls.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_DROP_SYLIVENS_PERFECT_LYRE</Type>
             <Description>TXT_KEY_SPELL_DROP_SYLIVENS_PERFECT_LYRE</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
             <PromotionPrereq1>PROMOTION_SYLIVENS_PERFECT_LYRE</PromotionPrereq1>
             <bAllowAI>1</bAllowAI>
             <bInBordersOnly>1</bInBordersOnly>
@@ -979,6 +1393,90 @@
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Equipment/SylivensPerfectLyre.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_SYLIVENS_PERFECT_LYRE_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_SYLIVENS_PERFECT_LYRE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_SYLIVENS_PERFECT_LYRE</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_SYLIVENS_PERFECT_LYRE</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_SYLIVENS_PERFECT_LYRE</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_SYLIVENS_PERFECT_LYRE')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/SylivensPerfectLyre.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_TIMOR_MASK_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_TIMOR_MASK</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_TIMOR_MASK</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_TIMOR_MASK</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_TIMOR_MASK</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_TIMOR_MASK')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/TimorMask.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_GODSLAYER_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_GODSLAYER</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_GODSLAYER</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_GODSLAYER</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_GODSLAYER</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_GODSLAYER')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/Godslayer.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_WAR_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_WAR</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_WAR</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_WAR</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_WAR</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_WAR')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/War.dds</Button>
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_DROWN</Type>
@@ -1096,11 +1594,11 @@
             <Description>TXT_KEY_SPELL_ESCAPE</Description>
             <Civilopedia>TXT_KEY_SPELL_ESCAPE_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_ESCAPE_HELP</Help>
-            <UnitPrereq>UNIT_CHANTER</UnitPrereq>
+            <PromotionPrereq1>PROMOTION_DIMENSIONAL1</PromotionPrereq1>
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <PyResult>spellTeleport(pCaster,'Capital')</PyResult>
+            <PyResult>spellEscape(pCaster)</PyResult>
             <PyRequirement>reqEscape(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL2</Effect>
             <Sound>AS3D_SPELL_ESCAPE</Sound>
@@ -1134,6 +1632,23 @@
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
             <PyResult>spellExploreLair(pCaster)</PyResult>
+            <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_HASTE</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_EXPLORE_LAIR_BAIR_OF_LACUNA</Type>
+            <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <ImprovementPrereq>IMPROVEMENT_BAIR_OF_LACUNA</ImprovementPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>300</iAIWeight>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <bAbility>1</bAbility>
+            <PyResult>spellExploreLairEpic(pCaster)</PyResult>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
@@ -1202,6 +1717,23 @@
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
             <PyResult>spellExploreLair(pCaster)</PyResult>
+            <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_HASTE</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_EXPLORE_LAIR_PALUS</Type>
+            <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <ImprovementPrereq>IMPROVEMENT_PALUS</ImprovementPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>300</iAIWeight>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <bAbility>1</bAbility>
+            <PyResult>spellExploreLairEpic(pCaster)</PyResult>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
@@ -1311,6 +1843,20 @@
             <Sound>AS3D_SPELL_FEED</Sound>
             <Button>Art/Interface/Buttons/Spells/Feed.dds</Button>
         </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_FERTILITY</Type>
+			<Description>TXT_KEY_SPELL_FERTILITY</Description>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_FERTILITY_HELP</Help>
+			<PromotionPrereq1>PROMOTION_CREATION2</PromotionPrereq1>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bHasCasted>1</bHasCasted>
+			<PyResult>spellFertility(pCaster)</PyResult>
+			<PyRequirement>reqFertility(pCaster)</PyRequirement>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS2D_POSITIVE_DINK</Sound>
+			<Button>Art/Interface/Buttons/Spells/fertility.dds</Button>
+		</SpellInfo>
         <SpellInfo>
             <Type>SPELL_FIREBALL</Type>
             <Description>TXT_KEY_SPELL_FIREBALL</Description>
@@ -1564,6 +2110,21 @@
             <Sound>AS3D_SPELL_GRAFT_FLESH</Sound>
             <Button>Art/Interface/Buttons/Units/Flesh Golem.dds</Button>
         </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_GROWTH</Type>
+			<Description>TXT_KEY_SPELL_GROWTH</Description>
+			<Civilopedia>TXT_KEY_SPELL_GROWTH_PEDIA</Civilopedia>
+			<PromotionPrereq1>PROMOTION_CREATION1</PromotionPrereq1>
+			<bAllowAI>1</bAllowAI>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bInBordersOnly>1</bInBordersOnly>
+			<bInCityOnly>1</bInCityOnly>
+			<bHasCasted>1</bHasCasted>
+			<CreateBuildingType>BUILDING_GROWTH</CreateBuildingType>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS2D_BUILD_GRANARY</Sound>
+			<Button>Art/Interface/Buttons/Spells/growth.dds</Button>
+		</SpellInfo>
         <SpellInfo>
             <Type>SPELL_HASTE</Type>
             <Description>TXT_KEY_SPELL_HASTE</Description>
@@ -1610,11 +2171,128 @@
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <RemovePromotionType1>PROMOTION_POISONED</RemovePromotionType1>
+            <RemovePromotionType2>PROMOTION_BLINDED</RemovePromotionType2>
             <PyResult>spellHeal(pCaster,20)</PyResult>
             <PyRequirement>reqHeal(pCaster)</PyRequirement>
             <Effect>EFFECT_CREATION</Effect>
             <Sound>AS3D_SPELL_HEAL</Sound>
             <Button>Art/Interface/Buttons/Spells/Heal.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_ESUS_BLUR</Type>
+            <Description>TXT_KEY_SPELL_BLUR</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_ESUS_AGENT</PromotionPrereq1>
+            <ReligionPrereq>RELIGION_COUNCIL_OF_ESUS</ReligionPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_BLUR</AddPromotionType1>
+            <iCost>12</iCost>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_CHARM_PERSON</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Promotions/Blur.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_ESUS_HASTE</Type>
+            <Description>TXT_KEY_SPELL_HASTE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_ESUS_AGENT</PromotionPrereq1>
+            <UnitClassPrereq>UNITCLASS_SHADOW</UnitClassPrereq>
+            <ReligionPrereq>RELIGION_COUNCIL_OF_ESUS</ReligionPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_HASTED</AddPromotionType1>
+            <RemovePromotionType1>PROMOTION_SLOW</RemovePromotionType1>
+            <bImmuneNeutral>1</bImmuneNeutral>
+            <bImmuneEnemy>1</bImmuneEnemy>
+            <bImmuneNotAlive>1</bImmuneNotAlive>
+            <iCost>60</iCost>
+            <Effect>EFFECT_WIND_SWIRL</Effect>
+            <Sound>AS3D_SPELL_HASTE</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Promotions/Hasted.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_ESUS_POISONED_BLADE</Type>
+            <Description>TXT_KEY_SPELL_POISONED_BLADE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_ESUS_AGENT</PromotionPrereq1>
+            <UnitClassPrereq>UNITCLASS_NIGHTWATCH</UnitClassPrereq>
+            <ReligionPrereq>RELIGION_COUNCIL_OF_ESUS</ReligionPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <TechPrereq>TECH_POISONS</TechPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_POISONED_BLADE</AddPromotionType1>
+            <bImmuneNeutral>1</bImmuneNeutral>
+            <iCost>90</iCost>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Spells/Poisoned Blade.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_ESUS_REGENERATION</Type>
+            <Description>TXT_KEY_SPELL_REGENERATION</Description>
+            <Civilopedia>TXT_KEY_SPELL_REGENERATION_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_ESUS_AGENT</PromotionPrereq1>
+            <UnitClassPrereq>UNITCLASS_SHADOWRIDER</UnitClassPrereq>
+            <ReligionPrereq>RELIGION_COUNCIL_OF_ESUS</ReligionPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_REGENERATION</AddPromotionType1>
+            <bImmuneNotAlive>1</bImmuneNotAlive>
+            <iCost>120</iCost>
+            <Effect>EFFECT_CREATION</Effect>
+            <Sound>AS3D_SPELL_BLESS</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Promotions/Regeneration.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_ESUS_SHADOWWALK</Type>
+            <Description>TXT_KEY_SPELL_SHADOWWALK</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_ESUS_AGENT</PromotionPrereq1>
+            <UnitClassPrereq>UNITCLASS_SHADOWRIDER</UnitClassPrereq>
+            <ReligionPrereq>RELIGION_COUNCIL_OF_ESUS</ReligionPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_SHADOWWALK</AddPromotionType1>
+            <iCost>60</iCost>
+            <Effect>EFFECT_SWORDS_SPARKS</Effect>
+            <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Promotions/Shadowwalk.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_EXTORT</Type>
+            <Description>TXT_KEY_SPELL_EXTORT</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_EXTORT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_ESUS_AGENT</PromotionPrereq1>
+            <ReligionPrereq>RELIGION_COUNCIL_OF_ESUS</ReligionPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bInBordersOnly>1</bInBordersOnly>
+            <bInCityOnly>1</bInCityOnly>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <iChangePopulation>-1</iChangePopulation>
+            <PyResult>spellExtort(pCaster)</PyResult>
+            <PyRequirement>reqExtort(pCaster)</PyRequirement>
+            <Effect>EFFECT_SACRIFICE</Effect>
+            <Sound>AS3D_SPELL_FEAST</Sound>
+            <Button>Art/Interface/Buttons/Buildings/Moneychanger.dds</Button>
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_HEALING_SALVE</Type>
@@ -1675,6 +2353,23 @@
             <AddPromotionType1>PROMOTION_HIDDEN</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+            <PyRequirement>reqHide(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_HOPE</Sound>
+            <Button>Art/Interface/Buttons/Promotions/Hidden.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_ESUS_HIDE</Type>
+            <Description>TXT_KEY_SPELL_HIDE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitClassPrereq>UNITCLASS_ASSASSIN</UnitClassPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_HIDDEN</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <iCost>30</iCost>
             <PyRequirement>reqHide(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HOPE</Sound>
@@ -1841,6 +2536,22 @@
             <Button>Art/Interface/Buttons/Buildings/Inspiration.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_ILLUMINATION</Type>
+            <Description>TXT_KEY_SPELL_ILLUMINATION</Description>
+            <Civilopedia>TXT_KEY_SPELL_ILLUMINATION_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_ILLUMINATION_HELP</Help>
+            <PromotionPrereq1>PROMOTION_SPIRIT3</PromotionPrereq1>
+            <PromotionPrereq2>PROMOTION_CHANNELING3</PromotionPrereq2>
+            <bAllowAI>1</bAllowAI>
+            <bInCityOnly>1</bInCityOnly>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <CreateBuildingType>BUILDING_ILLUMINATION</CreateBuildingType>
+            <Effect>EFFECT_CREATION</Effect>
+            <Sound>AS3D_SPELL_INSPIRATION</Sound>
+            <Button>Art/Interface/Buttons/Buildings/Inspiration.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_INTO_THE_MIST</Type>
             <Description>TXT_KEY_SPELL_INTO_THE_MIST</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1891,6 +2602,19 @@
             <Button>Art/Interface/Buttons/Spells/Kidnap.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_LABYRINTH</Type>
+            <Description>TXT_KEY_SPELL_LABYRINTH</Description>
+            <Civilopedia>TXT_KEY_SPELL_LABYRINTH_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_DIMENSIONAL2</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <CreateFeatureType>FEATURE_LABYRINTH</CreateFeatureType>
+            <Effect>EFFECT_ENTROPY_SUMMON</Effect>
+            <Sound>AS3D_SPELL_DEFILE</Sound>
+            <Button>Art/Interface/Buttons/TerrainFeatures/Tormented Souls.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_LEGENDS</Type>
             <Description>TXT_KEY_SPELL_LEGENDS</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1912,6 +2636,7 @@
             <Description>TXT_KEY_SPELL_LICHDOM</Description>
             <Civilopedia>TXT_KEY_SPELL_LICHDOM_PEDIA</Civilopedia>
             <PromotionPrereq1>PROMOTION_DEATH3</PromotionPrereq1>
+            <TechPrereq>TECH_DIVINE_ESSENCE</TechPrereq>
             <bAllowAI>1</bAllowAI>
             <iAIWeight>200</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
@@ -1956,6 +2681,20 @@
             <Effect>EFFECT_MAELSTROM</Effect>
             <Sound>AS3D_SPELL_MAELSTROM</Sound>
             <Button>Art/Interface/Buttons/Spells/Maelstrom.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_MAGIC_MISSILE</Type>
+            <Description>TXT_KEY_SPELL_MAGIC_MISSILE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_FORCE2</PromotionPrereq1>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <CreateUnitType>UNIT_MAGIC_MISSILE</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_FIREBALL</Sound>
+            <Button>Art/Interface/Buttons/Units/Fireball.dds</Button>
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_MARCH_OF_THE_TREES</Type>
@@ -2125,6 +2864,23 @@
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_PILLAR_OF_FIRE</Type>
+            <Description>TXT_KEY_SPELL_PILLAR_OF_FIRE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PILLAR_OF_FIRE_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_PILLAR_OF_FIRE_HELP</Help>
+            <UnitClassPrereq>UNITCLASS_HIGH_PRIEST_OF_THE_ORDER</UnitClassPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>300</iAIWeight>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <iRange>2</iRange>
+            <PyResult>spellPillarofFire(pCaster)</PyResult>
+            <PyRequirement>reqPillarofFire(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_FIREBALL</Sound>
+            <Button>Art/Interface/Buttons/Spells/PillarofFire.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_PILLAR_OF_FIRE_CHALID</Type>
             <Description>TXT_KEY_SPELL_PILLAR_OF_FIRE</Description>
             <Civilopedia>TXT_KEY_SPELL_PILLAR_OF_FIRE_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_PILLAR_OF_FIRE_HELP</Help>
@@ -2360,6 +3116,26 @@
             <Button>Art/Interface/Buttons/Units/Mercenary.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_RECRUIT_NIGHTWATCH</Type>
+            <Description>TXT_KEY_SPELL_RECRUIT_NIGHTWATCH</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_RECRUIT_NIGHTWATCH_HELP</Help>
+            <UnitCombatPrereq>UNITCOMBAT_RECON</UnitCombatPrereq>
+            <StateReligionPrereq>RELIGION_COUNCIL_OF_ESUS</StateReligionPrereq>
+            <TechPrereq>TECH_BOWYERS</TechPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bInBordersOnly>1</bInBordersOnly>
+            <bInCityOnly>1</bInCityOnly>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <iCost>200</iCost>
+            <PyResult>spellRecruitNightwatch(pCaster)</PyResult>
+            <PyRequirement>reqRecruitNightwatch(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_RECRUIT</Sound>
+            <Button>Art/Interface/Buttons/Units/Nightwatch.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_REGENERATION</Type>
             <Description>TXT_KEY_SPELL_REGENERATION</Description>
             <Civilopedia>TXT_KEY_SPELL_REGENERATION_PEDIA</Civilopedia>
@@ -2510,6 +3286,49 @@
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_INSPIRATION</Sound>
             <Button>Art/Interface/Buttons/Spells/Revelry.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_RIFT_CREATE</Type>
+            <Description>TXT_KEY_SPELL_RIFT_CREATE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_RIFT_CREATE_HELP</Help>
+			<PromotionPrereq1>PROMOTION_DIMENSIONAL3</PromotionPrereq1>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+			<PyResult>spellRiftCreate(pCaster)</PyResult>
+			<PyRequirement>reqRiftCreate(pCaster)</PyRequirement>
+            <Effect>EFFECT_ENTROPY_SUMMON</Effect>
+            <Sound>AS3D_SPELL_DEFILE</Sound>
+            <Button>Art/Interface/Buttons/Units/Lightning Elemental.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_RIFT_CROSS</Type>
+            <Description>TXT_KEY_SPELL_RIFT_CROSS</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_RIFT_CROSS_HELP</Help>
+            <bAllowAI>1</bAllowAI>
+            <bHasCasted>1</bHasCasted>
+            <PyResult>spellRiftCross(pCaster)</PyResult>
+            <PyRequirement>reqRiftCross(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_DEFILE</Sound>
+            <Button>Art/Interface/Buttons/Units/Lightning Elemental.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_RIFT_OPEN</Type>
+            <Description>TXT_KEY_SPELL_RIFT_OPEN</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_RIFT_OPEN_HELP</Help>
+			<PromotionPrereq1>PROMOTION_DIMENSIONAL3</PromotionPrereq1>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>0</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+			<PyResult>spellRiftOpen(pCaster)</PyResult>
+			<PyRequirement>reqRiftOpen(pCaster)</PyRequirement>
+            <Effect>EFFECT_ENTROPY_SUMMON</Effect>
+            <Sound>AS3D_SPELL_DEFILE</Sound>
+            <Button>Art/Interface/Buttons/Units/Lightning Elemental.dds</Button>
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_RING_OF_FLAMES</Type>
@@ -2696,12 +3515,13 @@
             <Type>SPELL_SEVER</Type>
             <Description>TXT_KEY_SPELL_SEVER_SOUL</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <UnitPrereq>UNIT_DIVIDED_SOUL</UnitPrereq>
+            <UnitCombatPrereq>UNITCOMBAT_RECON</UnitCombatPrereq>
+            <CivilizationPrereq>CIVILIZATION_SIDAR</CivilizationPrereq>
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <CreateUnitType>UNIT_SEVERED_SOUL</CreateUnitType>
-            <iCreateUnitNum>1</iCreateUnitNum>
+			<PyResult>spellSeverSoul(pCaster)</PyResult>
+			<PyRequirement>reqSeverSoul(pCaster)</PyRequirement>
             <Effect>EFFECT_ENTROPY_SUMMON</Effect>
             <Sound>AS3D_SPELL_DEFILE</Sound>
             <Button>Art/Interface/Buttons/Units/Severed Soul.dds</Button>
@@ -2812,6 +3632,24 @@
             <Button>Art/Interface/Buttons/Promotions/Slow.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_SLOW_GREATER</Type>
+            <Description>TXT_KEY_SPELL_SLOW_GREATER</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitClassPrereq>UNITCLASS_AURIC_ASCENDED</UnitClassPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <bResistable>1</bResistable>
+            <iRange>3</iRange>
+            <AddPromotionType1>PROMOTION_SLOW</AddPromotionType1>
+            <RemovePromotionType1>PROMOTION_HASTED</RemovePromotionType1>
+            <bImmuneTeam>1</bImmuneTeam>
+            <bImmuneNeutral>1</bImmuneNeutral>
+            <Effect>EFFECT_SLOW</Effect>
+            <Sound>AS3D_SPELL_SPRING</Sound>
+            <Button>Art/Interface/Buttons/Promotions/Slow.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_SNOWFALL</Type>
             <Description>TXT_KEY_SPELL_SNOWFALL</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -2823,7 +3661,7 @@
             <bHasCasted>1</bHasCasted>
             <iRange>1</iRange>
             <iDamage>40</iDamage>
-            <iDamageLimit>80</iDamageLimit>
+            <iDamageLimit>70</iDamageLimit>
             <DamageType>DAMAGE_COLD</DamageType>
             <PyResult>spellSnowfall(pCaster)</PyResult>
             <Effect>EFFECT_SNOWFALL</Effect>
@@ -2896,7 +3734,7 @@
             <bHasCasted>1</bHasCasted>
             <SpreadReligion>RELIGION_COUNCIL_OF_ESUS</SpreadReligion>
             <bAbility>1</bAbility>
-            <iCost>25</iCost>
+            <iCost>100</iCost>
             <PyRequirement>reqSpreadTheCouncilOfEsus(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_COUNCIL_OF_ESUS_DINK</Sound>
@@ -3145,6 +3983,19 @@
             <Sound>AS3D_SPELL_PIT_BEAST</Sound>
             <Button>Art/Interface/Buttons/Units/Pit Beast.dds</Button>
         </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_SUMMON_RUNEWYN</Type>
+			<Description>TXT_KEY_SPELL_SUMMON_RUNEWYN</Description>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SUMMON_RUNEWYN_HELP</Help>
+			<PromotionPrereq1>PROMOTION_FORCE3</PromotionPrereq1>
+			<bHasCasted>1</bHasCasted>
+			<CreateUnitType>UNIT_RUNEWYN</CreateUnitType>
+			<iCreateUnitNum>1</iCreateUnitNum>
+			<Effect>EFFECT_PIT_BEAST_SUMMON</Effect>
+			<Sound>AS3D_SPELL_PIT_BEAST</Sound>
+			<Button>Art/Interface/Buttons/Units/Angel of Death.dds</Button>
+		</SpellInfo>
         <SpellInfo>
             <Type>SPELL_SUMMON_SAND_LION</Type>
             <Description>TXT_KEY_SPELL_SUMMON_SAND_LION</Description>
@@ -4192,11 +5043,24 @@
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <Button>Art/Interface/Buttons/Units/Govannon.dds</Button>
         </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_TEMPERANCE</Type>
+			<Description>TXT_KEY_SPELL_TEMPERANCE</Description>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<PromotionPrereq1>PROMOTION_FORCE1</PromotionPrereq1>
+			<bAllowAI>1</bAllowAI>
+			<iAIWeight>10</iAIWeight>
+			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bHasCasted>1</bHasCasted>
+			<AddPromotionType1>PROMOTION_TEMPERANCE</AddPromotionType1>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS3D_SPELL_SANCTIFY</Sound>
+			<Button>Art/Interface/Buttons/Promotions/Temporance.dds</Button>
+		</SpellInfo>
         <SpellInfo>
-            <Type>SPELL_TREETOP_DEFENCE</Type>
-            <Description>TXT_KEY_SPELL_TREETOP_DEFENCE</Description>
+            <Type>SPELL_TREETOP_TACTICS</Type>
+            <Description>TXT_KEY_SPELL_TREETOP_TACTICS</Description>
             <Civilopedia>TXT_KEY_SPELL_TREETOP_DEFENCE_PEDIA</Civilopedia>
-            <Help>TXT_KEY_SPELL_TREETOP_DEFENCE_HELP</Help>
             <PromotionPrereq1>PROMOTION_NATURE1</PromotionPrereq1>
             <PromotionPrereq2>PROMOTION_CHANNELING1</PromotionPrereq2>
             <FeatureOrPrereq1>FEATURE_FOREST</FeatureOrPrereq1>
@@ -4205,7 +5069,7 @@
             <iAIWeight>10</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <PyResult>spellTreetopDefence(pCaster)</PyResult>
+             <AddPromotionType1>PROMOTION_TREETOP_TACTICS</AddPromotionType1>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_SANCTIFY</Sound>
             <Button>Art/Interface/Buttons/Spells/Treetopdefence.dds</Button>
@@ -4239,7 +5103,7 @@
             <bCausesWar>1</bCausesWar>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <iRange>2</iRange>
+            <iRange>1</iRange>
             <PyResult>spellTsunami(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TSUNAMI</Sound>
@@ -4318,6 +5182,44 @@
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Units/Axeman Doviello.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_UPGRADE_DOVIELLO_AXEMAN_LUCIAN</Type>
+            <Description>TXT_KEY_SPELL_UPGRADE_DOVIELLO_AXEMAN</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitClassPrereq>UNITCLASS_LUCIAN</UnitClassPrereq>
+            <CivilizationPrereq>CIVILIZATION_DOVIELLO</CivilizationPrereq>
+            <TechPrereq>TECH_BRONZE_WORKING</TechPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>100</iAIWeight>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <bAbility>1</bAbility>
+            <iCost>80</iCost>
+			<PyResult>spellUpgradeLucian(pCaster)</PyResult>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Units/Axeman Doviello.dds</Button>
+        </SpellInfo>
+		<SpellInfo>
+            <Type>SPELL_UPGRADE_DOVIELLO_BATTLEMASTER</Type>
+            <Description>TXT_KEY_SPELL_UPGRADE_DOVIELLO_CHAMPION</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitClassPrereq>UNITCLASS_WARRIOR</UnitClassPrereq>
+            <CivilizationPrereq>CIVILIZATION_DOVIELLO</CivilizationPrereq>
+            <TechPrereq>TECH_IRON_WORKING</TechPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>150</iAIWeight>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <ConvertUnitType>UNIT_BATTLEMASTER</ConvertUnitType>
+            <bAbility>1</bAbility>
+            <iCost>120</iCost>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Units/Battlemaster.dds</Button>
         </SpellInfo>
         <SpellInfo>
             <Type>SPELL_UPGRADE_DOVIELLO_CHAMPION</Type>
@@ -4420,7 +5322,7 @@
             <CivilizationPrereq>CIVILIZATION_BARBARIAN</CivilizationPrereq>
             <bAllowAI>1</bAllowAI>
             <iAIWeight>300</iAIWeight>
-            <iCasterMinLevel>5</iCasterMinLevel>
+            <iCasterMinLevel>6</iCasterMinLevel>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <ConvertUnitType>UNIT_WRAITH</ConvertUnitType>
@@ -4526,20 +5428,6 @@
             <Button>Art/Interface/Buttons/Promotions/Warcry.dds</Button>
         </SpellInfo>
         <SpellInfo>
-            <Type>SPELL_WATER_WALKING</Type>
-            <Description>TXT_KEY_SPELL_WATER_WALKING</Description>
-            <Civilopedia>TXT_KEY_SPELL_WATER_WALKING_PEDIA</Civilopedia>
-            <PromotionPrereq1>PROMOTION_WATER2</PromotionPrereq1>
-            <bAllowAI>1</bAllowAI>
-            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
-            <bHasCasted>1</bHasCasted>
-            <AddPromotionType1>PROMOTION_WATER_WALKING</AddPromotionType1>
-            <bBuffCasterOnly>1</bBuffCasterOnly>
-            <Effect>EFFECT_CREATION</Effect>
-            <Sound>AS3D_SPELL_WATER</Sound>
-            <Button>Art/Interface/Buttons/Promotions/Waterwalking.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
             <Type>SPELL_WHITEOUT</Type>
             <Description>TXT_KEY_SPELL_WHITEOUT</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -4628,6 +5516,23 @@
             <Sound>AS3D_SPELL_DEFILE</Sound>
             <Button>Art/Interface/Buttons/Spells/Worldbreak.dds</Button>
         </SpellInfo>
+		<SpellInfo>
+            <Type>SPELL_GREAT_GENERAL_JOIN</Type>
+            <Description>TXT_KEY_MISSION_LEAD_TROOPS</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitInStackPrereq>UNIT_GREAT_GENERAL</UnitInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bCasterNoDuration>1</bCasterNoDuration>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_GREAT_GENERAL</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <PyResult>spellGreatGeneralJoin(pCaster)</PyResult>
+            <PyRequirement>reqGreatGeneralJoin(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_COMMANDER_JOIN</Sound>
+            <Button>Art/Interface/Buttons/Units/Commander.dds</Button>
+        </SpellInfo>
         <SpellInfo>
             <Type>SPELL_GREAT_GENERAL_SPLIT</Type>
             <Description>TXT_KEY_SPELL_GREAT_GENERAL_SPLIT</Description>
@@ -4643,5 +5548,220 @@
             <Sound>AS3D_SPELL_COMMANDER_SPLIT</Sound>
             <Button>Art/Interface/Buttons/Units/Commander.dds</Button>
         </SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_TARGET_WEAK</Type>
+			<Description>TXT_KEY_SPELL_TARGET_WEAKEST_UNIT</Description>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<PromotionPrereq1>PROMOTION_MARKSMAN_DISABLED</PromotionPrereq1>
+			<bAbility>1</bAbility>
+			<bIgnoreHasCasted>1</bIgnoreHasCasted>
+			<AddPromotionType1>PROMOTION_MARKSMAN</AddPromotionType1>
+			<RemovePromotionType1>PROMOTION_MARKSMAN_DISABLED</RemovePromotionType1>
+			<bBuffCasterOnly>1</bBuffCasterOnly>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS3D_SPELL_TRAIN</Sound>
+			<Button>Art/Interface/Buttons/Promotions/Marksman.dds</Button>
+		</SpellInfo>
+		<SpellInfo>
+			<Type>SPELL_TARGET_STRONG</Type>
+			<Description>TXT_KEY_SPELL_STOP_TARGETING_WEAKEST_UNIT</Description>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<PromotionPrereq1>PROMOTION_MARKSMAN</PromotionPrereq1>
+			<bAbility>1</bAbility>
+			<bIgnoreHasCasted>1</bIgnoreHasCasted>
+			<AddPromotionType1>PROMOTION_MARKSMAN_DISABLED</AddPromotionType1>
+			<RemovePromotionType1>PROMOTION_MARKSMAN</RemovePromotionType1>
+			<bBuffCasterOnly>1</bBuffCasterOnly>
+			<Effect>EFFECT_SPELL1</Effect>
+			<Sound>AS3D_SPELL_TRAIN</Sound>
+			<Button>Art/Interface/Buttons/Promotions/Marksman.dds</Button>
+		</SpellInfo>
+<!-- MORE EVENTS MOD STARTS -->		
+        <SpellInfo>
+            <Type>SPELL_DROP_PIKE_OF_TEARS_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_PIKE_OF_TEARS</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_PIKE_OF_TEARS</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_PIKE_OF_TEARS</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_PIKE_OF_TEARS</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_PIKE_OF_TEARS')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/Gela.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_TAKE_PIKE_OF_TEARS_PROMOTION</Type>
+            <Description>TXT_KEY_SPELL_TAKE_PIKE_OF_TEARS</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
+            <PromotionInStackPrereq>PROMOTION_PIKE_OF_TEARS</PromotionInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>50</iAIWeight>
+            <bHasCasted>1</bHasCasted>
+            <bAbility>1</bAbility>
+            <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_PIKE_OF_TEARS')</PyResult>
+            <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_PIKE_OF_TEARS')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/Gela.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_TAKE_PIKE_OF_TEARS_UNIT</Type>
+            <Description>TXT_KEY_SPELL_TAKE_PIKE_OF_TEARS</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
+            <UnitInStackPrereq>EQUIPMENT_PIKE_OF_TEARS</UnitInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>50</iAIWeight>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_PIKE_OF_TEARS</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_PIKE_OF_TEARS')</PyResult>
+            <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_PIKE_OF_TEARS')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/Gela.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_FROZEN_FLAME</Type>
+            <Description>TXT_KEY_SPELL_DROP_FROZEN_FLAME</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <PromotionPrereq1>PROMOTION_FROZEN_FLAME</PromotionPrereq1>
+            <bAllowAI>1</bAllowAI>
+            <bInBordersOnly>1</bInBordersOnly>
+            <bInCityOnly>1</bInCityOnly>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_FROZEN_FLAME</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateBuildingType>BUILDING_FROZEN_FLAME</CreateBuildingType>
+            <bAbility>1</bAbility>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/DragonsHorde.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_TAKE_FROZEN_FLAME_BUILDING</Type>
+            <Description>TXT_KEY_SPELL_TAKE_FROZEN_FLAME</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
+            <BuildingPrereq>BUILDING_FROZEN_FLAME</BuildingPrereq>
+            <bInBordersOnly>1</bInBordersOnly>
+            <bInCityOnly>1</bInCityOnly>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_FROZEN_FLAME</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <PyResult>spellTakeEquipmentBuilding(pCaster,'EQUIPMENT_FROZEN_FLAME')</PyResult>
+            <PyRequirement>reqTakeEquipmentBuilding(pCaster,'EQUIPMENT_FROZEN_FLAME')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/DragonsHorde.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_TAKE_FROZEN_FLAME_PROMOTION</Type>
+            <Description>TXT_KEY_SPELL_TAKE_FROZEN_FLAME</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
+            <PromotionInStackPrereq>PROMOTION_FROZEN_FLAME</PromotionInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bHasCasted>1</bHasCasted>
+            <bAbility>1</bAbility>
+            <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_FROZEN_FLAME')</PyResult>
+            <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_FROZEN_FLAME')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/DragonsHorde.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_TAKE_FROZEN_FLAME_UNIT</Type>
+            <Description>TXT_KEY_SPELL_TAKE_FROZEN_FLAME</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
+            <UnitInStackPrereq>EQUIPMENT_FROZEN_FLAME</UnitInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_FROZEN_FLAME</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_FROZEN_FLAME')</PyResult>
+            <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_FROZEN_FLAME')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/DragonsHorde.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_DROP_SOL_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_SOL</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_SOL</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_SOL</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_SOL</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_SOL')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/Gela.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_TAKE_SOL_PROMOTION</Type>
+            <Description>TXT_KEY_SPELL_TAKE_SOL</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
+            <PromotionInStackPrereq>PROMOTION_SOL</PromotionInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>50</iAIWeight>
+            <bHasCasted>1</bHasCasted>
+            <bAbility>1</bAbility>
+            <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_SOL')</PyResult>
+            <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_SOL')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/Gela.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_TAKE_SOL_UNIT</Type>
+            <Description>TXT_KEY_SPELL_TAKE_SOL</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
+            <UnitInStackPrereq>EQUIPMENT_SOL</UnitInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>50</iAIWeight>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_SOL</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_SOL')</PyResult>
+            <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_SOL')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/Gela.dds</Button>
+        </SpellInfo>	
     </SpellInfos>
 </Civ4SpellInfos>

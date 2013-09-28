@@ -85,8 +85,9 @@ import GGUtil
 
 #FfH: Added by Kael 10/29/2007
 bshowManaBar = 1
-manaTypes1 = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_DEATH','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_ICE' ]
-manaTypes2 = [ 'BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER' ]
+manaTypes1 = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_CREATION','BONUS_MANA_DEATH','BONUS_MANA_DIMENSIONAL','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_FORCE','BONUS_MANA_ICE','BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER' ]
+MANA_X_POS = 0
+MANA_Y_POS = 103
 #FfH: End Add
 # BUG - Great Person Bar - start
 import GPUtil
@@ -563,13 +564,13 @@ class CvMainInterface:
 		screen.hide( "InterfaceTopRight" )
 
 		# FFH Mana - Mana Button
-		screen.setImageButton("RawManaButton1", "Art/Interface/Screens/RawManaButton.dds", 5, 298, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+		screen.setImageButton("RawManaButton1", "Art/Interface/Screens/RawManaButton.dds", MANA_X_POS + 12, MANA_Y_POS + 407, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 		screen.hide( "RawManaButton1" )
-		screen.addPanel( "ManaToggleHelpTextPanel", u"", u"", True, True, 60, 298, 170, 30, PanelStyles.PANEL_STYLE_HUD_HELP )
+		screen.addPanel( "ManaToggleHelpTextPanel", u"", u"", True, True, MANA_X_POS + 55, MANA_Y_POS + 407, 170, 30, PanelStyles.PANEL_STYLE_HUD_HELP )
 		screen.hide( "ManaToggleHelpTextPanel" )
 #		szText = "<font=2>" + localText.getText("[COLOR_HIGHLIGHT_TEXT]Toggle Manabar Display[COLOR_REVERT]", ()) + "</font=2>"
 		szText = "<font=2>" + localText.getText("TXT_KEY_MANA_TOGGLE_HELP", ()) + "</font=2>"
-		screen.addMultilineText( "ManaToggleHelpText", szText, 62, 303, 167, 27, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+		screen.addMultilineText( "ManaToggleHelpText", szText, MANA_X_POS + 57, MANA_Y_POS + 411, 167, 27, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
 		screen.hide( "ManaToggleHelpText" )
 		# End FFH
 
@@ -1276,6 +1277,27 @@ class CvMainInterface:
 				ACstr = u"<font=2i><color=%d,%d,%d,%d>%s</color></font>" %(pPlayer.getPlayerTextColorR(),pPlayer.getPlayerTextColorG(),pPlayer.getPlayerTextColorB(),pPlayer.getPlayerTextColorA(),str(CyGame().getGlobalCounter()) + str(" "))
 				screen.setText( "ACText", "Background", ACstr, CvUtil.FONT_CENTER_JUSTIFY, xResolution - iEndOfTurnPosX, yResolution - 157, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 				screen.setHitTest( "ACText", HitTestTypes.HITTEST_NOHIT )
+
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+			if (not CyInterface().isCityScreenUp() and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START and CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_SHOW):	
+
+				if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI') and pPlayer.getNumCities() > 0:
+
+# Figure the counter values.
+					fGrigoriActual = pPlayer.getCivCounter()
+					fGrigoriMod = pPlayer.getCivCounterMod()
+
+# Show the calculated values.
+					if fGrigoriActual > 0:
+							iPosition = 270
+							SRstr = u"<font=2i>%s</font>" %(str(" ") + str(fGrigoriActual) + str(" / ") + str(fGrigoriMod) + str(" "))
+							screen.setImageButton("AdventurerChance", "Art/Interface/Buttons/Units/Adventurer.dds", iPosition, 7, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+							screen.setText( "SRText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iPosition + 12, 5, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+							screen.setHitTest( "SRText", HitTestTypes.HITTEST_NOHIT )
+					else:
+						screen.hide( "AdventurerChance" )
+						screen.hide( "SRText" )
+#AdventurerCounter End
 
 		self.updateEndTurnButton()
 
@@ -3334,8 +3356,11 @@ class CvMainInterface:
 # BUG - Great Person Bar - end
 
 # BUG - Great General Bar - start
-				if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS): ## Suppress display of Great General bar
-					self.updateGreatGeneralBar(screen)
+				## ExtraModMod: Great Generals are available unconditionally.
+				#if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS): ## Suppress display of Great General bar
+					#self.updateGreatGeneralBar(screen)
+				self.updateGreatGeneralBar(screen)
+				## ExtraModMod end
 # BUG - Great General Bar - end
 					
 		return 0
@@ -4974,9 +4999,10 @@ class CvMainInterface:
 
 # BUG - Power Rating - start
 ## Advanced Tactics: Advanced Diplomacy - Embassy required to see power ratios
-#				bShowPower = ScoreOpt.isShowPower()
+### ExtraModMod: Allow to see the power ratios inconditionally.
+				bShowPower = ScoreOpt.isShowPower()
 #				bShowPower = gc.getGame().isDebugMode() and ScoreOpt.isShowPower()
-				bShowPower = gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS) and ScoreOpt.isShowPower()
+#				bShowPower = gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS) and ScoreOpt.isShowPower()
 				if (bShowPower):
 					iPlayerPower = gc.getActivePlayer().getPower()
 					iPowerColor = ScoreOpt.getPowerColor()
@@ -5235,11 +5261,13 @@ class CvMainInterface:
 # BUG - Power Rating - start
 												# if on, show according to espionage "see demographics" mission
 												# Advanced Tactics - only display power rating for civs we have an embassy with
+												### ExtraModMod: Allow to see the power ratios inconditionally.
 												pPlayer = gc.getActivePlayer()
 												if (bShowPower 
 													and (gc.getGame().getActivePlayer() != ePlayer
 														 and (not bEspionage or gc.getActivePlayer().canDoEspionageMission(iDemographicsMission, ePlayer, None, -1)))):
-													if ( gc.getTeam(pPlayer.getTeam()).isHasEmbassy(ePlayer)):
+#													if ( gc.getTeam(pPlayer.getTeam()).isHasEmbassy(ePlayer)):
+													if ( True ):
 														iPower = gc.getPlayer(ePlayer).getPower()
 														if (iPower > 0): # avoid divide by zero
 															fPowerRatio = float(iPlayerPower) / float(iPower)
@@ -5493,15 +5521,14 @@ class CvMainInterface:
 		for szBonus in manaTypes1:
 			szName = "ManaText" + szBonus
 			screen.hide( szName )
-		for szBonus in manaTypes2:
-			szName = "ManaText" + szBonus
-			screen.hide( szName )
+#		for szBonus in manaTypes2:
+#			szName = "ManaText" + szBonus
+#			screen.hide( szName )
 
 		iWidth = 0
 		iCount = 0
 		iBtnHeight = 18
 
-		yCoord = 103
 		if (CyInterface().isScoresVisible() and not CyInterface().isCityScreenUp() and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY and CyEngine().isGlobeviewUp() == false and bshowManaBar == 1):
 			for szBonus in manaTypes1:
 				iBonus = gc.getInfoTypeForString(szBonus)
@@ -5512,23 +5539,23 @@ class CvMainInterface:
 				if ( CyInterface().determineWidth( szBuffer ) > iWidth ):
 					iWidth = CyInterface().determineWidth( szBuffer )
 				szName = "ManaText" + szBonus
-				screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, 40, yCoord + (iCount * iBtnHeight) + 24, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1 )
+				screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, MANA_X_POS + 40, MANA_Y_POS + (iCount * iBtnHeight) + 24, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1 )
 				screen.show( szName )
 				iCount = iCount + 1
 			iCount = 0
-			for szBonus in manaTypes2:
-				iBonus = gc.getInfoTypeForString(szBonus)
-				szBuffer = u"<font=2>"
-				szTempBuffer = u"%c: %d" %(gc.getBonusInfo(iBonus).getChar(), pPlayer.getNumAvailableBonuses(iBonus))
-				szBuffer = szBuffer + szTempBuffer
-				szBuffer = szBuffer + "</font>"
-				if ( CyInterface().determineWidth( szBuffer ) > iWidth ):
-					iWidth = CyInterface().determineWidth( szBuffer )
-				szName = "ManaText" + szBonus
-				screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, 80, yCoord + (iCount * iBtnHeight) + 24, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1 )
-				screen.show( szName )
-				iCount = iCount + 1
-			screen.setPanelSize( "ManaBackground", 6, yCoord + 18, (iWidth * 2) + 12, (iBtnHeight * 9) + 12 )
+#			for szBonus in manaTypes2:
+#				iBonus = gc.getInfoTypeForString(szBonus)
+#				szBuffer = u"<font=2>"
+#				szTempBuffer = u"%c: %d" %(gc.getBonusInfo(iBonus).getChar(), pPlayer.getNumAvailableBonuses(iBonus))
+#				szBuffer = szBuffer + szTempBuffer
+#				szBuffer = szBuffer + "</font>"
+#				if ( CyInterface().determineWidth( szBuffer ) > iWidth ):
+#					iWidth = CyInterface().determineWidth( szBuffer )
+#				szName = "ManaText" + szBonus
+#				screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, 80, MANA_Y_POS + (iCount * iBtnHeight) + 24, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1 )
+#				screen.show( szName )
+#				iCount = iCount + 1
+			screen.setPanelSize( "ManaBackground", MANA_X_POS, MANA_Y_POS + 18, iWidth + 12, (iBtnHeight * 21) + 12 )
 			screen.show( "ManaBackground" )
 #FfH: End Add
 

@@ -10,6 +10,10 @@ import PyHelpers
 import CustomFunctions
 import ScenarioFunctions
 
+# lfgr GP_NAMES 07/2013
+import SdToolKitCustom as SDTK
+# lfgr end
+
 PyInfo = PyHelpers.PyInfo
 PyPlayer = PyHelpers.PyPlayer
 gc = CyGlobalContext()
@@ -138,7 +142,8 @@ def postCombatExplode(pCaster, pOpponent):
 								pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_SMOKE'))
 					for i in range(pPlot.getNumUnits()):
 						pUnit = pPlot.getUnit(i)
-						pUnit.doDamage(10, 100, pCaster, gc.getInfoTypeForString('DAMAGE_FIRE'), false)
+						# Sareln 3/25/2011 - PostCombatExplode Damage Cap 100 -> 90
+						pUnit.doDamage(10, 90, pCaster, gc.getInfoTypeForString('DAMAGE_FIRE'), false)
 
 def postCombatHeal50(pCaster, pOpponent):
 	if pCaster.getDamage() > 0:
@@ -154,7 +159,7 @@ def postCombatMimic(pCaster, pOpponent):
 	iBronze = gc.getInfoTypeForString('PROMOTION_BRONZE_WEAPONS')
 	iChanneling3 = gc.getInfoTypeForString('PROMOTION_CHANNELING3')
 	iDivine = gc.getInfoTypeForString('PROMOTION_DIVINE')
-	iGreatCommander = gc.getInfoTypeForString('PROMOTION_GREAT_COMMANDER')
+	iGreatGeneral = gc.getInfoTypeForString('PROMOTION_GREAT_GENERAL')
 	iIron = gc.getInfoTypeForString('PROMOTION_IRON_WEAPONS')
 	iMithril = gc.getInfoTypeForString('PROMOTION_MITHRIL_WEAPONS')
 	iHN = gc.getInfoTypeForString('PROMOTION_HIDDEN_NATIONALITY')
@@ -167,7 +172,7 @@ def postCombatMimic(pCaster, pOpponent):
 		else:
 			if (pOpponent.isHasPromotion(iProm)):
 				if gc.getPromotionInfo(iProm).isEquipment() == False:
-					if (iProm != iChanneling3 and iProm != iDivine and iProm != iBronze and iProm != iIron and iProm != iMithril and iProm != iGreatCommander and iProm != iRusted):
+					if (iProm != iChanneling3 and iProm != iDivine and iProm != iBronze and iProm != iIron and iProm != iMithril and iProm != iGreatGeneral and iProm != iRusted):
 						if gc.getPromotionInfo(iProm).isRace() == false:
 							if ((iProm != iHN) or (pCaster.getGroup().getNumUnits()==1)):
 								listProms.append(iProm)
@@ -349,6 +354,7 @@ def reqAddToFleshGolem(caster):
 		iChanneling2 = gc.getInfoTypeForString('PROMOTION_CHANNELING2')
 		iChanneling3 = gc.getInfoTypeForString('PROMOTION_CHANNELING3')
 		iDivine = gc.getInfoTypeForString('PROMOTION_DIVINE')
+		iDividedSoul = gc.getInfoTypeForString('PROMOTION_DIVIDED_SOUL')
 		iFleshGolem = gc.getInfoTypeForString('UNITCLASS_FLESH_GOLEM')
 		pFleshGolem = -1
 		for i in range(pPlot.getNumUnits()):
@@ -365,7 +371,7 @@ def reqAddToFleshGolem(caster):
 					if (caster.isHasPromotion(iCount)):
 						if not gc.getPromotionInfo(iCount).getExpireChance() > 0:
 							if not (pFleshGolem.isHasPromotion(iCount)):
-								if (iCount != iChanneling and iCount != iChanneling2 and iCount != iChanneling3 and iCount != iDivine):
+								if (iCount != iChanneling and iCount != iChanneling2 and iCount != iChanneling3 and iCount != iDivine and iCount != iDividedSoul):
 									if not gc.getPromotionInfo(iCount).isRace():
 										if gc.getPromotionInfo(iCount).getBonusPrereq() == -1:
 											if gc.getPromotionInfo(iCount).getPromotionPrereqAnd() != iChanneling2:
@@ -381,6 +387,7 @@ def spellAddToFleshGolem(caster):
 	iChanneling = gc.getInfoTypeForString('PROMOTION_CHANNELING1')
 	iChanneling2 = gc.getInfoTypeForString('PROMOTION_CHANNELING2')
 	iChanneling3 = gc.getInfoTypeForString('PROMOTION_CHANNELING3')
+	iDividedSoul = gc.getInfoTypeForString('PROMOTION_DIVIDED_SOUL')
 	iDivine = gc.getInfoTypeForString('PROMOTION_DIVINE')
 	iFleshGolem = gc.getInfoTypeForString('UNITCLASS_FLESH_GOLEM')
 	pFleshGolem = -1
@@ -395,7 +402,7 @@ def spellAddToFleshGolem(caster):
 			pFleshGolem.setBaseCombatStrDefense(pFleshGolem.baseCombatStrDefense() + 1)
 		for iCount in range(gc.getNumPromotionInfos()):
 			if (caster.isHasPromotion(iCount)):
-				if (iCount != iChanneling and iCount != iChanneling2 and iCount != iChanneling3 and iCount != iDivine):
+				if (iCount != iChanneling and iCount != iChanneling2 and iCount != iChanneling3 and iCount != iDivine and iCount != iDividedSoul):
 					if not gc.getPromotionInfo(iCount).isRace():
 						if gc.getPromotionInfo(iCount).getBonusPrereq() == -1:
 							if gc.getPromotionInfo(iCount).getPromotionPrereqAnd() != iChanneling2:
@@ -462,7 +469,7 @@ def spellAddToWolfPack(caster):
 def reqArcaneLacuna(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	eTeam = gc.getTeam(pPlayer.getTeam())
-	manaTypes = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_DEATH','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER','BONUS_MANA_ICE' ]
+	manaTypes = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_DEATH','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER','BONUS_MANA_ICE','BONUS_MANA_CREATION','BONUS_MANA_FORCE','BONUS_MANA_DIMENSIONAL' ]
 	iCount = 0
 	for szBonus in manaTypes:
 		iBonus = gc.getInfoTypeForString(szBonus)
@@ -478,7 +485,7 @@ def reqArcaneLacuna(caster):
 	return True
 
 def spellArcaneLacuna(caster):
-	manaTypes = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_DEATH','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER','BONUS_MANA_ICE' ]
+	manaTypes = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_DEATH','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER','BONUS_MANA_ICE','BONUS_MANA_CREATION','BONUS_MANA_FORCE','BONUS_MANA_DIMENSIONAL' ]
 	iAdept = gc.getInfoTypeForString('UNITCOMBAT_ADEPT')
 	iCount = 0
 	pPlayer = gc.getPlayer(caster.getOwner())
@@ -500,10 +507,10 @@ def spellArcaneLacuna(caster):
 
 def reqArdor(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
-	if pPlayer.getGreatPeopleCreated() == 0:
+	if pPlayer.getGreatPeopleCreated() == 0 and pPlayer.getCivCounterMod() <= 600:
 		return False
 	if pPlayer.isHuman() == False:
-		if pPlayer.getGreatPeopleCreated() < 6:
+		if pPlayer.getGreatPeopleCreated() < 6 and pPlayer.getCivCounterMod() <= 2400:
 			return False
 	return True
 
@@ -511,6 +518,7 @@ def spellArdor(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlayer.setGreatPeopleCreated(0)
 	pPlayer.setGreatPeopleThresholdModifier(0)
+	pPlayer.setCivCounterMod(600)
 
 def reqArenaBattle(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
@@ -674,60 +682,53 @@ def spellCallOfTheGrave(caster):
 			if bValid:
 				CyEngine().triggerEffect(gc.getInfoTypeForString('EFFECT_SACRIFICE'),pPlot.getPoint())
 
-def reqCommanderJoin(caster):
+def reqDeciusJoin(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlot = caster.plot()
-	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GREAT_COMMANDER')):
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_DECIUS')):
 		return False
-	iCommander = gc.getInfoTypeForString('UNITCLASS_COMMANDER')
-	pCommander = -1
+	iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
+	pDecius = -1
 	for i in range(pPlot.getNumUnits()):
 		pUnit = pPlot.getUnit(i)
-		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitClassType() == iCommander):
-			pCommander = pUnit
-	if pCommander == -1:
+		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitType() == iDecius):
+			pDecius = pUnit
+	if pDecius == -1:
 		return False
-	if pCommander.isHasCasted():
+	if pDecius.isHasCasted():
 		return False
 	if pPlayer.isHuman() == False:
 		if caster.baseCombatStr() <= 5:
 			return False
 	return True
 
-def spellCommanderJoin(caster):
-	pPlayer = gc.getPlayer(caster.getOwner())
-	pPlot = caster.plot()
-	iCommander = gc.getInfoTypeForString('UNITCLASS_COMMANDER')
-	pCommander = -1
-	for i in range(pPlot.getNumUnits()):
-		pUnit = pPlot.getUnit(i)
-		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitClassType() == iCommander):
-			pCommander = pUnit
-	if pCommander != -1:
-		pCommander.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
-		pCommander.kill(False, PlayerTypes.NO_PLAYER)
-
-def spellCommanderJoinDecius(caster):
+def spellDeciusJoin(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlot = caster.plot()
 	iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
-	pCommander = -1
+	pDecius = -1
 	for i in range(pPlot.getNumUnits()):
 		pUnit = pPlot.getUnit(i)
 		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitType() == iDecius):
-			pCommander = pUnit
-	if pCommander != -1:
+			pDecius = pUnit
+	if pDecius != -1:
 		caster.setScenarioCounter(iDecius)
-		pCommander.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
-		pCommander.kill(False, PlayerTypes.NO_PLAYER)
+		pDecius.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
+		pDecius.kill(False, PlayerTypes.NO_PLAYER)
 
-def spellCommanderSplit(caster):
+def spellDeciusSplit(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
-	iCommander = gc.getInfoTypeForString('UNIT_COMMANDER')
-	if caster.getScenarioCounter() == gc.getInfoTypeForString('UNIT_DECIUS'):
-		iCommander = gc.getInfoTypeForString('UNIT_DECIUS')
-		caster.setScenarioCounter(-1)
-	newUnit = pPlayer.initUnit(iCommander, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+	iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
+	caster.setScenarioCounter(-1)
+	newUnit = pPlayer.initUnit(iDecius, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+	# lfgr GP_NAMES 07/2013
+	if( SDTK.sdObjectExists( "GPNames", caster ) ) :
+		szName = SDTK.sdObjectGetVal( "GPNames", caster, "CommanderName" )
+		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", "" )
+		newUnit.setName( szName )
+	# lfgr end
+	# TEST
+	pPlayer.receiveGoody(caster.plot(),gc.getInfoTypeForString('GOODY_EXPLORE_LAIR_PRISONER_ADVENTURER'), caster)
 
 def reqConvertCityBasium(caster):
 	pPlot = caster.plot()
@@ -942,19 +943,21 @@ def spellCrush(caster):
 			bNeutral = False
 			iValue = 0
 			pPlot = CyMap().plot(iiX,iiY)
-			for i in range(pPlot.getNumUnits()):
-				pUnit = pPlot.getUnit(i)
-				if eTeam.isAtWar(pUnit.getTeam()):
-					iValue = iValue + 10
-				else:
-					bNeutral = True
-			if (iValue > iBestValue and bNeutral == False):
-				iBestValue = iValue
-				pBestPlot = pPlot
+			if pPlot.isVisible(iTeam, False):
+				for i in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(i)
+					if not pUnit.isInvisible(iTeam, False):
+						if eTeam.isAtWar(pUnit.getTeam()):
+							iValue = iValue + 10
+						else:
+							bNeutral = True
+				if (iValue > iBestValue and not bNeutral):
+					iBestValue = iValue
+					pBestPlot = pPlot
 	if pBestPlot != -1:
 		for i in range(pBestPlot.getNumUnits()):
 			pUnit = pBestPlot.getUnit(i)
-			pUnit.doDamage(50, 75, caster, gc.getInfoTypeForString('DAMAGE_PHYSICAL'), True)
+			pUnit.doDamage(30, 50, caster, gc.getInfoTypeForString('DAMAGE_PHYSICAL'), True)
 		CyEngine().triggerEffect(gc.getInfoTypeForString('EFFECT_CRUSH'),pBestPlot.getPoint())
 
 def reqDeclareNationality(caster):
@@ -1074,6 +1077,9 @@ def spellDivineRetribution(caster):
 					pUnit.doDamage(50, 100, caster, gc.getInfoTypeForString('DAMAGE_HOLY'), False)
 
 def reqDomination(caster):
+	# Sareln 6/17/2011
+	# Units with Loyalty do not count as valid targets.
+	iLoyalty = gc.getInfoTypeForString('SPELL_LOYALTY')
 	iX = caster.getX()
 	iY = caster.getY()
 	pPlayer = gc.getPlayer(caster.getOwner())
@@ -1087,7 +1093,7 @@ def reqDomination(caster):
 			pPlot = CyMap().plot(iiX,iiY)
 			for i in range(pPlot.getNumUnits()):
 				pUnit = pPlot.getUnit(i)
-				if pUnit.isAlive():
+				if (pUnit.isAlive() and pUnit.isHasPromotion(iLoyalty) == False):
 					if not pUnit.isDelayedDeath():
 						if eTeam.isAtWar(pUnit.getTeam()):
 							iResist = pUnit.getResistChance(caster, gc.getInfoTypeForString('SPELL_DOMINATION'))
@@ -1096,7 +1102,11 @@ def reqDomination(caster):
 	return False
 
 def spellDomination(caster):
+	# Sareln 6/17/2011
+	# Made it so that the spell will not attempt to target units that have
+	# the loyalty promotion.
 	iSpell = gc.getInfoTypeForString('SPELL_DOMINATION')
+	iLoyalty = gc.getInfoTypeForString('PROMOTION_LOYALTY')
 	iX = caster.getX()
 	iY = caster.getY()
 	pPlayer = gc.getPlayer(caster.getOwner())
@@ -1113,7 +1123,7 @@ def spellDomination(caster):
 			for i in range(pPlot.getNumUnits()):
 				pUnit = pPlot.getUnit(i)
 				iValue = 0
-				if pUnit.isAlive():
+				if (pUnit.isAlive() and pUnit.isHasPromotion(iLoyalty) == False):
 					if pUnit.isDelayedDeath() == False:
 						if eTeam.isAtWar(pUnit.getTeam()):
 							iResist = pUnit.getResistChance(caster, iSpell)
@@ -1217,6 +1227,12 @@ def reqEscape(caster):
 			return False
 	return True
 
+def spellEscape(caster):
+	player = caster.getOwner()
+	pPlayer = gc.getPlayer(player)
+	pCity = pPlayer.getCapitalCity()
+	caster.setXY(pCity.getX(), pCity.getY(), False, True, True)
+
 def reqExploreLair(caster):
 	if caster.isOnlyDefensive():
 		return False
@@ -1297,6 +1313,26 @@ def spellFeast(caster):
 	pCity = pPlot.getPlotCity()
 	caster.changeExperience(pCity.getPopulation()-2, -1, False, False, False)
 	pCity.changeHurryAngerTimer(3)
+	
+def reqExtort(caster):
+	pPlot = caster.plot()
+	pCity = pPlot.getPlotCity()
+	iEsus = gc.getInfoTypeForString("RELIGION_COUNCIL_OF_ESUS")
+	if not pCity.isHasReligion(iEsus):
+		#iEsus = 3
+		return False
+	if pCity.getPopulation() < 2:
+		return False
+	return True
+
+def spellExtort(caster):
+	pPlot = caster.plot()
+	pCity = pPlot.getPlotCity()
+	pPlayer = gc.getPlayer(caster.getOwner())
+	iBaseGoldPerPop = 15
+	iGoldPerPop = (iBaseGoldPerPop * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()) / 100
+	pPlayer.changeGold(pCity.getPopulation()*iGoldPerPop)
+	pCity.changeHurryAngerTimer(3)
 
 def reqFeed(caster):
 	if caster.getDamage() == 0:
@@ -1340,14 +1376,20 @@ def reqForTheHorde(caster):
 	return True
 
 def spellForTheHorde(caster):
+	# Sareln 6/17/2011
+	# Make it so that the Loyalty Promotion blocks For the Horde.  This would let us take out the specific exemptions
+	# for the Sons of the Inferno and Disciples of Acheron, but I'll leave them in for now.  If we take out the specific
+	# Exemption, then a Metamagic II wizard combined with For the Horde could grab all the Sons of the Inferno from Acheron's
+	# City.
 	pPlayer = gc.getPlayer(caster.getOwner())
 	iHero = gc.getInfoTypeForString('PROMOTION_HERO')
 	iOrc = gc.getInfoTypeForString('PROMOTION_ORC')
+	iLoyalty = gc.getInfoTypeForString('PROMOTION_LOYALTY')
 	iDisciple = gc.getInfoTypeForString('UNITCLASS_DISCIPLE_OF_ACHERON')
 	iSon = gc.getInfoTypeForString('UNITCLASS_SON_OF_THE_INFERNO')
 	py = PyPlayer(gc.getBARBARIAN_PLAYER())
 	for pUnit in py.getUnitList():
-		if (pUnit.getRace() == iOrc and pUnit.isHasPromotion(iHero) == False):
+		if (pUnit.getRace() == iOrc and pUnit.isHasPromotion(iHero) == False and pUnit.isHasPromotion(iLoyalty) == False):
 			if ( (pUnit.getUnitClassType()!= iDisciple) and (pUnit.getUnitClassType()!= iSon) ):
 				if CyGame().getSorenRandNum(100, "Bob") < 50:
 					pPlot = pUnit.plot()
@@ -1970,19 +2012,21 @@ def spellPillarofFire(caster):
 			bNeutral = False
 			iValue = 0
 			pPlot = CyMap().plot(iiX,iiY)
-			for i in range(pPlot.getNumUnits()):
-				pUnit = pPlot.getUnit(i)
-				if eTeam.isAtWar(pUnit.getTeam()):
-					iValue += 5 * pUnit.baseCombatStr()
-				else:
-					bNeutral = True
-			if (iValue > iBestValue and bNeutral == False):
-				iBestValue = iValue
-				pBestPlot = pPlot
+			if pPlot.isVisible(iTeam, False):
+				for i in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(i)
+					if not pUnit.isInvisible(iTeam, False):
+						if eTeam.isAtWar(pUnit.getTeam()):
+							iValue += 5 * pUnit.baseCombatStr()
+						else:
+							bNeutral = True
+				if (iValue > iBestValue and not bNeutral):
+					iBestValue = iValue
+					pBestPlot = pPlot
 	if pBestPlot != -1:
 		for i in range(pBestPlot.getNumUnits()):
 			pUnit = pBestPlot.getUnit(i)
-			pUnit.doDamage(50, 75, caster, gc.getInfoTypeForString('DAMAGE_FIRE'), True)
+			pUnit.doDamage(30, 50, caster, gc.getInfoTypeForString('DAMAGE_FIRE'), True)
 		if (pPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_FOREST') or pPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_JUNGLE')):
 			bValid = True
 			iImprovement = pPlot.getImprovementType()
@@ -1993,6 +2037,7 @@ def spellPillarofFire(caster):
 				if CyGame().getSorenRandNum(100, "Flames Spread") < gc.getDefineINT('FLAMES_SPREAD_CHANCE'):
 					pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_SMOKE'))
 		CyEngine().triggerEffect(gc.getInfoTypeForString('EFFECT_PILLAR_OF_FIRE'),pBestPlot.getPoint())
+
 
 def reqPirateCove(caster):
 	pPlot = caster.plot()
@@ -2412,6 +2457,38 @@ def spellRecruitMercenary(caster):
 	if caster.getUnitType() == gc.getInfoTypeForString('UNIT_MAGNADINE'):
 		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_LOYALTY'), True)
 
+# Sareln 3/25/2011 Recruit Nightwatch Spell Addition requirement		
+def reqRecruitNightwatch(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
+	if pPlayer.isHuman() == False:
+		pPlot = caster.plot()
+		#if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD'):
+		#	return False
+		iX = caster.getX()
+		iY = caster.getY()
+		eTeam = gc.getTeam(pPlayer.getTeam())
+		for iiX in range(iX-1, iX+2, 1):
+			for iiY in range(iY-1, iY+2, 1):
+				pPlot = CyMap().plot(iiX,iiY)
+				for i in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(i)
+					p2Player = gc.getPlayer(pUnit.getOwner())
+					e2Team = p2Player.getTeam()
+					if eTeam.isAtWar(e2Team) == True:
+						return True
+		return False
+	return True		
+		
+# Sareln 3/25/2011 Recruit Nightwatch Spell Addition		
+def spellRecruitNightwatch(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
+	iUnit = gc.getInfoTypeForString('UNITCLASS_NIGHTWATCH')
+	infoCiv = gc.getCivilizationInfo(pPlayer.getCivilizationType())
+	iUnit = infoCiv.getCivilizationUnits(iUnit)
+	newUnit = pPlayer.initUnit(iUnit, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_NORTH)
+	newUnit.finishMoves()
+	newUnit.setHasCasted(True)
+
 def spellReleaseFromCage(caster):
 	pPlot = caster.plot()
 	pPlot.setImprovementType(-1)
@@ -2450,7 +2527,7 @@ def spellReligiousFervor(caster):
 	if iReligion == gc.getInfoTypeForString('RELIGION_THE_ASHEN_VEIL'):
 		iUnit = gc.getInfoTypeForString('UNIT_PRIEST_OF_THE_VEIL')
 	if iReligion == gc.getInfoTypeForString('RELIGION_COUNCIL_OF_ESUS'):
-		iUnit = gc.getInfoTypeForString('UNIT_ASSASSIN')
+		iUnit = gc.getInfoTypeForString('UNIT_NIGHTWATCH')
 	iCount = 0
 	for pyCity in PyPlayer(iPlayer).getCityList() :
 		pCity = pyCity.GetCy()
@@ -2908,6 +2985,160 @@ def spellScorch(caster):
 	if pPlot.isOwned():
 		cf.startWar(caster.getOwner(), pPlot.getOwner(), WarPlanTypes.WARPLAN_TOTAL)
 
+#Severed soul changes by MagisterCultuum
+def reqSeverSoul(pCaster):
+	if pCaster.getSummoner() != -1:
+		return False
+	iSummon = gc.getInfoTypeForString('UNIT_SEVERED_SOUL')
+	casterID = pCaster.getID()
+	py = PyPlayer(pCaster.getOwner())
+	for pUnit in py.getUnitList():
+		if pUnit.getUnitType() == iSummon:
+			if pUnit.getSummoner() == casterID:
+				return False
+	return True
+
+def spellSeverSoul(pCaster):
+	newUnit = gc.getPlayer(pCaster.getOwner()).initUnit(gc.getInfoTypeForString('UNIT_SEVERED_SOUL'), pCaster.getX(), pCaster.getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH)
+	newUnit.setSummoner(pCaster.getID())
+	newUnit.setDuration(3);
+	newUnit.setHasCasted(True)
+
+	promoList = ['PROMOTION_SENTRY',
+			'PROMOTION_SENTRY2',
+			'PROMOTION_PERFECT_SIGHT',
+			'PROMOTION_COMMANDO',
+			'PROMOTION_MOBILITY1',
+			'PROMOTION_MOBILITY2',
+			'PROMOTION_HASTED',
+			'PROMOTION_FATIGUED',
+			'PROMOTION_FLYING',
+			'PROMOTION_STARTING_SETTLER',
+			'PROMOTION_GUERILLA1',
+			'PROMOTION_GUERILLA2',
+			'PROMOTION_WOODSMAN1',
+			'PROMOTION_WOODSMAN2',
+			'PROMOTION_AMPHIBIOUS',
+			'PROMOTION_HOMELAND',
+			'PROMOTION_MAGIC_RESISTANCE',
+			'PROMOTION_COLD_RESISTANCE',
+			'PROMOTION_FIRE_RESISTANCE',
+			'PROMOTION_LIGHTNING_RESISTANCE',
+			'PROMOTION_MAGIC_IMMUNE',
+			'PROMOTION_IMMUNE_COLD',
+			'PROMOTION_IMMUNE_FIRE',
+			'PROMOTION_IMMUNE_LIGHTNING'
+			]
+	for i in range(len(promoList)):
+		iProm = gc.getInfoTypeForString(promoList[i])
+		if pCaster.isHasPromotion(iProm):
+			newUnit.setHasPromotion(iProm, True)
+
+#Severed soul changes end
+
+def reqRiftCreate(pCaster):
+	if pCaster.getSummoner() != -1:
+		return False
+	iRift = gc.getInfoTypeForString('UNIT_RIFT')
+	casterID = pCaster.getID()
+	py = PyPlayer(pCaster.getOwner())
+	for pUnit in py.getUnitList():
+		if pUnit.getUnitType() == iRift and pUnit.getSummoner() == casterID:
+			return False
+	return True
+
+def spellRiftCreate(pCaster):
+	newUnit = gc.getPlayer(pCaster.getOwner()).initUnit(gc.getInfoTypeForString('UNIT_RIFT'), pCaster.getX(), pCaster.getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH)
+	newUnit.setSummoner(pCaster.getID())
+	pPlayer = gc.getPlayer(pCaster.getOwner())
+	if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_SUMMONER')):
+		newUnit.setDuration(6)
+	else:
+		newUnit.setDuration(5)
+	newUnit.setHasCasted(True)
+
+def reqRiftOpen(pCaster):
+	if not pCaster.getUnitType() == gc.getInfoTypeForString('UNIT_RIFT'):
+		return False
+
+	pPlot = pCaster.plot()
+	pPlayer = gc.getPlayer(pCaster.getOwner())
+
+	if pPlot.getTeam() != pPlayer.getTeam() and pPlot.getTeam() != PlayerTypes.NO_PLAYER:
+		return False
+
+	if not pPlot.isRevealed(pPlayer.getTeam(), false):
+		return False
+
+	if pCaster.getSummoner() != -1:
+		pPlayer = gc.getPlayer(pCaster.getOwner())
+		pOriginalCaster = pPlayer.getUnit(pCaster.getSummoner())
+		if not pOriginalCaster.isHasCasted():
+			return True
+
+	return False
+
+def spellRiftOpen(pCaster):
+	pCaster.setDuration(1)
+	pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_RIFT_OPENED'), True)
+	pCaster.setBaseCombatStr(10)
+	pPlayer = gc.getPlayer(pCaster.getOwner())
+	pOriginalCaster = pPlayer.getUnit(pCaster.getSummoner())
+	pOriginalCaster.setHasCasted(True)
+	pOriginalCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_RIFT_OPENED'), True)
+	CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_SPELL_RIFT_OPENED_MESSAGE", (pCaster.baseCombatStr(), )),'',1,'Art/Interface/Buttons/Units/Lightning Elemental.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+
+def reqRiftCross(pCaster):
+	pPlot = pCaster.plot()
+	pPlayer = gc.getPlayer(pCaster.getOwner())
+	iRift = gc.getInfoTypeForString('UNIT_RIFT')
+	iRiftOpened = gc.getInfoTypeForString('PROMOTION_RIFT_OPENED')
+	for i in range(pPlot.getNumUnits()):
+		pLoopUnit = pPlot.getUnit(i)
+		if pLoopUnit.getOwner() == pCaster.getOwner() and pLoopUnit.isHasPromotion(iRiftOpened):
+			if pLoopUnit.getDuration() > 0 and pLoopUnit.getUnitType() == iRift and pLoopUnit.getSummoner() != -1:
+				pOriginalCaster = pPlayer.getUnit(pLoopUnit.getSummoner())
+				if pOriginalCaster.isHasPromotion(iRiftOpened):
+					return True
+			else:
+				pLoopUnitID = pLoopUnit.getID()
+				py = PyPlayer(pLoopUnit.getOwner())
+				for pRiftUnit in py.getUnitList():
+					if pRiftUnit.getUnitType() == iRift and pRiftUnit.getSummoner() == pLoopUnitID and pRiftUnit.isHasPromotion(iRiftOpened) and pRiftUnit.getDuration() > 0:
+						return True
+	return False
+
+def spellRiftCross(pCaster):
+	pRiftUnit = None
+	pDestinationUnit = None
+	pPlot = pCaster.plot()
+	pPlayer = gc.getPlayer(pCaster.getOwner())
+	iRift = gc.getInfoTypeForString('UNIT_RIFT')
+	iRiftOpened = gc.getInfoTypeForString('PROMOTION_RIFT_OPENED')
+	for i in range(pPlot.getNumUnits()):
+		pLoopUnit = pPlot.getUnit(i)
+		if pLoopUnit.getOwner() == pCaster.getOwner() and pLoopUnit.isHasPromotion(iRiftOpened):
+			if pLoopUnit.getDuration() > 0 and pLoopUnit.getUnitType() == iRift and pLoopUnit.getSummoner() != -1:
+				pRiftUnit = pLoopUnit
+				pDestinationUnit = pPlayer.getUnit(pLoopUnit.getSummoner())
+				break
+			else:
+				pLoopUnitID = pLoopUnit.getID()
+				py = PyPlayer(pLoopUnit.getOwner())
+				for pLoopRiftUnit in py.getUnitList():
+					if pLoopRiftUnit.getUnitType() == iRift and pLoopRiftUnit.getSummoner() == pLoopUnitID:
+						pRiftUnit = pLoopRiftUnit
+						pDestinationUnit = pLoopRiftUnit
+						break
+				break
+	pCaster.setXY(pDestinationUnit.getX(), pDestinationUnit.getY(), False, True, True)
+	pRiftUnit.setBaseCombatStr(pRiftUnit.baseCombatStr() - 1)
+	if pRiftUnit.baseCombatStr() == 0:
+		pRiftUnit.kill(True, PlayerTypes.NO_PLAYER)
+		CyInterface().addMessage(pRiftUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_SPELL_RIFT_CROSS_CLOSED_MESSAGE", (gc.getUnitInfo(pCaster.getUnitType()).getDescription(), )),'',1,'Art/Interface/Buttons/Units/Lightning Elemental.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+	else:
+		CyInterface().addMessage(pRiftUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_SPELL_RIFT_CROSS_NUMBER_MESSAGE", (gc.getUnitInfo(pCaster.getUnitType()).getDescription(), pRiftUnit.baseCombatStr())),'',1,'Art/Interface/Buttons/Units/Lightning Elemental.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+
 def spellSing(caster):
 	pPlot = caster.plot()
 	point = pPlot.getPoint()
@@ -3069,9 +3300,12 @@ def reqStasis(caster):
 	return True
 
 def spellStasis(caster):
+# EitB: Stasis gives both GA and Freezing to Illians for now.
+#		Duration Halved.
 	pPlayer = gc.getPlayer(caster.getOwner())
-	iBaseDelay = 20
+	iBaseDelay = 10
 	iDelay = (iBaseDelay * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()) / 100
+	pPlayer.changeGoldenAgeTurns(iDelay)
 	iTeam = pPlayer.getTeam()
 	
 	for iPlayer2 in range(gc.getMAX_PLAYERS()):
@@ -3200,6 +3434,16 @@ def spellTakeEquipmentPromotion(caster,unit):
 	if pHolder != -1:
 		pHolder.setHasPromotion(iProm, False)
 		caster.setHasPromotion(iProm, True)
+	# More Events mod starts  #
+	# modified by lfgr: moved and fixed
+	if gc.getPlayer( iPlayer ).isHuman():
+		iGela = gc.getInfoTypeForString( 'PROMOTION_GELA' )
+		if iProm == iGela :
+			if ( not gc.getPlayer( iPlayer ).getCivilizationType() == gc.getInfoTypeForString( 'CIVILIZATION_INFERNALS' ) ):
+				iEvent = CvUtil.findInfoTypeNum( gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_GELA' )
+				if( gc.getGame().getScenarioCounter() == 0 ) :
+					triggerData = gc.getPlayer( iPlayer ).initTriggeredData( iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1 )
+	# More Events mod ends #
 
 def reqTakeEquipmentUnit(caster,unit):
 	if caster.getUnitCombatType() == gc.getInfoTypeForString('UNITCOMBAT_NAVAL'):
@@ -3246,6 +3490,16 @@ def spellTakeEquipmentUnit(caster,unit):
 	if pHolder != -1:
 		pHolder.setHasCasted(True)
 		pHolder.kill(True, PlayerTypes.NO_PLAYER)
+	# More Events mod starts  #
+	# modified by lfgr: moved and fixed
+	if gc.getPlayer( iPlayer ).isHuman():
+		iGela = gc.getInfoTypeForString( 'PROMOTION_GELA' )
+		if iProm == iGela :
+			if ( not gc.getPlayer( iPlayer ).getCivilizationType() == gc.getInfoTypeForString( 'CIVILIZATION_INFERNALS' ) ):
+				iEvent = CvUtil.findInfoTypeNum( gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_GELA' )
+				if( gc.getGame().getScenarioCounter() == 0 ) :
+					triggerData = gc.getPlayer( iPlayer ).initTriggeredData( iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1 )
+	# More Events mod ends #
 
 def reqTaunt(caster):
 	iX = caster.getX()
@@ -3295,12 +3549,6 @@ def spellTaunt(caster):
 												pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ENRAGED'),true)
 												pUnit.attack(pPlot, False)
 
-def spellTeleport(caster,loc):
-	player = caster.getOwner()
-	pPlayer = gc.getPlayer(player)
-	pCity = pPlayer.getCapitalCity()
-	caster.setXY(pCity.getX(), pCity.getY(), False, True, True)
-
 def reqTeachSpellcasting(caster):
 	iAnimal = gc.getInfoTypeForString('UNITCOMBAT_ANIMAL')
 	iBird = gc.getInfoTypeForString('SPECIALUNIT_BIRD')
@@ -3311,8 +3559,12 @@ def reqTeachSpellcasting(caster):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_BODY1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_CHAOS1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_CHAOS1')]
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_CREATION1')):
+		lList = lList + [gc.getInfoTypeForString('PROMOTION_CREATION1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_DEATH1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_DEATH1')]
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_DIMENSIONAL1')):
+		lList = lList + [gc.getInfoTypeForString('PROMOTION_DIMENSIONAL1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_EARTH1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_EARTH1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_ENCHANTMENT1')):
@@ -3321,6 +3573,8 @@ def reqTeachSpellcasting(caster):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_ENTROPY1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_FIRE1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_FIRE1')]
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_FORCE1')):
+		lList = lList + [gc.getInfoTypeForString('PROMOTION_FORCE1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_ICE1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_ICE1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_LAW1')):
@@ -3366,8 +3620,12 @@ def spellTeachSpellcasting(caster):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_BODY1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_CHAOS1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_CHAOS1')]
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_CREATION1')):
+		lList = lList + [gc.getInfoTypeForString('PROMOTION_CREATION1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_DEATH1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_DEATH1')]
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_DIMENSIONAL1')):
+		lList = lList + [gc.getInfoTypeForString('PROMOTION_DIMENSIONAL1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_EARTH1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_EARTH1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_ENCHANTMENT1')):
@@ -3376,6 +3634,8 @@ def spellTeachSpellcasting(caster):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_ENTROPY1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_FIRE1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_FIRE1')]
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_FORCE1')):
+		lList = lList + [gc.getInfoTypeForString('PROMOTION_FORCE1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_ICE1')):
 		lList = lList + [gc.getInfoTypeForString('PROMOTION_ICE1')]
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_LAW1')):
@@ -3410,13 +3670,6 @@ def spellTeachSpellcasting(caster):
 								if not pUnit.isHasPromotion(iChanneling1):
 									pUnit.setHasPromotion(iChanneling1, True)
 
-def spellTreetopDefence(caster):
-	pPlot = caster.plot()
-	for i in range(pPlot.getNumUnits()):
-		pUnit = pPlot.getUnit(i)
-		if pUnit.getTeam() == caster.getTeam():
-			pUnit.setFortifyTurns(5)
-
 def reqTrust(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	if pPlayer.isFeatAccomplished(FeatTypes.FEAT_TRUST):
@@ -3427,14 +3680,14 @@ def reqTrust(caster):
 
 def spellTrust(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
-	pCity = pPlayer.getCapitalCity()
 	pPlayer.setFeatAccomplished(FeatTypes.FEAT_TRUST, True)
 
 def spellTsunami(caster):
 	iX = caster.getX()
 	iY = caster.getY()
-	for iiX in range(iX-2, iX+3, 1):
-		for iiY in range(iY-2, iY+3, 1):
+	# Change Tsunami range to 1 from 2
+	for iiX in range(iX-1, iX+2, 1):
+		for iiY in range(iY-1, iY+2, 1):
 			pPlot = CyMap().plot(iiX,iiY)
 			if pPlot.isAdjacentToWater():
 				if (iX != iiX or iY != iiY):
@@ -3606,7 +3859,7 @@ def spellWonder(caster):
 	if pPlot.isCity():
 		bCity = True
 	for i in range (iCount):
-		iRnd = CyGame().getSorenRandNum(66, "Wonder")
+		iRnd = CyGame().getSorenRandNum(72, "Wonder")
 		iUnit = -1
 		if iRnd == 0:
 			caster.cast(gc.getInfoTypeForString('SPELL_BLAZE'))
@@ -3733,24 +3986,14 @@ def spellWonder(caster):
 			caster.cast(gc.getInfoTypeForString('SPELL_WITHER'))
 		elif iRnd == 58:
 			if bCity == False:
-				iImprovement = pPlot.getImprovementType()
-				bValid = True
-				if iImprovement != -1 :
-					if gc.getImprovementInfo(iImprovement).isPermanent() :
-						bValid = False
-				if bValid :
-					pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_PENGUINS'))
-					CyInterface().addMessage(caster.getOwner(), True, gc.getEVENT_MESSAGE_TIME(), CyTranslator().getText("TXT_KEY_MESSAGE_WONDER_PENGUINS", ()), '', InterfaceMessageTypes.MESSAGE_TYPE_INFO, 'Art/Interface/Buttons/Improvements/Penguins.dds',ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
+				if pPlot.getBonusType(-1) != -1:
+					pPlot.setBonusType(gc.getInfoTypeForString('BONUS_PENGUINS'))
+					CyInterface().addMessage(caster.getOwner(), True, 25, CyTranslator().getText("TXT_KEY_MESSAGE_WONDER_PENGUINS", ()), '', 1, 'Art/Interface/Buttons/Improvements/Penguins.dds', ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
 		elif iRnd == 59:
 			if bCity == False:
-				iImprovement = pPlot.getImprovementType()
-				bValid = True
-				if iImprovement != -1 :
-					if gc.getImprovementInfo(iImprovement).isPermanent() :
-						bValid = False
-				if bValid :
-					pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_MUSHROOMS'))
-					CyInterface().addMessage(caster.getOwner(), True, gc.getEVENT_MESSAGE_TIME(), CyTranslator().getText("TXT_KEY_MESSAGE_WONDER_MUSHROOMS", ()), '', InterfaceMessageTypes.MESSAGE_TYPE_INFO, 'Art/Interface/Buttons/Improvements/Mushrooms.dds',ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
+				if pPlot.getBonusType(-1) != -1:
+					pPlot.setBonusType(gc.getInfoTypeForString('BONUS_MUSHROOM'))
+					CyInterface().addMessage(caster.getOwner(), True, 25, CyTranslator().getText("TXT_KEY_MESSAGE_WONDER_MUSHROOMS", ()), '', 1, 'Art/Interface/Buttons/Improvements/Mushrooms.dds', ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
 		elif iRnd == 60:
 			for iProm in range(gc.getNumPromotionInfos()):
 				if caster.isHasPromotion(iProm):
@@ -3779,6 +4022,16 @@ def spellWonder(caster):
 			caster.cast(gc.getInfoTypeForString('SPELL_SUMMON_ICE_ELEMENTAL'))
 		elif iRnd == 65:
 			caster.cast(gc.getInfoTypeForString('SPELL_SNOWFALL'))
+		elif iRnd == 66:
+			caster.cast(gc.getInfoTypeForString('SPELL_TEMPERANCE'))
+		elif iRnd == 67:
+			caster.cast(gc.getInfoTypeForString('SPELL_MAGIC_MISSILE'))
+		elif iRnd == 68:
+			caster.cast(gc.getInfoTypeForString('SPELL_SUMMON_RUNEWYN'))
+		elif iRnd == 69:
+			caster.cast(gc.getInfoTypeForString('SPELL_TREETOP_TACTICS'))
+		elif iRnd == 70:
+			caster.cast(gc.getInfoTypeForString('SPELL_LABYRINTH'))
 		if iUnit != -1:
 			newUnit = pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_SUMMONER')):
@@ -3893,35 +4146,157 @@ def onMoveLetumFrigus(pCaster, pPlot):
 			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_EXPLORE_LAIR_GOLDEN_AGE",()),'',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
 		pPlot.setPythonActive(False)
 		
+			# More Events Mod Starts #	
 
+# lfgr: tweaked
+def onMoveBrokenSepulcher(pCaster, pPlot) :
+	if CyGame().getScenarioCounter()==6:
+		if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA')):
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
+			pPlayer = gc.getPlayer(pCaster.getOwner())
+			for pyCity in PyPlayer(pCaster.getOwner()).getCityList() :
+				pCity = pyCity.GetCy()
+				if CyGame().getSorenRandNum(100, "Mane") <= 60:
+					newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_MANES'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+					pCity.setNumRealBuilding( gc.getInfoTypeForString( 'BUILDING_DEMONIC_CITIZENS' ), 1 );
+				if pCity.getPopulation() > 2:
+					pCity.changePopulation(-2)
+				elif pCity.getPopulation() > 1:
+					pCity.changePopulation(-1)
+			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_GELA_BROKEN", ()),'',1,'Art/Interface/Buttons/Improvements/Broken Sepulcher.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+		
+	
+	
 def onMoveMaelstrom(pCaster, pPlot):
-	if CyGame().getSorenRandNum(100, "Maelstrom") < 25:
-		CyInterface().addMessage(pCaster.getOwner(), True, gc.getEVENT_MESSAGE_TIME(), CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_KILL",()), 'AS2D_FEATUREGROWTH', InterfaceMessageTypes.MESSAGE_TYPE_INFO, 'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-		pCaster.kill(True, PlayerTypes.NO_PLAYER)
-	else:
-		iOcean = gc.getInfoTypeForString('TERRAIN_OCEAN')
-		iBestValue = 0
-		pBestPlot = -1
-		for i in range (CyMap().numPlots()):
-			iValue = 0
-			pTargetPlot = CyMap().plotByIndex(i)
-			if pTargetPlot.getTerrainType() == iOcean:
-				iValue = CyGame().getSorenRandNum(1000, "Maelstrom")
-				if pTargetPlot.isOwned() == False:
-					iValue += 1000
-				if pTargetPlot == pPlot:
+	if CyGame().getScenarioCounter()==3:
+		if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA')):
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
+			pPlayer = gc.getPlayer(pCaster.getOwner())
+			iProm = gc.getInfoTypeForString('PROMOTION_WATER_WALKING')
+			if  pPlayer.getStateReligion() == gc.getInfoTypeForString('RELIGION_OCTOPUS_OVERLORDS'):
+				newUnit1 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_STYGIAN_GUARD'), pPlot.getX()+1, pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				newUnit1.setHasPromotion(iProm, True)
+				newUnit2 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_STYGIAN_GUARD'), pPlot.getX()+1, pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				newUnit2.setHasPromotion(iProm, True)
+				newUnit3 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_STYGIAN_GUARD'), pPlot.getX()+1, pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				newUnit3.setHasPromotion(iProm, True)
+				newUnit4 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_STYGIAN_GUARD'), pPlot.getX()+1, pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				newUnit4.setHasPromotion(iProm, True)
+				newUnit5 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_DISCIPLE_OCTOPUS_OVERLORDS'), pPlot.getX()+1, pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				newUnit5.setHasPromotion(iProm, True)
+				newUnit5.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HERO'), True)
+				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_GELA_1",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
+				pCaster.kill(True, PlayerTypes.NO_PLAYER)
+			else:
+				iStygianChance = 300
+				bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
+				for i in range (CyMap().numPlots()):
+					pPlot = CyMap().plotByIndex(i)
+					if  pPlot.isWater():
+						if pPlot.getNumUnits() == 0:
+							if CyGame().getSorenRandNum(10000, "Stygian") <= iStygianChance:			
+								newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_STYGIAN_GUARD'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+								newUnit.setUnitAIType(gc.getInfoTypeForString('UNITAI_ANIMAL'))
+								newUnit.setHasPromotion(iProm, True)
+				for i in range (CyMap().numPlots()):
+					pPlot = CyMap().plotByIndex(i)
+					if  pPlot.isWater():
+						if pPlot.getNumUnits() == 0:
+							if CyGame().getSorenRandNum(10000, "SeaSerpent") <= iStygianChance:			
+								newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_SEA_SERPENT'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+								newUnit.setUnitAIType(gc.getInfoTypeForString('UNITAI_ANIMAL'))
+								newUnit.setHasPromotion(iProm, True)
+				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_GELA_2",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
+				pCaster.kill(True, PlayerTypes.NO_PLAYER)
+		else:
+			if CyGame().getSorenRandNum(100, "Maelstrom") < 25:
+				CyInterface().addMessage(pCaster.getOwner(), True, gc.getEVENT_MESSAGE_TIME(), CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_KILL",()), 'AS2D_FEATUREGROWTH', InterfaceMessageTypes.MESSAGE_TYPE_INFO, 'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
+				pCaster.kill(True, PlayerTypes.NO_PLAYER)
+			else:
+				iOcean = gc.getInfoTypeForString('TERRAIN_OCEAN')
+				iBestValue = 0
+				pBestPlot = -1
+				for i in range (CyMap().numPlots()):
 					iValue = 0
-				if iValue > iBestValue:
-					iBestValue = iValue
-					pBestPlot = pTargetPlot
-		if pBestPlot != -1:
-			pCaster.setXY(pBestPlot.getX(), pBestPlot.getY(), False, True, True)
-			pCaster.setDamage(25, PlayerTypes.NO_PLAYER)
-			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_MOVE",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
+					pTargetPlot = CyMap().plotByIndex(i)
+					if pTargetPlot.getTerrainType() == iOcean:
+						iValue = CyGame().getSorenRandNum(1000, "Maelstrom")
+						if pTargetPlot.isOwned() == false:
+							iValue += 1000
+						if iValue > iBestValue:
+							iBestValue = iValue
+							pBestPlot = pTargetPlot
+				if pBestPlot != -1:
+					pCaster.setXY(pBestPlot.getX(), pBestPlot.getY(), false, true, true)
+					pCaster.setDamage(25, PlayerTypes.NO_PLAYER)
+					CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_MOVE",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
+
+	else:
+		if CyGame().getSorenRandNum(100, "Maelstrom") <= 25:
+			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_KILL",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),pPlot.getX(),pPlot.getY(),True,True)
+			pCaster.kill(True, PlayerTypes.NO_PLAYER)
+		else:
+			iOcean = gc.getInfoTypeForString('TERRAIN_OCEAN')
+			iBestValue = 0
+			pBestPlot = -1
+			for i in range (CyMap().numPlots()):
+				iValue = 0
+				pTargetPlot = CyMap().plotByIndex(i)
+				if pTargetPlot.getTerrainType() == iOcean:
+					iValue = CyGame().getSorenRandNum(1000, "Maelstrom")
+					if pTargetPlot.isOwned() == False:
+						iValue += 1000
+					if pTargetPlot == pPlot:
+						iValue = 0
+					if iValue > iBestValue:
+						iBestValue = iValue
+						pBestPlot = pTargetPlot
+			if pBestPlot != -1:
+				pCaster.setXY(pBestPlot.getX(), pBestPlot.getY(), False, True, True)
+				pCaster.setDamage(25, PlayerTypes.NO_PLAYER)
+				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_MAELSTROM_MOVE",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
 
 def onMoveMirrorOfHeaven(pCaster, pPlot):
 	if CyGame().getWBMapScript():
 		sf.onMoveMirrorOfHeaven(pCaster, pPlot)
+	if CyGame().getScenarioCounter()==7 :
+		if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA')):
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_TEMP_HELD'), True)
+			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_GELA_MIRROR",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Mirror Of Heaven.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_SOL'), True)
+			pPlayer = gc.getPlayer(pCaster.getOwner())
+			iX = pPlot.getX()
+			iY = pPlot.getY()
+			iChampion = gc.getInfoTypeForString('UNIT_CHAMPION')
+			iDemon = gc.getInfoTypeForString('PROMOTION_DEMON')
+			iHellfire = gc.getInfoTypeForString('IMPROVEMENT_HELLFIRE')
+			bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
+			for iPlayer2 in range(gc.getMAX_PLAYERS()):
+				pPlayer2 = gc.getPlayer(iPlayer2)
+				if (pPlayer2.isAlive()):
+					if pPlayer2.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
+						bPlayer = pPlayer2
+						enemyTeam = bPlayer.getTeam()
+						eTeam = gc.getTeam(pPlayer.getTeam())
+						eTeam.declareWar(enemyTeam, true, WarPlanTypes.WARPLAN_TOTAL)
+			for iiX in range(iX-2, iX+3, 1):
+				for iiY in range(iY-2, iY+3, 1):
+					pPlot2 = CyMap().plot(iiX,iiY)
+					if not pPlot2.isWater():
+						if pPlot2.getNumUnits() == 0:
+							if not pPlot2.isCity():
+								if pPlot2.isFlatlands():
+									if CyGame().getSorenRandNum(500, "Hellfire") <= 400:
+										iImprovement = pPlot2.getImprovementType()
+										bValid = True
+										if iImprovement != -1 :
+											if gc.getImprovementInfo(iImprovement).isPermanent():
+												bValid = False
+										if bValid :
+											pPlot2.setImprovementType(iHellfire)
+											newUnit = bPlayer.initUnit(iChampion, pPlot2.getX(), pPlot2.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+											newUnit.setHasPromotion(iDemon, True)
 
 def onMovePoolOfTears(pCaster, pPlot):
 	if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_DISEASED')):
@@ -3936,7 +4311,62 @@ def onMovePoolOfTears(pCaster, pPlot):
 	if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_WITHERED')):
 		pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_WITHERED'), False)
 		CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_POOL_OF_TEARS_WITHERED",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Pool of Tears.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+	# lfgr: tweaked
+	if CyGame().getScenarioCounter()==2:
+		if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA')):
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
+			pPlayer = gc.getPlayer(pCaster.getOwner())
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PIKE_OF_TEARS'), True)
+			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_TEARS_GELA",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Pool of Tears.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+			if pPlayer.getStateReligion() == gc.getInfoTypeForString('RELIGION_FELLOWSHIP_OF_LEAVES') :
+				isPlague = CyGame().getSorenRandNum(100, "Plague") <= 20
+			else :
+				isPlague = CyGame().getSorenRandNum(100, "Plague") <= 50
+			if isPlague:
+				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_TEARS_GELA_PLAGUE",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Pool of Tears.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
+				for iPlayer2 in range(gc.getMAX_PLAYERS()):
+					pPlayer2 = gc.getPlayer(iPlayer2)
+					if pPlayer2.getCivilizationType() != gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
+						for pyCity in PyPlayer(iPlayer2).getCityList() :
+							pCity = pyCity.GetCy()
+							i = CyGame().getSorenRandNum(5, "Blight")
+							i += pCity.getPopulation() - 2
+							i -= pCity.totalGoodBuildingHealth()
+							if i > 0:
+								pCity.changeEspionageHealthCounter(i)
+							py = PyPlayer(iPlayer2)
+							for pUnit in py.getUnitList():
+								if pUnit.isAlive():
+									pUnit.doDamageNoCaster(10, 100, gc.getInfoTypeForString('DAMAGE_DEATH'), false)
+			
 
+def onMovePyreOfTheSeraphic(pCaster, pPlot):
+	if CyGame().getScenarioCounter()==5 :
+		if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA')):
+			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
+			pPlayer = gc.getPlayer(pCaster.getOwner())
+			if CyGame().getSorenRandNum(100, "Pyre") <= 40:
+				pPlot.setImprovementType(-1)
+				pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_FROZEN_FLAME'), True)
+				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_TEARS_GELA_PYRE_1",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Pyre of the Seraphic.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+			else:  
+				pPlot.setImprovementType(-1)
+				i = 4
+				if CyMap().getWorldSize() == gc.getInfoTypeForString('WORLDSIZE_DUEL'):
+					i = i - 3
+				if CyMap().getWorldSize() == gc.getInfoTypeForString('WORLDSIZE_TINY'):
+					i = i - 2
+				if CyMap().getWorldSize() == gc.getInfoTypeForString('WORLDSIZE_SMALL'):
+					i = i - 1
+				if CyMap().getWorldSize() == gc.getInfoTypeForString('WORLDSIZE_LARGE'):
+					i = i + 1
+				if CyMap().getWorldSize() == gc.getInfoTypeForString('WORLDSIZE_HUGE'):
+					i = i + 3
+				cf.addBonus('BONUS_MANA',i,'Art/Interface/Buttons/WorldBuilder/mana_button.dds')
+				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_TEARS_GELA_PYRE_2",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Pyre of the Seraphic.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+					
+	# More Events Mod ends #
+	
 def onMoveJungleAltar(pCaster, pPlot):
 	if CyGame().getWBMapScript():
 		sf.onMoveJungleAltar(pCaster, pPlot)
@@ -3960,12 +4390,59 @@ def voteFundDissidents():
 						pCity = pyCity.GetCy()
 						pCity.changeHurryAngerTimer(1 + CyGame().getSorenRandNum(3, "Fund Dissidents"))
 
+def reqGreatGeneralJoin(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
+	pPlot = caster.plot()
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GREAT_GENERAL')):
+		return False
+	iGeneral = gc.getInfoTypeForString('UNITCLASS_GREAT_GENERAL')
+	pGeneral = -1
+	for i in range(pPlot.getNumUnits()):
+		pUnit = pPlot.getUnit(i)
+		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitClassType() == iGeneral):
+			pGeneral = pUnit
+	if pGeneral == -1:
+		return False
+	if pGeneral.isHasCasted():
+		return False
+	if pPlayer.isHuman() == False:
+		if not caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HERO')) and (caster.baseCombatStr() <= 5) and (not caster.getUnitAIType == gc.getInfoTypeForString('UNITAI_HERO')):
+			return False
+
+	return True
+
+def spellGreatGeneralJoin(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
+	pPlot = caster.plot()
+	iGeneral = gc.getInfoTypeForString('UNITCLASS_GREAT_GENERAL')
+	pGeneral = -1
+	for i in range(pPlot.getNumUnits()):
+		pUnit = pPlot.getUnit(i)
+		if (caster.getOwner() == pUnit.getOwner() and pUnit.getUnitClassType() == iGeneral):
+			pGeneral = pUnit
+	if pGeneral != -1:
+		# lfgr GP_NAMES 07/2013
+		if( not SDTK.sdObjectExists( "GPNames", caster ) ) :
+			SDTK.sdObjectInit( "GPNames", caster, {} )
+		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", pGeneral.getName() )
+		if( caster.getNameNoDesc() != "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
+			caster.setName( pGeneral.getName() )
+		# lfgr end
+		pGeneral.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
+		pGeneral.kill(False, PlayerTypes.NO_PLAYER)
+
 def spellGreatGeneralSplit(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
-	iCommander = gc.getInfoTypeForString('UNIT_GREAT_GENERAL')
-	newUnit = pPlayer.initUnit(iCommander, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+	iGeneral = gc.getInfoTypeForString('UNIT_GREAT_GENERAL')
+	newUnit = pPlayer.initUnit(iGeneral, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 	newUnit.setHasCasted(True)
 	newUnit.setImmobileTimer(1)
+	# lfgr GP_NAMES 07/2013
+	if( SDTK.sdObjectExists( "GPNames", caster ) ) :
+		szName = SDTK.sdObjectGetVal( "GPNames", caster, "GeneralName" )
+		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", "" )
+		newUnit.setName( szName )
+	# lfgr end
 
 def reqDeclareBarbs(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
@@ -4002,3 +4479,164 @@ def applyDeclareBarbs(argsList):
 		CyMessageControl().sendModNetMessage(CvUtil.BarbarianWar, iBarb, iTeam, 0, 0)
 #		gc.getTeam(iBarb).declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
 		cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
+
+# We need to check if these checks can be done in XML instead.
+def reqDropEquipmentPromotion(caster,unit):
+	# The AI should not be dropping weapons.
+	pPlayer = gc.getPlayer(caster.getOwner())
+	if pPlayer.isHuman() == False:
+		return False
+
+	# The unit must be in a friendly tile.
+	pPlot = caster.plot()
+	if pPlot.isOwned():
+		pPlotPlayer = gc.getPlayer(pPlot.getOwner())
+		if caster.getTeam() != pPlotPlayer.getTeam():
+			return False
+	else:
+		return False
+
+	return True
+
+# We need to check if these checks can be done in XML instead.
+def reqDropEquipmentPiecesBarnaxus(caster):
+	# The AI should not be dropping weapons.
+	pPlayer = gc.getPlayer(caster.getOwner())
+	if pPlayer.isHuman() == False:
+		return False
+
+	# The unit must be in a friendly tile.
+	pPlot = caster.plot()
+	if pPlot.isOwned():
+		pPlotPlayer = gc.getPlayer(pPlot.getOwner())
+		if caster.getTeam() != pPlotPlayer.getTeam():
+			return False
+	else:
+		return False
+
+	# Barnaxus cannot drop its own pieces.
+	if caster.getUnitType() == gc.getInfoTypeForString('UNIT_BARNAXUS'):
+		return False
+
+	return True
+
+#Rise from Erebus
+def reqFertility(caster):
+	pPlot = caster.plot()
+	pPlayer = gc.getPlayer(caster.getOwner())
+	ePlotOwner = pPlot.getOwner()
+
+	if ePlotOwner == -1:
+		return False
+
+	if pPlayer.getTeam() != gc.getPlayer(ePlotOwner).getTeam():
+		return False
+
+	pBonus = pPlot.getBonusType(-1)
+	if pBonus == -1:
+		return False
+
+	iWheat  = gc.getInfoTypeForString('BONUS_WHEAT')
+	iRice   = gc.getInfoTypeForString('BONUS_RICE')
+	iCorn   = gc.getInfoTypeForString('BONUS_CORN')
+
+	iCow    = gc.getInfoTypeForString('BONUS_COW')
+	iSheep  = gc.getInfoTypeForString('BONUS_SHEEP')
+ 	iPig    = gc.getInfoTypeForString('BONUS_PIG')
+
+	iBanana = gc.getInfoTypeForString('BONUS_BANANA')
+	iSugar  = gc.getInfoTypeForString('BONUS_SUGAR')
+ 	iCotton = gc.getInfoTypeForString('BONUS_COTTON')
+
+	iDeer   = gc.getInfoTypeForString('BONUS_DEER')
+	iFur    = gc.getInfoTypeForString('BONUS_FUR')
+
+	iClam   = gc.getInfoTypeForString('BONUS_CLAM')
+	iCrab   = gc.getInfoTypeForString('BONUS_CRAB')
+ 	iFish   = gc.getInfoTypeForString('BONUS_FISH')
+ 	iShrimp = gc.getInfoTypeForString('BONUS_SHRIMP')
+
+	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or pBonus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish or pBonus == iShrimp:
+		return True
+
+	return False
+
+#Rise from Erebus
+def spellFertility(caster):
+	iPlayer = caster.getOwner()
+	pPlayer = gc.getPlayer(iPlayer)
+	pPlot = caster.plot()
+
+	pBonus = pPlot.getBonusType(-1)
+
+	iWheat  = gc.getInfoTypeForString('BONUS_WHEAT')
+	iRice   = gc.getInfoTypeForString('BONUS_RICE')
+	iCorn   = gc.getInfoTypeForString('BONUS_CORN')
+
+	iCow    = gc.getInfoTypeForString('BONUS_COW')
+	iSheep  = gc.getInfoTypeForString('BONUS_SHEEP')
+ 	iPig    = gc.getInfoTypeForString('BONUS_PIG')
+
+	iBanana = gc.getInfoTypeForString('BONUS_BANANA')
+	iSugar  = gc.getInfoTypeForString('BONUS_SUGAR')
+ 	iCotton = gc.getInfoTypeForString('BONUS_COTTON')
+
+	iDeer   = gc.getInfoTypeForString('BONUS_DEER')
+	iFur    = gc.getInfoTypeForString('BONUS_FUR')
+
+	iClam   = gc.getInfoTypeForString('BONUS_CLAM')
+	iCrab   = gc.getInfoTypeForString('BONUS_CRAB')
+ 	iFish   = gc.getInfoTypeForString('BONUS_FISH')
+ 	iShrimp = gc.getInfoTypeForString('BONUS_SHRIMP')
+
+ 	if pBonus == iWheat:
+ 		pPlot.setBonusType(iRice)
+ 	elif pBonus == iRice:
+ 		pPlot.setBonusType(iCorn)
+  	elif pBonus == iCorn:
+  		pPlot.setBonusType(iWheat)
+
+  	elif pBonus == iCow:
+ 		pPlot.setBonusType(iSheep)
+ 	elif pBonus == iSheep:
+ 		pPlot.setBonusType(iPig)
+ 	elif pBonus == iPig:
+ 		pPlot.setBonusType(iCow)
+
+  	elif pBonus == iBanana:
+ 		pPlot.setBonusType(iSugar)
+ 	elif pBonus == iSugar:
+ 		pPlot.setBonusType(iCotton)
+ 	elif pBonus == iCotton:
+ 		pPlot.setBonusType(iBanana)
+
+  	elif pBonus == iDeer:
+ 		pPlot.setBonusType(iFur)
+ 	elif pBonus == iFur:
+ 		pPlot.setBonusType(iDeer)
+
+  	elif pBonus == iClam:
+ 		pPlot.setBonusType(iCrab)
+ 	elif pBonus == iCrab:
+ 		pPlot.setBonusType(iFish)
+ 	elif pBonus == iFish:
+ 		pPlot.setBonusType(iShrimp)
+ 	elif pBonus == iShrimp:
+ 		pPlot.setBonusType(iClam)
+
+def spellUpgradeLucian(pCaster):
+	pPlayer = gc.getPlayer(pCaster.getOwner())
+	pCaster.setName("Lucian")
+	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_SONS_OF_ASENA'), pCaster.getX(), pCaster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+	newUnit.convert(pCaster)
+	newUnit.changeImmobileTimer(1)
+
+def spellAnimateFrostlings(pCaster):
+	for iPlayer in range(gc.getMAX_PLAYERS()):
+		pPlayer = gc.getPlayer(iPlayer)
+		if pPlayer.isAlive():
+			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING'))
+			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING'))
+			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING_ARCHER'))
+			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING_WOLF_RIDER'))
+			CyInterface().addMessage(iPlayer, False, 25, CyTranslator().getText("TXT_KEY_MESSAGE_ANIMATE_FROSTLINGS", ()),'',1, None, ColorTypes(7), -1, -1, False, False)

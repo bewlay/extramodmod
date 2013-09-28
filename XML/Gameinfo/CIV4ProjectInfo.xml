@@ -187,7 +187,7 @@
 			<Civilopedia>TXT_KEY_PROJECT_NATURES_REVOLT_STRATEGY</Civilopedia>
 			<Strategy>TXT_KEY_PROJECT_NATURES_REVOLT_STRATEGY</Strategy>
 			<VictoryPrereq>NONE</VictoryPrereq>
-			<TechPrereq>TECH_ANIMAL_HANDLING</TechPrereq>
+			<TechPrereq>TECH_COMMUNE_WITH_NATURE</TechPrereq>
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>1</iMaxGlobalInstances>
 			<iMaxTeamInstances>-1</iMaxTeamInstances>
@@ -220,7 +220,7 @@
 			<Civilopedia>TXT_KEY_PROJECT_ELEGY_OF_THE_SHEAIM_STRATEGY</Civilopedia>
 			<Strategy>TXT_KEY_PROJECT_ELEGY_OF_THE_SHEAIM_STRATEGY</Strategy>
 			<VictoryPrereq>NONE</VictoryPrereq>
-			<TechPrereq>TECH_WAY_OF_THE_WICKED</TechPrereq>
+			<TechPrereq>TECH_PHILOSOPHY</TechPrereq>
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>-1</iMaxTeamInstances>
@@ -250,7 +250,7 @@
 			<Civilopedia>TXT_KEY_PROJECT_HALLOWING_OF_THE_ELOHIM_STRATEGY</Civilopedia>
 			<Strategy>TXT_KEY_PROJECT_HALLOWING_OF_THE_ELOHIM_STRATEGY</Strategy>
 			<VictoryPrereq>NONE</VictoryPrereq>
-			<TechPrereq>TECH_WAY_OF_THE_WISE</TechPrereq>
+			<TechPrereq>TECH_PHILOSOPHY</TechPrereq>
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>-1</iMaxTeamInstances>
@@ -281,7 +281,7 @@
 			<Civilopedia>TXT_KEY_PROJECT_PURGE_THE_UNFAITHFUL_STRATEGY</Civilopedia>
 			<Strategy>TXT_KEY_PROJECT_PURGE_THE_UNFAITHFUL_STRATEGY</Strategy>
 			<VictoryPrereq>NONE</VictoryPrereq>
-			<TechPrereq>TECH_PRIESTHOOD</TechPrereq>
+			<TechPrereq>TECH_FANATICISM</TechPrereq>
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>1</iMaxGlobalInstances>
 			<iMaxTeamInstances>-1</iMaxTeamInstances>

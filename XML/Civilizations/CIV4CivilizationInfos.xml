@@ -108,13 +108,13 @@
 			</Cities>
 			<Buildings>
 				<Building>
+					<BuildingClassType>BUILDINGCLASS_PAGAN_TEMPLE</BuildingClassType>
+					<BuildingType>BUILDING_CAVE_OF_ANCESTORS</BuildingType>
+				</Building>
+				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_AMURITES</BuildingType>
 				</Building>
-		                <Building>
-		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
-		                    <BuildingType>BUILDING_CAVE_OF_ANCESTORS</BuildingType>
-		                </Building>
 			</Buildings>
 			<Units>
 				<Unit>
@@ -183,6 +183,10 @@
 				</Leader>
 				<Leader>
 					<LeaderName>LEADER_DAIN</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_TYA_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>
@@ -324,6 +328,18 @@
 					<LeaderName>LEADER_KEELYN</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_FURIA_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_MELISANDRE_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_WEEVIL_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_FRANCE_SELECT</CivilizationSelectionSound>
@@ -434,6 +450,10 @@
 				</Leader>
 				<Leader>
 					<LeaderName>LEADER_DECIUS</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_TETHIRA_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>
@@ -585,6 +605,10 @@
 				</Leader>
 				<Leader>
 					<LeaderName>LEADER_DECIUS</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_MAHON_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>
@@ -776,6 +800,10 @@
 					<LeaderName>LEADER_SHEELBA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_HAFGAN_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_ARABIA_SELECT</CivilizationSelectionSound>
@@ -788,6 +816,22 @@
 			<MaintainFeatures>
 			</MaintainFeatures>
 			<TerrainYieldChanges>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
 			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
@@ -948,18 +992,38 @@
 					<LeaderName>LEADER_MAHALA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_DUIN_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_RUSSIA_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_RUSSIA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>NONE</CivTrait>
+			<CivTrait>TRAIT_SAVAGE</CivTrait>
 			<DefaultRace>PROMOTION_WINTERBORN</DefaultRace>
 			<Help/>
 			<Hero>UNIT_WAR_MACHINE</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
 			<TerrainYieldChanges>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
 			</TerrainYieldChanges>
 		</CivilizationInfo>
 		<CivilizationInfo>
@@ -998,16 +1062,16 @@
 			</Cities>
 			<Buildings>
 				<Building>
+                    <BuildingClassType>BUILDINGCLASS_MONUMENT</BuildingClassType>
+                    <BuildingType>BUILDING_RELIQUARY</BuildingType>
+                </Building>
+				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_ELOHIM</BuildingType>
 				</Building>
 		                <Building>
 		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
 		                    <BuildingType>BUILDING_CHANCEL_OF_GUARDIANS</BuildingType>
-		                </Building>
-		                <Building>
-		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING2</BuildingClassType>
-		                    <BuildingType>BUILDING_RELIQUARY</BuildingType>
 		                </Building>
 			</Buildings>
 			<Units>
@@ -1065,6 +1129,10 @@
 				</Leader>
 				<Leader>
 					<LeaderName>LEADER_EINION</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_THESSALONICA_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>
@@ -1127,6 +1195,10 @@
 					<BuildingType>NONE</BuildingType>
 				</Building>
 				<Building>
+					<BuildingClassType>BUILDINGCLASS_MERCURIAN_GATE</BuildingClassType>
+					<BuildingType>NONE</BuildingType>
+				</Building>
+				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_GRIGORI</BuildingType>
 				</Building>
@@ -1158,10 +1230,18 @@
 					<BuildingClassType>BUILDINGCLASS_TEMPLE_OF_THE_VEIL</BuildingClassType>
 					<BuildingType>NONE</BuildingType>
 				</Building>
-		                <Building>
-		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
-		                    <BuildingType>BUILDING_ADVENTURERS_GUILD</BuildingType>
-		                </Building>
+				<Building>
+					<BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
+					<BuildingType>BUILDING_ADVENTURERS_GUILD</BuildingType>
+				</Building>
+				<Building>
+					<BuildingClassType>BUILDINGCLASS_COURTHOUSE</BuildingClassType>
+					<BuildingType>BUILDING_FORUM</BuildingType>
+				</Building>
+				<Building>
+					<BuildingClassType>BUILDINGCLASS_CIV_BUILDING2</BuildingClassType>
+					<BuildingType>BUILDING_MUSEUM</BuildingType>
+				</Building>
 			</Buildings>
 			<Units>
 				<Unit>
@@ -1218,6 +1298,10 @@
 			<Leaders>
 				<Leader>
 					<LeaderName>LEADER_CASSIEL</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_KOUN_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>
@@ -1346,6 +1430,14 @@
 					<LeaderName>LEADER_RHOANNA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_OSTANES_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_ULDANOR_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_MONGOL_SELECT</CivilizationSelectionSound>
@@ -1455,6 +1547,22 @@
 			<Leaders>
 				<Leader>
 					<LeaderName>LEADER_AURIC</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_ANAGANTIOS_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_BRAEDEN_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_DUMANNIOS_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_RIUROS_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>
@@ -1822,7 +1930,7 @@
 			<ArtStyleType>ARTSTYLE_KURIOTATES</ArtStyleType>
 			<UnitArtStyleType>UNIT_ARTSTYLE_KURIOTATES</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
-			<bAIPlayable>1</bAIPlayable>
+			<bAIPlayable>0</bAIPlayable>
 			<Cities>
 				<City>TXT_KEY_CITY_KURIOTATES_1</City>
 				<City>TXT_KEY_CITY_KURIOTATES_2</City>
@@ -1922,14 +2030,14 @@
 			</DisableTechs>
 			<InitialCivics>
 					<CivicType>CIVIC_DESPOTISM</CivicType>
-					<CivicType>CIVIC_PACIFISM</CivicType>
+					<CivicType>CIVIC_RELIGION</CivicType>
 					<CivicType>CIVIC_TRIBALISM</CivicType>
 					<CivicType>CIVIC_DECENTRALIZATION</CivicType>
 					<CivicType>CIVIC_NO_MEMBERSHIP</CivicType>
 			</InitialCivics>
 			<AnarchyCivics>
 					<CivicType>CIVIC_DESPOTISM</CivicType>
-					<CivicType>CIVIC_PACIFISM</CivicType>
+					<CivicType>CIVIC_RELIGION</CivicType>
 					<CivicType>CIVIC_TRIBALISM</CivicType>
 					<CivicType>CIVIC_DECENTRALIZATION</CivicType>
 					<CivicType>CIVIC_NO_MEMBERSHIP</CivicType>
@@ -1937,6 +2045,10 @@
 			<Leaders>
 				<Leader>
 					<LeaderName>LEADER_CARDITH</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_CHERON_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>
@@ -2114,10 +2226,6 @@
 				<City>TXT_KEY_CITY_LJOSALFAR_23</City>
 			</Cities>
 			<Buildings>
-				<Building>
-					<BuildingClassType>BUILDINGCLASS_ALCHEMY_LAB</BuildingClassType>
-					<BuildingType>NONE</BuildingType>
-				</Building>
 				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_LJOSALFAR</BuildingType>
@@ -2529,6 +2637,10 @@
 					<LeaderName>LEADER_DECIUS</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_KANE_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_AZTEC_SELECT</CivilizationSelectionSound>
@@ -2543,6 +2655,14 @@
 			<TerrainYieldChanges>
 				<TerrainYieldChange>
 					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<TerrainYields>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
 					<TerrainYields>
 						<iYield>0</iYield>
 						<iYield>0</iYield>
@@ -2808,6 +2928,18 @@
 					<LeaderName>LEADER_OS-GABELLA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_AVERAX_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_GOSEA_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_MALCHAVIC_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_INDIA_SELECT</CivilizationSelectionSound>
@@ -2902,14 +3034,14 @@
 			</DisableTechs>
 			<InitialCivics>
 					<CivicType>CIVIC_DESPOTISM</CivicType>
-					<CivicType>CIVIC_PACIFISM</CivicType>
+					<CivicType>CIVIC_NATIONHOOD</CivicType>
 					<CivicType>CIVIC_TRIBALISM</CivicType>
 					<CivicType>CIVIC_DECENTRALIZATION</CivicType>
 					<CivicType>CIVIC_NO_MEMBERSHIP</CivicType>
 			</InitialCivics>
 			<AnarchyCivics>
 					<CivicType>CIVIC_DESPOTISM</CivicType>
-					<CivicType>CIVIC_PACIFISM</CivicType>
+					<CivicType>CIVIC_NATIONHOOD</CivicType>
 					<CivicType>CIVIC_TRIBALISM</CivicType>
 					<CivicType>CIVIC_DECENTRALIZATION</CivicType>
 					<CivicType>CIVIC_NO_MEMBERSHIP</CivicType>
@@ -2917,6 +3049,10 @@
 			<Leaders>
 				<Leader>
 					<LeaderName>LEADER_SANDALPHON</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_SHEKINAH_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>
@@ -2973,10 +3109,6 @@
 				<City>TXT_KEY_CITY_SVARTALFAR_25</City>
 			</Cities>
 			<Buildings>
-				<Building>
-					<BuildingClassType>BUILDINGCLASS_ALCHEMY_LAB</BuildingClassType>
-					<BuildingType>NONE</BuildingType>
-				</Building>
 				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_SVARTALFAR</BuildingType>
@@ -3065,6 +3197,14 @@
 			<Leaders>
 				<Leader>
 					<LeaderName>LEADER_FAERYL</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_RIVANNA_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_VOLANNA_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>

@@ -62,7 +62,7 @@
 		</PlayerColorInfo>
 		<PlayerColorInfo>
 			<Type>PLAYERCOLOR_ILLIANS</Type>
-			<ColorTypePrimary>COLOR_PLAYER_LIGHT_BLUE</ColorTypePrimary>
+			<ColorTypePrimary>COLOR_PLAYER_ILLIAN_LIGHT_BLUE</ColorTypePrimary>
 			<ColorTypeSecondary>COLOR_PLAYER_BLACK</ColorTypeSecondary>
 			<TextColorType>COLOR_PLAYER_LIGHT_BLUE_TEXT</TextColorType>
 		</PlayerColorInfo>

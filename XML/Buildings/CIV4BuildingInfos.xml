@@ -269,6 +269,10 @@
 			<PrereqBonuses>
 			</PrereqBonuses>
 			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_SAGE</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
 			</ProductionTraits>
 			<HappinessTraits>
 			</HappinessTraits>
@@ -304,7 +308,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>300</iCost>
+			<iCost>250</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -384,7 +388,7 @@
 			</CommerceChangeDoubleTimes>
 			<CommerceModifiers>
 				<iCommerce>0</iCommerce>
-				<iCommerce>10</iCommerce>
+				<iCommerce>25</iCommerce>
 				<iCommerce>0</iCommerce>
 			</CommerceModifiers>
 			<GlobalCommerceModifiers>
@@ -726,7 +730,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_MYSTICISM</PrereqTech>
+			<PrereqTech>NONE</PrereqTech>
 			<TechTypes>
 			</TechTypes>
 			<Bonus>NONE</Bonus>
@@ -964,7 +968,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_PHILOSOPHY</PrereqTech>
+			<PrereqTech>NONE</PrereqTech>
 			<TechTypes>
 			</TechTypes>
 			<Bonus>NONE</Bonus>
@@ -1218,7 +1222,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_PRIESTHOOD</PrereqTech>
+			<PrereqTech>NONE</PrereqTech>
 			<TechTypes>
 			</TechTypes>
 			<Bonus>NONE</Bonus>
@@ -1473,7 +1477,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_FANATICISM</PrereqTech>
+			<PrereqTech>NONE</PrereqTech>
 			<TechTypes>
 			</TechTypes>
 			<Bonus>NONE</Bonus>
@@ -1728,7 +1732,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_RIGHTEOUSNESS</PrereqTech>
+			<PrereqTech>NONE</PrereqTech>
 			<TechTypes>
 			</TechTypes>
 			<Bonus>NONE</Bonus>
@@ -1983,7 +1987,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_OMNISCIENCE</PrereqTech>
+			<PrereqTech>TECH_DIVINE_ESSENCE</PrereqTech>
 			<TechTypes>
 			</TechTypes>
 			<Bonus>NONE</Bonus>
@@ -2025,7 +2029,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>4000</iCost>
+			<iCost>2000</iCost>
 			<iHurryCostModifier>50</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -2465,6 +2469,10 @@
 			<PrereqBonuses>
 			</PrereqBonuses>
 			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_EXPANSIVE</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
 			</ProductionTraits>
 			<HappinessTraits>
 			</HappinessTraits>
@@ -2500,7 +2508,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>1</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>180</iCost>
+			<iCost>100</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -2601,6 +2609,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -2776,7 +2788,7 @@
 			<iForeignTradeRouteModifier>0</iForeignTradeRouteModifier>
 			<iGlobalPopulationChange>0</iGlobalPopulationChange>
 			<iFreeTechs>0</iFreeTechs>
-			<iDefense>10</iDefense>
+			<iDefense>25</iDefense>
 			<iBombardDefense>0</iBombardDefense>
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
@@ -2991,7 +3003,7 @@
 			<iHealth>0</iHealth>
 			<iAreaHealth>0</iAreaHealth>
 			<iGlobalHealth>0</iGlobalHealth>
-			<iHappiness>-1</iHappiness>
+			<iHappiness>-2</iHappiness>
 			<iAreaHappiness>0</iAreaHappiness>
 			<iGlobalHappiness>0</iGlobalHappiness>
 			<iStateReligionHappiness>0</iStateReligionHappiness>
@@ -3037,7 +3049,7 @@
 			</CommerceChangeDoubleTimes>
 			<CommerceModifiers>
 				<iCommerce>0</iCommerce>
-				<iCommerce>15</iCommerce>
+				<iCommerce>25</iCommerce>
 				<iCommerce>0</iCommerce>
 			</CommerceModifiers>
 			<GlobalCommerceModifiers>
@@ -3162,8 +3174,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -3187,7 +3199,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>200</iCost>
+			<iCost>150</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -3411,7 +3423,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>600</iCost>
+			<iCost>500</iCost>
 			<iHurryCostModifier>50</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -4225,6 +4237,10 @@
 			<BonusHealthChanges>
 			</BonusHealthChanges>
 			<BonusHappinessChanges>
+				<BonusHappinessChange>
+					<BonusType>BONUS_PENGUINS</BonusType>
+					<iHappinessChange>1</iHappinessChange>
+				</BonusHappinessChange>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
 			</BonusProductionModifiers>
@@ -5008,8 +5024,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_ADVENTURER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>2</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -5134,6 +5150,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -5435,7 +5455,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>NONE</PrereqTech>
+			<PrereqTech>TECH_AGRICULTURE</PrereqTech>
 			<TechTypes>
 			</TechTypes>
 			<Bonus>NONE</Bonus>
@@ -5635,7 +5655,7 @@
 			</SpecialistCommerceChanges>
 		</BuildingInfo>
 		<BuildingInfo>
-			<BuildingClass>BUILDINGCLASS_CIV_BUILDING1</BuildingClass>
+			<BuildingClass>BUILDINGCLASS_PAGAN_TEMPLE</BuildingClass>
 			<Type>BUILDING_CAVE_OF_ANCESTORS</Type>
 			<SpecialBuildingType>NONE</SpecialBuildingType>
 			<Description>TXT_KEY_BUILDING_CAVE_OF_ANCESTORS</Description>
@@ -5658,13 +5678,17 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_SORCERY</PrereqTech>
+			<PrereqTech>TECH_MYSTICISM</PrereqTech>
 			<TechTypes>
 			</TechTypes>
 			<Bonus>NONE</Bonus>
 			<PrereqBonuses>
 			</PrereqBonuses>
 			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_SPIRITUAL</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
 			</ProductionTraits>
 			<HappinessTraits>
 			</HappinessTraits>
@@ -5700,7 +5724,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>120</iCost>
+			<iCost>100</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -5757,7 +5781,7 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<iAsset>1</iAsset>
-			<iPower>0</iPower>
+			<iPower>3</iPower>
 			<fVisibilityPriority>1</fVisibilityPriority>
 			<SeaPlotYieldChanges>
 			</SeaPlotYieldChanges>
@@ -5776,6 +5800,9 @@
 			<CommerceChangeDoubleTimes>
 			</CommerceChangeDoubleTimes>
 			<CommerceModifiers>
+				<iCommerce>0</iCommerce>
+				<iCommerce>0</iCommerce>
+				<iCommerce>10</iCommerce>
 			</CommerceModifiers>
 			<GlobalCommerceModifiers>
 			</GlobalCommerceModifiers>
@@ -5788,6 +5815,10 @@
 			<ReligionChanges>
 			</ReligionChanges>
 			<SpecialistCounts>
+				<SpecialistCount>
+					<SpecialistType>SPECIALIST_PRIEST</SpecialistType>
+					<iSpecialistCount>1</iSpecialistCount>
+				</SpecialistCount>
 			</SpecialistCounts>
 			<FreeSpecialistCounts>
 			</FreeSpecialistCounts>
@@ -5799,8 +5830,16 @@
 			<BonusHealthChanges>
 			</BonusHealthChanges>
 			<BonusHappinessChanges>
+				<BonusHappinessChange>
+					<BonusType>BONUS_INCENSE</BonusType>
+					<iHappinessChange>1</iHappinessChange>
+				</BonusHappinessChange>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -5821,6 +5860,10 @@
 			<ImprovementFreeSpecialists>
 			</ImprovementFreeSpecialists>
 			<Flavors>
+				<Flavor>
+					<FlavorType>FLAVOR_RELIGION</FlavorType>
+					<iFlavor>10</iFlavor>
+				</Flavor>
 				<Flavor>
 					<FlavorType>FLAVOR_SCIENCE</FlavorType>
 					<iFlavor>10</iFlavor>
@@ -5852,7 +5895,7 @@
 			<iResistMagic>0</iResistMagic>
 			<FreeBonus2>NONE</FreeBonus2>
 			<FreeBonus3>NONE</FreeBonus3>
-			<PrereqCiv>CIVILIZATION_AMURITES</PrereqCiv>
+			<PrereqCiv></PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
 			<RemovePromotion>NONE</RemovePromotion>
 			<SpecialistCommerceChanges>
@@ -6601,7 +6644,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>500</iAIWeight>
-			<iCost>300</iCost>
+			<iCost>200</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -6702,6 +6745,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -6748,7 +6795,7 @@
 			<iFreePromotionPick>0</iFreePromotionPick>
 			<iGlobalResistEnemyModify>0</iGlobalResistEnemyModify>
 			<iGlobalResistModify>0</iGlobalResistModify>
-			<iModifyGlobalCounter>0</iModifyGlobalCounter>
+			<iModifyGlobalCounter>1</iModifyGlobalCounter>
 			<iPlotRadius>0</iPlotRadius>
 			<iResistMagic>0</iResistMagic>
 			<FreeBonus2>NONE</FreeBonus2>
@@ -7186,6 +7233,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -7868,6 +7919,10 @@
 					<BonusType>BONUS_PEARL</BonusType>
 					<iHappinessChange>1</iHappinessChange>
 				</BonusHappinessChange>
+				<BonusHappinessChange>
+					<BonusType>BONUS_AMBER</BonusType>
+					<iHappinessChange>1</iHappinessChange>
+				</BonusHappinessChange>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
 			</BonusProductionModifiers>
@@ -7904,6 +7959,14 @@
 				</BonusYieldModifier>
 				<BonusYieldModifier>
 					<BonusType>BONUS_PEARL</BonusType>
+					<YieldModifiers>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>10</iYield>
+					</YieldModifiers>
+				</BonusYieldModifier>
+				<BonusYieldModifier>
+					<BonusType>BONUS_AMBER</BonusType>
 					<YieldModifiers>
 						<iYield>0</iYield>
 						<iYield>0</iYield>
@@ -7952,7 +8015,7 @@
 			</SpecialistCommerceChanges>
 		</BuildingInfo>
 		<BuildingInfo>
-			<BuildingClass>BUILDINGCLASS_CIV_BUILDING2</BuildingClass>
+			<BuildingClass>BUILDINGCLASS_MONUMENT</BuildingClass>
 			<Type>BUILDING_RELIQUARY</Type>
 			<SpecialBuildingType>NONE</SpecialBuildingType>
 			<Description>TXT_KEY_BUILDING_RELIQUARY</Description>
@@ -7975,13 +8038,17 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_WAY_OF_THE_WISE</PrereqTech>
+			<PrereqTech>TECH_ANCIENT_CHANTS</PrereqTech>
 			<TechTypes>
 			</TechTypes>
 			<Bonus>NONE</Bonus>
 			<PrereqBonuses>
 			</PrereqBonuses>
 			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_CREATIVE</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
 			</ProductionTraits>
 			<HappinessTraits>
 			</HappinessTraits>
@@ -8017,7 +8084,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>100</iCost>
+			<iCost>60</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -8121,6 +8188,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -8163,12 +8234,12 @@
 			<iFreePromotionPick>0</iFreePromotionPick>
 			<iGlobalResistEnemyModify>0</iGlobalResistEnemyModify>
 			<iGlobalResistModify>0</iGlobalResistModify>
-			<iModifyGlobalCounter>0</iModifyGlobalCounter>
+			<iModifyGlobalCounter>-1</iModifyGlobalCounter>
 			<iPlotRadius>0</iPlotRadius>
 			<iResistMagic>0</iResistMagic>
 			<FreeBonus2>NONE</FreeBonus2>
 			<FreeBonus3>NONE</FreeBonus3>
-			<PrereqCiv>CIVILIZATION_ELOHIM</PrereqCiv>
+			<PrereqCiv></PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
 			<RemovePromotion>NONE</RemovePromotion>
 			<SpecialistCommerceChanges>
@@ -8435,8 +8506,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_ENGINEER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>2</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -8472,7 +8543,7 @@
 			<iMinLatitude>0</iMinLatitude>
 			<iMaxLatitude>90</iMaxLatitude>
 			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
-			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+			<iGreatGeneralRateModifier>20</iGreatGeneralRateModifier>
 			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
 			<iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
 			<iAnarchyModifier>0</iAnarchyModifier>
@@ -8676,8 +8747,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -8701,7 +8772,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>180</iCost>
+			<iCost>120</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -8895,6 +8966,10 @@
 			</PrereqBonuses>
 			<ProductionTraits>
 				<ProductionTrait>
+					<ProductionTraitType>TRAIT_IMPERIALISTIC</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
+				<ProductionTrait>
 					<ProductionTraitType>TRAIT_ORGANIZED</ProductionTraitType>
 					<iProductionTrait>100</iProductionTrait>
 				</ProductionTrait>
@@ -9040,6 +9115,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -9124,6 +9203,10 @@
 			<PrereqBonuses>
 			</PrereqBonuses>
 			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_IMPERIALISTIC</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
 				<ProductionTrait>
 					<ProductionTraitType>TRAIT_ORGANIZED</ProductionTraitType>
 					<iProductionTrait>100</iProductionTrait>
@@ -9270,6 +9353,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -9389,7 +9476,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>900</iCost>
+			<iCost>700</iCost>
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -10495,6 +10582,10 @@
 			<PrereqBonuses>
 			</PrereqBonuses>
 			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_SLAVER</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
 			</ProductionTraits>
 			<HappinessTraits>
 			</HappinessTraits>
@@ -10637,6 +10728,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -13882,8 +13977,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>2</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>1</bTeamShare>
@@ -14546,7 +14641,7 @@
 			</PrereqBonuses>
 			<ProductionTraits>
 				<ProductionTrait>
-					<ProductionTraitType>TRAIT_EXPANSIVE</ProductionTraitType>
+					<ProductionTraitType>TRAIT_AGRARIAN</ProductionTraitType>
 					<iProductionTrait>100</iProductionTrait>
 				</ProductionTrait>
 			</ProductionTraits>
@@ -14584,7 +14679,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>120</iCost>
+			<iCost>100</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -14691,6 +14786,10 @@
 				</BonusHealthChange>
 				<BonusHealthChange>
 					<BonusType>BONUS_WHEAT</BonusType>
+					<iHealthChange>1</iHealthChange>
+				</BonusHealthChange>
+				<BonusHealthChange>
+					<BonusType>BONUS_MUSHROOMS</BonusType>
 					<iHealthChange>1</iHealthChange>
 				</BonusHealthChange>
 			</BonusHealthChanges>
@@ -15330,7 +15429,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>600</iCost>
+			<iCost>500</iCost>
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -15521,7 +15620,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_FERAL_BOND</PrereqTech>
+			<PrereqTech>TECH_COMMUNE_WITH_NATURE</PrereqTech>
 			<TechTypes>
 			</TechTypes>
 			<Bonus>NONE</Bonus>
@@ -16007,8 +16106,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>1</bTeamShare>
@@ -16797,6 +16896,9 @@
 			<iPower>0</iPower>
 			<fVisibilityPriority>10</fVisibilityPriority>
 			<SeaPlotYieldChanges>
+				<iYield>0</iYield>
+				<iYield>0</iYield>
+				<iYield>1</iYield>
 			</SeaPlotYieldChanges>
 			<RiverPlotYieldChanges>
 			</RiverPlotYieldChanges>
@@ -16844,6 +16946,10 @@
 				</BonusHealthChange>
 				<BonusHealthChange>
 					<BonusType>BONUS_FISH</BonusType>
+					<iHealthChange>1</iHealthChange>
+				</BonusHealthChange>
+				<BonusHealthChange>
+					<BonusType>BONUS_SHRIMP</BonusType>
 					<iHealthChange>1</iHealthChange>
 				</BonusHealthChange>
 			</BonusHealthChanges>
@@ -17037,6 +17143,9 @@
 			<iPower>0</iPower>
 			<fVisibilityPriority>10</fVisibilityPriority>
 			<SeaPlotYieldChanges>
+				<iYield>0</iYield>
+				<iYield>0</iYield>
+				<iYield>1</iYield>
 			</SeaPlotYieldChanges>
 			<RiverPlotYieldChanges>
 			</RiverPlotYieldChanges>
@@ -17086,8 +17195,16 @@
 					<BonusType>BONUS_FISH</BonusType>
 					<iHealthChange>1</iHealthChange>
 				</BonusHealthChange>
+				<BonusHealthChange>
+					<BonusType>BONUS_SHRIMP</BonusType>
+					<iHealthChange>1</iHealthChange>
+				</BonusHealthChange>
 			</BonusHealthChanges>
 			<BonusHappinessChanges>
+				<BonusHappinessChange>
+					<BonusType>BONUS_PEARL</BonusType>
+					<iHappinessChange>1</iHappinessChange>
+				</BonusHappinessChange>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
 			</BonusProductionModifiers>
@@ -17416,8 +17533,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -17453,7 +17570,7 @@
 			<iMinLatitude>0</iMinLatitude>
 			<iMaxLatitude>90</iMaxLatitude>
 			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
-			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+			<iGreatGeneralRateModifier>20</iGreatGeneralRateModifier>
 			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
 			<iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
 			<iAnarchyModifier>0</iAnarchyModifier>
@@ -18341,7 +18458,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>400</iCost>
+			<iCost>500</iCost>
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -18561,7 +18678,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>300</iCost>
+			<iCost>220</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -18781,7 +18898,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>250</iCost>
+			<iCost>110</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -19193,6 +19310,10 @@
 					<ProductionTraitType>TRAIT_PHILOSOPHICAL</ProductionTraitType>
 					<iProductionTrait>100</iProductionTrait>
 				</ProductionTrait>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_SAGE</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
 			</ProductionTraits>
 			<HappinessTraits>
 			</HappinessTraits>
@@ -19459,7 +19580,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>160</iCost>
+			<iCost>120</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -19561,6 +19682,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -19995,6 +20120,10 @@
 			<ReligionChanges>
 			</ReligionChanges>
 			<SpecialistCounts>
+				<SpecialistCount>
+					<SpecialistType>SPECIALIST_SCIENTIST</SpecialistType>
+					<iSpecialistCount>1</iSpecialistCount>
+				</SpecialistCount>
 			</SpecialistCounts>
 			<FreeSpecialistCounts>
 			</FreeSpecialistCounts>
@@ -20829,7 +20958,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>600</iCost>
+			<iCost>400</iCost>
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -21264,8 +21393,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -21496,7 +21625,7 @@
 			<FreeBonus>BONUS_MANA_SHADOW</FreeBonus>
 			<iNumFreeBonuses>1</iNumFreeBonuses>
 			<FreeBuilding>NONE</FreeBuilding>
-			<FreePromotion>NONE</FreePromotion>
+			<FreePromotion>PROMOTION_HIDDEN_NATIONALITY</FreePromotion>
 			<CivicOption>NONE</CivicOption>
 			<GreatPeopleUnitClass>UNITCLASS_MERCHANT</GreatPeopleUnitClass>
 			<iGreatPeopleRateChange>2</iGreatPeopleRateChange>
@@ -21882,6 +22011,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -24691,7 +24824,7 @@
 			<iModifyGlobalCounter>0</iModifyGlobalCounter>
 			<iPlotRadius>0</iPlotRadius>
 			<iResistMagic>0</iResistMagic>
-			<FreeBonus2>BONUS_MANA_NATURE</FreeBonus2>
+			<FreeBonus2>BONUS_MANA_LIFE</FreeBonus2>
 			<FreeBonus3>BONUS_MANA_WATER</FreeBonus3>
 			<PrereqCiv></PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
@@ -24735,13 +24868,13 @@
 			</HappinessTraits>
 			<NoBonus>NONE</NoBonus>
 			<PowerBonus>NONE</PowerBonus>
-			<FreeBonus>BONUS_MANA_SPIRIT</FreeBonus>
+			<FreeBonus>BONUS_MANA_FORCE</FreeBonus>
 			<iNumFreeBonuses>1</iNumFreeBonuses>
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_ADVENTURER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>2</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -24920,7 +25053,7 @@
 			<iPlotRadius>0</iPlotRadius>
 			<iResistMagic>0</iResistMagic>
 			<FreeBonus2>BONUS_MANA_ENCHANTMENT</FreeBonus2>
-			<FreeBonus3>BONUS_MANA_WATER</FreeBonus3>
+			<FreeBonus3>BONUS_MANA_SPIRIT</FreeBonus3>
 			<PrereqCiv></PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
 			<RemovePromotion>NONE</RemovePromotion>
@@ -25881,7 +26014,7 @@
 			</HappinessTraits>
 			<NoBonus>NONE</NoBonus>
 			<PowerBonus>NONE</PowerBonus>
-			<FreeBonus>BONUS_MANA_SUN</FreeBonus>
+			<FreeBonus>BONUS_MANA_CREATION</FreeBonus>
 			<iNumFreeBonuses>1</iNumFreeBonuses>
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
@@ -26065,7 +26198,7 @@
 			<iModifyGlobalCounter>0</iModifyGlobalCounter>
 			<iPlotRadius>0</iPlotRadius>
 			<iResistMagic>0</iResistMagic>
-			<FreeBonus2>BONUS_MANA_SPIRIT</FreeBonus2>
+			<FreeBonus2>BONUS_MANA_SUN</FreeBonus2>
 			<FreeBonus3>BONUS_MANA_WATER</FreeBonus3>
 			<PrereqCiv></PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
@@ -27255,7 +27388,7 @@
 			</HappinessTraits>
 			<NoBonus>NONE</NoBonus>
 			<PowerBonus>NONE</PowerBonus>
-			<FreeBonus>BONUS_MANA_DEATH</FreeBonus>
+			<FreeBonus>BONUS_MANA_DIMENSIONAL</FreeBonus>
 			<iNumFreeBonuses>1</iNumFreeBonuses>
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
@@ -27440,7 +27573,7 @@
 			<iPlotRadius>0</iPlotRadius>
 			<iResistMagic>0</iResistMagic>
 			<FreeBonus2>BONUS_MANA_CHAOS</FreeBonus2>
-			<FreeBonus3>BONUS_MANA_FIRE</FreeBonus3>
+			<FreeBonus3>BONUS_MANA_DEATH</FreeBonus3>
 			<PrereqCiv></PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
 			<RemovePromotion>NONE</RemovePromotion>
@@ -27683,7 +27816,7 @@
 			<iModifyGlobalCounter>0</iModifyGlobalCounter>
 			<iPlotRadius>0</iPlotRadius>
 			<iResistMagic>0</iResistMagic>
-			<FreeBonus2>BONUS_MANA_ENCHANTMENT</FreeBonus2>
+			<FreeBonus2>BONUS_MANA_DIMENSIONAL</FreeBonus2>
 			<FreeBonus3>BONUS_MANA_SHADOW</FreeBonus3>
 			<PrereqCiv></PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
@@ -28456,7 +28589,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_WAY_OF_THE_WICKED</PrereqTech>
+			<PrereqTech>TECH_PHILOSOPHY</PrereqTech>
 			<TechTypes>
 			</TechTypes>
 			<Bonus>NONE</Bonus>
@@ -28912,7 +29045,7 @@
 			<PrereqTech>TECH_WARHORSES</PrereqTech>
 			<TechTypes>
 			</TechTypes>
-			<Bonus>BONUS_HORSE</Bonus>
+			<Bonus></Bonus>
 			<PrereqBonuses>
 			</PrereqBonuses>
 			<ProductionTraits>
@@ -28926,8 +29059,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>PROMOTION_MORALE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>2</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -28951,7 +29084,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>600</iCost>
+			<iCost>800</iCost>
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -29061,6 +29194,14 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_HORSE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
+				<BonusProductionModifier>
+					<BonusType>BONUS_NIGHTMARE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 				<UnitCombatFreeExperience>
@@ -29248,6 +29389,9 @@
 			<iPower>0</iPower>
 			<fVisibilityPriority>10</fVisibilityPriority>
 			<SeaPlotYieldChanges>
+				<iYield>0</iYield>
+				<iYield>1</iYield>
+				<iYield>0</iYield>
 			</SeaPlotYieldChanges>
 			<RiverPlotYieldChanges>
 			</RiverPlotYieldChanges>
@@ -29374,10 +29518,10 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_DIVINATION</PrereqTech>
+			<PrereqTech>TECH_RIGHTEOUSNESS</PrereqTech>
 			<TechTypes>
 			</TechTypes>
-			<Bonus>BONUS_MANA_SPIRIT</Bonus>
+			<Bonus></Bonus>
 			<PrereqBonuses>
 			</PrereqBonuses>
 			<ProductionTraits>
@@ -29386,8 +29530,8 @@
 			</HappinessTraits>
 			<NoBonus>NONE</NoBonus>
 			<PowerBonus>NONE</PowerBonus>
-			<FreeBonus>NONE</FreeBonus>
-			<iNumFreeBonuses>0</iNumFreeBonuses>
+			<FreeBonus>BONUS_MANA_SPIRIT</FreeBonus>
+			<iNumFreeBonuses>1</iNumFreeBonuses>
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
@@ -30064,6 +30208,10 @@
 			<PrereqBonuses>
 			</PrereqBonuses>
 			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_AGRARIAN</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
 			</ProductionTraits>
 			<HappinessTraits>
 			</HappinessTraits>
@@ -30099,7 +30247,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>120</iCost>
+			<iCost>100</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -30210,6 +30358,10 @@
 				</BonusHealthChange>
 				<BonusHealthChange>
 					<BonusType>BONUS_TOAD</BonusType>
+					<iHealthChange>1</iHealthChange>
+				</BonusHealthChange>
+				<BonusHealthChange>
+					<BonusType>BONUS_SALT</BonusType>
 					<iHealthChange>1</iHealthChange>
 				</BonusHealthChange>
 			</BonusHealthChanges>
@@ -31294,7 +31446,7 @@
 			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
 			<iSpaceProductionModifier>0</iSpaceProductionModifier>
 			<iGlobalSpaceProductionModifier>0</iGlobalSpaceProductionModifier>
-			<iTradeRoutes>0</iTradeRoutes>
+			<iTradeRoutes>1</iTradeRoutes>
 			<iCoastalTradeRoutes>0</iCoastalTradeRoutes>
 			<iGlobalTradeRoutes>0</iGlobalTradeRoutes>
 			<iTradeRouteModifier>0</iTradeRouteModifier>
@@ -31714,7 +31866,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>900</iCost>
+			<iCost>750</iCost>
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -32181,7 +32333,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>1</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>250</iCost>
+			<iCost>150</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -32280,6 +32432,10 @@
 			<BonusHealthChanges>
 			</BonusHealthChanges>
 			<BonusHappinessChanges>
+				<BonusHappinessChange>
+					<BonusType>BONUS_ALE</BonusType>
+					<iHappinessChange>1</iHappinessChange>
+				</BonusHappinessChange>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
 			</BonusProductionModifiers>
@@ -32340,7 +32496,7 @@
 			<Type>BUILDING_TAVERN_GRIGORI</Type>
 			<SpecialBuildingType>NONE</SpecialBuildingType>
 			<Description>TXT_KEY_BUILDING_TAVERN_GRIGORI</Description>
-			<Civilopedia>TXT_KEY_BUILDING_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_BUILDING_TAVERN_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_BUILDING_TAVERN_STRATEGY</Strategy>
 			<Help></Help>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
@@ -32376,8 +32532,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_ADVENTURER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -32401,7 +32557,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>1</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>250</iCost>
+			<iCost>150</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -32500,6 +32656,10 @@
 			<BonusHealthChanges>
 			</BonusHealthChanges>
 			<BonusHappinessChanges>
+				<BonusHappinessChange>
+					<BonusType>BONUS_ALE</BonusType>
+					<iHappinessChange>1</iHappinessChange>
+				</BonusHappinessChange>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
 			</BonusProductionModifiers>
@@ -32586,6 +32746,10 @@
 			<PrereqBonuses>
 			</PrereqBonuses>
 			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_IMPERIALISTIC</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
 			</ProductionTraits>
 			<HappinessTraits>
 			</HappinessTraits>
@@ -34979,7 +35143,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>600</iCost>
+			<iCost>900</iCost>
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -35080,6 +35244,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_MANA_DIMENSIONAL</BonusType>
+					<iProductonModifier>100</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -35122,7 +35290,7 @@
 			<iFreePromotionPick>0</iFreePromotionPick>
 			<iGlobalResistEnemyModify>0</iGlobalResistEnemyModify>
 			<iGlobalResistModify>0</iGlobalResistModify>
-			<iModifyGlobalCounter>0</iModifyGlobalCounter>
+			<iModifyGlobalCounter>5</iModifyGlobalCounter>
 			<iPlotRadius>0</iPlotRadius>
 			<iResistMagic>0</iResistMagic>
 			<FreeBonus2>NONE</FreeBonus2>
@@ -35164,6 +35332,10 @@
 			<PrereqBonuses>
 			</PrereqBonuses>
 			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_CREATIVE</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
 			</ProductionTraits>
 			<HappinessTraits>
 			</HappinessTraits>
@@ -35199,7 +35371,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>250</iCost>
+			<iCost>150</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -36107,8 +36279,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -36558,8 +36730,8 @@
 			<FreeBuilding>BUILDINGCLASS_DUNGEON</FreeBuilding>
 			<FreePromotion>PROMOTION_SENTRY</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>UNITCLASS_COMMANDER</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>1</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -36806,7 +36978,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>4000</iCost>
+			<iCost>2000</iCost>
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -38695,6 +38867,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
@@ -38814,7 +38990,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>800</iCost>
+			<iCost>600</iCost>
 			<iHurryCostModifier>50</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -39204,6 +39380,1595 @@
 			<iResistMagic>0</iResistMagic>
 			<FreeBonus2>NONE</FreeBonus2>
 			<FreeBonus3>NONE</FreeBonus3>
+			<PrereqCiv></PrereqCiv>
+			<PrereqTrait>NONE</PrereqTrait>
+			<RemovePromotion>NONE</RemovePromotion>
+			<SpecialistCommerceChanges>
+			</SpecialistCommerceChanges>
+		</BuildingInfo>
+		<BuildingInfo>
+		   <BuildingClass>BUILDINGCLASS_BLESSING</BuildingClass>
+		   <Type>BUILDING_BLESSING</Type>
+		   <SpecialBuildingType>NONE</SpecialBuildingType>
+		   <Description>TXT_KEY_BUILDING_BLESSING</Description>
+		   <Civilopedia></Civilopedia>
+		   <Strategy></Strategy>
+		   <Help></Help>
+		   <Advisor>ADVISOR_GROWTH</Advisor>
+		   <ArtDefineTag>ART_DEF_BUILDING_BLESSING</ArtDefineTag>
+		   <MovieDefineTag>NONE</MovieDefineTag>
+		   <HolyCity>NONE</HolyCity>
+		   <ReligionType>NONE</ReligionType>
+		   <StateReligion>NONE</StateReligion>
+		   <bStateReligion>0</bStateReligion>
+		   <PrereqReligion>NONE</PrereqReligion>
+		   <PrereqCorporation>NONE</PrereqCorporation>
+		   <FoundsCorporation>NONE</FoundsCorporation>
+		   <GlobalReligionCommerce>NONE</GlobalReligionCommerce>
+		   <GlobalCorporationCommerce>NONE</GlobalCorporationCommerce>
+		   <VictoryPrereq>NONE</VictoryPrereq>
+		   <FreeStartEra>NONE</FreeStartEra>
+		   <MaxStartEra>NONE</MaxStartEra>
+		   <ObsoleteTech>NONE</ObsoleteTech>
+		   <PrereqTech>NONE</PrereqTech>
+		   <TechTypes>
+		   </TechTypes>
+		   <Bonus>NONE</Bonus>
+		   <PrereqBonuses>
+		   </PrereqBonuses>
+		   <ProductionTraits>
+		   </ProductionTraits>
+		   <HappinessTraits>
+		   </HappinessTraits>
+		   <NoBonus>NONE</NoBonus>
+		   <PowerBonus>NONE</PowerBonus>
+		   <FreeBonus>NONE</FreeBonus>
+		   <iNumFreeBonuses>0</iNumFreeBonuses>
+		   <FreeBuilding>NONE</FreeBuilding>
+		   <FreePromotion>NONE</FreePromotion>
+		   <CivicOption>NONE</CivicOption>
+		   <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+		   <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+		   <iHurryAngerModifier>0</iHurryAngerModifier>
+		   <bBorderObstacle>0</bBorderObstacle>
+		   <bTeamShare>0</bTeamShare>
+		   <bWater>0</bWater>
+		   <bRiver>0</bRiver>
+		   <bPower>0</bPower>
+		   <bDirtyPower>0</bDirtyPower>
+		   <bAreaCleanPower>0</bAreaCleanPower>
+		   <DiploVoteType>NONE</DiploVoteType>
+		   <bForceTeamVoteEligible>0</bForceTeamVoteEligible>
+		   <bCapital>0</bCapital>
+		   <bGovernmentCenter>0</bGovernmentCenter>
+		   <bGoldenAge>0</bGoldenAge>
+		   <bAllowsNukes>0</bAllowsNukes>
+		   <bMapCentering>0</bMapCentering>
+		   <bNoUnhappiness>0</bNoUnhappiness>
+		   <bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
+		   <bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
+		   <bNeverCapture>1</bNeverCapture>
+		   <bNukeImmune>0</bNukeImmune>
+		   <bPrereqReligion>0</bPrereqReligion>
+		   <bCenterInCity>0</bCenterInCity>
+		   <iAIWeight>0</iAIWeight>
+		   <iCost>-1</iCost>
+		   <iHurryCostModifier>0</iHurryCostModifier>
+		   <iAdvancedStartCost>-1</iAdvancedStartCost>
+		   <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+		   <iMinAreaSize>-1</iMinAreaSize>
+		   <iConquestProb>0</iConquestProb>
+		   <iCitiesPrereq>0</iCitiesPrereq>
+		   <iTeamsPrereq>0</iTeamsPrereq>
+		   <iLevelPrereq>0</iLevelPrereq>
+		   <iMinLatitude>0</iMinLatitude>
+		   <iMaxLatitude>90</iMaxLatitude>
+		   <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+		   <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+		   <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+		   <iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
+		   <iAnarchyModifier>0</iAnarchyModifier>
+		   <iGoldenAgeModifier>0</iGoldenAgeModifier>
+		   <iGlobalHurryModifier>0</iGlobalHurryModifier>
+		   <iExperience>0</iExperience>
+		   <iGlobalExperience>0</iGlobalExperience>
+		   <iFoodKept>0</iFoodKept>
+		   <iAirlift>0</iAirlift>
+		   <iAirModifier>0</iAirModifier>
+		   <iAirUnitCapacity>0</iAirUnitCapacity>
+		   <iNukeModifier>0</iNukeModifier>
+		   <iNukeExplosionRand>0</iNukeExplosionRand>
+		   <iFreeSpecialist>0</iFreeSpecialist>
+		   <iAreaFreeSpecialist>0</iAreaFreeSpecialist>
+		   <iGlobalFreeSpecialist>0</iGlobalFreeSpecialist>
+		   <iMaintenanceModifier>0</iMaintenanceModifier>
+		   <iWarWearinessModifier>0</iWarWearinessModifier>
+		   <iGlobalWarWearinessModifier>0</iGlobalWarWearinessModifier>
+		   <iEnemyWarWearinessModifier>0</iEnemyWarWearinessModifier>
+		   <iHealRateChange>0</iHealRateChange>
+		   <iHealth>0</iHealth>
+		   <iAreaHealth>0</iAreaHealth>
+		   <iGlobalHealth>0</iGlobalHealth>
+		   <iHappiness>0</iHappiness>
+		   <iAreaHappiness>0</iAreaHappiness>
+		   <iGlobalHappiness>0</iGlobalHappiness>
+		   <iStateReligionHappiness>0</iStateReligionHappiness>
+		   <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
+		   <iMilitaryProductionModifier>0</iMilitaryProductionModifier>
+		   <iLivingProductionModifier>20</iLivingProductionModifier>
+		   <iSpaceProductionModifier>0</iSpaceProductionModifier>
+		   <iGlobalSpaceProductionModifier>0</iGlobalSpaceProductionModifier>
+		   <iTradeRoutes>0</iTradeRoutes>
+		   <iCoastalTradeRoutes>0</iCoastalTradeRoutes>
+		   <iGlobalTradeRoutes>0</iGlobalTradeRoutes>
+		   <iTradeRouteModifier>0</iTradeRouteModifier>
+		   <iForeignTradeRouteModifier>0</iForeignTradeRouteModifier>
+		   <iGlobalPopulationChange>0</iGlobalPopulationChange>
+		   <iFreeTechs>0</iFreeTechs>
+		   <iDefense>0</iDefense>
+		   <iBombardDefense>0</iBombardDefense>
+		   <iAllCityDefense>0</iAllCityDefense>
+		   <iEspionageDefense>0</iEspionageDefense>
+		   <iAsset>1</iAsset>
+		   <iPower>0</iPower>
+		   <fVisibilityPriority>1</fVisibilityPriority>
+		   <SeaPlotYieldChanges>
+		   </SeaPlotYieldChanges>
+		   <RiverPlotYieldChanges>
+		   </RiverPlotYieldChanges>
+		   <GlobalSeaPlotYieldChanges>
+		   </GlobalSeaPlotYieldChanges>
+		   <YieldChanges>
+		   </YieldChanges>
+		   <YieldModifiers>
+		   </YieldModifiers>
+		   <CommerceChanges>
+		   </CommerceChanges>
+		   <ObsoleteSafeCommerceChanges>
+		   </ObsoleteSafeCommerceChanges>
+		   <CommerceChangeDoubleTimes>
+		   </CommerceChangeDoubleTimes>
+		   <CommerceModifiers>
+		   </CommerceModifiers>
+		   <GlobalCommerceModifiers>
+		   </GlobalCommerceModifiers>
+		   <SpecialistExtraCommerces>
+		   </SpecialistExtraCommerces>
+		   <StateReligionCommerces>
+		   </StateReligionCommerces>
+		   <CommerceHappinesses>
+		   </CommerceHappinesses>
+		   <ReligionChanges>
+		   </ReligionChanges>
+		   <SpecialistCounts>
+			   <SpecialistCount>
+				   <SpecialistType>SPECIALIST_SCIENTIST</SpecialistType>
+				   <iSpecialistCount>1</iSpecialistCount>
+			   </SpecialistCount>
+			   <SpecialistCount>
+				   <SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+				   <iSpecialistCount>1</iSpecialistCount>
+			   </SpecialistCount>
+			   <SpecialistCount>
+				   <SpecialistType>SPECIALIST_PRIEST</SpecialistType>
+				   <iSpecialistCount>1</iSpecialistCount>
+			   </SpecialistCount>
+			   <SpecialistCount>
+				   <SpecialistType>SPECIALIST_ENGINEER</SpecialistType>
+				   <iSpecialistCount>1</iSpecialistCount>
+			   </SpecialistCount>
+			   <FreeSpecialistCount>
+				   <SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+				   <iFreeSpecialistCount>1</iFreeSpecialistCount>
+			   </FreeSpecialistCount>
+		   </SpecialistCounts>
+		   <FreeSpecialistCounts>
+		   </FreeSpecialistCounts>
+		   <CommerceFlexibles>
+		   </CommerceFlexibles>
+		   <CommerceChangeOriginalOwners>
+		   </CommerceChangeOriginalOwners>
+		   <ConstructSound></ConstructSound>
+		   <BonusHealthChanges>
+		   </BonusHealthChanges>
+		   <BonusHappinessChanges>
+		   </BonusHappinessChanges>
+		   <BonusProductionModifiers>
+		   </BonusProductionModifiers>
+		   <UnitCombatFreeExperiences>
+		   </UnitCombatFreeExperiences>
+		   <DomainFreeExperiences>
+		   </DomainFreeExperiences>
+		   <DomainProductionModifiers>
+		   </DomainProductionModifiers>
+		   <BuildingHappinessChanges>
+		   </BuildingHappinessChanges>
+		   <PrereqBuildingClasses>
+		   </PrereqBuildingClasses>
+		   <BuildingClassNeededs>
+		   </BuildingClassNeededs>
+		   <SpecialistYieldChanges>
+		   </SpecialistYieldChanges>
+		   <BonusYieldModifiers>
+		   </BonusYieldModifiers>
+		   <ImprovementFreeSpecialists>
+		   </ImprovementFreeSpecialists>
+		   <Flavors>
+		   </Flavors>
+		   <HotKey></HotKey>
+		   <bAltDown>0</bAltDown>
+		   <bShiftDown>0</bShiftDown>
+		   <bCtrlDown>0</bCtrlDown>
+		   <bGraphicalOnly>0</bGraphicalOnly>
+		   <iHotKeyPriority>0</iHotKeyPriority>
+		   <bApplyFreePromotionOnMove>0</bApplyFreePromotionOnMove>
+		   <bEquipment>0</bEquipment>
+		   <bHideUnits>0</bHideUnits>
+		   <bNoCivicAnger>0</bNoCivicAnger>
+		   <bRequiresCaster>1</bRequiresCaster>
+		   <bSeeInvisible>0</bSeeInvisible>
+		   <bUnhappyProduction>0</bUnhappyProduction>
+		   <iCrime>0</iCrime>
+		   <iFreePromotionPick>0</iFreePromotionPick>
+		   <iGlobalResistEnemyModify>0</iGlobalResistEnemyModify>
+		   <iGlobalResistModify>0</iGlobalResistModify>
+		   <iModifyGlobalCounter>0</iModifyGlobalCounter>
+		   <iPlotRadius>0</iPlotRadius>
+		   <iResistMagic>0</iResistMagic>
+		   <FreeBonus2>NONE</FreeBonus2>
+		   <FreeBonus3>NONE</FreeBonus3>
+		   <PrereqCiv></PrereqCiv>
+		   <PrereqTrait>NONE</PrereqTrait>
+		   <RemovePromotion>NONE</RemovePromotion>
+		   <SpecialistCommerceChanges>
+		   </SpecialistCommerceChanges>
+		</BuildingInfo>
+		<BuildingInfo>
+			<BuildingClass>BUILDINGCLASS_COURTHOUSE</BuildingClass>
+			<Type>BUILDING_FORUM</Type>
+			<SpecialBuildingType>NONE</SpecialBuildingType>
+			<Description>TXT_KEY_BUILDING_FORUM</Description>
+			<Civilopedia>TXT_KEY_BUILDING_PLACEHOLDER_PEDIA</Civilopedia>
+			<Strategy></Strategy>
+			<Help>TXT_KEY_BUILDING_FORUM_HELP</Help>
+			<Advisor>ADVISOR_ECONOMY</Advisor>
+			<ArtDefineTag>ART_DEF_BUILDING_ROMAN_FORUM</ArtDefineTag>
+			<MovieDefineTag>NONE</MovieDefineTag>
+			<HolyCity>NONE</HolyCity>
+			<ReligionType>NONE</ReligionType>
+			<StateReligion>NONE</StateReligion>
+			<bStateReligion>0</bStateReligion>
+			<PrereqReligion>NONE</PrereqReligion>
+			<PrereqCorporation>NONE</PrereqCorporation>
+			<FoundsCorporation>NONE</FoundsCorporation>
+			<GlobalReligionCommerce>NONE</GlobalReligionCommerce>
+			<GlobalCorporationCommerce>NONE</GlobalCorporationCommerce>
+			<VictoryPrereq>NONE</VictoryPrereq>
+			<FreeStartEra>NONE</FreeStartEra>
+			<MaxStartEra>NONE</MaxStartEra>
+			<ObsoleteTech>NONE</ObsoleteTech>
+			<PrereqTech>TECH_CODE_OF_LAWS</PrereqTech>
+			<TechTypes>
+			</TechTypes>
+			<Bonus>NONE</Bonus>
+			<PrereqBonuses>
+			</PrereqBonuses>
+			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_ORGANIZED</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
+			</ProductionTraits>
+			<HappinessTraits>
+			</HappinessTraits>
+			<NoBonus>NONE</NoBonus>
+			<PowerBonus>NONE</PowerBonus>
+			<FreeBonus>NONE</FreeBonus>
+			<iNumFreeBonuses>0</iNumFreeBonuses>
+			<FreeBuilding>NONE</FreeBuilding>
+			<FreePromotion>NONE</FreePromotion>
+			<CivicOption>NONE</CivicOption>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+			<iHurryAngerModifier>0</iHurryAngerModifier>
+			<bBorderObstacle>0</bBorderObstacle>
+			<bTeamShare>0</bTeamShare>
+			<bWater>0</bWater>
+			<bRiver>0</bRiver>
+			<bPower>0</bPower>
+			<bDirtyPower>0</bDirtyPower>
+			<bAreaCleanPower>0</bAreaCleanPower>
+			<DiploVoteType>NONE</DiploVoteType>
+			<bForceTeamVoteEligible>0</bForceTeamVoteEligible>
+			<bCapital>0</bCapital>
+			<bGovernmentCenter>0</bGovernmentCenter>
+			<bGoldenAge>0</bGoldenAge>
+			<bAllowsNukes>0</bAllowsNukes>
+			<bMapCentering>0</bMapCentering>
+			<bNoUnhappiness>0</bNoUnhappiness>
+			<bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
+			<bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
+			<bNeverCapture>1</bNeverCapture>
+			<bNukeImmune>0</bNukeImmune>
+			<bPrereqReligion>0</bPrereqReligion>
+			<bCenterInCity>0</bCenterInCity>
+			<iAIWeight>0</iAIWeight>
+			<iCost>200</iCost>
+			<iHurryCostModifier>0</iHurryCostModifier>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iConquestProb>25</iConquestProb>
+			<iCitiesPrereq>0</iCitiesPrereq>
+			<iTeamsPrereq>0</iTeamsPrereq>
+			<iLevelPrereq>0</iLevelPrereq>
+			<iMinLatitude>0</iMinLatitude>
+			<iMaxLatitude>90</iMaxLatitude>
+			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+			<iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
+			<iAnarchyModifier>0</iAnarchyModifier>
+			<iGoldenAgeModifier>0</iGoldenAgeModifier>
+			<iGlobalHurryModifier>0</iGlobalHurryModifier>
+			<iExperience>0</iExperience>
+			<iGlobalExperience>0</iGlobalExperience>
+			<iFoodKept>0</iFoodKept>
+			<iAirlift>0</iAirlift>
+			<iAirModifier>0</iAirModifier>
+			<iAirUnitCapacity>0</iAirUnitCapacity>
+			<iNukeModifier>0</iNukeModifier>
+			<iNukeExplosionRand>0</iNukeExplosionRand>
+			<iFreeSpecialist>0</iFreeSpecialist>
+			<iAreaFreeSpecialist>0</iAreaFreeSpecialist>
+			<iGlobalFreeSpecialist>0</iGlobalFreeSpecialist>
+			<iMaintenanceModifier>-50</iMaintenanceModifier>
+			<iWarWearinessModifier>0</iWarWearinessModifier>
+			<iGlobalWarWearinessModifier>0</iGlobalWarWearinessModifier>
+			<iEnemyWarWearinessModifier>0</iEnemyWarWearinessModifier>
+			<iHealRateChange>0</iHealRateChange>
+			<iHealth>0</iHealth>
+			<iAreaHealth>0</iAreaHealth>
+			<iGlobalHealth>0</iGlobalHealth>
+			<iHappiness>0</iHappiness>
+			<iAreaHappiness>0</iAreaHappiness>
+			<iGlobalHappiness>0</iGlobalHappiness>
+			<iStateReligionHappiness>0</iStateReligionHappiness>
+			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
+			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
+			<iSpaceProductionModifier>0</iSpaceProductionModifier>
+			<iGlobalSpaceProductionModifier>0</iGlobalSpaceProductionModifier>
+			<iTradeRoutes>0</iTradeRoutes>
+			<iCoastalTradeRoutes>0</iCoastalTradeRoutes>
+			<iGlobalTradeRoutes>0</iGlobalTradeRoutes>
+			<iTradeRouteModifier>0</iTradeRouteModifier>
+			<iForeignTradeRouteModifier>0</iForeignTradeRouteModifier>
+			<iGlobalPopulationChange>0</iGlobalPopulationChange>
+			<iFreeTechs>0</iFreeTechs>
+			<iDefense>0</iDefense>
+			<iBombardDefense>0</iBombardDefense>
+			<iAllCityDefense>0</iAllCityDefense>
+			<iEspionageDefense>0</iEspionageDefense>
+			<!-- RevolutionDCM Building Effects  -->
+			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
+			<iRevIdxLocal>-1</iRevIdxLocal>
+			<iRevIdxNational>0</iRevIdxNational>
+			<iRevIdxDistanceModifier>-10</iRevIdxDistanceModifier>
+			<!-- RevolutionDCM End  -->
+			<iAsset>4</iAsset>
+			<iPower>0</iPower>
+			<fVisibilityPriority>10</fVisibilityPriority>
+			<SeaPlotYieldChanges>
+			</SeaPlotYieldChanges>
+			<RiverPlotYieldChanges>
+			</RiverPlotYieldChanges>
+			<GlobalSeaPlotYieldChanges>
+			</GlobalSeaPlotYieldChanges>
+			<YieldChanges>
+			</YieldChanges>
+			<YieldModifiers>
+			</YieldModifiers>
+			<CommerceChanges>
+			</CommerceChanges>
+			<ObsoleteSafeCommerceChanges>
+			</ObsoleteSafeCommerceChanges>
+			<CommerceChangeDoubleTimes>
+			</CommerceChangeDoubleTimes>
+			<CommerceModifiers>
+			</CommerceModifiers>
+			<GlobalCommerceModifiers>
+			</GlobalCommerceModifiers>
+			<SpecialistExtraCommerces>
+			</SpecialistExtraCommerces>
+			<StateReligionCommerces>
+			</StateReligionCommerces>
+			<CommerceHappinesses>
+			</CommerceHappinesses>
+			<ReligionChanges>
+			</ReligionChanges>
+			<SpecialistCounts>
+			</SpecialistCounts>
+			<FreeSpecialistCounts>
+			</FreeSpecialistCounts>
+			<CommerceFlexibles>
+			</CommerceFlexibles>
+			<CommerceChangeOriginalOwners>
+			</CommerceChangeOriginalOwners>
+			<ConstructSound>AS2D_BUILD_COURTHOUSE</ConstructSound>
+			<BonusHealthChanges>
+			</BonusHealthChanges>
+			<BonusHappinessChanges>
+			</BonusHappinessChanges>
+			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>50</iProductonModifier>
+				</BonusProductionModifier>
+			</BonusProductionModifiers>
+			<UnitCombatFreeExperiences>
+			</UnitCombatFreeExperiences>
+			<DomainFreeExperiences>
+			</DomainFreeExperiences>
+			<DomainProductionModifiers>
+			</DomainProductionModifiers>
+			<BuildingHappinessChanges>
+			</BuildingHappinessChanges>
+			<PrereqBuildingClasses>
+			</PrereqBuildingClasses>
+			<BuildingClassNeededs>
+			</BuildingClassNeededs>
+			<SpecialistYieldChanges>
+			</SpecialistYieldChanges>
+			<BonusYieldModifiers>
+			</BonusYieldModifiers>
+			<ImprovementFreeSpecialists>
+			</ImprovementFreeSpecialists>
+			<Flavors>
+				<Flavor>
+					<FlavorType>FLAVOR_GOLD</FlavorType>
+					<iFlavor>10</iFlavor>
+				</Flavor>
+			</Flavors>
+			<HotKey></HotKey>
+			<bAltDown>0</bAltDown>
+			<bShiftDown>0</bShiftDown>
+			<bCtrlDown>0</bCtrlDown>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<iHotKeyPriority>0</iHotKeyPriority>
+			<bApplyFreePromotionOnMove>0</bApplyFreePromotionOnMove>
+			<bEquipment>0</bEquipment>
+			<bHideUnits>0</bHideUnits>
+			<bNoCivicAnger>0</bNoCivicAnger>
+			<bRequiresCaster>0</bRequiresCaster>
+			<bSeeInvisible>0</bSeeInvisible>
+			<bUnhappyProduction>0</bUnhappyProduction>
+			<iCrime>-10</iCrime>
+			<iFreePromotionPick>0</iFreePromotionPick>
+			<iGlobalResistEnemyModify>0</iGlobalResistEnemyModify>
+			<iGlobalResistModify>0</iGlobalResistModify>
+			<iModifyGlobalCounter>0</iModifyGlobalCounter>
+			<iPlotRadius>0</iPlotRadius>
+			<iResistMagic>0</iResistMagic>
+			<FreeBonus2>NONE</FreeBonus2>
+			<FreeBonus3>NONE</FreeBonus3>
+			<PrereqCiv>CIVILIZATION_GRIGORI</PrereqCiv>
+			<PrereqTrait>NONE</PrereqTrait>
+			<RemovePromotion>NONE</RemovePromotion>
+			<SpecialistCommerceChanges>
+			</SpecialistCommerceChanges>
+		</BuildingInfo>
+		<BuildingInfo>
+			<BuildingClass>BUILDINGCLASS_GROWTH</BuildingClass>
+			<Type>BUILDING_GROWTH</Type>
+			<SpecialBuildingType>NONE</SpecialBuildingType>
+			<Description>TXT_KEY_BUILDING_GROWTH</Description>
+			<Civilopedia></Civilopedia>
+			<Strategy></Strategy>
+			<Help></Help>
+			<Advisor>ADVISOR_GROWTH</Advisor>
+			<ArtDefineTag>ART_DEF_BUILDING_GROWTH</ArtDefineTag>
+			<MovieDefineTag>NONE</MovieDefineTag>
+			<HolyCity>NONE</HolyCity>
+			<ReligionType>NONE</ReligionType>
+			<StateReligion>NONE</StateReligion>
+			<bStateReligion>0</bStateReligion>
+			<PrereqReligion>NONE</PrereqReligion>
+			<PrereqCorporation>NONE</PrereqCorporation>
+			<FoundsCorporation>NONE</FoundsCorporation>
+			<GlobalReligionCommerce>NONE</GlobalReligionCommerce>
+			<GlobalCorporationCommerce>NONE</GlobalCorporationCommerce>
+			<VictoryPrereq>NONE</VictoryPrereq>
+			<FreeStartEra>NONE</FreeStartEra>
+			<MaxStartEra>NONE</MaxStartEra>
+			<ObsoleteTech>NONE</ObsoleteTech>
+			<PrereqTech>NONE</PrereqTech>
+			<TechTypes>
+			</TechTypes>
+			<Bonus>NONE</Bonus>
+			<PrereqBonuses>
+			</PrereqBonuses>
+			<ProductionTraits>
+			</ProductionTraits>
+			<HappinessTraits>
+			</HappinessTraits>
+			<NoBonus>NONE</NoBonus>
+			<PowerBonus>NONE</PowerBonus>
+			<FreeBonus>NONE</FreeBonus>
+			<iNumFreeBonuses>0</iNumFreeBonuses>
+			<FreeBuilding>NONE</FreeBuilding>
+			<FreePromotion>NONE</FreePromotion>
+			<CivicOption>NONE</CivicOption>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+			<iHurryAngerModifier>0</iHurryAngerModifier>
+			<bBorderObstacle>0</bBorderObstacle>
+			<bTeamShare>0</bTeamShare>
+			<bWater>0</bWater>
+			<bRiver>0</bRiver>
+			<bPower>0</bPower>
+			<bDirtyPower>0</bDirtyPower>
+			<bAreaCleanPower>0</bAreaCleanPower>
+			<DiploVoteType>NONE</DiploVoteType>
+			<bForceTeamVoteEligible>0</bForceTeamVoteEligible>
+			<bCapital>0</bCapital>
+			<bGovernmentCenter>0</bGovernmentCenter>
+			<bGoldenAge>0</bGoldenAge>
+			<bAllowsNukes>0</bAllowsNukes>
+			<bMapCentering>0</bMapCentering>
+			<bNoUnhappiness>0</bNoUnhappiness>
+			<bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
+			<bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
+			<bNeverCapture>1</bNeverCapture>
+			<bNukeImmune>0</bNukeImmune>
+			<bPrereqReligion>0</bPrereqReligion>
+			<bCenterInCity>0</bCenterInCity>
+			<iAIWeight>0</iAIWeight>
+			<iCost>-1</iCost>
+			<iHurryCostModifier>0</iHurryCostModifier>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iConquestProb>0</iConquestProb>
+			<iCitiesPrereq>0</iCitiesPrereq>
+			<iTeamsPrereq>0</iTeamsPrereq>
+			<iLevelPrereq>0</iLevelPrereq>
+			<iMinLatitude>0</iMinLatitude>
+			<iMaxLatitude>90</iMaxLatitude>
+			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+			<iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
+			<iAnarchyModifier>0</iAnarchyModifier>
+			<iGoldenAgeModifier>0</iGoldenAgeModifier>
+			<iGlobalHurryModifier>0</iGlobalHurryModifier>
+			<iExperience>0</iExperience>
+			<iGlobalExperience>0</iGlobalExperience>
+			<iFoodKept>10</iFoodKept>
+			<iAirlift>0</iAirlift>
+			<iAirModifier>0</iAirModifier>
+			<iAirUnitCapacity>0</iAirUnitCapacity>
+			<iNukeModifier>0</iNukeModifier>
+			<iNukeExplosionRand>0</iNukeExplosionRand>
+			<iFreeSpecialist>0</iFreeSpecialist>
+			<iAreaFreeSpecialist>0</iAreaFreeSpecialist>
+			<iGlobalFreeSpecialist>0</iGlobalFreeSpecialist>
+			<iMaintenanceModifier>0</iMaintenanceModifier>
+			<iWarWearinessModifier>0</iWarWearinessModifier>
+			<iGlobalWarWearinessModifier>0</iGlobalWarWearinessModifier>
+			<iEnemyWarWearinessModifier>0</iEnemyWarWearinessModifier>
+			<iHealRateChange>0</iHealRateChange>
+			<iHealth>1</iHealth>
+			<iAreaHealth>0</iAreaHealth>
+			<iGlobalHealth>0</iGlobalHealth>
+			<iHappiness>0</iHappiness>
+			<iAreaHappiness>0</iAreaHappiness>
+			<iGlobalHappiness>0</iGlobalHappiness>
+			<iStateReligionHappiness>0</iStateReligionHappiness>
+			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
+			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
+			<iSpaceProductionModifier>0</iSpaceProductionModifier>
+			<iGlobalSpaceProductionModifier>0</iGlobalSpaceProductionModifier>
+			<iTradeRoutes>0</iTradeRoutes>
+			<iCoastalTradeRoutes>0</iCoastalTradeRoutes>
+			<iGlobalTradeRoutes>0</iGlobalTradeRoutes>
+			<iTradeRouteModifier>0</iTradeRouteModifier>
+			<iForeignTradeRouteModifier>0</iForeignTradeRouteModifier>
+			<iGlobalPopulationChange>0</iGlobalPopulationChange>
+			<iFreeTechs>0</iFreeTechs>
+			<iDefense>0</iDefense>
+			<iBombardDefense>0</iBombardDefense>
+			<iAllCityDefense>0</iAllCityDefense>
+			<iEspionageDefense>0</iEspionageDefense>
+			<iAsset>1</iAsset>
+			<iPower>0</iPower>
+			<fVisibilityPriority>1</fVisibilityPriority>
+			<SeaPlotYieldChanges>
+			</SeaPlotYieldChanges>
+			<RiverPlotYieldChanges>
+			</RiverPlotYieldChanges>
+			<GlobalSeaPlotYieldChanges>
+			</GlobalSeaPlotYieldChanges>
+			<YieldChanges>
+				<iYield>2</iYield>
+				<iYield>0</iYield>
+				<iYield>0</iYield>
+			</YieldChanges>
+			<YieldModifiers>
+			</YieldModifiers>
+			<CommerceChanges>
+			</CommerceChanges>
+			<ObsoleteSafeCommerceChanges>
+				<iCommerce>0</iCommerce>
+				<iCommerce>0</iCommerce>
+				<iCommerce>1</iCommerce>
+			</ObsoleteSafeCommerceChanges>
+			<CommerceChangeDoubleTimes>
+			</CommerceChangeDoubleTimes>
+			<CommerceModifiers>
+			</CommerceModifiers>
+			<GlobalCommerceModifiers>
+			</GlobalCommerceModifiers>
+			<SpecialistExtraCommerces>
+			</SpecialistExtraCommerces>
+			<StateReligionCommerces>
+			</StateReligionCommerces>
+			<CommerceHappinesses>
+			</CommerceHappinesses>
+			<ReligionChanges>
+			</ReligionChanges>
+			<SpecialistCounts>
+			</SpecialistCounts>
+			<FreeSpecialistCounts>
+			</FreeSpecialistCounts>
+			<CommerceFlexibles>
+			</CommerceFlexibles>
+			<CommerceChangeOriginalOwners>
+			</CommerceChangeOriginalOwners>
+			<ConstructSound></ConstructSound>
+			<BonusHealthChanges>
+			</BonusHealthChanges>
+			<BonusHappinessChanges>
+			</BonusHappinessChanges>
+			<BonusProductionModifiers>
+			</BonusProductionModifiers>
+			<UnitCombatFreeExperiences>
+			</UnitCombatFreeExperiences>
+			<DomainFreeExperiences>
+			</DomainFreeExperiences>
+			<DomainProductionModifiers>
+			</DomainProductionModifiers>
+			<BuildingHappinessChanges>
+			</BuildingHappinessChanges>
+			<PrereqBuildingClasses>
+			</PrereqBuildingClasses>
+			<BuildingClassNeededs>
+			</BuildingClassNeededs>
+			<SpecialistYieldChanges>
+			</SpecialistYieldChanges>
+			<BonusYieldModifiers>
+			</BonusYieldModifiers>
+			<ImprovementFreeSpecialists>
+			</ImprovementFreeSpecialists>
+			<Flavors>
+			</Flavors>
+			<HotKey></HotKey>
+			<bAltDown>0</bAltDown>
+			<bShiftDown>0</bShiftDown>
+			<bCtrlDown>0</bCtrlDown>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<iHotKeyPriority>0</iHotKeyPriority>
+			<bApplyFreePromotionOnMove>0</bApplyFreePromotionOnMove>
+			<bEquipment>0</bEquipment>
+			<bHideUnits>0</bHideUnits>
+			<bNoCivicAnger>0</bNoCivicAnger>
+			<bRequiresCaster>1</bRequiresCaster>
+			<bSeeInvisible>0</bSeeInvisible>
+			<bUnhappyProduction>0</bUnhappyProduction>
+			<iCrime>0</iCrime>
+			<iFreePromotionPick>0</iFreePromotionPick>
+			<iGlobalResistEnemyModify>0</iGlobalResistEnemyModify>
+			<iGlobalResistModify>0</iGlobalResistModify>
+			<iModifyGlobalCounter>0</iModifyGlobalCounter>
+			<iPlotRadius>0</iPlotRadius>
+			<iResistMagic>0</iResistMagic>
+			<FreeBonus2>NONE</FreeBonus2>
+			<FreeBonus3>NONE</FreeBonus3>
+			<PrereqCiv></PrereqCiv>
+			<PrereqTrait>NONE</PrereqTrait>
+			<RemovePromotion>NONE</RemovePromotion>
+			<SpecialistCommerceChanges>
+			</SpecialistCommerceChanges>
+		</BuildingInfo>
+		<BuildingInfo>
+			<BuildingClass>BUILDINGCLASS_ILLUMINATION</BuildingClass>
+			<Type>BUILDING_ILLUMINATION</Type>
+			<SpecialBuildingType>NONE</SpecialBuildingType>
+			<Description>TXT_KEY_BUILDING_ILLUMINATION</Description>
+			<Civilopedia>TXT_KEY_SPELL_ILLUMINATION_PEDIA</Civilopedia>
+			<Strategy></Strategy>
+			<Help></Help>
+			<Advisor>ADVISOR_SCIENCE</Advisor>
+			<ArtDefineTag>ART_DEF_BUILDING_INSPIRATION</ArtDefineTag>
+			<MovieDefineTag>NONE</MovieDefineTag>
+			<HolyCity>NONE</HolyCity>
+			<ReligionType>NONE</ReligionType>
+			<StateReligion>NONE</StateReligion>
+			<bStateReligion>0</bStateReligion>
+			<PrereqReligion>NONE</PrereqReligion>
+			<PrereqCorporation>NONE</PrereqCorporation>
+			<FoundsCorporation>NONE</FoundsCorporation>
+			<GlobalReligionCommerce>NONE</GlobalReligionCommerce>
+			<GlobalCorporationCommerce>NONE</GlobalCorporationCommerce>
+			<VictoryPrereq>NONE</VictoryPrereq>
+			<FreeStartEra>NONE</FreeStartEra>
+			<MaxStartEra>NONE</MaxStartEra>
+			<ObsoleteTech>NONE</ObsoleteTech>
+			<PrereqTech>NONE</PrereqTech>
+			<TechTypes>
+			</TechTypes>
+			<Bonus>NONE</Bonus>
+			<PrereqBonuses>
+			</PrereqBonuses>
+			<ProductionTraits>
+			</ProductionTraits>
+			<HappinessTraits>
+			</HappinessTraits>
+			<NoBonus>NONE</NoBonus>
+			<PowerBonus>NONE</PowerBonus>
+			<FreeBonus>NONE</FreeBonus>
+			<iNumFreeBonuses>0</iNumFreeBonuses>
+			<FreeBuilding>NONE</FreeBuilding>
+			<FreePromotion>NONE</FreePromotion>
+			<CivicOption>NONE</CivicOption>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+			<iHurryAngerModifier>0</iHurryAngerModifier>
+			<bBorderObstacle>0</bBorderObstacle>
+			<bTeamShare>0</bTeamShare>
+			<bWater>0</bWater>
+			<bRiver>0</bRiver>
+			<bPower>0</bPower>
+			<bDirtyPower>0</bDirtyPower>
+			<bAreaCleanPower>0</bAreaCleanPower>
+			<DiploVoteType>NONE</DiploVoteType>
+			<bForceTeamVoteEligible>0</bForceTeamVoteEligible>
+			<bCapital>0</bCapital>
+			<bGovernmentCenter>0</bGovernmentCenter>
+			<bGoldenAge>0</bGoldenAge>
+			<bAllowsNukes>0</bAllowsNukes>
+			<bMapCentering>0</bMapCentering>
+			<bNoUnhappiness>0</bNoUnhappiness>
+			<bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
+			<bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
+			<bNeverCapture>1</bNeverCapture>
+			<bNukeImmune>0</bNukeImmune>
+			<bPrereqReligion>0</bPrereqReligion>
+			<bCenterInCity>0</bCenterInCity>
+			<iAIWeight>0</iAIWeight>
+			<iCost>-1</iCost>
+			<iHurryCostModifier>0</iHurryCostModifier>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iConquestProb>0</iConquestProb>
+			<iCitiesPrereq>0</iCitiesPrereq>
+			<iTeamsPrereq>0</iTeamsPrereq>
+			<iLevelPrereq>0</iLevelPrereq>
+			<iMinLatitude>0</iMinLatitude>
+			<iMaxLatitude>90</iMaxLatitude>
+			<iGreatPeopleRateModifier>50</iGreatPeopleRateModifier>
+			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+			<iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
+			<iAnarchyModifier>0</iAnarchyModifier>
+			<iGoldenAgeModifier>0</iGoldenAgeModifier>
+			<iGlobalHurryModifier>0</iGlobalHurryModifier>
+			<iExperience>0</iExperience>
+			<iGlobalExperience>0</iGlobalExperience>
+			<iFoodKept>0</iFoodKept>
+			<iAirlift>0</iAirlift>
+			<iAirModifier>0</iAirModifier>
+			<iAirUnitCapacity>0</iAirUnitCapacity>
+			<iNukeModifier>0</iNukeModifier>
+			<iNukeExplosionRand>0</iNukeExplosionRand>
+			<iFreeSpecialist>0</iFreeSpecialist>
+			<iAreaFreeSpecialist>0</iAreaFreeSpecialist>
+			<iGlobalFreeSpecialist>0</iGlobalFreeSpecialist>
+			<iMaintenanceModifier>0</iMaintenanceModifier>
+			<iWarWearinessModifier>0</iWarWearinessModifier>
+			<iGlobalWarWearinessModifier>0</iGlobalWarWearinessModifier>
+			<iEnemyWarWearinessModifier>0</iEnemyWarWearinessModifier>
+			<iHealRateChange>0</iHealRateChange>
+			<iHealth>0</iHealth>
+			<iAreaHealth>0</iAreaHealth>
+			<iGlobalHealth>0</iGlobalHealth>
+			<iHappiness>0</iHappiness>
+			<iAreaHappiness>0</iAreaHappiness>
+			<iGlobalHappiness>0</iGlobalHappiness>
+			<iStateReligionHappiness>0</iStateReligionHappiness>
+			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
+			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
+			<iSpaceProductionModifier>0</iSpaceProductionModifier>
+			<iGlobalSpaceProductionModifier>0</iGlobalSpaceProductionModifier>
+			<iTradeRoutes>0</iTradeRoutes>
+			<iCoastalTradeRoutes>0</iCoastalTradeRoutes>
+			<iGlobalTradeRoutes>0</iGlobalTradeRoutes>
+			<iTradeRouteModifier>0</iTradeRouteModifier>
+			<iForeignTradeRouteModifier>0</iForeignTradeRouteModifier>
+			<iGlobalPopulationChange>0</iGlobalPopulationChange>
+			<iFreeTechs>0</iFreeTechs>
+			<iDefense>0</iDefense>
+			<iBombardDefense>0</iBombardDefense>
+			<iAllCityDefense>0</iAllCityDefense>
+			<iEspionageDefense>0</iEspionageDefense>
+			<iAsset>1</iAsset>
+			<iPower>2</iPower>
+			<fVisibilityPriority>1</fVisibilityPriority>
+			<SeaPlotYieldChanges>
+			</SeaPlotYieldChanges>
+			<RiverPlotYieldChanges>
+			</RiverPlotYieldChanges>
+			<GlobalSeaPlotYieldChanges>
+			</GlobalSeaPlotYieldChanges>
+			<YieldChanges>
+			</YieldChanges>
+			<YieldModifiers>
+			</YieldModifiers>
+			<CommerceChanges>
+			</CommerceChanges>
+			<ObsoleteSafeCommerceChanges>
+			</ObsoleteSafeCommerceChanges>
+			<CommerceChangeDoubleTimes>
+			</CommerceChangeDoubleTimes>
+			<CommerceModifiers>
+			</CommerceModifiers>
+			<GlobalCommerceModifiers>
+			</GlobalCommerceModifiers>
+			<SpecialistExtraCommerces>
+			</SpecialistExtraCommerces>
+			<StateReligionCommerces>
+			</StateReligionCommerces>
+			<CommerceHappinesses>
+			</CommerceHappinesses>
+			<ReligionChanges>
+			</ReligionChanges>
+			<SpecialistCounts>
+			</SpecialistCounts>
+			<FreeSpecialistCounts>
+			</FreeSpecialistCounts>
+			<CommerceFlexibles>
+			</CommerceFlexibles>
+			<CommerceChangeOriginalOwners>
+			</CommerceChangeOriginalOwners>
+			<ConstructSound></ConstructSound>
+			<BonusHealthChanges>
+			</BonusHealthChanges>
+			<BonusHappinessChanges>
+			</BonusHappinessChanges>
+			<BonusProductionModifiers>
+			</BonusProductionModifiers>
+			<UnitCombatFreeExperiences>
+			</UnitCombatFreeExperiences>
+			<DomainFreeExperiences>
+			</DomainFreeExperiences>
+			<DomainProductionModifiers>
+			</DomainProductionModifiers>
+			<BuildingHappinessChanges>
+			</BuildingHappinessChanges>
+			<PrereqBuildingClasses>
+			</PrereqBuildingClasses>
+			<BuildingClassNeededs>
+			</BuildingClassNeededs>
+			<SpecialistYieldChanges>
+			</SpecialistYieldChanges>
+			<BonusYieldModifiers>
+			</BonusYieldModifiers>
+			<ImprovementFreeSpecialists>
+			</ImprovementFreeSpecialists>
+			<Flavors>
+			</Flavors>
+			<HotKey></HotKey>
+			<bAltDown>0</bAltDown>
+			<bShiftDown>0</bShiftDown>
+			<bCtrlDown>0</bCtrlDown>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<iHotKeyPriority>0</iHotKeyPriority>
+			<bApplyFreePromotionOnMove>0</bApplyFreePromotionOnMove>
+			<bEquipment>0</bEquipment>
+			<bHideUnits>0</bHideUnits>
+			<bNoCivicAnger>0</bNoCivicAnger>
+			<bRequiresCaster>1</bRequiresCaster>
+			<bSeeInvisible>0</bSeeInvisible>
+			<bUnhappyProduction>0</bUnhappyProduction>
+			<iCrime>0</iCrime>
+			<iFreePromotionPick>0</iFreePromotionPick>
+			<iGlobalResistEnemyModify>0</iGlobalResistEnemyModify>
+			<iGlobalResistModify>0</iGlobalResistModify>
+			<iModifyGlobalCounter>0</iModifyGlobalCounter>
+			<iPlotRadius>0</iPlotRadius>
+			<iResistMagic>0</iResistMagic>
+			<FreeBonus2>NONE</FreeBonus2>
+			<FreeBonus3>NONE</FreeBonus3>
+			<PrereqCiv></PrereqCiv>
+			<PrereqTrait>NONE</PrereqTrait>
+			<RemovePromotion>PROMOTION_ENRAGED</RemovePromotion>
+			<SpecialistCommerceChanges>
+			</SpecialistCommerceChanges>
+		</BuildingInfo>
+		<BuildingInfo>
+			<BuildingClass>BUILDINGCLASS_CIV_BUILDING2</BuildingClass>
+			<Type>BUILDING_MUSEUM</Type>
+			<SpecialBuildingType>NONE</SpecialBuildingType>
+			<Description>TXT_KEY_BUILDING_MUSEUM</Description>
+			<Civilopedia>TXT_KEY_BUILDING_PLACEHOLDER_PEDIA</Civilopedia>
+			<Strategy></Strategy>
+			<Help></Help>
+			<Advisor>ADVISOR_GROWTH</Advisor>
+			<ArtDefineTag>ART_DEF_BUILDING_MUSEUM</ArtDefineTag>
+			<MovieDefineTag>NONE</MovieDefineTag>
+			<HolyCity>NONE</HolyCity>
+			<ReligionType>NONE</ReligionType>
+			<StateReligion>NONE</StateReligion>
+			<bStateReligion>0</bStateReligion>
+			<PrereqReligion>NONE</PrereqReligion>
+			<PrereqCorporation>NONE</PrereqCorporation>
+			<FoundsCorporation>NONE</FoundsCorporation>
+			<GlobalReligionCommerce>NONE</GlobalReligionCommerce>
+			<GlobalCorporationCommerce>NONE</GlobalCorporationCommerce>
+			<VictoryPrereq>NONE</VictoryPrereq>
+			<FreeStartEra>NONE</FreeStartEra>
+			<MaxStartEra>NONE</MaxStartEra>
+			<ObsoleteTech>NONE</ObsoleteTech>
+			<PrereqTech>TECH_EDUCATION</PrereqTech>
+			<TechTypes>
+			</TechTypes>
+			<Bonus>NONE</Bonus>
+			<PrereqBonuses>
+			</PrereqBonuses>
+			<ProductionTraits>
+				<ProductionTrait>
+					<ProductionTraitType>TRAIT_CREATIVE</ProductionTraitType>
+					<iProductionTrait>100</iProductionTrait>
+				</ProductionTrait>
+			</ProductionTraits>
+			<HappinessTraits>
+			</HappinessTraits>
+			<NoBonus>NONE</NoBonus>
+			<PowerBonus>NONE</PowerBonus>
+			<FreeBonus>NONE</FreeBonus>
+			<iNumFreeBonuses>0</iNumFreeBonuses>
+			<FreeBuilding>NONE</FreeBuilding>
+			<FreePromotion>NONE</FreePromotion>
+			<CivicOption>NONE</CivicOption>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+			<iHurryAngerModifier>0</iHurryAngerModifier>
+			<bBorderObstacle>0</bBorderObstacle>
+			<bTeamShare>0</bTeamShare>
+			<bWater>0</bWater>
+			<bRiver>0</bRiver>
+			<bPower>0</bPower>
+			<bDirtyPower>0</bDirtyPower>
+			<bAreaCleanPower>0</bAreaCleanPower>
+			<DiploVoteType>NONE</DiploVoteType>
+			<bForceTeamVoteEligible>0</bForceTeamVoteEligible>
+			<bCapital>0</bCapital>
+			<bGovernmentCenter>0</bGovernmentCenter>
+			<bGoldenAge>0</bGoldenAge>
+			<bAllowsNukes>0</bAllowsNukes>
+			<bMapCentering>0</bMapCentering>
+			<bNoUnhappiness>0</bNoUnhappiness>
+			<bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
+			<bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
+			<bNeverCapture>1</bNeverCapture>
+			<bNukeImmune>0</bNukeImmune>
+			<bPrereqReligion>0</bPrereqReligion>
+			<bCenterInCity>1</bCenterInCity>
+			<iAIWeight>0</iAIWeight>
+			<iCost>220</iCost>
+			<iHurryCostModifier>0</iHurryCostModifier>
+			<iAdvancedStartCost>130</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iConquestProb>0</iConquestProb>
+			<iCitiesPrereq>0</iCitiesPrereq>
+			<iTeamsPrereq>0</iTeamsPrereq>
+			<iLevelPrereq>0</iLevelPrereq>
+			<iMinLatitude>0</iMinLatitude>
+			<iMaxLatitude>90</iMaxLatitude>
+			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+			<iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
+			<iAnarchyModifier>0</iAnarchyModifier>
+			<iGoldenAgeModifier>0</iGoldenAgeModifier>
+			<iGlobalHurryModifier>0</iGlobalHurryModifier>
+			<iExperience>0</iExperience>
+			<iGlobalExperience>0</iGlobalExperience>
+			<iFoodKept>0</iFoodKept>
+			<iAirlift>0</iAirlift>
+			<iAirModifier>0</iAirModifier>
+			<iAirUnitCapacity>0</iAirUnitCapacity>
+			<iNukeModifier>0</iNukeModifier>
+			<iNukeExplosionRand>0</iNukeExplosionRand>
+			<iFreeSpecialist>0</iFreeSpecialist>
+			<iAreaFreeSpecialist>0</iAreaFreeSpecialist>
+			<iGlobalFreeSpecialist>0</iGlobalFreeSpecialist>
+			<iMaintenanceModifier>0</iMaintenanceModifier>
+			<iWarWearinessModifier>0</iWarWearinessModifier>
+			<iGlobalWarWearinessModifier>0</iGlobalWarWearinessModifier>
+			<iEnemyWarWearinessModifier>0</iEnemyWarWearinessModifier>
+			<iHealRateChange>0</iHealRateChange>
+			<iHealth>0</iHealth>
+			<iAreaHealth>0</iAreaHealth>
+			<iGlobalHealth>0</iGlobalHealth>
+			<iHappiness>1</iHappiness>
+			<iAreaHappiness>0</iAreaHappiness>
+			<iGlobalHappiness>0</iGlobalHappiness>
+			<iStateReligionHappiness>0</iStateReligionHappiness>
+			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
+			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
+			<iSpaceProductionModifier>0</iSpaceProductionModifier>
+			<iGlobalSpaceProductionModifier>0</iGlobalSpaceProductionModifier>
+			<iTradeRoutes>0</iTradeRoutes>
+			<iCoastalTradeRoutes>0</iCoastalTradeRoutes>
+			<iGlobalTradeRoutes>0</iGlobalTradeRoutes>
+			<iTradeRouteModifier>0</iTradeRouteModifier>
+			<iForeignTradeRouteModifier>0</iForeignTradeRouteModifier>
+			<iGlobalPopulationChange>0</iGlobalPopulationChange>
+			<iFreeTechs>0</iFreeTechs>
+			<iDefense>0</iDefense>
+			<iBombardDefense>0</iBombardDefense>
+			<iAllCityDefense>0</iAllCityDefense>
+			<iEspionageDefense>0</iEspionageDefense>
+			<iAsset>3</iAsset>
+			<iPower>0</iPower>
+			<fVisibilityPriority>1</fVisibilityPriority>
+			<SeaPlotYieldChanges>
+			</SeaPlotYieldChanges>
+			<RiverPlotYieldChanges>
+			</RiverPlotYieldChanges>
+			<GlobalSeaPlotYieldChanges>
+			</GlobalSeaPlotYieldChanges>
+			<YieldChanges>
+			</YieldChanges>
+			<YieldModifiers>
+			</YieldModifiers>
+			<CommerceChanges>
+			</CommerceChanges>
+			<ObsoleteSafeCommerceChanges>
+				<iCommerce>0</iCommerce>
+				<iCommerce>0</iCommerce>
+				<iCommerce>1</iCommerce>
+			</ObsoleteSafeCommerceChanges>
+			<CommerceChangeDoubleTimes>
+			</CommerceChangeDoubleTimes>
+			<CommerceModifiers>
+			</CommerceModifiers>
+			<GlobalCommerceModifiers>
+			</GlobalCommerceModifiers>
+			<SpecialistExtraCommerces>
+			</SpecialistExtraCommerces>
+			<StateReligionCommerces>
+			</StateReligionCommerces>
+			<CommerceHappinesses>
+			</CommerceHappinesses>
+			<ReligionChanges>
+			</ReligionChanges>
+			<SpecialistCounts>
+			</SpecialistCounts>
+			<FreeSpecialistCounts>
+			</FreeSpecialistCounts>
+			<CommerceFlexibles>
+			</CommerceFlexibles>
+			<CommerceChangeOriginalOwners>
+			</CommerceChangeOriginalOwners>
+			<ConstructSound></ConstructSound>
+			<BonusHealthChanges>
+			</BonusHealthChanges>
+			<BonusHappinessChanges>
+				<BonusHappinessChange>
+					<BonusType>BONUS_MARBLE</BonusType>
+					<iHappinessChange>1</iHappinessChange>
+				</BonusHappinessChange>
+			</BonusHappinessChanges>
+			<BonusProductionModifiers>
+			</BonusProductionModifiers>
+			<UnitCombatFreeExperiences>
+			</UnitCombatFreeExperiences>
+			<DomainFreeExperiences>
+			</DomainFreeExperiences>
+			<DomainProductionModifiers>
+			</DomainProductionModifiers>
+			<BuildingHappinessChanges>
+			</BuildingHappinessChanges>
+			<PrereqBuildingClasses>
+			</PrereqBuildingClasses>
+			<BuildingClassNeededs>
+			</BuildingClassNeededs>
+			<SpecialistYieldChanges>
+			</SpecialistYieldChanges>
+			<BonusYieldModifiers>
+			</BonusYieldModifiers>
+			<ImprovementFreeSpecialists>
+			</ImprovementFreeSpecialists>
+			<Flavors>
+				<Flavor>
+					<FlavorType>FLAVOR_CULTURE</FlavorType>
+					<iFlavor>10</iFlavor>
+				</Flavor>
+			</Flavors>
+			<HotKey></HotKey>
+			<bAltDown>0</bAltDown>
+			<bShiftDown>0</bShiftDown>
+			<bCtrlDown>0</bCtrlDown>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<iHotKeyPriority>0</iHotKeyPriority>
+			<bApplyFreePromotionOnMove>0</bApplyFreePromotionOnMove>
+			<bEquipment>0</bEquipment>
+			<bHideUnits>0</bHideUnits>
+			<bNoCivicAnger>0</bNoCivicAnger>
+			<bRequiresCaster>0</bRequiresCaster>
+			<bSeeInvisible>0</bSeeInvisible>
+			<bUnhappyProduction>0</bUnhappyProduction>
+			<iCrime>0</iCrime>
+			<iFreePromotionPick>0</iFreePromotionPick>
+			<iGlobalResistEnemyModify>0</iGlobalResistEnemyModify>
+			<iGlobalResistModify>0</iGlobalResistModify>
+			<iModifyGlobalCounter>0</iModifyGlobalCounter>
+			<iPlotRadius>0</iPlotRadius>
+			<iResistMagic>0</iResistMagic>
+			<FreeBonus2>NONE</FreeBonus2>
+			<FreeBonus3>NONE</FreeBonus3>
+			<PrereqCiv>CIVILIZATION_GRIGORI</PrereqCiv>
+			<PrereqTrait>NONE</PrereqTrait>
+			<RemovePromotion>NONE</RemovePromotion>
+			<SpecialistCommerceChanges>
+			</SpecialistCommerceChanges>
+		</BuildingInfo>
+		<BuildingInfo>
+			<BuildingClass>BUILDINGCLASS_PALACE</BuildingClass>
+			<Type>BUILDING_PALACE</Type>
+			<SpecialBuildingType>NONE</SpecialBuildingType>
+			<Description>TXT_KEY_BUILDING_PALACE</Description>
+			<Civilopedia>TXT_KEY_BUILDING_PALACE_PEDIA</Civilopedia>
+			<Strategy></Strategy>
+			<Help></Help>
+			<Advisor>ADVISOR_ECONOMY</Advisor>
+			<ArtDefineTag>ART_DEF_BUILDING_PALACE_BANNOR</ArtDefineTag>
+			<MovieDefineTag>NONE</MovieDefineTag>
+			<HolyCity>NONE</HolyCity>
+			<ReligionType>NONE</ReligionType>
+			<StateReligion>NONE</StateReligion>
+			<bStateReligion>0</bStateReligion>
+			<PrereqReligion>NONE</PrereqReligion>
+			<PrereqCorporation>NONE</PrereqCorporation>
+			<FoundsCorporation>NONE</FoundsCorporation>
+			<GlobalReligionCommerce>NONE</GlobalReligionCommerce>
+			<GlobalCorporationCommerce>NONE</GlobalCorporationCommerce>
+			<VictoryPrereq>NONE</VictoryPrereq>
+			<FreeStartEra>NONE</FreeStartEra>
+			<MaxStartEra>NONE</MaxStartEra>
+			<ObsoleteTech>NONE</ObsoleteTech>
+			<PrereqTech>NONE</PrereqTech>
+			<TechTypes>
+			</TechTypes>
+			<Bonus>NONE</Bonus>
+			<PrereqBonuses>
+			</PrereqBonuses>
+			<ProductionTraits>
+			</ProductionTraits>
+			<HappinessTraits>
+			</HappinessTraits>
+			<NoBonus>NONE</NoBonus>
+			<PowerBonus>NONE</PowerBonus>
+			<FreeBonus>NONE</FreeBonus>
+			<iNumFreeBonuses>1</iNumFreeBonuses>
+			<FreeBuilding>NONE</FreeBuilding>
+			<FreePromotion>NONE</FreePromotion>
+			<CivicOption>NONE</CivicOption>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+			<iHurryAngerModifier>0</iHurryAngerModifier>
+			<bBorderObstacle>0</bBorderObstacle>
+			<bTeamShare>0</bTeamShare>
+			<bWater>0</bWater>
+			<bRiver>0</bRiver>
+			<bPower>0</bPower>
+			<bDirtyPower>0</bDirtyPower>
+			<bAreaCleanPower>0</bAreaCleanPower>
+			<DiploVoteType>NONE</DiploVoteType>
+			<bForceTeamVoteEligible>0</bForceTeamVoteEligible>
+			<bCapital>1</bCapital>
+			<bGovernmentCenter>1</bGovernmentCenter>
+			<bGoldenAge>0</bGoldenAge>
+			<bAllowsNukes>0</bAllowsNukes>
+			<bMapCentering>0</bMapCentering>
+			<bNoUnhappiness>0</bNoUnhappiness>
+			<bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
+			<bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
+			<bNeverCapture>1</bNeverCapture>
+			<bNukeImmune>1</bNukeImmune>
+			<bPrereqReligion>0</bPrereqReligion>
+			<bCenterInCity>0</bCenterInCity>
+			<iAIWeight>0</iAIWeight>
+			<iCost>160</iCost>
+			<iHurryCostModifier>50</iHurryCostModifier>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iConquestProb>0</iConquestProb>
+			<iCitiesPrereq>4</iCitiesPrereq>
+			<iTeamsPrereq>0</iTeamsPrereq>
+			<iLevelPrereq>0</iLevelPrereq>
+			<iMinLatitude>0</iMinLatitude>
+			<iMaxLatitude>90</iMaxLatitude>
+			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+			<iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
+			<iAnarchyModifier>0</iAnarchyModifier>
+			<iGoldenAgeModifier>0</iGoldenAgeModifier>
+			<iGlobalHurryModifier>0</iGlobalHurryModifier>
+			<iExperience>0</iExperience>
+			<iGlobalExperience>0</iGlobalExperience>
+			<iFoodKept>0</iFoodKept>
+			<iAirlift>0</iAirlift>
+			<iAirModifier>0</iAirModifier>
+			<iAirUnitCapacity>0</iAirUnitCapacity>
+			<iNukeModifier>0</iNukeModifier>
+			<iNukeExplosionRand>0</iNukeExplosionRand>
+			<iFreeSpecialist>0</iFreeSpecialist>
+			<iAreaFreeSpecialist>0</iAreaFreeSpecialist>
+			<iGlobalFreeSpecialist>0</iGlobalFreeSpecialist>
+			<iMaintenanceModifier>0</iMaintenanceModifier>
+			<iWarWearinessModifier>0</iWarWearinessModifier>
+			<iGlobalWarWearinessModifier>-10</iGlobalWarWearinessModifier>
+			<iEnemyWarWearinessModifier>0</iEnemyWarWearinessModifier>
+			<iHealRateChange>0</iHealRateChange>
+			<iHealth>0</iHealth>
+			<iAreaHealth>0</iAreaHealth>
+			<iGlobalHealth>0</iGlobalHealth>
+			<iHappiness>1</iHappiness>
+			<iAreaHappiness>0</iAreaHappiness>
+			<iGlobalHappiness>0</iGlobalHappiness>
+			<iStateReligionHappiness>0</iStateReligionHappiness>
+			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
+			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
+			<iSpaceProductionModifier>0</iSpaceProductionModifier>
+			<iGlobalSpaceProductionModifier>0</iGlobalSpaceProductionModifier>
+			<iTradeRoutes>0</iTradeRoutes>
+			<iCoastalTradeRoutes>0</iCoastalTradeRoutes>
+			<iGlobalTradeRoutes>0</iGlobalTradeRoutes>
+			<iTradeRouteModifier>0</iTradeRouteModifier>
+			<iForeignTradeRouteModifier>0</iForeignTradeRouteModifier>
+			<iGlobalPopulationChange>0</iGlobalPopulationChange>
+			<iFreeTechs>0</iFreeTechs>
+			<iDefense>0</iDefense>
+			<iBombardDefense>0</iBombardDefense>
+			<iAllCityDefense>0</iAllCityDefense>
+			<iEspionageDefense>0</iEspionageDefense>
+			<!-- RevolutionDCM Building Effects  -->
+			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
+			<iRevIdxLocal>-5</iRevIdxLocal>
+			<iRevIdxNational>-2</iRevIdxNational>
+			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
+			<!-- RevolutionDCM End  -->
+			<iAsset>0</iAsset>
+			<iPower>0</iPower>
+			<fVisibilityPriority>10000</fVisibilityPriority>
+			<SeaPlotYieldChanges>
+			</SeaPlotYieldChanges>
+			<RiverPlotYieldChanges>
+			</RiverPlotYieldChanges>
+			<GlobalSeaPlotYieldChanges>
+			</GlobalSeaPlotYieldChanges>
+			<YieldChanges>
+				<iYield>0</iYield>
+				<iYield>1</iYield>
+				<iYield>8</iYield>
+			</YieldChanges>
+			<YieldModifiers>
+			</YieldModifiers>
+			<CommerceChanges>
+			</CommerceChanges>
+			<ObsoleteSafeCommerceChanges>
+				<iCommerce>0</iCommerce>
+				<iCommerce>0</iCommerce>
+				<iCommerce>2</iCommerce>
+			</ObsoleteSafeCommerceChanges>
+			<CommerceChangeDoubleTimes>
+			</CommerceChangeDoubleTimes>
+			<CommerceModifiers>
+			</CommerceModifiers>
+			<GlobalCommerceModifiers>
+			</GlobalCommerceModifiers>
+			<SpecialistExtraCommerces>
+			</SpecialistExtraCommerces>
+			<StateReligionCommerces>
+			</StateReligionCommerces>
+			<CommerceHappinesses>
+			</CommerceHappinesses>
+			<ReligionChanges>
+			</ReligionChanges>
+			<SpecialistCounts>
+			</SpecialistCounts>
+			<FreeSpecialistCounts>
+			</FreeSpecialistCounts>
+			<CommerceFlexibles>
+			</CommerceFlexibles>
+			<CommerceChangeOriginalOwners>
+			</CommerceChangeOriginalOwners>
+			<ConstructSound></ConstructSound>
+			<BonusHealthChanges>
+			</BonusHealthChanges>
+			<BonusHappinessChanges>
+			</BonusHappinessChanges>
+			<BonusProductionModifiers>
+			</BonusProductionModifiers>
+			<UnitCombatFreeExperiences>
+			</UnitCombatFreeExperiences>
+			<DomainFreeExperiences>
+			</DomainFreeExperiences>
+			<DomainProductionModifiers>
+			</DomainProductionModifiers>
+			<BuildingHappinessChanges>
+			</BuildingHappinessChanges>
+			<PrereqBuildingClasses>
+			</PrereqBuildingClasses>
+			<BuildingClassNeededs>
+			</BuildingClassNeededs>
+			<SpecialistYieldChanges>
+			</SpecialistYieldChanges>
+			<BonusYieldModifiers>
+			</BonusYieldModifiers>
+			<ImprovementFreeSpecialists>
+			</ImprovementFreeSpecialists>
+			<Flavors>
+			</Flavors>
+			<HotKey></HotKey>
+			<bAltDown>0</bAltDown>
+			<bShiftDown>0</bShiftDown>
+			<bCtrlDown>0</bCtrlDown>
+			<bGraphicalOnly>1</bGraphicalOnly>
+			<iHotKeyPriority>0</iHotKeyPriority>
+			<bApplyFreePromotionOnMove>0</bApplyFreePromotionOnMove>
+			<bEquipment>0</bEquipment>
+			<bHideUnits>0</bHideUnits>
+			<bNoCivicAnger>0</bNoCivicAnger>
+			<bRequiresCaster>0</bRequiresCaster>
+			<bSeeInvisible>0</bSeeInvisible>
+			<bUnhappyProduction>0</bUnhappyProduction>
+			<iCrime>-10</iCrime>
+			<iFreePromotionPick>0</iFreePromotionPick>
+			<iGlobalResistEnemyModify>0</iGlobalResistEnemyModify>
+			<iGlobalResistModify>0</iGlobalResistModify>
+			<iModifyGlobalCounter>0</iModifyGlobalCounter>
+			<iPlotRadius>0</iPlotRadius>
+			<iResistMagic>0</iResistMagic>
+			<FreeBonus2>NONE</FreeBonus2>
+			<FreeBonus3>NONE</FreeBonus3>
+			<PrereqCiv></PrereqCiv>
+			<PrereqTrait>NONE</PrereqTrait>
+			<RemovePromotion>NONE</RemovePromotion>
+			<SpecialistCommerceChanges>
+			</SpecialistCommerceChanges>
+		</BuildingInfo>
+<!-- MORE EVENTS MOD STARTS -->		
+		<BuildingInfo>
+			<BuildingClass>BUILDINGCLASS_FROZEN_FLAME</BuildingClass>
+			<Type>BUILDING_FROZEN_FLAME</Type>
+			<SpecialBuildingType>NONE</SpecialBuildingType>
+			<Description>TXT_KEY_EQUIPMENT_FROZEN_FLAME</Description>
+			<Civilopedia></Civilopedia>
+			<Strategy></Strategy>
+			<Help></Help>
+			<Advisor>ADVISOR_MILITARY</Advisor>
+			<ArtDefineTag>ART_DEF_BUILDING_DRAGONS_HORDE</ArtDefineTag>
+			<MovieDefineTag>NONE</MovieDefineTag>
+			<HolyCity>NONE</HolyCity>
+			<ReligionType>NONE</ReligionType>
+			<StateReligion>NONE</StateReligion>
+			<bStateReligion>0</bStateReligion>
+			<PrereqReligion>NONE</PrereqReligion>
+			<PrereqCorporation>NONE</PrereqCorporation>
+			<FoundsCorporation>NONE</FoundsCorporation>
+			<GlobalReligionCommerce>NONE</GlobalReligionCommerce>
+			<GlobalCorporationCommerce>NONE</GlobalCorporationCommerce>
+			<VictoryPrereq>NONE</VictoryPrereq>
+			<FreeStartEra>NONE</FreeStartEra>
+			<MaxStartEra>NONE</MaxStartEra>
+			<ObsoleteTech>NONE</ObsoleteTech>
+			<PrereqTech>NONE</PrereqTech>
+			<TechTypes>
+			</TechTypes>
+			<Bonus>NONE</Bonus>
+			<PrereqBonuses>
+			</PrereqBonuses>
+			<ProductionTraits>
+			</ProductionTraits>
+			<HappinessTraits>
+			</HappinessTraits>
+			<NoBonus>NONE</NoBonus>
+			<PowerBonus>NONE</PowerBonus>
+			<FreeBonus>BONUS_MANA_CHAOS</FreeBonus>
+			<iNumFreeBonuses>1</iNumFreeBonuses>
+			<FreeBuilding>NONE</FreeBuilding>
+			<FreePromotion>NONE</FreePromotion>
+			<CivicOption>NONE</CivicOption>
+			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+			<iHurryAngerModifier>0</iHurryAngerModifier>
+			<bBorderObstacle>0</bBorderObstacle>
+			<bTeamShare>0</bTeamShare>
+			<bWater>0</bWater>
+			<bRiver>0</bRiver>
+			<bPower>0</bPower>
+			<bDirtyPower>0</bDirtyPower>
+			<bAreaCleanPower>0</bAreaCleanPower>
+			<DiploVoteType>NONE</DiploVoteType>
+			<bForceTeamVoteEligible>0</bForceTeamVoteEligible>
+			<bCapital>0</bCapital>
+			<bGovernmentCenter>0</bGovernmentCenter>
+			<bGoldenAge>0</bGoldenAge>
+			<bAllowsNukes>0</bAllowsNukes>
+			<bMapCentering>0</bMapCentering>
+			<bNoUnhappiness>0</bNoUnhappiness>
+			<bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
+			<bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
+			<bNeverCapture>0</bNeverCapture>
+			<bNukeImmune>0</bNukeImmune>
+			<bPrereqReligion>0</bPrereqReligion>
+			<bCenterInCity>0</bCenterInCity>
+			<iAIWeight>0</iAIWeight>
+			<iCost>-1</iCost>
+			<iHurryCostModifier>0</iHurryCostModifier>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iConquestProb>100</iConquestProb>
+			<iCitiesPrereq>0</iCitiesPrereq>
+			<iTeamsPrereq>0</iTeamsPrereq>
+			<iLevelPrereq>0</iLevelPrereq>
+			<iMinLatitude>0</iMinLatitude>
+			<iMaxLatitude>90</iMaxLatitude>
+			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+			<iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
+			<iAnarchyModifier>0</iAnarchyModifier>
+			<iGoldenAgeModifier>0</iGoldenAgeModifier>
+			<iGlobalHurryModifier>0</iGlobalHurryModifier>
+			<iExperience>0</iExperience>
+			<iGlobalExperience>0</iGlobalExperience>
+			<iFoodKept>0</iFoodKept>
+			<iAirlift>0</iAirlift>
+			<iAirModifier>0</iAirModifier>
+			<iAirUnitCapacity>0</iAirUnitCapacity>
+			<iNukeModifier>0</iNukeModifier>
+			<iNukeExplosionRand>0</iNukeExplosionRand>
+			<iFreeSpecialist>0</iFreeSpecialist>
+			<iAreaFreeSpecialist>0</iAreaFreeSpecialist>
+			<iGlobalFreeSpecialist>0</iGlobalFreeSpecialist>
+			<iMaintenanceModifier>0</iMaintenanceModifier>
+			<iWarWearinessModifier>0</iWarWearinessModifier>
+			<iGlobalWarWearinessModifier>0</iGlobalWarWearinessModifier>
+			<iEnemyWarWearinessModifier>0</iEnemyWarWearinessModifier>
+			<iHealRateChange>0</iHealRateChange>
+			<iHealth>0</iHealth>
+			<iAreaHealth>0</iAreaHealth>
+			<iGlobalHealth>0</iGlobalHealth>
+			<iHappiness>-3</iHappiness>
+			<iAreaHappiness>0</iAreaHappiness>
+			<iGlobalHappiness>0</iGlobalHappiness>
+			<iStateReligionHappiness>0</iStateReligionHappiness>
+			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
+			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
+			<iSpaceProductionModifier>0</iSpaceProductionModifier>
+			<iGlobalSpaceProductionModifier>0</iGlobalSpaceProductionModifier>
+			<iTradeRoutes>0</iTradeRoutes>
+			<iCoastalTradeRoutes>0</iCoastalTradeRoutes>
+			<iGlobalTradeRoutes>0</iGlobalTradeRoutes>
+			<iTradeRouteModifier>0</iTradeRouteModifier>
+			<iForeignTradeRouteModifier>0</iForeignTradeRouteModifier>
+			<iGlobalPopulationChange>0</iGlobalPopulationChange>
+			<iFreeTechs>0</iFreeTechs>
+			<iDefense>0</iDefense>
+			<iBombardDefense>0</iBombardDefense>
+			<iAllCityDefense>0</iAllCityDefense>
+			<iEspionageDefense>0</iEspionageDefense>
+			<iAsset>8</iAsset>
+			<iPower>8</iPower>
+			<fVisibilityPriority>100</fVisibilityPriority>
+			<SeaPlotYieldChanges>
+			</SeaPlotYieldChanges>
+			<RiverPlotYieldChanges>
+			</RiverPlotYieldChanges>
+			<GlobalSeaPlotYieldChanges>
+			</GlobalSeaPlotYieldChanges>
+			<YieldChanges>
+			</YieldChanges>
+			<YieldModifiers>
+			</YieldModifiers>
+			<CommerceChanges>
+			</CommerceChanges>
+			<ObsoleteSafeCommerceChanges>
+			</ObsoleteSafeCommerceChanges>
+			<CommerceChangeDoubleTimes>
+			</CommerceChangeDoubleTimes>
+			<CommerceModifiers>
+			</CommerceModifiers>
+			<GlobalCommerceModifiers>
+			</GlobalCommerceModifiers>
+			<SpecialistExtraCommerces>
+			</SpecialistExtraCommerces>
+			<StateReligionCommerces>
+			</StateReligionCommerces>
+			<CommerceHappinesses>
+			</CommerceHappinesses>
+			<ReligionChanges>
+			</ReligionChanges>
+			<SpecialistCounts>
+			</SpecialistCounts>
+			<FreeSpecialistCounts>
+			</FreeSpecialistCounts>
+			<CommerceFlexibles>
+			</CommerceFlexibles>
+			<CommerceChangeOriginalOwners>
+			</CommerceChangeOriginalOwners>
+			<ConstructSound></ConstructSound>
+			<BonusHealthChanges>
+			</BonusHealthChanges>
+			<BonusHappinessChanges>
+			</BonusHappinessChanges>
+			<BonusProductionModifiers>
+			</BonusProductionModifiers>
+			<UnitCombatFreeExperiences>
+			</UnitCombatFreeExperiences>
+			<DomainFreeExperiences>
+			</DomainFreeExperiences>
+			<DomainProductionModifiers>
+			</DomainProductionModifiers>
+			<BuildingHappinessChanges>
+			</BuildingHappinessChanges>
+			<PrereqBuildingClasses>
+			</PrereqBuildingClasses>
+			<BuildingClassNeededs>
+			</BuildingClassNeededs>
+			<SpecialistYieldChanges>
+			</SpecialistYieldChanges>
+			<BonusYieldModifiers>
+			</BonusYieldModifiers>
+			<ImprovementFreeSpecialists>
+			</ImprovementFreeSpecialists>
+			<Flavors>
+				<Flavor>
+					<FlavorType>FLAVOR_SCIENCE</FlavorType>
+					<iFlavor>10</iFlavor>
+				</Flavor>
+			</Flavors>
+			<HotKey></HotKey>
+			<bAltDown>0</bAltDown>
+			<bShiftDown>0</bShiftDown>
+			<bCtrlDown>0</bCtrlDown>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<iHotKeyPriority>0</iHotKeyPriority>
+			<bApplyFreePromotionOnMove>0</bApplyFreePromotionOnMove>
+			<bEquipment>1</bEquipment>
+			<bHideUnits>0</bHideUnits>
+			<bNoCivicAnger>0</bNoCivicAnger>
+			<bRequiresCaster>0</bRequiresCaster>
+			<bSeeInvisible>0</bSeeInvisible>
+			<bUnhappyProduction>0</bUnhappyProduction>
+			<iCrime>0</iCrime>
+			<iFreePromotionPick>0</iFreePromotionPick>
+			<iGlobalResistEnemyModify>0</iGlobalResistEnemyModify>
+			<iGlobalResistModify>0</iGlobalResistModify>
+			<iModifyGlobalCounter>0</iModifyGlobalCounter>
+			<iPlotRadius>0</iPlotRadius>
+			<iResistMagic>0</iResistMagic>
+			<FreeBonus2>BONUS_MANA_ENTROPY</FreeBonus2>
+			<FreeBonus3>BONUS_MANA_FIRE</FreeBonus3>
 			<PrereqCiv></PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
 			<RemovePromotion>NONE</RemovePromotion>

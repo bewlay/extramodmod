@@ -1377,8 +1377,11 @@ def refreshMilitaryAdvisor (argsList):
 	elif (2 == argsList[0]):
 		militaryAdvisor.refreshSelectedLeader(argsList[1])
 	elif (3 == argsList[0]):
-		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS): ## Suppress display of Great General bar
-			militaryAdvisor.drawCombatExperience()
+		## ExtraModMod: Great Generals are available unconditionally.
+		#if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS): ## Suppress display of Great General bar
+			#militaryAdvisor.drawCombatExperience()
+		militaryAdvisor.drawCombatExperience()
+		## ExtraModMod end
 	elif (argsList[0] <= 0):
 		militaryAdvisor.refreshSelectedUnit(-argsList[0], argsList[1])
 

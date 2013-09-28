@@ -156,7 +156,7 @@
             <iLargestCityHappiness>0</iLargestCityHappiness>
             <iWarWearinessModifier>25</iWarWearinessModifier>
             <iFreeSpecialist>0</iFreeSpecialist>
-            <iTradeRoutes>0</iTradeRoutes>
+            <iTradeRoutes>1</iTradeRoutes>
             <bNoForeignTrade>0</bNoForeignTrade>
             <bNoCorporations>0</bNoCorporations>
             <bNoForeignCorporations>0</bNoForeignCorporations>
@@ -177,7 +177,7 @@
             <CommerceModifiers>
                 <iCommerce>0</iCommerce>
                 <iCommerce>0</iCommerce>
-                <iCommerce>-20</iCommerce>
+                <iCommerce>10</iCommerce>
             </CommerceModifiers>
             <CapitalCommerceModifiers>
             </CapitalCommerceModifiers>
@@ -352,7 +352,7 @@
             <Button>Art/Interface/Buttons/Civics/Aristocracy.dds</Button>
             <TechPrereq>TECH_CODE_OF_LAWS</TechPrereq>
             <iAnarchyLength>1</iAnarchyLength>
-            <Upkeep>UPKEEP_LOW</Upkeep>
+            <Upkeep>UPKEEP_MEDIUM</Upkeep>
             <iAIWeight>5</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
             <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -506,8 +506,8 @@
             <bNoNonStateReligionSpread>1</bNoNonStateReligionSpread>
             <iStateReligionHappiness>1</iStateReligionHappiness>
             <iNonStateReligionHappiness>0</iNonStateReligionHappiness>
-            <iStateReligionUnitProductionModifier>0</iStateReligionUnitProductionModifier>
-            <iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
+            <iStateReligionUnitProductionModifier>10</iStateReligionUnitProductionModifier>
+            <iStateReligionBuildingProductionModifier>20</iStateReligionBuildingProductionModifier>
             <iStateReligionFreeExperience>2</iStateReligionFreeExperience>
             <YieldModifiers>
             </YieldModifiers>
@@ -614,7 +614,7 @@
             <bNoForeignTrade>0</bNoForeignTrade>
             <bNoCorporations>0</bNoCorporations>
             <bNoForeignCorporations>0</bNoForeignCorporations>
-            <iCivicPercentAnger>200</iCivicPercentAnger>
+            <iCivicPercentAnger>0</iCivicPercentAnger>
             <bStateReligion>0</bStateReligion>
             <bNoNonStateReligionSpread>0</bNoNonStateReligionSpread>
             <iStateReligionHappiness>0</iStateReligionHappiness>
@@ -649,6 +649,22 @@
             <FeatureHappinessChanges>
             </FeatureHappinessChanges>
             <ImprovementYieldChanges>
+                <ImprovementYieldChange>
+                    <ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
+                    <ImprovementYields>
+                        <iYield>0</iYield>
+                        <iYield>1</iYield>
+                        <iYield>1</iYield>
+                    </ImprovementYields>
+                </ImprovementYieldChange>
+                <ImprovementYieldChange>
+                    <ImprovementType>IMPROVEMENT_ENCLAVE</ImprovementType>
+                    <ImprovementYields>
+                        <iYield>0</iYield>
+                        <iYield>1</iYield>
+                        <iYield>1</iYield>
+                    </ImprovementYields>
+                </ImprovementYieldChange>
             </ImprovementYieldChanges>
 						<!-- Revolution Mod Start -->
 						<iRevIdxLocal>-2</iRevIdxLocal>
@@ -778,6 +794,10 @@
                     <BuildingType>BUILDINGCLASS_TEMPLE_OF_THE_EMPYREAN</BuildingType>
                     <iHappinessChange>1</iHappinessChange>
                 </BuildingHappinessChange>
+                <BuildingHappinessChange>
+                    <BuildingType>BUILDINGCLASS_PAGAN_TEMPLE</BuildingType>
+                    <iHappinessChange>1</iHappinessChange>
+                </BuildingHappinessChange>
             </BuildingHappinessChanges>
             <BuildingHealthChanges>
             </BuildingHealthChanges>
@@ -830,7 +850,7 @@
             <Upkeep>UPKEEP_LOW</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>50</iGreatPeopleRateModifier>
-            <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+            <iGreatGeneralRateModifier>-25</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
             <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
@@ -840,7 +860,7 @@
             <iFreeExperience>0</iFreeExperience>
             <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
             <iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
-            <iMilitaryProductionModifier>-20</iMilitaryProductionModifier>
+            <iMilitaryProductionModifier>-10</iMilitaryProductionModifier>
             <iBaseFreeUnits>0</iBaseFreeUnits>
             <iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
             <iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
@@ -875,6 +895,9 @@
             <TradeYieldModifiers>
             </TradeYieldModifiers>
             <CommerceModifiers>
+                <iCommerce>0</iCommerce>
+                <iCommerce>0</iCommerce>
+                <iCommerce>10</iCommerce>
             </CommerceModifiers>
             <CapitalCommerceModifiers>
             </CapitalCommerceModifiers>
@@ -1051,7 +1074,7 @@
             <Upkeep>NONE</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>-20</iGreatPeopleRateModifier>
-            <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+            <iGreatGeneralRateModifier>-25</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
             <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
@@ -1157,7 +1180,7 @@
             <Strategy>TXT_KEY_CIVIC_SOCIAL_ORDER_STRATEGY</Strategy>
             <Help></Help>
             <Button>Art/Interface/Buttons/Civics/Socialorder.dds</Button>
-            <TechPrereq>TECH_RELIGIOUS_LAW</TechPrereq>
+            <TechPrereq>TECH_ORDERS_FROM_HEAVEN</TechPrereq>
             <iAnarchyLength>1</iAnarchyLength>
             <Upkeep>UPKEEP_LOW</Upkeep>
             <iAIWeight>0</iAIWeight>
@@ -1278,7 +1301,7 @@
             <Upkeep>UPKEEP_MEDIUM</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
-            <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+            <iGreatGeneralRateModifier>-25</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
             <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
@@ -1546,8 +1569,8 @@
             <bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
             <iExpInBorderModifier>0</iExpInBorderModifier>
             <bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
-            <iLargestCityHappiness>0</iLargestCityHappiness>
-            <iWarWearinessModifier>50</iWarWearinessModifier>
+            <iLargestCityHappiness>1</iLargestCityHappiness>
+            <iWarWearinessModifier>25</iWarWearinessModifier>
             <iFreeSpecialist>1</iFreeSpecialist>
             <iTradeRoutes>0</iTradeRoutes>
             <bNoForeignTrade>0</bNoForeignTrade>
@@ -1626,7 +1649,7 @@
             <PrereqReligion>NONE</PrereqReligion>
         </CivicInfo>
         <CivicInfo>
-            <CivicOptionType>CIVICOPTION_CULTURAL_VALUES</CivicOptionType>
+            <CivicOptionType>CIVICOPTION_MEMBERSHIP</CivicOptionType>
             <Type>CIVIC_CRUSADE</Type>
             <Description>TXT_KEY_CIVIC_CRUSADE</Description>
             <Civilopedia>TXT_KEY_CIVIC_CRUSADE_PEDIA</Civilopedia>
@@ -1638,7 +1661,7 @@
             <Upkeep>UPKEEP_MEDIUM</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
-            <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+            <iGreatGeneralRateModifier>50</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
             <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
@@ -1743,7 +1766,7 @@
             <Button>,Art/Interface/Buttons/Civics/Tribalism.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,7,3</Button>
             <TechPrereq>NONE</TechPrereq>
             <iAnarchyLength>1</iAnarchyLength>
-            <Upkeep>UPKEEP_LOW</Upkeep>
+            <Upkeep>NONE</Upkeep>
             <iAIWeight>-10</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
             <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -1957,9 +1980,9 @@
             <Strategy>TXT_KEY_CIVIC_SLAVERY_STRATEGY</Strategy>
             <Help></Help>
             <Button>,Art/Interface/Buttons/Civics/Slavery.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,8,2</Button>
-            <TechPrereq>TECH_WAY_OF_THE_WICKED</TechPrereq>
+            <TechPrereq>TECH_PHILOSOPHY</TechPrereq>
             <iAnarchyLength>1</iAnarchyLength>
-            <Upkeep>UPKEEP_LOW</Upkeep>
+            <Upkeep>UPKEEP_MEDIUM</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
             <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -2202,7 +2225,7 @@
             <Upkeep>UPKEEP_HIGH</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
-            <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+            <iGreatGeneralRateModifier>25</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
             <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
@@ -2312,7 +2335,7 @@
             <Strategy>TXT_KEY_CIVIC_CASTE_SYSTEM_STRATEGY</Strategy>
             <Help></Help>
             <Button>,Art/Interface/Buttons/Civics/Caste_System.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,3,1</Button>
-            <TechPrereq>TECH_TAXATION</TechPrereq>
+            <TechPrereq>TECH_FEUDALISM</TechPrereq>
             <iAnarchyLength>1</iAnarchyLength>
             <Upkeep>UPKEEP_MEDIUM</Upkeep>
             <iAIWeight>0</iAIWeight>
@@ -2386,6 +2409,14 @@
             <FeatureHappinessChanges>
             </FeatureHappinessChanges>
             <ImprovementYieldChanges>
+                <ImprovementYieldChange>
+                    <ImprovementType>IMPROVEMENT_WORKSHOP</ImprovementType>
+                    <ImprovementYields>
+                        <iYield>0</iYield>
+                        <iYield>1</iYield>
+                        <iYield>0</iYield>
+                    </ImprovementYields>
+                </ImprovementYieldChange>
             </ImprovementYieldChanges>
 						<!-- Revolution Mod Start -->
 						<iRevIdxLocal>1</iRevIdxLocal>
@@ -2514,6 +2545,14 @@
             <FeatureHappinessChanges>
             </FeatureHappinessChanges>
             <ImprovementYieldChanges>
+                <ImprovementYieldChange>
+                    <ImprovementType>IMPROVEMENT_WORKSHOP</ImprovementType>
+                    <ImprovementYields>
+                        <iYield>1</iYield>
+                        <iYield>0</iYield>
+                        <iYield>0</iYield>
+                    </ImprovementYields>
+                </ImprovementYieldChange>
             </ImprovementYieldChanges>
 						<!-- Revolution Mod Start -->
 						<iRevIdxLocal>0</iRevIdxLocal>
@@ -2557,7 +2596,7 @@
             <Button>,Art/Interface/Buttons/Civics/Decentralization.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,4,1</Button>
             <TechPrereq>NONE</TechPrereq>
             <iAnarchyLength>1</iAnarchyLength>
-            <Upkeep>UPKEEP_LOW</Upkeep>
+            <Upkeep>NONE</Upkeep>
             <iAIWeight>-10</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
             <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -2779,12 +2818,12 @@
             <Strategy>TXT_KEY_CIVIC_CONQUEST_STRATEGY</Strategy>
             <Help></Help>
             <Button>Art/Interface/Buttons/Civics/Conquest.dds</Button>
-            <TechPrereq>TECH_WARFARE</TechPrereq>
+            <TechPrereq>TECH_EDUCATION</TechPrereq>
             <iAnarchyLength>1</iAnarchyLength>
             <Upkeep>UPKEEP_MEDIUM</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
-            <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+            <iGreatGeneralRateModifier>25</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
             <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
@@ -2889,7 +2928,7 @@
             <Button>Art/Interface/Buttons/Civics/Mercantilism.dds</Button>
             <TechPrereq>TECH_MERCANTILISM</TechPrereq>
             <iAnarchyLength>1</iAnarchyLength>
-            <Upkeep>UPKEEP_LOW</Upkeep>
+            <Upkeep>UPKEEP_MEDIUM</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
             <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -2917,7 +2956,7 @@
             <bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
             <iLargestCityHappiness>0</iLargestCityHappiness>
             <iWarWearinessModifier>0</iWarWearinessModifier>
-            <iFreeSpecialist>0</iFreeSpecialist>
+            <iFreeSpecialist>2</iFreeSpecialist>
             <iTradeRoutes>0</iTradeRoutes>
             <bNoForeignTrade>1</bNoForeignTrade>
             <bNoCorporations>0</bNoCorporations>
@@ -2937,13 +2976,13 @@
             <TradeYieldModifiers>
             </TradeYieldModifiers>
             <CommerceModifiers>
-                <iCommerce>20</iCommerce>
-                <iCommerce>0</iCommerce>
-                <iCommerce>0</iCommerce>
             </CommerceModifiers>
             <CapitalCommerceModifiers>
             </CapitalCommerceModifiers>
             <SpecialistExtraCommerces>
+                <iCommerce>1</iCommerce>
+                <iCommerce>0</iCommerce>
+                <iCommerce>0</iCommerce>
             </SpecialistExtraCommerces>
             <Hurrys>
             </Hurrys>
@@ -2961,6 +3000,14 @@
             <FeatureHappinessChanges>
             </FeatureHappinessChanges>
             <ImprovementYieldChanges>
+                <ImprovementYieldChange>
+                    <ImprovementType>IMPROVEMENT_WORKSHOP</ImprovementType>
+                    <ImprovementYields>
+                        <iYield>0</iYield>
+                        <iYield>0</iYield>
+                        <iYield>1</iYield>
+                    </ImprovementYields>
+                </ImprovementYieldChange>
             </ImprovementYieldChanges>
 						<!-- Revolution Mod Start -->
 						<iRevIdxLocal>0</iRevIdxLocal>
@@ -3004,7 +3051,7 @@
             <Button>,Art/Interface/Buttons/Civics/Free_Market.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,8,1</Button>
             <TechPrereq>TECH_TRADE</TechPrereq>
             <iAnarchyLength>1</iAnarchyLength>
-            <Upkeep>UPKEEP_LOW</Upkeep>
+            <Upkeep>UPKEEP_MEDIUM</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
             <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -3016,7 +3063,7 @@
             <iExtraHealth>0</iExtraHealth>
             <iFreeExperience>0</iFreeExperience>
             <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
-            <iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
+            <iImprovementUpgradeRateModifier>100</iImprovementUpgradeRateModifier>
             <iMilitaryProductionModifier>0</iMilitaryProductionModifier>
             <iBaseFreeUnits>0</iBaseFreeUnits>
             <iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
@@ -3052,9 +3099,6 @@
             <TradeYieldModifiers>
             </TradeYieldModifiers>
             <CommerceModifiers>
-                <iCommerce>-10</iCommerce>
-                <iCommerce>0</iCommerce>
-                <iCommerce>20</iCommerce>
             </CommerceModifiers>
             <CapitalCommerceModifiers>
             </CapitalCommerceModifiers>
@@ -3328,14 +3372,14 @@
             <Button>Art/Interface/Buttons/Buildings/Dies Diei.dds</Button>
             <TechPrereq>TECH_HONOR</TechPrereq>
             <iAnarchyLength>0</iAnarchyLength>
-            <Upkeep>NONE</Upkeep>
+            <Upkeep>UPKEEP_LOW</Upkeep>
             <iAIWeight>10</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
             <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
-            <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
-            <iNumCitiesMaintenanceModifier>0</iNumCitiesMaintenanceModifier>
+            <iDistanceMaintenanceModifier>-10</iDistanceMaintenanceModifier>
+            <iNumCitiesMaintenanceModifier>-10</iNumCitiesMaintenanceModifier>
             <iCorporationMaintenanceModifier>0</iCorporationMaintenanceModifier>
             <iExtraHealth>0</iExtraHealth>
             <iFreeExperience>0</iFreeExperience>
@@ -3350,7 +3394,7 @@
             <iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
             <iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
             <bMilitaryFoodProduction>0</bMilitaryFoodProduction>
-            <iMaxConscript>0</iMaxConscript>
+            <iMaxConscript>3</iMaxConscript>
             <bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
             <iExpInBorderModifier>0</iExpInBorderModifier>
             <bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
@@ -3376,6 +3420,9 @@
             <TradeYieldModifiers>
             </TradeYieldModifiers>
             <CommerceModifiers>
+                <iCommerce>0</iCommerce>
+                <iCommerce>10</iCommerce>
+                <iCommerce>0</iCommerce>
             </CommerceModifiers>
             <CapitalCommerceModifiers>
             </CapitalCommerceModifiers>
@@ -3417,7 +3464,7 @@
             <Button>Art/Interface/Buttons/Buildings/Nox Noctis.dds</Button>
             <TechPrereq>TECH_DECEPTION</TechPrereq>
             <iAnarchyLength>0</iAnarchyLength>
-            <Upkeep>NONE</Upkeep>
+            <Upkeep>UPKEEP_LOW</Upkeep>
             <iAIWeight>10</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
             <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -3465,12 +3512,19 @@
             <TradeYieldModifiers>
             </TradeYieldModifiers>
             <CommerceModifiers>
+                <iCommerce>10</iCommerce>
+                <iCommerce>0</iCommerce>
+                <iCommerce>0</iCommerce>
             </CommerceModifiers>
             <CapitalCommerceModifiers>
             </CapitalCommerceModifiers>
             <SpecialistExtraCommerces>
             </SpecialistExtraCommerces>
             <Hurrys>
+                <Hurry>
+                    <HurryType>HURRY_GOLD</HurryType>
+                    <bHurry>1</bHurry>
+                </Hurry>
             </Hurrys>
             <SpecialBuildingNotRequireds></SpecialBuildingNotRequireds>
             <SpecialistValids>
@@ -3489,7 +3543,7 @@
             <bPrereqWar>0</bPrereqWar>
             <iAttitudeShareMod>2</iAttitudeShareMod>
             <iCoastalTradeRoutes>0</iCoastalTradeRoutes>
-            <iEnslavementChance>0</iEnslavementChance>
+            <iEnslavementChance>25</iEnslavementChance>
             <iFoodConsumptionPerPopulation>0</iFoodConsumptionPerPopulation>
             <BlockAlignment>ALIGNMENT_GOOD</BlockAlignment>
             <PrereqAlignment>NONE</PrereqAlignment>

@@ -802,6 +802,7 @@ bool CvUnitAI::AI_update()
 // so for efficiency, we should only check them once.
 bool CvUnitAI::AI_follow(bool bFirst)
 {
+	PROFILE_FUNC();
 	FAssert(getDomainType() != DOMAIN_AIR);
 
 	if (AI_followBombard())
@@ -29429,11 +29430,24 @@ void CvUnitAI::AI_mageCast()
         if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_INSPIRATION")) == 0)
             cast(GC.getInfoTypeForString("SPELL_INSPIRATION"));
 
-
+	// Spirit III (EitB)
+    if (canCast(GC.getInfoTypeForString("SPELL_ILLUMINATION"),false))
+        if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_ILLUMINATION")) == 0)
+            cast(GC.getInfoTypeForString("SPELL_ILLUMINATION"));
 
     if (canCast(GC.getInfoTypeForString("SPELL_HOPE"),false))
         if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_HOPE")) == 0)
             cast(GC.getInfoTypeForString("SPELL_HOPE"));
+
+	// Creation I
+	if (canCast(GC.getInfoTypeForString("SPELL_GROWTH"),false))
+		if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_GROWTH")) == 0)
+			cast(GC.getInfoTypeForString("SPELL_GROWTH"));
+
+	// Creation III
+	if (canCast(GC.getInfoTypeForString("SPELL_BLESSING"),false))
+		if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_BLESSING")) == 0)
+			cast(GC.getInfoTypeForString("SPELL_BLESSING"));
 
 // Spells to boost the Garrison Units
     if (canCast(GC.getInfoTypeForString("SPELL_DANCE_OF_BLADES"),false))

@@ -39,7 +39,7 @@
     </Define>
     <Define>
         <DefineName>GREAT_PEOPLE_THRESHOLD_INCREASE_TEAM</DefineName>
-        <iDefineIntVal>100</iDefineIntVal>
+        <iDefineIntVal>50</iDefineIntVal>
     </Define>
     <Define>
         <DefineName>BASE_SPY_SABOTAGE_COST</DefineName>
@@ -67,15 +67,15 @@
     </Define>
     <Define>
         <DefineName>TECH_COST_EXTRA_TEAM_MEMBER_MODIFIER</DefineName>
-        <iDefineIntVal>0</iDefineIntVal>
+        <iDefineIntVal>50</iDefineIntVal>
     </Define>
     <Define>
         <DefineName>TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER</DefineName>
-        <iDefineIntVal>10</iDefineIntVal>
+        <iDefineIntVal>30</iDefineIntVal>
     </Define>
     <Define>
         <DefineName>MIN_REVOLUTION_TURNS</DefineName>
-        <iDefineIntVal>10</iDefineIntVal>
+        <iDefineIntVal>9</iDefineIntVal>
     </Define>
     <Define>
         <DefineName>MAX_EXPERIENCE_PER_COMBAT</DefineName>
@@ -167,7 +167,7 @@
     </Define>
     <Define>
         <DefineName>FEATURE_REQUIRE_RESIST_AMOUNT</DefineName>
-        <iDefineIntVal>20</iDefineIntVal>
+        <iDefineIntVal>5</iDefineIntVal>
     </Define>
     <Define>
         <DefineName>FEATURE_UPGRADE_CHANCE</DefineName>
@@ -320,8 +320,8 @@
         <DefineTextVal>UNIT_SLAVE</DefineTextVal>
     </Define>
     <Define>
-        <DefineName>GREAT_COMMANDER_PROMOTION</DefineName>
-        <DefineTextVal>PROMOTION_GREAT_COMMANDER</DefineTextVal>
+        <DefineName>GREAT_GENERAL_PROMOTION</DefineName>
+        <DefineTextVal>PROMOTION_GREAT_GENERAL</DefineTextVal>
     </Define>
     <Define>
         <DefineName>HIDDEN_NATIONALITY_PROMOTION</DefineName>
