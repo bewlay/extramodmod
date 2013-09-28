@@ -613,7 +613,7 @@ void CvPlot::doTurn()
 							else
 								eUnitAI = area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK;
 
-							createSpawn( eBestSpawn, eUnitAI, 0, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
+							createSpawn( eBestSpawn, eUnitAI, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
                         }
                     }
                 }
@@ -6954,7 +6954,7 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 					}
 				}
 				if( eBestSpawn != NO_SPAWN )
-					createSpawn( eBestSpawn, UNITAI_LAIRGUARDIAN, 0, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
+					createSpawn( eBestSpawn, UNITAI_LAIRGUARDIAN, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
 				else
 				{
 					if( bSpawnAvailable )
@@ -12617,7 +12617,7 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bBarbTech )
 	return iValue;
 }
 
-void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns, int iLairPlot )
+void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot )
 {
 	if( eSpawn == NO_SPAWN )
 	{
@@ -12718,9 +12718,6 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns
 
 			// CreateLair
 			pUnit->setSpawnType( eSpawn );
-
-			if( iHeldTurns > 0 )
-				pUnit->changeImmobileTimer( iHeldTurns );
 		}
 	}
 
@@ -12744,7 +12741,7 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iHeldTurns
 			}
 			if( iBestIndex != -1 )
 			{
-				createSpawn( veTmpIncSpawns[iBestIndex].first, eUnitAI, iHeldTurns );
+				createSpawn( veTmpIncSpawns[iBestIndex].first, eUnitAI, iLairPlot );
 				veIncludedSpawns.erase( veIncludedSpawns.begin() + iBestIndex );
 				iRandomIncludedSpawns--;
 			}

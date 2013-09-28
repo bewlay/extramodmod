@@ -7643,7 +7643,7 @@ void CvGame::createBarbarianUnits()
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* SpawnInfo                                                                                    */
 /************************************************************************************************/
-void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal, int iHeldTurns )
+void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 {
 	bool bVerbose = true;
 
@@ -7690,7 +7690,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal, int iHeldTurns )
 		logBBAI("WILDERNESS - SpawnInfo %s chosen!", kBestSpawn.getType() );
 		
 		UnitAITypes eUnitAI = bAnimal ? UNITAI_ANIMAL : ( pPlot->area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
-		pPlot->createSpawn( eBestSpawn, eUnitAI, iHeldTurns );
+		pPlot->createSpawn( eBestSpawn, eUnitAI );
 	}
 	else
 	{

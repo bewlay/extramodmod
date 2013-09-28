@@ -836,7 +836,7 @@ protected:
 /* SpawnInfo                                                                                    */
 /************************************************************************************************/
 	// LFGR_TODO: Remove iHeldTurns
-	void createBarbarianSpawn( CvPlot* pPlot, bool bAnimal, int iHeldTurns = 0 );
+	void createBarbarianSpawn( CvPlot* pPlot, bool bAnimal );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

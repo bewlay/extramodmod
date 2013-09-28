@@ -640,7 +640,7 @@ public:
 	void setLairUnitCount(int iNewValue);
 
 	int getSpawnValue( SpawnTypes eSpawnType, bool bBarbTech );
-	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI, int iHeldTurns = 0, int iLairPlot = -1 );
+	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI, int iLairPlot = -1 );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
