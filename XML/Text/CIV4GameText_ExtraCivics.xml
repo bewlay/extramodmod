@@ -29,4 +29,16 @@
 			<Plural>0</Plural>
 		</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_URBAN_PLANNING</Tag>
+		<English>Urban Planning</English>
+		<French>Urban Planning</French>
+		<German>Urban Planning</German>
+		<Italian>Urban Planning</Italian>
+		<Spanish>
+			<Text>Planificación Urbana</Text>
+			<Gender>Female</Gender>
+			<Plural>0</Plural>
+		</Spanish>
+	</TEXT>
 </Civ4GameText>
