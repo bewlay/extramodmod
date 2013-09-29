@@ -3639,7 +3639,7 @@
             <iFoodConsumptionPerPopulation>0</iFoodConsumptionPerPopulation>
             <BlockAlignment>NONE</BlockAlignment>
             <PrereqAlignment>NONE</PrereqAlignment>
-            <PrereqCivilization>NONE</PrereqCivilization>
+            <PrereqCivilization>CIVILIZATION_SIDAR</PrereqCivilization>
             <PrereqReligion>NONE</PrereqReligion>
         </CivicInfo>
         <CivicInfo>
