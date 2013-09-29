@@ -36046,6 +36046,7 @@
 				<BonusType>BONUS_MANA_LIFE</BonusType>
 				<BonusType>BONUS_MANA_ENCHANTMENT</BonusType>
 				<BonusType>BONUS_MANA_NATURE</BonusType>
+				<BonusType>BONUS_MANA_FORCE</BonusType>
 			</PrereqBonuses>
 			<ProductionTraits>
 			</ProductionTraits>
@@ -36119,7 +36120,7 @@
 			<iHealRateChange>0</iHealRateChange>
 			<iHealth>0</iHealth>
 			<iAreaHealth>0</iAreaHealth>
-			<iGlobalHealth>0</iGlobalHealth>
+			<iGlobalHealth>2</iGlobalHealth>
 			<iHappiness>0</iHappiness>
 			<iAreaHappiness>0</iAreaHappiness>
 			<iGlobalHappiness>0</iGlobalHappiness>
@@ -36497,6 +36498,7 @@
 				<BonusType>BONUS_MANA_SUN</BonusType>
 				<BonusType>BONUS_MANA_SPIRIT</BonusType>
 				<BonusType>BONUS_MANA_MIND</BonusType>
+				<BonusType>BONUS_MANA_CREATION</BonusType>
 			</PrereqBonuses>
 			<ProductionTraits>
 			</ProductionTraits>
@@ -36610,6 +36612,9 @@
 			<CommerceChangeDoubleTimes>
 			</CommerceChangeDoubleTimes>
 			<CommerceModifiers>
+				<iCommerce>0</iCommerce>
+				<iCommerce>15</iCommerce>
+				<iCommerce>0</iCommerce>
 			</CommerceModifiers>
 			<GlobalCommerceModifiers>
 			</GlobalCommerceModifiers>
@@ -36948,8 +36953,8 @@
 			</HappinessTraits>
 			<NoBonus>NONE</NoBonus>
 			<PowerBonus>NONE</PowerBonus>
-			<FreeBonus>NONE</FreeBonus>
-			<iNumFreeBonuses>0</iNumFreeBonuses>
+			<FreeBonus>BONUS_MANA_METAMAGIC</FreeBonus>
+			<iNumFreeBonuses>2</iNumFreeBonuses>
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
@@ -36995,7 +37000,7 @@
 			<iGlobalGreatPeopleRateModifier>0</iGlobalGreatPeopleRateModifier>
 			<iAnarchyModifier>0</iAnarchyModifier>
 			<iGoldenAgeModifier>0</iGoldenAgeModifier>
-			<iGlobalHurryModifier>0</iGlobalHurryModifier>
+			<iGlobalHurryModifier>-20</iGlobalHurryModifier>
 			<iExperience>0</iExperience>
 			<iGlobalExperience>0</iGlobalExperience>
 			<iFoodKept>0</iFoodKept>
@@ -37014,15 +37019,15 @@
 			<iHealRateChange>0</iHealRateChange>
 			<iHealth>0</iHealth>
 			<iAreaHealth>0</iAreaHealth>
-			<iGlobalHealth>0</iGlobalHealth>
+			<iGlobalHealth>2</iGlobalHealth>
 			<iHappiness>0</iHappiness>
 			<iAreaHappiness>0</iAreaHappiness>
-			<iGlobalHappiness>0</iGlobalHappiness>
+			<iGlobalHappiness>2</iGlobalHappiness>
 			<iStateReligionHappiness>0</iStateReligionHappiness>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
 			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
 			<iSpaceProductionModifier>0</iSpaceProductionModifier>
-			<iGlobalSpaceProductionModifier>0</iGlobalSpaceProductionModifier>
+			<iGlobalSpaceProductionModifier>25</iGlobalSpaceProductionModifier>
 			<iTradeRoutes>0</iTradeRoutes>
 			<iCoastalTradeRoutes>0</iCoastalTradeRoutes>
 			<iGlobalTradeRoutes>0</iGlobalTradeRoutes>
@@ -37178,6 +37183,7 @@
 				<BonusType>BONUS_MANA_DEATH</BonusType>
 				<BonusType>BONUS_MANA_ENTROPY</BonusType>
 				<BonusType>BONUS_MANA_SHADOW</BonusType>
+				<BonusType>BONUS_MANA_DIMENSIONAL</BonusType>
 			</PrereqBonuses>
 			<ProductionTraits>
 			</ProductionTraits>
@@ -37440,7 +37446,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>800</iCost>
+			<iCost>1000</iCost>
 			<iHurryCostModifier>50</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -37541,6 +37547,10 @@
 			<BonusHappinessChanges>
 			</BonusHappinessChanges>
 			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_MANA_ICE</BonusType>
+					<iProductonModifier>20</iProductonModifier>
+				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
