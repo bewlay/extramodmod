@@ -59,7 +59,16 @@ void CyGlobalContextPythonInterface1(python::class_<CyGlobalContext>& x)
 
 		.def("getNumSeaLevelInfos", &CyGlobalContext::getNumSeaLevelInfos, "int () - Number of seal level infos")
 		.def("getSeaLevelInfo", &CyGlobalContext::getSeaLevelInfo, python::return_value_policy<python::reference_existing_object>(), "CvSeaLevelInfo - (SeaLevelTypeID)")
-
+		
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+		.def("getNumTerrainFlavourInfos", &CyGlobalContext::getNumTerrainFlavourInfos, "() - Total TerrainFlavour Infos XML\\Terrain\\CIV4TerrainFlavourInfos.xml")
+		.def("getTerrainFlavourInfo", &CyGlobalContext::getTerrainFlavourInfo, python::return_value_policy<python::reference_existing_object>(), "(TerrainFlavourID) - CvInfo for TerrainFlavourID")
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+		
 		.def("getNumPlayableCivilizationInfos", &CyGlobalContext::getNumPlayableCivilizationInfos, "() - Total # of Playable Civs")
 		.def("getNumCivilizationInfos", &CyGlobalContext::getNumCivilizatonInfos, "() - Total Civilization Infos XML\\Civilizations\\CIV4CivilizationInfos.xml")
 		.def("getCivilizationInfo", &CyGlobalContext::getCivilizationInfo, python::return_value_policy<python::reference_existing_object>(), "(CivilizationID) - CvInfo for CivilizationID")

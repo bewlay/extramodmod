@@ -971,6 +971,12 @@
 		<DefineName>PUPPET_CULTURE_MULTIPLIER</DefineName> 
 		<iDefineIntVal>50</iDefineIntVal>
 	</Define>
+<!-- TERRAIN_FLAVOUR 09/2013 lfgr -->
+	<Define>
+		<DefineName>TERRAIN_FLAVOUR_RADIUS</DefineName>
+		<iDefineIntVal>3</iDefineIntVal>
+	</Define>
+<!-- TERRAIN_FLAVOUR end -->
 <!-- WILDERNESS 08/2013 lfgr / PlotWilderness, SpawnInfo, LairUnitCount, CreateLair, LairGuardian -->
 	<Define>
 		<DefineName>WILDERNESS_MIN_MAX_INHABITED_WILDERNESS</DefineName>

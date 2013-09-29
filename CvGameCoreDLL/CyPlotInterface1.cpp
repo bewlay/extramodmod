@@ -291,6 +291,14 @@ void CyPlotPythonInterface1(python::class_<CyPlot>& x)
 		.def("calculateChokeValue", &CyPlot::calculateChokeValue, "void ()")
 		// Super Forts end
 /************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+		.def("calcTerrainFlavourWeight", &CyPlot::calcTerrainFlavourWeight, "float (TerrainFlavourTypes eTerrainFlavour, int iMaxPlotDistance)")
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* ImprovementSpawnTypes, PlotWilderness, SpawnInfo                                             */
 /************************************************************************************************/

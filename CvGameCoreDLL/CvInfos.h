@@ -2974,6 +2974,15 @@ public:
 	int getHero() const;
 	bool isMaintainFeatures(int i) const;
 //FfH: End Add
+	
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+	// LFGR_TODO: expose
+	int getTerrainFlavour() const;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 
 /*************************************************************************************************/
 /**	New Tag Defs	(CivilizationInfos)		01/12/09								Xienwolf	**/
@@ -3003,6 +3012,14 @@ protected:
 	int m_iSelectionSoundScriptId;
 	int m_iActionSoundScriptId;
 	int m_iDerivativeCiv;
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+	int m_iTerrainFlavour;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 
 	bool m_bAIPlayable;
 	bool m_bPlayable;
@@ -7676,6 +7693,68 @@ protected:
 	std::string m_szLoading;
 	std::string m_szLoadingSlideshow;
 };
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+
+// LFGR_TODO expose to python
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//  class: CvTerrainFlavourInfo
+//
+//  DESC: LFGR_TODO
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvTerrainFlavourInfo :
+	public CvInfoBase
+{
+	//---------------------------------------PUBLIC INTERFACE---------------------------------
+public:
+
+	CvTerrainFlavourInfo();
+	virtual ~CvTerrainFlavourInfo();
+	
+	// ints
+	int getBaseWeight() const;
+	int getIsolationPercentWeight() const;
+	int getCoastalWeight() const;
+
+	// Arrays
+	int getPlotPercentWeight( int ePlotType ) const;
+	int getTerrainPercentWeight( int eTerrain ) const;
+	int getFeaturePercentWeight( int eFeature ) const;
+	int getImprovementCountWeight( int eImprovement ) const;
+	int getBonusCountWeight( int eBonus ) const;
+	int getYieldOnPlotPercentWeight( int eYield ) const;
+
+	bool read(CvXMLLoadUtility* pXML);
+	DllExport void read(FDataStreamBase* stream);
+	DllExport void write(FDataStreamBase* stream);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+
+protected:
+	
+	// ints
+	int m_iBaseWeight;
+	int m_iIsolationPercentWeight;
+	int m_iCoastalWeight;
+
+	// Arrays
+	int* m_piPlotPercentWeight;
+	int* m_piTerrainPercentWeight;
+	int* m_piFeaturePercentWeight;
+	int* m_piImprovementCountWeight;
+	int* m_piBonusCountWeight;
+	int* m_piYieldOnPlotPercentWeight;
+};
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */

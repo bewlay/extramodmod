@@ -1182,6 +1182,18 @@ void CyPlot::calculateChokeValue()
 // Super Forts end
 
 /************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+float CyPlot::calcTerrainFlavourWeight( /*TerrainFlavourTypes*/ int eTerrainFlavour, int iMaxPlotDistance )
+{
+	CvTerrainAmountCache kTerrainAmounts = m_pPlot->getTerrainAmounts( iMaxPlotDistance );
+	return m_pPlot ? m_pPlot->calcTerrainFlavourWeight( (TerrainFlavourTypes) eTerrainFlavour, &kTerrainAmounts ) : 0;
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* ImprovementSpawnTypes, PlotWilderness, SpawnInfo                                             */
 /************************************************************************************************/

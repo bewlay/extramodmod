@@ -1215,6 +1215,29 @@ CvFeatureInfo& CvGlobals::getFeatureInfo(FeatureTypes eFeatureNum)
 	return *(m_paFeatureInfo[eFeatureNum]);
 }
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+int CvGlobals::getNumTerrainFlavourInfos()
+{
+	return (int)m_paTerrainFlavourInfo.size();
+}
+
+std::vector<CvTerrainFlavourInfo*>& CvGlobals::getTerrainFlavourInfo()	// For Moose - XML Load Util, CvInfos
+{
+	return m_paTerrainFlavourInfo;
+}
+
+CvTerrainFlavourInfo& CvGlobals::getTerrainFlavourInfo(TerrainFlavourTypes eTerrainFlavourNum)
+{
+	FAssert(eTerrainFlavourNum > -1);
+	FAssert(eTerrainFlavourNum < GC.getNumTerrainFlavourInfos());
+	return *(m_paTerrainFlavourInfo[eTerrainFlavourNum]);
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
 int& CvGlobals::getNumPlayableCivilizationInfos()
 {
 	return m_iNumPlayableCivilizationInfos;
@@ -3583,6 +3606,13 @@ void CvGlobals::deleteInfoArrays()
 
 	deleteInfoArray(m_paLeaderHeadInfo);
 	deleteInfoArray(m_paTraitInfo);
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	deleteInfoArray(m_paTerrainFlavourInfo);
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 	deleteInfoArray(m_paCivilizationInfo);
 	deleteInfoArray(m_paUnitArtStyleTypeInfo);
 

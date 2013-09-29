@@ -5790,6 +5790,28 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 	}
 	else if (!bShift && bAlt && (gDLL->getChtLvl() > 0))
 	{
+	/************************************************************************************************/
+	/* TERRAIN_FLAVOUR                        09/2013                                 lfgr          */
+	/* Debug                                                                                        */
+	/************************************************************************************************/
+		szString.append( L"\nTerrainFlavour Weights:" );
+		CvTerrainAmountCache kTerrainAmounts = pPlot->getTerrainAmounts();
+		for( int eTerrainFlavour = 0; eTerrainFlavour < GC.getNumTerrainFlavourInfos(); eTerrainFlavour++ )
+		{
+			float fWeight = pPlot->calcTerrainFlavourWeight( (TerrainFlavourTypes) eTerrainFlavour, &kTerrainAmounts );
+
+			if( fWeight > 0 )
+			{
+				CvWString sTypeString = CvWString( GC.getTerrainFlavourInfo( (TerrainFlavourTypes) eTerrainFlavour ).getType() );
+				sTypeString = sTypeString.substr( CvWString( "TERRAIN_FLAVOUR_" ).size() );
+			
+				szTempBuffer.Format(L"\n  %s: %f", sTypeString.c_str(), fWeight );
+				szString.append(szTempBuffer);
+			}
+		}
+	/************************************************************************************************/
+	/* TERRAIN_FLAVOUR                                                                END           */
+	/************************************************************************************************/
 	    if (pPlot->isOwned())
 	    {
             szTempBuffer.Format(L"\nThis player has %d area cities", pPlot->area()->getCitiesPerPlayer(pPlot->getOwnerINLINE()));

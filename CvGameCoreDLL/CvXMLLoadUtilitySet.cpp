@@ -14,6 +14,10 @@
 #include "FVariableSystem.h"
 #include "CvGameCoreUtils.h"
 
+// lfgr TERRAIN_FLAVOUR_TEST
+#include "BetterBTSAI.h"
+// lfgr end
+
 // Macro for Setting Global Art Defines
 #define INIT_XML_GLOBAL_LOAD(xmlInfoPath, infoArray, numInfos)  SetGlobalClassInfo(infoArray, xmlInfoPath, numInfos);
 
@@ -957,6 +961,100 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 	{
 		GC.getUnitClassInfo((UnitClassTypes)i).readPass3();
 	}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	LoadGlobalClassInfo( GC.getTerrainFlavourInfo(), "CIV4TerrainFlavourInfos", "Terrain", "Civ4TerrainFlavourInfos/TerrainFlavourInfos/TerrainFlavourInfo", false );
+	
+	/*
+	// lfgr TERRAIN_FLAVOUR_TEST
+	// print all TerrainFlavourInfos
+	
+	for( int eTerrainFlavour = 0; eTerrainFlavour < GC.getNumTerrainFlavourInfos(); eTerrainFlavour++ )
+	{
+		CvTerrainFlavourInfo& kTerrainFlavourInfo = GC.getTerrainFlavourInfo( (TerrainFlavourTypes) eTerrainFlavour );
+		logBBAI( "++++ TerrainFlavour Info: %s +++", kTerrainFlavourInfo.getType() );
+		
+		int iBaseWeight = kTerrainFlavourInfo.getBaseWeight();
+		if( iBaseWeight != 0 )
+			logBBAI( "    iBaseWeight: %d", iBaseWeight );
+		
+		int iIsolationPercentWeight = kTerrainFlavourInfo.getIsolationPercentWeight();
+		if( iIsolationPercentWeight != 0 )
+			logBBAI( "    iIsolationPercentWeight: %d", iIsolationPercentWeight );
+		
+		int iCoastalWeight = kTerrainFlavourInfo.getCoastalWeight();
+		if( iCoastalWeight != 0 )
+			logBBAI( "    iCoastalWeight: %d", iCoastalWeight );
+		
+		logBBAI( "    PlotPercentWeight:" );
+
+		int iPlotWeight = kTerrainFlavourInfo.getPlotPercentWeight( PLOT_PEAK );
+		if( iPlotWeight != 0 )
+			logBBAI( "        PLOT_PEAK: %d", iPlotWeight );
+
+		iPlotWeight = kTerrainFlavourInfo.getPlotPercentWeight( PLOT_HILLS );
+		if( iPlotWeight != 0 )
+			logBBAI( "        PLOT_HILLS: %d", iPlotWeight ); 
+
+		iPlotWeight = kTerrainFlavourInfo.getPlotPercentWeight( PLOT_LAND );
+		if( iPlotWeight != 0 )
+			logBBAI( "        PLOT_LAND: %d", iPlotWeight ); 
+
+		iPlotWeight = kTerrainFlavourInfo.getPlotPercentWeight( PLOT_OCEAN );
+		if( iPlotWeight != 0 )
+			logBBAI( "        PLOT_OCEAN: %d", iPlotWeight ); 
+		
+		logBBAI( "    TerrainPercentWeight:" );
+		for( int eTerrain = 0; eTerrain < GC.getNumTerrainInfos(); eTerrain++ )
+		{
+			int iWeight = kTerrainFlavourInfo.getTerrainPercentWeight( eTerrain );
+			if( iWeight != 0 )
+				logBBAI( "        %s: %d", GC.getTerrainInfo( (TerrainTypes) eTerrain ).getType(), iWeight ); 
+		}
+		
+		logBBAI( "    FeaturePercentWeight:" );
+		for( int eFeature = 0; eFeature < GC.getNumFeatureInfos(); eFeature++ )
+		{
+			int iWeight = kTerrainFlavourInfo.getFeaturePercentWeight( eFeature );
+			if( iWeight != 0 )
+				logBBAI( "        %s: %d", GC.getFeatureInfo( (FeatureTypes) eFeature ).getType(), iWeight ); 
+		}
+		
+		logBBAI( "    ImprovementAvailableWeight:" );
+		for( int eImprovement = 0; eImprovement < GC.getNumImprovementInfos(); eImprovement++ )
+		{
+			int iWeight = kTerrainFlavourInfo.getImprovementAvailableWeight( eImprovement );
+			if( iWeight != 0 )
+				logBBAI( "        %s: %d", GC.getImprovementInfo( (ImprovementTypes) eImprovement ).getType(), iWeight ); 
+		}
+		
+		logBBAI( "    BonusAvailableWeight:" );
+		for( int eBonus = 0; eBonus < GC.getNumBonusInfos(); eBonus++ )
+		{
+			int iWeight = kTerrainFlavourInfo.getBonusAvailableWeight( eBonus );
+			if( iWeight != 0 )
+				logBBAI( "        %s: %d", GC.getBonusInfo( (BonusTypes) eBonus ).getType(), iWeight ); 
+		}
+
+		logBBAI( "    YieldOnPlotPercentWeight:" );
+
+		int iYieldWeight = kTerrainFlavourInfo.getYieldOnPlotPercentWeight( YIELD_FOOD );
+		if( iYieldWeight != 0 )
+			logBBAI( "        YIELD_FOOD: %d", iYieldWeight );
+
+		iYieldWeight = kTerrainFlavourInfo.getYieldOnPlotPercentWeight( YIELD_PRODUCTION );
+		if( iYieldWeight != 0 )
+			logBBAI( "        YIELD_PRODUCTION: %d", iYieldWeight ); 
+
+		iYieldWeight = kTerrainFlavourInfo.getYieldOnPlotPercentWeight( YIELD_COMMERCE );
+		if( iYieldWeight != 0 )
+			logBBAI( "        YIELD_COMMERCE: %d", iYieldWeight );
+	}
+		*/
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 
 	LoadGlobalClassInfo(GC.getUnitArtStyleTypeInfo(), "CIV4UnitArtStyleTypeInfos", "Civilizations", "Civ4UnitArtStyleTypeInfos/UnitArtStyleTypeInfos/UnitArtStyleTypeInfo", false);
 	LoadGlobalClassInfo(GC.getCivilizationInfo(), "CIV4CivilizationInfos", "Civilizations", "Civ4CivilizationInfos/CivilizationInfos/CivilizationInfo", true, &CvDLLUtilityIFaceBase::createCivilizationInfoCacheObject);
