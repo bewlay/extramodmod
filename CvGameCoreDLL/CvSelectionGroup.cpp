@@ -1018,10 +1018,14 @@ bool CvSelectionGroup::canStartMission(int iMission, int iData1, int iData2, CvP
 			break;
 
 		case MISSION_LEAD:
+			/** ExtraModMod: Great Generals are available unconditionally.
 			if (pLoopUnit->canLead(pPlot, iData1))
 			{
 				return true;
 			}
+			break;
+			*/
+			return false;
 			break;
 
 		case MISSION_ESPIONAGE:
@@ -1254,7 +1258,7 @@ void CvSelectionGroup::startMission()
 				{
 					pLoopUnit = ::getUnit(pUnitNode->m_data);
 					pUnitNode = nextUnitNode(pUnitNode);
-					if (pLoopUnit->plot()->getImprovementType() == NO_IMPROVEMENT && pLoopUnit->isEnemyRoute())
+					if (pLoopUnit->plot()->getImprovementType() == NO_IMPROVEMENT && pLoopUnit->isEnemyRoute() && !isHuman())
 					{
 						bDidPillage = true;
 						break;
@@ -3647,9 +3651,17 @@ bool CvSelectionGroup::groupAttack(int iX, int iY, int iFlags, bool& bFailedAlre
 
                     if (!pLoopUnit->isHasCasted())
                     {
-                        if (pLoopUnit->isSummoner())
+                        if (pLoopUnit->isDirectDamageCaster())
                         {
-                            pLoopUnit->AI_SummonCast();
+                            pLoopUnit->AI_DirectDamageCast(1);
+                        }
+                    }
+
+                    if (!pLoopUnit->isHasCasted())
+                    {
+                        if (pLoopUnit->isBuffer())
+                        {
+                            pLoopUnit->AI_BuffCast();
                         }
                     }
 
@@ -3660,24 +3672,19 @@ bool CvSelectionGroup::groupAttack(int iX, int iY, int iFlags, bool& bFailedAlre
                             pLoopUnit->AI_DeBuffCast();
                         }
                     }
+
                     if (!pLoopUnit->isHasCasted())
                     {
-                        if (pLoopUnit->isDirectDamageCaster())
+                        if (pLoopUnit->isSummoner())
                         {
-                            pLoopUnit->AI_DirectDamageCast(1);
-                        }
-                    }
-                    if (!pLoopUnit->isHasCasted())
-                    {
-                        if (pLoopUnit->isBuffer())
-                        {
-                            pLoopUnit->AI_BuffCast();
+                            pLoopUnit->AI_SummonCast();
                         }
                     }
                 }
             }
         }
 
+		/*
         if (pDestPlot->isCity() && GET_TEAM(getTeam()).isAtWar(pDestPlot->getTeam()))
         {
             int iBombarbTurns=getBombardTurns(pDestPlot->getPlotCity());
@@ -3709,6 +3716,7 @@ bool CvSelectionGroup::groupAttack(int iX, int iY, int iFlags, bool& bFailedAlre
 				}
             }
 		}
+		*/
 	}
 
 /*************************************************************************************************/
@@ -3858,7 +3866,8 @@ bool CvSelectionGroup::groupAttack(int iX, int iY, int iFlags, bool& bFailedAlre
 							// if this is AI stack, follow through with the attack to the end
 							if (!isHuman() && getNumUnits() > 1)
 							{
-								AI_queueGroupAttack(iX, iY);
+								//AI_queueGroupAttack(iX, iY);
+								AI_queueGroupAttack(pDestPlot->getX_INLINE(), pDestPlot->getY_INLINE()); // K-Mod
 							}
 
 							break;

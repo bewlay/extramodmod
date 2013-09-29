@@ -593,6 +593,16 @@ public:
 	int getMilitaryProductionModifier() const;														// Exposed to Python
 	void changeMilitaryProductionModifier(int iChange);
 
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	int getLivingProductionModifier() const;														// MISSING EXPOSITION TO PYTHON
+	void changeLivingProductionModifier(int iChange);                                               // MISSING EXPOSITION TO PYTHON
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
+
 	int getSpaceProductionModifier() const;																// Exposed to Python
 	void changeSpaceProductionModifier(int iChange);
 
@@ -1202,9 +1212,9 @@ public:
 
 	int getBestYieldAvailable(YieldTypes eYield) const;
 
-	/*** PUPPET STATES 07/15/08 by DPII ***/
+	// MNAI - Puppet States
 	bool canJoinPuppetState(PlayerTypes eOfPlayer) const;
-	/**************************************/
+	// MNAI End
 protected:
 
 	int m_iID;
@@ -1282,6 +1292,14 @@ protected:
 	int m_iOverflowProduction;
 	int m_iFeatureProduction;
 	int m_iMilitaryProductionModifier;
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	int m_iLivingProductionModifier;
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	int m_iSpaceProductionModifier;
 	int m_iExtraTradeRoutes;
 	int m_iTradeRouteModifier;

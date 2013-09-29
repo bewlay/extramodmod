@@ -842,6 +842,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			szString.append(gDLL->getText("TXT_KEY_UNIT_DURATION", pUnit->getDuration()));
             szString.append(CvWString::format(ENDCOLR));
 		}
+
 /*************************************************************************************************/
 /**	FFHBUG denev																				**/
 /**	ADDON (FFHBUG) merged Sephi																	**/
@@ -1597,7 +1598,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			}
 
 			int iEnslavementChance = 0;
-			iEnslavementChance += kUnitInfo.getEnslavementChance();
+			iEnslavementChance += pUnit->getEnslavementChance();
 			iEnslavementChance += GET_PLAYER(pUnit->getOwnerINLINE()).getEnslavementChance();
 			if (iEnslavementChance > 0)
 			{
@@ -2311,7 +2312,7 @@ void CvGameTextMgr::setPlotListHelp(CvWStringBuffer &szString, CvPlot* pPlot, bo
 					// group
 					CvSelectionGroup* pHeadGroup = pHeadUnit->getGroup();
 					FAssertMsg(pHeadGroup != NULL, "unit has NULL group");
-					if (pHeadGroup->getNumUnits() > 1)
+					if (pHeadGroup->getNumUnits() > 0)
 					{
 						szString.append(CvWString::format(L"\nGroup:%d [%d units", shortenID(pHeadGroup->getID()), pHeadGroup->getNumUnits()));
 						if( pHeadGroup->getCargo() > 0 )
@@ -9470,6 +9471,12 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_PREREQ_ALIVE"));
     }
+
+	if (GC.getPromotionInfo(ePromotion).getEnslavementChance() != 0)
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_UNIT_ENSLAVEMENT_CHANCE", GC.getPromotionInfo(ePromotion).getEnslavementChance()));
+    }
 //FfH: End Add
 
 	if (wcslen(kPromotionInfo.getHelp()) > 0)
@@ -10964,6 +10971,11 @@ void CvGameTextMgr::setTechTradeHelp(CvWStringBuffer &szBuffer, TechTypes eTech,
 
 	//	Enables permanent alliances...
 	buildVassalStateString(szBuffer, eTech, true, bPlayerContext);
+
+	// MNAI - Puppet States
+	//	Enables puppet states...
+	buildPuppetStateString(szBuffer, eTech, true, bPlayerContext);
+	// MNAI End
 
 	//	Build farm, irrigation, etc...
 	for (iI = 0; iI < GC.getNumBuildInfos(); ++iI)
@@ -13740,6 +13752,19 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_MILITARY_MOD", kBuilding.getMilitaryProductionModifier()));
 	}
+
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	if (kBuilding.getLivingProductionModifier() != 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_LIVING_MOD", kBuilding.getLivingProductionModifier()));
+	}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 
 	if (kBuilding.getSpaceProductionModifier() != 0)
 	{
@@ -17216,15 +17241,23 @@ void CvGameTextMgr::buildVassalStateString(CvWStringBuffer &szBuffer, TechTypes 
 			szBuffer.append(NEWLINE);
 		}
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_VASSAL_STATES"));
-
-		if (GC.getGameINLINE().isOption(GAMEOPTION_PUPPET_STATES))
-		{
-			szBuffer.append(NEWLINE);
-
-			szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_PUPPET_STATES"));
-		}
 	}
 }
+
+// MNAI - Puppet States
+void CvGameTextMgr::buildPuppetStateString(CvWStringBuffer &szBuffer, TechTypes eTech, bool bList, bool bPlayerContext)
+{
+	if (GC.getTechInfo(eTech).isPuppetStateTrading() && (!bPlayerContext || !(GET_TEAM(GC.getGameINLINE().getActiveTeam()).isPuppetStateTrading()) || !(GC.getGameINLINE().isOption(GAMEOPTION_PUPPET_STATES))))
+	{
+		if (bList)
+		{
+			szBuffer.append(NEWLINE);
+		}
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_PUPPET_STATES"));
+	}
+}
+// MNAI End
+
 
 void CvGameTextMgr::buildBridgeString(CvWStringBuffer &szBuffer, TechTypes eTech, bool bList, bool bPlayerContext)
 {
@@ -18195,11 +18228,12 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 					{
 						szBuffer.append(NEWLINE);
 						szBuffer.append(gDLL->getText("TXT_KEY_ATTITUDE_VASSAL_OF", kLoopTeam.getName().GetCString()));
+						// MNAI - Puppet States
 						if (GET_PLAYER(ePlayer).isPuppetState())
 						{
-							szBuffer.append(" (puppet state)");
+							szBuffer.append(" (Puppet State)");
 						}
-
+						// MNAI End
 						setVassalRevoltHelp(szBuffer, (TeamTypes)iTeam, kTeam.getID());
 					}
 					else if (kLoopTeam.isVassal(kTeam.getID()))
@@ -18425,7 +18459,7 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 		}
 //FfH: End Add
 
-		// Puppet States
+		// MNAI - Puppet States
 		iAttitudeChange = GET_PLAYER(ePlayer).AI_getPuppetAttitude(eTargetPlayer);
 		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
 		{
@@ -18433,7 +18467,7 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 			szBuffer.append(NEWLINE);
 			szBuffer.append(szTempBuffer);
 		}
-		// End Puppet States
+		// MNAI End
 
 		for (iI = 0; iI < NUM_MEMORY_TYPES; ++iI)
 		{
@@ -19351,6 +19385,25 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 				iBaseModifier += iMilitaryMod;
 			}
 		}
+
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+		// Living
+		if (unit.isAlive(GET_PLAYER(city.getOwnerINLINE()).getCivilizationType()))
+		{
+			int iLivingMod = city.getLivingProductionModifier();
+			if (0 != iLivingMod)
+			{
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_LIVING", iLivingMod));
+				szBuffer.append(NEWLINE);
+				iBaseModifier += iLivingMod;
+			}
+		}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 
 		// Bonus
 		for (int i = 0; i < GC.getNumBonusInfos(); i++)
@@ -21569,12 +21622,41 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_EVENT_UNIT_DISBAND", szUnit.GetCString()));
 	}
-
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+/*	
 	if (NO_PROMOTION != kEvent.getUnitPromotion())
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_EVENT_UNIT_PROMOTION", szUnit.GetCString(), GC.getPromotionInfo((PromotionTypes)kEvent.getUnitPromotion()).getTextKeyWide()));
 	}
+*/
+	CvWString szPromotionBuffer = L"";
+	if (NO_PROMOTION != kEvent.getUnitPromotion())
+	{
+		szPromotionBuffer.append( GC.getPromotionInfo((PromotionTypes)kEvent.getUnitPromotion()).getDescription() );
+	}
+	
+	for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+	{
+		if( kEvent.isUnitPromotion( i ) )
+		{
+			if( !szPromotionBuffer.IsEmpty() )
+				szPromotionBuffer.append( L", " );
+			szPromotionBuffer.append( GC.getPromotionInfo((PromotionTypes)i).getDescription() );
+		}
+	}
+
+	if( !szPromotionBuffer.IsEmpty() )
+	{
+		szBuffer.append( NEWLINE );
+		szBuffer.append( gDLL->getText( "TXT_KEY_EVENT_UNIT_PROMOTION", szUnit.GetCString(), szPromotionBuffer.GetCString() ) );
+	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	for (int i = 0; i < GC.getNumUnitCombatInfos(); ++i)
 	{
@@ -21698,6 +21780,18 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
 		szBuffer.append(gDLL->getText("TXT_KEY_EVENT_GLOBAL_COUNTER", kEvent.getGlobalCounter()));
 	}
 //FfH: End Add
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/20/13                                lfgr        */
+/************************************************************************************************/
+	if( !CvWString( kEvent.getHelp() ).empty() )
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(CvWString( kEvent.getHelp() ));
+	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	if (!CvWString(kEvent.getPythonHelp()).empty())
 	{
@@ -21707,9 +21801,23 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
 		argsList.add(gDLL->getPythonIFace()->makePythonObject(pTriggeredData));
 
 		gDLL->getPythonIFace()->callFunction(PYRandomEventModule, kEvent.getPythonHelp(), argsList.makeFunctionArgs(), &szHelp);
-
-		szBuffer.append(NEWLINE);
-		szBuffer.append(szHelp);
+		
+/************************************************************************************************/
+/* EVENT_FIXES                              01/20/13                                lfgr        */
+/* Avoid empty newline                                                                          */
+/************************************************************************************************/
+/* Old:                                                                                         */
+//		szBuffer.append(NEWLINE);
+//		szBuffer.append(szHelp);
+/************************************************************************************************/
+		if( !szHelp.empty() )
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(szHelp);
+		}
+/************************************************************************************************/
+/* EVENT_FIXES                             END                                                  */
+/************************************************************************************************/
 	}
 
 	CvWStringBuffer szTemp;

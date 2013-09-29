@@ -670,6 +670,13 @@ void CyInfoPythonInterface3()
 		.def("getUnitDamagedWeight", &CvEventTriggerInfo::getUnitDamagedWeight, "int ()")
 		.def("getUnitDistanceWeight", &CvEventTriggerInfo::getUnitDistanceWeight, "int ()")
 		.def("getUnitExperienceWeight", &CvEventTriggerInfo::getUnitExperienceWeight, "int ()")
+	/************************************************************************************************/
+	/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+	/************************************************************************************************/
+		.def("getUnitMinLevel", &CvEventTriggerInfo::getUnitMinLevel, "int ()")
+	/************************************************************************************************/
+	/* EVENT_NEW_TAGS                          END                                                  */
+	/************************************************************************************************/
 		.def("getMinTreasury", &CvEventTriggerInfo::getMinTreasury, "int ()")
 
 		.def("getUnitRequired", &CvEventTriggerInfo::getUnitRequired, "int (int)")

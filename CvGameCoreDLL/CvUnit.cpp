@@ -117,13 +117,32 @@ void CvUnit::reloadEntity()
 }
 
 
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Added parameter szName                                                                       */
+/************************************************************************************************/
+/*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection)
 void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit)
 //<<<<Unofficial Bug Fix: End Modify
+*/
+void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, CvWString szName)
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 {
 	CvWString szBuffer;
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Moved to CvGame::getNewGreatPersonBornName() (Used in CvPlayer::createGreatPeople())         */
+/************************************************************************************************/
+/*
 	int iUnitName;
+*/
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	int iI, iJ;
 
 	FAssert(NO_UNIT != eUnit);
@@ -157,6 +176,11 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 
 	plot()->setFlagDirty(true);
 
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Moved to CvGame::getNewGreatPersonBornName() (Used in CvPlayer::createGreatPeople())         */
+/************************************************************************************************/
+/*
 	iUnitName = GC.getGameINLINE().getUnitCreatedCount(getUnitType());
 	int iNumNames = m_pUnitInfo->getNumUnitNames();
 	if (iUnitName < iNumNames)
@@ -175,6 +199,11 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 			}
 		}
 	}
+*/
+	setName( szName ); // use parameter
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	setGameTurnCreated(GC.getGameINLINE().getGameTurn());
 
@@ -209,7 +238,7 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 	GET_PLAYER(getOwnerINLINE()).changeAssets(m_pUnitInfo->getAssetValue());
 
 	//GET_PLAYER(getOwnerINLINE()).changePower(m_pUnitInfo->getPowerValue());
-	GET_PLAYER(getOwnerINLINE()).changePower(getTruePower());
+	GET_PLAYER(getOwnerINLINE()).changePower(getTruePower()); // MNAI - True Power calculations
 
 	for (iI = 0; iI < GC.getNumPromotionInfos(); iI++)
 	{
@@ -635,6 +664,8 @@ void CvUnit::convert(CvUnit* pUnit)
             }
         }
     }
+
+	bool bHero = false;
 	for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
 	{
         if (pUnit->isHasPromotion((PromotionTypes)iI))
@@ -650,6 +681,10 @@ void CvUnit::convert(CvUnit* pUnit)
                 {
                     pUnit->setHasPromotion((PromotionTypes)iI, false);
                 }
+			    if (GC.getPromotionInfo((PromotionTypes)iI).getFreeXPPerTurn() != 0)
+			    {
+					bHero = true;
+				}
             }
             if (GC.getPromotionInfo((PromotionTypes)iI).isValidate())
             {
@@ -711,6 +746,29 @@ void CvUnit::convert(CvUnit* pUnit)
 	setGameTurnCreated(pUnit->getGameTurnCreated());
 	setDamage(pUnit->getDamage());
 	setMoves(pUnit->getMoves());
+//>>>>Advanced Rules: Added by Denev 2010/02/04
+	setMadeAttack(pUnit->isMadeAttack());
+	setImmobileTimer(pUnit->getImmobileTimer());
+	setIgnoreHide(pUnit->isIgnoreHide());
+	if (getOwnerINLINE() == pUnit->getOwnerINLINE())
+	{
+		setSummoner(pUnit->getSummoner());
+
+		int iLoop;
+		for (CvUnit* pLoopUnit = GET_PLAYER(getOwnerINLINE()).firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = GET_PLAYER(getOwnerINLINE()).nextUnit(&iLoop))
+		{
+			if (pLoopUnit->getSummoner() == pUnit->getID())
+			{
+				pLoopUnit->setSummoner(getID());
+			}
+		}
+	}
+
+	if (bHero || isWorldUnitClass((UnitClassTypes)getUnitInfo().getUnitClassType()))
+	{
+		AI_setUnitAIType(UNITAI_HERO);
+	}
+//<<<<Advanced Rules: End Add
 
 	setLevel(pUnit->getLevel());
 	int iOldModifier = std::max(1, 100 + GET_PLAYER(pUnit->getOwnerINLINE()).getLevelExperienceModifier());
@@ -730,7 +788,10 @@ void CvUnit::convert(CvUnit* pUnit)
 	setLeaderUnitType(pUnit->getLeaderUnitType());
 
 //FfH: Added by Kael 10/03/2008
-	if (!isWorldUnitClass((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) && isWorldUnitClass((UnitClassTypes)(pUnit->getUnitClassType())))
+	if (!pUnit->m_szName.empty()) {
+		setName(pUnit->m_szName);
+	}
+	else if (!isWorldUnitClass((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) && isWorldUnitClass((UnitClassTypes)(pUnit->getUnitClassType())))
 	{
 	    setName(pUnit->getName());
 	}
@@ -1006,7 +1067,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 	GET_PLAYER(getOwnerINLINE()).changeAssets(-(m_pUnitInfo->getAssetValue()));
 
 	//GET_PLAYER(getOwnerINLINE()).changePower(-(m_pUnitInfo->getPowerValue()));
-	GET_PLAYER(getOwnerINLINE()).changePower(-(getTruePower()));
+	GET_PLAYER(getOwnerINLINE()).changePower(-(getTruePower())); // MNAI - True Power calculations
 
 	GET_PLAYER(getOwnerINLINE()).AI_changeNumAIUnits(AI_getUnitAIType(), -1);
 
@@ -2214,7 +2275,7 @@ void CvUnit::updateCombat(bool bQuick)
 				GET_TEAM(pDefender->getTeam()).AI_changeWarSuccess(getTeam(), GC.getDefineINT("WAR_SUCCESS_DEFENDING"));
 			}
 
-			if (getCaptureUnitType(GET_PLAYER(pDefender->getOwner()).getCivilizationType()) == NO_UNIT)
+			if (getCaptureUnitType(GET_PLAYER(pDefender->getOwner()).getCivilizationType()) == NO_UNIT || isHiddenNationality())
 			{
 				szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_UNIT_DIED_ATTACKING", getNameKey(), pDefender->getNameKey());
 				gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitDefeatScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
@@ -2262,7 +2323,7 @@ void CvUnit::updateCombat(bool bQuick)
 				GET_TEAM(getTeam()).AI_changeWarSuccess(pDefender->getTeam(), GC.getDefineINT("WAR_SUCCESS_ATTACKING"));
 			}
 
-			if (pDefender->getCaptureUnitType(GET_PLAYER(getOwnerINLINE()).getCivilizationType()) == NO_UNIT)
+			if (pDefender->getCaptureUnitType(GET_PLAYER(getOwnerINLINE()).getCivilizationType()) == NO_UNIT || isHiddenNationality())
 			{
 				szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_UNIT_DESTROYED_ENEMY", getNameKey(), pDefender->getNameKey());
 				gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
@@ -4227,7 +4288,7 @@ bool CvUnit::canGift(bool bTestVisible, bool bTestTransport)
 
 	if (m_pUnitInfo->getPrereqAlignment() != NO_ALIGNMENT)
 	{
-		if (m_pUnitInfo->getStateReligion() != GET_PLAYER(pPlot->getOwner()).getAlignment())
+		if (m_pUnitInfo->getPrereqAlignment() != GET_PLAYER(pPlot->getOwner()).getAlignment())
 		{
 			return false;
 		}
@@ -8952,30 +9013,23 @@ CvUnit* CvUnit::upgrade(UnitTypes eUnit) // K-Mod: this now returns the new unit
 
 //FfH: Modified by Kael 04/18/2009
 //	pUpgradeUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eUnit, getX_INLINE(), getY_INLINE(), AI_getUnitAIType());
-    UnitAITypes eUnitAI = AI_getUnitAIType();
-    if (eUnitAI == UNITAI_MISSIONARY)
-    {
-        ReligionTypes eReligion = GET_PLAYER(getOwnerINLINE()).getStateReligion();
-        if (eReligion == NO_RELIGION || GC.getUnitInfo(eUnit).getReligionSpreads(eReligion) == 0)
-        {
-            eUnitAI = UNITAI_RESERVE;
-        }
-    }
-
-	// Tholal AI - AI switch for upgraded Slaves
-	if (eUnitAI == UNITAI_WORKER && GC.getUnitInfo(eUnit).getWorkRate() == 0)
-    {
-		eUnitAI = UNITAI_ATTACK_CITY;
-    }
-
-	// when we upgrade units that have AI_HERO as their default AI, we should switch to that AI
-	if (GC.getUnitInfo(eUnit).getDefaultUnitAIType() == UNITAI_HERO)
+	UnitAITypes eUnitAI = AI_getUnitAIType();
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/02/23
+/*
+	if (eUnitAI == UNITAI_MISSIONARY)
 	{
-		eUnitAI = UNITAI_HERO;
+		ReligionTypes eReligion = GET_PLAYER(getOwnerINLINE()).getStateReligion();
+		if (eReligion == NO_RELIGION || GC.getUnitInfo(eUnit).getReligionSpreads(eReligion) == 0)
+		{
+			eUnitAI = UNITAI_RESERVE;
+		}
 	}
-	// End Tholal AI
-
-
+*/
+	if (!GC.getUnitInfo(eUnit).getUnitAIType(eUnitAI))
+	{
+		eUnitAI = (UnitAITypes)GC.getUnitInfo(eUnit).getDefaultUnitAIType();
+	}
+//<<<<Unofficial Bug Fix: End Modify
 	pUpgradeUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eUnit, getX_INLINE(), getY_INLINE(), eUnitAI);
 //FfH: End Modify
 
@@ -12545,9 +12599,11 @@ void CvUnit::changeExperience(int iChange, int iMax, bool bFromCombat, bool bInB
 			iUnitExperience += (iChange * kPlayer.getExpInBorderModifier()) / 100;
 		}
 
+		/** ExtraModMod: Great Generals are available unconditionally.
 		// Great General experience - limit this to the Advanced Tactics option
 		if (bUpdateGlobal && GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
-		//if (bUpdateGlobal)
+		*/
+		if (bUpdateGlobal)
 		{
 			kPlayer.changeCombatExperience((iChange * iCombatExperienceMod) / 100);
 		}
@@ -12580,6 +12636,12 @@ void CvUnit::setLevel(int iNewValue)
 {
 	if (getLevel() != iNewValue)
 	{
+		// MNAI - True Power calculations
+		int iNetPowerChange = iNewValue - getLevel();
+		GET_PLAYER(getOwnerINLINE()).changePower(iNetPowerChange);
+		area()->changePower(getOwnerINLINE(), iNetPowerChange);
+		// MNAI End
+
 		m_iLevel = iNewValue;
 		FAssert(getLevel() >= 0);
 
@@ -12598,10 +12660,6 @@ void CvUnit::setLevel(int iNewValue)
 void CvUnit::changeLevel(int iChange)
 {
 	setLevel(getLevel() + iChange);
-
-	// True Power calculations
-	area()->changePower(getOwnerINLINE(), iChange);
-	GET_PLAYER(getOwnerINLINE()).changePower(iChange);
 }
 
 int CvUnit::getCargo() const
@@ -15379,6 +15437,7 @@ void CvUnit::getDefenderCombatValues(CvUnit& kDefender, const CvPlot* pPlot, int
 	iTheirDamage = std::max(1, ((GC.getDefineINT("COMBAT_DAMAGE") * (iOurFirepower + iStrengthFactor)) / (iTheirFirepower + iStrengthFactor)));
 }
 
+// bCheckPlot is always true or CvGameCoreUtils::isPlotEventTrigger(eTrigger), except the call from CvPlot::canTrigger() itself
 int CvUnit::getTriggerValue(EventTriggerTypes eTrigger, const CvPlot* pPlot, bool bCheckPlot) const
 {
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eTrigger);
@@ -15437,6 +15496,15 @@ int CvUnit::getTriggerValue(EventTriggerTypes eTrigger, const CvPlot* pPlot, boo
 			}
 		}
 	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	if( kTrigger.getUnitMinLevel() != 0 )
+		if( getLevel() < kTrigger.getUnitMinLevel() )
+			return MIN_INT;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	int iValue = 0;
 
@@ -15483,6 +15551,20 @@ bool CvUnit::canApplyEvent(EventTypes eEvent) const
         }
 //FfH: End Modify
 
+		
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+		for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+			if( kEvent.isUnitPromotion( i ) )
+			{
+				if( isHasPromotion( (PromotionTypes)i ) )
+					return false;
+			}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
+
 	}
 
 	if (kEvent.getUnitImmobileTurns() > 0)
@@ -15523,6 +15605,17 @@ void CvUnit::applyEvent(EventTypes eEvent)
 //FfH: End Modify
 
 	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/22/13                                lfgr        */
+/************************************************************************************************/
+	for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+		if( kEvent.isUnitPromotion( i ) )
+		{
+			setHasPromotion((PromotionTypes)i, true);
+		}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	if (kEvent.getUnitImmobileTurns() > 0)
 	{
@@ -15793,6 +15886,7 @@ int CvUnit::getSelectionSoundScript() const
 //FfH Spell System: Added by Kael 07/23/2007
 bool CvUnit::canCast(int spell, bool bTestVisible)
 {
+	PROFILE_FUNC();
     SpellTypes eSpell = (SpellTypes)spell;
 	CvSpellInfo& kSpell = GC.getSpellInfo(eSpell);
     CvPlot* pPlot = plot();
@@ -15915,7 +16009,8 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
     }
     if (kSpell.getBuildingClassOwnedPrereq() != NO_BUILDINGCLASS)
     {
-        if (GET_PLAYER(getOwnerINLINE()).getBuildingClassCount((BuildingClassTypes)kSpell.getBuildingClassOwnedPrereq())  == 0)
+        //if (GET_PLAYER(getOwnerINLINE()).getBuildingClassCount((BuildingClassTypes)kSpell.getBuildingClassOwnedPrereq())  == 0)
+		if (GET_TEAM(getTeam()).getBuildingClassCount((BuildingClassTypes)kSpell.getBuildingClassOwnedPrereq()) == 0)
         {
             return false;
         }
@@ -17517,7 +17612,7 @@ void CvUnit::castCreateUnit(int spell)
 	    {
             if (GC.getSpellInfo((SpellTypes)spell).isCopyCastersPromotions())
             {
-                if (!GC.getPromotionInfo((PromotionTypes)iI).isEquipment() && !GC.getPromotionInfo((PromotionTypes)iI).isRace() && iI != GC.getDefineINT("GREAT_COMMANDER_PROMOTION"))
+                if (!GC.getPromotionInfo((PromotionTypes)iI).isEquipment() && !GC.getPromotionInfo((PromotionTypes)iI).isRace() && iI != GC.getDefineINT("GREAT_GENERAL_PROMOTION"))
                 {
                     pUnit->setHasPromotion((PromotionTypes)iI, true);
                 }
@@ -18867,6 +18962,21 @@ void CvUnit::doImmortalRebirth()
 	// Sephi AI End
 }
 
+int CvUnit::getEnslavementChance() const
+{
+	int enslavementChance = m_pUnitInfo->getEnslavementChance();
+
+	for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); iPromotion++)
+	{
+		if (isHasPromotion((PromotionTypes)iPromotion))
+		{
+			enslavementChance += GC.getPromotionInfo((PromotionTypes)iPromotion).getEnslavementChance();
+		}
+	}
+
+	return enslavementChance;
+}
+
 void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 {
 	PromotionTypes ePromotion;
@@ -19032,12 +19142,14 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 	}
 	if (!bUnitAutoCapture) // Tholal Bugfix - we dont also get slaves from units we capture
 	{
-		if ((m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()) > 0)
+		int iEnslavementChance = this->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance();
+
+		if (iEnslavementChance > 0)
 		{
 			// Summons, non-Alive units, Animals and World class units cannot become slaves
 			if (getDuration() == 0 && pLoser->isAlive() && !pLoser->isAnimal() && iUnit == NO_UNIT && !isWorldUnitClass((UnitClassTypes)pLoser->getUnitClassType()))
 			{
-				if (GC.getGameINLINE().getSorenRandNum(100, "Enslavement") < (m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()))
+				if (GC.getGameINLINE().getSorenRandNum(100, "Enslavement") < iEnslavementChance)
 				{
 					iUnit = GC.getDefineINT("SLAVE_UNIT");
 				}
@@ -19120,7 +19232,7 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //*** captured or enslaved  unit is pushed out if enemy unit exists in the same tile.
 //			pUnit = GET_PLAYER(getOwnerINLINE()).initUnit((UnitTypes)iUnit, plot()->getX_INLINE(), plot()->getY_INLINE());
-			if (isBoarding())
+			if (isBoarding() && !pLoser->plot()->isCity())
 			{
 				// boarded ships stay in their plot
 				pUnit = GET_PLAYER(getOwnerINLINE()).initUnit((UnitTypes)iUnit, pLoser->plot()->getX_INLINE(), pLoser->plot()->getY_INLINE(), NO_UNITAI, DIRECTION_SOUTH, true);
@@ -20123,11 +20235,14 @@ void CvUnit::tradeUnit(PlayerTypes eReceivingPlayer)
 /* Afforess	                     END                                                            */
 /************************************************************************************************/
 
+ // MNAI - True Power calculations
 int CvUnit::getTruePower() const
 {
-	return (m_pUnitInfo->getPowerValue() + getLevel());
+	//Tholal note: units start at level 1
+	return (m_pUnitInfo->getPowerValue() + (getLevel() - 1));
 }
 
+ // MNAI - Identify Units with Ranged Collateral Damage ability
 bool CvUnit::isRangedCollateral()
 {
     for (int iSpell = 0; iSpell < GC.getNumSpellInfos(); iSpell++)
@@ -20153,3 +20268,4 @@ bool CvUnit::isRangedCollateral()
 	}
 	return false;
 }
+// MNAI End

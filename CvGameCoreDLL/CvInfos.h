@@ -336,6 +336,9 @@ public:
 	bool isDefensivePactTrading() const;	// Exposed to Python
 	bool isPermanentAllianceTrading() const;	// Exposed to Python
 	bool isVassalStateTrading() const;	// Exposed to Python
+// MNAI - Puppet States
+	bool isPuppetStateTrading() const;	// Exposed to Python
+// MNAI End
 	bool isBridgeBuilding() const;				// Exposed to Python
 	bool isIrrigation() const;						// Exposed to Python
 	bool isIgnoreIrrigation() const;			// Exposed to Python
@@ -419,6 +422,9 @@ protected:
 	bool m_bDefensivePactTrading;
 	bool m_bPermanentAllianceTrading;
 	bool m_bVassalStateTrading;
+// MNAI - Puppet States
+	bool m_bPuppetStateTrading;
+// MNAI End
 	bool m_bBridgeBuilding;
 	bool m_bIrrigation;
 	bool m_bIgnoreIrrigation;
@@ -615,7 +621,7 @@ public:
 	int getBonusAffinity(int i) const;
 	int getDamageTypeCombat(int i) const;
 	int getDamageTypeResist(int i) const;
-
+	int getEnslavementChance() const;
 	// MNAI - additional promotion tags
 	bool isAllowsMoveImpassable() const;
 	bool isAllowsMoveLimitedBorders() const;
@@ -761,6 +767,7 @@ protected:
 	int* m_piBonusAffinity;
 	int* m_piDamageTypeCombat;
 	int* m_piDamageTypeResist;
+	int m_iEnslavementChance;
 //FfH: End Add
 
 	// MNAI - additional promotion tags
@@ -1395,6 +1402,15 @@ public:
 
 	bool readPass2(CvXMLLoadUtility* pXML);
 	bool readPass3();
+
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	bool isAlive(CivilizationTypes eCiv) const;
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 //FfH: End Add
 
 // BUG - Unit Experience - start
@@ -2220,6 +2236,14 @@ public:
 	int getStateReligionHappiness() const;				// Exposed to Python
 	int getWorkerSpeedModifier() const;				// Exposed to Python
 	int getMilitaryProductionModifier() const;				// Exposed to Python
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	int getLivingProductionModifier() const;				// MISSING EXPOSITION TO PYTHON
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	int getSpaceProductionModifier() const;				// Exposed to Python
 	int getGlobalSpaceProductionModifier() const;				// Exposed to Python
 	int getTradeRoutes() const;				// Exposed to Python
@@ -2466,6 +2490,14 @@ protected:
 	int m_iStateReligionHappiness;
 	int m_iWorkerSpeedModifier;
 	int m_iMilitaryProductionModifier;
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	int m_iLivingProductionModifier;
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	int m_iSpaceProductionModifier;
 	int m_iGlobalSpaceProductionModifier;
 	int m_iTradeRoutes;
@@ -6985,6 +7017,13 @@ public:
 	int getUnitDamagedWeight() const;			// Exposed to Python
 	int getUnitDistanceWeight() const;		// Exposed to Python
 	int getUnitExperienceWeight() const;		// Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	int getUnitMinLevel() const; // Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	int getMinTreasury() const;				// Exposed to Python
 
 	int getBuildingRequired(int i) const;		// Exposed to Python
@@ -7021,6 +7060,10 @@ public:
 	int getNumTexts() const;
 	const CvWString& getWorldNews(int i) const;
 	int getNumWorldNews() const;
+
+// Start EmperorFool: Events with Images
+	DllExport const TCHAR* getEventArt() const;				// Exposed to Python
+// End EmperorFool: Events with Images
 
 	bool isSinglePlayer() const;				// Exposed to Python
 	bool isTeam() const;						// Exposed to Python
@@ -7090,6 +7133,13 @@ private:
 	int m_iUnitDamagedWeight;
 	int m_iUnitDistanceWeight;
 	int m_iUnitExperienceWeight;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	int m_iUnitMinLevel;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	int m_iMinTreasury;
 
 	std::vector<int> m_aiUnitsRequired;
@@ -7110,6 +7160,10 @@ private:
 	std::vector<int> m_aiTextEra;
 	std::vector<CvWString> m_aszText;
 	std::vector<CvWString> m_aszWorldNews;
+
+// Start EmperorFool: Events with Images
+	CvString m_szEventArt;
+// End EmperorFool: Events with Images
 
 	bool m_bSinglePlayer;
 	bool m_bTeam;
@@ -7220,6 +7274,14 @@ public:
 	int getInflationModifier() const;			// Exposed to Python
 	int getSpaceProductionModifier() const;	// Exposed to Python
 	int getAIValue() const;	// Exposed to Python
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	bool isUnitPromotion( int iUnitPromotion );
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	int getAdditionalEventChance(int i) const;// Exposed to Python
 	int getAdditionalEventTime(int i) const;	// Exposed to Python
@@ -7335,6 +7397,14 @@ private:
 	int m_iPrereqReligion;
 	int m_iPrereqStateReligion;
 //FfH: End Add
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	bool* m_pbUnitPromotions;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	int* m_piTechFlavorValue;
 	int* m_piPlotExtraYields;

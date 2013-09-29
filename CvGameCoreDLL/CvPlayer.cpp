@@ -119,6 +119,15 @@ CvPlayer::CvPlayer()
 /************************************************************************************************/
 /* AI_AUTO_PLAY_MOD                        END                                                  */
 /************************************************************************************************/
+/*************************************************************************************************/
+/**	CivCounter			               		10/27/09    						Valkrionn		**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+	m_iCivCounter = 0;
+	m_iCivCounterMod = 0;
+/*************************************************************************************************/
+/**	CivCounter								END													**/
+/*************************************************************************************************/
 /************************************************************************************************/
 /* REVOLUTION_MOD                         02/04/08                                jdog5000      */
 /*                                                                                              */
@@ -950,6 +959,15 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 /* AI_AUTO_PLAY_MOD                        END                                                  */
 /************************************************************************************************/
 
+/*************************************************************************************************/
+/**	CivCounter			               		11/04/12    						Terkhen			**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+	m_iCivCounter = 0;
+	m_iCivCounterMod = 0;
+/*************************************************************************************************/
+/**	CivCounter								END													**/
+/*************************************************************************************************/
 
 /************************************************************************************************/
 /* REVOLUTION_MOD                         02/04/09                                jdog5000      */
@@ -2071,6 +2089,16 @@ void CvPlayer::addFreeUnit(UnitTypes eUnit, UnitAITypes eUnitAI)
 
 	pStartingPlot = getStartingPlot();
 
+	// MNAI - Puppet States - used for adding units to a newly created Puppet State
+	if (pStartingPlot == NULL)
+	{
+		if (getCapitalCity() != NULL)
+		{
+			pStartingPlot = getCapitalCity()->plot();
+		}
+	}
+	// MNAI End
+
 	if (pStartingPlot != NULL)
 	{
 		pBestPlot = NULL;
@@ -2951,7 +2979,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 /************************************************************************************************/
 	if( gPlayerLogLevel >= 1 )
 	{
-		logBBAI("  Player %d (%S) acquires city %S bConq %d bTrade %d", getID(), getCivilizationDescription(0), pNewCity->getName(0).GetCString(), bConquest, bTrade );
+		logBBAI("  %S acquires city %S bConq %d bTrade %d", getCivilizationDescription(0), pNewCity->getName(0).GetCString(), bConquest, bTrade );
 	}
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
@@ -3234,10 +3262,20 @@ bool CvPlayer::isCityNameValid(CvWString& szName, bool bTestDestroyed) const
 }
 
 
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Added parameter szName                                                                       */
+/************************************************************************************************/
+/*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection)
 CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection, bool bPushOutExistingUnit)
 //<<<<Unofficial Bug Fix: End Modify
+*/
+CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, CvWString szName)
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 {
 	PROFILE_FUNC();
 
@@ -3247,10 +3285,20 @@ CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI,
 	FAssertMsg(pUnit != NULL, "Unit is not assigned a valid value");
 	if (NULL != pUnit)
 	{
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Added parameter szName                                                                       */
+/************************************************************************************************/
+/*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //		pUnit->init(pUnit->getID(), eUnit, ((eUnitAI == NO_UNITAI) ? ((UnitAITypes)(GC.getUnitInfo(eUnit).getDefaultUnitAIType())) : eUnitAI), getID(), iX, iY, eFacingDirection);
 		pUnit->init(pUnit->getID(), eUnit, ((eUnitAI == NO_UNITAI) ? (UnitAITypes)GC.getUnitInfo(eUnit).getDefaultUnitAIType() : eUnitAI), getID(), iX, iY, eFacingDirection, bPushOutExistingUnit);
 //<<<<Unofficial Bug Fix: End Modify
+*/
+		pUnit->init(pUnit->getID(), eUnit, ((eUnitAI == NO_UNITAI) ? (UnitAITypes)GC.getUnitInfo(eUnit).getDefaultUnitAIType() : eUnitAI), getID(), iX, iY, eFacingDirection, bPushOutExistingUnit, szName);
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	}
 
 	return pUnit;
@@ -4275,7 +4323,7 @@ void CvPlayer::doTurn()
     }
 	// End Sephi AI
 
-	// Puppet States
+	// MNAI - Puppet States
 	if (isPuppetState())
 	{
 		// check for legitimacy - requires that we be the only civ of our type left in the game
@@ -4299,7 +4347,7 @@ void CvPlayer::doTurn()
 			findNewCapital();
 		}
 	}
-	// End Puppet States
+	// MNAI End
 
 	GC.getGameINLINE().verifyDeals();
 	AI_doTurnPre();
@@ -5886,6 +5934,13 @@ bool CvPlayer::canTradeWith(PlayerTypes eWhoTo) const
 		return true;
 	}
 
+// MNAI - Puppet States
+	if (GET_TEAM(getTeam()).isPuppetStateTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isPuppetStateTrading())
+	{
+		return true;
+	}
+// MNAI End
+
 	return false;
 }
 
@@ -5976,6 +6031,14 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 
 	case TRADE_RESOURCES:
 		FAssertMsg(item.m_iData > -1, "iData is expected to be non-negative");
+		
+		// MNAI - Puppet States - barred from trading mana
+		if (GC.getBonusInfo((BonusTypes) item.m_iData).isMana() && 
+			(GET_PLAYER(eWhoTo).isPuppetState() || isPuppetState()))
+		{
+			return false;
+		}
+		// MNAI End
 
 		if (canTradeNetworkWith(eWhoTo))
 		{
@@ -6700,13 +6763,6 @@ void CvPlayer::findNewCapital()
 	int iValue;
 	int iBestValue;
 	int iLoop;
-
-	// Puppet States
-	if (isPuppetState())
-	{
-		return;
-	}
-	// End Puppet States
 	
 	eCapitalBuilding = ((BuildingTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(GC.getDefineINT("CAPITAL_BUILDINGCLASS"))));
 
@@ -7215,7 +7271,22 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 		{
 			eUnit = ((UnitTypes)(GC.getUnitClassInfo((UnitClassTypes)GC.getGoodyInfo(eGoody).getUnitClassType()).getDefaultUnitIndex()));
 		}
+	/************************************************************************************************/
+	/* GP_NAMES                                 07/2013                                 lfgr        */
+	/* Random name for GPs                                                                          */
+	/************************************************************************************************/
+	/*
         pNewUnit = initUnit(eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE());
+	*/
+		CvWString szName;
+		if( GC.getUnitInfo( eUnit ).getNumUnitNames() > 0 )
+			szName = GC.getGameINLINE().getNewGreatPersonBornName( eUnit );
+		else
+			szName = "";
+        pNewUnit = initUnit(eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), NO_UNITAI, NO_DIRECTION, true, szName);
+	/************************************************************************************************/
+	/* GP_NAMES                                END                                                  */
+	/************************************************************************************************/
         pNewUnit->changeExperience(GC.getGoodyInfo(eGoody).getExperience());
 //FfH: End Modify
 
@@ -7798,11 +7869,6 @@ bool CvPlayer::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestV
 //		return false;
 //	}
 //FfH: End Modify
-
-	if (kBuilding.isCapital() && isPuppetState())
-	{
-		return false;
-	}
 
 	if (!bIgnoreCost)
 	{
@@ -16357,7 +16423,7 @@ void CvPlayer::doGold()
 
 	iGoldChange = calculateGoldRate();
 
-	FAssert(isHuman() || isBarbarian() || ((getGold() + iGoldChange) >= 0) || isAnarchy());
+	//FAssert(isHuman() || isBarbarian() || ((getGold() + iGoldChange) >= 0) || isAnarchy());
 
 	changeGold(iGoldChange);
 
@@ -19607,6 +19673,15 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	// tech bug fix
 	pStream->Read(&m_bChoosingFreeTech);
 
+/*************************************************************************************************/
+/**	CivCounter			               		10/27/09    						Valkrionn		**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+    pStream->Read(&m_iCivCounter);
+    pStream->Read(&m_iCivCounterMod);
+/*************************************************************************************************/
+/**	CivCounter								END													**/
+/*************************************************************************************************/
 	// Puppet States
 	pStream->Read(&m_bPuppetState);
 	// End Puppet States
@@ -20202,6 +20277,16 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	// Tech bug fix
 	pStream->Write(m_bChoosingFreeTech);
 
+/*************************************************************************************************/
+/**	CivCounter			               		10/27/09    						Valkrionn		**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+    pStream->Write(m_iCivCounter);
+    pStream->Write(m_iCivCounterMod);
+/*************************************************************************************************/
+/**	CivCounter								END													**/
+/*************************************************************************************************/
+
 	// Puppet States
 	pStream->Write(m_bPuppetState);
 	// End Puppet States
@@ -20601,7 +20686,19 @@ void CvPlayer::write(FDataStreamBase* pStream)
 
 void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThreshold, bool bIncrementExperience, int iX, int iY)
 {
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Only GPs created here get a name (or if explicitly stated elsewhere)                         */
+/************************************************************************************************/
+/*
 	CvUnit* pGreatPeopleUnit = initUnit(eGreatPersonUnit, iX, iY);
+*/
+	// If no names left, name is simply ""
+	CvWString name = GC.getGameINLINE().getNewGreatPersonBornName( eGreatPersonUnit );
+	CvUnit* pGreatPeopleUnit = initUnit(eGreatPersonUnit, iX, iY, NO_UNITAI, NO_DIRECTION, true, name);
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	if (NULL == pGreatPeopleUnit)
 	{
 		FAssert(false);
@@ -20918,8 +21015,13 @@ void CvPlayer::setTriggerFired(const EventTriggeredData& kTriggeredData, bool bO
 	}
 }
 
+// lfgr cmt: here affected units, cities etc. are chosen
 EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger, bool bFire, int iCityId, int iPlotX, int iPlotY, PlayerTypes eOtherPlayer, int iOtherPlayerCityId, ReligionTypes eReligion, CorporationTypes eCorporation, int iUnitId, BuildingTypes eBuilding)
 {
+	// lfgr EVENT_DEBUG
+	logBBAI( "EVENT_DEBUG - initTriggeredData #%d \"%s\"", eEventTrigger, GC.getEventTriggerInfo( eEventTrigger ).getType() );
+	// lfgr end
+
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eEventTrigger);
 
 	CvCity* pCity = getCity(iCityId);
@@ -21221,6 +21323,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 		return NULL;
 	}
 
+	// LFGR_TODO: kTrigger.getNumUnits() > 0 ? (kTrigger.getNumUnits() <= 0 -> pLoopUnit->getTriggerValue() == MIN_INT)
 	if (kTrigger.getNumUnitsGlobal() > 0)
 	{
 		int iNumUnits = 0;
@@ -22197,6 +22300,17 @@ void CvPlayer::applyEvent(EventTypes eEvent, int iEventTriggeredId, bool bUpdate
                         {
                             pUnit->setHasPromotion((PromotionTypes)kEvent.getUnitPromotion(), true);
                         }
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+						for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+							if( kEvent.isUnitPromotion( i ) )
+							{
+								pUnit->setHasPromotion((PromotionTypes)i, true);
+							}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
                         if (kEvent.getUnitExperience() != 0)
                         {
                             pUnit->changeExperience(kEvent.getUnitExperience());
@@ -22725,6 +22839,10 @@ int CvPlayer::getEventCost(EventTypes eEvent, PlayerTypes eOtherPlayer, bool bRa
 
 void CvPlayer::doEvents()
 {
+	// lfgr EVENT_DEBUG
+	logBBAI( "EVENT_DEBUG - doEvents on player #%d", getID() );
+	// lfgr end
+
 	if (GC.getGameINLINE().isOption(GAMEOPTION_NO_EVENTS))
 	{
 		return;
@@ -22747,6 +22865,7 @@ void CvPlayer::doEvents()
 		return;
 	}
 
+	// LFGR_TODO: Figure out what this does
 	CvEventMap::iterator it = m_mapEventsOccured.begin();
 	while (it != m_mapEventsOccured.end())
 	{
@@ -22760,6 +22879,8 @@ void CvPlayer::doEvents()
 			++it;
 		}
 	}
+
+	// lfgr cmt: check whether any event can trigger (weight==-1 triggers anyway)
 
 	bool bNewEventEligible = true;
 	if (GC.getGameINLINE().getElapsedGameTurns() < GC.getDefineINT("FIRST_EVENT_DELAY_TURNS"))
@@ -22785,6 +22906,8 @@ void CvPlayer::doEvents()
 		}
 	}
 
+	// lfgr cmt: get all event weights, trigger all with weight == -1, create triggeredData for all weight > 0
+
 	std::vector< std::pair<EventTriggeredData*, int> > aePossibleEventTriggerWeights;
 	int iTotalWeight = 0;
 	for (int i = 0; i < GC.getNumEventTriggerInfos(); ++i)
@@ -22804,6 +22927,8 @@ void CvPlayer::doEvents()
 			}
 		}
 	}
+
+	// lfgr cmt: fire one semi-random event, clean up the others
 
 	if (iTotalWeight > 0)
 	{
@@ -22826,6 +22951,8 @@ void CvPlayer::doEvents()
 			}
 		}
 	}
+
+	// lfgr cmt: apply countdown events and clean them up
 
 	std::vector<int> aCleanup;
 	for (int i = 0; i < GC.getNumEventInfos(); ++i)
@@ -23001,6 +23128,10 @@ void CvPlayer::trigger(EventTriggerTypes eTrigger)
 
 void CvPlayer::trigger(const EventTriggeredData& kData)
 {
+	// lfgr EVENT_DEBUG
+	logBBAI( "EVENT_DEBUG - Triggered EventTrigger \"%s\"", GC.getEventTriggerInfo( kData.m_eTrigger ).getType() );
+	// lfgr end
+
 	if (isHuman())
 	{
 		CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_EVENT, kData.getID());
@@ -23016,6 +23147,7 @@ void CvPlayer::trigger(const EventTriggeredData& kData)
 	}
 }
 
+// lfgr cmt: this is the OTHER player
 bool CvPlayer::canTrigger(EventTriggerTypes eTrigger, PlayerTypes ePlayer, ReligionTypes eReligion) const
 {
 	if (!isAlive())
@@ -23113,6 +23245,16 @@ bool CvPlayer::canTrigger(EventTriggerTypes eTrigger, PlayerTypes ePlayer, Relig
 
 		}
 	}
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           08/21/13                                lfgr        */
+/************************************************************************************************/
+	if ( kTrigger.getPrereqCivilizationPleased() != NO_CIVILIZATION )
+		if( getCivilizationType() != kTrigger.getPrereqCivilizationPleased() )
+			return false;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	return true;
 }
@@ -23177,9 +23319,12 @@ CvUnit* CvPlayer::pickTriggerUnit(EventTriggerTypes eTrigger, CvPlot* pPlot, boo
 	return pUnit;
 }
 
+// lfgr cmt: Most important function for event triggering. 0 means don't trigger, -1 means always trigger
 int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
 {
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eTrigger);
+
+	// lfgr cmt: check simple requirements
 
 	if (NO_HANDICAP != kTrigger.getMinDifficulty())
 	{
@@ -23403,6 +23548,10 @@ int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
 			return 0;
 		}
 	}
+
+	// lfgr cmt: calc weight (probability)
+
+	// lfgr cmt: calc weight (probability)
 
 	if (kTrigger.getProbability() < 0)
 	{
@@ -24166,7 +24315,9 @@ bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
         return false;
     }
 
-    bool bPlayerExists = GET_PLAYER(eNewPlayer).isAlive();
+	CvPlayerAI &kNewPlayer = GET_PLAYER(eNewPlayer);
+
+    bool bPlayerExists = kNewPlayer.isAlive();
     FAssert(!bPlayerExists);
     if (!bPlayerExists)
     {
@@ -24263,28 +24414,30 @@ bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
 		GC.getGameINLINE().addReplayMessage(REPLAY_MESSAGE_MAJOR_EVENT, getID(), szMessage, -1, -1, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
 
 		GC.getGameINLINE().addPlayer(eNewPlayer, eBestLeader, eBestCiv);
-		GET_PLAYER(eNewPlayer).setParent(GET_PLAYER(eSplitPlayer).getID());
+
+		kNewPlayer = GET_PLAYER(eNewPlayer); //reset this variable
+		kNewPlayer.setParent(GET_PLAYER(eSplitPlayer).getID());
 
         if (getStateReligion() != NO_RELIGION)
         {
-            if (GET_PLAYER(eNewPlayer).getStateReligion() != getStateReligion())
+            if (kNewPlayer.getStateReligion() != getStateReligion())
             {
-                if (GET_PLAYER(eNewPlayer).canConvert(getStateReligion()))
+                if (kNewPlayer.canConvert(getStateReligion()))
                 {
-                    GET_PLAYER(eNewPlayer).convert(getStateReligion());
+                    kNewPlayer.convert(getStateReligion());
                 }
             }
         }
 
         for (iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
         {
-            if (getCivics((CivicOptionTypes)iI) != GET_PLAYER(eNewPlayer).getCivics((CivicOptionTypes)iI))
+            if (getCivics((CivicOptionTypes)iI) != kNewPlayer.getCivics((CivicOptionTypes)iI))
             {
-                GET_PLAYER(eNewPlayer).setCivics((CivicOptionTypes)iI, getCivics((CivicOptionTypes)iI));
+                kNewPlayer.setCivics((CivicOptionTypes)iI, getCivics((CivicOptionTypes)iI));
             }
         }
 
-		CvTeam& kNewTeam = GET_TEAM(GET_PLAYER(eNewPlayer).getTeam());
+		CvTeam& kNewTeam = GET_TEAM(kNewPlayer.getTeam());
 		for (int i = 0; i < GC.getNumTechInfos(); ++i)
 		{
 			// only give free techs that both civs already have
@@ -24303,14 +24456,20 @@ bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
 				if (kLoopTeam.isAlive())
 				{
 					kNewTeam.setEspionagePointsAgainstTeam((TeamTypes)iTeam, GET_TEAM(GET_PLAYER(eSplitPlayer).getTeam()).getEspionagePointsAgainstTeam((TeamTypes)iTeam));
-					kLoopTeam.setEspionagePointsAgainstTeam(GET_PLAYER(eNewPlayer).getTeam(), kLoopTeam.getEspionagePointsAgainstTeam(GET_PLAYER(eSplitPlayer).getTeam()));
+					kLoopTeam.setEspionagePointsAgainstTeam(kNewPlayer.getTeam(), kLoopTeam.getEspionagePointsAgainstTeam(GET_PLAYER(eSplitPlayer).getTeam()));
 				}
 			}
 			kNewTeam.setEspionagePointsEver(GET_TEAM(GET_PLAYER(eSplitPlayer).getTeam()).getEspionagePointsEver());
 		}
 
-		GET_TEAM(getTeam()).assignVassal(GET_PLAYER(eNewPlayer).getTeam(), false);
-		GET_PLAYER(eNewPlayer).setPuppetState(true);
+		GET_TEAM(getTeam()).assignVassal(kNewPlayer.getTeam(), true);
+		kNewPlayer.setPuppetState(true);
+
+		GET_TEAM(getTeam()).signOpenBorders(kNewPlayer.getTeam());
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			GET_TEAM(getTeam()).setHasEmbassy(kNewPlayer.getTeam(), true);
+		}
 
 		AI_updateBonusValue();
 	}
@@ -24318,22 +24477,34 @@ bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
 	if (pVassalCapital != NULL)
 	{
 	    CvPlot* pPlot = pVassalCapital->plot();
-        int iCulture = (pVassalCapital->getCultureTimes100(eSplitPlayer) * (GC.getDefineINT("PUPPET_CULTURE_MULTIPLIER") / 100));
+		int iMultiplier = GC.getDefineINT("PUPPET_CULTURE_MULTIPLIER");
+        int iCulture = ((100 + pVassalCapital->getCultureTimes100(eSplitPlayer)) * GC.getDefineINT("PUPPET_CULTURE_MULTIPLIER")) / 100;
 
-        GET_PLAYER(eNewPlayer).acquireCity(pVassalCapital, false, true, true);
+        kNewPlayer.acquireCity(pVassalCapital, false, true, true);
 
-        if (NULL != pPlot)
+		if (NULL != pPlot)
         {
             CvCity* pCity = pPlot->getPlotCity();
             if (NULL != pCity)
             {
-                pCity->setCultureTimes100(eNewPlayer, iCulture, true, true);
-            }
+            	pCity->setOccupationTimer(0);
+		        pCity->setCultureTimes100(eNewPlayer, iCulture, true, true);
 
-            for (int i = 0; i < (GC.getDefineINT("COLONY_NUM_FREE_DEFENDERS") * 2); ++i)
-            {
-                pCity->initConscriptedUnit();
-            }
+	            for (int i = 0; i < (GC.getDefineINT("COLONY_NUM_FREE_DEFENDERS") * 2); ++i)
+	            {
+	                pCity->initConscriptedUnit();
+	            }
+
+				int iFreeCount = GC.getHandicapInfo(getHandicapType()).getStartingWorkerUnits();
+				iFreeCount += GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getAIStartingWorkerUnits();
+				iFreeCount += GC.getEraInfo(GC.getGameINLINE().getStartEra()).getStartingWorkerUnits();
+				iFreeCount += 2;
+			
+				if (iFreeCount > 0)
+				{
+					kNewPlayer.addFreeUnitAI(UNITAI_WORKER, iFreeCount);
+				}
+			}
         }
 	}
 
@@ -26236,6 +26407,7 @@ bool CvPlayer::getItemTradeString(PlayerTypes eOtherPlayer, bool bOffer, bool bS
 /* Afforess	                     END                                                            */
 /************************************************************************************************/
 
+
 	default:
 		szString.clear();
 		return false;
@@ -27602,6 +27774,43 @@ DenialTypes CvPlayer::AI_militaryUnitTrade(CvUnit* pUnit, PlayerTypes ePlayer) c
 /************************************************************************************************/
 /* Afforess	                     END                                                            */
 /************************************************************************************************/
+
+/*************************************************************************************************/
+/**	CivCounter			               		10/27/09    						Valkrionn		**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+int CvPlayer::getCivCounter() const
+{
+	return m_iCivCounter;
+}
+
+void CvPlayer::changeCivCounter(int iChange)
+{
+	m_iCivCounter = (m_iCivCounter + iChange);
+}
+
+void CvPlayer::setCivCounter(int iNewValue)
+{
+	m_iCivCounter = iNewValue;
+}
+
+int CvPlayer::getCivCounterMod() const
+{
+	return m_iCivCounterMod;
+}
+
+void CvPlayer::changeCivCounterMod(int iChange)
+{
+	m_iCivCounterMod = (m_iCivCounterMod + iChange);
+}
+
+void CvPlayer::setCivCounterMod(int iNewValue)
+{
+	m_iCivCounterMod = iNewValue;
+}
+/*************************************************************************************************/
+/**	CivCounter								END													**/
+/*************************************************************************************************/
 
 int CvPlayer::countNumOwnedTerrainTypes(TerrainTypes eTerrain) const
 {

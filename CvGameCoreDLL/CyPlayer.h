@@ -646,13 +646,13 @@ public:
 	void setParent(int /*PlayerTypes*/ eParent);
 //<<<<Unofficial Bug Fix: End Add
 
-    /*** PUPPET STATES 04/21/08 by DPII ***/
+    // MNAI - Puppet States
     bool makePuppet(int /*PlayerTypes*/ eSplitPlayer, CvCity* pVassalCapital) const;
     bool canMakePuppet(int /*PlayerTypes*/ eFromPlayer) const;
 
 	bool isPuppetState() const;
 	void setPuppetState (bool bNewValue);
-    /*************************************/
+    // End MNAI
 	
 	bool canHaveTradeRoutesWith(int iPlayer);
 
@@ -702,6 +702,19 @@ public:
 // BUG - Reminder Mod - start
 	void addReminder(int iGameTurn, std::wstring szMessage) const;
 // BUG - Reminder Mod - start
+/*************************************************************************************************/
+/**	CivCounter			               		10/27/09    						Valkrionn		**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+    int getCivCounter() const;
+    void changeCivCounter(int iChange);
+	void setCivCounter(int iNewValue);
+    int getCivCounterMod() const;
+    void changeCivCounterMod(int iChange);
+	void setCivCounterMod(int iNewValue);
+/*************************************************************************************************/
+/**	CivCounter							END													**/
+/*************************************************************************************************/
 private:
 	CvPlayer* m_pPlayer;
 };

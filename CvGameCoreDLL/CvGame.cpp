@@ -6321,6 +6321,36 @@ void CvGame::addGreatPersonBornName(const CvWString& szName)
 	m_aszGreatPeopleBorn.push_back(szName);
 }
 
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* From CvUnit::init()                                                                          */
+/************************************************************************************************/
+CvWString CvGame::getNewGreatPersonBornName( UnitTypes iUnitType )
+{
+	int iUnitName = GC.getGameINLINE().getUnitCreatedCount(iUnitType);
+	int iNumNames = GC.getUnitInfo( iUnitType ).getNumUnitNames();
+	if (iUnitName < iNumNames)
+	{
+		int iOffset = GC.getGameINLINE().getSorenRandNum(iNumNames, "Unit name selection");
+
+		for ( int iI = 0; iI < iNumNames; iI++ )
+		{
+			int iIndex = (iI + iOffset) % iNumNames;
+			CvWString szName;
+			szName = gDLL->getText( GC.getUnitInfo( iUnitType ).getUnitNames(iIndex) );
+			if (!GC.getGameINLINE().isGreatPersonBorn(szName))
+			{
+				GC.getGameINLINE().addGreatPersonBornName(szName);
+				return szName;
+			}
+		}
+	}
+	return CvWString("");
+}
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
+
 
 // Protected Functions...
 
@@ -10330,7 +10360,13 @@ void CvGame::doVoteResults()
 /* Informative message.                                                         */
 /********************************************************************************/
 					if( !bPassed )
-						szBuffer += NEWLINE + gDLL->getText( "TXT_KEY_POPUP_DIPLOMATIC_VOTING_VICTORY_NOT_PASSED", GC.getVoteSourceInfo( eVoteSource ).getSecretaryGeneralText().GetCString() );
+					{
+						if( GC.getVoteInfo( eVote ).isVictory() )
+							szBuffer += NEWLINE + gDLL->getText( "TXT_KEY_POPUP_DIPLOMATIC_VOTING_VICTORY_NOT_PASSED", GC.getVoteSourceInfo( eVoteSource ).getSecretaryGeneralText().GetCString() );
+						if( GC.getVoteInfo( eVote ).isSecretaryGeneral() )
+							
+							szBuffer += NEWLINE + gDLL->getText( "TXT_KEY_POPUP_DIPLOMATIC_VOTING_SECRETARY_NOT_PASSED", GC.getVoteSourceInfo( eVoteSource ).getSecretaryGeneralText().GetCString() );
+					}
 					if( bTieVoteSecretaryGeneral )
 						szBuffer += NEWLINE + gDLL->getText( "TXT_KEY_POPUP_VOTE_TIE_SECRETARY_GENERAL_DECIDES", GC.getVoteSourceInfo( eVoteSource ).getSecretaryGeneralText().GetCString() );
 /********************************************************************************/
@@ -10379,7 +10415,9 @@ void CvGame::doVoteResults()
 /* Improved Councils    03/2013                                         lfgr    */
 /* If tie vote, whatever choice the Head Councillor made is implemented.        */
 /********************************************************************************/
-				if( bPassed && ( countPossibleVote(eVote, eVoteSource) - countVote(*pVoteTriggered, PLAYER_VOTE_ABSTAIN) ) % 2 == 0 /* even */ && countVote(*pVoteTriggered, PLAYER_VOTE_YES) == getVoteRequired(eVote, eVoteSource) )
+			//	if( bPassed && ( countPossibleVote(eVote, eVoteSource) - countVote(*pVoteTriggered, PLAYER_VOTE_ABSTAIN) ) % 2 == 0 /* even */ && countVote(*pVoteTriggered, PLAYER_VOTE_YES) == getVoteRequired(eVote, eVoteSource) )
+				// only for 50% Votes
+				if( bPassed && GC.getVoteInfo(eVote).getPopulationThreshold() == 50 && ( countPossibleVote(eVote, eVoteSource) - countVote(*pVoteTriggered, PLAYER_VOTE_ABSTAIN) ) % 2 == 0 /* even */ && countVote(*pVoteTriggered, PLAYER_VOTE_YES) == getVoteRequired(eVote, eVoteSource) )
 				{
 					// tie vote
 					// if secretary general abstains, vote will succeede
@@ -10503,7 +10541,27 @@ void CvGame::doVoteResults()
 
 					if (bShow && bPassed)
 					{
+/********************************************************************************/
+/* Improved Councils    03/2013                                         lfgr    */
+/* Better Messages                                                              */
+/********************************************************************************/
+/* old
 						CvWString szMessage = gDLL->getText("TXT_KEY_VOTE_RESULTS", GC.getVoteSourceInfo(eVoteSource).getTextKeyWide(), pVoteTriggered->kVoteOption.szText.GetCString());
+*/
+						CvWString szMessage;
+						
+						CvVoteInfo& kVote = GC.getVoteInfo( eVote );
+						CvVoteSourceInfo& kVoteSource = GC.getVoteSourceInfo( eVoteSource );
+						int iChoice = getVoteOutcome( eVote );
+						if( kVote.isVictory() )
+							szMessage = gDLL->getText("TXT_KEY_VOTE_RESULTS_VICTORY", kVoteSource.getTextKeyWide(), GET_TEAM( (TeamTypes) iChoice ).getName().GetCString() );
+						else if( kVote.isSecretaryGeneral() )
+							szMessage = gDLL->getText("TXT_KEY_VOTE_RESULTS_SECRETARY", kVoteSource.getTextKeyWide(), GET_TEAM( (TeamTypes) iChoice ).getName().GetCString(), kVoteSource.getSecretaryGeneralText().GetCString() );
+						else
+							szMessage = gDLL->getText("TXT_KEY_VOTE_RESULTS", GC.getVoteSourceInfo(eVoteSource).getTextKeyWide(), pVoteTriggered->kVoteOption.szText.GetCString());
+/********************************************************************************/
+/* Improved Councils                                                    END     */
+/********************************************************************************/
 						gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_NEW_ERA", MESSAGE_TYPE_MINOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
 					}
 
