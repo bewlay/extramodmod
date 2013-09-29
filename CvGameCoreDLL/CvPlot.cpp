@@ -12374,7 +12374,6 @@ float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int
 				// LFGR_TODO: cache?
 				
 				// divide by circle perimeter, to avoid that plots farther away just outnumber plots nearer
-				// LFGR_TODO: is the pi unnecessary?
 				float fWeight = 1.0f / ( 1.0f + fPlotDistance );
 
 				logBBAI( "\t\tPlot %d|%d Weight: %f", iX, iY, fWeight );
@@ -12399,13 +12398,13 @@ float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int
 				if( pPlot->getFeatureType() != NO_FEATURE )
 					afFeatureAmount[pPlot->getFeatureType()] += fWeight;
 
-				// LFGR_TODO: Need a way to take distance and (bonus) count into account
+				// Bonus and improvements don't suffer that much from distance
 
 				if( pPlot->getImprovementType() != NO_IMPROVEMENT )
-					afImprovementAmount[pPlot->getImprovementType()] += fWeight;
+					afImprovementAmount[pPlot->getImprovementType()] += sqrt( fWeight );
 
 				if( pPlot->getBonusType() != NO_BONUS )
-					afBonusAmount[pPlot->getBonusType()] += fWeight;
+					afBonusAmount[pPlot->getBonusType()] += sqrt( fWeight );
 			}
 		}
 	
@@ -12439,14 +12438,13 @@ float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int
 //			logBBAI( "\t\tWeight of YieldType #%d: %f", i, afYieldAmount[i] );
 		}
 
-	// bonus and (unique) improvements are NOT normalized
+	// Bonuses and (unique) improvements are NOT normalized
 	
-	// seperate normalization and below for better reusability
+	// Separate normalization and below for better reusability
 
 	CvTerrainFlavourInfo &kTerrainFlavour = GC.getTerrainFlavourInfo( eTerrainFlavour );
 
-	// LFGR_TODO: possible loss of data?
-	float fWeight = kTerrainFlavour.getBaseWeight();
+	float fWeight = (float) kTerrainFlavour.getBaseWeight();
 	
 	logBBAI( "\t\tBase Weight: %f", fWeight );
 
