@@ -12325,14 +12325,7 @@ float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int
 	// LFGR_TODO: required central plot type/terrain/feature/improvement
 
 	if( iRadius == -1 )
-	{
-		float fMapSize = ( GC.getMapINLINE().getGridWidthINLINE() + GC.getMapINLINE().getGridHeightINLINE() ) / 2.0f;
-		iRadius = (int) ( fMapSize / 12 + 0.5 );
-		if( iRadius < 2 )
-			iRadius = 2;
-		else if( iRadius > 6 )
-			iRadius = 6;
-	}
+		iRadius = GC.getDefineINT( "TERRAIN_FLAVOUR_RADIUS", 3 );
 
 	// Get city terrain, feature and improvement amounts
 	float *afPlotAmount = new float[NUM_PLOT_TYPES];
