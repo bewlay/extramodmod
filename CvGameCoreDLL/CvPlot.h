@@ -27,6 +27,24 @@ class CvFlagEntity;
 typedef bool (*ConstPlotUnitFunc)( const CvUnit* pUnit, int iData1, int iData2);
 typedef bool (*PlotUnitFunc)(CvUnit* pUnit, int iData1, int iData2);
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        09/2013                                 lfgr          */
+/************************************************************************************************/
+struct CvTerrainAmountCache
+{
+	int iRadius;
+	float *afPlotAmount;
+	float *afTerrainAmount;
+	float *afFeatureAmount;
+	float *afYieldAmount;
+	float *afImprovementAmount;
+	float *afBonusAmount;
+};
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+
 class CvPlot
 {
 
@@ -631,7 +649,8 @@ public:
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
 /************************************************************************************************/
-	float calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int iRadius = -1 ); // exposed to python
+	CvTerrainAmountCache getTerrainAmounts( int iRadius = -1 );
+	float calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, CvTerrainAmountCache* pTerrainAmounts ); // exposed to python
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                                                                END           */
 /************************************************************************************************/

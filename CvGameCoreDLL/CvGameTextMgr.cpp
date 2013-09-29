@@ -5739,9 +5739,10 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 	/* Debug                                                                                        */
 	/************************************************************************************************/
 		szString.append( L"\nTerrainFlavour Weights:" );
+		CvTerrainAmountCache kTerrainAmounts = pPlot->getTerrainAmounts();
 		for( int eTerrainFlavour = 0; eTerrainFlavour < GC.getNumTerrainFlavourInfos(); eTerrainFlavour++ )
 		{
-			float fWeight = pPlot->calcTerrainFlavourWeight( (TerrainFlavourTypes) eTerrainFlavour );
+			float fWeight = pPlot->calcTerrainFlavourWeight( (TerrainFlavourTypes) eTerrainFlavour, &kTerrainAmounts );
 
 			if( fWeight > 0 )
 			{

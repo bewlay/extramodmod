@@ -1186,7 +1186,8 @@ void CyPlot::calculateChokeValue()
 /************************************************************************************************/
 float CyPlot::calcTerrainFlavourWeight( /*TerrainFlavourTypes*/ int eTerrainFlavour, int iMaxPlotDistance )
 {
-	return m_pPlot ? m_pPlot->calcTerrainFlavourWeight( (TerrainFlavourTypes) eTerrainFlavour, iMaxPlotDistance ) : 0;
+	CvTerrainAmountCache kTerrainAmounts = m_pPlot->getTerrainAmounts( iMaxPlotDistance );
+	return m_pPlot ? m_pPlot->calcTerrainFlavourWeight( (TerrainFlavourTypes) eTerrainFlavour, &kTerrainAmounts ) : 0;
 }
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                                                                END           */

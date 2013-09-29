@@ -77,30 +77,26 @@ mat buildCostMatrix()
 {
 	mat vvdMatrix;
 	
-	for( int i = 0; i < getNumAvailablePlayers(); i++ )
+	for( int eAvPlayer = 0; eAvPlayer < getNumAvailablePlayers(); eAvPlayer++ )
 	{
 		vector<double> row;
-		logBBAI( "Scores for player %d:", i );
+		logBBAI( "Scores for player %d:", eAvPlayer );
 		
-		for( int j = 0; j < getNumAvailablePlayers(); j++ )
+		for( int eAvPlayerStartingPlot = 0; eAvPlayerStartingPlot < getNumAvailablePlayers(); eAvPlayerStartingPlot++ )
 		{
-			double dScore = getScore( i, j );
+			FAssertMsg( getAvailablePlayer( eAvPlayerStartingPlot ).getStartingPlot() != NULL, "player has no starting plot!" );
+			
+			TerrainFlavourTypes eTerrainFlavour = (TerrainFlavourTypes) GC.getCivilizationInfo( getAvailablePlayer( eAvPlayer ).getCivilizationType() ).getTerrainFlavour();
+			CvTerrainAmountCache kTerrainAmounts = getAvailablePlayer( eAvPlayerStartingPlot ).getStartingPlot()->getTerrainAmounts();
+			double dScore = getAvailablePlayer( eAvPlayerStartingPlot ).getStartingPlot()->calcTerrainFlavourWeight( eTerrainFlavour, &kTerrainAmounts );
+
 			row.push_back( -dScore );
 			
-			logBBAI( "  at player %d's starting plot: %f", j, dScore );
+			logBBAI( "  at player %d's starting plot: %f", eAvPlayerStartingPlot, dScore );
 		}
 
 		vvdMatrix.push_back( row );
 	}
 	
 	return vvdMatrix;
-}
-
-double getScore( int eAvPlayer, int eAvPlayerStartingPlot )
-{
-	FAssertMsg( getAvailablePlayer( eAvPlayerStartingPlot ).getStartingPlot() != NULL, "player has no starting plot!" );
-
-	TerrainFlavourTypes eTerrainFlavour = (TerrainFlavourTypes) GC.getCivilizationInfo( getAvailablePlayer( eAvPlayer ).getCivilizationType() ).getTerrainFlavour();
-
-	return getAvailablePlayer( eAvPlayerStartingPlot ).getStartingPlot()->calcTerrainFlavourWeight( eTerrainFlavour );
 }
