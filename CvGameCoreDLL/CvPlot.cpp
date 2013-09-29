@@ -12513,8 +12513,8 @@ float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, CvT
 
 		if( fPlotMinDistance != -1 )
 		{
-			float fIsolationPercent = ( fPlotMinDistance / fPlayerMaxMinDistance - 0.5f ) * 2;
-			fWeight += fIsolationPercent * kTerrainFlavour.getIsolationPercentWeight() * 0.01f;
+			float fIsolation = ( fPlotMinDistance / fPlayerMaxMinDistance - 0.5f ) * 2;
+			fWeight += fIsolation * kTerrainFlavour.getIsolationPercentWeight();
 		}
 	}
 	
