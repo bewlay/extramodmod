@@ -12476,6 +12476,47 @@ float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, int
 					kTerrainFlavour.getCoastalWeight() );
 		}
 	}
+
+	// Calculate isolation percent
+	if( kTerrainFlavour.getIsolationPercentWeight() != 0 )
+	{
+		float fPlayerMaxMinDistance = 0;
+		float fPlotMinDistance = -1;
+		for( int ePlayer1 = 0; ePlayer1 < GC.getMAX_CIV_PLAYERS(); ePlayer1++ )
+		{
+			float fPlayerMinDistance = -1;
+			for( int ePlayer2 = 0; ePlayer2 < GC.getMAX_CIV_PLAYERS(); ePlayer2++ )
+			{
+				if( ePlayer1 != ePlayer2 )
+				{
+					CvPlot* pStartingPlot1 = GET_PLAYER( (PlayerTypes) ePlayer1 ).getStartingPlot();
+					CvPlot* pStartingPlot2 = GET_PLAYER( (PlayerTypes) ePlayer2 ).getStartingPlot();
+					if( pStartingPlot1 != NULL && pStartingPlot2 != NULL )
+					{
+						int iDistX = abs( pStartingPlot1->getX_INLINE() - pStartingPlot2->getX_INLINE() );
+						int iDistY = abs( pStartingPlot1->getY_INLINE() - pStartingPlot2->getY_INLINE() );
+						float fDistance = sqrt( (float) ( iDistX * iDistX + iDistY * iDistY ) );
+					
+						if( fPlayerMinDistance == -1 || fDistance < fPlayerMinDistance )
+							fPlayerMinDistance = fDistance;
+					
+						if( ePlayer1 < ePlayer2 ) // avoid double check
+							if( this == pStartingPlot1 || this == pStartingPlot2 )
+								if( fPlotMinDistance == -1 || fDistance < fPlotMinDistance )
+									fPlotMinDistance = fDistance;
+					}
+				}
+			}
+			if( fPlayerMinDistance > fPlayerMaxMinDistance )
+				fPlayerMaxMinDistance = fPlayerMinDistance;
+		}
+
+		if( fPlotMinDistance != -1 )
+		{
+			float fIsolationPercent = ( fPlotMinDistance / fPlayerMaxMinDistance - 0.5f ) * 2;
+			fWeight += fIsolationPercent * kTerrainFlavour.getIsolationPercentWeight() * 0.01f;
+		}
+	}
 	
 	for( int i = 0; i < NUM_PLOT_TYPES; i++ )
 		if( kTerrainFlavour.getPlotPercentWeight( i ) != 0 && afPlotAmount[i] != 0 )
