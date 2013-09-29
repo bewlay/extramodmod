@@ -6,6 +6,18 @@
 <!-- Game Text - Units -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
+		<Tag>TXT_KEY_CIVIC_ISOLATIONISM</Tag>
+		<English>Isolationism</English>
+		<French>Isolationism</French>
+		<German>Isolationism</German>
+		<Italian>Isolationism</Italian>
+		<Spanish>
+			<Text>Aislacionismo</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NEUTRALITY</Tag>
 		<English>Neutrality</English>
 		<French>Neutrality</French>
