@@ -1,0 +1,5 @@
+# use glob syntax.
+syntax: glob
+
+CvGameCoreDLL\Makefile-Vars
+CvGameCoreDLL\CvGameCoreDLL.vcproj.terkhen-PC.terkhen.user
