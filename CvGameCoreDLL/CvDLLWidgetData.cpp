@@ -5112,8 +5112,7 @@ void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStr
 
 
 // ExtraModMod version number.
-	szTempBuffer.Format(L"%S", "ExtraModMod v0.3.1");
-	szBuffer.append(szTempBuffer);
+	szBuffer.append(gDLL->getText("TXT_KEY_VERSION"));
 	szBuffer.append(NEWLINE);
 //
 
