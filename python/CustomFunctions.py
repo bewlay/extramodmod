@@ -392,7 +392,7 @@ class CustomFunctions:
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_WITHERED', ['PROMOTION_WITHERED'] ) )
 		if( iRnd <= -20 ) :
 			if( not bNoDestroy ) :
-				lOutcomes.append( ( 'Damage', 100, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 50, 90, 'DAMAGE_PHYSICAL' ) )
+				lOutcomes.append( ( 'Damage', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 50, 90, 'DAMAGE_PHYSICAL' ) )
 			if( pUnit.isAlive() ) :
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENRAGED', ['PROMOTION_ENRAGED'] ) )
 				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DISEASED', ['PROMOTION_DISEASED'] ) )
@@ -400,7 +400,7 @@ class CustomFunctions:
 			if( pUnit.isAlive() ) :
 				lOutcomes.append( ( 'Special', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POISONED', 'POISONED' ) )
 			if( not bNoDestroy ) :
-				lOutcomes.append( ( 'Damage', 100, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 50, 90, 'DAMAGE_PHYSICAL' ) )
+				lOutcomes.append( ( 'Damage', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 50, 90, 'DAMAGE_PHYSICAL' ) )
 			# LFGR_TODO: Should add damage outcomes for non-alive units here.
 		# NEUTRAL
 		if( iRnd > -25 and iRnd <= 25 ) :
