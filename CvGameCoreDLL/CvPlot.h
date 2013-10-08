@@ -666,6 +666,7 @@ public:
 	int getLairUnitCount() const;
 	void setLairUnitCount(int iNewValue);
 
+	int getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType );
 	int getSpawnValue( SpawnTypes eSpawnType, bool bBarbTech );
 	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI, int iLairPlot = -1 );
 /************************************************************************************************/

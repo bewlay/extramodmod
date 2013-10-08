@@ -15916,15 +15916,8 @@ bool CvUnitAI::AI_patrol()
 						/************************************************************************************************/
 							if ( AI_getUnitAIType() == UNITAI_ANIMAL && getSpawnType() != NO_SPAWN )
 							{
-								int iTerrainValue = 0;
-								if( pAdjacentPlot->getTerrainType() != NO_TERRAIN )
-									iTerrainValue += GC.getSpawnInfo( getSpawnType() ).getTerrainWeights( pAdjacentPlot->getTerrainType() );
-								if( pAdjacentPlot->getFeatureType() != NO_FEATURE )
-									iTerrainValue += GC.getSpawnInfo( getSpawnType() ).getFeatureWeights( pAdjacentPlot->getFeatureType() );
-								if( pAdjacentPlot->getImprovementType() != NO_IMPROVEMENT )
-									iTerrainValue += GC.getSpawnInfo( getSpawnType() ).getImprovementWeights( pAdjacentPlot->getImprovementType() );
-								
-								if( iTerrainValue > 0 )
+								if( GC.getSpawnInfo( getSpawnType() ).getTerrainFlavourType() != NO_TERRAIN_FLAVOUR
+										&& pAdjacentPlot->getSpawnTerrainWeight( (TerrainFlavourTypes) GC.getSpawnInfo( getSpawnType() ).getTerrainFlavourType() ) > 0 )
 									iValue += 100000;
 							}
 						/************************************************************************************************/

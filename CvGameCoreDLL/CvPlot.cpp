@@ -12848,6 +12848,32 @@ void CvPlot::setLairUnitCount(int iNewValue)
 	m_iLairUnitCount = iNewValue;
 }
 
+int CvPlot::getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType )
+{
+	FAssertMsg( eTerrainFlavourType < GC.getNumTerrainFlavourInfos(), "Index out of bounds" );
+	FAssertMsg( eTerrainFlavourType > -1, "Index out of bounds" );
+
+	// don't use calcTerrainFlavourWeight, we're using a slightly different method here (f.e. regarding sea tiles)
+	CvTerrainFlavourInfo& kTerrainFlavour = GC.getTerrainFlavourInfo( eTerrainFlavourType );
+	int iTerrainValue = kTerrainFlavour.getBaseWeight();
+	if( isCoastalLand() )
+		iTerrainValue += kTerrainFlavour.getCoastalWeight();
+	if( getPlotType() != NO_PLOT )
+		iTerrainValue += kTerrainFlavour.getPlotPercentWeight( getPlotType() );
+	if( getTerrainType() != NO_TERRAIN )
+		iTerrainValue += kTerrainFlavour.getTerrainPercentWeight( getTerrainType() );
+	if( getFeatureType() != NO_FEATURE )
+		iTerrainValue += kTerrainFlavour.getFeaturePercentWeight( getFeatureType() );
+	if( getImprovementType() != NO_IMPROVEMENT )
+		iTerrainValue += kTerrainFlavour.getImprovementCountWeight( getImprovementType() );
+	if( getBonusType() != NO_BONUS )
+		iTerrainValue += kTerrainFlavour.getBonusCountWeight( getBonusType() );
+	for( int eYield = 0; eYield < NUM_YIELD_TYPES; eYield++ )
+		iTerrainValue += kTerrainFlavour.getYieldOnPlotPercentWeight( eYield ) * getYield( (YieldTypes) eYield );
+	
+	return iTerrainValue;
+}
+
 int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bBarbTech )
 {
 	if( eSpawn == NO_SPAWN )
@@ -12879,14 +12905,15 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bBarbTech )
 	}
 
 	int iValue = kSpawn.getWeight();
-			
-	if( getTerrainType() != NO_TERRAIN )
-		iValue += kSpawn.getTerrainWeights( getTerrainType() );
-	if( getFeatureType() != NO_FEATURE )
-		iValue += kSpawn.getFeatureWeights( getFeatureType() );
-	if( getImprovementType() != NO_FEATURE )
-		iValue += kSpawn.getImprovementWeights( getImprovementType() );
-
+	
+	if( kSpawn.getTerrainFlavourType() != NO_TERRAIN_FLAVOUR )
+	{
+		int iTerrainValue = getSpawnTerrainWeight( (TerrainFlavourTypes) kSpawn.getTerrainFlavourType() );
+		if( iTerrainValue > 0 )
+			iValue += kSpawn.getValidTerrainWeight();
+		iValue += iTerrainValue;
+	}
+	
 	return iValue;
 }
 

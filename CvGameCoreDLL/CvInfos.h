@@ -7775,13 +7775,13 @@ public:
 
 	CvSpawnInfo();
 	virtual ~CvSpawnInfo();
-
-	int getUnitArtStyleType() const;
-
+	
 	int getCreateLair() const;
+	int getTerrainFlavourType() const;
+	int getUnitArtStyleType() const;
 	
 	int getWeight() const;
-	int getProbability() const;
+	int getValidTerrainWeight() const;
 	int getMinWilderness() const;
 	int getMaxWilderness() const;
 	int getPrereqGlobalCounter() const;
@@ -7803,9 +7803,6 @@ public:
 	bool isExplorationNoPush() const;
 	
 	int getNumSpawnUnits( int eUnit ) const;
-	int getTerrainWeights( int eTerrain ) const;
-	int getFeatureWeights( int eFeature ) const;
-	int getImprovementWeights( int eImprovement ) const;
 	
 	// LFGR_TODO: is...
 	bool getUnitPromotions( int ePromotion ) const;
@@ -7822,11 +7819,12 @@ public:
 
 protected:
 	
-	int m_eUnitArtStyleType;
 	int m_eCreateLair;
+	int m_eUnitArtStyleType;
+	int m_eTerrainFlavourType;
 	
 	int m_iWeight;
-	int m_iProbability;
+	int m_iValidTerrainWeight;
 	int m_iMinWilderness;
 	int m_iMaxWilderness;
 	int m_iPrereqGlobalCounter;
@@ -7846,9 +7844,6 @@ protected:
 	// Arrays
 	
 	int* m_piNumSpawnUnits;
-	int* m_piTerrainWeights;
-	int* m_piFeatureWeights;
-	int* m_piImprovementWeights;
 	
 	bool* m_pbUnitPromotions;
 	bool* m_pbIncludedSpawns;

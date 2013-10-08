@@ -4,6 +4,8 @@
 <!-- Inspiration, some values and some code taken from RifE/FlavourMod (Jean Elcard and others) -->
 <Civ4TerrainFlavourInfos xmlns="x-schema:CIV4TerrainFlavourSchema.xml">
 	<TerrainFlavourInfos>
+		<!-- CIVILIZATIONS -->
+		
 		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_CIV_AMURITES -->
 			<Type>TERRAIN_FLAVOUR_CIV_AMURITES</Type>
 			<ImprovementCountWeights>
@@ -468,6 +470,500 @@
 					<iWeight>50</iWeight>
 				</BonusCountWeight>
 			</BonusCountWeights>
+		</TerrainFlavourInfo>
+		
+		<!-- SPAWNS -->
+		
+		<!-- Total weight guidelines: -->
+		<!-- normal: max. +100 -->
+		<!-- _EXTRA: max. +50 -->
+		
+		<!-- Exploration Spawns -->
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</Type>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
+					<ImprovementType>IMPROVEMENT_BARROW</ImprovementType>
+					<iWeight>100</iWeight>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_EXPLO_DUNGEON_DEFAULT -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_EXPLO_DUNGEON_DEFAULT</Type>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
+					<ImprovementType>IMPROVEMENT_DUNGEON</ImprovementType>
+					<iWeight>100</iWeight>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_EXPLO_COAST -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_EXPLO_COAST</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_EXPLO_FOREST_DEFENDER -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_EXPLO_FOREST_DEFENDER</Type>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>50</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>100</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_EXPLO_LIZARDMAN -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_EXPLO_LIZARDMAN</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>25</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
+					<ImprovementType>IMPROVEMENT_RUINS</ImprovementType>
+					<iWeight>50</iWeight>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_EXPLO_SCORPION -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_EXPLO_SCORPION</Type>
+			<iBaseWeight>25</iBaseWeight>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
+					<ImprovementType>IMPROVEMENT_GOBLIN_FORT</ImprovementType>
+					<iWeight>50</iWeight>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_EXPLO_SPIDER -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_EXPLO_SPIDER</Type>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>75</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>75</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
+					<ImprovementType>IMPROVEMENT_RUINS</ImprovementType>
+					<iWeight>50</iWeight>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</Type>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>25</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
+					<ImprovementType>IMPROVEMENT_RUINS</ImprovementType>
+					<iWeight>25</iWeight>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_EXPLO_VAMPIRE_EXTRA -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_EXPLO_VAMPIRE_EXTRA</Type>
+			<ImprovementCountWeights>
+				<ImprovementCountWeight>
+					<ImprovementType>IMPROVEMENT_DUNGEON</ImprovementType>
+					<iWeight>50</iWeight>
+				</ImprovementCountWeight>
+				<ImprovementCountWeight>
+					<ImprovementType>IMPROVEMENT_BARROW</ImprovementType>
+					<iWeight>25</iWeight>
+				</ImprovementCountWeight>
+			</ImprovementCountWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_EXPLO_WEREWOLF_EXTRA -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_EXPLO_WEREWOLF_EXTRA</Type>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>30</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>50</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		
+		<!-- Lair Spawns -->
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_BARROW_GHOUL -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_BARROW_GHOUL</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+		</TerrainFlavourInfo>
+		
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_BEAR_DEN_POLAR_BEAR -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_BEAR_DEN_POLAR_BEAR</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+		</TerrainFlavourInfo>
+		
+		<!-- Random Spawns -->
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</Type>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>100</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_BEAR -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_BEAR</Type>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>100</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>50</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_ELEPHANT -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_ELEPHANT</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>-25</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>-25</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_GRIFFON -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_GRIFFON</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_NEW</FeatureType>
+					<iWeight>-50</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_BURNT</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_HILL_GIANT -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_HILL_GIANT</Type>
+			<PlotPercentWeights>
+				<PlotPercentWeight>
+					<PlotType>PLOT_LAND</PlotType>
+					<iWeight>-50</iWeight>
+				</PlotPercentWeight>
+			</PlotPercentWeights>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iWeight>75</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_NEW</FeatureType>
+					<iWeight>-50</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_LION -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_LION</Type>
+			<PlotPercentWeights>
+				<PlotPercentWeight>
+					<PlotType>PLOT_HILLS</PlotType>
+					<iWeight>-50</iWeight>
+				</PlotPercentWeight>
+			</PlotPercentWeights>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_SCRUB</FeatureType>
+					<iWeight>50</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_NEW</FeatureType>
+					<iWeight>-50</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_BURNT</FeatureType>
+					<iWeight>-75</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>-100</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_POLAR_BEAR -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_POLAR_BEAR</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_SCORPION -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_SCORPION</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_SPIDER -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_SPIDER</Type>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>75</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>100</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>100</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_WOLF -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_WOLF</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>50</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_DEMON -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_DEMON</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_FOREST_DEFENDER -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_FOREST_DEFENDER</Type>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+					<iWeight>100</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_NOMAD -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_NOMAD</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_WINTERBORN -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iWeight>50</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_LIZARDMAN_EXTRA -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_LIZARDMAN_EXTRA</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>25</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>25</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_SAVAGE_EXTRA -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_SAVAGE_EXTRA</Type>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>50</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA</Type>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
 		</TerrainFlavourInfo>
 	</TerrainFlavourInfos>
 </Civ4TerrainFlavourInfos>

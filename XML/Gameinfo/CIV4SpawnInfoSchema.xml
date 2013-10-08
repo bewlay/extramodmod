@@ -8,7 +8,8 @@
 	<ElementType name="Type" content="textOnly"/>
 	<ElementType name="Description" content="textOnly"/>
 	<ElementType name="iBaseWeight" content="textOnly" dt:type="int"/>
-	<ElementType name="iProbability" content="textOnly" dt:type="int"/>
+	<ElementType name="TerrainFlavourType" content="textOnly"/>
+	<ElementType name="iValidTerrainWeight" content="textOnly" dt:type="int"/>
 	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="iPrereqGlobalCounter" content="textOnly" dt:type="int"/>
@@ -36,32 +37,6 @@
 		<element type="SpawnUnit" maxOccurs="*"/>
 	</ElementType>
 	
-	<ElementType name="TerrainType" content="textOnly"/>
-	<ElementType name="FeatureType" content="textOnly"/>
-	<ElementType name="ImprovementType" content="textOnly"/>
-	<ElementType name="iWeight" content="textOnly" dt:type="int"/>
-	<ElementType name="TerrainWeight" content="eltOnly">
-		<element type="TerrainType"/>
-		<element type="iWeight"/>
-	</ElementType>
-	<ElementType name="FeatureWeight" content="eltOnly">
-		<element type="FeatureType"/>
-		<element type="iWeight"/>
-	</ElementType>
-	<ElementType name="ImprovementWeight" content="eltOnly">
-		<element type="ImprovementType"/>
-		<element type="iWeight"/>
-	</ElementType>
-	<ElementType name="TerrainWeights" content="eltOnly">
-		<element type="TerrainWeight" maxOccurs="*"/>
-	</ElementType>
-	<ElementType name="FeatureWeights" content="eltOnly">
-		<element type="FeatureWeight" maxOccurs="*"/>
-	</ElementType>
-	<ElementType name="ImprovementWeights" content="eltOnly">
-		<element type="ImprovementWeight" maxOccurs="*"/>
-	</ElementType>
-	
 	<ElementType name="PromotionType" content="textOnly"/>
 	<ElementType name="UnitPromotions" content="eltOnly">
 		<element type="PromotionType" maxOccurs="*"/>
@@ -84,7 +59,8 @@
 		<element type="Type"/>
 		<element type="Description" minOccurs="0"/>
 		<element type="iBaseWeight"/>
-		<element type="iProbability" minOccurs="0"/>
+		<element type="TerrainFlavourType" minOccurs="0"/>
+		<element type="iValidTerrainWeight" minOccurs="0"/>
 		<element type="iMinWilderness"/>
 		<element type="iMaxWilderness"/>
 		<element type="iPrereqGlobalCounter" minOccurs="0"/>
@@ -101,9 +77,6 @@
 		<element type="UnitPromotions" minOccurs="0"/>
 		<element type="iNumRandomIncludedSpawns" minOccurs="0"/>
 		<element type="IncludedSpawns" minOccurs="0"/>
-		<element type="TerrainWeights" minOccurs="0"/>
-		<element type="FeatureWeights" minOccurs="0"/>
-		<element type="ImprovementWeights" minOccurs="0"/>
 		<element type="PrereqTechs" minOccurs="0"/>
 		<element type="ObsoleteTechs" minOccurs="0"/>
 		<element type="CreateLair" minOccurs="0"/>

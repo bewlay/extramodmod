@@ -28589,10 +28589,11 @@ bool CvTerrainFlavourInfo::read(CvXMLLoadUtility* pXML)
 //======================================================================================================
 
 CvSpawnInfo::CvSpawnInfo():
+	m_eCreateLair( NO_IMPROVEMENT ),
+	m_eTerrainFlavourType( NO_TERRAIN_FLAVOUR ),
 	m_eUnitArtStyleType( NO_UNIT_ARTSTYLE ),
-	m_eCreateLair(NO_IMPROVEMENT),
 	m_iWeight( 0 ),
-	m_iProbability( 100 ),
+	m_iValidTerrainWeight( 0 ),
 	m_iMinWilderness( 0 ),
 	m_iMaxWilderness( MAX_INT ),
 	m_iPrereqGlobalCounter( 0 ),
@@ -28608,9 +28609,6 @@ CvSpawnInfo::CvSpawnInfo():
 	m_bWater( false ),
 	m_bNoRace( false ),
 	m_piNumSpawnUnits( NULL ),
-	m_piTerrainWeights( NULL ),
-	m_piFeatureWeights( NULL ),
-	m_piImprovementWeights( NULL ),
 	m_pbUnitPromotions( NULL ),
 	m_pbIncludedSpawns( NULL ),
 	m_pbPrereqTechs( NULL ),
@@ -28621,18 +28619,10 @@ CvSpawnInfo::CvSpawnInfo():
 CvSpawnInfo::~CvSpawnInfo()
 {
 	SAFE_DELETE_ARRAY( m_piNumSpawnUnits );
-	SAFE_DELETE_ARRAY( m_piTerrainWeights );
-	SAFE_DELETE_ARRAY( m_piFeatureWeights );
-	SAFE_DELETE_ARRAY( m_piImprovementWeights );
 	SAFE_DELETE_ARRAY( m_pbUnitPromotions );
 	SAFE_DELETE_ARRAY( m_pbIncludedSpawns );
 	SAFE_DELETE_ARRAY( m_pbPrereqTechs );
 	SAFE_DELETE_ARRAY( m_pbObsoleteTechs );
-}
-
-int CvSpawnInfo::getUnitArtStyleType() const
-{
-	return m_eUnitArtStyleType;
 }
 
 int CvSpawnInfo::getCreateLair() const
@@ -28640,14 +28630,24 @@ int CvSpawnInfo::getCreateLair() const
 	return m_eCreateLair;
 }
 
+int CvSpawnInfo::getTerrainFlavourType() const
+{
+	return m_eTerrainFlavourType;
+}
+
+int CvSpawnInfo::getUnitArtStyleType() const
+{
+	return m_eUnitArtStyleType;
+}
+
 int CvSpawnInfo::getWeight() const
 {
 	return m_iWeight;
 }
 
-int CvSpawnInfo::getProbability() const
+int CvSpawnInfo::getValidTerrainWeight() const
 {
-	return m_iProbability;
+	return m_iValidTerrainWeight;
 }
 
 int CvSpawnInfo::getMinWilderness() const
@@ -28727,27 +28727,6 @@ int CvSpawnInfo::getNumSpawnUnits( int i ) const
 	return m_piNumSpawnUnits ? m_piNumSpawnUnits[i] : 0;
 }
 
-int CvSpawnInfo::getTerrainWeights( int i ) const
-{
-	FAssertMsg( i < GC.getNumTerrainInfos(), "Index out of bounds" );
-	FAssertMsg( i > -1, "Index out of bounds" );
-	return m_piTerrainWeights ? m_piTerrainWeights[i] : 0;
-}
-
-int CvSpawnInfo::getFeatureWeights( int i ) const
-{
-	FAssertMsg( i < GC.getNumFeatureInfos(), "Index out of bounds" );
-	FAssertMsg( i > -1, "Index out of bounds" );
-	return m_piFeatureWeights ? m_piFeatureWeights[i] : 0;
-}
-
-int CvSpawnInfo::getImprovementWeights( int i ) const
-{
-	FAssertMsg( i < GC.getNumImprovementInfos(), "Index out of bounds" );
-	FAssertMsg( i > -1, "Index out of bounds" );
-	return m_piImprovementWeights ? m_piImprovementWeights[i] : 0;
-}
-
 bool CvSpawnInfo::getUnitPromotions( int i ) const
 {
 	FAssertMsg( i < GC.getNumPromotionInfos(), "Index out of bounds" );
@@ -28780,10 +28759,11 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
 	
-	stream->Read(&m_eUnitArtStyleType);
 	stream->Read(&m_eCreateLair);
+	stream->Read(&m_eTerrainFlavourType);
+	stream->Read(&m_eUnitArtStyleType);
 	stream->Read(&m_iWeight);
-	stream->Read(&m_iProbability);
+	stream->Read(&m_iValidTerrainWeight);
 	stream->Read(&m_iMinWilderness);
 	stream->Read(&m_iMaxWilderness);
 	stream->Read(&m_iPrereqGlobalCounter);
@@ -28804,18 +28784,6 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_piNumSpawnUnits);
 	m_piNumSpawnUnits = new int[GC.getNumUnitInfos()];
 	stream->Read(GC.getNumUnitInfos(), m_piNumSpawnUnits);
-	
-	SAFE_DELETE_ARRAY(m_piTerrainWeights);
-	m_piTerrainWeights = new int[GC.getNumTerrainInfos()];
-	stream->Read(GC.getNumTerrainInfos(), m_piTerrainWeights);
-	
-	SAFE_DELETE_ARRAY(m_piFeatureWeights);
-	m_piFeatureWeights = new int[GC.getNumFeatureInfos()];
-	stream->Read(GC.getNumFeatureInfos(), m_piFeatureWeights);
-	
-	SAFE_DELETE_ARRAY(m_piImprovementWeights);
-	m_piImprovementWeights = new int[GC.getNumImprovementInfos()];
-	stream->Read(GC.getNumImprovementInfos(), m_piImprovementWeights);
 	
 	SAFE_DELETE_ARRAY(m_pbUnitPromotions);
 	m_pbUnitPromotions = new bool[GC.getNumPromotionInfos()];
@@ -28838,10 +28806,11 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 {
 	CvInfoBase::write(stream);
 	
-	stream->Write(m_eUnitArtStyleType);
 	stream->Write(m_eCreateLair);
+	stream->Write(m_eTerrainFlavourType);
+	stream->Write(m_eUnitArtStyleType);
 	stream->Write(m_iWeight);
-	stream->Write(m_iProbability);
+	stream->Write(m_iValidTerrainWeight);
 	stream->Write(m_iMinWilderness);
 	stream->Write(m_iMaxWilderness);
 	stream->Write(m_iPrereqGlobalCounter);
@@ -28860,9 +28829,6 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	// Arrays
 	
 	stream->Write(GC.getNumUnitInfos(), m_piNumSpawnUnits);
-	stream->Write(GC.getNumTerrainInfos(), m_piTerrainWeights);
-	stream->Write(GC.getNumFeatureInfos(), m_piFeatureWeights);
-	stream->Write(GC.getNumFeatureInfos(), m_piImprovementWeights);
 	stream->Write(GC.getNumPromotionInfos(), m_pbUnitPromotions);
 	stream->Write(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
 	stream->Write(GC.getNumTechInfos(), m_pbPrereqTechs);
@@ -28876,14 +28842,16 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	{
 		return false;
 	}
-
-	pXML->GetChildXmlValByName(szTextVal, "UnitArtStyleType");
-	m_eUnitArtStyleType = pXML->FindInInfoClass(szTextVal);
+	
 	pXML->GetChildXmlValByName(szTextVal, "CreateLair");
 	m_eCreateLair = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "TerrainFlavourType");
+	m_eTerrainFlavourType = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "UnitArtStyleType");
+	m_eUnitArtStyleType = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iWeight, "iBaseWeight");
-	pXML->GetChildXmlValByName(&m_iProbability, "iProbability", 100 );
+	pXML->GetChildXmlValByName(&m_iValidTerrainWeight, "iValidTerrainWeight" );
 	pXML->GetChildXmlValByName(&m_iMinWilderness, "iMinWilderness");
 	pXML->GetChildXmlValByName(&m_iMaxWilderness, "iMaxWilderness");
 	pXML->GetChildXmlValByName(&m_iPrereqGlobalCounter, "iPrereqGlobalCounter");
@@ -28900,9 +28868,6 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bNoRace, "bNoRace");
 	
 	pXML->SetVariableListTagPair( &m_piNumSpawnUnits, "SpawnUnits", sizeof( GC.getUnitInfo( (UnitTypes) 0 ) ), GC.getNumUnitInfos() );
-	pXML->SetVariableListTagPair( &m_piTerrainWeights, "TerrainWeights", sizeof( GC.getTerrainInfo( (TerrainTypes) 0 ) ), GC.getNumTerrainInfos() );
-	pXML->SetVariableListTagPair( &m_piFeatureWeights, "FeatureWeights", sizeof( GC.getFeatureInfo( (FeatureTypes) 0 ) ), GC.getNumFeatureInfos() );
-	pXML->SetVariableListTagPair( &m_piImprovementWeights, "ImprovementWeights", sizeof( GC.getImprovementInfo( (ImprovementTypes) 0 ) ), GC.getNumImprovementInfos() );
 	
 	pXML->SetVariableList( &m_pbUnitPromotions, "UnitPromotions", GC.getNumPromotionInfos() );
 	pXML->SetVariableList( &m_pbPrereqTechs, "PrereqTechs", GC.getNumTechInfos() );
