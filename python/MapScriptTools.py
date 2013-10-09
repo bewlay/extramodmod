@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-#	FILE:    MapScriptTools.py  v1.02
+#	FILE:    MapScriptTools.py  v1.03
 #	AUTHOR:  Temudjin (2009-11)
 #	PURPOSE: Provide tools to facilitate map-making and adapting existing maps for Civ4 BtS.
 #           Make maps compatible for 'Normal', 'Fall from Heaven 2', 'Planetfall' and 'Mars Now!' mods.
@@ -52,8 +52,11 @@
 
 #	Changelog
 #	---------
-#  1.03   06/10/2013 (Terkhen)
+#  1.03   06.Oct.13 (Terkhen)
 #         Added, ExtraModMod compatibility
+#         Changed, Corrected a few typos
+#         Fixed, The FFH2 bonus BONUS_REAGENTS was mispelled as BONUS_REAGENS
+#         Added, it is now possible to get Water Mana as a bonus in the Lost Island.
 #
 #  1.02   29.Jul.11
 #         Fixed, path identification for MAC in getCivPaths()
@@ -87,7 +90,7 @@
 #         Fixed [Mars Now!], 'Lost Isle' region now also on Mars
 #         Fixed [Mars Now!], no more rivers from 'BigBog' or 'BigDent'
 #         Fixed [Mars Now!], printed terrain/feature/bonus maps now show proper resource names
-#         Fixed [Mars Now!], no volcanos on marsian deserts anymore, if MST_FeatureGenerator is used
+#         Fixed [Mars Now!], no volcanos on martian deserts anymore, if MST_FeatureGenerator is used
 #         Changed, new 'class MST_Terraingenerator_Mars' for use with 'Mars Now!',
 #           was split from 'class MST_Terraingenerator' which should be used otherwise
 #         Changed, minor changes producing special regions: 'BigDent' and 'BigBog'
@@ -172,7 +175,7 @@ except:
 DEBUG = False
 
 def getVersion():
-	return "1.02"
+	return "1.03"
 def getDescription():
 	return "MapScriptTools:\n Tools to facilitate map making.\n This is not a map-script!"
 
@@ -259,7 +262,7 @@ def getModInfo( mapVersion=None, defLatitude=None, sMapInfo=None, bNoSigns=False
 		modDir    = civFolders.modDir
 
 	###########################
-	### recongnize civ versions
+	### recognize civ versions
 	###########################
 	global bBTS, bWarlords, bVanilla
 
@@ -276,7 +279,7 @@ def getModInfo( mapVersion=None, defLatitude=None, sMapInfo=None, bNoSigns=False
 	bVanilla = (not bBTS) and (not bWarlords) and (sVersion.find("Civ 4") > -1)
 
 	########################
-	### recongnize base mods
+	### recognize base mods
 	########################
 	global bFFH, bPfall, bMars, bFFront
 
@@ -288,7 +291,7 @@ def getModInfo( mapVersion=None, defLatitude=None, sMapInfo=None, bNoSigns=False
 	bMars = (sTxt.find("Mars, Now!") > 1) or (sTxt.find("Mars, Jetzt!") > 1)				# 'Mars Now!'
 
 	#########################
-	### recongnize super mods
+	### recognize super mods
 	#########################
 	global bPatch, bAIAuto, bBBAI, bBUG, bRev
 
@@ -320,7 +323,7 @@ def getModInfo( mapVersion=None, defLatitude=None, sMapInfo=None, bNoSigns=False
 	bSandsOfMars = iif( bMars, True, False )
 
 	#############################
-	### recongnize different mods
+	### recognize different mods
 	#############################
 	global bFF, bFFlat, bOrbis, bRoD, bLE, bWMana, bRifE, bMoM, bEMM
 	global bTrek, bMOO
@@ -538,7 +541,7 @@ def getModInfo( mapVersion=None, defLatitude=None, sMapInfo=None, bNoSigns=False
 	### define globals for some boni
 	################################
 	global ebAluminum, ebBauxite, ebCopper, ebHorse, ebIron, ebMithril, ebNaturalGas
-	global ebOil, ebReagens, ebRubber, ebSulphur, ebTitanium, ebUranium
+	global ebOil, ebReagents, ebRubber, ebSulphur, ebTitanium, ebUranium
 	global ebCoal, ebClam, ebFish, ebCrab, ebShrimp, ebGold, ebSilver, ebBanana
 	global ebCow, ebDeer, ebFur, ebGems, ebMarble, ebSheep
 
@@ -551,7 +554,7 @@ def getModInfo( mapVersion=None, defLatitude=None, sMapInfo=None, bNoSigns=False
 	ebMithril         = git('BONUS_MITHRIL')				# FFH:
 	ebNaturalGas      = git('BONUS_NATURAL_GAS')			#
 	ebOil             = git('BONUS_OIL')						# not plains, Pfall: water
-	ebReagens         = git('BONUS_REAGENS')				# FFH:
+	ebReagents        = git('BONUS_REAGENTS')				# FFH:
 	ebRubber          = git('BONUS_RUBBER')					#
 	ebSulphur         = git('BONUS_SULPHUR')				#
 	ebTitanium        = git('BONUS_TITANIUM')				#
@@ -747,11 +750,11 @@ def getModInfo( mapVersion=None, defLatitude=None, sMapInfo=None, bNoSigns=False
 		sShape = "Flat"
 		if map.isWrapX():
 			if map.isWrapY():
-				sShape = "Toroidal (XY-Wrap)"
+				sShape = "Toroidal (XY-Wrapped)"
 			else:
-				sShape = "Cylindrical (X-Wraped)"
+				sShape = "Cylindrical (X-Wrapped)"
 		elif map.isWrapY():
-			sShape = "Tubular (Y-Wraped)"
+			sShape = "Tubular (Y-Wrapped)"
 		sprint += "[MST] " + "Shape:                   %s \n" % ( sShape )
 		sprint += "[MST] " + "GameSpeed:               %s Speed - %i Turns, %i Years \n" % ( sGameSpeed[10:].capitalize(), iGameTurns, iGameYears )
 		sprint += "[MST] " + "Era:                     %s Era \n" % ( sEraType[4:].capitalize() )
@@ -1712,7 +1715,7 @@ def setPlotType( plotType, inx, data=None ):
 
 # get region from area
 # - the region is the smallest rectangle surrounding the area
-# - areaData may be an actual areaID or a tupel (x0,x1,y0,y1)
+# - areaData may be an actual areaID or a tuple (x0,x1,y0,y1)
 # - support wrapping around the edges: x0, y0 may be negative
 # - ensure that always x0 <= x1 and y0 <= y1
 def getRegion( areaData=None, iSurround=0 ):
@@ -2725,7 +2728,7 @@ planetFallMap = PlanetFallMap()
 
 
 #####################################################################################
-### CLASS MapPrettifier - small changes to beautify you map
+### CLASS MapPrettifier - small changes to beautify a map
 #####################################################################################
 # connectifyLakes( chConnect=75 )
 # deIcifyEdges( iLat=66, addToroidIce=True )
@@ -4051,7 +4054,7 @@ class MapRegions:
 										'Water':   "Alpha's Pocket",
 										'Hills':   "Sid's Highlands" } )
 		elif bMars:
-			dentNames.append( {	'Volcano': "Marsian Glow",
+			dentNames.append( {	'Volcano': "Martian Glow",
 										'Peak':    "Olympus Mons",
 										'Flat':    "Collin's Folly",
 										'Water':   "Aldrin's Drink",
@@ -4759,7 +4762,7 @@ class MapRegions:
 		lostIsleNames_Pfall = [ "Alien HQ", "Command Center", "City of Light", "Atlantis Command",
 		                        "Isle of Delanira", "Island of Dexamenus" ]
 		lostIsleNames_Mars = [ "Alien HQ", "Command Center", "City of Light", "Forerunners Station",
-		                       "Ancients Retreat", "Precurser Dwellings", "Old Marsian Ruins" ]
+		                       "Ancients Retreat", "Precurser Dwellings", "Old Martian Ruins" ]
 
 		sprint = ""
 		for x0,y0,pList,bAliens in self.lostIsleList:
@@ -4855,8 +4858,8 @@ class MapRegions:
 				            [ebRareDnaMoist, ebRareDnaRainy], ebArtifact, ebThorium,
 				            ebMineral, ebEnergy, ebGold ]
 			elif bFFH:
-				bonList = [ [ebGold, ebSilver], [ebGems, ebCoal], ebMithril,
-							   [ebCopper, ebIron], [ebSheep, ebCow], ebReagens,
+				bonList = [ [ebGold, ebSilver], [ebGems, ebCoal], ebMithril, ebManaWater,
+							   [ebCopper, ebIron], [ebSheep, ebCow], ebReagents,
 							   ebMana, ebManaChaos, [ebManaDeath, ebManaEntropy] ]
 			elif bMars:
 				bonList = [ [ebGold, ebSilver], ebGems, ebTitanium,
@@ -4904,7 +4907,7 @@ class MapRegions:
 					else:
 						bonEra, imp = impList[ 0 ]
 						if bonEra > 1:
-							sprint += "[MST] Civ to primitive to work %s @ (%r,%r)\n" % (bonString,pl.getX(),pl.getY())
+							sprint += "[MST] Civ too primitive to work %s @ (%r,%r)\n" % (bonString,pl.getX(),pl.getY())
 							continue												# ancient and classic tech only
 					impString = gc.getImprovementInfo(imp).getType()
 					pl.setImprovementType( imp )
@@ -5605,7 +5608,7 @@ class FeaturePlacer:
 							cnt += 1
 		if cnt>0: print "[MST] %i Kelp placed" % ( cnt )
 
-	# put 'Haunted Lands': deep in forrest/jungle, near mountain passes, near city-ruins,
+	# put 'Haunted Lands': deep in forest/jungle, near mountain passes, near city-ruins,
 	# middle of desert, around and within marshes, on small islands
 	# use only after starting-plots are generated
 	def placeHauntedLands( self, chHaunted=6 ):
@@ -5906,9 +5909,13 @@ class BonusBalancer:
 			self.resourcesToBalance = ( 'BONUS_URANIUM', 'BONUS_IVORY', 'BONUS_IRON', 'BONUS_STONE', 'BONUS_WHEAT' )
 			self.resourcesToEliminate = ('', )
 			self.mineralsToMove       = ('', )
+		elif bEMM:
+			# ExtraModMod specific balancer. Must be placed before the bFFH check.
+			self.resourcesToBalance   = ( 'BONUS_GUNPOWDER', 'BONUS_REAGENTS', 'BONUS_COPPER', 'BONUS_HORSE', 'BONUS_IRON', 'BONUS_MITHRIL', )
+			self.resourcesToEliminate = ( 'BONUS_MARBLE','BONUS_STONE', )
 		elif bFFH:
 			# one might also consider: BONUS_GUNPOWDER, BONUS_INCENSE, BONUS_GEMS
-			self.resourcesToBalance = ( 'BONUS_MITHRIL', 'BONUS_REAGENS', 'BONUS_HORSE', 'BONUS_MANA', 'BONUS_IRON', 'BONUS_COPPER' )
+			self.resourcesToBalance = ( 'BONUS_MITHRIL', 'BONUS_REAGENTS', 'BONUS_HORSE', 'BONUS_MANA', 'BONUS_IRON', 'BONUS_COPPER' )
 			self.resourcesToEliminate = ('', )
 		elif bRoM:
 			self.resourcesToBalance = ( 'BONUS_BAUXITE', 'BONUS_OIL', 'BONUS_HORSE', 'BONUS_URANIUM', 'BONUS_IRON', 'BONUS_COPPER', )
@@ -5916,10 +5923,6 @@ class BonusBalancer:
 		elif bCCV:
 			self.resourcesToBalance   = ( 'BONUS_ALUMINUM', 'BONUS_OIL', 'BONUS_HORSE', 'BONUS_URANIUM', 'BONUS_IRON', 'BONUS_COPPER', 'BONUS_COAL', )
 			self.resourcesToEliminate = ('', )
-		elif bEMM:
-			# ExtraModMod balancer
-			self.resourcesToBalance   = ( 'BONUS_COPPER', 'BONUS_GUNPOWDER', 'BONUS_HORSE', 'BONUS_IRON', 'BONUS_MITHRIL', 'BONUS_REAGENTS', )
-			self.resourcesToEliminate = ( 'BONUS_MARBLE','BONUS_STONE', )
 
 		#-----------------------------------------------------
 		# show which of the boni in the mod might be strategic
@@ -7812,12 +7815,12 @@ class MapPrint:
 			pass
 		elif bFFH:
 			self.__bonusDict =	{
-										ebMana    : [ "*", "Mana"    ],
-										ebReagens : [ "R", "Reagens" ],
-										ebHorse   : [ "H", "Horse"   ],
-										ebMithril : [ "M", "Mithril" ],
-										ebIron    : [ "I", "Iron"    ],
-										ebCopper  : [ "C", "Copper"  ]
+										ebMana     : [ "*", "Mana"     ],
+										ebReagents : [ "R", "Reagents" ],
+										ebHorse    : [ "H", "Horse"    ],
+										ebMithril  : [ "M", "Mithril"  ],
+										ebIron     : [ "I", "Iron"     ],
+										ebCopper   : [ "C", "Copper"   ]
 										}
 
 			self.manaDict =	{
@@ -9633,7 +9636,7 @@ print "[MST] ########### pre-init MapScriptTools %s ########### End" % getVersio
 #    humans start only on coastal lands near biggest ocean or all on one continent
 # adjust for team-options in 'OccStart'
 # -------------- sooner or later
-# balance on wider scale and two tiers: (aluminum,uranium,mithril,(reagens?),oil,(coal?)) within 7-radius
+# balance on wider scale and two tiers: (aluminum,uranium,mithril,(reagents?),oil,(coal?)) within 7-radius
 #    and other, earlier resources (copper,iron,horses,mana) within 5-radius?
 #    may have to adjust for players / map-plots ratio ?
 # better missing boni recognition? (check all terrain/features against 3 is..() -> build list, check list)
