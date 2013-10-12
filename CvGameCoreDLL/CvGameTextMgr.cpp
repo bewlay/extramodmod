@@ -809,6 +809,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 	{
 
 //FfH: Added by Kael 07/23/2007
+
         if (pUnit->getReligion() != NO_RELIGION)
         {
 			szString.append(NEWLINE);
@@ -2260,6 +2261,16 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			szString.append(pUnit->getUnitInfo().getHelp());
 		}
 
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
+	/************************************************************************************************/
+		szString.append(NEWLINE);
+		szString.append(gDLL->getText("TXT_KEY_UNIT_EXPLORATION_LEVEL", pUnit->getExplorationLevel()));
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
+
         if (bShift && (gDLL->getChtLvl() > 0))
         {
             szTempBuffer.Format(L"\nUnitAI Type = %s.", GC.getUnitAIInfo(pUnit->AI_getUnitAIType()).getDescription());
@@ -2299,7 +2310,6 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 	/************************************************************************************************/
 	/* WILDERNESS                                                                     END           */
 	/************************************************************************************************/
-		// LFGR_TEST end
         }
 	}
 }
@@ -9118,10 +9128,9 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_KAMIKAZE_TEXT", kPromotionInfo.getKamikazePercent()));
 	}
 	
-	
 /************************************************************************************************/
 /* WILDERNESS                             09/2013                                 lfgr          */
-/* PromotionExpResultBonus                                                                      */
+/* WildernessExploration                                                                        */
 /************************************************************************************************/
 	if (kPromotionInfo.getExplorationResultBonus() != 0)
 	{

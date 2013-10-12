@@ -12,6 +12,14 @@
 		<Spanish>[ICON_BULLET]%D1%% better results from lair exploration</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_LEVEL</Tag>
+		<English>[ICON_BULLET]Lair exploration level: %d1</English>
+		<French>[ICON_BULLET]Lair exploration level: %d1</French>
+		<German>[ICON_BULLET]Lair exploration level: %d1</German>
+		<Italian>[ICON_BULLET]Lair exploration level: %d1</Italian>
+		<Spanish>[ICON_BULLET]Lair exploration level: %d1</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_LAIR_EXPLORED</Tag>
 		<English>There seems not to be anything left to explore in the lair.</English>
 		<French>There seems not to be anything left to explore in the lair.</French>

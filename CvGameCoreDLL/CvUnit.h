@@ -1032,7 +1032,7 @@ public:
 	// End MNAI
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* UnitMinWilderness, LairUnitCounter, UnitSpawnType                                            */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
 /************************************************************************************************/
 	int getMinWilderness() const;
 	void setMinWilderness( int iNewValue );
@@ -1042,6 +1042,10 @@ public:
 	
 	SpawnTypes getSpawnType() const;
 	void setSpawnType( SpawnTypes eNewValue );
+
+	int getExplorationLevel() const;
+	int getExplorationResultBonus() const;
+	void changeExplorationResultBonus( int iChange );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -1214,13 +1218,15 @@ protected:
 	int* m_paiExtraUnitCombatModifier;
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* UnitMinWilderness, LairUnitCounter, UnitSpawnType                                            */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
 /************************************************************************************************/
 	int m_iMinWilderness;
 
 	int m_iLairPlot;
 	
 	SpawnTypes m_eSpawnType;
+
+	int m_iExplorationResultBonus;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

@@ -17,6 +17,6 @@ Components:
 	SpawnInfo - DLL, XML / An info type to handle randoms spawns, spawns from lairs and spawns from exploration results, changes to random spawning
 	UnitSpawnType - DLL / When a unit is spawned, the SpawnType is assigned to it to better identification used by other components
 	UnitMinWilderness - DLL / Units have a min wilderness to enter
-	WildernessExploration - Python, XML / New System for Lair Exploration, unique features don't vanish but become unexplorable for some time.
+	WildernessExploration - DLL, Python, XML / New System for Lair Exploration, unique features don't vanish but become unexplorable for some time.
 
 The components may be dependent on each other.

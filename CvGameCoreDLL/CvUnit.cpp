@@ -539,11 +539,12 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* Control min wilderness to enter                                                              */
-/* UnitMinWilderness, LairUnitCounter, UnitSpawnType                                            */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
 /************************************************************************************************/
 	m_iMinWilderness = 0;
 	m_iLairPlot = -1;
 	m_eSpawnType = NO_SPAWN;
+	m_iExplorationResultBonus = 0;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -14489,6 +14490,14 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 		changeTwincast((kPromotionInfo.isTwincast()) ? iChange : 0);
 		changeWaterWalking((kPromotionInfo.isWaterWalking()) ? iChange : 0);
 		changeWorkRateModify(kPromotionInfo.getWorkRateModify() * iChange);
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/************************************************************************************************/
+		changeExplorationResultBonus( kPromotionInfo.getExplorationResultBonus() * iChange );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
         GC.getGameINLINE().changeGlobalCounter(kPromotionInfo.getModifyGlobalCounter() * iChange);
         if (kPromotionInfo.getCombatLimit() != 0)
         {
@@ -19993,11 +20002,12 @@ void CvUnit::read(FDataStreamBase* pStream)
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* UnitMinWilderness, UnitSpawnType                                                             */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
 /************************************************************************************************/
 	pStream->Read(&m_iMinWilderness);
 	pStream->Read(&m_iLairPlot);
 	pStream->Read((int*)&m_eSpawnType);
+	pStream->Read(&m_iExplorationResultBonus);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -20172,11 +20182,12 @@ void CvUnit::write(FDataStreamBase* pStream)
 	//<<<<Unofficial Bug Fix: End Add
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* UnitMinWilderness, UnitSpawnType                                                             */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
 /************************************************************************************************/
 	pStream->Write(m_iMinWilderness);
 	pStream->Write(m_iLairPlot);
 	pStream->Write(m_eSpawnType);
+	pStream->Write(m_iExplorationResultBonus);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -20431,7 +20442,7 @@ bool CvUnit::isRangedCollateral()
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* UnitMinWilderness, LairUnitCounter, UnitSpawnType                                            */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
 /************************************************************************************************/
 int CvUnit::getMinWilderness() const
 {
@@ -20468,6 +20479,32 @@ SpawnTypes CvUnit::getSpawnType() const
 void CvUnit::setSpawnType( SpawnTypes eNewValue )
 {
 	m_eSpawnType = eNewValue;
+}
+
+int CvUnit::getExplorationResultBonus() const
+{
+	return m_iExplorationResultBonus;
+}
+void CvUnit::changeExplorationResultBonus( int iChange )
+{
+	m_iExplorationResultBonus += iChange;
+}
+
+// see https://bitbucket.org/lfgr/barbsplus/issue/78/unit-level-equation-for-more-accurate-unit#comment-6438987
+int CvUnit::getExplorationLevel() const
+{
+	float fExplLevel;
+
+	if( getLevel() <= 1 )
+		fExplLevel = 0;
+	else if( getLevel() <= 4 )
+		fExplLevel = 0.3629f * ( getLevel()*getLevel()*getLevel() - 1 );
+	else
+		fExplLevel = 150 - 2625.0f / (getLevel()*getLevel());
+
+	fExplLevel *= ( 1.0f + getExplorationResultBonus() / 100.0f );
+
+	return (int) ( fExplLevel + 0.5 ); // rounding
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

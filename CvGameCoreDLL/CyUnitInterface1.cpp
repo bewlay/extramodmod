@@ -471,6 +471,15 @@ void CyUnitPythonInterface1(python::class_<CyUnit>& x)
 		.def("isAvatarOfCivLeader", &CyUnit::isAvatarOfCivLeader, "bool ()")
 		.def("setAvatarOfCivLeader", &CyUnit::setAvatarOfCivLeader, "void (bool bNewValue)")
 //<<<<Unofficial Bug Fix: End Add
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/************************************************************************************************/
+		.def("getExplorationLevel", &CyUnit::getExplorationLevel, "int ()")
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 //FfH: End Add
 
