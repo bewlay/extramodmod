@@ -20506,6 +20506,43 @@ int CvUnit::getExplorationLevel() const
 
 	return (int) ( fExplLevel + 0.5 ); // rounding
 }
+
+bool CvUnit::canDoExploration( CvPlot* pPlot ) const
+{
+	if( isOnlyDefensive() )
+		return false;
+	if( getUnitCombatType() == GC.getInfoTypeForString( "UNITCOMBAT_SIEGE" ) )
+		return false;
+	if( isBarbarian() )
+		return false;
+	if( getDuration() > 0 )
+		return false;
+	if( getSpecialUnitType() == GC.getInfoTypeForString( "SPECIALUNIT_SPELL" ) )
+		return false;
+	if( getSpecialUnitType() == GC.getInfoTypeForString( "SPECIALUNIT_BIRD" ) )
+		return false;
+
+	if( !GET_TEAM( getTeam() ).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) )
+		return false;
+
+	if( pPlot != NULL )
+	{
+		if( pPlot->getImprovementType() == NO_IMPROVEMENT )
+			return false;
+
+		if( !GC.getImprovementInfo( pPlot->getImprovementType() ).isExplorable() )
+			return false;
+
+		if( pPlot->isOwned() )
+		{
+			TeamTypes ePlotOwnerTeam = GET_PLAYER( pPlot->getOwnerINLINE() ).getTeam();
+			if( getTeam() != ePlotOwnerTeam && !GET_TEAM(getTeam()).isAtWar( ePlotOwnerTeam ) )
+				return false;
+		}
+	}
+
+	return true;
+}
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

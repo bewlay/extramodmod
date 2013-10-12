@@ -1046,6 +1046,7 @@ public:
 	int getExplorationLevel() const;
 	int getExplorationResultBonus() const;
 	void changeExplorationResultBonus( int iChange );
+	bool canDoExploration( CvPlot* pPlot = NULL ) const;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

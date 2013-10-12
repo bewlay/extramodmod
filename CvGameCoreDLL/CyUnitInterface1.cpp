@@ -477,6 +477,7 @@ void CyUnitPythonInterface1(python::class_<CyUnit>& x)
 /* WildernessExploration                                                                        */
 /************************************************************************************************/
 		.def("getExplorationLevel", &CyUnit::getExplorationLevel, "int ()")
+		.def("canDoExploration", &CyUnit::canDoExploration, "bool (CyPlot pPlot) - pPlot may be None")
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

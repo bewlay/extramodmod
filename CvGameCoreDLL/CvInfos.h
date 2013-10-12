@@ -3759,17 +3759,20 @@ public:
 	const TCHAR* getPythonOnMove() const;
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementSpawnTypes, LairGuardians, ImprovementWilderness                                  */
+/* ImprovementSpawnTypes, LairGuardians, ImprovementWilderness, WildernessExploration           */
 /************************************************************************************************/
 /*
 	int getSpawnUnitType() const;
 	int getFreeSpawnPromotion() const;
 */
 	bool getSpawnTypes( int eSpawn ) const;
+
 	bool isGuardianSpawnType( int eSpawn ) const;
 
 	int getMinWilderness() const;
 	int getMaxWilderness() const;
+
+	bool isExplorable() const;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -3845,17 +3848,20 @@ protected:
 	CvString m_szPythonOnMove;
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementSpawnTypes, LairGuardians, ImprovementWilderness                                  */
+/* ImprovementSpawnTypes, LairGuardians, ImprovementWilderness, WildernessExploration           */
 /************************************************************************************************/
 /*
 	int m_iSpawnUnitType;
 	int m_iFreeSpawnPromotion;
 */
 	bool* m_pbSpawnTypes;
+
 	bool* m_pbGuardianSpawnTypes;
 	
 	int m_iMinWilderness;
 	int m_iMaxWilderness;
+
+	bool m_bExplorable;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

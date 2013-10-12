@@ -71,6 +71,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>0</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -254,6 +257,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>0</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -324,7 +330,7 @@
             <bGraphicalOnly>0</bGraphicalOnly>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
-            <bExploreTarget>1</bExploreTarget>
+            <bExploreTarget>0</bExploreTarget>
             <iAppearanceProbability>0</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -425,6 +431,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>75</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -627,6 +636,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>0</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -810,6 +822,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>0</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -1610,6 +1625,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>75</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -2119,6 +2137,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>50</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>1</iRange>
@@ -5236,6 +5257,9 @@
 			<bRequiresPeak>0</bRequiresPeak>
 			<bUnique>1</bUnique>
 			<bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
 			<iAppearanceProbability>0</iAppearanceProbability>
 			<iHealRateChange>0</iHealRateChange>
 			<iRange>0</iRange>
@@ -5956,6 +5980,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>0</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -6381,6 +6408,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>75</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -6540,6 +6570,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>100</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>

@@ -1993,11 +1993,16 @@ void CyUnit::joinGroup(CySelectionGroup* pNewGroup)
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
+/* WildernessExploration                                                                        */
 /************************************************************************************************/
 int CyUnit::getExplorationLevel() const
 {
 	return m_pUnit ? m_pUnit->getExplorationLevel() : 0;
+}
+
+bool CyUnit::canDoExploration( CyPlot* pPlot ) const
+{
+	return m_pUnit ? m_pUnit->canDoExploration( pPlot->getPlot() ) : false;
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

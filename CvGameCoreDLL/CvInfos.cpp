@@ -15073,7 +15073,7 @@ m_iFeatureUpgrade(NO_FEATURE),
 m_iPrereqCivilization(NO_CIVILIZATION),
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementSpawnTypes, LairGuardians, ImprovementWilderness                                  */
+/* ImprovementSpawnTypes, LairGuardians, ImprovementWilderness, WildernessExploration           */
 /************************************************************************************************/
 /*
 m_iSpawnUnitType(NO_UNIT),
@@ -15083,6 +15083,7 @@ m_pbSpawnTypes( NULL ),
 m_pbGuardianSpawnTypes( NULL ),
 m_iMinWilderness(0),
 m_iMaxWilderness(MAX_INT),
+m_bExplorable(false),
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -15212,7 +15213,7 @@ void CvImprovementInfo::setImprovementUpgrade(int i)
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementWilderness                                                                        */
+/* ImprovementWilderness, WildernessExploration                                                 */
 /************************************************************************************************/
 int CvImprovementInfo::getMinWilderness() const
 {
@@ -15221,6 +15222,11 @@ int CvImprovementInfo::getMinWilderness() const
 int CvImprovementInfo::getMaxWilderness() const
 {
 	return m_iMaxWilderness;
+}
+
+bool CvImprovementInfo::isExplorable() const
+{
+	return m_bExplorable;
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
@@ -15677,7 +15683,7 @@ void CvImprovementInfo::read(FDataStreamBase* stream)
 	stream->ReadString(m_szPythonOnMove);
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementSpawnTypes, ImprovementWilderness                                                 */
+/* ImprovementSpawnTypes, ImprovementWilderness, WildernessExploration                          */
 /************************************************************************************************/
 /*
 	stream->Read(&m_iSpawnUnitType);
@@ -15685,6 +15691,8 @@ void CvImprovementInfo::read(FDataStreamBase* stream)
 */
 	stream->Read(&m_iMinWilderness);
 	stream->Read(&m_iMaxWilderness);
+
+	stream->Read(&m_bExplorable);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -15841,7 +15849,7 @@ void CvImprovementInfo::write(FDataStreamBase* stream)
 	stream->WriteString(m_szPythonOnMove);
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementSpawnTypes, ImprovementWilderness                                                 */
+/* ImprovementSpawnTypes, ImprovementWilderness, WildernessExploration                          */
 /************************************************************************************************/
 /*
 	stream->Write(m_iSpawnUnitType);
@@ -15849,6 +15857,8 @@ void CvImprovementInfo::write(FDataStreamBase* stream)
 */
 	stream->Write(m_iMinWilderness);
 	stream->Write(m_iMaxWilderness);
+
+	stream->Write(m_bExplorable);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -15993,10 +16003,12 @@ bool CvImprovementInfo::read(CvXMLLoadUtility* pXML)
 	// Super Forts end
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementWilderness                                                                        */
+/* ImprovementWilderness, WildernessExploration                                                 */
 /************************************************************************************************/
 	pXML->GetChildXmlValByName( &m_iMinWilderness, "iMinWilderness" );
 	pXML->GetChildXmlValByName( &m_iMaxWilderness, "iMaxWilderness", MAX_INT );
+
+	pXML->GetChildXmlValByName( &m_bExplorable, "bExplorable" );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

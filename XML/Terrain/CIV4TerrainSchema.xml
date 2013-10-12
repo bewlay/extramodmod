@@ -466,6 +466,9 @@
 	<ElementType name="bRequiresPeak" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bUnique" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bExploreTarget" content="textOnly" dt:type="boolean"/>
+<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+	<ElementType name="bExplorable" content="textOnly" dt:type="boolean"/>
+<!-- WILDERNESS end -->
 	<ElementType name="iAppearanceProbability" content="textOnly" dt:type="int"/>
 	<ElementType name="iHealRateChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iRange" content="textOnly" dt:type="int"/>
@@ -545,6 +548,9 @@
 		<element type="bRequiresPeak"/>
 		<element type="bUnique"/>
 		<element type="bExploreTarget"/>
+	<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+		<element type="bExplorable" minOccurs="0"/>
+	<!-- WILDERNESS end -->
 		<element type="iAppearanceProbability"/>
 		<element type="iHealRateChange"/>
 		<element type="iRange"/>

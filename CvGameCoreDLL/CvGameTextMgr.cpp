@@ -2265,8 +2265,11 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 	/* WILDERNESS                             08/2013                                 lfgr          */
 	/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
 	/************************************************************************************************/
-		szString.append(NEWLINE);
-		szString.append(gDLL->getText("TXT_KEY_UNIT_EXPLORATION_LEVEL", pUnit->getExplorationLevel()));
+		if( pUnit->canDoExploration() )
+		{
+			szString.append(NEWLINE);
+			szString.append(gDLL->getText("TXT_KEY_UNIT_EXPLORATION_LEVEL", pUnit->getExplorationLevel()));
+		}
 	/************************************************************************************************/
 	/* WILDERNESS                                                                     END           */
 	/************************************************************************************************/
