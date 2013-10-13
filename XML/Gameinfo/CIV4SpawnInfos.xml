@@ -267,13 +267,83 @@
 				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC_EARLY</SpawnType>
 				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC_LATE</SpawnType>
 				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_OGRE_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_OGRE_LATE</SpawnType>
 				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
 				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
 			</IncludedSpawns>
 			<PrereqTechs>
-				<Tech>TECH_KNOWLEDGE_OF_THE_ETHER</Tech>
+				<Tech>TECH_MYSTICISM</Tech>
+			</PrereqTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_AXEMAN_ORC_EARLY -->
+			<Type>SPAWN_EXPLO_BOSS_AXEMAN_ORC_EARLY</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_AXEMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>3</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_MUTATED</PromotionType>
+				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_VALOR</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+			</IncludedSpawns>
+			<ObsoleteTechs>
+				<Tech>TECH_MINING</Tech>
+			</ObsoleteTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_AXEMAN_ORC_LATE -->
+			<Type>SPAWN_EXPLO_BOSS_AXEMAN_ORC_LATE</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_AXEMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>3</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_MUTATED</PromotionType>
+				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_VALOR</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+			</IncludedSpawns>
+			<PrereqTechs>
+				<Tech>TECH_MINING</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_BALOR -->
@@ -434,8 +504,33 @@
 				<Tech>TECH_FANATICISM</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_GARGOYLE -->
-			<Type>SPAWN_EXPLO_BOSS_GARGOYLE</Type>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_GARGOYLE_EARLY -->
+			<Type>SPAWN_EXPLO_BOSS_GARGOYLE_EARLY</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_GARGOYLE</Description>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_DUNGEON_DEFAULT</TerrainFlavourType>
+			<iMinWilderness>60</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GARGOYLE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_WOOD_GOLEM</SpawnType>
+			</IncludedSpawns>
+			<ObsoleteTechs>
+				<Tech>TECH_CONSTRUCTION</Tech>
+			</ObsoleteTechs>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_GARGOYLE_LATE -->
+			<Type>SPAWN_EXPLO_BOSS_GARGOYLE_LATE</Type>
 			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_GARGOYLE</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_DUNGEON_DEFAULT</TerrainFlavourType>
@@ -569,7 +664,7 @@
 				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
 			</IncludedSpawns>
 			<PrereqTechs>
-				<Tech>TECH_MINING</Tech>
+				<Tech>TECH_BRONZE_WORKING</Tech>
 			</PrereqTechs>
 			<ObsoleteTechs>
 				<Tech>TECH_SMELTING</Tech>
@@ -751,12 +846,12 @@
 				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
 				<PromotionType>PROMOTION_VALOR</PromotionType>
 				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
-				<PromotionType>PROMOTION_FIRE2</PromotionType>
-				<PromotionType>PROMOTION_AIR2</PromotionType>
+				<PromotionType>PROMOTION_FIRE1</PromotionType>
+				<PromotionType>PROMOTION_AIR1</PromotionType>
 				<PromotionType>PROMOTION_HERO</PromotionType>
 				<PromotionType>PROMOTION_MARKSMAN</PromotionType>
 				<PromotionType>PROMOTION_SHADOWWALK</PromotionType>
-				<PromotionType>PROMOTION_DEATH2</PromotionType>
+				<PromotionType>PROMOTION_DEATH1</PromotionType>
 				<PromotionType>PROMOTION_POISONED_BLADE</PromotionType>
 				<PromotionType>PROMOTION_FEAR</PromotionType>
 			</UnitPromotions>
@@ -767,6 +862,9 @@
 				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_EARLY</SpawnType>
 				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_LATE</SpawnType>
 			</IncludedSpawns>
+			<PrereqTechs>
+				<Tech>TECH_BRONZE_WORKING</Tech>
+			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WEREWOLF -->
 			<!-- LFGR_TODO: Only if Duin was built (doesn't have to be alive)? -->
