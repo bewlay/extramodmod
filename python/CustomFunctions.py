@@ -124,49 +124,29 @@ class CustomFunctions:
 # WILDERNESS 08/2013 lfgr / WildernessExploration, PromotionExplResultBonus
 	def exploreLair( self, pUnit, bEpic ) :
 		pPlot = pUnit.plot()
-		iRnd = CyGame().getSorenRandNum( 150, "Explore Lair" ) - 75 + min( 75, ( pUnit.getLevel() - 5 ) * 3 )
-		
-		if( bEpic ) :
-			iRnd -= 10
-		
-		for ePromotion in range( gc.getNumPromotionInfos() ) :
-			if( pUnit.isHasPromotion( ePromotion ) ) :
-				iRnd += gc.getPromotionInfo( ePromotion ).getExplorationResultBonus() * 2
-		
-		if( iRnd >= 0 ) : # Good
-			iRnd += pPlot.getWilderness() / 2.5
-			if( bEpic ) :
-				iRnd += 30
-		else : # Bad
-			iRnd -= pPlot.getWilderness() / 2.5
-			if( bEpic ) :
-				iRnd -= 30
 		
 		iDestroyLair = 0
 		
 		ePillageImprovement = gc.getImprovementInfo( pPlot.getImprovementType() ).getImprovementPillage()
 		bNoDestroy = ( ePillageImprovement != -1 )
 		
-		eSpawn = self.getExploreSpawn( pUnit, iRnd )
-		tOutcome = self.getExploreNonSpawnOutcome( pUnit, iRnd, bNoDestroy )
+		eSpawn = self.pickSpawn( pUnit )
+		tOutcome = self.pickNonSpawnOutcome( pUnit, bEpic, bNoDestroy )
 		
 		if( eSpawn == None and tOutcome == None ) :
-			CvUtil.pyPrint( "WARNING: Neither spawn nor non-spawn outcome available, adding 'NOTHING'" )
+			CvUtil.pyPrint( "ERROR: Neither spawn nor non-spawn outcome available, adding 'NOTHING'" )
 			iDestroyLair = self.doNonSpawnOutcome( pUnit, ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
 		elif( eSpawn == None ) :
+			CvUtil.pyPrint( "WARNING: No spawn outcome available" )
 			iDestroyLair = self.doNonSpawnOutcome( pUnit, tOutcome )
 		elif( tOutcome == None ) :
+			CvUtil.pyPrint( "WARNING: No non-spawn outcome available" )
 			iDestroyLair = self.doSpawn( pUnit, eSpawn )
 		else :
-			if( iRnd >= 0 ) :
-				iSpawnProb = 1
-			else :
-				iSpawnProb = 2
-			#iSpawnProb = 3 # TEST
-			if( CyGame().getSorenRandNum( 3, "Explore Lair" ) < iSpawnProb ) :
+			if( CyGame().getSorenRandNum( 100, "Explore Lair" ) < 50 ) :
 				iDestroyLair = self.doSpawn( pUnit, eSpawn )
 			else :
-				iDestroyLair = self.doNonSpawnOutcome( pUnit, self.getExploreNonSpawnOutcome( pUnit, iRnd, bNoDestroy ) )
+				iDestroyLair = self.doNonSpawnOutcome( pUnit, tOutcome )
 		
 		if iDestroyLair > CyGame().getSorenRandNum( 100, "Explore Lair" ):
 			if( bNoDestroy ) :
@@ -205,12 +185,7 @@ class CustomFunctions:
 			sMessage = CyTranslator().getText( "TXT_KEY_MESSAGE_EXPLORE_LAIR_BIGBAD", () )
 		CyInterface().addMessage( pUnit.getOwner(), True, 25, sMessage, '', 1, 'Art/Interface/Buttons/Spells/Explore Lair.dds', ColorTypes( 7 ), pPlot.getX(), pPlot.getY(), True, True )
 		
-		if( pPlot.getWilderness() >= 50 ) :
-			return 0
-		elif( pPlot.getWilderness() >= 30 ) :
-			return 10
-		else :
-			return 20
+		return 0
 	
 	def doNonSpawnOutcome( self, pUnit, tOutcome ) :
 		pPlot = pUnit.plot()
@@ -321,13 +296,12 @@ class CustomFunctions:
 		
 		return iDestroyLair
 	
-	def getExploreSpawn( self, pUnit, iRnd ) :
+	def pickSpawn( self, pUnit ) :
 		pPlot = pUnit.plot()
-		if( iRnd >= 50 ) :
-			return None
 		
 		# LFGR_TODO: try to push other units out of way to ensure abusing by surrounding the lair with units is not possible
 		if( self.findClearPlot( -1, pPlot ) == -1 ) :
+			CvUtil.pyPrint( "pickSpawn: No clear plot around, returning None" )
 			return None
 		
 		eBestSpawn = None
@@ -344,10 +318,25 @@ class CustomFunctions:
 		
 		return eBestSpawn
 		
-	def getExploreNonSpawnOutcome( self, pUnit, iRnd, bNoDestroy ) :
+	def pickNonSpawnOutcome( self, pUnit, bEpic, bNoDestroy ) :
 		pPlot = pUnit.plot()
 		pPlayer = gc.getPlayer( pUnit.getOwner() )
-		lOutcomes = []
+		
+		# Get parameters
+		iExploLevel = pUnit.getExplorationLevel()
+		iChallenge = pPlot.getWilderness() + CyGame().getSorenRandNum( 50, "Explore Lair" ) - 25
+		if( bEpic ) :
+			iChallenge += 40
+		iChallengeHandling = iExploLevel - iChallenge
+		iExploLevel += CyGame().getSorenRandNum( 50, "Explore Lair" ) - 25
+		
+		sDbgMessage = "Exploration parameters: iOriginalExploLevel=%d, iChallange=%d, iChallengeHandling=%d, iExploLevel=%d" % ( pUnit.getExplorationLevel(), iChallenge, iChallengeHandling, iExploLevel )
+		CvUtil.pyPrint( sDbgMessage )
+		
+		# TEST
+		CyInterface().addMessage( pUnit.getOwner(), True, 25, sDbgMessage, '', 1, '', ColorTypes( 8 ), pPlot.getX(), pPlot.getY(), True, True )
+		
+		dslOutcomes = {}
 		
 		bMelee = ( pUnit.getUnitCombatType() == self.saveGetInfoType( gc.getNumUnitCombatInfos(), 'UNITCOMBAT_MELEE' ) )
 		bAdept = ( pUnit.getUnitCombatType() == self.saveGetInfoType( gc.getNumUnitCombatInfos(), 'UNITCOMBAT_ADEPT' ) )
@@ -379,169 +368,207 @@ class CustomFunctions:
 		
 		bGood = ( pPlayer.getAlignment() == gc.getInfoTypeForString( 'ALIGNMENT_GOOD' ) )
 		
+		# Categories and their weights
+		dsiCategories = {
+			'Bad' : 1,
+			'Neutral' : 1,
+			'Good' : 2,
+			'Religion' : 1,
+			'RemoveMalus' : 2,
+			'Item' : 1,
+			'Prisoner' : 1,
+			'Bonus' : 2
+		}
+		
+		for sCategory in dsiCategories :
+			dslOutcomes[sCategory] = []
+		
 		# BAD
-		if( iRnd <= -50 ) :
-			if( pUnit.getLevel() == 1 ) :
-				lOutcomes.append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DEATH', 'DEATH' ) )
+		if( pUnit.getLevel() == 1 and iChallenge >= 35 ) :
+			dslOutcomes['Bad'].append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DEATH', 'DEATH' ) )
+		if( iExploLevel < 25 and iChallenge >= 35 ) :
 			if( pUnit.isAlive() ) :
-				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CRAZED', ['PROMOTION_CRAZED'] ) )
-				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POSSESSED', ['PROMOTION_ENRAGED', 'PROMOTION_CRAZED', 'PROMOTION_DEMON'] ) )
-		if( iRnd <= -30 ) :
+				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CRAZED', ['PROMOTION_CRAZED'] ) )
+				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POSSESSED', ['PROMOTION_ENRAGED', 'PROMOTION_CRAZED', 'PROMOTION_DEMON'] ) )
+		if( iExploLevel < 50 ) :
 			if( pUnit.isAlive() ) :
-				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_PLAGUED', ['PROMOTION_PLAGUED'] ) )
-				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_WITHERED', ['PROMOTION_WITHERED'] ) )
-		if( iRnd <= -20 ) :
+				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_PLAGUED', ['PROMOTION_PLAGUED'] ) )
+				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_WITHERED', ['PROMOTION_WITHERED'] ) )
+		if( iExploLevel < 75 ) :
+			if( pUnit.isAlive() ) :
+				dslOutcomes['Bad'].append( ( 'Promotions', 50, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_MUTATED', ['PROMOTION_MUTATED'] ) )
+		if( iChallengeHandling < -25 ) :
+			if( pUnit.isAlive() ) :
+				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DISEASED', ['PROMOTION_DISEASED'] ) )
+		if( iExploLevel < 75 and iChallengeHandling < -25 ) :
+			if( pUnit.isAlive() ) :
+				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENRAGED', ['PROMOTION_ENRAGED'] ) )
+		if( iChallengeHandling < 0 ) :
+			if( pUnit.isAlive() ) :
+				dslOutcomes['Bad'].append( ( 'Special', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POISONED', 'POISONED' ) )
 			if( not bNoDestroy ) :
-				lOutcomes.append( ( 'Damage', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 50, 90, 'DAMAGE_PHYSICAL' ) )
-			if( pUnit.isAlive() ) :
-				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENRAGED', ['PROMOTION_ENRAGED'] ) )
-				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DISEASED', ['PROMOTION_DISEASED'] ) )
-		if( iRnd <= -10 ) :
-			if( pUnit.isAlive() ) :
-				lOutcomes.append( ( 'Special', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POISONED', 'POISONED' ) )
-			if( not bNoDestroy ) :
-				lOutcomes.append( ( 'Damage', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 50, 90, 'DAMAGE_PHYSICAL' ) )
+				dslOutcomes['Bad'].append( ( 'Damage', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 50, 90, 'DAMAGE_PHYSICAL' ) )
 			# LFGR_TODO: Should add damage outcomes for non-alive units here.
-		# NEUTRAL
-		if( iRnd > -25 and iRnd <= 25 ) :
-			#lOutcomes.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
-			if( pUnit.isAlive() ) :
-				lOutcomes.append( ( 'Promotions', 50, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_MUTATED', ['PROMOTION_MUTATED'] ) )
-				lOutcomes.append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_PROPHECY_MARK', ['PROMOTION_PROPHECY_MARK'] ) )
-			if( not pPlot.isWater() ) :
-				lOutcomes.append( ( 'Event', 0, 'EVENTTRIGGER_EXPLORE_LAIR_PORTAL' ) )
-				# LFGR_TODO: disabled until fixed
-				# lOutcomes.append( ( 'Event', 100, 'EVENTTRIGGER_EXPLORE_LAIR_DEPTHS' ) )
-				lOutcomes.append( ( 'Event', 80, 'EVENTTRIGGER_EXPLORE_LAIR_DWARF_VS_LIZARDMEN' ) )
-				if( not bNoDestroy ) :
-					lOutcomes.append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CAGE', 'CAGE' ) )
+		
 		# GOOD
-		if( iRnd > 20 and iRnd <= 50 ) :
-			lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_HIGH_GOLD' ) )
+		if( iChallengeHandling >= 0 ) :
+			if( iChallenge < 35 ) :
+				dslOutcomes['Good'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_HIGH_GOLD' ) )
+				dslOutcomes['Good'].append( ( 'Special', 80, True, None, 'TREASURE' ) )
+				if( pUnit.isAlive() ) :
+					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_SPIRIT_GUIDE', ['PROMOTION_SPIRIT_GUIDE'] ) )
+					dslOutcomes['Good'].append( ( 'Goody', 80, 'GOODY_EXPLORE_LAIR_EXPERIENCE' ) )
+				if( not pPlot.isWater() ) :
+					dslOutcomes['Good'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_SUPPLIES' ) )
+					dslOutcomes['Good'].append( ( 'Goody', 80, 'GOODY_EXPLORE_LAIR_ITEM_HEALING_SALVE' ) )
+			if( iChallenge >= 35 and iChallenge < 60 ) :
+				if( bMelee ) :
+					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENCHANTED_BLADE', ['PROMOTION_ENCHANTED_BLADE'] ) )
+				if( bAdept ) :
+					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_SPELLSTAFF', ['PROMOTION_SPELLSTAFF'] ) )
+				if( bRecon ) :
+					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POISONED_BLADE', ['PROMOTION_POISONED_BLADE'] ) )
+				if( bArcher ) :
+					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_FLAMING_ARROWS', ['PROMOTION_FLAMING_ARROWS'] ) )
+				if( bDisciple ) :
+					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_SHIELD_OF_FAITH', ['PROMOTION_SHIELD_OF_FAITH'] ) )
+				
+				if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 1 ) :
+					if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_MITHRIL_WEAPONS' ) ) ) :
+						if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 3 and bHasIronWorking ) :
+							dslOutcomes['Good'].append( ( 'Special', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_MITHRIL_WEAPONS', 'MITHRIL_WEAPONS' ) )
+						if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_IRON_WEAPONS' ) ) ) :
+							if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 2 and bHasBronzeWorking ) :
+								dslOutcomes['Good'].append( ( 'Special', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_IRON_WEAPONS', 'IRON_WEAPONS' ) )
+							if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_BRONZE_WEAPONS' ) ) ):
+								dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BRONZE_WEAPONS', ['PROMOTION_BRONZE_WEAPONS'] ) )
+			if( iChallenge >= 60 ) :
+				dslOutcomes['Good'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_TREASURE_VAULT' ) )
+				dslOutcomes['Good'].append( ( 'Goody', 100, 'GOODY_GRAVE_TECH' ) )
+				dslOutcomes['Good'].append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_GOLDEN_AGE', 'GOLDEN_AGE' ) )
+				if( not pPlot.isWater() ) :
+					if( bLjosalfar or bHasHunting ) :
+						dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_LEAVES' ) )
+					if( bLanun or bHasFishing ) :
+						dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_OVERLORDS' ) )
+					if( bKhazad or bHasMining ) :
+						dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_RUNES' ) )
+					if( bHasMysticism ) :
+						if( bSheaim or bHasKnowledgeOfTheEther ) :
+							dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ASHEN' ) )
+						if( bMalakim or bHasTrade ) :
+							dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_EMPYREAN' ) )
+						# LFGR_TODO: Council of Esus: Svartalfar or Trade
+						if( bBannor or bHasCodeOfLaws ) :
+							dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ORDER' ) )
+				if( pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_CRAZED' ) ) ) : # Enraged isn't sufficient
+					if( not pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_DEMON' ) ) ) : # For the possessed outcome (we don't know the former race); LFGR_TODO: Save former race in SDTK or create new "Demonic Possession" promo
+						dslOutcomes['RemoveMalus'].append( ( 'RemovePromotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_REMOVE_CRAZED', ['PROMOTION_ENRAGED', 'PROMOTION_CRAZED'] ) )
+			if( iChallenge >= 75 ) :
+				if( not pPlot.isWater() ) :
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_JADE_TORC' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_ROD_OF_WINDS' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_TIMOR_MASK' ) )
+					
+					if( bHasHunting and not bHasPoisons ) :
+						dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ASSASSIN' ) )
+					if( bHasBronzeWorking and not bHasIronWorking ) :
+						dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_CHAMPION' ) )
+					if( bHasKnowledgeOfTheEther and not bHasSorcery ) :
+						dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_MAGE' ) )
+					if( bGood and bHasMysticism and ( not bElohim or not bHasPriesthood ) ) :
+						dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_MONK' ) )
+					if( bGood and bHasMysticism and not bMercurians ) :
+						dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ANGEL' ) )
+					dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ARTIST' ) )
+					dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_GENERAL' ) )
+					dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ENGINEER' ) )
+					dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_MERCHANT' ) )
+					dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_PROPHET' ) )
+					dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_SCIENTIST' ) )
+					dslOutcomes['Bonus'].extend( 3 * [( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_MANA', 'BONUS_MANA' )] )
+					dslOutcomes['Bonus'].append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_COPPER', 'BONUS_COPPER' ) )
+					dslOutcomes['Bonus'].append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_GEMS', 'BONUS_GEMS' ) )
+					dslOutcomes['Bonus'].append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_GOLD', 'BONUS_GOLD' ) )
+					dslOutcomes['Bonus'].append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_IRON', 'BONUS_IRON' ) )
+					dslOutcomes['Bonus'].append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_MITHRIL', 'BONUS_MITHRIL' ) )
+				if( pPlot.isWater() ) :
+					dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_SEA_SERPENT' ) )
+					dslOutcomes['Bonus'].append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_PEARL', 'BONUS_PEARL' ) )
+					dslOutcomes['Bonus'].append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_CLAM', 'BONUS_CLAM' ) )
+					dslOutcomes['Bonus'].append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_CRAB', 'BONUS_CRAB' ) )
+					dslOutcomes['Bonus'].append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_FISH', 'BONUS_FISH' ) )
+					dslOutcomes['Bonus'].append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_SHRIMP', 'BONUS_SHRIMP' ) )
+			if( iChallenge >= 90 ) :
+				if( not pPlot.isWater() ) :
+					dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ADVENTURER' ) )
+		
+		# NEUTRAL
+		bEmpty = True
+		for sCategory in dsiCategories :
+			if( len( dslOutcomes[sCategory] ) != 0 ) :
+				bEmpty = False
+				break
+		
+		if( bEmpty or ( iChallengeHandling >= -25 and iChallengeHandling < 25 ) ) :
+			#dslOutcomes['Neutral'].append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
 			if( pUnit.isAlive() ) :
-				lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_SPIRIT_GUIDE', ['PROMOTION_SPIRIT_GUIDE'] ) )
-				lOutcomes.append( ( 'Goody', 80, 'GOODY_EXPLORE_LAIR_EXPERIENCE' ) )
+				dslOutcomes['Neutral'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_PROPHECY_MARK', ['PROMOTION_PROPHECY_MARK'] ) )
 			if( not pPlot.isWater() ) :
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_SUPPLIES' ) )
-				lOutcomes.append( ( 'Goody', 80, 'GOODY_EXPLORE_LAIR_ITEM_HEALING_SALVE' ) )
-				lOutcomes.append( ( 'Special', 80, True, None, 'TREASURE' ) )
-		if( iRnd > 30 and iRnd <= 60 ) :
-			if( bMelee ) :
-				lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENCHANTED_BLADE', ['PROMOTION_ENCHANTED_BLADE'] ) )
-			if( bAdept ) :
-				lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_SPELLSTAFF', ['PROMOTION_SPELLSTAFF'] ) )
-			if( bRecon ) :
-				lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POISONED_BLADE', ['PROMOTION_POISONED_BLADE'] ) )
-			if( bArcher ) :
-				lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_FLAMING_ARROWS', ['PROMOTION_FLAMING_ARROWS'] ) )
-			if( bDisciple ) :
-				lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_SHIELD_OF_FAITH', ['PROMOTION_SHIELD_OF_FAITH'] ) )
-			
-			if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 1 ) :
-				if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_MITHRIL_WEAPONS' ) ) ) :
-					if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 3 and bHasIronWorking ) :
-						lOutcomes.append( ( 'Special', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_MITHRIL_WEAPONS', 'MITHRIL_WEAPONS' ) )
-					if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_IRON_WEAPONS' ) ) ) :
-						if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 2 and bHasBronzeWorking ) :
-							lOutcomes.append( ( 'Special', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_IRON_WEAPONS', 'IRON_WEAPONS' ) )
-						if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_BRONZE_WEAPONS' ) ) ):
-							lOutcomes.append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BRONZE_WEAPONS', ['PROMOTION_BRONZE_WEAPONS'] ) )
-		if( iRnd > 50 and iRnd <= 60 ) :
-			if( not pPlot.isWater() ) :
-				if( bLjosalfar or bHasHunting ) :
-					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_LEAVES' ) )
-				if( bLanun or bHasFishing ) :
-					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_OVERLORDS' ) )
-				if( bKhazad or bHasMining ) :
-					lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_RUNES' ) )
-				if( bHasMysticism ) :
-					if( bSheaim or bHasKnowledgeOfTheEther ) :
-						lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ASHEN' ) )
-					if( bMalakim or bHasTrade ) :
-						lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_EMPYREAN' ) )
-					# LFGR_TODO: Council of Esus: Svartalfar or Trade
-					if( bBannor or bHasCodeOfLaws ) :
-						lOutcomes.append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ORDER' ) )
-		if( iRnd > 50 ) :
-			lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_TREASURE_VAULT' ) )
-			lOutcomes.append( ( 'Goody', 100, 'GOODY_GRAVE_TECH' ) )
-			lOutcomes.append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_GOLDEN_AGE', 'GOLDEN_AGE' ) )
-			if( pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_CRAZED' ) ) ) : # Enraged isn't sufficient
-				if( not pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_DEMON' ) ) ) : # For the possessed outcome (we don't know the former race); LFGR_TODO: Save former race in SDTK or create new "Demonic Possession promo
-					lOutcomes.append( ( 'RemovePromotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_REMOVE_CRAZED', ['PROMOTION_ENRAGED', 'PROMOTION_CRAZED'] ) )
-		if( iRnd > 60 ) :
-			if( not pPlot.isWater() ) :
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_JADE_TORC' ) )
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_ROD_OF_WINDS' ) )
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_TIMOR_MASK' ) )
-				if( bHasHunting and not bHasPoisons ) :
-					lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ASSASSIN' ) )
-				if( bHasBronzeWorking and not bHasIronWorking ) :
-					lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_CHAMPION' ) )
-				if( bHasKnowledgeOfTheEther and not bHasSorcery ) :
-					lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_MAGE' ) )
-				if( bGood and bHasMysticism and ( not bElohim or not bHasPriesthood ) ) :
-					lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_MONK' ) )
-				if( bGood and bHasMysticism and not bMercurians ) :
-					lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ANGEL' ) )
-				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_COPPER', 'BONUS_COPPER' ) )
-				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_GEMS', 'BONUS_GEMS' ) )
-				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_GOLD', 'BONUS_GOLD' ) )
-				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_IRON', 'BONUS_IRON' ) )
-				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_MITHRIL', 'BONUS_MITHRIL' ) )
-		if( iRnd > 60 ) :
-			if( pPlot.isWater() ) :
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_SEA_SERPENT' ) )
-				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_PEARL', 'BONUS_PEARL' ) )
-				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_CLAM', 'BONUS_CLAM' ) )
-				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_CRAB', 'BONUS_CRAB' ) )
-				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_FISH', 'BONUS_FISH' ) )
-				lOutcomes.append( ( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_SHRIMP', 'BONUS_SHRIMP' ) )
-		if( iRnd > 75 ) :
-			if( not pPlot.isWater() ) :
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ARTIST' ) )
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_GENERAL' ) )
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ENGINEER' ) )
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_MERCHANT' ) )
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_PROPHET' ) )
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_SCIENTIST' ) )
-				lOutcomes.extend( 3 * [( 'Bonus', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_MANA', 'BONUS_MANA' )] )
-		if( iRnd > 80 ) :
-			if( not pPlot.isWater() ) :
-				lOutcomes.append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ADVENTURER' ) )
+				dslOutcomes['Neutral'].append( ( 'Event', 0, 'EVENTTRIGGER_EXPLORE_LAIR_PORTAL' ) )
+				# LFGR_TODO: disabled until fixed
+				# dslOutcomes['Neutral'].append( ( 'Event', 100, 'EVENTTRIGGER_EXPLORE_LAIR_DEPTHS' ) )
+				dslOutcomes['Neutral'].append( ( 'Event', 80, 'EVENTTRIGGER_EXPLORE_LAIR_DWARF_VS_LIZARDMEN' ) )
+				if( not bNoDestroy ) :
+					dslOutcomes['Neutral'].append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CAGE', 'CAGE' ) )
 		
-		lResult = []
-		for tOutcome in lOutcomes :
-			bValid = True
-			if( tOutcome[0] == 'Promotions' ) :
-				lPromotions = tOutcome[4]
-				for sPromotion in lPromotions :
-					if( pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), sPromotion ) ) ) :
-						bValid = False
-						break
-					# LFGR_TODO: promotion immunity
-			if( tOutcome[0] == 'RemovePromotions' ) :
-				lPromotions = tOutcome[4]
-				bValid = False
-				for sPromotion in lPromotions :
-					if( pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), sPromotion ) ) ) :
-						bValid = True
-						break
-			elif( tOutcome[0] == 'Goody' ) :
-				eGoody = self.saveGetInfoType( gc.getNumGoodyInfos(), tOutcome[2] )
-				bValid = pPlayer.canReceiveGoody( pPlot, eGoody, pUnit )
-			elif( tOutcome[0] == 'Bonus' ) :
-				eBonus = self.saveGetInfoType( gc.getNumBonusInfos(), tOutcome[3] )
-				bValid = ( pPlot.getBonusType( -1 ) == -1 ) and pPlot.canHaveBonus( eBonus, False ) and pPlayer.isHasTech( gc.getBonusInfo( eBonus ).getTechReveal() )
-				# LFGR_TODO: bonus nearby (when a mechanic to spawn lairs is implemented)
-			
-			if( bValid ) :
-				lResult.append( tOutcome )
+		# Filter outcomes
+		dslFilteredOutcomes = {}
+		for sCategory in dsiCategories :
+			dslFilteredOutcomes[sCategory] = []
+			for tOutcome in dslOutcomes[sCategory] :
+				bValid = True
+				if( tOutcome[0] == 'Promotions' ) :
+					lPromotions = tOutcome[4]
+					for sPromotion in lPromotions :
+						if( pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), sPromotion ) ) ) :
+							bValid = False
+							break
+						# LFGR_TODO: promotion immunity
+				if( tOutcome[0] == 'RemovePromotions' ) :
+					lPromotions = tOutcome[4]
+					bValid = False
+					for sPromotion in lPromotions :
+						if( pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), sPromotion ) ) ) :
+							bValid = True
+							break
+				elif( tOutcome[0] == 'Goody' ) :
+					eGoody = self.saveGetInfoType( gc.getNumGoodyInfos(), tOutcome[2] )
+					bValid = pPlayer.canReceiveGoody( pPlot, eGoody, pUnit )
+				elif( tOutcome[0] == 'Bonus' ) :
+					eBonus = self.saveGetInfoType( gc.getNumBonusInfos(), tOutcome[3] )
+					bValid = ( pPlot.getBonusType( -1 ) == -1 ) and pPlot.canHaveBonus( eBonus, False ) and pPlayer.isHasTech( gc.getBonusInfo( eBonus ).getTechReveal() )
+					# LFGR_TODO: bonus nearby (when a mechanic to spawn lairs is implemented)
+				
+				if( bValid ) :
+					dslFilteredOutcomes[sCategory].append( tOutcome )
 		
-		if( len( lResult ) == 0 ) :
+		# Choose category
+		lsCategories = []
+		for sCategory in dsiCategories :
+			if( len( dslFilteredOutcomes[sCategory] ) != 0 ) :
+				CvUtil.pyPrint( "  Valid category: %s" % sCategory )
+				lsCategories.extend( [sCategory] * dsiCategories[sCategory] ) # add it times its weight
+		
+		if( len( lsCategories ) == 0 ) :
+			CvUtil.pyPrint( "No Valid categories!" )
 			return None
 		
-		return lResult[CyGame().getSorenRandNum( len( lResult ), "Pick Outcome" )]
+		sCategory = lsCategories[CyGame().getSorenRandNum( len( lsCategories ), "Pick outcome category" )]
+		
+		CvUtil.pyPrint( "Chosen category: %s" % sCategory )
+		
+		return dslFilteredOutcomes[sCategory][CyGame().getSorenRandNum( len( dslFilteredOutcomes[sCategory] ), "Pick outcome" )]
 	
 	def saveGetInfoType( self, iNum, sInfo ) :
 		eID = gc.getInfoTypeForString( sInfo )
