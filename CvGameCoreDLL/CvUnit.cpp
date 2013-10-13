@@ -20497,8 +20497,12 @@ int CvUnit::getExplorationLevel() const
 
 	if( getLevel() <= 1 )
 		fExplLevel = 0;
-	else if( getLevel() <= 4 )
-		fExplLevel = 0.3629f * ( getLevel()*getLevel()*getLevel() - 1 );
+	else if( getLevel() == 2 )
+		fExplLevel = 2;
+	else if( getLevel() == 3 )
+		fExplLevel = 8;
+	else if( getLevel() == 4 )
+		fExplLevel = 22;
 	else
 		fExplLevel = 150 - 2625.0f / (getLevel()*getLevel());
 
