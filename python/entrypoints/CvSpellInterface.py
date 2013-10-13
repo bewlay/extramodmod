@@ -1165,38 +1165,16 @@ def spellEscape(caster):
 	caster.setXY(pCity.getX(), pCity.getY(), False, True, True)
 
 def reqExploreLair(caster):
-	if caster.isOnlyDefensive():
-		return False
-	if caster.getUnitCombatType() == gc.getInfoTypeForString('UNITCOMBAT_SIEGE'):
-		return False
-	if caster.isBarbarian():
-		return False
-	if caster.getDuration() > 0:
-		return False
-	if caster.getSpecialUnitType() == gc.getInfoTypeForString('SPECIALUNIT_SPELL'):
-		return False
-	if caster.getSpecialUnitType() == gc.getInfoTypeForString('SPECIALUNIT_BIRD'):
-		return False
+# WILDERNESS 10/2013 lfgr: moved some code to C++
 	pPlayer = gc.getPlayer(caster.getOwner())
-	iTeam = pPlayer.getTeam()
-	eTeam = gc.getTeam(iTeam)
-	bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-	if not eTeam.isAtWar(bPlayer.getTeam()):
-		return False
-
-	pPlot = caster.plot()
-	if pPlot.isOwned():
-		iImprovement = pPlot.getImprovementType()
-		if gc.getImprovementInfo(iImprovement).isUnique():
-			if not gc.getImprovementInfo(iImprovement).getBonusConvert() == BonusTypes.NO_BONUS:
-				if not pPlot.getOwner() == caster.getOwner():
-					return False
-				
 	if pPlayer.isHuman() == False:
 		if pPlayer.getNumCities() < 1:
 			return False
 		
-	return True
+# WILDERNESS 10/2013 lfgr / WildernessExploration
+#	return True
+	return caster.canDoExploration( caster.plot() )
+# WILDERNESS end
 
 def spellExploreLair(caster):
 # WILDERNESS 08/2013 lfgr / WildernessExploration
