@@ -1549,6 +1549,69 @@
 				<Tech>TECH_NECROMANCY</Tech>
 			</PrereqTechs>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_BARROW_GUARDIAN_SKELETON -->
+			<Type>SPAWN_BARROW_GUARDIAN_SKELETON</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SKELETON</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_BARROW_GUARDIAN_STRONG_SPECTRE -->
+			<Type>SPAWN_BARROW_GUARDIAN_STRONG_SPECTRE</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SPECTRE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_BARROW_GUARDIAN_GHOUL -->
+			<Type>SPAWN_BARROW_GUARDIAN_GHOUL</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BARROW_GHOUL</TerrainFlavourType>
+			<iValidTerrainWeight>100</iValidTerrainWeight>
+			<iMinWilderness>0</iMinWilderness>
+			<iMaxWilderness>50</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GHOUL</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_BARROW_GUARDIAN_STRONG_GHOUL -->
+			<Type>SPAWN_BARROW_GUARDIAN_STRONG_GHOUL</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BARROW_GHOUL</TerrainFlavourType>
+			<iValidTerrainWeight>100</iValidTerrainWeight>
+			<iMinWilderness>50</iMinWilderness>
+			<iMaxWilderness>100</iMaxWilderness>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GHOUL</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		
 		
 		<!-- Bear Den -->
 		<SpawnInfo> <!-- SPAWN_BEAR_DEN_BEAR -->

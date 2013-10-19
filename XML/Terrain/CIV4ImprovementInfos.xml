@@ -454,6 +454,12 @@
 				<SpawnType>SPAWN_BARROW_LATE_WRAITH</SpawnType>
 				<SpawnType>SPAWN_BARROW_LATE_WIGHT</SpawnType>
 			</SpawnTypes>
+            <GuardianSpawnTypes>
+				<SpawnType>SPAWN_BARROW_GUARDIAN_SKELETON</SpawnType>
+				<SpawnType>SPAWN_BARROW_GUARDIAN_STRONG_SPECTRE</SpawnType>
+				<SpawnType>SPAWN_BARROW_GUARDIAN_GHOUL</SpawnType>
+				<SpawnType>SPAWN_BARROW_GUARDIAN_STRONG_GHOUL</SpawnType>
+			</GuardianSpawnTypes>
 		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
