@@ -7609,7 +7609,6 @@ void CvGame::createBarbarianUnits()
 
 				fAnimalChance *= std::min( 1.0f, fSpeedMod );
 
-
 				if( fAnimalChance > 0 )
 				{
 					// This will not work correctly if we have spawning chances < 1 / MAX_UNSIGNED_SHORT. In this case, exactly one animals will spawn to less.
@@ -7621,6 +7620,22 @@ void CvGame::createBarbarianUnits()
 					{
 						logBBAI( "Creating spawn with chance %f", fAnimalChance );
 						createBarbarianSpawn( pPlot, true );
+
+						// Invalidate adjacent plots to prevent simultanous spawning on to adjacent plots.
+						for( int iChangeX = -1; iChangeX <= 1; iChangeX++ )
+						{
+							for( int iChangeY = -1; iChangeY <= 1; iChangeY++ )
+							{
+								CvPlot* pRingPlot = GC.getMapINLINE().plotINLINE( pPlot->getX_INLINE() + iChangeX, pPlot->getY_INLINE() + iChangeY );
+								if( pRingPlot != NULL && pRingPlot->getArea() == pPlot->getArea() )
+								{
+									// Use CvPlot::getX for wrapped worlds
+									int iRingPlot = GC.getMapINLINE().plotNumINLINE( pRingPlot->getX_INLINE(), pRingPlot->getY_INLINE() );
+									vbPlotAnimalValid[iRingPlot] = false;
+									vbPlotBarbValid[iRingPlot] = false;
+								}
+							}
+						}
 					}
 				}
 			}
@@ -7647,6 +7662,22 @@ void CvGame::createBarbarianUnits()
 					{
 						logBBAI( "Creating spawn with chance %f", fBarbChance );
 						createBarbarianSpawn( pPlot, false );
+
+						// Invalidate adjacent plots to prevent simultanous spawning on to adjacent plots.
+						for( int iChangeX = -1; iChangeX <= 1; iChangeX++ )
+						{
+							for( int iChangeY = -1; iChangeY <= 1; iChangeY++ )
+							{
+								CvPlot* pRingPlot = GC.getMapINLINE().plotINLINE( pPlot->getX_INLINE() + iChangeX, pPlot->getY_INLINE() + iChangeY );
+								if( pRingPlot != NULL && pRingPlot->getArea() == pPlot->getArea() )
+								{
+									// Use CvPlot::getX for wrapped worlds
+									int iRingPlot = GC.getMapINLINE().plotNumINLINE( pRingPlot->getX_INLINE(), pRingPlot->getY_INLINE() );
+									vbPlotAnimalValid[iRingPlot] = false;
+									vbPlotBarbValid[iRingPlot] = false;
+								}
+							}
+						}
 					}
 				}
 			}
