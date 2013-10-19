@@ -2809,11 +2809,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMoveLetumFrigus(pCaster, pPlot)</PythonOnMove>
-		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
-            <SpawnTypes>
-				<SpawnType>SPAWN_LETUM_FRIGUS_HOLLOW_MAN</SpawnType>
-			</SpawnTypes>
-		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_LION_DEN</Type>
