@@ -131,17 +131,6 @@ CvFeatureInfo* CyGlobalContext::getFeatureInfo(int i) const
 	return (i>=0 && i<GC.getNumFeatureInfos()) ? &GC.getFeatureInfo((FeatureTypes) i) : NULL;
 }
 
-/************************************************************************************************/
-/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
-/************************************************************************************************/
-CvTerrainFlavourInfo* CyGlobalContext::getTerrainFlavourInfo(int i) const
-{
-	return (i>=0 && i<GC.getNumTerrainFlavourInfos()) ? &GC.getTerrainFlavourInfo((TerrainFlavourTypes) i) : NULL;
-}
-/************************************************************************************************/
-/* TERRAIN_FLAVOUR                                                                END           */
-/************************************************************************************************/
-
 CvCivilizationInfo* CyGlobalContext::getCivilizationInfo(int i) const
 {
 	return (i>=0 && i<GC.getNumCivilizationInfos()) ? &GC.getCivilizationInfo((CivilizationTypes) i) : NULL;
@@ -478,18 +467,6 @@ CvGraphicOptionInfo* CyGlobalContext::getGraphicOptionsInfoByIndex(int i) const
 	return &GC.getGraphicOptionInfo((GraphicOptionTypes) i);
 }
 
-/************************************************************************************************/
-/* WILDERNESS                             08/2013                                 lfgr          */
-/* SpawnInfo                                                                                    */
-/************************************************************************************************/
-CvSpawnInfo* CyGlobalContext::getSpawnInfo(int i) const
-{
-	return &GC.getSpawnInfo((SpawnTypes) i);
-}
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
-
 
 CvInfoBase* CyGlobalContext::getConceptInfo(int i) const
 {
@@ -662,3 +639,26 @@ CvTurnTimerInfo* CyGlobalContext::getTurnTimerInfo(int i) const
 {
 	return &(GC.getTurnTimerInfo((TurnTimerTypes) i));
 }
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+CvTerrainFlavourInfo* CyGlobalContext::getTerrainFlavourInfo(int i) const
+{
+	return (i>=0 && i<GC.getNumTerrainFlavourInfos()) ? &GC.getTerrainFlavourInfo((TerrainFlavourTypes) i) : NULL;
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+CvSpawnInfo* CyGlobalContext::getSpawnInfo(int i) const
+{
+	return &GC.getSpawnInfo((SpawnTypes) i);
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/

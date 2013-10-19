@@ -118,6 +118,15 @@ void CyGlobalContextPythonInterface4(python::class_<CyGlobalContext>& x)
 		.def("getVoteSourceInfo", &CyGlobalContext::getVoteSourceInfo, python::return_value_policy<python::reference_existing_object>(), "Returns info object")
 		
 /************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+		.def("getNumTerrainFlavourInfos", &CyGlobalContext::getNumTerrainFlavourInfos, "() - Total TerrainFlavour Infos XML\\Terrain\\CIV4TerrainFlavourInfos.xml")
+		.def("getTerrainFlavourInfo", &CyGlobalContext::getTerrainFlavourInfo, python::return_value_policy<python::reference_existing_object>(), "(TerrainFlavourID) - CvInfo for TerrainFlavourID")
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* SpawnInfo                                                                                    */
 /************************************************************************************************/

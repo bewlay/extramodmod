@@ -43,13 +43,6 @@ public:
 	CvBonusClassInfo* getBonusClassInfo(int i) const;
 	CvBonusInfo* getBonusInfo(int i) const;
 	CvFeatureInfo* getFeatureInfo(int i) const;
-/************************************************************************************************/
-/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
-/************************************************************************************************/
-	CvTerrainFlavourInfo* getTerrainFlavourInfo(int i) const;
-/************************************************************************************************/
-/* TERRAIN_FLAVOUR                                                                END           */
-/************************************************************************************************/
 	CvCivilizationInfo* getCivilizationInfo(int idx) const;
 	CvLeaderHeadInfo* getLeaderHeadInfo(int i) const;
 	CvTraitInfo* getTraitInfo(int i) const;
@@ -137,6 +130,15 @@ public:
 
 	CvGraphicOptionInfo* getGraphicOptionInfo(int i) const;
 	CvGraphicOptionInfo* getGraphicOptionsInfoByIndex(int i) const;
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	CvTerrainFlavourInfo* getTerrainFlavourInfo(int i) const;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* SpawnInfo                                                                                    */
@@ -178,13 +180,6 @@ public:
 	int getNumSpecialBuildingInfos() const { return GC.getNumSpecialBuildingInfos(); }
 	int getNumBonusInfos() const { return GC.getNumBonusInfos(); };
 	int getNumPlayableCivilizationInfos() const { return GC.getNumPlayableCivilizationInfos(); }
-/************************************************************************************************/
-/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
-/************************************************************************************************/
-	int getNumTerrainFlavourInfos() const { return GC.getNumTerrainFlavourInfos(); }
-/************************************************************************************************/
-/* TERRAIN_FLAVOUR                                                                END           */
-/************************************************************************************************/
 	int getNumCivilizatonInfos() const { return GC.getNumCivilizationInfos(); }
 	int getNumLeaderHeadInfos() const { return GC.getNumLeaderHeadInfos(); }
 	int getNumTraitInfos() const { return GC.getNumTraitInfos(); }
@@ -252,6 +247,15 @@ public:
 	int getNumMainMenus() const { return GC.getNumMainMenus(); }
 	int getNumInvisibleInfos() const { return GC.getNumInvisibleInfos(); }
 	int getNumVoteSourceInfos() const { return GC.getNumVoteSourceInfos(); }
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	int getNumTerrainFlavourInfos() const { return GC.getNumTerrainFlavourInfos(); }
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* SpawnInfo                                                                                    */
