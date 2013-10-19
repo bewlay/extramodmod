@@ -7435,6 +7435,10 @@ void CvGame::createBarbarianUnits()
 				bValid = false;
 
 			if( bValid )
+				if( pPlot->isLair() )
+					bValid = false;
+
+			if( bValid )
 				if( pPlot->isLake() && GC.getDefineINT( "LAKE_SPAWNING_ENABLED" ) == 0 )
 					bValid = false;
 
