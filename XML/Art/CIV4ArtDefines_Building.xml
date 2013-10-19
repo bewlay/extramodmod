@@ -3135,7 +3135,7 @@
 			<fInterfaceScale>1.0</fInterfaceScale>
 			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
 			<KFM/>
-			<Button>Art/Interface/Buttons/Units/Wolf Pack.dds</Button>
+			<Button>Art/Interface/Buttons/Units/Wolf_Pack.dds</Button>
 		</BuildingArtInfo>
 		<BuildingArtInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
 			<Type>ART_DEF_BUILDING_PANTHER_TROPHY</Type>
