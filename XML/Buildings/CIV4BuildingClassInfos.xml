@@ -1692,6 +1692,18 @@
 			<DefaultBuilding>BUILDING_WOLF_TROPHY</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / WildernessMisc -->
+			<Type>BUILDINGCLASS_SCORPION_PEN</Type>
+			<Description>TXT_KEY_BUILDING_SCORPION_PEN</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_SCORPION_PEN</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
 <!-- MORE EVENTS MOD STARTS -->
 		<BuildingClassInfo>
 			<Type>BUILDINGCLASS_FROZEN_FLAME</Type>

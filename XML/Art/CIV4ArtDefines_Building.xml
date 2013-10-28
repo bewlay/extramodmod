@@ -3147,5 +3147,15 @@
 			<KFM/>
 			<Button>Art/Interface/Buttons/Units/Panther.dds</Button>
 		</BuildingArtInfo>
+		<BuildingArtInfo> <!-- WILDERNESS 10/2013 lfgr / WildernessMisc -->
+			<Type>ART_DEF_BUILDING_SCORPION_PEN</Type>
+			<LSystem>LSYSTEM_2x2</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>18.0</fScale>
+			<fInterfaceScale>0.5</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Spider Pen/SpiderLair.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Buildings/scorpion_cage.dds</Button>
+		</BuildingArtInfo>
 	</BuildingArtInfos>
 </Civ4ArtDefines>
