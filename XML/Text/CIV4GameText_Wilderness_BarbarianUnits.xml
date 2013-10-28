@@ -320,4 +320,28 @@
 		<Spanish>TODO</Spanish>
 		<Finnish>TODO</Finnish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SCORPION_PEN</Tag>
+		<English>Scorpion Pen</English>
+		<French>Scorpion Pen</French>
+		<German>Scorpion Pen</German>
+		<Italian>Scorpion Pen</Italian>
+		<Spanish>Scorpion Pen</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SCORPION_PEN_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SCORPION_PEN_STRATEGY</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+	</TEXT>
 </Civ4GameText>
