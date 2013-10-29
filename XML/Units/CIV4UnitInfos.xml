@@ -5040,6 +5040,7 @@
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_ANIMAL</FormationType>
 			<iCombatDefense>8</iCombatDefense>
+			<PromotionCaptureApply>PROMOTION_BEAR_TROPHY</PromotionCaptureApply>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_POLAR_BEAR -->
 			<Class>UNITCLASS_BEAR</Class>
@@ -16023,6 +16024,7 @@
 			<FormationType>FORMATION_TYPE_ANIMAL</FormationType>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
+			<PromotionCaptureApply>PROMOTION_LION_TROPHY</PromotionCaptureApply>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_LOKI -->
 			<Class>UNITCLASS_LOKI</Class>
@@ -19138,6 +19140,7 @@
 			<bNeverObsolete>1</bNeverObsolete>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>1</iTier>
+			<PromotionCaptureApply>PROMOTION_PANTHER_TROPHY</PromotionCaptureApply>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_PARAMANDER -->
 			<Class>UNITCLASS_PARAMANDER</Class>
@@ -25486,6 +25489,7 @@
 			<iTier>2</iTier>
 			<UnitCreateFromCombat>UNIT_WOLF</UnitCreateFromCombat>
 			<iUnitCreateFromCombatChance>10</iUnitCreateFromCombatChance>
+			<PromotionCaptureApply>PROMOTION_WOLF_TROPHY</PromotionCaptureApply>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_WORKBOAT -->
 			<Class>UNITCLASS_WORKBOAT</Class>
