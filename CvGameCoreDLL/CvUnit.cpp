@@ -19427,7 +19427,21 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 
 			szBuffer = gDLL->getText("TXT_KEY_MISC_YOUR_UNIT_CAPTURED", pUnit->getNameKey());
 			gDLL->getInterfaceIFace()->addMessage(pLoser->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pUnit->getX_INLINE(), pUnit->getY_INLINE());
-
+			
+			/************************************************************************************************/
+			/* WILDERNESS                             10/2013                                 lfgr          */
+			/* PromotionCaptureApply                                                                        */
+			/************************************************************************************************/
+				if( pLoser->getUnitInfo().getPromotionCaptureApply() != NO_PROMOTION && !isHasPromotion( (PromotionTypes) pLoser->getUnitInfo().getPromotionCaptureApply() ) )
+				{
+					szBuffer = gDLL->getText("TXT_KEY_MESSAGE_PROMOTION_CAPTURE_APPLY", getNameKey(), GC.getPromotionInfo( (PromotionTypes) pLoser->getUnitInfo().getPromotionCaptureApply() ).getDescription() );
+					gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pUnit->getX_INLINE(), pUnit->getY_INLINE());
+					
+					setHasPromotion( (PromotionTypes) pLoser->getUnitInfo().getPromotionCaptureApply(), true );
+				}
+			/************************************************************************************************/
+			/* WILDERNESS                                                                     END           */
+			/************************************************************************************************/
 		}
 	}
 	else if (bUnitAutoCapture) // text message for captured workers

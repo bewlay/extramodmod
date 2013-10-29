@@ -5,6 +5,7 @@ Components:
 	WildernessFix
 	Debug
 
+	PromotionCaptureApply - DLL, XML / Captured units (animals) can grant a promotion
 	CreateLair - DLL, XML / New system for creating lairs
 	ImprovementSpawnTypes - DLL, Python, XML / Lairs spawns are chosen from a set of SpawnTypes
 	ImprovementWilderness - DLL, XML / Min and Max plot wilderness for placing improvements / Original by Sephi

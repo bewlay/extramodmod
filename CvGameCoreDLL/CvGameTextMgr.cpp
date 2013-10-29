@@ -12884,6 +12884,20 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit, bool
 			}
 		}
 	}
+	
+/************************************************************************************************/
+/* WILDERNESS                             10/2013                                 lfgr          */
+/* PromotionCaptureApply                                                                        */
+/************************************************************************************************/
+	if( kUnitInfo.getPromotionCaptureApply() != NO_PROMOTION )
+	{
+		szBuffer.append(NEWLINE);
+		CvWString szTmp = CvWString( GC.getPromotionInfo( (PromotionTypes) kUnitInfo.getPromotionCaptureApply() ).getType() );
+		szBuffer.append( gDLL->getText("TXT_KEY_PEDIA_PROMOTION_CAPTURE_APPLY", GC.getPromotionInfo( (PromotionTypes) kUnitInfo.getPromotionCaptureApply() ).getDescription(), szTmp.c_str() ) );
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (!bCivilopediaText && GC.getGameINLINE().getActivePlayer() != NO_PLAYER)
 	{

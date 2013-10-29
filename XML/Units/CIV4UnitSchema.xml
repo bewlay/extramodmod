@@ -567,10 +567,11 @@
 	<ElementType name="BonusAffinities" content="eltOnly">
 		<element type="BonusAffinity" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
-<!-- WILDERNESS 08/2013 Sephi/lfgr / PromotionExplResultBonus -->
+<!-- WILDERNESS 08/2013 Sephi/lfgr / PromotionExplResultBonus / PromotionCaptureApply -->
 	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
 	<ElementType name="iExplorationResultBonus" content="textOnly" dt:type="int"/>
+	<ElementType name="PromotionCaptureApply" content="textOnly"/>
 <!-- WILDERNESS end -->
 	<ElementType name="UnitInfo" content="eltOnly">
 		<element type="Class"/>
@@ -771,9 +772,10 @@
 		<element type="DamageTypeCombats" minOccurs="0"/>
 		<element type="BonusAffinities" minOccurs="0"/>
 		<element type="iOrderPriority" minOccurs="0"/>
-		<!-- WILDERNESS 08/2013 Sephi/lfgr -->
+		<!-- WILDERNESS 10/2013 Sephi/lfgr PromotionCaptureApply -->
 		<element type="iMinWilderness" minOccurs="0"/>
 		<element type="iMaxWilderness" minOccurs="0"/>
+		<element type="PromotionCaptureApply" minOccurs="0"/>
 		<!-- WILDERNESS end -->
 	</ElementType>
 	<ElementType name="UnitInfos" content="eltOnly">

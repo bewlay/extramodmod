@@ -36,6 +36,22 @@
 		<Spanish>[ICON_BULLET]Genera unidades bárbaras hasta que es eliminado.</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_PROMOTION_CAPTURE_APPLY</Tag>
+		<English>Your %s1_UnitName gained the %s2_PromotionName promotion.</English>
+		<French>Your %s1_UnitName gained the %s2_PromotionName promotion.</French>
+		<German>Your %s1_UnitName gained the %s2_PromotionName promotion.</German>
+		<Italian>Your %s1_UnitName gained the %s2_PromotionName promotion.</Italian>
+		<Spanish>Your %s1_UnitName gained the %s2_PromotionName promotion.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_PROMOTION_CAPTURE_APPLY</Tag>
+		<English>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured.</English>
+		<French>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured.</French>
+		<German>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured.</German>
+		<Italian>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured.</Italian>
+		<Spanish>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured.</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_AIFON_ISLE_EXPLORED</Tag>
 		<English>Maenalus (Explored)</English>
 		<French>Maenalus (Explored)</French>
