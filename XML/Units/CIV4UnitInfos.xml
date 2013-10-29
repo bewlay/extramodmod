@@ -22462,6 +22462,7 @@
 					<iCombat>1</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<PromotionCaptureApply>PROMOTION_POISONED_BLADE</PromotionCaptureApply>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_GOBLIN -->
 			<Class>UNITCLASS_SCOUT</Class>
