@@ -34722,7 +34722,7 @@
 			<iGlobalHappiness>0</iGlobalHappiness>
 			<iStateReligionHappiness>0</iStateReligionHappiness>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
-			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
+			<iMilitaryProductionModifier>20</iMilitaryProductionModifier>
 			<iSpaceProductionModifier>0</iSpaceProductionModifier>
 			<iGlobalSpaceProductionModifier>0</iGlobalSpaceProductionModifier>
 			<iTradeRoutes>0</iTradeRoutes>
@@ -34750,7 +34750,7 @@
 			<YieldModifiers>
 			</YieldModifiers>
 			<CommerceChanges>
-				<iCommerce>4</iCommerce>
+				<iCommerce>2</iCommerce>
 				<iCommerce>0</iCommerce>
 				<iCommerce>0</iCommerce>
 			</CommerceChanges>
@@ -34762,6 +34762,9 @@
 			<CommerceChangeDoubleTimes>
 			</CommerceChangeDoubleTimes>
 			<CommerceModifiers>
+				<iCommerce>0</iCommerce>
+				<iCommerce>0</iCommerce>
+				<iCommerce>100</iCommerce>
 			</CommerceModifiers>
 			<GlobalCommerceModifiers>
 			</GlobalCommerceModifiers>
