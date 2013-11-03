@@ -282,7 +282,8 @@
 		<SpellInfo>
 			<Type>SPELL_BLESSING</Type>
 			<Description>TXT_KEY_SPELL_BLESSING</Description>
-			<Civilopedia>TXT_KEY_SPELL_BLESSING_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_BLESSING_HELP</Help>
 			<PromotionPrereq1>PROMOTION_CREATION3</PromotionPrereq1>
 			<bAllowAI>1</bAllowAI>
 			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>
