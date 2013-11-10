@@ -69,11 +69,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_SELL_ANIMAL_HELP</Tag>
-		<English>[ICON_BULLET]Grants a random amount of gold depending on strength and rarity of the animal.</English>
-		<French>[ICON_BULLET]Grants a random amount of gold depending on strength and rarity of the animal.</French>
-		<German>[ICON_BULLET]Grants a random amount of gold depending on strength and rarity of the animal.</German>
-		<Italian>[ICON_BULLET]Grants a random amount of gold depending on strength and rarity of the animal.</Italian>
-		<Spanish>[ICON_BULLET]Grants a random amount of gold depending on strength and rarity of the animal.</Spanish>
+		<English>[ICON_BULLET]Grants a random amount of gold depending on rarity and level of the animal.</English>
+		<French>[ICON_BULLET]Grants a random amount of gold depending on rarity and level of the animal.</French>
+		<German>[ICON_BULLET]Grants a random amount of gold depending on rarity and level of the animal.</German>
+		<Italian>[ICON_BULLET]Grants a random amount of gold depending on rarity and level of the animal.</Italian>
+		<Spanish>[ICON_BULLET]Grants a random amount of gold depending on rarity and level of the animal.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_SPELL_SELL_ANIMAL</Tag>
