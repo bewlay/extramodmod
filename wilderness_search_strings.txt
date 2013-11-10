@@ -5,7 +5,7 @@ Components:
 	WildernessFix
 	Debug
 
-	PromotionCaptureApply - DLL, XML / Captured units (animals) can grant a promotion
+	AnimalSpells - XML, Python / Some spells involving self-sacrificing animals
 	CreateLair - DLL, XML / New system for creating lairs
 	ImprovementSpawnTypes - DLL, Python, XML / Lairs spawns are chosen from a set of SpawnTypes
 	ImprovementWilderness - DLL, XML / Min and Max plot wilderness for placing improvements / Original by Sephi
@@ -14,6 +14,7 @@ Components:
 	NewLairs - XML
 	NewUnits - XML / New Barbarian Units and associated buildings
 	PlotWilderness - DLL / Each plot has a wilderness value assigned / Original by Sephi
+	PromotionCaptureApply - DLL, XML / Captured units (animals) can grant a promotion
 	PromotionExplResultBonus - DLL, Python, XML / Promotions can alter lair exploration results / Idea from RifE
 	SpawnInfo - DLL, XML / An info type to handle randoms spawns, spawns from lairs and spawns from exploration results, changes to random spawning
 	UnitSpawnType - DLL / When a unit is spawned, the SpawnType is assigned to it to better identification used by other components

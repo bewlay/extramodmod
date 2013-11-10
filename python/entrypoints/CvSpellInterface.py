@@ -1346,6 +1346,10 @@ def spellFormWolfPack(caster):
 		newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_WOLF_PACK'), caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 		newUnit.setExperience(caster.getExperience() + pWolf2.getExperience(), -1)
 		newUnit.setUnitAIType(gc.getInfoTypeForString('UNITAI_ATTACK'))
+	# WILDERNESS 11/2013 lfgr // AnimalSpells
+		SDTK.sdObjectInit( "Wilderness", newUnit, {} )
+		SDTK.sdObjectSetVal( "Wilderness", newUnit, "bNoConsumeAnimal", True )
+	# WILDERNESS end
 		caster.kill(True, PlayerTypes.NO_PLAYER)
 		pWolf2.kill(True, PlayerTypes.NO_PLAYER)
 
@@ -3770,6 +3774,10 @@ def spellWildHunt(caster):
 			if pUnit.baseCombatStr() > 3:
 				i = (pUnit.baseCombatStr() - 2) / 2
 				newUnit.setBaseCombatStr(2 + i)
+		# WILDERNESS 11/2013 lfgr // AnimalSpells
+			SDTK.sdObjectInit( "Wilderness", newUnit, {} )
+			SDTK.sdObjectSetVal( "Wilderness", newUnit, "bNoConsumeAnimal", True )
+		# WILDERNESS end
 
 def spellWonder(caster):
 	iCount = CyGame().getSorenRandNum(3, "Wonder") + 3
@@ -4561,3 +4569,24 @@ def spellAnimateFrostlings(pCaster):
 			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING_ARCHER'))
 			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING_WOLF_RIDER'))
 			CyInterface().addMessage(iPlayer, False, 25, CyTranslator().getText("TXT_KEY_MESSAGE_ANIMATE_FROSTLINGS", ()),'',1, None, ColorTypes(7), -1, -1, False, False)
+
+# WILDERNESS 11/2013 lfgr // AnimalSpells
+
+def reqConsumeAnimal( pCaster ) :
+	if( pCaster.getSummoner() != -1 ) :
+		return False
+	if( SDTK.sdObjectExists( "Wilderness", pCaster ) ) :
+		print "Wilderness::bNoConsumeAnimal:"
+		print SDTK.sdObjectGetVal( "Wilderness", pCaster, "bNoConsumeAnimal" )
+		if( SDTK.sdObjectGetVal( "Wilderness", pCaster, "bNoConsumeAnimal" ) ) :
+			return False
+	return True
+
+def spellSellAnimal( pCaster, iStdGold ) :
+	iLevel = pCaster.getLevel()
+	iGold = ( iLevel * iStdGold ) * ( 75 + CyGame().getSorenRandNum( 50, "Bob" ) ) / 100
+	iGold = max( 1, iGold )
+	CyInterface().addMessage(pCaster.getOwner(), True, 25, CyTranslator().getText("TXT_KEY_MESSAGE_SPELL_SELL_ANIMAL", ( iGold, )),'',1, None, ColorTypes(7), -1, -1, False, False)
+	gc.getPlayer( pCaster.getOwner() ).changeGold( iGold )
+
+# WILDERNESS end

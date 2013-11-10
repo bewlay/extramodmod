@@ -52,6 +52,38 @@
 		<Spanish>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured.</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_SPELL_SELL_ANIMAL</Tag>
+		<English>Sell Animal</English>
+		<French>Sell Animal</French>
+		<German>Sell Animal</German>
+		<Italian>Sell Animal</Italian>
+		<Spanish>Sell Animal</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_SELL_ANIMAL_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_SELL_ANIMAL_HELP</Tag>
+		<English>[ICON_BULLET]Grants a random amount of gold depending on strength and rarity of the animal.</English>
+		<French>[ICON_BULLET]Grants a random amount of gold depending on strength and rarity of the animal.</French>
+		<German>[ICON_BULLET]Grants a random amount of gold depending on strength and rarity of the animal.</German>
+		<Italian>[ICON_BULLET]Grants a random amount of gold depending on strength and rarity of the animal.</Italian>
+		<Spanish>[ICON_BULLET]Grants a random amount of gold depending on strength and rarity of the animal.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_SPELL_SELL_ANIMAL</Tag>
+		<English>You sold an animal for %d1_gold [ICON_GOLD].</English>
+		<French>You sold an animal for %d1_gold [ICON_GOLD].</French>
+		<German>You sold an animal for %d1_gold [ICON_GOLD].</German>
+		<Italian>You sold an animal for %d1_gold [ICON_GOLD].</Italian>
+		<Spanish>You sold an animal for %d1_gold [ICON_GOLD].</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_AIFON_ISLE_EXPLORED</Tag>
 		<English>Maenalus (Explored)</English>
 		<French>Maenalus (Explored)</French>
