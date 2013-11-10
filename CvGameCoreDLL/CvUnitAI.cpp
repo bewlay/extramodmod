@@ -27637,6 +27637,18 @@ bool CvUnitAI::AI_exploreLair(int iRange)
 						{
 							if (!pLoopPlot->isVisibleEnemyDefender(this))
 							{
+							/************************************************************************************************/
+							/* WILDERNESS                             08/2013                                 lfgr          */
+							/* WildernessExploration                                                                        */
+							/************************************************************************************************/
+								if( GC.getImprovementInfo((ImprovementTypes)pLoopPlot->getImprovementType()).isExplorable() )
+								{
+									if( !canDoExploration( pLoopPlot ) )
+										continue;
+								}
+							/************************************************************************************************/
+							/* WILDERNESS                                                                     END           */
+							/************************************************************************************************/
 								if (generatePath(pLoopPlot, 0, true, &iPathTurns))
 								{
 									if (iPathTurns <= iRange)
