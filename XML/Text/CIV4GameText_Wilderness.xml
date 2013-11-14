@@ -68,20 +68,20 @@
 		<Spanish>TODO</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_SPELL_SELL_ANIMAL_HELP</Tag>
-		<English>[ICON_BULLET]Grants a random amount of gold depending on rarity and level of the animal.</English>
-		<French>[ICON_BULLET]Grants a random amount of gold depending on rarity and level of the animal.</French>
-		<German>[ICON_BULLET]Grants a random amount of gold depending on rarity and level of the animal.</German>
-		<Italian>[ICON_BULLET]Grants a random amount of gold depending on rarity and level of the animal.</Italian>
-		<Spanish>[ICON_BULLET]Grants a random amount of gold depending on rarity and level of the animal.</Spanish>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_SPELL_SELL_ANIMAL</Tag>
 		<English>You sold an animal for %d1_gold [ICON_GOLD].</English>
 		<French>You sold an animal for %d1_gold [ICON_GOLD].</French>
 		<German>You sold an animal for %d1_gold [ICON_GOLD].</German>
 		<Italian>You sold an animal for %d1_gold [ICON_GOLD].</Italian>
 		<Spanish>You sold an animal for %d1_gold [ICON_GOLD].</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_SELL_ANIMAL_HELP</Tag>
+		<English>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level of the animals)</English>
+		<French>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level of the animals)</French>
+		<German>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level of the animals)</German>
+		<Italian>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level of the animals)</Italian>
+		<Spanish>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level of the animals)</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_AIFON_ISLE_EXPLORED</Tag>

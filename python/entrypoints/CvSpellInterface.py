@@ -70,6 +70,17 @@ def postCombatWon(argsList):
 	unit = gc.getUnitInfo(pCaster.getUnitType())
 	eval(unit.getPyPostCombatWon())
 
+# SpellPyHelp 11/2013 lfgr
+def getSpellHelp( argsList ) :
+	eSpell, ePlayer, leUnits = argsList
+	pSpell = gc.getSpellInfo( eSpell )
+	pPlayer = gc.getPlayer( ePlayer )
+	lpUnits = []
+	for eUnit in leUnits :
+		lpUnits.append( pPlayer.getUnit( eUnit ) )
+	return eval( pSpell.getPyHelp() )
+# SpellPyHelp END
+
 def findClearPlot(pUnit, plot):
 	BestPlot = -1
 	iBestPlot = 0
@@ -4573,11 +4584,45 @@ def reqConsumeAnimal( pCaster ) :
 			return False
 	return True
 
-def spellSellAnimal( pCaster, iStdGold ) :
-	iLevel = pCaster.getLevel()
-	iGold = ( iLevel * iStdGold ) * ( 75 + CyGame().getSorenRandNum( 50, "Bob" ) ) / 100
+def spellSellAnimal( pCaster ) :
+	iGold = getAnimalSellValue( pCaster ) * ( 75 + CyGame().getSorenRandNum( 50, "Bob" ) ) / 100
 	iGold = max( 1, iGold )
-	CyInterface().addMessage(pCaster.getOwner(), True, 25, CyTranslator().getText("TXT_KEY_MESSAGE_SPELL_SELL_ANIMAL", ( iGold, )),'',1, None, ColorTypes(8), -1, -1, False, False)
+	CyInterface().addMessage(pCaster.getOwner(), True, 25, CyTranslator().getText( 'TXT_KEY_MESSAGE_SPELL_SELL_ANIMAL', ( iGold, ) ),'',1, None, ColorTypes(8), -1, -1, False, False)
 	gc.getPlayer( pCaster.getOwner() ).changeGold( iGold )
+
+def helpSellAnimal( lpUnits ) :
+	iMinGold = 0
+	iMaxGold = 0
+	for pUnit in lpUnits :
+		iMinGold += getAnimalSellValue( pUnit ) * 75 / 100
+		iMaxGold += getAnimalSellValue( pUnit ) * 125 / 100
+	
+	return CyTranslator().getText( 'TXT_KEY_SPELL_SELL_ANIMAL_HELP', ( len( lpUnits ), iMinGold, iMaxGold ) )
+
+def getAnimalSellValue( pUnit ) :
+	# Standard unit values
+	# TODO: cache
+	liUnitValues = [-1] * gc.getNumUnitInfos()
+	liUnitValues[gc.getInfoTypeForString( "UNIT_BABY_SPIDER" )] = 3
+	liUnitValues[gc.getInfoTypeForString( "UNIT_BEAR" )] = 5
+	liUnitValues[gc.getInfoTypeForString( "UNIT_CAVE_BEAR" )] = 10
+	liUnitValues[gc.getInfoTypeForString( "UNIT_ELEPHANT" )] = 15
+	liUnitValues[gc.getInfoTypeForString( "UNIT_GIANT_SPIDER" )] = 6
+	liUnitValues[gc.getInfoTypeForString( "UNIT_GORILLA" )] = 7
+	liUnitValues[gc.getInfoTypeForString( "UNIT_GRIFFON" )] = 12
+	liUnitValues[gc.getInfoTypeForString( "UNIT_LION" )] = 5
+	liUnitValues[gc.getInfoTypeForString( "UNIT_LION_PRIDE" )] = 7
+	liUnitValues[gc.getInfoTypeForString( "UNIT_PANTHER" )] = 9
+	liUnitValues[gc.getInfoTypeForString( "UNIT_POLAR_BEAR" )] = 7
+	liUnitValues[gc.getInfoTypeForString( "UNIT_SCORPION" )] = 6
+	liUnitValues[gc.getInfoTypeForString( "UNIT_TIGER" )] = 8
+	liUnitValues[gc.getInfoTypeForString( "UNIT_WOLF" )] = 3
+	liUnitValues[gc.getInfoTypeForString( "UNIT_WOLF_PACK" )] = 5
+	
+	iStdGold = liUnitValues[pUnit.getUnitType()]
+	if( iStdGold == -1 ) :
+		raise Exception( "Sell value for this animal not defined!" )
+	iLevel = pUnit.getLevel()
+	return iLevel * iStdGold
 
 # WILDERNESS end
