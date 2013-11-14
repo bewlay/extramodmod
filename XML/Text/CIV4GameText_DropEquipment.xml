@@ -158,7 +158,7 @@
 		<French>Drop Sol</French>
 		<German>Drop Sol</German>
 		<Italian>Drop Sol</Italian>
-		<Spanish>Drop Sol</Spanish>
+		<Spanish>Dejar Sol</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_DROP_STAFF_OF_SOULS</Tag>
@@ -167,5 +167,13 @@
 		<German>Drop Staff of Souls</German>
 		<Italian>Drop Staff of Souls</Italian>
 		<Spanish>Dejar Bastón de las Almas</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_TIMOR_MASK</Tag>
+		<English>Drop Timor Mask</English>
+		<French>Drop Timor Mask</French>
+		<German>Drop Timor Mask</German>
+		<Italian>Drop Timor Mask</Italian>
+		<Spanish>Dejar Máscara de Timor</Spanish>
 	</TEXT>
 </Civ4GameText>

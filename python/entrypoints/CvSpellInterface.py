@@ -841,23 +841,20 @@ def reqCrownOfBrillance(caster):
 def reqCrush(caster):
 	iX = caster.getX()
 	iY = caster.getY()
-	pPlayer = gc.getPlayer(caster.getOwner())
+	iPlayer = caster.getOwner()
+	pPlayer = gc.getPlayer(iPlayer)
 	iTeam = pPlayer.getTeam()
 	eTeam = gc.getTeam(iTeam)
 	for iiX in range(iX-2, iX+3, 1):
 		for iiY in range(iY-2, iY+3, 1):
 			pPlot = CyMap().plot(iiX,iiY)
-			if pPlot.isVisible(iTeam, False):
-				bEnemy = False
+			if pPlot.isVisibleEnemyUnit(iPlayer):
 				bNeutral = False
 				for i in range(pPlot.getNumUnits()):
 					pUnit = pPlot.getUnit(i)
-					if not pUnit.isInvisible(iTeam, False):
-						if eTeam.isAtWar(pUnit.getTeam()):
-							bEnemy = True
-						else:
-							bNeutral = True
-				if (bEnemy and not bNeutral):
+					if not eTeam.isAtWar(pUnit.getTeam()):
+						bNeutral = True
+				if not bNeutral:
 					return True
 	return False
 
@@ -1901,23 +1898,20 @@ def spellPeaceSevenPines(caster):
 def reqPillarofFire(caster):
 	iX = caster.getX()
 	iY = caster.getY()
-	pPlayer = gc.getPlayer(caster.getOwner())
+	iPlayer = caster.getOwner()
+	pPlayer = gc.getPlayer(iPlayer)
 	iTeam = pPlayer.getTeam()
 	eTeam = gc.getTeam(iTeam)
 	for iiX in range(iX-2, iX+3, 1):
 		for iiY in range(iY-2, iY+3, 1):
 			pPlot = CyMap().plot(iiX,iiY)
-			if pPlot.isVisible(iTeam, False):
-				bEnemy = False
+			if pPlot.isVisibleEnemyUnit(iPlayer):
 				bNeutral = False
 				for i in range(pPlot.getNumUnits()):
 					pUnit = pPlot.getUnit(i)
-					if not pUnit.isInvisible(iTeam, False):
-						if eTeam.isAtWar(pUnit.getTeam()):
-							bEnemy = True
-						else:
-							bNeutral = True
-				if (bEnemy and not bNeutral):
+					if not eTeam.isAtWar(pUnit.getTeam()):
+						bNeutral = True
+				if not bNeutral:
 					return True
 	return false
 
@@ -2197,49 +2191,46 @@ def spellRally(caster):
 	pPlayer = gc.getPlayer(iOwner)
 	iDemagog = gc.getInfoTypeForString('UNIT_DEMAGOG')
 	iTown = gc.getInfoTypeForString('IMPROVEMENT_TOWN')
-	iEnclave = gc.getInfoTypeForString('IMPROVEMENT_ENCLAVE')
 	iVillage = gc.getInfoTypeForString('IMPROVEMENT_VILLAGE')
 	iCount = 0
 	for i in range (CyMap().numPlots()):
 		pPlot = CyMap().plotByIndex(i)
 		if pPlot.getOwner() == iOwner:
-			if pPlot.isCity():
-				newUnit = pPlayer.initUnit(iDemagog, pPlot.getX(), pPlot.getY(),  UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ORDER'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ORDER'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'));
-			if pPlot.getImprovementType() == iTown or pPlot.getImprovementType() ==  iEnclave :
-				pCity = pPlot.getWorkingCity()
-				newUnit = pPlayer.initUnit(iDemagog, pPlot.getX(), pPlot.getY(),  UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)			
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ORDER'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ORDER'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'));
+			if not pPlot.isVisibleEnemyUnit(iOwner):
+				if pPlot.isCity():
+					newUnit = pPlayer.initUnit(iDemagog, pPlot.getX(), pPlot.getY(),  UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ORDER'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ORDER'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'));
+				if pPlot.getImprovementType() == iTown:
+					pCity = pPlot.getWorkingCity()
+					newUnit = pPlayer.initUnit(iDemagog, pPlot.getX(), pPlot.getY(),  UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)			
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ORDER'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ORDER'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'));
 
-				if pPlot.getImprovementType() == iEnclave:
-					pPlot.setImprovementType(iTown)
-				else:
 					pPlot.setImprovementType(iVillage)
 
 def spellReadTheGrimoire(caster):
@@ -3644,7 +3635,7 @@ def reqUpgradeDovielloWarrior(caster):
 		eTeam = gc.getTeam(iTeam)
 		if eTeam.getAtWarCount(True) == 0:
 			return False
-		if pPlayer.getNumCities() > pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_WORKER')):
+		if (pPlayer.getNumCities() * 2) > pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_WORKER')):
 			return False
 	return True
 

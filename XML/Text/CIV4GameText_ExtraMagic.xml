@@ -290,14 +290,13 @@
 		<Spanish>Bendición</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_SPELL_BLESSING_PEDIA</Tag>
-		<English>Blessing creates a temporary effect (represented as a building) in the city which remains until the caster leaves. Living units are produced faster in a city with a Blessing, and they start with the Strong promotion. It also opens a specialist slot for all specialist types.</English>
-		<French>Blessing creates a temporary effect (represented as a building) in the city which remains until the caster leaves. Living units are produced faster in a city with a Blessing, and they start with the Strong promotion. It also opens a specialist slot for all specialist types.</French>
-		<German>Blessing creates a temporary effect (represented as a building) in the city which remains until the caster leaves. Living units are produced faster in a city with a Blessing, and they start with the Strong promotion. It also opens a specialist slot for all specialist types.</German>
-		<Italian>Blessing creates a temporary effect (represented as a building) in the city which remains until the caster leaves. Living units are produced faster in a city with a Blessing, and they start with the Strong promotion. It also opens a specialist slot for all specialist types.</Italian>
-		<Spanish>Bendición crea un efecto temporal (representado como un edificio) en la ciudad que permanece hasta que el lanzador se marcha. Las unidades vivas se producen mas rápidamente en las ciudades que tengan una Bendición, y comienzan con la promoción Fuerte. También abre un espacio de especialista para todos los tipos de especialistas.</Spanish>
+		<Tag>TXT_KEY_SPELL_BLESSING_HELP</Tag>
+		<English>[ICON_BULLET]Blessing creates a temporary effect (represented as a building) in the city which remains until the caster leaves. Living units are produced faster in a city with a Blessing, and they start with the Strong promotion. It also opens a specialist slot for all specialist types.</English>
+		<French>[ICON_BULLET]Blessing creates a temporary effect (represented as a building) in the city which remains until the caster leaves. Living units are produced faster in a city with a Blessing, and they start with the Strong promotion. It also opens a specialist slot for all specialist types.</French>
+		<German>[ICON_BULLET]Blessing creates a temporary effect (represented as a building) in the city which remains until the caster leaves. Living units are produced faster in a city with a Blessing, and they start with the Strong promotion. It also opens a specialist slot for all specialist types.</German>
+		<Italian>[ICON_BULLET]Blessing creates a temporary effect (represented as a building) in the city which remains until the caster leaves. Living units are produced faster in a city with a Blessing, and they start with the Strong promotion. It also opens a specialist slot for all specialist types.</Italian>
+		<Spanish>[ICON_BULLET]Bendición crea un efecto temporal (representado como un edificio) en la ciudad que permanece hasta que el lanzador se marcha. Las unidades vivas se producen mas rápidamente en las ciudades que tengan una Bendición, y comienzan con la promoción Fuerte. También abre un espacio de especialista para todos los tipos de especialistas.</Spanish>
 	</TEXT>
-
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_GROWTH</Tag>
 		<English>Growth</English>

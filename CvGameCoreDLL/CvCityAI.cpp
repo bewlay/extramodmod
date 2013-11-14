@@ -1072,7 +1072,6 @@ void CvCityAI::AI_chooseProduction()
 	int iCultureRateRank = findCommerceRateRank(COMMERCE_CULTURE);
     int iCulturalVictoryNumCultureCities = GC.getGameINLINE().culturalVictoryNumCultureCities();
 
-	//int iWarSuccessRatio = GET_TEAM(getTeam()).AI_getWarSuccessCapitulationRatio();
 	int iWarSuccessRatio = GET_TEAM(getTeam()).AI_getWarSuccessRating();
 	int iEnemyPowerPerc = GET_TEAM(getTeam()).AI_getEnemyPowerPercent(true);
 	int iWarTroubleThreshold = 0;
@@ -1743,7 +1742,19 @@ void CvCityAI::AI_chooseProduction()
 	}
 
 	// culture check
-	if (!kPlayer.AI_isDoStrategy(AI_STRATEGY_TURTLE) && (getCommerceRate(COMMERCE_CULTURE) == 0))
+	bool bCultureTrait = false;
+	for (int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++)
+	{
+		if (kPlayer.hasTrait((TraitTypes)iTrait))
+		{
+			if (GC.getTraitInfo((TraitTypes)iTrait).getCommerceChange(COMMERCE_CULTURE) > 0)
+			{
+				bCultureTrait = true;
+			}
+		}
+	}
+
+	if (!kPlayer.AI_isDoStrategy(AI_STRATEGY_TURTLE) && (getCommerceRate(COMMERCE_CULTURE) == 0) && !bCultureTrait)
 	{
 		if (iTargetCulturePerTurn > 0)
 		{
@@ -1923,7 +1934,7 @@ void CvCityAI::AI_chooseProduction()
 		iAttackNeeded++;
 	}
 
-	if (GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI))
+	if (bAggressiveAI)
 	{
 		iAttackNeeded++;
 	}
@@ -2646,7 +2657,7 @@ void CvCityAI::AI_chooseProduction()
 /* Ruthless AI                                                                                  */
 /************************************************************************************************/
 			//Avoid building wonders that take a long time
-			if (GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI))
+			if (bAggressiveAI)
 			{
 				iWonderTime /= 2;
 			}
@@ -6809,7 +6820,8 @@ int CvCityAI::AI_neededDefenders()
 			iDefenders++;
 		}
 	}
-	
+
+	/*
 	if (!GET_PLAYER(getOwner()).AI_isDoStrategy(AI_STRATEGY_CRUSH))
 	{
 		iDefenders += AI_neededFloatingDefenders();
@@ -6818,6 +6830,7 @@ int CvCityAI::AI_neededDefenders()
 	{
 		iDefenders += (AI_neededFloatingDefenders() + 2) / 4;
 	}
+	*/
 	
 	if (bDefenseWar || GET_PLAYER(getOwner()).AI_isDoStrategy(AI_STRATEGY_ALERT2))
 	{
@@ -6875,7 +6888,7 @@ int CvCityAI::AI_neededDefenders()
 		{
 			iDefenders++;
 
-			if( GET_PLAYER(getOwnerINLINE()).AI_isDoVictoryStrategy(AI_VICTORY_RELIGION4) )
+			if( GET_PLAYER(getOwnerINLINE()).AI_isDoVictoryStrategy(AI_VICTORY_RELIGION4) && bDefenseWar)
 			{
 				iDefenders += 2;
 			}

@@ -4063,8 +4063,6 @@ void CvDLLWidgetData::parseContactCivHelp(CvWidgetDataStruct &widgetDataStruct, 
 		}
 		if (bHadAny)
 		{
-			int iWarSuccessRatio = kTeam.AI_getWarSuccessCapitulationRatio();
-			szBuffer.append(CvWString::format(SETCOLR L"\nWar Success Ratio: %d" ENDCOLR, TEXT_COLOR((iWarSuccessRatio > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), iWarSuccessRatio));
 			int iWarSuccessRating = kTeam.AI_getWarSuccessRating();
 			szBuffer.append(CvWString::format(SETCOLR L"\nWar Success Rating: %d" ENDCOLR, TEXT_COLOR((iWarSuccessRating > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), iWarSuccessRating));
 		}
@@ -5114,8 +5112,7 @@ void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStr
 
 
 // ExtraModMod version number.
-	szTempBuffer.Format(L"%S", "ExtraModMod v0.3.1");
-	szBuffer.append(szTempBuffer);
+	szBuffer.append(gDLL->getText("TXT_KEY_VERSION"));
 	szBuffer.append(NEWLINE);
 //
 

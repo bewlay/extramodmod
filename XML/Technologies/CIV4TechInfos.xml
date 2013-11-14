@@ -1739,6 +1739,7 @@
                     <PrereqTech>TECH_THEOLOGY</PrereqTech>
                     <PrereqTech>TECH_RIGHTEOUSNESS</PrereqTech>
                     <PrereqTech>TECH_MALEVOLENT_DESIGNS</PrereqTech>
+                    <PrereqTech>TECH_RAGE</PrereqTech>
             </OrPreReqs>
             <AndPreReqs>
             </AndPreReqs>

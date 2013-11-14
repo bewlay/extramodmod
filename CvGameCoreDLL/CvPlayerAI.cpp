@@ -789,24 +789,13 @@ void CvPlayerAI::AI_doTurnUnitsPost()
 		//
 		//int iUnitValue;
 
-		/* - Tholal Note: adding this section seems to cause some other issues
-		for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
-		{
-            int iSpell = pLoopUnit->chooseSpell();
-            if (iSpell != NO_SPELL)
-            {
-                pLoopUnit->cast(iSpell);
-			}
-		}
-		*/
-
 		//Tholal ToDo - Manes hit this upgrade section before they ever get a chance to 'cast'
 		// Tholal ToDo - arrange units in a sorted list then try and upgrade rather than running through whole list three times
 		// pass 0
 		logBBAI("Checking for Upgrades...");
 		for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
 		{
-			if (!pLoopUnit->isDelayedDeath())
+			if (!pLoopUnit->isDelayedDeath() && (pLoopUnit->getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_MANES"))) // HARDCODE
 			{
 				pUnitPlot = pLoopUnit->plot();
 				if (((pLoopUnit->AI_getUnitAIType() == UNITAI_HERO) || pLoopUnit->isChanneler() || (AI_getPlotDanger(pUnitPlot, 1, false) > 0)) 
@@ -819,7 +808,7 @@ void CvPlayerAI::AI_doTurnUnitsPost()
 		// pass 1
 		for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
 		{
-			if (!pLoopUnit->isDelayedDeath())
+			if (!pLoopUnit->isDelayedDeath() && (pLoopUnit->getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_MANES"))) // HARDCODE
 			{
 				if (pLoopUnit->getLevel() > 3 && pLoopUnit->hasUpgrade())
 				{
@@ -830,7 +819,7 @@ void CvPlayerAI::AI_doTurnUnitsPost()
 		// pass 2
 		for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
 		{
-			if (!pLoopUnit->isDelayedDeath())
+			if (!pLoopUnit->isDelayedDeath() && (pLoopUnit->getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_MANES"))) // HARDCODE
 			{
 				if (pLoopUnit->getLevel() <= 3 && pLoopUnit->hasUpgrade())
 				{
@@ -1631,7 +1620,6 @@ void CvPlayerAI::AI_doCentralizedProduction()
 
 	if( bAtWar )
 	{
-		//int iWarCapRatio = GET_TEAM(getTeam()).AI_getWarSuccessCapitulationRatio();
 		int iWarCapRatio = GET_TEAM(getTeam()).AI_getWarSuccessRating();
 		if( iWarCapRatio < -90 )
 		{
@@ -3955,6 +3943,8 @@ int CvPlayerAI::AI_targetCityValue(CvCity* pCity, bool bRandomize, bool bIgnoreA
 	// Tholal AI: Increased valuation of our culture percent in the city (was set to 50%)
 	iValue += ((pCity->getPopulation() * (75 + pCity->calculateCulturePercent(getID()))) / 100);
 
+	const CvPlayerAI& kOwner = GET_PLAYER(pCity->getOwnerINLINE());
+
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      06/30/10                     Mongoose & jdog5000      */
 /*                                                                                              */
@@ -3982,7 +3972,7 @@ int CvPlayerAI::AI_targetCityValue(CvCity* pCity, bool bRandomize, bool bIgnoreA
 		{
 			iValue += 2 + ((GC.getGameINLINE().calculateReligionPercent((ReligionTypes)iI)) / 5);
 
-			if (GET_PLAYER(pCity->getOwnerINLINE()).getStateReligion() == iI)
+			if (kOwner.getStateReligion() == iI)
 			{
 				iValue += 2;
 			}
@@ -4036,13 +4026,13 @@ int CvPlayerAI::AI_targetCityValue(CvCity* pCity, bool bRandomize, bool bIgnoreA
 		}
 	}
 
-	if( GET_PLAYER(pCity->getOwnerINLINE()).AI_isDoVictoryStrategy(AI_VICTORY_CULTURE3) )
+	if( kOwner.AI_isDoVictoryStrategy(AI_VICTORY_CULTURE3) )
 	{
 		if( pCity->getCultureLevel() >= (GC.getGameINLINE().culturalVictoryCultureLevel() - 1) )
 		{
 			iValue += 15;
 			
-			if( GET_PLAYER(pCity->getOwnerINLINE()).AI_isDoVictoryStrategy(AI_VICTORY_CULTURE4) )
+			if( kOwner.AI_isDoVictoryStrategy(AI_VICTORY_CULTURE4) )
 			{
 				iValue += 25;
 
@@ -4055,13 +4045,13 @@ int CvPlayerAI::AI_targetCityValue(CvCity* pCity, bool bRandomize, bool bIgnoreA
 	}
 
 	// Target Altar cities
-	if( GET_PLAYER(pCity->getOwnerINLINE()).AI_isDoVictoryStrategy(AI_VICTORY_ALTAR3) )
+	if( kOwner.AI_isDoVictoryStrategy(AI_VICTORY_ALTAR3) )
 	{
 		if (pCity->getAltarLevel() > 1)
 		{
 			iValue += 15;
 			
-			if (GET_PLAYER(pCity->getOwnerINLINE()).AI_isDoVictoryStrategy(AI_VICTORY_ALTAR4))
+			if (kOwner.AI_isDoVictoryStrategy(AI_VICTORY_ALTAR4))
 			{
 				iValue += 25;
 			}
@@ -4108,6 +4098,40 @@ int CvPlayerAI::AI_targetCityValue(CvCity* pCity, bool bRandomize, bool bIgnoreA
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
+
+	// MNAI Start
+	if (!GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI))
+	{
+		int iAttitudeMod = 3;
+		switch (AI_getAttitude(pCity->getOwner()))
+		{
+		case ATTITUDE_FURIOUS:
+			iAttitudeMod = 6;
+
+		case ATTITUDE_ANNOYED:
+			iAttitudeMod = 4;
+			break;
+
+		case ATTITUDE_CAUTIOUS:
+			break;
+
+		case ATTITUDE_PLEASED:
+			iAttitudeMod = 2;
+			break;
+
+		case ATTITUDE_FRIENDLY:
+			iAttitudeMod = 1;
+			break;
+
+		default:
+			FAssert(false);
+			break;
+		}
+
+		iValue *= iAttitudeMod;
+		iValue /= 3;
+	}
+	// End MNAI
 
 	return iValue;
 }
@@ -6543,7 +6567,7 @@ int CvPlayerAI::AI_techBuildingValue( TechTypes eTech, int iPathLength, bool &bE
 				const ReligionTypes eHolyCity = (ReligionTypes)kLoopBuilding.getHolyCity();
 				if (eHolyCity != NO_RELIGION)
 				{
-					if (!hasHolyCity(eHolyCity))
+					if (!hasHolyCity(eHolyCity) && GC.getGameINLINE().isReligionFounded(eHolyCity))
 					{
 						continue;
 					}
@@ -6559,7 +6583,7 @@ int CvPlayerAI::AI_techBuildingValue( TechTypes eTech, int iPathLength, bool &bE
 					}
 				}
 
-				if (GC.getGameINLINE().isBuildingClassMaxedOut((BuildingClassTypes)(GC.getBuildingInfo(eLoopBuilding).getBuildingClassType())))
+				if (GC.getGameINLINE().isBuildingClassMaxedOut((BuildingClassTypes)(kLoopBuilding.getBuildingClassType())))
 				{
 					continue;
 				}
@@ -6690,7 +6714,7 @@ int CvPlayerAI::AI_techBuildingValue( TechTypes eTech, int iPathLength, bool &bE
 */
 				const BuildingClassTypes eBuildingClass = (BuildingClassTypes)iJ;
 
-				if (GC.getBuildingInfo(eLoopBuilding).getPrereqCiv() == getCivilizationType())
+				if (kLoopBuilding.getPrereqCiv() == getCivilizationType())
 				{
 					iBuildingValue += 600;
 				}
@@ -6703,7 +6727,7 @@ int CvPlayerAI::AI_techBuildingValue( TechTypes eTech, int iPathLength, bool &bE
 				// free bonuses
 				if (kLoopBuilding.getNumFreeBonuses() > 0)
 				{
-					iBuildingValue += (AI_bonusVal((BonusTypes)GC.getBuildingInfo(eLoopBuilding).getFreeBonus()) * 2) * kLoopBuilding.getNumFreeBonuses();
+					iBuildingValue += (AI_bonusVal((BonusTypes)kLoopBuilding.getFreeBonus()) * 2) * kLoopBuilding.getNumFreeBonuses();
 				}
 
 				// palaces
@@ -6889,7 +6913,7 @@ int CvPlayerAI::AI_techBuildingValue( TechTypes eTech, int iPathLength, bool &bE
 
 				for (int iI = 0; iI < GC.getNUM_BUILDING_PREREQ_OR_BONUSES(); ++iI)
 				{
-					if (GC.getBuildingInfo(eLoopBuilding).getPrereqOrBonuses(iI) != NO_BONUS)
+					if (kLoopBuilding.getPrereqOrBonuses(iI) != NO_BONUS)
 					{
 						bRequiresBonus = true;
 
@@ -6910,7 +6934,7 @@ int CvPlayerAI::AI_techBuildingValue( TechTypes eTech, int iPathLength, bool &bE
 					iBuildingValue /= 4;
 				}
 
-				if (GC.getBuildingInfo(eLoopBuilding).isVictoryBuilding())
+				if (kLoopBuilding.isVictoryBuilding())
 				{
 					iBuildingValue += 1000;
 					if (iProphetSpecialist > 0) // probably an altar building - semi-hardcode
@@ -6946,9 +6970,9 @@ int CvPlayerAI::AI_techBuildingValue( TechTypes eTech, int iPathLength, bool &bE
 
 				}
 
-				if (GC.getBuildingInfo(eLoopBuilding).getPrereqCiv() != NO_CIVILIZATION)
+				if (kLoopBuilding.getPrereqCiv() != NO_CIVILIZATION)
 				{
-					if (GC.getBuildingInfo(eLoopBuilding).getPrereqCiv() == getCivilizationType())
+					if (kLoopBuilding.getPrereqCiv() == getCivilizationType())
 					{
 						iBuildingValue *= 3;
 						iBuildingValue /= 2;
@@ -6958,7 +6982,7 @@ int CvPlayerAI::AI_techBuildingValue( TechTypes eTech, int iPathLength, bool &bE
 
 				if ((gPlayerLogLevel > 3) && bDebugLog)
 				{
-					logBBAI("     BUILDING - %S : %d\n", GC.getBuildingInfo(eLoopBuilding).getDescription(), iBuildingValue);
+					logBBAI("     BUILDING - %S : %d\n", kLoopBuilding.getDescription(), iBuildingValue);
 				}
 
 
@@ -15584,14 +15608,16 @@ ReligionTypes CvPlayerAI::AI_bestReligion() const
 		//{
 			if (kReligionInfo.getReligionHero1() != NO_UNITCLASS)
 			{
-				if (getUnitClassCountPlusMaking(kReligionInfo.getReligionHero1()) > 0)
+				//if (getUnitClassCountPlusMaking(kReligionInfo.getReligionHero1()) > 0)
+				if (getUnitClassCount(kReligionInfo.getReligionHero1()) > 0)
 				{
 					return getStateReligion();
 				}
 			}
 			if (kReligionInfo.getReligionHero2() != NO_UNITCLASS)
 			{
-				if (getUnitClassCountPlusMaking(kReligionInfo.getReligionHero2()) > 0)
+				//if (getUnitClassCountPlusMaking(kReligionInfo.getReligionHero2()) > 0)
+				if (getUnitClassCount(kReligionInfo.getReligionHero2()) > 0)
 				{
 					return getStateReligion();
 				}
@@ -15661,7 +15687,7 @@ ReligionTypes CvPlayerAI::AI_bestReligion() const
 
 int CvPlayerAI::AI_religionValue(ReligionTypes eReligion) const
 {
-	if (getHasReligionCount(eReligion) == 0)
+	if (isAgnostic())
 	{
 		return 0;
 	}
@@ -15676,7 +15702,14 @@ int CvPlayerAI::AI_religionValue(ReligionTypes eReligion) const
 	}
 //>>>>Better AI: End Add
 
-	int iValue = GC.getGameINLINE().countReligionLevels(eReligion);
+	int iValue = 0;
+	
+	if (getStateReligion() == NO_RELIGION)
+	{
+		iValue += getNumCities() * 5;
+	}
+	// ToDo - make this for diplomacy victory
+	//GC.getGameINLINE().countReligionLevels(eReligion);
 	
 	int iLoop;
 	CvCity* pLoopCity;
@@ -15743,6 +15776,7 @@ int CvPlayerAI::AI_religionValue(ReligionTypes eReligion) const
         }
 	}
 
+	// need some base value for the units
 	// Tholal AI - add value for unused heros
 	const UnitClassTypes eReligionHeroClass1 = (UnitClassTypes)GC.getReligionInfo(eReligion).getReligionHero1();
 	const UnitClassTypes eReligionHeroClass2 = (UnitClassTypes)GC.getReligionInfo(eReligion).getReligionHero2();
@@ -15751,9 +15785,11 @@ int CvPlayerAI::AI_religionValue(ReligionTypes eReligion) const
 	{
 		if (!GC.getGameINLINE().isUnitClassMaxedOut(eReligionHeroClass1))
 		{
-			iValue *= 5;
-			iValue /= 3;
-			iValue -= GC.getGameINLINE().countReligionLevels(eReligion);
+			CvUnitInfo &kHero1 = GC.getUnitInfo((UnitTypes)GC.getReligionInfo(eReligion).getReligionHero1());
+			iValue += kHero1.getTier() * 10;
+			//iValue *= 5;
+			//iValue /= 3;
+			//iValue -= GC.getGameINLINE().countReligionLevels(eReligion);
 		}
 	}
 
@@ -15761,9 +15797,10 @@ int CvPlayerAI::AI_religionValue(ReligionTypes eReligion) const
 	{
 		if (!GC.getGameINLINE().isUnitClassMaxedOut(eReligionHeroClass2))
 		{
-			iValue *= 4;
-			iValue /= 3;
-			iValue -= GC.getGameINLINE().countReligionLevels(eReligion);
+			iValue += GC.getUnitInfo((UnitTypes)GC.getReligionInfo(eReligion).getReligionHero2()).getTier() * 10;
+			//iValue *= 4;
+			//iValue /= 3;
+			//iValue -= GC.getGameINLINE().countReligionLevels(eReligion);
 		}
 	}
 
@@ -21918,17 +21955,6 @@ int CvPlayerAI::AI_getConquestVictoryStage() const
 		int iNonsense = AI_getStrategyRand() + 30;
 		iValue += (iNonsense % 100);
 
-		// Tholal AI - If we seem to be powerful scorewise
-		if (GC.getGameINLINE().getPlayerRank(getID()) <= (GC.getGameINLINE().countCivPlayersAlive() / 4))
-		{
-			iValue += 10;
-		}
-		if (GC.getGameINLINE().getPlayerRank(getID()) <= (GC.getGameINLINE().countCivPlayersAlive() / 3))
-		{
-			iValue += 20;
-		}
-		// End Tholal AI
-
 		if (iValue >= 100)
 		{
 			if( m_iStrategyHash & AI_STRATEGY_GET_BETTER_UNITS )
@@ -23034,7 +23060,6 @@ int CvPlayerAI::AI_getStrategyHash() const
 		}
 
 		// Are we losing badly or recently attacked?
-		//if( GET_TEAM(getTeam()).AI_getWarSuccessCapitulationRatio() < -50 || iMaxWarCounter < 10 )
 		if( kTeam.AI_getWarSuccessRating() < -50 || iMaxWarCounter < 10 )
 		{
 			if( kTeam.AI_getEnemyPowerPercent(true) > std::max(150, GC.getDefineINT("BBAI_TURTLE_ENEMY_POWER_RATIO")) )
@@ -27529,6 +27554,7 @@ int CvPlayerAI::AI_militaryUnitTradeVal(CvUnit* pUnit) const
 	int iValue = 0;
 	UnitTypes eUnit = pUnit->getUnitType();
 
+	/* - this is already handled in CvUnit::canTradeUnit()
 	if (!pUnit->isMechUnit())
 	{
 		return 0;
@@ -27538,6 +27564,7 @@ int CvPlayerAI::AI_militaryUnitTradeVal(CvUnit* pUnit) const
 	{
 		return 0;
 	}
+	*/
 
 	iValue += AI_unitValue(eUnit, (UnitAITypes)GC.getUnitInfo(eUnit).getDefaultUnitAIType(), getCapitalCity()->area());
 	iValue /= 8;

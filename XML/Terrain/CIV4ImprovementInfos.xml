@@ -5379,6 +5379,17 @@
             </FeatureMakesValids>
             <BonusTypeStructs>
                 <BonusTypeStruct>
+                    <BonusType>BONUS_BISON</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>1</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                <BonusTypeStruct>
                     <BonusType>BONUS_COW</BonusType>
                     <bBonusMakesValid>1</bBonusMakesValid>
                     <bBonusTrade>1</bBonusTrade>
@@ -5708,7 +5719,7 @@
                     <YieldChanges>
                         <iYieldChange>2</iYieldChange>
                         <iYieldChange>0</iYieldChange>
-                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>1</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
                 <BonusTypeStruct>
@@ -5763,7 +5774,7 @@
                     <YieldChanges>
                         <iYieldChange>1</iYieldChange>
                         <iYieldChange>0</iYieldChange>
-                        <iYieldChange>1</iYieldChange>
+                        <iYieldChange>2</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
                 <BonusTypeStruct>
@@ -5774,7 +5785,7 @@
                     <YieldChanges>
                         <iYieldChange>0</iYieldChange>
                         <iYieldChange>0</iYieldChange>
-                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>3</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
                 <BonusTypeStruct>
@@ -5795,7 +5806,7 @@
                     <iDiscoverRand>0</iDiscoverRand>
                     <YieldChanges>
                         <iYieldChange>0</iYieldChange>
-                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>1</iYieldChange>
                         <iYieldChange>2</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>

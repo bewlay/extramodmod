@@ -714,5 +714,15 @@
 			<Button>Art/Interface/Buttons/WorldBuilder/shrimp.dds</Button>
 			<FontButtonIndex>65</FontButtonIndex>
 		</BonusArtInfo>
+		<BonusArtInfo>
+			<Type>ART_DEF_BONUS_BISON</Type>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>0.9</fInterfaceScale>
+			<NIF>Art/Terrain/Resources/Bison/cow.nif</NIF>
+			<KFM>Art/Terrain/Resources/Bison/cow.kfm</KFM>
+			<SHADERNIF>Art/Terrain/Resources/Bison/cow_FX.nif</SHADERNIF>
+			<Button>Art/Interface/Buttons/WorldBuilder/bison.dds</Button>
+			<FontButtonIndex>68</FontButtonIndex>
+		</BonusArtInfo>
 	</BonusArtInfos>
 </Civ4ArtDefines>

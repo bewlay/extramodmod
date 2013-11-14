@@ -17,6 +17,22 @@
 		<Italian>[TAB]Amber is formed from the resin of trees that have been buried in the depths of the earth for countless centuries. Amber is appreciated for its use in jewelry and for the distinctive scent it creates when it is burnt.</Italian>
 		<Spanish>[TAB]El Ámbar se forma a partir de la resina de árboles que han estado enterrados en las profundidades de la tierra durante incontables siglos. El Ámbar es apreciado por su uso en joyería  por el distintivo olor que produce al ser quemado.</Spanish>
 	</TEXT>
+    <TEXT>
+		<Tag>TXT_KEY_BONUS_BISON</Tag>
+		<English>Bison</English>
+		<French>Bison</French>
+		<German>Bison</German>
+		<Italian>Bison</Italian>
+		<Spanish>Bisonte</Spanish>
+    </TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BONUS_BISON_PEDIA</Tag>
+		<English>[TAB]Bison are large, even-toed ungulates. Bison are nomadic grazers and travel in herds.</English>
+		<French>[TAB]Bison are large, even-toed ungulates. Bison are nomadic grazers and travel in herds.</French>
+		<German>[TAB]Bison are large, even-toed ungulates. Bison are nomadic grazers and travel in herds.</German>
+		<Italian>[TAB]Bison are large, even-toed ungulates. Bison are nomadic grazers and travel in herds.</Italian>
+		<Spanish>[TAB]Bison are large, even-toed ungulates. Bison are nomadic grazers and travel in herds.</Spanish>
+	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BONUS_SALT</Tag>
 		<English>Salt</English>

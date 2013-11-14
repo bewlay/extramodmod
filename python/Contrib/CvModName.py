@@ -2,7 +2,6 @@
 
 modName = "Fall from Heaven 2 - ExtraModMod"
 displayName = "Fall from Heaven 2 - ExtraModMod"
-modVersion = "0.3.1"
 
 civName = "BtS"
 civVersion = "3.19"
@@ -14,13 +13,15 @@ def getDisplayName():
 	return displayName
 
 def getVersion():
-	return modVersion
+	sVersion = unicode(CyTranslator().getText("TXT_KEY_VERSION", ()))
+	spaceNumber = sVersion.find( ' ' )
+	return sVersion[spaceNumber+1:]
 
 def getNameAndVersion():
-	return modName + " " + modVersion
+	return modName + " " + getVersion()
 
 def getDisplayNameAndVersion():
-	return displayName + " " + modVersion
+	return displayName + " " + getVersion()
 
 
 def getCivName():

@@ -2470,18 +2470,9 @@ void CvGame::update()
 	{
 		sendPlayerOptions();
 
-//FfH: Modified by Kael 10/15/2008
-//		// sample generic event
-//		CyArgsList pyArgs;
-//		pyArgs.add(getTurnSlice());
-//		CvEventReporter::getInstance().genericEvent("gameUpdate", pyArgs.makeFunctionArgs());
-        if (isNetworkMultiPlayer())
-		{
-            CyArgsList pyArgs;
-            pyArgs.add(getTurnSlice());
-            CvEventReporter::getInstance().genericEvent("gameUpdate", pyArgs.makeFunctionArgs());
-        }
-//FfH: End Modify
+		CyArgsList pyArgs;
+		pyArgs.add(getTurnSlice());
+		CvEventReporter::getInstance().genericEvent("gameUpdate", pyArgs.makeFunctionArgs());
 
 		if (getTurnSlice() == 0)
 		{
