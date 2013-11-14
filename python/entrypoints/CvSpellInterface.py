@@ -4586,7 +4586,7 @@ def spellSellAnimal( pCaster, iStdGold ) :
 	iLevel = pCaster.getLevel()
 	iGold = ( iLevel * iStdGold ) * ( 75 + CyGame().getSorenRandNum( 50, "Bob" ) ) / 100
 	iGold = max( 1, iGold )
-	CyInterface().addMessage(pCaster.getOwner(), True, 25, CyTranslator().getText("TXT_KEY_MESSAGE_SPELL_SELL_ANIMAL", ( iGold, )),'',1, None, ColorTypes(7), -1, -1, False, False)
+	CyInterface().addMessage(pCaster.getOwner(), True, 25, CyTranslator().getText("TXT_KEY_MESSAGE_SPELL_SELL_ANIMAL", ( iGold, )),'',1, None, ColorTypes(8), -1, -1, False, False)
 	gc.getPlayer( pCaster.getOwner() ).changeGold( iGold )
 
 # WILDERNESS end
