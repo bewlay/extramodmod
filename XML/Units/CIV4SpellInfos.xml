@@ -1572,7 +1572,7 @@
             <Sound>AS3D_SPELL_ESCAPE</Sound>
             <Button>Art/Interface/Buttons/Spells/Escape.dds</Button>
         </SpellInfo>
-        <SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
             <Type>SPELL_EXPLORE_LAIR_AIFON_ISLE</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1584,12 +1584,13 @@
             <bAbility>1</bAbility>
             <PyResult>spellExploreLairEpic(pCaster)</PyResult>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
+            <PyHelp>helpExploreLair(lpUnits, True)</PyHelp>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
             <Type>SPELL_EXPLORE_LAIR_BARROW</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1601,12 +1602,13 @@
             <bAbility>1</bAbility>
             <PyResult>spellExploreLair(pCaster)</PyResult>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
+            <PyHelp>helpExploreLair(lpUnits, False)</PyHelp>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
             <Type>SPELL_EXPLORE_LAIR_BAIR_OF_LACUNA</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1618,12 +1620,13 @@
             <bAbility>1</bAbility>
             <PyResult>spellExploreLairEpic(pCaster)</PyResult>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
+            <PyHelp>helpExploreLair(lpUnits, True)</PyHelp>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
             <Type>SPELL_EXPLORE_LAIR_BRADELINES_WELL</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1635,12 +1638,13 @@
             <bAbility>1</bAbility>
             <PyResult>spellExploreLairEpic(pCaster)</PyResult>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
+            <PyHelp>helpExploreLair(lpUnits, True)</PyHelp>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added python help -->
             <Type>SPELL_EXPLORE_LAIR_BROKEN_SEPULCHER</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1652,12 +1656,13 @@
             <bAbility>1</bAbility>
             <PyResult>spellExploreLairEpic(pCaster)</PyResult>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
+            <PyHelp>helpExploreLair(lpUnits, True)</PyHelp>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
             <Type>SPELL_EXPLORE_LAIR_DUNGEON</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1669,12 +1674,13 @@
             <bAbility>1</bAbility>
             <PyResult>spellExploreLair(pCaster)</PyResult>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
+            <PyHelp>helpExploreLair(lpUnits, False)</PyHelp>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
             <Type>SPELL_EXPLORE_LAIR_GOBLIN_FORT</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1686,12 +1692,13 @@
             <bAbility>1</bAbility>
             <PyResult>spellExploreLair(pCaster)</PyResult>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
+            <PyHelp>helpExploreLair(lpUnits, False)</PyHelp>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
             <Type>SPELL_EXPLORE_LAIR_PALUS</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1703,12 +1710,13 @@
             <bAbility>1</bAbility>
             <PyResult>spellExploreLairEpic(pCaster)</PyResult>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
+            <PyHelp>helpExploreLair(lpUnits, True)</PyHelp>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
             <Type>SPELL_EXPLORE_LAIR_PYRE_OF_THE_SERAPHIC</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1720,12 +1728,13 @@
             <bAbility>1</bAbility>
             <PyResult>spellExploreLairEpic(pCaster)</PyResult>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
+            <PyHelp>helpExploreLair(lpUnits, True)</PyHelp>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
             <Type>SPELL_EXPLORE_LAIR_RUINS</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1737,12 +1746,13 @@
             <bAbility>1</bAbility>
             <PyResult>spellExploreLair(pCaster)</PyResult>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
+            <PyHelp>helpExploreLair(lpUnits, False)</PyHelp>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
             <Type>SPELL_EXPLORE_LAIR_SHIP_WRECK</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -1753,6 +1763,7 @@
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
             <PyResult>spellExploreLair(pCaster)</PyResult>
+            <PyHelp>helpExploreLair(lpUnits, False)</PyHelp>
             <PyRequirement>reqExploreLair(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>

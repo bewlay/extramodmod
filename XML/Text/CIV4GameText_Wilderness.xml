@@ -84,6 +84,14 @@
 		<Spanish>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level of the animals)</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_HELP</Tag>
+		<English>[ICON_BULLET]Lair dangerousness: %s1_challenge[NEWLINE][ICON_BULLET]Unit's exploration skill here: %s2_challengeHandling</English>
+		<French>[ICON_BULLET]Lair dangerousness: %s1_challenge[NEWLINE][ICON_BULLET]Unit's exploration skill here: %s2_challengeHandling</French>
+		<German>[ICON_BULLET]Lair dangerousness: %s1_challenge[NEWLINE][ICON_BULLET]Unit's exploration skill here: %s2_challengeHandling</German>
+		<Italian>[ICON_BULLET]Lair dangerousness: %s1_challenge[NEWLINE][ICON_BULLET]Unit's exploration skill here: %s2_challengeHandling</Italian>
+		<Spanish>[ICON_BULLET]Lair dangerousness: %s1_challenge[NEWLINE][ICON_BULLET]Unit's exploration skill : %s2_challengeHandling</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_AIFON_ISLE_EXPLORED</Tag>
 		<English>Maenalus (Explored)</English>
 		<French>Maenalus (Explored)</French>

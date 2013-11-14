@@ -4572,7 +4572,40 @@ def spellAnimateFrostlings(pCaster):
 			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING_WOLF_RIDER'))
 			CyInterface().addMessage(iPlayer, False, 25, CyTranslator().getText("TXT_KEY_MESSAGE_ANIMATE_FROSTLINGS", ()),'',1, None, ColorTypes(7), -1, -1, False, False)
 
-# WILDERNESS 11/2013 lfgr // AnimalSpells
+# WILDERNESS 11/2013 lfgr // AnimalSpells, WildernessExploration
+
+### Explore Lair
+
+def helpExploreLair( lpUnits, bEpic ) :
+	pUnit = lpUnits[0]
+	pPlot = pUnit.plot()
+	iExploLevel = pUnit.getExplorationLevel()
+	iChallenge = pPlot.getWilderness()
+	if( bEpic ) :
+		iChallenge += 40
+	iChallengeHandling = iExploLevel - iChallenge
+	
+	sChallenge = "Very Low"
+	if( iChallenge >= 100 ) :
+		sChallenge = "Very High"
+	elif( iChallenge >= 75 ) :
+		sChallenge = "High"
+	elif( iChallenge >= 50 ) :
+		sChallenge = "Moderate"
+	elif( iChallenge >= 25 ) :
+		sChallenge = "Low"
+	
+	sChallengeHandling = "[COLOR_RED]Very Bad[COLOR_REVERT]"
+	if( iChallengeHandling >= 40 ) :
+		sChallengeHandling = "[COLOR_GREEN]Very Good[COLOR_REVERT]"
+	elif( iChallengeHandling >= 10 ) :
+		sChallengeHandling = "[COLOR_YELLOW]Good[COLOR_REVERT]"
+	elif( iChallengeHandling >= -25 ) :
+		sChallengeHandling = "[COLOR_PLAYER_ORANGE_TEXT]Bad[COLOR_REVERT]"
+	
+	return CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_HELP', ( sChallenge, sChallengeHandling ) )
+
+### Consume Animal Spells
 
 def reqConsumeAnimal( pCaster ) :
 	if( pCaster.getSummoner() != -1 ) :
@@ -4583,6 +4616,8 @@ def reqConsumeAnimal( pCaster ) :
 		if( SDTK.sdObjectGetVal( "Wilderness", pCaster, "bNoConsumeAnimal" ) ) :
 			return False
 	return True
+
+# Sell Animal
 
 def spellSellAnimal( pCaster ) :
 	iGold = getAnimalSellValue( pCaster ) * ( 75 + CyGame().getSorenRandNum( 50, "Bob" ) ) / 100
