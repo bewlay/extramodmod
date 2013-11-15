@@ -4641,21 +4641,21 @@ def getAnimalSellValue( pUnit ) :
 	# Standard unit values
 	# TODO: cache
 	liUnitValues = [-1] * gc.getNumUnitInfos()
-	liUnitValues[gc.getInfoTypeForString( "UNIT_BABY_SPIDER" )] = 3
-	liUnitValues[gc.getInfoTypeForString( "UNIT_BEAR" )] = 5
-	liUnitValues[gc.getInfoTypeForString( "UNIT_CAVE_BEAR" )] = 10
-	liUnitValues[gc.getInfoTypeForString( "UNIT_ELEPHANT" )] = 15
-	liUnitValues[gc.getInfoTypeForString( "UNIT_GIANT_SPIDER" )] = 6
-	liUnitValues[gc.getInfoTypeForString( "UNIT_GORILLA" )] = 7
-	liUnitValues[gc.getInfoTypeForString( "UNIT_GRIFFON" )] = 12
-	liUnitValues[gc.getInfoTypeForString( "UNIT_LION" )] = 5
-	liUnitValues[gc.getInfoTypeForString( "UNIT_LION_PRIDE" )] = 7
-	liUnitValues[gc.getInfoTypeForString( "UNIT_PANTHER" )] = 9
-	liUnitValues[gc.getInfoTypeForString( "UNIT_POLAR_BEAR" )] = 7
-	liUnitValues[gc.getInfoTypeForString( "UNIT_SCORPION" )] = 6
-	liUnitValues[gc.getInfoTypeForString( "UNIT_TIGER" )] = 8
-	liUnitValues[gc.getInfoTypeForString( "UNIT_WOLF" )] = 3
-	liUnitValues[gc.getInfoTypeForString( "UNIT_WOLF_PACK" )] = 5
+	liUnitValues[gc.getInfoTypeForString( "UNIT_BABY_SPIDER" )] = 5
+	liUnitValues[gc.getInfoTypeForString( "UNIT_BEAR" )] = 20
+	liUnitValues[gc.getInfoTypeForString( "UNIT_CAVE_BEAR" )] = 30
+	liUnitValues[gc.getInfoTypeForString( "UNIT_ELEPHANT" )] = 40
+	liUnitValues[gc.getInfoTypeForString( "UNIT_GIANT_SPIDER" )] = 15
+	liUnitValues[gc.getInfoTypeForString( "UNIT_GORILLA" )] = 25
+	liUnitValues[gc.getInfoTypeForString( "UNIT_GRIFFON" )] = 35
+	liUnitValues[gc.getInfoTypeForString( "UNIT_LION" )] = 15
+	liUnitValues[gc.getInfoTypeForString( "UNIT_LION_PRIDE" )] = 20
+	liUnitValues[gc.getInfoTypeForString( "UNIT_PANTHER" )] = 30
+	liUnitValues[gc.getInfoTypeForString( "UNIT_POLAR_BEAR" )] = 20
+	liUnitValues[gc.getInfoTypeForString( "UNIT_SCORPION" )] = 15
+	liUnitValues[gc.getInfoTypeForString( "UNIT_TIGER" )] = 25
+	liUnitValues[gc.getInfoTypeForString( "UNIT_WOLF" )] = 10
+	liUnitValues[gc.getInfoTypeForString( "UNIT_WOLF_PACK" )] = 15
 	
 	iStdGold = liUnitValues[pUnit.getUnitType()]
 	if( iStdGold == -1 ) :
