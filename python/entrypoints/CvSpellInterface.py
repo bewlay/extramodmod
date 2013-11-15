@@ -4632,7 +4632,10 @@ def helpSellAnimal( lpUnits ) :
 		iMinGold += getAnimalSellValue( pUnit ) * 75 / 100
 		iMaxGold += getAnimalSellValue( pUnit ) * 125 / 100
 	
-	return CyTranslator().getText( 'TXT_KEY_SPELL_SELL_ANIMAL_HELP', ( len( lpUnits ), iMinGold, iMaxGold ) )
+	if( len( lpUnits ) == 1 ) :
+		return CyTranslator().getText( 'TXT_KEY_SPELL_SELL_ONE_ANIMAL_HELP', ( iMinGold, iMaxGold ) )
+	else :
+		return CyTranslator().getText( 'TXT_KEY_SPELL_SELL_ANIMAL_HELP', ( len( lpUnits ), iMinGold, iMaxGold ) )
 
 def getAnimalSellValue( pUnit ) :
 	# Standard unit values
