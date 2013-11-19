@@ -333,9 +333,6 @@ class CustomFunctions:
 		sDbgMessage = "Exploration parameters: iOriginalExploLevel=%d, iChallange=%d, iChallengeHandling=%d, iExploLevel=%d" % ( pUnit.getExplorationLevel(), iChallenge, iChallengeHandling, iExploLevel )
 		CvUtil.pyPrint( sDbgMessage )
 		
-		# TEST
-		CyInterface().addMessage( pUnit.getOwner(), True, 25, sDbgMessage, '', 1, '', ColorTypes( 8 ), pPlot.getX(), pPlot.getY(), True, True )
-		
 		dslOutcomes = {}
 		
 		bMelee = ( pUnit.getUnitCombatType() == self.saveGetInfoType( gc.getNumUnitCombatInfos(), 'UNITCOMBAT_MELEE' ) )
@@ -384,30 +381,30 @@ class CustomFunctions:
 			dslOutcomes[sCategory] = []
 		
 		# BAD
-		if( pUnit.getLevel() == 1 and iChallenge >= 35 ) :
-			dslOutcomes['Bad'].append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DEATH', 'DEATH' ) )
-		if( iExploLevel < 25 and iChallenge >= 35 ) :
-			if( pUnit.isAlive() ) :
-				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CRAZED', ['PROMOTION_CRAZED'] ) )
-				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POSSESSED', ['PROMOTION_ENRAGED', 'PROMOTION_CRAZED', 'PROMOTION_DEMON'] ) )
-		if( iExploLevel < 50 ) :
-			if( pUnit.isAlive() ) :
-				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_PLAGUED', ['PROMOTION_PLAGUED'] ) )
-				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_WITHERED', ['PROMOTION_WITHERED'] ) )
-		if( iExploLevel < 75 ) :
-			if( pUnit.isAlive() ) :
-				dslOutcomes['Bad'].append( ( 'Promotions', 50, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_MUTATED', ['PROMOTION_MUTATED'] ) )
 		if( iChallengeHandling < -25 ) :
 			if( pUnit.isAlive() ) :
 				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DISEASED', ['PROMOTION_DISEASED'] ) )
-		if( iExploLevel < 75 and iChallengeHandling < -25 ) :
-			if( pUnit.isAlive() ) :
-				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENRAGED', ['PROMOTION_ENRAGED'] ) )
+			if( iExploLevel < 75 ) :
+				if( pUnit.isAlive() ) :
+					dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENRAGED', ['PROMOTION_ENRAGED'] ) )
+			if( pUnit.getLevel() == 1 and iChallenge >= 35 ) :
+				dslOutcomes['Bad'].append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DEATH', 'DEATH' ) )
+			if( iExploLevel < 25 and iChallenge >= 35 ) :
+				if( pUnit.isAlive() ) :
+					dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CRAZED', ['PROMOTION_CRAZED'] ) )
+					dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POSSESSED', ['PROMOTION_ENRAGED', 'PROMOTION_CRAZED', 'PROMOTION_DEMON'] ) )
+			if( iExploLevel < 50 ) :
+				if( pUnit.isAlive() ) :
+					dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_PLAGUED', ['PROMOTION_PLAGUED'] ) )
+					dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_WITHERED', ['PROMOTION_WITHERED'] ) )
 		if( iChallengeHandling < 0 ) :
 			if( pUnit.isAlive() ) :
 				dslOutcomes['Bad'].append( ( 'Special', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_POISONED', 'POISONED' ) )
 			if( not bNoDestroy ) :
 				dslOutcomes['Bad'].append( ( 'Damage', 100, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COLLAPSE', 50, 90, 'DAMAGE_PHYSICAL' ) )
+			if( iExploLevel < 75 ) :
+				if( pUnit.isAlive() ) :
+					dslOutcomes['Bad'].append( ( 'Promotions', 50, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_MUTATED', ['PROMOTION_MUTATED'] ) )
 			# LFGR_TODO: Should add damage outcomes for non-alive units here.
 		
 		# GOOD
