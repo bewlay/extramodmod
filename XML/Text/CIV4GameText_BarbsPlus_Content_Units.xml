@@ -212,6 +212,9 @@
 		<Spanish>Wights spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, along with some [LINK=UNIT_GHOUL]Ghouls[\LINK].</Spanish>
 		<Finnish>Wights spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, along with some [LINK=UNIT_GHOUL]Ghouls[\LINK].</Finnish>
 	</TEXT>
+	
+	<!-- Associated Buildings -->
+	
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_BEAR_TROPHY</Tag>
 		<English>Bear Trophy</English>
