@@ -1925,6 +1925,9 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, CvBattleDefinition&
 //FfH: Added by Kael 05/27/2008
                     setMadeAttack(true);
                     changeMoves(std::max(GC.getMOVE_DENOMINATOR(), pPlot->movementCost(this, plot())));
+					//FfH Promotions: Added by Kael 08/12/2007
+                    setFleeWithdrawl(true);
+					//FfH: End Add
 //FfH: End Add
 
 					break;
@@ -9061,7 +9064,7 @@ CvUnit* CvUnit::upgrade(UnitTypes eUnit) // K-Mod: this now returns the new unit
 	{
 		CvWString szString;
 		getUnitAIString(szString, AI_getUnitAIType());
-		logBBAI("    %S spends %d to upgrade %S to %S, unit AI %S", GET_PLAYER(getOwnerINLINE()).getCivilizationDescription(0), upgradePrice(eUnit), getName(0).GetCString(), pUpgradeUnit->getName(0).GetCString(), szString.GetCString());
+		logBBAI("      ...spending %d to upgrade %S to %S, unit AI %S", upgradePrice(eUnit), getName(0).GetCString(), pUpgradeUnit->getName(0).GetCString(), szString.GetCString());
 	}
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
@@ -17979,7 +17982,10 @@ void CvUnit::changeHiddenNationality(int iNewValue)
             updatePlunder(-1, false);
 			setBlockading(false);
             m_iHiddenNationality += iNewValue;
-            joinGroup(NULL, true);
+			if (getGroup()->getNumUnits() > 1)
+			{
+	            joinGroup(NULL, true);
+			}
             updatePlunder(1, false);
         }
         else
@@ -19232,7 +19238,18 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //*** captured or enslaved  unit is pushed out if enemy unit exists in the same tile.
 //			pUnit = GET_PLAYER(getOwnerINLINE()).initUnit((UnitTypes)iUnit, plot()->getX_INLINE(), plot()->getY_INLINE());
-			if (isBoarding() && !pLoser->plot()->isCity())
+
+			bool bActsAsCity = false; // check for fort improvements
+			if (pLoser->plot()->getImprovementType() != NO_IMPROVEMENT)
+			{
+				CvImprovementInfo &kImprovementInfo = GC.getImprovementInfo(pLoser->plot()->getImprovementType());
+				if (kImprovementInfo.isActsAsCity())
+				{
+					bActsAsCity = true;
+				}
+			}
+
+			if (isBoarding() && !pLoser->plot()->isCity() && !bActsAsCity)
 			{
 				// boarded ships stay in their plot
 				pUnit = GET_PLAYER(getOwnerINLINE()).initUnit((UnitTypes)iUnit, pLoser->plot()->getX_INLINE(), pLoser->plot()->getY_INLINE(), NO_UNITAI, DIRECTION_SOUTH, true);

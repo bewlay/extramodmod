@@ -481,6 +481,7 @@ class CvGameUtils:
 		pCity = argsList[0]
 		ePlayer = pCity.getOwner()
 		pPlayer = gc.getPlayer(ePlayer)
+		pPlot = pCity.plot()
 		
 		## AI catches for buildings and projects that have python-only effects
 		if not pPlayer.isHuman():
@@ -510,6 +511,9 @@ class CvGameUtils:
 			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
 				if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_DEMONS_ALTAR'), True, False, False):
 						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_DEMONS_ALTAR'),-1, False, False, False, False)
+			if pCity.canTrain(gc.getInfoTypeForString('UNIT_HAWK'), True, False):
+				if pPlot.countNumAirUnits(pPlayer.getTeam()) == 0:
+					pCity.pushOrder(OrderTypes.ORDER_TRAIN, gc.getInfoTypeForString('UNIT_HAWK'), -1, False, False, False, False)
 #AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
 			## Grigori should build Adventurer Counter buildings
 			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI'):
@@ -522,8 +526,6 @@ class CvGameUtils:
 					elif pCity.canConstruct(gc.getInfoTypeForString('BUILDING_COMMAND_POST'), True, False, False):
 						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_COMMAND_POST'),-1, False, False, False, False)
 						return 1
-				if (pCity.getCultureLevel() > 1) and (pCity.getPopulation() > 5):
-					if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_FORUM'), True, False, False):
 						## If the city has enough specialists, it should have a Citizens' Forum.
 						iNumSpecialists = 0
 						for eSpec in range(gc.getNumSpecialistInfos()):

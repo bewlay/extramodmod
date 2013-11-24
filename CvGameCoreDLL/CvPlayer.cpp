@@ -5534,29 +5534,33 @@ bool CvPlayer::canContact(PlayerTypes ePlayer) const
 		return false;
 	}
 
-	if (!isAlive() || !(GET_PLAYER(ePlayer).isAlive()))
+	CvPlayer &kPlayer = GET_PLAYER(ePlayer);
+
+	if (!isAlive() || !(kPlayer.isAlive()))
 	{
 		return false;
 	}
 
-	if (isBarbarian() || GET_PLAYER(ePlayer).isBarbarian())
+	if (isBarbarian() || kPlayer.isBarbarian())
 	{
 		return false;
 	}
 
-	if (isMinorCiv() || GET_PLAYER(ePlayer).isMinorCiv())
+	if (isMinorCiv() || kPlayer.isMinorCiv())
 	{
 		return false;
 	}
 
-	if (getTeam() != GET_PLAYER(ePlayer).getTeam())
+	if (getTeam() != kPlayer.getTeam())
 	{
-		if (!(GET_TEAM(getTeam()).isHasMet(GET_PLAYER(ePlayer).getTeam())))
+		CvTeam &kTeam = GET_TEAM(getTeam());
+
+		if (!(kTeam.isHasMet(kPlayer.getTeam())))
 		{
 			return false;
 		}
 
-		if (atWar(getTeam(), GET_PLAYER(ePlayer).getTeam()))
+		if (atWar(getTeam(), kPlayer.getTeam()))
 		{
 
 //FfH: Added by Kael 08/14/2007
@@ -5566,13 +5570,13 @@ bool CvPlayer::canContact(PlayerTypes ePlayer) const
             }
 //FfH: End Add
 
-			if (!(GET_TEAM(getTeam()).canChangeWarPeace(GET_PLAYER(ePlayer).getTeam())))
+			if (!(kTeam.canChangeWarPeace(kPlayer.getTeam())))
 			{
 				return false;
 			}
 		}
 
-		if (isHuman() || GET_PLAYER(ePlayer).isHuman())
+		if (isHuman() || kPlayer.isHuman())
 		{
 			if (GC.getGameINLINE().isOption(GAMEOPTION_ALWAYS_WAR))
 			{
@@ -24198,6 +24202,7 @@ PlayerTypes CvPlayer::getPuppetPlayer() const
 
 bool CvPlayer::canMakePuppet(PlayerTypes eFromPlayer) const
 {
+	// Puppet States are a type of Vassal
     if (GC.getGameINLINE().isOption(GAMEOPTION_NO_VASSAL_STATES))
     {
         return false;
@@ -24218,10 +24223,17 @@ bool CvPlayer::canMakePuppet(PlayerTypes eFromPlayer) const
         return false;
     }
 
+	if (!GET_TEAM(getTeam()).isPuppetStateTrading())
+	{
+		return false;
+	}
+
+	/*
 	if (!GET_TEAM(getTeam()).isVassalStateTrading())
 	{
 		return false;
 	}
+	*/
 
     PlayerTypes ePlayer = getPuppetPlayer();
     if (ePlayer == NO_PLAYER)
