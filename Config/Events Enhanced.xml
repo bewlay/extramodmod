@@ -12,6 +12,12 @@
 	 url="https://bitbucket.org/lfgr/some-modcomps-for-civ4-ffh-mnai/wiki/Events%20Enhanced">
 	
     <options id="EventsEnhanced" file="Events Enhanced.ini">
+        <section id="Events">
+			<option id="HideUnavailableOptions" type="boolean" default="False"
+				get="isHideUnavailableOptions" set="setHideUnavailableOptions"
+				label="Hide Unavailable Event Options" 
+				help="When checked, unavailable event options that are hidden."/>
+        </section>
         <section id="WorldUnitPopups">
 			<option id="WUPopupHuman" type="boolean" default="True"
 				get="isWUPopupHuman" set="setWUPopupHuman"

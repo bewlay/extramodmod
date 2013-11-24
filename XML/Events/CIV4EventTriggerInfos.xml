@@ -56,7 +56,6 @@
 				<Event>EVENT_AFFLUENT_DUKE_2</Event>
 				<Event>EVENT_AFFLUENT_DUKE_3</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
@@ -100,7 +99,7 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_amuritetrial.dds</EventArt>
-			<iPercentGamesActive>20</iPercentGamesActive>
+			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
@@ -872,7 +871,6 @@
 				<Event>EVENT_CARNIVAL_STAR_3</Event>
 				<Event>EVENT_CARNIVAL_STAR_4</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
@@ -1524,7 +1522,6 @@
 				<Event>EVENT_ELDER_CONFLICT_2</Event>
 				<Event>EVENT_ELDER_CONFLICT_3</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
@@ -2218,7 +2215,6 @@
 				<Event>EVENT_GOBLIN_WASTE_1</Event>
 				<Event>EVENT_GOBLIN_WASTE_2</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- GOVERNOR_ASSASSINATION -->
@@ -2243,7 +2239,6 @@
 				<Event>EVENT_GOVERNOR_ASSASSINATION_3</Event>
 				<Event>EVENT_GOVERNOR_ASSASSINATION_4</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<iPrereqCrime>25</iPrereqCrime>
@@ -3091,7 +3086,6 @@
 				<Event>EVENT_INN_TO_HOUSING_1</Event>
 				<Event>EVENT_INN_TO_HOUSING_2</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
@@ -3151,7 +3145,6 @@
 				<Event>EVENT_JACKPOT_3</Event>
 				<Event>EVENT_JACKPOT_4</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
@@ -3229,8 +3222,8 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_khazadforge.dds</EventArt>
-			<iPercentGamesActive>20</iPercentGamesActive>
-			<iWeight>400</iWeight>
+			<iPercentGamesActive>100</iPercentGamesActive>
+			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iPlotType>-1</iPlotType>
@@ -3418,8 +3411,8 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_malakimpilgramage.dds</EventArt>
-			<iPercentGamesActive>20</iPercentGamesActive>
-			<iWeight>400</iWeight>
+			<iPercentGamesActive>100</iPercentGamesActive>
+			<iWeight>200</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_PRIEST_OF_KILMORPH</UnitClass>
@@ -4068,7 +4061,6 @@
 			<OrPreReqs>
 				<PrereqTech>TECH_KNOWLEDGE_OF_THE_ETHER</PrereqTech>
 			</OrPreReqs>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<iPrereqGlobalCounter>20</iPrereqGlobalCounter>
@@ -4854,7 +4846,6 @@
 				<Event>EVENT_RANSOM_2</Event>
 				<Event>EVENT_RANSOM_3</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<iPrereqCrime>35</iPrereqCrime>
@@ -5064,8 +5055,8 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_sheaimelegy.dds</EventArt>
-			<iPercentGamesActive>20</iPercentGamesActive>
-			<iWeight>400</iWeight>
+			<iPercentGamesActive>100</iPercentGamesActive>
+			<iWeight>200</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iPlotType>-1</iPlotType>
 			<Events>
@@ -5733,7 +5724,6 @@
 				<Event>EVENT_SOBS_2</Event>
 				<Event>EVENT_SOBS_3</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<iPrereqGlobalCounter>10</iPrereqGlobalCounter>
@@ -5867,7 +5857,6 @@
 				<Event>EVENT_SWITCH_CIVS_1</Event>
 				<Event>EVENT_SWITCH_CIVS_2</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickPlayer>1</bPickPlayer>
 			<bOtherPlayerAI>1</bOtherPlayerAI>
 			<PythonCanDo>canTriggerSwitchCivs</PythonCanDo>
@@ -6110,7 +6099,6 @@
 			<OrPreReqs>
 				<PrereqTech>TECH_WRITING</PrereqTech>
 			</OrPreReqs>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDoCity>canTriggerTraitor</PythonCanDoCity>
@@ -6377,7 +6365,6 @@
 				<Event>EVENT_WAR_GAMES_3</Event>
 				<Event>EVENT_WAR_GAMES_4</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDoUnit>canTriggerWarGamesUnit</PythonCanDoUnit>
 			<iPrereqGlobalCounter>2</iPrereqGlobalCounter>
@@ -6583,7 +6570,6 @@
 			<OrPreReqs>
 				<PrereqTech>TECH_PRIESTHOOD</PrereqTech>
 			</OrPreReqs>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDoCity>canTriggerLunaticCity</PythonCanDoCity>
@@ -6613,7 +6599,6 @@
 			<OrPreReqs>
 				<PrereqTech>TECH_HUNTING</PrereqTech>
 			</OrPreReqs>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
@@ -7826,7 +7811,8 @@
 		<EventTriggerInfo><!-- PACIFIST_DEMONSTRATION lfgr: tweaked -->
 			<Type>EVENTTRIGGER_PACIFIST_DEMONSTRATION</Type>
 			<WorldNewsTexts>
-				<Text /><!-- lfgr: TODO -->
+				<!-- lfgr: TODO -->
+				<Text />
 			</WorldNewsTexts>
 			<TriggerTexts>
 				<TriggerText>
@@ -8180,7 +8166,6 @@
 				<Event>EVENT_THAT_KIND_OF_DAY_4</Event>
 				<Event>EVENT_THAT_KIND_OF_DAY_5</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<PythonCanDo>CanTriggerThatKindOfDay</PythonCanDo>
 		</EventTriggerInfo>
