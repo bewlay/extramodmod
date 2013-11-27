@@ -795,24 +795,30 @@ void CvPlayerAI::AI_doTurnUnitsPost()
 		logBBAI("Checking for Upgrades...");
 		for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
 		{
-			if (!pLoopUnit->isDelayedDeath() && (pLoopUnit->getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_MANES"))) // HARDCODE
+			if (!pLoopUnit->isDelayedDeath())// && (pLoopUnit->getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_MANES"))) // HARDCODE
 			{
 				pUnitPlot = pLoopUnit->plot();
-				if (((pLoopUnit->AI_getUnitAIType() == UNITAI_HERO) || pLoopUnit->isChanneler() || (AI_getPlotDanger(pUnitPlot, 1, false) > 0)) 
-					&& pLoopUnit->hasUpgrade())
+				if (pLoopUnit->getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_MANES") || !pUnitPlot->isCity())
 				{
-					pLoopUnit->AI_upgrade();
+					if (((pLoopUnit->AI_getUnitAIType() == UNITAI_HERO) || pLoopUnit->isChanneler() || (AI_getPlotDanger(pUnitPlot, 1, false) > 0)) 
+						&& pLoopUnit->hasUpgrade())
+					{
+						pLoopUnit->AI_upgrade();
+					}
 				}
 			}
 		}
 		// pass 1
 		for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
 		{
-			if (!pLoopUnit->isDelayedDeath() && (pLoopUnit->getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_MANES"))) // HARDCODE
+			if (!pLoopUnit->isDelayedDeath())// && (pLoopUnit->getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_MANES"))) // HARDCODE
 			{
-				if (pLoopUnit->getLevel() > 3 && pLoopUnit->hasUpgrade())
+				if (pLoopUnit->getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_MANES") || !pLoopUnit->plot()->isCity())
 				{
-					pLoopUnit->AI_upgrade();
+					if (pLoopUnit->getLevel() > 3 && pLoopUnit->hasUpgrade())
+					{
+						pLoopUnit->AI_upgrade();
+					}
 				}
 			}
 		}
@@ -821,9 +827,12 @@ void CvPlayerAI::AI_doTurnUnitsPost()
 		{
 			if (!pLoopUnit->isDelayedDeath() && (pLoopUnit->getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_MANES"))) // HARDCODE
 			{
-				if (pLoopUnit->getLevel() <= 3 && pLoopUnit->hasUpgrade())
+				if (pLoopUnit->getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_MANES") || !pLoopUnit->plot()->isCity())
 				{
-					pLoopUnit->AI_upgrade();
+					if (pLoopUnit->getLevel() <= 3 && pLoopUnit->hasUpgrade())
+					{
+						pLoopUnit->AI_upgrade();
+					}
 				}
 			}
 		}
@@ -6242,7 +6251,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 					if (kUnitInfo.isGoldenAge())
 					{
-						iFreeUnitValue += 3500;
+						iFreeUnitValue += 4000 * iCityCount;
 					}
 					
 					if (AI_isDoVictoryStrategy(AI_VICTORY_CULTURE1))
@@ -6945,6 +6954,10 @@ int CvPlayerAI::AI_techBuildingValue( TechTypes eTech, int iPathLength, bool &bE
 							if (AI_isDoVictoryStrategy(AI_VICTORY_ALTAR3))
 							{
 								iBuildingValue += 10000;
+								if (AI_isDoVictoryStrategy(AI_VICTORY_ALTAR4))
+								{
+									iBuildingValue += 100000;
+								}
 							}
 						}
 					}
@@ -22354,7 +22367,7 @@ int CvPlayerAI::AI_getAltarVictoryStage() const
 
 	if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_EXALTED")) > 0)
 	{
-		return 3;
+		return 4;
 	}
 
 	if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ALTAR_OF_THE_LUONNOTAR_DIVINE")) > 0)

@@ -28,7 +28,7 @@ def onUnitBuilt(argsList):
 	pPlayer = gc.getPlayer( city.getOwner() )
 	
 #WU POPUP
-	# TODO: use unitCreated to extend on Gealan, Mary Morbus, but exclude first-turn units (probably annoying) and armaggeddon units (already have an event popup)
+	# LFGR_TODO: use unitCreated to extend on Gealan, Mary Morbus, but exclude first-turn units (probably annoying) and armaggeddon units (already have an event popup)
 	
 	# Disable if AIAutoplay is activated. For some reason it's 1 sometimes when not activated.
 	if( game.getAIAutoPlay( game.getActivePlayer() ) <= 1 ) :

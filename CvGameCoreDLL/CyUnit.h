@@ -485,6 +485,9 @@ public:
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+	bool isPermanentSummon() const;
+    void setPermanentSummon(bool newvalue);
+
 	// Python Helper Functions
 
 	void centerCamera();

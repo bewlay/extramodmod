@@ -3587,7 +3587,7 @@ def playerHasTrait( argsList, sTraitType ) :
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	return pPlayer.hasTrait( gc.getInfoTypeForString('TRAIT_BARBARIAN') )
+	return pPlayer.hasTrait( gc.getInfoTypeForString( sTraitType ) )
 
 def playerReqTraitHelp( argsList, sTraitType ) :
 	if( not playerHasTrait( argsList, sTraitType ) ) :
