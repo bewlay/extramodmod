@@ -3227,7 +3227,7 @@ def spellTakeEquipmentPromotion(caster,unit):
 	if gc.getPlayer( iPlayer ).isHuman():
 		iGela = gc.getInfoTypeForString( 'PROMOTION_GELA' )
 		if iProm == iGela :
-			if ( not gc.getPlayer( iPlayer ).getCivilizationType() == gc.getInfoTypeForString( 'CIVILIZATION_INFERNALS' ) ):
+			if ( not gc.getPlayer( iPlayer ).getCivilizationType() == gc.getInfoTypeForString( 'CIVILIZATION_INFERNAL' ) ):
 				iEvent = CvUtil.findInfoTypeNum( gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_GELA' )
 				if( gc.getGame().getScenarioCounter() == 0 ) :
 					triggerData = gc.getPlayer( iPlayer ).initTriggeredData( iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1 )
@@ -3283,7 +3283,7 @@ def spellTakeEquipmentUnit(caster,unit):
 	if gc.getPlayer( iPlayer ).isHuman():
 		iGela = gc.getInfoTypeForString( 'PROMOTION_GELA' )
 		if iProm == iGela :
-			if ( not gc.getPlayer( iPlayer ).getCivilizationType() == gc.getInfoTypeForString( 'CIVILIZATION_INFERNALS' ) ):
+			if ( not gc.getPlayer( iPlayer ).getCivilizationType() == gc.getInfoTypeForString( 'CIVILIZATION_INFERNAL' ) ):
 				iEvent = CvUtil.findInfoTypeNum( gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_GELA' )
 				if( gc.getGame().getScenarioCounter() == 0 ) :
 					triggerData = gc.getPlayer( iPlayer ).initTriggeredData( iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1 )

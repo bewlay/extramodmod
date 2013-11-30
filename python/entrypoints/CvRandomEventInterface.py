@@ -3846,7 +3846,7 @@ def CanTriggerDemonSign (argsList):
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	if (pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_MERCURIANS")):
 		return False
-	if (pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INFERNALS")):
+	if (pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INFERNAL")):
 		return False
 	return True
 
