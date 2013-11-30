@@ -6832,7 +6832,6 @@
 			<Description>TXT_KEY_EVENT_YOUNGER_COUNCIL_1</Description>
 			<bPickCity>1</bPickCity>
 			<iHurryAnger>1</iHurryAnger>
-			<iHappyTurns />
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
