@@ -20537,18 +20537,18 @@ int CvUnit::getExplorationLevel() const
 {
 	float fExplLevel;
 
-	if( getLevel() <= 1 )
+	if( getLevel() <= 2 )
 		fExplLevel = 0;
-	else if( getLevel() == 2 )
-		fExplLevel = 2;
 	else if( getLevel() == 3 )
-		fExplLevel = 8;
+		fExplLevel = 5;
 	else if( getLevel() == 4 )
-		fExplLevel = 22;
+		fExplLevel = 15;
 	else
-		fExplLevel = 150 - 2625.0f / (getLevel()*getLevel());
+		fExplLevel = 100 - 1750.0f / (getLevel()*getLevel());
 
-	fExplLevel *= ( 1.0f + getExplorationResultBonus() / 100.0f );
+	fExplLevel += getExplorationResultBonus();
+
+	fExplLevel = std::min( 100.0f, fExplLevel );
 
 	return (int) ( fExplLevel + 0.5 ); // rounding
 }

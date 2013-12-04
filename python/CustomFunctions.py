@@ -324,9 +324,10 @@ class CustomFunctions:
 		
 		# Get parameters
 		iExploLevel = pUnit.getExplorationLevel()
-		iChallenge = pPlot.getWilderness() + CyGame().getSorenRandNum( 50, "Explore Lair" ) - 25
+		iChallenge = pPlot.getWilderness()
 		if( bEpic ) :
-			iChallenge += 40
+			iChallenge += ( 100 - iChallenge ) / 2
+		iChallenge += CyGame().getSorenRandNum( 50, "Explore Lair" ) - 25
 		iChallengeHandling = iExploLevel - iChallenge
 		iExploLevel += CyGame().getSorenRandNum( 50, "Explore Lair" ) - 25
 		
