@@ -4580,28 +4580,44 @@ def helpExploreLair( lpUnits, bEpic ) :
 	iExploLevel = pUnit.getExplorationLevel()
 	iChallenge = pPlot.getWilderness()
 	if( bEpic ) :
-		iChallenge += 40
+		iChallenge += ( 100 - iChallenge ) / 2
 	iChallengeHandling = iExploLevel - iChallenge
 	
-	sChallenge = "Very Low"
-	if( iChallenge >= 100 ) :
-		sChallenge = "Very High"
+	sNewline = CyTranslator().getText( '[NEWLINE]', () )
+	
+	sExploLevel = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS_1', () )
+	if( iExploLevel >= 90 ) :
+		sExploLevel = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS_5', () )
+	elif( iExploLevel >= 75 ) :
+		sExploLevel = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS_4', () )
+	elif( iExploLevel >= 60 ) :
+		sExploLevel = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS_3', () )
+	elif( iExploLevel >= 35 ) :
+		sExploLevel = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS_2', () )
+	
+	sChallenge = CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL_1', () )
+	if( iChallenge >= 90 ) :
+		sChallenge = CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL_5', () )
 	elif( iChallenge >= 75 ) :
-		sChallenge = "High"
-	elif( iChallenge >= 50 ) :
-		sChallenge = "Moderate"
-	elif( iChallenge >= 25 ) :
-		sChallenge = "Low"
+		sChallenge = CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL_4', () )
+	elif( iChallenge >= 60 ) :
+		sChallenge = CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL_3', () )
+	elif( iChallenge >= 35 ) :
+		sChallenge = CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL_2', () )
 	
-	sChallengeHandling = "[COLOR_RED]Very Bad[COLOR_REVERT]"
-	if( iChallengeHandling >= 40 ) :
-		sChallengeHandling = "[COLOR_GREEN]Very Good[COLOR_REVERT]"
-	elif( iChallengeHandling >= 10 ) :
-		sChallengeHandling = "[COLOR_YELLOW]Good[COLOR_REVERT]"
-	elif( iChallengeHandling >= -25 ) :
-		sChallengeHandling = "[COLOR_PLAYER_ORANGE_TEXT]Bad[COLOR_REVERT]"
+	iOdds = ( 2 * iChallengeHandling + 50 ) # 100 * ( iChallengeHandling / 50.0 + 1/2.0 )
+	iOdds = min( 100, max( 0, iOdds ) )
 	
-	return CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_HELP', ( sChallenge, sChallengeHandling ) )
+	sHelp = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS', ( sExploLevel, ) )
+	sHelp += sNewline + CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL', ( sChallenge, ) )
+	if( iOdds < 33 ) :
+		sHelp += sNewline + CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_LOW', ( iOdds, ) )
+	elif( iOdds < 67 ) :
+		sHelp += sNewline + CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_MEDIUM', ( iOdds, ) )
+	else :
+		sHelp += sNewline + CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_HIGH', ( iOdds, ) )
+	
+	return sHelp
 
 ### Consume Animal Spells
 
