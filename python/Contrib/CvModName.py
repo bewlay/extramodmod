@@ -1,5 +1,7 @@
 #CvModName.py
 
+from CvPythonExtensions import *
+
 modName = "Fall from Heaven 2 - ExtraModMod"
 displayName = "Fall from Heaven 2 - ExtraModMod"
 
@@ -14,8 +16,9 @@ def getDisplayName():
 
 def getVersion():
 	sVersion = unicode(CyTranslator().getText("TXT_KEY_VERSION", ()))
-	spaceNumber = sVersion.find( ' ' )
-	return sVersion[spaceNumber+1:]
+	versionStartNumber = 1 + sVersion.find( ' ' )
+	versionEndNumber = sVersion.find( '</' )
+	return sVersion[versionStartNumber:versionEndNumber]
 
 def getNameAndVersion():
 	return modName + " " + getVersion()
