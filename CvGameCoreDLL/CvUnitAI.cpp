@@ -7943,15 +7943,9 @@ void CvUnitAI::AI_exploreSeaMove()
 		}
 	}
 
-	if (getDamage() > 0)
+	if (AI_heal())
 	{
-		// Mongoose FeatureDamageFix BEGIN
-		if ((plot()->getFeatureType() == NO_FEATURE) || (GC.getFeatureInfo(plot()->getFeatureType()).getTurnDamage() <= 0))
-		// Mongoose FeatureDamageFix ÉND
-		{
-			getGroup()->pushMission(MISSION_HEAL);
-			return;
-		}
+		return;
 	}
 
 	if (!isHuman())
