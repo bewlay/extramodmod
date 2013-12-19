@@ -1732,7 +1732,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>NONE</PrereqTech>
+			<PrereqTech>TECH_STRENGTH_OF_WILL</PrereqTech>
 			<TechTypes>
 			</TechTypes>
 			<Bonus>NONE</Bonus>
