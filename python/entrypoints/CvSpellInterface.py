@@ -4557,6 +4557,7 @@ def reqFertility(caster):
 
 	iCow    = gc.getInfoTypeForString('BONUS_COW')
 	iSheep  = gc.getInfoTypeForString('BONUS_SHEEP')
+ 	iBison  = gc.getInfoTypeForString('BONUS_BISON')
  	iPig    = gc.getInfoTypeForString('BONUS_PIG')
 
 	iBanana = gc.getInfoTypeForString('BONUS_BANANA')
@@ -4571,7 +4572,7 @@ def reqFertility(caster):
  	iFish   = gc.getInfoTypeForString('BONUS_FISH')
  	iShrimp = gc.getInfoTypeForString('BONUS_SHRIMP')
 
-	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or pBonus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish or pBonus == iShrimp:
+	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iBison or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or pBonus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish or pBonus == iShrimp:
 		return True
 
 	return False
@@ -4590,6 +4591,7 @@ def spellFertility(caster):
 
 	iCow    = gc.getInfoTypeForString('BONUS_COW')
 	iSheep  = gc.getInfoTypeForString('BONUS_SHEEP')
+	iBison  = gc.getInfoTypeForString('BONUS_BISON')
  	iPig    = gc.getInfoTypeForString('BONUS_PIG')
 
 	iBanana = gc.getInfoTypeForString('BONUS_BANANA')
@@ -4614,6 +4616,8 @@ def spellFertility(caster):
   	elif pBonus == iCow:
  		pPlot.setBonusType(iSheep)
  	elif pBonus == iSheep:
+ 		pPlot.setBonusType(iBison)
+ 	elif pBonus == iBison:
  		pPlot.setBonusType(iPig)
  	elif pBonus == iPig:
  		pPlot.setBonusType(iCow)
