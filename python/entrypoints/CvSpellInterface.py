@@ -623,8 +623,22 @@ def reqCallForm(caster):
 	return True
 
 def spellCallForm(caster):
+	#Call form also allows to escape from cages.
 	pPlayer = gc.getPlayer(caster.getOwner())
 	pUnit = pPlayer.getUnit(caster.getSummoner())
+	pUnitPlot = pUnit.plot()
+	if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pUnitPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
+		pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
+		#Now we have to check if the cage has to be eliminated.
+		bRemoveCage = True
+		for i in range(pUnitPlot.getNumUnits()):
+			pLoopUnit = pUnitPlot.getUnit(i)
+			if pLoopUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')):
+				bRemoveCage = False
+				break
+		if bRemoveCage:
+			pUnitPlot.setImprovementType(-1)
+
 	pPlot = caster.plot()
 	pUnit.setXY(pPlot.getX(), pPlot.getY(), False, True, True)
 
