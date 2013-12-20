@@ -59516,10 +59516,6 @@
                     <BuildingType>BUILDING_ALTAR_OF_THE_LUONNOTAR_DIVINE</BuildingType>
                     <bBuilding>1</bBuilding>
                 </Building>
-                <Building>
-                    <BuildingType>BUILDING_ALTAR_OF_THE_LUONNOTAR_EXALTED</BuildingType>
-                    <bBuilding>1</bBuilding>
-                </Building>
             </Buildings>
             <ForceBuildings>
             </ForceBuildings>
