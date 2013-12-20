@@ -1221,11 +1221,28 @@ def reqEscape(caster):
 		return False
 	pPlayer = gc.getPlayer(caster.getOwner())
 	if pPlayer.isHuman() == False:
+		#Units imprisoned in a cage will try to escape.
+		if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
+			return True
 		if caster.getDamage() >= 50:
 			return False
 	return True
 
 def spellEscape(caster):
+	#Escape also allows to escape from cages.
+	pPlot = caster.plot()
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
+		caster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
+		#Now we have to check if the cage has to be eliminated.
+		bRemoveCage = True
+		for i in range(pPlot.getNumUnits()):
+			pUnit = pPlot.getUnit(i)
+			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')):
+				bRemoveCage = False
+				break
+		if bRemoveCage:
+			pPlot.setImprovementType(-1)
+
 	player = caster.getOwner()
 	pPlayer = gc.getPlayer(player)
 	pCity = pPlayer.getCapitalCity()
