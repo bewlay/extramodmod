@@ -3183,6 +3183,20 @@ def spellRiftCross(pCaster):
 						pDestinationUnit = pLoopRiftUnit
 						break
 				break
+
+	#A unit crossing a rift from inside a cage must be freed from it
+	if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
+		pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
+		#Now we have to check if the cage has to be eliminated.
+		bRemoveCage = True
+		for i in range(pPlot.getNumUnits()):
+			pUnit = pPlot.getUnit(i)
+			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')):
+				bRemoveCage = False
+				break
+		if bRemoveCage:
+			pPlot.setImprovementType(-1)
+
 	pCaster.setXY(pDestinationUnit.getX(), pDestinationUnit.getY(), False, True, True)
 	pRiftUnit.setBaseCombatStr(pRiftUnit.baseCombatStr() - 1)
 	if pRiftUnit.baseCombatStr() == 0:
