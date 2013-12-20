@@ -2496,6 +2496,12 @@ def spellRecruitNightwatch(caster):
 	newUnit.finishMoves()
 	newUnit.setHasCasted(True)
 
+def reqReleaseFromCage(caster):
+	# The unit trying to release others from cages must not be held.
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')):
+		return False
+	return True
+
 def spellReleaseFromCage(caster):
 	pPlot = caster.plot()
 	pPlot.setImprovementType(-1)
