@@ -1,9 +1,12 @@
-#############################################################
-####            Civilization 4 SDK Makefile 1.0          ####
-####             Copyright 2010 Danny Daemonic           ####
-####                   Modified by Asaf                  ####
-####          Makefile-Vars code by jaiiderherr          ####
-#############################################################
+####  Civilization 4 SDK Makefile 2.0  ####
+####   Copyright 2013 Nightinggale     ####
+###########################################
+####  Civilization 4 SDK Makefile 1.0  ####
+####   Copyright 2010 Danny Daemonic   ####
+###########################################
+####       Modified by Terkhen         ####
+#### Makefile-Vars code by jaiiderherr ####
+###########################################
 
 #############################################################
 #### You shouldn't need to modify anything in this file. ####
@@ -11,261 +14,182 @@
 #############################################################
 !INCLUDE Makefile-Vars
 
-#### Target Files ####
-Debug_BIN=Debug\CvGameCoreDLL.dll
-Release_BIN=Release\CvGameCoreDLL.dll
-Final_Release_BIN=Final_Release\CvGameCoreDLL.dll
+#### DEFINES ####
+## copy the following lines into "Additional options" in NMAKE properties
+## This will make VC++ aware of what is defined and what isn't, which affects the help popup and red lines
+## Use Release_DEFINES for all targets except debug
+## Assert adds /DFASSERT_ENABLE, which should be added to additional options too, if you care.
+## However you will only be able to tell a difference if you do something with asserts other than FAssert() or FAssertMsg()
 
-!IF [IF NOT EXIST CvGameCoreDLL.rc EXIT 1] == 0
-Debug_RESOURCE=Debug\CvGameCoreDLL.res
-Release_RESOURCE=Release\CvGameCoreDLL.res
-Final_Release_RESOURCE=Final_Release\CvGameCoreDLL.res
+Debug_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /D_DEBUG
+Release_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DFINAL_RELEASE
+
+#### You shouldn't need to modify anything beyond this point ####
+#################################################################
+
+## Enrironmental path overwrite
+!IFDEF CIV4_LIB_INSTALL_PATH
+CIV4_PATH=$(CIV4_LIB_INSTALL_PATH)
 !ENDIF
 
-Debug_STATICLIB=Debug\CvGameCoreDLL.lib
-Release_STATICLIB=Release\CvGameCoreDLL.lib
-Final_Release_STATICLIB=Final_Release\CvGameCoreDLL.lib
+!IFDEF FASTDEP_FULL_PATH
+FD=$(FASTDEP_FULL_PATH)
+!ENDIF
 
-Debug_LIBDEF=Debug\CvGameCoreDLL.def
-Release_LIBDEF=Release\CvGameCoreDLL.def
-Final_Release_LIBDEF=Final_Release\CvGameCoreDLL.def
+#### Target Files ####
+Target_BIN=$(TARGET)\CvGameCoreDLL.dll
 
-Debug_PCH=Debug\CvGameCoreDLL.pch
-Release_PCH=Release\CvGameCoreDLL.pch
-Final_Release_PCH=Final_Release\CvGameCoreDLL.pch
+!IF [IF NOT EXIST CvGameCoreDLL.rc EXIT 1] == 0
+Target_RESOURCE=$(TARGET)\CvGameCoreDLL.res
+!ENDIF
 
-Debug_PDB=Debug\CvGameCoreDLL.pdb
-Release_PDB=Release\CvGameCoreDLL.pdb
-Final_Release_PDB=Final_Release\CvGameCoreDLL.pdb
+Target_STATICLIB=$(TARGET)\CvGameCoreDLL.lib
 
-Debug_OTHER=Debug\CvGameCoreDLL.exp Debug\CvGameCoreDLL.ilk
-Release_OTHER=Release\CvGameCoreDLL.exp
-Final_Release_OTHER=Final_Release\CvGameCoreDLL.exp
+Target_LIBDEF=$(TARGET)\CvGameCoreDLL.def
 
-GAMECORE_BIN=..\
+Target_PCH=$(TARGET)\CvGameCoreDLL.pch
+
+Target_PDB=$(TARGET)\CvGameCoreDLL.pdb
+
+Target_OTHER=$(TARGET)\CvGameCoreDLL.exp
 
 #### CFLAGS ####
-GLOBAL_CFLAGS=/GR /Gy /W3 /EHsc /Gd /Gm- /DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /Yu"CvGameCoreDLL.h"
-Debug_CFLAGS=/MD /Zi /Od /D_DEBUG /RTC1 /Fp"$(Debug_PCH)" $(GLOBAL_CFLAGS)
-Debug_SAFE_CFLAGS=/MD /Od /D_DEBUG /RTC1 /Fp"$(Debug_PCH)" $(GLOBAL_CFLAGS)
-Release_CFLAGS=/MD /Zi /O2 /Oy /Oi /G7 /DNDEBUG /Fp"$(Release_PCH)" $(GLOBAL_CFLAGS)
-Release_SAFE_CFLAGS=/MD /O2 /Oy /Oi /G7 /DNDEBUG /Fp"$(Release_PCH)" $(GLOBAL_CFLAGS)
-Final_Release_CFLAGS=/MD /Zi /O2 /Oy /Oi /G7 /DNDEBUG /DFINAL_RELEASE /Fp"$(Final_Release_PCH)" $(GLOBAL_CFLAGS)
-Final_Release_SAFE_CFLAGS=/MD /O2 /Oy /Oi /G7 /DNDEBUG /DFINAL_RELEASE /Fp"$(Final_Release_PCH)" $(GLOBAL_CFLAGS)
+GLOBAL_CFLAGS=/GR /Gy /W3 /EHsc /Gd /Gm- /Yu"CvGameCoreDLL.h" /Fp"$(Target_PCH)"
+Debug_CFLAGS=/MD /Zi /Od /RTC1 $(Debug_DEFINES) $(GLOBAL_CFLAGS)
+Release_CFLAGS= /MD /O2 /Oy /Oi /G7 $(Release_DEFINES) $(GLOBAL_CFLAGS)
 
 #### LDFLAGS ####
-GLOBAL_LDFLAGS=/DLL /NOLOGO /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /TLBID:1
-Debug_LDFLAGS=/INCREMENTAL /DEBUG /PDB:"$(Debug_PDB)" /IMPLIB:"$(Debug_STATICLIB)" $(GLOBAL_LDFLAGS) /NODEFAULTLIB:MSVCRTD
-Release_LDFLAGS=/INCREMENTAL:NO /OPT:REF /DEBUG /OPT:ICF /PDB:"$(Release_PDB)" /IMPLIB:"$(Release_STATICLIB)" $(GLOBAL_LDFLAGS) /NODEFAULTLIB:MSVCRTD
-Final_Release_LDFLAGS=/INCREMENTAL:NO /OPT:REF /DEBUG /OPT:ICF /PDB:"$(Final_Release_PDB)" /IMPLIB:"$(Final_Release_STATICLIB)" $(GLOBAL_LDFLAGS) /NODEFAULTLIB:MSVCRTD
+GLOBAL_LDFLAGS=/DLL /NOLOGO /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /TLBID:1 /PDB:"$(Target_PDB)"
+Debug_LDFLAGS=/INCREMENTAL /DEBUG /IMPLIB:"$(Target_STATICLIB)" $(GLOBAL_LDFLAGS)
+Release_LDFLAGS=/INCREMENTAL:NO /OPT:REF /OPT:ICF $(GLOBAL_LDFLAGS)
 
 #### INCLUDES ####
-GLOBAL_INCS=/I"$(TOOLKIT)/include" /I"$(PSDK)/Include" /I"$(PSDK)/Include/mfc" /IBoost-1.32.0/include /IPython24/include
+GLOBAL_INCS=/I"$(TOOLKIT)/include" /I"$(PSDK)/Include" /I"$(PSDK)/Include/mfc"
+!IFDEF CIV4_PATH
+PROJECT_INCS=/I"$(CIV4_PATH)/Boost-1.32.0/include" /I"$(CIV4_PATH)/Python24/include"
+PROJECT_LIBS=/LIBPATH:"$(CIV4_PATH)"/Python24/libs /LIBPATH:"$(CIV4_PATH)"/boost-1.32.0/libs/ boost_python-vc71-mt-1_32.lib
+!ELSE
 PROJECT_INCS=/IBoost-1.32.0/include /IPython24/include
-Debug_INCS=$(PROJECT_INCS) $(GLOBAL_INCS)
-Release_INCS=$(PROJECT_INCS) $(GLOBAL_INCS)
-Final_Release_INCS=$(PROJECT_INCS) $(GLOBAL_INCS)
+PROJECT_LIBS=/LIBPATH:Python24/libs /LIBPATH:boost-1.32.0/libs/ boost_python-vc71-mt-1_32.lib
+!ENDIF
+INCS = $(PROJECT_INCS) $(GLOBAL_INCS)
 
 #### LIBS ####
-GLOBAL_LIBS=/LIBPATH:"$(TOOLKIT)/lib" /LIBPATH:"$(PSDK)/Lib"  /LIBPATH:"Boost-1.32.0/libs" /LIBPATH:"$(GLOBALPYTHON)/libs" winmm.lib user32.lib
-PROJECT_LIBS=/LIBPATH:Python24/libs /LIBPATH:boost-1.32.0/libs/ boost_python-vc71-mt-1_32.lib
-Debug_LIBS=$(PROJECT_LIBS) $(GLOBAL_LIBS) msvcprt.lib
-Release_LIBS=$(PROJECT_LIBS) $(GLOBAL_LIBS) msvcprt.lib
-Final_Release_LIBS=$(PROJECT_LIBS) $(GLOBAL_LIBS) msvcprt.lib
-
-#### Objects ####
-Debug_LINKOBJS=$(Debug_OBJS)
-Release_LINKOBJS=$(Release_OBJS)
-Final_Release_LINKOBJS=$(Final_Release_OBJS)
+GLOBAL_LIBS=/LIBPATH:"$(TOOLKIT)/lib" /LIBPATH:"$(PSDK)/Lib" winmm.lib user32.lib
+LIBS = $(PROJECT_LIBS) $(GLOBAL_LIBS)
 
 #### Auto SOURCES/OBJS ####
 !IF [ECHO SOURCES= \> sources.mk] == 0 && \
-	[FOR %i IN (*.cpp) DO @ECHO. "%i" \>> sources.mk] == 0 && \
-	[ECHO.>> sources.mk] == 0 && \
-	[ECHO Debug_OBJS= \>> sources.mk] == 0 && \
-	[FOR /F "delims=." %i IN ('dir /b *.cpp') DO @ECHO. Debug\%i.obj \>> sources.mk] == 0 && \
-	[ECHO.>> sources.mk] == 0 && \
-	[ECHO Release_OBJS= \>> sources.mk] == 0 && \
-	[FOR /F "delims=." %i IN ('dir /b *.cpp') DO @ECHO. Release\%i.obj \>> sources.mk] == 0 && \
-	[ECHO.>> sources.mk] == 0 && \
-	[ECHO Final_Release_OBJS= \>> sources.mk] == 0 && \
-	[FOR /F "delims=." %i IN ('dir /b *.cpp') DO @ECHO. Final_Release\%i.obj \>> sources.mk] == 0 && \
-	[ECHO.>> sources.mk] == 0
+    [FOR %i IN (*.cpp) DO @ECHO. "%i" \>> sources.mk] == 0 && \
+    [ECHO.>> sources.mk] == 0 && \
+	[ECHO OBJS= \>> sources.mk] == 0 && \
+    [FOR /F "delims=." %i IN ('dir /b *.cpp') DO @ECHO. $(TARGET)\%i.obj \>> sources.mk] == 0 && \
+    [ECHO.>> sources.mk] == 0
 !INCLUDE sources.mk
 !IF [DEL sources.mk]
 !ENDIF
 !ENDIF
 
+!IF "$(TARGET)" == "Debug"
+!IFNDEF _NMAKE_VER
+!ERROR Jom can't be used on Debug builds
+!ENDIF
+CFLAGS  = $(Debug_CFLAGS)
+LDFLAGS = $(Debug_LDFLAGS)
+LIBS    = $(LIBS) msvcprt.lib
+!ENDIF
+!IF "$(TARGET)" == "Release"
+CFLAGS  = $(Release_CFLAGS)
+LDFLAGS = $(Release_LDFLAGS)
+!ENDIF
+!IF "$(TARGET)" == "Assert"
+CFLAGS  = $(Release_CFLAGS) /DFASSERT_ENABLE
+LDFLAGS = $(Release_LDFLAGS)
+!ENDIF
+!IF "$(TARGET)" == "Profile"
+!IFNDEF _NMAKE_VER
+!ERROR Jom can't be used on profile builds
+!ENDIF
+CFLAGS  = $(Release_CFLAGS) /Zi
+LDFLAGS = $(Debug_LDFLAGS)
+!ENDIF
+
+!IFNDEF CFLAGS
+!ERROR Target "$(TARGET)" not supported. Supported targets: Debug Release Assert Profile
+!ENDIF
+
 #### Targets ####
 #################
 
-.PHONY: all clean Debug_clean Release_clean Final_Release_clean Debug Release Final_Release
+.PHONY: all clean build precompile Make_Dir
 
-all: Debug Release
+all: Precompile build
 
-clean: Debug_clean Release_clean Final_Release_clean
+dll: all
 
-Debug_clean:
-	@FOR %i IN ($(Debug_BIN) $(Debug_STATICLIB) $(Debug_LIBDEF) \
-		Debug\*.obj Debug\*.@ $(Debug_RESOURCE) \
-		$(Debug_PCH) $(Debug_PDB) $(Debug_OTHER)) DO @IF EXIST "%i" DEL "%i"
+clean:
+	@FOR %i IN ($(Target_BIN) $(Target_STATICLIB) $(Target_LIBDEF) \
+		$(TARGET)\*.obj $(TARGET)\*.@ $(Target_RESOURCE) \
+		$(Target_PCH) $(Target_PDB) $(Target_OTHER)) DO @IF EXIST "%i" DEL "%i"
 
-Release_clean:
-	@FOR %i IN ($(Release_BIN) $(Release_STATICLIB) $(Release_LIBDEF) \
-		Release\*.obj Release\*.@ $(Release_RESOURCE) \
-		$(Release_PCH) $(Release_PDB) $(Release_OTHER)) DO @IF EXIST "%i" DEL "%i"
+build: $(Target_BIN)
+!IFDEF YOURMOD
+	-COPY "$(Target_BIN)" "$(YOURMOD)\."
+!ENDIF
 
-Final_Release_clean:
-	@FOR %i IN ($(Final_Release_BIN) $(Final_Release_STATICLIB) $(Final_Release_LIBDEF) \
-		Final_Release\*.obj Final_Release\*.@ $(Final_Release_RESOURCE) \
-		$(Final_Release_PCH) $(Final_Release_PDB) $(Final_Release_OTHER)) DO @IF EXIST "%i" DEL "%i"
+precompile: Make_Dir Target_unfinished $(Target_PCH)
 
-Debug: Debug_DIR Debug_unfinished $(Debug_PCH) $(Debug_BIN)
-	-COPY "$(Debug_BIN)" "$(GAMECORE_BIN)"
+Make_Dir:
+	-@IF NOT EXIST "$(TARGET)\." MKDIR "$(TARGET)"
 
-Release: Release_DIR Release_unfinished $(Release_PCH) $(Release_BIN)
-	-COPY "$(Release_BIN)" "$(GAMECORE_BIN)"
+Target_unfinished:
+	@ECHO.>$(TARGET)\unfinished.@
+	@FOR /F "delims=@" %i IN ('dir /b $(TARGET)\*.@') DO \
+		@IF EXIST "$(TARGET)\%i" DEL "$(TARGET)\%i"
+	@FOR /F %i IN ('dir /b $(TARGET)\*.@') DO \
+		@IF EXIST "$(TARGET)\%i" DEL "$(TARGET)\%i"
 
-Final_Release: Final_Release_DIR Final_Release_unfinished $(Final_Release_PCH) $(Final_Release_BIN)
-	-COPY "$(Final_Release_BIN)" "$(GAMECORE_BIN)"
+$(Target_BIN): $(OBJS) $(Target_RESOURCE)
+	$(LD) /out:$(Target_BIN) $(LDFLAGS) $(LIBS) $(OBJS) $(Target_RESOURCE)
 
-Debug_DIR:
-	-@IF NOT EXIST "Debug\." MKDIR "Debug"
-
-Release_DIR:
-	-@IF NOT EXIST "Release\." MKDIR "Release"
-
-Final_Release_DIR:
-	-@IF NOT EXIST "Final_Release\." MKDIR "Final_Release"
-
-Debug_unfinished:
-	@ECHO.>Debug\unfinished.@
-	@FOR /F "delims=@" %i IN ('dir /b Debug\*.@') DO \
-		@IF EXIST "Debug\%i" DEL "Debug\%i"
-	@FOR /F %i IN ('dir /b Debug\*.@') DO \
-		@IF EXIST "Debug\%i" DEL "Debug\%i"
-
-Release_unfinished:
-	@ECHO.>Release\unfinished.@
-	@FOR /F "delims=@" %i IN ('dir /b Release\*.@') DO \
-		@IF EXIST "Release\%i" DEL "Release\%i"
-	@FOR /F %i IN ('dir /b Release\*.@') DO \
-		@IF EXIST "Release\%i" DEL "Release\%i"
-
-Final_Release_unfinished:
-	@ECHO.>Final_Release\unfinished.@
-	@FOR /F "delims=@" %i IN ('dir /b Final_Release\*.@') DO \
-		@IF EXIST "Final_Release\%i" DEL "Final_Release\%i"
-	@FOR /F %i IN ('dir /b Final_Release\*.@') DO \
-		@IF EXIST "Final_Release\%i" DEL "Final_Release\%i"
-
-$(Debug_BIN): $(Debug_LINKOBJS) $(Debug_RESOURCE)
-	$(LD) /out:$(Debug_BIN) $(Debug_LDFLAGS) $(Debug_LIBS) $(Debug_LINKOBJS) $(Debug_RESOURCE)
-
-$(Release_BIN): $(Release_LINKOBJS) $(Release_RESOURCE)
-	$(LD) /out:$(Release_BIN) $(Release_LDFLAGS) $(Release_LIBS) $(Release_LINKOBJS) $(Release_RESOURCE)
-
-$(Final_Release_BIN): $(Final_Release_LINKOBJS) $(Final_Release_RESOURCE)
-	$(LD) /out:$(Final_Release_BIN) $(Final_Release_LDFLAGS) $(Final_Release_LIBS) $(Final_Release_LINKOBJS) $(Final_Release_RESOURCE)
-
-.cpp{Debug}.obj:
+.cpp{$(TARGET)}.obj:
 	@ECHO.>"$*.obj.@"
-	@IF $< == CyCityInterface1.cpp (\
-		$(CPP) /nologo $(Debug_SAFE_CFLAGS) $(Debug_INCS) /Fo$*.obj /c $< \
-	) ELSE (\
-		$(CPP) /nologo $(Debug_CFLAGS) $(Debug_INCS) /Fo$*.obj /c $< \
-	)
+    $(CPP) /nologo $(CFLAGS) $(INCS) /Fo$*.obj /c $<
 	@DEL "$*.obj.@"
 
-.cpp{Release}.obj:
-	@ECHO.>"$*.obj.@"
-	@IF $< == CyCityInterface1.cpp (\
-		$(CPP) /nologo $(Release_SAFE_CFLAGS) $(Release_INCS) /Fo$*.obj /c $< \
-	) ELSE (\
-		$(CPP) /nologo $(Release_CFLAGS) $(Release_INCS) /Fo$*.obj /c $< \
-	)
-	@DEL "$*.obj.@"
+$(Target_PCH) $(TARGET)\_precompile.obj:
+	@ECHO.>"$(Target_PCH).@"
+	@ECHO.>"$(TARGET)\_precompile.obj.@"
+    $(CPP) /nologo $(CFLAGS) $(INCS) /YcCvGameCoreDLL.h /Fo"$(TARGET)\_precompile.obj" /c _precompile.cpp
+	@DEL "$(Target_PCH).@"
+	@DEL "$(TARGET)\_precompile.obj.@"
 
-.cpp{Final_Release}.obj:
-	@ECHO.>"$*.obj.@"
-	@IF $< == CyCityInterface1.cpp (\
-		$(CPP) /nologo $(Final_Release_SAFE_CFLAGS) $(Final_Release_INCS) /Fo$*.obj /c $< \
-	) ELSE (\
-		$(CPP) /nologo $(Final_Release_CFLAGS) $(Final_Release_INCS) /Fo$*.obj /c $< \
-	)
-	@DEL "$*.obj.@"
-
-
-$(Debug_PCH) Debug\_precompile.obj:
-	@ECHO.>"$(Debug_PCH).@"
-	@ECHO.>"Debug\_precompile.obj.@"
-	$(CPP) /nologo $(Debug_CFLAGS) $(Debug_INCS) /YcCvGameCoreDLL.h /Fo"Debug\_precompile.obj" /c _precompile.cpp
-	@DEL "$(Debug_PCH).@"
-	@DEL "Debug\_precompile.obj.@"
-
-$(Release_PCH) Release\_precompile.obj:
-	@ECHO.>"$(Release_PCH).@"
-	@ECHO.>"Release\_precompile.obj.@"
-    $(CPP) /nologo $(Release_CFLAGS) $(Release_INCS) /YcCvGameCoreDLL.h /Fo"Release\_precompile.obj" /c _precompile.cpp
-	@DEL "$(Release_PCH).@"
-	@DEL "Release\_precompile.obj.@"
-
-$(Final_Release_PCH) Final_Release\_precompile.obj:
-	@ECHO.>"$(Final_Release_PCH).@"
-	@ECHO.>"Final_Release\_precompile.obj.@"
-    $(CPP) /nologo $(Final_Release_CFLAGS) $(Final_Release_INCS) /YcCvGameCoreDLL.h /Fo"Final_Release\_precompile.obj" /c _precompile.cpp
-	@DEL "$(Final_Release_PCH).@"
-	@DEL "Final_Release\_precompile.obj.@"
-
-.rc{Debug}.res:
+.rc{$(TARGET)}.res:
 	@ECHO.>"$*.res.@"
-	$(RC) /Fo$@ $(Debug_INCS) $<
-	@DEL "$*.res.@"
-
-.rc{Release}.res:
-	@ECHO.>"$*.res.@"
-	$(RC) /Fo$@ $(Release_INCS) $<
-	@DEL "$*.res.@"
-
-.rc{Final_Release}.res:
-	@ECHO.>"$*.res.@"
-	$(RC) /Fo$@ $(Final_Release_INCS) $<
+	$(RC) /Fo$@ $(INCS) $<
 	@DEL "$*.res.@"
 
 !IFDEF BLACKLIST
-
-Debug\$(BLACKLIST).obj: $(BLACKLIST).cpp
+$(TARGET)\$(BLACKLIST).obj: $(BLACKLIST).cpp
 	@ECHO.>"$*.obj.@"
 	@ECHO.>"$*-dummy.cpp"
-	$(CPP) /nologo $(Debug_CFLAGS) $(Debug_INCS) /Y- /Fo$@ /c "$*-dummy.cpp"
-	@DEL "$*-dummy.cpp"
-	@DEL "$*.obj.@"
-
-Release\$(BLACKLIST).obj: $(BLACKLIST).cpp
-	@ECHO.>"$*.obj.@"
-	@ECHO.>"$*-dummy.cpp"
-	$(CPP) /nologo $(Release_CFLAGS) $(Release_INCS) /Y- /Fo$@ /c "$*-dummy.cpp"
-	@DEL "$*-dummy.cpp"
-	@DEL "$*.obj.@"
-
-Final_Release\$(BLACKLIST).obj: $(BLACKLIST).cpp
-	@ECHO.>"$*.obj.@"
-	@ECHO.>"$*-dummy.cpp"
-	$(CPP) /nologo $(Final_Release_CFLAGS) $(Final_Release_INCS) /Y- /Fo$@ /c "$*-dummy.cpp"
+	$(CPP) /nologo /DFASSERT_ENABLE $(Release_CFLAGS) $(Release_INCS) /Y- /Fo$@ /c "$*-dummy.cpp"
 	@DEL "$*-dummy.cpp"
 	@DEL "$*.obj.@"
 
 !ENDIF
 
+
 !IFDEF FD
 
+# jom can't handle FD
+# make sure only NMAKE will try
+# jom only executes right after nmake generated the needed file anyway
+!IFDEF _NMAKE_VER
+
 !IF [IF NOT EXIST $(FD) EXIT 1] == 0
-!IF [$(FD) --objectextension=pch -q -O Debug CvGameCoreDLL.cpp > depends] != 0 || \
-	[$(FD) --objectextension=obj -q -O Debug $(SOURCES) >> depends] != 0 || \
-	[$(FD) --objectextension=pch -q -O Release CvGameCoreDLL.cpp >> depends] != 0 || \
-	[$(FD) --objectextension=obj -q -O Release $(SOURCES) >> depends] != 0
-	[$(FD) --objectextension=pch -q -O Final_Release CvGameCoreDLL.cpp >> depends] != 0 || \
-	[$(FD) --objectextension=obj -q -O Final_Release $(SOURCES) >> depends] != 0
+!IF [$(FD) --objectextension=pch -q -O $(TARGET) CvGameCoreDLL.cpp > depends] != 0 || \
+    [$(FD) --objectextension=obj -q -O $(TARGET) $(SOURCES) >> depends] != 0
 !MESSAGE Error running fastdep.
 !ENDIF
 !ELSE
@@ -273,6 +197,8 @@ Final_Release\$(BLACKLIST).obj: $(BLACKLIST).cpp
      ECHO Please edit Makefile to reflect the correct path of fastdep. && \
      ECHO. ]
 !ENDIF
+!ENDIF
+
 !ENDIF
 
 !ENDIF
