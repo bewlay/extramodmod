@@ -53,9 +53,10 @@
 #	Changelog
 #	---------
 #  1.03   06.Oct.13 (Terkhen)
+#         Fixed, MapScriptTools will no longer place scrubs on top of mountains.
 #         Added, ExtraModMod compatibility
 #         Changed, Corrected a few typos
-#         Fixed, The FFH2 bonus BONUS_REAGENTS was mispelled as BONUS_REAGENS
+#         Fixed, the FFH2 bonus BONUS_REAGENTS was mispelled as BONUS_REAGENS
 #         Added, it is now possible to get Water Mana as a bonus in the Lost Island.
 #
 #  1.02   29.Jul.11
@@ -5571,7 +5572,7 @@ class FeaturePlacer:
 				iScrub = numFeatureNeighbors( x, y, efScrub, dist=1 )
 				if (iDesert<8) or (iScrub>0):
 					ch = chScrub/2 + (8-iDesert)/2 + iScrub*3
-					if choose( ch, True, False ):
+					if not pl.isPeak() and choose( ch, True, False ):
 						if pl.getFeatureType() == -1:
 							pl.setFeatureType( efScrub, -1 )
 							cnt += 1
