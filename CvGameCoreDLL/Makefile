@@ -14,20 +14,29 @@
 #############################################################
 !INCLUDE Makefile-Vars
 
+## This makefile provides four targets.
+##
+## DEBUG: No release optimizations. Symbols. Asserts. AI logging. Intended for development versions.
+## RELEASE: Release optimizations. Intended for release versions.
+## ASSERT: Release optimizations. Asserts. AI logging. Intended for beta versions.
+## PROFILE: Release optimization. Symbols. Intended for CPU profiling.
+
 #### DEFINES ####
 ## copy the following lines into "Additional options" in NMAKE properties
 ## This will make VC++ aware of what is defined and what isn't, which affects the help popup and red lines
 ## Use Release_DEFINES for all targets except debug
-## Assert adds /DFASSERT_ENABLE, which should be added to additional options too, if you care.
+## Assert adds FASSERT_ENABLE and LOG_AI.
 ## However you will only be able to tell a difference if you do something with asserts other than FAssert() or FAssertMsg()
 
-Debug_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /D_DEBUG
-Release_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DFINAL_RELEASE
+Base_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS
+Debug_DEFINES=$(Base_DEFINES) /D_DEBUG /DLOG_AI
+Release_DEFINES=$(Base_DEFINES) /DNDEBUG /DFINAL_RELEASE
+Assert_DEFINES=$(Base_DEFINES) /DFASSERT_ENABLE /DLOG_AI
 
 #### You shouldn't need to modify anything beyond this point ####
 #################################################################
 
-## Enrironmental path overwrite
+## Environmental path overwrite
 !IFDEF CIV4_LIB_INSTALL_PATH
 CIV4_PATH=$(CIV4_LIB_INSTALL_PATH)
 !ENDIF
@@ -57,6 +66,7 @@ Target_OTHER=$(TARGET)\CvGameCoreDLL.exp
 GLOBAL_CFLAGS=/GR /Gy /W3 /EHsc /Gd /Gm- /Yu"CvGameCoreDLL.h" /Fp"$(Target_PCH)"
 Debug_CFLAGS=/MD /Zi /Od /RTC1 $(Debug_DEFINES) $(GLOBAL_CFLAGS)
 Release_CFLAGS= /MD /O2 /Oy /Oi /G7 $(Release_DEFINES) $(GLOBAL_CFLAGS)
+Assert_CFLAGS= /MD /O2 /Oy /Oi /G7 $(Assert_DEFINES) $(GLOBAL_CFLAGS)
 
 #### LDFLAGS ####
 GLOBAL_LDFLAGS=/DLL /NOLOGO /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /TLBID:1 /PDB:"$(Target_PDB)"
@@ -103,7 +113,7 @@ CFLAGS  = $(Release_CFLAGS)
 LDFLAGS = $(Release_LDFLAGS)
 !ENDIF
 !IF "$(TARGET)" == "Assert"
-CFLAGS  = $(Release_CFLAGS) /DFASSERT_ENABLE
+CFLAGS  = $(Assert_CFLAGS)
 LDFLAGS = $(Release_LDFLAGS)
 !ENDIF
 !IF "$(TARGET)" == "Profile"
