@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_FLAVOUR_START</Tag>
+		<English>Flavour Start</English>
+		<French>Flavour Start</French>
+		<German>Passende Startposition</German>
+		<Italian>Flavour Start</Italian>
+		<Spanish>Flavour Start</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_FLAVOUR_START_HELP</Tag>
+		<English>All civilizations start in flavourwise appropriate regions. Do not use if map script already provides this.</English>
+		<French>All civilizations start in flavourwise appropriate regions. Do not use if map script already provides this.</French>
+		<German>Alle Zivilisationen beginnen in zu ihnen passenden Landschaften. Nicht benutzen, falls Kartenskript dies bereits bereitstellt.</German>
+		<Italian>All civilizations start in flavourwise appropriate regions. Do not use if map script already provides this.</Italian>
+		<Spanish>All civilizations start in flavourwise appropriate regions. Do not use if map script already provides this.</Spanish>
+	</TEXT>
+</Civ4GameText>

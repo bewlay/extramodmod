@@ -39,6 +39,15 @@
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+#include "iPrimal-Custom.h"
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
 // Public Functions...
 
 CvGame::CvGame()
@@ -101,6 +110,12 @@ CvGame::~CvGame()
 
 void CvGame::init(HandicapTypes eHandicap)
 {
+#ifdef FP_PROFILE_ENABLE
+// Profiling
+	GC.enableDLLProfiler(true);
+	startProfilingDLL();
+// Profiling end
+#endif
 	bool bValid;
 	int iStartTurn;
 	int iEstimateEndTurn;
@@ -434,7 +449,36 @@ void CvGame::setInitialItems()
 
 	initFreeState();
 	assignStartingPlots();
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+	if( isOption( GAMEOPTION_FLAVOUR_START ) )
+		reassignStartingPlots();
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 	normalizeStartingPlots();
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, ImprovementWilderness                                                        */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	GC.getMapINLINE().calculateWilderness();
+	// Moved from CvMapGenerator::addGameElements(), to have it after Wilderness generation
+//FfH: Added by Kael 10/04/2008
+    if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_IMPROVEMENTS))
+    {
+       CvMapGenerator::GetInstance().addUniqueImprovements();
+    }
+    if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_LAIRS))
+    {
+        CvMapGenerator::GetInstance().addImprovements();
+    }
+//FfH: End Add
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 //FfH: Added by Kael 09/16/2008
     if (isOption(GAMEOPTION_BARBARIAN_WORLD))
@@ -6623,6 +6667,23 @@ void CvGame::doTurn()
 
 	stopProfilingDLL();
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness                                                                               */
+/************************************************************************************************/
+	//LordShaggynator: workaround for wilderness values in scenario
+	if(getElapsedGameTurns() == 1)
+	{
+		if(GC.getInitCore().getType() == GAME_SP_SCENARIO || GC.getInitCore().getType() == GAME_MP_SCENARIO 
+			|| GC.getInitCore().getType() == GAME_HOTSEAT_SCENARIO || GC.getInitCore().getType() == GAME_PBEM_SCENARIO)
+		{
+			GC.getMapINLINE().calculateWilderness();
+		}
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 	gDLL->getEngineIFace()->AutoSave();
 }
 
@@ -7260,31 +7321,20 @@ void CvGame::createBarbarianCities()
 }
 
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/* Changed much, completely removed old code.                                                   */
+/************************************************************************************************/
 void CvGame::createBarbarianUnits()
 {
-
-//FfH: Modified by Kael 08/02/2007
-//	CvUnit* pLoopUnit;
-//FfH: End Modify
-
-	CvArea* pLoopArea;
-	CvPlot* pPlot;
-	UnitAITypes eBarbUnitAI;
-	UnitTypes eBestUnit;
-	UnitTypes eLoopUnit;
-	bool bAnimals;
-	long lResult;
-	int iNeededBarbs;
-	int iDivisor;
-	int iValue;
-	int iBestValue;
-	int iLoop;
-	int iI, iJ;
+	PROFILE_FUNC();
 
 	if (isOption(GAMEOPTION_NO_BARBARIANS))
-	{
 		return;
-	}
+
+	bool bRagingBarbs = isOption( GAMEOPTION_RAGING_BARBARIANS );
+	bool bDoubleAnimals = isOption( GAMEOPTION_DOUBLE_ANIMALS );
 
 /*************************************************************************************************/
 /**	SPEEDTWEAK (Block Python) Sephi                                               	            **/
@@ -7293,7 +7343,7 @@ void CvGame::createBarbarianUnits()
 /*************************************************************************************************/
 	if(GC.getDefineINT("USE_CREATEBARBARIANUNITS_CALLBACK")==1)
 	{
-        lResult = 0;
+        long lResult = 0;
         gDLL->getPythonIFace()->callFunction(PYGameModule, "createBarbarianUnits", NULL, &lResult);
         if (lResult == 1)
         {
@@ -7303,390 +7353,400 @@ void CvGame::createBarbarianUnits()
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
+	
+	bool bAnimals = true;
+	bool bBarbs = true;
 
-	bAnimals = false;
-
-	if (GC.getEraInfo(getCurrentEra()).isNoBarbUnits())
+	if (getElapsedGameTurns() < 5)
 	{
-		bAnimals = true;
+		bAnimals = false;
+		bBarbs = false;
 	}
-
-	if (getNumCivCities() < ((countCivPlayersAlive() * 3) / 2) && !isOption(GAMEOPTION_ONE_CITY_CHALLENGE))
-	{
-		bAnimals = true;
-	}
-
-//FfH: Added by Kael 11/27/2007
-//    if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS) && getNumCivCities() < countCivPlayersAlive() * 3)
-	if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS))
-    {
-        bAnimals = true;
-    }
-//FfH: End Add
-
-	if (getElapsedGameTurns() < ((GC.getHandicapInfo(getHandicapType()).getBarbarianCreationTurnsElapsed() * GC.getGameSpeedInfo(getGameSpeedType()).getBarbPercent()) / 100))
-	{
-		bAnimals = true;
-	}
-
-/********************************************************************************/
-/* Improved Wildlands	03/2013											lfgr	*/
-/********************************************************************************/
-// barbs keep spawning
-	bool bBarbs = !bAnimals;
-
-	if( !bBarbs && getNumCivCities() >= countCivPlayersAlive() * 3 )
-		bBarbs = true;
-/********************************************************************************/
-/* Improved Wildlands													END		*/
-/********************************************************************************/
-
-	if (bAnimals)
-	{
-		createAnimals();
-	}
-/********************************************************************************/
-/* Improved Wildlands	03/2013											lfgr	*/
-/********************************************************************************/
-// barbs keep spawning
-/* old
 	else
-*/
-	if( bBarbs )
-/********************************************************************************/
-/* Improved Wildlands													END		*/
-/********************************************************************************/
 	{
-		for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
+		if (GC.getEraInfo(getCurrentEra()).isNoAnimals())
+			bAnimals = false;
+		else if (GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal() <= 0)
+			bAnimals = false;
+		else if (getNumCivCities() < countCivPlayersAlive())
+			bAnimals = false;
+		
+		if (GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerBarbarianUnit() <= 0)
+			bBarbs = false;
+		else if( getNumCivCities() < countCivPlayersAlive() * ( bRagingBarbs ? 2 : 3 ) )
+			bBarbs = false;
+	}
+
+	logBBAI( "WILDERNESS - Spawning at turn %d", GC.getGameINLINE().getGameTurn() );
+
+	if( bAnimals )
+		logBBAI( "WILDERNESS - Spawning Animals" );
+
+	if( bBarbs )
+		logBBAI( "WILDERNESS - Spawning Barbarians" );
+	
+	if( !bAnimals && !bBarbs )
+		logBBAI( "WILDERNESS - No Spawning" );
+	
+	if( bAnimals || bBarbs )
+	{
+		int MAX_BARB_BLOCK_RADIUS = GC.getDefineINT( "MAX_BARB_BLOCK_RADIUS" );
+
+		// LFGR_TODO Multibarb: Have an array/value for each barbarian civ / "spawning group"?
+		int VALID_TILES_PER_BARB = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerBarbarianUnit();
+		int VALID_TILES_PER_BARB_WATER = GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerBarbarianUnit();
+		int VALID_TILES_PER_ANIMAL = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerGameAnimal();
+		int VALID_TILES_PER_ANIMAL_WATER = VALID_TILES_PER_ANIMAL * VALID_TILES_PER_BARB_WATER / VALID_TILES_PER_BARB; // LFGR_TODO: Extra tag for handicap infos
+		
+		float PLOT_CHANCE_BARB = ( bRagingBarbs ? 2 : 1 ) / (float) VALID_TILES_PER_BARB;
+		float PLOT_CHANCE_BARB_WATER = ( bRagingBarbs ? 2 : 1 ) / (float) VALID_TILES_PER_BARB_WATER;
+		float PLOT_CHANCE_ANIMAL = ( bDoubleAnimals ? 2 : 1 ) / (float) VALID_TILES_PER_ANIMAL;
+		float PLOT_CHANCE_ANIMAL_WATER = ( bDoubleAnimals ? 2 : 1 ) / (float) VALID_TILES_PER_ANIMAL_WATER;
+
+		// Find barbs and animals already there
+		//bool* abPlotAnimalValid = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		//bool* abPlotBarbValid = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		//bool* abPlotVisible = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		std::vector<bool> vbPlotAnimalValid;
+		std::vector<bool> vbPlotBarbValid;
+		std::vector<bool> vbPlotVisible;
+		
+		// Find general valid plots
+		for( int iPlot = 0; iPlot < GC.getMapINLINE().numPlotsINLINE(); iPlot++ )
 		{
-			if (pLoopArea->isWater())
-			{
-				eBarbUnitAI = UNITAI_ATTACK_SEA;
-				iDivisor = GC.getHandicapInfo(getHandicapType()).getUnownedWaterTilesPerBarbarianUnit();
-			}
-			else
-			{
-				eBarbUnitAI = UNITAI_ATTACK;
-				iDivisor = GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerBarbarianUnit();
-			}
+			vbPlotAnimalValid.push_back( false );
+			vbPlotBarbValid.push_back( false );
+			vbPlotVisible.push_back( false );
 
-			if (isOption(GAMEOPTION_RAGING_BARBARIANS))
-			{
-				iDivisor = std::max(1, (iDivisor / 2));
-			}
+			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
 
-			if (iDivisor > 0)
-			{
+			bool bValid = true;
 
-//FfH: Modified by Kael 08/27/2007 (so that animals arent considered for barb spawn rates, and barbs spawn a little slower)
-//				iNeededBarbs = ((pLoopArea->getNumUnownedTiles() / iDivisor) - pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER)); // XXX eventually need to measure how many barbs of eBarbUnitAI we have in this area...
-//				if (iNeededBarbs > 0)
-//				{
-//					iNeededBarbs = ((iNeededBarbs / 4) + 1);
-				iNeededBarbs = ((pLoopArea->getNumUnownedTiles() / iDivisor) - (pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) - pLoopArea->getAnimalsPerPlayer(BARBARIAN_PLAYER)));
-				if (iNeededBarbs > 0)
+			if( pPlot->isOwned() || pPlot->isAdjacentOwned() || pPlot->isImpassable() || ( pPlot->isWater() && !pPlot->isAdjacentToLand() ) )
+				bValid = false;
+
+			if( bValid )
+				if( pPlot->isLair() )
+					bValid = false;
+
+			if( bValid )
+				if( pPlot->isLake() && GC.getDefineINT( "LAKE_SPAWNING_ENABLED" ) == 0 )
+					bValid = false;
+
+			if( bValid )
+			{
+				bool bVisible = false;
+
+				// Visibility
+				// Not sure if isVisibleToCivTeam is sufficient here, it doesn't check isBarbarian().
+				for( int iTeam = 0; iTeam < MAX_CIV_TEAMS; iTeam++ )
 				{
-					iNeededBarbs = ((iNeededBarbs / 6) + 1);
-//FfH: End Modify
-
-					for (iI = 0; iI < iNeededBarbs; iI++)
+					if( GET_TEAM( (TeamTypes) iTeam ).isAlive() && !GET_TEAM( (TeamTypes) iTeam ).isBarbarian() )
 					{
-						pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_VISIBLE_TO_CIV | RANDPLOT_ADJACENT_LAND | RANDPLOT_PASSIBLE), pLoopArea->getID(), GC.getDefineINT("MIN_BARBARIAN_STARTING_DISTANCE"));
-
-						if (pPlot != NULL)
+						if( pPlot->isVisible( (TeamTypes) iTeam, false) )
 						{
-							eBestUnit = NO_UNIT;
-							iBestValue = 0;
+							bVisible = true;
+							break;
+						}
+					}
+				}
+				vbPlotVisible[iPlot] = bVisible;
+			}
+			
+			if( bValid )
+			{
+				// Check for non-barbarian units on the plot
+				// LFGR_TODO: only units at war with barbs, reqs at least separation barbs/animals
+				for( int iUnit = 0; iUnit < pPlot->getNumUnits(); iUnit++ )
+				{
+					if( !GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).isBarbarian() )
+					{
+						bValid = false;
+						break;
+					}
+				}
+			}
+			
+			vbPlotAnimalValid[iPlot] = bValid; // LFGR_TODO: && !bVisible?
+			vbPlotBarbValid[iPlot] = bValid;
 
-							for (iJ = 0; iJ < GC.getNumUnitClassInfos(); iJ++)
+		// LFGR_TEST
+			pPlot->bPlotAnimalEverValid = vbPlotAnimalValid[iPlot];
+			pPlot->bPlotBarbEverValid = vbPlotBarbValid[iPlot];
+		// LFGR_TEST end
+		}
+		
+		// Find existing units and make plots based on number of units invalid
+		for( int iPlot = 0; iPlot < GC.getMapINLINE().numPlotsINLINE(); iPlot++ )
+		{
+			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
+
+			int iNumAnimals = 0;
+			int iNumBarbs = 0;
+
+			// Barb units on the plot
+			for( int iUnit = 0; iUnit < pPlot->getNumUnits(); iUnit++ )
+			{
+				if( pPlot->getUnitByIndex( iUnit )->canDefend() && pPlot->getUnitByIndex( iUnit )->getLairPlot() == -1
+						&& GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).isBarbarian() )
+				{
+					if( bAnimals && pPlot->getUnitByIndex( iUnit )->isAnimal() )
+						iNumAnimals++;
+					if( bBarbs && !pPlot->getUnitByIndex( iUnit )->isAnimal() )
+						iNumBarbs++;
+				}
+			}
+			
+			iNumAnimals *= ( pPlot->isWater() ? VALID_TILES_PER_ANIMAL_WATER : VALID_TILES_PER_ANIMAL );
+			iNumBarbs *= ( pPlot->isWater() ? VALID_TILES_PER_BARB_WATER : VALID_TILES_PER_BARB );
+			
+			if( vbPlotAnimalValid[iPlot] && iNumAnimals > 0 )
+			{
+				iNumAnimals--;
+				vbPlotAnimalValid[iPlot] = false;
+			}
+
+			if( vbPlotBarbValid[iPlot] && iNumBarbs > 0 )
+			{
+				iNumBarbs--;
+				vbPlotBarbValid[iPlot] = false;
+			}
+			
+			if( iNumAnimals > 0 )
+				logBBAI( "Animals to spread at %d|%d: %d", pPlot->getX_INLINE(), pPlot->getY_INLINE(), iNumAnimals );
+			if( iNumBarbs > 0 )
+				logBBAI( "Barbs to spread at %d|%d: %d", pPlot->getX_INLINE(), pPlot->getY_INLINE(), iNumBarbs );
+
+			// Spread barbarians
+			for( int iRadius = 1; ( MAX_BARB_BLOCK_RADIUS == -1 || iRadius < MAX_BARB_BLOCK_RADIUS ) && ( iNumAnimals > 0 || iNumBarbs > 0 ); iRadius++ )
+			{
+				bool bFoundPotentialValidPlot = false;
+				std::vector<int> viAnimalValidRingPlots;
+				std::vector<int> viBarbValidRingPlots;
+
+				for( int iChangeX = -iRadius; iChangeX <= iRadius; iChangeX++ )
+				{
+					for( int iChangeY = -iRadius; iChangeY <= iRadius; iChangeY++ )
+					{
+						if( std::max( abs( iChangeX ), abs( iChangeY ) ) == iRadius )
+						{
+							CvPlot* pRingPlot = GC.getMapINLINE().plotINLINE( pPlot->getX_INLINE() + iChangeX, pPlot->getY_INLINE() + iChangeY );
+							if( pRingPlot != NULL && pRingPlot->getArea() == pPlot->getArea() )
 							{
-								bool bValid = false;
-								eLoopUnit = ((UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(BARBARIAN_PLAYER).getCivilizationType()).getCivilizationUnits(iJ)));
+								// Use CvPlot::getX for wrapped worlds
+								int iRingPlot = GC.getMapINLINE().plotNumINLINE( pRingPlot->getX_INLINE(), pRingPlot->getY_INLINE() );
+								bFoundPotentialValidPlot = true;
+								if( vbPlotAnimalValid[iRingPlot] )
+									viAnimalValidRingPlots.push_back( iRingPlot );
+								if( vbPlotBarbValid[iRingPlot] )
+									viBarbValidRingPlots.push_back( iRingPlot );
+							}
+						}
+					}
+				}
 
-								if (eLoopUnit != NO_UNIT)
+				if( !bFoundPotentialValidPlot )
+				{
+					logBBAI( "We seem to already have too much units for this area." );
+					break;
+				}
+
+				while( iNumAnimals > 0 && viAnimalValidRingPlots.size() > 0 )
+				{
+					int iVRingPlot = GC.getGameINLINE().getSorenRandNum( viAnimalValidRingPlots.size(), "Choose ring plot" );
+					int iRingPlot = viAnimalValidRingPlots[iVRingPlot];
+
+					FAssertMsg( vbPlotAnimalValid[iRingPlot], "Trying to invalidate already invalid plot!" );
+
+					vbPlotAnimalValid[iRingPlot] = false;
+
+					viAnimalValidRingPlots.erase( viAnimalValidRingPlots.begin() + iVRingPlot );
+					iNumAnimals--;
+				}
+				
+				while( iNumBarbs > 0 && viBarbValidRingPlots.size() > 0 )
+				{
+					int iVRingPlot = GC.getGameINLINE().getSorenRandNum( viBarbValidRingPlots.size(), "Choose ring plot" );
+					int iRingPlot = viBarbValidRingPlots[iVRingPlot];
+
+					FAssertMsg( vbPlotBarbValid[iRingPlot], "Trying to invalidate already invalid plot!" );
+
+					vbPlotBarbValid[iRingPlot] = false;
+
+					viBarbValidRingPlots.erase( viBarbValidRingPlots.begin() + iVRingPlot );
+					iNumBarbs--;
+				}
+			}
+		}
+		
+		for( int iPlot = 0; iPlot < GC.getMapINLINE().numPlotsINLINE(); iPlot++ )
+		{
+			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
+			
+		// LFGR_TEST
+			pPlot->bPlotAnimalValid = vbPlotAnimalValid[iPlot];
+			pPlot->bPlotBarbValid = vbPlotBarbValid[iPlot];
+		// LFGR_TEST end
+			
+			if( bAnimals && vbPlotAnimalValid[iPlot] )
+			{
+				float fAnimalChance = ( pPlot->isWater() ? PLOT_CHANCE_ANIMAL_WATER : PLOT_CHANCE_ANIMAL );
+				
+				// Faster respawning in higher wilderness
+				float fSpeedMod = GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED" ) * ( 1 + pPlot->getWilderness() / 100.0f );
+				// Slower Respawning on visible tiles
+				if( vbPlotVisible[iPlot] )
+					fSpeedMod *= GC.getDefineFLOAT( "VISIBLE_TILE_SPAWNING_SPEED_MOD" );
+
+				fAnimalChance *= std::min( 1.0f, fSpeedMod );
+
+				if( fAnimalChance > 0 )
+				{
+					// This will not work correctly if we have spawning chances < 1 / MAX_UNSIGNED_SHORT. In this case, exactly one animals will spawn to less.
+					// Another random method should maybe used. Not sure if it even matters with the accuracy of float.
+					FAssert( fAnimalChance >= 1.0 / MAX_UNSIGNED_SHORT )
+
+					float fAnimalRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
+					if( fAnimalChance >= fAnimalRand )
+					{
+						logBBAI( "Creating spawn with chance %f", fAnimalChance );
+						createBarbarianSpawn( pPlot, true );
+
+						// Invalidate adjacent plots to prevent simultanous spawning on to adjacent plots.
+						for( int iChangeX = -1; iChangeX <= 1; iChangeX++ )
+						{
+							for( int iChangeY = -1; iChangeY <= 1; iChangeY++ )
+							{
+								CvPlot* pRingPlot = GC.getMapINLINE().plotINLINE( pPlot->getX_INLINE() + iChangeX, pPlot->getY_INLINE() + iChangeY );
+								if( pRingPlot != NULL && pRingPlot->getArea() == pPlot->getArea() )
 								{
-									CvUnitInfo& kUnit = GC.getUnitInfo(eLoopUnit);
-
-									bValid = (kUnit.getCombat() > 0 && !kUnit.isOnlyDefensive());
-
-//FfH: Added by Kael 08/14/2007
-                                    if (GC.getUnitClassInfo((UnitClassTypes)iJ).getMaxGlobalInstances() == 1)
-                                    {
-                                        bValid = false;
-                                    }
-//FfH: End Add
-
-									if (bValid)
-									{
-										if (pLoopArea->isWater() && kUnit.getDomainType() != DOMAIN_SEA)
-										{
-											bValid = false;
-										}
-										else if (!pLoopArea->isWater() && kUnit.getDomainType() != DOMAIN_LAND)
-										{
-											bValid = false;
-										}
-									}
-
-									if (bValid)
-									{
-										if (!GET_PLAYER(BARBARIAN_PLAYER).canTrain(eLoopUnit))
-										{
-											bValid = false;
-										}
-									}
-
-									if (bValid)
-									{
-										if (NO_BONUS != kUnit.getPrereqAndBonus())
-										{
-											if (!GET_TEAM(BARBARIAN_TEAM).isHasTech((TechTypes)GC.getBonusInfo((BonusTypes)kUnit.getPrereqAndBonus()).getTechCityTrade()))
-											{
-												bValid = false;
-											}
-										}
-									}
-
-									if (bValid)
-									{
-										bool bFound = false;
-										bool bRequires = false;
-										for (int i = 0; i < GC.getNUM_UNIT_PREREQ_OR_BONUSES(); ++i)
-										{
-											if (NO_BONUS != kUnit.getPrereqOrBonuses(i))
-											{
-												TechTypes eTech = (TechTypes)GC.getBonusInfo((BonusTypes)kUnit.getPrereqOrBonuses(i)).getTechCityTrade();
-												if (NO_TECH != eTech)
-												{
-													bRequires = true;
-
-													if (GET_TEAM(BARBARIAN_TEAM).isHasTech(eTech))
-													{
-														bFound = true;
-														break;
-													}
-												}
-											}
-										}
-
-										if (bRequires && !bFound)
-										{
-											bValid = false;
-										}
-									}
-
-									if (bValid)
-									{
-										iValue = (1 + getSorenRandNum(1000, "Barb Unit Selection"));
-
-										if (kUnit.getUnitAIType(eBarbUnitAI))
-										{
-											iValue += 200;
-										}
-
-										if (iValue > iBestValue)
-										{
-											eBestUnit = eLoopUnit;
-											iBestValue = iValue;
-										}
-									}
+									// Use CvPlot::getX for wrapped worlds
+									int iRingPlot = GC.getMapINLINE().plotNumINLINE( pRingPlot->getX_INLINE(), pRingPlot->getY_INLINE() );
+									vbPlotAnimalValid[iRingPlot] = false;
+									vbPlotBarbValid[iRingPlot] = false;
 								}
 							}
-							if (eBestUnit != NO_UNIT)
+						}
+					}
+				}
+			}
+			
+			if( bBarbs && vbPlotBarbValid[iPlot] )
+			{
+				float fBarbChance = ( pPlot->isWater() ? PLOT_CHANCE_BARB_WATER : PLOT_CHANCE_BARB );
+				
+				// Faster respawning in higher wilderness
+				float fSpeedMod = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED" ) * ( 1 + pPlot->getWilderness() / 100.0f );
+				// Slower Respawning on visible tiles
+				if( vbPlotVisible[iPlot] )
+					fSpeedMod *= GC.getDefineFLOAT( "VISIBLE_TILE_SPAWNING_SPEED_MOD" );
+				
+				fBarbChance *= std::min( 1.0f, fSpeedMod );
+
+				if( fBarbChance > 0 )
+				{
+					// See above
+					FAssert( fBarbChance >= 1.0 / MAX_UNSIGNED_SHORT )
+
+					float fBarbRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
+					if( fBarbChance >= fBarbRand )
+					{
+						logBBAI( "Creating spawn with chance %f", fBarbChance );
+						createBarbarianSpawn( pPlot, false );
+
+						// Invalidate adjacent plots to prevent simultanous spawning on to adjacent plots.
+						for( int iChangeX = -1; iChangeX <= 1; iChangeX++ )
+						{
+							for( int iChangeY = -1; iChangeY <= 1; iChangeY++ )
 							{
-								logBBAI("Spawning Barbarian Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eBestUnit).getDescription(), pPlot->getX(), pPlot->getY());
-								GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), eBarbUnitAI);
+								CvPlot* pRingPlot = GC.getMapINLINE().plotINLINE( pPlot->getX_INLINE() + iChangeX, pPlot->getY_INLINE() + iChangeY );
+								if( pRingPlot != NULL && pRingPlot->getArea() == pPlot->getArea() )
+								{
+									// Use CvPlot::getX for wrapped worlds
+									int iRingPlot = GC.getMapINLINE().plotNumINLINE( pRingPlot->getX_INLINE(), pRingPlot->getY_INLINE() );
+									vbPlotAnimalValid[iRingPlot] = false;
+									vbPlotBarbValid[iRingPlot] = false;
+								}
 							}
 						}
 					}
 				}
 			}
 		}
-
-//FfH: Modified by Kael 08/02/2007 (so animals are never deleted)
-//		for (pLoopUnit = GET_PLAYER(BARBARIAN_PLAYER).firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = GET_PLAYER(BARBARIAN_PLAYER).nextUnit(&iLoop))
-//		{
-//			if (pLoopUnit->isAnimal())
-//			{
-//				pLoopUnit->kill(false);
-//				break;
-//			}
-//		}
-//FfH: End Add
-
+		//SAFE_DELETE_ARRAY( abPlotAnimalValid );
+		//SAFE_DELETE_ARRAY( abPlotBarbValid );
+		//SAFE_DELETE_ARRAY( abPlotVisible );
 	}
 }
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
-
-void CvGame::createAnimals()
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 {
-	CvArea* pLoopArea;
-	CvPlot* pPlot;
-	UnitTypes eBestUnit;
-	UnitTypes eLoopUnit;
-	int iNeededAnimals;
-	int iValue;
-	int iBestValue;
-	int iLoop;
-	int iI, iJ;
+	bool bVerbose = true;
 
-	if (GC.getEraInfo(getCurrentEra()).isNoAnimals())
-	{
-		return;
-	}
+	logBBAI( "WILDERNESS - Creating Semi-Random %s Spawn", bAnimal ? "animal" : "barb" );
 
-	if (GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal() <= 0)
-	{
-		return;
-	}
+	SpawnTypes eBestSpawn = NO_SPAWN;
+	int iBestValue = 0;
 
-	if (getNumCivCities() < countCivPlayersAlive())
+	for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
 	{
-		return;
-	}
+		CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
 
-	if (getElapsedGameTurns() < 5)
-	{
-		return;
-	}
+		bool bValid = true;
+		
+		if( bAnimal != kLoopSpawn.isAnimal() )
+			bValid = false;
 
-//FfH: Modified by Kael 08/27/2007 (So that water animals spawn)
-//	for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
-//	{
-//		if (!(pLoopArea->isWater()))
-//		{
-//			iNeededAnimals = ((pLoopArea->getNumUnownedTiles() / GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal()) - pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER));
-//			if (iNeededAnimals > 0)
-//			{
-//				iNeededAnimals = ((iNeededAnimals / 5) + 1);
-//				for (iI = 0; iI < iNeededAnimals; iI++)
-//				{
-//					pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_VISIBLE_TO_CIV | RANDPLOT_PASSIBLE), pLoopArea->getID(), GC.getDefineINT("MIN_ANIMAL_STARTING_DISTANCE"));
-//					if (pPlot != NULL)
-//					{
-//						eBestUnit = NO_UNIT;
-//						iBestValue = 0;
-//						for (iJ = 0; iJ < GC.getNumUnitClassInfos(); iJ++)
-//						{
-//							eLoopUnit = ((UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(BARBARIAN_PLAYER).getCivilizationType()).getCivilizationUnits(iJ)));
-//							if (eLoopUnit != NO_UNIT)
-//							{
-//								if (GC.getUnitInfo(eLoopUnit).getUnitAIType(UNITAI_ANIMAL))
-//								{
-//									if ((pPlot->getFeatureType() != NO_FEATURE) ? GC.getUnitInfo(eLoopUnit).getFeatureNative(pPlot->getFeatureType()) : GC.getUnitInfo(eLoopUnit).getTerrainNative(pPlot->getTerrainType()))
-//									{
-//										iValue = (1 + getSorenRandNum(1000, "Animal Unit Selection"));
-//										if (iValue > iBestValue)
-//										{
-//											eBestUnit = eLoopUnit;
-//											iBestValue = iValue;
-//										}
-//									}
-//								}
-//							}
-//						}
-//						if (eBestUnit != NO_UNIT)
-//						{
-//							GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), UNITAI_ANIMAL);
-//						}
-//					}
-//				}
-//			}
-//		}
-	for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
-	{
-/********************************************************************************/
-/* Improved Wildlands	03/2013											lfgr	*/
-/* Count animals independently from other barbs: subtract existing animals		*/
-/* later. Note: maybe need to increase <iUnownedTilesPerGameAnimal> in			*/
-/* CIV4HandicapInfo.xml															*/
-/********************************************************************************/
-	/* old
-        iNeededAnimals = ((pLoopArea->getNumUnownedTiles() / GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal()) - pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER));
-	*/
-		iNeededAnimals = pLoopArea->getNumUnownedTiles() / GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal();
-/********************************************************************************/
-/* Improved Wildlands													END		*/
-/********************************************************************************/
-        if (pLoopArea->isWater())
-        {
-            iNeededAnimals = iNeededAnimals / 5;
-            if (pLoopArea->getNumUnownedTiles() < 20)
-            {
-                iNeededAnimals = 0;
-            }
-/********************************************************************************/
-/* Improved Wildlands	03/2013											lfgr	*/
-/* Count animals independently from other barbs.								*/
-/********************************************************************************/
-	/* old
-        	if (pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) > 3)
-	*/
-			if ( pLoopArea->getAnimalsPerPlayer( BARBARIAN_PLAYER ) > 3 )
-/********************************************************************************/
-/* Improved Wildlands													END		*/
-/********************************************************************************/
-            {
-                iNeededAnimals = 0;
-            }
-        }
-        if (iNeededAnimals > 0)
-        {
-            iNeededAnimals = ((iNeededAnimals / 5) + 1);
-            if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS))
-            {
-                iNeededAnimals *= 2;
-            }
-/********************************************************************************/
-/* Improved Wildlands	03/2013											lfgr	*/
-/* Count animals independently from other barbs: now subtract existing animals,	*/
-/* so get really doubled animals.												*/
-/********************************************************************************/
-		iNeededAnimals -= pLoopArea->getAnimalsPerPlayer( BARBARIAN_PLAYER );
-/********************************************************************************/
-/* Improved Wildlands													END		*/
-/********************************************************************************/
-            for (iI = 0; iI < iNeededAnimals; iI++)
-            {
-                pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_VISIBLE_TO_CIV | RANDPLOT_PASSIBLE), pLoopArea->getID(), GC.getDefineINT("MIN_ANIMAL_STARTING_DISTANCE"));
-				if (pPlot != NULL)
+		if( kLoopSpawn.isNeverSpawn() )
+			bValid = false;
+
+		if( bValid )
+		{
+			int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn, true );
+
+			if( bVerbose && iValue > 0 )
+				logBBAI( "WILDERNESS - SpawnInfo %s: %d", kLoopSpawn.getType(), iValue );
+
+			if( iValue > 0 )
+			{
+				iValue += getSorenRandNum(100, "Barb Unit Selection");
+
+				if( iValue > iBestValue || ( iValue == iBestValue && getSorenRandNum( 2, "Bob" ) == 1 ) )
 				{
-					eBestUnit = NO_UNIT;
-					iBestValue = 0;
-					for (iJ = 0; iJ < GC.getNumUnitClassInfos(); iJ++)
-					{
-						eLoopUnit = ((UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(BARBARIAN_PLAYER).getCivilizationType()).getCivilizationUnits(iJ)));
-						if (eLoopUnit != NO_UNIT)
-						{
-							if (GC.getUnitInfo(eLoopUnit).getUnitAIType(UNITAI_ANIMAL))
-							{
-								if ((pPlot->getFeatureType() != NO_FEATURE) ? GC.getUnitInfo(eLoopUnit).getFeatureNative(pPlot->getFeatureType()) : GC.getUnitInfo(eLoopUnit).getTerrainNative(pPlot->getTerrainType()))
-								{
-									iValue = (1 + getSorenRandNum(1000, "Animal Unit Selection"));
-									if (iValue > iBestValue)
-									{
-										eBestUnit = eLoopUnit;
-										iBestValue = iValue;
-									}
-								}
-							}
-						}
-					}
-					if (eBestUnit != NO_UNIT)
-					{
-						logBBAI("Spawning Animal Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eBestUnit).getDescription(), pPlot->getX(), pPlot->getY());
+					eBestSpawn = (SpawnTypes) eLoopSpawn;
+					iBestValue = iValue;
+				}
+			}
+		}
+	}
 
-                        CvUnit* pUnit;
-                        pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), UNITAI_ANIMAL);
-                        pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
-                    }
-                }
-            }
-        }
-//FfH: End Modify
-
+	if ( eBestSpawn != NO_SPAWN )
+	{
+		CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
+		logBBAI("WILDERNESS - SpawnInfo %s chosen!", kBestSpawn.getType() );
+		
+		UnitAITypes eUnitAI = bAnimal ? UNITAI_ANIMAL : ( pPlot->area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
+		pPlot->createSpawn( eBestSpawn, eUnitAI );
+	}
+	else
+	{
+		logBBAI("WILDERNESS - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s, %s", pPlot->getWilderness(),
+				pPlot->getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( pPlot->getTerrainType() ).getType() : "NONE",
+				pPlot->getFeatureType() != NO_TERRAIN ? GC.getFeatureInfo( pPlot->getFeatureType() ).getType() : "NONE",
+				pPlot->getImprovementType() != NO_TERRAIN ? GC.getImprovementInfo( pPlot->getImprovementType() ).getType() : "NONE",
+				bAnimal ? "Animal" : "Non-Animal" );
 	}
 }
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 
 void CvGame::updateWar()
@@ -8894,6 +8954,12 @@ uint CvGame::getNumReplayMessages() const
 
 void CvGame::read(FDataStreamBase* pStream)
 {
+#ifdef FP_PROFILE_ENABLE
+// Profiling
+	GC.enableDLLProfiler(true);
+	startProfilingDLL();
+// Profiling end
+#endif
 	int iI;
 
 	reset(NO_HANDICAP);
@@ -10977,6 +11043,28 @@ void CvGame::foundBarbarianCity()
                     }
                 }
             }
+		/************************************************************************************************/
+		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* WildernessMisc                                                                               */
+		/* Place barb cities far away from other barb cities                                            */
+		/************************************************************************************************/
+			int iDivisor = std::max( 5, (int) ( sqrt( (double) GC.getMapINLINE().getGridWidthINLINE() * GC.getMapINLINE().getGridHeightINLINE() ) / 8.0 + 0.5 ) );
+
+			int iMinDistance = MAX_INT;
+
+			int iLoop;
+			for ( CvCity* pLoopCity = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() ).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() ).nextCity(&iLoop))
+			{
+				int iDist = stepDistance( pLoopCity->plot()->getX_INLINE(), pLoopCity->plot()->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE() );
+
+				if( iDist < iMinDistance )
+					iMinDistance = iDist;
+			}
+			if( iMinDistance != MAX_INT )
+				iValue += (int) ( iMinDistance / iDivisor ) * 900;
+		/************************************************************************************************/
+		/* WILDERNESS                                                                     END           */
+		/************************************************************************************************/
             if (bValid)
             {
                 iValue += GET_PLAYER(BARBARIAN_PLAYER).AI_foundValue(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), GC.getDefineINT("MIN_BARBARIAN_CITY_STARTING_DISTANCE"));

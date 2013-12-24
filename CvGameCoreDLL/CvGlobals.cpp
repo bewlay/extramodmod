@@ -1224,6 +1224,7 @@ CvFeatureInfo& CvGlobals::getFeatureInfo(FeatureTypes eFeatureNum)
 	return *(m_paFeatureInfo[eFeatureNum]);
 }
 
+
 int& CvGlobals::getNumPlayableCivilizationInfos()
 {
 	return m_iNumPlayableCivilizationInfos;
@@ -2571,6 +2572,53 @@ CvUnitArtStyleTypeInfo& CvGlobals::getUnitArtStyleTypeInfo(UnitArtStyleTypes eUn
 	return *(m_paUnitArtStyleTypeInfo[eUnitArtStyleTypeNum]);
 }
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+int CvGlobals::getNumTerrainFlavourInfos()
+{
+	return (int)m_paTerrainFlavourInfo.size();
+}
+
+std::vector<CvTerrainFlavourInfo*>& CvGlobals::getTerrainFlavourInfo()	// For Moose - XML Load Util, CvInfos
+{
+	return m_paTerrainFlavourInfo;
+}
+
+CvTerrainFlavourInfo& CvGlobals::getTerrainFlavourInfo(TerrainFlavourTypes eTerrainFlavourNum)
+{
+	FAssert(eTerrainFlavourNum > -1);
+	FAssert(eTerrainFlavourNum < GC.getNumTerrainFlavourInfos());
+	return *(m_paTerrainFlavourInfo[eTerrainFlavourNum]);
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+int CvGlobals::getNumSpawnInfos()
+{
+    return (int)m_paSpawnInfo.size();
+}
+
+std::vector<CvSpawnInfo*>& CvGlobals::getSpawnInfo()
+{
+	return m_paSpawnInfo;
+}
+
+CvSpawnInfo& CvGlobals::getSpawnInfo(SpawnTypes eSpawnNum)
+{
+	FAssert(eSpawnNum > -1);
+	FAssert(eSpawnNum < GC.getNumSpawnInfos());
+	return *(m_paSpawnInfo[eSpawnNum]);
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 int& CvGlobals::getNumCitySizeTypes()
 {
 	return m_iNumCitySizeTypes;
@@ -3476,6 +3524,23 @@ void CvGlobals::writeEventTriggerInfoArray(FDataStreamBase* pStream)
 	writeInfoArray(pStream, m_paEventTriggerInfo);
 }
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+bool CvGlobals::readSpawnInfoArray(FDataStreamBase* pStream)
+{
+	return readInfoArray(pStream, m_paSpawnInfo, "CvSpawnInfo");
+}
+
+void CvGlobals::writeSpawnInfoArray(FDataStreamBase* pStream)
+{
+	writeInfoArray(pStream, m_paSpawnInfo);
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 
 //
 // Global Types Hash Map
@@ -3687,6 +3752,23 @@ void CvGlobals::deleteInfoArrays()
 	deleteInfoArray(m_paEntityEventInfo);
 	deleteInfoArray(m_paAnimationCategoryInfo);
 	deleteInfoArray(m_paAnimationPathInfo);
+	
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	deleteInfoArray(m_paTerrainFlavourInfo);
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+	deleteInfoArray(m_paSpawnInfo);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	clearTypesMap();
 	m_aInfoVectors.clear();

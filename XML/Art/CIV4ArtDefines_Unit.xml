@@ -2821,6 +2821,32 @@
                 <AudioRunTypeEnd/>
             </AudioRunSounds>
         </UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
+			<!-- Art by Ploeperpengel -->
+			<Type>ART_DEF_UNIT_BANDIT_LORD</Type>
+			<Button>Art/Interface/Buttons/Units/Bandit_Lord.dds</Button>
+			<fScale>0.44</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<bActAsLand>0</bActAsLand>
+			<bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/Barbarian/Bandit Lord/axeman.nif</NIF>
+			<KFM>Art/Units/Axeman/Axeman.kfm</KFM>
+			<SHADERNIF>Art/Units/Barbarian/Bandit Lord/axeman_fx.nif</SHADERNIF>
+			<ShadowDef>
+				<ShadowNIF>Art/Units/01_UnitShadows/UnitShadow.nif</ShadowNIF>
+				<ShadowAttachNode>BIP Pelvis</ShadowAttachNode>
+				<fShadowScale>1.0</fShadowScale>
+			</ShadowDef>
+			<fBattleDistance>0.35</fBattleDistance>
+			<fRangedDeathTime>0.31</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged>
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+			<AudioRunSounds>
+				<AudioRunTypeLoop/>
+				<AudioRunTypeEnd/>
+			</AudioRunSounds>
+		</UnitArtInfo>
         <UnitArtInfo>
             <Type>ART_DEF_UNIT_BARNAXUS</Type>
             <Button>Art/Interface/Buttons/Units/Barnaxus.dds</Button>
@@ -3803,6 +3829,32 @@
             <SelectionSound>AS3D_UN_CATAPULT_FORT</SelectionSound>
             <ActionSound>AS3D_UN_CATAPULT_FORT</ActionSound>
         </UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
+			<!-- From RifE -->
+			<Type>ART_DEF_UNIT_CAVE_BEAR</Type>
+			<Button>Art/Interface/Buttons/Units/Cave_Bear.dds</Button>
+			<fScale>0.85</fScale>
+			<fInterfaceScale>1</fInterfaceScale>
+			<bActAsLand>0</bActAsLand>
+			<bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/Bear/Bear.nif</NIF>
+			<KFM>Art/Units/Bear/Bear.kfm</KFM>
+			<SHADERNIF>Art/Units/Bear/Bear_FX.nif</SHADERNIF>
+			<ShadowDef>
+				<ShadowNIF>Art/Units/01_UnitShadows/BearShadow.nif</ShadowNIF>
+				<ShadowAttachNode>LionBip Spine</ShadowAttachNode>
+				<fShadowScale>0.95</fShadowScale>
+			</ShadowDef>
+				<fBattleDistance>0.35</fBattleDistance>
+				<fRangedDeathTime>0.31</fRangedDeathTime>
+				<bActAsRanged>0</bActAsRanged>
+				<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+			<AudioRunSounds>
+				<AudioRunTypeLoop/>
+				<AudioRunTypeEnd/>
+			</AudioRunSounds>
+		</UnitArtInfo>
         <UnitArtInfo>
             <Type>ART_DEF_UNIT_CENTAUR</Type>
             <Button>Art/Interface/Buttons/Units/Centaur.dds</Button>
@@ -6662,6 +6714,31 @@
                 <AudioRunTypeEnd/>
             </AudioRunSounds>
         </UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
+			<!-- Art from Master of Mana, Artist unknown -->
+			<Type>ART_DEF_UNIT_GHOUL</Type>
+            <Button>Art/Interface/Buttons/Units/Diseased Corpse.dds</Button>
+            <fScale>0.44</fScale>
+            <fInterfaceScale>1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/Barbarian/Ghoul/Zombie1.nif</NIF>
+            <KFM>Art/Units/Unique/Aztec/Jaguar/Aztec_Jaguar blood.kfm</KFM>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/UnitShadow.nif</ShadowNIF>
+                <ShadowAttachNode>BIP Pelvis</ShadowAttachNode>
+                <fShadowScale>1</fShadowScale>
+            </ShadowDef>
+                <fBattleDistance>0.4</fBattleDistance>
+                <fRangedDeathTime>0.31</fRangedDeathTime>
+                <bActAsRanged>0</bActAsRanged>
+                <TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+		</UnitArtInfo>
         <UnitArtInfo>
             <Type>ART_DEF_UNIT_GIANT_SPIDER</Type>
             <Button>Art/Interface/Buttons/Units/Spider.dds</Button>
@@ -15490,6 +15567,31 @@
                 <AudioRunTypeEnd/>
             </AudioRunSounds>
         </UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
+			<!-- Art from Master of Mana, Artist unknown -->
+			<Type>ART_DEF_UNIT_WIGHT</Type>
+            <Button>Art/Interface/Buttons/Units/Diseased Corpse.dds</Button>
+            <fScale>0.44</fScale>
+            <fInterfaceScale>1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/Barbarian/Wight/Zombie2.nif</NIF>
+            <KFM>Art/Units/Unique/Aztec/Jaguar/Aztec_Jaguar blood.kfm</KFM>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/UnitShadow.nif</ShadowNIF>
+                <ShadowAttachNode>BIP Pelvis</ShadowAttachNode>
+                <fShadowScale>1</fShadowScale>
+            </ShadowDef>
+                <fBattleDistance>0.4</fBattleDistance>
+                <fRangedDeathTime>0.31</fRangedDeathTime>
+                <bActAsRanged>0</bActAsRanged>
+                <TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+		</UnitArtInfo>
         <UnitArtInfo>
             <Type>ART_DEF_UNIT_WILBOMAN</Type>
             <Button>Art/Interface/Buttons/Units/Wilboman.dds</Button>

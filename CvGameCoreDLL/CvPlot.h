@@ -27,6 +27,24 @@ class CvFlagEntity;
 typedef bool (*ConstPlotUnitFunc)( const CvUnit* pUnit, int iData1, int iData2);
 typedef bool (*PlotUnitFunc)(CvUnit* pUnit, int iData1, int iData2);
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        09/2013                                 lfgr          */
+/************************************************************************************************/
+struct CvTerrainAmountCache
+{
+	int iRadius;
+	float *afPlotAmount;
+	float *afTerrainAmount;
+	float *afFeatureAmount;
+	float *afYieldAmount;
+	float *afImprovementAmount;
+	float *afBonusAmount;
+};
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+
 class CvPlot
 {
 
@@ -627,9 +645,43 @@ public:
 	bool isFeatureRemove(BuildTypes eBuild) const;
 //<<<<Unofficial Bug Fix: End Add
 	bool isLair(bool bIgnoreIsAnimal = true, bool bAnimal = false) const;
+	
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	CvTerrainAmountCache getTerrainAmounts( int iRadius = -1 );
+	float calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, CvTerrainAmountCache* pTerrainAmounts ); // exposed to python
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, LairUnitCounter, SpawnInfo                                                   */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	int getWilderness() const;
+	void setWilderness(int iNewValue);
+
+	int getLairUnitCount() const;
+	void setLairUnitCount(int iNewValue);
+
+	int getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType );
+	int getSpawnValue( SpawnTypes eSpawnType, bool bBarbTech );
+	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI, int iLairPlot = -1 );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
+	
+// LFGR_TEST
+	bool bPlotAnimalEverValid;
+	bool bPlotAnimalValid;
+	bool bPlotBarbEverValid;
+	bool bPlotBarbValid;
+// LFGR_TEST end
 
 protected:
 
@@ -763,6 +815,17 @@ protected:
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, LairUnitCounter                                                              */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	int m_iWilderness;
+	int m_iLairUnitCount;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// added so under cheat mode we can access protected stuff
 	friend class CvGameTextMgr;

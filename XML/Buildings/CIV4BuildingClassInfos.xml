@@ -1644,6 +1644,66 @@
 			<DefaultBuilding>BUILDING_THE_NEXUS</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
+			<Type>BUILDINGCLASS_BEAR_TROPHY</Type>
+			<Description>TXT_KEY_BUILDING_BEAR_TROPHY</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_BEAR_TROPHY</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
+			<Type>BUILDINGCLASS_LION_TROPHY</Type>
+			<Description>TXT_KEY_BUILDING_LION_TROPHY</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_LION_TROPHY</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
+			<Type>BUILDINGCLASS_PANTHER_TROPHY</Type>
+			<Description>TXT_KEY_BUILDING_PANTHER_TROPHY</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_PANTHER_TROPHY</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
+			<Type>BUILDINGCLASS_WOLF_TROPHY</Type>
+			<Description>TXT_KEY_BUILDING_WOLF_TROPHY</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_WOLF_TROPHY</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / WildernessMisc -->
+			<Type>BUILDINGCLASS_SCORPION_PEN</Type>
+			<Description>TXT_KEY_BUILDING_SCORPION_PEN</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_SCORPION_PEN</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
 <!-- MORE EVENTS MOD STARTS -->
 		<BuildingClassInfo>
 			<Type>BUILDINGCLASS_FROZEN_FLAME</Type>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+	WILDERNESS 09/2013 lfgr / PromotionExplResultBonus, WildernessExploration, ImprovementSpawnTypes, NewLairs
+-->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_EXPLORATION_RESULT_BONUS</Tag>
+		<English>[ICON_BULLET]%D1%% better results from lair exploration</English>
+		<French>[ICON_BULLET]%D1%% better results from lair exploration</French>
+		<German>[ICON_BULLET]%D1%% better results from lair exploration</German>
+		<Italian>[ICON_BULLET]%D1%% better results from lair exploration</Italian>
+		<Spanish>[ICON_BULLET]%D1%% better results from lair exploration</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS</Tag>
+		<English>[ICON_BULLET]Exploration Skills: %s1</English>
+		<French>[ICON_BULLET]Exploration Skills: %s1</French>
+		<German>[ICON_BULLET]Exploration Skills: %s1</German>
+		<Italian>[ICON_BULLET]Exploration Skills: %s1</Italian>
+		<Spanish>[ICON_BULLET]Exploration Skills: %s1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_1</Tag>
+		<English>Novice</English>
+		<French>Novice</French>
+		<German>Novice</German>
+		<Italian>Novice</Italian>
+		<Spanish>Novice</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_2</Tag>
+		<English>Moderate</English>
+		<French>Moderate</French>
+		<German>Moderate</German>
+		<Italian>Moderate</Italian>
+		<Spanish>Moderate</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_3</Tag>
+		<English>Advanced</English>
+		<French>Advanced</French>
+		<German>Advanced</German>
+		<Italian>Advanced</Italian>
+		<Spanish>Advanced</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_4</Tag>
+		<English>Expert</English>
+		<French>Expert</French>
+		<German>Expert</German>
+		<Italian>Expert</Italian>
+		<Spanish>Expert</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_5</Tag>
+		<English>Master</English>
+		<French>Master</French>
+		<German>Master</German>
+		<Italian>Master</Italian>
+		<Spanish>Master</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL</Tag>
+		<English>[ICON_BULLET]Risk and Reward: %s1</English>
+		<French>[ICON_BULLET]Risk and Reward: %s1</French>
+		<German>[ICON_BULLET]Risk and Reward: %s1</German>
+		<Italian>[ICON_BULLET]Risk and Reward: %s1</Italian>
+		<Spanish>[ICON_BULLET]Risk and Reward: %s1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_1</Tag>
+		<English>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</English>
+		<French>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</French>
+		<German>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</German>
+		<Italian>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_2</Tag>
+		<English>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</English>
+		<French>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</French>
+		<German>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</German>
+		<Italian>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_3</Tag>
+		<English>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</English>
+		<French>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</French>
+		<German>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</German>
+		<Italian>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_4</Tag>
+		<English>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</English>
+		<French>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</French>
+		<German>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</German>
+		<Italian>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_5</Tag>
+		<English>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</English>
+		<French>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</French>
+		<German>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</German>
+		<Italian>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_LOW</Tag>
+		<English>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</English>
+		<French>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</French>
+		<German>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_MEDIUM</Tag>
+		<English>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</English>
+		<French>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</French>
+		<German>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_HIGH</Tag>
+		<English>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</English>
+		<French>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</French>
+		<German>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_LAIR_EXPLORED</Tag>
+		<English>There seems not to be anything left to explore in the lair.</English>
+		<French>There seems not to be anything left to explore in the lair.</French>
+		<German>There seems not to be anything left to explore in the lair.</German>
+		<Italian>There seems not to be anything left to explore in the lair.</Italian>
+		<Spanish>There seems not to be anything left to explore in the lair.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_SPAWN_UNITS</Tag>
+		<English>[ICON_BULLET]Spawns barbarian units until eliminated</English>
+		<French>[ICON_BULLET]Spawns barbarian units until eliminated</French>
+		<German>[ICON_BULLET]Erzeugt Barbaren-Einheiten bis es zerstört wird</German>
+		<Italian>[ICON_BULLET]Spawns barbarian units until eliminated</Italian>
+		<Spanish>[ICON_BULLET]Genera unidades bárbaras hasta que es eliminado.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_PROMOTION_CAPTURE_APPLY</Tag>
+		<English>Your %s1_UnitName gained the %s2_PromotionName promotion</English>
+		<French>Your %s1_UnitName gained the %s2_PromotionName promotion</French>
+		<German>Your %s1_UnitName gained the %s2_PromotionName promotion</German>
+		<Italian>Your %s1_UnitName gained the %s2_PromotionName promotion</Italian>
+		<Spanish>Your %s1_UnitName gained the %s2_PromotionName promotion</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_PROMOTION_CAPTURE_APPLY</Tag>
+		<English>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</English>
+		<French>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</French>
+		<German>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</German>
+		<Italian>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</Italian>
+		<Spanish>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_SELL_ANIMAL</Tag>
+		<English>Sell Animal</English>
+		<French>Sell Animal</French>
+		<German>Sell Animal</German>
+		<Italian>Sell Animal</Italian>
+		<Spanish>Sell Animal</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_SELL_ANIMAL_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_SPELL_SELL_ANIMAL</Tag>
+		<English>You sold an animal for %d1_gold [ICON_GOLD]</English>
+		<French>You sold an animal for %d1_gold [ICON_GOLD]</French>
+		<German>You sold an animal for %d1_gold [ICON_GOLD]</German>
+		<Italian>You sold an animal for %d1_gold [ICON_GOLD]</Italian>
+		<Spanish>You sold an animal for %d1_gold [ICON_GOLD]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_SELL_ANIMAL_HELP</Tag>
+		<English>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</English>
+		<French>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</French>
+		<German>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</German>
+		<Italian>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</Italian>
+		<Spanish>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_SELL_ONE_ANIMAL_HELP</Tag>
+		<English>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</English>
+		<French>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</French>
+		<German>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</German>
+		<Italian>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</Italian>
+		<Spanish>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</Spanish>
+	</TEXT>
+</Civ4GameText>

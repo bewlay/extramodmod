@@ -70,6 +70,17 @@ def postCombatWon(argsList):
 	unit = gc.getUnitInfo(pCaster.getUnitType())
 	eval(unit.getPyPostCombatWon())
 
+# SpellPyHelp 11/2013 lfgr
+def getSpellHelp( argsList ) :
+	eSpell, ePlayer, leUnits = argsList
+	pSpell = gc.getSpellInfo( eSpell )
+	pPlayer = gc.getPlayer( ePlayer )
+	lpUnits = []
+	for eUnit in leUnits :
+		lpUnits.append( pPlayer.getUnit( eUnit ) )
+	return eval( pSpell.getPyHelp() )
+# SpellPyHelp END
+
 def findClearPlot(pUnit, plot):
 	BestPlot = -1
 	iBestPlot = 0
@@ -780,79 +791,7 @@ def spellCreateBatteringRam(caster):
 	pPlot = caster.plot()
 	pPlot.setFeatureType(-1, -1)
 
-def reqCreateDenBear(caster):
-	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_LAIRS):
-		return False
-	iImprovement = gc.getInfoTypeForString('IMPROVEMENT_BEAR_DEN')
-	if caster.getDamage() > 0:
-		return False
-	pPlot = caster.plot()
-	if pPlot.isOwned():
-		return False
-	if pPlot.getNumUnits() != 1:
-		return False
-	if pPlot.getImprovementType() != -1:
-		return False
-	if pPlot.canHaveImprovement(iImprovement, caster.getOwner(), True) == False:
-		return False
-	iX = pPlot.getX()
-	iY = pPlot.getY()
-	for iiX in range(iX-4, iX+5, 1):
-		for iiY in range(iY-4, iY+5, 1):
-			pPlot2 = CyMap().plot(iiX,iiY)
-			if pPlot2.getImprovementType() == iImprovement:
-				return False
-	return True
-
-def spellCreateDenBear(caster):
-	pPlot = caster.plot()
-	iImprovement = gc.getInfoTypeForString('IMPROVEMENT_BEAR_DEN')
-	iUnit = gc.getInfoTypeForString('UNIT_BEAR')
-	pPlot.setImprovementType(iImprovement)
-	pPlot2 = findClearPlot(-1, caster.plot())
-	if pPlot2 != -1:
-		caster.setXY(pPlot2.getX(), pPlot2.getY(), False, True, True)
-		pPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-		newUnit = pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_LAIRGUARDIAN, DirectionTypes.DIRECTION_SOUTH)
-		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HIDDEN_NATIONALITY'), True)
-#		newUnit.convert(caster)
-
-def reqCreateDenLion(caster):
-	if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_LAIRS):
-		return False
-	iImprovement = gc.getInfoTypeForString('IMPROVEMENT_LION_DEN')
-	if caster.getDamage() > 0:
-		return False
-	pPlot = caster.plot()
-	if pPlot.isOwned():
-		return False
-	if pPlot.getNumUnits() != 1:
-		return False
-	if pPlot.getImprovementType() != -1:
-		return False
-	if pPlot.canHaveImprovement(iImprovement, caster.getOwner(), True) == False:
-		return False
-	iX = pPlot.getX()
-	iY = pPlot.getY()
-	for iiX in range(iX-4, iX+5, 1):
-		for iiY in range(iY-4, iY+5, 1):
-			pPlot2 = CyMap().plot(iiX,iiY)
-			if pPlot2.getImprovementType() == iImprovement:
-				return False
-	return True
-
-def spellCreateDenLion(caster):
-	pPlot = caster.plot()
-	iImprovement = gc.getInfoTypeForString('IMPROVEMENT_LION_DEN')
-	iUnit = gc.getInfoTypeForString('UNIT_LION')
-	pPlot.setImprovementType(iImprovement)
-	pPlot2 = findClearPlot(-1, caster.plot())
-	if pPlot2 != -1:
-		caster.setXY(pPlot2.getX(), pPlot2.getY(), False, True, True)
-		pPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-		newUnit = pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_LAIRGUARDIAN, DirectionTypes.DIRECTION_SOUTH)
-		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HIDDEN_NATIONALITY'), True)
-#		newUnit.convert(caster)
+# WILDERNESS 09/2013 lfgr / CreateLair - Removed create den functions
 
 def reqCrewBuccaneers(caster):
 	pPlot = caster.plot()
@@ -1263,72 +1202,56 @@ def spellEscape(caster):
 	caster.setXY(pCity.getX(), pCity.getY(), False, True, True)
 
 def reqExploreLair(caster):
-	if caster.isOnlyDefensive():
-		return False
-	if caster.getUnitCombatType() == gc.getInfoTypeForString('UNITCOMBAT_SIEGE'):
-		return False
-	if caster.isBarbarian():
-		return False
-	if caster.getDuration() > 0:
-		return False
-	if caster.getSpecialUnitType() == gc.getInfoTypeForString('SPECIALUNIT_SPELL'):
-		return False
-	if caster.getSpecialUnitType() == gc.getInfoTypeForString('SPECIALUNIT_BIRD'):
-		return False
+# WILDERNESS 10/2013 lfgr: moved some code to C++
 	pPlayer = gc.getPlayer(caster.getOwner())
-	iTeam = pPlayer.getTeam()
-	eTeam = gc.getTeam(iTeam)
-	bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-	if not eTeam.isAtWar(bPlayer.getTeam()):
-		return False
-
-	pPlot = caster.plot()
-	if pPlot.isOwned():
-		iImprovement = pPlot.getImprovementType()
-		if gc.getImprovementInfo(iImprovement).isUnique():
-			if not gc.getImprovementInfo(iImprovement).getBonusConvert() == BonusTypes.NO_BONUS:
-				if not pPlot.getOwner() == caster.getOwner():
-					return False
-				
 	if pPlayer.isHuman() == False:
 		if pPlayer.getNumCities() < 1:
 			return False
 		
-	return True
+# WILDERNESS 10/2013 lfgr / WildernessExploration
+#	return True
+	return caster.canDoExploration( caster.plot() )
+# WILDERNESS end
 
 def spellExploreLair(caster):
-	pPlot = caster.plot()
-	iRnd = CyGame().getSorenRandNum(100, "Explore Lair") + caster.getLevel()
-	iDestroyLair = 0
-	if iRnd < 14:
-		iDestroyLair = cf.exploreLairBigBad(caster)
-	if iRnd >= 14 and iRnd < 44:
-		iDestroyLair = cf.exploreLairBad(caster)
-	if iRnd >= 44 and iRnd < 74:
-		iDestroyLair = cf.exploreLairNeutral(caster)
-	if iRnd >= 74 and iRnd < 94:
-		iDestroyLair = cf.exploreLairGood(caster)
-	if iRnd >= 94:
-		iDestroyLair = cf.exploreLairBigGood(caster)
-	if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
-		CyInterface().addMessage(caster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
-		pPlot.setImprovementType(-1)
-	caster.finishMoves()
-	caster.changeExperience(1, -1, False, False, False)
+# WILDERNESS 08/2013 lfgr / WildernessExploration
+#	pPlot = caster.plot()
+#	iRnd = CyGame().getSorenRandNum(100, "Explore Lair") + caster.getLevel()
+#	iDestroyLair = 0
+#	if iRnd < 14:
+#		iDestroyLair = cf.exploreLairBigBad(caster)
+#	if iRnd >= 14 and iRnd < 44:
+#		iDestroyLair = cf.exploreLairBad(caster)
+#	if iRnd >= 44 and iRnd < 74:
+#		iDestroyLair = cf.exploreLairNeutral(caster)
+#	if iRnd >= 74 and iRnd < 94:
+#		iDestroyLair = cf.exploreLairGood(caster)
+#	if iRnd >= 94:
+#		iDestroyLair = cf.exploreLairBigGood(caster)
+#	if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
+#		CyInterface().addMessage(caster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+#		pPlot.setImprovementType(-1)
+#	caster.finishMoves()
+#	caster.changeExperience(1, -1, False, False, False)
+	cf.exploreLair( caster, False )
+# WILDERNESS end
 
 def spellExploreLairEpic(caster):
-	pPlot = caster.plot()
-	iRnd = CyGame().getSorenRandNum(100, "Explore Lair") + caster.getLevel()
-	iDestroyLair = 0
-	if iRnd < 54:
-		iDestroyLair = cf.exploreLairBigBad(caster)
-	if iRnd >= 54:
-		iDestroyLair = cf.exploreLairBigGood(caster)
-	if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
-		CyInterface().addMessage(caster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
-		pPlot.setImprovementType(-1)
-	caster.finishMoves()
-	caster.changeExperience(1, -1, False, False, False)
+# WILDERNESS 08/2013 lfgr / WildernessExploration
+#	pPlot = caster.plot()
+#	iRnd = CyGame().getSorenRandNum(100, "Explore Lair") + caster.getLevel()
+#	iDestroyLair = 0
+#	if iRnd < 54:
+#		iDestroyLair = cf.exploreLairBigBad(caster)
+#	if iRnd >= 54:
+#		iDestroyLair = cf.exploreLairBigGood(caster)
+#	if iDestroyLair > CyGame().getSorenRandNum(100, "Explore Lair"):
+#		CyInterface().addMessage(caster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_LAIR_DESTROYED", ()),'AS2D_POSITIVE_DINK',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+#		pPlot.setImprovementType(-1)
+#	caster.finishMoves()
+#	caster.changeExperience(1, -1, False, False, False)
+	cf.exploreLair( caster, True )
+# WILDERNESS end
 
 def reqFeast(caster):
 	pPlot = caster.plot()
@@ -1460,6 +1383,10 @@ def spellFormWolfPack(caster):
 		newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_WOLF_PACK'), caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 		newUnit.setExperience(caster.getExperience() + pWolf2.getExperience(), -1)
 		newUnit.setUnitAIType(gc.getInfoTypeForString('UNITAI_ATTACK'))
+	# WILDERNESS 11/2013 lfgr // AnimalSpells
+		SDTK.sdObjectInit( "Wilderness", newUnit, {} )
+		SDTK.sdObjectSetVal( "Wilderness", newUnit, "bNoConsumeAnimal", True )
+	# WILDERNESS end
 		caster.kill(True, PlayerTypes.NO_PLAYER)
 		pWolf2.kill(True, PlayerTypes.NO_PLAYER)
 
@@ -3915,6 +3842,10 @@ def spellWildHunt(caster):
 			if pUnit.baseCombatStr() > 3:
 				i = (pUnit.baseCombatStr() - 2) / 2
 				newUnit.setBaseCombatStr(2 + i)
+		# WILDERNESS 11/2013 lfgr // AnimalSpells
+			SDTK.sdObjectInit( "Wilderness", newUnit, {} )
+			SDTK.sdObjectSetVal( "Wilderness", newUnit, "bNoConsumeAnimal", True )
+		# WILDERNESS end
 
 def spellWonder(caster):
 	iCount = CyGame().getSorenRandNum(3, "Wonder") + 3
@@ -4710,3 +4641,112 @@ def spellAnimateFrostlings(pCaster):
 			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING_ARCHER'))
 			cf.addUnit(gc.getInfoTypeForString('UNIT_FROSTLING_WOLF_RIDER'))
 			CyInterface().addMessage(iPlayer, False, 25, CyTranslator().getText("TXT_KEY_MESSAGE_ANIMATE_FROSTLINGS", ()),'',1, None, ColorTypes(7), -1, -1, False, False)
+
+# WILDERNESS 11/2013 lfgr // AnimalSpells, WildernessExploration
+
+### Explore Lair
+
+def helpExploreLair( lpUnits, bEpic ) :
+	pUnit = lpUnits[0]
+	pPlot = pUnit.plot()
+	iExploLevel = pUnit.getExplorationLevel()
+	iChallenge = pPlot.getWilderness()
+	if( bEpic ) :
+		iChallenge += ( 100 - iChallenge ) / 2
+	iChallengeHandling = iExploLevel - iChallenge
+	
+	sNewline = CyTranslator().getText( '[NEWLINE]', () )
+	
+	sExploLevel = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS_1', () )
+	if( iExploLevel >= 90 ) :
+		sExploLevel = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS_5', () )
+	elif( iExploLevel >= 75 ) :
+		sExploLevel = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS_4', () )
+	elif( iExploLevel >= 60 ) :
+		sExploLevel = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS_3', () )
+	elif( iExploLevel >= 35 ) :
+		sExploLevel = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS_2', () )
+	
+	sChallenge = CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL_1', () )
+	if( iChallenge >= 90 ) :
+		sChallenge = CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL_5', () )
+	elif( iChallenge >= 75 ) :
+		sChallenge = CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL_4', () )
+	elif( iChallenge >= 60 ) :
+		sChallenge = CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL_3', () )
+	elif( iChallenge >= 35 ) :
+		sChallenge = CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL_2', () )
+	
+	iOdds = ( 2 * iChallengeHandling + 50 ) # 100 * ( iChallengeHandling / 50.0 + 1/2.0 )
+	iOdds = min( 100, max( 0, iOdds ) )
+	
+	sHelp = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS', ( sExploLevel, ) )
+	sHelp += sNewline + CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL', ( sChallenge, ) )
+	if( iOdds < 33 ) :
+		sHelp += sNewline + CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_LOW', ( iOdds, ) )
+	elif( iOdds < 67 ) :
+		sHelp += sNewline + CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_MEDIUM', ( iOdds, ) )
+	else :
+		sHelp += sNewline + CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_HIGH', ( iOdds, ) )
+	
+	return sHelp
+
+### Consume Animal Spells
+
+def reqConsumeAnimal( pCaster ) :
+	if( pCaster.getSummoner() != -1 ) :
+		return False
+	if( SDTK.sdObjectExists( "Wilderness", pCaster ) ) :
+		print "Wilderness::bNoConsumeAnimal:"
+		print SDTK.sdObjectGetVal( "Wilderness", pCaster, "bNoConsumeAnimal" )
+		if( SDTK.sdObjectGetVal( "Wilderness", pCaster, "bNoConsumeAnimal" ) ) :
+			return False
+	return True
+
+# Sell Animal
+
+def spellSellAnimal( pCaster ) :
+	iGold = getAnimalSellValue( pCaster ) * ( 75 + CyGame().getSorenRandNum( 50, "Bob" ) ) / 100
+	iGold = max( 1, iGold )
+	CyInterface().addMessage(pCaster.getOwner(), True, 25, CyTranslator().getText( 'TXT_KEY_MESSAGE_SPELL_SELL_ANIMAL', ( iGold, ) ),'',1, None, ColorTypes(8), -1, -1, False, False)
+	gc.getPlayer( pCaster.getOwner() ).changeGold( iGold )
+
+def helpSellAnimal( lpUnits ) :
+	iMinGold = 0
+	iMaxGold = 0
+	for pUnit in lpUnits :
+		iMinGold += getAnimalSellValue( pUnit ) * 75 / 100
+		iMaxGold += getAnimalSellValue( pUnit ) * 125 / 100
+	
+	if( len( lpUnits ) == 1 ) :
+		return CyTranslator().getText( 'TXT_KEY_SPELL_SELL_ONE_ANIMAL_HELP', ( iMinGold, iMaxGold ) )
+	else :
+		return CyTranslator().getText( 'TXT_KEY_SPELL_SELL_ANIMAL_HELP', ( len( lpUnits ), iMinGold, iMaxGold ) )
+
+def getAnimalSellValue( pUnit ) :
+	# Standard unit values
+	# TODO: cache
+	liUnitValues = [-1] * gc.getNumUnitInfos()
+	liUnitValues[gc.getInfoTypeForString( "UNIT_BABY_SPIDER" )] = 5
+	liUnitValues[gc.getInfoTypeForString( "UNIT_BEAR" )] = 20
+	liUnitValues[gc.getInfoTypeForString( "UNIT_CAVE_BEAR" )] = 30
+	liUnitValues[gc.getInfoTypeForString( "UNIT_ELEPHANT" )] = 40
+	liUnitValues[gc.getInfoTypeForString( "UNIT_GIANT_SPIDER" )] = 15
+	liUnitValues[gc.getInfoTypeForString( "UNIT_GORILLA" )] = 25
+	liUnitValues[gc.getInfoTypeForString( "UNIT_GRIFFON" )] = 35
+	liUnitValues[gc.getInfoTypeForString( "UNIT_LION" )] = 15
+	liUnitValues[gc.getInfoTypeForString( "UNIT_LION_PRIDE" )] = 20
+	liUnitValues[gc.getInfoTypeForString( "UNIT_PANTHER" )] = 30
+	liUnitValues[gc.getInfoTypeForString( "UNIT_POLAR_BEAR" )] = 20
+	liUnitValues[gc.getInfoTypeForString( "UNIT_SCORPION" )] = 15
+	liUnitValues[gc.getInfoTypeForString( "UNIT_TIGER" )] = 25
+	liUnitValues[gc.getInfoTypeForString( "UNIT_WOLF" )] = 10
+	liUnitValues[gc.getInfoTypeForString( "UNIT_WOLF_PACK" )] = 15
+	
+	iStdGold = liUnitValues[pUnit.getUnitType()]
+	if( iStdGold == -1 ) :
+		raise Exception( "Sell value for this animal not defined!" )
+	iLevel = pUnit.getLevel()
+	return iLevel * iStdGold
+
+# WILDERNESS end

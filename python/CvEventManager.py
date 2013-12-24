@@ -393,6 +393,39 @@ class CvEventManager:
 		else:
 			introMovie = CvIntroMovieScreen.CvIntroMovieScreen()
 			introMovie.interfaceScreen()
+		
+		# TERRAIN_FLAVOUR_TEST lfgr
+		# use CTRL-SHIFT-L to change player and see their values
+		# may take VERY long on big maps with much players
+		PLACE_SIGNS = False
+		ONLY_HUMAN_PLAYER = True
+		
+		if( PLACE_SIGNS ) :
+			for iPlayer in range( gc.getMAX_PLAYERS() ) :
+				pPlayer = gc.getPlayer( iPlayer )
+				if( pPlayer.isAlive() and not pPlayer.isBarbarian() and ( not ONLY_HUMAN_PLAYER or pPlayer.isHuman() ) ) :
+					for iPlot in range( CyMap().numPlots() ) :
+						pPlot = CyMap().plotByIndex( iPlot )
+						if( not pPlot.isPeak() and not pPlot.isWater() ) :
+							fWeight = pPlot.calcTerrainFlavourWeight( gc.getCivilizationInfo( pPlayer.getCivilizationType() ).getTerrainFlavour(), -1 )
+							CyEngine().removeLandmark( pPlot ) # avoid graphical oddities
+							CyEngine().addSign( pPlot, iPlayer, str( int( fWeight ) ) )
+#		for iPlot in range( CyMap().numPlots() ) :
+#			pPlot = CyMap().plotByIndex( iPlot )
+#			if( not pPlot.isPeak() and not pPlot.isWater() ) :
+#				fBestWeight = -1000000
+#				eBestTerrainFlavour = -1
+#				for eTerrainFlavour in range( gc.getNumTerrainFlavourInfos() ) :
+#					fWeight = pPlot.calcTerrainFlavourWeight( eTerrainFlavour, 2 )
+#					if( fWeight > fBestWeight ) :
+#						fBestWeight = fWeight
+#						eBestTerrainFlavour = eTerrainFlavour
+#				
+#				if( eBestTerrainFlavour != -1 ) :
+#					str = gc.getTerrainFlavourInfo( eBestTerrainFlavour ).getType()
+#					str = str[len("FLAVOUR_CIV_"):]
+#					CyEngine().addLandmark( pPlot, str )
+		# TERRAIN_FLAVOUR_TEST end
 
 		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_THAW):
 			iDesert = gc.getInfoTypeForString('TERRAIN_DESERT')
@@ -427,13 +460,15 @@ class CvEventManager:
 				CyGame().changeTrophyValue(t, 1)
 				sf.addPopupWB(CyTranslator().getText("TXT_KEY_FFH_INTRO",()),'art/interface/popups/FfHIntro.dds')
 
-		if CyGame().isOption(gc.getInfoTypeForString('GAMEOPTION_NO_BARBARIANS')) == False and (not CyGame().getWBMapScript()):
-			iGoblinFort = gc.getInfoTypeForString('IMPROVEMENT_GOBLIN_FORT')
-			bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-			for i in range (CyMap().numPlots()):
-				pPlot = CyMap().plotByIndex(i)
-				if pPlot.getImprovementType() == iGoblinFort:
-					bPlayer.initUnit(gc.getInfoTypeForString('UNIT_ARCHER_SCORPION_CLAN'), pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_LAIRGUARDIAN, DirectionTypes.DIRECTION_SOUTH)
+	# WILDERNESS 09/2013 lfgr / LairGuardians: Guardians added via XML
+	#	if CyGame().isOption(gc.getInfoTypeForString('GAMEOPTION_NO_BARBARIANS')) == False:
+	#		iGoblinFort = gc.getInfoTypeForString('IMPROVEMENT_GOBLIN_FORT')
+	#		bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
+	#		for i in range (CyMap().numPlots()):
+	#			pPlot = CyMap().plotByIndex(i)
+	#			if pPlot.getImprovementType() == iGoblinFort:
+	#				bPlayer.initUnit(gc.getInfoTypeForString('UNIT_ARCHER_SCORPION_CLAN'), pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_LAIRGUARDIAN, DirectionTypes.DIRECTION_SOUTH)
+	# WILDERNESS end
 
 		if (gc.getGame().getGameTurnYear() == gc.getDefineINT("START_YEAR") and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_START)):
 			if not CyGame().getWBMapScript():
@@ -588,16 +623,27 @@ class CvEventManager:
 					iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_TRAIT_ADAPTIVE')
 					triggerData = pPlayer.initTriggeredData(iEvent, true, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1)
 
-		if pPlayer.isHuman():
-			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_BARBARIAN')):
-				eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
-				iTeam = pPlayer.getTeam()
-				if eTeam.isAtWar(iTeam) == False:
-					if 2 * CyGame().getPlayerScore(iPlayer) >= 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)):
-						if iGameTurn >= 20:
-							eTeam.declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
-							if iPlayer == CyGame().getActivePlayer():
-								cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
+	# WILDERNESS 09/2013 lfgr / WildernessMisc - Also BarbarianAlly AI will declare war against barbs if too strong.
+	#	if pPlayer.isHuman():
+	#		if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_BARBARIAN')):
+	#			eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
+	#			iTeam = pPlayer.getTeam()
+	#			if eTeam.isAtWar(iTeam) == False:
+	#				if 2 * CyGame().getPlayerScore(iPlayer) >= 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)):
+	#					if iGameTurn >= 20:
+	#						eTeam.declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
+	#						if iPlayer == CyGame().getActivePlayer():
+	#							cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
+		if( pPlayer.isHuman() or gc.getGame().isOption( GameOptionTypes.GAMEOPTION_RAGING_BARBARIANS ) ) :
+			eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
+			iTeam = pPlayer.getTeam()
+			if eTeam.isAtWar(iTeam) == False:
+				if 2 * CyGame().getPlayerScore(iPlayer) >= 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)):
+					if iGameTurn >= 20:
+						eTeam.declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
+						if iPlayer == CyGame().getActivePlayer():
+							cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
+	# WILDERNESS end
 
 
 	def onEndPlayerTurn(self, argsList):
@@ -719,7 +765,11 @@ class CvEventManager:
 		pPlot = CyMap().plot(iX, iY)
 
 		if gc.getImprovementInfo(iImprovement).isUnique():
-			CyEngine().addLandmark(pPlot, CvUtil.convertToStr(gc.getImprovementInfo(iImprovement).getDescription()))
+		# lfgr fix
+		#	CyEngine().addLandmark(pPlot, CvUtil.convertToStr(gc.getImprovementInfo(iImprovement).getDescription()))
+			CyEngine().removeSign(pPlot, -1)
+			CyEngine().addSign(pPlot, -1, CvUtil.convertToStr(gc.getImprovementInfo(iImprovement).getDescription()))
+		# lfgr end
 
 			if iImprovement == gc.getInfoTypeForString('IMPROVEMENT_RING_OF_CARCER'):
 				pPlot.setMinLevel(15)

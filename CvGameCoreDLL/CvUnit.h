@@ -1030,6 +1030,26 @@ public:
 	bool isUpgradeOutsideBorders() const;
 	void changeUpgradeOutsideBorders(int iNewValue);
 	// End MNAI
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
+/************************************************************************************************/
+	int getMinWilderness() const;
+	void setMinWilderness( int iNewValue );
+	
+	int getLairPlot() const;
+	void setLairPlot( int iPlot );
+	
+	SpawnTypes getSpawnType() const;
+	void setSpawnType( SpawnTypes eNewValue );
+
+	int getExplorationLevel() const;
+	int getExplorationResultBonus() const;
+	void changeExplorationResultBonus( int iChange );
+	bool canDoExploration( CvPlot* pPlot = NULL ) const;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	virtual int AI_promotionValue(PromotionTypes ePromotion) = 0;
 
@@ -1197,6 +1217,20 @@ protected:
 	int* m_paiExtraFeatureAttackPercent;
 	int* m_paiExtraFeatureDefensePercent;
 	int* m_paiExtraUnitCombatModifier;
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
+/************************************************************************************************/
+	int m_iMinWilderness;
+
+	int m_iLairPlot;
+	
+	SpawnTypes m_eSpawnType;
+
+	int m_iExplorationResultBonus;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	bool canAdvance(const CvPlot* pPlot, int iThreshold) const;
 	void collateralCombat(const CvPlot* pPlot, CvUnit* pSkipUnit = NULL);

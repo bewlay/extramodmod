@@ -809,6 +809,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 	{
 
 //FfH: Added by Kael 07/23/2007
+
         if (pUnit->getReligion() != NO_RELIGION)
         {
 			szString.append(NEWLINE);
@@ -2260,12 +2261,60 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			szString.append(pUnit->getUnitInfo().getHelp());
 		}
 
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
+	/************************************************************************************************/
+		/* commented out for now
+		if( pUnit->canDoExploration() )
+		{
+			szString.append(NEWLINE);
+			szString.append(gDLL->getText("TXT_KEY_UNIT_EXPLORATION_LEVEL", pUnit->getExplorationLevel()));
+		}
+		*/
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
+
         if (bShift && (gDLL->getChtLvl() > 0))
         {
             szTempBuffer.Format(L"\nUnitAI Type = %s.", GC.getUnitAIInfo(pUnit->AI_getUnitAIType()).getDescription());
             szString.append(szTempBuffer);
             szTempBuffer.Format(L"\nSacrifice Value = %d.", pUnit->AI_sacrificeValue(NULL));
             szString.append(szTempBuffer);
+	/************************************************************************************************/
+	/* WILDERNESS                             09/2013                                 lfgr          */
+	/* Debug - LairUnitCounter, UnitSpawnType, CreateLair                                           */	
+	/************************************************************************************************/
+			CvPlot* pLairPlot = GC.getMapINLINE().plotByIndexINLINE( pUnit->getLairPlot() );
+			if( pLairPlot != NULL )
+			{
+				szTempBuffer.Format(L"\nLair Plot = %d|%d.", pLairPlot->getX_INLINE(), pLairPlot->getY_INLINE() );
+				szString.append(szTempBuffer);
+			}
+			szTempBuffer.Format(L"\nMin Wilderness = %d.", pUnit->getMinWilderness() );
+			szString.append(szTempBuffer);
+
+			if( pUnit->getSpawnType() != NO_SPAWN )
+			{
+				szTempBuffer.Format(L"\nSpawnInfo = %S.", GC.getSpawnInfo( pUnit->getSpawnType() ).getType() );
+				szString.append(szTempBuffer);
+				if( GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLair() != NO_IMPROVEMENT )
+				{
+					szTempBuffer.Format(L"\nCreate Lair = %s.", GC.getImprovementInfo( (ImprovementTypes) GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLair() ).getDescription() );
+					szString.append(szTempBuffer);
+					int iAge = ( GC.getGameINLINE().getGameTurn() - pUnit->getGameTurnCreated() ) * 100 / GC.getGameSpeedInfo( GC.getGameINLINE().getGameSpeedType() ).getGrowthPercent();
+					szTempBuffer.Format(L"\n  Age = %d/%d.", iAge, GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLairAge() );
+					szString.append(szTempBuffer);
+					szTempBuffer.Format(L"\n  Level = %d/%d.", pUnit->getLevel(), GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLairLevel() );
+					szString.append(szTempBuffer);
+					szTempBuffer.Format(L"\n  Plot canHaveImprovement(): %s.", pUnit->plot()->canHaveImprovement( (ImprovementTypes) GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLair() ) ? L"Yes" : L"No" );
+					szString.append(szTempBuffer);
+				}
+			}
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
         }
 	}
 }
@@ -5594,8 +5643,19 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 	}
 	else if (bShift && !bAlt && (gDLL->getChtLvl() > 0))
 	{
-		szString.append(GC.getTerrainInfo(pPlot->getTerrainType()).getDescription());
+	// LFGR_TEST
+		szString.append( "Animal Spawning: " );
+		szString.append( pPlot->bPlotAnimalValid ? L"Valid" : ( pPlot->bPlotAnimalEverValid ? L"Invalid" : L"Never valid" ) );
+		szString.append( NEWLINE );
+		szString.append( "Barb Spawning: " );
+		szString.append( pPlot->bPlotBarbValid ? L"Valid" : ( pPlot->bPlotBarbEverValid ? L"Invalid" : L"Never valid" ) );
+		szString.append( NEWLINE );
+		szString.append( CvWString::format( L"Lair unit count: %d", pPlot->getLairUnitCount() ) );
+		szString.append( NEWLINE );
+	// LFGR_TEST end
 
+		szString.append(GC.getTerrainInfo(pPlot->getTerrainType()).getDescription());
+		
 		if (pPlot->getTempTerrainTimer() > 0)
 		{
 			szString.append(CvWString::format(L" (temp terrain (%d turns left))", pPlot->getTempTerrainTimer()));
@@ -5656,6 +5716,17 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		// Canal value
 		szTempBuffer.Format(L"\nCanal Value: %d", pPlot->getCanalValue());
 		szString.append(szTempBuffer);
+		
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* Debug - PlotWilderness                                                                       */	
+	/* Original by Sephi                                                                            */
+	/************************************************************************************************/
+		szTempBuffer.Format(L"\nWilderness Value: %d", pPlot->getWilderness());
+		szString.append(szTempBuffer);
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
 
 		if(pPlot->getRouteType() != NO_ROUTE)
 		{
@@ -5739,6 +5810,28 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 	}
 	else if (!bShift && bAlt && (gDLL->getChtLvl() > 0))
 	{
+	/************************************************************************************************/
+	/* TERRAIN_FLAVOUR                        09/2013                                 lfgr          */
+	/* Debug                                                                                        */
+	/************************************************************************************************/
+		szString.append( L"\nTerrainFlavour Weights:" );
+		CvTerrainAmountCache kTerrainAmounts = pPlot->getTerrainAmounts();
+		for( int eTerrainFlavour = 0; eTerrainFlavour < GC.getNumTerrainFlavourInfos(); eTerrainFlavour++ )
+		{
+			float fWeight = pPlot->calcTerrainFlavourWeight( (TerrainFlavourTypes) eTerrainFlavour, &kTerrainAmounts );
+
+			if( fWeight > 0 )
+			{
+				CvWString sTypeString = CvWString( GC.getTerrainFlavourInfo( (TerrainFlavourTypes) eTerrainFlavour ).getType() );
+				sTypeString = sTypeString.substr( CvWString( "TERRAIN_FLAVOUR_" ).size() );
+			
+				szTempBuffer.Format(L"\n  %s: %f", sTypeString.c_str(), fWeight );
+				szString.append(szTempBuffer);
+			}
+		}
+	/************************************************************************************************/
+	/* TERRAIN_FLAVOUR                                                                END           */
+	/************************************************************************************************/
 	    if (pPlot->isOwned())
 	    {
             szTempBuffer.Format(L"\nThis player has %d area cities", pPlot->area()->getCitiesPerPlayer(pPlot->getOwnerINLINE()));
@@ -6560,10 +6653,22 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
                  GC.getGameINLINE().getActivePlayer() == NO_PLAYER ||
                  GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCivilizationType() == GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getPrereqCivilization())
                 {
+				/************************************************************************************************/
+				/* WILDERNESS                             08/2013                                 lfgr          */
+				/* WildernessMisc                                                                               */
+				/************************************************************************************************/
+				/*
                     // Super Forts begin *text* *upgrade*
 					if ((pPlot->getUpgradeProgress() > 0) || (pPlot->isBeingWorked() && !GC.getImprovementInfo(eImprovement).isUpgradeRequiresFortify()))
 					// if ((pPlot->getUpgradeProgress() > 0) || pPlot->isBeingWorked()) - Original Code
 					// Super Forts end
+				*/
+					if ( pPlot->getUpgradeProgress() > 0 || (
+							(pPlot->isBeingWorked() || GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).isOutsideBorders()) 
+							&& !GC.getImprovementInfo(eImprovement).isUpgradeRequiresFortify()))
+				/************************************************************************************************/
+				/* WILDERNESS                                                                     END           */
+				/************************************************************************************************/
                     {
                         iTurns = pPlot->getUpgradeTimeLeft(eImprovement, eRevealOwner);
                         szString.append(gDLL->getText("TXT_KEY_PLOT_IMP_UPGRADE", iTurns, GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getTextKeyWide()));
@@ -9037,6 +9142,19 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_KAMIKAZE_TEXT", kPromotionInfo.getKamikazePercent()));
 	}
+	
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/************************************************************************************************/
+	if (kPromotionInfo.getExplorationResultBonus() != 0)
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXPLORATION_RESULT_BONUS", kPromotionInfo.getExplorationResultBonus()));
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	for (iI = 0; iI < GC.getNumTerrainInfos(); ++iI)
 	{
@@ -9497,7 +9615,16 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 }
 
 //FfH: Added by Kael 07/23/2007
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+/* old
 void CvGameTextMgr::parseSpellHelp(CvWStringBuffer &szBuffer, SpellTypes eSpell, const wchar* pcNewline)
+*/
+void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell, const wchar* pcNewline, std::vector<CvUnit*>* pvpUnits )
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
 {
 	PROFILE_FUNC();
 
@@ -9876,6 +10003,40 @@ void CvGameTextMgr::parseSpellHelp(CvWStringBuffer &szBuffer, SpellTypes eSpell,
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMOBILE_TURNS", kSpellInfo.getImmobileTurns()));
     }
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+	if( pvpUnits != NULL && !CvString( GC.getSpellInfo( eSpell ).getPyHelp() ).empty() )
+	{
+		// Get owner of the units
+		int iOwner = -1;
+		int* aiUnitIDs = new int[pvpUnits->size()];
+		for( uint i = 0; i < pvpUnits->size(); i++ )
+		{
+			if( iOwner == -1 )
+				iOwner = pvpUnits->at( i )->getOwnerINLINE();
+			else
+				FAssertMsg( pvpUnits->at( i )->getOwnerINLINE() == iOwner, "Units with different onwers selected!" );
+			aiUnitIDs[i] = pvpUnits->at( i )->getID();
+		}
+
+		if( iOwner != -1 )
+		{
+			CyArgsList argsList;
+			argsList.add( (int) eSpell );
+			argsList.add( (int) iOwner );
+			argsList.add( aiUnitIDs, pvpUnits->size() );
+		
+			CvWString szHelp;
+			gDLL->getPythonIFace()->callFunction(PYSpellModule, "getSpellHelp", argsList.makeFunctionArgs(), &szHelp);
+		
+			szBuffer.append( pcNewline );
+			szBuffer.append( szHelp );
+		}
+	}
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
     if (kSpellInfo.isSacrificeCaster())
     {
         szBuffer.append(pcNewline);
@@ -10065,7 +10226,19 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 
 		for (iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
 		{
+		/************************************************************************************************/
+		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* WildernessFix                                                                                */
+		/* Only display really affected improvements                                                    */
+		/************************************************************************************************/
+		/*
 			if (GC.getImprovementInfo((ImprovementTypes)iI).getImprovementUpgrade() != NO_IMPROVEMENT)
+		*/
+			if (GC.getImprovementInfo((ImprovementTypes)iI).getImprovementUpgrade() != NO_IMPROVEMENT
+					&& ( !GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo((ImprovementTypes)iI).getImprovementUpgrade()).isOutsideBorders() || GC.getImprovementInfo((ImprovementTypes)iI).isUpgradeRequiresFortify()))
+		/************************************************************************************************/
+		/* WILDERNESS                                                                     END           */
+		/************************************************************************************************/
 			{
 				szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_CIVIC_IMPROVEMENT_UPGRADE", kCivic.getImprovementUpgradeRateModifier()).c_str());
 				CvWString szImprovement;
@@ -12766,6 +12939,20 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit, bool
 			}
 		}
 	}
+	
+/************************************************************************************************/
+/* WILDERNESS                             10/2013                                 lfgr          */
+/* PromotionCaptureApply                                                                        */
+/************************************************************************************************/
+	if( kUnitInfo.getPromotionCaptureApply() != NO_PROMOTION )
+	{
+		szBuffer.append(NEWLINE);
+		CvWString szTmp = CvWString( GC.getPromotionInfo( (PromotionTypes) kUnitInfo.getPromotionCaptureApply() ).getType() );
+		szBuffer.append( gDLL->getText("TXT_KEY_PEDIA_PROMOTION_CAPTURE_APPLY", GC.getPromotionInfo( (PromotionTypes) kUnitInfo.getPromotionCaptureApply() ).getDescription(), szTmp.c_str() ) );
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (!bCivilopediaText && GC.getGameINLINE().getActivePlayer() != NO_PLAYER)
 	{
@@ -18059,11 +18246,29 @@ void CvGameTextMgr::setImprovementHelp(CvWStringBuffer &szBuffer, ImprovementTyp
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_VISIBILITY_CHANGE", info.getVisibilityChange()));
 	}
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+/*
 	if (info.getSpawnUnitType() != NO_UNIT)
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_IMPROVEMENT_SPAWN_UNIT_TYPE", GC.getUnitInfo((UnitTypes)info.getSpawnUnitType()).getDescription()));
 	}
+*/
+	for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+	{
+		if( info.getSpawnTypes( eSpawn ) )
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append( gDLL->getText( "TXT_KEY_IMPROVEMENT_SPAWN_UNITS" ) );
+			break;
+		}
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	if (!CvWString(info.getHelp()).empty())
     {
         szBuffer.append(NEWLINE);

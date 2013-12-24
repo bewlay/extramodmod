@@ -3169,7 +3169,30 @@ bool CvSelectionGroup::calculateIsStranded()
 			}
 
 			// units guarding lairs shouldnt be flagged as stranded
+		/************************************************************************************************/
+		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* ImprovementSpawnTypes                                                                        */
+		/************************************************************************************************/
+		/*
 			if (GC.getImprovementInfo(plot()->getImprovementType()).getSpawnUnitType() == getHeadUnit()->getUnitType())
+		*/
+			bool bValid = false;
+			for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+			{
+				if( GC.getImprovementInfo( plot()->getImprovementType() ).getSpawnTypes( eSpawn ) )
+				{
+					if( GC.getSpawnInfo( (SpawnTypes) eSpawn ).getNumSpawnUnits( getHeadUnit()->getUnitType() ) > 0 )
+					{
+						bValid = true;
+						break;
+					}
+				}
+			}
+		
+			if( !bValid )
+		/************************************************************************************************/
+		/* WILDERNESS                                                                     END           */
+		/************************************************************************************************/
 			{
 				return false;
 			}

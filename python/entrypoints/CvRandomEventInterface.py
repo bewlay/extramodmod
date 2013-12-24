@@ -359,11 +359,13 @@ def applyExploreLairDepths1(argsList):
 	pPlayer = gc.getPlayer(iPlayer)
 	pUnit = pPlayer.getUnit(kTriggeredData.iUnitId)
 	iRnd = CyGame().getSorenRandNum(100, "Explore Lair")
-	if iRnd < 50:
-		cf.exploreLairBigBad(pUnit)
-	if iRnd >= 50:
-		cf.exploreLairBigGood(pUnit)
-
+# WILDERNESS 08/2013 lfgr / WildernessExploration
+#	if iRnd < 50:
+#		cf.exploreLairBigBad(pUnit)
+#	if iRnd >= 50:
+#		cf.exploreLairBigGood(pUnit)
+	cf.exploreLair( pUnit, True )
+# WILDERNESS end
 def applyExploreLairDwarfVsLizardmen1(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
