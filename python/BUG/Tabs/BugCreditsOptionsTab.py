@@ -27,6 +27,7 @@ credits = [
 			"Apeiron - Building changes",
 			"Asaf - Makefile",
 			"Bobchillingworth - Extra leaders suggestions",
+			"Calavente - French translation, feedback, suggestions",
 			"Caveman 2 Cosmos team - Resource art",
 			"Danny Daemonic - Makefile",
 			"Exmorphis - Testing",
