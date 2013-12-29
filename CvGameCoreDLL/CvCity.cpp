@@ -7484,9 +7484,9 @@ void CvCity::changeBonusGoodHealth(int iChange)
 	if (iChange != 0)
 	{
 		m_iBonusGoodHealth += iChange;
-		// Removed by Terkhen: Given the calls to changeBonusGoodHealth is possible to get a negative bonus to health.
-		// FAssert(getBonusGoodHealth() >= 0);
-		// FAssertMsg(getBonusGoodHealth() >= 0, "getBonusGoodHealth is expected to be >= 0");
+		FAssert(getBonusGoodHealth() >= 0);
+
+		FAssertMsg(getBonusGoodHealth() >= 0, "getBonusGoodHealth is expected to be >= 0");
 
 		AI_setAssignWorkDirty(true);
 
