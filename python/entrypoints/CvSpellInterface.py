@@ -1163,10 +1163,10 @@ def spellEntertain(caster):
 		pPlayer.changeGold(iGold)
 		szBuffer = CyTranslator().getText("TXT_KEY_MESSAGE_ENTERTAIN_GOOD", (iGold, ))
 		CyInterface().addMessage(iPlayer,true,25,szBuffer,'',1,'Art/Interface/Buttons/Spells/Entertain.dds',ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
-		iGold = iGold * -1
-		pPlayer2.changeGold(iGold)
 		szBuffer = CyTranslator().getText("TXT_KEY_MESSAGE_ENTERTAIN_BAD", (iGold, ))
 		CyInterface().addMessage(iPlayer2,true,25,szBuffer,'',1,'Art/Interface/Buttons/Spells/Entertain.dds',ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
+		iGold = iGold * -1
+		pPlayer2.changeGold(iGold)
 	pCity.changeHappinessTimer(2)
 
 def reqEscape(caster):
@@ -3284,12 +3284,13 @@ def reqStasis(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 
 	if pPlayer.isHuman() == False:
-		if pPlayer.getNumCities() < 5:
-			return False
+#		if pPlayer.getNumCities() < 5:
+#			return False
 		iTeam = gc.getPlayer(caster.getOwner()).getTeam()
 		eTeam = gc.getTeam(iTeam)
 		if eTeam.getAtWarCount(True) == 0:
 			return False
+		## ToDo - dont cast if suffering from Blight effects - check pcity.getEspionageHealthCounter() for the capital
 	return True
 
 def spellStasis(caster):

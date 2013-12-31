@@ -1916,7 +1916,7 @@
 			<Type>UNIT_ANGEL</Type>
 			<Combat>UNITCOMBAT_MELEE</Combat>
 			<Domain>DOMAIN_LAND</Domain>
-			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+			<DefaultUnitAI>UNITAI_ATTACK_CITY</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_ANGEL</Description>
 			<Civilopedia>TXT_KEY_UNIT_ANGEL_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_ANGEL_STRATEGY</Strategy>
@@ -15409,8 +15409,8 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_WAR_TORTOISE</Description>
-			<Civilopedia>TXT_KEY_UNIT_WAR_ELEPHANT_PEDIA</Civilopedia>
-			<Strategy>TXT_KEY_UNIT_WAR_ELEPHANT_STRATEGY</Strategy>
+			<Civilopedia>TXT_KEY_UNIT_WAR_TORTOISE_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_UNIT_WAR_TORTOISE_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
 			<bMilitarySupport>1</bMilitarySupport>

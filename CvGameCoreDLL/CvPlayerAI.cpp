@@ -4142,6 +4142,11 @@ int CvPlayerAI::AI_targetCityValue(CvCity* pCity, bool bRandomize, bool bIgnoreA
 		iValue *= iAttitudeMod;
 		iValue /= 3;
 	}
+
+	if (pCity->isAutoRaze())
+	{
+		iValue /= 10;
+	}
 	// End MNAI
 
 	return iValue;
@@ -5758,6 +5763,10 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 			if (GC.getPromotionInfo((PromotionTypes)iI).getTechPrereq() == eTech)
 			{
 				iPromotionValue += 50;
+				if (GC.getPromotionInfo((PromotionTypes)iI).getMovesChange() > 0) //extra moves is extremely valuable so we give those promotions a bonus
+				{
+					iPromotionValue += (bWarPlan ? 250 : 50);
+				}
 			}
 		}
 	}
@@ -5991,11 +6000,13 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					//iCivicTechValue += std::min((4000 * (GC.getGameINLINE().getCurrentPeriod() + 1)), (250 * (iNewCivicValue - (iCurrentCivicValue - 1))));
 					iCivicTechValue += std::min((5000 * (GC.getGameINLINE().getCurrentPeriod() + 1)), (250 * (iNewCivicValue - (iCurrentCivicValue - 1))));
 				}
-
+				
+				/*
 				if (GC.getCivicInfo(eCurrCivic).getAIWeight() < 0)
 				{
 					iCivicTechValue *= 2;
 				}
+				*/
 			}
 			
 			/*
@@ -7133,8 +7144,9 @@ int CvPlayerAI::AI_techUnitValue( TechTypes eTech, int iPathLength, bool &bEnabl
 					}
 				}
 
-				// dont value units that can't be built (ie, War Elephants)
-				if (kLoopUnit.getProductionCost() == -1)
+				// dont value units that can't be built
+				// First check is for units that have no production cost (ie, Elephants). Second is for special units (ie, War Elephants)
+				if ((kLoopUnit.getProductionCost() == -1) || (kLoopUnit.getMinLevel() == 1))
 				{
 					continue;
 				}
@@ -23277,9 +23289,11 @@ int CvPlayerAI::AI_getStrategyHash() const
 
 	// BBAI TODO: Integrate Dagger with new conquest victory strategy, have Dagger focus on early rushes
     //dagger
-	if( !(AI_isDoVictoryStrategy(AI_VICTORY_CULTURE2)) 
-	 && !(m_iStrategyHash & AI_STRATEGY_MISSIONARY)
-     && (iCurrentEra <= (2+(iNonsense%2))) && (iCloseTargets > 0) )
+	if( !(AI_isDoVictoryStrategy(AI_VICTORY_CULTURE2)) && 
+		!(AI_isDoVictoryStrategy(AI_VICTORY_ALTAR3)) &&
+		!(AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY3)) &&
+		!(m_iStrategyHash & AI_STRATEGY_MISSIONARY) &&
+		(iCurrentEra <= (2+(iNonsense%2))) && (iCloseTargets > 0) )
     {	    
 	    int iDagger = 0;
 	    iDagger += 12000 / std::max(100, (50 + GC.getLeaderHeadInfo(getPersonalityType()).getMaxWarRand()));
@@ -23398,7 +23412,11 @@ int CvPlayerAI::AI_getStrategyHash() const
 /************************************************************************************************/
 /* REVOLUTION_MOD                          END                                                  */
 /************************************************************************************************/
-        
+        if (AI_isDoVictoryStrategy(AI_VICTORY_ALTAR2) || AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY2))
+		{
+			iDagger -= 50;
+		}
+
         if (iDagger >= AI_DAGGER_THRESHOLD)
         {
             m_iStrategyHash |= AI_STRATEGY_DAGGER;            
