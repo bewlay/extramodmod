@@ -3,7 +3,9 @@ syntax: glob
 dev
 *.bat
 *.lnk
+*.FPK
 .hgignore
+Art\Movies
 CvGameCoreDLL.dll
 CvGameCoreDLL/Makefile.settings
 CvGameCoreDLL/*CvGameCoreDLL.opensdf
@@ -18,5 +20,4 @@ CvGameCoreDLL/comment_template.txt
 CvGameCoreDLL/Assert
 CvGameCoreDLL/Debug
 CvGameCoreDLL/Profile
-CvGameCoreDLL/Release
 CvGameCoreDLL/Release
