@@ -5,7 +5,7 @@ dev
 *.lnk
 .hgignore
 CvGameCoreDLL.dll
-CvGameCoreDLL/Makefile-Vars
+CvGameCoreDLL/Makefile.settings
 CvGameCoreDLL/*CvGameCoreDLL.opensdf
 CvGameCoreDLL/*CvGameCoreDLL.sdf
 CvGameCoreDLL/*CvGameCoreDLL.sln
@@ -14,12 +14,8 @@ CvGameCoreDLL/CvGameCoreDLL.vcxproj
 CvGameCoreDLL/CvGameCoreDLL.vcxproj.user
 CvGameCoreDLL/*.pdb
 CvGameCoreDLL/depends
-CvGameCoreDLL/Makefile
-CvGameCoreDLL/bin
 CvGameCoreDLL/comment_template.txt
 CvGameCoreDLL/Assert
 CvGameCoreDLL/Debug
 CvGameCoreDLL/Profile
 CvGameCoreDLL/Release
-CvGameCoreDLL/Boost-1.32.0
-CvGameCoreDLL/Python24
