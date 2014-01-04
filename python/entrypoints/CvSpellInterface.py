@@ -634,8 +634,22 @@ def reqCallForm(caster):
 	return True
 
 def spellCallForm(caster):
+	#Call form also allows to escape from cages.
 	pPlayer = gc.getPlayer(caster.getOwner())
 	pUnit = pPlayer.getUnit(caster.getSummoner())
+	pUnitPlot = pUnit.plot()
+	if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pUnitPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
+		pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
+		#Now we have to check if the cage has to be eliminated.
+		bRemoveCage = True
+		for i in range(pUnitPlot.getNumUnits()):
+			pLoopUnit = pUnitPlot.getUnit(i)
+			if pLoopUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')):
+				bRemoveCage = False
+				break
+		if bRemoveCage:
+			pUnitPlot.setImprovementType(-1)
+
 	pPlot = caster.plot()
 	pUnit.setXY(pPlot.getX(), pPlot.getY(), False, True, True)
 
@@ -1149,10 +1163,10 @@ def spellEntertain(caster):
 		pPlayer.changeGold(iGold)
 		szBuffer = CyTranslator().getText("TXT_KEY_MESSAGE_ENTERTAIN_GOOD", (iGold, ))
 		CyInterface().addMessage(iPlayer,true,25,szBuffer,'',1,'Art/Interface/Buttons/Spells/Entertain.dds',ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
-		iGold = iGold * -1
-		pPlayer2.changeGold(iGold)
 		szBuffer = CyTranslator().getText("TXT_KEY_MESSAGE_ENTERTAIN_BAD", (iGold, ))
 		CyInterface().addMessage(iPlayer2,true,25,szBuffer,'',1,'Art/Interface/Buttons/Spells/Entertain.dds',ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
+		iGold = iGold * -1
+		pPlayer2.changeGold(iGold)
 	pCity.changeHappinessTimer(2)
 
 def reqEscape(caster):
@@ -1160,11 +1174,28 @@ def reqEscape(caster):
 		return False
 	pPlayer = gc.getPlayer(caster.getOwner())
 	if pPlayer.isHuman() == False:
+		#Units imprisoned in a cage will try to escape.
+		if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
+			return True
 		if caster.getDamage() >= 50:
 			return False
 	return True
 
 def spellEscape(caster):
+	#Escape also allows to escape from cages.
+	pPlot = caster.plot()
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
+		caster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
+		#Now we have to check if the cage has to be eliminated.
+		bRemoveCage = True
+		for i in range(pPlot.getNumUnits()):
+			pUnit = pPlot.getUnit(i)
+			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')):
+				bRemoveCage = False
+				break
+		if bRemoveCage:
+			pPlot.setImprovementType(-1)
+
 	player = caster.getOwner()
 	pPlayer = gc.getPlayer(player)
 	pCity = pPlayer.getCapitalCity()
@@ -1952,15 +1983,15 @@ def spellPillarofFire(caster):
 		for i in range(pBestPlot.getNumUnits()):
 			pUnit = pBestPlot.getUnit(i)
 			pUnit.doDamage(30, 50, caster, gc.getInfoTypeForString('DAMAGE_FIRE'), True)
-		if (pPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_FOREST') or pPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_JUNGLE')):
+		if (pBestPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_FOREST') or pBestPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_JUNGLE')):
 			bValid = True
-			iImprovement = pPlot.getImprovementType()
+			iImprovement = pBestPlot.getImprovementType()
 			if iImprovement != -1 :
 				if gc.getImprovementInfo(iImprovement).isPermanent():
 					bValid = False
 			if bValid:
 				if CyGame().getSorenRandNum(100, "Flames Spread") < gc.getDefineINT('FLAMES_SPREAD_CHANCE'):
-					pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_SMOKE'))
+					pBestPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_SMOKE'))
 		CyEngine().triggerEffect(gc.getInfoTypeForString('EFFECT_PILLAR_OF_FIRE'),pBestPlot.getPoint())
 
 
@@ -2008,8 +2039,17 @@ def reqMarchOfTheTrees(caster):
 	if pPlayer.isHuman() == False:
 		iTeam = gc.getPlayer(caster.getOwner()).getTeam()
 		eTeam = gc.getTeam(iTeam)
-		if eTeam.getAtWarCount(True) < 2:
+		
+		iEnemyPower = 0
+		for i in range(gc.getMAX_CIV_PLAYERS()):
+			if (gc.getPlayer(i).isAlive()):
+				if eTeam.isAtWar(gc.getPlayer(i).getTeam()):
+					iEnemyPower += gc.getPlayer(i).getPower()
+		
+#		if eTeam.getAtWarCount(True) < 2:
+		if iEnemyPower < ((pPlayer.getPower() * 150) / 100):
 			return False
+# TODO - check for number of forests
 	return True
 
 def spellMarchOfTheTrees(caster):
@@ -2413,6 +2453,12 @@ def spellRecruitNightwatch(caster):
 	newUnit = pPlayer.initUnit(iUnit, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_NORTH)
 	newUnit.finishMoves()
 	newUnit.setHasCasted(True)
+
+def reqReleaseFromCage(caster):
+	# The unit trying to release others from cages must not be held.
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')):
+		return False
+	return True
 
 def spellReleaseFromCage(caster):
 	pPlot = caster.plot()
@@ -2842,7 +2888,15 @@ def reqSanctuary(caster):
 	if not pPlayer.isHuman():
 		iTeam = gc.getPlayer(caster.getOwner()).getTeam()
 		eTeam = gc.getTeam(iTeam)
-		if eTeam.getAtWarCount(True) < 2:
+		
+		iEnemyPower = 0
+		for i in range(gc.getMAX_CIV_PLAYERS()):
+			if (gc.getPlayer(i).isAlive()):
+				if eTeam.isAtWar(gc.getPlayer(i).getTeam()):
+					iEnemyPower += gc.getPlayer(i).getPower()
+		
+#		if eTeam.getAtWarCount(True) < 2:
+		if iEnemyPower < ((pPlayer.getPower() * 150) / 100):
 			return False
 	return True
 
@@ -3056,6 +3110,20 @@ def spellRiftCross(pCaster):
 						pDestinationUnit = pLoopRiftUnit
 						break
 				break
+
+	#A unit crossing a rift from inside a cage must be freed from it
+	if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
+		pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
+		#Now we have to check if the cage has to be eliminated.
+		bRemoveCage = True
+		for i in range(pPlot.getNumUnits()):
+			pUnit = pPlot.getUnit(i)
+			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')):
+				bRemoveCage = False
+				break
+		if bRemoveCage:
+			pPlot.setImprovementType(-1)
+
 	pCaster.setXY(pDestinationUnit.getX(), pDestinationUnit.getY(), False, True, True)
 	pRiftUnit.setBaseCombatStr(pRiftUnit.baseCombatStr() - 1)
 	if pRiftUnit.baseCombatStr() == 0:
@@ -3216,12 +3284,13 @@ def reqStasis(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 
 	if pPlayer.isHuman() == False:
-		if pPlayer.getNumCities() < 5:
-			return False
+#		if pPlayer.getNumCities() < 5:
+#			return False
 		iTeam = gc.getPlayer(caster.getOwner()).getTeam()
 		eTeam = gc.getTeam(iTeam)
 		if eTeam.getAtWarCount(True) == 0:
 			return False
+		## ToDo - dont cast if suffering from Blight effects - check pcity.getEspionageHealthCounter() for the capital
 	return True
 
 def spellStasis(caster):
@@ -3364,7 +3433,7 @@ def spellTakeEquipmentPromotion(caster,unit):
 	if gc.getPlayer( iPlayer ).isHuman():
 		iGela = gc.getInfoTypeForString( 'PROMOTION_GELA' )
 		if iProm == iGela :
-			if ( not gc.getPlayer( iPlayer ).getCivilizationType() == gc.getInfoTypeForString( 'CIVILIZATION_INFERNALS' ) ):
+			if ( not gc.getPlayer( iPlayer ).getCivilizationType() == gc.getInfoTypeForString( 'CIVILIZATION_INFERNAL' ) ):
 				iEvent = CvUtil.findInfoTypeNum( gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_GELA' )
 				if( gc.getGame().getScenarioCounter() == 0 ) :
 					triggerData = gc.getPlayer( iPlayer ).initTriggeredData( iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1 )
@@ -3420,7 +3489,7 @@ def spellTakeEquipmentUnit(caster,unit):
 	if gc.getPlayer( iPlayer ).isHuman():
 		iGela = gc.getInfoTypeForString( 'PROMOTION_GELA' )
 		if iProm == iGela :
-			if ( not gc.getPlayer( iPlayer ).getCivilizationType() == gc.getInfoTypeForString( 'CIVILIZATION_INFERNALS' ) ):
+			if ( not gc.getPlayer( iPlayer ).getCivilizationType() == gc.getInfoTypeForString( 'CIVILIZATION_INFERNAL' ) ):
 				iEvent = CvUtil.findInfoTypeNum( gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_GELA' )
 				if( gc.getGame().getScenarioCounter() == 0 ) :
 					triggerData = gc.getPlayer( iPlayer ).initTriggeredData( iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1 )
@@ -4471,6 +4540,7 @@ def reqFertility(caster):
 
 	iCow    = gc.getInfoTypeForString('BONUS_COW')
 	iSheep  = gc.getInfoTypeForString('BONUS_SHEEP')
+ 	iBison  = gc.getInfoTypeForString('BONUS_BISON')
  	iPig    = gc.getInfoTypeForString('BONUS_PIG')
 
 	iBanana = gc.getInfoTypeForString('BONUS_BANANA')
@@ -4485,7 +4555,7 @@ def reqFertility(caster):
  	iFish   = gc.getInfoTypeForString('BONUS_FISH')
  	iShrimp = gc.getInfoTypeForString('BONUS_SHRIMP')
 
-	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or pBonus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish or pBonus == iShrimp:
+	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iBison or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or pBonus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish or pBonus == iShrimp:
 		return True
 
 	return False
@@ -4504,6 +4574,7 @@ def spellFertility(caster):
 
 	iCow    = gc.getInfoTypeForString('BONUS_COW')
 	iSheep  = gc.getInfoTypeForString('BONUS_SHEEP')
+	iBison  = gc.getInfoTypeForString('BONUS_BISON')
  	iPig    = gc.getInfoTypeForString('BONUS_PIG')
 
 	iBanana = gc.getInfoTypeForString('BONUS_BANANA')
@@ -4528,6 +4599,8 @@ def spellFertility(caster):
   	elif pBonus == iCow:
  		pPlot.setBonusType(iSheep)
  	elif pBonus == iSheep:
+ 		pPlot.setBonusType(iBison)
+ 	elif pBonus == iBison:
  		pPlot.setBonusType(iPig)
  	elif pBonus == iPig:
  		pPlot.setBonusType(iCow)

@@ -60,7 +60,9 @@ unsigned short CvRandom::get(unsigned short usNum, const TCHAR* pszLog)
 			{
 				TCHAR szOut[1024];
 				sprintf(szOut, "Rand = %d on %d (%s)\n", getSeed(), GC.getGameINLINE().getTurnSlice(), pszLog);
-				gDLL->messageControlLog(szOut);
+				TCHAR szFileName[1024];
+				sprintf(szFileName, "SynchLog - %S.txt", GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getName());
+				gDLL->logMsg(szFileName, szOut, false, false);
 			}
 		}
 	}

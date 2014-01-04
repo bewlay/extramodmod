@@ -73,7 +73,7 @@
 			<bDiploVote>0</bDiploVote>
 			<bPermanent>0</bPermanent>
 			<iPopulationPercentLead>25</iPopulationPercentLead>
-			<iLandPercent>78</iLandPercent>
+			<iLandPercent>70</iLandPercent>
 			<iMinLandPercent>51</iMinLandPercent>
 			<iReligionPercent>0</iReligionPercent>
 			<CityCulture>NONE</CityCulture>
@@ -113,7 +113,7 @@
 			<iPopulationPercentLead>0</iPopulationPercentLead>
 			<iLandPercent>0</iLandPercent>
 			<iMinLandPercent>0</iMinLandPercent>
-			<iReligionPercent>80</iReligionPercent>
+			<iReligionPercent>75</iReligionPercent>
 			<CityCulture>NONE</CityCulture>
 			<iNumCultureCities>0</iNumCultureCities>
 			<iTotalCultureRatio>0</iTotalCultureRatio>

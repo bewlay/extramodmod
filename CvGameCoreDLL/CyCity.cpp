@@ -2881,6 +2881,11 @@ void CyCity::setCivilizationType(int iNewValue)
 		m_pCity->setCivilizationType(iNewValue);
 }
 
+int CyCity::getPlotRadius() const
+{
+	return m_pCity ? m_pCity->getPlotRadius() : 0;
+}
+
 void CyCity::setPlotRadius(int iNewValue)
 {
 	if (m_pCity)

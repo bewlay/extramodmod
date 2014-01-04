@@ -1125,6 +1125,7 @@ void CvCityAI::AI_chooseProduction()
 	int iWaterPercent = AI_calculateWaterWorldPercent();
 	
 	int iBuildUnitProb = AI_buildUnitProb();
+	iBuildUnitProb /= kPlayer.AI_isDoStrategy(AI_STRATEGY_ECONOMY_FOCUS) ? 2 : 1; // K-Mod
     
     int iExistingWorkers = kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_WORKER);
     int iNeededWorkers = kPlayer.AI_neededWorkers(pArea);
@@ -1930,22 +1931,35 @@ void CvCityAI::AI_chooseProduction()
 		}
 	}
 
-	
-	if (iProductionRank <= std::max(1, (iNumCities / 3)))
+	bool bSuperCity = false;
+	if (getPopulation() > 5)
 	{
-		if (AI_chooseUnit(UNITAI_HERO, (GET_TEAM(getTeam()).getTotalPopulation() * (iNumCities + 1))))
+		if (getYieldRate(YIELD_PRODUCTION) > (getPopulation() * 3))
 		{
-			if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose UNITAI_HERO", getName().GetCString());
-			return;
+			if( gCityLogLevel >= 2 ) logBBAI("      City %S is a SuperCity (%d production)", getName().GetCString(), getYieldRate(YIELD_PRODUCTION));
+			bSuperCity = true;
 		}
 	}
 
 	// Tholal ToDo: figure out a threshold for this function so we dont build useless wonders
 	if (iProductionRank <= std::max(1, (iNumCities / 3)))
 	{
-		if (AI_chooseBuilding(BUILDINGFOCUS_WORLDWONDER, ((iNumCities* 2) + 1)))
+		int iWonderTime = ((kPlayer.AI_getNumRealCities() * 2) + 1) * (bSuperCity ? 4 : 1);
+		if( gCityLogLevel > 3 ) logBBAI("checking for wonder %d", iWonderTime);
+		if (AI_chooseBuilding(BUILDINGFOCUS_WORLDWONDER, iWonderTime))
 		{
 			if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose QUICK WONDER", getName().GetCString());
+			return;
+		}
+	}
+
+	if (iProductionRank <= std::max(1, (iNumCities / 3)))
+	{
+		int iHeroOdds = (GET_TEAM(getTeam()).getTotalPopulation() * (iNumCities + 1)) * (bSuperCity ? 5 : 2);
+		if( gCityLogLevel > 3 ) logBBAI("checking for hero %d", iHeroOdds);
+		if (AI_chooseUnit(UNITAI_HERO, iHeroOdds))
+		{
+			if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose UNITAI_HERO", getName().GetCString());
 			return;
 		}
 	}
@@ -2025,7 +2039,7 @@ void CvCityAI::AI_chooseProduction()
 				{
 					if (pWaterArea != NULL)
 					{
-						if (kPlayer.AI_totalAreaUnitAIs(pWaterArea, UNITAI_ATTACK_SEA) < iNumCitiesInArea)
+						if (kPlayer.AI_totalAreaUnitAIs(pWaterArea, UNITAI_ATTACK_SEA) < (kPlayer.countNumCoastalCities() / (bLandWar ? 2: 1)))
 						{
 							if( gCityLogLevel >= 2 ) logBBAI("      City %S uses minimal naval", getName().GetCString());
 							if (AI_chooseUnit(UNITAI_ATTACK_SEA))
@@ -2185,7 +2199,7 @@ void CvCityAI::AI_chooseProduction()
 		}
 	}
 
-	int iNeededFloatingDefenders = (isBarbarian() || bCrushStrategy) ?  0 : kPlayer.AI_getTotalFloatingDefendersNeeded(pArea);
+	int iNeededFloatingDefenders = ((isBarbarian() || bCrushStrategy) ?  0 : AI_neededFloatingDefenders()); //kPlayer.AI_getTotalFloatingDefendersNeeded(pArea);
  	int iTotalFloatingDefenders = (isBarbarian() ? 0 : kPlayer.AI_getTotalFloatingDefenders(pArea));
 	
 	UnitTypeWeightArray floatingDefenderTypes;
@@ -2338,10 +2352,10 @@ void CvCityAI::AI_chooseProduction()
 	}
 
 	// BBAI TODO: Check that this works to produce early rushes on tight maps
-	if ((!bGetBetterUnits && (bIsCapitalArea) && (iAreaBestFoundValue < (iMinFoundValue * 2))) ||
-		(kPlayer.AI_isDoStrategy(AI_STRATEGY_DAGGER)) ||
-		bAggressiveAI ||
-		kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST1))
+	if ((!bGetBetterUnits && (bIsCapitalArea) && (iAreaBestFoundValue < (iMinFoundValue * 2))) || // units for expansion
+		kPlayer.AI_isDoStrategy(AI_STRATEGY_DAGGER) || // Dagger strategy
+		bAggressiveAI || // Aggressive AI
+		(kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST1) && bWarPlan)) // Conquest strat plus warplan
 	{
 		//Building city hunting stack.
 
@@ -3407,12 +3421,15 @@ void CvCityAI::AI_chooseProduction()
 		FAssertMsg(false, "AI_bestSpreadUnit should provide a valid unit when it returns true");
 	}
 		
-	if (iTotalFloatingDefenders < iNeededFloatingDefenders && (!bFinancialTrouble || bLandWar))
+	if (iTotalFloatingDefenders < iNeededFloatingDefenders)
 	{
-		if (AI_chooseLeastRepresentedUnit(floatingDefenderTypes, 50))
+		if (!bFinancialTrouble || bLandWar)
 		{
-			if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose floating defender 2", getName().GetCString());
-			return;
+			if (AI_chooseLeastRepresentedUnit(floatingDefenderTypes, 50))
+			{
+				if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose floating defender 2", getName().GetCString());
+				return;
+			}
 		}
 	}
 	
@@ -4165,7 +4182,8 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync, AdvisorTypes
 		{
 			if ((eIgnoreAdvisor == NO_ADVISOR) || (GC.getUnitInfo(eLoopUnit).getAdvisorType() != eIgnoreAdvisor))
 			{
-				if (!isHuman() || (GC.getUnitInfo(eLoopUnit).getDefaultUnitAIType() == eUnitAI))
+				//if (!isHuman() || (GC.getUnitInfo(eLoopUnit).getDefaultUnitAIType() == eUnitAI))
+				if (GC.getUnitInfo(eLoopUnit).getUnitAIType(eUnitAI) || (GC.getUnitInfo(eLoopUnit).getDefaultUnitAIType() == eUnitAI))
 				{
 					if (!(bGrowMore && isFoodProduction(eLoopUnit)))
 					{
@@ -4207,7 +4225,8 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync, AdvisorTypes
 		{
 			if ((eIgnoreAdvisor == NO_ADVISOR) || (GC.getUnitInfo(eLoopUnit).getAdvisorType() != eIgnoreAdvisor))
 			{
-				if (!isHuman() || (GC.getUnitInfo(eLoopUnit).getDefaultUnitAIType() == eUnitAI))
+				//if (!isHuman() || (GC.getUnitInfo(eLoopUnit).getDefaultUnitAIType() == eUnitAI))
+				if (GC.getUnitInfo(eLoopUnit).getUnitAIType(eUnitAI) || (GC.getUnitInfo(eLoopUnit).getDefaultUnitAIType() == eUnitAI))
 				{
 					if (!(bGrowMore && isFoodProduction(eLoopUnit)))
 					{
@@ -4217,7 +4236,8 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync, AdvisorTypes
 
 							if ((iValue > ((iBestOriginalValue * 2) / 3)) && ((eUnitAI != UNITAI_EXPLORE) || (iValue >= iBestOriginalValue)))
 							{
-								if (GC.getUnitInfo(eLoopUnit).getUnitAIType(eUnitAI))
+								//if (GC.getUnitInfo(eLoopUnit).getUnitAIType(eUnitAI))
+								// Tholal Note - this is already checked just a few lines up. Not sure why we're doing it again here.
 								{
 									iValue *= (getProductionExperience(eLoopUnit) + 10);
 									iValue /= 10;
@@ -8086,6 +8106,12 @@ void CvCityAI::AI_getYieldMultipliers( int &iFoodMultiplier, int &iProductionMul
 		iCommerceMultiplier -= 10;
 	}
 
+	if (kPlayer.AI_isDoStrategy(AI_STRATEGY_ECONOMY_FOCUS))
+	{
+		iProductionMultiplier -= 10;
+		iCommerceMultiplier += 20;
+	}
+		
 	if (iFoodMultiplier < 100)
 	{
 		iFoodMultiplier = 10000 / (200 - iFoodMultiplier);
@@ -9570,7 +9596,7 @@ void CvCityAI::AI_doHurry(bool bForce)
 				{
 						if( gCityLogLevel >= 2 )
 						{
-							logBBAI("      City %S hurry to complete Victory building", getName().GetCString() );
+							logBBAI("    City %S hurries a Victory building!", getName().GetCString() );
 						}
 
 						hurry((HurryTypes)iI);
@@ -13359,6 +13385,36 @@ void CvCityAI::AI_updateSpecialYieldMultiplier()
 		CvPlayerAI& kPlayer = GET_PLAYER(getOwnerINLINE());
 		AreaAITypes eAreaAIType = area()->getAreaAIType(getTeam());
 
+		// K-Mod. special strategy / personality adjustments
+		if (kPlayer.AI_isDoStrategy(AI_STRATEGY_PRODUCTION))
+		{
+			m_aiSpecialYieldMultiplier[YIELD_PRODUCTION] += 20;
+			m_aiSpecialYieldMultiplier[YIELD_COMMERCE] -= 20;
+		}
+		else if (findBaseYieldRateRank(YIELD_PRODUCTION) <= kPlayer.getNumCities()/3 && findBaseYieldRateRank(YIELD_PRODUCTION) < findBaseYieldRateRank(YIELD_COMMERCE))
+		{
+			m_aiSpecialYieldMultiplier[YIELD_PRODUCTION] += 10;
+			m_aiSpecialYieldMultiplier[YIELD_COMMERCE] -= 10;
+		}
+
+		/*
+		if (kPlayer.AI_getFlavorValue(AI_FLAVOR_PRODUCTION) > 0)
+		{
+			m_aiSpecialYieldMultiplier[YIELD_PRODUCTION] += 5 + 2*kPlayer.AI_getFlavorValue(AI_FLAVOR_PRODUCTION);
+		}
+		*/
+
+		if (kPlayer.AI_isDoStrategy(AI_STRATEGY_ECONOMY_FOCUS))
+		{
+			m_aiSpecialYieldMultiplier[YIELD_PRODUCTION] -= 10;
+			m_aiSpecialYieldMultiplier[YIELD_COMMERCE] += 20;
+		}
+		else if (kPlayer.AI_isDoVictoryStrategy(AI_STRATEGY_GET_BETTER_UNITS)) // doesn't stack with ec focus.
+		{
+			m_aiSpecialYieldMultiplier[YIELD_COMMERCE] += 20;
+		}
+		// K-Mod end
+		
 		if ((kPlayer.AI_isDoStrategy(AI_STRATEGY_DAGGER) && getPopulation() >= 4)
 			|| (eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE)
 			|| (eAreaAIType == AREAAI_MASSING) || (eAreaAIType == AREAAI_ASSAULT))

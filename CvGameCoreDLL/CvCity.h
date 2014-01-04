@@ -1082,7 +1082,7 @@ public:
     bool isSettlement() const;							// Exposed to Python
     void setSettlement(bool bNewValue);					// Exposed to Python
     int getNumCityPlots() const;
-    int getPlotRadius() const;
+    int getPlotRadius() const;							// Exposed to Python
     void setPlotRadius(int iNewValue);					// Exposed to Python
 	bool isUnhappyProduction() const;					// lfgr: Exposed to python
 	void changeUnhappyProduction(int iChange);
