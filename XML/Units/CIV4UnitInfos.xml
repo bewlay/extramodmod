@@ -22506,6 +22506,7 @@
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
+			<bNeverObsolete>1</bNeverObsolete>
 			<iCombatDefense>2</iCombatDefense>
 			<iTier>1</iTier>
 			<UpgradeCiv>CIVILIZATION_CLAN_OF_EMBERS</UpgradeCiv>
@@ -22650,6 +22651,7 @@
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<bNeverObsolete>1</bNeverObsolete>
 			<iCombatDefense>2</iCombatDefense>
 			<iTier>1</iTier>
 			<bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
