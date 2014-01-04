@@ -309,7 +309,7 @@ class CustomFunctions:
 		for eSpawn in range( gc.getNumSpawnInfos() ) :
 			pSpawn = gc.getSpawnInfo( eSpawn )
 			if( pSpawn.isExplorationResult() ) :
-				iValue = pPlot.getSpawnValue( eSpawn, True )
+				iValue = pPlot.getSpawnValue( eSpawn )
 				if( iValue > 0 ) :
 					iValue += CyGame().getSorenRandNum( 100, "Pick SpawnInfo" )
 					if( eBestSpawn == None or iValue > iBestValue or ( iValue == iBestValue and CyGame().getSorenRandNum( 2, "Bob" ) == 1 ) ) :

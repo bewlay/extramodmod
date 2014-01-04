@@ -28673,7 +28673,7 @@ bool CvTerrainFlavourInfo::read(CvXMLLoadUtility* pXML)
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* SpawnInfo                                                                                    */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
 /************************************************************************************************/
 
 //======================================================================================================
@@ -28684,10 +28684,11 @@ CvSpawnInfo::CvSpawnInfo():
 	m_eCreateLair( NO_IMPROVEMENT ),
 	m_eTerrainFlavourType( NO_TERRAIN_FLAVOUR ),
 	m_eUnitArtStyleType( NO_UNIT_ARTSTYLE ),
+	m_eSpawnPrereqType( NO_UNIT_ARTSTYLE ),
 	m_iWeight( 0 ),
 	m_iValidTerrainWeight( 0 ),
-	m_iMinWilderness( 0 ),
-	m_iMaxWilderness( MAX_INT ),
+	m_iMinTier( 0 ),
+	m_iMaxTier( MAX_INT ),
 	m_iPrereqGlobalCounter( 0 ),
 	m_iMinRandomPromotions( -1 ),
 	m_iMaxRandomPromotions( -1 ),
@@ -28702,9 +28703,7 @@ CvSpawnInfo::CvSpawnInfo():
 	m_bNoRace( false ),
 	m_piNumSpawnUnits( NULL ),
 	m_pbUnitPromotions( NULL ),
-	m_pbIncludedSpawns( NULL ),
-	m_pbPrereqTechs( NULL ),
-	m_pbObsoleteTechs( NULL )
+	m_pbIncludedSpawns( NULL )
 {
 }
 
@@ -28713,8 +28712,6 @@ CvSpawnInfo::~CvSpawnInfo()
 	SAFE_DELETE_ARRAY( m_piNumSpawnUnits );
 	SAFE_DELETE_ARRAY( m_pbUnitPromotions );
 	SAFE_DELETE_ARRAY( m_pbIncludedSpawns );
-	SAFE_DELETE_ARRAY( m_pbPrereqTechs );
-	SAFE_DELETE_ARRAY( m_pbObsoleteTechs );
 }
 
 int CvSpawnInfo::getCreateLair() const
@@ -28732,6 +28729,11 @@ int CvSpawnInfo::getUnitArtStyleType() const
 	return m_eUnitArtStyleType;
 }
 
+int CvSpawnInfo::getSpawnPrereqType() const
+{
+	return m_eSpawnPrereqType;
+}
+
 int CvSpawnInfo::getWeight() const
 {
 	return m_iWeight;
@@ -28742,14 +28744,14 @@ int CvSpawnInfo::getValidTerrainWeight() const
 	return m_iValidTerrainWeight;
 }
 
-int CvSpawnInfo::getMinWilderness() const
+int CvSpawnInfo::getMinTier() const
 {
-	return m_iMinWilderness;
+	return m_iMinTier;
 }
 
-int CvSpawnInfo::getMaxWilderness() const
+int CvSpawnInfo::getMaxTier() const
 {
-	return m_iMaxWilderness;
+	return m_iMaxTier;
 }
 
 int CvSpawnInfo::getPrereqGlobalCounter() const
@@ -28833,20 +28835,6 @@ bool CvSpawnInfo::isIncludedSpawns( int i ) const
 	return m_pbIncludedSpawns ? m_pbIncludedSpawns[i] : false;
 }
 
-bool CvSpawnInfo::getPrereqTechs( int i ) const
-{
-	FAssertMsg( i < GC.getNumTechInfos(), "Index out of bounds" );
-	FAssertMsg( i > -1, "Index out of bounds" );
-	return m_pbPrereqTechs ? m_pbPrereqTechs[i] : false;
-}
-
-bool CvSpawnInfo::getObsoleteTechs( int i ) const
-{
-	FAssertMsg( i < GC.getNumTechInfos(), "Index out of bounds" );
-	FAssertMsg( i > -1, "Index out of bounds" );
-	return m_pbObsoleteTechs ? m_pbObsoleteTechs[i] : false;
-}
-
 void CvSpawnInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
@@ -28856,8 +28844,8 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_eUnitArtStyleType);
 	stream->Read(&m_iWeight);
 	stream->Read(&m_iValidTerrainWeight);
-	stream->Read(&m_iMinWilderness);
-	stream->Read(&m_iMaxWilderness);
+	stream->Read(&m_iMinTier);
+	stream->Read(&m_iMaxTier);
 	stream->Read(&m_iPrereqGlobalCounter);
 	stream->Read(&m_iMinRandomPromotions);
 	stream->Read(&m_iMaxRandomPromotions);
@@ -28884,14 +28872,6 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_pbIncludedSpawns);
 	m_pbIncludedSpawns = new bool[GC.getNumSpawnInfos()];
 	stream->Read(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
-	
-	SAFE_DELETE_ARRAY(m_pbPrereqTechs);
-	m_pbPrereqTechs = new bool[GC.getNumTechInfos()];
-	stream->Read(GC.getNumTechInfos(), m_pbPrereqTechs);
-	
-	SAFE_DELETE_ARRAY(m_pbObsoleteTechs);
-	m_pbObsoleteTechs = new bool[GC.getNumTechInfos()];
-	stream->Read(GC.getNumTechInfos(), m_pbObsoleteTechs);
 }
 
 void CvSpawnInfo::write(FDataStreamBase* stream)
@@ -28901,10 +28881,11 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(m_eCreateLair);
 	stream->Write(m_eTerrainFlavourType);
 	stream->Write(m_eUnitArtStyleType);
+	stream->Write(m_eSpawnPrereqType);
 	stream->Write(m_iWeight);
 	stream->Write(m_iValidTerrainWeight);
-	stream->Write(m_iMinWilderness);
-	stream->Write(m_iMaxWilderness);
+	stream->Write(m_iMinTier);
+	stream->Write(m_iMaxTier);
 	stream->Write(m_iPrereqGlobalCounter);
 	stream->Write(m_iMinRandomPromotions);
 	stream->Write(m_iMaxRandomPromotions);
@@ -28923,8 +28904,6 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumUnitInfos(), m_piNumSpawnUnits);
 	stream->Write(GC.getNumPromotionInfos(), m_pbUnitPromotions);
 	stream->Write(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
-	stream->Write(GC.getNumTechInfos(), m_pbPrereqTechs);
-	stream->Write(GC.getNumTechInfos(), m_pbObsoleteTechs);
 }
 
 bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
@@ -28941,11 +28920,13 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	m_eTerrainFlavourType = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(szTextVal, "UnitArtStyleType");
 	m_eUnitArtStyleType = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "SpawnPrereqType");
+	m_eSpawnPrereqType = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iWeight, "iBaseWeight");
 	pXML->GetChildXmlValByName(&m_iValidTerrainWeight, "iValidTerrainWeight" );
-	pXML->GetChildXmlValByName(&m_iMinWilderness, "iMinWilderness");
-	pXML->GetChildXmlValByName(&m_iMaxWilderness, "iMaxWilderness");
+	pXML->GetChildXmlValByName(&m_iMinTier, "iMinSpawnTier");
+	pXML->GetChildXmlValByName(&m_iMaxTier, "iMaxSpawnTier");
 	pXML->GetChildXmlValByName(&m_iPrereqGlobalCounter, "iPrereqGlobalCounter");
 	pXML->GetChildXmlValByName(&m_iMinRandomPromotions, "iMinRandomPromotions", -1);
 	pXML->GetChildXmlValByName(&m_iMaxRandomPromotions, "iMaxRandomPromotions", -1);
@@ -28962,8 +28943,6 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair( &m_piNumSpawnUnits, "SpawnUnits", sizeof( GC.getUnitInfo( (UnitTypes) 0 ) ), GC.getNumUnitInfos() );
 	
 	pXML->SetVariableList( &m_pbUnitPromotions, "UnitPromotions", GC.getNumPromotionInfos() );
-	pXML->SetVariableList( &m_pbPrereqTechs, "PrereqTechs", GC.getNumTechInfos() );
-	pXML->SetVariableList( &m_pbObsoleteTechs, "ObsoleteTechs", GC.getNumTechInfos() );
 
 	return true;
 }
@@ -28999,6 +28978,155 @@ bool CvSpawnInfo::readPass2(CvXMLLoadUtility* pXML)
 
 					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	return true;
+}
+
+//======================================================================================================
+//					CvSpawnPrereqInfo
+//======================================================================================================
+
+CvSpawnPrereqInfo::CvSpawnPrereqInfo()
+{
+}
+
+CvSpawnPrereqInfo::~CvSpawnPrereqInfo()
+{
+	for( size_t i = 0; i < m_vpiPrereqTechTiers.size(); i++ )
+		SAFE_DELETE_ARRAY( m_vpiPrereqTechTiers[i] );
+	for( size_t i = 0; i < m_vpiObsoleteTechTiers.size(); i++ )
+		SAFE_DELETE_ARRAY( m_vpiObsoleteTechTiers[i] );
+}
+
+int CvSpawnPrereqInfo::getNumWildernessTiers() const
+{
+	FAssert( m_viMinWildernessTiers.size() == m_viMaxWildernessTiers.size() )
+	return m_viMinWildernessTiers.size();
+}
+	
+
+int CvSpawnPrereqInfo::getMinWilderness( int iTier ) const
+{
+	FAssertMsg( iTier < m_viMinWildernessTiers.size(), "Index out of bounds" );
+	FAssertMsg( iTier > -1, "Index out of bounds" );
+	return m_viMinWildernessTiers[iTier];
+}
+
+int CvSpawnPrereqInfo::getMaxWilderness( int iTier ) const
+{
+	FAssertMsg( iTier < m_viMaxWildernessTiers.size(), "Index out of bounds" );
+	FAssertMsg( iTier > -1, "Index out of bounds" );
+	return m_viMaxWildernessTiers[iTier];
+}
+
+int CvSpawnPrereqInfo::getNumTechTiers() const
+{
+	FAssert( m_vpiPrereqTechTiers.size() == m_vpiObsoleteTechTiers.size() )
+	return m_vpiPrereqTechTiers.size();
+}
+
+bool CvSpawnPrereqInfo::isPrereqTech( int iTier, int eTech ) const
+{
+	FAssertMsg( iTier < m_vpiPrereqTechTiers.size(), "Index out of bounds" );
+	FAssertMsg( iTier > -1, "Index out of bounds" );
+	FAssertMsg( eTech < GC.getNumTechInfos(), "Index out of bounds" );
+	FAssertMsg( eTech > -1, "Index out of bounds" );
+	return m_vpiPrereqTechTiers[iTier] ? m_vpiPrereqTechTiers[iTier][eTech] : false;
+}
+
+bool CvSpawnPrereqInfo::isObsoleteTech( int iTier, int eTech ) const
+{
+	FAssertMsg( iTier < m_vpiObsoleteTechTiers.size(), "Index out of bounds" );
+	FAssertMsg( iTier > -1, "Index out of bounds" );
+	FAssertMsg( eTech < GC.getNumTechInfos(), "Index out of bounds" );
+	FAssertMsg( eTech > -1, "Index out of bounds" );
+	return m_vpiObsoleteTechTiers[iTier] ? m_vpiObsoleteTechTiers[iTier][eTech] : false;
+}
+
+void CvSpawnPrereqInfo::read(FDataStreamBase* stream)
+{
+	CvInfoBase::read(stream);
+
+	// Not needed
+}
+
+void CvSpawnPrereqInfo::write(FDataStreamBase* stream)
+{
+	CvInfoBase::write(stream);
+
+	// Not needed
+}
+
+bool CvSpawnPrereqInfo::read(CvXMLLoadUtility* pXML)
+{
+	CvString szTextVal;
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+
+	// Wilderness Tiers
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"WildernessTiers"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if ( (0 < iNumSibs) && (gDLL->getXMLIFace()->SetToChild(pXML->GetXML())) )
+			{
+				for( int iTier = 0; iTier < iNumSibs; iTier++ )
+				{
+					int iMinWilderness, iMaxWilderness;
+					pXML->GetChildXmlValByName( &iMinWilderness, "iMinWilderness" );
+					pXML->GetChildXmlValByName( &iMaxWilderness, "iMaxWilderness" );
+					
+					m_viMinWildernessTiers.push_back( iMinWilderness );
+					m_viMaxWildernessTiers.push_back( iMaxWilderness );
+
+					if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+					{
+						break;
+					}
+				}
+
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	// Tech Tiers
+	
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"TechTiers"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if ( (0 < iNumSibs) && (gDLL->getXMLIFace()->SetToChild(pXML->GetXML())) )
+			{
+				for( int iTier = 0; iTier < iNumSibs; iTier++ )
+				{
+					m_vpiPrereqTechTiers.push_back( new bool[GC.getNumTechInfos()] );
+					m_vpiObsoleteTechTiers.push_back( new bool[GC.getNumTechInfos()] );
+					
+					pXML->SetVariableList( &( m_vpiPrereqTechTiers.back() ), "PrereqTechs", GC.getNumTechInfos() );
+					pXML->SetVariableList( &( m_vpiObsoleteTechTiers.back() ), "ObsoleteTechs", GC.getNumTechInfos() );
+
+					if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+					{
+						break;
+					}
+				}
+
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 			}
 		}
 

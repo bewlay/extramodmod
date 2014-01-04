@@ -826,7 +826,7 @@
 				</TerrainPercentWeight>
 				<TerrainPercentWeight>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
-					<iWeight>50</iWeight>
+					<iWeight>25</iWeight>
 				</TerrainPercentWeight>
 			</TerrainPercentWeights>
 		</TerrainFlavourInfo>

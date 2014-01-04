@@ -1207,9 +1207,9 @@ int CyPlot::getWilderness() const
 	return m_pPlot ? m_pPlot->getWilderness() : -1;
 }
 
-int CyPlot::getSpawnValue( int /*SpawnTypes*/ eSpawnType, bool bBarbTech ) const
+int CyPlot::getSpawnValue( int /*SpawnTypes*/ eSpawnType ) const
 {
-	return m_pPlot ? m_pPlot->getSpawnValue( (SpawnTypes) eSpawnType, bBarbTech ) : -1;
+	return m_pPlot ? m_pPlot->getSpawnValue( (SpawnTypes) eSpawnType ) : -1;
 }
 
 void CyPlot::createSpawn( int /*SpawnTypes*/ eSpawnType, int /*UnitAITypes*/ eUnitAI )

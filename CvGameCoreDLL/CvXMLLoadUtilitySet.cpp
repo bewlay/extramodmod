@@ -1067,9 +1067,50 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* SpawnInfo                                                                                    */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
 /************************************************************************************************/
+	LoadGlobalClassInfo(GC.getSpawnPrereqInfo(), "Civ4SpawnPrereqInfos", "GameInfo", "Civ4SpawnPrereqInfos/SpawnPrereqInfos/SpawnPrereqInfo", false);
 	LoadGlobalClassInfo(GC.getSpawnInfo(), "CIV4SpawnInfos", "GameInfo", "Civ4SpawnInfos/SpawnInfos/SpawnInfo", true);
+	
+/*
+	// lfgr WILDERNESS_TEST
+	// print all CIV4SpawnPrereqInfos
+	
+	logBBAI( "++++++++ SPAWN PREREQ INFOS ++++++++" );
+	
+	for( int eSpawnPrereq = 0; eSpawnPrereq < GC.getNumSpawnPrereqInfos(); eSpawnPrereq++ )
+	{
+		CvSpawnPrereqInfo& kSpawnPrereqInfo = GC.getSpawnPrereqInfo( (SpawnPrereqTypes) eSpawnPrereq );
+		logBBAI( "++++ SpawnPrereqInfo: %s +++", kSpawnPrereqInfo.getType() );
+
+		logBBAI( "    WildernessTiers:" );
+		for( int iTier = 0; iTier < kSpawnPrereqInfo.getNumWildernessTiers(); iTier++ )
+		{
+			logBBAI( "        iMinWilderness: %d", kSpawnPrereqInfo.getMinWilderness( iTier ) );
+			logBBAI( "        iMaxWilderness: %d", kSpawnPrereqInfo.getMaxWilderness( iTier ) );
+		}
+		
+		logBBAI( "    TechTiers:" );
+		for( int iTier = 0; iTier < kSpawnPrereqInfo.getNumTechTiers(); iTier++ )
+		{
+			logBBAI( "        TechTier:" );
+			logBBAI( "            PrereqTechs:" );
+			for( int eTech = 0; eTech < GC.getNumTechInfos(); eTech++ )
+			{
+				if( kSpawnPrereqInfo.isPrereqTech( iTier, eTech ) )
+					logBBAI( "                %s", GC.getTechInfo( (TechTypes) eTech ).getType()); 
+			}
+		
+			logBBAI( "            ObsoleteTechs:" );
+			for( int eTech = 0; eTech < GC.getNumTechInfos(); eTech++ )
+			{
+				if( kSpawnPrereqInfo.isObsoleteTech( iTier, eTech ) )
+					logBBAI( "                %s", GC.getTechInfo( (TechTypes) eTech ).getType()); 
+			}
+		}
+	}
+*/
+
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

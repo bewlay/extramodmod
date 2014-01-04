@@ -2597,7 +2597,7 @@ CvTerrainFlavourInfo& CvGlobals::getTerrainFlavourInfo(TerrainFlavourTypes eTerr
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* SpawnInfo                                                                                    */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
 /************************************************************************************************/
 int CvGlobals::getNumSpawnInfos()
 {
@@ -2614,6 +2614,23 @@ CvSpawnInfo& CvGlobals::getSpawnInfo(SpawnTypes eSpawnNum)
 	FAssert(eSpawnNum > -1);
 	FAssert(eSpawnNum < GC.getNumSpawnInfos());
 	return *(m_paSpawnInfo[eSpawnNum]);
+}
+
+int CvGlobals::getNumSpawnPrereqInfos()
+{
+    return (int)m_paSpawnPrereqInfo.size();
+}
+
+std::vector<CvSpawnPrereqInfo*>& CvGlobals::getSpawnPrereqInfo()
+{
+	return m_paSpawnPrereqInfo;
+}
+
+CvSpawnPrereqInfo& CvGlobals::getSpawnPrereqInfo(SpawnPrereqTypes eSpawnPrereqNum)
+{
+	FAssert(eSpawnPrereqNum > -1);
+	FAssert(eSpawnPrereqNum < GC.getNumSpawnPrereqInfos());
+	return *(m_paSpawnPrereqInfo[eSpawnPrereqNum]);
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
@@ -3526,7 +3543,7 @@ void CvGlobals::writeEventTriggerInfoArray(FDataStreamBase* pStream)
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* SpawnInfo                                                                                    */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
 /************************************************************************************************/
 bool CvGlobals::readSpawnInfoArray(FDataStreamBase* pStream)
 {
@@ -3536,6 +3553,16 @@ bool CvGlobals::readSpawnInfoArray(FDataStreamBase* pStream)
 void CvGlobals::writeSpawnInfoArray(FDataStreamBase* pStream)
 {
 	writeInfoArray(pStream, m_paSpawnInfo);
+}
+
+bool CvGlobals::readSpawnPrereqInfoArray(FDataStreamBase* pStream)
+{
+	return readInfoArray(pStream, m_paSpawnPrereqInfo, "CvSpawnPrereqInfo");
+}
+
+void CvGlobals::writeSpawnPrereqInfoArray(FDataStreamBase* pStream)
+{
+	writeInfoArray(pStream, m_paSpawnPrereqInfo);
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
@@ -3763,9 +3790,10 @@ void CvGlobals::deleteInfoArrays()
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* SpawnInfo                                                                                    */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
 /************************************************************************************************/
 	deleteInfoArray(m_paSpawnInfo);
+	deleteInfoArray(m_paSpawnPrereqInfo);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

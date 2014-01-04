@@ -22,8 +22,6 @@ void CyInfoPythonInterface4()
 		.def("getUnitArtStyleType", &CvSpawnInfo::getUnitArtStyleType, "UnitArtStyleTypes ()")
 		.def("getWeight", &CvSpawnInfo::getWeight, "int ()")
 		.def("getValidTerrainWeight", &CvSpawnInfo::getValidTerrainWeight, "int ()")
-		.def("getMinWilderness", &CvSpawnInfo::getMinWilderness, "int ()")
-		.def("getMaxWilderness", &CvSpawnInfo::getMaxWilderness, "int ()")
 		.def("getPrereqGlobalCounter", &CvSpawnInfo::getPrereqGlobalCounter, "int ()")
 		.def("getMinRandomPromotions", &CvSpawnInfo::getMinRandomPromotions, "int ()")
 		.def("getMaxRandomPromotions", &CvSpawnInfo::getMaxRandomPromotions, "int ()")
@@ -37,8 +35,6 @@ void CyInfoPythonInterface4()
 		.def("getNumSpawnUnits", &CvSpawnInfo::getNumSpawnUnits, "int ( UnitTypes eID )")
 		.def("getUnitPromotions", &CvSpawnInfo::getUnitPromotions, "bool ( PromotionTypes eID )")
 		.def("isIncludedSpawns", &CvSpawnInfo::isIncludedSpawns, "bool ( SpawnTypes eID )")
-		.def("getPrereqTechs", &CvSpawnInfo::getPrereqTechs, "int ( TechTypes eID )")
-		.def("getObsoleteTechs", &CvSpawnInfo::getObsoleteTechs, "int ( TechTypes eID )")
 		;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

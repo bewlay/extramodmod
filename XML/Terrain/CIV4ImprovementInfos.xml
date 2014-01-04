@@ -446,19 +446,18 @@
             <PythonOnMove></PythonOnMove>
 		<!-- WILDERNESS 08/2013 lfgr ImprovementSpawnTypes -->
             <SpawnTypes>
-				<SpawnType>SPAWN_BARROW_EARLY_SKELETON</SpawnType>
-				<SpawnType>SPAWN_BARROW_EARLY_SPECTRE</SpawnType>
-				<SpawnType>SPAWN_BARROW_EARLY_GHOUL</SpawnType>
-				<SpawnType>SPAWN_BARROW_EARLY_WIGHT</SpawnType>
-				<SpawnType>SPAWN_BARROW_LATE_SPECTRE</SpawnType>
-				<SpawnType>SPAWN_BARROW_LATE_WRAITH</SpawnType>
-				<SpawnType>SPAWN_BARROW_LATE_WIGHT</SpawnType>
+				<SpawnType>SPAWN_BARROW_SKELETON</SpawnType>
+				<SpawnType>SPAWN_BARROW_SPECTRE</SpawnType>
+				<SpawnType>SPAWN_BARROW_SPECTRE_STRONG</SpawnType>
+				<SpawnType>SPAWN_BARROW_WRAITH</SpawnType>
+				<SpawnType>SPAWN_BARROW_GHOUL</SpawnType>
+				<SpawnType>SPAWN_BARROW_WIGHT</SpawnType>
 			</SpawnTypes>
             <GuardianSpawnTypes>
 				<SpawnType>SPAWN_BARROW_GUARDIAN_SKELETON</SpawnType>
-				<SpawnType>SPAWN_BARROW_GUARDIAN_STRONG_SPECTRE</SpawnType>
+				<SpawnType>SPAWN_BARROW_GUARDIAN_SPECTRE_STRONG</SpawnType>
 				<SpawnType>SPAWN_BARROW_GUARDIAN_GHOUL</SpawnType>
-				<SpawnType>SPAWN_BARROW_GUARDIAN_STRONG_GHOUL</SpawnType>
+				<SpawnType>SPAWN_BARROW_GUARDIAN_GHOUL_STRONG</SpawnType>
 			</GuardianSpawnTypes>
 		<!-- WILDERNESS end -->
         </ImprovementInfo>
@@ -6435,11 +6434,10 @@
             <PythonOnMove></PythonOnMove>
 		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes, LairGuardians -->
             <SpawnTypes>
-				<SpawnType>SPAWN_RUINS_EARLY_LIZARDMAN_WEAK</SpawnType>
-				<SpawnType>SPAWN_RUINS_EARLY_LIZARDMAN</SpawnType>
-				<SpawnType>SPAWN_RUINS_MIDDLE_LIZARDMAN</SpawnType>
-				<SpawnType>SPAWN_RUINS_MIDDLE_LIZARDMAN_RANGER_WEAK</SpawnType>
-				<SpawnType>SPAWN_RUINS_LATE_LIZARDMAN_RANGER</SpawnType>
+				<SpawnType>SPAWN_RUINS_LIZARDMAN_WEAK</SpawnType>
+				<SpawnType>SPAWN_RUINS_LIZARDMAN</SpawnType>
+				<SpawnType>SPAWN_RUINS_LIZARDMAN_RANGER_WEAK</SpawnType>
+				<SpawnType>SPAWN_RUINS_LIZARDMAN_RANGER</SpawnType>
 			</SpawnTypes>
             <GuardianSpawnTypes>
 				<SpawnType>SPAWN_RUINS_GUARDIAN_LIZARDMAN</SpawnType>
