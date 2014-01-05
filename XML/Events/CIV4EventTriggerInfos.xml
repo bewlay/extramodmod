@@ -748,6 +748,7 @@
 			<Events>
 				<Event>EVENT_BREAKTHROUGH_1</Event>
 			</Events>
+			<bRequiresValidEvent>1</bRequiresValidEvent>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- BROTHERS_IN_NEED -->
 			<Type>EVENTTRIGGER_BROTHERS_IN_NEED</Type>
