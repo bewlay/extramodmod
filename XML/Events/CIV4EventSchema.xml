@@ -380,6 +380,9 @@
 	<ElementType name="PrereqCivilization" content="textOnly"/>
 	<ElementType name="PrereqReligion" content="textOnly"/>
 	<ElementType name="PrereqStateReligion" content="textOnly"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+	<ElementType name="bRequiresValidEvent" content="textOnly"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 	<ElementType name="EventInfo" content="eltOnly">
 		<element type="Type"/>
 	<!-- lfgr: EVENT_NEW_TAGS start -->
@@ -470,6 +473,9 @@
 		<element type="PrereqCivilization" minOccurs="0"/>
 		<element type="PrereqReligion" minOccurs="0"/>
 		<element type="PrereqStateReligion" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+		<element type="bRequiresValidEvent" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 	</ElementType>
 	<ElementType name="EventInfos" content="eltOnly">
 		<element type="EventInfo" minOccurs="0" maxOccurs="*"/>

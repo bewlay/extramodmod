@@ -21382,7 +21382,31 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 	{
 		return NULL;
 	}
-
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	if( kTrigger.isRequiresValidEvent() )
+	{
+		bool bValidEvent = false;
+		for( int i = 0; i < kTrigger.getNumEvents(); i++ )
+		{
+			if( canDoEvent( (EventTypes) kTrigger.getEvent( i ), *pTriggerData ) )
+			{
+				bValidEvent = true;
+				break;
+			}
+		}
+		if( !bValidEvent )
+		{
+			deleteEventTriggered(pTriggerData->getID());
+			return NULL;
+		}
+	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
+	
 	if (!CvString(kTrigger.getPythonCanDo()).empty())
 	{
 		long lResult;

@@ -24479,6 +24479,13 @@ CvEventTriggerInfo::CvEventTriggerInfo() :
 	m_bProbabilityUnitMultiply(false),
 	m_bProbabilityBuildingMultiply(false),
 	m_bPrereqEventCity(false),
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	m_bRequiresValidEvent(false),
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 //FfH Events: Added by Kael 08/08/2007
 	m_iPrereqCrime(0),
@@ -24930,6 +24937,16 @@ bool CvEventTriggerInfo::isPrereqEventCity() const
 {
 	return m_bPrereqEventCity;
 }
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+bool CvEventTriggerInfo::isRequiresValidEvent() const
+{
+	return m_bRequiresValidEvent;
+}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 const char* CvEventTriggerInfo::getPythonCallback() const
 {
@@ -25166,6 +25183,13 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bProbabilityUnitMultiply);
 	stream->Read(&m_bProbabilityBuildingMultiply);
 	stream->Read(&m_bPrereqEventCity);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	stream->Read(&m_bRequiresValidEvent);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	stream->Read(&iNumElements);
 	m_aszText.clear();
@@ -25344,6 +25368,13 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bProbabilityUnitMultiply);
 	stream->Write(m_bProbabilityBuildingMultiply);
 	stream->Write(m_bPrereqEventCity);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	stream->Write(m_bRequiresValidEvent);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	stream->Write(m_aszText.size());
 	for (std::vector<CvWString>::iterator it = m_aszText.begin(); it != m_aszText.end(); ++it)
@@ -25916,6 +25947,13 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bProbabilityUnitMultiply, "bProbabilityUnitMultiply");
 	pXML->GetChildXmlValByName(&m_bProbabilityBuildingMultiply, "bProbabilityBuildingMultiply");
 	pXML->GetChildXmlValByName(&m_bPrereqEventCity, "bPrereqEventPlot");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_bRequiresValidEvent, "bRequiresValidEvent");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	pXML->GetChildXmlValByName(m_szPythonCallback, "PythonCallback");
 	pXML->GetChildXmlValByName(m_szPythonCanDo, "PythonCanDo");
