@@ -106,6 +106,7 @@
 			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_AZER</Unit>
@@ -170,6 +171,7 @@
 			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_WRAITH</Unit>
@@ -290,6 +292,7 @@
 			<iPrereqGlobalCounter>40</iPrereqGlobalCounter>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_BALOR</Unit>
@@ -328,6 +331,7 @@
 			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_EIDOLON</Unit>
@@ -367,6 +371,7 @@
 			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_AXEMAN</Unit>
@@ -424,6 +429,7 @@
 			<iMaxSpawnTier>6</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_OGRE</Unit>
@@ -462,6 +468,7 @@
 			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_OGRE_WARCHIEF</Unit>
@@ -501,6 +508,7 @@
 			<iMaxSpawnTier>6</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_VAMPIRE</Unit>
@@ -545,6 +553,7 @@
 			<iPrereqGlobalCounter>40</iPrereqGlobalCounter>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_DEATH_KNIGHT</Unit>
@@ -621,6 +630,7 @@
 			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_MANTICORE</Unit>
@@ -662,6 +672,7 @@
 			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_SATYR</Unit>
@@ -694,6 +705,7 @@
 			<iMaxSpawnTier>6</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -802,6 +814,7 @@
 			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1183,6 +1196,7 @@
 			<iMinSpawnTier>3</iMinSpawnTier>
 			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_WIGHT</Unit>
