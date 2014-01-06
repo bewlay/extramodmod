@@ -7843,6 +7843,7 @@ public:
 	
 	bool isNoRace() const;
 	bool isExplorationNoPush() const;
+	bool isNoDefender() const;
 	
 	int getNumSpawnUnits( int eUnit ) const;
 	
@@ -7880,6 +7881,7 @@ protected:
 	bool m_bNeverSpawn;
 	bool m_bExplorationResult;
 	bool m_bExplorationNoPush;
+	bool m_bNoDefender;
 	bool m_bAnimal;
 	bool m_bWater;
 	

@@ -28698,6 +28698,7 @@ CvSpawnInfo::CvSpawnInfo():
 	m_bNeverSpawn( false ),
 	m_bExplorationResult( false ),
 	m_bExplorationNoPush( false ),
+	m_bNoDefender( false ),
 	m_bAnimal( false ),
 	m_bWater( false ),
 	m_bNoRace( false ),
@@ -28799,6 +28800,11 @@ bool CvSpawnInfo::isExplorationNoPush() const
 	return m_bExplorationNoPush;
 }
 
+bool CvSpawnInfo::isNoDefender() const
+{
+	return m_bNoDefender;
+}
+
 bool CvSpawnInfo::isAnimal() const
 {
 	return m_bAnimal;
@@ -28855,6 +28861,7 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bNeverSpawn);
 	stream->Read(&m_bExplorationResult);
 	stream->Read(&m_bExplorationNoPush);
+	stream->Read(&m_bNoDefender);
 	stream->Read(&m_bAnimal);
 	stream->Read(&m_bWater);
 	stream->Read(&m_bNoRace);
@@ -28895,6 +28902,7 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bNeverSpawn);
 	stream->Write(m_bExplorationResult);
 	stream->Write(m_bExplorationNoPush);
+	stream->Write(m_bNoDefender);
 	stream->Write(m_bAnimal);
 	stream->Write(m_bWater);
 	stream->Write(m_bNoRace);
@@ -28936,6 +28944,7 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bNeverSpawn, "bNeverSpawn");
 	pXML->GetChildXmlValByName(&m_bExplorationResult, "bExplorationResult");
 	pXML->GetChildXmlValByName(&m_bExplorationNoPush, "bExplorationNoPush");
+	pXML->GetChildXmlValByName(&m_bNoDefender, "bNoDefender");
 	pXML->GetChildXmlValByName(&m_bAnimal, "bAnimal");
 	pXML->GetChildXmlValByName(&m_bWater, "bWater");
 	pXML->GetChildXmlValByName(&m_bNoRace, "bNoRace");

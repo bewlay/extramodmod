@@ -2810,7 +2810,19 @@ void CvUnitAI::AI_barbAttackMove()
 	// otherwise switch UnitAIs
 	if (!bHero && plot()->isLair(false, isAnimal()))
 	{
+	/************************************************************************************************/
+	/* WILDERNESS                             01/2014                                 lfgr          */
+	/* SpawnInfo                                                                                    */
+	/* bNoDefenderTag                                                                               */
+	/************************************************************************************************/
+	/* old
 		if (plot()->plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER) == 0)
+	*/
+		if( plot()->plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER) == 0
+				&& ( getSpawnType() == NO_SPAWN || !GC.getSpawnInfo( getSpawnType() ).isNoDefender() ) )
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
 		{
 			// ToDo, split off a unit to guard it if we are in a group
 			if ((!bHero || iCaution >= 4) && getGroup()->getNumUnits() == 1)

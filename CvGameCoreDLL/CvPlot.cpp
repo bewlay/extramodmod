@@ -606,7 +606,7 @@ void CvPlot::doTurn()
                         {
 							// init spawn units
 							UnitAITypes eUnitAI = NO_UNITAI;
-							if( !bDefended )
+							if( !bDefended && !kBestSpawn.isNoDefender() )
 								eUnitAI = UNITAI_LAIRGUARDIAN;
 							else if( kBestSpawn.isAnimal() )
 								eUnitAI = UNITAI_ANIMAL;
