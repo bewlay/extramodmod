@@ -1811,52 +1811,55 @@ void CvMap::calculateWilderness()
 		pLoopPlot->setWilderness( std::min( 100, iNewWilderness ) );
 	}
 
-	/*
+	
 	// LFGR_TEST
-	for( int iPlot = 0; iPlot < numPlotsINLINE(); iPlot++ )
+	if( GC.getDefineINT( "DEBUG_PAINT_WILDERNESS_" ) == 1 )
 	{
-		CvPlot* pLoopPlot = plotByIndexINLINE( iPlot );
-		int iWilderness = pLoopPlot->getWilderness();
-
-		if( !pLoopPlot->isWater() )
+		for( int iPlot = 0; iPlot < numPlotsINLINE(); iPlot++ )
 		{
-			if( !pLoopPlot->isPeak() )
+			CvPlot* pLoopPlot = plotByIndexINLINE( iPlot );
+			int iWilderness = pLoopPlot->getWilderness();
+
+			if( !pLoopPlot->isWater() )
 			{
-				if( pLoopPlot->isHills() )
-					pLoopPlot->setPlotType( PLOT_LAND );
-				pLoopPlot->setBonusType( NO_BONUS );
-				pLoopPlot->setFeatureType( NO_FEATURE );
-				if( iWilderness <= 10 )
-					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_DESERT" ) );
-				else if( iWilderness <= 20 )
-					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_PLAINS" ) );
-				else if( iWilderness <= 30 )
-					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_GRASS" ) );
-				else if( iWilderness <= 40 )
-					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_MARSH" ) );
-				else if( iWilderness <= 50 )
-					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_TUNDRA" ) );
-				else if( iWilderness <= 60 )
-					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_SNOW" ) );
-				else if( iWilderness <= 70 )
-					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_FIELDS_OF_PERDITION" ) );
-				else if( iWilderness <= 80 )
-					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_BROKEN_LANDS" ) );
-				else if( iWilderness <= 90 )
-					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_SHALLOWS" ) );
+				if( !pLoopPlot->isPeak() )
+				{
+					if( pLoopPlot->isHills() )
+						pLoopPlot->setPlotType( PLOT_LAND );
+					pLoopPlot->setBonusType( NO_BONUS );
+					pLoopPlot->setFeatureType( NO_FEATURE );
+					if( iWilderness <= 10 )
+						pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_DESERT" ) );
+					else if( iWilderness <= 20 )
+						pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_PLAINS" ) );
+					else if( iWilderness <= 30 )
+						pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_GRASS" ) );
+					else if( iWilderness <= 40 )
+						pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_MARSH" ) );
+					else if( iWilderness <= 50 )
+						pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_TUNDRA" ) );
+					else if( iWilderness <= 60 )
+						pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_SNOW" ) );
+					else if( iWilderness <= 70 )
+						pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_FIELDS_OF_PERDITION" ) );
+					else if( iWilderness <= 80 )
+						pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_BROKEN_LANDS" ) );
+					else if( iWilderness <= 90 )
+						pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_SHALLOWS" ) );
+					else
+						pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_BURNING_SANDS" ) );
+				}
+			}
+			else
+			{
+				if( iWilderness <= 50 )
+					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_COAST" ) );
 				else
-					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_BURNING_SANDS" ) );
+					pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_OCEAN" ) );
 			}
 		}
-		else
-		{
-			if( iWilderness <= 50 )
-				pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_COAST" ) );
-			else
-				pLoopPlot->setTerrainType( (TerrainTypes) GC.getInfoTypeForString( "TERRAIN_OCEAN" ) );
-		}
 	}
-	*/
+	
 
 // LFGR_TODO: choke points?
 //	for (iI = 0; iI < numPlotsINLINE(); iI++)
