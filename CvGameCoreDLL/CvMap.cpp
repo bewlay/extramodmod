@@ -1463,6 +1463,19 @@ void CvMap::calculateAreas()
 void CvMap::calculateWilderness()
 {
 	logBBAI( "calculateWilderness()" );
+	// Reset starting points of each player with capital cities
+	for( int ePlayer = 0; ePlayer < GC.getMAX_CIV_PLAYERS(); ePlayer++ )
+	{
+		if( GET_PLAYER( (PlayerTypes) ePlayer ).isAlive() )
+		{
+			if( GET_PLAYER( (PlayerTypes) ePlayer ).getCapitalCity() != NULL )
+			{
+				logBBAI( "  Resetting player %d's starting plot to capital", ePlayer );
+				GET_PLAYER( (PlayerTypes) ePlayer ).setStartingPlot( GET_PLAYER( (PlayerTypes) ePlayer ).getCapitalCity()->plot(), true );
+			}
+		}
+	}
+
 	// Reset
 	for ( int iPlot = 0; iPlot < numPlotsINLINE(); iPlot++ )
 		plotByIndexINLINE( iPlot )->setWilderness(-1);
