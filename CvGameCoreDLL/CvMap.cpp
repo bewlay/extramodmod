@@ -1533,8 +1533,8 @@ void CvMap::calculateWilderness()
 	int* piUAreaMinAvDist = new int[getNumAreas()];
 	int* piUAreaMaxAvDist = new int[getNumAreas()];
 	int iUAreaMaxMaxAvDist = -1;
-	// Store max continent size
-	int iMaxContinentSize = -1;
+	// Store max continent size divided by number of players on that continent
+	int iMaxInhabitedContinentSizePerPlayer = -1;
 	
 	for( int iArea = 0; iArea < getNumAreas(); iArea++ )
 	{
@@ -1544,14 +1544,15 @@ void CvMap::calculateWilderness()
 		piUAreaMaxAvDist[iArea] = -1;
 
 		if( !getArea( iArea )->isWater() )
-			if( iMaxContinentSize == -1 || getArea( iArea )->getNumTiles() > iMaxContinentSize )
-				iMaxContinentSize = getArea( iArea )->getNumTiles();
+			if( getArea( iArea )->getNumStartingPlots() > 0 )
+				if( iMaxInhabitedContinentSizePerPlayer == -1 || getArea( iArea )->getNumTiles() / getArea( iArea )->getNumStartingPlots() > iMaxInhabitedContinentSizePerPlayer )
+					iMaxInhabitedContinentSizePerPlayer = getArea( iArea )->getNumTiles() / getArea( iArea )->getNumStartingPlots();
 		
 		logBBAI( "    Area #%d after init real min and max: %d, %d", iArea, piAreaMinWilderness[iArea], piAreaMaxWilderness[iArea] );
 		logBBAI( "    Area #%d after init UArea min and max dist: %d, %d", iArea, piUAreaMinAvDist[iArea], piUAreaMaxAvDist[iArea] );
 	}
 	
-	logBBAI( "  Max continent size: %d", iMaxContinentSize );
+	logBBAI( "  Max inhabited continent size per player: %d", iMaxInhabitedContinentSizePerPlayer );
 	logBBAI( "  Looping plots..." );
 
 	// First iteration for wilderness
@@ -1769,7 +1770,8 @@ void CvMap::calculateWilderness()
 			logBBAI( "    Area #%d is inhabited", iArea );
 
 			iRequiredMin = 0;
-			iRequiredMax = MIN_MAX_INHABITED_WILDERNESS + ( MAX_MAX_INHABITED_WILDERNESS - MIN_MAX_INHABITED_WILDERNESS ) * getArea( iArea )->getNumTiles() / iMaxContinentSize;
+			iRequiredMax = MIN_MAX_INHABITED_WILDERNESS + ( MAX_MAX_INHABITED_WILDERNESS - MIN_MAX_INHABITED_WILDERNESS )
+					* ( getArea( iArea )->getNumTiles() / getArea( iArea )->getNumStartingPlots() ) / iMaxInhabitedContinentSizePerPlayer;
 		}
 		else
 		{
