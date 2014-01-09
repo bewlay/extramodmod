@@ -1828,7 +1828,7 @@ void CvMap::calculateWilderness()
 
 	
 	// LFGR_TEST
-	if( GC.getDefineINT( "DEBUG_PAINT_WILDERNESS_" ) == 1 )
+	if( GC.getDefineINT( "DEBUG_PAINT_WILDERNESS" ) == 1 )
 	{
 		for( int iPlot = 0; iPlot < numPlotsINLINE(); iPlot++ )
 		{

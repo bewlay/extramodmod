@@ -1030,7 +1030,7 @@
 		<iDefineIntVal>55</iDefineIntVal>
 	</Define>
 	<Define>
-		<DefineName>DEBUG_PAINT_WILDERNESS_</DefineName>
+		<DefineName>DEBUG_PAINT_WILDERNESS</DefineName>
 		<iDefineIntVal>0</iDefineIntVal>
 	</Define>
 	<Define>
