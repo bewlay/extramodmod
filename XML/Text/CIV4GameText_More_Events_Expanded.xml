@@ -2421,6 +2421,14 @@
 		<Italian>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their abundant crabs.</Italian>
 		<Spanish>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their abundant crabs.</Spanish>
 	</TEXT>
+	<TEXT><!-- EVENT_KURIOTATES_SHRIMP -->
+		<Tag>TXT_KEY_EVENT_KURIOTATES_SHRIMP</Tag>
+		<English>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their copious schools of shrimps.</English>
+		<French>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their copious schools of shrimps.</French>
+		<German>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their copious schools of shrimps.</German>
+		<Italian>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their copious schools of shrimps.</Italian>
+		<Spanish>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their copious schools of shrimps.</Spanish>
+	</TEXT>
 	<TEXT><!-- EVENT_KURIOTATES_FISH_1 -->
 		<Tag>TXT_KEY_EVENT_KURIOTATES_FISH_1</Tag>
 		<English>That is the type of citizen initiative I like to hear about.</English>
@@ -2439,6 +2447,14 @@
 	</TEXT>
 	<TEXT><!-- EVENT_KURIOTATES_CRAB_1 -->
 		<Tag>TXT_KEY_EVENT_KURIOTATES_CRAB_1</Tag>
+		<English>That is the type of citizen initiative I like to hear about.</English>
+		<French>That is the type of citizen initiative I like to hear about.</French>
+		<German>That is the type of citizen initiative I like to hear about.</German>
+		<Italian>That is the type of citizen initiative I like to hear about.</Italian>
+		<Spanish>That is the type of citizen initiative I like to hear about.</Spanish>
+	</TEXT>
+	<TEXT><!-- EVENT_KURIOTATES_SHRIMP_1 -->
+		<Tag>TXT_KEY_EVENT_KURIOTATES_SHRIMP_1</Tag>
 		<English>That is the type of citizen initiative I like to hear about.</English>
 		<French>That is the type of citizen initiative I like to hear about.</French>
 		<German>That is the type of citizen initiative I like to hear about.</German>

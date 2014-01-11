@@ -9485,6 +9485,51 @@
 			<PythonCanDo>canTriggerKuriotatesWorkboat</PythonCanDo>
 			<PythonCanDoCity>canTriggerCityKuriotatesWorkboat</PythonCanDoCity>
 		</EventTriggerInfo>
+		<EventTriggerInfo><!-- KURIOTATES_SHRIMP -->
+			<Type>EVENTTRIGGER_KURIOTATES_SHRIMP</Type>
+			<WorldNewsTexts />
+			<TriggerTexts>
+				<TriggerText>
+					<Text>TXT_KEY_EVENT_KURIOTATES_SHRIMP</Text>
+					<Era>NONE</Era>
+				</TriggerText>
+			</TriggerTexts>
+			<EventArt>Art\EventImages\e_kuriotatesworkboat.dds</EventArt>
+			<iPercentGamesActive>100</iPercentGamesActive>
+			<iWeight>-1</iWeight>
+			<iMaxOurLandmass>-1</iMaxOurLandmass>
+			<UnitsRequired>
+				<UnitClass>UNITCLASS_GALLEY</UnitClass>
+				<UnitClass>UNITCLASS_TRIREME</UnitClass>
+				<UnitClass>UNITCLASS_CARAVEL</UnitClass>
+				<UnitClass>UNITCLASS_GALLEON</UnitClass>
+				<UnitClass>UNITCLASS_PRIVATEER</UnitClass>
+				<UnitClass>UNITCLASS_FRIGATE</UnitClass>
+				<UnitClass>UNITCLASS_WORKBOAT</UnitClass>
+				<UnitClass>UNITCLASS_ARCANE_BARGE</UnitClass>
+				<UnitClass>UNITCLASS_MAN_O_WAR</UnitClass>
+			</UnitsRequired>
+			<iNumPlotsRequired>1</iNumPlotsRequired>
+			<bOwnPlot>1</bOwnPlot>
+			<iPlotType>3</iPlotType>
+			<ImprovementsRequired>
+				<ImprovementType>NONE</ImprovementType>
+			</ImprovementsRequired>
+			<BonusesRequired>
+				<BonusType>BONUS_SHRIMP</BonusType>
+			</BonusesRequired>
+			<Events>
+				<Event>EVENT_KURIOTATES_SHRIMP_1</Event>
+			</Events>
+			<OrPreReqs>
+				<PrereqTech>TECH_SAILING</PrereqTech>
+			</OrPreReqs>
+			<bGlobal>1</bGlobal>
+			<bPickCity>1</bPickCity>
+			<bShowPlot>1</bShowPlot>
+			<PythonCanDo>canTriggerKuriotatesWorkboat</PythonCanDo>
+			<PythonCanDoCity>canTriggerCityKuriotatesWorkboat</PythonCanDoCity>
+		</EventTriggerInfo>
 		<EventTriggerInfo><!-- HAUNTED_CASTLE -->
 			<Type>EVENTTRIGGER_HAUNTED_CASTLE</Type>
 			<WorldNewsTexts>
