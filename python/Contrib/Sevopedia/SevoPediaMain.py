@@ -467,7 +467,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 		self.szCategorySpells = localText.getText("TXT_KEY_PEDIA_CATEGORY_SPELLS", ())
 		self.szCategoryAbilities	= localText.getText("TXT_KEY_PEDIA_CATEGORY_ABILITY", ())	
 		self.szCategoryConcepts		= localText.getText("TXT_KEY_PEDIA_CATEGORY_CONCEPT", ())
-		self.szCategoryConceptsNew	= localText.getText("TXT_KEY_PEDIA_CATEGORY_CONCEPT_NEW", ())
+#		self.szCategoryConceptsNew	= localText.getText("TXT_KEY_PEDIA_CATEGORY_CONCEPT_NEW", ())
 		self.szCategoryHints		= localText.getText("TXT_KEY_PEDIA_CATEGORY_HINTS", ())
 		self.szCategoryShortcuts	= localText.getText("TXT_KEY_PEDIA_CATEGORY_SHORTCUTS", ())
 ##--------	BUGFfH: Deleted by Denev 2009/08/12
@@ -517,7 +517,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 			["SPELLS",  self.szCategorySpells],
 			["SPELLS",	self.szCategoryAbilities],
 			["HINTS",	self.szCategoryConcepts],
-			["HINTS",	self.szCategoryConceptsNew],
+#			["HINTS",	self.szCategoryConceptsNew],
 			["HINTS",	self.szCategoryHints],
 			["HINTS",	self.szCategoryShortcuts],
 ##--------	BUGFfH: Deleted by Denev 2009/08/12
