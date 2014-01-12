@@ -1463,6 +1463,9 @@ void CvMap::calculateAreas()
 void CvMap::calculateWilderness()
 {
 	logBBAI( "calculateWilderness()" );
+
+	bool bLogVerbose = true;
+
 	// Reset starting points of each player with capital cities
 	for( int ePlayer = 0; ePlayer < GC.getMAX_CIV_PLAYERS(); ePlayer++ )
 	{
@@ -1475,10 +1478,6 @@ void CvMap::calculateWilderness()
 			}
 		}
 	}
-
-	// Reset
-	for ( int iPlot = 0; iPlot < numPlotsINLINE(); iPlot++ )
-		plotByIndexINLINE( iPlot )->setWilderness(-1);
 	
 	logBBAI( "  Area summary" );
 #ifdef LOG_AI
@@ -1486,8 +1485,6 @@ void CvMap::calculateWilderness()
 		logBBAI( "    Area #%d: %d plots%s%s", iArea, getArea( iArea )->getNumTiles(), getArea( iArea )->isWater() ? ", water" : "",
 				getArea( iArea )->getNumStartingPlots() > 0 ? ", inhabited" : "" );
 #endif
-	
-	logBBAI( "  Plot wilderness reset" );
 
 	// LFGR_TODO: The method of using an area array will probably cause trouble if an area was deleted before.
 	
@@ -1537,6 +1534,9 @@ void CvMap::calculateWilderness()
 			logBBAI( "    Area #%d: %d|%d", iArea, piUAreaMeanX[iArea], piUAreaMeanY[iArea] );
 		}
 	}
+	
+	float WILDERNESS_NEAREST_DISTANCE_FACTOR = GC.getDefineFLOAT( "WILDERNESS_NEAREST_DISTANCE_FACTOR" );
+	float WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR = GC.getDefineFLOAT( "WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR" );
 
 	// Store max and min wilderness for all continents
 	int* piAreaMaxWilderness = new int[getNumAreas()];
@@ -1548,6 +1548,8 @@ void CvMap::calculateWilderness()
 	int iUAreaMaxMaxAvDist = -1;
 	// Store max continent size divided by number of players on that continent
 	int iMaxInhabitedContinentSizePerPlayer = -1;
+	// Store first iteration wildernesses. Use float since it's scaled after normalization.
+	float* pfPlotWilderness = new float[numPlotsINLINE()];
 	
 	for( int iArea = 0; iArea < getNumAreas(); iArea++ )
 	{
@@ -1577,149 +1579,126 @@ void CvMap::calculateWilderness()
 		int iLoopArea = pLoopPlot->getArea() & FLTA_INDEX_MASK; // No idea why plots not simply store 0, 1, 2...
 		bool bWaterArea = getArea( iLoopArea )->isWater();
 
-		if( pLoopPlot->getWilderness() == -1 ) // Starting plots are already at 0
+		// LFGR_TODO: Wilderness from terrain and feature
+		
+		int iNearestDist = -1;
+		int iSecondNearestDist = -1;
+
+		for(int iJ = 0;iJ < GC.getMAX_CIV_PLAYERS(); iJ++)
 		{
-			// LFGR_TODO: Wilderness from terrain and feature
-			int iWilderness = -1;
-			if( getArea( iLoopArea )->getNumStartingPlots() > 0 || bWaterArea )
+			CvPlayer& pPlayer = GET_PLAYER((PlayerTypes)iJ);
+			if( pPlayer.isEverAlive() )
 			{
-				// Plots on inhabited continents or in water
-				int iNearestDist = -1;
-				int iSecondNearestDist = -1;
-
-				for(int iJ = 0;iJ < GC.getMAX_CIV_PLAYERS(); iJ++)
+				CvPlot* pStartPlot = pPlayer.getStartingPlot();
+				if( getArea( iLoopArea )->getNumStartingPlots() == 0 || pLoopPlot->getArea() == pStartPlot->getArea() )
 				{
-					CvPlayer& pPlayer = GET_PLAYER((PlayerTypes)iJ);
-					if( pPlayer.isEverAlive() )
-					{
-						CvPlot* pStartPlot = pPlayer.getStartingPlot();
-						if( pLoopPlot->getArea() == pStartPlot->getArea() || bWaterArea )
-						{
-							int iDist = stepDistance( iLoopX, iLoopY, pStartPlot->getX_INLINE(), pStartPlot->getY_INLINE() );
+					int iDist = stepDistance( iLoopX, iLoopY, pStartPlot->getX_INLINE(), pStartPlot->getY_INLINE() );
 
-							if( iNearestDist == -1 || iDist < iNearestDist )
-							{
-								iSecondNearestDist = iNearestDist;
-								iNearestDist = iDist;
-							}
-							else if( iDist < iSecondNearestDist )
-							{
-								iSecondNearestDist = iDist;
-							}
-						}
+					if( iNearestDist == -1 || iDist < iNearestDist )
+					{
+						iSecondNearestDist = iNearestDist;
+						iNearestDist = iDist;
+					}
+					else if( iSecondNearestDist == -1 || iDist < iSecondNearestDist )
+					{
+						iSecondNearestDist = iDist;
 					}
 				}
-
-				int iAvDist = 100;
-
-				if( iNearestDist != -1 )
-				{
-					// Arithmetic ean of nearest starting plot distance and average starting plot distance,
-					// but not higher then two times nearest distance
-					if( iSecondNearestDist != -1 )
-						iAvDist = std::min( iNearestDist * 2, ( iNearestDist * 2 + iSecondNearestDist ) / 3 );
-					else
-						iAvDist = iNearestDist;
-				}// iNearestDist == -1should not happen...
-				
-				iWilderness = std::min( iAvDist, 100 );
-				logBBAI( "      Plot at %d|%d #%d/%d inhabited or water; Distances: %d, %d -> %d; Wilderness: %d",
-					iLoopX, iLoopY, iLoopArea, getArea( iLoopArea )->getID(), iNearestDist, iSecondNearestDist, iAvDist, iWilderness );
 			}
-			else
-			{
-				// Plots on uninhabited continents
-				int iDist = stepDistance( iLoopX, iLoopY, piUAreaMeanX[iLoopArea], piUAreaMeanY[iLoopArea] );
-				iWilderness = std::max( 100 - iDist, 0 );
-				logBBAI( "      Plot at %d|%d #%d/%d uninhabited; Center distance: %d; Wilderness: %d",
-						iLoopX, iLoopY, iLoopArea, getArea( iLoopArea )->getID(), iDist, iWilderness );
+		}
+		
+		float fAvDist = 100.0f;
 
-				// Distance for later normalization
-				int iNearestDist = -1;
-				int iSecondNearestDist = -1;
+		if( iNearestDist != -1 )
+		{
+			if( iSecondNearestDist == -1 )
+				iSecondNearestDist = iNearestDist;
 
-				for(int iJ = 0;iJ < GC.getMAX_CIV_PLAYERS(); iJ++)
-				{
-					CvPlayer& pPlayer = GET_PLAYER((PlayerTypes)iJ);
-					if( pPlayer.isEverAlive() )
-					{
-						CvPlot* pStartPlot = pPlayer.getStartingPlot();
-						int iDist = stepDistance( iLoopX, iLoopY, pStartPlot->getX_INLINE(), pStartPlot->getY_INLINE() );
+			// Not higher then nearest distance, to get not more than +1 Wilderness per plot (before normalization).
+			fAvDist = 0.5f * ( iNearestDist * WILDERNESS_NEAREST_DISTANCE_FACTOR + iSecondNearestDist * WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR );
+			fAvDist = std::min( (float) iNearestDist, fAvDist );
+		}
+		else // iNearestDist == -1 should not happen...
+			FAssertMsg( false, "iNearestDist == -1" );
 
-						if( iNearestDist == -1 || iDist < iNearestDist )
-						{
-							iSecondNearestDist = iNearestDist;
-							iNearestDist = iDist;
-						}
-						else if( iDist < iSecondNearestDist )
-						{
-							iSecondNearestDist = iDist;
-						}
-					}
-				}
-
-				int iAvDist = 100;
-
-				if( iNearestDist != -1 )
-				{
-					// Arithmetic ean of nearest starting plot distance and average starting plot distance,
-					// but not higher then two times nearest distance
-					if( iSecondNearestDist != -1 )
-						iAvDist = std::min( iNearestDist * 2, ( iNearestDist * 2 + iSecondNearestDist ) / 3 );
-					else
-						iAvDist = iNearestDist;
-				}
-				
-				if( !pLoopPlot->isImpassable() )
-				{
-					if( piUAreaMaxAvDist[iLoopArea] == -1 || iAvDist > piUAreaMaxAvDist[iLoopArea] )
-					{
-						logBBAI( "      New area max dist!" );
-						piUAreaMaxAvDist[iLoopArea] = iAvDist;
-					}
-					if( piUAreaMinAvDist[iLoopArea] == -1 || iAvDist < piUAreaMinAvDist[iLoopArea] )
-					{
-						logBBAI( "      New area min dist!" );
-						piUAreaMinAvDist[iLoopArea] = iAvDist;
-					}
-				
-					if( iUAreaMaxMaxAvDist == -1 || iAvDist > iUAreaMaxMaxAvDist )
-					{
-						logBBAI( "      New global max dist!" );
-						iUAreaMaxMaxAvDist = iAvDist;
-					}
-				}
-				
-				logBBAI( "        Extra norm distance: %d, %d -> %d", iNearestDist, iSecondNearestDist, iAvDist );
-			}
+		float fWilderness = -1.0f;
+		if( getArea( iLoopArea )->getNumStartingPlots() > 0 || bWaterArea )
+		{
+			// Plots on inhabited continents or in water
+			fWilderness = std::min( fAvDist, 100.0f );
+			if( bLogVerbose )
+				logBBAI( "      Plot at %d|%d #%d/%d inhabited or water; Distances: %d, %d -> %f; Wilderness: %f",
+					iLoopX, iLoopY, iLoopArea, getArea( iLoopArea )->getID(), iNearestDist, iSecondNearestDist, fAvDist, fWilderness );
+		}
+		else
+		{
+			// Plots on uninhabited continents
+			int iDist = stepDistance( iLoopX, iLoopY, piUAreaMeanX[iLoopArea], piUAreaMeanY[iLoopArea] );
+			fWilderness = std::max( 100.0f - iDist, 0.0f );
+			if( bLogVerbose )
+				logBBAI( "      Plot at %d|%d #%d/%d uninhabited; Center distance: %d; Wilderness: %f",
+						iLoopX, iLoopY, iLoopArea, getArea( iLoopArea )->getID(), iDist, fWilderness );
 			
 			if( !pLoopPlot->isImpassable() )
 			{
-				if( bWaterArea )
+				if( piUAreaMaxAvDist[iLoopArea] == -1 || (int) fAvDist > piUAreaMaxAvDist[iLoopArea] )
 				{
-					if( iWaterAreaMaxWilderness == -1 || iWilderness > iWaterAreaMaxWilderness )
-						iWaterAreaMaxWilderness = iWilderness;
+					if( bLogVerbose )
+					logBBAI( "      New area max dist!" );
+					piUAreaMaxAvDist[iLoopArea] = (int) fAvDist;
+				}
+				if( piUAreaMinAvDist[iLoopArea] == -1 || (int) fAvDist < piUAreaMinAvDist[iLoopArea] )
+				{
+					if( bLogVerbose )
+					logBBAI( "      New area min dist!" );
+					piUAreaMinAvDist[iLoopArea] = (int) fAvDist;
 				}
 			
-				if( piAreaMaxWilderness[iLoopArea] == -1 || iWilderness > piAreaMaxWilderness[iLoopArea] )
+				if( iUAreaMaxMaxAvDist == -1 || (int) fAvDist > iUAreaMaxMaxAvDist )
 				{
-					logBBAI( "      New area max wilderness!" );
-					piAreaMaxWilderness[iLoopArea] = iWilderness;
+					if( bLogVerbose )
+					logBBAI( "      New global max dist!" );
+					iUAreaMaxMaxAvDist = (int) fAvDist;
 				}
-				else
-					logBBAI( "      Area max wilderness stays %d.", piAreaMaxWilderness[iLoopArea] );
-
-				if( piAreaMinWilderness[iLoopArea] == -1 || iWilderness < piAreaMinWilderness[iLoopArea] )
-				{
-					piAreaMinWilderness[iLoopArea] = iWilderness;
-					logBBAI( "      New area min wilderness!" );
-				}
-				else
-					logBBAI( "      Area min wilderness stays %d.", piAreaMinWilderness[iLoopArea] );
 			}
 			
-			pLoopPlot->setWilderness( iWilderness );
+			if( bLogVerbose )
+				logBBAI( "        Extra norm distance: %d, %d -> %d", iNearestDist, iSecondNearestDist, (int) fAvDist );
 		}
+		
+		if( !pLoopPlot->isImpassable() )
+		{
+			if( bWaterArea )
+			{
+				if( iWaterAreaMaxWilderness == -1 || (int) fWilderness > iWaterAreaMaxWilderness )
+					iWaterAreaMaxWilderness = (int) fWilderness;
+			}
+		
+			if( piAreaMaxWilderness[iLoopArea] == -1 || (int) fWilderness > piAreaMaxWilderness[iLoopArea] )
+			{
+				if( bLogVerbose )
+					logBBAI( "      New area max wilderness!" );
+				piAreaMaxWilderness[iLoopArea] = (int) fWilderness;
+			}
+			/*
+			else
+				if( bLogVerbose )
+					logBBAI( "      Area max wilderness stays %d.", piAreaMaxWilderness[iLoopArea] );
+			*/
+			if( piAreaMinWilderness[iLoopArea] == -1 || (int) fWilderness < piAreaMinWilderness[iLoopArea] )
+			{
+				piAreaMinWilderness[iLoopArea] = (int) fWilderness;
+				if( bLogVerbose )
+					logBBAI( "      New area min wilderness!" );
+			}
+			/*
+			else
+				if( bLogVerbose )
+					logBBAI( "      Area min wilderness stays %d.", piAreaMinWilderness[iLoopArea] );
+			*/
+		}
+		
+		pfPlotWilderness[iPlot] = fWilderness;
 	}
 
 	// NORMALIZATION
@@ -1741,6 +1720,8 @@ void CvMap::calculateWilderness()
 		MAX_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_MANY_ISLANDS" );
 	}
 
+	float WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT = GC.getDefineFLOAT( "WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT" );
+
 	/*
 		General normalization formula:
 		We have a factor (f) and a shift (s) value for each area. The formula for the wilderness (w) of a plot is:
@@ -1761,7 +1742,7 @@ void CvMap::calculateWilderness()
 	logBBAI( "  Normalization" );
 	logBBAI( "    Water Max Wilderness: %d", iWaterAreaMaxWilderness );
 	logBBAI( "    UArea Max Distance: %d", iUAreaMaxMaxAvDist );
-
+	
 	for( int iArea = 0; iArea < getNumAreas(); iArea++ )
 	{
 		int iActualMin = piAreaMinWilderness[iArea];
@@ -1804,14 +1785,34 @@ void CvMap::calculateWilderness()
 		}
 		else
 		{
-			logBBAI( "      !!! aMax = aMin !!!" );
+			logBBAI( "      !!! aMax = aMin !!! Tiles: %d", getArea( iArea )->getNumTiles() );
 			pfAreaNormShift[iArea] = (float) iRequiredMax - iActualMax;
 			pfAreaNormFactor[iArea] = 1.0f;
 		}
+
+		if( getArea( iArea )->getNumStartingPlots() > 0 || getArea( iArea )->isWater() )
+		{
+			// Now, since we ensured a maximum increase of 1.0 per plot before normalization, we can check the factor.
+			if( pfAreaNormFactor[iArea] > WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT )
+			{
+				logBBAI( "      Factor %f exceeds limit", pfAreaNormFactor[iArea] );
+				pfAreaNormFactor[iArea] = WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT;
+
+				// We want to retain min wilderness.
+				// rMin = aMin * f + s => s = rMin - aMin * f
+				pfAreaNormShift[iArea] = (float) iRequiredMin - iActualMin * pfAreaNormFactor[iArea];
+
+#ifdef LOG_AI
+				// Update for logging
+				iRequiredMax = (int) ( iActualMax * pfAreaNormFactor[iArea] + pfAreaNormShift[iArea] );
+#endif
+			}
+		}
+
 		logBBAI( "      Real min and max: %d, %d", piAreaMinWilderness[iArea], piAreaMaxWilderness[iArea] );
 		logBBAI( "      UArea min and max dist: %d, %d", piUAreaMinAvDist[iArea], piUAreaMaxAvDist[iArea] );
-		logBBAI( "      Wilderness: %d-%d -> %d-%d", iActualMin, iActualMax, iRequiredMin, iRequiredMax );
 		logBBAI( "      Factor: %f, Shift: %f", pfAreaNormFactor[iArea], pfAreaNormShift[iArea] );
+		logBBAI( "      Wilderness: %d-%d -> %d-%d", iActualMin, iActualMax, iRequiredMin, iRequiredMax );
 	}
 	
 	logBBAI( "  Apply normalization" );
@@ -1819,13 +1820,14 @@ void CvMap::calculateWilderness()
 	{
 		CvPlot* pLoopPlot = plotByIndexINLINE( iPlot );
 		int iLoopArea = pLoopPlot->getArea() & FLTA_INDEX_MASK; // No idea why plots not simply store 0, 1, 2...
-		int iNewWilderness = (int) ( pfAreaNormFactor[iLoopArea] * (float) pLoopPlot->getWilderness() + pfAreaNormShift[iLoopArea] );
-		
-		logBBAI( "  Plot %d|%d: %d -> %d", pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), pLoopPlot->getWilderness(), iNewWilderness );
-		logBBAI( "    NewWilderness formula: (int) ( %f * (float) %d + %f )", pfAreaNormFactor[iLoopArea], pLoopPlot->getWilderness(), pfAreaNormShift[iLoopArea] );
+		int iNewWilderness = (int) ( pfAreaNormFactor[iLoopArea] * pfPlotWilderness[iPlot] + pfAreaNormShift[iLoopArea] );
+		if( bLogVerbose )
+		{
+			logBBAI( "    Plot %d|%d: %f -> %d", pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), pfPlotWilderness[iPlot], iNewWilderness );
+			//logBBAI( "      NewWilderness formula: (int) ( %f * (float) %d + %f )", pfAreaNormFactor[iLoopArea], pfPlotWilderness[iPlot], pfAreaNormShift[iLoopArea] );
+		}
 		pLoopPlot->setWilderness( std::min( 100, iNewWilderness ) );
 	}
-
 	
 	// LFGR_TEST
 	if( GC.getDefineINT( "DEBUG_PAINT_WILDERNESS" ) == 1 )
