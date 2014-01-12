@@ -27,6 +27,11 @@
 			<Civilopedia>TXT_KEY_CONCEPT_ARMAGEDDON_COUNTER_PEDIA</Civilopedia>
 		</ConceptInfo>
 		<ConceptInfo>
+			<Type>CONCEPT_BUG_REPORTS</Type>
+			<Description>TXT_KEY_CONCEPT_BUG_REPORTS</Description>
+			<Civilopedia>TXT_KEY_CONCEPT_BUG_REPORTS_PEDIA</Civilopedia>
+		</ConceptInfo>
+		<ConceptInfo>
 			<Type>CONCEPT_CRIME_RATE</Type>
 			<Description>TXT_KEY_CONCEPT_CRIME_RATE</Description>
 			<Civilopedia>TXT_KEY_CONCEPT_CRIME_RATE_PEDIA</Civilopedia>
