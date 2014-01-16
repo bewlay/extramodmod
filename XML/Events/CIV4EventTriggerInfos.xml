@@ -2051,6 +2051,7 @@
 				<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
 			</OrPreReqs>
 			<bGlobal>1</bGlobal>
+			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- FRIENDLY_LOCALS -->
@@ -2216,6 +2217,7 @@
 				<Event>EVENT_GOBLIN_WASTE_1</Event>
 				<Event>EVENT_GOBLIN_WASTE_2</Event>
 			</Events>
+			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- GOVERNOR_ASSASSINATION -->
@@ -2315,6 +2317,7 @@
 				<Event>EVENT_GREAT_BEAST_2</Event>
 				<Event>EVENT_GREAT_BEAST_3</Event>
 			</Events>
+			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- GREAT_BEAST_GURID -->
@@ -3179,7 +3182,11 @@
 			<Events>
 				<Event>EVENT_JADE_1</Event>
 			</Events>
+			<OrPreReqs>
+				<PrereqTech>TECH_MINING</PrereqTech>
+			</OrPreReqs>
 			<bGlobal>1</bGlobal>
+			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- JOYOUS_WEDDING -->
@@ -4119,6 +4126,7 @@
 				<PrereqTech>TECH_ANIMAL_HUSBANDRY</PrereqTech>
 			</OrPreReqs>
 			<bGlobal>1</bGlobal>
+			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PASTURE_BUILT -->
@@ -4351,6 +4359,7 @@
 				<PrereqTech>TECH_ANIMAL_HUSBANDRY</PrereqTech>
 			</OrPreReqs>
 			<bGlobal>1</bGlobal>
+			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PRON_ALEXIS -->
@@ -5009,7 +5018,7 @@
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_seaturtles.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
-			<iWeight>200</iWeight>
+			<iWeight>400</iWeight>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
@@ -5020,7 +5029,11 @@
 			<Events>
 				<Event>EVENT_SEA_TURTLES_1</Event>
 			</Events>
+			<OrPreReqs>
+				<PrereqTech>TECH_FISHING</PrereqTech>
+			</OrPreReqs>
 			<bGlobal>1</bGlobal>
+			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- SETBACK -->
@@ -5932,6 +5945,7 @@
 				<PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
 			</OrPreReqs>
 			<bGlobal>1</bGlobal>
+			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- TOO_CLOSE_TO_CALL -->
@@ -6188,6 +6202,7 @@
 				<Event>EVENT_TRUFFLES_1</Event>
 			</Events>
 			<bGlobal>1</bGlobal>
+			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- TWO_HEADED_COW -->
@@ -6423,6 +6438,7 @@
 				<PrereqTech>TECH_MEDICINE</PrereqTech>
 			</OrPreReqs>
 			<bGlobal>1</bGlobal>
+			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- WEDDING_FEUD -->
@@ -6628,6 +6644,7 @@
 				<PrereqTech>TECH_AGRICULTURE</PrereqTech>
 			</OrPreReqs>
 			<bRecurring>1</bRecurring>
+			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PIG_GIANT -->
@@ -8451,6 +8468,7 @@
 				<Event>EVENT_ANCIENT_BURIAL_3</Event>
 				<Event>EVENT_ANCIENT_BURIAL_4</Event>
 			</Events>
+			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDo>canTriggerPlotEmpty</PythonCanDo>
 		</EventTriggerInfo>
