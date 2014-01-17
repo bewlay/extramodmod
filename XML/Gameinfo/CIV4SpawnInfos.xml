@@ -2,18 +2,19 @@
 <Civ4SpawnInfos xmlns="x-schema:CIV4SpawnInfoSchema.xml">
 	<SpawnInfos>
 		<!-- WILDERNESS / SpawnInfo -->
-		<!-- TODO: Descriptions -->
-		
+		<!-- LFGR_TODO: Descriptions -->
+
 		<!-- EXPLORATION SPAWNS -->
-		
-		<!-- Land -->
-		<SpawnInfo> <!-- SPAWN_EXPLO_SKELETON_EARLY -->
-			<Type>SPAWN_EXPLO_SKELETON_EARLY</Type>
+
+		<!-- Arcane -->
+		<SpawnInfo> <!-- SPAWN_EXPLO_SKELETON_1 -->
+			<Type>SPAWN_EXPLO_SKELETON_1</Type>
 			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SKELETON</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>30</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>0</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
 			<SpawnUnits>
@@ -22,17 +23,15 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_NECROMANCY</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_SKELETON_MIDDLE -->
-			<Type>SPAWN_EXPLO_SKELETON_MIDDLE</Type>
+		<SpawnInfo> <!-- SPAWN_EXPLO_SKELETON_2 -->
+			<Type>SPAWN_EXPLO_SKELETON_2</Type>
 			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SKELETON</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>30</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
 			<SpawnUnits>
@@ -41,207 +40,73 @@
 					<iNumUnits>2</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_NECROMANCY</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_SORCERY</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_SPECTRE_EARLY -->
-			<Type>SPAWN_EXPLO_SPECTRE_EARLY</Type>
-			<Description>TXT_KEY_GOODY_GRAVE_SPECTRE</Description>
+		<SpawnInfo> <!-- SPAWN_EXPLO_SKELETON_3 -->
+			<Type>SPAWN_EXPLO_SKELETON_3</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SKELETON</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
 			<SpawnUnits>
 				<SpawnUnit>
-					<Unit>UNIT_SPECTRE</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_NECROMANCY</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_SPECTRE_MIDDLE -->
-			<Type>SPAWN_EXPLO_SPECTRE_MIDDLE</Type>
-			<Description>TXT_KEY_GOODY_GRAVE_SPECTRE</Description>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SPECTRE</Unit>
-					<iNumUnits>2</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_NECROMANCY</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_SORCERY</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_SPECTRE_LATE -->
-			<Type>SPAWN_EXPLO_SPECTRE_LATE</Type>
-			<Description>TXT_KEY_GOODY_GRAVE_SPECTRE</Description>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SPECTRE</Unit>
-					<iNumUnits>2</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-			<ObsoleteTechs>
-				<Tech>TECH_NECROMANCY</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		
-		<SpawnInfo> <!-- SPAWN_EXPLO_SCORPION -->
-			<Type>SPAWN_EXPLO_SCORPION</Type>
-			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SCORPION</Description>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_SCORPION</TerrainFlavourType>
-			<iMinWilderness>15</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<bAnimal>1</bAnimal>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SCORPION</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_SCORPION_NEST -->
-			<Type>SPAWN_EXPLO_SCORPION_NEST</Type>
-			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SCORPION_BAD</Description>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_SCORPION</TerrainFlavourType>
-			<iMinWilderness>40</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<bAnimal>1</bAnimal>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SCORPION</Unit>
+					<Unit>UNIT_SKELETON</Unit>
 					<iNumUnits>3</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_GIANT_SPIDER -->
-			<Type>SPAWN_EXPLO_GIANT_SPIDER</Type>
-			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SPIDER</Description>
+		<SpawnInfo> <!-- SPAWN_EXPLO_SPECTRE_1 -->
+			<Type>SPAWN_EXPLO_SPECTRE_1</Type>
+			<Description>TXT_KEY_GOODY_GRAVE_SPECTRE</Description>
 			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_SPIDER</TerrainFlavourType>
-			<iMinWilderness>15</iMinWilderness>
-			<iMaxWilderness>60</iMaxWilderness>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
-			<bExplorationNoPush>1</bExplorationNoPush>
-			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
-					<Unit>UNIT_GIANT_SPIDER</Unit>
+					<Unit>UNIT_SPECTRE</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		
-		<SpawnInfo> <!-- SPAWN_EXPLO_LIZARDMAN_EARLY -->
-			<Type>SPAWN_EXPLO_LIZARDMAN_EARLY</Type>
-			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_LIZARDMAN</Description>
+		<SpawnInfo> <!-- SPAWN_EXPLO_SPECTRE_2 -->
+			<Type>SPAWN_EXPLO_SPECTRE_2</Type>
+			<Description>TXT_KEY_GOODY_GRAVE_SPECTRE</Description>
 			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_LIZARDMAN</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
-			<bExplorationNoPush>1</bExplorationNoPush>
 			<SpawnUnits>
 				<SpawnUnit>
-					<Unit>UNIT_LIZARDMAN</Unit>
-					<iNumUnits>1</iNumUnits>
+					<Unit>UNIT_SPECTRE</Unit>
+					<iNumUnits>2</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_ANIMAL_HANDLING</Tech>
-			</ObsoleteTechs>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_LIZARDMAN_RANGER_EARLY -->
-			<Type>SPAWN_EXPLO_LIZARDMAN_RANGER_EARLY</Type>
-			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_LIZARDMAN</Description>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_LIZARDMAN</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<bExplorationNoPush>1</bExplorationNoPush>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_LIZARDMAN_RANGER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_LIZARDMAN_RANGER -->
-			<Type>SPAWN_EXPLO_LIZARDMAN_RANGER</Type>
-			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_LIZARDMAN</Description>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_LIZARDMAN</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<bExplorationNoPush>1</bExplorationNoPush>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_LIZARDMAN_RANGER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_AZER -->
 			<Type>SPAWN_EXPLO_BOSS_AZER</Type>
-			<iBaseWeight>80</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<iBaseWeight>90</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_AZER</Unit>
@@ -264,96 +129,170 @@
 			</UnitPromotions>
 			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC_LATE</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC</SpawnType>
 				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
 				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
 				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
 			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_MYSTICISM</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_AXEMAN_ORC_EARLY -->
-			<Type>SPAWN_EXPLO_BOSS_AXEMAN_ORC_EARLY</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_LICH -->
+			<Type>SPAWN_EXPLO_BOSS_LICH</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
+			<iValidTerrainWeight>-25</iValidTerrainWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>5</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
 			<SpawnUnits>
 				<SpawnUnit>
-					<Unit>UNIT_AXEMAN</Unit>
+					<Unit>UNIT_LICH</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<iMinRandomPromotions>1</iMinRandomPromotions>
-			<iMaxRandomPromotions>3</iMaxRandomPromotions>
 			<UnitPromotions>
-				<PromotionType>PROMOTION_MUTATED</PromotionType>
-				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
-				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-				<PromotionType>PROMOTION_BLITZ</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
-				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
-				<PromotionType>PROMOTION_VALOR</PromotionType>
-				<PromotionType>PROMOTION_FEAR</PromotionType>
+				<PromotionType>PROMOTION_DEATH1</PromotionType>
+				<PromotionType>PROMOTION_DEATH2</PromotionType>
 			</UnitPromotions>
 			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_SKELETON</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE</SpawnType>
 			</IncludedSpawns>
-			<ObsoleteTechs>
-				<Tech>TECH_MINING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_AXEMAN_ORC_LATE -->
-			<Type>SPAWN_EXPLO_BOSS_AXEMAN_ORC_LATE</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WRAITH -->
+			<Type>SPAWN_EXPLO_BOSS_WRAITH</Type>
+			<iBaseWeight>65</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
+			<iValidTerrainWeight>-50</iValidTerrainWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
-					<Unit>UNIT_AXEMAN</Unit>
+					<Unit>UNIT_WRAITH</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
 			<iMinRandomPromotions>1</iMinRandomPromotions>
-			<iMaxRandomPromotions>3</iMaxRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
 			<UnitPromotions>
-				<PromotionType>PROMOTION_MUTATED</PromotionType>
-				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
-				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
 				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
 				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
 				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
 				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
-				<PromotionType>PROMOTION_VALOR</PromotionType>
-				<PromotionType>PROMOTION_FEAR</PromotionType>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_SHADOWWALK</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
 			</UnitPromotions>
 			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_SKELETON</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE</SpawnType>
 			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_MINING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
+		
+		<!-- Animal -->
+		<SpawnInfo> <!-- SPAWN_EXPLO_SCORPION_1 -->
+			<Type>SPAWN_EXPLO_SCORPION</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SCORPION</Description>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_SCORPION</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>1</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SCORPION</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_SCORPION_2 -->
+			<Type>SPAWN_EXPLO_SCORPION</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SCORPION</Description>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_SCORPION</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SCORPION</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_SCORPION_NEST -->
+			<Type>SPAWN_EXPLO_SCORPION_NEST</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SCORPION_BAD</Description>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_SCORPION</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SCORPION</Unit>
+					<iNumUnits>2</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_GIANT_SPIDER -->
+			<Type>SPAWN_EXPLO_GIANT_SPIDER</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SPIDER</Description>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_SPIDER</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<bExplorationNoPush>1</bExplorationNoPush>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GIANT_SPIDER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		
+		<!-- Disciple -->
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_BALOR -->
 			<Type>SPAWN_EXPLO_BOSS_BALOR</Type>
-			<iBaseWeight>80</iBaseWeight>
-			<iMinWilderness>60</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<iBaseWeight>90</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_DISCIPLE</SpawnPrereqType>
+			<iMinSpawnTier>5</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<iPrereqGlobalCounter>40</iPrereqGlobalCounter>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_BALOR</Unit>
@@ -382,18 +321,239 @@
 				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
 				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
 			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_FANATICISM</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_EIDOLON -->
+			<Type>SPAWN_EXPLO_BOSS_EIDOLON</Type>
+			<iBaseWeight>90</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_DISCIPLE</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_EIDOLON</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_COMMAND1</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_VALOR</PromotionType>
+				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
+			</IncludedSpawns>
+		</SpawnInfo>
+		
+		<!-- Melee -->
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_AXEMAN_ORC -->
+			<Type>SPAWN_EXPLO_BOSS_AXEMAN_ORC</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_AXEMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>3</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_MUTATED</PromotionType>
+				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_VALOR</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+			</IncludedSpawns>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_GARGOYLE -->
+			<Type>SPAWN_EXPLO_BOSS_GARGOYLE</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_GARGOYLE</Description>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_DUNGEON_DEFAULT</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GARGOYLE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_WOOD_GOLEM</SpawnType>
+			</IncludedSpawns>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_OGRE -->
+			<Type>SPAWN_EXPLO_BOSS_OGRE</Type>
+			<iBaseWeight>65</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_OGRE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>4</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+				<PromotionType>PROMOTION_HERO</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_MUTATED</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_STONESKIN</PromotionType>
+				<PromotionType>PROMOTION_VALOR</PromotionType>
+				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+			</IncludedSpawns>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_OGRE_WARCHIEF -->
+			<Type>SPAWN_EXPLO_BOSS_OGRE_WARCHIEF</Type>
+			<iBaseWeight>65</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>6</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_OGRE_WARCHIEF</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>4</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_MUTATED</PromotionType>
+				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_STONESKIN</PromotionType>
+				<PromotionType>PROMOTION_VALOR</PromotionType>
+				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_OGRE</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+			</IncludedSpawns>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_VAMPIRE -->
+			<Type>SPAWN_EXPLO_BOSS_VAMPIRE</Type>
+			<!-- LFGR_TODO: Only if Calabim not in game -->
+			<iBaseWeight>65</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_VAMPIRE_EXTRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_VAMPIRE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>3</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_COMMAND1</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_VALOR</PromotionType>
+				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
+				<PromotionType>PROMOTION_FIRE1</PromotionType>
+				<PromotionType>PROMOTION_AIR1</PromotionType>
+				<PromotionType>PROMOTION_HERO</PromotionType>
+				<PromotionType>PROMOTION_MARKSMAN</PromotionType>
+				<PromotionType>PROMOTION_SHADOWWALK</PromotionType>
+				<PromotionType>PROMOTION_DEATH1</PromotionType>
+				<PromotionType>PROMOTION_POISONED_BLADE</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+			</UnitPromotions>
+			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<IncludedSpawns>
+				<SpawnType>SPAWN_EXPLO_COMP_SKELETON</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE</SpawnType>
+			</IncludedSpawns>
+		</SpawnInfo>
+		
+		<!-- Mounted -->
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_DEATH_KNIGHT -->
 			<Type>SPAWN_EXPLO_BOSS_DEATH_KNIGHT</Type>
-			<iBaseWeight>80</iBaseWeight>
-			<iMinWilderness>40</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<iBaseWeight>90</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>5</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<iPrereqGlobalCounter>40</iPrereqGlobalCounter>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_DEATH_KNIGHT</Unit>
@@ -422,176 +582,55 @@
 				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
 				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
 			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_WARHORSES</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_EIDOLON_EARLY -->
-			<Type>SPAWN_EXPLO_BOSS_EIDOLON_EARLY</Type>
-			<iBaseWeight>80</iBaseWeight>
-			<iMinWilderness>80</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_EIDOLON</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<iMinRandomPromotions>1</iMinRandomPromotions>
-			<iMaxRandomPromotions>2</iMaxRandomPromotions>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-				<PromotionType>PROMOTION_BLITZ</PromotionType>
-				<PromotionType>PROMOTION_COMMAND1</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
-				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
-				<PromotionType>PROMOTION_VALOR</PromotionType>
-				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
-				<PromotionType>PROMOTION_FEAR</PromotionType>
-			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
-			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
-			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_MYSTICISM</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_EIDOLON_LATE -->
-			<Type>SPAWN_EXPLO_BOSS_EIDOLON_LATE</Type>
-			<iBaseWeight>80</iBaseWeight>
-			<iMinWilderness>40</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<iPrereqGlobalCounter>20</iPrereqGlobalCounter>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_EIDOLON</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<iMinRandomPromotions>1</iMinRandomPromotions>
-			<iMaxRandomPromotions>2</iMaxRandomPromotions>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-				<PromotionType>PROMOTION_BLITZ</PromotionType>
-				<PromotionType>PROMOTION_COMMAND1</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
-				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
-				<PromotionType>PROMOTION_VALOR</PromotionType>
-				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
-				<PromotionType>PROMOTION_FEAR</PromotionType>
-			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
-			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
-			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_FANATICISM</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_GARGOYLE_EARLY -->
-			<Type>SPAWN_EXPLO_BOSS_GARGOYLE_EARLY</Type>
-			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_GARGOYLE</Description>
+		
+		<!-- Recon -->
+		<SpawnInfo> <!-- SPAWN_EXPLO_LIZARDMAN -->
+			<Type>SPAWN_EXPLO_LIZARDMAN</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_LIZARDMAN</Description>
 			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_DUNGEON_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>60</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_LIZARDMAN</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bExplorationNoPush>1</bExplorationNoPush>
 			<SpawnUnits>
 				<SpawnUnit>
-					<Unit>UNIT_GARGOYLE</Unit>
+					<Unit>UNIT_LIZARDMAN</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_WOOD_GOLEM</SpawnType>
-			</IncludedSpawns>
-			<ObsoleteTechs>
-				<Tech>TECH_CONSTRUCTION</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_GARGOYLE_LATE -->
-			<Type>SPAWN_EXPLO_BOSS_GARGOYLE_LATE</Type>
-			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_GARGOYLE</Description>
+		<SpawnInfo> <!-- SPAWN_EXPLO_LIZARDMAN_RANGER -->
+			<Type>SPAWN_EXPLO_LIZARDMAN_RANGER</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_LIZARDMAN</Description>
 			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_DUNGEON_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_LIZARDMAN</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bExplorationNoPush>1</bExplorationNoPush>
 			<SpawnUnits>
 				<SpawnUnit>
-					<Unit>UNIT_GARGOYLE</Unit>
+					<Unit>UNIT_LIZARDMAN_RANGER</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_WOOD_GOLEM</SpawnType>
-			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_CONSTRUCTION</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_LICH -->
-			<Type>SPAWN_EXPLO_BOSS_LICH</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
-			<iValidTerrainWeight>-25</iValidTerrainWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_LICH</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_DEATH1</PromotionType>
-				<PromotionType>PROMOTION_DEATH2</PromotionType>
-			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
-			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_LATE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_LATE</SpawnType>
-			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_SORCERY</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_MANTICORE -->
 			<Type>SPAWN_EXPLO_BOSS_MANTICORE</Type>
-			<iBaseWeight>80</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<iBaseWeight>90</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>5</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_MANTICORE</Unit>
@@ -623,144 +662,17 @@
 				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
 				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
 			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_OGRE_EARLY -->
-			<Type>SPAWN_EXPLO_BOSS_OGRE_EARLY</Type>
-			<iBaseWeight>40</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_OGRE</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<iMinRandomPromotions>1</iMinRandomPromotions>
-			<iMaxRandomPromotions>2</iMaxRandomPromotions>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_MUTATED</PromotionType>
-				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
-				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-				<PromotionType>PROMOTION_BLITZ</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
-				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
-				<PromotionType>PROMOTION_STONESKIN</PromotionType>
-				<PromotionType>PROMOTION_VALOR</PromotionType>
-				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
-				<PromotionType>PROMOTION_FEAR</PromotionType>
-			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
-			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC_LATE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
-			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_SMELTING</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_OGRE_LATE -->
-			<Type>SPAWN_EXPLO_BOSS_OGRE_LATE</Type>
-			<iBaseWeight>40</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_OGRE</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<iMinRandomPromotions>1</iMinRandomPromotions>
-			<iMaxRandomPromotions>4</iMaxRandomPromotions>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_BLITZ</PromotionType>
-				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
-				<PromotionType>PROMOTION_FEAR</PromotionType>
-				<PromotionType>PROMOTION_HERO</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
-				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
-				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
-				<PromotionType>PROMOTION_MUTATED</PromotionType>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-				<PromotionType>PROMOTION_STONESKIN</PromotionType>
-				<PromotionType>PROMOTION_VALOR</PromotionType>
-				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
-			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
-			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC_LATE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
-			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_SMELTING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_OGRE_WARCHIEF -->
-			<Type>SPAWN_EXPLO_BOSS_OGRE_WARCHIEF</Type>
-			<iBaseWeight>40</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_OGRE_WARCHIEF</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<iMinRandomPromotions>1</iMinRandomPromotions>
-			<iMaxRandomPromotions>4</iMaxRandomPromotions>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_MUTATED</PromotionType>
-				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
-				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-				<PromotionType>PROMOTION_BLITZ</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
-				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
-				<PromotionType>PROMOTION_STONESKIN</PromotionType>
-				<PromotionType>PROMOTION_VALOR</PromotionType>
-				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
-				<PromotionType>PROMOTION_FEAR</PromotionType>
-			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
-			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC_LATE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_OGRE_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_OGRE_LATE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
-			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_SATYR -->
 			<Type>SPAWN_EXPLO_BOSS_SATYR</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_FOREST_DEFENDER</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_SATYR</Unit>
@@ -783,98 +695,17 @@
 			<IncludedSpawns>
 				<SpawnType>SPAWN_EXPLO_COMP_FAWN</SpawnType>
 			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_ANIMAL_HANDLING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_SPECTRE -->
-			<Type>SPAWN_EXPLO_BOSS_SPECTRE</Type>
-			<iBaseWeight>40</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
-			<iValidTerrainWeight>-50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SPECTRE</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<iMinRandomPromotions>3</iMinRandomPromotions>
-			<iMaxRandomPromotions>5</iMaxRandomPromotions>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-				<PromotionType>PROMOTION_BLITZ</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
-				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
-				<PromotionType>PROMOTION_FEAR</PromotionType>
-			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
-			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_LATE</SpawnType>
-			</IncludedSpawns>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_VAMPIRE -->
-			<Type>SPAWN_EXPLO_BOSS_VAMPIRE</Type>
-			<!-- LFGR_TODO: Only if Calabim not in game -->
-			<iBaseWeight>40</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_VAMPIRE_EXTRA</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_VAMPIRE</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<iMinRandomPromotions>1</iMinRandomPromotions>
-			<iMaxRandomPromotions>3</iMaxRandomPromotions>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_CANNIBALIZE</PromotionType>
-				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
-				<PromotionType>PROMOTION_BLITZ</PromotionType>
-				<PromotionType>PROMOTION_COMMAND1</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
-				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
-				<PromotionType>PROMOTION_VALOR</PromotionType>
-				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
-				<PromotionType>PROMOTION_FIRE1</PromotionType>
-				<PromotionType>PROMOTION_AIR1</PromotionType>
-				<PromotionType>PROMOTION_HERO</PromotionType>
-				<PromotionType>PROMOTION_MARKSMAN</PromotionType>
-				<PromotionType>PROMOTION_SHADOWWALK</PromotionType>
-				<PromotionType>PROMOTION_DEATH1</PromotionType>
-				<PromotionType>PROMOTION_POISONED_BLADE</PromotionType>
-				<PromotionType>PROMOTION_FEAR</PromotionType>
-			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
-			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_LATE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_LATE</SpawnType>
-			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WEREWOLF -->
-			<!-- LFGR_TODO: Only if Duin was built (doesn't have to be alive)? -->
 			<Type>SPAWN_EXPLO_BOSS_WEREWOLF</Type>
-			<iBaseWeight>50</iBaseWeight>
+			<iBaseWeight>65</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_WEREWOLF_EXTRA</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -899,371 +730,17 @@
 			<IncludedSpawns>
 				<SpawnType>SPAWN_EXPLO_COMP_RAVENOUS_WEREWOLF</SpawnType>
 			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_ANIMAL_HANDLING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WRAITH -->
-			<Type>SPAWN_EXPLO_BOSS_WRAITH</Type>
-			<iBaseWeight>30</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
-			<iValidTerrainWeight>-50</iValidTerrainWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bExplorationResult>1</bExplorationResult>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_WRAITH</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<iMinRandomPromotions>1</iMinRandomPromotions>
-			<iMaxRandomPromotions>2</iMaxRandomPromotions>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_BLITZ</PromotionType>
-				<PromotionType>PROMOTION_FEAR</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
-				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
-				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
-				<PromotionType>PROMOTION_SHADOWWALK</PromotionType>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
-			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON_LATE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE_LATE</SpawnType>
-			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_SORCERY</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_AXEMAN_ORC_EARLY -->
-			<Type>SPAWN_EXPLO_COMP_AXEMAN_ORC_EARLY</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>25</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_AXEMAN</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_AXEMAN_ORC_LATE -->
-			<Type>SPAWN_EXPLO_COMP_AXEMAN_ORC_LATE</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_AXEMAN</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_MINING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_CHAOS_MARAUDER -->
-			<Type>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</Type>
-			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<iPrereqGlobalCounter>10</iPrereqGlobalCounter>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_CHAOS_MARAUDER</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<iMinRandomPromotions>0</iMinRandomPromotions>
-			<iMaxRandomPromotions>1</iMaxRandomPromotions>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
-				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
-			</UnitPromotions>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_FAWN -->
-			<Type>SPAWN_EXPLO_COMP_FAWN</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_FOREST_DEFENDER</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<iPrereqGlobalCounter>10</iPrereqGlobalCounter>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bNoRace>1</bNoRace>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_FAWN</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_GRIFFON -->
-			<Type>SPAWN_EXPLO_COMP_GRIFFON</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_GRIFFON</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bAnimal>1</bAnimal>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_GRIFFON</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_HELLHOUND -->
-			<Type>SPAWN_EXPLO_COMP_HELLHOUND</Type>
-			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<iPrereqGlobalCounter>20</iPrereqGlobalCounter>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bNoRace>1</bNoRace>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_HELLHOUND</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_IMP -->
-			<Type>SPAWN_EXPLO_COMP_IMP</Type>
-			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<iPrereqGlobalCounter>40</iPrereqGlobalCounter>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bNoRace>1</bNoRace>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_IMP</Unit>
-					<iNumUnits>2</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<iMinRandomPromotions>1</iMinRandomPromotions>
-			<iMaxRandomPromotions>2</iMaxRandomPromotions>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_CHAOS1</PromotionType>
-				<PromotionType>PROMOTION_DEATH1</PromotionType>
-				<PromotionType>PROMOTION_ENCHANTMENT1</PromotionType>
-				<PromotionType>PROMOTION_ENTROPY1</PromotionType>
-				<PromotionType>PROMOTION_FIRE1</PromotionType>
-				<PromotionType>PROMOTION_SHADOW1</PromotionType>
-			</UnitPromotions>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_OGRE_EARLY -->
-			<Type>SPAWN_EXPLO_COMP_OGRE_EARLY</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_OGRE</Unit>
-					<iNumUnits>2</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_OGRE_LATE -->
-			<Type>SPAWN_EXPLO_COMP_OGRE_LATE</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_OGRE</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_PIT_BEAST -->
-			<Type>SPAWN_EXPLO_COMP_PIT_BEAST</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<iMinWilderness>40</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_PIT_BEAST</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_PYRE_ZOMBIE -->
-			<Type>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</Type>
-			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<iPrereqGlobalCounter>20</iPrereqGlobalCounter>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_PYRE_ZOMBIE</Unit>
-					<iNumUnits>4</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_MINING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_RAVENOUS_WEREWOLF -->
-			<Type>SPAWN_EXPLO_COMP_RAVENOUS_WEREWOLF</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_WEREWOLF_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bNoRace>1</bNoRace>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_RAVENOUS_WEREWOLF</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_SKELETON_EARLY -->
-			<Type>SPAWN_EXPLO_COMP_SKELETON_EARLY</Type>
-			<iBaseWeight>50</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
-			<iValidTerrainWeight>-50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SKELETON</Unit>
-					<iNumUnits>5</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_SKELETON_LATE -->
-			<Type>SPAWN_EXPLO_COMP_SKELETON_LATE</Type>
-			<iBaseWeight>50</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
-			<iValidTerrainWeight>-50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SKELETON</Unit>
-					<iNumUnits>5</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_KNOWLEDGE_OF_THE_ETHER</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_SPECTRE_EARLY -->
-			<Type>SPAWN_EXPLO_COMP_SPECTRE_EARLY</Type>
-			<iBaseWeight>50</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
-			<iValidTerrainWeight>-50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SPECTRE</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_SPECTRE_LATE -->
-			<Type>SPAWN_EXPLO_COMP_SPECTRE_LATE</Type>
-			<iBaseWeight>50</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
-			<iValidTerrainWeight>-50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SPECTRE</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_KNOWLEDGE_OF_THE_ETHER</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_WARRIOR_ORC -->
-			<Type>SPAWN_EXPLO_COMP_WARRIOR_ORC</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_WARRIOR</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_WOOD_GOLEM -->
-			<Type>SPAWN_EXPLO_COMP_WOOD_GOLEM</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_DUNGEON_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_WOOD_GOLEM</Unit>
-					<iNumUnits>4</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_CONSTRUCTION</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		
-		<!-- Water -->
+		<!-- Naval -->
 		<SpawnInfo> <!-- SPAWN_EXPLO_DROWN -->
 			<Type>SPAWN_EXPLO_DROWN</Type>
 			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_DROWN</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_COAST</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_DISCIPLE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
 			<bWater>1</bWater>
@@ -1273,16 +750,14 @@
 					<iNumUnits>2</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_SORCERY</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_SEA_SERPENT -->
 			<Type>SPAWN_EXPLO_SEA_SERPENT</Type>
 			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SEA_SERPENT</Description>
 			<iBaseWeight>80</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
 			<bAnimal>1</bAnimal>
@@ -1294,14 +769,14 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_STYGIAN_GUARD -->
 			<Type>SPAWN_EXPLO_BOSS_STYGIAN_GUARD</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_COAST</TerrainFlavourType>
 			<iValidTerrainWeight>-20</iValidTerrainWeight>
-			<iMinWilderness>30</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_DISCIPLE</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
 			<bWater>1</bWater>
@@ -1328,20 +803,18 @@
 			</UnitPromotions>
 			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_DROWN_EARLY</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_DROWN_LATE</SpawnType>
+				<SpawnType>SPAWN_EXPLO_COMP_DROWN</SpawnType>
 			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_FANATICISM</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_KRAKEN -->
 			<Type>SPAWN_EXPLO_BOSS_KRAKEN</Type>
 			<iBaseWeight>80</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
 			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1365,17 +838,250 @@
 			<IncludedSpawns>
 				<SpawnType>SPAWN_EXPLO_COMP_SEA_SERPENT</SpawnType>
 			</IncludedSpawns>
-			<PrereqTechs>
-				<Tech>TECH_SORCERY</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_DROWN_EARLY -->
-			<Type>SPAWN_EXPLO_COMP_DROWN_EARLY</Type>
+		<!-- Companions -->
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_AXEMAN_ORC-->
+			<Type>SPAWN_EXPLO_COMP_AXEMAN_ORC</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_AXEMAN</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_CHAOS_MARAUDER -->
+			<Type>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<iPrereqGlobalCounter>10</iPrereqGlobalCounter>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_CHAOS_MARAUDER</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>0</iMinRandomPromotions>
+			<iMaxRandomPromotions>1</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_FAWN -->
+			<Type>SPAWN_EXPLO_COMP_FAWN</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_FOREST_DEFENDER</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_FAWN</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_GRIFFON -->
+			<Type>SPAWN_EXPLO_COMP_GRIFFON</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_GRIFFON</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GRIFFON</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_HELLHOUND -->
+			<Type>SPAWN_EXPLO_COMP_HELLHOUND</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<iPrereqGlobalCounter>20</iPrereqGlobalCounter>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HELLHOUND</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_IMP -->
+			<Type>SPAWN_EXPLO_COMP_IMP</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<iPrereqGlobalCounter>40</iPrereqGlobalCounter>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_IMP</Unit>
+					<iNumUnits>2</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_CHAOS1</PromotionType>
+				<PromotionType>PROMOTION_DEATH1</PromotionType>
+				<PromotionType>PROMOTION_ENCHANTMENT1</PromotionType>
+				<PromotionType>PROMOTION_ENTROPY1</PromotionType>
+				<PromotionType>PROMOTION_FIRE1</PromotionType>
+				<PromotionType>PROMOTION_SHADOW1</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_OGRE-->
+			<Type>SPAWN_EXPLO_COMP_OGRE</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_OGRE</Unit>
+					<iNumUnits>2</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_PIT_BEAST -->
+			<Type>SPAWN_EXPLO_COMP_PIT_BEAST</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_DISCIPLE</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_PIT_BEAST</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_PYRE_ZOMBIE -->
+			<Type>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<iPrereqGlobalCounter>20</iPrereqGlobalCounter>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_PYRE_ZOMBIE</Unit>
+					<iNumUnits>4</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_RAVENOUS_WEREWOLF -->
+			<Type>SPAWN_EXPLO_COMP_RAVENOUS_WEREWOLF</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_WEREWOLF_EXTRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_RAVENOUS_WEREWOLF</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_SKELETON -->
+			<Type>SPAWN_EXPLO_COMP_SKELETON</Type>
+			<iBaseWeight>50</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
+			<iValidTerrainWeight>-50</iValidTerrainWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SKELETON</Unit>
+					<iNumUnits>5</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_SPECTRE -->
+			<Type>SPAWN_EXPLO_COMP_SPECTRE</Type>
+			<iBaseWeight>50</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
+			<iValidTerrainWeight>-50</iValidTerrainWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SPECTRE</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_WARRIOR_ORC -->
+			<Type>SPAWN_EXPLO_COMP_WARRIOR_ORC</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WARRIOR</Unit>
+					<iNumUnits>3</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_WOOD_GOLEM -->
+			<Type>SPAWN_EXPLO_COMP_WOOD_GOLEM</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_DUNGEON_DEFAULT</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WOOD_GOLEM</Unit>
+					<iNumUnits>4</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_DROWN -->
+			<Type>SPAWN_EXPLO_COMP_DROWN</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_COAST</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_DISCIPLE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bWater>1</bWater>
 			<SpawnUnits>
@@ -1384,36 +1090,13 @@
 					<iNumUnits>3</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_SORCERY</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_DROWN_LATE -->
-			<Type>SPAWN_EXPLO_COMP_DROWN_LATE</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_COAST</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<bWater>1</bWater>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_DROWN</Unit>
-					<iNumUnits>5</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_KNOWLEDGE_OF_THE_ETHER</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_SEA_SERPENT -->
 			<Type>SPAWN_EXPLO_COMP_SEA_SERPENT</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<bWater>1</bWater>
@@ -1424,31 +1107,31 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		
+
 		<!-- LAIR SPAWNS -->
-		
+
 		<!-- Barrow -->
-		<SpawnInfo> <!-- SPAWN_BARROW_EARLY_SKELETON -->
-			<Type>SPAWN_BARROW_EARLY_SKELETON</Type>
+		<SpawnInfo> <!-- SPAWN_BARROW_SKELETON -->
+			<Type>SPAWN_BARROW_SKELETON</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>60</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SKELETON</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
+			  <SpawnUnit>
+			    <Unit>UNIT_SKELETON</Unit>
+			    <iNumUnits>1</iNumUnits>
+			  </SpawnUnit>
 			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_NECROMANCY</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_BARROW_EARLY_SPECTRE -->
-			<Type>SPAWN_BARROW_EARLY_SPECTRE</Type>
+    </SpawnInfo>
+    <SpawnInfo>
+			<!-- SPAWN_BARROW_SPECTRE -->
+			<Type>SPAWN_BARROW_SPECTRE</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1456,51 +1139,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_NECROMANCY</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_BARROW_EARLY_GHOUL -->
-			<Type>SPAWN_BARROW_EARLY_GHOUL</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BARROW_GHOUL</TerrainFlavourType>
-			<iValidTerrainWeight>50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_GHOUL</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_BARROW_EARLY_WIGHT -->
-			<Type>SPAWN_BARROW_EARLY_WIGHT</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BARROW_GHOUL</TerrainFlavourType>
-			<iMinWilderness>60</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_WIGHT</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-				<SpawnUnit>
-					<Unit>UNIT_GHOUL</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_NECROMANCY</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_BARROW_LATE_SPECTRE -->
-			<Type>SPAWN_BARROW_LATE_SPECTRE</Type>
+		<SpawnInfo> <!-- SPAWN_BARROW_SPECTRE_STRONG -->
+			<Type>SPAWN_BARROW_SPECTRE_STRONG</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1508,15 +1153,16 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_NECROMANCY</Tech>
-			</PrereqTechs>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_BARROW_LATE_WRAITH -->
-			<Type>SPAWN_BARROW_LATE_WRAITH</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<iMinWilderness>80</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+		<SpawnInfo> <!-- SPAWN_BARROW_WRAITH -->
+			<Type>SPAWN_BARROW_WRAITH</Type>
+			<iBaseWeight>90</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1524,17 +1170,33 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_NECROMANCY</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_BARROW_LATE_WIGHT -->
-			<Type>SPAWN_BARROW_LATE_WIGHT</Type>
+		
+		<SpawnInfo> <!-- SPAWN_BARROW_GHOUL -->
+			<Type>SPAWN_BARROW_GHOUL</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BARROW_GHOUL</TerrainFlavourType>
-			<iMinWilderness>40</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<iValidTerrainWeight>50</iValidTerrainWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GHOUL</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_BARROW_WIGHT -->
+			<Type>SPAWN_BARROW_WIGHT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BARROW_GHOUL</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoDefender>1</bNoDefender>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_WIGHT</Unit>
@@ -1545,28 +1207,29 @@
 					<iNumUnits>3</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_NECROMANCY</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
+		
 		<SpawnInfo> <!-- SPAWN_BARROW_GUARDIAN_SKELETON -->
 			<Type>SPAWN_BARROW_GUARDIAN_SKELETON</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SKELETON</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
+			  <SpawnUnit>
+			    <Unit>UNIT_SKELETON</Unit>
+			    <iNumUnits>1</iNumUnits>
+			  </SpawnUnit>
 			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_BARROW_GUARDIAN_STRONG_SPECTRE -->
-			<Type>SPAWN_BARROW_GUARDIAN_STRONG_SPECTRE</Type>
+    </SpawnInfo>
+    <SpawnInfo>
+			<!-- SPAWN_BARROW_GUARDIAN_SPECTRE_STRONG -->
+			<Type>SPAWN_BARROW_GUARDIAN_SPECTRE_STRONG</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1583,8 +1246,9 @@
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BARROW_GHOUL</TerrainFlavourType>
 			<iValidTerrainWeight>100</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1593,13 +1257,14 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_BARROW_GUARDIAN_STRONG_GHOUL -->
-			<Type>SPAWN_BARROW_GUARDIAN_STRONG_GHOUL</Type>
+		<SpawnInfo> <!-- SPAWN_BARROW_GUARDIAN_GHOUL_STRONG -->
+			<Type>SPAWN_BARROW_GUARDIAN_GHOUL_STRONG</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BARROW_GHOUL</TerrainFlavourType>
 			<iValidTerrainWeight>100</iValidTerrainWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1611,14 +1276,14 @@
 				<PromotionType>PROMOTION_STRONG</PromotionType>
 			</UnitPromotions>
 		</SpawnInfo>
-		
-		
+
 		<!-- Bear Den -->
 		<SpawnInfo> <!-- SPAWN_BEAR_DEN_BEAR -->
 			<Type>SPAWN_BEAR_DEN_BEAR</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
@@ -1636,8 +1301,9 @@
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BEAR_DEN_POLAR_BEAR</TerrainFlavourType>
 			<iValidTerrainWeight>100</iValidTerrainWeight>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
@@ -1652,9 +1318,10 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_BEAR_DEN_CAVE_BEAR -->
 			<Type>SPAWN_BEAR_DEN_CAVE_BEAR</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<iMinWilderness>70</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<iBaseWeight>90</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
@@ -1672,8 +1339,9 @@
 		<SpawnInfo> <!-- SPAWN_GOBLIN_FORT_GOBLIN_SCORPION_CLAN -->
 			<Type>SPAWN_GOBLIN_FORT_GOBLIN_SCORPION_CLAN</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1685,8 +1353,9 @@
 		<SpawnInfo> <!-- SPAWN_GOBLIN_FORT_WOLF_RIDER_SCORPION_CLAN -->
 			<Type>SPAWN_GOBLIN_FORT_WOLF_RIDER_SCORPION_CLAN</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1694,15 +1363,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_HORSEBACK_RIDING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_GOBLIN_FORT_CHARIOT_SCORPION_CLAN -->
 			<Type>SPAWN_GOBLIN_FORT_CHARIOT_SCORPION_CLAN</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1710,16 +1377,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_HORSEBACK_RIDING</Tech>
-				<Tech>TECH_CONSTRUCTION</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_GOBLIN_FORT_ARCHER_SCORPION_CLAN -->
 			<Type>SPAWN_GOBLIN_FORT_ARCHER_SCORPION_CLAN</Type>
 			<iBaseWeight>50</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCHERY</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1727,15 +1391,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_BOWYERS</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN_WEAK -->
 			<Type>SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN_WEAK</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCHERY</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1750,8 +1412,9 @@
 		<SpawnInfo> <!-- SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN -->
 			<Type>SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCHERY</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1760,13 +1423,14 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		
+
 		<!-- Hellfire -->
 		<SpawnInfo> <!-- SPAWN_HELLFIRE_CHAMPION -->
 			<Type>SPAWN_HELLFIRE_CHAMPION</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1778,13 +1442,14 @@
 				<PromotionType>PROMOTION_DEMON</PromotionType>
 			</UnitPromotions>
 		</SpawnInfo>
-		
+
 		<!-- Lion Den -->
 		<SpawnInfo> <!-- SPAWN_LION_DEN_LION -->
 			<Type>SPAWN_LION_DEN_LION</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
@@ -1800,8 +1465,9 @@
 		<SpawnInfo> <!-- SPAWN_LION_DEN_LION_PRIDE -->
 			<Type>SPAWN_LION_DEN_LION_PRIDE</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>40</iMinWilderness>
-			<iMaxWilderness>70</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
@@ -1817,8 +1483,9 @@
 		<SpawnInfo> <!-- SPAWN_LION_DEN_STRONG_LION_PRIDE -->
 			<Type>SPAWN_LION_DEN_STRONG_LION_PRIDE</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>60</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
@@ -1836,11 +1503,12 @@
 		</SpawnInfo>
 
 		<!-- Ruins -->
-		<SpawnInfo> <!-- SPAWN_RUINS_EARLY_LIZARDMAN_WEAK -->
-			<Type>SPAWN_RUINS_EARLY_LIZARDMAN_WEAK</Type>
+		<SpawnInfo> <!-- SPAWN_RUINS_LIZARDMAN_WEAK -->
+			<Type>SPAWN_RUINS_LIZARDMAN_WEAK</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>70</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1851,15 +1519,13 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_WEAK</PromotionType>
 			</UnitPromotions>
-			<ObsoleteTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_RUINS_EARLY_LIZARDMAN -->
-			<Type>SPAWN_RUINS_EARLY_LIZARDMAN</Type>
+		<SpawnInfo> <!-- SPAWN_RUINS_LIZARDMAN -->
+			<Type>SPAWN_RUINS_LIZARDMAN</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1867,34 +1533,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_RUINS_MIDDLE_LIZARDMAN -->
-			<Type>SPAWN_RUINS_MIDDLE_LIZARDMAN</Type>
+		<SpawnInfo> <!-- SPAWN_RUINS_LIZARDMAN_RANGER_WEAK -->
+			<Type>SPAWN_RUINS_LIZARDMAN_RANGER_WEAK</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>70</iMaxWilderness>
-			<bNeverSpawn>1</bNeverSpawn>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_LIZARDMAN</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_RUINS_MIDDLE_LIZARDMAN_RANGER_WEAK -->
-			<Type>SPAWN_RUINS_MIDDLE_LIZARDMAN_RANGER_WEAK</Type>
-			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1905,18 +1550,13 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_WEAK</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_RUINS_LATE_LIZARDMAN_RANGER -->
-			<Type>SPAWN_RUINS_LATE_LIZARDMAN_RANGER</Type>
+		<SpawnInfo> <!-- SPAWN_RUINS_LIZARDMAN_RANGER -->
+			<Type>SPAWN_RUINS_LIZARDMAN_RANGER</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1924,15 +1564,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_RUINS_GUARDIAN_LIZARDMAN -->
 			<Type>SPAWN_RUINS_GUARDIAN_LIZARDMAN</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>70</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1944,8 +1582,9 @@
 		<SpawnInfo> <!-- SPAWN_RUINS_GUARDIAN_LIZARDMAN_RANGER -->
 			<Type>SPAWN_RUINS_GUARDIAN_LIZARDMAN_RANGER</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>70</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1953,17 +1592,15 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_WEAK</PromotionType>
-			</UnitPromotions>
 		</SpawnInfo>
-		
+
 		<!-- Letum Frigus -->
 		<SpawnInfo> <!-- SPAWN_LETUM_FRIGUS_HOLLOW_MAN -->
 			<Type>SPAWN_LETUM_FRIGUS_HOLLOW_MAN</Type>
 			<iBaseWeight>0</iBaseWeight>
-			<iMinWilderness>80</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>5</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1971,17 +1608,15 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_POISONS</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		
+
 		<!-- Wolf Den -->
 		<SpawnInfo> <!-- SPAWN_WOLF_DEN_WOLF -->
 			<Type>SPAWN_WOLF_DEN_WOLF</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>40</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
@@ -1997,8 +1632,9 @@
 		<SpawnInfo> <!-- SPAWN_WOLF_DEN_WOLF_PACK -->
 			<Type>SPAWN_WOLF_DEN_WOLF_PACK</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>30</iMinWilderness>
-			<iMaxWilderness>70</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
@@ -2014,8 +1650,9 @@
 		<SpawnInfo> <!-- SPAWN_WOLF_DEN_STRONG_WOLF_PACK -->
 			<Type>SPAWN_WOLF_DEN_STRONG_WOLF_PACK</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>30</iMinWilderness>
-			<iMaxWilderness>70</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
@@ -2031,16 +1668,17 @@
 			<iCreateLairAge>40</iCreateLairAge>
 			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
-		
+
 		<!-- ANIMAL SPAWNS -->
-		
+
 		<!-- Land -->
 		<SpawnInfo> <!-- SPAWN_BEAR -->
 			<Type>SPAWN_BEAR</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BEAR</TerrainFlavourType>
-			<iMinWilderness>30</iMinWilderness>
-			<iMaxWilderness>90</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2056,8 +1694,10 @@
 			<Type>SPAWN_POLAR_BEAR</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_POLAR_BEAR</TerrainFlavourType>
-			<iMinWilderness>30</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<iValidTerrainWeight>100</iValidTerrainWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2073,8 +1713,10 @@
 			<Type>SPAWN_STRONG_POLAR_BEAR</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_POLAR_BEAR</TerrainFlavourType>
-			<iMinWilderness>60</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<iValidTerrainWeight>100</iValidTerrainWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2093,8 +1735,9 @@
 			<Type>SPAWN_CAVE_BEAR</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BEAR</TerrainFlavourType>
-			<iMinWilderness>75</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2110,8 +1753,9 @@
 			<Type>SPAWN_ELEPHANT</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ELEPHANT</TerrainFlavourType>
-			<iMinWilderness>40</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2124,8 +1768,9 @@
 			<Type>SPAWN_GIANT_SPIDER</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SPIDER</TerrainFlavourType>
-			<iMinWilderness>30</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2138,8 +1783,9 @@
 			<Type>SPAWN_STRONG_GIANT_SPIDER</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SPIDER</TerrainFlavourType>
-			<iMinWilderness>60</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2155,8 +1801,9 @@
 			<Type>SPAWN_GRIFFON</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_GRIFFON</TerrainFlavourType>
-			<iMinWilderness>40</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2169,8 +1816,9 @@
 			<Type>SPAWN_GORILLA</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2183,8 +1831,9 @@
 			<Type>SPAWN_STRONG_GORILLA</Type>
 			<iBaseWeight>-25</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2201,8 +1850,9 @@
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_HILL_GIANT</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2215,8 +1865,9 @@
 			<Type>SPAWN_LION</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_LION</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2232,8 +1883,9 @@
 			<Type>SPAWN_LION_PRIDE</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_LION</TerrainFlavourType>
-			<iMinWilderness>35</iMinWilderness>
-			<iMaxWilderness>70</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2249,8 +1901,9 @@
 			<Type>SPAWN_PANTHER</Type>
 			<iBaseWeight>-25</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>30</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2263,8 +1916,9 @@
 			<Type>SPAWN_STRONG_PANTHER</Type>
 			<iBaseWeight>-25</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>75</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2280,8 +1934,9 @@
 			<Type>SPAWN_SCORPION</Type>
 			<iBaseWeight>-25</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SCORPION</TerrainFlavourType>
-			<iMinWilderness>25</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2294,8 +1949,9 @@
 			<Type>SPAWN_STRONG_SCORPION</Type>
 			<iBaseWeight>-25</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SCORPION</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2311,8 +1967,9 @@
 			<Type>SPAWN_TIGER</Type>
 			<iBaseWeight>-20</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>70</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2325,8 +1982,9 @@
 			<Type>SPAWN_STRONG_TIGER</Type>
 			<iBaseWeight>-30</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2343,8 +2001,9 @@
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WOLF</TerrainFlavourType>
 			<iValidTerrainWeight>50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>35</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>0</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2361,8 +2020,9 @@
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WOLF</TerrainFlavourType>
 			<iValidTerrainWeight>50</iValidTerrainWeight>
-			<iMinWilderness>30</iMinWilderness>
-			<iMaxWilderness>65</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2374,13 +2034,14 @@
 			<iCreateLairAge>30</iCreateLairAge>
 			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
-		
+
 		<!-- Water -->
 		<SpawnInfo> <!-- SPAWN_GIANT_TORTOISE -->
 			<Type>SPAWN_GIANT_TORTOISE</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<bWater>1</bWater>
 			<SpawnUnits>
@@ -2393,8 +2054,9 @@
 		<SpawnInfo> <!-- SPAWN_SEA_SERPENT -->
 			<Type>SPAWN_SEA_SERPENT</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bAnimal>1</bAnimal>
 			<bWater>1</bWater>
 			<SpawnUnits>
@@ -2404,15 +2066,16 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		
+
 		<!-- BARB SPAWNS -->
-		
+
 		<!-- Basic Water -->
 		<SpawnInfo> <!-- SPAWN_GALLEY -->
 			<Type>SPAWN_GALLEY</Type>
 			<iBaseWeight>50</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2420,19 +2083,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_SAILING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_OPTICS</Tech>
-				<Tech>TECH_ASTRONOMY</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_CARAVEL -->
 			<Type>SPAWN_CARAVEL</Type>
 			<iBaseWeight>50</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2440,15 +2097,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_OPTICS</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_GALLEON -->
 			<Type>SPAWN_GALLEON</Type>
 			<iBaseWeight>50</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
 			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2456,18 +2111,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_ASTRONOMY</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_ENGINEERING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_QUEEN_OF_THE_LINE -->
 			<Type>SPAWN_QUEEN_OF_THE_LINE</Type>
 			<iBaseWeight>50</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
+			<iMinSpawnTier>5</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2475,16 +2125,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_ASTRONOMY</Tech>
-				<Tech>TECH_ENGINEERING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_TRIREME -->
 			<Type>SPAWN_TRIREME</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2492,19 +2139,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_SAILING</Tech>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_OPTICS</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_PRIVATEER -->
 			<Type>SPAWN_PRIVATEER</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
 			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2512,36 +2153,13 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_OPTICS</Tech>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_PRIVATEER_EARLY -->
-			<Type>SPAWN_PRIVATEER_EARLY</Type>
-			<iBaseWeight>100</iBaseWeight>
-			<iMinWilderness>70</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bWater>1</bWater>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_PRIVATEER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_SAILING</Tech>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_OPTICS</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_FRIGATE -->
 			<Type>SPAWN_FRIGATE</Type>
 			<iBaseWeight>75</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
+			<iMinSpawnTier>5</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2549,191 +2167,103 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_OPTICS</Tech>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_MAN_O_WAR -->
-			<Type>SPAWN_MAN_O_WAR</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bWater>1</bWater>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_MAN_O_WAR</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_ASTRONOMY</Tech>
-				<Tech>TECH_BLASTING_POWDER</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_ARCANE_BARGE -->
-			<Type>SPAWN_ARCANE_BARGE</Type>
-			<iBaseWeight>50</iBaseWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bWater>1</bWater>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_ARCANE_BARGE</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_ASTRONOMY</Tech>
-				<Tech>TECH_SORCERY</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		
+
 		<!-- Orcs -->
 		<SpawnInfo> <!-- SPAWN_ORC_WARRIOR -->
 			<Type>SPAWN_ORC_WARRIOR</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_WARRIOR</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_ORC_AXEMAN -->
 			<Type>SPAWN_ORC_AXEMAN</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_AXEMAN</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_ORC_AXEMAN_EARLY -->
-			<Type>SPAWN_ORC_AXEMAN_EARLY</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>60</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_AXEMAN</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_OGRE -->
 			<Type>SPAWN_OGRE</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_OGRE</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_OGRE_EARLY -->
-			<Type>SPAWN_OGRE_EARLY</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>60</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_OGRE</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		
 		<SpawnInfo> <!-- SPAWN_GOBLIN -->
 			<Type>SPAWN_GOBLIN</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>50</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_GOBLIN</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_GOBLIN_SCORPION_CLAN -->
 			<Type>SPAWN_GOBLIN_SCORPION_CLAN</Type>
 			<iBaseWeight>80</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>60</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_GOBLIN_SCORPION_CLAN</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_ANIMAL_HANDLING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LIZARDMAN -->
 			<Type>SPAWN_LIZARDMAN</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_LIZARDMAN_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_LIZARDMAN</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_LIZARDMAN_EARLY -->
-			<Type>SPAWN_LIZARDMAN_EARLY</Type>
-			<iBaseWeight>75</iBaseWeight>
+		<SpawnInfo> <!-- SPAWN_LIZARDMAN_ASSASSIN -->
+			<Type>SPAWN_LIZARDMAN_ASSASSIN</Type>
+			<iBaseWeight>100</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_LIZARDMAN_EXTRA</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
 			<SpawnUnits>
 				<SpawnUnit>
-					<Unit>UNIT_LIZARDMAN</Unit>
+					<Unit>UNIT_LIZARDMAN_ASSASSIN</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
@@ -2742,126 +2272,82 @@
 			<Type>SPAWN_LIZARDMAN_RANGER</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_LIZARDMAN_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_LIZARDMAN_RANGER</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_LIZARDMAN_RANGER_EARLY -->
-			<Type>SPAWN_LIZARDMAN_RANGER_EARLY</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_LIZARDMAN_EXTRA</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_LIZARDMAN_RANGER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_ANIMAL_HANDLING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_LIZARDMAN_ASSASSIN -->
-			<Type>SPAWN_LIZARDMAN_ASSASSIN</Type>
-			<iBaseWeight>100</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_LIZARDMAN_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_LIZARDMAN_ASSASSIN</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_POISONS</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		
 		<SpawnInfo> <!-- SPAWN_WOLF_RIDER -->
 			<Type>SPAWN_WOLF_RIDER</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_WOLF_RIDER</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_HORSEBACK_RIDING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WOLF_RIDER_SCORPION_CLAN -->
 			<Type>SPAWN_WOLF_RIDER_SCORPION_CLAN</Type>
 			<iBaseWeight>80</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>80</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_WOLF_RIDER_SCORPION_CLAN</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_HORSEBACK_RIDING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_ORC_CHARIOT -->
 			<Type>SPAWN_ORC_CHARIOT</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_CHARIOT</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_HORSEBACK_RIDING</Tech>
-				<Tech>TECH_CONSTRUCTION</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_ORC_CHARIOT_SCORPION_CLAN -->
 			<Type>SPAWN_ORC_CHARIOT_SCORPION_CLAN</Type>
 			<iBaseWeight>80</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ORC_EXTRA</TerrainFlavourType>
-			<iMinWilderness>20</iMinWilderness>
-			<iMaxWilderness>80</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_CHARIOT_SCORPION_CLAN</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_HORSEBACK_RIDING</Tech>
-				<Tech>TECH_CONSTRUCTION</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		
+
 		<!-- Nomads -->
 		<SpawnInfo> <!-- SPAWN_NOMAD_WARRIOR -->
 			<Type>SPAWN_NOMAD_WARRIOR</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
 			<SpawnUnits>
@@ -2873,17 +2359,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_NOMAD</PromotionType>
 			</UnitPromotions>
-			<ObsoleteTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_NOMAD_SWORDSMAN -->
 			<Type>SPAWN_NOMAD_SWORDSMAN</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
 			<SpawnUnits>
@@ -2895,41 +2379,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_NOMAD</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_NOMAD_SWORDSMAN_EARLY -->
-			<Type>SPAWN_NOMAD_SWORDSMAN_EARLY</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
-			<iMinWilderness>60</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SWORDSMAN</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_NOMAD</PromotionType>
-			</UnitPromotions>
-			<ObsoleteTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_NOMAD_CHAMPION -->
 			<Type>SPAWN_NOMAD_CHAMPION</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>5</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
 			<SpawnUnits>
@@ -2941,18 +2399,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_NOMAD</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		
 		<SpawnInfo> <!-- SPAWN_NOMAD_HUNTER -->
 			<Type>SPAWN_NOMAD_HUNTER</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
 			<SpawnUnits>
@@ -2964,63 +2419,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_NOMAD</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_NOMAD_RANGER -->
-			<Type>SPAWN_NOMAD_RANGER</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
-			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_RANGER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_NOMAD</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_NOMAD_RANGER_EARLY -->
-			<Type>SPAWN_NOMAD_RANGER_EARLY</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_RANGER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_NOMAD</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_NOMAD_ASSASSIN -->
 			<Type>SPAWN_NOMAD_ASSASSIN</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
 			<SpawnUnits>
@@ -3032,18 +2439,35 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_NOMAD</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_POISONS</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		
+		<SpawnInfo> <!-- SPAWN_NOMAD_RANGER -->
+			<Type>SPAWN_NOMAD_RANGER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
+			<iValidTerrainWeight>25</iValidTerrainWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_RANGER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_NOMAD</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_NOMAD_HORSEMAN -->
 			<Type>SPAWN_NOMAD_HORSEMAN</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
 			<SpawnUnits>
@@ -3055,17 +2479,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_NOMAD</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_HORSEBACK_RIDING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_NOMAD_CHARIOT -->
 			<Type>SPAWN_NOMAD_CHARIOT</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_MALAKIM</UnitArtStyleType>
 			<SpawnUnits>
@@ -3077,18 +2499,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_NOMAD</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_HORSEBACK_RIDING</Tech>
-				<Tech>TECH_CONSTRUCTION</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_CAMEL_ARCHER -->
 			<Type>SPAWN_CAMEL_ARCHER</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3099,19 +2518,17 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_NOMAD</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_STIRRUPS</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		
+
 		<!-- Winterborns -->
 		<SpawnInfo> <!-- SPAWN_WINTERBORN_WARRIOR -->
 			<Type>SPAWN_WINTERBORN_WARRIOR</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
 			<iValidTerrainWeight>50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
 			<SpawnUnits>
@@ -3123,17 +2540,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
 			</UnitPromotions>
-			<ObsoleteTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WINTERBORN_AXEMAN -->
 			<Type>SPAWN_WINTERBORN_AXEMAN</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
 			<iValidTerrainWeight>50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
 			<SpawnUnits>
@@ -3145,42 +2560,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_WINTERBORN_AXEMAN_EARLY -->
-			<Type>SPAWN_WINTERBORN_AXEMAN_EARLY</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
-			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>60</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_AXEMAN</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
-			</UnitPromotions>
-			<ObsoleteTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WINTERBORN_CHAMPION -->
 			<Type>SPAWN_WINTERBORN_CHAMPION</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
 			<iValidTerrainWeight>50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
 			<SpawnUnits>
@@ -3192,18 +2580,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		
 		<SpawnInfo> <!-- SPAWN_WINTERBORN_HUNTER -->
 			<Type>SPAWN_WINTERBORN_HUNTER</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
 			<iValidTerrainWeight>50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
 			<SpawnUnits>
@@ -3215,64 +2600,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_WINTERBORN_RANGER -->
-			<Type>SPAWN_WINTERBORN_RANGER</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
-			<iValidTerrainWeight>50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_RANGER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_WINTERBORN_RANGER_EARLY -->
-			<Type>SPAWN_WINTERBORN_RANGER_EARLY</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
-			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_RANGER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WINTERBORN_ASSASSIN -->
 			<Type>SPAWN_WINTERBORN_ASSASSIN</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
 			<iValidTerrainWeight>50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
 			<SpawnUnits>
@@ -3284,18 +2620,35 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_POISONS</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_RANGER -->
+			<Type>SPAWN_WINTERBORN_RANGER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
+			<iValidTerrainWeight>50</iValidTerrainWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_RANGER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WINTERBORN_HORSEMAN -->
 			<Type>SPAWN_WINTERBORN_HORSEMAN</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
 			<iValidTerrainWeight>50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
 			<SpawnUnits>
@@ -3307,39 +2660,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_HORSEBACK_RIDING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_WINTERBORN_HORSE_ARCHER -->
-			<Type>SPAWN_WINTERBORN_HORSE_ARCHER</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
-			<iValidTerrainWeight>50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_HORSE_ARCHER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_STIRRUPS</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WINTERBORN_CHARIOT -->
 			<Type>SPAWN_WINTERBORN_CHARIOT</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
 			<iValidTerrainWeight>50</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
 			<SpawnUnits>
@@ -3351,20 +2680,37 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_HORSEBACK_RIDING</Tech>
-				<Tech>TECH_CONSTRUCTION</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		
+		<SpawnInfo> <!-- SPAWN_WINTERBORN_HORSE_ARCHER -->
+			<Type>SPAWN_WINTERBORN_HORSE_ARCHER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
+			<iValidTerrainWeight>50</iValidTerrainWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_ILLIANS</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HORSE_ARCHER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+
 		<!-- Demons -->
 		<SpawnInfo> <!-- SPAWN_DEMON_WARRIOR -->
 			<Type>SPAWN_DEMON_WARRIOR</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3375,17 +2721,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_DEMON</PromotionType>
 			</UnitPromotions>
-			<ObsoleteTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_DEMON_AXEMAN -->
 			<Type>SPAWN_DEMON_AXEMAN</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3396,40 +2740,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_DEMON</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_DEMON_AXEMAN_EARLY -->
-			<Type>SPAWN_DEMON_AXEMAN_EARLY</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
-			<iMinWilderness>60</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_AXEMAN</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_DEMON</PromotionType>
-			</UnitPromotions>
-			<ObsoleteTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_DEMON_CHAMPION -->
 			<Type>SPAWN_DEMON_CHAMPION</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3440,18 +2759,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_DEMON</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		
 		<SpawnInfo> <!-- SPAWN_HELLHOUND -->
 			<Type>SPAWN_HELLHOUND</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3459,61 +2775,15 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_DEMON_RANGER -->
-			<Type>SPAWN_DEMON_RANGER</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
-			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_RANGER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_DEMON</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_DEMON_RANGER_EARLY -->
-			<Type>SPAWN_DEMON_RANGER_EARLY</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_RANGER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_DEMON</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_DEMON_ASSASSIN -->
 			<Type>SPAWN_DEMON_ASSASSIN</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3524,18 +2794,34 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_DEMON</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_POISONS</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		
+		<SpawnInfo> <!-- SPAWN_DEMON_RANGER -->
+			<Type>SPAWN_DEMON_RANGER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
+			<iValidTerrainWeight>25</iValidTerrainWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_RANGER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_DEMON_HORSEMAN -->
 			<Type>SPAWN_DEMON_HORSEMAN</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3546,38 +2832,15 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_DEMON</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_HORSEBACK_RIDING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_DEMON_HORSE_ARCHER -->
-			<Type>SPAWN_DEMON_HORSE_ARCHER</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
-			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_HORSE_ARCHER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_DEMON</PromotionType>
-			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_STIRRUPS</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_DEMON_CHARIOT -->
 			<Type>SPAWN_DEMON_CHARIOT</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>5</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3588,19 +2851,35 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_DEMON</PromotionType>
 			</UnitPromotions>
-			<PrereqTechs>
-				<Tech>TECH_HORSEBACK_RIDING</Tech>
-				<Tech>TECH_CONSTRUCTION</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
-		
+		<SpawnInfo> <!-- SPAWN_DEMON_HORSE_ARCHER -->
+			<Type>SPAWN_DEMON_HORSE_ARCHER</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
+			<iValidTerrainWeight>25</iValidTerrainWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HORSE_ARCHER</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_DEMON</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+
 		<!-- Savages -->
 		<SpawnInfo> <!-- SPAWN_SAVAGE -->
 			<Type>SPAWN_SAVAGE</Type>
 			<iBaseWeight>75</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SAVAGE_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3608,16 +2887,14 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_BANDIT -->
 			<Type>SPAWN_BANDIT</Type>
 			<iBaseWeight>75</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SAVAGE_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3625,36 +2902,14 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
-			<ObsoleteTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</ObsoleteTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_BANDIT_EARLY -->
-			<Type>SPAWN_BANDIT_EARLY</Type>
-			<iBaseWeight>50</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SAVAGE_EXTRA</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_BANDIT</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<ObsoleteTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</ObsoleteTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_BANDIT_LORD -->
 			<Type>SPAWN_BANDIT_LORD</Type>
 			<iBaseWeight>75</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SAVAGE_EXTRA</TerrainFlavourType>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>75</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3666,30 +2921,6 @@
 					<iNumUnits>3</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_IRON_WORKING</Tech>
-			</PrereqTechs>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_BANDIT_LORD_EARLY -->
-			<Type>SPAWN_BANDIT_LORD_EARLY</Type>
-			<iBaseWeight>75</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SAVAGE_EXTRA</TerrainFlavourType>
-			<iMinWilderness>50</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
-			<bNoRace>1</bNoRace>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_BANDIT_LORD</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-				<SpawnUnit>
-					<Unit>UNIT_BANDIT</Unit>
-					<iNumUnits>3</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_BRONZE_WORKING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		
 		<!-- Forest Defenders -->
@@ -3698,8 +2929,9 @@
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_FOREST_DEFENDER</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>0</iMinWilderness>
-			<iMaxWilderness>60</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3707,17 +2939,15 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_HUNTING</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_SATYR -->
 			<Type>SPAWN_SATYR</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_FOREST_DEFENDER</TerrainFlavourType>
 			<iValidTerrainWeight>25</iValidTerrainWeight>
-			<iMinWilderness>40</iMinWilderness>
-			<iMaxWilderness>100</iMaxWilderness>
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNoRace>1</bNoRace>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -3725,9 +2955,6 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<PrereqTechs>
-				<Tech>TECH_FERAL_BOND</Tech>
-			</PrereqTechs>
 		</SpawnInfo>
 	</SpawnInfos>
 </Civ4SpawnInfos>

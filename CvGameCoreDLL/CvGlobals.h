@@ -144,9 +144,10 @@ class CvTerrainFlavourInfo;
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* SpawnInfo                                                                                    */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
 /************************************************************************************************/
 class CvSpawnInfo;
+class CvSpawnPrereqInfo;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -324,11 +325,15 @@ public:
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* SpawnInfo                                                                                    */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
 /************************************************************************************************/
 	int getNumSpawnInfos();
 	std::vector<CvSpawnInfo*>& getSpawnInfo();
 	CvSpawnInfo& getSpawnInfo(SpawnTypes eSpawnNum);
+
+	int getNumSpawnPrereqInfos();
+	std::vector<CvSpawnPrereqInfo*>& getSpawnPrereqInfo();
+	CvSpawnPrereqInfo& getSpawnPrereqInfo(SpawnPrereqTypes eSpawnPrereqNum);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -908,10 +913,13 @@ public:
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* SpawnInfo                                                                                    */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
 /************************************************************************************************/
 	bool readSpawnInfoArray(FDataStreamBase* pStream);
 	void writeSpawnInfoArray(FDataStreamBase* pStream);
+	
+	bool readSpawnPrereqInfoArray(FDataStreamBase* pStream);
+	void writeSpawnPrereqInfoArray(FDataStreamBase* pStream);
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -1179,9 +1187,10 @@ protected:
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* SpawnInfo                                                                                    */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
 /************************************************************************************************/
     std::vector<CvSpawnInfo*> m_paSpawnInfo;
+    std::vector<CvSpawnPrereqInfo*> m_paSpawnPrereqInfo;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

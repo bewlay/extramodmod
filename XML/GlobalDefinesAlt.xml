@@ -1030,6 +1030,32 @@
 		<iDefineIntVal>55</iDefineIntVal>
 	</Define>
 	<Define>
+		<!-- 0 for no maximum -->
+		<DefineName>WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT</DefineName>
+		<fDefineFloatVal>6.0</fDefineFloatVal>
+	</Define>
+	<!-- The constants below are used in the wilderness calculation the following way: 
+		max( nearestDist, 0.5 * ( nearestDist * WILDERNESS_NEAREST_DISTANCE_FACTOR + secondNearestDist * WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR ) )
+		Note that secondNearestDist > nearestDist, so if the total factor exceeds 2.0, nearestDist will always be used.
+		-->
+	<Define>
+		<!-- Factor at which the distance to the nearest starting plot is taken into
+		     account by wilderness calculation. Default: 1.0 -->
+		<DefineName>WILDERNESS_NEAREST_DISTANCE_FACTOR</DefineName>
+		<fDefineFloatVal>1.0</fDefineFloatVal>
+	</Define>
+	<Define>
+		<!-- Factor at which the distance to the second nearest starting plot (or the
+		     nearest if only one available) is taken into account by wilderness calculation.
+			 Default: 0.5 -->
+		<DefineName>WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR</DefineName>
+		<fDefineFloatVal>0.5</fDefineFloatVal>
+	</Define>
+	<Define>
+		<DefineName>DEBUG_PAINT_WILDERNESS</DefineName>
+		<iDefineIntVal>0</iDefineIntVal>
+	</Define>
+	<Define>
 		<DefineName>UNIT_MOVE_MIN_WILDERNESS_RANGE</DefineName>
 		<iDefineIntVal>5</iDefineIntVal>
 	</Define>

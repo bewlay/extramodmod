@@ -1326,7 +1326,7 @@ void CvMapGenerator::addImprovements()
 										bool bGuardian = false;
 										for( int eLoopSpawn = 0; !bGuardian && eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
 											if( GC.getImprovementInfo( (ImprovementTypes) iJ ).isGuardianSpawnType( eLoopSpawn ) )
-												if( int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn, true ) > 0 )
+												if( int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn ) > 0 )
 													bGuardian = true;
 
 										if( bGuardian )

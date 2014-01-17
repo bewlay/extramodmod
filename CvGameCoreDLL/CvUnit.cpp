@@ -1535,7 +1535,7 @@ void CvUnit::doTurn()
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* CreateLair                                                                                   */
+/* CreateLair, LairGuardian, SpawnInfo                                                          */
 /************************************************************************************************/
 	if( getSpawnType() != NO_SPAWN )
 	{
@@ -1573,9 +1573,11 @@ void CvUnit::doTurn()
 					if( bValid )
 					{
 						plot()->setImprovementType( (ImprovementTypes) kSpawnInfo.getCreateLair() );
-						// LairGuardian
-						if( plot()->plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER) == 0 )
+						if( plot()->plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER) == 0
+								&& ( getSpawnType() == NO_SPAWN || !GC.getSpawnInfo( getSpawnType() ).isNoDefender() ) )
+						{
 							AI_setUnitAIType( UNITAI_LAIRGUARDIAN );
+						}
 					}
 				}
 			}

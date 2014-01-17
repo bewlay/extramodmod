@@ -2806,6 +2806,12 @@ void CvUnitAI::AI_barbAttackMove()
 	bool bSemiAggressive = (GC.getGameINLINE().getNumCivCities() > (GC.getGameINLINE().countCivPlayersAlive() * iCaution / 3));
 	bool bPassiveAggressive = (GC.getGameINLINE().getNumCivCities() > (GC.getGameINLINE().countCivPlayersAlive() * iCaution / 4) || bEnemyTerritory);
 	
+/************************************************************************************************/
+/* WILDERNESS                             01/2014                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/* bNoDefenderTag                                                                               */
+/************************************************************************************************/
+/* old
 	// heros and aggressive units will wait till someone else starts defending the plot then move on
 	// otherwise switch UnitAIs
 	if (!bHero && plot()->isLair(false, isAnimal()))
@@ -2826,6 +2832,24 @@ void CvUnitAI::AI_barbAttackMove()
 			}
 		}
 	}
+*/
+	// Switch UnitAIs for non-aggressive units
+	bool bNoDefender = getSpawnType() != NO_SPAWN && GC.getSpawnInfo( getSpawnType() ).isNoDefender();
+	if( plot()->isLair( false, isAnimal() ) && plot()->plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER) == 0 )
+	{
+		if( !bNoDefender && !bHero /*&& iCaution < 4*/ )
+		{
+			AI_setUnitAIType(UNITAI_LAIRGUARDIAN);
+			if( getGroup()->getNumUnits() > 1 )
+				joinGroup(NULL);
+			getGroup()->pushMission(MISSION_SKIP);
+			return;
+		}
+		// Heroes don't wait
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	
 	// Heros shouldn't be guarding cities or goodies
 	if (!bHero && ((!bAttackCity || !bAttack) && iCaution > 4))

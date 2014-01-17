@@ -4733,7 +4733,7 @@ def getAnimalSellValue( pUnit ) :
 	liUnitValues[gc.getInfoTypeForString( "UNIT_CAVE_BEAR" )] = 30
 	liUnitValues[gc.getInfoTypeForString( "UNIT_ELEPHANT" )] = 40
 	liUnitValues[gc.getInfoTypeForString( "UNIT_GIANT_SPIDER" )] = 15
-	liUnitValues[gc.getInfoTypeForString( "UNIT_GORILLA" )] = 25
+	liUnitValues[gc.getInfoTypeForString( "UNIT_GORILLA" )] = 20
 	liUnitValues[gc.getInfoTypeForString( "UNIT_GRIFFON" )] = 35
 	liUnitValues[gc.getInfoTypeForString( "UNIT_LION" )] = 15
 	liUnitValues[gc.getInfoTypeForString( "UNIT_LION_PRIDE" )] = 20
@@ -4743,6 +4743,8 @@ def getAnimalSellValue( pUnit ) :
 	liUnitValues[gc.getInfoTypeForString( "UNIT_TIGER" )] = 25
 	liUnitValues[gc.getInfoTypeForString( "UNIT_WOLF" )] = 10
 	liUnitValues[gc.getInfoTypeForString( "UNIT_WOLF_PACK" )] = 15
+	liUnitValues[gc.getInfoTypeForString( "UNIT_SEA_SERPENT" )] = 50
+	liUnitValues[gc.getInfoTypeForString( "UNIT_GIANT_TORTOISE" )] = 60
 	
 	iStdGold = liUnitValues[pUnit.getUnitType()]
 	if( iStdGold == -1 ) :

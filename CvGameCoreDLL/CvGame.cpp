@@ -7709,7 +7709,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 
 		if( bValid )
 		{
-			int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn, true );
+			int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn );
 
 			if( bVerbose && iValue > 0 )
 				logBBAI( "WILDERNESS - SpawnInfo %s: %d", kLoopSpawn.getType(), iValue );

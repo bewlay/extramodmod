@@ -2311,6 +2311,45 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 					szTempBuffer.Format(L"\n  Plot canHaveImprovement(): %s.", pUnit->plot()->canHaveImprovement( (ImprovementTypes) GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLair() ) ? L"Yes" : L"No" );
 					szString.append(szTempBuffer);
 				}
+
+				if( GC.getSpawnInfo( pUnit->getSpawnType() ).getSpawnPrereqType() != NO_SPAWN_PREREQ )
+				{
+					szString.append( L"\nValid Spawn Tiers on Plot: " );
+					SpawnPrereqTypes eSpawnPrereq = (SpawnPrereqTypes) GC.getSpawnInfo( pUnit->getSpawnType() ).getSpawnPrereqType();
+					
+					szTempBuffer.clear();
+					CvWString szTempBuffer2;
+					int iMaxTier = 0;
+					if( GC.getSpawnPrereqInfo( eSpawnPrereq ).getNumTechTiers() > 0 )
+						iMaxTier += GC.getSpawnPrereqInfo( eSpawnPrereq ).getNumTechTiers() - 1;
+					if( GC.getSpawnPrereqInfo( eSpawnPrereq ).getNumWildernessTiers() > 0 )
+						iMaxTier += GC.getSpawnPrereqInfo( eSpawnPrereq ).getNumWildernessTiers() - 1;
+					
+					for( int iTier = 0; iTier <= iMaxTier; iTier++ )
+					{
+						if( pUnit->plot()->isValidSpawnTier( eSpawnPrereq, iTier, iTier, true ) )
+						{
+							if( !szTempBuffer.empty() )
+								szTempBuffer.append( L", " );
+							szTempBuffer2.Format( L"%d", iTier );
+							szTempBuffer.append( szTempBuffer2 );
+						}
+					}
+					szTempBuffer2.Format( L"(%d total)", iMaxTier );
+					szTempBuffer.append( szTempBuffer2 );
+					szString.append(szTempBuffer);
+					
+					int iSpawnMinTier = GC.getSpawnInfo( pUnit->getSpawnType() ).getMinTier();
+					int iSpawnMaxTier = GC.getSpawnInfo( pUnit->getSpawnType() ).getMaxTier();
+					szTempBuffer.Format(L"\nValid Spawn Tiers for Info: %d-%d.", iSpawnMinTier, iSpawnMaxTier );
+					szString.append(szTempBuffer);
+					
+					if( pUnit->plot()->isValidSpawnTier( eSpawnPrereq, iSpawnMinTier, iSpawnMaxTier, true ) )
+						szString.append(L"\nSpawning here VALID" );
+					else
+						szString.append(L"\nSpawning here INVALID" );
+
+				}
 			}
 	/************************************************************************************************/
 	/* WILDERNESS                                                                     END           */

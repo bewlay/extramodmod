@@ -657,7 +657,7 @@ public:
 	
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* PlotWilderness, LairUnitCounter, SpawnInfo                                                   */
+/* PlotWilderness, LairUnitCounter, SpawnInfo, SpawnPrereqInfo                                  */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
 	int getWilderness() const;
@@ -666,8 +666,9 @@ public:
 	int getLairUnitCount() const;
 	void setLairUnitCount(int iNewValue);
 
-	int getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType );
-	int getSpawnValue( SpawnTypes eSpawnType, bool bBarbTech );
+	int getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType ) const;
+	bool isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech ) const;
+	int getSpawnValue( SpawnTypes eSpawnType, bool bCheckTech = true ) const;
 	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI, int iLairPlot = -1 );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

@@ -7812,7 +7812,7 @@ protected:
 
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
-/* SpawnInfo                                                                                    */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
 /************************************************************************************************/
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
@@ -7833,11 +7833,10 @@ public:
 	int getCreateLair() const;
 	int getTerrainFlavourType() const;
 	int getUnitArtStyleType() const;
+	int getSpawnPrereqType() const;
 	
 	int getWeight() const;
 	int getValidTerrainWeight() const;
-	int getMinWilderness() const;
-	int getMaxWilderness() const;
 	int getPrereqGlobalCounter() const;
 	
 	int getMinRandomPromotions() const;
@@ -7848,6 +7847,9 @@ public:
 	int getCreateLairAge() const;
 	int getCreateLairLevel() const;
 	
+	int getMinTier() const;
+	int getMaxTier() const;
+	
 	bool isNeverSpawn() const;
 	bool isExplorationResult() const;
 	bool isAnimal() const;
@@ -7855,6 +7857,7 @@ public:
 	
 	bool isNoRace() const;
 	bool isExplorationNoPush() const;
+	bool isNoDefender() const;
 	
 	int getNumSpawnUnits( int eUnit ) const;
 	
@@ -7876,20 +7879,23 @@ protected:
 	int m_eCreateLair;
 	int m_eUnitArtStyleType;
 	int m_eTerrainFlavourType;
+	int m_eSpawnPrereqType;
 	
 	int m_iWeight;
 	int m_iValidTerrainWeight;
-	int m_iMinWilderness;
-	int m_iMaxWilderness;
 	int m_iPrereqGlobalCounter;
 	int m_iMinRandomPromotions;
 	int m_iMaxRandomPromotions;
 	int m_iNumRandomIncludedSpawns;
 	int m_iCreateLairLevel;
 	int m_iCreateLairAge;
+	int m_iMinTier;
+	int m_iMaxTier;
+
 	bool m_bNeverSpawn;
 	bool m_bExplorationResult;
 	bool m_bExplorationNoPush;
+	bool m_bNoDefender;
 	bool m_bAnimal;
 	bool m_bWater;
 	
@@ -7901,9 +7907,46 @@ protected:
 	
 	bool* m_pbUnitPromotions;
 	bool* m_pbIncludedSpawns;
-	bool* m_pbPrereqTechs;
-	bool* m_pbObsoleteTechs;
 };
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//  class : CvSpawnPrereqInfo
+//
+//  DESC: Manages requirements for CvSpawnInfos
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvSpawnPrereqInfo :
+	public CvInfoBase
+{
+	//---------------------------------------PUBLIC INTERFACE---------------------------------
+public:
+
+	CvSpawnPrereqInfo();
+	virtual ~CvSpawnPrereqInfo();
+
+	int getNumWildernessTiers() const;
+	int getMinWilderness( int iTier ) const;
+	int getMaxWilderness( int iTier ) const;
+	
+	int getNumTechTiers() const;
+	bool isPrereqTech( int iTier, int eTech ) const;
+	bool isObsoleteTech( int iTier, int eTech ) const;
+
+	bool read(CvXMLLoadUtility* pXML);
+	void read(FDataStreamBase* stream);
+	void write(FDataStreamBase* stream);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+
+protected:
+	
+	std::vector<int> m_viMinWildernessTiers;
+	std::vector<int> m_viMaxWildernessTiers;
+	std::vector<bool*> m_vpiPrereqTechTiers;
+	std::vector<bool*> m_vpiObsoleteTechTiers;
+};
+
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
