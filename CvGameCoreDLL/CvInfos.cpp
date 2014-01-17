@@ -29021,15 +29021,15 @@ int CvSpawnPrereqInfo::getNumWildernessTiers() const
 
 int CvSpawnPrereqInfo::getMinWilderness( int iTier ) const
 {
-	FAssertMsg( iTier < m_viMinWildernessTiers.size(), "Index out of bounds" );
 	FAssertMsg( iTier > -1, "Index out of bounds" );
+	FAssertMsg( (unsigned int) iTier < m_viMinWildernessTiers.size(), "Index out of bounds" );
 	return m_viMinWildernessTiers[iTier];
 }
 
 int CvSpawnPrereqInfo::getMaxWilderness( int iTier ) const
 {
-	FAssertMsg( iTier < m_viMaxWildernessTiers.size(), "Index out of bounds" );
 	FAssertMsg( iTier > -1, "Index out of bounds" );
+	FAssertMsg( (unsigned int) iTier < m_viMaxWildernessTiers.size(), "Index out of bounds" );
 	return m_viMaxWildernessTiers[iTier];
 }
 
@@ -29041,8 +29041,8 @@ int CvSpawnPrereqInfo::getNumTechTiers() const
 
 bool CvSpawnPrereqInfo::isPrereqTech( int iTier, int eTech ) const
 {
-	FAssertMsg( iTier < m_vpiPrereqTechTiers.size(), "Index out of bounds" );
 	FAssertMsg( iTier > -1, "Index out of bounds" );
+	FAssertMsg( (unsigned int) iTier < m_vpiPrereqTechTiers.size(), "Index out of bounds" )
 	FAssertMsg( eTech < GC.getNumTechInfos(), "Index out of bounds" );
 	FAssertMsg( eTech > -1, "Index out of bounds" );
 	return m_vpiPrereqTechTiers[iTier] ? m_vpiPrereqTechTiers[iTier][eTech] : false;
@@ -29050,8 +29050,8 @@ bool CvSpawnPrereqInfo::isPrereqTech( int iTier, int eTech ) const
 
 bool CvSpawnPrereqInfo::isObsoleteTech( int iTier, int eTech ) const
 {
-	FAssertMsg( iTier < m_vpiObsoleteTechTiers.size(), "Index out of bounds" );
 	FAssertMsg( iTier > -1, "Index out of bounds" );
+	FAssertMsg( (unsigned int) iTier < m_vpiObsoleteTechTiers.size(), "Index out of bounds" );
 	FAssertMsg( eTech < GC.getNumTechInfos(), "Index out of bounds" );
 	FAssertMsg( eTech > -1, "Index out of bounds" );
 	return m_vpiObsoleteTechTiers[iTier] ? m_vpiObsoleteTechTiers[iTier][eTech] : false;
