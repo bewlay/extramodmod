@@ -21,3 +21,5 @@ CvGameCoreDLL/Assert
 CvGameCoreDLL/Debug
 CvGameCoreDLL/Profile
 CvGameCoreDLL/Release
+XML/Text/CIV4GameText_MapScriptTools.xml
+python/MapScriptTools.py
