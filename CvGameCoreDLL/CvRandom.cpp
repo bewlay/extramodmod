@@ -13,6 +13,7 @@
 CvRandom::CvRandom()
 { 
 	reset();
+	enableLogs = true;
 }
 
 
@@ -54,7 +55,7 @@ unsigned short CvRandom::get(unsigned short usNum, const TCHAR* pszLog)
 {
 	if (pszLog != NULL)
 	{
-		if (GC.getLogging() && GC.getRandLogging())
+		if (enableLogs && GC.getLogging() && GC.getRandLogging())
 		{
 			if (GC.getGameINLINE().getTurnSlice() > 0)
 			{
@@ -100,8 +101,12 @@ void CvRandom::read(FDataStreamBase* pStream)
 	pStream->Read(&m_ulRandomSeed);
 }
 
-
 void CvRandom::write(FDataStreamBase* pStream)
 {
 	pStream->Write(m_ulRandomSeed);
+}
+
+void CvRandom::setLogging(bool enabled)
+{
+	enableLogs = enabled;
 }
