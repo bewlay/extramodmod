@@ -7197,6 +7197,13 @@ public:
 	bool isProbabilityUnitMultiply() const;	// Exposed to Python
 	bool isProbabilityBuildingMultiply() const;	// Exposed to Python
 	bool isPrereqEventCity() const;			// Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	bool isRequiresValidEvent() const; // Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	const char* getPythonCallback() const;
 	const char* getPythonCanDo() const;
@@ -7297,6 +7304,13 @@ private:
 	bool m_bProbabilityUnitMultiply;
 	bool m_bProbabilityBuildingMultiply;
 	bool m_bPrereqEventCity;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	bool m_bRequiresValidEvent;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	CvString m_szPythonCallback;
 	CvString m_szPythonCanDo;

@@ -21,7 +21,7 @@ Events
 	Inn To Housing/1: +1 temp unhappy
 	Looters: Add an option for esus
 	
-	Following event for UnfAssassin/3
+	ALL giving plot bonus: city BFC
 
 EVENTTRIGGER_GROUPs
 	NON_RANDOM
