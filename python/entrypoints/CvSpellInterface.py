@@ -2224,7 +2224,7 @@ def spellRaiseSkeleton(caster):
 
 def reqRally(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
-	if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) != gc.getInfoTypeForString('CIVIC_CRUSADE'):
+	if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_MEMBERSHIP')) != gc.getInfoTypeForString('CIVIC_CRUSADE'):
 		return False
 	if pPlayer.isHuman() == False:
 		iTeam = gc.getPlayer(caster.getOwner()).getTeam()

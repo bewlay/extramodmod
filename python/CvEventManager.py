@@ -595,7 +595,7 @@ class CvEventManager:
 			if not CyGame().getWBMapScript():
 				cf.warScript(iPlayer)
 
-		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
+		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_MEMBERSHIP')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
 			cf.doCrusade(iPlayer)
 
 #AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
