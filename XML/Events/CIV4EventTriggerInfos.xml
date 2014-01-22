@@ -5512,6 +5512,7 @@
 				<Event>EVENT_SIGN_OGHMA_1</Event>
 			</Events>
 			<bRecurring>1</bRecurring>
+			<bRequiresValidEvent>1</bRequiresValidEvent>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- SIGN_SIRONA -->
 			<Type>EVENTTRIGGER_SIGN_SIRONA</Type>

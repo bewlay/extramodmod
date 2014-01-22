@@ -20,6 +20,8 @@ Events
 		/2: -
 	Inn To Housing/1: +1 temp unhappy
 	Looters: Add an option for esus
+	
+	Constellation Events should state what they do with the "Continue"-Button tooltip, like some already do.
 
 EVENTTRIGGER_GROUPs
 	NON_RANDOM
@@ -27,3 +29,4 @@ EVENTTRIGGER_GROUPs
 	GUILD_OF_THE_NINE
 	MANA_FLARE
 	SIGN
+	OTHER
