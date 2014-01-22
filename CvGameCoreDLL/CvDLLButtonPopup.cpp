@@ -2678,7 +2678,24 @@ bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(pTriggeredData->m_eTrigger);
 
-	// Begin EmperorFool: Events with Images
+/************************************************************************************************/
+/* EVENTS_ENHANCED                          09/2013                                 lfgr        */
+/************************************************************************************************/
+	
+	// check for available events
+	bool bEventAvailable = false;
+	for (int i = 0; i < kTrigger.getNumEvents(); i++)
+		if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).canDoEvent((EventTypes)kTrigger.getEvent(i), *pTriggeredData))
+			bEventAvailable = true;
+	if (!bEventAvailable)
+	{
+		// lfgr EVENT_DEBUG
+		logBBAI( "EVENT_DEBUG - ABORTED! No available Event." );
+		//FAssertMsg( false, "EVENT_DEBUG - ABORTED! No available Event." );
+		gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText( "TXT_KEY_ERROR_NO_AVAILABLE_EVENT", CvWString( kTrigger.getType() ).c_str() ).c_str() );
+	}
+
+// Begin EmperorFool: Events with Images
 	if (kTrigger.getEventArt())
 	{
 		gDLL->getInterfaceIFace()->popupAddDDS(pPopup, kTrigger.getEventArt());
@@ -2686,8 +2703,7 @@ bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 // End EmperorFool: Events with Images
 
 	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, pTriggeredData->m_szText + "\n");
-
-	bool bEventAvailable = false;
+	
 	for (int i = 0; i < kTrigger.getNumEvents(); i++)
 	{
 		if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).canDoEvent((EventTypes)kTrigger.getEvent(i), *pTriggeredData))
@@ -2697,31 +2713,25 @@ bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 		}
 		else
 		{
-		/************************************************************************************************/
-		/* EVENTS_ENHANCED                          09/2013                                 lfgr        */
-		/* Hide unavailable event options if BugOption is checked. Idea by Ronkhar                      */
-		/************************************************************************************************/
+		// Hide unavailable event options if BugOption is checked. Idea by Ronkhar
 		/* old
 			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, GC.getEventInfo((EventTypes)kTrigger.getEvent(i)).getDescription(), ARTFILEMGR.getInterfaceArtInfo("INTERFACE_EVENT_UNAVAILABLE_BULLET")->getPath(), -1, WIDGET_CHOOSE_EVENT, kTrigger.getEvent(i), info.getData1(), false);
 		*/
 		if( !getBugOptionBOOL("EventsEnhanced__HideUnavailableOptions", false ) )
 			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, GC.getEventInfo((EventTypes)kTrigger.getEvent(i)).getDescription(), ARTFILEMGR.getInterfaceArtInfo("INTERFACE_EVENT_UNAVAILABLE_BULLET")->getPath(), -1, WIDGET_CHOOSE_EVENT, kTrigger.getEvent(i), info.getData1(), false);
-		/************************************************************************************************/
-		/* EVENTS_ENHANCED                          END                                                 */
-		/************************************************************************************************/
 		}
 	}
 
+/* commented out to better find bugs; its launched with OK button then
 	if (!bEventAvailable)
 	{
-		// lfgr EVENT_DEBUG
-		logBBAI( "EVENT_DEBUG - ABORTED! No available Event." );
-		FAssertMsg( false, "EVENT_DEBUG - ABORTED! No available Event." );
-		/* commented out to better find bugs; its launched with OK button then
 		return false;
-		*/
-		// lfgr end
 	}
+*/
+
+/************************************************************************************************/
+/* EVENTS_ENHANCED                          END                                                 */
+/************************************************************************************************/
 
 	if (kTrigger.isPickCity())
 	{
