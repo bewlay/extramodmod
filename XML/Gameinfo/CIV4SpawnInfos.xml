@@ -1341,7 +1341,7 @@
 			<iBaseWeight>100</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
 			<iMinSpawnTier>0</iMinSpawnTier>
-			<iMaxSpawnTier>2</iMaxSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1353,7 +1353,8 @@
 		<SpawnInfo> <!-- SPAWN_GOBLIN_FORT_WOLF_RIDER_SCORPION_CLAN -->
 			<Type>SPAWN_GOBLIN_FORT_WOLF_RIDER_SCORPION_CLAN</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<!-- Recon for consistency -->
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
 			<iMinSpawnTier>2</iMinSpawnTier>
 			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
@@ -1367,7 +1368,8 @@
 		<SpawnInfo> <!-- SPAWN_GOBLIN_FORT_CHARIOT_SCORPION_CLAN -->
 			<Type>SPAWN_GOBLIN_FORT_CHARIOT_SCORPION_CLAN</Type>
 			<iBaseWeight>100</iBaseWeight>
-			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
+			<!-- Recon for consistency -->
+			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
 			<iMinSpawnTier>3</iMinSpawnTier>
 			<iMaxSpawnTier>8</iMaxSpawnTier>
 			<bNeverSpawn>1</bNeverSpawn>
