@@ -660,16 +660,18 @@ public:
 /* PlotWilderness, LairUnitCounter, SpawnInfo, SpawnPrereqInfo                                  */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
-	int getWilderness() const;
+	int getWilderness() const; // exposed to python
 	void setWilderness(int iNewValue);
+	
+	int getLairDanger() const; // exposed to python
 
 	int getLairUnitCount() const;
 	void setLairUnitCount(int iNewValue);
 
 	int getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType ) const;
 	bool isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech ) const;
-	int getSpawnValue( SpawnTypes eSpawnType, bool bCheckTech = true ) const;
-	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI, int iLairPlot = -1 );
+	int getSpawnValue( SpawnTypes eSpawnType, bool bCheckTech = true ) const; // exposed to python
+	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI, int iLairPlot = -1 ); // exposed to python
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

@@ -12820,6 +12820,15 @@ void CvPlot::setWilderness(int iNewValue)
 	m_iWilderness = iNewValue;
 }
 
+
+int CvPlot::getLairDanger() const
+{
+	if( getImprovementType() != NO_IMPROVEMENT && GC.getImprovementInfo( getImprovementType() ).isUnique() )
+		return getWilderness() + ( 100 - getWilderness() ) / 2;
+	else
+		return getWilderness();
+}
+
 int CvPlot::getLairUnitCount() const
 {
 	return m_iLairUnitCount;

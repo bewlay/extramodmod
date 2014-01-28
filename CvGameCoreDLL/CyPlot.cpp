@@ -1197,6 +1197,12 @@ float CyPlot::calcTerrainFlavourWeight( /*TerrainFlavourTypes*/ int eTerrainFlav
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* ImprovementSpawnTypes, PlotWilderness, SpawnInfo                                             */
 /************************************************************************************************/
+
+int CyPlot::getLairDanger() const
+{
+	return m_pPlot ? m_pPlot->getLairDanger() : -1;
+}
+
 bool CyPlot::isLair( bool bIgnoreIsAnimal, bool bAnimal ) const
 {
 	return m_pPlot ? m_pPlot->isLair( bIgnoreIsAnimal, bAnimal ) : false;
