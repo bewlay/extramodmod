@@ -306,7 +306,7 @@ void CyPlotPythonInterface1(python::class_<CyPlot>& x)
 		.def("getWilderness", &CyPlot::getWilderness, "int ()")
 		.def("getLairDanger", &CyPlot::getLairDanger, "int ()")
 		
-		.def("getSpawnValue", &CyPlot::getSpawnValue, "bool ( SpawnTypes eSpawnType )")
+		.def("getSpawnValue", &CyPlot::getSpawnValue, "bool ( SpawnTypes eSpawnType, bool bDungeon )")
 		.def("createSpawn", &CyPlot::createSpawn, "bool ( bool bIgnoreAnimal, UnitAITypes eUnitAI )")
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

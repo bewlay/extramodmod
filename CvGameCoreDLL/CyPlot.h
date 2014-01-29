@@ -306,7 +306,7 @@ public:
 	int getWilderness() const;
 	int getLairDanger() const;
 
-	int getSpawnValue( int /*SpawnTypes*/ eSpawnType ) const;
+	int getSpawnValue( int /*SpawnTypes*/ eSpawnType, bool bDungeon ) const;
 	void createSpawn( int /*SpawnTypes*/ eSpawnType, int /*UnitAITypes*/ eUnitAI );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
