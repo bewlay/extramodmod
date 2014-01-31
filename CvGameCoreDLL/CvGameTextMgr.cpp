@@ -6573,6 +6573,12 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 				szString.append(szTempBuffer);
 			}
 
+			// Bugfix: Display requirement technology for bonuses provided by unique features.
+			if ((pPlot->getImprovementType() != NO_IMPROVEMENT) && GC.getImprovementInfo(pPlot->getImprovementType()).isUnique() && !(GET_TEAM(GC.getGameINLINE().getActiveTeam()).isHasTech((TechTypes)GC.getBonusInfo(eBonus).getTechCityTrade())))
+			{
+				szString.append(gDLL->getText("TXT_KEY_PLOT_RESEARCH", GC.getTechInfo((TechTypes) GC.getBonusInfo(eBonus).getTechCityTrade()).getTextKeyWide()));
+			}
+
 			if ((pPlot->getImprovementType() == NO_IMPROVEMENT) || !(GC.getImprovementInfo(pPlot->getImprovementType()).isImprovementBonusTrade(eBonus)))
 			{
 				if (!(GET_TEAM(GC.getGameINLINE().getActiveTeam()).isHasTech((TechTypes)GC.getBonusInfo(eBonus).getTechCityTrade())))
@@ -19600,11 +19606,13 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 	}
 
 	setYieldHelp(szBuffer, city, YIELD_PRODUCTION);
-
+// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+// For the GUI, we calculate it separately in order to be able to show the effect of unhappy production.
 //FfH: Modified by Kael 10/13/2007
-//	int iBaseProduction = city.getBaseYieldRate(YIELD_PRODUCTION) + iPastOverflow + iFromChops;
-	int iBaseProduction = city.getBaseYieldRate(YIELD_PRODUCTION) + iPastOverflow + iFromChops + iUnhappyProd;
+	int iBaseProduction = city.getBaseYieldRate(YIELD_PRODUCTION, false) + iPastOverflow + iFromChops + iUnhappyProd;
+//	int iBaseProduction = city.getBaseYieldRate(YIELD_PRODUCTION) + iPastOverflow + iFromChops + iUnhappyProd;
 //FfH: End Modify
+// Bugfix end
 
 	int iBaseModifier = city.getBaseYieldRateModifier(YIELD_PRODUCTION);
 
@@ -20540,12 +20548,18 @@ void CvGameTextMgr::setYieldHelp(CvWStringBuffer &szBuffer, CvCity& city, YieldT
 	}
 	CvPlayer& owner = GET_PLAYER(city.getOwnerINLINE());
 
-	int iBaseProduction = city.getBaseYieldRate(eYieldType);
+	// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+	// For the GUI, we calculate it separately in order to be able to show the effect of unhappy production.
+	int iBaseProduction = city.getBaseYieldRate(eYieldType, false);
+	// Bugfix end
 	szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_BASE_YIELD", info.getTextKeyWide(), iBaseProduction, info.getChar()));
 	szBuffer.append(NEWLINE);
 
 	//FfH: Added by Kael 10/13/2007
-	int iUnhappyProd = (city.isUnhappyProduction() ? city.unhappyLevel(0) : 0);
+	// Bugfix: Do not show unhappy production information for commerce and science.
+	// int iUnhappyProd = (city.isUnhappyProduction() ? city.unhappyLevel(0) : 0);
+	int iUnhappyProd = (eYieldType == YIELD_PRODUCTION && city.isUnhappyProduction() ? city.unhappyLevel(0) : 0);
+	// Bugfix end
 	if (iUnhappyProd != 0)
 	{
 		iBaseProduction += iUnhappyProd;

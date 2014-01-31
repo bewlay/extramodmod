@@ -792,7 +792,7 @@ void CvPlayerAI::AI_doTurnUnitsPost()
 		//Tholal ToDo - Manes hit this upgrade section before they ever get a chance to 'cast'
 		// Tholal ToDo - arrange units in a sorted list then try and upgrade rather than running through whole list three times
 		// pass 0
-		logBBAI("Checking for Upgrades...");
+		logBBAI("   Checking for Upgrades...");
 		for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
 		{
 			if (!pLoopUnit->isDelayedDeath())// && (pLoopUnit->getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_MANES"))) // HARDCODE
@@ -839,7 +839,7 @@ void CvPlayerAI::AI_doTurnUnitsPost()
 #endif
     }
 	// do AI promotions after upgrade
-	logBBAI("Checking for Promotions...");
+	logBBAI("   Checking for Promotions...");
 	for(pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
 	{
 		if (!pLoopUnit->isDelayedDeath())
@@ -5758,7 +5758,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	for (iI = 0; iI < GC.getNumPromotionInfos(); iI++)
 	{
-		if (GC.getPromotionInfo((PromotionTypes)iI).getTechPrereq() != GC.getInfoTypeForString("TECH_NEVER"))
+		if (GC.getPromotionInfo((PromotionTypes)iI).getTechPrereq() != NO_TECH) //GC.getInfoTypeForString("TECH_NEVER"))
 		{
 			if (GC.getPromotionInfo((PromotionTypes)iI).getTechPrereq() == eTech)
 			{
@@ -7899,7 +7899,7 @@ void CvPlayerAI::AI_chooseFreeTech()
 
 	if (eBestTech == NO_TECH)
 	{
-		eBestTech = AI_bestTech(1, true);
+		eBestTech = AI_bestTech(1, true, false, true);
 	}
 
 	if (eBestTech != NO_TECH)
@@ -7972,7 +7972,7 @@ void CvPlayerAI::AI_chooseResearch()
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
 
-			eBestTech = AI_bestTech((isHuman()) ? 1 : iAIResearchDepth);
+			eBestTech = AI_bestTech((isHuman()) ? 1 : iAIResearchDepth, false, false, true);
 		}
 
 		if (eBestTech != NO_TECH)

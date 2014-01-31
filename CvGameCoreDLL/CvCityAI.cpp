@@ -2345,7 +2345,7 @@ void CvCityAI::AI_chooseProduction()
 			iWonderTime += 7;
 			if (AI_chooseBuilding(BUILDINGFOCUS_WORLDWONDER, iWonderTime))
 			{
-				if( gCityLogLevel >= 2 ) logBBAI("      City %S uses oppurtunistic wonder build 1", getName().GetCString());
+				if( gCityLogLevel >= 2 ) logBBAI("      City %S uses opportunistic wonder build 1", getName().GetCString());
 				return;
 			}
 		}
@@ -2386,7 +2386,6 @@ void CvCityAI::AI_chooseProduction()
 		{
 			int iAttackCityCount = kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_ATTACK_CITY);
 			int iAttackCount = iAttackCityCount + kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_ATTACK);
-
 
 			if( (iAttackCount) == 0 )
 			{
@@ -5840,7 +5839,7 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 				if (iFocusFlags & BUILDINGFOCUS_FOOD)
 				{
 					// Tholal AI - try to avoid food buildings unless we have use for them
-					if ((happyLevel() > unhappyLevel()) || (healthRate() < 0) || bCanPopRush || isUnhappyProduction())
+					if ((happyLevel() > unhappyLevel()) || bCanPopRush || isUnhappyProduction())
 					{
 						iValue += ((kBuilding.getFoodKept() * getPopulation()) / (kOwner.AI_isDoVictoryStrategy(AI_VICTORY_DOMINATION1) ? 10 : 15));
 

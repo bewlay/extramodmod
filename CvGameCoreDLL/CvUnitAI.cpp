@@ -152,7 +152,7 @@ bool CvUnitAI::AI_update()
 		}
 
 		// Vampire stuff. Eating local pop, assignment of AI_FEASTING
-		if (isVampire())
+		if (isVampire() && getGroup()->getNumUnits() == 1)
 		{
 			AI_feastingmove();
 		}
@@ -612,7 +612,8 @@ bool CvUnitAI::AI_update()
 				AI_upgrademanaMove();
 				break;
 			case UNITAI_MAGE:
-				AI_mageMove();
+				//AI_mageMove();
+				AI_cityDefenseMove();
 				break;
 			case UNITAI_WARWIZARD:
 				AI_ConquestMove();
@@ -2814,6 +2815,7 @@ void CvUnitAI::AI_barbAttackMove()
 /* old
 	// heros and aggressive units will wait till someone else starts defending the plot then move on
 	// otherwise switch UnitAIs
+
 	if (!bHero && plot()->isLair(false, isAnimal()))
 	{
 		if (plot()->plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER) == 0)
@@ -5104,6 +5106,14 @@ void CvUnitAI::AI_cityDefenseMove()
 		}
 
 		if (AI_chokeDefend())
+		{
+			return;
+		}
+	}
+
+	if (getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_ADEPT"))
+	{
+		if (AI_mageMove())
 		{
 			return;
 		}
@@ -26816,45 +26826,15 @@ bool CvUnitAI::AI_groupheal(int iDamagePercent, int iMaxPath)
 
 void CvUnitAI::AI_feastingmove()
 {
-
-
 	if( gUnitLogLevel >= 2 )
 	{
 		logBBAI("    %S (unit %d) starting feastingMove (size %d)", getName().GetCString(), getID(), getGroup()->getNumUnits());
 	}
+	
+	FAssertMsg(isVampire(), "Feasters are expected to be Vampires");
 
 	CvCity* pCity = plot()->getPlotCity();
 	CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
-
-	if (!isVampire() || !isAlive())
-	{
-		//TODO - change this to a choose groupflag call then return
-		if (AI_getUnitAIType() == UNITAI_FEASTING)
-		{
-			AI_setGroupflag(GROUPFLAG_CONQUEST);
-			AI_setUnitAIType(UNITAI_ATTACK_CITY);
-			getGroup()->pushMission(MISSION_SKIP);
-		}
-
-		return;
-	}
-
-	// TODO: Change this to Feast odds - higher if in peactime, more angry/unhealthy, larger cities
-	int iNeededFeasters = std::max(1,(kPlayer.getNumCities() / 3));
-
-	if (AI_getGroupflag() == GROUPFLAG_CONQUEST || AI_getGroupflag() == GROUPFLAG_PATROL)
-	{
-		if (kPlayer.AI_totalUnitAIs(UNITAI_FEASTING) < iNeededFeasters)
-		{
-			if ((getLevel() < 6) && (AI_getUnitAIType() != UNITAI_HERO))
-			{
-				joinGroup(NULL);
-				AI_setGroupflag(GROUPFLAG_NONE);
-				AI_setUnitAIType(UNITAI_FEASTING);
-				getGroup()->pushMission(MISSION_SKIP);
-			}
-		}
-	}
 
 	// Tholal ToDo: move this into python? - Hardcode
 	if ((pCity != NULL) && !isHasCasted())
@@ -26867,8 +26847,42 @@ void CvUnitAI::AI_feastingmove()
 				{
 					cast(GC.getDefineINT("SPELL_FEAST"));
 				}
-				getGroup()->pushMission(MISSION_SKIP);
-				return;
+				//getGroup()->pushMission(MISSION_SKIP);
+				//return;
+				if( gUnitLogLevel > 2 ) logBBAI("      ...Unit %S (%d) making opportunistic feast at %S", getName().GetCString(), getID(), pCity->getName().GetCString());
+			}
+		}
+	}
+
+
+	/*
+	if (!isVampire() || !isAlive())
+	{
+		//TODO - change this to a choose groupflag call then return
+		if (AI_getUnitAIType() == UNITAI_FEASTING)
+		{
+			AI_setGroupflag(GROUPFLAG_CONQUEST);
+			AI_setUnitAIType(UNITAI_ATTACK_CITY);
+			getGroup()->pushMission(MISSION_SKIP);
+		}
+
+		return;
+	}
+	*/
+
+	// TODO: Change this to Feast odds - higher if in peactime, more angry/unhealthy, larger cities
+	int iNeededFeasters = std::max(1,(kPlayer.getNumCities() / 3));
+
+	if (AI_getGroupflag() == GROUPFLAG_CONQUEST || AI_getGroupflag() == GROUPFLAG_PATROL)
+	{
+		if (kPlayer.AI_totalUnitAIs(UNITAI_FEASTING) < iNeededFeasters)
+		{
+			if ((getLevel() < 6) && (AI_getUnitAIType() != UNITAI_HERO))
+			{
+				//joinGroup(NULL);
+				AI_setGroupflag(GROUPFLAG_NONE);
+				AI_setUnitAIType(UNITAI_FEASTING);
+				//getGroup()->pushMission(MISSION_SKIP);
 			}
 		}
 	}
@@ -26947,6 +26961,7 @@ void CvUnitAI::AI_feastingmove()
 					}
 					else
 					{
+						if( gUnitLogLevel > 2 )	logBBAI("      ....moving to %d, %d to Feast", pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
 						FAssert(!atPlot(pBestPlot));
 						getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), MOVE_AVOID_ENEMY_WEIGHT_3);
 						return;
@@ -27632,24 +27647,24 @@ bool CvUnitAI::AI_exploreLairSea(int iRange)
 														iValue = 0;
 													}
 												}
-											
-												pNearestCity = GC.getMapINLINE().findCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
-												if (pNearestCity != NULL)
+											}
+
+											pNearestCity = GC.getMapINLINE().findCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
+											if (pNearestCity != NULL)
+											{
+												// avoid opening lairs near our team if they are lightly defended or its early in the game
+												if (pNearestCity->getTeam() == getTeam())
 												{
-													// avoid opening lairs near our team if they are lightly defended or its early in the game
-													if (pNearestCity->getTeam() == getTeam())
+													if (!pNearestCity->AI_isDefended() || (GET_PLAYER(getOwnerINLINE()).getNumCities() == 1))
 													{
-														if (!pNearestCity->AI_isDefended() || (GET_PLAYER(getOwnerINLINE()).getNumCities() == 1))
-														{
-															iValue = 0;
-														}
+														iValue = 0;
 													}
 												}
+											}
 
-												if (iValue > iBestValue)
-												{
-													pBestPlot = pLoopPlot;
-												}
+											if (iValue > iBestValue)
+											{
+												pBestPlot = pLoopPlot;
 											}
 										}
 									}
@@ -27676,6 +27691,7 @@ bool CvUnitAI::AI_exploreLairSea(int iRange)
 		}
 		else
 		{
+			if( gUnitLogLevel > 2 ) logBBAI("      ....moving to %d, %d to explore Sea Lair", pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
 	        getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), MOVE_AVOID_ENEMY_WEIGHT_2);
 			return true;
 		}
@@ -27771,24 +27787,24 @@ bool CvUnitAI::AI_exploreLair(int iRange)
 													iValue = 0;
 												}
 											}
+										}
 										
-											pNearestCity = GC.getMapINLINE().findCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
-											if (pNearestCity != NULL)
+										pNearestCity = GC.getMapINLINE().findCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
+										if (pNearestCity != NULL)
+										{
+											// avoid opening lairs near our team if they are lightly defended or its early in the game
+											if (pNearestCity->getTeam() == getTeam())
 											{
-												// avoid opening lairs near our team if they are lightly defended or its early in the game
-												if (pNearestCity->getTeam() == getTeam())
+												if (!pNearestCity->AI_isDefended() || (GET_PLAYER(getOwnerINLINE()).getNumCities() == 1))
 												{
-													if (!pNearestCity->AI_isDefended() || (GET_PLAYER(getOwnerINLINE()).getNumCities() == 1))
-													{
-														iValue = 0;
-													}
+													iValue = 0;
 												}
 											}
+										}
 
-											if (iValue > iBestValue)
-											{
-												pBestPlot = pLoopPlot;
-											}
+										if (iValue > iBestValue)
+										{
+											pBestPlot = pLoopPlot;
 										}
 									}
 								}
@@ -27814,6 +27830,7 @@ bool CvUnitAI::AI_exploreLair(int iRange)
 		}
 		else
 		{
+			if( gUnitLogLevel > 2 )	logBBAI("      ....moving to %d, %d to explore Lair", pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
 	        getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), MOVE_AVOID_ENEMY_WEIGHT_2);
 			return true;
 		}
@@ -29414,6 +29431,7 @@ bool CvUnitAI::AI_Rantinemove()
 void CvUnitAI::AI_upgrademanaMove()
 {
 
+	logBBAI("    Stack %d (led by %S (%d), size %d) starting AI_upgrademanaMove", getGroup()->getID(), getName().GetCString(), getID(), getGroup()->getNumUnits());
 	bool bDanger = (GET_PLAYER(getOwnerINLINE()).AI_getAnyPlotDanger(plot(), 3));
 
 	if (bDanger)
@@ -29428,7 +29446,6 @@ void CvUnitAI::AI_upgrademanaMove()
 	{
 		return;
 	}
-
 	
 	int iValue = 0;
 	int iBestValue = 10;
@@ -29568,7 +29585,7 @@ void CvUnitAI::AI_upgrademanaMove()
 		{
 			if( gUnitLogLevel >= 3 )
 			{
-				logBBAI("     %S (Unit %d) moving to mana node at plot %d, %d", getName().GetCString(), getID(), pBestPlot->getX(), pBestPlot->getY());
+				logBBAI("      ...moving to mana node at plot %d, %d", getName().GetCString(), getID(), pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
 			}
 
 			getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), MOVE_AVOID_ENEMY_WEIGHT_2);
@@ -29679,16 +29696,24 @@ void CvUnitAI::AI_mageCast()
 }
 
 
-void CvUnitAI::AI_mageMove()
+bool CvUnitAI::AI_mageMove()
 {
-
+	if( gUnitLogLevel > 2 ) logBBAI("      ...checking MageMove()", getID());
 	if (getUnitCombatType() != GC.getInfoTypeForString("UNITCOMBAT_ADEPT"))
 	{
 		AI_setUnitAIType(UNITAI_ATTACK_CITY);
 		AI_setGroupflag(GROUPFLAG_CONQUEST);
-		return;
+		return true;
+	}
+	else if (GC.getUnitInfo(getUnitType()).getTier() > 2)
+	{
+		if( gUnitLogLevel > 2 ) logBBAI("      ...switching to WarWizard");
+		AI_setUnitAIType(UNITAI_WARWIZARD);
+		AI_setGroupflag(GROUPFLAG_CONQUEST);
+		return true;
 	}
 
+	/*
 	if (plot()->getPlotCity() == NULL)
 	{
 		if (AI_retreatToCity())
@@ -29698,6 +29723,52 @@ void CvUnitAI::AI_mageMove()
 	}
 
     getGroup()->pushMission(MISSION_FORTIFY);
+	*/
+
+	if (plot()->plotCount(PUF_isUnitAIType, UNITAI_MAGE, -1, NO_PLAYER, getTeam()) > 1)
+	{
+		if( gUnitLogLevel > 2 ) logBBAI("      ...current location is too crowded");
+		CvCity* pLoopCity;
+		CvCity* pBestCity = NULL;
+		//CvPlot* pBestPlot;
+		int iValue = 0;
+		int iBestValue = 0;
+		int iLoop;
+		for (pLoopCity = GET_PLAYER(getOwner()).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER(getOwner()).nextCity(&iLoop))
+		{
+			if (pLoopCity->plot()->plotCount(PUF_isUnitAIType, UNITAI_MAGE, -1, NO_PLAYER, getTeam()) == 0)
+			{
+				int iPathTurns;
+				if (generatePath(pLoopCity->plot(), MOVE_AVOID_ENEMY_WEIGHT_3, true, &iPathTurns))
+				{
+					iValue = (pLoopCity->getPopulation() * 10) / (iPathTurns + 1);
+
+					if (pLoopCity->isCapital())
+					{
+						iValue *= 2;
+					}
+
+					if (iValue > iBestValue)
+					{
+						iBestValue = iValue;
+						pBestCity = pLoopCity;
+					}
+				}
+			}
+		}
+
+		if (pBestCity != NULL)
+		{
+			if (!atPlot(pBestCity->plot()))
+			{
+				if( gUnitLogLevel > 2 ) logBBAI("      ....Mage moving to %d, %d", pBestCity->plot()->getX_INLINE(), pBestCity->plot()->getY_INLINE());
+				getGroup()->pushMission(MISSION_MOVE_TO, pBestCity->plot()->getX_INLINE(), pBestCity->plot()->getY_INLINE(), MOVE_AVOID_ENEMY_WEIGHT_3);
+				return true;
+			}
+		}
+	}
+
+	return false;
 }
 
 void CvUnitAI::AI_terraformerMove()

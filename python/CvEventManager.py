@@ -2380,6 +2380,10 @@ class CvEventManager:
 			pCity.setNumRealBuilding(gc.getInfoTypeForString('BUILDING_DEMONIC_CITIZENS'), 1)
 ## END FFH
 
+	def onCityAcquiredAndKept(self, argsList):
+		'City Acquired and Kept'
+		iOwner,pCity = argsList
+
 
 		CvUtil.pyPrint('City Acquired Event: %s' %(pCity.getName()))
 
