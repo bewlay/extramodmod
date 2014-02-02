@@ -1020,7 +1020,9 @@ public:
     void betray(PlayerTypes ePlayer);
 	void updateTerraformer();
     bool isTerraformer() const;
-    bool withdrawlToNearestValidPlot();
+	// Bugfix: Defenders that flee can be killed after combat
+    bool withdrawlToNearestValidPlot(bool bKillUnit = true);
+	// Bugfix end
 
 	// MNAI - additional promotion tags
 	void changeCanMoveImpassable(int iNewValue);
