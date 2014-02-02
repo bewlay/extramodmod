@@ -4651,9 +4651,7 @@ def helpExploreLair( lpUnits, bEpic ) :
 	pUnit = lpUnits[0]
 	pPlot = pUnit.plot()
 	iExploLevel = pUnit.getExplorationLevel()
-	iChallenge = pPlot.getWilderness()
-	if( bEpic ) :
-		iChallenge += ( 100 - iChallenge ) / 2
+	iChallenge = pPlot.getLairDanger()
 	iChallengeHandling = iExploLevel - iChallenge
 	
 	sNewline = CyTranslator().getText( '[NEWLINE]', () )

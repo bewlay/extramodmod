@@ -1197,6 +1197,12 @@ float CyPlot::calcTerrainFlavourWeight( /*TerrainFlavourTypes*/ int eTerrainFlav
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* ImprovementSpawnTypes, PlotWilderness, SpawnInfo                                             */
 /************************************************************************************************/
+
+int CyPlot::getLairDanger() const
+{
+	return m_pPlot ? m_pPlot->getLairDanger() : -1;
+}
+
 bool CyPlot::isLair( bool bIgnoreIsAnimal, bool bAnimal ) const
 {
 	return m_pPlot ? m_pPlot->isLair( bIgnoreIsAnimal, bAnimal ) : false;
@@ -1207,9 +1213,9 @@ int CyPlot::getWilderness() const
 	return m_pPlot ? m_pPlot->getWilderness() : -1;
 }
 
-int CyPlot::getSpawnValue( int /*SpawnTypes*/ eSpawnType ) const
+int CyPlot::getSpawnValue( int /*SpawnTypes*/ eSpawnType, bool bDungeon ) const
 {
-	return m_pPlot ? m_pPlot->getSpawnValue( (SpawnTypes) eSpawnType ) : -1;
+	return m_pPlot ? m_pPlot->getSpawnValue( (SpawnTypes) eSpawnType, true, bDungeon ) : -1;
 }
 
 void CyPlot::createSpawn( int /*SpawnTypes*/ eSpawnType, int /*UnitAITypes*/ eUnitAI )

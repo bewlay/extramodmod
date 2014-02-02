@@ -2345,9 +2345,9 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 					szString.append(szTempBuffer);
 					
 					if( pUnit->plot()->isValidSpawnTier( eSpawnPrereq, iSpawnMinTier, iSpawnMaxTier, true ) )
-						szString.append(L"\nSpawning here VALID" );
+						szString.append(L"\nSpawning here VALID (for non-exploration)" );
 					else
-						szString.append(L"\nSpawning here INVALID" );
+						szString.append(L"\nSpawning here INVALID (for non-exploration)" );
 
 				}
 			}

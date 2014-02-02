@@ -12820,6 +12820,15 @@ void CvPlot::setWilderness(int iNewValue)
 	m_iWilderness = iNewValue;
 }
 
+
+int CvPlot::getLairDanger() const
+{
+	if( getImprovementType() != NO_IMPROVEMENT && GC.getImprovementInfo( getImprovementType() ).isUnique() )
+		return getWilderness() + ( 100 - getWilderness() ) / 2;
+	else
+		return getWilderness();
+}
+
 int CvPlot::getLairUnitCount() const
 {
 	return m_iLairUnitCount;
@@ -12857,17 +12866,19 @@ int CvPlot::getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType ) con
 	return iTerrainValue;
 }
 
-bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech ) const
+bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon ) const
 {
 	CvSpawnPrereqInfo& kSpawnPrereq = GC.getSpawnPrereqInfo( eSpawnPrereqType );
+
+	int iWilderness = bDungeon ? getLairDanger() : getWilderness();
 
 	if( kSpawnPrereq.getNumTechTiers() == 0 )
 	{
 		// A wilderness tier must match alone
 		for( int iWildernessTier = iMinTier; iWildernessTier <= iMaxTier; iWildernessTier++ )
 		{
-			if( getWilderness() >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
-				getWilderness() <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) )
+			if( iWilderness >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
+				iWilderness <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) )
 			{
 				return true;
 			}
@@ -12881,8 +12892,8 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 
 		for( int iWildernessTier = 0; iWildernessTier <= iMaxWildernessTier; iWildernessTier++ )
 		{
-			if( getWilderness() >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
-				getWilderness() <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) )
+			if( iWilderness >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
+				iWilderness <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) )
 			{
 				// Found a valid Wilderness tier
 				// Now get range of fitting tech tiers
@@ -12915,7 +12926,7 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 	return false;
 }
 
-int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech ) const
+int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon ) const
 {
 	if( eSpawn == NO_SPAWN )
 		return 0;
@@ -12925,7 +12936,7 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech ) const
 	if( area()->isWater() != kSpawn.isWater() )
 		return 0;
 
-	if( !isValidSpawnTier( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(), kSpawn.getMaxTier(), bCheckTech ) )
+	if( !isValidSpawnTier( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(), kSpawn.getMaxTier(), bCheckTech, bDungeon ) )
 		return 0;
 
 	if( GC.getGameINLINE().getGlobalCounter() < kSpawn.getPrereqGlobalCounter() )
