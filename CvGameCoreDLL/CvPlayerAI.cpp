@@ -21308,6 +21308,7 @@ bool CvPlayerAI::AI_disbandUnit(int iExpThreshold, bool bObsolete)
 							case UNITAI_GENERAL:
 							case UNITAI_MERCHANT:
 							case UNITAI_ENGINEER:
+							case UNITAI_INQUISITOR:
 								iValue *= 20;
 								break;
 
