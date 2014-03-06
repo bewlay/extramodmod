@@ -3486,7 +3486,7 @@
             <bNoCorporations>0</bNoCorporations>
             <bNoForeignCorporations>0</bNoForeignCorporations>
             <iCivicPercentAnger>0</iCivicPercentAnger>
-            <bStateReligion>1</bStateReligion>
+            <bStateReligion>0</bStateReligion>
             <bNoNonStateReligionSpread>0</bNoNonStateReligionSpread>
             <iStateReligionHappiness>2</iStateReligionHappiness>
             <iNonStateReligionHappiness>0</iNonStateReligionHappiness>

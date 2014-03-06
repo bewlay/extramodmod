@@ -733,6 +733,13 @@ void CyInfoPythonInterface3()
 		.def("isProbabilityUnitMultiply", &CvEventTriggerInfo::isProbabilityUnitMultiply, "bool ()")
 		.def("isProbabilityBuildingMultiply", &CvEventTriggerInfo::isProbabilityBuildingMultiply, "bool ()")
 		.def("isPrereqEventCity", &CvEventTriggerInfo::isPrereqEventCity, "bool ()")
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+		.def("isRequiresValidEvent", &CvEventTriggerInfo::isRequiresValidEvent, "bool ()")
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 		;
 
 	python::class_<CvEventInfo, python::bases<CvInfoBase> >("CvEventInfo")

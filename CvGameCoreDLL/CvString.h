@@ -219,6 +219,8 @@ public:
 		return m_pBuffer;
 	}
 
+	// Small hash method intended for version checking only.
+	unsigned short getShortHash() const;
 private:
 	void ensureCapacity(int newCapacity)
 	{

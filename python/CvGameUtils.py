@@ -258,7 +258,7 @@ class CvGameUtils:
 			if pCity.getPopulation() <= 5:
 				return True
 
-		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
+		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_MEMBERSHIP')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
 			if eUnit == gc.getInfoTypeForString('UNIT_WORKER'):
 				return True
 			if eUnit == gc.getInfoTypeForString('UNIT_SETTLER'):
@@ -321,7 +321,7 @@ class CvGameUtils:
 			if eBuilding == gc.getInfoTypeForString('BUILDING_TEMPLE_OF_THE_ORDER'):
 				return True								
 		
-		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
+		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_MEMBERSHIP')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
 			if eBuilding == gc.getInfoTypeForString('BUILDING_ELDER_COUNCIL'):
 				return True
 			if eBuilding == gc.getInfoTypeForString('BUILDING_MARKET'):
