@@ -1083,6 +1083,42 @@
         <DefineName>VISIBLE_TILE_SPAWNING_SPEED_MOD</DefineName>
         <fDefineFloatVal>0.75</fDefineFloatVal>
     </Define>
+    <Define>
+		<!-- Terrain spawning speed modifier (will be multiplied with spawning speed) -->
+		<!-- Value without any yields -->
+        <DefineName>TERRAIN_SPAWNING_SPEED_MOD_BASE</DefineName>
+        <fDefineFloatVal>0.7</fDefineFloatVal>
+    </Define>
+    <Define>
+		<!-- Maximum commerce considered for terrain spawning speed modifier -->
+        <DefineName>TSSM_COMMERCE_MAX</DefineName>
+        <iDefineIntVal>2</iDefineIntVal>
+    </Define>
+    <Define>
+		<!-- Addition to terrain spawning speed modifier per commerce on a tile -->
+        <DefineName>TSSM_COMMERCE_EXTRA_SPEED</DefineName>
+        <fDefineFloatVal>0.15</fDefineFloatVal>
+    </Define>
+    <Define>
+		<!-- Maximum food considered for terrain spawning speed modifier -->
+        <DefineName>TSSM_FOOD_MAX</DefineName>
+        <iDefineIntVal>2</iDefineIntVal>
+    </Define>
+    <Define>
+		<!-- Addition to terrain spawning speed modifier per food on a tile -->
+        <DefineName>TSSM_FOOD_EXTRA_SPEED</DefineName>
+        <fDefineFloatVal>0.15</fDefineFloatVal>
+    </Define>
+    <Define>
+		<!-- Maximum production considered for terrain spawning speed modifier -->
+        <DefineName>TSSM_PRODUCTION_MAX</DefineName>
+        <iDefineIntVal>1</iDefineIntVal>
+    </Define>
+    <Define>
+		<!-- Addition to terrain spawning speed modifier per production on a tile -->
+        <DefineName>TSSM_PRODUCTION_EXTRA_SPEED</DefineName>
+        <fDefineFloatVal>0.10</fDefineFloatVal>
+    </Define>
 	<Define>
 		<!-- Overriding default value (3). Barbarians get X% of tech each turn * playersResearched / totalAlivePlayers -->
 		<!-- Since in FfH there are several military tech paths, players will have different military technologies. With the default value, they will be much weaker than players. -->

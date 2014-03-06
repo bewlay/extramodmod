@@ -7598,6 +7598,16 @@ void CvGame::createBarbarianUnits()
 				if( vbPlotVisible[iPlot] )
 					fSpeedMod *= GC.getDefineFLOAT( "VISIBLE_TILE_SPAWNING_SPEED_MOD" );
 
+				// Terrain affects spawning speed
+				float fTerrainSpeedMod = GC.getDefineFLOAT( "TERRAIN_SPAWNING_SPEED_MOD_BASE" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_COMMERCE ), GC.getDefineINT( "TSSM_COMMERCE_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_COMMERCE_EXTRA_SPEED" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_FOOD ), GC.getDefineINT( "TSSM_FOOD_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_FOOD_EXTRA_SPEED" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_PRODUCTION ), GC.getDefineINT( "TSSM_PRODUCTION_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_PRODUCTION_EXTRA_SPEED" );
+				fSpeedMod *= fTerrainSpeedMod;
+
 				fAnimalChance *= std::min( 1.0f, fSpeedMod );
 
 				if( fAnimalChance > 0 )
@@ -7641,6 +7651,16 @@ void CvGame::createBarbarianUnits()
 				if( vbPlotVisible[iPlot] )
 					fSpeedMod *= GC.getDefineFLOAT( "VISIBLE_TILE_SPAWNING_SPEED_MOD" );
 				
+				// Terrain affects spawning speed
+				float fTerrainSpeedMod = GC.getDefineFLOAT( "TERRAIN_SPAWNING_SPEED_MOD_BASE" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_COMMERCE ), GC.getDefineINT( "TSSM_COMMERCE_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_COMMERCE_EXTRA_SPEED" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_FOOD ), GC.getDefineINT( "TSSM_FOOD_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_FOOD_EXTRA_SPEED" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_PRODUCTION ), GC.getDefineINT( "TSSM_PRODUCTION_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_PRODUCTION_EXTRA_SPEED" );
+				fSpeedMod *= fTerrainSpeedMod;
+
 				fBarbChance *= std::min( 1.0f, fSpeedMod );
 
 				if( fBarbChance > 0 )
