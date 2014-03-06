@@ -3546,6 +3546,19 @@ void CvUnitAI::AI_attackMove()
 			getGroup()->pushMission(MISSION_SKIP);
 			return;
 		}
+		
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/* UnitAIs besides recon units also explore if nothing to do                            */
+/************************************************************************************************/
+	if (AI_exploreLair(4))
+	{
+		return;
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 		if( getGroup()->getNumUnits() < 4 )
 		{
@@ -4323,6 +4336,19 @@ void CvUnitAI::AI_attackCityMove()
 			getGroup()->pushMission(MISSION_SKIP);
 			return;
 		}
+		
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* WildernessExploration                                                                        */
+	/* UnitAIs besides recon units also explore if nothing to do                            */
+	/************************************************************************************************/
+		if (AI_exploreLair(4))
+		{
+			return;
+		}
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
 
 		if (AI_patrol())
 		{
@@ -4640,6 +4666,19 @@ void CvUnitAI::AI_pillageMove()
 		getGroup()->pushMission(MISSION_SKIP);
 		return;
 	}
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/* UnitAIs besides recon units also explore if nothing to do                            */
+/************************************************************************************************/
+	if (AI_exploreLair(4))
+	{
+		return;
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (AI_patrol())
 	{
@@ -5040,6 +5079,19 @@ void CvUnitAI::AI_counterMove()
 	{
 		return;
 	}
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/* UnitAIs besides recon units also explore if nothing to do                            */
+/************************************************************************************************/
+	if (AI_exploreLair(4))
+	{
+		return;
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (AI_retreatToCity())
 	{
@@ -7409,6 +7461,19 @@ void CvUnitAI::AI_attackSeaMove()
 	if (AI_guardBonus(10))
 		return;
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/* UnitAIs besides recon units also explore if nothing to do                            */
+/************************************************************************************************/
+	if (AI_exploreLairSea(4))
+	{
+		return;
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 	if (AI_patrol())
 	{
 		return;
@@ -7623,6 +7688,19 @@ void CvUnitAI::AI_reserveSeaMove()
 	{
 		return;
 	}
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/* UnitAIs besides recon units also explore if nothing to do                            */
+/************************************************************************************************/
+	if (AI_exploreLairSea(4))
+	{
+		return;
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (AI_patrol())
 	{
@@ -27738,6 +27816,10 @@ bool CvUnitAI::AI_exploreLair(int iRange)
 								{
 									if( !canDoExploration( pLoopPlot ) )
 										continue;
+									if( AI_getUnitAIType() == UNITAI_HERO && pLoopPlot->getLairDanger() + 15 > getExplorationLevel() )
+										continue;
+									if( pLoopPlot->getLairDanger() > getExplorationLevel() )
+										continue;
 								}
 							/************************************************************************************************/
 							/* WILDERNESS                                                                     END           */
@@ -27785,11 +27867,20 @@ bool CvUnitAI::AI_exploreLair(int iRange)
 												}
 											}
 
+									// lfgr bugfix
+									/* old
 											if (iValue > iBestValue)
 											{
 												pBestPlot = pLoopPlot;
 											}
 										}
+									*/
+										}
+										if (iValue > iBestValue)
+										{
+											pBestPlot = pLoopPlot;
+										}
+									// lfgr bugfix
 									}
 								}
 							}
