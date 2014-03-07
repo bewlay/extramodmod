@@ -595,7 +595,7 @@ class CvEventManager:
 			if not CyGame().getWBMapScript():
 				cf.warScript(iPlayer)
 
-		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
+		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_MEMBERSHIP')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
 			cf.doCrusade(iPlayer)
 
 #AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
@@ -1605,15 +1605,6 @@ class CvEventManager:
 			if( game.getAIAutoPlay(game.getActivePlayer()) == 0 ) :
 				cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_ACHERON_CREATION",()), str(gc.getUnitInfo(unit.getUnitType()).getImage()))
 
-		if city.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_WARRENS')) > 0:
-			if isWorldUnitClass(unit.getUnitClassType()) == False:
-				if isNationalUnitClass(unit.getUnitClassType()) == False:
-					if not unit.isMechUnit():
-#						if unit.getUnitCombatType() != UnitCombatTypes.NO_UNITCOMBAT:
-						if unit.isAlive():
-							newUnit = pPlayer.initUnit(unit.getUnitType(), city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-							city.applyBuildEffects(newUnit)
-
 		if city.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_BLESSING')) > 0:
 			if unit.isAlive() and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_WORKER') and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_SETTLE'):
 				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_STRONG'), True)
@@ -2379,20 +2370,8 @@ class CvEventManager:
 
 		if CyGame().getWBMapScript():
 			sf.onCityAcquired(iPreviousOwner, iNewOwner, pCity, bConquest, bTrade)
-## END FFH
 
-
-		CvUtil.pyPrint('City Acquired Event: %s' %(pCity.getName()))
-
-	def onCityAcquiredAndKept(self, argsList):
-		'City Acquired and Kept'
-		iOwner,pCity = argsList
-
-## FFH
-		pPlayer = gc.getPlayer(iOwner)
 		if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
-			pCity.setHasReligion(gc.getInfoTypeForString('RELIGION_THE_ORDER'), False, True, True)
-			pCity.setHasReligion(gc.getInfoTypeForString('RELIGION_THE_ASHEN_VEIL'), True, True, True)
 			pCity.setNumRealBuilding(gc.getInfoTypeForString('BUILDING_ELDER_COUNCIL'), 1)
 			pCity.setNumRealBuilding(gc.getInfoTypeForString('BUILDING_TRAINING_YARD'), 1)
 			pCity.setNumRealBuilding(gc.getInfoTypeForString('BUILDING_OBSIDIAN_GATE'), 1)
@@ -2400,6 +2379,17 @@ class CvEventManager:
 			pCity.setNumRealBuilding(gc.getInfoTypeForString('BUILDING_MAGE_GUILD'), 1)
 			pCity.setNumRealBuilding(gc.getInfoTypeForString('BUILDING_DEMONIC_CITIZENS'), 1)
 ## END FFH
+
+	def onCityAcquiredAndKept(self, argsList):
+		'City Acquired and Kept'
+		iOwner,pCity = argsList
+
+
+		CvUtil.pyPrint('City Acquired Event: %s' %(pCity.getName()))
+
+	def onCityAcquiredAndKept(self, argsList):
+		'City Acquired and Kept'
+		iOwner,pCity = argsList
 
 		#Functions added here tend to cause OOS issues
 
@@ -2565,7 +2555,7 @@ class CvEventManager:
 					newUnit = pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 					CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_PLANAR_GATE",()),'AS2D_DISCOVERBONUS',1,gc.getUnitInfo(newUnit.getUnitType()).getButton(),ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
 					if iUnit == gc.getInfoTypeForString('UNIT_MOBIUS_WITCH'):
-						promotions = [ 'PROMOTION_AIR1','PROMOTION_BODY1','PROMOTION_CHAOS1','PROMOTION_CREATION1','PROMOTION_DEATH1','PROMOTION_DIMENSIONAL1','PROMOTION_EARTH1','PROMOTION_ENCHANTMENT1','PROMOTION_ENTROPY1','PROMOTION_FORCE1','PROMOTION_FIRE1','PROMOTION_LAW1','PROMOTION_LIFE1','PROMOTION_MIND1','PROMOTION_NATURE1','PROMOTION_SHADOW1','PROMOTION_SPIRIT1','PROMOTION_SUN1','PROMOTION_WATER1' ]
+						promotions = [ 'PROMOTION_AIR1','PROMOTION_BODY1','PROMOTION_CHAOS1','PROMOTION_CREATION1','PROMOTION_DEATH1','PROMOTION_DIMENSIONAL1','PROMOTION_EARTH1','PROMOTION_ENCHANTMENT1','PROMOTION_ENTROPY1','PROMOTION_FORCE1','PROMOTION_FIRE1','PROMOTION_ICE1','PROMOTION_LAW1','PROMOTION_LIFE1','PROMOTION_METAMAGIC1','PROMOTION_MIND1','PROMOTION_NATURE1','PROMOTION_SHADOW1','PROMOTION_SPIRIT1','PROMOTION_SUN1','PROMOTION_WATER1' ]
 						newUnit.setLevel(4)
 						newUnit.setExperience(14, -1)
 						for i in promotions:

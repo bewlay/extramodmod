@@ -26,14 +26,23 @@ def doGameUpdate():
 
 def writeLog():
 	playername = CvUtil.convertToStr(gc.getPlayer(gc.getGame().getActivePlayer()).getName())
-	szNewFilename = BugPath.getRootDir() + "\\Logs\\"+ "%s - Player %s - " % (playername, gc.getGame().getActivePlayer()) + "OOSLog - Turn " + "%s" % (gc.getGame().getGameTurn()) + ".txt"
+	szNewFilename = BugPath.getRootDir() + "\\Logs\\" + "OOSLog - %s - " % (playername) + "Turn %s" % (gc.getGame().getGameTurn()) + ".txt"
 	pFile = open(szNewFilename, "w")
+
+	# Backup current language
+	iLanguage = CyGame().getCurrentLanguage()
+	# Force english language for logs
+	CyGame().setCurrentLanguage(0)
 
 	#
 	# Global data
 	#
 	pFile.write(SEPERATOR)
 	pFile.write(SEPERATOR)
+
+	
+	pFile.write(CvUtil.convertToStr(CyTranslator().getText("TXT_KEY_VERSION", ())))
+	pFile.write("\n\n")
 
 	pFile.write("  GLOBALS  \n")
 
@@ -203,6 +212,9 @@ def writeLog():
 			# Space at end of player's info
 			pFile.write("\n\n")
 		
+	# Restore current language
+	CyGame().setCurrentLanguage(iLanguage)
+
 	# Close file
 
 	pFile.close()

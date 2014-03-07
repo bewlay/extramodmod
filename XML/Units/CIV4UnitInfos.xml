@@ -6560,6 +6560,8 @@
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
+			<iCityAttack>-25</iCityAttack>
+			<iCityDefense>-25</iCityDefense>
 			<UnitCombatMods>
 				<UnitCombatMod>
 					<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
@@ -14383,10 +14385,6 @@
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
 			<UnitAIs>
-				<UnitAI>
-					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
-					<bUnitAI>1</bUnitAI>
-				</UnitAI>
 			</UnitAIs>
 			<iCost>100</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>

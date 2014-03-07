@@ -195,7 +195,6 @@
             <Type>PROMOTION_ANGEL</Type>
             <Description>TXT_KEY_PROMOTION_ANGEL</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Angel.dds</Button>
             <bImmuneToFear>1</bImmuneToFear>
             <bNotAlive>1</bNotAlive>
@@ -223,7 +222,6 @@
             <Type>PROMOTION_ATHAME</Type>
             <Description>TXT_KEY_EQUIPMENT_ATHAME</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/Athame.dds</Button>
             <bEquipment>1</bEquipment>
             <PromotionCombatApply>PROMOTION_PLAGUED</PromotionCombatApply>
@@ -238,7 +236,6 @@
             <Type>PROMOTION_AVATAR</Type>
             <Description>TXT_KEY_PROMOTION_AVATAR</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Avatar.dds</Button>
             <bImmuneToCapture>1</bImmuneToCapture>
             <bImmuneToFear>1</bImmuneToFear>
@@ -313,7 +310,6 @@
             <Type>PROMOTION_BLACK_MIRROR</Type>
             <Description>TXT_KEY_EQUIPMENT_BLACK_MIRROR</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/BlackMirror.dds</Button>
             <bEquipment>1</bEquipment>
         </PromotionInfo>
@@ -321,7 +317,6 @@
             <Type>PROMOTION_BLESSED</Type>
             <Description>TXT_KEY_PROMOTION_BLESSED</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
@@ -450,7 +445,6 @@
             <Type>PROMOTION_BLUR</Type>
             <Description>TXT_KEY_PROMOTION_BLUR</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <bImmuneToFirstStrikes>1</bImmuneToFirstStrikes>
             <UnitCombats>
                 <UnitCombat>
@@ -672,7 +666,6 @@
             <Type>PROMOTION_BUCCANEERS</Type>
             <Description>TXT_KEY_PROMOTION_BUCCANEERS</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iMovesChange>-1</iMovesChange>
             <UnitCombats>
                 <UnitCombat>
@@ -690,7 +683,6 @@
             <Type>PROMOTION_BURNING_BLOOD</Type>
             <Description>TXT_KEY_PROMOTION_BURNING_BLOOD</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <bBlitz>1</bBlitz>
             <iMovesChange>1</iMovesChange>
             <iCombatPercent>20</iCombatPercent>
@@ -775,7 +767,6 @@
             <Type>PROMOTION_CENTAUR</Type>
             <Description>TXT_KEY_PROMOTION_CENTAUR</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Centaur.dds</Button>
             <bRace>1</bRace>
         </PromotionInfo>
@@ -937,7 +928,6 @@
             <Description>TXT_KEY_PROMOTION_CHARMED</Description>
             <Help>TXT_KEY_PROMOTION_CHARMED_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
@@ -1531,7 +1521,6 @@
             <Type>PROMOTION_COURAGE</Type>
             <Description>TXT_KEY_PROMOTION_COURAGE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iSameTileHealChange>10</iSameTileHealChange>
             <UnitCombats>
                 <UnitCombat>
@@ -1649,7 +1638,6 @@
             <Type>PROMOTION_CROWN_OF_AKHARIEN</Type>
             <Description>TXT_KEY_EQUIPMENT_CROWN_OF_AKHARIEN</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/CrownOfAkharien.dds</Button>
             <bEquipment>1</bEquipment>
             <bImmuneToMagic>1</bImmuneToMagic>
@@ -1778,7 +1766,6 @@
             <Description>TXT_KEY_PROMOTION_CROWN_OF_BRILLANCE</Description>
             <Help>TXT_KEY_PROMOTION_CROWN_OF_BRILLANCE_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/CrownofBrillance.dds</Button>
             <bDispellable>1</bDispellable>
             <bSeeInvisible>1</bSeeInvisible>
@@ -1791,7 +1778,6 @@
             <Type>PROMOTION_CROWN_OF_COMMAND</Type>
             <Description>TXT_KEY_EQUIPMENT_CROWN_OF_COMMAND</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/CrownOfCommand.dds</Button>
             <bEquipment>1</bEquipment>
             <iCombatCapturePercent>30</iCombatCapturePercent>
@@ -1800,7 +1786,6 @@
             <Type>PROMOTION_DANCE_OF_BLADES</Type>
             <Description>TXT_KEY_PROMOTION_DANCE_OF_BLADES</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iFirstStrikesChange>1</iFirstStrikesChange>
             <UnitCombats>
                 <UnitCombat>
@@ -1846,7 +1831,6 @@
             <Type>PROMOTION_DARK_ELF</Type>
             <Description>TXT_KEY_PROMOTION_DARK_ELF</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <FeatureAttacks>
                 <FeatureAttack>
                     <FeatureType>FEATURE_FOREST</FeatureType>
@@ -2033,7 +2017,6 @@
             <Type>PROMOTION_DEMON</Type>
             <Description>TXT_KEY_PROMOTION_DEMON</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <TerrainAttacks>
                 <TerrainAttack>
                     <TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
@@ -2118,7 +2101,6 @@
             <Type>PROMOTION_DEXTEROUS</Type>
             <Description>TXT_KEY_PROMOTION_DEXTEROUS</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
@@ -2253,7 +2235,6 @@
             <Type>PROMOTION_DISEASED</Type>
             <Description>TXT_KEY_PROMOTION_DISEASED</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iEnemyHealChange>-10</iEnemyHealChange>
             <iNeutralHealChange>-10</iNeutralHealChange>
             <iFriendlyHealChange>-10</iFriendlyHealChange>
@@ -2320,7 +2301,6 @@
             <Type>PROMOTION_DRAGON</Type>
             <Description>TXT_KEY_PROMOTION_DRAGON</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Dragon.dds</Button>
             <bFear>1</bFear>
             <bImmuneToFear>1</bImmuneToFear>
@@ -2339,7 +2319,6 @@
             <Type>PROMOTION_DRAGONS_HORDE</Type>
             <Description>TXT_KEY_EQUIPMENT_DRAGONS_HORDE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/DragonsHorde.dds</Button>
             <bEquipment>1</bEquipment>
         </PromotionInfo>
@@ -2517,7 +2496,6 @@
             <Type>PROMOTION_DWARF</Type>
             <Description>TXT_KEY_PROMOTION_DWARF</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <bHillsDoubleMove>1</bHillsDoubleMove>
             <Button>Art/Interface/Buttons/Promotions/Dwarf.dds</Button>
             <bRace>1</bRace>
@@ -2653,7 +2631,6 @@
             <Type>PROMOTION_ELEMENTAL</Type>
             <Description>TXT_KEY_PROMOTION_ELEMENTAL</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Elemental.dds</Button>
             <bImmuneToFear>1</bImmuneToFear>
             <bNotAlive>1</bNotAlive>
@@ -2673,7 +2650,6 @@
             <Type>PROMOTION_ELF</Type>
             <Description>TXT_KEY_PROMOTION_ELF</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <FeatureAttacks>
                 <FeatureAttack>
                     <FeatureType>FEATURE_FOREST</FeatureType>
@@ -2759,7 +2735,6 @@
             <Type>PROMOTION_EMPTY_BIER</Type>
             <Description>TXT_KEY_EQUIPMENT_EMPTY_BIER</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/EmptyBier.dds</Button>
             <bDoubleFortifyBonus>1</bDoubleFortifyBonus>
             <bEquipment>1</bEquipment>
@@ -2770,7 +2745,6 @@
             <Type>PROMOTION_ENCHANTED_BLADE</Type>
             <Description>TXT_KEY_PROMOTION_ENCHANTED_BLADE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iCombatPercent>20</iCombatPercent>
             <UnitCombats>
                 <UnitCombat>
@@ -3083,7 +3057,6 @@
             <Type>PROMOTION_FAIR_WINDS</Type>
             <Description>TXT_KEY_PROMOTION_FAIR_WINDS</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iMovesChange>1</iMovesChange>
             <iWithdrawalChange>25</iWithdrawalChange>
             <UnitCombats>
@@ -3323,7 +3296,6 @@
             <Type>PROMOTION_FLAMING_ARROWS</Type>
             <Description>TXT_KEY_PROMOTION_FLAMING_ARROWS</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
@@ -3406,7 +3378,6 @@
             <Type>PROMOTION_FLYING</Type>
             <Description>TXT_KEY_PROMOTION_FLYING</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <bAmphib>1</bAmphib>
             <bRiver>1</bRiver>
             <iMovesChange>1</iMovesChange>
@@ -3605,7 +3576,6 @@
             <Type>PROMOTION_FROSTLING</Type>
             <Description>TXT_KEY_PROMOTION_FROSTLING</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <TerrainAttacks>
                 <TerrainAttack>
                     <TerrainType>TERRAIN_SNOW</TerrainType>
@@ -3657,7 +3627,6 @@
             <Type>PROMOTION_GELA</Type>
             <Description>TXT_KEY_EQUIPMENT_GELA</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/Gela.dds</Button>
             <bEquipment>1</bEquipment>
             <iAIWeight>100</iAIWeight>
@@ -3672,7 +3641,6 @@
             <Type>PROMOTION_GODSLAYER</Type>
             <Description>TXT_KEY_EQUIPMENT_GODSLAYER</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/Godslayer.dds</Button>
             <bEquipment>1</bEquipment>
             <iAIWeight>100</iAIWeight>
@@ -3717,7 +3685,6 @@
             <Type>PROMOTION_GOLDEN_HAMMER</Type>
             <Description>TXT_KEY_EQUIPMENT_GOLDEN_HAMMER</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/GoldenHammer.dds</Button>
             <bEquipment>1</bEquipment>
             <iExtraCombatStr>1</iExtraCombatStr>
@@ -3726,7 +3693,6 @@
             <Type>PROMOTION_GOLEM</Type>
             <Description>TXT_KEY_PROMOTION_GOLEM</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iNeutralHealChange>-5</iNeutralHealChange>
             <iFriendlyHealChange>-10</iFriendlyHealChange>
             <Button>Art/Interface/Buttons/Promotions/Golem.dds</Button>
@@ -3829,7 +3795,6 @@
             <Type>PROMOTION_HASTED</Type>
             <Description>TXT_KEY_PROMOTION_HASTED</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iMovesChange>1</iMovesChange>
             <UnitCombats>
                 <UnitCombat>
@@ -3875,7 +3840,6 @@
             <Type>PROMOTION_HEALING_SALVE</Type>
             <Description>TXT_KEY_EQUIPMENT_HEALING_SALVE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/HealingSalve.dds</Button>
             <bEquipment>1</bEquipment>
         </PromotionInfo>
@@ -3883,7 +3847,6 @@
             <Type>PROMOTION_HEAVY</Type>
             <Description>TXT_KEY_PROMOTION_HEAVY</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iMoveDiscountChange>-1</iMoveDiscountChange>
             <iCombatPercent>30</iCombatPercent>
             <Button>Art/Interface/Buttons/Promotions/Heavy.dds</Button>
@@ -3905,7 +3868,6 @@
             <Type>PROMOTION_HERO</Type>
             <Description>TXT_KEY_PROMOTION_HERO</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iUpgradeDiscount>100</iUpgradeDiscount>
             <Button>Art/Interface/Buttons/Promotions/Hero.dds</Button>
             <iFreeXPPerTurn>1</iFreeXPPerTurn>
@@ -4129,7 +4091,6 @@
             <Type>PROMOTION_HIDDEN</Type>
             <Description>TXT_KEY_PROMOTION_HIDDEN</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iFirstStrikesChange>1</iFirstStrikesChange>
             <UnitCombats>
                 <UnitCombat>
@@ -4185,7 +4146,6 @@
             <Type>PROMOTION_HIDDEN_NATIONALITY</Type>
             <Description>TXT_KEY_PROMOTION_HIDDEN_NATIONALITY</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
@@ -4247,7 +4207,6 @@
             <Type>PROMOTION_HORSELORD</Type>
             <Description>TXT_KEY_PROMOTION_HORSELORD</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iMovesChange>1</iMovesChange>
             <iWithdrawalChange>10</iWithdrawalChange>
             <UnitCombats>
@@ -4383,7 +4342,6 @@
             <Type>PROMOTION_ILLUSION</Type>
             <Description>TXT_KEY_PROMOTION_ILLUSION</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Illusion.dds</Button>
             <bNotAlive>1</bNotAlive>
             <bRace>1</bRace>
@@ -4406,7 +4364,6 @@
             <Type>PROMOTION_ILLUSIONIST</Type>
             <Description>TXT_KEY_PROMOTION_ILLUSIONIST</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Illusionist.dds</Button>
             <iMinLevel>-1</iMinLevel>
             <PromotionSummonPerk>PROMOTION_ILLUSION</PromotionSummonPerk>
@@ -4415,7 +4372,6 @@
             <Type>PROMOTION_IMMORTAL</Type>
             <Description>TXT_KEY_PROMOTION_IMMORTAL</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Immortal.dds</Button>
             <bImmortal>1</bImmortal>
             <iMinLevel>-1</iMinLevel>
@@ -4496,7 +4452,6 @@
             <Type>PROMOTION_INVISIBLE</Type>
             <Description>TXT_KEY_PROMOTION_INVISIBLE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Invisibility.dds</Button>
             <bInvisible>1</bInvisible>
             <iAIWeight>100</iAIWeight>
@@ -4507,7 +4462,6 @@
             <Type>PROMOTION_IRON_WEAPONS</Type>
             <Description>TXT_KEY_PROMOTION_IRON_WEAPONS</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Ironweapons.dds</Button>
             <iExtraCombatStr>2</iExtraCombatStr>
             <iExtraCombatDefense>2</iExtraCombatDefense>
@@ -4525,7 +4479,6 @@
             <Type>PROMOTION_JADE_TORC</Type>
             <Description>TXT_KEY_EQUIPMENT_JADE_TORC</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/JadeTorc.dds</Button>
             <bEquipment>1</bEquipment>
             <iResistMagic>20</iResistMagic>
@@ -4792,7 +4745,6 @@
             <Type>PROMOTION_LIGHT</Type>
             <Description>TXT_KEY_PROMOTION_LIGHT</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iMovesChange>1</iMovesChange>
             <iWithdrawalChange>10</iWithdrawalChange>
             <iCombatPercent>-20</iCombatPercent>
@@ -4853,7 +4805,6 @@
             <Type>PROMOTION_LIZARDMAN</Type>
             <Description>TXT_KEY_PROMOTION_LIZARDMAN</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <bAmphib>1</bAmphib>
             <bRiver>1</bRiver>
             <TerrainAttacks>
@@ -4888,7 +4839,6 @@
             <Type>PROMOTION_LONGSHOREMEN</Type>
             <Description>TXT_KEY_PROMOTION_LONGSHOREMEN</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iMovesChange>1</iMovesChange>
             <iCargoChange>-1</iCargoChange>
             <UnitCombats>
@@ -4906,7 +4856,6 @@
             <Description>TXT_KEY_PROMOTION_LOYALTY</Description>
             <Help>TXT_KEY_PROMOTION_LOYALTY_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
@@ -5091,7 +5040,6 @@
             <Type>PROMOTION_MEDIC1</Type>
             <Description>TXT_KEY_PROMOTION_MEDIC1</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iSameTileHealChange>10</iSameTileHealChange>
             <UnitCombats>
                 <UnitCombat>
@@ -5121,13 +5069,13 @@
             </UnitCombats>
             <Button>,Art/Interface/Buttons/Promotions/Medic1.dds,Art/Interface/Buttons/Promotions_Atlas.dds,3,4</Button>
             <PromotionNextLevel>PROMOTION_MEDIC2</PromotionNextLevel>
+            <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_MEDIC2</Type>
             <Description>TXT_KEY_PROMOTION_MEDIC2</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
             <PromotionPrereq>PROMOTION_MEDIC1</PromotionPrereq>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iSameTileHealChange>15</iSameTileHealChange>
             <Button>,Art/Interface/Buttons/Promotions/Medic2.dds,Art/Interface/Buttons/Promotions_Atlas.dds,4,4</Button>
             <PromotionNextLevel>PROMOTION_MEDIC3</PromotionNextLevel>
@@ -5389,7 +5337,6 @@
             <Type>PROMOTION_MITHRIL_WEAPONS</Type>
             <Description>TXT_KEY_PROMOTION_MITHRIL_WEAPONS</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Mithrilweapons.dds</Button>
             <iExtraCombatStr>4</iExtraCombatStr>
             <iExtraCombatDefense>4</iExtraCombatDefense>
@@ -5471,7 +5418,6 @@
             <Type>PROMOTION_MORALE</Type>
             <Description>TXT_KEY_PROMOTION_MORALE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iCombatPercent>10</iCombatPercent>
             <iCityAttack>10</iCityAttack>
             <UnitCombats>
@@ -5511,7 +5457,6 @@
             <Description>TXT_KEY_PROMOTION_MUTATED</Description>
             <Help>TXT_KEY_PROMOTION_MUTATED_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
@@ -5701,7 +5646,6 @@
             <Type>PROMOTION_NETHER_BLADE</Type>
             <Description>TXT_KEY_EQUIPMENT_NETHER_BLADE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/NetherBlade.dds</Button>
             <bEquipment>1</bEquipment>
             <PromotionCombatType>PROMOTION_HERO</PromotionCombatType>
@@ -5717,7 +5661,6 @@
             <Type>PROMOTION_NIGHTMARE</Type>
             <Description>TXT_KEY_PROMOTION_NIGHTMARE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <TerrainAttacks>
                 <TerrainAttack>
                     <TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
@@ -5762,7 +5705,6 @@
             <Type>PROMOTION_NOMAD</Type>
             <Description>TXT_KEY_PROMOTION_NOMAD</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <TerrainAttacks>
                 <TerrainAttack>
                     <TerrainType>TERRAIN_DESERT</TerrainType>
@@ -5798,7 +5740,6 @@
             <Type>PROMOTION_ORC</Type>
             <Description>TXT_KEY_PROMOTION_ORC</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <FeatureAttacks>
                 <FeatureAttack>
                     <FeatureType>FEATURE_JUNGLE</FeatureType>
@@ -5820,7 +5761,6 @@
             <Type>PROMOTION_ORTHUSS_AXE</Type>
             <Description>TXT_KEY_EQUIPMENT_ORTHUSS_AXE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <bBlitz>1</bBlitz>
             <Button>Art/Interface/Buttons/Equipment/Orthussaxe.dds</Button>
             <bEquipment>1</bEquipment>
@@ -5856,7 +5796,6 @@
             <Description>TXT_KEY_EQUIPMENT_PIECES_OF_BARNAXUS</Description>
             <Help>TXT_KEY_PROMOTION_PIECES_OF_BARNAXUS_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Units/Barnaxus.dds</Button>
             <bEquipment>1</bEquipment>
         </PromotionInfo>
@@ -5865,7 +5804,6 @@
             <Description>TXT_KEY_PROMOTION_PLAGUE_CARRIER</Description>
             <Help>TXT_KEY_PROMOTION_PLAGUE_CARRIER_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Plaguecarrier.dds</Button>
             <iMinLevel>-1</iMinLevel>
             <PromotionCombatApply>PROMOTION_PLAGUED</PromotionCombatApply>
@@ -5874,7 +5812,6 @@
             <Type>PROMOTION_PLAGUED</Type>
             <Description>TXT_KEY_PROMOTION_PLAGUED</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iEnemyHealChange>-20</iEnemyHealChange>
             <iNeutralHealChange>-20</iNeutralHealChange>
             <iFriendlyHealChange>-20</iFriendlyHealChange>
@@ -5980,7 +5917,6 @@
             <Description>TXT_KEY_PROMOTION_POISONED</Description>
             <Help>TXT_KEY_PROMOTION_POISONED_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iEnemyHealChange>-3</iEnemyHealChange>
             <iNeutralHealChange>-5</iNeutralHealChange>
             <iFriendlyHealChange>-8</iFriendlyHealChange>
@@ -5995,7 +5931,6 @@
             <Type>PROMOTION_POISONED_BLADE</Type>
             <Description>TXT_KEY_PROMOTION_POISONED_BLADE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
@@ -6017,7 +5952,6 @@
             <Type>PROMOTION_POTENCY</Type>
             <Description>TXT_KEY_PROMOTION_POTENCY</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
@@ -6051,7 +5985,6 @@
             <Type>PROMOTION_POTION_OF_INVISIBILITY</Type>
             <Description>TXT_KEY_EQUIPMENT_POTION_OF_INVISIBILITY</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/PotionOfInvisibility.dds</Button>
             <bEquipment>1</bEquipment>
         </PromotionInfo>
@@ -6059,7 +5992,6 @@
             <Type>PROMOTION_POTION_OF_RESTORATION</Type>
             <Description>TXT_KEY_EQUIPMENT_POTION_OF_RESTORATION</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/PotionOfRestoration.dds</Button>
             <bEquipment>1</bEquipment>
         </PromotionInfo>
@@ -6082,7 +6014,6 @@
             <Description>TXT_KEY_PROMOTION_PROPHECY_MARK</Description>
             <Help>TXT_KEY_PROMOTION_PROPHECY_MARK_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
@@ -6144,7 +6075,6 @@
             <Type>PROMOTION_REGENERATION</Type>
             <Description>TXT_KEY_PROMOTION_REGENERATION</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <bAlwaysHeal>1</bAlwaysHeal>
             <iEnemyHealChange>10</iEnemyHealChange>
             <iNeutralHealChange>10</iNeutralHealChange>
@@ -6215,7 +6145,6 @@
             <Type>PROMOTION_ROD_OF_WINDS</Type>
             <Description>TXT_KEY_EQUIPMENT_ROD_OF_WINDS</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/RodOfWinds.dds</Button>
             <bEquipment>1</bEquipment>
             <BonusAffinities>
@@ -6230,7 +6159,6 @@
             <Description>TXT_KEY_PROMOTION_RUSTED</Description>
             <Help>TXT_KEY_PROMOTION_RUSTED_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iCombatPercent>-10</iCombatPercent>
             <UnitCombats>
                 <UnitCombat>
@@ -6256,7 +6184,6 @@
             <Type>PROMOTION_SCORCHED_STAFF</Type>
             <Description>TXT_KEY_EQUIPMENT_SCORCHED_STAFF</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/ScorchedStaff.dds</Button>
             <bEquipment>1</bEquipment>
             <BonusAffinities>
@@ -6488,7 +6415,6 @@
             <Type>PROMOTION_SHADOWWALK</Type>
             <Description>TXT_KEY_PROMOTION_SHADOWWALK</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
@@ -6534,7 +6460,6 @@
             <Type>PROMOTION_SHEUT_STONE</Type>
             <Description>TXT_KEY_PROMOTION_SHEUT_STONE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
@@ -6592,7 +6517,6 @@
             <Type>PROMOTION_SHIELD_OF_FAITH</Type>
             <Description>TXT_KEY_PROMOTION_SHIELD_OF_FAITH</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iCombatPercent>10</iCombatPercent>
             <UnitCombats>
                 <UnitCombat>
@@ -6698,7 +6622,6 @@
             <Type>PROMOTION_SINISTER</Type>
             <Description>TXT_KEY_PROMOTION_SINISTER</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
@@ -6714,7 +6637,6 @@
             <Type>PROMOTION_SKELETON_CREW</Type>
             <Description>TXT_KEY_PROMOTION_SKELETON_CREW</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iCargoChange>1</iCargoChange>
             <UnitCombats>
                 <UnitCombat>
@@ -6785,7 +6707,6 @@
             <Description>TXT_KEY_PROMOTION_SPELLSTAFF</Description>
             <Help>TXT_KEY_PROMOTION_SPELLSTAFF_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Spellstaff.dds</Button>
             <bDispellable>1</bDispellable>
             <iAIWeight>150</iAIWeight>
@@ -6796,7 +6717,6 @@
             <Description>TXT_KEY_PROMOTION_SPIRIT_GUIDE</Description>
             <Help>TXT_KEY_PROMOTION_SPIRIT_GUIDE_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
@@ -6951,7 +6871,6 @@
             <Type>PROMOTION_STAFF_OF_SOULS</Type>
             <Description>TXT_KEY_EQUIPMENT_STAFF_OF_SOULS</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/StaffOfSouls.dds</Button>
             <bEquipment>1</bEquipment>
             <DamageTypeCombats>
@@ -6971,7 +6890,6 @@
             <Type>PROMOTION_STARTING_SETTLER</Type>
             <Description>TXT_KEY_PROMOTION_STARTING_SETTLER</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iVisibilityChange>3</iVisibilityChange>
             <iMovesChange>2</iMovesChange>
             <Button>Art/Interface/Buttons/Units/Settler.dds</Button>
@@ -6981,7 +6899,6 @@
             <Type>PROMOTION_STEALTH</Type>
             <Description>TXT_KEY_PROMOTION_STEALTH</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Stealth.dds</Button>
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
@@ -7044,7 +6961,6 @@
             <Type>PROMOTION_STONESKIN</Type>
             <Description>TXT_KEY_PROMOTION_STONESKIN</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iFirstStrikesChange>3</iFirstStrikesChange>
             <UnitCombats>
                 <UnitCombat>
@@ -7122,7 +7038,6 @@
             <Type>PROMOTION_STRONG</Type>
             <Description>TXT_KEY_PROMOTION_STRONG</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Strong.dds</Button>
             <bMutation>1</bMutation>
             <iAIWeight>100</iAIWeight>
@@ -7353,7 +7268,6 @@
             <Type>PROMOTION_SYLIVENS_PERFECT_LYRE</Type>
             <Description>TXT_KEY_EQUIPMENT_SYLIVENS_PERFECT_LYRE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/SylivensPerfectLyre.dds</Button>
             <bEquipment>1</bEquipment>
         </PromotionInfo>
@@ -7414,7 +7328,6 @@
             <Type>PROMOTION_TIMOR_MASK</Type>
             <Description>TXT_KEY_EQUIPMENT_TIMOR_MASK</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/TimorMask.dds</Button>
             <bEquipment>1</bEquipment>
             <bFear>1</bFear>
@@ -7506,7 +7419,6 @@
             <Type>PROMOTION_UNDEAD</Type>
             <Description>TXT_KEY_PROMOTION_UNDEAD</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Undead.dds</Button>
             <bImmuneToFear>1</bImmuneToFear>
             <bNotAlive>1</bNotAlive>
@@ -7559,7 +7471,6 @@
             <Description>TXT_KEY_PROMOTION_UNHOLY_TAINT</Description>
             <Help>TXT_KEY_PROMOTION_UNHOLY_TAINT_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iCombatPercent>-25</iCombatPercent>
             <Button>Art/Interface/Buttons/Promotions/Unholytaint.dds</Button>
             <iCombatPercentDefense>-25</iCombatPercentDefense>
@@ -7585,7 +7496,6 @@
             <Type>PROMOTION_VALOR</Type>
             <Description>TXT_KEY_PROMOTION_VALOR</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <UnitCombats>
                 <UnitCombat>
                     <UnitCombatType>UNITCOMBAT_ADEPT</UnitCombatType>
@@ -7623,7 +7533,6 @@
             <Type>PROMOTION_VAMPIRE</Type>
             <Description>TXT_KEY_PROMOTION_VAMPIRE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iEnemyHealChange>5</iEnemyHealChange>
             <iNeutralHealChange>5</iNeutralHealChange>
             <iFriendlyHealChange>5</iFriendlyHealChange>
@@ -7636,7 +7545,6 @@
             <Type>PROMOTION_VILE_TOUCH</Type>
             <Description>TXT_KEY_PROMOTION_VILE_TOUCH</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/VileTouch.dds</Button>
             <iMinLevel>-1</iMinLevel>
             <PromotionCombatApply>PROMOTION_WITHERED</PromotionCombatApply>
@@ -7659,7 +7567,6 @@
             <Type>PROMOTION_WAR</Type>
             <Description>TXT_KEY_EQUIPMENT_WAR</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Equipment/War.dds</Button>
             <bEquipment>1</bEquipment>
             <iModifyGlobalCounterOnCombat>1</iModifyGlobalCounterOnCombat>
@@ -7674,7 +7581,6 @@
             <Type>PROMOTION_WARCRY</Type>
             <Description>TXT_KEY_PROMOTION_WARCRY</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <bBlitz>1</bBlitz>
             <iMovesChange>1</iMovesChange>
             <Button>Art/Interface/Buttons/Promotions/Warcry.dds</Button>
@@ -7688,7 +7594,6 @@
             <Type>PROMOTION_WATER_WALKING</Type>
             <Description>TXT_KEY_PROMOTION_WATER_WALKING</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <bAmphib>1</bAmphib>
             <bRiver>1</bRiver>
             <Button>Art/Interface/Buttons/Promotions/Waterwalking.dds</Button>
@@ -7820,7 +7725,6 @@
             <Type>PROMOTION_WEAK</Type>
             <Description>TXT_KEY_PROMOTION_WEAK</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Weak.dds</Button>
             <bMutation>1</bMutation>
             <iAIWeight>-100</iAIWeight>
@@ -7833,7 +7737,6 @@
             <Description>TXT_KEY_PROMOTION_WEREWOLF</Description>
             <Help>TXT_KEY_PROMOTION_WEREWOLF_PEDIA</Help>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <Button>Art/Interface/Buttons/Promotions/Werewolf.dds</Button>
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
@@ -7841,7 +7744,6 @@
             <Type>PROMOTION_WINTERBORN</Type>
             <Description>TXT_KEY_PROMOTION_WINTERBORN</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <TerrainAttacks>
                 <TerrainAttack>
                     <TerrainType>TERRAIN_SNOW</TerrainType>
@@ -7913,7 +7815,6 @@
             <Type>PROMOTION_WITHERED</Type>
             <Description>TXT_KEY_PROMOTION_WITHERED</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
             <iEnemyHealChange>-20</iEnemyHealChange>
             <iNeutralHealChange>-20</iNeutralHealChange>
             <iFriendlyHealChange>-20</iFriendlyHealChange>

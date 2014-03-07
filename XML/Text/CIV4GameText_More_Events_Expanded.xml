@@ -5,6 +5,14 @@
 <!-- Game Text - Events -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 <!-- MORE EVENTS MOD STARTS lfgr: changed -->
+	<TEXT><!-- ERROR_NO_AVAILABLE_EVENT -->
+		<Tag>TXT_KEY_ERROR_NO_AVAILABLE_EVENT</Tag>
+		<English>[COLOR_RED]This Event is buggy. Please report this bug at forums.civfanatics.com/showthread.php?t=483736 or the thread you downloaded this mod, including the mod version you are playing and the event's name: %s1_event. Thank you.[COLOR_REVERT][NEWLINE][NEWLINE]</English>
+		<French>[COLOR_RED]This Event is buggy. Please report this bug at forums.civfanatics.com/showthread.php?t=483736 or the thread you downloaded this mod, including the mod version you are playing and the event's name: %s1_event. Thank you.[COLOR_REVERT][NEWLINE][NEWLINE]</French>
+		<German>[COLOR_RED]Dieses Ereignis ist fehlerhaft. Bitte melden Sie diesen Fehler unter forums.civfanatics.com/showthread.php?t=483736 oder in dem Forenthread, in dem Sie diese Mod heruntergeladen haben. Nennen Sie dabei bitte die Version der Mod, die Sie spielen, sowie den folgenden Namen des Ereignisses: %s1_event. Vielen Dank.[COLOR_REVERT][NEWLINE][NEWLINE]</German>
+		<Italian>[COLOR_RED]This Event is buggy. Please report this bug at forums.civfanatics.com/showthread.php?t=483736 or the thread you downloaded this mod, including the mod version you are playing and the event's name: %s1_event. Thank you.[COLOR_REVERT][NEWLINE][NEWLINE]</Italian>
+		<Spanish>[COLOR_RED]This Event is buggy. Please report this bug at forums.civfanatics.com/showthread.php?t=483736 or the thread you downloaded this mod, including the mod version you are playing and the event's name: %s1_event. Thank you.[COLOR_REVERT][NEWLINE][NEWLINE]</Spanish>
+	</TEXT>
 	<TEXT><!-- EVENT_NO_BONUS_UNIT_AVAILABLE -->
 		<Tag>TXT_KEY_EVENT_NO_BONUS_UNIT_AVAILABLE</Tag>
 		<English>[ICON_BULLET][COLOR_RED]No appropriate unit type available.[COLOR_REVERT]</English>
@@ -2421,6 +2429,14 @@
 		<Italian>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their abundant crabs.</Italian>
 		<Spanish>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their abundant crabs.</Spanish>
 	</TEXT>
+	<TEXT><!-- EVENT_KURIOTATES_SHRIMP -->
+		<Tag>TXT_KEY_EVENT_KURIOTATES_SHRIMP</Tag>
+		<English>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their copious schools of shrimps.</English>
+		<French>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their copious schools of shrimps.</French>
+		<German>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their copious schools of shrimps.</German>
+		<Italian>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their copious schools of shrimps.</Italian>
+		<Spanish>The citizens of our settlement of %s2_city have constructed a small fishing fleet themselves to harvest their copious schools of shrimps.</Spanish>
+	</TEXT>
 	<TEXT><!-- EVENT_KURIOTATES_FISH_1 -->
 		<Tag>TXT_KEY_EVENT_KURIOTATES_FISH_1</Tag>
 		<English>That is the type of citizen initiative I like to hear about.</English>
@@ -2439,6 +2455,14 @@
 	</TEXT>
 	<TEXT><!-- EVENT_KURIOTATES_CRAB_1 -->
 		<Tag>TXT_KEY_EVENT_KURIOTATES_CRAB_1</Tag>
+		<English>That is the type of citizen initiative I like to hear about.</English>
+		<French>That is the type of citizen initiative I like to hear about.</French>
+		<German>That is the type of citizen initiative I like to hear about.</German>
+		<Italian>That is the type of citizen initiative I like to hear about.</Italian>
+		<Spanish>That is the type of citizen initiative I like to hear about.</Spanish>
+	</TEXT>
+	<TEXT><!-- EVENT_KURIOTATES_SHRIMP_1 -->
+		<Tag>TXT_KEY_EVENT_KURIOTATES_SHRIMP_1</Tag>
 		<English>That is the type of citizen initiative I like to hear about.</English>
 		<French>That is the type of citizen initiative I like to hear about.</French>
 		<German>That is the type of citizen initiative I like to hear about.</German>
