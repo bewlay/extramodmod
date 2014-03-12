@@ -756,15 +756,15 @@
 				</FeaturePercentWeight>
 				<FeaturePercentWeight>
 					<FeatureType>FEATURE_FOREST_NEW</FeatureType>
-					<iWeight>-50</iWeight>
+					<iWeight>-25</iWeight>
 				</FeaturePercentWeight>
 				<FeaturePercentWeight>
 					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iWeight>-100</iWeight>
+					<iWeight>-75</iWeight>
 				</FeaturePercentWeight>
 				<FeaturePercentWeight>
 					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
-					<iWeight>-100</iWeight>
+					<iWeight>-75</iWeight>
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
 		</TerrainFlavourInfo>
@@ -874,7 +874,15 @@
 			</TerrainPercentWeights>
 			<FeaturePercentWeights>
 				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_NEW</FeatureType>
+					<iWeight>25</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
 					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>50</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
 					<iWeight>50</iWeight>
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
