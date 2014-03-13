@@ -41,7 +41,7 @@
 		<French>Nom</French>
 		<German>Nom</German>
 		<Italian>Nom</Italian>
-		<Spanish>Nom</Spanish>
+		<Spanish>Nóm</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_FREE_PROMOTIONS_ALL_UNITS</Tag>
@@ -69,10 +69,10 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_DIVERSE_HELP</Tag>
-		<English>Units have a little chance to get a random racial promotion</English>
-		<French>Units have a little chance to get a random racial promotion</French>
-		<German>Units have a little chance to get a random racial promotion</German>
-		<Italian>Units have a little chance to get a random racial promotion</Italian>
-		<Spanish>Units have a little chance to get a random racial promotion</Spanish>
+		<English>[NEWLINE][ICON_BULLET]Units have a little chance to get a random racial promotion</English>
+		<French>[NEWLINE][ICON_BULLET]Units have a little chance to get a random racial promotion</French>
+		<German>[NEWLINE][ICON_BULLET]Einheiten erhalten manchmal eine zufällige Rasse</German>
+		<Italian>[NEWLINE][ICON_BULLET]Units have a little chance to get a random racial promotion</Italian>
+		<Spanish>[NEWLINE][ICON_BULLET]Units have a little chance to get a random racial promotion</Spanish>
 	</TEXT>
 </Civ4GameText>
