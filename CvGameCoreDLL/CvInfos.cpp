@@ -28888,7 +28888,7 @@ bool CvSpawnInfo::isIncludedSpawns( int i ) const
 void CvSpawnInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
-	
+	/*
 	stream->Read(&m_eCreateLair);
 	stream->Read(&m_eTerrainFlavourType);
 	stream->Read(&m_eUnitArtStyleType);
@@ -28923,12 +28923,13 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_pbIncludedSpawns);
 	m_pbIncludedSpawns = new bool[GC.getNumSpawnInfos()];
 	stream->Read(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
+	*/
 }
 
 void CvSpawnInfo::write(FDataStreamBase* stream)
 {
 	CvInfoBase::write(stream);
-	
+	/*
 	stream->Write(m_eCreateLair);
 	stream->Write(m_eTerrainFlavourType);
 	stream->Write(m_eUnitArtStyleType);
@@ -28956,6 +28957,7 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumUnitInfos(), m_piNumSpawnUnits);
 	stream->Write(GC.getNumPromotionInfos(), m_pbUnitPromotions);
 	stream->Write(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
+	*/
 }
 
 bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
