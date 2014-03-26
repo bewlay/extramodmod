@@ -671,7 +671,7 @@ public:
 	int getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType ) const;
 	bool isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon = false ) const;
 	int getSpawnValue( SpawnTypes eSpawnType, bool bCheckTech = true, bool bDungeon = false ) const; // exposed to python
-	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI, int iLairPlot = -1 ); // exposed to python
+	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI = NO_UNITAI, int iLairPlot = -1 ); // exposed to python
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

@@ -28722,7 +28722,8 @@ CvSpawnInfo::CvSpawnInfo():
 	m_eCreateLair( NO_IMPROVEMENT ),
 	m_eTerrainFlavourType( NO_TERRAIN_FLAVOUR ),
 	m_eUnitArtStyleType( NO_UNIT_ARTSTYLE ),
-	m_eSpawnPrereqType( NO_UNIT_ARTSTYLE ),
+	m_eSpawnPrereqType( NO_SPAWN_PREREQ ),
+	m_eUnitAIType( NO_UNITAI ),
 	m_iWeight( 0 ),
 	m_iValidTerrainWeight( 0 ),
 	m_iMinTier( 0 ),
@@ -28771,6 +28772,11 @@ int CvSpawnInfo::getUnitArtStyleType() const
 int CvSpawnInfo::getSpawnPrereqType() const
 {
 	return m_eSpawnPrereqType;
+}
+
+int CvSpawnInfo::getUnitAIType() const
+{
+	return m_eUnitAIType;
 }
 
 int CvSpawnInfo::getWeight() const
@@ -28968,6 +28974,8 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	m_eUnitArtStyleType = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(szTextVal, "SpawnPrereqType");
 	m_eSpawnPrereqType = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "UnitAIType");
+	m_eUnitAIType = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iWeight, "iBaseWeight");
 	pXML->GetChildXmlValByName(&m_iValidTerrainWeight, "iValidTerrainWeight" );

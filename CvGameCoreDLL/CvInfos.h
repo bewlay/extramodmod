@@ -7834,6 +7834,7 @@ public:
 	int getTerrainFlavourType() const;
 	int getUnitArtStyleType() const;
 	int getSpawnPrereqType() const;
+	int getUnitAIType() const;
 	
 	int getWeight() const;
 	int getValidTerrainWeight() const;
@@ -7880,6 +7881,7 @@ protected:
 	int m_eUnitArtStyleType;
 	int m_eTerrainFlavourType;
 	int m_eSpawnPrereqType;
+	int m_eUnitAIType;
 	
 	int m_iWeight;
 	int m_iValidTerrainWeight;

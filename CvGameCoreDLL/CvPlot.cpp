@@ -608,10 +608,6 @@ void CvPlot::doTurn()
 							UnitAITypes eUnitAI = NO_UNITAI;
 							if( !bDefended && !kBestSpawn.isNoDefender() )
 								eUnitAI = UNITAI_LAIRGUARDIAN;
-							else if( kBestSpawn.isAnimal() )
-								eUnitAI = UNITAI_ANIMAL;
-							else
-								eUnitAI = area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK;
 
 							createSpawn( eBestSpawn, eUnitAI, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
                         }
@@ -12989,6 +12985,12 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 		if( iMaxRandPromotions != vePromotions.size() || iMaxRandPromotions != vePromotions.size() )
 			bRandPromotions = true;
 	}
+
+	// UnitAI
+	if( eUnitAI == NO_UNITAI )
+		eUnitAI = (UnitAITypes) kSpawn.getUnitAIType();
+	if( eUnitAI == NO_UNITAI )
+		eUnitAI = kSpawn.isAnimal() ? UNITAI_ANIMAL : ( area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
 
 	// Random Included Spawns
 	std::vector< std::pair<SpawnTypes,int> > veIncludedSpawns;

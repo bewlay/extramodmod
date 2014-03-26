@@ -7752,8 +7752,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 		CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
 		logBBAI("WILDERNESS - SpawnInfo %s chosen!", kBestSpawn.getType() );
 		
-		UnitAITypes eUnitAI = bAnimal ? UNITAI_ANIMAL : ( pPlot->area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
-		pPlot->createSpawn( eBestSpawn, eUnitAI );
+		pPlot->createSpawn( eBestSpawn );
 	}
 	else
 	{
