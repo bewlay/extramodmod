@@ -13063,14 +13063,13 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 	// LFGR_TODO: Join Group
 	if( iRandomIncludedSpawns > 0 )
 	{
-		std::vector< std::pair<SpawnTypes,int> > veTmpIncSpawns = veIncludedSpawns;
 		while( iRandomIncludedSpawns > 0 && veIncludedSpawns.size() > 0 )
 		{
 			int iBestIndex = -1;
 			int iBestValue = 0;
-			for( unsigned int i = 0; i < veTmpIncSpawns.size(); i++ )
+			for( unsigned int i = 0; i < veIncludedSpawns.size(); i++ )
 			{
-				int iLoopVal = veTmpIncSpawns[i].second;
+				int iLoopVal = veIncludedSpawns[i].second;
 				iLoopVal += GC.getGameINLINE().getSorenRandNum( 100, "SpawnInfo rand weight" );
 				if( iLoopVal > iBestValue )
 				{
@@ -13080,7 +13079,7 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 			}
 			if( iBestIndex != -1 )
 			{
-				createSpawn( veTmpIncSpawns[iBestIndex].first, eUnitAI, iLairPlot );
+				createSpawn( veIncludedSpawns[iBestIndex].first, NO_UNITAI, iLairPlot );
 				veIncludedSpawns.erase( veIncludedSpawns.begin() + iBestIndex );
 				iRandomIncludedSpawns--;
 			}
