@@ -16,7 +16,8 @@
 	<ElementType name="iPrereqGlobalCounter" content="textOnly" dt:type="int"/>
 	<ElementType name="iMinRandomPromotions" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxRandomPromotions" content="textOnly" dt:type="int"/>
-	<ElementType name="iNumRandomIncludedSpawns" content="textOnly" dt:type="int"/>
+	<ElementType name="iMinIncludedSpawns" content="textOnly" dt:type="int"/>
+	<ElementType name="iMaxIncludedSpawns" content="textOnly" dt:type="int"/>
 	<ElementType name="bNeverSpawn" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bExplorationResult" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bExplorationNoPush" content="textOnly" dt:type="boolean"/>
@@ -46,8 +47,17 @@
 	</ElementType>
 	
 	<ElementType name="SpawnType" content="textOnly"/>
+	<ElementType name="iMin" content="textOnly" dt:type="int"/>
+	<ElementType name="iMax" content="textOnly" dt:type="int"/>
+	<ElementType name="bIgnoreTerrain" content="textOnly" dt:type="boolean"/>
+	<ElementType name="IncludedSpawn" content="eltOnly">
+		<element type="SpawnType"/>
+		<element type="iMin" minOccurs="0"/>
+		<element type="iMax" minOccurs="0"/>
+		<element type="bIgnoreTerrain" minOccurs="0"/>
+	</ElementType>
 	<ElementType name="IncludedSpawns" content="eltOnly">
-		<element type="SpawnType" maxOccurs="*"/>
+		<element type="IncludedSpawn" maxOccurs="*"/>
 	</ElementType>
 	
 	<ElementType name="SpawnInfo" content="eltOnly">
@@ -73,7 +83,8 @@
 		<element type="iMinRandomPromotions" minOccurs="0"/>
 		<element type="iMaxRandomPromotions" minOccurs="0"/>
 		<element type="UnitPromotions" minOccurs="0"/>
-		<element type="iNumRandomIncludedSpawns" minOccurs="0"/>
+		<element type="iMinIncludedSpawns" minOccurs="0"/>
+		<element type="iMaxIncludedSpawns" minOccurs="0"/>
 		<element type="IncludedSpawns" minOccurs="0"/>
 		<element type="PrereqTechs" minOccurs="0"/>
 		<element type="ObsoleteTechs" minOccurs="0"/>

@@ -127,12 +127,21 @@
 				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
 				<PromotionType>PROMOTION_FEAR</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_LICH -->
@@ -155,10 +164,15 @@
 				<PromotionType>PROMOTION_DEATH1</PromotionType>
 				<PromotionType>PROMOTION_DEATH2</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_SKELETON</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_SPECTRE</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WRAITH -->
@@ -190,10 +204,15 @@
 				<PromotionType>PROMOTION_SHADOWWALK</PromotionType>
 				<PromotionType>PROMOTION_STRONG</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_SKELETON</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_SPECTRE</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		
@@ -313,13 +332,24 @@
 				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
 				<PromotionType>PROMOTION_FEAR</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>2</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_EIDOLON -->
@@ -352,12 +382,21 @@
 				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
 				<PromotionType>PROMOTION_FEAR</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>2</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		
@@ -392,9 +431,12 @@
 				<PromotionType>PROMOTION_VALOR</PromotionType>
 				<PromotionType>PROMOTION_FEAR</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_GARGOYLE -->
@@ -416,8 +458,12 @@
 			<UnitPromotions>
 				<PromotionType>PROMOTION_STRONG</PromotionType>
 			</UnitPromotions>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_WOOD_GOLEM</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_WOOD_GOLEM</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_OGRE -->
@@ -453,10 +499,15 @@
 				<PromotionType>PROMOTION_VALOR</PromotionType>
 				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_OGRE_WARCHIEF -->
@@ -491,11 +542,18 @@
 				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
 				<PromotionType>PROMOTION_FEAR</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_OGRE</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_AXEMAN_ORC</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_OGRE</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_WARRIOR_ORC</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_VAMPIRE -->
@@ -536,10 +594,15 @@
 				<PromotionType>PROMOTION_POISONED_BLADE</PromotionType>
 				<PromotionType>PROMOTION_FEAR</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_SKELETON</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_SPECTRE</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_SKELETON</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_SPECTRE</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		
@@ -574,13 +637,24 @@
 				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
 				<PromotionType>PROMOTION_FEAR</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		
@@ -654,13 +728,24 @@
 				<PromotionType>PROMOTION_VALOR</PromotionType>
 				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
-				<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_CHAOS_MARAUDER</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_HELLHOUND</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_IMP</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_PIT_BEAST</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_PYRE_ZOMBIE</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_SATYR -->
@@ -692,8 +777,12 @@
 				<PromotionType>PROMOTION_POISONED_BLADE</PromotionType>
 				<PromotionType>PROMOTION_STRONG</PromotionType>
 			</UnitPromotions>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_FAWN</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_FAWN</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WEREWOLF -->
@@ -726,9 +815,12 @@
 				<PromotionType>PROMOTION_POISONED_BLADE</PromotionType>
 				<PromotionType>PROMOTION_STRONG</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_RAVENOUS_WEREWOLF</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_RAVENOUS_WEREWOLF</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		
@@ -801,9 +893,12 @@
 				<PromotionType>PROMOTION_VALOR</PromotionType>
 				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
 			</UnitPromotions>
-			<iNumRandomIncludedSpawns>1</iNumRandomIncludedSpawns>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_DROWN</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_DROWN</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_KRAKEN -->
@@ -836,7 +931,9 @@
 				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
 			</UnitPromotions>
 			<IncludedSpawns>
-				<SpawnType>SPAWN_EXPLO_COMP_SEA_SERPENT</SpawnType>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_SEA_SERPENT</SpawnType>
+				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
 		
@@ -1125,8 +1222,7 @@
 			  </SpawnUnit>
 			</SpawnUnits>
     </SpawnInfo>
-    <SpawnInfo>
-			<!-- SPAWN_BARROW_SPECTRE -->
+		<SpawnInfo> <!-- SPAWN_BARROW_SPECTRE -->
 			<Type>SPAWN_BARROW_SPECTRE</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
@@ -1223,8 +1319,7 @@
 			  </SpawnUnit>
 			</SpawnUnits>
     </SpawnInfo>
-    <SpawnInfo>
-			<!-- SPAWN_BARROW_GUARDIAN_SPECTRE_STRONG -->
+		<SpawnInfo> <!-- SPAWN_BARROW_GUARDIAN_SPECTRE_STRONG -->
 			<Type>SPAWN_BARROW_GUARDIAN_SPECTRE_STRONG</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
@@ -2170,7 +2265,7 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-
+		
 		<!-- Orcs -->
 		<SpawnInfo> <!-- SPAWN_ORC_WARRIOR -->
 			<Type>SPAWN_ORC_WARRIOR</Type>

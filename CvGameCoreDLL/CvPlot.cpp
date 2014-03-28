@@ -12922,14 +12922,14 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 	return false;
 }
 
-int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon ) const
+int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon, bool bIgnoreTerrain ) const
 {
 	if( eSpawn == NO_SPAWN )
 		return 0;
 
 	CvSpawnInfo& kSpawn = GC.getSpawnInfo( (SpawnTypes) eSpawn );
 
-	if( area()->isWater() != kSpawn.isWater() )
+	if( !bIgnoreTerrain && area()->isWater() != kSpawn.isWater() )
 		return 0;
 
 	if( !isValidSpawnTier( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(), kSpawn.getMaxTier(), bCheckTech, bDungeon ) )
@@ -12940,7 +12940,7 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon ) c
 
 	int iValue = kSpawn.getWeight();
 	
-	if( kSpawn.getTerrainFlavourType() != NO_TERRAIN_FLAVOUR )
+	if( !bIgnoreTerrain && kSpawn.getTerrainFlavourType() != NO_TERRAIN_FLAVOUR )
 	{
 		int iTerrainValue = getSpawnTerrainWeight( (TerrainFlavourTypes) kSpawn.getTerrainFlavourType() );
 		if( iTerrainValue > 0 )
@@ -12991,22 +12991,6 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 		eUnitAI = (UnitAITypes) kSpawn.getUnitAIType();
 	if( eUnitAI == NO_UNITAI )
 		eUnitAI = kSpawn.isAnimal() ? UNITAI_ANIMAL : ( area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
-
-	// Random Included Spawns
-	std::vector< std::pair<SpawnTypes,int> > veIncludedSpawns;
-	for( int eIncSpawn = 0; eIncSpawn < GC.getNumSpawnInfos(); eIncSpawn++ )
-		if( kSpawn.isIncludedSpawns( eIncSpawn ) )
-		{
-			int iValue = getSpawnValue( (SpawnTypes) eIncSpawn );
-			if( iValue > 0 )
-				veIncludedSpawns.push_back( std::pair<SpawnTypes,int>( (SpawnTypes) eIncSpawn, iValue ) );
-		}
-
-	int iRandomIncludedSpawns = 0;
-	if( kSpawn.getNumRandomIncludedSpawns() == -1 )
-		iRandomIncludedSpawns = (int) veIncludedSpawns.size();
-	else
-		iRandomIncludedSpawns = std::min( (int) veIncludedSpawns.size(), kSpawn.getNumRandomIncludedSpawns() );
 
 	for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
 	{
@@ -13062,29 +13046,57 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 		}
 	}
 
-	// LFGR_TODO: Join Group
-	if( iRandomIncludedSpawns > 0 )
+	// Random Included Spawns
+	int iIncludedSpawns = kSpawn.getMinIncludedSpawns() + GC.getGameINLINE().getSorenRandNum( kSpawn.getMaxIncludedSpawns() - kSpawn.getMinIncludedSpawns() + 1, "Included spawns" );
+
+	std::vector< std::pair<SpawnTypes,std::pair<int,int> > > veIncludedSpawns;
+	for( int eIncSpawn = 0; eIncSpawn < GC.getNumSpawnInfos(); eIncSpawn++ )
 	{
-		while( iRandomIncludedSpawns > 0 && veIncludedSpawns.size() > 0 )
+		if( kSpawn.getIncludedSpawnMax( eIncSpawn ) != 0 )
 		{
-			int iBestIndex = -1;
-			int iBestValue = 0;
-			for( unsigned int i = 0; i < veIncludedSpawns.size(); i++ )
+			int iValue = getSpawnValue( (SpawnTypes) eIncSpawn, true, false, kSpawn.isIncludedSpawnIgnoreTerrain( eIncSpawn ) );
+			if( iValue > 0 )
 			{
-				int iLoopVal = veIncludedSpawns[i].second;
-				iLoopVal += GC.getGameINLINE().getSorenRandNum( 100, "SpawnInfo rand weight" );
-				if( iLoopVal > iBestValue )
-				{
-					iBestValue = iLoopVal;
-					iBestIndex = i;
-				}
+				for( int i = 0; i < kSpawn.getIncludedSpawnMin( eIncSpawn ); i++ )
+					createSpawn( (SpawnTypes) eIncSpawn, NO_UNITAI, iLairPlot );
+				
+				int iSpawned = kSpawn.getIncludedSpawnMin( eIncSpawn );
+				if( kSpawn.getIncludedSpawnMax( eIncSpawn ) == -1 || iSpawned < kSpawn.getIncludedSpawnMax( eIncSpawn ) )
+					veIncludedSpawns.push_back( std::pair<SpawnTypes, std::pair<int,int> >( (SpawnTypes) eIncSpawn, std::pair<int,int>( iSpawned, iValue ) ) );
 			}
-			if( iBestIndex != -1 )
+		}
+	}
+
+	// LFGR_TODO: Join Group (if same UnitAI)
+
+	while( iIncludedSpawns > 0 )
+	{
+		int iBestIndex = -1;
+		int iBestValue = 0;
+		for( unsigned int i = 0; i < veIncludedSpawns.size(); i++ )
+		{
+			int iLoopVal = veIncludedSpawns[i].second.second;
+			iLoopVal += GC.getGameINLINE().getSorenRandNum( 100, "SpawnInfo rand weight" );
+			if( iLoopVal > iBestValue )
 			{
-				createSpawn( veIncludedSpawns[iBestIndex].first, NO_UNITAI, iLairPlot );
+				iBestValue = iLoopVal;
+				iBestIndex = i;
+			}
+		}
+		if( iBestIndex != -1 )
+		{
+			SpawnTypes eIncSpawn = veIncludedSpawns[iBestIndex].first;
+			createSpawn( eIncSpawn, NO_UNITAI, iLairPlot );
+
+			veIncludedSpawns[iBestIndex].second.first++;
+			if( kSpawn.getIncludedSpawnMax( eIncSpawn ) != -1 && veIncludedSpawns[iBestIndex].second.first >= kSpawn.getIncludedSpawnMax( eIncSpawn ) )
 				veIncludedSpawns.erase( veIncludedSpawns.begin() + iBestIndex );
-				iRandomIncludedSpawns--;
-			}
+			iIncludedSpawns--;
+		}
+		else
+		{
+			FAssertMsg( iBestIndex == -1, "No valid included spawn found" );
+			break;
 		}
 	}
 }

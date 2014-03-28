@@ -25,7 +25,6 @@ void CyInfoPythonInterface4()
 		.def("getPrereqGlobalCounter", &CvSpawnInfo::getPrereqGlobalCounter, "int ()")
 		.def("getMinRandomPromotions", &CvSpawnInfo::getMinRandomPromotions, "int ()")
 		.def("getMaxRandomPromotions", &CvSpawnInfo::getMaxRandomPromotions, "int ()")
-		.def("getNumRandomIncludedSpawns", &CvSpawnInfo::getNumRandomIncludedSpawns, "int ()")
 		.def("isNeverSpawn", &CvSpawnInfo::isNeverSpawn, "bool ()")
 		.def("isExplorationResult", &CvSpawnInfo::isExplorationResult, "bool ()")
 		.def("isExplorationNoPush", &CvSpawnInfo::isExplorationNoPush, "bool ()")
@@ -35,7 +34,6 @@ void CyInfoPythonInterface4()
 		.def("isNoRace", &CvSpawnInfo::isNoRace, "bool ()")
 		.def("getNumSpawnUnits", &CvSpawnInfo::getNumSpawnUnits, "int ( UnitTypes eID )")
 		.def("getUnitPromotions", &CvSpawnInfo::getUnitPromotions, "bool ( PromotionTypes eID )")
-		.def("isIncludedSpawns", &CvSpawnInfo::isIncludedSpawns, "bool ( SpawnTypes eID )")
 		;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

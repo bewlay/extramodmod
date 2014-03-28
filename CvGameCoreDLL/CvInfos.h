@@ -7842,8 +7842,9 @@ public:
 	
 	int getMinRandomPromotions() const;
 	int getMaxRandomPromotions() const;
-
-	int getNumRandomIncludedSpawns() const;
+	
+	int getMinIncludedSpawns() const;
+	int getMaxIncludedSpawns() const;
 	
 	int getCreateLairAge() const;
 	int getCreateLairLevel() const;
@@ -7864,9 +7865,10 @@ public:
 	
 	// LFGR_TODO: is...
 	bool getUnitPromotions( int ePromotion ) const;
-	bool isIncludedSpawns( int eSpawn ) const;
-	bool getPrereqTechs( int eTech ) const;
-	bool getObsoleteTechs( int eTech ) const;
+	
+	int CvSpawnInfo::getIncludedSpawnMin( int eSpawn ) const;
+	int CvSpawnInfo::getIncludedSpawnMax( int eSpawn ) const;
+	bool CvSpawnInfo::isIncludedSpawnIgnoreTerrain( int eSpawn ) const;
 
 	bool read(CvXMLLoadUtility* pXML);
 	bool readPass2(CvXMLLoadUtility* pXML);
@@ -7888,7 +7890,8 @@ protected:
 	int m_iPrereqGlobalCounter;
 	int m_iMinRandomPromotions;
 	int m_iMaxRandomPromotions;
-	int m_iNumRandomIncludedSpawns;
+	int m_iMinIncludedSpawns;
+	int m_iMaxIncludedSpawns;
 	int m_iCreateLairLevel;
 	int m_iCreateLairAge;
 	int m_iMinTier;
@@ -7908,7 +7911,10 @@ protected:
 	int* m_piNumSpawnUnits;
 	
 	bool* m_pbUnitPromotions;
-	bool* m_pbIncludedSpawns;
+
+	int* m_piIncludedSpawnMin;
+	int* m_piIncludedSpawnMax;
+	bool* m_pbIncludedSpawnIgnoreTerrain;
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
