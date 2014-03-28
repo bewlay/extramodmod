@@ -12888,8 +12888,9 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 
 		for( int iWildernessTier = 0; iWildernessTier <= iMaxWildernessTier; iWildernessTier++ )
 		{
-			if( iWilderness >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
-				iWilderness <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) )
+			if( kSpawnPrereq.getNumWildernessTiers() == 0 ||
+				( iWilderness >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
+				iWilderness <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) ) )
 			{
 				// Found a valid Wilderness tier
 				// Now get range of fitting tech tiers
