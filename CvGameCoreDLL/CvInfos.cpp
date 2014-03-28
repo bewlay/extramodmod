@@ -28742,6 +28742,7 @@ CvSpawnInfo::CvSpawnInfo():
 	m_bAnimal( false ),
 	m_bWater( false ),
 	m_bNoRace( false ),
+	m_bNoMinWilderness( false ),
 	m_piNumSpawnUnits( NULL ),
 	m_pbUnitPromotions( NULL ),
 	m_piIncludedSpawnMin( NULL ),
@@ -28872,6 +28873,11 @@ bool CvSpawnInfo::isWater() const
 bool CvSpawnInfo::isNoRace() const
 {
 	return m_bNoRace;
+}
+
+bool CvSpawnInfo::isNoMinWilderness() const
+{
+	return m_bNoMinWilderness;
 }
 
 int CvSpawnInfo::getNumSpawnUnits( int i ) const
@@ -29021,6 +29027,7 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bAnimal, "bAnimal");
 	pXML->GetChildXmlValByName(&m_bWater, "bWater");
 	pXML->GetChildXmlValByName(&m_bNoRace, "bNoRace");
+	pXML->GetChildXmlValByName(&m_bNoMinWilderness, "bNoMinWilderness");
 	
 	if( m_iMaxRandomPromotions < -1 || m_iMinRandomPromotions < -1 || m_iMaxRandomPromotions < m_iMinRandomPromotions )
 	{

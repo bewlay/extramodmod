@@ -12998,7 +12998,8 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 		{
 			CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, getX_INLINE(), getY_INLINE(), eUnitAI );
 			
-			pUnit->setMinWilderness( getWilderness() );
+			if( !kSpawn.isNoMinWilderness() )
+				pUnit->setMinWilderness( getWilderness() );
 			
 			if ( kSpawn.isAnimal() )
 				pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);

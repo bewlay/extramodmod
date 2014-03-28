@@ -7860,6 +7860,7 @@ public:
 	bool isNoRace() const;
 	bool isExplorationNoPush() const;
 	bool isNoDefender() const;
+	bool isNoMinWilderness() const;
 	
 	int getNumSpawnUnits( int eUnit ) const;
 	
@@ -7905,6 +7906,7 @@ protected:
 	bool m_bWater;
 	
 	bool m_bNoRace;
+	bool m_bNoMinWilderness;
 
 	// Arrays
 	
