@@ -7867,9 +7867,10 @@ public:
 	// LFGR_TODO: is...
 	bool getUnitPromotions( int ePromotion ) const;
 	
-	int CvSpawnInfo::getIncludedSpawnMin( int eSpawn ) const;
-	int CvSpawnInfo::getIncludedSpawnMax( int eSpawn ) const;
-	bool CvSpawnInfo::isIncludedSpawnIgnoreTerrain( int eSpawn ) const;
+	int getIncludedSpawnMin( int eSpawn ) const;
+	int getIncludedSpawnMax( int eSpawn ) const;
+	bool isIncludedSpawnIgnoreTerrain( int eSpawn ) const;
+	bool isIncludedSpawnCountSeparately( int eSpawn ) const;
 
 	bool read(CvXMLLoadUtility* pXML);
 	bool readPass2(CvXMLLoadUtility* pXML);
@@ -7917,6 +7918,7 @@ protected:
 	int* m_piIncludedSpawnMin;
 	int* m_piIncludedSpawnMax;
 	bool* m_pbIncludedSpawnIgnoreTerrain;
+	bool* m_pbIncludedSpawnCountSeparately;
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

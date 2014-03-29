@@ -13059,12 +13059,24 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 			int iValue = getSpawnValue( (SpawnTypes) eIncSpawn, true, false, kSpawn.isIncludedSpawnIgnoreTerrain( eIncSpawn ) );
 			if( iValue > 0 )
 			{
-				for( int i = 0; i < kSpawn.getIncludedSpawnMin( eIncSpawn ); i++ )
+				int iMinSpawning = kSpawn.getIncludedSpawnMin( eIncSpawn );
+				int iMaxSpawning = kSpawn.getIncludedSpawnMax( eIncSpawn );
+
+				for( int i = 0; i < iMinSpawning; i++ )
 					createSpawn( (SpawnTypes) eIncSpawn, NO_UNITAI, iLairPlot );
 				
-				int iSpawned = kSpawn.getIncludedSpawnMin( eIncSpawn );
-				if( kSpawn.getIncludedSpawnMax( eIncSpawn ) == -1 || iSpawned < kSpawn.getIncludedSpawnMax( eIncSpawn ) )
-					veIncludedSpawns.push_back( std::pair<SpawnTypes, std::pair<int,int> >( (SpawnTypes) eIncSpawn, std::pair<int,int>( iSpawned, iValue ) ) );
+				if( kSpawn.isIncludedSpawnCountSeparately( eIncSpawn ) )
+				{
+					// spawn remaining random spawns
+					int iRemainingSpawns = GC.getGameINLINE().getSorenRandNum( iMaxSpawning - iMinSpawning + 1, "Included spawns" );
+					for( int i = 0; i < iRemainingSpawns; i++ )
+						createSpawn( (SpawnTypes) eIncSpawn, NO_UNITAI, iLairPlot );
+				}
+				else
+					iIncludedSpawns -= iMinSpawning;
+				
+				if( !kSpawn.isIncludedSpawnCountSeparately( eIncSpawn ) && ( iMaxSpawning == -1 || iMinSpawning < iMaxSpawning ) )
+					veIncludedSpawns.push_back( std::pair<SpawnTypes, std::pair<int,int> >( (SpawnTypes) eIncSpawn, std::pair<int,int>( iMinSpawning, iValue ) ) );
 			}
 		}
 	}
