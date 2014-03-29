@@ -12991,7 +12991,7 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 	if( eUnitAI == NO_UNITAI )
 		eUnitAI = (UnitAITypes) kSpawn.getUnitAIType();
 	if( eUnitAI == NO_UNITAI )
-		eUnitAI = kSpawn.isAnimal() ? UNITAI_ANIMAL : ( area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
+		eUnitAI = kSpawn.isAnimal() ? UNITAI_ANIMAL : ( kSpawn.isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
 
 	for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
 	{
