@@ -2164,20 +2164,6 @@
 		<!-- BARB SPAWNS -->
 
 		<!-- Basic Water -->
-		<SpawnInfo> <!-- SPAWN_GALLEY -->
-			<Type>SPAWN_GALLEY</Type>
-			<iBaseWeight>50</iBaseWeight>
-			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
-			<iMinSpawnTier>2</iMinSpawnTier>
-			<iMaxSpawnTier>4</iMaxSpawnTier>
-			<bWater>1</bWater>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_GALLEY</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_CARAVEL -->
 			<Type>SPAWN_CARAVEL</Type>
 			<iBaseWeight>50</iBaseWeight>
@@ -2192,40 +2178,12 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_GALLEON -->
-			<Type>SPAWN_GALLEON</Type>
-			<iBaseWeight>50</iBaseWeight>
-			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
-			<iMinSpawnTier>4</iMinSpawnTier>
-			<iMaxSpawnTier>6</iMaxSpawnTier>
-			<bWater>1</bWater>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_GALLEON</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_QUEEN_OF_THE_LINE -->
-			<Type>SPAWN_QUEEN_OF_THE_LINE</Type>
-			<iBaseWeight>50</iBaseWeight>
-			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
-			<iMinSpawnTier>5</iMinSpawnTier>
-			<iMaxSpawnTier>8</iMaxSpawnTier>
-			<bWater>1</bWater>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_QUEEN_OF_THE_LINE</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_TRIREME -->
 			<Type>SPAWN_TRIREME</Type>
 			<iBaseWeight>100</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
 			<iMinSpawnTier>3</iMinSpawnTier>
-			<iMaxSpawnTier>5</iMaxSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
 			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2253,11 +2211,161 @@
 			<iBaseWeight>75</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
 			<iMinSpawnTier>5</iMinSpawnTier>
-			<iMaxSpawnTier>8</iMaxSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
 			<bWater>1</bWater>
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_FRIGATE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		
+		<!-- Water with crew -->
+		<SpawnInfo> <!-- SPAWN_GALLEY_PIRATE -->
+			<Type>SPAWN_GALLEY_PIRATE</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_NAVAL_NO_WILDERNESS</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bWater>1</bWater>
+			<bNoMinWilderness>1</bNoMinWilderness>
+			<UnitAIType>UNITAI_ASSAULT_SEA</UnitAIType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GALLEY</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinIncludedSpawns>2</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>3</iMaxIncludedSpawns>
+			<IncludedSpawns>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_CREW_PIRATE_WARRIOR</SpawnType>
+					<bIgnoreTerrain>1</bIgnoreTerrain>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_CREW_PIRATE_SWORDSMAN</SpawnType>
+					<bIgnoreTerrain>1</bIgnoreTerrain>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_CREW_BOARDING_PARTY</SpawnType>
+					<bIgnoreTerrain>1</bIgnoreTerrain>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_CREW_COMP_TRIREME</SpawnType>
+					<iMin>1</iMin>
+					<iMax>2</iMax>
+					<bCountSeparately>1</bCountSeparately>
+				</IncludedSpawn>
+			</IncludedSpawns>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_GALLEON_PIRATE -->
+			<Type>SPAWN_GALLEON_PIRATE</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_NAVAL_NO_WILDERNESS</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bWater>1</bWater>
+			<bNoMinWilderness>1</bNoMinWilderness>
+			<UnitAIType>UNITAI_ASSAULT_SEA</UnitAIType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GALLEON</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinIncludedSpawns>3</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>5</iMaxIncludedSpawns>
+			<IncludedSpawns>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_CREW_PIRATE_WARRIOR</SpawnType>
+					<bIgnoreTerrain>1</bIgnoreTerrain>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_CREW_PIRATE_SWORDSMAN</SpawnType>
+					<bIgnoreTerrain>1</bIgnoreTerrain>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_CREW_BOARDING_PARTY</SpawnType>
+					<bIgnoreTerrain>1</bIgnoreTerrain>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_CREW_COMP_TRIREME</SpawnType>
+					<iMax>2</iMax>
+					<bCountSeparately>1</bCountSeparately>
+				</IncludedSpawn>
+			</IncludedSpawns>
+		</SpawnInfo>
+		
+		<SpawnInfo> <!-- SPAWN_CREW_COMP_TRIREME -->
+			<Type>SPAWN_CREW_COMP_TRIREME</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_NAVAL_NO_WILDERNESS</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bWater>1</bWater>
+			<bNoMinWilderness>1</bNoMinWilderness>
+			<UnitAIType>UNITAI_ESCORT_SEA</UnitAIType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_TRIREME</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		
+		<!-- Pirate crews -->
+		<SpawnInfo> <!-- SPAWN_CREW_PIRATE_WARRIOR -->
+			<Type>SPAWN_CREW_PIRATE_WARRIOR</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE_NO_WILDERNESS</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_LANUN</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WARRIOR</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_AMPHIBIOUS</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_CREW_PIRATE_SWORDSMAN -->
+			<Type>SPAWN_CREW_PIRATE_SWORDSMAN</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE_NO_WILDERNESS</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoRace>1</bNoRace>
+			<UnitArtStyleType>UNIT_ARTSTYLE_LANUN</UnitArtStyleType>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SWORDSMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_AMPHIBIOUS</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_CREW_BOARDING_PARTY -->
+			<Type>SPAWN_CREW_BOARDING_PARTY</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE_NO_WILDERNESS</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_BOARDING_PARTY</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
