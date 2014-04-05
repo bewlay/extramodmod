@@ -51,11 +51,13 @@
 	<ElementType name="iMin" content="textOnly" dt:type="int"/>
 	<ElementType name="iMax" content="textOnly" dt:type="int"/>
 	<ElementType name="bIgnoreTerrain" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bCountSeparately" content="textOnly" dt:type="boolean"/>
 	<ElementType name="IncludedSpawn" content="eltOnly">
 		<element type="SpawnType"/>
 		<element type="iMin" minOccurs="0"/>
 		<element type="iMax" minOccurs="0"/>
 		<element type="bIgnoreTerrain" minOccurs="0"/>
+		<element type="bCountSeparately" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="IncludedSpawns" content="eltOnly">
 		<element type="IncludedSpawn" maxOccurs="*"/>
