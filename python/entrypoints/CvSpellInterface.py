@@ -423,9 +423,13 @@ def reqAddToFreakShowHuman(caster):
 	return True
 
 def reqAddToWolfPack(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlot = caster.plot()
 	iWolfPack = gc.getInfoTypeForString('UNIT_WOLF_PACK')
 	iEmpower5 = gc.getInfoTypeForString('PROMOTION_EMPOWER5')
+	if pPlayer.isHuman() == False:
+		if caster.baseCombatStr() > 2:
+			return False
 	for i in range(pPlot.getNumUnits()):
 		pUnit = pPlot.getUnit(i)
 		if pUnit.getUnitType() == iWolfPack:
@@ -929,22 +933,21 @@ def reqCrownOfBrillance(caster):
 def reqCrush(caster):
 	iX = caster.getX()
 	iY = caster.getY()
-	pPlayer = gc.getPlayer(caster.getOwner())
+	iPlayer = caster.getOwner()
+	pPlayer = gc.getPlayer(iPlayer)
 	iTeam = pPlayer.getTeam()
 	eTeam = gc.getTeam(iTeam)
 	for iiX in range(iX-2, iX+3, 1):
 		for iiY in range(iY-2, iY+3, 1):
 			pPlot = CyMap().plot(iiX,iiY)
-			bEnemy = False
-			bNeutral = False
-			for i in range(pPlot.getNumUnits()):
-				pUnit = pPlot.getUnit(i)
-				if eTeam.isAtWar(pUnit.getTeam()):
-					bEnemy = True
-				else:
-					bNeutral = True
-			if (bEnemy and bNeutral == False):
-				return True
+			if pPlot.isVisibleEnemyUnit(iPlayer):
+				bNeutral = False
+				for i in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(i)
+					if not eTeam.isAtWar(pUnit.getTeam()):
+						bNeutral = True
+				if not bNeutral:
+					return True
 	return False
 
 def spellCrush(caster):
@@ -1144,11 +1147,16 @@ def spellDomination(caster):
 	if pBestUnit != -1:
 		pPlot = caster.plot()
 		if pBestUnit.isResisted(caster, iSpell) == False:
-			CyInterface().addMessage(pBestUnit.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION", ()),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(7),pBestUnit.getX(),pBestUnit.getY(),True,True)
-			CyInterface().addMessage(caster.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION_ENEMY", ()),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
-			newUnit = pPlayer.initUnit(pBestUnit.getUnitType(), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-			newUnit.convert(pBestUnit)
-			newUnit.changeImmobileTimer(1)
+			if pBestUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_LOYALTY')):
+				CyInterface().addMessage(pBestUnit.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION_LOYALTY", (pBestUnit.getName(), )),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(7),pBestUnit.getX(),pBestUnit.getY(),True,True)
+				CyInterface().addMessage(caster.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION_LOYALTY", (pBestUnit.getName(), )),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+				pBestUnit.kill(False, 0)			
+			else:
+				CyInterface().addMessage(pBestUnit.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION", (pBestUnit.getName(), )),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(7),pBestUnit.getX(),pBestUnit.getY(),True,True)
+				CyInterface().addMessage(caster.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION_ENEMY", (pBestUnit.getName(), )),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+				newUnit = pPlayer.initUnit(pBestUnit.getUnitType(), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				newUnit.convert(pBestUnit)
+				newUnit.changeImmobileTimer(1)
 		else:
 			CyInterface().addMessage(caster.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION_FAILED", ()),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(7),pPlot.getX(),pPlot.getY(),True,True)
 			caster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_MIND3'), False)
@@ -1220,10 +1228,10 @@ def spellEntertain(caster):
 		pPlayer.changeGold(iGold)
 		szBuffer = CyTranslator().getText("TXT_KEY_MESSAGE_ENTERTAIN_GOOD", (iGold, ))
 		CyInterface().addMessage(iPlayer,true,25,szBuffer,'',1,'Art/Interface/Buttons/Spells/Entertain.dds',ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
-		iGold = iGold * -1
-		pPlayer2.changeGold(iGold)
 		szBuffer = CyTranslator().getText("TXT_KEY_MESSAGE_ENTERTAIN_BAD", (iGold, ))
 		CyInterface().addMessage(iPlayer2,true,25,szBuffer,'',1,'Art/Interface/Buttons/Spells/Entertain.dds',ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
+		iGold = iGold * -1
+		pPlayer2.changeGold(iGold)
 	pCity.changeHappinessTimer(2)
 
 def reqEscape(caster):
@@ -1380,6 +1388,7 @@ def spellForTheHorde(caster):
 					newUnit.convert(pUnit)
 
 def reqFormWolfPack(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlot = caster.plot()
 	iWolf = gc.getInfoTypeForString('UNIT_WOLF')
 	iCount = 0
@@ -1390,6 +1399,9 @@ def reqFormWolfPack(caster):
 				iCount += 1
 	if iCount < 2:
 		return False
+	if pPlayer.isHuman() == False:
+		if caster.baseCombatStr() > 2:
+			return False
 	return True
 
 def spellFormWolfPack(caster):
@@ -1958,22 +1970,21 @@ def spellPeaceSevenPines(caster):
 def reqPillarofFire(caster):
 	iX = caster.getX()
 	iY = caster.getY()
-	pPlayer = gc.getPlayer(caster.getOwner())
+	iPlayer = caster.getOwner()
+	pPlayer = gc.getPlayer(iPlayer)
 	iTeam = pPlayer.getTeam()
 	eTeam = gc.getTeam(iTeam)
 	for iiX in range(iX-2, iX+3, 1):
 		for iiY in range(iY-2, iY+3, 1):
 			pPlot = CyMap().plot(iiX,iiY)
-			bEnemy = false
-			bNeutral = false
-			for i in range(pPlot.getNumUnits()):
-				pUnit = pPlot.getUnit(i)
-				if eTeam.isAtWar(pUnit.getTeam()):
-					bEnemy = true
-				else:
-					bNeutral = true
-			if (bEnemy and bNeutral == false):
-				return true
+			if pPlot.isVisibleEnemyUnit(iPlayer):
+				bNeutral = False
+				for i in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(i)
+					if not eTeam.isAtWar(pUnit.getTeam()):
+						bNeutral = True
+				if not bNeutral:
+					return True
 	return false
 
 def spellPillarofFire(caster):
@@ -2002,15 +2013,15 @@ def spellPillarofFire(caster):
 		for i in range(pBestPlot.getNumUnits()):
 			pUnit = pBestPlot.getUnit(i)
 			pUnit.doDamage(50, 75, caster, gc.getInfoTypeForString('DAMAGE_FIRE'), True)
-		if (pPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_FOREST') or pPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_JUNGLE')):
+		if (pBestPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_FOREST') or pBestPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_JUNGLE')):
 			bValid = True
-			iImprovement = pPlot.getImprovementType()
+			iImprovement = pBestPlot.getImprovementType()
 			if iImprovement != -1 :
 				if gc.getImprovementInfo(iImprovement).isPermanent():
 					bValid = False
 			if bValid:
 				if CyGame().getSorenRandNum(100, "Flames Spread") < gc.getDefineINT('FLAMES_SPREAD_CHANCE'):
-					pPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_SMOKE'))
+					pBestPlot.setImprovementType(gc.getInfoTypeForString('IMPROVEMENT_SMOKE'))
 		CyEngine().triggerEffect(gc.getInfoTypeForString('EFFECT_PILLAR_OF_FIRE'),pBestPlot.getPoint())
 
 def reqPirateCove(caster):
@@ -2057,8 +2068,17 @@ def reqMarchOfTheTrees(caster):
 	if pPlayer.isHuman() == False:
 		iTeam = gc.getPlayer(caster.getOwner()).getTeam()
 		eTeam = gc.getTeam(iTeam)
-		if eTeam.getAtWarCount(True) < 2:
+		
+		iEnemyPower = 0
+		for i in range(gc.getMAX_CIV_PLAYERS()):
+			if (gc.getPlayer(i).isAlive()):
+				if eTeam.isAtWar(gc.getPlayer(i).getTeam()):
+					iEnemyPower += gc.getPlayer(i).getPower()
+		
+#		if eTeam.getAtWarCount(True) < 2:
+		if iEnemyPower < ((pPlayer.getPower() * 150) / 100):
 			return False
+# TODO - check for number of forests
 	return True
 
 def spellMarchOfTheTrees(caster):
@@ -2249,49 +2269,46 @@ def spellRally(caster):
 	pPlayer = gc.getPlayer(iOwner)
 	iDemagog = gc.getInfoTypeForString('UNIT_DEMAGOG')
 	iTown = gc.getInfoTypeForString('IMPROVEMENT_TOWN')
-	iEnclave = gc.getInfoTypeForString('IMPROVEMENT_ENCLAVE')
 	iVillage = gc.getInfoTypeForString('IMPROVEMENT_VILLAGE')
 	iCount = 0
 	for i in range (CyMap().numPlots()):
 		pPlot = CyMap().plotByIndex(i)
 		if pPlot.getOwner() == iOwner:
-			if pPlot.isCity():
-				newUnit = pPlayer.initUnit(iDemagog, pPlot.getX(), pPlot.getY(),  UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ORDER'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ORDER'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'));
-			if pPlot.getImprovementType() == iTown or pPlot.getImprovementType() ==  iEnclave :
-				pCity = pPlot.getWorkingCity()
-				newUnit = pPlayer.initUnit(iDemagog, pPlot.getX(), pPlot.getY(),  UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)			
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ORDER'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ORDER'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'));
-				if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'):
-					newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'));
+			if not pPlot.isVisibleEnemyUnit(iOwner):
+				if pPlot.isCity():
+					newUnit = pPlayer.initUnit(iDemagog, pPlot.getX(), pPlot.getY(),  UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ORDER'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ORDER'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'));
+				if pPlot.getImprovementType() == iTown:
+					pCity = pPlot.getWorkingCity()
+					newUnit = pPlayer.initUnit(iDemagog, pPlot.getX(), pPlot.getY(),  UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)			
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ASHEN_VEIL'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_ORDER'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_ORDER'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_FELLOWSHIP_OF_LEAVES'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_RUNES_OF_KILMORPH'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_OCTOPUS_OVERLORDS'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_THE_EMPYREAN'));
+					if pPlayer.getStateReligion() ==  gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'):
+						newUnit.setReligion (gc.getInfoTypeForString ('RELIGION_COUNCIL_OF_ESUS'));
 
-				if pPlot.getImprovementType() == iEnclave:
-					pPlot.setImprovementType(iTown)
-				else:
 					pPlot.setImprovementType(iVillage)
 
 def spellReadTheGrimoire(caster):
@@ -2862,7 +2879,15 @@ def reqSanctuary(caster):
 	if not pPlayer.isHuman():
 		iTeam = gc.getPlayer(caster.getOwner()).getTeam()
 		eTeam = gc.getTeam(iTeam)
-		if eTeam.getAtWarCount(True) < 2:
+		
+		iEnemyPower = 0
+		for i in range(gc.getMAX_CIV_PLAYERS()):
+			if (gc.getPlayer(i).isAlive()):
+				if eTeam.isAtWar(gc.getPlayer(i).getTeam()):
+					iEnemyPower += gc.getPlayer(i).getPower()
+		
+#		if eTeam.getAtWarCount(True) < 2:
+		if iEnemyPower < ((pPlayer.getPower() * 150) / 100):
 			return False
 	return True
 
@@ -3082,12 +3107,13 @@ def reqStasis(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 
 	if pPlayer.isHuman() == False:
-		if pPlayer.getNumCities() < 5:
-			return False
+#		if pPlayer.getNumCities() < 5:
+#			return False
 		iTeam = gc.getPlayer(caster.getOwner()).getTeam()
 		eTeam = gc.getTeam(iTeam)
 		if eTeam.getAtWarCount(True) == 0:
 			return False
+		## ToDo - dont cast if suffering from Blight effects - check pcity.getEspionageHealthCounter() for the capital
 	return True
 
 def spellStasis(caster):
@@ -3508,7 +3534,7 @@ def reqUpgradeDovielloWarrior(caster):
 		eTeam = gc.getTeam(iTeam)
 		if eTeam.getAtWarCount(True) == 0:
 			return False
-		if pPlayer.getNumCities() > pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_WORKER')):
+		if (pPlayer.getNumCities() * 2) > pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_WORKER')):
 			return False
 	return True
 
@@ -3632,7 +3658,8 @@ def spellWildHunt(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	py = PyPlayer(caster.getOwner())
 	for pUnit in py.getUnitList():
-		if pUnit.baseCombatStr() > 0:
+		pPlot = pUnit.plot()
+		if pUnit.baseCombatStr() > 0 and pUnit.isAlive() and not pPlot.isWater() and not pPlot.isPeak():
 			newUnit = pPlayer.initUnit(iWolf, pUnit.getX(), pUnit.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
 			if pUnit.baseCombatStr() > 3:
 				i = (pUnit.baseCombatStr() - 2) / 2

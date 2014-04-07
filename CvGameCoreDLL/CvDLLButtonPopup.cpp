@@ -494,7 +494,7 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 	case BUTTONPOPUP_PYTHON:
 		if (!info.getOnClickedPythonCallback().IsEmpty())
 		{
-			FAssertMsg(!GC.getGameINLINE().isNetworkMultiPlayer(), "Danger: Out of Sync");
+			//FAssertMsg(!GC.getGameINLINE().isNetworkMultiPlayer(), "Danger: Out of Sync");
 			CyArgsList argsList;
 			argsList.add(pPopupReturn->getButtonClicked());
 			argsList.add(info.getData1());
@@ -1675,7 +1675,7 @@ bool CvDLLButtonPopup::launchChooseTechPopup(CvPopup* pPopup, CvPopupInfo &info)
 
 	if (eBestTech == NO_TECH)
 	{
-		eBestTech = player.AI_bestTech(1, (iDiscover > 0), true);
+		eBestTech = player.AI_bestTech(1, (iDiscover > 0), true, false);
 	}
 
 	if (eBestTech != NO_TECH)
@@ -1687,7 +1687,7 @@ bool CvDLLButtonPopup::launchChooseTechPopup(CvPopup* pPopup, CvPopupInfo &info)
 
 		if (eNextBestTech == NO_TECH)
 		{
-			eNextBestTech = player.AI_bestTech(1, (iDiscover > 0), true, eBestTech, ((AdvisorTypes)(GC.getTechInfo(eBestTech).getAdvisorType())));
+			eNextBestTech = player.AI_bestTech(1, (iDiscover > 0), true, false, eBestTech, ((AdvisorTypes)(GC.getTechInfo(eBestTech).getAdvisorType())));
 		}
 	}
 

@@ -1424,23 +1424,23 @@ int CvTeamAI::AI_startWarVal(TeamTypes eTeam) const
 	switch (AI_getAttitude(eTeam))
 	{
 	case ATTITUDE_FURIOUS:
-		iValue *= 16;
+		iValue *= 6;
 		break;
 
 	case ATTITUDE_ANNOYED:
-		iValue *= 8;
-		break;
-
-	case ATTITUDE_CAUTIOUS:
 		iValue *= 4;
 		break;
 
-	case ATTITUDE_PLEASED:
+	case ATTITUDE_CAUTIOUS:
 		iValue *= 2;
 		break;
 
-	case ATTITUDE_FRIENDLY:
+	case ATTITUDE_PLEASED:
 		iValue *= 1;
+		break;
+
+	case ATTITUDE_FRIENDLY:
+		iValue /= 2;
 		break;
 
 	default:
@@ -1482,6 +1482,11 @@ int CvTeamAI::AI_startWarVal(TeamTypes eTeam) const
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
 
+	if (AI_calculateAdjacentLandPlots(eTeam) == 0)
+	{
+		iValue /= 2;
+	}
+	// MNAI ToDo - devalue based on distance
 	return iValue;
 }
 
@@ -1502,14 +1507,23 @@ int CvTeamAI::AI_endWarVal(TeamTypes eTeam) const
 	iValue += getTotalPopulation();
 	iValue += kWarTeam.getTotalPopulation();
 
-	iValue += (kWarTeam.AI_getWarSuccess(getID()) * 30);
-	iValue -= AI_getWarSuccess(eTeam) * 30;
+	iValue += kWarTeam.AI_getWarSuccess(getID()); //* 30);
+	iValue -= AI_getWarSuccess(eTeam);// * 30;
 
 	int iOurPower = std::max(1, getPower(true));
 	int iTheirPower = std::max(1, kWarTeam.getDefensivePower());
 
-	iValue *= iTheirPower + 10;
+	// MNAI To Do - increase value for distant opponents
+	// MNAI - add value based on the duration of the war
+	int iDurationMod = (AI_getAtWarCounter(eTeam) - ((AI_getWarPlan(eTeam) == WARPLAN_TOTAL) ? 40 : 30) * 3);
+	iDurationMod *=  GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent();
+	iDurationMod /= 100;
+	iValue += iDurationMod;
 
+	iValue += kWarTeam.getWarWeariness(eTeam);
+	// End MNAI
+
+	iValue *= iTheirPower + 10;
 //FfH: Modified by Kael 04/23/2009
 //	iValue /= std::max(1, iOurPower + iTheirPower + 10);
 	iValue /= std::max(1, iOurPower + 10);
@@ -1657,12 +1671,6 @@ int CvTeamAI::AI_endWarVal(TeamTypes eTeam) const
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
-
-	// MNAI
-	// increase value for distant opponents
-	// increase value for long wars
-	iValue += kWarTeam.getWarWeariness(eTeam);
-	// End MNAI
 
 	iValue -= (iValue % GC.getDefineINT("DIPLOMACY_VALUE_REMAINDER"));
 
@@ -2781,33 +2789,6 @@ int CvTeamAI::AI_getWarSuccessRating() const
 /*                                                                                              */
 /* War Strategy AI                                                                              */
 /************************************************************************************************/
-/// \brief Compute how close our wars are to capitulation.
-///
-/// At -99, this means we're losing on net enough to capitulate.  At +99, we're winning enough
-/// to perhaps have another player capitulate to us.
-int CvTeamAI::AI_getWarSuccessCapitulationRatio() const
-{
-	int iSumWarSuccess = 0;
-
-	for( int iI = 0; iI < MAX_CIV_TEAMS; iI++ )
-	{
-		if( iI != getID() )
-		{
-			if( GET_TEAM((TeamTypes)iI).isAlive() && isAtWar((TeamTypes)iI) )
-			{
-				iSumWarSuccess += AI_getWarSuccess((TeamTypes)iI);
-				iSumWarSuccess -= GET_TEAM((TeamTypes)iI).AI_getWarSuccess(getID());
-			}
-		}
-	}
-
-	int iDivisor = std::max(25, std::min(getNumCities(), 4) * GC.getWAR_SUCCESS_CITY_CAPTURING());
-
-	iSumWarSuccess = range((100*iSumWarSuccess)/iDivisor, -99, 99);
-
-	return iSumWarSuccess;
-}
-
 /// \brief Compute power of enemies as percentage of our power.
 ///
 ///
@@ -3074,7 +3055,6 @@ bool CvTeamAI::AI_acceptSurrender( TeamTypes eSurrenderTeam )
 		return true;
 	}
 
-	//int iOurWarSuccessRatio = AI_getWarSuccessCapitulationRatio();
 	int iOurWarSuccessRatio = AI_getWarSuccessRating();
 	if( iOurWarSuccessRatio < -30 )
 	{
@@ -3984,20 +3964,7 @@ void CvTeamAI::AI_updateWorstEnemy()
 					if (AI_getAttitude(eLoopTeam) < ATTITUDE_CAUTIOUS)
 					{
 						int iValue = AI_getAttitudeVal(eLoopTeam);
-/************************************************************************************************/
-/* Afforess	                  Start		 03/19/10                                               */
-/* Ruthless AI                                                                                  */
-/************************************************************************************************/
-//Our Worst enemy isn't just the person we hate the most, but the person we hate and is winning!
-						//if (GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI))
-						if (1 < 2)
-						{
-							iValue += GC.getGameINLINE().getPlayerRank(kLoopTeam.getLeaderID()) / 2;
-							iValue -= GC.getGameINLINE().countCivPlayersAlive() / 2;
-						}
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
+
 						if (iValue < iBestValue)
 						{
 							iBestValue = iValue;
@@ -5328,7 +5295,7 @@ void CvTeamAI::AI_doWar()
 															logBBAI("  Team %d (%S) making peace due to time and no fighting", getID(), GET_PLAYER(getLeaderID()).getCivilizationDescription(0) );
 														}
 
-														break;
+														continue;
 													}
 												}
 											}
@@ -5345,7 +5312,7 @@ void CvTeamAI::AI_doWar()
 														logBBAI("  Team %d (%S) making peace due to time and endWarVal %d vs their %d", getID(), GET_PLAYER(getLeaderID()).getCivilizationDescription(0) , iOurValue, iTheirValue );
 													}
 													makePeace((TeamTypes)iI);
-													break;
+													continue;
 												}
 											}
 
@@ -5363,7 +5330,7 @@ void CvTeamAI::AI_doWar()
 															logBBAI("  Team %d (%S) making peace due to being only dog-piler left", getID(), GET_PLAYER(getLeaderID()).getCivilizationDescription(0) );
 														}
 														makePeace((TeamTypes)iI);
-														break;
+														continue;
 													}
 												}
 											}
@@ -5584,6 +5551,8 @@ void CvTeamAI::AI_doWar()
 
 						if (iNoWarRoll >= AI_noWarAttitudeProb(AI_getAttitude((TeamTypes)iI)) && (!bVassal || iNoWarRoll >= AI_noWarAttitudeProb(AI_getAttitude(eLoopMasterTeam))))
 						{
+							// need to make sure we can reach the opponent
+							// loop through units -> if assault -> if player can train -> if can reach opponent
 							if (AI_isLandTarget((TeamTypes)iI) || (AI_isAnyCapitalAreaAlone() && GET_TEAM((TeamTypes)iI).AI_isAnyCapitalAreaAlone()))
 							{
 								if (GET_TEAM((TeamTypes)iI).getDefensivePower() < ((iOurPower * AI_limitedWarPowerRatio()) / 100))

@@ -2648,7 +2648,12 @@ void CvGameTextMgr::setPlotListHelp(CvWStringBuffer &szString, CvPlot* pPlot, bo
 							{
 								szTempBuffer.Format(L"BigEspionage, ");
 								szString.append(szTempBuffer);
-							}	
+							}
+							if (GET_PLAYER(pHeadGroup->getOwner()).AI_isDoStrategy(AI_STRATEGY_ECONOMY_FOCUS)) // K-Mod
+							{
+								szTempBuffer.Format(L"EconomyFocus, ");
+								szString.append(szTempBuffer);
+							}
 
 							//Area battle plans.
 							if (pPlot->area()->getAreaAIType(pHeadGroup->getTeam()) == AREAAI_OFFENSIVE)
@@ -5881,6 +5886,11 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
                 szTempBuffer.Format(L"BigEspionage, ");
                 szString.append(szTempBuffer);
             }
+			if (GET_PLAYER(pPlot->getOwner()).AI_isDoStrategy(AI_STRATEGY_ECONOMY_FOCUS)) // K-Mod
+			{
+				szTempBuffer.Format(L"EconomyFocus, ");
+				szString.append(szTempBuffer);
+			}
                        
             //Area battle plans.
             if (pPlot->area()->getAreaAIType(pPlot->getTeam()) == AREAAI_OFFENSIVE)
@@ -6428,6 +6438,12 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 			{
 				szTempBuffer.Format(L", +%d%c", abs(GC.getBonusInfo(eBonus).getHappiness()), ((GC.getBonusInfo(eBonus).getHappiness() > 0) ? gDLL->getSymbolID(HAPPY_CHAR): gDLL->getSymbolID(UNHAPPY_CHAR)));
 				szString.append(szTempBuffer);
+			}
+
+			// Bugfix: Display requirement technology for bonuses provided by unique features.
+			if ((pPlot->getImprovementType() != NO_IMPROVEMENT) && GC.getImprovementInfo(pPlot->getImprovementType()).isUnique() && !(GET_TEAM(GC.getGameINLINE().getActiveTeam()).isHasTech((TechTypes)GC.getBonusInfo(eBonus).getTechCityTrade())))
+			{
+				szString.append(gDLL->getText("TXT_KEY_PLOT_RESEARCH", GC.getTechInfo((TechTypes) GC.getBonusInfo(eBonus).getTechCityTrade()).getTextKeyWide()));
 			}
 
 			if ((pPlot->getImprovementType() == NO_IMPROVEMENT) || !(GC.getImprovementInfo(pPlot->getImprovementType()).isImprovementBonusTrade(eBonus)))
@@ -11045,7 +11061,7 @@ void CvGameTextMgr::setTechTradeHelp(CvWStringBuffer &szBuffer, TechTypes eTech,
 					{
 						if (GC.getUnitInfo(eLoopUnit).getPrereqCiv() != NO_CIVILIZATION)
 						{
-							if ((GC.getUnitInfo(eLoopUnit).getPrereqCiv() != GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCivilizationType()))
+							if (!bPlayerContext || (GC.getUnitInfo(eLoopUnit).getPrereqCiv() != GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCivilizationType()))
 							{
 								continue;
 							}
@@ -19313,15 +19329,9 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 		szBuffer.append(NEWLINE);
 	}
 
-//FfH: Added by Kael 10/13/2007
-	//int iUnhappyProd = (city.isUnhappyProduction() ? city.angryPopulation(0) : 0);
+	//FfH: Added by Kael 10/13/2007
 	int iUnhappyProd = (city.isUnhappyProduction() ? city.unhappyLevel(0) : 0);
-	if (iUnhappyProd != 0)
-	{
-		szBuffer.append(gDLL->getText("TXT_KEY_MISC_UNHAPPY_PROD", iUnhappyProd));
-		szBuffer.append(NEWLINE);
-	}
-//FfH: End Add
+	//FfH: End Add
 
 // BUG - Building Additional Production - start
 	bool bBuildingAdditionalYield = getBugOptionBOOL("MiscHover__BuildingAdditionalProduction", true, "BUG_BUILDING_ADDITIONAL_PRODUCTION_HOVER");
@@ -19332,11 +19342,13 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 	}
 
 	setYieldHelp(szBuffer, city, YIELD_PRODUCTION);
-
+// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+// For the GUI, we calculate it separately in order to be able to show the effect of unhappy production.
 //FfH: Modified by Kael 10/13/2007
-//	int iBaseProduction = city.getBaseYieldRate(YIELD_PRODUCTION) + iPastOverflow + iFromChops;
-	int iBaseProduction = city.getBaseYieldRate(YIELD_PRODUCTION) + iPastOverflow + iFromChops + iUnhappyProd;
+	int iBaseProduction = city.getBaseYieldRate(YIELD_PRODUCTION, false) + iPastOverflow + iFromChops + iUnhappyProd;
+//	int iBaseProduction = city.getBaseYieldRate(YIELD_PRODUCTION) + iPastOverflow + iFromChops + iUnhappyProd;
 //FfH: End Modify
+// Bugfix end
 
 	int iBaseModifier = city.getBaseYieldRateModifier(YIELD_PRODUCTION);
 
@@ -20253,9 +20265,25 @@ void CvGameTextMgr::setYieldHelp(CvWStringBuffer &szBuffer, CvCity& city, YieldT
 	}
 	CvPlayer& owner = GET_PLAYER(city.getOwnerINLINE());
 
-	int iBaseProduction = city.getBaseYieldRate(eYieldType);
+	// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+	// For the GUI, we calculate it separately in order to be able to show the effect of unhappy production.
+	int iBaseProduction = city.getBaseYieldRate(eYieldType, false);
+	// Bugfix end
 	szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_BASE_YIELD", info.getTextKeyWide(), iBaseProduction, info.getChar()));
 	szBuffer.append(NEWLINE);
+
+	//FfH: Added by Kael 10/13/2007
+	// Bugfix: Do not show unhappy production information for commerce and science.
+	// int iUnhappyProd = (city.isUnhappyProduction() ? city.unhappyLevel(0) : 0);
+	int iUnhappyProd = (eYieldType == YIELD_PRODUCTION && city.isUnhappyProduction() ? city.unhappyLevel(0) : 0);
+	// Bugfix end
+	if (iUnhappyProd != 0)
+	{
+		iBaseProduction += iUnhappyProd;
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_UNHAPPY_PROD", iUnhappyProd));
+		szBuffer.append(NEWLINE);
+	}
+	//FfH: End Add
 
 	int iBaseModifier = 100;
 
@@ -20351,6 +20379,13 @@ void CvGameTextMgr::setYieldHelp(CvWStringBuffer &szBuffer, CvCity& city, YieldT
 		szBuffer.append(NEWLINE);
 		iBaseModifier += iCivicMod;
 	}
+
+	// MNAI - copied from getBaseYieldRateModifier()- code by Kael 11/08/2007
+    if (city.isSettlement())
+    {
+        iBaseModifier -= 75;
+    }
+	// End MNAI
 
 	FAssertMsg((iBaseModifier * iBaseProduction) / 100 == city.getYieldRate(eYieldType), "Yield Modifier in setProductionHelp does not agree with actual value");
 }

@@ -2820,7 +2820,9 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 					{
 						if (pNewCity->isValidBuildingLocation(eBuilding))
 						{
-							if (!bConquest || bRecapture || GC.getGameINLINE().getSorenRandNum(100, "Capture Probability") < GC.getBuildingInfo((BuildingTypes)iI).getConquestProbability())
+							if (!bConquest || bRecapture || 
+								// Tholal ToDo - rebels have increased chance of keeping buildings
+								GC.getGameINLINE().getSorenRandNum(100, "Capture Probability") < GC.getBuildingInfo((BuildingTypes)iI).getConquestProbability())
 							{
 								iNum += paiNumRealBuilding[iI];
 							}
@@ -5516,29 +5518,33 @@ bool CvPlayer::canContact(PlayerTypes ePlayer) const
 		return false;
 	}
 
-	if (!isAlive() || !(GET_PLAYER(ePlayer).isAlive()))
+	CvPlayer &kPlayer = GET_PLAYER(ePlayer);
+
+	if (!isAlive() || !(kPlayer.isAlive()))
 	{
 		return false;
 	}
 
-	if (isBarbarian() || GET_PLAYER(ePlayer).isBarbarian())
+	if (isBarbarian() || kPlayer.isBarbarian())
 	{
 		return false;
 	}
 
-	if (isMinorCiv() || GET_PLAYER(ePlayer).isMinorCiv())
+	if (isMinorCiv() || kPlayer.isMinorCiv())
 	{
 		return false;
 	}
 
-	if (getTeam() != GET_PLAYER(ePlayer).getTeam())
+	if (getTeam() != kPlayer.getTeam())
 	{
-		if (!(GET_TEAM(getTeam()).isHasMet(GET_PLAYER(ePlayer).getTeam())))
+		CvTeam &kTeam = GET_TEAM(getTeam());
+
+		if (!(kTeam.isHasMet(kPlayer.getTeam())))
 		{
 			return false;
 		}
 
-		if (atWar(getTeam(), GET_PLAYER(ePlayer).getTeam()))
+		if (atWar(getTeam(), kPlayer.getTeam()))
 		{
 
 //FfH: Added by Kael 08/14/2007
@@ -5548,13 +5554,13 @@ bool CvPlayer::canContact(PlayerTypes ePlayer) const
             }
 //FfH: End Add
 
-			if (!(GET_TEAM(getTeam()).canChangeWarPeace(GET_PLAYER(ePlayer).getTeam())))
+			if (!(kTeam.canChangeWarPeace(kPlayer.getTeam())))
 			{
 				return false;
 			}
 		}
 
-		if (isHuman() || GET_PLAYER(ePlayer).isHuman())
+		if (isHuman() || kPlayer.isHuman())
 		{
 			if (GC.getGameINLINE().isOption(GAMEOPTION_ALWAYS_WAR))
 			{
@@ -7923,9 +7929,20 @@ bool CvPlayer::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestV
 
 		if (NO_BUILDING != ePrereqBuilding && currentTeam.isObsoleteBuilding(ePrereqBuilding))
 		{
-			if (getBuildingClassCount((BuildingClassTypes)iI) < getBuildingClassPrereqBuilding(eBuilding, (BuildingClassTypes)iI, 0))
+			// MNAI - check team if prereq building is flagged as teamshare
+			if (GC.getBuildingInfo(ePrereqBuilding).isTeamShare())
 			{
-				return false;
+				if (currentTeam.getBuildingClassCount((BuildingClassTypes)iI) < getBuildingClassPrereqBuilding(eBuilding, (BuildingClassTypes)iI, 0))
+				{
+					return false;
+				}
+			}
+			else
+			{
+				if (getBuildingClassCount((BuildingClassTypes)iI) < getBuildingClassPrereqBuilding(eBuilding, (BuildingClassTypes)iI, 0))
+				{
+					return false;
+				}
 			}
 		}
 	}
@@ -7991,9 +8008,20 @@ bool CvPlayer::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestV
 
 		for (iI = 0; iI < numBuildingClassInfos; iI++)
 		{
-			if (getBuildingClassCount((BuildingClassTypes)iI) < getBuildingClassPrereqBuilding(eBuilding, ((BuildingClassTypes)iI), ((bContinue) ? 0 : getBuildingClassMaking(eBuildingClass))))
+			// MNAI - check if Prereq Building Class is a team building
+			if (GC.getBuildingClassInfo((BuildingClassTypes)iI).getMaxTeamInstances() == 1)
 			{
-				return false;
+				if (currentTeam.getBuildingClassCount((BuildingClassTypes)iI) < getBuildingClassPrereqBuilding(eBuilding, ((BuildingClassTypes)iI), ((bContinue) ? 0 : getBuildingClassMaking(eBuildingClass))))
+				{
+					return false;
+				}
+			}
+			else
+			{
+				if (getBuildingClassCount((BuildingClassTypes)iI) < getBuildingClassPrereqBuilding(eBuilding, ((BuildingClassTypes)iI), ((bContinue) ? 0 : getBuildingClassMaking(eBuildingClass))))
+				{
+					return false;
+				}
 			}
 		}
 	}
@@ -9165,25 +9193,94 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 	int iKnownCount = 0;
 	int iPossibleKnownCount = 0;
 
-	for (int iI = 0; iI < MAX_CIV_TEAMS; iI++)
+/************************************************************************************************/
+/* BETTER_BTS_AI_MOD                      07/27/09                                jdog5000      */
+/*                                                                                              */
+/* Tech Diffusion                                                                               */
+/************************************************************************************************/
+	if( GC.getDefineINT("TECH_DIFFUSION_ENABLE") && GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
 	{
-		if (GET_TEAM((TeamTypes)iI).isAlive())
+		double knownExp = 0.0;
+		// Tech flows better through open borders
+		for (int iI = 0; iI < MAX_CIV_TEAMS; iI++)
 		{
-			if (GET_TEAM(getTeam()).isHasMet((TeamTypes)iI))
+			if (GET_TEAM((TeamTypes)iI).isAlive())
 			{
 				if (GET_TEAM((TeamTypes)iI).isHasTech(eTech))
 				{
-					iKnownCount++;
+					if (GET_TEAM(getTeam()).isHasMet((TeamTypes)iI))
+					{
+						knownExp += 0.5;
+
+						if( GET_TEAM(getTeam()).isOpenBorders((TeamTypes)iI) || GET_TEAM((TeamTypes)iI).isVassal(getTeam()) )
+						{
+							knownExp += 1.5;
+						}
+						else if( GET_TEAM(getTeam()).isAtWar((TeamTypes)iI) || GET_TEAM(getTeam()).isVassal((TeamTypes)iI) )
+						{
+							knownExp += 0.5;
+						}
+						
+						// MNAI - Advanced Diplomacy
+						if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+						{
+							if (GET_TEAM(getTeam()).isLimitedBorders((TeamTypes)iI)) // Rights of Passage
+							{
+								knownExp += 0.5;
+							}
+							if (GET_TEAM(getTeam()).isHasEmbassy((TeamTypes)iI)) // Embassy
+							{
+								knownExp += 1.0;
+							}
+						}
+						// End MNAI
+
+					}
 				}
 			}
+		}
 
-			iPossibleKnownCount++;
+		int techDiffMod = GC.getTECH_DIFFUSION_KNOWN_TEAM_MODIFIER();
+		if (knownExp > 0.0)
+		{
+			iModifier += techDiffMod - (int)(techDiffMod * pow(0.85, knownExp) + 0.5);
+		}
+
+		// Tech flows downhill to those who are far behind
+		int iTechScorePercent = GET_TEAM(getTeam()).getBestKnownTechScorePercent();
+		int iWelfareThreshold = GC.getTECH_DIFFUSION_WELFARE_THRESHOLD();
+		if( iTechScorePercent < iWelfareThreshold )
+		{
+			if( knownExp > 0.0 )
+			{
+				iModifier += (GC.getTECH_DIFFUSION_WELFARE_MODIFIER() * GC.getGameINLINE().getCurrentEra() * (iWelfareThreshold - iTechScorePercent))/200;
+			}
 		}
 	}
-
-	if (iPossibleKnownCount > 0)
+	// End Tech Diffusion
+	else
 	{
-		iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
+		// Default BTS code
+		for (int iI = 0; iI < MAX_CIV_TEAMS; iI++)
+		{
+			if (GET_TEAM((TeamTypes)iI).isAlive())
+			{
+				if (GET_TEAM(getTeam()).isHasMet((TeamTypes)iI))
+				{
+					if (GET_TEAM((TeamTypes)iI).isHasTech(eTech))
+					{
+						iKnownCount++;
+					}
+				}
+
+				iPossibleKnownCount++;
+			}
+		}
+
+		if (iPossibleKnownCount > 0)
+		{
+			iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
+		}
 	}
 
 	int iPossiblePaths = 0;
@@ -19363,19 +19460,19 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-		changeUpgradeAnywhere((GC.getCivicInfo(eCivic).isUpgradeAnywhere())? iChange : 0);
-		changeRevIdxLocal(GC.getCivicInfo(eCivic).getRevIdxLocal() * iChange);
-		changeRevIdxNational(GC.getCivicInfo(eCivic).getRevIdxNational() * iChange);
-		changeRevIdxDistanceModifier(GC.getCivicInfo(eCivic).getRevIdxDistanceModifier() * iChange);
-		changeRevIdxHolyCityGood(GC.getCivicInfo(eCivic).getRevIdxHolyCityGood() * iChange);
-		changeRevIdxHolyCityBad(GC.getCivicInfo(eCivic).getRevIdxHolyCityBad() * iChange);
-		changeRevIdxNationalityMod(GC.getCivicInfo(eCivic).getRevIdxNationalityMod() * static_cast<float>(iChange));
-		changeRevIdxBadReligionMod(GC.getCivicInfo(eCivic).getRevIdxBadReligionMod() * static_cast<float>(iChange));
-		changeRevIdxGoodReligionMod(GC.getCivicInfo(eCivic).getRevIdxGoodReligionMod() * static_cast<float>(iChange));
-//		if ( GC.getCivicInfo(eCivic).isAllowInquisitions() || GC.getCivicInfo(eCivic).isDisallowInquisitions() )
-//		{
-//			setInquisitionConditions();
-//		}
+	changeUpgradeAnywhere((GC.getCivicInfo(eCivic).isUpgradeAnywhere())? iChange : 0);
+	changeRevIdxLocal(GC.getCivicInfo(eCivic).getRevIdxLocal() * iChange);
+	changeRevIdxNational(GC.getCivicInfo(eCivic).getRevIdxNational() * iChange);
+	changeRevIdxDistanceModifier(GC.getCivicInfo(eCivic).getRevIdxDistanceModifier() * iChange);
+	changeRevIdxHolyCityGood(GC.getCivicInfo(eCivic).getRevIdxHolyCityGood() * iChange);
+	changeRevIdxHolyCityBad(GC.getCivicInfo(eCivic).getRevIdxHolyCityBad() * iChange);
+	changeRevIdxNationalityMod(GC.getCivicInfo(eCivic).getRevIdxNationalityMod() * static_cast<float>(iChange));
+	changeRevIdxBadReligionMod(GC.getCivicInfo(eCivic).getRevIdxBadReligionMod() * static_cast<float>(iChange));
+	changeRevIdxGoodReligionMod(GC.getCivicInfo(eCivic).getRevIdxGoodReligionMod() * static_cast<float>(iChange));
+//	if ( GC.getCivicInfo(eCivic).isAllowInquisitions() || GC.getCivicInfo(eCivic).isDisallowInquisitions() )
+//	{
+//		setInquisitionConditions();
+//	}
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
 /************************************************************************************************/
@@ -24114,6 +24211,7 @@ PlayerTypes CvPlayer::getPuppetPlayer() const
 
 bool CvPlayer::canMakePuppet(PlayerTypes eFromPlayer) const
 {
+	// Puppet States are a type of Vassal
     if (GC.getGameINLINE().isOption(GAMEOPTION_NO_VASSAL_STATES))
     {
         return false;
@@ -24134,10 +24232,17 @@ bool CvPlayer::canMakePuppet(PlayerTypes eFromPlayer) const
         return false;
     }
 
+	if (!GET_TEAM(getTeam()).isPuppetStateTrading())
+	{
+		return false;
+	}
+
+	/*
 	if (!GET_TEAM(getTeam()).isVassalStateTrading())
 	{
 		return false;
 	}
+	*/
 
     PlayerTypes ePlayer = getPuppetPlayer();
     if (ePlayer == NO_PLAYER)
@@ -25063,7 +25168,10 @@ bool CvPlayer::hasVotes(ReligionTypes eReligion) const
 	{
 		if (GC.getUnitInfo(pLoopUnit->getUnitTypeINLINE()).getDiploVoteType() != NO_VOTESOURCE)
 		{
-		    return true;
+			if (pLoopUnit->getDuration() == 0)
+			{
+			    return true;
+			}
 		}
 	}
 //FfH: End Add
@@ -25156,7 +25264,10 @@ int CvPlayer::getVotes(VoteTypes eVote, VoteSourceTypes eVoteSource) const
 		{
 			if (GC.getUnitInfo(pLoopUnit->getUnitTypeINLINE()).getDiploVoteType() == eVoteSource)
 			{
-			    iVotes += 1;
+				if (pLoopUnit->getDuration() == 0)
+				{
+				    iVotes += 1;
+				}
 			}
 		}
 	}
@@ -27731,6 +27842,7 @@ DenialTypes CvPlayer::AI_militaryUnitTrade(CvUnit* pUnit, PlayerTypes ePlayer) c
 /* Afforess	                     END                                                            */
 /************************************************************************************************/
 
+// MNAI - new functions
 int CvPlayer::countNumOwnedTerrainTypes(TerrainTypes eTerrain) const
 {
 	PROFILE("CvPlayer::countNumOwnedTerrainTypes");
@@ -27753,3 +27865,33 @@ int CvPlayer::countNumOwnedTerrainTypes(TerrainTypes eTerrain) const
 
 	return iCount;
 }
+
+int CvPlayer::getHighestUnitTier(bool bIncludeHeroes, bool bIncludeLimitedUnits) const
+{
+	CvUnit* pLoopUnit;
+	int iLoop;
+	int iHighestTier = 0;
+
+	for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
+	{
+		CvUnitInfo& kLoopUnit = GC.getUnitInfo(pLoopUnit->getUnitType());
+		
+		if (!(pLoopUnit->getDuration() > 0)) // dont count temporary units
+		{
+			if (!isWorldUnitClass(pLoopUnit->getUnitClassType()) || bIncludeHeroes) // dont count heroes unless the flag is set
+			{
+				if (!isLimitedUnitClass(pLoopUnit->getUnitClassType()) || bIncludeLimitedUnits)// dont count limited units unless the flag is set
+				{
+					if (kLoopUnit.getTier() > iHighestTier)
+					{
+						iHighestTier = kLoopUnit.getTier();
+					}
+				}
+			}
+		}
+	}
+
+	return iHighestTier;
+}
+
+// End MNAI

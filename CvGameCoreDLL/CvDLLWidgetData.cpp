@@ -3735,6 +3735,11 @@ void CvDLLWidgetData::parseContactCivHelp(CvWidgetDataStruct &widgetDataStruct, 
             szTempBuffer.Format(L"BigEspionage, ");
             szBuffer.append(szTempBuffer);
         }
+		if (kPlayer.AI_isDoStrategy(AI_STRATEGY_ECONOMY_FOCUS)) // K-Mod
+		{
+			szTempBuffer.Format(L"EconomyFocus, ");
+			szBuffer.append(szTempBuffer);
+		}
 
 		szBuffer.append(NEWLINE);
 		szTempBuffer.Format(L"Vic Strats: ");
@@ -3958,6 +3963,8 @@ void CvDLLWidgetData::parseContactCivHelp(CvWidgetDataStruct &widgetDataStruct, 
 		szBuffer.append(NEWLINE);
 		szBuffer.append(CvWString::format(L"Mojo Factor: %d", kPlayer.AI_getMojoFactor()));
 		szBuffer.append(NEWLINE);
+		szBuffer.append(CvWString::format(L"Highest Unit Tier: %d", kPlayer.getHighestUnitTier(false, true)));
+		szBuffer.append(NEWLINE);
 		szBuffer.append(NEWLINE);
 		
 		// Unit Costs
@@ -4041,7 +4048,7 @@ void CvDLLWidgetData::parseContactCivHelp(CvWidgetDataStruct &widgetDataStruct, 
 					int iOtherValue = kTeam.AI_endWarVal(eLoopTeam);
 					int iTheirValue = kLoopTeam.AI_endWarVal(eTeam);
 					
-					szBuffer.append( CvWString::format(SETCOLR L" %s " ENDCOLR SETCOLR L"(%d, %d)" ENDCOLR SETCOLR L" with %s " ENDCOLR  SETCOLR L"(%d, %d)\n" ENDCOLR, 
+					szBuffer.append( CvWString::format(SETCOLR L" %s " ENDCOLR SETCOLR L"(%d, %d)" ENDCOLR SETCOLR L" with %s " ENDCOLR  SETCOLR L"(%d, %d) " ENDCOLR SETCOLR L"(%d turns)\n" ENDCOLR, 
 						TEXT_COLOR((iOtherValue < iTheirValue) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"),
 						szWarplan.getCString(),
 						TEXT_COLOR((iOtherValue < iTheirValue) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"),
@@ -4049,7 +4056,9 @@ void CvDLLWidgetData::parseContactCivHelp(CvWidgetDataStruct &widgetDataStruct, 
 						TEXT_COLOR((iOtherValue < iTheirValue) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"),
 						kLoopTeam.getName().GetCString(),
 						TEXT_COLOR((iTheirValue < iOtherValue) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"),
-						iTheirValue, kLoopTeam.AI_getWarSuccess(eTeam)) );
+						iTheirValue, kLoopTeam.AI_getWarSuccess(eTeam),
+						TEXT_COLOR("COLOR_HIGHLIGHT_TEXT"),
+						kTeam.AI_getAtWarCounter(eLoopTeam)) );
 				}
 			}
 		}
@@ -4063,8 +4072,6 @@ void CvDLLWidgetData::parseContactCivHelp(CvWidgetDataStruct &widgetDataStruct, 
 		}
 		if (bHadAny)
 		{
-			int iWarSuccessRatio = kTeam.AI_getWarSuccessCapitulationRatio();
-			szBuffer.append(CvWString::format(SETCOLR L"\nWar Success Ratio: %d" ENDCOLR, TEXT_COLOR((iWarSuccessRatio > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), iWarSuccessRatio));
 			int iWarSuccessRating = kTeam.AI_getWarSuccessRating();
 			szBuffer.append(CvWString::format(SETCOLR L"\nWar Success Rating: %d" ENDCOLR, TEXT_COLOR((iWarSuccessRating > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), iWarSuccessRating));
 		}
@@ -5115,7 +5122,7 @@ void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStr
 
 // More Naval AI version number
 	// Add string showing version number
-	szTempBuffer.Format(L"%S", "More Naval AI v2.5");
+	szTempBuffer.Format(L"%S", "More Naval AI v2.53");
 	szBuffer.append(szTempBuffer);
 	szBuffer.append(NEWLINE);
 // End More Naval AI

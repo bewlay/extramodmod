@@ -2426,18 +2426,9 @@ void CvGame::update()
 	{
 		sendPlayerOptions();
 
-//FfH: Modified by Kael 10/15/2008
-//		// sample generic event
-//		CyArgsList pyArgs;
-//		pyArgs.add(getTurnSlice());
-//		CvEventReporter::getInstance().genericEvent("gameUpdate", pyArgs.makeFunctionArgs());
-        if (isNetworkMultiPlayer())
-		{
-            CyArgsList pyArgs;
-            pyArgs.add(getTurnSlice());
-            CvEventReporter::getInstance().genericEvent("gameUpdate", pyArgs.makeFunctionArgs());
-        }
-//FfH: End Modify
+		CyArgsList pyArgs;
+		pyArgs.add(getTurnSlice());
+		CvEventReporter::getInstance().genericEvent("gameUpdate", pyArgs.makeFunctionArgs());
 
 		if (getTurnSlice() == 0)
 		{
@@ -3116,7 +3107,10 @@ int CvGame::countPossibleVote(VoteTypes eVote, VoteSourceTypes eVoteSource) cons
 
 	for (iI = 0; iI < MAX_CIV_PLAYERS; iI++)
 	{
-		iCount += GET_PLAYER((PlayerTypes)iI).getVotes(eVote, eVoteSource);
+		if (GET_PLAYER((PlayerTypes)iI).isAlive())
+		{
+			iCount += GET_PLAYER((PlayerTypes)iI).getVotes(eVote, eVoteSource);
+		}
 	}
 
 	return iCount;

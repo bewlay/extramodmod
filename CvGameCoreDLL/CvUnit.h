@@ -781,7 +781,7 @@ public:
     virtual void AI_setGroupflag(int newflag) = 0;
     virtual void AI_chooseGroupflag() = 0;
 
-	virtual void AI_mageMove() = 0;
+	virtual bool AI_mageMove() = 0;
 	virtual void AI_mageCast() = 0;
 	virtual void AI_terraformerMove() = 0;
     virtual void AI_upgrademanaMove() = 0;
@@ -1020,7 +1020,9 @@ public:
     void betray(PlayerTypes ePlayer);
 	void updateTerraformer();
     bool isTerraformer() const;
-    bool withdrawlToNearestValidPlot();
+	// Bugfix: Defenders that flee can be killed after combat
+    bool withdrawlToNearestValidPlot(bool bKillUnit = true);
+	// Bugfix end
 
 	// MNAI - additional promotion tags
 	void changeCanMoveImpassable(int iNewValue);

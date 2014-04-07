@@ -30,7 +30,8 @@ class TechDiffusion :
 
 		print "Initializing TechDiffusion Mod"
 
-		self.LOG_DEBUG = RevOpt.isTechDifDebugMode()
+#		self.LOG_DEBUG = RevOpt.isTechDifDebugMode()
+		self.LOG_DEBUG = True
 		self.techDict = None
 
 		self.minTechsBehind = RevOpt.getMinTechsBehind()
@@ -148,6 +149,9 @@ class TechDiffusion :
 					# Don't diffuse future tech
 					continue
 
+				if( not teamLeader.canEverResearch( techID ) ): ## MNAI - Dont diffuse techs we cant research
+					continue
+					
 				anyAndFalse = False
 				for k in range(gc.getDefineINT("NUM_AND_TECH_PREREQS")):
 					iPrereqTech = tech.getPrereqAndTechs( k )

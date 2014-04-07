@@ -1440,6 +1440,13 @@ void CvCity::doTurn()
 
 			iCount += getTradeYield((YieldTypes)iI);
 			iCount += getCorporationYield((YieldTypes)iI);
+			
+			// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+			if (isUnhappyProduction() && (YieldTypes)iI == YIELD_PRODUCTION)
+			{
+				iCount += unhappyLevel(0);
+			}
+			// Bugfix end
 
 			FAssert(iCount == getBaseYieldRate((YieldTypes)iI));
 		}
@@ -3780,12 +3787,14 @@ int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int 
     {
         return 0;
     }
-    int iUnhappyProd = 0;
-    if (isUnhappyProduction())
-    {
-        iUnhappyProd += unhappyLevel(0);
-    }
-	return (((getBaseYieldRate(YIELD_PRODUCTION) + iOverflow + iUnhappyProd) * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier)) / 100 + iFoodProduction);
+	// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+    // int iUnhappyProd = 0;
+    // if (isUnhappyProduction())
+    // {
+    //    iUnhappyProd += unhappyLevel(0);
+    //}
+	// Bugfix end
+	return (((getBaseYieldRate(YIELD_PRODUCTION) + iOverflow) * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier)) / 100 + iFoodProduction);
 //FfH: End Modify
 
 }
@@ -9642,11 +9651,14 @@ int CvCity::getAdditionalBaseYieldRateBySpecialist(YieldTypes eIndex, Specialist
 // BUG - Specialist Additional Yield - end
 
 
-int CvCity::getBaseYieldRate(YieldTypes eIndex)	const
+int CvCity::getBaseYieldRate(YieldTypes eIndex, bool bUnhappyProduction) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex expected to be < NUM_YIELD_TYPES");
-	return m_aiBaseYieldRate[eIndex];
+	// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+	bool bShowUnhappyProduction = bUnhappyProduction && isUnhappyProduction() && eIndex == YIELD_PRODUCTION;
+	return bShowUnhappyProduction ? m_aiBaseYieldRate[eIndex] + unhappyLevel(0) : m_aiBaseYieldRate[eIndex];
+	// Bugfix end
 }
 
 
@@ -9693,15 +9705,17 @@ int CvCity::getBaseYieldRateModifier(YieldTypes eIndex, int iExtra) const
 
 int CvCity::getYieldRate(YieldTypes eIndex) const
 {
+	// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
 	// FFH - Unhappy Production
-	int iUnhappyProd = 0;
-    if (isUnhappyProduction() && (eIndex == YIELD_PRODUCTION))
-    {
-        iUnhappyProd += unhappyLevel(0);
-    }
+	//int iUnhappyProd = 0;
+    //if (isUnhappyProduction() && (eIndex == YIELD_PRODUCTION))
+    //{
+    //    iUnhappyProd += unhappyLevel(0);
+    //}
 	// End FFH
+	// Bugfix end
 
-	return (((getBaseYieldRate(eIndex) + iUnhappyProd) * getBaseYieldRateModifier(eIndex)) / 100);
+	return ((getBaseYieldRate(eIndex) * getBaseYieldRateModifier(eIndex)) / 100);
 }
 
 
@@ -9736,7 +9750,10 @@ void CvCity::setBaseYieldRate(YieldTypes eIndex, int iNewValue)
 
 void CvCity::changeBaseYieldRate(YieldTypes eIndex, int iChange)
 {
-	setBaseYieldRate(eIndex, (getBaseYieldRate(eIndex) + iChange));
+	// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+	// Since the unhappy production part of getBaseYieldRate is calculated dynamically, it shouldn't be taking into account when it is required to modify it.
+	setBaseYieldRate(eIndex, (getBaseYieldRate(eIndex, false) + iChange));
+	// Bugfix end
 }
 
 
@@ -14365,6 +14382,8 @@ void CvCity::doReligion()
 	int iLoop;
 	int iI, iJ;
 
+	CvPlayer &kPlayer = GET_PLAYER(getOwnerINLINE());
+
 	if (isBarbarian())
 	{
 		return;
@@ -14398,7 +14417,7 @@ void CvCity::doReligion()
 		{
 			if (!isHasReligion((ReligionTypes)iI))
 			{
-				if ((iI == GET_PLAYER(getOwnerINLINE()).getStateReligion()) || !(GET_PLAYER(getOwnerINLINE()).isNoNonStateReligionSpread()))
+				if ((iI == kPlayer.getStateReligion()) || !kPlayer.isNoNonStateReligionSpread())
 				{
 					iRandThreshold = 0;
 
@@ -14414,6 +14433,9 @@ void CvCity::doReligion()
 
 									iSpread *= GC.getReligionInfo((ReligionTypes)iI).getSpreadFactor();
 
+									// MNAI ToDo - Advanced Diplomacy
+									// if rights of passage or embassy, bonus to iSpread
+
 									if (iSpread > 0)
 									{
 										iSpread /= std::max(1, (((GC.getDefineINT("RELIGION_SPREAD_DISTANCE_DIVISOR") * plotDistance(getX_INLINE(), getY_INLINE(), pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE())) / GC.getMapINLINE().maxPlotDistance()) - 5));
@@ -14421,7 +14443,7 @@ void CvCity::doReligion()
 										//iSpread /= (getReligionCount() + 1);
 
 //FfH: Added by Kael 07/30/2008
-                                        if (GET_PLAYER(getOwnerINLINE()).isAgnostic())
+                                        if (kPlayer.isAgnostic())
                                         {
                                             iSpread /= 2;
                                         }

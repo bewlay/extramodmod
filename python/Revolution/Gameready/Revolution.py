@@ -912,10 +912,10 @@ class Revolution :
 				newUnitList.append( newUnit )
 
 		for [iNum,newUnit] in enumerate(newUnitList) :
-			if( newUnit.canFight() ) :
+#			if( newUnit.canFight() ) :
 				# Injure units to simulate the lack of training in rebel troops
-				iDamage = 10 + game.getSorenRandNum(15,'Revolt - Injure unit')
-				newUnit.setDamage( iDamage, ownerID )
+#				iDamage = 10 + game.getSorenRandNum(15,'Revolt - Injure unit')
+#				newUnit.setDamage( iDamage, ownerID )
 
 			# Check AI settings
 			if( newUnit.isBarbarian() ) :
@@ -6943,10 +6943,10 @@ class Revolution :
 						pRevPlayer.initUnit( iWorker, ix, iy, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH )
 
 				# Injure units to simulate the lack of training in rebel troops
-				for newUnit in newUnitList :
-					if( newUnit.canFight() ) :
-						iDamage = 15 + game.getSorenRandNum(25,'Revolt - Injure unit')
-						newUnit.setDamage( iDamage, pPlayer.getID() )
+#				for newUnit in newUnitList :
+#					if( newUnit.canFight() ) :
+#						iDamage = 15 + game.getSorenRandNum(25,'Revolt - Injure unit')
+#						newUnit.setDamage( iDamage, pPlayer.getID() )
 
 				# Remove the default given defenders
 				for pUnit in defaultUnits :
@@ -7059,8 +7059,8 @@ class Revolution :
 				for [iNum,newUnit] in enumerate(newUnitList) :
 					if( newUnit.canFight() ) :
 						# Injure units to simulate the lack of training in rebel troops
-						iDamage = 10 + game.getSorenRandNum(30,'Revolt - Injure unit')
-						newUnit.setDamage( iDamage, pPlayer.getID() )
+#						iDamage = 10 + game.getSorenRandNum(30,'Revolt - Injure unit')
+#						newUnit.setDamage( iDamage, pPlayer.getID() )
 
 						# Check AI settings
 						if( newUnit.isBarbarian() ) :
@@ -7102,12 +7102,12 @@ class Revolution :
 							if( self.LOG_DEBUG ) : CvUtil.pyPrint("  Revolt - Scout spawned outside %s"%(pCity.getName()))
 							pRevPlayer.initUnit( iScout, revSpawnLoc[0], revSpawnLoc[1], UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH )
 
-					if( not bIsBarbRev and not bIsJoinWar ) :
-						# Settler if there is sufficient empty land available?
-						if( pCity.area().getNumTiles()/pCity.area().getNumCities() > 25 ) :
-							if(iSettler != -1):
-								if( self.LOG_DEBUG ) : CvUtil.pyPrint("  Revolt - Settler spawned outside %s"%(pCity.getName()))
-								pRevPlayer.initUnit( iSettler, revSpawnLoc[0], revSpawnLoc[1], UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH )
+#					if( not bIsBarbRev and not bIsJoinWar ) :
+#						# Settler if there is sufficient empty land available?
+#						if( pCity.area().getNumTiles()/pCity.area().getNumCities() > 25 ) :
+#							if(iSettler != -1):
+#								if( self.LOG_DEBUG ) : CvUtil.pyPrint("  Revolt - Settler spawned outside %s"%(pCity.getName()))
+#								pRevPlayer.initUnit( iSettler, revSpawnLoc[0], revSpawnLoc[1], UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH )
 
 				if(iSpy != -1):
 					if( pRevPlayer.canTrain(iSpy,False,False) and pRevPlayer.AI_getNumAIUnits( UnitAITypes.UNITAI_SPY ) < 3 ) :
