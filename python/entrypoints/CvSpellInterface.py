@@ -715,9 +715,9 @@ def spellCommanderJoin(caster):
 		# lfgr GP_NAMES 07/2013
 		if( not SDTK.sdObjectExists( "GPNames", caster ) ) :
 			SDTK.sdObjectInit( "GPNames", caster, {} )
-		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", pCommander.getName() )
-		if( caster.getNameNoDesc() != "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
-			caster.setName( pCommander.getName() )
+		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", pCommander.getNameNoDesc() )
+		if( pCommander.getNameNoDesc() != "" and caster.getNameNoDesc() == "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
+			caster.setName( pCommander.getNameNoDesc() )
 		# lfgr end
 		pCommander.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
 		pCommander.kill(False, PlayerTypes.NO_PLAYER)
@@ -748,6 +748,8 @@ def spellCommanderSplit(caster):
 		szName = SDTK.sdObjectGetVal( "GPNames", caster, "CommanderName" )
 		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", "" )
 		newUnit.setName( szName )
+		if( caster.getNameNoDesc() == szName ) :
+			caster.setName( "" )
 	# lfgr end
 
 def reqConvertCityBasium(caster):
