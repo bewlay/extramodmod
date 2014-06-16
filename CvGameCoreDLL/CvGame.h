@@ -449,6 +449,14 @@ public:
 
 	bool isGreatPersonBorn(CvWString& szName) const;
 	void addGreatPersonBornName(const CvWString& szName);
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* From CvUnit::init()                                                                          */
+/************************************************************************************************/
+	CvWString getNewGreatPersonBornName( UnitTypes iUnitType );
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	DllExport int getIndexAfterLastDeal();																								// Exposed to Python
 	DllExport int getNumDeals();																													// Exposed to Python
@@ -823,6 +831,15 @@ protected:
 	void createBarbarianCities();
 	void createBarbarianUnits();
 	void createAnimals();
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+	// LFGR_TODO: Remove iHeldTurns
+	void createBarbarianSpawn( CvPlot* pPlot, bool bAnimal );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	void verifyCivics();
 

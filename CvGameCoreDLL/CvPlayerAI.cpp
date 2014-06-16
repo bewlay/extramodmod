@@ -3866,6 +3866,16 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 	}
 	*/
 	// ALN End
+	
+/************************************************************************************************/
+/* WILDERNESS                             10/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
+/* Improved city placing AI                                                                     */
+/************************************************************************************************/
+	iValue = (int) ( iValue / std::max( 1.0f, pPlot->getWilderness() / 50.0f + 1.0f ) );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 
 	return std::max(1, iValue);
@@ -13421,7 +13431,6 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 	return std::max(0, iValue);
 }
 
-
 int CvPlayerAI::AI_totalUnitAIs(UnitAITypes eUnitAI) const
 {
 	return (AI_getNumTrainAIUnits(eUnitAI) + AI_getNumAIUnits(eUnitAI));
@@ -14716,8 +14725,10 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 
 	iValue += ((kCivic.getGreatPeopleRateModifier() * iGreatPeopleTotalDelta) / (((AI_isDoVictoryStrategy(AI_VICTORY_ALTAR2 || AI_VICTORY_CULTURE2)) ? 10 : 50) + iCities));
 //<<<<Better AI: End Modify
-	
+	/** ExtraModMod: Great Generals are available unconditionally.
 	if ( bWarPlan && GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+	*/
+	if (bWarPlan)
 	{
 		iValue += ((kCivic.getGreatGeneralRateModifier() * getNumMilitaryUnits()) / 50);
 		iValue += ((kCivic.getDomesticGreatGeneralRateModifier() * getNumMilitaryUnits()) / 100);
@@ -16861,6 +16872,15 @@ void CvPlayerAI::AI_changeMemoryCount(PlayerTypes eIndex1, MemoryTypes eIndex2, 
 // BUG - Update Attitude Icons - end
 	GET_PLAYER(getID()).AI_invalidateAttitudeCache(eIndex1);
 	FAssert(AI_getMemoryCount(eIndex1, eIndex2) >= 0);
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           08/21/13                                lfgr        */
+/* Really update attitude                                                                       */
+/************************************************************************************************/
+	GET_PLAYER(getID()).AI_invalidateAttitudeCache(eIndex1);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 }
 
 int CvPlayerAI::AI_calculateGoldenAgeValue() const

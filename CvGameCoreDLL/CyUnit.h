@@ -474,6 +474,16 @@ public:
 	bool isAvatarOfCivLeader() const;
 	void setAvatarOfCivLeader(bool bNewValue);
 //<<<<Unofficial Bug Fix: End Add
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/************************************************************************************************/
+	int getExplorationLevel() const;
+	bool canDoExploration( CyPlot* pPlot ) const;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	bool isPermanentSummon() const;
     void setPermanentSummon(bool newvalue);

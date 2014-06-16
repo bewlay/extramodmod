@@ -9,6 +9,10 @@
         <DefineName>MODS_SHOULD_OVERRIDE_GLOBAL_DEFINES_HERE</DefineName>
         <iDefineIntVal>0</iDefineIntVal>
     </Define>
+	<Define>
+        <DefineName>NUM_OR_TECH_PREREQS</DefineName>
+        <iDefineIntVal>5</iDefineIntVal>
+    </Define>
     <Define>
         <DefineName>START_YEAR</DefineName>
         <iDefineIntVal>0</iDefineIntVal>
@@ -39,7 +43,7 @@
     </Define>
     <Define>
         <DefineName>GREAT_PEOPLE_THRESHOLD_INCREASE_TEAM</DefineName>
-        <iDefineIntVal>100</iDefineIntVal>
+        <iDefineIntVal>50</iDefineIntVal>
     </Define>
     <Define>
         <DefineName>BASE_SPY_SABOTAGE_COST</DefineName>
@@ -67,15 +71,15 @@
     </Define>
     <Define>
         <DefineName>TECH_COST_EXTRA_TEAM_MEMBER_MODIFIER</DefineName>
-        <iDefineIntVal>0</iDefineIntVal>
+        <iDefineIntVal>50</iDefineIntVal>
     </Define>
     <Define>
         <DefineName>TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER</DefineName>
-        <iDefineIntVal>10</iDefineIntVal>
+        <iDefineIntVal>30</iDefineIntVal>
     </Define>
     <Define>
         <DefineName>MIN_REVOLUTION_TURNS</DefineName>
-        <iDefineIntVal>10</iDefineIntVal>
+        <iDefineIntVal>9</iDefineIntVal>
     </Define>
     <Define>
         <DefineName>MAX_EXPERIENCE_PER_COMBAT</DefineName>
@@ -167,7 +171,7 @@
     </Define>
     <Define>
         <DefineName>FEATURE_REQUIRE_RESIST_AMOUNT</DefineName>
-        <iDefineIntVal>20</iDefineIntVal>
+        <iDefineIntVal>5</iDefineIntVal>
     </Define>
     <Define>
         <DefineName>FEATURE_UPGRADE_CHANCE</DefineName>
@@ -320,8 +324,8 @@
         <DefineTextVal>UNIT_SLAVE</DefineTextVal>
     </Define>
     <Define>
-        <DefineName>GREAT_COMMANDER_PROMOTION</DefineName>
-        <DefineTextVal>PROMOTION_GREAT_COMMANDER</DefineTextVal>
+        <DefineName>GREAT_GENERAL_PROMOTION</DefineName>
+        <DefineTextVal>PROMOTION_GREAT_GENERAL</DefineTextVal>
     </Define>
     <Define>
         <DefineName>HIDDEN_NATIONALITY_PROMOTION</DefineName>
@@ -971,4 +975,141 @@
 		<DefineName>PUPPET_CULTURE_MULTIPLIER</DefineName> 
 		<iDefineIntVal>50</iDefineIntVal>
 	</Define>
+<!-- TERRAIN_FLAVOUR 09/2013 lfgr -->
+	<Define>
+		<DefineName>TERRAIN_FLAVOUR_RADIUS</DefineName>
+		<iDefineIntVal>3</iDefineIntVal>
+	</Define>
+<!-- TERRAIN_FLAVOUR end -->
+<!-- WILDERNESS 08/2013 lfgr / PlotWilderness, SpawnInfo, LairUnitCount, CreateLair, LairGuardian -->
+	<Define>
+		<DefineName>WILDERNESS_MIN_MAX_INHABITED_WILDERNESS</DefineName>
+		<iDefineIntVal>30</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>WILDERNESS_MAX_MAX_INHABITED_WILDERNESS</DefineName>
+		<iDefineIntVal>70</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- If the amount of uninhabited continents ("islands") is lower than this, use WILDERNESS_..._MAX_INHABITED_WILDERNESS_NO_ISLANDS -->
+		<DefineName>WILDERNESS_NO_ISLANDS_THRESHOLD</DefineName>
+		<fDefineFloatVal>0.01</fDefineFloatVal>
+	</Define>
+	<Define>
+		<DefineName>WILDERNESS_MIN_MAX_INHABITED_WILDERNESS_NO_ISLANDS</DefineName>
+		<iDefineIntVal>50</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_NO_ISLANDS</DefineName>
+		<iDefineIntVal>100</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- If the amount of uninhabited continents ("islands") is lower than this, use WILDERNESS_..._MAX_INHABITED_WILDERNESS_FEW_ISLANDS -->
+		<DefineName>WILDERNESS_FEW_ISLANDS_THRESHOLD</DefineName>
+		<fDefineFloatVal>0.05</fDefineFloatVal>
+	</Define>
+	<Define>
+		<DefineName>WILDERNESS_MIN_MAX_INHABITED_WILDERNESS_FEW_ISLANDS</DefineName>
+		<iDefineIntVal>40</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_FEW_ISLANDS</DefineName>
+		<iDefineIntVal>85</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- If the amount of uninhabited continents ("islands") is greater than this, use WILDERNESS_..._MAX_INHABITED_WILDERNESS_MANY_ISLANDS -->
+		<DefineName>WILDERNESS_MANY_ISLANDS_THRESHOLD</DefineName>
+		<fDefineFloatVal>0.3</fDefineFloatVal>
+	</Define>
+	<Define>
+		<DefineName>WILDERNESS_MIN_MAX_INHABITED_WILDERNESS_MANY_ISLANDS</DefineName>
+		<iDefineIntVal>20</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_MANY_ISLANDS</DefineName>
+		<iDefineIntVal>55</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- 0 for no maximum -->
+		<DefineName>WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT</DefineName>
+		<fDefineFloatVal>6.0</fDefineFloatVal>
+	</Define>
+	<!-- The constants below are used in the wilderness calculation the following way: 
+		max( nearestDist, 0.5 * ( nearestDist * WILDERNESS_NEAREST_DISTANCE_FACTOR + secondNearestDist * WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR ) )
+		Note that secondNearestDist > nearestDist, so if the total factor exceeds 2.0, nearestDist will always be used.
+		-->
+	<Define>
+		<!-- Factor at which the distance to the nearest starting plot is taken into
+		     account by wilderness calculation. Default: 1.0 -->
+		<DefineName>WILDERNESS_NEAREST_DISTANCE_FACTOR</DefineName>
+		<fDefineFloatVal>1.0</fDefineFloatVal>
+	</Define>
+	<Define>
+		<!-- Factor at which the distance to the second nearest starting plot (or the
+		     nearest if only one available) is taken into account by wilderness calculation.
+			 Default: 0.5 -->
+		<DefineName>WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR</DefineName>
+		<fDefineFloatVal>0.5</fDefineFloatVal>
+	</Define>
+	<Define>
+		<DefineName>DEBUG_PAINT_WILDERNESS</DefineName>
+		<iDefineIntVal>0</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>UNIT_MOVE_MIN_WILDERNESS_RANGE</DefineName>
+		<iDefineIntVal>5</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>UNIT_MOVE_MIN_WILDERNESS_RANGE_NO_ANIMAL_EXTRA</DefineName>
+		<iDefineIntVal>5</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>UNIT_MOVE_MIN_WILDERNESS_RANGE_RAGING_BARBARIANS_EXTRA</DefineName>
+		<iDefineIntVal>5</iDefineIntVal>
+	</Define>
+    <Define>
+        <DefineName>BARBARIAN_SPAWNING_SPEED</DefineName>
+        <fDefineFloatVal>0.20</fDefineFloatVal>
+    </Define>
+    <Define>
+        <DefineName>ANIMAL_SPAWNING_SPEED</DefineName>
+        <fDefineFloatVal>0.23</fDefineFloatVal>
+    </Define>
+    <Define>
+        <DefineName>LAIR_SPAWNING_SPEED</DefineName>
+        <fDefineFloatVal>0.2</fDefineFloatVal>
+    </Define>
+    <Define>
+        <DefineName>VISIBLE_TILE_SPAWNING_SPEED_MOD</DefineName>
+        <fDefineFloatVal>0.75</fDefineFloatVal>
+    </Define>
+	<Define>
+		<!-- Overriding default value (3). Barbarians get X% of tech each turn * playersResearched / totalAlivePlayers -->
+		<!-- Since in FfH there are several military tech paths, players will have different military technologies. With the default value, they will be much weaker than players. -->
+		<DefineName>BARBARIAN_FREE_TECH_PERCENT</DefineName>
+		<iDefineIntVal>7</iDefineIntVal>
+	</Define>
+    <Define>
+        <DefineName>LAKE_SPAWNING_ENABLED</DefineName>
+        <iDefineIntVal>0</iDefineIntVal>
+    </Define>
+    <Define>
+		<!-- The maximum radius in which a group of barbarians can block other barbarians to spawn. -->
+		<!-- -1 for no maximum. -->
+        <DefineName>MAX_BARB_BLOCK_RADIUS</DefineName>
+        <iDefineIntVal>6</iDefineIntVal>
+    </Define>
+    <Define>
+        <DefineName>BASE_BARBS_PER_LAIR</DefineName>
+        <iDefineIntVal>2</iDefineIntVal>
+    </Define>
+    <Define>
+        <DefineName>AV_LAIR_DISTANCE</DefineName>
+        <iDefineIntVal>5</iDefineIntVal>
+    </Define>
+    <Define>
+        <DefineName>LAIR_GUARDIAN_STARTING_PLOT_MIN_DISTANCE</DefineName>
+        <iDefineIntVal>5</iDefineIntVal>
+    </Define>
+<!-- WILDERNESS end -->
 </Civ4Defines>

@@ -391,7 +391,7 @@ def createCivilopedia():
 #								SevoScreenEnums.PEDIA_CORPORATIONS	: pediaMainScreen,
 								SevoScreenEnums.PEDIA_SPELLS	: pediaMainScreen,
 								SevoScreenEnums.PEDIA_CONCEPTS		: pediaMainScreen,
-								SevoScreenEnums.PEDIA_BTS_CONCEPTS	: pediaMainScreen,
+#								SevoScreenEnums.PEDIA_BTS_CONCEPTS	: pediaMainScreen,
 								SevoScreenEnums.PEDIA_HINTS		: pediaMainScreen,
 								SevoScreenEnums.PEDIA_SHORTCUTS		: pediaMainScreen,
 							})
@@ -444,7 +444,7 @@ def createCivilopedia():
 #							SevoScreenEnums.PEDIA_CORPORATIONS	: pediaMainScreen,
 							SevoScreenEnums.PEDIA_SPELLS		: pediaMainScreen,
 							SevoScreenEnums.PEDIA_CONCEPTS		: pediaMainScreen,
-							SevoScreenEnums.PEDIA_BTS_CONCEPTS	: pediaMainScreen,
+#							SevoScreenEnums.PEDIA_BTS_CONCEPTS	: pediaMainScreen,
 							SevoScreenEnums.PEDIA_HINTS			: pediaMainScreen,
 							SevoScreenEnums.PEDIA_SHORTCUTS		: pediaMainScreen,
 						}
@@ -578,9 +578,10 @@ def pediaJumpToReligion(argsList):
 
 def pediaShowHistorical(argsList):
 	if (bUsingSevopedia):
-		if (argsList[0] == CivilopediaPageTypes.CIVILOPEDIA_PAGE_CONCEPT_NEW):
-			pediaMainScreen.pediaJump(SevoScreenEnums.PEDIA_BTS_CONCEPTS, argsList[1], True, False)
-		else:
+#		if (argsList[0] == CivilopediaPageTypes.CIVILOPEDIA_PAGE_CONCEPT_NEW):
+#			pediaMainScreen.pediaJump(SevoScreenEnums.PEDIA_BTS_CONCEPTS, argsList[1], True, False)
+#		else:
+		if (argsList[0] != CivilopediaPageTypes.CIVILOPEDIA_PAGE_CONCEPT_NEW):
 			pediaMainScreen.pediaJump(SevoScreenEnums.PEDIA_CONCEPTS, argsList[1], True, False)
 	else:
 		iEntryId = pediaMainScreen.pediaHistorical.getIdFromEntryInfo(argsList[0], argsList[1])
@@ -819,8 +820,11 @@ def refreshMilitaryAdvisor (argsList):
 	elif (2 == argsList[0]):
 		militaryAdvisor.refreshSelectedLeader(argsList[1])
 	elif (3 == argsList[0]):
-		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS): ## Suppress display of Great General bar
-			militaryAdvisor.drawCombatExperience()
+		## ExtraModMod: Great Generals are available unconditionally.
+		#if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS): ## Suppress display of Great General bar
+			#militaryAdvisor.drawCombatExperience()
+		militaryAdvisor.drawCombatExperience()
+		## ExtraModMod end
 	elif (argsList[0] <= 0):
 		militaryAdvisor.refreshSelectedUnit(-argsList[0], argsList[1])
 

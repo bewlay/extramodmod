@@ -5544,12 +5544,30 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 				iValue += ((kBuilding.getWorkerSpeedModifier() * kOwner.AI_getNumAIUnits(UNITAI_WORKER)) / 10);
 
 				int iMilitaryProductionModifier = kBuilding.getMilitaryProductionModifier();
-				if (iHasMetCount > 0 && iMilitaryProductionModifier > 0)
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/01/14                                 Terkhen    **/
+/**  Take increases to the production of living units into account when deciding what to build. **/
+/*************************************************************************************************/
+				// The living production modifier is treated exactly like the iMilitaryProductionModifier.
+				// MNAI code uses iMilitaryProductionModifier for these calculations, but we will use
+				// iMilitaryProductionModifier + iLivingProductionModifier instead.
+				int iLivingProductionModifier = kBuilding.getLivingProductionModifier();
+				int iTotalProductionModifier = 0;
+				if (iMilitaryProductionModifier > 0)
+				{
+					iTotalProductionModifier += iMilitaryProductionModifier;
+				}
+				if (iLivingProductionModifier > 0)
+				{
+					iTotalProductionModifier += iLivingProductionModifier;
+				}
+
+				if (iHasMetCount > 0 && iTotalProductionModifier > 0)
 				{
 					// either not a wonder, or a wonder and we are a high production city
 					if (!bIsLimitedWonder || bIsHighProductionCity)
 					{
-						iValue += (iMilitaryProductionModifier / 4);
+						iValue += (iTotalProductionModifier / 4);
 
 						// if a wonder, then pick one of the best cities
 						if (bIsLimitedWonder)
@@ -5557,13 +5575,13 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 							// if one of the top 3 production cities, give a big boost
 							if (aiYieldRank[YIELD_PRODUCTION] <= (2 + iLimitedWonderLimit))
 							{
-								iValue += (2 * iMilitaryProductionModifier) / (2 + aiYieldRank[YIELD_PRODUCTION]);
+								iValue += (2 * iTotalProductionModifier) / (2 + aiYieldRank[YIELD_PRODUCTION]);
 							}
 						}
 						// otherwise, any of the top half of cities will do
 						else if (bIsHighProductionCity)
 						{
-							iValue += iMilitaryProductionModifier / 4;
+							iValue += iTotalProductionModifier / 4;
 
 							// Tholal AI - account for new FFH2 building tag
 							if (kBuilding.isUnhappyProduction())
@@ -5573,15 +5591,18 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 							// End Tholal AI
 
 						}
-						iValue += ((iMilitaryProductionModifier * (getFreeExperience() + getSpecialistFreeExperience())) / 10);
+						iValue += ((iTotalProductionModifier * (getFreeExperience() + getSpecialistFreeExperience())) / 10);
 					}
 					// otherwise, this is a limited wonder (aka Heroic Epic), we _really_ do not want to build this here
 					// subtract from the value (if this wonder has a lot of other stuff, we still might build it)
 					else
 					{
-						iValue -= (iMilitaryProductionModifier * aiYieldRank[YIELD_PRODUCTION]) / 5;
+						iValue -= (iTotalProductionModifier * aiYieldRank[YIELD_PRODUCTION]) / 5;
 					}
 				}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 
 				iValue += (kBuilding.getSpaceProductionModifier() / 5);
 				iValue += ((kBuilding.getGlobalSpaceProductionModifier() * iNumCities) / 20);
@@ -6861,8 +6882,20 @@ int CvCityAI::AI_neededDefenders()
 		iDefenders += ((getPopulation() + 2) / 7);
 		return std::max(1, iDefenders);
 	}
-
+	
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
+/* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
+/************************************************************************************************/
+/* old
 	if (GET_TEAM(getTeam()).isBarbarianAlly() && !bAtWar)
+*/
+	// LFGR_TODO: Multibarb
+	if (GET_TEAM(getTeam()).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) && !bAtWar)
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	{
 		iDefenders = 1;
 	}
@@ -11666,6 +11699,15 @@ int CvCityAI::AI_buildUnitProb()
 	else
 	{
 		iProb += std::min(15,getMilitaryProductionModifier()/4);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/01/14                                 Terkhen    **/
+/**  Take increases to the production of living units into account when deciding what to build. **/
+/*************************************************************************************************/
+		// More units from cities with living unit production bonuses.
+		iProb += std::min(0, getLivingProductionModifier() / 4);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	}
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
@@ -13326,6 +13368,14 @@ int CvCityAI::AI_yieldMultiplier(YieldTypes eYield)
 	if (eYield == YIELD_PRODUCTION)
 	{
 		iMultiplier += (getMilitaryProductionModifier() / 2);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/01/14                                 Terkhen    **/
+/**  Take increases to the production of living units into account when deciding what to build. **/
+/*************************************************************************************************/
+		iMultiplier += (getLivingProductionModifier() / 4);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	}
 
 	if (eYield == YIELD_COMMERCE)

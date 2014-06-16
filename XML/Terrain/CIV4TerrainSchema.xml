@@ -466,16 +466,31 @@
 	<ElementType name="bRequiresPeak" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bUnique" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bExploreTarget" content="textOnly" dt:type="boolean"/>
+<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+	<ElementType name="bExplorable" content="textOnly" dt:type="boolean"/>
+<!-- WILDERNESS end -->
 	<ElementType name="iAppearanceProbability" content="textOnly" dt:type="int"/>
 	<ElementType name="iHealRateChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iRange" content="textOnly" dt:type="int"/>
 	<ElementType name="iRangeDefenseModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iVisibilityChange" content="textOnly" dt:type="int"/>
+<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
+	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
+<!-- WILDERNESS end -->
 	<ElementType name="BonusConvert" content="textOnly"/>
 	<ElementType name="PrereqCivilization" content="textOnly"/>
 	<ElementType name="PythonAtRange" content="textOnly"/>
-	<ElementType name="SpawnUnitType" content="textOnly"/>
-	<ElementType name="FreeSpawnPromotion" content="textOnly"/>
+<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
+	<!-- Removed ElementTypes SpawnUnitType and FreeSpawnPromotion -->
+	<ElementType name="SpawnType" content="textOnly"/>
+	<ElementType name="SpawnTypes" content="eltOnly">
+		<element type="SpawnType" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="GuardianSpawnTypes" content="eltOnly">
+		<element type="SpawnType" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+<!-- WILDERNESS end -->
 	<ElementType name="ImprovementInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -533,18 +548,28 @@
 		<element type="bRequiresPeak"/>
 		<element type="bUnique"/>
 		<element type="bExploreTarget"/>
+	<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+		<element type="bExplorable" minOccurs="0"/>
+	<!-- WILDERNESS end -->
 		<element type="iAppearanceProbability"/>
 		<element type="iHealRateChange"/>
 		<element type="iRange"/>
 		<element type="iRangeDefenseModifier"/>
 		<element type="iVisibilityChange"/>
+	<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+		<element type="iMinWilderness" minOccurs="0"/>
+		<element type="iMaxWilderness" minOccurs="0"/>
+	<!-- WILDERNESS end -->
 		<element type="BonusConvert"/>
 		<element type="FeatureUpgrade"/>
 		<element type="PrereqCivilization"/>
 		<element type="PythonAtRange"/>
 		<element type="PythonOnMove"/>
-		<element type="SpawnUnitType"/>
-		<element type="FreeSpawnPromotion" minOccurs="0"/>
+	<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
+	<!-- Removed elements SpawnUnitType and FreeSpawnPromotion -->
+		<element type="SpawnTypes" minOccurs="0"/>
+		<element type="GuardianSpawnTypes" minOccurs="0"/>
+	<!-- WILDERNESS end -->
 	</ElementType>
 	<ElementType name="ImprovementInfos" content="eltOnly">
 		<element type="ImprovementInfo" maxOccurs="*"/>

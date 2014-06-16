@@ -486,6 +486,14 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_iOverflowProduction = 0;
 	m_iFeatureProduction = 0;
 	m_iMilitaryProductionModifier = 0;
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	m_iLivingProductionModifier = 0;
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	m_iSpaceProductionModifier = 0;
 	m_iExtraTradeRoutes = 0;
 	m_iTradeRouteModifier = 0;
@@ -1216,6 +1224,9 @@ void CvCity::doTurn()
 	setDrafted(false);
 	setAirliftTargeted(false);
 	setCurrAirlift(0);
+//Multiple Production: Added by Denev 07/10/2009
+	setBuiltFoodProducedUnit(false);
+//Multiple Production: End Add
 	AI_doTurn();
 
 	bool bAllowNoProduction = !doCheckProduction();
@@ -2921,6 +2932,26 @@ bool CvCity::isProductionProcess() const
 }
 
 
+//Multiple Production: Added by Denev 07/01/2009
+bool CvCity::isProductionWonder() const
+{
+	CLLNode<OrderData>* pOrderNode = headOrderQueueNode();
+
+	if (pOrderNode != NULL)
+	{
+		if (pOrderNode->m_data.eOrderType == ORDER_CONSTRUCT)
+		{
+			BuildingTypes eBuilding = (BuildingTypes)(pOrderNode->m_data.iData1);
+			BuildingClassTypes eBuildingClass = (BuildingClassTypes)(GC.getBuildingInfo(eBuilding).getBuildingClassType());
+			return (isWorldWonderClass(eBuildingClass) || isTeamWonderClass(eBuildingClass) || isNationalWonderClass(eBuildingClass));
+		}
+	}
+
+	return false;
+}
+//Multiple Production: End Add
+
+
 bool CvCity::canContinueProduction(OrderData order)
 {
 	switch (order.eOrderType)
@@ -3699,6 +3730,19 @@ int CvCity::getProductionModifier(UnitTypes eUnit) const
 		iMultiplier += getMilitaryProductionModifier();
 	}
 
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	if (kUnitInfo.isAlive(GET_PLAYER(getOwnerINLINE()).getCivilizationType()))
+	{
+		iMultiplier += getLivingProductionModifier();
+	}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
+
+
 	for (iI = 0; iI < GC.getNumBonusInfos(); iI++)
 	{
 		if (hasBonus((BonusTypes)iI))
@@ -3771,7 +3815,18 @@ int CvCity::getProductionModifier(ProjectTypes eProject) const
 }
 
 
-int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow) const
+//Multiple Production: Added by Denev 07/01/2009
+int CvCity::getOverflowProductionDifference() const
+{
+	return getProductionDifference(getProductionNeeded(), getProduction(), getProductionModifier(), false, true, false);
+}
+//Multiple Production: End Add
+
+
+//Multiple Production: Modified by Denev 07/03/2009
+//int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow) const
+int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow, bool bYield) const
+//Multiple Production: End Modify
 {
 	if (isDisorder())
 	{
@@ -3788,14 +3843,20 @@ int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int 
     {
         return 0;
     }
-	// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+    // Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
     // int iUnhappyProd = 0;
     // if (isUnhappyProduction())
     // {
     //    iUnhappyProd += unhappyLevel(0);
-    //}
-	// Bugfix end
-	return (((getBaseYieldRate(YIELD_PRODUCTION) + iOverflow) * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier)) / 100 + iFoodProduction);
+
+//Multiple Production: Added by Denev 07/03/2009
+	int iYield = ((bYield) ? (getBaseYieldRate(YIELD_PRODUCTION)) : 0);
+//Multiple Production: End Add
+
+//Multiple Production: Modified by Denev 07/03/2009
+//	return (((getBaseYieldRate(YIELD_PRODUCTION) + iOverflow + iUnhappyProd) * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier)) / 100 + iFoodProduction);
+	return (((iYield + iOverflow) * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier)) / 100 + iFoodProduction);
+//Multiple Production: End Modify
 //FfH: End Modify
 
 }
@@ -3831,6 +3892,16 @@ int CvCity::getExtraProductionDifference(int iExtra, int iModifier) const
 {
 	return ((iExtra * getBaseYieldRateModifier(YIELD_PRODUCTION, iModifier)) / 100);
 }
+
+
+//Multiple Production: Added by Denev 07/01/2009
+void CvCity::clearLostProduction()
+{
+	m_iLostProductionBase = 0;
+	m_iLostProductionModified = 0;
+	m_iGoldFromLostProduction = 0;
+}
+//Multiple Production: End Add
 
 
 bool CvCity::canHurry(HurryTypes eHurry, bool bTestVisible) const
@@ -4583,6 +4654,14 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 			changeStateReligionHappiness(((ReligionTypes)(kBuildingInfo.getReligionType())), (kBuildingInfo.getStateReligionHappiness() * iChange));
 		}
 		changeMilitaryProductionModifier(kBuildingInfo.getMilitaryProductionModifier() * iChange);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+		changeLivingProductionModifier(kBuildingInfo.getLivingProductionModifier() * iChange);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 		changeSpaceProductionModifier(kBuildingInfo.getSpaceProductionModifier() * iChange);
 		changeExtraTradeRoutes(kBuildingInfo.getTradeRoutes() * iChange);
 		changeTradeRouteModifier(kBuildingInfo.getTradeRouteModifier() * iChange);
@@ -8483,6 +8562,24 @@ void CvCity::changeMilitaryProductionModifier(int iChange)
 }
 
 
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+int CvCity::getLivingProductionModifier() const
+{
+	return m_iLivingProductionModifier;
+}
+
+
+void CvCity::changeLivingProductionModifier(int iChange)
+{
+	m_iLivingProductionModifier = (m_iLivingProductionModifier + iChange);
+}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
+
 int CvCity::getSpaceProductionModifier() const
 {
 	return m_iSpaceProductionModifier;
@@ -9016,6 +9113,19 @@ void CvCity::setPlundered(bool bNewValue)
 	}
 }
 
+
+//Multiple Production: Added by Denev 07/10/2009
+bool CvCity::isBuiltFoodProducedUnit() const
+{
+	return m_bBuiltFoodProducedUnit;
+}
+
+
+void CvCity::setBuiltFoodProducedUnit(bool bNewValue)
+{
+	m_bBuiltFoodProducedUnit = bNewValue;
+}
+//Multiple Production: End Add
 
 bool CvCity::isWeLoveTheKingDay() const
 {
@@ -9599,6 +9709,14 @@ int CvCity::getAdditionalYieldRateModifierByBuilding(YieldTypes eIndex, Building
 		if (eIndex == YIELD_PRODUCTION)
 		{
 			iExtraModifier += kBuilding.getMilitaryProductionModifier();
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+			iExtraModifier += kBuilding.getLivingProductionModifier();
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 			iExtraModifier += kBuilding.getSpaceProductionModifier();
 			iExtraModifier += kBuilding.getGlobalSpaceProductionModifier();
 
@@ -13390,7 +13508,6 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 	bool bMessage;
 	int iCount;
 	int iProductionNeeded;
-	int iOverflow;
 
 	bWasFoodProduction = isFoodProduction();
 
@@ -13447,12 +13564,20 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 			iProductionNeeded = getProductionNeeded(eTrainUnit);
 
 			// max overflow is the value of the item produced (to eliminate prebuild exploits)
-			iOverflow = getUnitProduction(eTrainUnit) - iProductionNeeded;
+//Multiple Production: Modified by Denev 07/02/2009
+//			iOverflow = getUnitProduction(eTrainUnit) - iProductionNeeded;
+			int iUnlimitedOverflow = getUnitProduction(eTrainUnit) - iProductionNeeded;
+//Multiple Production: End Modify
 			int iMaxOverflow = std::max(iProductionNeeded, getCurrentProductionDifference(false, false));
-// BUG - Overflow Gold Fix - start
-			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
-// BUG - Overflow Gold Fix - end
-			iOverflow = std::min(iMaxOverflow, iOverflow);
+//Multiple Production: Modified by Denev 07/02/2009
+//			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
+//			iOverflow = std::min(iMaxOverflow, iOverflow);
+			int iLostProduction = std::max(0, iUnlimitedOverflow - iMaxOverflow);
+			m_iLostProductionModified = iLostProduction;
+			m_iLostProductionBase = (100 * iLostProduction) / std::max(1, getBaseYieldRateModifier(YIELD_PRODUCTION, getProductionModifier(eTrainUnit)));
+			int iOverflow = std::min(iMaxOverflow, iUnlimitedOverflow);
+//Multiple Production: End Modify
+
 			if (iOverflow > 0)
 			{
 				changeOverflowProduction(iOverflow, getProductionModifier(eTrainUnit));
@@ -13474,10 +13599,15 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 			int iProductionGold = ((iLostProduction * GC.getDefineINT("MAXED_UNIT_GOLD_PERCENT")) / 100);
 			// UNOFFICIAL_PATCH End
-			if (iProductionGold > 0)
-			{
-				GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
-			}
+//Multiple Production: Added by Denev 07/02/2009
+			m_iGoldFromLostProduction = iProductionGold;
+//Multiple Production: End Add
+//Multiple Production: Deleted by Denev 07/01/2009
+//			if (iProductionGold > 0)
+//			{
+//				GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
+//			}
+//Multiple Production: End Delete
 
 			pUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eTrainUnit, getX_INLINE(), getY_INLINE(), eTrainAIUnit);
 			FAssertMsg(pUnit != NULL, "pUnit is expected to be assigned a valid unit object");
@@ -13558,11 +13688,19 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 			iProductionNeeded = getProductionNeeded(eConstructBuilding);
 			// max overflow is the value of the item produced (to eliminate prebuild exploits)
-			int iOverflow = getBuildingProduction(eConstructBuilding) - iProductionNeeded;
 			int iMaxOverflow = std::max(iProductionNeeded, getCurrentProductionDifference(false, false));
-// BUG - Overflow Gold Fix - start
-			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
-// BUG - Overflow Gold Fix - end
+//Multiple Production: Modified by Denev 07/02/2009
+//			int iOverflow = getBuildingProduction(eConstructBuilding) - iProductionNeeded;
+			int iUnlimitedOverflow = getBuildingProduction(eConstructBuilding) - iProductionNeeded;
+//Multiple Production: End Modify
+//Multiple Production: Modified by Denev 07/02/2009
+//			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
+//			iOverflow = std::min(iMaxOverflow, iOverflow);
+			int iLostProduction = std::max(0, iUnlimitedOverflow - iMaxOverflow);
+			m_iLostProductionModified = iLostProduction;
+			m_iLostProductionBase = (100 * iLostProduction) / std::max(1, getBaseYieldRateModifier(YIELD_PRODUCTION, getProductionModifier(eConstructBuilding)));
+			int iOverflow = std::min(iMaxOverflow, iUnlimitedOverflow);
+//Multiple Production: End Modify
 			iOverflow = std::min(iMaxOverflow, iOverflow);
 			if (iOverflow > 0)
 			{
@@ -13585,10 +13723,15 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 			int iProductionGold = ((iLostProduction * GC.getDefineINT("MAXED_BUILDING_GOLD_PERCENT")) / 100);
 // BUG - Overflow Gold Fix - end
-			if (iProductionGold > 0)
-			{
-				GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
-			}
+//Multiple Production: Added by Denev 07/02/2009
+			m_iGoldFromLostProduction = iProductionGold;
+//Multiple Production: End Add
+//Multiple Production: Deleted by Denev 07/01/2009
+//			if (iProductionGold > 0)
+//			{
+//				GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
+//			}
+//Multiple Production: End Delete
 
 			CvEventReporter::getInstance().buildingBuilt(this, eConstructBuilding);
 
@@ -13677,12 +13820,19 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 			iProductionNeeded = getProductionNeeded(eCreateProject);
 			// max overflow is the value of the item produced (to eliminate prebuild exploits)
-			iOverflow = getProjectProduction(eCreateProject) - iProductionNeeded;
+//Multiple Production: Modified by Denev 07/02/2009
+//			iOverflow = getProjectProduction(eCreateProject) - iProductionNeeded;
+			int iUnlimitedOverflow = getProjectProduction(eCreateProject) - iProductionNeeded;
+//Multiple Production: End Modify
 			int iMaxOverflow = std::max(iProductionNeeded, getCurrentProductionDifference(false, false));
-// BUG - Overflow Gold Fix - start
-			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
-// BUG - Overflow Gold Fix - end
-			iOverflow = std::min(iMaxOverflow, iOverflow);
+//Multiple Production: Modified by Denev 07/02/2009
+//			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
+//			iOverflow = std::min(iMaxOverflow, iOverflow);
+			int iLostProduction = std::max(0, iUnlimitedOverflow - iMaxOverflow);
+			m_iLostProductionModified = iLostProduction;
+			m_iLostProductionBase = (100 * iLostProduction) / std::max(1, getBaseYieldRateModifier(YIELD_PRODUCTION, getProductionModifier(eCreateProject)));
+			int iOverflow = std::min(iMaxOverflow, iUnlimitedOverflow);
+//Multiple Production: End Modify
 			if (iOverflow > 0)
 			{
 				changeOverflowProduction(iOverflow, getProductionModifier(eCreateProject));
@@ -13695,10 +13845,15 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 			int iProductionGold = ((iLostProduction * GC.getDefineINT("MAXED_PROJECT_GOLD_PERCENT")) / 100);
 // BUG - Overflow Gold Fix - end
-			if (iProductionGold > 0)
-			{
-				GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
-			}
+//Multiple Production: Added by Denev 07/02/2009
+			m_iGoldFromLostProduction = iProductionGold;
+//Multiple Production: End Add
+//Multiple Production: Deleted by Denev 07/01/2009
+//			if (iProductionGold > 0)
+//			{
+//				GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
+//			}
+//Multiple Production: End Delete
 
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
@@ -14305,11 +14460,62 @@ void CvCity::doProduction(bool bAllowNoProduction)
 		changeProduction(getCurrentProductionDifference(false, true));
 		setOverflowProduction(0);
 		setFeatureProduction(0);
+//Multiple Production: Added by Denev 07/10/2009
+		setBuiltFoodProducedUnit(isFoodProduction());
+		clearLostProduction();
+//Multiple Production: End Add
 
-		if (getProduction() >= getProductionNeeded())
+//Multiple Production: Modified by Denev 07/02/2009
+//Multiple Production: Modified by Terkhen (Multiple Production added unconditionally) 12/01/2014
+//		if (getProduction() >= getProductionNeeded())
+//		{
+//			popOrder(0, true, true);
+//		}
+
+		int iOverflowProductionModified = 0;
+		while (isProduction() && productionLeft() <= iOverflowProductionModified)
 		{
+			changeProduction(iOverflowProductionModified);
+			setOverflowProduction(0);
+
 			popOrder(0, true, true);
+
+			//to eliminate pre-build exploits for all Wonders and all Projects
+			if (isProductionWonder() || isProductionProject())
+			{
+				break;
+			}
+
+			//to eliminate pre-build exploits for Settlers and Workers
+			if (isFoodProduction() && !isBuiltFoodProducedUnit())
+			{
+				break;
+			}
+
+			if (isProductionProcess())
+			{
+				break;
+			}
+
+			//fix production which floods from overflow capacity to next queue item if it exists
+			if (isProduction() && m_iLostProductionBase > 0)
+			{
+				changeProduction(getExtraProductionDifference(m_iLostProductionBase));
+				clearLostProduction();
+			}
+
+			iOverflowProductionModified = getOverflowProductionDifference();
 		}
+
+		if (m_iGoldFromLostProduction > 0)
+		{
+			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_LOST_PROD_CONVERTED", getNameKey(), m_iLostProductionModified, m_iGoldFromLostProduction);
+			gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_WONDERGOLD", MESSAGE_TYPE_MINOR_EVENT, GC.getCommerceInfo(COMMERCE_GOLD).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
+
+			GET_PLAYER(getOwnerINLINE()).changeGold(m_iGoldFromLostProduction);
+			clearLostProduction();
+		}
+//Multiple Production: End Modify
 	}
 	else
 	{
@@ -14693,6 +14899,14 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iOverflowProduction);
 	pStream->Read(&m_iFeatureProduction);
 	pStream->Read(&m_iMilitaryProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	pStream->Read(&m_iLivingProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	pStream->Read(&m_iSpaceProductionModifier);
 	pStream->Read(&m_iExtraTradeRoutes);
 	pStream->Read(&m_iTradeRouteModifier);
@@ -14969,6 +15183,14 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(m_iOverflowProduction);
 	pStream->Write(m_iFeatureProduction);
 	pStream->Write(m_iMilitaryProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	pStream->Write(m_iLivingProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	pStream->Write(m_iSpaceProductionModifier);
 	pStream->Write(m_iExtraTradeRoutes);
 	pStream->Write(m_iTradeRouteModifier);
@@ -15949,6 +16171,30 @@ void CvCity::applyEvent(EventTypes eEvent, const EventTriggeredData& kTriggeredD
                     pUnit->setHasPromotion((PromotionTypes)kEvent.getUnitPromotion(), true);
                 }
 //FfH: End Modify
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+				for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+					if( kEvent.isUnitPromotion( i ) )
+					{
+						pUnit->setHasPromotion((PromotionTypes)i, true);
+					}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
+
+
+/************************************************************************************************/
+/* EVENT_FIXES                              01/21/13                                lfgr        */
+/************************************************************************************************/
+				if (0 != kEvent.getUnitExperience())
+				{
+					pUnit->setDamage(0);
+					pUnit->changeExperience(kEvent.getUnitExperience());
+				}
+/************************************************************************************************/
+/* EVENT_FIXES                             END                                                  */
+/************************************************************************************************/
 
 			}
 		}

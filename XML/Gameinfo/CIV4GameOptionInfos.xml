@@ -591,7 +591,7 @@
 			<Type>GAMEOPTION_PUPPET_STATES</Type>
 			<Description>TXT_KEY_GAME_OPTION_PUPPET_STATES</Description>
 			<Help>TXT_KEY_GAME_OPTION_PUPPET_STATES_HELP</Help>
-			<bDefault>0</bDefault>
+			<bDefault>1</bDefault>
 			<bVisible>1</bVisible>
 		</GameOptionInfo>
 		<GameOptionInfo>
@@ -605,6 +605,14 @@
 			<Type>GAMEOPTION_ADVANCED_TACTICS</Type>
 			<Description>TXT_KEY_GAME_OPTION_ADVANCED_TACTICS</Description>
 			<Help>TXT_KEY_GAME_OPTION_ADVANCED_TACTICS_HELP</Help>
+			<bDefault>1</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
+		<GameOptionInfo>
+			<!-- TERRAIN_FLAVOUR 04/2013 lfgr -->
+			<Type>GAMEOPTION_FLAVOUR_START</Type>
+			<Description>TXT_KEY_GAME_OPTION_FLAVOUR_START</Description>
+			<Help>TXT_KEY_GAME_OPTION_FLAVOUR_START_HELP</Help>
 			<bDefault>0</bDefault>
 			<bVisible>1</bVisible>
 		</GameOptionInfo>

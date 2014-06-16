@@ -1,8 +1,9 @@
 #CvModName.py
 
-modName = "FFH - More Naval AI"
-displayName = "FFH - More Naval AI"
-modVersion = "2.53"
+from CvPythonExtensions import *
+
+modName = "Fall from Heaven 2 - ExtraModMod"
+displayName = "Fall from Heaven 2 - ExtraModMod"
 
 civName = "BtS"
 civVersion = "3.19"
@@ -14,13 +15,16 @@ def getDisplayName():
 	return displayName
 
 def getVersion():
-	return modVersion
+	sVersion = unicode(CyTranslator().getText("TXT_KEY_VERSION", ()))
+	versionStartNumber = 1 + sVersion.find( ' ' )
+	versionEndNumber = sVersion.find( '</' )
+	return sVersion[versionStartNumber:versionEndNumber]
 
 def getNameAndVersion():
-	return modName + " " + modVersion
+	return modName + " " + getVersion()
 
 def getDisplayNameAndVersion():
-	return displayName + " " + modVersion
+	return displayName + " " + getVersion()
 
 
 def getCivName():

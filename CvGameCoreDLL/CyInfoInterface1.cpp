@@ -176,6 +176,15 @@ void CyInfoPythonInterface1()
 		.def("getDefensiveStrikeDamage", &CvPromotionInfo::getDefensiveStrikeDamage, "int ()")
 		.def("getExpireChance", &CvPromotionInfo::getExpireChance, "int ()") //MNAI
 //FfH: End Add
+	
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* PromotionExplResultBonus                                                                     */
+/************************************************************************************************/
+		.def("getExplorationResultBonus", &CvPromotionInfo::getExplorationResultBonus, "int ()")
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 		// Arrays
 

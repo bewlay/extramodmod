@@ -2887,3 +2887,39 @@ int CyPlayer::getHighestUnitTier(bool bIncludeHeroes, bool bIncludeLimitedUnits)
     return m_pPlayer ? m_pPlayer->getHighestUnitTier(bIncludeHeroes, bIncludeLimitedUnits) : -1;
 }
 // End MNAI
+
+/*************************************************************************************************/
+/**	CivCounter			               		10/27/09    						Valkrionn		**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+int CyPlayer::getCivCounter() const
+{
+	return m_pPlayer ? m_pPlayer->getCivCounter() : 0;
+}
+void CyPlayer::changeCivCounter(int iChange)
+{
+	if (m_pPlayer)
+	   m_pPlayer->changeCivCounter(iChange);
+}
+void CyPlayer::setCivCounter(int iNewValue)
+{
+	if (m_pPlayer)
+		m_pPlayer->setCivCounter(iNewValue);
+}
+int CyPlayer::getCivCounterMod() const
+{
+	return m_pPlayer ? m_pPlayer->getCivCounterMod() : 0;
+}
+void CyPlayer::changeCivCounterMod(int iChange)
+{
+	if (m_pPlayer)
+	   m_pPlayer->changeCivCounterMod(iChange);
+}
+void CyPlayer::setCivCounterMod(int iNewValue)
+{
+	if (m_pPlayer)
+		m_pPlayer->setCivCounterMod(iNewValue);
+}
+/*************************************************************************************************/
+/**	CivCounter								END													**/
+/*************************************************************************************************/

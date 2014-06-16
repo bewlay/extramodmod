@@ -134,6 +134,24 @@ class CvUnitArtStyleTypeInfo;
 class CvVoteSourceInfo;
 class CvMainMenuInfo;
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+class CvTerrainFlavourInfo;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+class CvSpawnInfo;
+class CvSpawnPrereqInfo;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 
 class CvGlobals
 {
@@ -304,6 +322,21 @@ public:
 	DllExport int getNumUnitFormationInfos();
 	std::vector<CvUnitFormationInfo*>& getUnitFormationInfo();
 	DllExport CvUnitFormationInfo& getUnitFormationInfo(int i);
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+	int getNumSpawnInfos();
+	std::vector<CvSpawnInfo*>& getSpawnInfo();
+	CvSpawnInfo& getSpawnInfo(SpawnTypes eSpawnNum);
+
+	int getNumSpawnPrereqInfos();
+	std::vector<CvSpawnPrereqInfo*>& getSpawnPrereqInfo();
+	CvSpawnPrereqInfo& getSpawnPrereqInfo(SpawnPrereqTypes eSpawnPrereqNum);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	int getNumGameTextXML();
 	std::vector<CvGameText*>& getGameTextXML();
@@ -867,6 +900,29 @@ public:
 
 	DllExport bool readEventTriggerInfoArray(FDataStreamBase* pStream);
 	DllExport void writeEventTriggerInfoArray(FDataStreamBase* pStream);
+	
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        02/17/13                                lfgr          */
+/************************************************************************************************/
+	int getNumTerrainFlavourInfos();
+	std::vector<CvTerrainFlavourInfo*>& getTerrainFlavourInfo();
+	CvTerrainFlavourInfo& getTerrainFlavourInfo( TerrainFlavourTypes eTerrainFlavourNum );
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+	bool readSpawnInfoArray(FDataStreamBase* pStream);
+	void writeSpawnInfoArray(FDataStreamBase* pStream);
+	
+	bool readSpawnPrereqInfoArray(FDataStreamBase* pStream);
+	void writeSpawnPrereqInfoArray(FDataStreamBase* pStream);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	//
 	// additional accessors for initting globals
@@ -1120,6 +1176,24 @@ protected:
 	std::vector<CvEventInfo*> m_paEventInfo;
 	std::vector<CvEspionageMissionInfo*> m_paEspionageMissionInfo;
     std::vector<CvUnitArtStyleTypeInfo*> m_paUnitArtStyleTypeInfo;
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	std::vector<CvTerrainFlavourInfo*> m_paTerrainFlavourInfo;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+    std::vector<CvSpawnInfo*> m_paSpawnInfo;
+    std::vector<CvSpawnPrereqInfo*> m_paSpawnPrereqInfo;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// Game Text
 	std::vector<CvGameText*> m_paGameTextXML;

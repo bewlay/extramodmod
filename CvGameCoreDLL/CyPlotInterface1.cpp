@@ -290,5 +290,26 @@ void CyPlotPythonInterface1(python::class_<CyPlot>& x)
 		.def("getChokeValue", &CyPlot::getChokeValue, "int ()")
 		.def("calculateChokeValue", &CyPlot::calculateChokeValue, "void ()")
 		// Super Forts end
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+		.def("calcTerrainFlavourWeight", &CyPlot::calcTerrainFlavourWeight, "float (TerrainFlavourTypes eTerrainFlavour, int iMaxPlotDistance)")
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, PlotWilderness, SpawnInfo                                             */
+/************************************************************************************************/
+		.def("isLair", &CyPlot::isLair, "bool ( bool bIgnoreAnimal, bool bAnimal )")
+		.def("getWilderness", &CyPlot::getWilderness, "int ()")
+		.def("getLairDanger", &CyPlot::getLairDanger, "int ()")
+		
+		.def("getSpawnValue", &CyPlot::getSpawnValue, "bool ( SpawnTypes eSpawnType, bool bDungeon )")
+		.def("createSpawn", &CyPlot::createSpawn, "bool ( bool bIgnoreAnimal, UnitAITypes eUnitAI )")
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	;
 }

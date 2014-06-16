@@ -255,7 +255,7 @@ class CvGameUtils:
 			if pCity.getPopulation() <= 5:
 				return True
 
-		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
+		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_MEMBERSHIP')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
 			if eUnit == gc.getInfoTypeForString('UNIT_WORKER'):
 				return True
 			if eUnit == gc.getInfoTypeForString('UNIT_SETTLER'):
@@ -266,6 +266,13 @@ class CvGameUtils:
 		if eUnit == gc.getInfoTypeForString('UNIT_ACHERON'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_ACHERON):
 				return True
+		# WILDERNESS 09/2013 lfgr / WildernessMisc - cannot train acheron in captured cities and low wilderness.
+			iMinWilderness = 50
+			if( pCity.plot().getWilderness() < iMinWilderness ) :
+				return True
+			if( pCity.getOriginalOwner() != pCity.getOwner() ) :
+				return True
+		# WILDERNESS end
 
 		if eUnit == gc.getInfoTypeForString('UNIT_DUIN'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_DUIN):
@@ -311,7 +318,7 @@ class CvGameUtils:
 			if eBuilding == gc.getInfoTypeForString('BUILDING_TEMPLE_OF_THE_ORDER'):
 				return True
 
-		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
+		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_MEMBERSHIP')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
 			if eBuilding == gc.getInfoTypeForString('BUILDING_ELDER_COUNCIL'):
 				return True
 			if eBuilding == gc.getInfoTypeForString('BUILDING_MARKET'):
@@ -520,13 +527,29 @@ class CvGameUtils:
 			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
 				if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_DEMONS_ALTAR'), True, False, False):
 						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_DEMONS_ALTAR'),-1, False, False, False, False)
-						return 1
-
 			if pCity.canTrain(gc.getInfoTypeForString('UNIT_HAWK'), True, False):
 				if pPlot.countNumAirUnits(pPlayer.getTeam()) == 0:
 					pCity.pushOrder(OrderTypes.ORDER_TRAIN, gc.getInfoTypeForString('UNIT_HAWK'), -1, False, False, False, False)
-					return 1
-
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+			## Grigori should build Adventurer Counter buildings
+			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI'):
+				if (pCity.getCultureLevel() > 1) and (pCity.getPopulation() > 4):
+					## The most important one is the Adventurer's Guild.
+					if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_ADVENTURERS_GUILD'), True, False, False):
+						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_ADVENTURERS_GUILD'),-1, False, False, False, False)
+						return 1
+					## If the leader is Organized, it should also build Command Posts.
+					elif pCity.canConstruct(gc.getInfoTypeForString('BUILDING_COMMAND_POST'), True, False, False):
+						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_COMMAND_POST'),-1, False, False, False, False)
+						return 1
+						## If the city has enough specialists, it should have a Citizens' Forum.
+						iNumSpecialists = 0
+						for eSpec in range(gc.getNumSpecialistInfos()):
+							iNumSpecialists += pCity.getSpecialistCount(eSpec) + pCity.getFreeSpecialistCount(eSpec)
+						if iNumSpecialists > 2:
+							pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_FORUM'),-1, False, False, False, False)
+							return 1
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
 		return False
 
 	def AI_unitUpdate(self,argsList):
@@ -1320,58 +1343,70 @@ class CvGameUtils:
 												bDispel = false
 										if (pPlayer.getArcaneTowerVictoryFlag()==1):
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_BODY'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_BODY'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_BODY'))==1:						
 													bDispel = false
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_LIFE'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_LIFE'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_LIFE'))==1:						
 													bDispel = false
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_ENCHANTMENT'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_ENCHANTMENT'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_ENCHANTMENT'))==1:						
 													bDispel = false
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_NATURE'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_NATURE'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_NATURE'))==1:						
 													bDispel = false
+											if iBonus == gc.getInfoTypeForString('BONUS_MANA_FORCE'):
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_FORCE'))==1:						
+													bDispel = false		
 
 										if (pPlayer.getArcaneTowerVictoryFlag()==2):
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_LAW'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_LAW'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_LAW'))==1:						
 													bDispel = false
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_SUN'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_SUN'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_SUN'))==1:					
 													bDispel = false
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_SPIRIT'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_SPIRIT'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_SPIRIT'))==1:			
 													bDispel = false
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_MIND'):
 												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_MIND'))==1:
 													bDispel = false
+											if iBonus == gc.getInfoTypeForString('BONUS_MANA_CREATION'):
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_CREATION'))==1:
+													bDispel = false															
 
 										if (pPlayer.getArcaneTowerVictoryFlag()==3):
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_CHAOS'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_CHAOS'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_CHAOS'))==1:						
 													bDispel = false
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_DEATH'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_DEATH'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_DEATH'))==1:						
 													bDispel = false
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_ENTROPY'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_ENTROPY'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_ENTROPY'))==1:						
 													bDispel = false
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_SHADOW'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_SHADOW'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_SHADOW'))==1:						
+													bDispel = false
+											if iBonus == gc.getInfoTypeForString('BONUS_MANA_DIMENSIONAL'):
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_DIMENSIONAL'))==1:
 													bDispel = false
 
 										if (pPlayer.getArcaneTowerVictoryFlag()==4):
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_EARTH'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_EARTH'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_EARTH'))==1:						
 													bDispel = false
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_FIRE'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_FIRE'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_FIRE'))==1:						
 													bDispel = false
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_AIR'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_AIR'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_AIR'))==1:						
 													bDispel = false
 											if iBonus == gc.getInfoTypeForString('BONUS_MANA_WATER'):
-												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_WATER'))==1:
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_WATER'))==1:						
+													bDispel = false
+											if iBonus == gc.getInfoTypeForString('BONUS_MANA_ICE'):
+												if pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_ICE'))==1:
 													bDispel = false
 
 										if bDispel:

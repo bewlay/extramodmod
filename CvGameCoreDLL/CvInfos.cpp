@@ -1852,7 +1852,17 @@ m_iPromotionCombatMod(0),
 m_piBonusAffinity(NULL),
 m_piDamageTypeCombat(NULL),
 m_piDamageTypeResist(NULL),
+m_iEnslavementChance(0),
 //FfH: End Add
+
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* PromotionExplResultBonus                                                                     */
+/************************************************************************************************/
+m_iExplorationResultBonus(0),
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 // MNAI - additional promotion tags
 m_bAllowsMoveImpassable(false),
@@ -2516,7 +2526,25 @@ int CvPromotionInfo::getDamageTypeResist(int i) const
 {
 	return m_piDamageTypeResist ? m_piDamageTypeResist[i] : -1;
 }
+
+int CvPromotionInfo::getEnslavementChance() const
+{
+	return m_iEnslavementChance;
+}
+
 //FfH: End Add
+
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* PromotionExplResultBonus                                                                     */
+/************************************************************************************************/
+int CvPromotionInfo::getExplorationResultBonus() const
+{
+	return m_iExplorationResultBonus;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 // MNAI - additional promotion tags
 bool CvPromotionInfo::isAllowsMoveImpassable() const
@@ -2746,7 +2774,19 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_piDamageTypeResist);
 	m_piDamageTypeResist = new int[GC.getNumDamageTypeInfos()];
 	stream->Read(GC.getNumDamageTypeInfos(), m_piDamageTypeResist);
+
+	stream->Read(&m_iEnslavementChance);
+
 //FfH: End Add
+
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* PromotionExplResultBonus                                                                     */
+/************************************************************************************************/
+	stream->Read(&m_iExplorationResultBonus);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// MNAI - additional promotion tags
 	stream->Read(&m_bAllowsMoveImpassable);
@@ -2926,7 +2966,18 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumBonusInfos(), m_piBonusAffinity);
 	stream->Write(GC.getNumDamageTypeInfos(), m_piDamageTypeCombat);
 	stream->Write(GC.getNumDamageTypeInfos(), m_piDamageTypeResist);
+
+	stream->Write(m_iEnslavementChance);
 //FfH: End Add
+
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* PromotionExplResultBonus                                                                     */
+/************************************************************************************************/
+	stream->Write(m_iExplorationResultBonus);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// MNAI - new promotion tags
 	stream->Write(m_bAllowsMoveImpassable);
@@ -3091,7 +3142,18 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_piBonusAffinity, "BonusAffinities", sizeof(GC.getBonusInfo((BonusTypes)0)), GC.getNumBonusInfos());
 	pXML->SetVariableListTagPair(&m_piDamageTypeCombat, "DamageTypeCombats", sizeof(GC.getDamageTypeInfo((DamageTypes)0)), GC.getNumDamageTypeInfos());
 	pXML->SetVariableListTagPair(&m_piDamageTypeResist, "DamageTypeResists", sizeof(GC.getDamageTypeInfo((DamageTypes)0)), GC.getNumDamageTypeInfos());
+
+	pXML->GetChildXmlValByName(&m_iEnslavementChance,"iEnslavementChance");
 //FfH: End Add
+
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* PromotionExplResultBonus                                                                     */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iExplorationResultBonus,"iExplorationResultBonus");
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// MNAI - additional promotion tags
 	pXML->GetChildXmlValByName(&m_bAllowsMoveImpassable, "bAllowsMoveImpassable");
@@ -3685,6 +3747,17 @@ const TCHAR *CvSpellInfo::getPyAlternateReq() const
 }
 // MNAI end
 
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+const TCHAR* CvSpellInfo::getPyHelp() const
+{
+	return m_szPyHelp;
+}
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
+
 int CvSpellInfo::getCommandType() const
 {
 	return m_iCommandType;
@@ -3812,6 +3885,13 @@ void CvSpellInfo::read(FDataStreamBase* stream)
 	stream->ReadString(m_szPyResult);
 	stream->ReadString(m_szPyRequirement);
 	stream->ReadString(m_szPyAlternateReq);	// MNAI
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+	stream->ReadString(m_szPyHelp);
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
 	stream->Read(&m_iEffect);
 	stream->ReadString(m_szSound);
 	stream->Read(&m_iCommandType);
@@ -3925,6 +4005,13 @@ void CvSpellInfo::write(FDataStreamBase* stream)
 	stream->WriteString(m_szPyResult);
 	stream->WriteString(m_szPyRequirement);
 	stream->WriteString(m_szPyAlternateReq);	// MNAI
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+	stream->WriteString(m_szPyHelp);
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
 	stream->Write(m_iEffect);
 	stream->WriteString(m_szSound);
 	stream->Write(m_iCommandType);
@@ -4067,6 +4154,13 @@ bool CvSpellInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(m_szPyResult, "PyResult");
 	pXML->GetChildXmlValByName(m_szPyRequirement, "PyRequirement");
 	pXML->GetChildXmlValByName(m_szPyAlternateReq, "PyAlternateReq");	// MNAI
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+	pXML->GetChildXmlValByName(m_szPyHelp, "PyHelp");
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
 	pXML->GetChildXmlValByName(szTextVal, "Effect");
 	if (szTextVal != "") m_iEffect = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(m_szSound, "Sound");
@@ -4953,6 +5047,25 @@ m_iUnitMeleeWaveSize(0),
 m_iUnitRangedWaveSize(0),
 m_iNumUnitNames(0),
 m_iCommandType(NO_COMMAND),
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* (Deprecated)                                                                                 */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+m_iMinWilderness(0),
+m_iMaxWilderness(MAX_INT),
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             10/2013                                 lfgr          */
+/* PromotionCaptureApply                                                                        */
+/************************************************************************************************/
+m_iPromotionCaptureApply(NO_PROMOTION),
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 m_bAnimal(false),
 m_bFoodProduction(false),
 m_bNoBadGoodies(false),
@@ -5932,6 +6045,44 @@ int CvUnitInfo::getDamageTypeCombat(int i) const
 {
 	return m_piDamageTypeCombat ? m_piDamageTypeCombat[i] : -1;
 }
+
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+/*
+ * A unit is alive if it is not mechanized, and if it does not get any free promotion which makes it not alive.
+ */
+bool CvUnitInfo::isAlive(CivilizationTypes eCiv) const
+{
+	if (this->isMechUnit()) {
+		return false;
+	}
+
+	for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
+	{
+		if (this->getFreePromotions(iI))
+		{
+			if (GC.getPromotionInfo((PromotionTypes)iI).isNotAlive())
+            {
+				return false;
+			}
+		}
+	}
+
+	if (NO_CIVILIZATION != eCiv && GC.getCivilizationInfo(eCiv).getDefaultRace() != NO_PROMOTION) {
+		if (GC.getPromotionInfo((PromotionTypes)GC.getCivilizationInfo(eCiv).getDefaultRace()).isNotAlive())
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
+
 //FfH: End Add
 
 
@@ -5956,6 +6107,35 @@ bool CvUnitInfo::canAcquireExperience() const
 }
 // BUG - Unit Experience - end
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* (Deprecated)                                                                                 */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+int CvUnitInfo::getMinWilderness() const
+{
+	return m_iMinWilderness;
+}
+
+int CvUnitInfo::getMaxWilderness() const
+{
+	return m_iMaxWilderness;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             10/2013                                 lfgr          */
+/* PromotionCaptureApply                                                                        */
+/************************************************************************************************/
+int CvUnitInfo::getPromotionCaptureApply() const
+{
+	return m_iPromotionCaptureApply;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 // Arrays
 
@@ -6571,6 +6751,26 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(GC.getNumDamageTypeInfos(), m_piDamageTypeCombat);
 //FfH: End Add
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* (Deprecated)                                                                                 */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	stream->Read(&m_iMinWilderness);
+	stream->Read(&m_iMaxWilderness);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             10/2013                                 lfgr          */
+/* PromotionCaptureApply                                                                        */
+/************************************************************************************************/
+	stream->Read(&m_iPromotionCaptureApply);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 	SAFE_DELETE_ARRAY(m_piPrereqAndTechs);
 	m_piPrereqAndTechs = new int[GC.getNUM_UNIT_AND_TECH_PREREQS()];
 	stream->Read(GC.getNUM_UNIT_AND_TECH_PREREQS(), m_piPrereqAndTechs);
@@ -6912,6 +7112,25 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumBonusInfos(), m_piBonusAffinity);
 	stream->Write(GC.getNumDamageTypeInfos(), m_piDamageTypeCombat);
 //FfH: End Add
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* (Deprecated)                                                                                 */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	stream->Write(m_iMinWilderness);
+	stream->Write(m_iMaxWilderness);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             10/2013                                 lfgr          */
+/* PromotionCaptureApply                                                                        */
+/************************************************************************************************/
+	stream->Write(m_iPromotionCaptureApply);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	stream->Write(GC.getNUM_UNIT_AND_TECH_PREREQS(), m_piPrereqAndTechs);
 	stream->Write(GC.getNUM_UNIT_PREREQ_OR_BONUSES(), m_piPrereqOrBonuses);
@@ -7350,6 +7569,28 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_piDamageTypeCombat, "DamageTypeCombats", sizeof(GC.getDamageTypeInfo((DamageTypes)0)), GC.getNumDamageTypeInfos());
 	pXML->SetVariableListTagPair(&m_piBonusAffinity, "BonusAffinities", sizeof(GC.getBonusInfo((BonusTypes)0)), GC.getNumBonusInfos());
 //FfH: End Add
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* (Deprecated)                                                                                 */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iMinWilderness, "iMinWilderness");
+	pXML->GetChildXmlValByName(&m_iMaxWilderness, "iMaxWilderness",MAX_INT);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             10/2013                                 lfgr          */
+/* PromotionCaptureApply                                                                        */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(szTextVal, "PromotionCaptureApply");
+	m_iPromotionCaptureApply = pXML->FindInInfoClass(szTextVal);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+	
 	updateArtDefineButton();
 	return true;
 }
@@ -9163,6 +9404,14 @@ m_iGlobalHappiness(0),
 m_iStateReligionHappiness(0),
 m_iWorkerSpeedModifier(0),
 m_iMilitaryProductionModifier(0),
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+m_iLivingProductionModifier(0),
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 m_iSpaceProductionModifier(0),
 m_iGlobalSpaceProductionModifier(0),
 m_iTradeRoutes(0),
@@ -9635,6 +9884,18 @@ int CvBuildingInfo::getMilitaryProductionModifier() const
 {
 	return m_iMilitaryProductionModifier;
 }
+
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+int CvBuildingInfo::getLivingProductionModifier() const
+{
+	return m_iLivingProductionModifier;
+}
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 
 int CvBuildingInfo::getSpaceProductionModifier() const
 {
@@ -10580,6 +10841,14 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iStateReligionHappiness);
 	stream->Read(&m_iWorkerSpeedModifier);
 	stream->Read(&m_iMilitaryProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	stream->Read(&m_iLivingProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	stream->Read(&m_iSpaceProductionModifier);
 	stream->Read(&m_iGlobalSpaceProductionModifier);
 	stream->Read(&m_iTradeRoutes);
@@ -10946,6 +11215,14 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iStateReligionHappiness);
 	stream->Write(m_iWorkerSpeedModifier);
 	stream->Write(m_iMilitaryProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	stream->Write(m_iLivingProductionModifier);
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	stream->Write(m_iSpaceProductionModifier);
 	stream->Write(m_iGlobalSpaceProductionModifier);
 	stream->Write(m_iTradeRoutes);
@@ -11356,6 +11633,14 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iStateReligionHappiness, "iStateReligionHappiness");
 	pXML->GetChildXmlValByName(&m_iWorkerSpeedModifier, "iWorkerSpeedModifier");
 	pXML->GetChildXmlValByName(&m_iMilitaryProductionModifier, "iMilitaryProductionModifier");
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iLivingProductionModifier, "iLivingProductionModifier");
+	/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_iSpaceProductionModifier, "iSpaceProductionModifier");
 	pXML->GetChildXmlValByName(&m_iGlobalSpaceProductionModifier, "iGlobalSpaceProductionModifier");
 	pXML->GetChildXmlValByName(&m_iTradeRoutes, "iTradeRoutes");
@@ -12236,6 +12521,13 @@ m_iNumLeaders(0),
 m_iSelectionSoundScriptId(0),
 m_iActionSoundScriptId(0),
 m_iDerivativeCiv(NO_CIVILIZATION),
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+m_iTerrainFlavour( NO_TERRAIN_FLAVOUR ),
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 m_bPlayable(false),
 m_bAIPlayable(false),
 m_piCivilizationBuildings(NULL),
@@ -12553,6 +12845,17 @@ void CvCivilizationInfo::setDerivativeCiv(int iCiv)
 	m_iDerivativeCiv = iCiv;
 }
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+int CvCivilizationInfo::getTerrainFlavour() const
+{
+	return m_iTerrainFlavour;
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
 /*************************************************************************************************/
 /**	New Tag Defs	(CivilizationInfos)		03/23/09								Jean Elcard	**/
 /**																								**/
@@ -12585,6 +12888,13 @@ void CvCivilizationInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iSelectionSoundScriptId);
 	stream->Read(&m_iActionSoundScriptId);
 	stream->Read(&m_iDerivativeCiv);
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+	stream->Read(&m_iTerrainFlavour);
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 
 	stream->Read(&m_bAIPlayable);
 	stream->Read(&m_bPlayable);
@@ -12657,6 +12967,13 @@ void CvCivilizationInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iSelectionSoundScriptId);
 	stream->Write(m_iActionSoundScriptId);
 	stream->Write(m_iDerivativeCiv);
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+	stream->Write(m_iTerrainFlavour);
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 
 	stream->Write(m_bAIPlayable);
 	stream->Write(m_bPlayable);
@@ -12795,6 +13112,15 @@ bool CvCivilizationInfo::read(CvXMLLoadUtility* pXML)
 	// set the current xml node to it's next sibling and then
 	pXML->GetChildXmlValByName(&m_bPlayable, "bPlayable");
 	pXML->GetChildXmlValByName(&m_bAIPlayable, "bAIPlayable");
+	
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(szTextVal, "TerrainFlavour");
+	m_iTerrainFlavour = pXML->FindInInfoClass(szTextVal);
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"Cities"))
 	{
@@ -14798,8 +15124,22 @@ m_iRangeDefenseModifier(0),
 m_iBonusConvert(NO_BONUS),
 m_iFeatureUpgrade(NO_FEATURE),
 m_iPrereqCivilization(NO_CIVILIZATION),
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, LairGuardians, ImprovementWilderness, WildernessExploration           */
+/************************************************************************************************/
+/*
 m_iSpawnUnitType(NO_UNIT),
 m_iFreeSpawnPromotion(NO_PROMOTION),
+*/
+m_pbSpawnTypes( NULL ),
+m_pbGuardianSpawnTypes( NULL ),
+m_iMinWilderness(0),
+m_iMaxWilderness(MAX_INT),
+m_bExplorable(false),
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 m_iVisibilityChange(0)
 //FfH: End Add
 
@@ -14923,6 +15263,27 @@ void CvImprovementInfo::setImprovementUpgrade(int i)
 {
 	m_iImprovementUpgrade = i;
 }
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementWilderness, WildernessExploration                                                 */
+/************************************************************************************************/
+int CvImprovementInfo::getMinWilderness() const
+{
+	return m_iMinWilderness;
+}
+int CvImprovementInfo::getMaxWilderness() const
+{
+	return m_iMaxWilderness;
+}
+
+bool CvImprovementInfo::isExplorable() const
+{
+	return m_bExplorable;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 // Super Forts begin *XML*
 int CvImprovementInfo::getCulture() const
@@ -15090,6 +15451,11 @@ const TCHAR *CvImprovementInfo::getPythonOnMove() const
 	return m_szPythonOnMove;
 }
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes                                                                        */
+/************************************************************************************************/
+/*
 int CvImprovementInfo::getSpawnUnitType() const
 {
 	return m_iSpawnUnitType;
@@ -15099,6 +15465,10 @@ int CvImprovementInfo::getFreeSpawnPromotion() const
 {
 	return m_iFreeSpawnPromotion;
 }
+*/
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 int CvImprovementInfo::getVisibilityChange() const
 {
@@ -15255,6 +15625,27 @@ int CvImprovementInfo::getImprovementBonusDiscoverRand(int i) const
 	return m_paImprovementBonus[i].m_iDiscoverRand;
 }
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, GuardianSpawnTypes                                                    */
+/************************************************************************************************/
+bool CvImprovementInfo::getSpawnTypes( int i ) const
+{
+	FAssertMsg(i < GC.getNumSpawnInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_pbSpawnTypes ? m_pbSpawnTypes[i] : false;
+}
+
+bool CvImprovementInfo::isGuardianSpawnType( int i ) const
+{
+	FAssertMsg(i < GC.getNumSpawnInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_pbGuardianSpawnTypes ? m_pbGuardianSpawnTypes[i] : false;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 const TCHAR* CvImprovementInfo::getButton() const
 {
 	const CvArtInfoImprovement * pImprovementArtInfo;
@@ -15279,6 +15670,7 @@ void CvArtInfoImprovement::setShaderNIF(const TCHAR* szDesc)
 {
 	m_szShaderNIF = szDesc;
 }
+
 
 void CvImprovementInfo::read(FDataStreamBase* stream)
 {
@@ -15342,8 +15734,21 @@ void CvImprovementInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iPrereqCivilization);
 	stream->ReadString(m_szPythonAtRange);
 	stream->ReadString(m_szPythonOnMove);
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, ImprovementWilderness, WildernessExploration                          */
+/************************************************************************************************/
+/*
 	stream->Read(&m_iSpawnUnitType);
 	stream->Read(&m_iFreeSpawnPromotion);
+*/
+	stream->Read(&m_iMinWilderness);
+	stream->Read(&m_iMaxWilderness);
+
+	stream->Read(&m_bExplorable);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	stream->Read(&m_iVisibilityChange);
 //FfH: End Add
 
@@ -15376,6 +15781,21 @@ void CvImprovementInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_pbFeatureMakesValid);
 	m_pbFeatureMakesValid = new bool[GC.getNumFeatureInfos()];
 	stream->Read(GC.getNumFeatureInfos(), m_pbFeatureMakesValid);
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, LairGuardians                                                         */
+/************************************************************************************************/
+	SAFE_DELETE_ARRAY(m_pbSpawnTypes);
+	m_pbSpawnTypes = new bool[GC.getNumSpawnInfos()];
+	stream->Read(GC.getNumSpawnInfos(), m_pbSpawnTypes);
+
+	SAFE_DELETE_ARRAY(m_pbGuardianSpawnTypes);
+	m_pbGuardianSpawnTypes = new bool[GC.getNumSpawnInfos()];
+	stream->Read(GC.getNumSpawnInfos(), m_pbGuardianSpawnTypes);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	SAFE_DELETE_ARRAY(m_paImprovementBonus);
 	m_paImprovementBonus = new CvImprovementBonusInfo[GC.getNumBonusInfos()];
@@ -15480,8 +15900,21 @@ void CvImprovementInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iPrereqCivilization);
 	stream->WriteString(m_szPythonAtRange);
 	stream->WriteString(m_szPythonOnMove);
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, ImprovementWilderness, WildernessExploration                          */
+/************************************************************************************************/
+/*
 	stream->Write(m_iSpawnUnitType);
 	stream->Write(m_iFreeSpawnPromotion);
+*/
+	stream->Write(m_iMinWilderness);
+	stream->Write(m_iMaxWilderness);
+
+	stream->Write(m_bExplorable);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	stream->Write(m_iVisibilityChange);
 //FfH: End Add
 
@@ -15494,6 +15927,15 @@ void CvImprovementInfo::write(FDataStreamBase* stream)
 	stream->Write(NUM_YIELD_TYPES, m_piIrrigatedChange);
 	stream->Write(GC.getNumTerrainInfos(), m_pbTerrainMakesValid);
 	stream->Write(GC.getNumFeatureInfos(), m_pbFeatureMakesValid);
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes                                                                        */
+/************************************************************************************************/
+	stream->Write(GC.getNumSpawnInfos(), m_pbSpawnTypes);
+	stream->Write(GC.getNumSpawnInfos(), m_pbGuardianSpawnTypes);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	int i;
 	for (i = 0; i < GC.getNumBonusInfos(); i++)
@@ -15612,6 +16054,17 @@ bool CvImprovementInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bBombardable, "bBombardable");
 	pXML->GetChildXmlValByName(&m_bUpgradeRequiresFortify, "bUpgradeRequiresFortify");
 	// Super Forts end
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementWilderness, WildernessExploration                                                 */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName( &m_iMinWilderness, "iMinWilderness" );
+	pXML->GetChildXmlValByName( &m_iMaxWilderness, "iMaxWilderness", MAX_INT );
+
+	pXML->GetChildXmlValByName( &m_bExplorable, "bExplorable" );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	pXML->SetVariableListTagPair(&m_pbTerrainMakesValid, "TerrainMakesValids", sizeof(GC.getTerrainInfo((TerrainTypes)0)), GC.getNumTerrainInfos());
 	pXML->SetVariableListTagPair(&m_pbFeatureMakesValid, "FeatureMakesValids", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
@@ -15748,8 +16201,70 @@ bool CvImprovementInfo::read(CvXMLLoadUtility* pXML)
 	m_aszExtraXML2forPass3.push_back(szTextVal);
 	pXML->GetChildXmlValByName(m_szPythonAtRange, "PythonAtRange");
 	pXML->GetChildXmlValByName(m_szPythonOnMove, "PythonOnMove");
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes                                                                        */
+/************************************************************************************************/
+/*
 	pXML->GetChildXmlValByName(szTextVal, "SpawnUnitType");
 	m_aszExtraXMLforPass3.push_back(szTextVal);
+*/
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"SpawnTypes"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						m_aszExtraXMLforPass3.push_back(szTextVal);
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"GuardianSpawnTypes"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						m_aszExtraXML3forPass3.push_back(szTextVal);
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 //FfH: End Add
 
 	return true;
@@ -15764,9 +16279,18 @@ bool CvImprovementInfo::readPass2(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "ImprovementUpgrade");
 	m_iImprovementUpgrade = GC.getInfoTypeForString(szTextVal);
-
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes                                                                        */
+/************************************************************************************************/
+/*
 	pXML->GetChildXmlValByName(szTextVal, "FreeSpawnPromotion");
 	m_iFreeSpawnPromotion = GC.getInfoTypeForString(szTextVal);
+*/
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	return true;
 }
@@ -15774,16 +16298,63 @@ bool CvImprovementInfo::readPass2(CvXMLLoadUtility* pXML)
 //FfH Improvements: Added by Kael 05/12/2007
 bool CvImprovementInfo::readPass3()
 {
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes                                                                        */
+/* Empty list of SpawnTypes possible                                                            */
+/************************************************************************************************/
+/*
 	if (m_aszExtraXMLforPass3.size() < 1)
 	{
 		FAssert(false);
 		return false;
 	}
+*/
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	m_iPrereqCivilization = GC.getInfoTypeForString(m_aszExtraXML2forPass3[0]);
 	m_aszExtraXML2forPass3.clear();
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes                                                                        */
+/************************************************************************************************/
+/*
 	m_iSpawnUnitType = GC.getInfoTypeForString(m_aszExtraXMLforPass3[0]);
+*/
+	m_pbSpawnTypes = new bool[GC.getNumSpawnInfos()];
+	for( int eSpawnType = 0; eSpawnType < GC.getNumSpawnInfos(); eSpawnType++ )
+		m_pbSpawnTypes[eSpawnType] = false;
+
+	for( unsigned int i = 0; i < m_aszExtraXMLforPass3.size(); i++ )
+	{
+		int eSpawnType = GC.getInfoTypeForString (m_aszExtraXMLforPass3[i] );
+		if( eSpawnType >= 0 && eSpawnType < GC.getNumSpawnInfos() )
+			m_pbSpawnTypes[eSpawnType] = true;
+		else
+			FAssert( false );
+	}
+
 	m_aszExtraXMLforPass3.clear();
+	
+	m_pbGuardianSpawnTypes = new bool[GC.getNumSpawnInfos()];
+	for( int eSpawnType = 0; eSpawnType < GC.getNumSpawnInfos(); eSpawnType++ )
+		m_pbGuardianSpawnTypes[eSpawnType] = false;
+
+	for( unsigned int i = 0; i < m_aszExtraXML3forPass3.size(); i++ )
+	{
+		int eSpawnType = GC.getInfoTypeForString (m_aszExtraXML3forPass3[i] );
+		if( eSpawnType >= 0 && eSpawnType < GC.getNumSpawnInfos() )
+			m_pbGuardianSpawnTypes[eSpawnType] = true;
+		else
+			FAssert( false );
+	}
+
+	m_aszExtraXML3forPass3.clear();
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	return true;
 }
@@ -24421,6 +24992,13 @@ CvEventTriggerInfo::CvEventTriggerInfo() :
 	m_iUnitDamagedWeight(0),
 	m_iUnitDistanceWeight(0),
 	m_iUnitExperienceWeight(0),
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	m_iUnitMinLevel(0),
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	m_iMinTreasury(0),
 	m_bSinglePlayer(false),
 	m_bTeam(false),
@@ -24445,6 +25023,13 @@ CvEventTriggerInfo::CvEventTriggerInfo() :
 	m_bProbabilityUnitMultiply(false),
 	m_bProbabilityBuildingMultiply(false),
 	m_bPrereqEventCity(false),
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	m_bRequiresValidEvent(false),
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 //FfH Events: Added by Kael 08/08/2007
 	m_iPrereqCrime(0),
@@ -24587,20 +25172,34 @@ int CvEventTriggerInfo::getUnhealthy() const
 	return m_iUnhealthy;
 }
 
+// lfgr cmt - must be > 0
 int CvEventTriggerInfo::getUnitDamagedWeight() const
 {
 	return m_iUnitDamagedWeight;
 }
 
+// lfgr cmt - can be < 0
 int CvEventTriggerInfo::getUnitDistanceWeight() const
 {
 	return m_iUnitDistanceWeight;
 }
 
+// lfgr cmt - can be < 0
 int CvEventTriggerInfo::getUnitExperienceWeight() const
 {
 	return m_iUnitExperienceWeight;
 }
+
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+int CvEventTriggerInfo::getUnitMinLevel() const
+{
+	return m_iUnitMinLevel;
+}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 int CvEventTriggerInfo::getMinTreasury() const
 {
@@ -24726,6 +25325,18 @@ int CvEventTriggerInfo::getNumCorporationsRequired() const
 {
 	return (int)m_aiCorporationsRequired.size();
 }
+
+// Begin EmperorFool: Events with Images
+const TCHAR* CvEventTriggerInfo::getEventArt() const
+{
+	if (m_szEventArt.empty())
+	{
+		return NULL;
+	}
+
+	return m_szEventArt;
+}
+// End EmperorFool: Events with Images
 
 bool CvEventTriggerInfo::isSinglePlayer() const
 {
@@ -24870,6 +25481,16 @@ bool CvEventTriggerInfo::isPrereqEventCity() const
 {
 	return m_bPrereqEventCity;
 }
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+bool CvEventTriggerInfo::isRequiresValidEvent() const
+{
+	return m_bRequiresValidEvent;
+}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 const char* CvEventTriggerInfo::getPythonCallback() const
 {
@@ -24958,6 +25579,13 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iUnitDamagedWeight);
 	stream->Read(&m_iUnitDistanceWeight);
 	stream->Read(&m_iUnitExperienceWeight);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	stream->Read(&m_iUnitMinLevel);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	stream->Read(&m_iMinTreasury);
 
 	stream->Read(&iNumElements);
@@ -25072,6 +25700,10 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 		m_aiCorporationsRequired.push_back(iElement);
 	}
 
+// Begin EmperorFool: Events with Images
+	stream->ReadString(m_szEventArt);
+// End EmperorFool: Events with Images
+
 	stream->Read(&m_bSinglePlayer);
 	stream->Read(&m_bTeam);
 	stream->Read(&m_bRecurring);
@@ -25095,6 +25727,13 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bProbabilityUnitMultiply);
 	stream->Read(&m_bProbabilityBuildingMultiply);
 	stream->Read(&m_bPrereqEventCity);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	stream->Read(&m_bRequiresValidEvent);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	stream->Read(&iNumElements);
 	m_aszText.clear();
@@ -25166,6 +25805,13 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iUnitDamagedWeight);
 	stream->Write(m_iUnitDistanceWeight);
 	stream->Write(m_iUnitExperienceWeight);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	stream->Write(m_iUnitMinLevel);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	stream->Write(m_iMinTreasury);
 
 	stream->Write(m_aiUnitsRequired.size());
@@ -25239,6 +25885,10 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 		stream->Write(*it);
 	}
 
+// Begin EmperorFool: Events with Images
+	stream->WriteString(m_szEventArt);
+// End EmperorFool: Events with Images
+
 	stream->Write(m_bSinglePlayer);
 	stream->Write(m_bTeam);
 	stream->Write(m_bRecurring);
@@ -25262,6 +25912,13 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bProbabilityUnitMultiply);
 	stream->Write(m_bProbabilityBuildingMultiply);
 	stream->Write(m_bPrereqEventCity);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	stream->Write(m_bRequiresValidEvent);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	stream->Write(m_aszText.size());
 	for (std::vector<CvWString>::iterator it = m_aszText.begin(); it != m_aszText.end(); ++it)
@@ -25333,6 +25990,13 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iUnitDamagedWeight, "iUnitDamagedWeight");
 	pXML->GetChildXmlValByName(&m_iUnitDistanceWeight, "iUnitDistanceWeight");
 	pXML->GetChildXmlValByName(&m_iUnitExperienceWeight, "iUnitExperienceWeight");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iUnitMinLevel, "iUnitMinLevel");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_iMinTreasury, "iMinTreasury");
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"UnitsRequired"))
@@ -25800,6 +26464,10 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
 
+// Begin EmperorFool: Events with Images
+	pXML->GetChildXmlValByName(m_szEventArt, "EventArt");
+// End EmperorFool: Events with Images
+
 	pXML->GetChildXmlValByName(&m_bSinglePlayer, "bSinglePlayer");
 	pXML->GetChildXmlValByName(&m_bTeam, "bTeam");
 	pXML->GetChildXmlValByName(&m_bRecurring, "bRecurring");
@@ -25823,6 +26491,13 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bProbabilityUnitMultiply, "bProbabilityUnitMultiply");
 	pXML->GetChildXmlValByName(&m_bProbabilityBuildingMultiply, "bProbabilityBuildingMultiply");
 	pXML->GetChildXmlValByName(&m_bPrereqEventCity, "bPrereqEventPlot");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_bRequiresValidEvent, "bRequiresValidEvent");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	pXML->GetChildXmlValByName(m_szPythonCallback, "PythonCallback");
 	pXML->GetChildXmlValByName(m_szPythonCanDo, "PythonCanDo");
@@ -26258,6 +26933,18 @@ int CvEventInfo::getPrereqStateReligion() const
 	return m_iPrereqStateReligion;
 }
 //FfH: End Add
+
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+bool CvEventInfo::isUnitPromotion( int iUnitPromotion )
+{
+	FAssert (iUnitPromotion >= 0 && iUnitPromotion < GC.getNumPromotionInfos());
+	return m_pbUnitPromotions ? m_pbUnitPromotions[iUnitPromotion] : false;
+}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 int CvEventInfo::getAdditionalEventChance(int i) const
 {
@@ -26830,6 +27517,48 @@ bool CvEventInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "PrereqStateReligion");
 	m_iPrereqStateReligion = pXML->FindInInfoClass(szTextVal);
 //FfH: End Add
+
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	m_pbUnitPromotions = new bool[GC.getNumPromotionInfos()];
+	for (int i = 0; i < GC.getNumPromotionInfos(); ++i)
+	{
+		m_pbUnitPromotions[i] = false;
+	}
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"UnitPromotions"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						int iPromotion = pXML->FindInInfoClass(szTextVal);
+						if( iPromotion > -1 && iPromotion < GC.getNumPromotionInfos() )
+							m_pbUnitPromotions[iPromotion] = true;
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	CvString* pszPromotions = NULL;
 	FAssertMsg(NULL == m_piUnitCombatPromotions, "Memory leak");
@@ -27646,3 +28375,786 @@ bool CvMainMenuInfo::read(CvXMLLoadUtility* pXML)
 
 	return true;
 }
+
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+
+//======================================================================================================
+//					CvTerrainFlavourInfo
+//======================================================================================================
+
+CvTerrainFlavourInfo::CvTerrainFlavourInfo():
+m_iBaseWeight(0),
+m_iIsolationPercentWeight(0),
+m_iCoastalWeight(0),
+m_piPlotPercentWeight(NULL),
+m_piTerrainPercentWeight(NULL),
+m_piFeaturePercentWeight(NULL),
+m_piImprovementCountWeight(NULL),
+m_piBonusCountWeight(NULL),
+m_piYieldOnPlotPercentWeight(NULL)
+{
+}
+
+CvTerrainFlavourInfo::~CvTerrainFlavourInfo()
+{
+	SAFE_DELETE_ARRAY(m_piPlotPercentWeight);
+	SAFE_DELETE_ARRAY(m_piTerrainPercentWeight);
+	SAFE_DELETE_ARRAY(m_piFeaturePercentWeight);
+	SAFE_DELETE_ARRAY(m_piImprovementCountWeight);
+	SAFE_DELETE_ARRAY(m_piBonusCountWeight);
+	SAFE_DELETE_ARRAY(m_piYieldOnPlotPercentWeight);
+}
+
+//ints
+
+int CvTerrainFlavourInfo::getBaseWeight() const
+{
+	return m_iBaseWeight;
+}
+
+int CvTerrainFlavourInfo::getIsolationPercentWeight() const
+{
+	return m_iIsolationPercentWeight;
+}
+
+int CvTerrainFlavourInfo::getCoastalWeight() const
+{
+	return m_iCoastalWeight;
+}
+
+// Arrays
+
+int CvTerrainFlavourInfo::getPlotPercentWeight( int ePlotType ) const
+{
+	FAssertMsg( ePlotType < NUM_PLOT_TYPES, "Index out of bounds" );
+	FAssertMsg( ePlotType > -1, "Index out of bounds" );
+	return m_piPlotPercentWeight ? m_piPlotPercentWeight[ePlotType] : -1;
+}
+
+int CvTerrainFlavourInfo::getTerrainPercentWeight( int eTerrain ) const
+{
+	FAssertMsg( eTerrain < GC.getNumTerrainInfos(), "Index out of bounds" );
+	FAssertMsg( eTerrain > -1, "Index out of bounds" );
+	return m_piTerrainPercentWeight ? m_piTerrainPercentWeight[eTerrain] : -1;
+}
+
+int CvTerrainFlavourInfo::getFeaturePercentWeight( int eFeature ) const
+{
+	FAssertMsg( eFeature < GC.getNumFeatureInfos(), "Index out of bounds" );
+	FAssertMsg( eFeature > -1, "Index out of bounds" );
+	return m_piFeaturePercentWeight ? m_piFeaturePercentWeight[eFeature] : -1;
+}
+
+int CvTerrainFlavourInfo::getImprovementCountWeight( int eImprovement ) const
+{
+	FAssertMsg( eImprovement < GC.getNumImprovementInfos(), "Index out of bounds" );
+	FAssertMsg( eImprovement > -1, "Index out of bounds" );
+	return m_piImprovementCountWeight ? m_piImprovementCountWeight[eImprovement] : -1;
+}
+
+int CvTerrainFlavourInfo::getBonusCountWeight( int eBonus ) const
+{
+	FAssertMsg( eBonus < GC.getNumBonusInfos(), "Index out of bounds" );
+	FAssertMsg( eBonus > -1, "Index out of bounds" );
+	return m_piBonusCountWeight ? m_piBonusCountWeight[eBonus] : -1;
+}
+
+int CvTerrainFlavourInfo::getYieldOnPlotPercentWeight( int eYield ) const
+{
+	FAssertMsg( eYield < NUM_YIELD_TYPES, "Index out of bounds" );
+	FAssertMsg( eYield > -1, "Index out of bounds" );
+	return m_piYieldOnPlotPercentWeight ? m_piYieldOnPlotPercentWeight[eYield] : -1;
+}
+
+void CvTerrainFlavourInfo::read(FDataStreamBase* stream)
+{
+	CvInfoBase::read(stream);
+
+	// ints
+	stream->Read( &m_iBaseWeight );
+	stream->Read( &m_iIsolationPercentWeight );
+	stream->Read( &m_iCoastalWeight );
+
+	// Arrays
+
+	SAFE_DELETE_ARRAY( m_piPlotPercentWeight );
+	m_piPlotPercentWeight = new int[NUM_PLOT_TYPES];
+	stream->Read( NUM_PLOT_TYPES, m_piPlotPercentWeight );
+
+	SAFE_DELETE_ARRAY( m_piTerrainPercentWeight );
+	m_piTerrainPercentWeight = new int[GC.getNumTerrainInfos()];
+	stream->Read( GC.getNumTerrainInfos(), m_piTerrainPercentWeight );
+
+	SAFE_DELETE_ARRAY( m_piFeaturePercentWeight );
+	m_piFeaturePercentWeight = new int[GC.getNumFeatureInfos()];
+	stream->Read( GC.getNumFeatureInfos(), m_piFeaturePercentWeight );
+	
+	SAFE_DELETE_ARRAY( m_piImprovementCountWeight );
+	m_piImprovementCountWeight = new int[GC.getNumImprovementInfos()];
+	stream->Read( GC.getNumImprovementInfos(), m_piImprovementCountWeight );
+	
+	SAFE_DELETE_ARRAY( m_piBonusCountWeight );
+	m_piBonusCountWeight = new int[GC.getNumBonusInfos()];
+	stream->Read( GC.getNumBonusInfos(), m_piBonusCountWeight );
+	
+	SAFE_DELETE_ARRAY( m_piYieldOnPlotPercentWeight );
+	m_piYieldOnPlotPercentWeight = new int[NUM_YIELD_TYPES];
+	stream->Read( NUM_YIELD_TYPES, m_piYieldOnPlotPercentWeight );
+}
+
+void CvTerrainFlavourInfo::write(FDataStreamBase* stream)
+{
+	CvInfoBase::write(stream);
+	
+	
+	// ints
+	stream->Write( m_iBaseWeight );
+	stream->Write( m_iIsolationPercentWeight );
+	stream->Write( m_iCoastalWeight );
+
+	// Arrays
+	stream->Write( NUM_PLOT_TYPES, m_piPlotPercentWeight );
+	stream->Write( GC.getNumTerrainInfos(), m_piTerrainPercentWeight );
+	stream->Write( GC.getNumFeatureInfos(), m_piFeaturePercentWeight );
+	stream->Write( GC.getNumImprovementInfos(), m_piImprovementCountWeight );
+	stream->Write( GC.getNumBonusInfos(), m_piBonusCountWeight );
+	stream->Write( NUM_YIELD_TYPES, m_piYieldOnPlotPercentWeight );
+}
+
+bool CvTerrainFlavourInfo::read(CvXMLLoadUtility* pXML)
+{
+	//char szClassVal[256];					// holds the text value of the relevant classinfo
+
+	// same var name is used below
+	//CvString szTextVal;
+
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+
+	// ints
+	
+	pXML->GetChildXmlValByName( &m_iBaseWeight, "iBaseWeight" );
+	pXML->GetChildXmlValByName( &m_iIsolationPercentWeight, "iIsolationPercentWeight" );
+	pXML->GetChildXmlValByName( &m_iCoastalWeight, "iCoastalWeight" );
+
+	// Arrays
+
+	pXML->SetVariableListTagPair( &m_piTerrainPercentWeight, "TerrainPercentWeights",
+				sizeof( GC.getTerrainInfo( (TerrainTypes) 0 ) ), GC.getNumTerrainInfos() );
+	pXML->SetVariableListTagPair( &m_piFeaturePercentWeight, "FeaturePercentWeights",
+				sizeof( GC.getFeatureInfo( (FeatureTypes) 0 ) ), GC.getNumFeatureInfos() );
+	pXML->SetVariableListTagPair( &m_piImprovementCountWeight, "ImprovementCountWeights",
+				sizeof( GC.getImprovementInfo( (ImprovementTypes) 0 ) ), GC.getNumImprovementInfos() );
+	pXML->SetVariableListTagPair( &m_piBonusCountWeight, "BonusCountWeights",
+				sizeof( GC.getBonusInfo( (BonusTypes) 0 ) ), GC.getNumBonusInfos() );
+
+	// We have no PLOT_TYPES string anywhere, so we have to read manually
+
+	// copied (and modified) from CvXMLLoadUtility::SetVariableListTagPair(int **ppiList, const TCHAR* szRootTagName, int iInfoBaseSize, int iInfoBaseLength, int iDefaultListVal)
+	//;
+	int iIndexVal;
+	int iNumSibs;
+	TCHAR szTextVal[256];
+
+	pXML->InitList( &m_piPlotPercentWeight, NUM_PLOT_TYPES, 0 );
+
+	if ( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "PlotPercentWeights" ) )
+	{
+		if ( pXML->SkipToNextVal() )
+		{
+			iNumSibs = gDLL->getXMLIFace()->GetNumChildren( pXML->GetXML() );
+
+			if (0 < iNumSibs)
+			{
+				if( !( iNumSibs <= NUM_PLOT_TYPES ) )
+				{
+					char	szMessage[1024];
+					sprintf( szMessage, "There are more siblings than memory allocated for them in CvFlavourInfo::SetVariableListTagPair \n Current XML file is: %s", GC.getCurrentXMLFile().GetCString());
+					gDLL->MessageBox(szMessage, "XML Error");
+				}
+				if ( gDLL->getXMLIFace()->SetToChild( pXML->GetXML() ) )
+				{
+					for ( int i = 0; i < iNumSibs; i++ )
+					{
+						if ( pXML->GetChildXmlVal( szTextVal ) )
+						{
+							iIndexVal = -1;
+
+							// LFGR_TODO: should have defines for this
+
+							if( strcmp ( szTextVal, "PLOT_PEAK") == 0 )
+								iIndexVal = PLOT_PEAK;
+							else if( strcmp ( szTextVal, "PLOT_HILLS") == 0 )
+								iIndexVal = PLOT_HILLS;
+							else if( strcmp ( szTextVal, "PLOT_LAND") == 0 )
+								iIndexVal = PLOT_LAND;
+							else if( strcmp ( szTextVal, "PLOT_OCEAN") == 0 )
+								iIndexVal = PLOT_OCEAN;
+
+							if (iIndexVal != -1)
+							{
+								pXML->GetNextXmlVal(&m_piPlotPercentWeight[iIndexVal]);
+							}
+
+							gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+						}
+
+						if ( !gDLL->getXMLIFace()->NextSibling( pXML->GetXML() ) )
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+	}
+	
+	// same with yield
+	
+	pXML->InitList( &m_piYieldOnPlotPercentWeight, NUM_YIELD_TYPES, 0 );
+
+	if ( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "YieldOnPlotPercentWeights" ) )
+	{
+		if ( pXML->SkipToNextVal() )
+		{
+			iNumSibs = gDLL->getXMLIFace()->GetNumChildren( pXML->GetXML() );
+
+			if (0 < iNumSibs)
+			{
+				if( !( iNumSibs <= NUM_YIELD_TYPES ) )
+				{
+					char	szMessage[1024];
+					sprintf( szMessage, "There are more siblings than memory allocated for them in CvFlavourInfo::SetVariableListTagPair \n Current XML file is: %s", GC.getCurrentXMLFile().GetCString());
+					gDLL->MessageBox(szMessage, "XML Error");
+				}
+				if ( gDLL->getXMLIFace()->SetToChild( pXML->GetXML() ) )
+				{
+					for ( int i = 0; i < iNumSibs; i++ )
+					{
+						if ( pXML->GetChildXmlVal( szTextVal ) )
+						{
+							iIndexVal = -1;
+
+							// LFGR_TODO: should have defines for this
+
+							if( strcmp( szTextVal, "YIELD_FOOD" ) == 0 )
+								iIndexVal = YIELD_FOOD;
+							else if( strcmp( szTextVal, "YIELD_PRODUCTION" ) == 0 )
+								iIndexVal = YIELD_PRODUCTION;
+							else if( strcmp( szTextVal, "YIELD_COMMERCE" ) == 0 )
+								iIndexVal = YIELD_COMMERCE;
+
+							if (iIndexVal != -1)
+							{
+								pXML->GetNextXmlVal(&m_piYieldOnPlotPercentWeight[iIndexVal]);
+							}
+
+							gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+						}
+
+						if ( !gDLL->getXMLIFace()->NextSibling( pXML->GetXML() ) )
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+	}
+	
+
+	return true;
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+
+//======================================================================================================
+//					CvSpawnInfo
+//======================================================================================================
+
+CvSpawnInfo::CvSpawnInfo():
+	m_eCreateLair( NO_IMPROVEMENT ),
+	m_eTerrainFlavourType( NO_TERRAIN_FLAVOUR ),
+	m_eUnitArtStyleType( NO_UNIT_ARTSTYLE ),
+	m_eSpawnPrereqType( NO_UNIT_ARTSTYLE ),
+	m_iWeight( 0 ),
+	m_iValidTerrainWeight( 0 ),
+	m_iMinTier( 0 ),
+	m_iMaxTier( MAX_INT ),
+	m_iPrereqGlobalCounter( 0 ),
+	m_iMinRandomPromotions( -1 ),
+	m_iMaxRandomPromotions( -1 ),
+	m_iNumRandomIncludedSpawns( -1 ),
+	m_iCreateLairAge(0),
+	m_iCreateLairLevel(0),
+	m_bNeverSpawn( false ),
+	m_bExplorationResult( false ),
+	m_bExplorationNoPush( false ),
+	m_bNoDefender( false ),
+	m_bAnimal( false ),
+	m_bWater( false ),
+	m_bNoRace( false ),
+	m_piNumSpawnUnits( NULL ),
+	m_pbUnitPromotions( NULL ),
+	m_pbIncludedSpawns( NULL )
+{
+}
+
+CvSpawnInfo::~CvSpawnInfo()
+{
+	SAFE_DELETE_ARRAY( m_piNumSpawnUnits );
+	SAFE_DELETE_ARRAY( m_pbUnitPromotions );
+	SAFE_DELETE_ARRAY( m_pbIncludedSpawns );
+}
+
+int CvSpawnInfo::getCreateLair() const
+{
+	return m_eCreateLair;
+}
+
+int CvSpawnInfo::getTerrainFlavourType() const
+{
+	return m_eTerrainFlavourType;
+}
+
+int CvSpawnInfo::getUnitArtStyleType() const
+{
+	return m_eUnitArtStyleType;
+}
+
+int CvSpawnInfo::getSpawnPrereqType() const
+{
+	return m_eSpawnPrereqType;
+}
+
+int CvSpawnInfo::getWeight() const
+{
+	return m_iWeight;
+}
+
+int CvSpawnInfo::getValidTerrainWeight() const
+{
+	return m_iValidTerrainWeight;
+}
+
+int CvSpawnInfo::getMinTier() const
+{
+	return m_iMinTier;
+}
+
+int CvSpawnInfo::getMaxTier() const
+{
+	return m_iMaxTier;
+}
+
+int CvSpawnInfo::getPrereqGlobalCounter() const
+{
+	return m_iPrereqGlobalCounter;
+}
+
+int CvSpawnInfo::getMinRandomPromotions() const
+{
+	return m_iMinRandomPromotions;
+}
+
+int CvSpawnInfo::getMaxRandomPromotions() const
+{
+	return m_iMaxRandomPromotions;
+}
+
+int CvSpawnInfo::getNumRandomIncludedSpawns() const
+{
+	return m_iNumRandomIncludedSpawns;
+}
+
+int CvSpawnInfo::getCreateLairAge() const
+{
+	return m_iCreateLairAge;
+}
+
+int CvSpawnInfo::getCreateLairLevel() const
+{
+	return m_iCreateLairLevel;
+}
+
+bool CvSpawnInfo::isNeverSpawn() const
+{
+	return m_bNeverSpawn;
+}
+
+bool CvSpawnInfo::isExplorationResult() const
+{
+	return m_bExplorationResult;
+}
+
+bool CvSpawnInfo::isExplorationNoPush() const
+{
+	return m_bExplorationNoPush;
+}
+
+bool CvSpawnInfo::isNoDefender() const
+{
+	return m_bNoDefender;
+}
+
+bool CvSpawnInfo::isAnimal() const
+{
+	return m_bAnimal;
+}
+
+bool CvSpawnInfo::isWater() const
+{
+	return m_bWater;
+}
+
+bool CvSpawnInfo::isNoRace() const
+{
+	return m_bNoRace;
+}
+
+int CvSpawnInfo::getNumSpawnUnits( int i ) const
+{
+	FAssertMsg( i < GC.getNumUnitInfos(), "Index out of bounds" );
+	FAssertMsg( i > -1, "Index out of bounds" );
+	return m_piNumSpawnUnits ? m_piNumSpawnUnits[i] : 0;
+}
+
+bool CvSpawnInfo::getUnitPromotions( int i ) const
+{
+	FAssertMsg( i < GC.getNumPromotionInfos(), "Index out of bounds" );
+	FAssertMsg( i > -1, "Index out of bounds" );
+	return m_pbUnitPromotions ? m_pbUnitPromotions[i] : false;
+}
+
+bool CvSpawnInfo::isIncludedSpawns( int i ) const
+{
+	FAssertMsg( i < GC.getNumSpawnInfos(), "Index out of bounds" );
+	FAssertMsg( i > -1, "Index out of bounds" );
+	return m_pbIncludedSpawns ? m_pbIncludedSpawns[i] : false;
+}
+
+void CvSpawnInfo::read(FDataStreamBase* stream)
+{
+	CvInfoBase::read(stream);
+	
+	stream->Read(&m_eCreateLair);
+	stream->Read(&m_eTerrainFlavourType);
+	stream->Read(&m_eUnitArtStyleType);
+	stream->Read(&m_iWeight);
+	stream->Read(&m_iValidTerrainWeight);
+	stream->Read(&m_iMinTier);
+	stream->Read(&m_iMaxTier);
+	stream->Read(&m_iPrereqGlobalCounter);
+	stream->Read(&m_iMinRandomPromotions);
+	stream->Read(&m_iMaxRandomPromotions);
+	stream->Read(&m_iNumRandomIncludedSpawns);
+	stream->Read(&m_iCreateLairAge);
+	stream->Read(&m_iCreateLairLevel);
+	stream->Read(&m_bNeverSpawn);
+	stream->Read(&m_bExplorationResult);
+	stream->Read(&m_bExplorationNoPush);
+	stream->Read(&m_bNoDefender);
+	stream->Read(&m_bAnimal);
+	stream->Read(&m_bWater);
+	stream->Read(&m_bNoRace);
+	
+	// Arrays
+	
+	SAFE_DELETE_ARRAY(m_piNumSpawnUnits);
+	m_piNumSpawnUnits = new int[GC.getNumUnitInfos()];
+	stream->Read(GC.getNumUnitInfos(), m_piNumSpawnUnits);
+	
+	SAFE_DELETE_ARRAY(m_pbUnitPromotions);
+	m_pbUnitPromotions = new bool[GC.getNumPromotionInfos()];
+	stream->Read(GC.getNumPromotionInfos(), m_pbUnitPromotions);
+	
+	SAFE_DELETE_ARRAY(m_pbIncludedSpawns);
+	m_pbIncludedSpawns = new bool[GC.getNumSpawnInfos()];
+	stream->Read(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
+}
+
+void CvSpawnInfo::write(FDataStreamBase* stream)
+{
+	CvInfoBase::write(stream);
+	
+	stream->Write(m_eCreateLair);
+	stream->Write(m_eTerrainFlavourType);
+	stream->Write(m_eUnitArtStyleType);
+	stream->Write(m_eSpawnPrereqType);
+	stream->Write(m_iWeight);
+	stream->Write(m_iValidTerrainWeight);
+	stream->Write(m_iMinTier);
+	stream->Write(m_iMaxTier);
+	stream->Write(m_iPrereqGlobalCounter);
+	stream->Write(m_iMinRandomPromotions);
+	stream->Write(m_iMaxRandomPromotions);
+	stream->Write(m_iNumRandomIncludedSpawns);
+	stream->Write(m_iCreateLairAge);
+	stream->Write(m_iCreateLairLevel);
+	stream->Write(m_bNeverSpawn);
+	stream->Write(m_bExplorationResult);
+	stream->Write(m_bExplorationNoPush);
+	stream->Write(m_bNoDefender);
+	stream->Write(m_bAnimal);
+	stream->Write(m_bWater);
+	stream->Write(m_bNoRace);
+
+	// Arrays
+	
+	stream->Write(GC.getNumUnitInfos(), m_piNumSpawnUnits);
+	stream->Write(GC.getNumPromotionInfos(), m_pbUnitPromotions);
+	stream->Write(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
+}
+
+bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
+{
+	CvString szTextVal;
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+	
+	pXML->GetChildXmlValByName(szTextVal, "CreateLair");
+	m_eCreateLair = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "TerrainFlavourType");
+	m_eTerrainFlavourType = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "UnitArtStyleType");
+	m_eUnitArtStyleType = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "SpawnPrereqType");
+	m_eSpawnPrereqType = pXML->FindInInfoClass(szTextVal);
+
+	pXML->GetChildXmlValByName(&m_iWeight, "iBaseWeight");
+	pXML->GetChildXmlValByName(&m_iValidTerrainWeight, "iValidTerrainWeight" );
+	pXML->GetChildXmlValByName(&m_iMinTier, "iMinSpawnTier");
+	pXML->GetChildXmlValByName(&m_iMaxTier, "iMaxSpawnTier");
+	pXML->GetChildXmlValByName(&m_iPrereqGlobalCounter, "iPrereqGlobalCounter");
+	pXML->GetChildXmlValByName(&m_iMinRandomPromotions, "iMinRandomPromotions", -1);
+	pXML->GetChildXmlValByName(&m_iMaxRandomPromotions, "iMaxRandomPromotions", -1);
+	pXML->GetChildXmlValByName(&m_iNumRandomIncludedSpawns, "iNumRandomIncludedSpawns", -1);
+	pXML->GetChildXmlValByName(&m_iCreateLairAge, "iCreateLairAge" );
+	pXML->GetChildXmlValByName(&m_iCreateLairLevel, "iCreateLairLevel" );
+	pXML->GetChildXmlValByName(&m_bNeverSpawn, "bNeverSpawn");
+	pXML->GetChildXmlValByName(&m_bExplorationResult, "bExplorationResult");
+	pXML->GetChildXmlValByName(&m_bExplorationNoPush, "bExplorationNoPush");
+	pXML->GetChildXmlValByName(&m_bNoDefender, "bNoDefender");
+	pXML->GetChildXmlValByName(&m_bAnimal, "bAnimal");
+	pXML->GetChildXmlValByName(&m_bWater, "bWater");
+	pXML->GetChildXmlValByName(&m_bNoRace, "bNoRace");
+	
+	pXML->SetVariableListTagPair( &m_piNumSpawnUnits, "SpawnUnits", sizeof( GC.getUnitInfo( (UnitTypes) 0 ) ), GC.getNumUnitInfos() );
+	
+	pXML->SetVariableList( &m_pbUnitPromotions, "UnitPromotions", GC.getNumPromotionInfos() );
+
+	return true;
+}
+
+bool CvSpawnInfo::readPass2(CvXMLLoadUtility* pXML)
+{
+	CvString szTextVal;
+
+	m_pbIncludedSpawns = new bool[GC.getNumSpawnInfos()];
+	for (int i = 0; i < GC.getNumSpawnInfos(); ++i)
+	{
+		m_pbIncludedSpawns[i] = false;
+	}
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"IncludedSpawns"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						int iSpawn = pXML->FindInInfoClass(szTextVal);
+						if( iSpawn > -1 && iSpawn < GC.getNumSpawnInfos() )
+							m_pbIncludedSpawns[iSpawn] = true;
+						if (!pXML->GetNextXmlVal(szTextVal))
+							break;
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	return true;
+}
+
+//======================================================================================================
+//					CvSpawnPrereqInfo
+//======================================================================================================
+
+CvSpawnPrereqInfo::CvSpawnPrereqInfo()
+{
+}
+
+CvSpawnPrereqInfo::~CvSpawnPrereqInfo()
+{
+	for( size_t i = 0; i < m_vpiPrereqTechTiers.size(); i++ )
+		SAFE_DELETE_ARRAY( m_vpiPrereqTechTiers[i] );
+	for( size_t i = 0; i < m_vpiObsoleteTechTiers.size(); i++ )
+		SAFE_DELETE_ARRAY( m_vpiObsoleteTechTiers[i] );
+}
+
+int CvSpawnPrereqInfo::getNumWildernessTiers() const
+{
+	FAssert( m_viMinWildernessTiers.size() == m_viMaxWildernessTiers.size() )
+	return m_viMinWildernessTiers.size();
+}
+	
+
+int CvSpawnPrereqInfo::getMinWilderness( int iTier ) const
+{
+	FAssertMsg( iTier > -1, "Index out of bounds" );
+	FAssertMsg( (unsigned int) iTier < m_viMinWildernessTiers.size(), "Index out of bounds" );
+	return m_viMinWildernessTiers[iTier];
+}
+
+int CvSpawnPrereqInfo::getMaxWilderness( int iTier ) const
+{
+	FAssertMsg( iTier > -1, "Index out of bounds" );
+	FAssertMsg( (unsigned int) iTier < m_viMaxWildernessTiers.size(), "Index out of bounds" );
+	return m_viMaxWildernessTiers[iTier];
+}
+
+int CvSpawnPrereqInfo::getNumTechTiers() const
+{
+	FAssert( m_vpiPrereqTechTiers.size() == m_vpiObsoleteTechTiers.size() )
+	return m_vpiPrereqTechTiers.size();
+}
+
+bool CvSpawnPrereqInfo::isPrereqTech( int iTier, int eTech ) const
+{
+	FAssertMsg( iTier > -1, "Index out of bounds" );
+	FAssertMsg( (unsigned int) iTier < m_vpiPrereqTechTiers.size(), "Index out of bounds" )
+	FAssertMsg( eTech < GC.getNumTechInfos(), "Index out of bounds" );
+	FAssertMsg( eTech > -1, "Index out of bounds" );
+	return m_vpiPrereqTechTiers[iTier] ? m_vpiPrereqTechTiers[iTier][eTech] : false;
+}
+
+bool CvSpawnPrereqInfo::isObsoleteTech( int iTier, int eTech ) const
+{
+	FAssertMsg( iTier > -1, "Index out of bounds" );
+	FAssertMsg( (unsigned int) iTier < m_vpiObsoleteTechTiers.size(), "Index out of bounds" );
+	FAssertMsg( eTech < GC.getNumTechInfos(), "Index out of bounds" );
+	FAssertMsg( eTech > -1, "Index out of bounds" );
+	return m_vpiObsoleteTechTiers[iTier] ? m_vpiObsoleteTechTiers[iTier][eTech] : false;
+}
+
+void CvSpawnPrereqInfo::read(FDataStreamBase* stream)
+{
+	CvInfoBase::read(stream);
+
+	// Not needed
+}
+
+void CvSpawnPrereqInfo::write(FDataStreamBase* stream)
+{
+	CvInfoBase::write(stream);
+
+	// Not needed
+}
+
+bool CvSpawnPrereqInfo::read(CvXMLLoadUtility* pXML)
+{
+	CvString szTextVal;
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+
+	// Wilderness Tiers
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"WildernessTiers"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if ( (0 < iNumSibs) && (gDLL->getXMLIFace()->SetToChild(pXML->GetXML())) )
+			{
+				for( int iTier = 0; iTier < iNumSibs; iTier++ )
+				{
+					int iMinWilderness, iMaxWilderness;
+					pXML->GetChildXmlValByName( &iMinWilderness, "iMinWilderness" );
+					pXML->GetChildXmlValByName( &iMaxWilderness, "iMaxWilderness" );
+					
+					m_viMinWildernessTiers.push_back( iMinWilderness );
+					m_viMaxWildernessTiers.push_back( iMaxWilderness );
+
+					if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+					{
+						break;
+					}
+				}
+
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	// Tech Tiers
+	
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"TechTiers"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if ( (0 < iNumSibs) && (gDLL->getXMLIFace()->SetToChild(pXML->GetXML())) )
+			{
+				for( int iTier = 0; iTier < iNumSibs; iTier++ )
+				{
+					m_vpiPrereqTechTiers.push_back( new bool[GC.getNumTechInfos()] );
+					m_vpiObsoleteTechTiers.push_back( new bool[GC.getNumTechInfos()] );
+					
+					pXML->SetVariableList( &( m_vpiPrereqTechTiers.back() ), "PrereqTechs", GC.getNumTechInfos() );
+					pXML->SetVariableList( &( m_vpiObsoleteTechTiers.back() ), "ObsoleteTechs", GC.getNumTechInfos() );
+
+					if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+					{
+						break;
+					}
+				}
+
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	return true;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/

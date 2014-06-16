@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_MISC_LOST_PROD_CONVERTED</Tag>
+		<English>%s1_CityName can't carry over [ICON_PRODUCTION] overflow any more. The lost %d2_NumProduction[ICON_PRODUCTION] is converted into %d3_NumGold[ICON_GOLD]!</English>
+		<French>%s1_CityName can't carry over [ICON_PRODUCTION] overflow any more. The lost %d2_NumProduction[ICON_PRODUCTION] is converted into %d3_NumGold[ICON_GOLD]!</French>
+		<German>%s1_CityName can't carry over [ICON_PRODUCTION] overflow any more. The lost %d2_NumProduction[ICON_PRODUCTION] is converted into %d3_NumGold[ICON_GOLD]!</German>
+		<Italian>%s1_CityName can't carry over [ICON_PRODUCTION] overflow any more. The lost %d2_NumProduction[ICON_PRODUCTION] is converted into %d3_NumGold[ICON_GOLD]!</Italian>
+		<Spanish>%s1_CityName no puede continuar preservando [ICON_PRODUCTION] sobrante. Los %d2_NumProduction[ICON_PRODUCTION] perdidos se han convertido en %d3_NumGold[ICON_GOLD]!</Spanish>
+	</TEXT>
+</Civ4GameText>

@@ -408,6 +408,14 @@ int CyGlobalContext::getInfoTypeForString(const char* szInfoType) const
 }
 
 
+// Special method provided for MapScripts to prevent them from triggering assertions.
+int CyGlobalContext::getInfoTypeForStringNoAsserts(const char* szInfoType) const
+{
+	return GC.getInfoTypeForString(szInfoType, true);
+}
+// End
+
+
 int CyGlobalContext::getTypesEnum(const char* szType) const
 {
 	return GC.getTypesEnum(szType);
@@ -639,3 +647,26 @@ CvTurnTimerInfo* CyGlobalContext::getTurnTimerInfo(int i) const
 {
 	return &(GC.getTurnTimerInfo((TurnTimerTypes) i));
 }
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+CvTerrainFlavourInfo* CyGlobalContext::getTerrainFlavourInfo(int i) const
+{
+	return (i>=0 && i<GC.getNumTerrainFlavourInfos()) ? &GC.getTerrainFlavourInfo((TerrainFlavourTypes) i) : NULL;
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+CvSpawnInfo* CyGlobalContext::getSpawnInfo(int i) const
+{
+	return &GC.getSpawnInfo((SpawnTypes) i);
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/

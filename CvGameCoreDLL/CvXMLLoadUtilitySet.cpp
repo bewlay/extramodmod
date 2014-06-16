@@ -14,6 +14,10 @@
 #include "FVariableSystem.h"
 #include "CvGameCoreUtils.h"
 
+// lfgr TERRAIN_FLAVOUR_TEST
+#include "BetterBTSAI.h"
+// lfgr end
+
 // Macro for Setting Global Art Defines
 #define INIT_XML_GLOBAL_LOAD(xmlInfoPath, infoArray, numInfos)  SetGlobalClassInfo(infoArray, xmlInfoPath, numInfos);
 
@@ -366,9 +370,9 @@ bool CvXMLLoadUtility::SetPostGlobalsGlobalDefines()
 		idx = FindInInfoClass(szVal);
 		GC.getDefinesVarSystem()->SetValue("FLAMES_SPREAD_EFFECT", idx);
 
-		SetGlobalDefine("GREAT_COMMANDER_PROMOTION", szVal);
+		SetGlobalDefine("GREAT_GENERAL_PROMOTION", szVal);
 		idx = FindInInfoClass(szVal);
-		GC.getDefinesVarSystem()->SetValue("GREAT_COMMANDER_PROMOTION", idx);
+		GC.getDefinesVarSystem()->SetValue("GREAT_GENERAL_PROMOTION", idx);
 
 		SetGlobalDefine("HIDDEN_NATIONALITY_PROMOTION", szVal);
 		idx = FindInInfoClass(szVal);
@@ -957,6 +961,100 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 	{
 		GC.getUnitClassInfo((UnitClassTypes)i).readPass3();
 	}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	LoadGlobalClassInfo( GC.getTerrainFlavourInfo(), "CIV4TerrainFlavourInfos", "Terrain", "Civ4TerrainFlavourInfos/TerrainFlavourInfos/TerrainFlavourInfo", false );
+	
+	/*
+	// lfgr TERRAIN_FLAVOUR_TEST
+	// print all TerrainFlavourInfos
+	
+	for( int eTerrainFlavour = 0; eTerrainFlavour < GC.getNumTerrainFlavourInfos(); eTerrainFlavour++ )
+	{
+		CvTerrainFlavourInfo& kTerrainFlavourInfo = GC.getTerrainFlavourInfo( (TerrainFlavourTypes) eTerrainFlavour );
+		logBBAI( "++++ TerrainFlavour Info: %s +++", kTerrainFlavourInfo.getType() );
+		
+		int iBaseWeight = kTerrainFlavourInfo.getBaseWeight();
+		if( iBaseWeight != 0 )
+			logBBAI( "    iBaseWeight: %d", iBaseWeight );
+		
+		int iIsolationPercentWeight = kTerrainFlavourInfo.getIsolationPercentWeight();
+		if( iIsolationPercentWeight != 0 )
+			logBBAI( "    iIsolationPercentWeight: %d", iIsolationPercentWeight );
+		
+		int iCoastalWeight = kTerrainFlavourInfo.getCoastalWeight();
+		if( iCoastalWeight != 0 )
+			logBBAI( "    iCoastalWeight: %d", iCoastalWeight );
+		
+		logBBAI( "    PlotPercentWeight:" );
+
+		int iPlotWeight = kTerrainFlavourInfo.getPlotPercentWeight( PLOT_PEAK );
+		if( iPlotWeight != 0 )
+			logBBAI( "        PLOT_PEAK: %d", iPlotWeight );
+
+		iPlotWeight = kTerrainFlavourInfo.getPlotPercentWeight( PLOT_HILLS );
+		if( iPlotWeight != 0 )
+			logBBAI( "        PLOT_HILLS: %d", iPlotWeight ); 
+
+		iPlotWeight = kTerrainFlavourInfo.getPlotPercentWeight( PLOT_LAND );
+		if( iPlotWeight != 0 )
+			logBBAI( "        PLOT_LAND: %d", iPlotWeight ); 
+
+		iPlotWeight = kTerrainFlavourInfo.getPlotPercentWeight( PLOT_OCEAN );
+		if( iPlotWeight != 0 )
+			logBBAI( "        PLOT_OCEAN: %d", iPlotWeight ); 
+		
+		logBBAI( "    TerrainPercentWeight:" );
+		for( int eTerrain = 0; eTerrain < GC.getNumTerrainInfos(); eTerrain++ )
+		{
+			int iWeight = kTerrainFlavourInfo.getTerrainPercentWeight( eTerrain );
+			if( iWeight != 0 )
+				logBBAI( "        %s: %d", GC.getTerrainInfo( (TerrainTypes) eTerrain ).getType(), iWeight ); 
+		}
+		
+		logBBAI( "    FeaturePercentWeight:" );
+		for( int eFeature = 0; eFeature < GC.getNumFeatureInfos(); eFeature++ )
+		{
+			int iWeight = kTerrainFlavourInfo.getFeaturePercentWeight( eFeature );
+			if( iWeight != 0 )
+				logBBAI( "        %s: %d", GC.getFeatureInfo( (FeatureTypes) eFeature ).getType(), iWeight ); 
+		}
+		
+		logBBAI( "    ImprovementAvailableWeight:" );
+		for( int eImprovement = 0; eImprovement < GC.getNumImprovementInfos(); eImprovement++ )
+		{
+			int iWeight = kTerrainFlavourInfo.getImprovementAvailableWeight( eImprovement );
+			if( iWeight != 0 )
+				logBBAI( "        %s: %d", GC.getImprovementInfo( (ImprovementTypes) eImprovement ).getType(), iWeight ); 
+		}
+		
+		logBBAI( "    BonusAvailableWeight:" );
+		for( int eBonus = 0; eBonus < GC.getNumBonusInfos(); eBonus++ )
+		{
+			int iWeight = kTerrainFlavourInfo.getBonusAvailableWeight( eBonus );
+			if( iWeight != 0 )
+				logBBAI( "        %s: %d", GC.getBonusInfo( (BonusTypes) eBonus ).getType(), iWeight ); 
+		}
+
+		logBBAI( "    YieldOnPlotPercentWeight:" );
+
+		int iYieldWeight = kTerrainFlavourInfo.getYieldOnPlotPercentWeight( YIELD_FOOD );
+		if( iYieldWeight != 0 )
+			logBBAI( "        YIELD_FOOD: %d", iYieldWeight );
+
+		iYieldWeight = kTerrainFlavourInfo.getYieldOnPlotPercentWeight( YIELD_PRODUCTION );
+		if( iYieldWeight != 0 )
+			logBBAI( "        YIELD_PRODUCTION: %d", iYieldWeight ); 
+
+		iYieldWeight = kTerrainFlavourInfo.getYieldOnPlotPercentWeight( YIELD_COMMERCE );
+		if( iYieldWeight != 0 )
+			logBBAI( "        YIELD_COMMERCE: %d", iYieldWeight );
+	}
+		*/
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 
 	LoadGlobalClassInfo(GC.getUnitArtStyleTypeInfo(), "CIV4UnitArtStyleTypeInfos", "Civilizations", "Civ4UnitArtStyleTypeInfos/UnitArtStyleTypeInfos/UnitArtStyleTypeInfo", false);
 	LoadGlobalClassInfo(GC.getCivilizationInfo(), "CIV4CivilizationInfos", "Civilizations", "Civ4CivilizationInfos/CivilizationInfos/CivilizationInfo", true, &CvDLLUtilityIFaceBase::createCivilizationInfoCacheObject);
@@ -966,6 +1064,56 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 	LoadGlobalClassInfo(GC.getSlideShowRandomInfo(), "CIV4SlideShowRandomInfos", "Interface", "Civ4SlideShowRandomInfos/SlideShowRandomInfos/SlideShowRandomInfo", false);
 	LoadGlobalClassInfo(GC.getWorldPickerInfo(), "CIV4WorldPickerInfos", "Interface", "Civ4WorldPickerInfos/WorldPickerInfos/WorldPickerInfo", false);
 	LoadGlobalClassInfo(GC.getSpaceShipInfo(), "Civ4SpaceShipInfos", "Interface", "Civ4SpaceShipInfos/SpaceShipInfos/SpaceShipInfo", false);
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+	LoadGlobalClassInfo(GC.getSpawnPrereqInfo(), "Civ4SpawnPrereqInfos", "GameInfo", "Civ4SpawnPrereqInfos/SpawnPrereqInfos/SpawnPrereqInfo", false);
+	LoadGlobalClassInfo(GC.getSpawnInfo(), "CIV4SpawnInfos", "GameInfo", "Civ4SpawnInfos/SpawnInfos/SpawnInfo", true);
+	
+/*
+	// lfgr WILDERNESS_TEST
+	// print all CIV4SpawnPrereqInfos
+	
+	logBBAI( "++++++++ SPAWN PREREQ INFOS ++++++++" );
+	
+	for( int eSpawnPrereq = 0; eSpawnPrereq < GC.getNumSpawnPrereqInfos(); eSpawnPrereq++ )
+	{
+		CvSpawnPrereqInfo& kSpawnPrereqInfo = GC.getSpawnPrereqInfo( (SpawnPrereqTypes) eSpawnPrereq );
+		logBBAI( "++++ SpawnPrereqInfo: %s +++", kSpawnPrereqInfo.getType() );
+
+		logBBAI( "    WildernessTiers:" );
+		for( int iTier = 0; iTier < kSpawnPrereqInfo.getNumWildernessTiers(); iTier++ )
+		{
+			logBBAI( "        iMinWilderness: %d", kSpawnPrereqInfo.getMinWilderness( iTier ) );
+			logBBAI( "        iMaxWilderness: %d", kSpawnPrereqInfo.getMaxWilderness( iTier ) );
+		}
+		
+		logBBAI( "    TechTiers:" );
+		for( int iTier = 0; iTier < kSpawnPrereqInfo.getNumTechTiers(); iTier++ )
+		{
+			logBBAI( "        TechTier:" );
+			logBBAI( "            PrereqTechs:" );
+			for( int eTech = 0; eTech < GC.getNumTechInfos(); eTech++ )
+			{
+				if( kSpawnPrereqInfo.isPrereqTech( iTier, eTech ) )
+					logBBAI( "                %s", GC.getTechInfo( (TechTypes) eTech ).getType()); 
+			}
+		
+			logBBAI( "            ObsoleteTechs:" );
+			for( int eTech = 0; eTech < GC.getNumTechInfos(); eTech++ )
+			{
+				if( kSpawnPrereqInfo.isObsoleteTech( iTier, eTech ) )
+					logBBAI( "                %s", GC.getTechInfo( (TechTypes) eTech ).getType()); 
+			}
+		}
+	}
+*/
+
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	LoadGlobalClassInfo(GC.getYieldInfo(), "CIV4YieldInfos", "Terrain", "Civ4YieldInfos/YieldInfos/YieldInfo", false);
 	LoadGlobalClassInfo(GC.getCommerceInfo(), "CIV4CommerceInfo", "GameInfo", "Civ4CommerceInfo/CommerceInfos/CommerceInfo", false);
@@ -1005,13 +1153,6 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 	{
 		GC.getProjectInfo((ProjectTypes)i).readPass3();
 	}
-
-/**
-	for (int i=0; i < GC.getNumBuildingInfos(); ++i)
-	{
-		GC.getBuildingInfo((BuildingTypes)i).readPass3();
-	}
-**/
 
 //>>>>Unofficial Bug Fix: Added by Denev 2010/02/27
 //*** prereq civilization of each building is read correctly.
@@ -3013,6 +3154,50 @@ void CvXMLLoadUtility::SetVariableListTagPair(CvString **ppszList, const TCHAR* 
 		gDLL->getXMLIFace()->SetToParent(m_pFXml);
 	}
 }
+
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
+/* Loads a list of type strings into a bool array.                                              */
+/************************************************************************************************/
+void CvXMLLoadUtility::SetVariableList( bool **ppbList, const TCHAR* szRootagName, int iInfoBaseLength, bool bDefaultListVal )
+{
+	CvString szTextVal;
+
+	*ppbList = new bool[iInfoBaseLength];
+	for( int i = 0; i < iInfoBaseLength; i++ )
+		(*ppbList)[i] = bDefaultListVal;
+
+	if( gDLL->getXMLIFace()->SetToChildByTagName( GetXML(), szRootagName ) )
+	{
+		if( SkipToNextVal() )
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren( GetXML() );
+
+			if( 0 < iNumSibs )
+			{
+				if( GetChildXmlVal( szTextVal ) )
+				{
+					for( int i = 0; i < iNumSibs; i++ )
+					{
+						int eValue = FindInInfoClass( szTextVal );
+						if( eValue > -1 && eValue < iInfoBaseLength )
+							(*ppbList)[eValue] = true;
+						if( !GetNextXmlVal( szTextVal ) )
+							break;
+					}
+
+					gDLL->getXMLIFace()->SetToParent( GetXML() );
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent( GetXML() );
+	}
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 DllExport bool CvXMLLoadUtility::LoadPlayerOptions()
 {
