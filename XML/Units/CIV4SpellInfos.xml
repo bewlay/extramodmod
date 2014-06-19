@@ -2583,7 +2583,7 @@
         <SpellInfo>
             <Type>SPELL_LABYRINTH</Type>
             <Description>TXT_KEY_SPELL_LABYRINTH</Description>
-            <Civilopedia>TXT_KEY_SPELL_LABYRINTH_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <PromotionPrereq1>PROMOTION_DIMENSIONAL2</PromotionPrereq1>
             <bAllowAI>0</bAllowAI>
 			<bDisplayWhenDisabled>1</bDisplayWhenDisabled>

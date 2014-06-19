@@ -331,11 +331,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_LABYRINTH</Tag>
-		<English>Labyrinth</English>
-		<French>Labyrinth</French>
-		<German>Labyrinth</German>
-		<Italian>Labyrinth</Italian>
-		<Spanish>Laberinto</Spanish>
+		<English>Create Labyrinth</English>
+		<French>Create Labyrinth</French>
+		<German>Create Labyrinth</German>
+		<Italian>Create Labyrinth</Italian>
+		<Spanish>Crear Laberinto</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_LABYRINTH_HELP</Tag>
