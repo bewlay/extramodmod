@@ -1281,6 +1281,9 @@ class CvMainInterface:
 #AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
 			if (not CyInterface().isCityScreenUp() and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START and CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_SHOW):	
 
+				iHorizontalPosition = 270
+				iVerticalPosition = 50
+
 				if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI') and pPlayer.getNumCities() > 0:
 
 # Figure the counter values.
@@ -1289,16 +1292,27 @@ class CvMainInterface:
 
 # Show the calculated values.
 					if fGrigoriActual > 0:
-							iHorizontalPosition = 270
-							iVerticalPosition = 50
-							SRstr = u"<font=2i>%s</font>" %(str(" ") + str(fGrigoriActual) + str(" / ") + str(fGrigoriMod) + str(" "))
-							screen.setImageButton("AdventurerChance", "Art/Interface/Buttons/Units/Adventurer.dds", iHorizontalPosition, iVerticalPosition, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-							screen.setText( "SRText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iHorizontalPosition + 12, iVerticalPosition + 2, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-							screen.setHitTest( "SRText", HitTestTypes.HITTEST_NOHIT )
+						SRstr = u"<font=2i>%s</font>" %(str(" ") + str(fGrigoriActual) + str(" / ") + str(fGrigoriMod) + str(" "))
+						screen.setImageButton("AdventurerChance", "Art/Interface/Buttons/Units/Adventurer.dds", iHorizontalPosition, iVerticalPosition, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setText( "SRText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iHorizontalPosition + 12, iVerticalPosition + 2, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setHitTest( "SRText", HitTestTypes.HITTEST_NOHIT )
 					else:
 						screen.hide( "AdventurerChance" )
 						screen.hide( "SRText" )
 #AdventurerCounter End
+
+				if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KURIOTATES') and pPlayer.getNumCities() > 0 and pPlayer.getMaxCities() != -1:
+					iNumCities = pPlayer.getNumCities();
+					iMaxCities = pPlayer.getMaxCities()
+
+					if iNumCities > 0 and iMaxCities > 0:
+						SRstr = u"<font=2i>%s</font>" %(str(" ") + str(iNumCities) + str(" / ") + str(iMaxCities) + str(" "))
+						screen.setImageButton("KuriotateCities", "Art/Interface/Buttons/Spells/Promote Settlement.dds", iHorizontalPosition, iVerticalPosition, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setText( "KurioText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iHorizontalPosition + 12, iVerticalPosition + 2, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setHitTest( "KurioText", HitTestTypes.HITTEST_NOHIT )
+					else:
+						screen.hide( "KuriotateCities" )
+						screen.hide( "KurioText" )
 
 		self.updateEndTurnButton()
 
