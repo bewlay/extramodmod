@@ -1289,10 +1289,11 @@ class CvMainInterface:
 
 # Show the calculated values.
 					if fGrigoriActual > 0:
-							iPosition = 270
+							iHorizontalPosition = 270
+							iVerticalPosition = 50
 							SRstr = u"<font=2i>%s</font>" %(str(" ") + str(fGrigoriActual) + str(" / ") + str(fGrigoriMod) + str(" "))
-							screen.setImageButton("AdventurerChance", "Art/Interface/Buttons/Units/Adventurer.dds", iPosition, 7, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-							screen.setText( "SRText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iPosition + 12, 5, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+							screen.setImageButton("AdventurerChance", "Art/Interface/Buttons/Units/Adventurer.dds", iHorizontalPosition, iVerticalPosition, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+							screen.setText( "SRText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iHorizontalPosition + 12, iVerticalPosition + 2, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 							screen.setHitTest( "SRText", HitTestTypes.HITTEST_NOHIT )
 					else:
 						screen.hide( "AdventurerChance" )
