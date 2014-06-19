@@ -742,6 +742,13 @@ def spellDeciusJoin(caster):
 			pDecius = pUnit
 	if pDecius != -1:
 		caster.setScenarioCounter(iDecius)
+		# lfgr GP_NAMES 07/2013
+		if( not SDTK.sdObjectExists( "GPNames", caster ) ) :
+			SDTK.sdObjectInit( "GPNames", caster, {} )
+		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", pDecius.getNameNoDesc() )
+		if( pDecius.getNameNoDesc() != "" and caster.getNameNoDesc() == "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
+			caster.setName( pDecius.getNameNoDesc() )
+		# lfgr end
 		pDecius.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
 		pDecius.kill(False, PlayerTypes.NO_PLAYER)
 
@@ -752,9 +759,11 @@ def spellDeciusSplit(caster):
 	newUnit = pPlayer.initUnit(iDecius, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 	# lfgr GP_NAMES 07/2013
 	if( SDTK.sdObjectExists( "GPNames", caster ) ) :
-		szName = SDTK.sdObjectGetVal( "GPNames", caster, "CommanderName" )
-		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", "" )
+		szName = SDTK.sdObjectGetVal( "GPNames", caster, "GeneralName" )
+		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", "" )
 		newUnit.setName( szName )
+		if( caster.getNameNoDesc() == szName ) :
+			caster.setName( "" )
 	# lfgr end
 
 def reqConvertCityBasium(caster):
@@ -4437,9 +4446,9 @@ def spellGreatGeneralJoin(caster):
 		# lfgr GP_NAMES 07/2013
 		if( not SDTK.sdObjectExists( "GPNames", caster ) ) :
 			SDTK.sdObjectInit( "GPNames", caster, {} )
-		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", pGeneral.getName() )
-		if( caster.getNameNoDesc() != "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
-			caster.setName( pGeneral.getName() )
+		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", pGeneral.getNameNoDesc() )
+		if( pGeneral.getNameNoDesc() != "" and caster.getNameNoDesc() == "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
+			caster.setName( pGeneral.getNameNoDesc() )
 		# lfgr end
 		pGeneral.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
 		pGeneral.kill(False, PlayerTypes.NO_PLAYER)
@@ -4455,6 +4464,8 @@ def spellGreatGeneralSplit(caster):
 		szName = SDTK.sdObjectGetVal( "GPNames", caster, "GeneralName" )
 		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", "" )
 		newUnit.setName( szName )
+		if( caster.getNameNoDesc() == szName ) :
+			caster.setName( "" )
 	# lfgr end
 
 def reqDeclareBarbs(caster):
