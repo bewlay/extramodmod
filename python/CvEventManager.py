@@ -1599,6 +1599,15 @@ class CvEventManager:
 			if( game.getAIAutoPlay(game.getActivePlayer()) == 0 ) :
 				cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_ACHERON_CREATION",()), str(gc.getUnitInfo(unit.getUnitType()).getImage()))
 
+		if city.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_WARRENS')) > 0:
+			if isWorldUnitClass(unit.getUnitClassType()) == False:
+				if isNationalUnitClass(unit.getUnitClassType()) == False:
+					if not unit.isMechUnit():
+#						if unit.getUnitCombatType() != UnitCombatTypes.NO_UNITCOMBAT:
+						if unit.isAlive():
+							newUnit = pPlayer.initUnit(unit.getUnitType(), city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+							city.applyBuildEffects(newUnit)
+
 		if city.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_BLESSING')) > 0:
 			if unit.isAlive() and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_WORKER') and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_SETTLE'):
 				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_STRONG'), True)

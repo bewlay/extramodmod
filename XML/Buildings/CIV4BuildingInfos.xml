@@ -7069,7 +7069,7 @@
 			<Description>TXT_KEY_BUILDING_WARRENS</Description>
 			<Civilopedia>TXT_KEY_BUILDING_WARRENS_PEDIA</Civilopedia>
 			<Strategy></Strategy>
-			<Help></Help>
+			<Help>TXT_KEY_BUILDING_WARRENS_HELP</Help>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<ArtDefineTag>ART_DEF_BUILDING_WARRENS</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>
@@ -7171,7 +7171,6 @@
 			<iStateReligionHappiness>0</iStateReligionHappiness>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
 			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
-			<iLivingProductionModifier>100</iLivingProductionModifier>
 			<iSpaceProductionModifier>0</iSpaceProductionModifier>
 			<iGlobalSpaceProductionModifier>0</iGlobalSpaceProductionModifier>
 			<iTradeRoutes>0</iTradeRoutes>
