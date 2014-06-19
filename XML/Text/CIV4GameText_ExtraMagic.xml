@@ -283,11 +283,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_BLESSING</Tag>
-		<English>Blessing</English>
-		<French>Blessing</French>
-		<German>Blessing</German>
-		<Italian>Blessing</Italian>
-		<Spanish>Bendición</Spanish>
+		<English>Bestow Blessing</English>
+		<French>Bestow Blessing</French>
+		<German>Bestow Blessing</German>
+		<Italian>Bestow Blessing</Italian>
+		<Spanish>Conceder Bendición</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_BLESSING_HELP</Tag>
@@ -299,11 +299,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_GROWTH</Tag>
-		<English>Growth</English>
-		<French>Growth</French>
+		<English>Cause Growth</English>
+		<French>Cause Growth</French>
 		<German>Magische Kornkammer</German>
-		<Italian>Growth</Italian>
-		<Spanish>Crecimiento</Spanish>
+		<Italian>Cause Growth</Italian>
+		<Spanish>Provocar Crecimiento</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_GROWTH_PEDIA</Tag>
