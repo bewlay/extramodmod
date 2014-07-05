@@ -199,7 +199,7 @@
 		
 		<!-- Animal -->
 		<SpawnInfo> <!-- SPAWN_EXPLO_SCORPION_1 -->
-			<Type>SPAWN_EXPLO_SCORPION</Type>
+			<Type>SPAWN_EXPLO_SCORPION_1</Type>
 			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SCORPION</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_SCORPION</TerrainFlavourType>
@@ -220,7 +220,7 @@
 			</UnitPromotions>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_SCORPION_2 -->
-			<Type>SPAWN_EXPLO_SCORPION</Type>
+			<Type>SPAWN_EXPLO_SCORPION_2</Type>
 			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SCORPION</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_SCORPION</TerrainFlavourType>
