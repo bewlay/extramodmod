@@ -18104,7 +18104,7 @@ void CvUnit::setDuration(int iNewValue)
 			GET_PLAYER(getOwnerINLINE()).changeNumOutsideUnits(-1);
 		} else if (iNewValue == 0) {
 			// The unit is now permanent.
-			GET_PLAYER(getOwnerINLINE()).changeNumOutsideUnits(-1);
+			GET_PLAYER(getOwnerINLINE()).changeNumOutsideUnits(1);
 		}
 	}
 
