@@ -858,6 +858,10 @@
 					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
 					<iWeight>100</iWeight>
 				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_BURNT</FeatureType>
+					<iWeight>100</iWeight>
+				</FeaturePercentWeight>
 			</FeaturePercentWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_WOLF -->
@@ -870,6 +874,10 @@
 				<TerrainPercentWeight>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
 					<iWeight>50</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>-50</iWeight>
 				</TerrainPercentWeight>
 			</TerrainPercentWeights>
 			<FeaturePercentWeights>
