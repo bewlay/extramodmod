@@ -42,6 +42,10 @@ import WBPlotScreen
 import CvPlatyBuilderScreen
 ## Ultrapack ##
 
+# lfgr events enhanced 08/14
+import SdToolKitCustom as SDTK
+# lfgr end
+
 # globals
 cf = CustomFunctions.CustomFunctions()
 gc = CyGlobalContext()
@@ -1600,27 +1604,41 @@ class CvEventManager:
 		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_ACHERON'):
 			unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
 
-			# more events mod starts # 
-		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_GOBLIN') or unit.getUnitType() == gc.getInfoTypeForString('UNIT_GOBLIN_SCORPION_CLAN'):
+	# more events mod starts #
+		# lfgr events enhanced 08/2014
+		# trigger only once per player, fixed and rewritten
+		pAttacker = gc.getPlayer(iAttacker)
+		if( SDTK.sdObjectExists( "EventsEnhanced", pAttacker ) ) :
+			bTriggered = SDTK.sdObjectGetVal( "EventsEnhanced", pAttacker, "OrphanedGoblinTriggered" )
+		else :
+			bTriggered = False
+			
+		if( not bTriggered and unit.getUnitType() == gc.getInfoTypeForString('UNIT_GOBLIN') or unit.getUnitType() == gc.getInfoTypeForString('UNIT_GOBLIN_SCORPION_CLAN') ):
+			
 			if CyGame().getSorenRandNum(1000, "Goblin2")<100:
 				if iPlayer == gc.getBARBARIAN_PLAYER() :
 					iX = unit.getX()
 					iY = unit.getY()
-					int=1
-					pAttacker = gc.getPlayer(iAttacker)
-					for iiX in range(iX-2, iX+2, 1):
-						for iiY in range(iY-2, iY+2, 1):
-							pPlot2 = CyMap().plot(iiX,iiY)
-							for i in range(pPlot2.getNumUnits()):
-								pUnit2 = pPlot2.getUnit(i)
-								if pUnit2.getOwner()== iAttacker:
-									iWorker = gc.getInfoTypeForString('UNITCLASS_WORKER')
-									iSettler = gc.getInfoTypeForString('UNITCLASS_SETTLER')
-									if not pUnit2.getUnitClassType() == iWorker and not pUnit2.getUnitClassType() == iSettler and int==1 :
-										iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_ORPHANED_GOBLIN')
-										triggerData = pAttacker.initTriggeredData(iEvent, true, -1, pUnit2.getX(), pUnit2.getY(), pUnit2.getOwner(), -1, -1, -1, pUnit2.getID(), -1)
-										int=0
-					# more events mod ends #
+					cont = True
+					
+					eOrc = gc.getInfoTypeForString( "PROMOTION_ORC" )
+					
+					for pPlot2 in cf.getNearPlotsInOrder( pPlot, 1 ) :
+						if( not cont ) :
+							break;
+						for i in range( pPlot2.getNumUnits() ):
+							pUnit2 = pPlot2.getUnit( i )
+							if pUnit2.getOwner() == iAttacker:
+								if pUnit2.isAlive() and pUnit2.baseCombatStr() > 0 and not pUnit2.isHasPromotion( eOrc ) :
+									iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_ORPHANED_GOBLIN')
+									triggerData = pAttacker.initTriggeredData(iEvent, true, -1, pUnit2.getX(), pUnit2.getY(), pUnit2.getOwner(), -1, -1, -1, pUnit2.getID(), -1)
+									if( not SDTK.sdObjectExists( "EventsEnhanced", pAttacker ) ) :
+										SDTK.sdObjectInit( "EventsEnhanced", pAttacker, {} )
+									SDTK.sdObjectSetVal( "EventsEnhanced", pAttacker, "OrphanedGoblinTriggered", True )
+									cont = False
+									break
+		# lfgr end
+	# more events mod ends #
 		if CyGame().getWBMapScript():
 			sf.onUnitKilled(unit, iAttacker)
 

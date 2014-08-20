@@ -947,6 +947,14 @@
 		<Italian>His actions were noble, but we cannot risk barbarians in our army. Abandon the child.</Italian>
 		<Spanish>His actions were noble, but we cannot risk barbarians in our army. Abandon the child.</Spanish>
 	</TEXT>
+	<TEXT><!-- EVENT_ORPHANED_GOBLIN_3_HELP -->
+		<Tag>TXT_KEY_EVENT_ORPHANED_GOBLIN_3_HELP</Tag>
+		<English>[ICON_BULLET]May spawn a weak barbarian Goblin nearby.</English>
+		<French>[ICON_BULLET]May spawn a weak barbarian Goblin nearby.</French>
+		<German>[ICON_BULLET]May spawn a weak barbarian Goblin nearby.</German>
+		<Italian>[ICON_BULLET]May spawn a weak barbarian Goblin nearby.</Italian>
+		<Spanish>[ICON_BULLET]May spawn a weak barbarian Goblin nearby.</Spanish>
+	</TEXT>
 	<TEXT><!-- EVENT_ORPHANED_GOBLIN_4 -->
 		<Tag>TXT_KEY_EVENT_ORPHANED_GOBLIN_4</Tag>
 		<English>The army is no place to raise children! Allow the soldier to return home to raise his new child.</English>
@@ -954,6 +962,14 @@
 		<German>The army is no place to raise children! Allow the soldier to return home to raise his new child.</German>
 		<Italian>The army is no place to raise children! Allow the soldier to return home to raise his new child.</Italian>
 		<Spanish>The army is no place to raise children! Allow the soldier to return home to raise his new child.</Spanish>
+	</TEXT>
+	<TEXT><!-- EVENT_ORPHANED_GOBLIN_4_HELP -->
+		<Tag>TXT_KEY_EVENT_ORPHANED_GOBLIN_4_HELP</Tag>
+		<English>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit looses 1 XP.</English>
+		<French>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit looses 1 XP.</French>
+		<German>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit looses 1 XP.</German>
+		<Italian>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit looses 1 XP.</Italian>
+		<Spanish>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit looses 1 XP.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_THAT_KIND_OF_DAY -->
 		<Tag>TXT_KEY_EVENT_THAT_KIND_OF_DAY</Tag>

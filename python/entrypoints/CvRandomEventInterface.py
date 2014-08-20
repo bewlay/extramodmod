@@ -4070,24 +4070,7 @@ def doGhostShip (argsList):
 						CyInterface().addMessage(kTriggeredData.ePlayer,True,25,CyTranslator().getText("TXT_KEY_EVENT_GHOST_SHIP_1_6",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),iX,iY,True,True)
 						newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_GALLEON'), iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
-						
-def doOrphanedGoblin1 (argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	iPlayer = kTriggeredData.ePlayer
-	pPlayer = gc.getPlayer(iPlayer)
-	pUnit = pPlayer.getUnit(kTriggeredData.iUnitId)
-	pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ORC_SLAYING'), True)
-	pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CRAZED'), True)
-	
-def doOrphanedGoblin2 (argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	iPlayer = kTriggeredData.ePlayer
-	pPlayer = gc.getPlayer(iPlayer)
-	pUnit = pPlayer.getUnit(kTriggeredData.iUnitId)
-	pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ORC'), True)
-
+# lfgr: tweaked 08/2014
 def doOrphanedGoblin3(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -4097,27 +4080,18 @@ def doOrphanedGoblin3(argsList):
 	iBestValue = 0
 	pBestPlot = -1
 	bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-	iX = pUnit.getX()
-	iY = pUnit.getY()
-	for iiX in range(iX-2, iX+2, 1):
-		for iiY in range(iY-2, iY+2, 1):
-			pPlot = CyMap().plot(iiX,iiY)
-			iValue = 0
-			if not pPlot.isWater():
-				if not pPlot.isPeak():
-					if pPlot.getNumUnits() == 0:
-						iValue = CyGame().getSorenRandNum(1000, "Goblin1")
-						if iValue > iBestValue:
-							iBestValue = iValue
-							pBestPlot = pPlot
-	if (pBestPlot!=-1):						
-		if CyGame().getSorenRandNum(1000, "Goblin1")<500:
-			newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_GOBLIN'), pBestPlot.getX(),pBestPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-			newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_WEAK'), True)
-		
-		if CyGame().getSorenRandNum(1000, "Goblin1")>500:
-			newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_GOBLIN'), pBestPlot.getX(),pBestPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-			newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_WEAK'), True)
+	for pPlot in cf.getNearPlots( pUnit.plot(), 2 ) :
+		iValue = 0
+		if not pPlot.isWater():
+			if not pPlot.isPeak():
+				if pPlot.getNumUnits() == 0:
+					iValue = CyGame().getSorenRandNum(1000, "Goblin1")
+					if iValue > iBestValue:
+						iBestValue = iValue
+						pBestPlot = pPlot
+	if (pBestPlot!=-1) :
+		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_GOBLIN'), pBestPlot.getX(),pBestPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_WEAK'), True)
 
 def doOrphanedGoblin4(argsList):
 	iEvent = argsList[0]
@@ -4128,6 +4102,16 @@ def doOrphanedGoblin4(argsList):
 	pUnit.changeExperience(1* -1, -1, False, False, False)
 	pCity = pPlayer.getCapitalCity()
 	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_GOBLIN'), pCity.getX(),pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+
+# lfgr: added 08/2014
+def canDoOrphanedGoblin4(argsList):
+	iEvent = argsList[0]
+	kTriggeredData = argsList[1]
+	iPlayer = kTriggeredData.ePlayer
+	pPlayer = gc.getPlayer(iPlayer)
+	
+	pCity = pPlayer.getCapitalCity()
+	return pCity != None and not pCity.isNone()
 	
 # lfgr: fixed
 def doThatKindOfDay1 (argsList):
