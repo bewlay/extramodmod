@@ -17,6 +17,7 @@ Components:
 	PromotionCaptureApply - DLL, XML / Captured units (animals) can grant a promotion
 	PromotionExplResultBonus - DLL, Python, XML / Promotions can alter lair exploration results / Idea from RifE
 	SpawnInfo - DLL, XML / An info type to handle randoms spawns, spawns from lairs and spawns from exploration results, changes to random spawning
+	SpawnAcheron - XML, Python / Acheron now can spawn (rather than being built) in one of the non-captured barbarian cities with the highest wilderness when the number of barbarian cities is equal or greater than half number of players.
 	UnitSpawnType - DLL / When a unit is spawned, the SpawnType is assigned to it to better identification used by other components
 	UnitMinWilderness - DLL / Units have a min wilderness to enter
 	WildernessExploration - DLL, Python, XML / New System for Lair Exploration, unique features don't vanish but become unexplorable for some time.
