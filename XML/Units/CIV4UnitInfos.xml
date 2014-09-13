@@ -1104,7 +1104,7 @@
 				</Flavor>
 			</Flavors>
 			<iAIWeight>200</iAIWeight>
-			<iCost>25</iCost>
+			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
