@@ -1870,7 +1870,8 @@ m_bAllowsMoveLimitedBorders(false),
 m_bCastingBlocked(false),
 m_bBlocksUpgrade (false),
 m_bBlocksGifting (false),
-m_bUpgradeOutsideBorders(false)
+m_bUpgradeOutsideBorders(false),
+m_bAlwaysSpreadReligion(false)
 // End MNAI
 
 {
@@ -2578,6 +2579,11 @@ bool CvPromotionInfo::isUpgradeOutsideBorders() const
 {
 	return m_bUpgradeOutsideBorders;
 }
+
+bool CvPromotionInfo::isAlwaysSpreadReligion() const
+{
+	return m_bAlwaysSpreadReligion;
+}
 // End MNAI
 
 // Arrays
@@ -2807,6 +2813,7 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bBlocksUpgrade);
 	stream->Read(&m_bBlocksGifting);
 	stream->Read(&m_bUpgradeOutsideBorders);
+	stream->Read(&m_bAlwaysSpreadReligion);
 	// End MNAI
 
 	// Arrays
@@ -3000,6 +3007,7 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bBlocksUpgrade);
 	stream->Write(m_bBlocksGifting);
 	stream->Write(m_bUpgradeOutsideBorders);
+	stream->Write(m_bAlwaysSpreadReligion);
 	// End MNAI
 
 	// Arrays
@@ -3178,6 +3186,7 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bBlocksUpgrade, "bBlocksUpgrade");
 	pXML->GetChildXmlValByName(&m_bBlocksGifting, "bBlocksGifting");
 	pXML->GetChildXmlValByName(&m_bUpgradeOutsideBorders, "bUpgradeOutsideBorders");
+	pXML->GetChildXmlValByName(&m_bAlwaysSpreadReligion, "bAlwaysSpreadReligion");
 	// End MNAI
 
 	return true;

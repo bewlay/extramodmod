@@ -1011,6 +1011,7 @@
 	<ElementType name="bBlocksUpgrade" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bBlocksGifting" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bUpgradeOutsideBorders" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bAlwaysSpreadReligion" content="textOnly" dt:type="boolean"/>
 	<ElementType name="PromotionInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -1156,6 +1157,7 @@
 		<element type="bBlocksUpgrade" minOccurs="0"/>
 		<element type="bBlocksGifting" minOccurs="0"/>
 		<element type="bUpgradeOutsideBorders" minOccurs="0"/>
+		<element type="bAlwaysSpreadReligion" minOccurs="0"/>
 		<element type="iOrderPriority" minOccurs="0"/>
 		<element type="iEnslavementChance" minOccurs="0"/>
 	<!-- WILDERNESS 08/2013 lfgr / PromotionExplResultBonus -->

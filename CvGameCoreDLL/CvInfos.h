@@ -639,6 +639,7 @@ public:
 	bool isBlocksUpgrade() const;
 	bool isBlocksGifting() const;
 	bool isUpgradeOutsideBorders() const;
+	bool isAlwaysSpreadReligion() const;
 	// End MNAI
 
 	bool readPass3();
@@ -798,6 +799,7 @@ protected:
 	bool m_bBlocksUpgrade;
 	bool m_bBlocksGifting;
 	bool m_bUpgradeOutsideBorders;
+	bool m_bAlwaysSpreadReligion;
 	// End MNAI
 
 	// Arrays

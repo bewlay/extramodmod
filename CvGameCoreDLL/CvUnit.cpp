@@ -14670,6 +14670,7 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 		changeUpgradeBlocked((kPromotionInfo.isBlocksUpgrade()) ? iChange : 0);
 		changeGiftingBlocked((kPromotionInfo.isBlocksGifting()) ? iChange : 0);
 		changeUpgradeOutsideBorders((kPromotionInfo.isUpgradeOutsideBorders()) ? iChange : 0);
+		changeAlwaysSpreadReligion((kPromotionInfo.isAlwaysSpreadReligion()) ? iChange : 0);
 		// End MNAI
 
 		for (iI = 0; iI < GC.getNumTerrainInfos(); iI++)
@@ -20144,6 +20145,19 @@ void CvUnit::changeUpgradeOutsideBorders(int iNewValue)
         m_iUpgradeOutsideBorders += iNewValue;
     }
 }
+
+bool CvUnit::isAlwaysSpreadReligion() const
+{
+	return m_iAlwaysSpreadReligion == 0 ? false : true;
+}
+
+void CvUnit::changeAlwaysSpreadReligion(int iNewValue)
+{
+    if (iNewValue != 0)
+    {
+        m_iAlwaysSpreadReligion += iNewValue;
+    }
+}
 // End MNAI
 
 void CvUnit::read(FDataStreamBase* pStream)
@@ -20293,6 +20307,7 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iUpgradeBlocked);
 	pStream->Read(&m_iGiftingBlocked);
 	pStream->Read(&m_iUpgradeOutsideBorders);
+	pStream->Read(&m_iAlwaysSpreadReligion);
 	// End MNAI
 
 	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
@@ -20476,6 +20491,7 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_iUpgradeBlocked);
 	pStream->Write(m_iGiftingBlocked);
 	pStream->Write(m_iUpgradeOutsideBorders);
+	pStream->Write(m_iAlwaysSpreadReligion);
 	// End MNAI
 
 	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22

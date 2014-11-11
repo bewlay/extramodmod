@@ -5334,6 +5334,14 @@
             <PromotionPrereqAnd>PROMOTION_CHANNELING3</PromotionPrereqAnd>
         </PromotionInfo>
         <PromotionInfo>
+            <Type>PROMOTION_MISSIONARY</Type>
+            <Description>TXT_KEY_PROMOTION_MISSIONARY</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+			<bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Promotions/Blessed.dds</Button>
+            <bAlwaysSpreadReligion>1</bAlwaysSpreadReligion>
+        </PromotionInfo>
+        <PromotionInfo>
             <Type>PROMOTION_MITHRIL_WEAPONS</Type>
             <Description>TXT_KEY_PROMOTION_MITHRIL_WEAPONS</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>

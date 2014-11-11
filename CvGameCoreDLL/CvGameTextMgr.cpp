@@ -1547,6 +1547,11 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_UNIT_UPGRADE_OUTSIDE_BORDERS"));
 			}
+			if (pUnit->isAlwaysSpreadReligion())
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_ALWAYS_SPREAD_RELIGION"));
+			}
 			if (bSummoningAbility)
 			{
 				if (pUnit->isTwincast())
@@ -9573,6 +9578,11 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_UPGRADE_OUTSIDE_BORDERS_PEDIA"));
+    }
+	if (kPromotionInfo.isAlwaysSpreadReligion())
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_ALWAYS_SPREAD_RELIGION_PEDIA"));
     }
     if (kPromotionInfo.isHiddenNationality())
     {

@@ -1037,6 +1037,8 @@ public:
 	void changeGiftingBlocked(int iNewValue);
 	bool isUpgradeOutsideBorders() const;
 	void changeUpgradeOutsideBorders(int iNewValue);
+	bool isAlwaysSpreadReligion() const;
+	void changeAlwaysSpreadReligion(int iNewValue);
 	// End MNAI
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
@@ -1198,6 +1200,7 @@ protected:
 	int m_iUpgradeBlocked;
 	int m_iGiftingBlocked;
 	int m_iUpgradeOutsideBorders;
+	int m_iAlwaysSpreadReligion;
 	// End MNAI
 
 //>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
