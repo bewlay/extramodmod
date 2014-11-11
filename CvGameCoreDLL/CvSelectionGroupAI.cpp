@@ -253,6 +253,10 @@ bool CvSelectionGroupAI::AI_update()
 
 			if (pHeadUnit->AI_update())
 			{
+				if (iTempHack == 99)
+				{
+					FAssertMsg(false, "unit about to be stuck in loop");
+				}
 				// AI_update returns true when we should abort the loop and wait until next slice
 				break;
 			}

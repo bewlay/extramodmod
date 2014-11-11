@@ -636,6 +636,8 @@ public:
 	bool isAllowsMoveImpassable() const;
 	bool isAllowsMoveLimitedBorders() const;
 	bool isCastingBlocked() const;
+	bool isBlocksUpgrade() const;
+	bool isBlocksGifting() const;
 	bool isUpgradeOutsideBorders() const;
 	// End MNAI
 
@@ -793,6 +795,8 @@ protected:
 	bool m_bAllowsMoveImpassable;
 	bool m_bAllowsMoveLimitedBorders;
 	bool m_bCastingBlocked;
+	bool m_bBlocksUpgrade;
+	bool m_bBlocksGifting;
 	bool m_bUpgradeOutsideBorders;
 	// End MNAI
 

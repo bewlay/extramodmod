@@ -1031,6 +1031,10 @@ public:
 	void changeCanMoveLimitedBorders(int iNewValue);
 	bool isCastingBlocked() const;
 	void changeCastingBlocked(int iNewValue);
+	bool isUpgradeBlocked() const;
+	void changeUpgradeBlocked(int iNewValue);
+	bool isGiftingBlocked() const;
+	void changeGiftingBlocked(int iNewValue);
 	bool isUpgradeOutsideBorders() const;
 	void changeUpgradeOutsideBorders(int iNewValue);
 	// End MNAI
@@ -1191,6 +1195,8 @@ protected:
 	int m_iCanMoveImpassable;
 	int m_iCanMoveLimitedBorders;
 	int m_iCastingBlocked;
+	int m_iUpgradeBlocked;
+	int m_iGiftingBlocked;
 	int m_iUpgradeOutsideBorders;
 	// End MNAI
 

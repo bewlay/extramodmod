@@ -1868,6 +1868,8 @@ m_iExplorationResultBonus(0),
 m_bAllowsMoveImpassable(false),
 m_bAllowsMoveLimitedBorders(false),
 m_bCastingBlocked(false),
+m_bBlocksUpgrade (false),
+m_bBlocksGifting (false),
 m_bUpgradeOutsideBorders(false)
 // End MNAI
 
@@ -2562,6 +2564,16 @@ bool CvPromotionInfo::isCastingBlocked() const
 	return m_bCastingBlocked;
 }
 
+bool CvPromotionInfo::isBlocksUpgrade() const
+{
+	return m_bBlocksUpgrade;
+}
+
+bool CvPromotionInfo::isBlocksGifting() const
+{
+	return m_bBlocksGifting;
+}
+
 bool CvPromotionInfo::isUpgradeOutsideBorders() const
 {
 	return m_bUpgradeOutsideBorders;
@@ -2792,6 +2804,8 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bAllowsMoveImpassable);
 	stream->Read(&m_bAllowsMoveLimitedBorders);
 	stream->Read(&m_bCastingBlocked);
+	stream->Read(&m_bBlocksUpgrade);
+	stream->Read(&m_bBlocksGifting);
 	stream->Read(&m_bUpgradeOutsideBorders);
 	// End MNAI
 
@@ -2983,6 +2997,8 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bAllowsMoveImpassable);
 	stream->Write(m_bAllowsMoveLimitedBorders);
 	stream->Write(m_bCastingBlocked);
+	stream->Write(m_bBlocksUpgrade);
+	stream->Write(m_bBlocksGifting);
 	stream->Write(m_bUpgradeOutsideBorders);
 	// End MNAI
 
@@ -3159,8 +3175,9 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bAllowsMoveImpassable, "bAllowsMoveImpassable");
 	pXML->GetChildXmlValByName(&m_bAllowsMoveLimitedBorders, "bAllowsMoveLimitedBorders");
 	pXML->GetChildXmlValByName(&m_bCastingBlocked, "bCastingBlocked");
+	pXML->GetChildXmlValByName(&m_bBlocksUpgrade, "bBlocksUpgrade");
+	pXML->GetChildXmlValByName(&m_bBlocksGifting, "bBlocksGifting");
 	pXML->GetChildXmlValByName(&m_bUpgradeOutsideBorders, "bUpgradeOutsideBorders");
-
 	// End MNAI
 
 	return true;
