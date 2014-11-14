@@ -632,7 +632,7 @@ class CvEventManager:
 			if eTeam.isAtWar(iTeam) == False:
 				if 2 * CyGame().getPlayerScore(iPlayer) >= 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)):
 					if iGameTurn >= 20:
-							eTeam.declareWar(iTeam, False, WarPlanTypes.WARPLAN_TOTAL)
+						eTeam.declareWar(iTeam, False, WarPlanTypes.WARPLAN_TOTAL)
 						if iPlayer == CyGame().getActivePlayer():
 							cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
 	# WILDERNESS end
