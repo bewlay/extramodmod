@@ -701,6 +701,10 @@ public:
 	int getHighestUnitTier(bool bIncludeHeroes, bool bIncludeLimitedUnits) const;
 	// End MNAI
 
+// Leader categories START
+	int getLeaderCategory() const;
+// Leader categories END
+
 // BUG - Reminder Mod - start
 	void addReminder(int iGameTurn, std::wstring szMessage) const;
 // BUG - Reminder Mod - start

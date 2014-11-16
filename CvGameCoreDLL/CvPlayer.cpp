@@ -23799,6 +23799,22 @@ bool CvPlayer::getSplitEmpireLeaders(CivLeaderArray& aLeaders) const
                 }
 //FfH: End Add
 
+// Leader categories START
+				CvLeaderHeadInfo currentLeader = GC.getLeaderHeadInfo((LeaderHeadTypes)j);
+
+				if (currentLeader.getLeaderCategory() == LEADERCATEGORY_SCENEXTRA && !GC.getGameINLINE().isOption(GAMEOPTION_LEADER_SCENEXTRA)) {
+					// If extra scenario leaders have not been selected, avoid using them.
+					bLeaderValid = false;
+					continue;
+				}
+
+				if (currentLeader.getLeaderCategory() == LEADERCATEGORY_EXTRA && !GC.getGameINLINE().isOption(GAMEOPTION_LEADER_EXTRA)) {
+					// If extra leaders have not been selected, avoid using them.
+					bLeaderValid = false;
+					continue;
+				}
+// Leader categories END
+
 				if (bLeaderValid)
 				{
 					for (int k = 0; k < MAX_CIV_PLAYERS; ++k)
@@ -24297,6 +24313,18 @@ bool CvPlayer::getPuppetLeaders(CivLeaderArray& aLeaders) const
 				{
 					bLeaderValid = false;
 				}
+
+// Leader categories START
+				// Extra scenario leaders are currently always allowed as valid leaders for puppet states,
+				// even if their game option is disabled.
+				CvLeaderHeadInfo currentLeader = GC.getLeaderHeadInfo((LeaderHeadTypes)j);
+
+				if (currentLeader.getLeaderCategory() == LEADERCATEGORY_EXTRA && !GC.getGameINLINE().isOption(GAMEOPTION_LEADER_EXTRA)) {
+					// If extra leaders have not been selected, avoid using them.
+					bLeaderValid = false;
+					continue;
+				}
+// Leader categories END
 
 				if (bLeaderValid)
 				{
@@ -27676,6 +27704,11 @@ void CvPlayer::addReminder(int iGameTurn, CvWString szMessage) const
 	CvMessageControl::getInstance().sendAddReminder(getID(), iGameTurn, szMessage);
 }
 // BUG - Reminder Mod - end
+
+int CvPlayer::getLeaderCategory() const
+{
+	return GC.getLeaderHeadInfo(getLeaderType()).getLeaderCategory();
+}
 
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */

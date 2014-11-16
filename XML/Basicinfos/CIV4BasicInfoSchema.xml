@@ -96,6 +96,13 @@
 	<ElementType name="DamageInfos" content="eltOnly">
 		<element type="DamageInfo" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="LeaderCategoryInfo" content="eltOnly">
+		<element type="Type"/>
+		<element type="Description"/>
+	</ElementType>
+	<ElementType name="LeaderCategoryInfos" content="eltOnly">
+		<element type="LeaderCategoryInfo" maxOccurs="*"/>
+	</ElementType>
 	<ElementType name="UnitAIInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -149,6 +156,9 @@
 	</ElementType>
 	<ElementType name="Civ4AlignmentInfos" content="eltOnly">
 		<element type="AlignmentInfos"/>
+	</ElementType>
+	<ElementType name="Civ4LeaderCategoryInfos" content="eltOnly">
+		<element type="LeaderCategoryInfos"/>
 	</ElementType>
 	<ElementType name="Civ4DamageInfos" content="eltOnly">
 		<element type="DamageInfos"/>

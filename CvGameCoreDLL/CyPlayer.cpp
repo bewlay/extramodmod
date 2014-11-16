@@ -2888,6 +2888,13 @@ int CyPlayer::getHighestUnitTier(bool bIncludeHeroes, bool bIncludeLimitedUnits)
 }
 // End MNAI
 
+// Leader categories START
+int CyPlayer::getLeaderCategory() const
+{
+	return m_pPlayer ? (int) m_pPlayer->getLeaderCategory() : NO_LEADERCATEGORY;
+}
+// Leader categories END
+
 /*************************************************************************************************/
 /**	CivCounter			               		10/27/09    						Valkrionn		**/
 /**										Stores Spawn Information								**/

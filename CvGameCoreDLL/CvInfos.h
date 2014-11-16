@@ -4665,6 +4665,10 @@ public:
     int getReligionWeightModifier(int i) const;
 //FfH: End Add
 
+// Leader categories START
+	int getLeaderCategory() const;
+// Leader categories END
+
 	void write(FDataStreamBase* stream);
 	void read(FDataStreamBase* stream);
 	bool read(CvXMLLoadUtility* pXML);
@@ -4780,6 +4784,10 @@ protected:
 	int m_iPermanentTrait;
     int* m_piReligionWeightModifier;
 //FfH: End Add
+
+// Leader categories START
+	int m_iLeaderCategory;
+// Leader categories END
 
 	// Arrays
 

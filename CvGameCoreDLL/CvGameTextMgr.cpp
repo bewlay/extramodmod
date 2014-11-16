@@ -8083,6 +8083,8 @@ void CvGameTextMgr::parseLeaderTraits(CvWStringBuffer &szHelpString, LeaderHeadT
             szHelpString.append(NEWLINE);
         }
         szHelpString.append(gDLL->getText("TXT_KEY_ALIGNMENT", GC.getAlignmentInfo((AlignmentTypes)GC.getLeaderHeadInfo(eLeader).getAlignment()).getDescription()));
+		szHelpString.append(NEWLINE);
+        szHelpString.append(gDLL->getText("TXT_KEY_LEADERCATEGORY", GC.getLeaderCategoryInfo((LeaderHeadCategories)GC.getLeaderHeadInfo(eLeader).getLeaderCategory()).getDescription()));
         if (eCivilization != NO_CIVILIZATION)
         {
 			if (!bCivilopediaText) // suppress hero and world spell info in sevopedia (these are attached to the civ, not the leader)

@@ -1331,6 +1331,10 @@ public:
 	void addReminder(int iGameTurn, CvWString szMessage) const;
 // BUG - Reminder Mod - end
 
+// Leader categories START
+	int getLeaderCategory() const;
+// Leader categories END
+
 	virtual void AI_init() = 0;
 	virtual void AI_reset(bool bConstructor) = 0;
 	virtual void AI_doTurnPre() = 0;

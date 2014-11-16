@@ -609,6 +609,20 @@
 			<bVisible>1</bVisible>
 		</GameOptionInfo>
 		<GameOptionInfo>
+			<Type>GAMEOPTION_LEADER_SCENEXTRA</Type>
+			<Description>TXT_KEY_GAME_OPTION_LEADER_SCENEXTRA</Description>
+			<Help>TXT_KEY_GAME_OPTION_LEADER_SCENEXTRA_HELP</Help>
+			<bDefault>1</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
+		<GameOptionInfo>
+			<Type>GAMEOPTION_LEADER_EXTRA</Type>
+			<Description>TXT_KEY_GAME_OPTION_LEADER_EXTRA</Description>
+			<Help>TXT_KEY_GAME_OPTION_LEADER_EXTRA_HELP</Help>
+			<bDefault>1</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
+		<GameOptionInfo>
 			<!-- TERRAIN_FLAVOUR 04/2013 lfgr -->
 			<Type>GAMEOPTION_FLAVOUR_START</Type>
 			<Description>TXT_KEY_GAME_OPTION_FLAVOUR_START</Description>

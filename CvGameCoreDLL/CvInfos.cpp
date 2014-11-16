@@ -18281,8 +18281,12 @@ m_iSomniumAggressiveness(0),
 m_iFavoriteTech(NO_TECH),
 m_iFavoriteUnitCombat(NO_UNITCOMBAT),
 m_iFavoriteWonder(NO_BUILDING),
-m_iPermanentTrait(NO_TRAIT)
+m_iPermanentTrait(NO_TRAIT),
 //FfH: End Add
+
+// Leader categories START
+m_iLeaderCategory(NO_LEADERCATEGORY)
+// Leader categories END
 {
 }
 
@@ -18808,6 +18812,14 @@ bool CvLeaderHeadInfo::isFemale() const
     return m_bFemale;
 }
 //FfH: End Add
+
+// Leader categories START
+int CvLeaderHeadInfo::getLeaderCategory() const
+{
+	return m_iLeaderCategory;
+}
+// Leader categories END
+
 // Arrays
 
 bool CvLeaderHeadInfo::hasTrait(int i) const
@@ -19038,6 +19050,10 @@ void CvLeaderHeadInfo::read(FDataStreamBase* stream)
 	stream->Read(GC.getNumReligionInfos(), m_piReligionWeightModifier);
 //FfH: End Add
 
+// Leader categories START
+	stream->Read(&m_iLeaderCategory);
+// Leader categories END
+
 	// Arrays
 
 	SAFE_DELETE_ARRAY(m_pbTraits);
@@ -19205,6 +19221,10 @@ void CvLeaderHeadInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iPermanentTrait);
     stream->Write(GC.getNumReligionInfos(), m_piReligionWeightModifier);
 //FfH: End Add
+
+// Leader categories START
+	stream->Write(m_iLeaderCategory);
+// Leader categories END
 
 	// Arrays
 
@@ -19415,6 +19435,11 @@ bool CvLeaderHeadInfo::read(CvXMLLoadUtility* pXML)
 	m_iPermanentTrait = pXML->FindInInfoClass(szTextVal);
 	pXML->SetVariableListTagPair(&m_piReligionWeightModifier, "ReligionWeightModifiers", sizeof(GC.getReligionInfo((ReligionTypes)0)), GC.getNumReligionInfos());
 //FfH: End Add
+
+// Leader categories START
+	pXML->GetChildXmlValByName(szTextVal, "LeaderCategory");
+	m_iLeaderCategory = pXML->FindInInfoClass(szTextVal);
+// Leader categories END
 
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */

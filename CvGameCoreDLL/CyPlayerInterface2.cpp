@@ -170,5 +170,9 @@ void CyPlayerPythonInterface2(python::class_<CyPlayer>& x)
 		.def("countNumOwnedTerrainTypes",&CyPlayer::countNumOwnedTerrainTypes, "int (TerrainTypes eTerrain)")
 		.def("getHighestUnitTier",&CyPlayer::getHighestUnitTier, "int (bool bIncludeHeroes, bool bIncludeLimitedUnits)")
 		// End MNAI
+
+		// Leader categories START
+		.def("getLeaderCategory", &CyPlayer::getLeaderCategory, "int ()")
+		// Leader categories END
 		;
 }

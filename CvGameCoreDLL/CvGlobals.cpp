@@ -3799,6 +3799,10 @@ void CvGlobals::deleteInfoArrays()
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Leader categories START
+	deleteInfoArray(m_paLeaderCategoryInfos);
+// Leader categories END
+
 	clearTypesMap();
 	m_aInfoVectors.clear();
 }
@@ -4019,3 +4023,16 @@ bool CvGlobals::isDYNAMIC_CIV_NAMES()
 	return m_bDYNAMIC_CIV_NAMES;
 }
 
+// Leader categories START
+std::vector<CvInfoBase*>& CvGlobals::getLeaderCategoryInfo()
+{
+	return m_paLeaderCategoryInfos;
+}
+
+CvInfoBase& CvGlobals::getLeaderCategoryInfo(LeaderHeadCategories eLeaderCategoryNum)
+{
+	FAssert(eLeaderCategoryNum >= 0);
+	FAssert(eLeaderCategoryNum < NUM_LEADERCATEGORIES);
+	return *(m_paLeaderCategoryInfos[eLeaderCategoryNum]);
+}
+// Leader categories END

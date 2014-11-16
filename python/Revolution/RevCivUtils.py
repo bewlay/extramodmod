@@ -488,6 +488,12 @@ class RevCivDefines :
 		liLeaders = list()
 
 		for leaderType in range( 0, gc.getNumLeaderHeadInfos() ) :
+# Leader categories START
+			# Extra scenario leaders are currently always allowed as valid leaders for revolutions, even if their game option is disabled.
+			if ( gc.getLeaderHeadInfo( leaderType ).getLeaderCategory() == LeaderHeadCategories.LEADERCATEGORY_EXTRA and not game.isOption( GameOptionTypes.GAMEOPTION_LEADER_EXTRA )) :
+				# If extra leaders have not been selected, avoid using them.
+				continue
+# Leader categories END
 			if( gc.getCivilizationInfo( iCiv ).isLeaders( leaderType ) or game.isOption( GameOptionTypes.GAMEOPTION_LEAD_ANY_CIV ) or ( leaderType in self.liMinorLeaders[iCiv] ) ) :
 				liLeaders.append( leaderType )
 

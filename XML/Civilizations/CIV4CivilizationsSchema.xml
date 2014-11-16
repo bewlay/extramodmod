@@ -214,6 +214,7 @@
 	<ElementType name="ReligionWeightModifiers" content="eltOnly">
 		<element type="ReligionWeightModifier" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="LeaderCategory" content="textOnly"/>
 	<ElementType name="LeaderHeadInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -330,6 +331,7 @@
 		<element type="FavoriteWonder"/>
 		<element type="PermanentTrait" minOccurs="0"/>
 		<element type="ReligionWeightModifiers"/>
+		<element type="LeaderCategory"/>
 	</ElementType>
 	<ElementType name="LeaderHeadInfos" content="eltOnly">
 		<element type="LeaderHeadInfo" maxOccurs="*"/>

@@ -727,6 +727,11 @@ public:
 	CvString& getCurrentXMLFile();
 	void setCurrentXMLFile(const TCHAR* szFileName);
 
+// Leader categories START
+	std::vector<CvInfoBase*>& getLeaderCategoryInfo();
+	CvInfoBase& getLeaderCategoryInfo(LeaderHeadCategories eLeaderCategoryNum);
+// Leader categories END
+
 	//
 	///////////////// BEGIN global defines
 	// THESE ARE READ-ONLY
@@ -1194,6 +1199,10 @@ protected:
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
+
+// Leader categories START
+	std::vector<CvInfoBase*> m_paLeaderCategoryInfos;
+// Leader categories END
 
 	// Game Text
 	std::vector<CvGameText*> m_paGameTextXML;

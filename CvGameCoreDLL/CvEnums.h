@@ -864,6 +864,11 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_ADVANCED_TACTICS,
 // MNAI End
 
+// Leader categories START
+	GAMEOPTION_LEADER_SCENEXTRA,
+	GAMEOPTION_LEADER_EXTRA,
+// Leader categories END
+
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
 /************************************************************************************************/
@@ -1109,6 +1114,23 @@ enum LeaderHeadTypes			// Exposed to Python
 {
 	NO_LEADER = -1,
 };
+
+// Leader categories START
+enum LeaderHeadCategories
+{
+	NO_LEADERCATEGORY = -1,
+	LEADERCATEGORY_STANDARD,	// Leader playable in vanilla FFH2.
+	LEADERCATEGORY_SCENARIO,	// Scenario leader in vanilla FFH2.
+	LEADERCATEGORY_SCENEXTRA,	// Scenario leader modified in ExtraModMod to have a comparable power level.
+	LEADERCATEGORY_EXTRA,		// Leader not present in vanilla FFH2.
+	LEADERCATEGORY_ALIGNMENT,	// Fake leader used for the "play as alignment" selection.
+	LEADERCATEGORY_BARBARIAN,    // Barbarian leader.
+#ifdef _USRDLL
+	NUM_LEADERCATEGORIES
+#endif
+
+};
+// Leader categories END
 
 // Used for managing Art Differences based on nationality
 enum ArtStyleTypes				// Exposed to Python
