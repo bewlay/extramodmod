@@ -23800,7 +23800,7 @@ bool CvPlayer::getSplitEmpireLeaders(CivLeaderArray& aLeaders) const
 //FfH: End Add
 
 // Leader categories START
-				CvLeaderHeadInfo currentLeader = GC.getLeaderHeadInfo((LeaderHeadTypes)j);
+				CvLeaderHeadInfo& currentLeader = GC.getLeaderHeadInfo((LeaderHeadTypes)j);
 
 				if (currentLeader.getLeaderCategory() == LEADERCATEGORY_SCENEXTRA && !GC.getGameINLINE().isOption(GAMEOPTION_LEADER_SCENEXTRA)) {
 					// If extra scenario leaders have not been selected, avoid using them.
