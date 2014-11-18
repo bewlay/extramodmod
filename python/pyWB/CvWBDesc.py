@@ -98,7 +98,7 @@ class CvGameDesc:
 		self.iStartYear = -4000
 		self.szDescription = ""
 		self.szModPath = ""
-##		self.szModPath = "Mods\Magister Modmod for FfH2"#Magister
+##		self.szModPath = "Mods\Fall from Heaven 2"#Magister
 		self.iRandom = 0
 #Magister Start
 		self.iGlobalCounter = 0

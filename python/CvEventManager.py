@@ -1328,30 +1328,9 @@ class CvEventManager:
 		iChanneling3 = gc.getInfoTypeForString('PROMOTION_CHANNELING3')
 
 		if unit.getUnitCombatType() == gc.getInfoTypeForString('UNITCOMBAT_ADEPT'):
-			lCheckThis = ['AIR', 'BODY', 'CHAOS', 'EARTH', 'ENCHANTMENT', 'ENTROPY', 'FIRE', 'ICE', 'LAW', 'LIFE', 'METAMAGIC', 'MIND', 'NATURE', 'SHADOW', 'SPIRIT', 'SUN', 'WATER']
+			lCheckThis = ['AIR', 'BODY', 'CHAOS', 'CREATION', 'DIMENSIONAL', 'EARTH', 'ENCHANTMENT', 'ENTROPY', 'FIRE', 'FORCE', 'ICE', 'LAW', 'LIFE', 'METAMAGIC', 'MIND', 'NATURE', 'SHADOW', 'SPIRIT', 'SUN', 'WATER']
 			for item in lCheckThis:
 				iNum = pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_' + item))
-			iNum = pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_CREATION'))
-			if iNum > 1:
-				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CREATION1'), True)
-				if (iNum > 2 and unit.isHasPromotion(iChanneling2)):
-					unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CREATION2'), True)
-					if (iNum > 3 and unit.isHasPromotion(iChanneling3)):
-						unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CREATION3'), True)
-			iNum = pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_DIMENSIONAL'))
-			if iNum > 1:
-				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DIMENSIONAL1'), True)
-				if (iNum > 2 and unit.isHasPromotion(iChanneling2)):
-					unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DIMENSIONAL2'), True)
-					if (iNum > 3 and unit.isHasPromotion(iChanneling3)):
-						unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DIMENSIONAL3'), True)
-			iNum = pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_FORCE'))
-			if iNum > 1:
-				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_FORCE1'), True)
-				if (iNum > 2 and unit.isHasPromotion(iChanneling2)):
-					unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_FORCE2'), True)
-					if (iNum > 3 and unit.isHasPromotion(iChanneling3)):
-						unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_FORCE3'), True)
 				if iNum > 1:
 					unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_' + item + '1'), True)
 					if (iNum > 2 and unit.isHasPromotion(iChanneling2)):
@@ -2144,53 +2123,53 @@ class CvEventManager:
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_AMURITES",()),'art/interface/popups/Valledia.dds')
 				elif iLeader == gc.getInfoTypeForString('LEADER_VARN'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_MALAKIM",()),'art/interface/popups/Varn.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_ANAGANTIOS_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_ANAGANTIOS_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_MULCARN_REBORN_DEFEATED_ANAGANTIOS",()),'art/interface/popups/Anagantios.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_AVERAX_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_AVERAX_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_SHEAIM",()),'art/interface/popups/averax.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_DUIN_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_DUIN_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_DOVIELLO",()),'art/interface/popups/baron duin halfmorn.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_BRAEDEN_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_BRAEDEN_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_BRAEDEN",()),'art/interface/popups/braeden.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_OSTANES_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_OSTANES_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_HIPPUS",()),'art/interface/popups/ostanes.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_ULDANOR_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_ULDANOR_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_HIPPUS",()),'art/interface/popups/uldanor.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_CHERON_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_CHERON_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_KURIOTATES",()),'art/interface/popups/cheron.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_DUMANNIOS_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_DUMANNIOS_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_MULCARN_REBORN_DEFEATED_DUMANNIOS",()),'art/interface/popups/Dumannios.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_FURIA_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_FURIA_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_THE_MOMUS_DEFEATED_FURIA",()),'art/interface/popups/Furia.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_GOSEA_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_GOSEA_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_SHEAIM",()),'art/interface/popups/gosea.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_HAFGAN_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_HAFGAN_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_CLAN_OF_EMBERS",()),'art/interface/popups/barbarian.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_KANE_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_KANE_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_MALAKIM",()),'art/interface/popups/kane.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_MAHON_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_MAHON_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_BENEATH_THE_HEEL_DEFEATED_MAHON",()),'art/interface/popups/mahon.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_MALCHAVIC_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_MALCHAVIC_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_SHEAIM",()),'art/interface/popups/malchavic.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_MELISANDRE_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_MELISANDRE_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_THE_MOMUS_DEFEATED_MELISANDRE",()),'art/interface/popups/Melisandre.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_KOUN_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_KOUN_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_GRIGORI",()),'art/interface/popups/koun.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_RIUROS_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_RIUROS_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_MULCARN_REBORN_DEFEATED_RIUROS",()),'art/interface/popups/Riuros.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_RIVANNA_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_RIVANNA_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_SVARTALFAR",()),'art/interface/popups/rivanna.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_SHEKINAH_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_SHEKINAH_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_SIDAR",()),'art/interface/popups/shekinah.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_TETHIRA_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_TETHIRA_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_BANNOR",()),'art/interface/popups/tethira.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_THESSALONICA_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_THESSALONICA_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_ELOHIM",()),'art/interface/popups/thessalonica.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_TYA_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_TYA_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_AMURITES",()),'art/interface/popups/tya.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_VOLANNA_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_VOLANNA_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_SVARTALFAR",()),'art/interface/popups/volanna.dds')
-				if pPlayer.getLeaderType() == gc.getInfoTypeForString('LEADER_WEEVIL_EXTRA'):
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_WEEVIL_EXTRA'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_THE_MOMUS_DEFEATED_WEEVIL",()),'art/interface/popups/Weevil.dds')
 
 
