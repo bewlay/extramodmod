@@ -9226,14 +9226,115 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 		return iModifier;
 	}
 
-	int iKnownCount = 0;
-	int iPossibleKnownCount = 0;
+	int iTeamsResearchedCount = 0;
 
+	// Technology propagation system for ExtraModMod
+	if (GC.getGameINLINE().isOption(GAMEOPTION_TECHNOLOGY_PROPAGATION))
+	{
+		// Value to store the technology diffusion contribution of each team.
+		int iRawPropagationTeams = 0;
+		TeamTypes iTeam = getTeam();
+		CvTeam& kTeam = GET_TEAM(iTeam);
+		// Technology diffusion is calculated depending on all other teams.
+		for (int iI = 0; iI < MAX_CIV_TEAMS; iI++)
+		{
+			TeamTypes iOtherTeam = (TeamTypes)iI;
+			CvTeam& kOtherTeam = GET_TEAM(iOtherTeam);
+			if (kOtherTeam.isAlive() && kOtherTeam.isHasTech(eTech))
+			{
+				/*
+				 * The total technology diffusion rate depends on the number of teams who know the tech,
+				 * regardless of if they have been met or not.
+				 */
+				iTeamsResearchedCount++;
+				// Only teams that have been met can contribute to tech diffusion.
+				if (kOtherTeam.isHasMet(getTeam()))
+				{
+					int iCurrTeamPropagation = 0;
+					if (kTeam.isLimitedBorders(iOtherTeam)) // Right of Passage.
+					{
+						iCurrTeamPropagation = GC.getTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE();
+					}
+					else if (kTeam.isVassal(iOtherTeam)) // Master.
+					{
+						iCurrTeamPropagation = GC.getTECH_PROPAGATION_TEAMS_MASTER();
+					}
+					else if (kTeam.isOpenBorders(iOtherTeam)) // Open borders
+					{
+						iCurrTeamPropagation = GC.getTECH_PROPAGATION_TEAMS_OPEN_BORDERS();
+					}
+					else if (kOtherTeam.isVassal(iTeam)) // Vassal.
+					{
+						iCurrTeamPropagation = GC.getTECH_PROPAGATION_TEAMS_VASSAL();
+					}
+
+					// If the team can contribute to technology propagation, its contribution can be increased by other factors.
+					if (iCurrTeamPropagation > 0)
+					{
+						if (kTeam.isHasEmbassy(iOtherTeam)) // Embassy.
+						{
+							iCurrTeamPropagation += GC.getTECH_PROPAGATION_TEAMS_EMBASSY();
+						}
+
+						if (kTeam.isDefensivePact(iOtherTeam)) // Defensive pact.
+						{
+							iCurrTeamPropagation += GC.getTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT();
+						}
+
+						// Similarity values depend on the players of the team.
+						bool bAlignment = false;
+						bool bReligion = false;
+						for (int iJ = 0; iJ < MAX_PLAYERS; iJ++)
+						{
+							CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iJ);
+							if (kPlayer.getTeam() == iOtherTeam && kPlayer.isAlive()) {
+								if (getAlignment() == kPlayer.getAlignment())
+								{
+									bAlignment = true;
+								}
+								if (getStateReligion() == kPlayer.getStateReligion())
+								{
+									bReligion = true;
+								}
+								if (bReligion && bAlignment)
+								{
+									break;
+								}
+							}
+						}
+
+						if (bReligion) // One member of the other team shares alignment with the researcher.
+						{
+							iCurrTeamPropagation += GC.getTECH_PROPAGATION_TEAMS_ALIGMENT();
+						}
+
+						if (bReligion) // One member of the other team shares religion with the researcher.
+						{
+							iCurrTeamPropagation += GC.getTECH_PROPAGATION_TEAMS_RELIGION();
+						}
+
+						// The contribution of this team is added to the total.
+						iRawPropagationTeams += iCurrTeamPropagation;
+					}
+				}
+			}
+		}
+		if (iRawPropagationTeams > 0)
+		{
+			int iModPropagationTeams = (GC.getTECH_PROPAGATION_TEAMS_MAX() * iRawPropagationTeams) / (100 * iTeamsResearchedCount);
+			iModifier += iModPropagationTeams;
+		}
+	}
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      07/27/09                                jdog5000      */
 /*                                                                                              */
 /* Tech Diffusion                                                                               */
 /************************************************************************************************/
+// Removed by Terkhen, new technology propagation system for ExtraModMod.
+/*
+	int iKnownCount = 0;
+	int iPossibleKnownCount = 0;
+
 	if( GC.getDefineINT("TECH_DIFFUSION_ENABLE") && GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
 	{
 		double knownExp = 0.0;
@@ -9318,6 +9419,7 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 			iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
 		}
 	}
+*/
 
 	int iPossiblePaths = 0;
 	int iUnknownPaths = 0;
