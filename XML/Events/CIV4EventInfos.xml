@@ -4917,7 +4917,6 @@
 		<EventInfo><!-- ENEMY_CITY_CRIME_1 -->
 			<Type>EVENT_ENEMY_CITY_CRIME_1</Type>
 			<Description>TXT_KEY_EVENT_ENEMY_CITY_CRIME_1</Description>
-			<bPickCity>1</bPickCity>
 			<bPickOtherPlayerCity>1</bPickOtherPlayerCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
@@ -4926,7 +4925,6 @@
 		<EventInfo><!-- ENEMY_CITY_CRIME_2 -->
 			<Type>EVENT_ENEMY_CITY_CRIME_2</Type>
 			<Description>TXT_KEY_EVENT_ENEMY_CITY_CRIME_2</Description>
-			<bPickCity>1</bPickCity>
 			<bPickOtherPlayerCity>1</bPickOtherPlayerCity>
 			<iGold>-10</iGold>
 			<iMaxNumReligions>-1</iMaxNumReligions>
@@ -4937,7 +4935,6 @@
 		<EventInfo><!-- ENEMY_CITY_CRIME_3 -->
 			<Type>EVENT_ENEMY_CITY_CRIME_3</Type>
 			<Description>TXT_KEY_EVENT_ENEMY_CITY_CRIME_3</Description>
-			<bPickCity>1</bPickCity>
 			<bPickOtherPlayerCity>1</bPickOtherPlayerCity>
 			<iGold>-25</iGold>
 			<iMaxNumReligions>-1</iMaxNumReligions>
@@ -7846,6 +7843,17 @@
 		<EventInfo><!-- KURIOTATES_CRAB_1 -->
 			<Type>EVENT_KURIOTATES_CRAB_1</Type>
 			<Description>TXT_KEY_EVENT_KURIOTATES_CRAB_1</Description>
+			<bPickCity>1</bPickCity>
+			<ImprovementType>IMPROVEMENT_FISHING_BOATS</ImprovementType>
+			<iImprovementChange>1</iImprovementChange>
+			<iMaxNumReligions>-1</iMaxNumReligions>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
+			<PrereqCivilization>CIVILIZATION_KURIOTATES</PrereqCivilization>
+		</EventInfo>
+		<EventInfo><!-- KURIOTATES_SHRIMP_1 -->
+			<Type>EVENT_KURIOTATES_SHRIMP_1</Type>
+			<Description>TXT_KEY_EVENT_KURIOTATES_SHRIMP_1</Description>
 			<bPickCity>1</bPickCity>
 			<ImprovementType>IMPROVEMENT_FISHING_BOATS</ImprovementType>
 			<iImprovementChange>1</iImprovementChange>

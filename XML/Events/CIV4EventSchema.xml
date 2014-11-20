@@ -287,6 +287,9 @@
 	<ElementType name="PrereqCivilizationPleased" content="textOnly"/>
 	<ElementType name="PrereqLeader" content="textOnly"/>
 	<ElementType name="PrereqTrait" content="textOnly"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+	<ElementType name="bRequiresValidEvent" content="textOnly"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 	<ElementType name="EventTriggerInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="WorldNewsTexts" minOccurs="0"/>
@@ -367,6 +370,9 @@
 		<element type="PrereqCivilizationPleased" minOccurs="0"/>
 		<element type="PrereqLeader" minOccurs="0"/>
 		<element type="PrereqTrait" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+		<element type="bRequiresValidEvent" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 	</ElementType>
 	<ElementType name="EventTriggerInfos" content="eltOnly">
 		<element type="EventTriggerInfo" minOccurs="0" maxOccurs="*"/>

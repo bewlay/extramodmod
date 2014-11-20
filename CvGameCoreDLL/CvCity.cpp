@@ -1224,6 +1224,9 @@ void CvCity::doTurn()
 	setDrafted(false);
 	setAirliftTargeted(false);
 	setCurrAirlift(0);
+//Multiple Production: Added by Denev 07/10/2009
+	setBuiltFoodProducedUnit(false);
+//Multiple Production: End Add
 	AI_doTurn();
 
 	bool bAllowNoProduction = !doCheckProduction();
@@ -1448,6 +1451,13 @@ void CvCity::doTurn()
 
 			iCount += getTradeYield((YieldTypes)iI);
 			iCount += getCorporationYield((YieldTypes)iI);
+			
+			// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+			if (isUnhappyProduction() && (YieldTypes)iI == YIELD_PRODUCTION)
+			{
+				iCount += unhappyLevel(0);
+			}
+			// Bugfix end
 
 			FAssert(iCount == getBaseYieldRate((YieldTypes)iI));
 		}
@@ -2921,6 +2931,26 @@ bool CvCity::isProductionProcess() const
 }
 
 
+//Multiple Production: Added by Denev 07/01/2009
+bool CvCity::isProductionWonder() const
+{
+	CLLNode<OrderData>* pOrderNode = headOrderQueueNode();
+
+	if (pOrderNode != NULL)
+	{
+		if (pOrderNode->m_data.eOrderType == ORDER_CONSTRUCT)
+		{
+			BuildingTypes eBuilding = (BuildingTypes)(pOrderNode->m_data.iData1);
+			BuildingClassTypes eBuildingClass = (BuildingClassTypes)(GC.getBuildingInfo(eBuilding).getBuildingClassType());
+			return (isWorldWonderClass(eBuildingClass) || isTeamWonderClass(eBuildingClass) || isNationalWonderClass(eBuildingClass));
+		}
+	}
+
+	return false;
+}
+//Multiple Production: End Add
+
+
 bool CvCity::canContinueProduction(OrderData order)
 {
 	switch (order.eOrderType)
@@ -3784,7 +3814,18 @@ int CvCity::getProductionModifier(ProjectTypes eProject) const
 }
 
 
-int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow) const
+//Multiple Production: Added by Denev 07/01/2009
+int CvCity::getOverflowProductionDifference() const
+{
+	return getProductionDifference(getProductionNeeded(), getProduction(), getProductionModifier(), false, true, false);
+}
+//Multiple Production: End Add
+
+
+//Multiple Production: Modified by Denev 07/03/2009
+//int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow) const
+int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow, bool bYield) const
+//Multiple Production: End Modify
 {
 	if (isDisorder())
 	{
@@ -3801,12 +3842,20 @@ int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int 
     {
         return 0;
     }
-    int iUnhappyProd = 0;
-    if (isUnhappyProduction())
-    {
-        iUnhappyProd += unhappyLevel(0);
-    }
-	return (((getBaseYieldRate(YIELD_PRODUCTION) + iOverflow + iUnhappyProd) * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier)) / 100 + iFoodProduction);
+    // Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+    // int iUnhappyProd = 0;
+    // if (isUnhappyProduction())
+    // {
+    //    iUnhappyProd += unhappyLevel(0);
+
+//Multiple Production: Added by Denev 07/03/2009
+	int iYield = ((bYield) ? (getBaseYieldRate(YIELD_PRODUCTION)) : 0);
+//Multiple Production: End Add
+
+//Multiple Production: Modified by Denev 07/03/2009
+//	return (((getBaseYieldRate(YIELD_PRODUCTION) + iOverflow + iUnhappyProd) * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier)) / 100 + iFoodProduction);
+	return (((iYield + iOverflow) * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier)) / 100 + iFoodProduction);
+//Multiple Production: End Modify
 //FfH: End Modify
 
 }
@@ -3842,6 +3891,16 @@ int CvCity::getExtraProductionDifference(int iExtra, int iModifier) const
 {
 	return ((iExtra * getBaseYieldRateModifier(YIELD_PRODUCTION, iModifier)) / 100);
 }
+
+
+//Multiple Production: Added by Denev 07/01/2009
+void CvCity::clearLostProduction()
+{
+	m_iLostProductionBase = 0;
+	m_iLostProductionModified = 0;
+	m_iGoldFromLostProduction = 0;
+}
+//Multiple Production: End Add
 
 
 bool CvCity::canHurry(HurryTypes eHurry, bool bTestVisible) const
@@ -9054,6 +9113,19 @@ void CvCity::setPlundered(bool bNewValue)
 }
 
 
+//Multiple Production: Added by Denev 07/10/2009
+bool CvCity::isBuiltFoodProducedUnit() const
+{
+	return m_bBuiltFoodProducedUnit;
+}
+
+
+void CvCity::setBuiltFoodProducedUnit(bool bNewValue)
+{
+	m_bBuiltFoodProducedUnit = bNewValue;
+}
+//Multiple Production: End Add
+
 bool CvCity::isWeLoveTheKingDay() const
 {
 	return m_bWeLoveTheKingDay;
@@ -9697,11 +9769,14 @@ int CvCity::getAdditionalBaseYieldRateBySpecialist(YieldTypes eIndex, Specialist
 // BUG - Specialist Additional Yield - end
 
 
-int CvCity::getBaseYieldRate(YieldTypes eIndex)	const
+int CvCity::getBaseYieldRate(YieldTypes eIndex, bool bUnhappyProduction) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex expected to be < NUM_YIELD_TYPES");
-	return m_aiBaseYieldRate[eIndex];
+	// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+	bool bShowUnhappyProduction = bUnhappyProduction && isUnhappyProduction() && eIndex == YIELD_PRODUCTION;
+	return bShowUnhappyProduction ? m_aiBaseYieldRate[eIndex] + unhappyLevel(0) : m_aiBaseYieldRate[eIndex];
+	// Bugfix end
 }
 
 
@@ -9748,15 +9823,17 @@ int CvCity::getBaseYieldRateModifier(YieldTypes eIndex, int iExtra) const
 
 int CvCity::getYieldRate(YieldTypes eIndex) const
 {
+	// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
 	// FFH - Unhappy Production
-	int iUnhappyProd = 0;
-    if (isUnhappyProduction() && (eIndex == YIELD_PRODUCTION))
-    {
-        iUnhappyProd += unhappyLevel(0);
-    }
+	//int iUnhappyProd = 0;
+    //if (isUnhappyProduction() && (eIndex == YIELD_PRODUCTION))
+    //{
+    //    iUnhappyProd += unhappyLevel(0);
+    //}
 	// End FFH
+	// Bugfix end
 
-	return (((getBaseYieldRate(eIndex) + iUnhappyProd) * getBaseYieldRateModifier(eIndex)) / 100);
+	return ((getBaseYieldRate(eIndex) * getBaseYieldRateModifier(eIndex)) / 100);
 }
 
 
@@ -9791,7 +9868,10 @@ void CvCity::setBaseYieldRate(YieldTypes eIndex, int iNewValue)
 
 void CvCity::changeBaseYieldRate(YieldTypes eIndex, int iChange)
 {
-	setBaseYieldRate(eIndex, (getBaseYieldRate(eIndex) + iChange));
+	// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
+	// Since the unhappy production part of getBaseYieldRate is calculated dynamically, it shouldn't be taking into account when it is required to modify it.
+	setBaseYieldRate(eIndex, (getBaseYieldRate(eIndex, false) + iChange));
+	// Bugfix end
 }
 
 
@@ -13426,7 +13506,6 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 	bool bMessage;
 	int iCount;
 	int iProductionNeeded;
-	int iOverflow;
 
 	bWasFoodProduction = isFoodProduction();
 
@@ -13483,12 +13562,20 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 			iProductionNeeded = getProductionNeeded(eTrainUnit);
 
 			// max overflow is the value of the item produced (to eliminate prebuild exploits)
-			iOverflow = getUnitProduction(eTrainUnit) - iProductionNeeded;
+//Multiple Production: Modified by Denev 07/02/2009
+//			iOverflow = getUnitProduction(eTrainUnit) - iProductionNeeded;
+			int iUnlimitedOverflow = getUnitProduction(eTrainUnit) - iProductionNeeded;
+//Multiple Production: End Modify
 			int iMaxOverflow = std::max(iProductionNeeded, getCurrentProductionDifference(false, false));
-// BUG - Overflow Gold Fix - start
-			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
-// BUG - Overflow Gold Fix - end
-			iOverflow = std::min(iMaxOverflow, iOverflow);
+//Multiple Production: Modified by Denev 07/02/2009
+//			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
+//			iOverflow = std::min(iMaxOverflow, iOverflow);
+			int iLostProduction = std::max(0, iUnlimitedOverflow - iMaxOverflow);
+			m_iLostProductionModified = iLostProduction;
+			m_iLostProductionBase = (100 * iLostProduction) / std::max(1, getBaseYieldRateModifier(YIELD_PRODUCTION, getProductionModifier(eTrainUnit)));
+			int iOverflow = std::min(iMaxOverflow, iUnlimitedOverflow);
+//Multiple Production: End Modify
+
 			if (iOverflow > 0)
 			{
 				changeOverflowProduction(iOverflow, getProductionModifier(eTrainUnit));
@@ -13510,10 +13597,15 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 			int iProductionGold = ((iLostProduction * GC.getDefineINT("MAXED_UNIT_GOLD_PERCENT")) / 100);
 			// UNOFFICIAL_PATCH End
-			if (iProductionGold > 0)
-			{
-				GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
-			}
+//Multiple Production: Added by Denev 07/02/2009
+			m_iGoldFromLostProduction = iProductionGold;
+//Multiple Production: End Add
+//Multiple Production: Deleted by Denev 07/01/2009
+//			if (iProductionGold > 0)
+//			{
+//				GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
+//			}
+//Multiple Production: End Delete
 
 			pUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eTrainUnit, getX_INLINE(), getY_INLINE(), eTrainAIUnit);
 			FAssertMsg(pUnit != NULL, "pUnit is expected to be assigned a valid unit object");
@@ -13594,11 +13686,19 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 			iProductionNeeded = getProductionNeeded(eConstructBuilding);
 			// max overflow is the value of the item produced (to eliminate prebuild exploits)
-			int iOverflow = getBuildingProduction(eConstructBuilding) - iProductionNeeded;
 			int iMaxOverflow = std::max(iProductionNeeded, getCurrentProductionDifference(false, false));
-// BUG - Overflow Gold Fix - start
-			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
-// BUG - Overflow Gold Fix - end
+//Multiple Production: Modified by Denev 07/02/2009
+//			int iOverflow = getBuildingProduction(eConstructBuilding) - iProductionNeeded;
+			int iUnlimitedOverflow = getBuildingProduction(eConstructBuilding) - iProductionNeeded;
+//Multiple Production: End Modify
+//Multiple Production: Modified by Denev 07/02/2009
+//			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
+//			iOverflow = std::min(iMaxOverflow, iOverflow);
+			int iLostProduction = std::max(0, iUnlimitedOverflow - iMaxOverflow);
+			m_iLostProductionModified = iLostProduction;
+			m_iLostProductionBase = (100 * iLostProduction) / std::max(1, getBaseYieldRateModifier(YIELD_PRODUCTION, getProductionModifier(eConstructBuilding)));
+			int iOverflow = std::min(iMaxOverflow, iUnlimitedOverflow);
+//Multiple Production: End Modify
 			iOverflow = std::min(iMaxOverflow, iOverflow);
 			if (iOverflow > 0)
 			{
@@ -13621,10 +13721,15 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 			int iProductionGold = ((iLostProduction * GC.getDefineINT("MAXED_BUILDING_GOLD_PERCENT")) / 100);
 // BUG - Overflow Gold Fix - end
-			if (iProductionGold > 0)
-			{
-				GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
-			}
+//Multiple Production: Added by Denev 07/02/2009
+			m_iGoldFromLostProduction = iProductionGold;
+//Multiple Production: End Add
+//Multiple Production: Deleted by Denev 07/01/2009
+//			if (iProductionGold > 0)
+//			{
+//				GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
+//			}
+//Multiple Production: End Delete
 
 			CvEventReporter::getInstance().buildingBuilt(this, eConstructBuilding);
 
@@ -13713,12 +13818,19 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 			iProductionNeeded = getProductionNeeded(eCreateProject);
 			// max overflow is the value of the item produced (to eliminate prebuild exploits)
-			iOverflow = getProjectProduction(eCreateProject) - iProductionNeeded;
+//Multiple Production: Modified by Denev 07/02/2009
+//			iOverflow = getProjectProduction(eCreateProject) - iProductionNeeded;
+			int iUnlimitedOverflow = getProjectProduction(eCreateProject) - iProductionNeeded;
+//Multiple Production: End Modify
 			int iMaxOverflow = std::max(iProductionNeeded, getCurrentProductionDifference(false, false));
-// BUG - Overflow Gold Fix - start
-			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
-// BUG - Overflow Gold Fix - end
-			iOverflow = std::min(iMaxOverflow, iOverflow);
+//Multiple Production: Modified by Denev 07/02/2009
+//			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
+//			iOverflow = std::min(iMaxOverflow, iOverflow);
+			int iLostProduction = std::max(0, iUnlimitedOverflow - iMaxOverflow);
+			m_iLostProductionModified = iLostProduction;
+			m_iLostProductionBase = (100 * iLostProduction) / std::max(1, getBaseYieldRateModifier(YIELD_PRODUCTION, getProductionModifier(eCreateProject)));
+			int iOverflow = std::min(iMaxOverflow, iUnlimitedOverflow);
+//Multiple Production: End Modify
 			if (iOverflow > 0)
 			{
 				changeOverflowProduction(iOverflow, getProductionModifier(eCreateProject));
@@ -13731,10 +13843,15 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 			int iProductionGold = ((iLostProduction * GC.getDefineINT("MAXED_PROJECT_GOLD_PERCENT")) / 100);
 // BUG - Overflow Gold Fix - end
-			if (iProductionGold > 0)
-			{
-				GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
-			}
+//Multiple Production: Added by Denev 07/02/2009
+			m_iGoldFromLostProduction = iProductionGold;
+//Multiple Production: End Add
+//Multiple Production: Deleted by Denev 07/01/2009
+//			if (iProductionGold > 0)
+//			{
+//				GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
+//			}
+//Multiple Production: End Delete
 
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
@@ -14341,11 +14458,62 @@ void CvCity::doProduction(bool bAllowNoProduction)
 		changeProduction(getCurrentProductionDifference(false, true));
 		setOverflowProduction(0);
 		setFeatureProduction(0);
+//Multiple Production: Added by Denev 07/10/2009
+		setBuiltFoodProducedUnit(isFoodProduction());
+		clearLostProduction();
+//Multiple Production: End Add
 
-		if (getProduction() >= getProductionNeeded())
+//Multiple Production: Modified by Denev 07/02/2009
+//Multiple Production: Modified by Terkhen (Multiple Production added unconditionally) 12/01/2014
+//		if (getProduction() >= getProductionNeeded())
+//		{
+//			popOrder(0, true, true);
+//		}
+
+		int iOverflowProductionModified = 0;
+		while (isProduction() && productionLeft() <= iOverflowProductionModified)
 		{
+			changeProduction(iOverflowProductionModified);
+			setOverflowProduction(0);
+
 			popOrder(0, true, true);
+
+			//to eliminate pre-build exploits for all Wonders and all Projects
+			if (isProductionWonder() || isProductionProject())
+			{
+				break;
+			}
+
+			//to eliminate pre-build exploits for Settlers and Workers
+			if (isFoodProduction() && !isBuiltFoodProducedUnit())
+			{
+				break;
+			}
+
+			if (isProductionProcess())
+			{
+				break;
+			}
+
+			//fix production which floods from overflow capacity to next queue item if it exists
+			if (isProduction() && m_iLostProductionBase > 0)
+			{
+				changeProduction(getExtraProductionDifference(m_iLostProductionBase));
+				clearLostProduction();
+			}
+
+			iOverflowProductionModified = getOverflowProductionDifference();
 		}
+
+		if (m_iGoldFromLostProduction > 0)
+		{
+			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_LOST_PROD_CONVERTED", getNameKey(), m_iLostProductionModified, m_iGoldFromLostProduction);
+			gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_WONDERGOLD", MESSAGE_TYPE_MINOR_EVENT, GC.getCommerceInfo(COMMERCE_GOLD).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
+
+			GET_PLAYER(getOwnerINLINE()).changeGold(m_iGoldFromLostProduction);
+			clearLostProduction();
+		}
+//Multiple Production: End Modify
 	}
 	else
 	{

@@ -30,6 +30,7 @@ credits = [
 			"Calavente - French translation, feedback, suggestions",
 			"Caveman 2 Cosmos team - Resource art",
 			"Danny Daemonic - Makefile",
+			"Denev - Multiple Production",
 			"Exmorphis - Testing, feedback, suggestions",
 			"Jean Elcard - Civilization specific modifications to terrain yields",
 			"KuBaTRiZeS - Testing, feedback, suggestions",

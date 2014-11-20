@@ -382,7 +382,7 @@ def createCivilopedia():
 #								SevoScreenEnums.PEDIA_CORPORATIONS	: pediaMainScreen,
 								SevoScreenEnums.PEDIA_SPELLS	: pediaMainScreen,
 								SevoScreenEnums.PEDIA_CONCEPTS		: pediaMainScreen,
-								SevoScreenEnums.PEDIA_BTS_CONCEPTS	: pediaMainScreen,
+#								SevoScreenEnums.PEDIA_BTS_CONCEPTS	: pediaMainScreen,
 								SevoScreenEnums.PEDIA_HINTS		: pediaMainScreen,
 								SevoScreenEnums.PEDIA_SHORTCUTS		: pediaMainScreen,
 							})
@@ -435,7 +435,7 @@ def createCivilopedia():
 #							SevoScreenEnums.PEDIA_CORPORATIONS	: pediaMainScreen,
 							SevoScreenEnums.PEDIA_SPELLS		: pediaMainScreen,
 							SevoScreenEnums.PEDIA_CONCEPTS		: pediaMainScreen,
-							SevoScreenEnums.PEDIA_BTS_CONCEPTS	: pediaMainScreen,
+#							SevoScreenEnums.PEDIA_BTS_CONCEPTS	: pediaMainScreen,
 							SevoScreenEnums.PEDIA_HINTS			: pediaMainScreen,
 							SevoScreenEnums.PEDIA_SHORTCUTS		: pediaMainScreen,
 						}
@@ -569,9 +569,10 @@ def pediaJumpToCorporation(argsList):
 
 def pediaShowHistorical(argsList):
 	if (bUsingSevopedia):
-		if (argsList[0] == CivilopediaPageTypes.CIVILOPEDIA_PAGE_CONCEPT_NEW):
-			pediaMainScreen.pediaJump(SevoScreenEnums.PEDIA_BTS_CONCEPTS, argsList[1], True, False)
-		else:
+#		if (argsList[0] == CivilopediaPageTypes.CIVILOPEDIA_PAGE_CONCEPT_NEW):
+#			pediaMainScreen.pediaJump(SevoScreenEnums.PEDIA_BTS_CONCEPTS, argsList[1], True, False)
+#		else:
+		if (argsList[0] != CivilopediaPageTypes.CIVILOPEDIA_PAGE_CONCEPT_NEW):
 			pediaMainScreen.pediaJump(SevoScreenEnums.PEDIA_CONCEPTS, argsList[1], True, False)
 	else:
 		iEntryId = pediaMainScreen.pediaHistorical.getIdFromEntryInfo(argsList[0], argsList[1])

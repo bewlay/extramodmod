@@ -8698,6 +8698,12 @@ int CvGame::calculateSyncChecksum()
 
 	iValue = 0;
 
+	// Version control for multiplayer games
+	CvWStringBuffer szBuffer;
+	szBuffer.append(gDLL->getText("TXT_KEY_VERSION"));
+
+	iValue += szBuffer.getShortHash();
+
 	iValue += getMapRand().getSeed();
 	iValue += getSorenRand().getSeed();
 
