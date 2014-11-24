@@ -10391,31 +10391,11 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-/*
-	if (kCivic.isUpgradeAnywhere())
+	if (kCivic.isDisallowInquisitions())
 	{
 		szHelpText.append(NEWLINE);
-		szHelpText.append(gDLL->getText("TXT_KEY_CAN_UPGRADE_ANYWHERE"));	
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_DISALLOW_INQUISITONS"));
 	}
-
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_INQUISITIONS))
-	{
-		if (kCivic.isAllowInquisitions())
-		{
-			szHelpText.append(NEWLINE);
-			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_ALLOW_INQUISITONS"));
-		}
-	}
-
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_INQUISITIONS))
-	{
-		if (kCivic.isDisallowInquisitions())
-		{
-			szHelpText.append(NEWLINE);
-			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_DISALLOW_INQUISITONS"));
-		}
-	}
-*/
 
 	if (GC.getGameINLINE().isOption(GAMEOPTION_REVOLUTIONS))
 	{
@@ -11111,6 +11091,15 @@ void CvGameTextMgr::setTechTradeHelp(CvWStringBuffer &szBuffer, TechTypes eTech,
 		if (GC.getBonusInfo((BonusTypes)iI).getTechObsolete() == eTech)
 		{
 			buildObsoleteBonusString(szBuffer, iI, true);
+		}
+	}
+
+	//	Enable Bonuses
+	for (iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+	{
+		if (GC.getBonusInfo((BonusTypes)iI).getTechCityTrade() == eTech)
+		{
+			buildEnableBonusString(szBuffer, iI, true);
 		}
 	}
 
@@ -17221,6 +17210,17 @@ void CvGameTextMgr::buildObsoleteBonusString(CvWStringBuffer &szBuffer, int iIte
 		szBuffer.append(NEWLINE);
 	}
 	szBuffer.append(gDLL->getText("TXT_KEY_TECH_OBSOLETES", GC.getBonusInfo((BonusTypes) iItem).getTextKeyWide()));
+}
+
+void CvGameTextMgr::buildEnableBonusString(CvWStringBuffer &szBuffer, int iItem, bool bList, bool bPlayerContext)
+{
+	CvWString szTempBuffer;
+
+	if (bList)
+	{
+		szBuffer.append(NEWLINE);
+	}
+	szBuffer.append(gDLL->getText("TXT_KEY_TECH_ENABLES", GC.getBonusInfo((BonusTypes) iItem).getTextKeyWide()));
 }
 
 void CvGameTextMgr::buildObsoleteSpecialString(CvWStringBuffer &szBuffer, int iItem, bool bList, bool bPlayerContext)

@@ -4824,7 +4824,7 @@
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
 			<iAsset>14</iAsset>
-			<iPower>20</iPower>
+            <iPower>45</iPower>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -14395,7 +14395,7 @@
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
 			<iAsset>14</iAsset>
-			<iPower>25</iPower>
+            <iPower>45</iPower>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>

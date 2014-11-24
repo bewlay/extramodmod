@@ -1972,8 +1972,6 @@ public:
 /*                                                                                              */
 /* RevCivicEffects                                                                              */
 /************************************************************************************************/
-	bool isUpgradeAnywhere() const;
-	bool isAllowInquisitions() const;
 	bool isDisallowInquisitions() const;
 	int getRevIdxLocal() const;
 	int getRevIdxNational() const;
@@ -2098,8 +2096,6 @@ protected:
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	int m_bUpgradeAnywhere;
-	int m_bAllowInquisitions;
 	int m_bDisallowInquisitions;
 	int m_iRevIdxLocal;
 	int m_iRevIdxNational;
@@ -2362,7 +2358,6 @@ public:
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	int getUnitUpgradePriceModifier() const;					// Exposed to Python
 	int getRevIdxLocal() const;					// Exposed to Python
 	int getRevIdxNational() const;					// Exposed to Python
 	int getRevIdxDistanceModifier() const;					// Exposed to Python
@@ -2616,7 +2611,6 @@ protected:
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	int m_iUnitUpgradePriceModifier;
 	int m_iRevIdxLocal;
 	int m_iRevIdxNational;
 	int m_iRevIdxDistanceModifier;

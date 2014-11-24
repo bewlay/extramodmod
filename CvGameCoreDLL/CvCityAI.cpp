@@ -1006,28 +1006,31 @@ void CvCityAI::AI_chooseProduction()
 			
 			// if we are building a wonder, do not cancel, keep building it (if no danger)
 			BuildingTypes eProductionBuilding = getProductionBuilding();
-			if (!bDanger && eProductionBuilding != NO_BUILDING && 
-				isLimitedWonderClass((BuildingClassTypes) GC.getBuildingInfo(eProductionBuilding).getBuildingClassType()))
+			if (!bDanger)
 			{
-				return;
-			}
+				if (eProductionBuilding != NO_BUILDING && 
+					isLimitedWonderClass((BuildingClassTypes) GC.getBuildingInfo(eProductionBuilding).getBuildingClassType()))
+				{
+					return;
+				}
 
-//>>>>Better AI: Added by Denev 2010/03/31
-			// if we are creating a project, do not cancel, keep creating it (if no danger)
-			ProjectTypes eProductionProject = getProductionProject();
-			if (!bDanger && eProductionProject != NO_PROJECT && isWorldProject(eProductionProject))
-			{
-				return;
-			}
+	//>>>>Better AI: Added by Denev 2010/03/31
+				// if we are creating a project, do not cancel, keep creating it (if no danger)
+				ProjectTypes eProductionProject = getProductionProject();
+				if (eProductionProject != NO_PROJECT && isWorldProject(eProductionProject))
+				{
+					return;
+				}
 
-			// if we are training a hero, do not cancel, keep training him (if no danger)
-			UnitTypes eProductionUnit = getProductionUnit();
-			if (!bDanger && eProductionUnit != NO_UNIT &&
-				isLimitedUnitClass((UnitClassTypes)GC.getUnitInfo(eProductionUnit).getUnitClassType()))
-			{
-				return;
+				// if we are training a hero, do not cancel, keep training him (if no danger)
+				UnitTypes eProductionUnit = getProductionUnit();
+				if (eProductionUnit != NO_UNIT &&
+					isLimitedUnitClass((UnitClassTypes)GC.getUnitInfo(eProductionUnit).getUnitClassType()))
+				{
+					return;
+				}
+	//<<<<Better AI: End Add
 			}
-//<<<<Better AI: End Add
 		}
 
 		clearOrderQueue();
@@ -1043,7 +1046,7 @@ void CvCityAI::AI_chooseProduction()
 	AI_setChooseProductionDirty(false);
 
 // Tholal AI - block python in financial trouble
-	if (!kPlayer.AI_isFinancialTrouble())
+	if (!kPlayer.AI_isFinancialTrouble() && !bDanger)
 	{
 		// allow python to handle it
 		CyCity* pyCity = new CyCity(this);
@@ -1085,7 +1088,8 @@ void CvCityAI::AI_chooseProduction()
 	bWasFoodProduction = isFoodProduction();
 	bHasMetOtherPlayer = (GET_TEAM(getTeam()).getHasMetCivCount(true) > 0);
 	bAtWar = (GET_TEAM(getTeam()).getAtWarCount(true) > 0);
-	bLandWar = ((pArea->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE) || (pArea->getAreaAIType(getTeam()) == AREAAI_DEFENSIVE) || (pArea->getAreaAIType(getTeam()) == AREAAI_MASSING));
+	//bool bLandWar = ((pArea->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE) || (pArea->getAreaAIType(getTeam()) == AREAAI_DEFENSIVE) || (pArea->getAreaAIType(getTeam()) == AREAAI_MASSING));
+	bLandWar = kPlayer.AI_isLandWar(pArea); // K-Mod
 	bDefenseWar = (pArea->getAreaAIType(getTeam()) == AREAAI_DEFENSIVE);
 	bool bAssaultAssist = (pArea->getAreaAIType(getTeam()) == AREAAI_ASSAULT_ASSIST);
 	bAssault = bAssaultAssist || (pArea->getAreaAIType(getTeam()) == AREAAI_ASSAULT) || (pArea->getAreaAIType(getTeam()) == AREAAI_ASSAULT_MASSING);
@@ -1118,6 +1122,7 @@ void CvCityAI::AI_chooseProduction()
 	}
 
     bool bGetBetterUnits = kPlayer.AI_isDoStrategy(AI_STRATEGY_GET_BETTER_UNITS);
+	bool bDagger = kPlayer.AI_isDoStrategy(AI_STRATEGY_DAGGER);
     bool bAggressiveAI = GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI);
     bool bAlwaysPeace = GC.getGameINLINE().isOption(GAMEOPTION_ALWAYS_PEACE);
 
@@ -1723,7 +1728,7 @@ void CvCityAI::AI_chooseProduction()
 	int iPlotCityDefenderCount = plot()->plotCount(PUF_isUnitAIType, UNITAI_CITY_DEFENSE, -1, getOwnerINLINE());
 	// Tholal AI - Era fix
 	//if( kPlayer.getCurrentEra() == 0 )
-	
+	/*
 	if (GC.getGameINLINE().getCurrentPeriod() <= 1)
 	{
 		if( kPlayer.AI_totalUnitAIs(UNITAI_CITY_DEFENSE) <= iNumCities)
@@ -1734,6 +1739,7 @@ void CvCityAI::AI_chooseProduction()
 			}
 		}
 	}
+	*/
 	
 /*
 	if (iNumCities > 1 || bDanger)
@@ -1964,67 +1970,64 @@ void CvCityAI::AI_chooseProduction()
 		}
 	}
 // End Tholal AI
-    
-	
-	// -------------------- BBAI Notes -------------------------
-	// Minimal attack force, both land and sea
-	int iAttackNeeded = 1;
-
-	if (GC.getGameINLINE().getCurrentPeriod() > 0)
+    // Tholal ToDo - this should call a function to determine how many attack units we need - both for this city and for the team/player
+	if (bHasMetOtherPlayer || bDanger)
 	{
-		iAttackNeeded++;
-	}
+		// -------------------- BBAI Notes -------------------------
+		// Minimal attack force, both land and sea
+		int iAttackNeeded = 1;
 
-	if (bAggressiveAI)
-	{
-		iAttackNeeded++;
-	}
+		if (GC.getGameINLINE().getCurrentPeriod() > 0)
+		{
+			iAttackNeeded++;
+		}
 
-	if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST1))
-	{
-		iAttackNeeded++;
+		if (bAggressiveAI)
+		{
+			iAttackNeeded++;
+		}
 
-		if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST2))
+		if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST1))
 		{
 			iAttackNeeded++;
 
-			if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST3))
+			if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST2))
 			{
 				iAttackNeeded++;
+
+				if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST3))
+				{
+					iAttackNeeded++;
+				}
 			}
 		}
-	}
 
-	if (bCrushStrategy)
-	{
-		iAttackNeeded++;
-	}
-	
-    if (bDanger && !bAtWar) 
-    {
-		iAttackNeeded += 4;
-		//iAttackNeeded += std::max(0, AI_neededDefenders() - plot()->plotCount(PUF_isUnitAIType, UNITAI_CITY_DEFENSE, -1, getOwnerINLINE()));
-	}
-		
-	if (bLandWar || bAssault)
-	{
-		iAttackNeeded += 2;
-	}
-
-	if (!bHasMetOtherPlayer)
-	{
-		iAttackNeeded -= 1;
-	}
-
-	if( (kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_ATTACK) + kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_ATTACK_CITY)) <  iAttackNeeded)
-	{
-		if (kPlayer.AI_getFundedPercent() > 50)
+		if (bCrushStrategy)
 		{
-    		if (AI_chooseUnit(UNITAI_ATTACK))
-    		{
-				if( gCityLogLevel >= 2 ) logBBAI("      City %S uses danger minimal attack", getName().GetCString());
-    			return;
-    		}
+			iAttackNeeded++;
+		}
+		
+		if (bDanger && !bAtWar) 
+		{
+			iAttackNeeded += 4;
+			//iAttackNeeded += std::max(0, AI_neededDefenders() - plot()->plotCount(PUF_isUnitAIType, UNITAI_CITY_DEFENSE, -1, getOwnerINLINE()));
+		}
+			
+		if (bLandWar || bAssault)
+		{
+			iAttackNeeded += 2;
+		}
+
+		if ((kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_ATTACK) + kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_ATTACK_CITY)) <  iAttackNeeded)
+		{
+			if (kPlayer.AI_getFundedPercent() > 50)
+			{
+    			if (AI_chooseUnit(UNITAI_ATTACK))
+    			{
+					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses danger minimal attack (%d needed)", getName().GetCString(), iAttackNeeded);
+    				return;
+    			}
+			}
 		}
 	}
     
@@ -2351,11 +2354,13 @@ void CvCityAI::AI_chooseProduction()
 		}
 	}
 
+	bool bBarbCitiesinArea = pArea->getCitiesPerPlayer(BARBARIAN_PLAYER) > 0;
 	// BBAI TODO: Check that this works to produce early rushes on tight maps
 	if ((!bGetBetterUnits && (bIsCapitalArea) && (iAreaBestFoundValue < (iMinFoundValue * 2))) || // units for expansion
-		kPlayer.AI_isDoStrategy(AI_STRATEGY_DAGGER) || // Dagger strategy
+		bDagger || // Dagger strategy
 		bAggressiveAI || // Aggressive AI
-		(kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST1) && bWarPlan)) // Conquest strat plus warplan
+		(kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST1) && bWarPlan) &&  // Conquest strat plus warplan
+		(!kPlayer.AI_isCapitalAreaAlone() || bBarbCitiesinArea))
 	{
 		//Building city hunting stack.
 
@@ -2373,7 +2378,7 @@ void CvCityAI::AI_chooseProduction()
 		}
 
 		int iStartAttackStackRand = 0;
-		if (pArea->getCitiesPerPlayer(BARBARIAN_PLAYER) > 0)
+		if (bBarbCitiesinArea)
 		{
 			iStartAttackStackRand += 15;
 		}
@@ -2407,20 +2412,37 @@ void CvCityAI::AI_chooseProduction()
 						return;
 					}
 				}
-				else if (iAttackCount < (3 + iBuildUnitProb / (bWarPlan ? 10 : 20)))
+				else
 				{
-					if (bAtWar)
+					int iDivisor = 10;
+
+					if (bWarPlan)
 					{
-						if (AI_chooseUnit(UNITAI_ATTACK_CITY))
+						iDivisor /= 2;
+					}
+
+					if (bLandWar)
+					{
+						iDivisor /= 4;
+					}
+
+					int iAttackWanted = ((3 + iNumCitiesInArea + iBuildUnitProb) * getDomainFreeExperience(DOMAIN_LAND)) / iDivisor;
+
+					if (iAttackCount < iAttackWanted)
+					{
+						if (bAtWar)
 						{
-							if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose add to city attack stack (ATTACK_CITY)", getName().GetCString());
+							if (AI_chooseUnit(UNITAI_ATTACK_CITY))
+							{
+								if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose add to city attack stack (ATTACK_CITY)(H/N : %d / %d)", getName().GetCString(), iAttackCount, iAttackWanted);
+								return;
+							}
+						}
+						if (AI_chooseUnit(UNITAI_ATTACK))
+						{
+							if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose add to city attack stack(ATTACK)(H/N : %d / %d)", getName().GetCString(), iAttackCount, iAttackWanted);
 							return;
 						}
-					}
-					if (AI_chooseUnit(UNITAI_ATTACK))
-					{
-						if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose add to city attack stack(ATTACK)", getName().GetCString());
-						return;
 					}
 				}
 			}
@@ -2430,13 +2452,16 @@ void CvCityAI::AI_chooseProduction()
 	//minimal defense.
 	if (iPlotCityDefenderCount < (AI_minDefenders() + iPlotSettlerCount))
 	{
+		if( gCityLogLevel >= 2 ) logBBAI("      City %S needs more defense!", getName().GetCString());
 		if (AI_chooseUnit(UNITAI_CITY_DEFENSE))
 		{
+			if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose UNITAI_CITY_DEFENSE (minimal troops: %d)", getName().GetCString(), (AI_minDefenders() + iPlotSettlerCount));
 			return;
 		}
 
 		if (AI_chooseUnit(UNITAI_ATTACK))
 		{
+			if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose UNITAI_ATTACK (minimal troops: %d)", getName().GetCString(), (AI_minDefenders() + iPlotSettlerCount));
 			return;
 		}
 	}
@@ -3313,7 +3338,6 @@ void CvCityAI::AI_chooseProduction()
 			invaderTypes.push_back(std::make_pair(UNITAI_ATTACK, 40));
 			invaderTypes.push_back(std::make_pair(UNITAI_PARADROP, (kPlayer.AI_isDoStrategy(AI_STRATEGY_AIR_BLITZ) ? 30 : 20) / (bAssault ? 2 : 1)));
 
-			/*
 			if (!bAssault)
 			{
 				if (kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_PILLAGE) <= ((iNumCitiesInArea + 1) / 2))
@@ -3321,8 +3345,7 @@ void CvCityAI::AI_chooseProduction()
 					invaderTypes.push_back(std::make_pair(UNITAI_PILLAGE, 30));
 				}
 			}
-			*/
-
+			
 			if (AI_chooseLeastRepresentedUnit(invaderTypes, iTrainInvaderChance))
 			{
 				if( gCityLogLevel >= 2 )
@@ -3836,7 +3859,8 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 
 	bWarPlan = (GET_TEAM(getTeam()).getAnyWarPlanCount(true) > 0);
 	bDefense = (area()->getAreaAIType(getTeam()) == AREAAI_DEFENSIVE);
-	bLandWar = (bDefense || (area()->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_MASSING));
+	//bLandWar = (bDefense || (area()->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_MASSING));
+	bLandWar = kOwner.AI_isLandWar(area()); // K-Mod
 	bAssault = (area()->getAreaAIType(getTeam()) == AREAAI_ASSAULT);
 	bPrimaryArea = kOwner.AI_isPrimaryArea(area());
 	bAreaAlone = kOwner.AI_isAreaAlone(area());
@@ -4971,8 +4995,6 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 
 				iValue += (kBuilding.getFreePromotionPick() * 5); // Tholal AI
 
-				iValue += kBuilding.getFlavorValue((FlavorTypes)0); // FLAVOR_MILITARY
-
 				for (iI = 0; iI < GC.getNumUnitCombatInfos(); iI++)
 				{
 					if (canTrain((UnitCombatTypes)iI))
@@ -5125,6 +5147,11 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 					}
 
 					iValue += iTempValue;
+
+					if (iValue > 0)
+					{
+						iValue += kBuilding.getFlavorValue((FlavorTypes)0); // FLAVOR_MILITARY
+					}
 				}
 	//<<<<Better AI: End Add
 			}
@@ -6545,7 +6572,7 @@ int CvCityAI::AI_projectValue(ProjectTypes eProject)
 		}
 		else
 		{
-			iValue += kProject.getModifyGlobalCounter() * ((200 - GC.getGameINLINE().getGlobalCounter()) / 4);
+			iValue += kProject.getModifyGlobalCounter() * ((150 - GC.getGameINLINE().getGlobalCounter()) / 4);
 		}
 	}
 
@@ -9064,7 +9091,8 @@ void CvCityAI::AI_updateBestBuild()
 	}
 	if (!bChop)
 	{
-        bChop = ((area()->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_DEFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_MASSING));
+		//bChop = ((area()->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_DEFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_MASSING));
+		bChop = kPlayer.AI_isLandWar(area()); // K-Mod
     }
 
     if (getProductionBuilding() != NO_BUILDING)
@@ -9283,7 +9311,8 @@ void CvCityAI::AI_doDraft(bool bForce)
 				conscript();
 				return;
         	}
-			bool bLandWar = ((area()->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_DEFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_MASSING));
+			//bool bLandWar = ((area()->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_DEFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_MASSING));
+			bool bLandWar = kOwner.AI_isLandWar(area()); // K-Mod
             bool bDanger = (!AI_isDefended() && AI_isDanger());
 
 			// Don't go broke from drafting
@@ -12654,9 +12683,9 @@ int CvCityAI::AI_cityValue() const
 
 bool CvCityAI::AI_doPanic()
 {
-
-	bool bLandWar = ((area()->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_DEFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_MASSING));
-
+	//bool bLandWar = ((area()->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_DEFENSIVE) || (area()->getAreaAIType(getTeam()) == AREAAI_MASSING));
+	bool bLandWar = GET_PLAYER(getOwnerINLINE()).AI_isLandWar(area()); // K-Mod
+	
 	if (bLandWar)
 	{
 		int iOurDefense = GET_PLAYER(getOwnerINLINE()).AI_getOurPlotStrength(plot(), 0, true, false);

@@ -735,6 +735,7 @@ int CvTeamAI::AI_calculatePlotWarValue(TeamTypes eTeam) const
 	FAssert(eTeam != getID());
 
 	int iValue = 0;
+	if( gTeamLogLevel >= 4 ) logBBAI("     Calculating Plot War Value...");
 
 	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
 	{
@@ -761,7 +762,22 @@ int CvTeamAI::AI_calculatePlotWarValue(TeamTypes eTeam) const
 					}
 					else
 					{
-						iValue += 40 * GC.getBonusInfo(eBonus).getAIObjective();
+						for ( int iPlayer = 0; iPlayer < MAX_CIV_PLAYERS; iPlayer++ )
+						{
+							CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iPlayer);
+							if ( kPlayer.getTeam() == getID() && kPlayer.isAlive())
+							{
+								// add value for bonuses we dont have
+								if (kPlayer.countOwnedBonuses(eBonus) == 0)
+								{
+									int iTempBonusValue = 0;
+									iTempBonusValue += (kPlayer.AI_bonusVal(eBonus) / 5);
+									iTempBonusValue += (pLoopPlot->getCulture((PlayerTypes)iPlayer) / 5);
+									if( gTeamLogLevel >= 4 )  logBBAI("      Coveting their Bonus %S (Value: %d)", GC.getBonusInfo(eBonus).getDescription(), iTempBonusValue);
+									iValue += iTempBonusValue;
+								}
+							}
+						}
 					}
 				}
 			}
@@ -1301,45 +1317,40 @@ int CvTeamAI::AI_startWarVal(TeamTypes eTeam) const
 
 	int iValue;
 	CvTeamAI& kTeam = GET_TEAM(eTeam);
+	bool bAggressiveAI = GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI);
+	
+	if( gTeamLogLevel >= 4 ) logBBAI("    Valuing War with Team %d" ,eTeam);
 
 	iValue = AI_calculatePlotWarValue(eTeam);
+	if( gTeamLogLevel >= 4 )logBBAI("     Initial Value: %d", iValue);
 
 	iValue += (3 * AI_calculateCapitalProximity(eTeam)) / ((iValue > 0) ? 2 : 3);
-	
+	if( gTeamLogLevel >= 4 )logBBAI("     Plus Capital Proximity: %d", iValue);
+
 	int iClosenessValue = AI_teamCloseness(eTeam);
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      05/16/10                                jdog5000      */
-/*                                                                                              */
-/* War Strategy AI, Victory Strategy AI                                                         */
-/************************************************************************************************/
-/* original code
+
 	if (iClosenessValue == 0)
 	{
-		iValue /= 4;
+		iValue /= (bAggressiveAI ? 2 : 4);
 	}
-	iValue += iClosenessValue / 4;
-*/
-	// Dividing iValue by 4 is a drastic move, will result in more backstabbing between friendly neighbors
-	// which is appropriate for Aggressive
-	// Closeness values are much smaller after the fix to CvPlayerAI::AI_playerCloseness, no need to divide by 4
-	if (iClosenessValue == 0)
+	else
 	{
-		iValue /= (GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI) ? 4 : 2);
+		iValue += iClosenessValue;
 	}
-	iValue += iClosenessValue;
+	if( gTeamLogLevel >= 4 ) logBBAI("     After Closeness Modifier: %d", iValue);
 
 	iValue += AI_calculateBonusWarValue(eTeam);
-	
+	if( gTeamLogLevel >= 4 ) logBBAI("     After Bonus War Value: %d", iValue);
+
 	// Target other teams close to victory
 	if( kTeam.AI_isAnyMemberDoVictoryStrategyLevel3() )
 	{
 		iValue += 10;
 
-		bool bAggressive = GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI);
 		bool bConq4 = AI_isAnyMemberDoVictoryStrategy(AI_VICTORY_CONQUEST4);
 
 		// Prioritize targets closer to victory
-		if( bConq4 || bAggressive )
+		if( bConq4 || bAggressiveAI )
 		{
 			iValue *= 3;
 			iValue /= 2;
@@ -1352,16 +1363,7 @@ int CvTeamAI::AI_startWarVal(TeamTypes eTeam) const
 				iValue += 50;
 			}
 
-			iValue *= 2;
-
-			if( bConq4 || bAggressive )
-			{
-				iValue *= 4;
-			}
-			else if( AI_isAnyMemberDoVictoryStrategyLevel3() )
-			{
-				iValue *= 2;
-			}
+			iValue *= ((bConq4 || bAggressiveAI)? 4 : 2);
 		}	
 	}
 
@@ -1369,7 +1371,7 @@ int CvTeamAI::AI_startWarVal(TeamTypes eTeam) const
 	// as boost applies to all rivals
 	if( AI_isAnyMemberDoVictoryStrategy(AI_VICTORY_DOMINATION3) )
 	{
-		iValue *= (GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI) ? 3 : 2);
+		iValue *= (bAggressiveAI ? 3 : 2);
 	}
 
 	// boost for declaring war on other religious leaders when pursuing a religious victory
@@ -1381,24 +1383,11 @@ int CvTeamAI::AI_startWarVal(TeamTypes eTeam) const
 		}
 	}
 	
-	// If occupied or conquest inclined and early/not strong, value weak opponents
-	/*
-	if( getAnyWarPlanCount(true) > 0 || 
-		(AI_isAnyMemberDoVictoryStrategy(AI_VICTORY_CONQUEST2) && !(AI_isAnyMemberDoVictoryStrategy(AI_VICTORY_CONQUEST3))) )
-	{
-		int iMultiplier = (75 * getPower(false))/std::max(1, GET_TEAM(eTeam).getDefensivePower());
-
-		iValue *= range(iMultiplier, 50, 400);
-		iValue /= 100;
-	}
-	*/
-
 	// assaults on weak opponents
 	int iEnemyPowerPercent = kTeam.AI_getEnemyPowerPercent(true);
-
 	if (iEnemyPowerPercent < 75)
 	{
-		if (GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI))
+		if (bAggressiveAI)
 		{
 			int iModValue = 0;
 
@@ -1416,36 +1405,34 @@ int CvTeamAI::AI_startWarVal(TeamTypes eTeam) const
 		}
 	}
 
-
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
-
-	switch (AI_getAttitude(eTeam))
+	if (!bAggressiveAI)
 	{
-	case ATTITUDE_FURIOUS:
-		iValue *= 16;
-		break;
+		switch (AI_getAttitude(eTeam))
+		{
+		case ATTITUDE_FURIOUS:
+			iValue *= 4;
+			break;
 
-	case ATTITUDE_ANNOYED:
-		iValue *= 8;
-		break;
+		case ATTITUDE_ANNOYED:
+			iValue *= 2;
+			break;
 
-	case ATTITUDE_CAUTIOUS:
-		iValue *= 4;
-		break;
+		case ATTITUDE_CAUTIOUS:
+			iValue *= 1;
+			break;
 
-	case ATTITUDE_PLEASED:
-		iValue *= 2;
-		break;
+		case ATTITUDE_PLEASED:
+			iValue /= 5;
+			break;
 
-	case ATTITUDE_FRIENDLY:
-		iValue *= 1;
-		break;
+		case ATTITUDE_FRIENDLY:
+			iValue /= 10;
+			break;
 
-	default:
-		FAssert(false);
-		break;
+		default:
+			FAssert(false);
+			break;
+		}
 	}
 	
 /************************************************************************************************/
@@ -1462,10 +1449,6 @@ int CvTeamAI::AI_startWarVal(TeamTypes eTeam) const
 	{
 		iValue /= 4;
 	}
-	else if ( AI_isAnyMemberDoVictoryStrategy(AI_VICTORY_CULTURE3))
-	{
-		iValue /= 3;
-	}
 	else if ( AI_isAnyMemberDoVictoryStrategy(AI_VICTORY_ALTAR3))
 	{
 		iValue /= 4;
@@ -1478,10 +1461,19 @@ int CvTeamAI::AI_startWarVal(TeamTypes eTeam) const
 	{
 		iValue /= 3;
 	}
+	else if ( AI_isAnyMemberDoVictoryStrategy(AI_VICTORY_CULTURE3))
+	{
+		iValue /= 3;
+	}
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
 
+	if (AI_calculateAdjacentLandPlots(eTeam) == 0)
+	{
+		iValue /= 2;
+	}
+	// MNAI ToDo - devalue based on distance
 	return iValue;
 }
 
@@ -1502,14 +1494,23 @@ int CvTeamAI::AI_endWarVal(TeamTypes eTeam) const
 	iValue += getTotalPopulation();
 	iValue += kWarTeam.getTotalPopulation();
 
-	iValue += (kWarTeam.AI_getWarSuccess(getID()) * 30);
-	iValue -= AI_getWarSuccess(eTeam) * 30;
+	iValue += kWarTeam.AI_getWarSuccess(getID()); //* 30);
+	iValue -= AI_getWarSuccess(eTeam);// * 30;
 
 	int iOurPower = std::max(1, getPower(true));
 	int iTheirPower = std::max(1, kWarTeam.getDefensivePower());
 
-	iValue *= iTheirPower + 10;
+	// MNAI To Do - increase value for distant opponents
+	// MNAI - add value based on the duration of the war
+	int iDurationMod = (AI_getAtWarCounter(eTeam) - ((AI_getWarPlan(eTeam) == WARPLAN_TOTAL) ? 40 : 30) * 3);
+	iDurationMod *=  GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent();
+	iDurationMod /= 100;
+	iValue += iDurationMod;
 
+	iValue += kWarTeam.getWarWeariness(eTeam);
+	// End MNAI
+
+	iValue *= iTheirPower + 10;
 //FfH: Modified by Kael 04/23/2009
 //	iValue /= std::max(1, iOurPower + iTheirPower + 10);
 	iValue /= std::max(1, iOurPower + 10);
@@ -1657,12 +1658,6 @@ int CvTeamAI::AI_endWarVal(TeamTypes eTeam) const
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
-
-	// MNAI
-	// increase value for distant opponents
-	// increase value for long wars
-	iValue += kWarTeam.getWarWeariness(eTeam);
-	// End MNAI
 
 	iValue -= (iValue % GC.getDefineINT("DIPLOMACY_VALUE_REMAINDER"));
 
@@ -5488,6 +5483,7 @@ void CvTeamAI::AI_doWar()
 											{
 												logBBAI("      Team %d (%S) considering starting TOTAL warplan with team %d with value %d on pass %d with %d adjacent plots", getID(), GET_PLAYER(getLeaderID()).getCivilizationDescription(0), iI, iValue, iPass, AI_calculateAdjacentLandPlots((TeamTypes)iI) );
 												logBBAI("          Our Power: %d  --  Their Defensive Power: %d", iOurPower, iDefensivePower);
+												logBBAI("          Current Attitude: %S", GC.getAttitudeInfo(AI_getAttitude((TeamTypes)iI)).getDescription(0));
 											}
 
 											if (iValue > iBestValue)
@@ -5554,6 +5550,8 @@ void CvTeamAI::AI_doWar()
 									if( iValue > 0 && gTeamLogLevel >= 2 )
 									{
 										logBBAI("      Team %d (%S) considering starting LIMITED warplan with team %d with value %d", getID(), GET_PLAYER(getLeaderID()).getCivilizationDescription(0), iI, iValue );
+										//logBBAI("          Our Power: %d  --  Their Defensive Power: %d", iOurPower, iDefensivePower);
+										logBBAI("          Current Attitude: %S", GC.getAttitudeInfo(AI_getAttitude((TeamTypes)iI)).getDescription(0));
 									}
 
 									if (iValue > iBestValue)
@@ -5628,6 +5626,8 @@ void CvTeamAI::AI_doWar()
 										if( iValue > 0 && gTeamLogLevel >= 2 )
 										{
 											logBBAI("      Team %d (%S) considering starting DOGPILE warplan with team %d with value %d", getID(), GET_PLAYER(getLeaderID()).getCivilizationDescription(0), iI, iValue );
+											//logBBAI("          Our Power: %d  --  Their Defensive Power: %d", iOurPower, iDefensivePower);
+											logBBAI("          Current Attitude: %S", GC.getAttitudeInfo(AI_getAttitude((TeamTypes)iI)).getDescription(0));
 										}
 
 										if (iValue > iBestValue)

@@ -111,7 +111,6 @@ void CyPlayerPythonInterface2(python::class_<CyPlayer>& x)
 		.def("updateStabilityIndexAverage", &CyPlayer::updateStabilityIndexAverage, "void ( )")
 		.def("getBestUnitType", &CyPlayer::getBestUnitType, "int ()")
 		.def("isNonStateReligionCommerce", &CyPlayer::isNonStateReligionCommerce, "bool ()")
-		.def("isUpgradeAnywhere", &CyPlayer::isUpgradeAnywhere, "bool ()")
 		.def("getRevIdxLocal", &CyPlayer::getRevIdxLocal, "int ()")
 		.def("getRevIdxNational", &CyPlayer::getRevIdxNational, "int ()")
 		.def("getRevIdxDistanceModifier", &CyPlayer::getRevIdxDistanceModifier, "int ()")
@@ -121,11 +120,13 @@ void CyPlayerPythonInterface2(python::class_<CyPlayer>& x)
 		.def("getRevIdxBadReligionMod", &CyPlayer::getRevIdxBadReligionMod, "float ()")
 		.def("getRevIdxGoodReligionMod", &CyPlayer::getRevIdxGoodReligionMod, "float ()")
 		.def("getRevolutionStabilityHistory", &CyPlayer::getRevolutionStabilityHistory, "int (int iTurn)")
+		.def("canInquisition", &CyPlayer::canInquisition, "bool ()")
 		// MNAI End
 
 //FfH Alignment: Added by Kael 08/09/2007
 		.def("canSeeCivic", &CyPlayer::canSeeCivic, "void (int iCivic)")
 		.def("canSeeReligion", &CyPlayer::canSeeReligion, "void (int iReligion)")
+		.def("getSanctuaryTimer", &CyPlayer::getSanctuaryTimer, "int ()")
 		.def("changeSanctuaryTimer", &CyPlayer::changeSanctuaryTimer, "void (int iChange)")
 		.def("getAlignment", &CyPlayer::getAlignment, "int ()")
         .def("setAlignment", &CyPlayer::setAlignment, "AlignmentTypes (iAlignment)")
@@ -165,6 +166,9 @@ void CyPlayerPythonInterface2(python::class_<CyPlayer>& x)
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
-
+		// MNAI - new functions
+		.def("countNumOwnedTerrainTypes",&CyPlayer::countNumOwnedTerrainTypes, "int (TerrainTypes eTerrain)")
+		.def("getHighestUnitTier",&CyPlayer::getHighestUnitTier, "int (bool bIncludeHeroes, bool bIncludeLimitedUnits)")
+		// End MNAI
 		;
 }
