@@ -124,10 +124,12 @@ void CvUnit::reloadEntity()
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection)
-void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit)
+// lfgr 04/2014 bugfix
+//void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit)
+// lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, CvWString szName)
+void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, CvWString szName, bool bGift)
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -336,7 +338,10 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 	AI_init(eUnitAI);
 
 //FfH Units: Added by Kael 04/18/2008
-	if (m_pUnitInfo->getFreePromotionPick() > 0)
+// lfgr 04/2014 bugfix
+//	if (m_pUnitInfo->getFreePromotionPick() > 0)
+	if ( !bGift && m_pUnitInfo->getFreePromotionPick() > 0)
+// lfgr end
 	{
 	    changeFreePromotionPick(m_pUnitInfo->getFreePromotionPick());
         setPromotionReady(true);
@@ -733,10 +738,19 @@ void CvUnit::convert(CvUnit* pUnit)
             setHasPromotion((PromotionTypes)GC.getDefineINT("WEAPON_PROMOTION_TIER3"), false);
         }
     }
+// lfgr 04/2014 bugfix
+/* old
     if (m_pUnitInfo->getFreePromotionPick() > 0 && getGameTurnCreated() == GC.getGameINLINE().getGameTurn())
 	{
         setPromotionReady(true);
     }
+*/
+	if( pUnit->getFreePromotionPick() > 0 )
+	{
+		changeFreePromotionPick( pUnit->getFreePromotionPick() );
+	}
+// lfgr end
+
     setDuration(pUnit->getDuration());
     if (pUnit->getReligion() != NO_RELIGION && getReligion() == NO_RELIGION)
     {
@@ -787,6 +801,10 @@ void CvUnit::convert(CvUnit* pUnit)
 	int iOldModifier = std::max(1, 100 + GET_PLAYER(pUnit->getOwnerINLINE()).getLevelExperienceModifier());
 	int iOurModifier = std::max(1, 100 + GET_PLAYER(getOwnerINLINE()).getLevelExperienceModifier());
 	setExperience(std::max(0, (pUnit->getExperience() * iOurModifier) / iOldModifier));
+
+// lfgr 04/2014 bugfix
+    testPromotionReady();
+// lfgr end
 
 	setName(pUnit->getNameNoDesc());
 // BUG - Unit Name - start
@@ -2500,7 +2518,6 @@ void CvUnit::updateCombat(bool bQuick)
 					}
 				}
 
-
 				pDefender->kill(false);
 				pDefender = NULL;
 
@@ -3249,7 +3266,7 @@ void CvUnit::doCommand(CommandTypes eCommand, int iData1, int iData2)
 		}
 	}
 
-	if (isDelayedDeath())
+	if (!isDead() && isDelayedDeath())
 	{
 		getGroup()->doDelayedDeath();
 	}
@@ -4459,7 +4476,10 @@ void CvUnit::gift(bool bTestTransport)
 	}
 
 	FAssertMsg(plot()->getOwnerINLINE() != NO_PLAYER, "plot()->getOwnerINLINE() is not expected to be equal with NO_PLAYER");
-	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType());
+// lfgr 04/2014 bugfix
+//	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType());
+	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType(), NO_DIRECTION, true, "", true);
+// lfgr end
 
 	FAssertMsg(pGiftUnit != NULL, "GiftUnit is not assigned a valid value");
 
@@ -4467,6 +4487,7 @@ void CvUnit::gift(bool bTestTransport)
 
 	pGiftUnit->convert(this);
 
+	int iUnitGiftValue = 0;
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/03/09                                jdog5000      */
 /*                                                                                              */
@@ -4477,13 +4498,45 @@ void CvUnit::gift(bool bTestTransport)
 	if (pGiftUnit->canDefend())
 	{
 		//GET_PLAYER(pGiftUnit->getOwnerINLINE()).AI_changePeacetimeGrantValue(eOwner, (pGiftUnit->getUnitInfo().getProductionCost() * 3 * GC.getGameINLINE().AI_combatValue(pGiftUnit->getUnitType()))/100);
-		GET_PLAYER(pGiftUnit->getOwnerINLINE()).AI_changePeacetimeGrantValue(eOwner, (3 * GET_PLAYER(plot()->getOwnerINLINE()).AI_trueCombatValue(pGiftUnit->getUnitType()))/100);
+		//GET_PLAYER(pGiftUnit->getOwnerINLINE()).AI_changePeacetimeGrantValue(eOwner, (3 * GET_PLAYER(plot()->getOwnerINLINE()).AI_trueCombatValue(pGiftUnit->getUnitType()))/100);
+		iUnitGiftValue = pGiftUnit->getUnitInfo().getProductionCost() * 3 * GET_PLAYER(plot()->getOwnerINLINE()).AI_trueCombatValue(pGiftUnit->getUnitType()) / 100;
 	}
 	else
 	{
-		GET_PLAYER(pGiftUnit->getOwnerINLINE()).AI_changePeacetimeGrantValue(eOwner, (pGiftUnit->getUnitInfo().getProductionCost()));
+		int productionCost = pGiftUnit->getUnitInfo().getProductionCost();
+		if (productionCost > 0) 
+		{
+			iUnitGiftValue = pGiftUnit->getUnitInfo().getProductionCost();
+			//GET_PLAYER(pGiftUnit->getOwnerINLINE()).AI_changePeacetimeGrantValue(eOwner, (pGiftUnit->getUnitInfo().getProductionCost()));
+		} 
+		else 
+		{
+			// ToDo: The AI should probably evaluate the gift instead of giving them fixed values.
+			bool isValuedUnit = false;
+
+			if (pGiftUnit->getUnitInfo().getFreePromotions((PromotionTypes)GC.getDefineINT("PROMOTION_HERO"))) {
+				// Hardcode: Adventurers
+				isValuedUnit = true;
+			} else if (pGiftUnit->getUnitInfo().getLeaderPromotion() != NO_PROMOTION) {
+				isValuedUnit = true;
+			} else {
+				for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+				{
+					SpecialistTypes eSpecialist = (SpecialistTypes)iI;
+					if (m_pUnitInfo->getGreatPeoples(eSpecialist))
+					{
+						isValuedUnit = true;
+						iUnitGiftValue = 240;
+						break;
+					}
+				}
+			
+			}
+		}
 	}
-	//Todo - add debug message here
+
+	if (gUnitLogLevel > 2) logBBAI("   Unit %S (%d) gifted to %S (value: %d)", pGiftUnit->getName().GetCString(), getID(), GET_PLAYER(pGiftUnit->getOwnerINLINE()).getCivilizationDescription(0), iUnitGiftValue);
+	GET_PLAYER(pGiftUnit->getOwnerINLINE()).AI_changePeacetimeGrantValue(eOwner, iUnitGiftValue);
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
@@ -13576,12 +13629,17 @@ void CvUnit::setMadeInterception(bool bNewValue)
 
 bool CvUnit::isPromotionReady() const
 {
+// lfgr 04/2014 bugfix
+// Commented out: now handled in testPromotionReady()
+/*
 	//FfH - Free Promotions (Kael 08/04/2007)
     if (getFreePromotionPick() > 0)
     {
         return true;
     }
 	//End FfH
+*/
+// lfgr end
 
 	return m_bPromotionReady;
 }
@@ -13622,7 +13680,12 @@ void CvUnit::setPromotionReady(bool bNewValue)
 
 void CvUnit::testPromotionReady()
 {
+// lfgr 04/2014 bugfix
+/* old
 	setPromotionReady((getExperience() >= experienceNeeded()) && canAcquirePromotionAny());
+*/
+	setPromotionReady( getFreePromotionPick() > 0 || (getExperience() >= experienceNeeded() ) && canAcquirePromotionAny());
+// lfgr end
 }
 
 
@@ -15731,9 +15794,15 @@ bool CvUnit::canApplyEvent(EventTypes eEvent) const
 {
 	CvEventInfo& kEvent = GC.getEventInfo(eEvent);
 
-	if (0 != kEvent.getUnitExperience())
+	int iEventExperience = kEvent.getUnitExperience();
+	if (0 != iEventExperience)
 	{
 		if (!canAcquirePromotionAny())
+		{
+			return false;
+		}
+
+		if ((iEventExperience + getExperience()) < 0)
 		{
 			return false;
 		}
@@ -16116,6 +16185,13 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
         {
             return false;
         }
+		
+		// MNAI: Revolutions - Rebels cant cast World spells
+		if (GET_PLAYER(getOwnerINLINE()).isRebel())
+		{
+			return false;
+		}
+		// End MNAI
     }
 
 	if (GET_PLAYER(getOwnerINLINE()).getDisableSpellcasting() > 0)
@@ -16125,12 +16201,6 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
             return false;
         }
     }
-
-	// Rebels cant cast World spells
-	if (kSpell.isGlobal() && GET_PLAYER(getOwnerINLINE()).isRebel())
-	{
-		return false;
-	}
 
 	// objects cant cast spells
 	if (getUnitInfo().isObject())
@@ -18024,6 +18094,20 @@ int CvUnit::getDuration() const
 
 void CvUnit::setDuration(int iNewValue)
 {
+	/*
+	 * Bugfix: If a unit is made temporary or permanent in a place in which units must pay supply costs,
+	 * the NumOutsideUnits variable must be updated accordingly.
+	 */
+	if (m_iDuration != iNewValue && plot()->getTeam() != getTeam() && (plot()->getTeam() == NO_TEAM || !GET_TEAM(plot()->getTeam()).isVassal(getTeam()))) {
+		if (m_iDuration == 0) {
+			// The unit is now temporary.
+			GET_PLAYER(getOwnerINLINE()).changeNumOutsideUnits(-1);
+		} else if (iNewValue == 0) {
+			// The unit is now permanent.
+			GET_PLAYER(getOwnerINLINE()).changeNumOutsideUnits(1);
+		}
+	}
+
 	m_iDuration = iNewValue;
 }
 
@@ -18716,9 +18800,30 @@ int CvUnit::chooseSpell()
 				iRange = kSpellInfo.getRange();
 				if (kSpellInfo.getCreateUnitType() != NO_UNIT)
 				{
-					int iMoveRange = GC.getUnitInfo((UnitTypes)kSpellInfo.getCreateUnitType()).getMoves() + getExtraSpellMove();
+					CvUnitInfo& kUnitInfo = GC.getUnitInfo((UnitTypes)kSpellInfo.getCreateUnitType());
+
+					int iMoveRange = kUnitInfo.getMoves() + getExtraSpellMove();
 					bool bPermSummon = kSpellInfo.isPermanentUnitCreate();
 					bool bEnemy = false;
+					bool isBombardSummon = false;
+					if (kUnitInfo.getBombardRate() > 0)
+					{
+						isBombardSummon = true;
+					}
+
+					//check promotions for movement bonus
+					for (int iPromotions = 0; iPromotions < GC.getNumPromotionInfos(); iPromotions++)
+					{
+						if (kUnitInfo.getFreePromotions(iPromotions))
+						{
+							CvPromotionInfo& kSummonPromotionInfo =  GC.getPromotionInfo((PromotionTypes)iPromotions);
+							// mainly to account for the Flying promo but will catch other changes to movement
+							iMoveRange += kSummonPromotionInfo.getMovesChange();
+
+							// ToDo - any other useful info we can get from a summoned unit based on the free promotions it receives?
+						}
+					}
+
 					for (int i = -iMoveRange; i <= iMoveRange; ++i)
 					{
 						for (int j = -iMoveRange; j <= iMoveRange; ++j)
@@ -18729,6 +18834,13 @@ int CvUnit::chooseSpell()
 								if (pLoopPlot->isVisibleEnemyUnit(this))
 								{
 									bEnemy = true;
+								}
+								if (pLoopPlot->isCity() && GET_TEAM(pLoopPlot->getTeam()).isAtWar(getTeam()))
+								{
+									if (isBombardSummon)
+									{
+										bEnemy = true;
+									}
 								}
 							}
 						}
@@ -18841,24 +18953,25 @@ int CvUnit::chooseSpell()
 				// Tholal ToDo - fix this. AI_promotionValue gives a value for the promotion for this unit
 				// some spells buff only this unit, some team units, some also include allied units - add code to sort that out here
 				
+				// Tholal ToDo - use the range of the spell for this check - use range check above - maybe even move it further up and gather data about all enemies, friends, etc
 				CvPlot* pAdjacentPlot = NULL;
-				int iEnemyCount = 0;
+				int iAdjacentEnemyCount = 0;
 				for (int iI = 0; iI < NUM_DIRECTION_TYPES; iI++)
 				{
 					pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
 					if( pAdjacentPlot != NULL )
 					{
-						iEnemyCount += pAdjacentPlot->getNumVisibleEnemyDefenders(this);
+						iAdjacentEnemyCount += pAdjacentPlot->getNumVisibleEnemyDefenders(this);
 					}
 				}
 
-				if (gUnitLogLevel > 3) logBBAI("      ....iEnemyCount: %d", iEnemyCount);  //MNAI - level 4 logging
+				if (gUnitLogLevel > 3) logBBAI("      ....iAdjacentEnemyCount: %d", iAdjacentEnemyCount);  //MNAI - level 4 logging
 				bool isImmuneTeamSpell = kSpellInfo.isImmuneTeam();  // this means it affects enemies
 				if (kSpellInfo.getAddPromotionType1() != NO_PROMOTION)
 				{
 					if (isImmuneTeamSpell)
 					{
-						iValue -= AI_promotionValue((PromotionTypes)kSpellInfo.getAddPromotionType1()) * iEnemyCount;
+						iValue -= AI_promotionValue((PromotionTypes)kSpellInfo.getAddPromotionType1()) * iAdjacentEnemyCount;
 					}
 					else
 					{
@@ -18881,7 +18994,7 @@ int CvUnit::chooseSpell()
 					}
 					else
 					{
-						iValue -= AI_promotionValue((PromotionTypes)kSpellInfo.getRemovePromotionType1()) * iEnemyCount;
+						iValue -= AI_promotionValue((PromotionTypes)kSpellInfo.getRemovePromotionType1()) * iAdjacentEnemyCount;
 					}
 				}
 				if (kSpellInfo.getRemovePromotionType2() != NO_PROMOTION)
@@ -18892,7 +19005,7 @@ int CvUnit::chooseSpell()
 					}
 					else
 					{
-						iValue -= AI_promotionValue((PromotionTypes)kSpellInfo.getRemovePromotionType2()) * iEnemyCount;
+						iValue -= AI_promotionValue((PromotionTypes)kSpellInfo.getRemovePromotionType2()) * iAdjacentEnemyCount;
 					}
 				}
 				if (kSpellInfo.getRemovePromotionType3() != NO_PROMOTION)
@@ -18903,7 +19016,7 @@ int CvUnit::chooseSpell()
 					}
 					else
 					{
-						iValue -= AI_promotionValue((PromotionTypes)kSpellInfo.getRemovePromotionType3()) * iEnemyCount;
+						iValue -= AI_promotionValue((PromotionTypes)kSpellInfo.getRemovePromotionType3()) * iAdjacentEnemyCount;
 					}
 				}
 

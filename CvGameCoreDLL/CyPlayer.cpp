@@ -1294,11 +1294,6 @@ bool CyPlayer::isNonStateReligionCommerce() const
     return m_pPlayer ? m_pPlayer->isNonStateReligionCommerce() : false;
 }
 
-bool CyPlayer::isUpgradeAnywhere() const
-{
-    return m_pPlayer ? m_pPlayer->isUpgradeAnywhere() : false;
-}
-
 int CyPlayer::getRevIdxLocal()
 {
 	return m_pPlayer ? m_pPlayer->getRevIdxLocal() : 0;
@@ -1338,12 +1333,11 @@ float CyPlayer::getRevIdxGoodReligionMod()
 {
 	return m_pPlayer ? m_pPlayer->getRevIdxGoodReligionMod() : 0;
 }
-/*
-int CyPlayer::getUnitUpgradePriceModifier()
+
+bool CyPlayer::canInquisition() 
 {
-	return m_pPlayer ? m_pPlayer->getUnitUpgradePriceModifier() : 0;
+	return m_pPlayer->canInquisition();
 }
-*/
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
 /************************************************************************************************/
@@ -2705,6 +2699,12 @@ bool CyPlayer::canSeeReligion(int iReligion) const
     return m_pPlayer ? m_pPlayer->canSeeReligion(iReligion, NULL) : false;
 }
 
+
+int CyPlayer::getSanctuaryTimer() const
+{
+	return m_pPlayer ? m_pPlayer->getSanctuaryTimer() : -1;
+}
+
 void CyPlayer::changeSanctuaryTimer(int iChange)
 {
 	if (m_pPlayer)
@@ -2875,6 +2875,18 @@ void CyPlayer::addReminder(int iGameTurn, std::wstring szMessage) const
 		m_pPlayer->addReminder(iGameTurn, CvWString(szMessage));
 }
 // BUG - Reminder Mod - end
+
+// MNAI - new functions
+int CyPlayer::countNumOwnedTerrainTypes(int /*TerrainTypes*/ eTerrain) const
+{
+	return m_pPlayer ? m_pPlayer->countNumOwnedTerrainTypes((TerrainTypes)eTerrain) : -1;
+}
+
+int CyPlayer::getHighestUnitTier(bool bIncludeHeroes, bool bIncludeLimitedUnits) const
+{
+    return m_pPlayer ? m_pPlayer->getHighestUnitTier(bIncludeHeroes, bIncludeLimitedUnits) : -1;
+}
+// End MNAI
 
 /*************************************************************************************************/
 /**	CivCounter			               		10/27/09    						Valkrionn		**/

@@ -491,7 +491,6 @@ void CyInfoPythonInterface1()
 /*                                                                                              */
 /*                                                                                              */
 /************************************************************************************************/
-		.def("isAllowInquisitions", &CvCivicInfo::isAllowInquisitions, "bool ()")
 		.def("isDisallowInquisitions", &CvCivicInfo::isDisallowInquisitions, "bool ()")
 		.def("getRevIdxLocal", &CvCivicInfo::getRevIdxLocal, "int ()")
 		.def("getRevIdxNational", &CvCivicInfo::getRevIdxNational, "int ()")
@@ -651,7 +650,6 @@ void CyInfoPythonInterface1()
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-		.def("getUnitUpgradePriceModifier", &CvBuildingInfo::getUnitUpgradePriceModifier, "int ()")
 		.def("getRevIdxLocal", &CvBuildingInfo::getRevIdxLocal, "int ()")
 		.def("getRevIdxNational", &CvBuildingInfo::getRevIdxNational, "int ()")
 		.def("getRevIdxDistanceModifier", &CvBuildingInfo::getRevIdxDistanceModifier, "int ()")

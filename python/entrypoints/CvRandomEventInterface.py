@@ -879,6 +879,13 @@ def doMistforms(argsList):
 	newUnit2 = bPlayer.initUnit(iMistform, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 	newUnit3 = bPlayer.initUnit(iMistform, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
+def canTriggerMushrooms(argsList):
+	kTriggeredData = argsList[0]
+	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
+	if pPlot.isCity():
+		return False
+	return True
+
 def doMushrooms(argsList):
 	kTriggeredData = argsList[0]
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)

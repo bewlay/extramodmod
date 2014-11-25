@@ -129,7 +129,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-3</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -2793,7 +2792,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-1</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -3023,7 +3021,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-2</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -6024,7 +6021,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-1</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -7073,7 +7069,7 @@
 			<Description>TXT_KEY_BUILDING_WARRENS</Description>
 			<Civilopedia>TXT_KEY_BUILDING_WARRENS_PEDIA</Civilopedia>
 			<Strategy></Strategy>
-			<Help></Help>
+			<Help>TXT_KEY_BUILDING_WARRENS_HELP</Help>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<ArtDefineTag>ART_DEF_BUILDING_WARRENS</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>
@@ -7175,7 +7171,6 @@
 			<iStateReligionHappiness>0</iStateReligionHappiness>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
 			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
-			<iLivingProductionModifier>100</iLivingProductionModifier>
 			<iSpaceProductionModifier>0</iSpaceProductionModifier>
 			<iGlobalSpaceProductionModifier>0</iGlobalSpaceProductionModifier>
 			<iTradeRoutes>0</iTradeRoutes>
@@ -9066,7 +9061,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-1</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>-10</iRevIdxDistanceModifier>
@@ -9304,7 +9298,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-1</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>-10</iRevIdxDistanceModifier>
@@ -10679,7 +10672,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-1</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>-10</iRevIdxDistanceModifier>
@@ -12657,7 +12649,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-1</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -13341,7 +13332,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-2</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>-20</iRevIdxDistanceModifier>
@@ -20326,7 +20316,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-1</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -21959,7 +21948,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-1</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -23360,7 +23348,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -23588,7 +23575,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -23816,7 +23802,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -24044,7 +24029,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -24272,7 +24256,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -24500,7 +24483,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -24728,7 +24710,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -24956,7 +24937,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -25184,7 +25164,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -25412,7 +25391,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -25640,7 +25618,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -25874,7 +25851,6 @@
 			<iAllCityDefense>20</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -26051,7 +26027,7 @@
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iConquestProb>0</iConquestProb>
-			<iCitiesPrereq>4</iCitiesPrereq>
+			<iCitiesPrereq>2</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
 			<iLevelPrereq>0</iLevelPrereq>
 			<iMinLatitude>0</iMinLatitude>
@@ -26102,7 +26078,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-5</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -26330,7 +26305,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -26561,7 +26535,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -26789,7 +26762,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -27017,7 +26989,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -27245,7 +27216,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -27476,7 +27446,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -27704,7 +27673,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -27996,7 +27964,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -30549,7 +30516,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>1</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>5</iRevIdxDistanceModifier>
@@ -36370,7 +36336,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-10</iRevIdxLocal>
 			<iRevIdxNational>-1</iRevIdxNational>
 			<iRevIdxDistanceModifier>-50</iRevIdxDistanceModifier>
@@ -38399,7 +38364,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-4</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>-20</iRevIdxDistanceModifier>
@@ -39065,7 +39029,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-2</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>-20</iRevIdxDistanceModifier>
@@ -39764,7 +39727,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-1</iRevIdxLocal>
 			<iRevIdxNational>0</iRevIdxNational>
 			<iRevIdxDistanceModifier>-10</iRevIdxDistanceModifier>
@@ -40663,7 +40625,6 @@
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<!-- RevolutionDCM Building Effects  -->
-			<iUnitUpgradePriceModifier>0</iUnitUpgradePriceModifier>
 			<iRevIdxLocal>-5</iRevIdxLocal>
 			<iRevIdxNational>-2</iRevIdxNational>
 			<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>

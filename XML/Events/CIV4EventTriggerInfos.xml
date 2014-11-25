@@ -3910,6 +3910,7 @@
 			</Events>
 			<bRecurring>1</bRecurring>
 			<bShowPlot>1</bShowPlot>
+			<PythonCanDo>canTriggerMushrooms</PythonCanDo>
 			<PythonCallback>doMushrooms</PythonCallback>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- MUTATE -->

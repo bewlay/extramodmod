@@ -122,10 +122,12 @@ public:
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION);							// Exposed to Python
-	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true);
+// lfgr 04/2014 bugfix
+//	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true);
+// lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, CvWString szName = "");
+	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, CvWString szName = "", bool bGift = false);
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -238,7 +240,10 @@ public:
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
+	// MNAI - new functions
 	int countNumOwnedTerrainTypes(TerrainTypes eTerrain) const;
+	int getHighestUnitTier(bool bIncludeHeroes = false, bool bIncludeLimitedUnits = false) const;
+	// End MNAI
 	int countNumCoastalCities() const;																																		// Exposed to Python
 	int countNumCoastalCitiesByArea(CvArea* pArea) const;																									// Exposed to Python
 	int countTotalCulture() const;																																				// Exposed to Python
@@ -529,9 +534,6 @@ public:
 	bool isNonStateReligionCommerce() const;
 	void changeNonStateReligionCommerce(int iNewValue);
 
-	bool isUpgradeAnywhere() const;	
-	void changeUpgradeAnywhere(int iNewValue);
-
 	int getRevIdxLocal() const;																																		// Exposed to Python
 	void changeRevIdxLocal(int iChange);
 
@@ -556,15 +558,8 @@ public:
 	float getRevIdxGoodReligionMod() const;																																		// Exposed to Python
 	void changeRevIdxGoodReligionMod(float fChange);
 
-	//bool isInquisitionConditions() const;																																		// Exposed to Python
-	//void setInquisitionConditions();
-
-	//int getUnitUpgradePriceModifier() const;																																		// Exposed to Python
-	//void changeUnitUpgradePriceModifier(int iChange);
-
-	//bool canFoundReligion() const;																																		// Exposed to Python
-
-	//bool isBuildingClassRequiredToTrain(BuildingClassTypes eBuildingClass, UnitTypes eUnit) const;																			// Exposed to Python
+	bool canInquisition() const;																																		// Exposed to Python
+	void setCanInquisition(bool bNewValue);
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
 /************************************************************************************************/
@@ -1452,7 +1447,6 @@ protected:
 /* Player Functions                                                                             */
 /************************************************************************************************/
 	int m_iNonStateReligionCommerceCount;
-	int m_iUpgradeAnywhereCount;
 	int m_iRevIdxLocal;
 	int m_iRevIdxNational;
 	int m_iRevIdxDistanceModifier;
@@ -1461,8 +1455,7 @@ protected:
 	float m_fRevIdxNationalityMod;
 	float m_fRevIdxBadReligionMod;
 	float m_fRevIdxGoodReligionMod;
-	//bool m_bInquisitionConditions;
-	//int m_iUnitUpgradePriceModifier;
+	bool m_bCanInquisition;
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
 /************************************************************************************************/
