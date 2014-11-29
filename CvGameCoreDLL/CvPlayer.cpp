@@ -9217,20 +9217,15 @@ int CvPlayer::calculateBaseNetGold() const
 	return iNetGold;
 }
 
-int CvPlayer::calculateResearchModifier(TechTypes eTech) const
+// ExtraModMod technology propagation START
+int CvPlayer::calculateTechPropagationResearchModifier(TechTypes eTech) const
 {
-	int iModifier = 100;
+	int iModPropagationTeams = 0;
 
-	if (NO_TECH == eTech)
-	{
-		return iModifier;
-	}
-
-	int iTeamsResearchedCount = 0;
-
-	// Technology propagation system for ExtraModMod
 	if (GC.getGameINLINE().isOption(GAMEOPTION_TECHNOLOGY_PROPAGATION))
 	{
+		// Number of teams which have researched the technology.
+		int iTeamsResearchedCount = 0;
 		// Value to store the technology diffusion contribution of each team.
 		int iRawPropagationTeams = 0;
 		TeamTypes iTeam = getTeam();
@@ -9319,18 +9314,37 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 				}
 			}
 		}
+
 		if (iRawPropagationTeams > 0)
 		{
-			int iModPropagationTeams = (GC.getTECH_PROPAGATION_TEAMS_MAX() * iRawPropagationTeams) / (100 * iTeamsResearchedCount);
-			iModifier += iModPropagationTeams;
+			iModPropagationTeams = (GC.getTECH_PROPAGATION_TEAMS_MAX() * iRawPropagationTeams) / (100 * iTeamsResearchedCount);
 		}
 	}
+
+	return iModPropagationTeams;
+}
+// ExtraModMod technology propagation END
+
+int CvPlayer::calculateResearchModifier(TechTypes eTech) const
+{
+	int iModifier = 100;
+
+	if (NO_TECH == eTech)
+	{
+		return iModifier;
+	}
+
+
+// ExtraModMod technology propagation START
+	iModifier += calculateTechPropagationResearchModifier(eTech);
+// ExtraModMod technology propagation END
+
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      07/27/09                                jdog5000      */
 /*                                                                                              */
 /* Tech Diffusion                                                                               */
 /************************************************************************************************/
-// Removed by Terkhen, new technology propagation system for ExtraModMod.
+// Removed by Terkhen, ExtraModMod technology propagation
 /*
 	int iKnownCount = 0;
 	int iPossibleKnownCount = 0;

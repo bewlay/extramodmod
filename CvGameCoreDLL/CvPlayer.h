@@ -1332,9 +1332,12 @@ public:
 // BUG - Reminder Mod - end
 
 // Leader categories START
-	int getLeaderCategory() const;
+	int getLeaderCategory() const; // Exposed to Python
 // Leader categories END
 
+// ExtraModMod technology propagation START
+	int calculateTechPropagationResearchModifier(TechTypes eTech) const; // Exposed to Python
+// ExtraModMod technology propagation END
 	virtual void AI_init() = 0;
 	virtual void AI_reset(bool bConstructor) = 0;
 	virtual void AI_doTurnPre() = 0;

@@ -3242,7 +3242,13 @@ class CvMainInterface:
 						screen.show( szString )
 
 						if not CyInterface().isCityScreenUp():
-							szOutText = u"<font=2>" + localText.getText("TXT_KEY_MISC_POS_GOLD_PER_TURN", (gc.getPlayer(ePlayer).getCommerceRate(CommerceTypes(eCommerce)), )) + u"</font>"
+							# ExtraModMod technology propagation START
+							if eCommerce == CommerceTypes.COMMERCE_RESEARCH:
+								iCommerceRate = gc.getPlayer(ePlayer).calculateBaseNetResearch()
+							else:
+								iCommerceRate = gc.getPlayer(ePlayer).getCommerceRate(CommerceTypes(eCommerce))
+							# ExtraModMod technology propagation END
+							szOutText = u"<font=2>" + localText.getText("TXT_KEY_MISC_POS_GOLD_PER_TURN", (iCommerceRate, )) + u"</font>"
 							szString = "RateText" + str(iI)
 # BUG - Min/Max Sliders - start
 							if MainOpt.isShowMinMaxCommerceButtons():

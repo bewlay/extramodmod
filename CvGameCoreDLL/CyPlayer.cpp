@@ -2895,6 +2895,12 @@ int CyPlayer::getLeaderCategory() const
 }
 // Leader categories END
 
+// ExtraModMod technology propagation START
+int CyPlayer::calculateTechPropagationResearchModifier(int /*TechTypes*/ eTech) const
+{
+	return m_pPlayer ? (int) m_pPlayer->calculateTechPropagationResearchModifier((TechTypes)eTech) : 0;
+}
+// ExtraModMod technology propagation END
 /*************************************************************************************************/
 /**	CivCounter			               		10/27/09    						Valkrionn		**/
 /**										Stores Spawn Information								**/

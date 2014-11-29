@@ -11533,6 +11533,15 @@ void CvGameTextMgr::setTechTradeHelp(CvWStringBuffer &szBuffer, TechTypes eTech,
 
 			szTempBuffer.Format(L" (%d/%d %c)", GET_TEAM(GC.getGameINLINE().getActiveTeam()).getResearchProgress(eTech), GET_TEAM(GC.getGameINLINE().getActiveTeam()).getResearchCost(eTech), GC.getCommerceInfo(COMMERCE_RESEARCH).getChar());
 			szBuffer.append(szTempBuffer);
+
+			// ExtraModMod technology propagation START
+			int iTechPropagation = GET_PLAYER(GC.getGameINLINE().getActivePlayer()).calculateTechPropagationResearchModifier(eTech);
+			if (iTechPropagation > 0)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_TECHNOLOGY_PROPAGATION_YIELD", iTechPropagation, GC.getCommerceInfo(COMMERCE_RESEARCH).getChar()));
+			}
+			// ExtraModMod technology propagation END
 		}
 	}
 
