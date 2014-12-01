@@ -203,4 +203,20 @@
 		<Italian>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</Italian>
 		<Spanish>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_WILDERNESS</Tag>
+		<English>No Wilderness</English>
+		<French>No Wilderness</French>
+		<German>Keine Wildnis</German>
+		<Italian>No Wilderness</Italian>
+		<Spanish>No Wilderness</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_WILDERNESS_HELP</Tag>
+		<English>Barbarians spawning further away from your starting point aren't stronger.</English>
+		<French>Barbarians spawning further away from your starting point aren't stronger.</French>
+		<German>Barbarians spawning further away from your starting point aren't stronger.</German>
+		<Italian>Barbarians spawning further away from your starting point aren't stronger.</Italian>
+		<Spanish>Barbarians spawning further away from your starting point aren't stronger.</Spanish>
+	</TEXT>
 </Civ4GameText>

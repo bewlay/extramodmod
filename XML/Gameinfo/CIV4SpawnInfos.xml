@@ -1773,6 +1773,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>1</iMinSpawnTier>
 			<iMaxSpawnTier>3</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1792,6 +1793,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>1</iMinSpawnTier>
 			<iMaxSpawnTier>3</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1850,6 +1852,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>2</iMinSpawnTier>
 			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1865,6 +1868,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>1</iMinSpawnTier>
 			<iMaxSpawnTier>3</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1898,6 +1902,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>1</iMinSpawnTier>
 			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1913,6 +1918,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>1</iMinSpawnTier>
 			<iMaxSpawnTier>2</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1947,6 +1953,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>3</iMinSpawnTier>
 			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -1962,6 +1969,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>1</iMinSpawnTier>
 			<iMaxSpawnTier>2</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2031,6 +2039,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>1</iMinSpawnTier>
 			<iMaxSpawnTier>3</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2064,6 +2073,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>1</iMinSpawnTier>
 			<iMaxSpawnTier>3</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2098,6 +2108,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>0</iMinSpawnTier>
 			<iMaxSpawnTier>0</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
@@ -2136,6 +2147,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>1</iMinSpawnTier>
 			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<bWater>1</bWater>
 			<SpawnUnits>
@@ -2151,6 +2163,7 @@
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>0</iMinSpawnTier>
 			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
 			<bAnimal>1</bAnimal>
 			<bWater>1</bWater>
 			<SpawnUnits>

@@ -1317,7 +1317,10 @@ void CvMapGenerator::addImprovements()
 										pPlot->setFeatureType(NO_FEATURE);
 								*/
 									int iProbability = GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability();
-									iProbability += (int) ( iProbability * ( pPlot->getWilderness() * 2 / 100.0 ) );
+									
+									if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
+										iProbability += (int) ( iProbability * ( pPlot->getWilderness() * 2 / 100.0 ) );
+									
 									if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement") < iProbability)
 									{
 										bool bValid = true;

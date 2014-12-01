@@ -2620,8 +2620,9 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 /* ImprovementWilderness                                                                        */
 /************************************************************************************************/
 	
-	if( GC.getImprovementInfo( eImprovement ).getMinWilderness() > getWilderness() ||
-			GC.getImprovementInfo( eImprovement ).getMaxWilderness() < getWilderness() )
+	if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && 
+		( GC.getImprovementInfo( eImprovement ).getMinWilderness() > getWilderness() ||
+			GC.getImprovementInfo( eImprovement ).getMaxWilderness() < getWilderness() ) )
 	{
 		return false;
 	}
@@ -12866,7 +12867,8 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 {
 	CvSpawnPrereqInfo& kSpawnPrereq = GC.getSpawnPrereqInfo( eSpawnPrereqType );
 
-	int iWilderness = bDungeon ? getLairDanger() : getWilderness();
+	int iWilderness = bDungeon ? getLairDanger() :
+			( GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) ? 0 : getWilderness() );
 
 	if( kSpawnPrereq.getNumTechTiers() == 0 )
 	{
@@ -12933,8 +12935,9 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon, bo
 	if( !bIgnoreTerrain && area()->isWater() != kSpawn.isWater() )
 		return 0;
 
-	if( !isValidSpawnTier( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(), kSpawn.getMaxTier(), bCheckTech, bDungeon ) )
-		return 0;
+	if( !( GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && kSpawn.isNoWildernessIgnoreSpawnPrereq() ) )
+		if( !isValidSpawnTier( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(), kSpawn.getMaxTier(), bCheckTech, bDungeon ) )
+			return 0;
 
 	if( GC.getGameINLINE().getGlobalCounter() < kSpawn.getPrereqGlobalCounter() )
 		return 0;
@@ -12999,7 +13002,7 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 		{
 			CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, getX_INLINE(), getY_INLINE(), eUnitAI );
 			
-			if( !kSpawn.isNoMinWilderness() )
+			if( !kSpawn.isNoMinWilderness() && !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
 				pUnit->setMinWilderness( getWilderness() );
 			
 			if ( kSpawn.isAnimal() )

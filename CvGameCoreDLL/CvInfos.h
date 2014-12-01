@@ -7853,6 +7853,7 @@ public:
 	int getMaxTier() const;
 	
 	bool isNeverSpawn() const;
+	bool isNoWildernessIgnoreSpawnPrereq() const;
 	bool isExplorationResult() const;
 	bool isAnimal() const;
 	bool isWater() const;
@@ -7898,8 +7899,9 @@ protected:
 	int m_iCreateLairAge;
 	int m_iMinTier;
 	int m_iMaxTier;
-
+	
 	bool m_bNeverSpawn;
+	bool m_bNoWildernessIgnoreSpawnPrereq;
 	bool m_bExplorationResult;
 	bool m_bExplorationNoPush;
 	bool m_bNoDefender;

@@ -28736,6 +28736,7 @@ CvSpawnInfo::CvSpawnInfo():
 	m_iCreateLairAge(0),
 	m_iCreateLairLevel(0),
 	m_bNeverSpawn( false ),
+	m_bNoWildernessIgnoreSpawnPrereq( false ),
 	m_bExplorationResult( false ),
 	m_bExplorationNoPush( false ),
 	m_bNoDefender( false ),
@@ -28845,6 +28846,11 @@ int CvSpawnInfo::getCreateLairLevel() const
 bool CvSpawnInfo::isNeverSpawn() const
 {
 	return m_bNeverSpawn;
+}
+
+bool CvSpawnInfo::isNoWildernessIgnoreSpawnPrereq() const
+{
+	return m_bNoWildernessIgnoreSpawnPrereq;
 }
 
 bool CvSpawnInfo::isExplorationResult() const
@@ -29030,6 +29036,7 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iCreateLairAge, "iCreateLairAge" );
 	pXML->GetChildXmlValByName(&m_iCreateLairLevel, "iCreateLairLevel" );
 	pXML->GetChildXmlValByName(&m_bNeverSpawn, "bNeverSpawn");
+	pXML->GetChildXmlValByName(&m_bNoWildernessIgnoreSpawnPrereq, "bNoWildernessIgnoreSpawnPrereq");
 	pXML->GetChildXmlValByName(&m_bExplorationResult, "bExplorationResult");
 	pXML->GetChildXmlValByName(&m_bExplorationNoPush, "bExplorationNoPush");
 	pXML->GetChildXmlValByName(&m_bNoDefender, "bNoDefender");

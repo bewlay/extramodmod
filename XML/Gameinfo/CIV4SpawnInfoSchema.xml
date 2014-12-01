@@ -19,6 +19,7 @@
 	<ElementType name="iMinIncludedSpawns" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxIncludedSpawns" content="textOnly" dt:type="int"/>
 	<ElementType name="bNeverSpawn" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bNoWildernessIgnoreSpawnPrereq" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bExplorationResult" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bExplorationNoPush" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoDefender" content="textOnly" dt:type="boolean"/>
@@ -72,6 +73,7 @@
 		<element type="SpawnPrereqType"/>
 		<element type="iMinSpawnTier"/>
 		<element type="iMaxSpawnTier"/>
+		<element type="bNoWildernessIgnoreSpawnPrereq" minOccurs="0"/>
 		<element type="iPrereqGlobalCounter" minOccurs="0"/>
 		<element type="bNeverSpawn" minOccurs="0"/>
 		<element type="bExplorationResult" minOccurs="0"/>

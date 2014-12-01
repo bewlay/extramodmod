@@ -7593,7 +7593,9 @@ void CvGame::createBarbarianUnits()
 				float fAnimalChance = ( pPlot->isWater() ? PLOT_CHANCE_ANIMAL_WATER : PLOT_CHANCE_ANIMAL );
 				
 				// Faster respawning in higher wilderness
-				float fSpeedMod = GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED" ) * ( 1 + pPlot->getWilderness() / 100.0f );
+				float fSpeedMod = GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED" );
+				if( !isOption( GAMEOPTION_NO_WILDERNESS ) )
+					 fSpeedMod *= ( 1 + pPlot->getWilderness() / 100.0f );
 				// Slower Respawning on visible tiles
 				if( vbPlotVisible[iPlot] )
 					fSpeedMod *= GC.getDefineFLOAT( "VISIBLE_TILE_SPAWNING_SPEED_MOD" );
@@ -7646,7 +7648,9 @@ void CvGame::createBarbarianUnits()
 				float fBarbChance = ( pPlot->isWater() ? PLOT_CHANCE_BARB_WATER : PLOT_CHANCE_BARB );
 				
 				// Faster respawning in higher wilderness
-				float fSpeedMod = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED" ) * ( 1 + pPlot->getWilderness() / 100.0f );
+				float fSpeedMod = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED" );
+				if( !isOption( GAMEOPTION_NO_WILDERNESS ) )
+					 fSpeedMod *= ( 1 + pPlot->getWilderness() / 100.0f );
 				// Slower Respawning on visible tiles
 				if( vbPlotVisible[iPlot] )
 					fSpeedMod *= GC.getDefineFLOAT( "VISIBLE_TILE_SPAWNING_SPEED_MOD" );

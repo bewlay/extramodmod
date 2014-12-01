@@ -3861,7 +3861,8 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 /* WildernessMisc                                                                               */
 /* Improved city placing AI                                                                     */
 /************************************************************************************************/
-	iValue = (int) ( iValue / std::max( 1.0f, pPlot->getWilderness() / 50.0f + 1.0f ) );
+	if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
+		iValue = (int) ( iValue / std::max( 1.0f, pPlot->getWilderness() / 50.0f + 1.0f ) );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
