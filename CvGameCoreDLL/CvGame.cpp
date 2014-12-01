@@ -198,11 +198,12 @@ void CvGame::init(HandicapTypes eHandicap)
 		}
 	}
 
-//FfH: Added by Kael 05/28/2008
     int iRndCiv = GC.getInfoTypeForString("CIVILIZATION_RANDOM");
     int iRndGoodLeader = GC.getInfoTypeForString("LEADER_RANDOM_GOOD");
     int iRndNeutralLeader = GC.getInfoTypeForString("LEADER_RANDOM_NEUTRAL");
     int iRndEvilLeader = GC.getInfoTypeForString("LEADER_RANDOM_EVIL");
+
+	// Customized random civilization and leader selection code.
     if (iRndCiv != NO_CIVILIZATION && iRndGoodLeader != NO_LEADER && iRndNeutralLeader != NO_LEADER && iRndEvilLeader != NO_LEADER)
     {
 		// Determine the civilization and leader to use for each player slot.
@@ -216,12 +217,25 @@ void CvGame::init(HandicapTypes eHandicap)
 				int iSelectedLeader = GC.getInitCore().getLeader((PlayerTypes)iPlayer);
 				int iSelectedAlignment = NO_ALIGNMENT;
 
+				// If a random alignment leader has been selected for this slot,
+				// initialize random leader selection by alignment.
 				if (iSelectedLeader == iRndGoodLeader || iSelectedLeader == iRndNeutralLeader || iSelectedLeader == iRndEvilLeader)
 				{
 					iSelectedAlignment = GC.getLeaderHeadInfo((LeaderHeadTypes)iSelectedLeader).getAlignment();
 					iSelectedLeader = NO_LEADER;
 				}
 
+// Leader categories START
+				// If somehow the player chose a leader of a category not allowed for this game, substitute it
+				// with a random leader.
+				if (iSelectedLeader != NO_LEADER) {
+					if (((GC.getLeaderHeadInfo((LeaderHeadTypes)iSelectedLeader).getLeaderCategory() == LEADERCATEGORY_SCENEXTRA) && !isOption(GAMEOPTION_LEADER_SCENEXTRA)) || ((GC.getLeaderHeadInfo((LeaderHeadTypes)iSelectedLeader).getLeaderCategory() == LEADERCATEGORY_EXTRA) && !isOption(GAMEOPTION_LEADER_EXTRA))) {
+						iSelectedLeader = NO_LEADER;
+					}
+				}
+// Leader categories END
+
+				// The player chose both random civilization and random leader.
 				if ((iSelectedCiv == NO_CIVILIZATION || iSelectedCiv == iRndCiv) && iSelectedLeader == NO_LEADER)
 				{
 					// A random civilization and leader were chosen for this slot.
@@ -230,19 +244,32 @@ void CvGame::init(HandicapTypes eHandicap)
                     for (int iCiv = 0; iCiv < GC.getNumCivilizationInfos(); iCiv++)
                     {
 						// Graphical only civs are not allowed.
-						// Civilizations that are not playable by the AI must be ignored if this slot is for an AI.
-						// Civilizations that are not playable should be ignored always too.
 						if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isGraphicalOnly() ||
+							// Civilizations that are not playable by the AI must be ignored if this slot is for an AI.
 							(!GC.getCivilizationInfo((CivilizationTypes)iCiv).isAIPlayable()) && playerType == SS_COMPUTER ||
+							// Civilizations that are not playable should be ignored always too.
 							!GC.getCivilizationInfo((CivilizationTypes)iCiv).isPlayable())
 						{
 							continue;
 						}
 						for (int iLeader = 0; iLeader < GC.getNumLeaderHeadInfos(); iLeader++)
 						{
+// Leader categories START
+							if ((GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getLeaderCategory() == LEADERCATEGORY_SCENEXTRA) && !isOption(GAMEOPTION_LEADER_SCENEXTRA)) {
+								// If extra scenario leaders have not been selected, avoid using them.
+								continue;
+							}
+							if ((GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getLeaderCategory() == LEADERCATEGORY_EXTRA) && !isOption(GAMEOPTION_LEADER_EXTRA)) {
+								// If extra leaders have not been selected, avoid using them.
+								continue;
+							}
+// Leader categories END
+							// Only allow leaders of the chosen civilization.
+							// If unrestricted leaders is enabled, allow any leader that is not marked as graphical only.
 							if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isLeaders(iLeader) ||
 								(isOption(GAMEOPTION_LEAD_ANY_CIV) && !GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).isGraphicalOnly()) )
 							{
+								// Take into acount alignment when required.
 								if (iSelectedAlignment == NO_ALIGNMENT || iSelectedAlignment == GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getAlignment())
 								{
 									int iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Leader");
@@ -250,10 +277,12 @@ void CvGame::init(HandicapTypes eHandicap)
 									{
 										if (GC.getInitCore().getLeader((PlayerTypes)iI) == iLeader)
 										{
+											// When possible, avoid to select the same leader twice.
 											iValue -= 2000;
 										}
 										if (GC.getInitCore().getCiv((PlayerTypes)iI) == iCiv)
 										{
+											// When possible, avoid to select the same civilization twice.
 											iValue -= 1000;
 										}
 									}
@@ -269,6 +298,7 @@ void CvGame::init(HandicapTypes eHandicap)
 						}
 					}
 				}
+				// The player chose random civilization and a specific leader.
 				else if (iSelectedCiv == NO_CIVILIZATION || iSelectedCiv == iRndCiv)
 				{
 					// A random civilization was selected for this slot.
@@ -277,21 +307,22 @@ void CvGame::init(HandicapTypes eHandicap)
                     for (int iCiv = 0; iCiv < GC.getNumCivilizationInfos(); iCiv++)
                     {
 						// Graphical only civs are not allowed.
-						// Civilizations that are not playable by the AI must be ignored if this slot is for an AI.
-						// Civilizations that are not playable should be ignored always too.
 						if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isGraphicalOnly() ||
+							// Civilizations that are not playable by the AI must be ignored if this slot is for an AI.
 							(!GC.getCivilizationInfo((CivilizationTypes)iCiv).isAIPlayable()) && playerType == SS_COMPUTER ||
+							// Civilizations that are not playable should be ignored always too.
 							!GC.getCivilizationInfo((CivilizationTypes)iCiv).isPlayable())
 						{
 							continue;
 						}
 						if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isLeaders(iSelectedLeader) || isOption(GAMEOPTION_LEAD_ANY_CIV))
 						{
-							int iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Leader");
+							int iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Civilization");
 							for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
 							{
 								if (GC.getInitCore().getCiv((PlayerTypes)iI) == iCiv)
 								{
+									// When possible, avoid to select the same civilization twice.
 									iValue -= 1000;
 								}
 							}
@@ -311,9 +342,23 @@ void CvGame::init(HandicapTypes eHandicap)
 
 					for (int iLeader = 0; iLeader < GC.getNumLeaderHeadInfos(); iLeader++)
 					{
+// Leader categories START
+						if ((GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getLeaderCategory() == LEADERCATEGORY_SCENEXTRA) && !isOption(GAMEOPTION_LEADER_SCENEXTRA)) {
+							// If extra scenario leaders have not been selected, avoid using them.
+							continue;
+						}
+						if ((GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getLeaderCategory() == LEADERCATEGORY_EXTRA) && !isOption(GAMEOPTION_LEADER_EXTRA)) {
+							// If extra leaders have not been selected, avoid using them.
+							continue;
+						}
+// Leader categories END
+
+						// Only allow leaders of the chosen civilization.
+						// If unrestricted leaders is enabled, allow any leader that is not marked as graphical only.
 						if (GC.getCivilizationInfo((CivilizationTypes)iSelectedCiv).isLeaders(iLeader) ||
 							(isOption(GAMEOPTION_LEAD_ANY_CIV) && !GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).isGraphicalOnly()) )
 						{
+								// Take into acount alignment when required.
 							if (iSelectedAlignment == NO_ALIGNMENT || iSelectedAlignment == GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getAlignment())
 							{
 								int iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Leader");
@@ -321,6 +366,7 @@ void CvGame::init(HandicapTypes eHandicap)
 								{
 									if (GC.getInitCore().getLeader((PlayerTypes)iI) == iLeader)
 									{
+										// When possible, avoid to select the same leader twice.
 										iValue -= 2000;
 									}
 								}
@@ -340,7 +386,6 @@ void CvGame::init(HandicapTypes eHandicap)
             }
 		}
 	}
-//FfH: End Add
 
 	if (isOption(GAMEOPTION_LOCK_MODS))
 	{
@@ -3151,7 +3196,10 @@ int CvGame::countPossibleVote(VoteTypes eVote, VoteSourceTypes eVoteSource) cons
 
 	for (iI = 0; iI < MAX_CIV_PLAYERS; iI++)
 	{
-		iCount += GET_PLAYER((PlayerTypes)iI).getVotes(eVote, eVoteSource);
+		if (GET_PLAYER((PlayerTypes)iI).isAlive())
+		{
+			iCount += GET_PLAYER((PlayerTypes)iI).getVotes(eVote, eVoteSource);
+		}
 	}
 
 	return iCount;

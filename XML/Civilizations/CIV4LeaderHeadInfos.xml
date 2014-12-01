@@ -657,6 +657,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_ALIGNMENT</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RANDOM_EVIL</Type>
@@ -1309,6 +1310,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_ALIGNMENT</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RANDOM_NEUTRAL</Type>
@@ -1961,6 +1963,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_ALIGNMENT</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ALEXIS</Type>
@@ -2657,6 +2660,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_AMELANCHIER</Type>
@@ -3345,6 +3349,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ANAGANTIOS_EXTRA</Type>
@@ -4065,6 +4070,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ANAGANTIOS</Type>
@@ -4781,6 +4787,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ARENDEL</Type>
@@ -5477,6 +5484,7 @@
 					<iWeightModifier>50</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ARTURUS</Type>
@@ -6177,6 +6185,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_AURIC</Type>
@@ -6897,6 +6906,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_AVERAX_EXTRA</Type>
@@ -7593,6 +7603,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_AVERAX</Type>
@@ -8285,6 +8296,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_DUIN_EXTRA</Type>
@@ -8965,6 +8977,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_DUIN</Type>
@@ -9637,6 +9650,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_BASIUM</Type>
@@ -10325,6 +10339,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_BEERI</Type>
@@ -11021,6 +11036,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_BRAEDEN_EXTRA</Type>
@@ -11745,6 +11761,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_BRAEDEN</Type>
@@ -12465,6 +12482,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_CAPRIA</Type>
@@ -13153,6 +13171,7 @@
 					<iWeightModifier>50</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_OSTANES_EXTRA</Type>
@@ -13841,6 +13860,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_OSTANES</Type>
@@ -14525,6 +14545,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ULDANOR_EXTRA</Type>
@@ -15213,6 +15234,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ULDANOR</Type>
@@ -15897,6 +15919,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_CARDITH</Type>
@@ -16613,6 +16636,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_CASSIEL</Type>
@@ -17329,6 +17353,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_CHARADON</Type>
@@ -18009,6 +18034,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_CHERON_EXTRA</Type>
@@ -18724,6 +18750,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_EXTRA</LeaderCategory>
  		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_DAIN</Type>
@@ -19384,6 +19411,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_DECIUS</Type>
@@ -20048,6 +20076,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_SALLOS</Type>
@@ -20752,6 +20781,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_DUMANNIOS_EXTRA</Type>
@@ -21472,6 +21502,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_DUMANNIOS</Type>
@@ -22188,6 +22219,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_EINION</Type>
@@ -22908,6 +22940,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ETHNE</Type>
@@ -23632,6 +23665,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_FAERYL</Type>
@@ -24332,6 +24366,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_FALAMAR</Type>
@@ -25032,6 +25067,7 @@
 					<iWeightModifier>-10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_FLAUROS</Type>
@@ -25732,6 +25768,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_FURIA_EXTRA</Type>
@@ -26432,6 +26469,7 @@
 					<iWeightModifier>-10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_FURIA</Type>
@@ -27128,6 +27166,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_GARRIM</Type>
@@ -27824,6 +27863,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_GOSEA_EXTRA</Type>
@@ -28516,6 +28556,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_GOSEA</Type>
@@ -29208,6 +29249,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_HAFGAN_EXTRA</Type>
@@ -29892,6 +29934,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_HAFGAN</Type>
@@ -30576,6 +30619,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_HANNAH</Type>
@@ -31268,6 +31312,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_HYBOREM</Type>
@@ -31976,6 +32021,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_JONAS</Type>
@@ -32664,6 +32710,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_JUDECCA</Type>
@@ -33368,6 +33415,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_KANDROS</Type>
@@ -34072,6 +34120,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_KANE_EXTRA</Type>
@@ -34788,6 +34837,7 @@
 					<iWeightModifier>30</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_KANE</Type>
@@ -35496,6 +35546,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_KEELYN</Type>
@@ -36200,6 +36251,7 @@
 					<iWeightModifier>-25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_LETHE</Type>
@@ -36904,6 +36956,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MAHALA</Type>
@@ -37588,6 +37641,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MAHON_EXTRA</Type>
@@ -38284,6 +38338,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MAHON</Type>
@@ -38976,6 +39031,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MALCHAVIC_EXTRA</Type>
@@ -39668,6 +39724,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MALCHAVIC</Type>
@@ -40356,6 +40413,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MELISANDRE_EXTRA</Type>
@@ -41056,6 +41114,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MELISANDRE</Type>
@@ -41756,6 +41815,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MERESIN</Type>
@@ -42456,6 +42516,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_KOUN_EXTRA</Type>
@@ -43168,6 +43229,7 @@
 					<iWeightModifier>0</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_KOUN</Type>
@@ -43876,6 +43938,7 @@
 					<iWeightModifier>0</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_OS-GABELLA</Type>
@@ -44568,6 +44631,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_OUZZA</Type>
@@ -45272,6 +45336,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_PERPENTACH</Type>
@@ -45976,6 +46041,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RHOANNA</Type>
@@ -46664,6 +46730,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RIUROS_EXTRA</Type>
@@ -47384,6 +47451,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RIUROS</Type>
@@ -48100,6 +48168,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RIVANNA_EXTRA</Type>
@@ -48800,6 +48869,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RIVANNA</Type>
@@ -49496,6 +49566,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_SABATHIEL</Type>
@@ -50216,6 +50287,7 @@
 					<iWeightModifier>50</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_SANDALPHON</Type>
@@ -50912,6 +50984,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_SHEELBA</Type>
@@ -51596,6 +51669,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_SHEKINAH_EXTRA</Type>
@@ -52292,6 +52366,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_SHEKINAH</Type>
@@ -52984,6 +53059,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_STATIUS</Type>
@@ -53688,6 +53764,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_TASUNKE</Type>
@@ -54372,6 +54449,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_TEBRYN</Type>
@@ -55068,6 +55146,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_TETHIRA_EXTRA</Type>
@@ -55756,6 +55835,7 @@
 					<iWeightModifier>50</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_TETHIRA</Type>
@@ -56444,6 +56524,7 @@
 					<iWeightModifier>50</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_THESSA</Type>
@@ -57152,6 +57233,7 @@
 					<iWeightModifier>-50</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_THESSALONICA_EXTRA</Type>
@@ -57872,6 +57954,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_THESSALONICA</Type>
@@ -58592,6 +58675,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_TYA_EXTRA</Type>
@@ -59252,6 +59336,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_TYA</Type>
@@ -59908,6 +59993,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_VALLEDIA</Type>
@@ -60600,6 +60686,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_VARN</Type>
@@ -61312,6 +61399,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_VOLANNA_EXTRA</Type>
@@ -62012,6 +62100,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_VOLANNA</Type>
@@ -62708,6 +62797,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_WEEVIL_EXTRA</Type>
@@ -63412,6 +63502,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_WEEVIL</Type>
@@ -64116,6 +64207,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_BARBARIAN</Type>
@@ -64388,6 +64480,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_BARBARIAN</LeaderCategory>
 		</LeaderHeadInfo>
 	</LeaderHeadInfos>
 </Civ4LeaderHeadInfos>

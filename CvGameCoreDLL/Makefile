@@ -60,7 +60,7 @@ BLACKLIST=CvTextScreens
 ## However you will only be able to tell a difference if you do something with asserts other than FAssert() or FAssertMsg()
 
 Debug_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /D_DEBUG /DLOG_AI
-Release_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DFINAL_RELEASE
+Release_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DLOG_AI /DFINAL_RELEASE
 
 #### You shouldn't need to modify anything beyond this point ####
 #################################################################

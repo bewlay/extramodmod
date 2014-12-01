@@ -5532,7 +5532,7 @@
 			<iNumFreeUnits>1</iNumFreeUnits>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
+            <iAIValue>100</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- CLAIRONE_1 -->
 			<Type>EVENT_CLAIRONE_1</Type>

@@ -1532,10 +1532,25 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_UNIT_CASTING_BLOCKED"));
 			}
+			if (pUnit->isUpgradeBlocked())
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_UPGRADE_BLOCKED"));
+			}
+			if (pUnit->isGiftingBlocked())
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_GIFTING_BLOCKED"));
+			}
 			if (pUnit->isUpgradeOutsideBorders())
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_UNIT_UPGRADE_OUTSIDE_BORDERS"));
+			}
+			if (pUnit->isAlwaysSpreadReligion())
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_ALWAYS_SPREAD_RELIGION"));
 			}
 			if (bSummoningAbility)
 			{
@@ -2779,7 +2794,8 @@ void CvGameTextMgr::setPlotListHelp(CvWStringBuffer &szString, CvPlot* pPlot, bo
 							{
 								szString.append(CvWString::format(L"\nTarget City: None"));
 							}
-
+							
+							/*
 							if( gDLL->shiftKey() )
 							{
 								CvCity* pLoopCity;
@@ -2809,6 +2825,7 @@ void CvGameTextMgr::setPlotListHelp(CvWStringBuffer &szString, CvPlot* pPlot, bo
 									}
 								}
 							}
+							*/
 						}
 					}
 /************************************************************************************************/
@@ -4630,6 +4647,26 @@ It is fine for a human player mouse-over (which is what it is used for).
                         }
                     }
 
+					// MNAI Start - FfH Promotions: Added by Kael 0813/2007
+					for (int iJ=0;iJ<GC.getNumPromotionInfos();iJ++)
+					{
+						if (pDefender->isHasPromotion((PromotionTypes)iJ) && GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatMod()>0)
+						{
+							if (pAttacker->isHasPromotion((PromotionTypes)GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatType()))
+							{
+								szString.append(NEWLINE);
+								szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatMod(), GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatType()).getTextKeyWide()));
+							}
+						}
+					}
+
+					iModifier = GC.getGameINLINE().getGlobalCounter() * pDefender->getCombatPercentGlobalCounter() / 100;
+					if (iModifier != 0)
+					{
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_STIGMATA", iModifier));
+					}
+					//End MNAI
 
                     szString.append(gDLL->getText("TXT_KEY_COLOR_REVERT"));
 
@@ -4709,6 +4746,26 @@ It is fine for a human player mouse-over (which is what it is used for).
                             szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_UNIT_MOD", -iModifier, GC.getTerrainInfo(pPlot->getTerrainType()).getTextKeyWide()));
                         }
                     }
+					// MNAI Start - FfH Promotions: Added by Kael 0813/2007 - Merged into ACO by MNAI
+					for (int iJ=0; iJ < GC.getNumPromotionInfos(); iJ++)
+					{
+						if (pAttacker->isHasPromotion((PromotionTypes)iJ) && GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatMod()>0)
+						{
+							if (pDefender->isHasPromotion((PromotionTypes)GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatType()))
+							{
+								szString.append(NEWLINE);
+								szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatMod(), GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatType()).getTextKeyWide()));
+							}
+						}
+					}
+
+					iModifier = GC.getGameINLINE().getGlobalCounter() * pAttacker->getCombatPercentGlobalCounter() / 100;
+					if (iModifier != 0)
+					{
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_STIGMATA", iModifier));
+					}
+					// End MNAI
 
                     iModifier = pAttacker->getKamikazePercent();
                     if (iModifier != 0)
@@ -4875,7 +4932,7 @@ It is fine for a human player mouse-over (which is what it is used for).
                 }
             }
 
-            iModifier = GC.getGameINLINE().getGlobalCounter() * pDefender->getCombatPercentGlobalCounter() / 100;
+            iModifier = GC.getGameINLINE().getGlobalCounter() * pAttacker->getCombatPercentGlobalCounter() / 100;
             if (iModifier != 0)
             {
                 szString.append(NEWLINE);
@@ -5089,6 +5146,27 @@ It is fine for a human player mouse-over (which is what it is used for).
 					szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_UNIT_MOD", iModifier, GC.getTerrainInfo(pPlot->getTerrainType()).getTextKeyWide()));
 				}
 			}
+
+			// MNAI Start - FfH Promotions: Added by Kael 0813/2007
+            for (int iJ=0;iJ<GC.getNumPromotionInfos();iJ++)
+            {
+                if (pDefender->isHasPromotion((PromotionTypes)iJ) && GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatMod()>0)
+                {
+                    if (pAttacker->isHasPromotion((PromotionTypes)GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatType()))
+                    {
+                        szString.append(NEWLINE);
+                        szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatMod(), GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatType()).getTextKeyWide()));
+                    }
+                }
+            }
+
+            iModifier = GC.getGameINLINE().getGlobalCounter() * pDefender->getCombatPercentGlobalCounter() / 100;
+            if (iModifier != 0)
+            {
+                szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_STIGMATA", iModifier));
+            }
+			// End MNAI
 
 			if (!(pAttacker->immuneToFirstStrikes()))
 			{
@@ -8005,6 +8083,8 @@ void CvGameTextMgr::parseLeaderTraits(CvWStringBuffer &szHelpString, LeaderHeadT
             szHelpString.append(NEWLINE);
         }
         szHelpString.append(gDLL->getText("TXT_KEY_ALIGNMENT", GC.getAlignmentInfo((AlignmentTypes)GC.getLeaderHeadInfo(eLeader).getAlignment()).getDescription()));
+		szHelpString.append(NEWLINE);
+        szHelpString.append(gDLL->getText("TXT_KEY_LEADERCATEGORY", GC.getLeaderCategoryInfo((LeaderHeadCategories)GC.getLeaderHeadInfo(eLeader).getLeaderCategory()).getDescription()));
         if (eCivilization != NO_CIVILIZATION)
         {
 			if (!bCivilopediaText) // suppress hero and world spell info in sevopedia (these are attached to the civ, not the leader)
@@ -9486,10 +9566,25 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CASTING_BLOCKED_PEDIA"));
     }
+	if (kPromotionInfo.isBlocksUpgrade())
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_UPGRADE_BLOCKED_PEDIA"));
+    }
+	if (kPromotionInfo.isBlocksGifting())
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_GIFTING_BLOCKED_PEDIA"));
+    }
 	if (kPromotionInfo.isUpgradeOutsideBorders())
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_UPGRADE_OUTSIDE_BORDERS_PEDIA"));
+    }
+	if (kPromotionInfo.isAlwaysSpreadReligion())
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_ALWAYS_SPREAD_RELIGION_PEDIA"));
     }
     if (kPromotionInfo.isHiddenNationality())
     {
@@ -10391,31 +10486,11 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-/*
-	if (kCivic.isUpgradeAnywhere())
+	if (kCivic.isDisallowInquisitions())
 	{
 		szHelpText.append(NEWLINE);
-		szHelpText.append(gDLL->getText("TXT_KEY_CAN_UPGRADE_ANYWHERE"));	
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_DISALLOW_INQUISITONS"));
 	}
-
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_INQUISITIONS))
-	{
-		if (kCivic.isAllowInquisitions())
-		{
-			szHelpText.append(NEWLINE);
-			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_ALLOW_INQUISITONS"));
-		}
-	}
-
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_INQUISITIONS))
-	{
-		if (kCivic.isDisallowInquisitions())
-		{
-			szHelpText.append(NEWLINE);
-			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_DISALLOW_INQUISITONS"));
-		}
-	}
-*/
 
 	if (GC.getGameINLINE().isOption(GAMEOPTION_REVOLUTIONS))
 	{
@@ -11111,6 +11186,15 @@ void CvGameTextMgr::setTechTradeHelp(CvWStringBuffer &szBuffer, TechTypes eTech,
 		if (GC.getBonusInfo((BonusTypes)iI).getTechObsolete() == eTech)
 		{
 			buildObsoleteBonusString(szBuffer, iI, true);
+		}
+	}
+
+	//	Enable Bonuses
+	for (iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+	{
+		if (GC.getBonusInfo((BonusTypes)iI).getTechCityTrade() == eTech)
+		{
+			buildEnableBonusString(szBuffer, iI, true);
 		}
 	}
 
@@ -17221,6 +17305,17 @@ void CvGameTextMgr::buildObsoleteBonusString(CvWStringBuffer &szBuffer, int iIte
 		szBuffer.append(NEWLINE);
 	}
 	szBuffer.append(gDLL->getText("TXT_KEY_TECH_OBSOLETES", GC.getBonusInfo((BonusTypes) iItem).getTextKeyWide()));
+}
+
+void CvGameTextMgr::buildEnableBonusString(CvWStringBuffer &szBuffer, int iItem, bool bList, bool bPlayerContext)
+{
+	CvWString szTempBuffer;
+
+	if (bList)
+	{
+		szBuffer.append(NEWLINE);
+	}
+	szBuffer.append(gDLL->getText("TXT_KEY_TECH_ENABLES", GC.getBonusInfo((BonusTypes) iItem).getTextKeyWide()));
 }
 
 void CvGameTextMgr::buildObsoleteSpecialString(CvWStringBuffer &szBuffer, int iItem, bool bList, bool bPlayerContext)

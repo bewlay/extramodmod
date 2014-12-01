@@ -4824,7 +4824,7 @@
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
 			<iAsset>14</iAsset>
-			<iPower>20</iPower>
+            <iPower>45</iPower>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -9243,7 +9243,7 @@
 			<Type>UNIT_DRUID</Type>
 			<Combat>UNITCOMBAT_DISCIPLE</Combat>
 			<Domain>DOMAIN_LAND</Domain>
-			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+            <DefaultUnitAI>UNITAI_HERO</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_DRUID</Description>
 			<Civilopedia>TXT_KEY_UNIT_DRUID_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_DRUID_STRATEGY</Strategy>
@@ -14397,7 +14397,7 @@
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
 			<iAsset>14</iAsset>
-			<iPower>25</iPower>
+            <iPower>45</iPower>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>

@@ -3987,6 +3987,8 @@ void CvDLLWidgetData::parseContactCivHelp(CvWidgetDataStruct &widgetDataStruct, 
 		szBuffer.append(NEWLINE);
 		szBuffer.append(CvWString::format(L"Mojo Factor: %d", kPlayer.AI_getMojoFactor()));
 		szBuffer.append(NEWLINE);
+		szBuffer.append(CvWString::format(L"Highest Unit Tier: %d", kPlayer.getHighestUnitTier(false, true)));
+		szBuffer.append(NEWLINE);
 		szBuffer.append(NEWLINE);
 		
 		// Unit Costs
@@ -5149,7 +5151,7 @@ void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStr
 
 // More Naval AI version number
 	// Add string showing version number
-	szTempBuffer.Format(L"%S", "Based on More Naval AI v2.52");
+	szTempBuffer.Format(L"%S", "Based on More Naval AI v2.53");
 	szBuffer.append(szTempBuffer);
 	szBuffer.append(NEWLINE);
 // End More Naval AI

@@ -855,6 +855,7 @@ bool CvXMLLoadUtility::LoadBasicInfos()
 	LoadGlobalClassInfo(GC.getDamageTypeInfo(), "CIV4DamageInfos", "BasicInfos", "Civ4DamageInfos/DamageInfos/DamageInfo", false);
 //FfH: End Add
 
+	LoadGlobalClassInfo(GC.getLeaderCategoryInfo(), "CIV4LeaderCategoryInfos", "BasicInfos", "Civ4LeaderCategoryInfos/LeaderCategoryInfos/LeaderCategoryInfo", false);
 	DestroyFXml();
 	return true;
 }

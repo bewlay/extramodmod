@@ -239,6 +239,16 @@ m_iUSE_PLOT_REVEALED_CALLBACK(0),
 m_iUSE_COMBAT_RESULT_CALLBACK(0),
 //FfH: End Add
 
+m_iTECH_PROPAGATION_TEAMS_MAX(30),
+m_iTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE(15),
+m_iTECH_PROPAGATION_TEAMS_MASTER(30),
+m_iTECH_PROPAGATION_TEAMS_OPEN_BORDERS(45),
+m_iTECH_PROPAGATION_TEAMS_VASSAL(60),
+m_iTECH_PROPAGATION_TEAMS_EMBASSY(15),
+m_iTECH_PROPAGATION_TEAMS_ALIGMENT(10),
+m_iTECH_PROPAGATION_TEAMS_RELIGION(10),
+m_iTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT(15),
+
 m_paHints(NULL),
 m_paMainMenus(NULL)
 /************************************************************************************************/
@@ -3799,6 +3809,10 @@ void CvGlobals::deleteInfoArrays()
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Leader categories START
+	deleteInfoArray(m_paLeaderCategoryInfos);
+// Leader categories END
+
 	clearTypesMap();
 	m_aInfoVectors.clear();
 }
@@ -4019,3 +4033,61 @@ bool CvGlobals::isDYNAMIC_CIV_NAMES()
 	return m_bDYNAMIC_CIV_NAMES;
 }
 
+// Leader categories START
+std::vector<CvInfoBase*>& CvGlobals::getLeaderCategoryInfo()
+{
+	return m_paLeaderCategoryInfos;
+}
+
+CvInfoBase& CvGlobals::getLeaderCategoryInfo(LeaderHeadCategories eLeaderCategoryNum)
+{
+	FAssert(eLeaderCategoryNum >= 0);
+	FAssert(eLeaderCategoryNum < NUM_LEADERCATEGORIES);
+	return *(m_paLeaderCategoryInfos[eLeaderCategoryNum]);
+}
+// Leader categories END
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_MAX()
+{
+	return m_iTECH_PROPAGATION_TEAMS_MAX;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE()
+{
+	return m_iTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_MASTER()
+{
+	return m_iTECH_PROPAGATION_TEAMS_MASTER;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_OPEN_BORDERS()
+{
+	return m_iTECH_PROPAGATION_TEAMS_OPEN_BORDERS;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_VASSAL()
+{
+	return m_iTECH_PROPAGATION_TEAMS_VASSAL;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_EMBASSY()
+{
+	return m_iTECH_PROPAGATION_TEAMS_EMBASSY;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_ALIGMENT()
+{
+	return m_iTECH_PROPAGATION_TEAMS_ALIGMENT;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_RELIGION()
+{
+	return m_iTECH_PROPAGATION_TEAMS_RELIGION;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT()
+{
+	return m_iTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT;
+}

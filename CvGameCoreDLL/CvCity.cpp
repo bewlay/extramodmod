@@ -1959,8 +1959,9 @@ int CvCity::findBaseYieldRateRank(YieldTypes eYield) const
 		CvCity* pLoopCity;
 		for (pLoopCity = GET_PLAYER(getOwnerINLINE()).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER(getOwnerINLINE()).nextCity(&iLoop))
 		{
-			if ((pLoopCity->getBaseYieldRate(eYield) > iRate) ||
-				((pLoopCity->getBaseYieldRate(eYield) == iRate) && (pLoopCity->getID() < getID())))
+			int iLoopCityBaseYieldRate = pLoopCity->getBaseYieldRate(eYield);
+			if ((iLoopCityBaseYieldRate > iRate) ||
+				((iLoopCityBaseYieldRate == iRate) && (pLoopCity->getID() < getID())))
 			{
 				iRank++;
 			}
@@ -3005,6 +3006,19 @@ int CvCity::getProductionExperience(UnitTypes eUnit)
 			iExperience += GET_PLAYER(getOwnerINLINE()).getStateReligionFreeExperience();
 		}
 	}
+
+	// MNAI - include freepromotions
+	for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+	{
+		if (getNumBuilding((BuildingTypes)iI) > 0)
+		{
+			if (GC.getBuildingInfo((BuildingTypes)iI).getFreePromotionPick() > 0)
+			{
+				iExperience += 5;
+			}
+		}
+	}
+	// End MNAI
 
 	return std::max(0, iExperience);
 }
@@ -9842,7 +9856,7 @@ void CvCity::setBaseYieldRate(YieldTypes eIndex, int iNewValue)
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex expected to be < NUM_YIELD_TYPES");
 
-	if (getBaseYieldRate(eIndex) != iNewValue)
+	if (getBaseYieldRate(eIndex, false) != iNewValue)
 	{
 		FAssertMsg(iNewValue >= 0, "iNewValue expected to be >= 0");
 		FAssertMsg(((iNewValue * 100) / 100) >= 0, "((iNewValue * 100) / 100) expected to be >= 0");
@@ -9870,7 +9884,8 @@ void CvCity::changeBaseYieldRate(YieldTypes eIndex, int iChange)
 {
 	// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
 	// Since the unhappy production part of getBaseYieldRate is calculated dynamically, it shouldn't be taking into account when it is required to modify it.
-	setBaseYieldRate(eIndex, (getBaseYieldRate(eIndex, false) + iChange));
+	int iBaseYield = getBaseYieldRate(eIndex, false);
+	setBaseYieldRate(eIndex, (iBaseYield + iChange));
 	// Bugfix end
 }
 

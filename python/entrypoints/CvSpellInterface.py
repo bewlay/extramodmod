@@ -437,9 +437,13 @@ def reqAddToFreakShowHuman(caster):
 	return True
 
 def reqAddToWolfPack(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlot = caster.plot()
 	iWolfPack = gc.getInfoTypeForString('UNIT_WOLF_PACK')
 	iEmpower5 = gc.getInfoTypeForString('PROMOTION_EMPOWER5')
+	if pPlayer.isHuman() == False:
+		if caster.baseCombatStr() > 2:
+			return False
 	for i in range(pPlot.getNumUnits()):
 		pUnit = pPlot.getUnit(i)
 		if pUnit.getUnitType() == iWolfPack:
@@ -738,6 +742,13 @@ def spellDeciusJoin(caster):
 			pDecius = pUnit
 	if pDecius != -1:
 		caster.setScenarioCounter(iDecius)
+		# lfgr GP_NAMES 07/2013
+		if( not SDTK.sdObjectExists( "GPNames", caster ) ) :
+			SDTK.sdObjectInit( "GPNames", caster, {} )
+		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", pDecius.getNameNoDesc() )
+		if( pDecius.getNameNoDesc() != "" and caster.getNameNoDesc() == "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
+			caster.setName( pDecius.getNameNoDesc() )
+		# lfgr end
 		pDecius.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
 		pDecius.kill(False, PlayerTypes.NO_PLAYER)
 
@@ -748,9 +759,11 @@ def spellDeciusSplit(caster):
 	newUnit = pPlayer.initUnit(iDecius, caster.getX(), caster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 	# lfgr GP_NAMES 07/2013
 	if( SDTK.sdObjectExists( "GPNames", caster ) ) :
-		szName = SDTK.sdObjectGetVal( "GPNames", caster, "CommanderName" )
-		SDTK.sdObjectSetVal( "GPNames", caster, "CommanderName", "" )
+		szName = SDTK.sdObjectGetVal( "GPNames", caster, "GeneralName" )
+		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", "" )
 		newUnit.setName( szName )
+		if( caster.getNameNoDesc() == szName ) :
+			caster.setName( "" )
 	# lfgr end
 
 def reqConvertCityBasium(caster):
@@ -1087,11 +1100,16 @@ def spellDomination(caster):
 	if pBestUnit != -1:
 		pPlot = caster.plot()
 		if pBestUnit.isResisted(caster, iSpell) == False:
-			CyInterface().addMessage(pBestUnit.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION", ()),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(7),pBestUnit.getX(),pBestUnit.getY(),True,True)
-			CyInterface().addMessage(caster.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION_ENEMY", ()),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
-			newUnit = pPlayer.initUnit(pBestUnit.getUnitType(), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-			newUnit.convert(pBestUnit)
-			newUnit.changeImmobileTimer(1)
+			if pBestUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_LOYALTY')):
+				CyInterface().addMessage(pBestUnit.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION_LOYALTY", (pBestUnit.getName(), )),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(7),pBestUnit.getX(),pBestUnit.getY(),True,True)
+				CyInterface().addMessage(caster.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION_LOYALTY", (pBestUnit.getName(), )),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+				pBestUnit.kill(False, 0)			
+			else:
+				CyInterface().addMessage(pBestUnit.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION", (pBestUnit.getName(), )),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(7),pBestUnit.getX(),pBestUnit.getY(),True,True)
+				CyInterface().addMessage(caster.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION_ENEMY", (pBestUnit.getName(), )),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
+				newUnit = pPlayer.initUnit(pBestUnit.getUnitType(), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				newUnit.convert(pBestUnit)
+				newUnit.changeImmobileTimer(1)
 		else:
 			CyInterface().addMessage(caster.getOwner(),true,25,CyTranslator().getText("TXT_KEY_MESSAGE_DOMINATION_FAILED", ()),'',1,'Art/Interface/Buttons/Spells/Domination.dds',ColorTypes(7),pPlot.getX(),pPlot.getY(),True,True)
 			caster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_MIND3'), False)
@@ -1356,6 +1374,7 @@ def spellForTheHorde(caster):
 					newUnit.convert(pUnit)
 
 def reqFormWolfPack(caster):
+	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlot = caster.plot()
 	iWolf = gc.getInfoTypeForString('UNIT_WOLF')
 	iCount = 0
@@ -1366,6 +1385,9 @@ def reqFormWolfPack(caster):
 				iCount += 1
 	if iCount < 2:
 		return False
+	if pPlayer.isHuman() == False:
+		if caster.baseCombatStr() > 2:
+			return False
 	return True
 
 def spellFormWolfPack(caster):
@@ -1650,8 +1672,8 @@ def applyHyboremsWhisper(argsList):
 	lpVeilCities = cf.getAshenVeilCities(iPlayer, iCasterID, iNumCities)
 
 	if iButtonId == iNumCities * 2:
-		pPlayer = gc.getPlayer(iPlayer)
-		pPlayer.acquireCity(lpVeilCities[iCurrentSelected], False, True)
+		pCity = lpVeilCities[iCurrentSelected]
+		CyMessageControl().sendModNetMessage(CvUtil.HyboremWhisper, iPlayer, pCity.getX(), pCity.getY(), 0)
 		return
 
 	iClickedKind = iButtonId % 2
@@ -1682,14 +1704,16 @@ def reqInquisition(caster):
 	pCity = pPlot.getPlotCity()
 	pPlayer = gc.getPlayer(caster.getOwner())
 	StateBelief = pPlayer.getStateReligion()
-	if StateBelief == -1:
-		if caster.getOwner() != pCity.getOwner():
+	
+	if pPlayer.canInquisition():
+		if StateBelief == -1:
+			if caster.getOwner() != pCity.getOwner():
+				return False
+		if (StateBelief != gc.getPlayer(pCity.getOwner()).getStateReligion()):
 			return False
-	if (StateBelief != gc.getPlayer(pCity.getOwner()).getStateReligion()):
-		return False
-	for iTarget in range(gc.getNumReligionInfos()):
-		if (StateBelief != iTarget and pCity.isHasReligion(iTarget) and pCity.isHolyCityByType(iTarget) == False):
-			return True
+		for iTarget in range(gc.getNumReligionInfos()):
+			if (StateBelief != iTarget and pCity.isHasReligion(iTarget) and pCity.isHolyCityByType(iTarget) == False):
+				return True
 	return False
 
 def spellInquisition(caster):
@@ -3839,7 +3863,7 @@ def spellWildHunt(caster):
 	for pUnit in py.getUnitList():
 		pPlot = pUnit.plot()
 		if pUnit.baseCombatStr() > 0 and pUnit.isAlive() and not pPlot.isWater() and not pPlot.isPeak():
-			newUnit = pPlayer.initUnit(iWolf, pUnit.getX(), pUnit.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+			newUnit = pPlayer.initUnit(iWolf, pUnit.getX(), pUnit.getY(), UnitAITypes.UNITAI_ATTACK_CITY, DirectionTypes.DIRECTION_SOUTH)
 			if pUnit.baseCombatStr() > 3:
 				i = (pUnit.baseCombatStr() - 2) / 2
 				newUnit.setBaseCombatStr(2 + i)
@@ -4422,9 +4446,9 @@ def spellGreatGeneralJoin(caster):
 		# lfgr GP_NAMES 07/2013
 		if( not SDTK.sdObjectExists( "GPNames", caster ) ) :
 			SDTK.sdObjectInit( "GPNames", caster, {} )
-		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", pGeneral.getName() )
-		if( caster.getNameNoDesc() != "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
-			caster.setName( pGeneral.getName() )
+		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", pGeneral.getNameNoDesc() )
+		if( pGeneral.getNameNoDesc() != "" and caster.getNameNoDesc() == "" and not isWorldUnitClass(caster.getUnitClassType()) ) :
+			caster.setName( pGeneral.getNameNoDesc() )
 		# lfgr end
 		pGeneral.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GOLEM'), True)
 		pGeneral.kill(False, PlayerTypes.NO_PLAYER)
@@ -4440,6 +4464,8 @@ def spellGreatGeneralSplit(caster):
 		szName = SDTK.sdObjectGetVal( "GPNames", caster, "GeneralName" )
 		SDTK.sdObjectSetVal( "GPNames", caster, "GeneralName", "" )
 		newUnit.setName( szName )
+		if( caster.getNameNoDesc() == szName ) :
+			caster.setName( "" )
 	# lfgr end
 
 def reqDeclareBarbs(caster):

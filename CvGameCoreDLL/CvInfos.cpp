@@ -1868,7 +1868,10 @@ m_iExplorationResultBonus(0),
 m_bAllowsMoveImpassable(false),
 m_bAllowsMoveLimitedBorders(false),
 m_bCastingBlocked(false),
-m_bUpgradeOutsideBorders(false)
+m_bBlocksUpgrade (false),
+m_bBlocksGifting (false),
+m_bUpgradeOutsideBorders(false),
+m_bAlwaysSpreadReligion(false)
 // End MNAI
 
 {
@@ -2562,9 +2565,24 @@ bool CvPromotionInfo::isCastingBlocked() const
 	return m_bCastingBlocked;
 }
 
+bool CvPromotionInfo::isBlocksUpgrade() const
+{
+	return m_bBlocksUpgrade;
+}
+
+bool CvPromotionInfo::isBlocksGifting() const
+{
+	return m_bBlocksGifting;
+}
+
 bool CvPromotionInfo::isUpgradeOutsideBorders() const
 {
 	return m_bUpgradeOutsideBorders;
+}
+
+bool CvPromotionInfo::isAlwaysSpreadReligion() const
+{
+	return m_bAlwaysSpreadReligion;
 }
 // End MNAI
 
@@ -2792,7 +2810,10 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bAllowsMoveImpassable);
 	stream->Read(&m_bAllowsMoveLimitedBorders);
 	stream->Read(&m_bCastingBlocked);
+	stream->Read(&m_bBlocksUpgrade);
+	stream->Read(&m_bBlocksGifting);
 	stream->Read(&m_bUpgradeOutsideBorders);
+	stream->Read(&m_bAlwaysSpreadReligion);
 	// End MNAI
 
 	// Arrays
@@ -2983,7 +3004,10 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bAllowsMoveImpassable);
 	stream->Write(m_bAllowsMoveLimitedBorders);
 	stream->Write(m_bCastingBlocked);
+	stream->Write(m_bBlocksUpgrade);
+	stream->Write(m_bBlocksGifting);
 	stream->Write(m_bUpgradeOutsideBorders);
+	stream->Write(m_bAlwaysSpreadReligion);
 	// End MNAI
 
 	// Arrays
@@ -3159,8 +3183,10 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bAllowsMoveImpassable, "bAllowsMoveImpassable");
 	pXML->GetChildXmlValByName(&m_bAllowsMoveLimitedBorders, "bAllowsMoveLimitedBorders");
 	pXML->GetChildXmlValByName(&m_bCastingBlocked, "bCastingBlocked");
+	pXML->GetChildXmlValByName(&m_bBlocksUpgrade, "bBlocksUpgrade");
+	pXML->GetChildXmlValByName(&m_bBlocksGifting, "bBlocksGifting");
 	pXML->GetChildXmlValByName(&m_bUpgradeOutsideBorders, "bUpgradeOutsideBorders");
-
+	pXML->GetChildXmlValByName(&m_bAlwaysSpreadReligion, "bAlwaysSpreadReligion");
 	// End MNAI
 
 	return true;
@@ -7948,8 +7974,6 @@ m_iExpInBorderModifier(0),
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-m_bUpgradeAnywhere(false),
-m_bAllowInquisitions(false),
 m_bDisallowInquisitions(false),
 m_iRevIdxLocal(0),
 m_iRevIdxNational(0),
@@ -8228,16 +8252,6 @@ int CvCivicInfo::getExpInBorderModifier() const
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-bool CvCivicInfo::isUpgradeAnywhere() const
-{
-	return m_bUpgradeAnywhere;
-}
-
-bool CvCivicInfo::isAllowInquisitions() const
-{
-	return m_bAllowInquisitions;
-}
-
 bool CvCivicInfo::isDisallowInquisitions() const
 {
 	return m_bDisallowInquisitions;
@@ -8610,8 +8624,6 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	stream->Read(&m_bUpgradeAnywhere);
-	stream->Read(&m_bAllowInquisitions);
 	stream->Read(&m_bDisallowInquisitions);
 	stream->Read(&m_iRevIdxLocal);
 	stream->Read(&m_iRevIdxNational);
@@ -8775,8 +8787,6 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	stream->Write(&m_bUpgradeAnywhere);
-	stream->Write(&m_bAllowInquisitions);
 	stream->Write(&m_bDisallowInquisitions);
 	stream->Write(&m_iRevIdxLocal);
 	stream->Write(&m_iRevIdxNational);
@@ -8916,8 +8926,6 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	pXML->GetChildXmlValByName(&m_bUpgradeAnywhere, "bUpgradeAnywhere");
-	pXML->GetChildXmlValByName(&m_bAllowInquisitions, "bAllowInquisitions");
 	pXML->GetChildXmlValByName(&m_bDisallowInquisitions, "bDisallowInquisitions");
 	pXML->GetChildXmlValByName(&m_iRevIdxLocal, "iRevIdxLocal");
 	pXML->GetChildXmlValByName(&m_iRevIdxNational, "iRevIdxNational");
@@ -9473,7 +9481,6 @@ m_iEspionageDefenseModifier(0),
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-m_iUnitUpgradePriceModifier(0),
 m_iRevIdxLocal(0),
 m_iRevIdxNational(0),
 m_iRevIdxDistanceModifier(0),
@@ -10106,11 +10113,6 @@ int CvBuildingInfo::getEspionageDefenseModifier() const
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-int CvBuildingInfo::getUnitUpgradePriceModifier() const	
-{
-	return m_iUnitUpgradePriceModifier;
-}
-
 int CvBuildingInfo::getRevIdxLocal() const	
 {
 	return m_iRevIdxLocal;
@@ -10916,7 +10918,6 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	stream->Read(&m_iUnitUpgradePriceModifier);
 	stream->Read(&m_iRevIdxLocal);
 	stream->Read(&m_iRevIdxNational);
 	stream->Read(&m_iRevIdxDistanceModifier);
@@ -11291,7 +11292,6 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	stream->Write(m_iUnitUpgradePriceModifier);
 	stream->Write(m_iRevIdxLocal);
 	stream->Write(m_iRevIdxNational);
 	stream->Write(m_iRevIdxDistanceModifier);
@@ -11686,7 +11686,6 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	pXML->GetChildXmlValByName(&m_iUnitUpgradePriceModifier, "iUnitUpgradePriceModifier");
 	pXML->GetChildXmlValByName(&m_iRevIdxLocal, "iRevIdxLocal");
 	pXML->GetChildXmlValByName(&m_iRevIdxNational, "iRevIdxNational");
 	pXML->GetChildXmlValByName(&m_iRevIdxDistanceModifier, "iRevIdxDistanceModifier");
@@ -18282,8 +18281,12 @@ m_iSomniumAggressiveness(0),
 m_iFavoriteTech(NO_TECH),
 m_iFavoriteUnitCombat(NO_UNITCOMBAT),
 m_iFavoriteWonder(NO_BUILDING),
-m_iPermanentTrait(NO_TRAIT)
+m_iPermanentTrait(NO_TRAIT),
 //FfH: End Add
+
+// Leader categories START
+m_iLeaderCategory(NO_LEADERCATEGORY)
+// Leader categories END
 {
 }
 
@@ -18809,6 +18812,14 @@ bool CvLeaderHeadInfo::isFemale() const
     return m_bFemale;
 }
 //FfH: End Add
+
+// Leader categories START
+int CvLeaderHeadInfo::getLeaderCategory() const
+{
+	return m_iLeaderCategory;
+}
+// Leader categories END
+
 // Arrays
 
 bool CvLeaderHeadInfo::hasTrait(int i) const
@@ -19039,6 +19050,10 @@ void CvLeaderHeadInfo::read(FDataStreamBase* stream)
 	stream->Read(GC.getNumReligionInfos(), m_piReligionWeightModifier);
 //FfH: End Add
 
+// Leader categories START
+	stream->Read(&m_iLeaderCategory);
+// Leader categories END
+
 	// Arrays
 
 	SAFE_DELETE_ARRAY(m_pbTraits);
@@ -19206,6 +19221,10 @@ void CvLeaderHeadInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iPermanentTrait);
     stream->Write(GC.getNumReligionInfos(), m_piReligionWeightModifier);
 //FfH: End Add
+
+// Leader categories START
+	stream->Write(m_iLeaderCategory);
+// Leader categories END
 
 	// Arrays
 
@@ -19416,6 +19435,11 @@ bool CvLeaderHeadInfo::read(CvXMLLoadUtility* pXML)
 	m_iPermanentTrait = pXML->FindInInfoClass(szTextVal);
 	pXML->SetVariableListTagPair(&m_piReligionWeightModifier, "ReligionWeightModifiers", sizeof(GC.getReligionInfo((ReligionTypes)0)), GC.getNumReligionInfos());
 //FfH: End Add
+
+// Leader categories START
+	pXML->GetChildXmlValByName(szTextVal, "LeaderCategory");
+	m_iLeaderCategory = pXML->FindInInfoClass(szTextVal);
+// Leader categories END
 
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */

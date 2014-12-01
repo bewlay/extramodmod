@@ -727,6 +727,11 @@ public:
 	CvString& getCurrentXMLFile();
 	void setCurrentXMLFile(const TCHAR* szFileName);
 
+// Leader categories START
+	std::vector<CvInfoBase*>& getLeaderCategoryInfo();
+	CvInfoBase& getLeaderCategoryInfo(LeaderHeadCategories eLeaderCategoryNum);
+// Leader categories END
+
 	//
 	///////////////// BEGIN global defines
 	// THESE ARE READ-ONLY
@@ -828,6 +833,16 @@ public:
 	int getUSE_PLOT_REVEALED_CALLBACK();
 	int getUSE_COMBAT_RESULT_CALLBACK();
 //FfH: End Add
+
+	int getTECH_PROPAGATION_TEAMS_MAX();
+	int getTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE();
+	int getTECH_PROPAGATION_TEAMS_MASTER();
+	int getTECH_PROPAGATION_TEAMS_OPEN_BORDERS();
+	int getTECH_PROPAGATION_TEAMS_VASSAL();
+	int getTECH_PROPAGATION_TEAMS_EMBASSY();
+	int getTECH_PROPAGATION_TEAMS_ALIGMENT();
+	int getTECH_PROPAGATION_TEAMS_RELIGION();
+	int getTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT();
 
 	DllExport int getMAX_CIV_PLAYERS();
 	DllExport int getMAX_PLAYERS();
@@ -1195,6 +1210,10 @@ protected:
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Leader categories START
+	std::vector<CvInfoBase*> m_paLeaderCategoryInfos;
+// Leader categories END
+
 	// Game Text
 	std::vector<CvGameText*> m_paGameTextXML;
 
@@ -1332,6 +1351,16 @@ protected:
 	int m_iUSE_COMBAT_RESULT_CALLBACK;
 //FfH: End Add
 
+	int m_iTECH_PROPAGATION_TEAMS_MAX;
+	int m_iTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE;
+	int m_iTECH_PROPAGATION_TEAMS_MASTER;
+	int m_iTECH_PROPAGATION_TEAMS_OPEN_BORDERS;
+	int m_iTECH_PROPAGATION_TEAMS_VASSAL;
+	int m_iTECH_PROPAGATION_TEAMS_EMBASSY;
+	int m_iTECH_PROPAGATION_TEAMS_ALIGMENT;
+	int m_iTECH_PROPAGATION_TEAMS_RELIGION;
+	int m_iTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT;
+	
 	// DLL interface
 	CvDLLUtilityIFaceBase* m_pDLL;
 

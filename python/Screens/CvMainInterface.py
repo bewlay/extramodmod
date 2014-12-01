@@ -1281,6 +1281,9 @@ class CvMainInterface:
 #AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
 			if (not CyInterface().isCityScreenUp() and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START and CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_SHOW):	
 
+				iHorizontalPosition = 270
+				iVerticalPosition = 50
+
 				if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI') and pPlayer.getNumCities() > 0:
 
 # Figure the counter values.
@@ -1289,15 +1292,48 @@ class CvMainInterface:
 
 # Show the calculated values.
 					if fGrigoriActual > 0:
-							iPosition = 270
-							SRstr = u"<font=2i>%s</font>" %(str(" ") + str(fGrigoriActual) + str(" / ") + str(fGrigoriMod) + str(" "))
-							screen.setImageButton("AdventurerChance", "Art/Interface/Buttons/Units/Adventurer.dds", iPosition, 7, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-							screen.setText( "SRText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iPosition + 12, 5, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-							screen.setHitTest( "SRText", HitTestTypes.HITTEST_NOHIT )
+						SRstr = u"<font=2i>%s</font>" %(str(" ") + str(fGrigoriActual) + str(" / ") + str(fGrigoriMod) + str(" "))
+						screen.setImageButton("AdventurerChance", "Art/Interface/Buttons/Units/Adventurer.dds", iHorizontalPosition, iVerticalPosition, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setText( "SRText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iHorizontalPosition + 12, iVerticalPosition + 2, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setHitTest( "SRText", HitTestTypes.HITTEST_NOHIT )
 					else:
 						screen.hide( "AdventurerChance" )
 						screen.hide( "SRText" )
 #AdventurerCounter End
+
+				if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KURIOTATES') and pPlayer.getNumCities() > 0 and pPlayer.getMaxCities() != -1:
+					iNumCities = pPlayer.getNumCities();
+					iMaxCities = pPlayer.getMaxCities()
+
+					if iNumCities > 0 and iMaxCities > 0:
+						SRstr = u"<font=2i>%s</font>" %(str(" ") + str(iNumCities) + str(" / ") + str(iMaxCities) + str(" "))
+						screen.setImageButton("KuriotateCities", "Art/Interface/Buttons/Spells/Promote Settlement.dds", iHorizontalPosition, iVerticalPosition, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setText( "KurioText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iHorizontalPosition + 12, iVerticalPosition + 2, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setHitTest( "KurioText", HitTestTypes.HITTEST_NOHIT )
+					else:
+						screen.hide( "KuriotateCities" )
+						screen.hide( "KurioText" )
+
+				if (pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD') and pPlayer.getNumCities() > 0):
+					if (((pPlayer.calculateGoldRate() != 0) and not (pPlayer.isAnarchy())) or (pPlayer.getGold() != 0)):
+						iGold = pPlayer.getGold() / pPlayer.getNumCities()
+						if iGold <= 49:
+							vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_EMPTY")
+						if (iGold >= 50 and iGold <= 99):
+							vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_LOW")
+						if (iGold >= 150 and iGold <= 199):
+							vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_STOCKED")
+						if (iGold >= 200 and iGold <= 299):
+							vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_ABUNDANT")
+						if (iGold >= 300 and iGold <= 499):
+							vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_FULL")
+						if iGold >= 500:
+							vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_OVERFLOWING")
+						SRstr = u"<font=2i>%s</font>" %(str(" ") + str(iGold) + BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_PER_CITY") + str(" ") + vaultText)
+						screen.setText( "KhazadText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iHorizontalPosition + 12, iVerticalPosition + 2, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setHitTest( "KhazadText", HitTestTypes.HITTEST_NOHIT )
+					else:
+						screen.hide( "KhazadText" )
 
 		self.updateEndTurnButton()
 
@@ -3255,23 +3291,6 @@ class CvMainInterface:
 				else:
 					szText = CyGameTextMgr().getGoldStr(ePlayer)
 # BUG - Gold Rate Warning - end
-
-#FfH: Added by Kael 12/08/2007
-				if (gc.getPlayer(ePlayer).getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD') and gc.getPlayer(ePlayer).getNumCities() > 0):
-					iGold = gc.getPlayer(ePlayer).getGold() / gc.getPlayer(ePlayer).getNumCities()
-					if iGold <= 49:
-						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_EMPTY", ())
-					if (iGold >= 50 and iGold <= 99):
-						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_LOW", ())
-					if (iGold >= 150 and iGold <= 199):
-						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_STOCKED", ())
-					if (iGold >= 200 and iGold <= 299):
-						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_ABUNDANT", ())
-					if (iGold >= 300 and iGold <= 499):
-						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_FULL", ())
-					if iGold >= 500:
-						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_OVERFLOWING", ())
-#FfH: End Add
 				#MOVED AMOUNT OF GOLD TEXT							   2/03/08					 JOHNY SMITH	  
 				screen.setLabel( "GoldText", "Background", szText, CvUtil.FONT_LEFT_JUSTIFY, 80, 6, -0.3, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 				#END													 2/03/08					 JOHNY SMITH
@@ -3279,7 +3298,6 @@ class CvMainInterface:
 				
 				if (((gc.getPlayer(ePlayer).calculateGoldRate() != 0) and not (gc.getPlayer(ePlayer).isAnarchy())) or (gc.getPlayer(ePlayer).getGold() != 0)):
 					screen.show( "GoldText" )
-
 # Commented out by Tholal - Eras not used in same way in FFH
 # BUG - NJAGC - start
 #				if (ClockOpt.isEnabled()

@@ -582,6 +582,7 @@ void CyEnumsPythonInterface()
 		.value("GAMEOPTION_NO_BARBARIANS", GAMEOPTION_NO_BARBARIANS)
 		.value("GAMEOPTION_RANDOM_PERSONALITIES", GAMEOPTION_RANDOM_PERSONALITIES)
 		.value("GAMEOPTION_PICK_RELIGION", GAMEOPTION_PICK_RELIGION)
+		.value("GAMEOPTION_TECHNOLOGY_PROPAGATION", GAMEOPTION_TECHNOLOGY_PROPAGATION)
 		.value("GAMEOPTION_NO_TECH_TRADING", GAMEOPTION_NO_TECH_TRADING)
 		.value("GAMEOPTION_NO_TECH_BROKERING", GAMEOPTION_NO_TECH_BROKERING)
 		.value("GAMEOPTION_PERMANENT_ALLIANCES", GAMEOPTION_PERMANENT_ALLIANCES)
@@ -649,6 +650,12 @@ void CyEnumsPythonInterface()
 		.value("GAMEOPTION_PUPPET_STATES", GAMEOPTION_PUPPET_STATES) // added by Tholal
 		.value("GAMEOPTION_REVOLUTIONS", GAMEOPTION_REVOLUTIONS) // added by Tholal
 		.value("GAMEOPTION_ADVANCED_TACTICS", GAMEOPTION_ADVANCED_TACTICS) // added by Tholal
+
+// Leader categories START
+		.value("GAMEOPTION_LEADER_SCENEXTRA", GAMEOPTION_LEADER_SCENEXTRA)
+		.value("GAMEOPTION_LEADER_EXTRA", GAMEOPTION_LEADER_EXTRA)
+// Leader categories END
+
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
 /************************************************************************************************/
@@ -2188,4 +2195,17 @@ void CyEnumsPythonInterface()
 		.value("ADVANCEDSTARTACTION_VISIBILITY", ADVANCEDSTARTACTION_VISIBILITY)
 		.value("ADVANCEDSTARTACTION_AUTOMATE", ADVANCEDSTARTACTION_AUTOMATE)
 		;
+
+// Leader categories START
+	python::enum_<LeaderHeadCategories>("LeaderHeadCategories")
+		.value("NO_LEADERCATEGORY", NO_LEADERCATEGORY)               
+		.value("LEADERCATEGORY_STANDARD", LEADERCATEGORY_STANDARD)   // Leader playable in vanilla FFH2.
+		.value("LEADERCATEGORY_SCENARIO", LEADERCATEGORY_SCENARIO)   // Scenario leader in vanilla FFH2.
+		.value("LEADERCATEGORY_SCENEXTRA", LEADERCATEGORY_SCENEXTRA) // Scenario leader modified in ExtraModMod to have a comparable power level.
+		.value("LEADERCATEGORY_EXTRA", LEADERCATEGORY_EXTRA)         // Leader not present in vanilla FFH2.
+		.value("LEADERCATEGORY_ALIGNMENT", LEADERCATEGORY_ALIGNMENT) // Fake leader used for the "play as alignment" selection.
+		.value("LEADERCATEGORY_BARBARIAN", LEADERCATEGORY_BARBARIAN) // Barbarian leader.
+		;
+// Leader categories END
+
 }

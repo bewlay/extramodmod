@@ -80,10 +80,12 @@ public:
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection);
-	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit = true);
+// lfgr 04/2014 bugfix
+//	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit = true);
+// lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit = true, CvWString szName = "");
+	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit = true, CvWString szName = "", bool bGift = false);
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -1029,8 +1031,14 @@ public:
 	void changeCanMoveLimitedBorders(int iNewValue);
 	bool isCastingBlocked() const;
 	void changeCastingBlocked(int iNewValue);
+	bool isUpgradeBlocked() const;
+	void changeUpgradeBlocked(int iNewValue);
+	bool isGiftingBlocked() const;
+	void changeGiftingBlocked(int iNewValue);
 	bool isUpgradeOutsideBorders() const;
 	void changeUpgradeOutsideBorders(int iNewValue);
+	bool isAlwaysSpreadReligion() const;
+	void changeAlwaysSpreadReligion(int iNewValue);
 	// End MNAI
 /************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
@@ -1189,7 +1197,10 @@ protected:
 	int m_iCanMoveImpassable;
 	int m_iCanMoveLimitedBorders;
 	int m_iCastingBlocked;
+	int m_iUpgradeBlocked;
+	int m_iGiftingBlocked;
 	int m_iUpgradeOutsideBorders;
+	int m_iAlwaysSpreadReligion;
 	// End MNAI
 
 //>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
