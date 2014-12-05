@@ -103,6 +103,7 @@ Target_PCH=$(TEMP_TARGET_FILES)\CvGameCoreDLL.pch
 Target_PDB=$(TEMP_TARGET_FILES)\CvGameCoreDLL.pdb
 
 Target_OTHER=$(TEMP_TARGET_FILES)\CvGameCoreDLL.exp
+
 !IFDEF IGNORE_CUSTOM
 CUSTOM_CFLAGS  =
 CUSTOM_LDFLAGS =
@@ -182,8 +183,7 @@ LDFLAGS = $(Debug_LDFLAGS)
 !IFNDEF CFLAGS
 !ERROR Target "$(TARGET)" not supported. Supported targets: Debug Release Assert Profile
 !ENDIF
-!ENDIF
-	-COPY "$(Release_BIN)" "$(YOURMOD)\."
+
 #### Targets ####
 #################
 
@@ -192,6 +192,7 @@ LDFLAGS = $(Debug_LDFLAGS)
 all: Precompile build
 
 dll: all
+
 clean:
 	@FOR %i IN ($(Target_BIN) $(Target_BIN_TEMP) $(Target_STATICLIB) $(Target_LIBDEF) \
 		$(TEMP_TARGET_FILES)\*.obj $(TEMP_TARGET_FILES)\*.@ $(Target_RESOURCE) \
@@ -211,6 +212,7 @@ precompile: Make_Dir Target_unfinished $(Target_PCH)
 Make_Dir:
 	-@IF NOT EXIST "$(TEMP_TARGET_FILES)\." MKDIR "$(TEMP_TARGET_FILES)"
 	-@IF NOT EXIST "$(TARGET)\." MKDIR "$(TARGET)"
+
 Target_unfinished:
 	@ECHO.>$(TEMP_TARGET_FILES)\unfinished.@
 	@FOR /F "delims=@" %i IN ('dir /b $(TEMP_TARGET_FILES)\*.@') DO \
@@ -221,7 +223,9 @@ Target_unfinished:
 $(Target_BIN_TEMP): $(OBJS) $(Target_RESOURCE)
 	@ECHO.Linking DLL
 	@$(LD) /out:$(Target_BIN_TEMP) $(LDFLAGS) $(LIBS) $(OBJS) $(Target_RESOURCE)
+
 .cpp{$(TEMP_TARGET_FILES)}.obj:
+	@ECHO.>"$*.obj.@"
     @$(CPP) /nologo $(CFLAGS) $(INCS) /Fo$*.obj /c $<
 	@DEL "$*.obj.@"
 
@@ -231,11 +235,20 @@ $(Target_PCH) $(TEMP_TARGET_FILES)\_precompile.obj:
     @$(CPP) /nologo $(CFLAGS) $(INCS) /YcCvGameCoreDLL.h /Fo"$(TEMP_TARGET_FILES)\_precompile.obj" /c _precompile.cpp
 	@DEL "$(Target_PCH).@"
 	@DEL "$(TEMP_TARGET_FILES)\_precompile.obj.@"
+
 .rc{$(TEMP_TARGET_FILES)}.res:
+	@ECHO.>"$*.res.@"
 	$(RC) /Fo$@ $(INCS) $<
+	@DEL "$*.res.@"
+
 !IFDEF BLACKLIST
 $(TEMP_TARGET_FILES)\$(BLACKLIST).obj: $(BLACKLIST).cpp
+	@ECHO.>"$*.obj.@"
+	@ECHO.>"$*-dummy.cpp"
 	@$(CPP) /nologo $(Release_CFLAGS) $(Release_INCS) /Y- /Fo$@ /c "$*-dummy.cpp"
+	@DEL "$*-dummy.cpp"
+	@DEL "$*.obj.@"
+
 !ENDIF
 
 
