@@ -33,6 +33,9 @@ import CvCorporationScreen
 import OOSLogger
 #FfH: End Add
 
+# Prophecy of Ragnarok and Multiple production: Ensure that it is only used once per turn.
+import SdToolKitCustom as SDTK
+
 ## Ultrapack ##
 import WBCityEditScreen
 import WBUnitScreen
@@ -596,6 +599,12 @@ class CvEventManager:
 		if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI'):
 			cf.doTurnGrigori(iPlayer)
 #AdventurerCounter End
+
+# Prophecy of Ragnarok and Multiple production: Ensure that it is only used once per turn.
+		if( not SDTK.sdObjectExists( "ProphecyRagnarok", pPlayer ) ) :
+			SDTK.sdObjectInit( "ProphecyRagnarok", pPlayer, {} )
+
+		SDTK.sdObjectSetVal( "ProphecyRagnarok", pPlayer, "UsedThisTurn", False )
 
 		if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD'):
 			cf.doTurnKhazad(iPlayer)
@@ -1432,6 +1441,14 @@ class CvEventManager:
 		unit = argsList[1]
 		player = PyPlayer(city.getOwner())
 		pPlayer = gc.getPlayer(unit.getOwner())
+
+# Prophecy of Ragnarok and Multiple production: Ensure that it is only used once per turn.
+		if city.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_PROPHECY_OF_RAGNAROK')) > 0:
+			bUsedThisTurn = SDTK.sdObjectGetVal( "ProphecyRagnarok", pPlayer, "UsedThisTurn" )
+			if not bUsedThisTurn:
+				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PROPHECY_MARK'), True)
+				SDTK.sdObjectSetVal( "ProphecyRagnarok", pPlayer, "UsedThisTurn", True )
+				CvUtil.pyPrint('Unit adquired Prophecy Mark; ProphecyRagnarok variable is now: %s' %(SDTK.sdObjectGetVal( "ProphecyRagnarok", pPlayer, "UsedThisTurn" ),))
 
 		# Advanced Tactics - Diverse Grigori (idea and base code taken from FFH Tweakmod)
 		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS):
