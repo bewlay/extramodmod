@@ -7778,7 +7778,17 @@ int CvPlayerAI::AI_techUnitValue( TechTypes eTech, int iPathLength, bool &bEnabl
 					// account for traits
 					for (int iJ = 0; iJ < GC.getNumTraitInfos(); iJ++)
 					{
+					/********************************************************************************/
+					/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+					/********************************************************************************/
+					/* old
 						if ((kLoopUnit.getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes)iJ).isFreePromotionUnitCombat(kLoopUnit.getUnitCombatType()))
+					*/
+						if ( GC.getTraitInfo((TraitTypes) iJ).isAllUnitsFreePromotion() ||
+							((kLoopUnit.getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(kLoopUnit.getUnitCombatType())))
+					/********************************************************************************/
+					/* EXTRA_CIV_TRAITS                                                     END     */
+					/********************************************************************************/
 						{
 							if (hasTrait((TraitTypes)iJ))
 							{
@@ -13375,7 +13385,17 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 				{
 					if (GC.getTraitInfo((TraitTypes) iI).isFreePromotion(iK))
 					{
+					/********************************************************************************/
+					/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+					/********************************************************************************/
+					/* old
 						if ((kUnitInfo.getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iI).isFreePromotionUnitCombat(kUnitInfo.getUnitCombatType()))
+					*/
+						if ( GC.getTraitInfo((TraitTypes) iI).isAllUnitsFreePromotion() ||
+							((kUnitInfo.getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iI).isFreePromotionUnitCombat(kUnitInfo.getUnitCombatType())))
+					/********************************************************************************/
+					/* EXTRA_CIV_TRAITS                                                     END     */
+					/********************************************************************************/
 						{
 							iTraitMod += 10;
 						}
@@ -13598,6 +13618,8 @@ int CvPlayerAI::AI_neededWorkers(CvArea* pArea) const
 	}
 
 	iCount += getUnitClassCountPlusMaking((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SETTLER")) * 5;
+
+	// EXTRA_CIV_LEADERS TODO: also take traits into account
 
 	// Tholal AI - account for racial changes to work rates
 	int iDefaultRace = GC.getCivilizationInfo(getCivilizationType()).getDefaultRace();
@@ -24964,7 +24986,17 @@ UnitTypes CvPlayerAI::AI_bestAdvancedStartUnitAI(CvPlot* pPlot, UnitAITypes eUni
 								{
 									if (GC.getTraitInfo((TraitTypes) iJ).isFreePromotion(iK))
 									{
+									/********************************************************************************/
+									/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+									/********************************************************************************/
+									/* old
 										if ((GC.getUnitInfo(eLoopUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eLoopUnit).getUnitCombatType()))
+									*/
+										if ( GC.getTraitInfo((TraitTypes) iJ).isAllUnitsFreePromotion() ||
+											((GC.getUnitInfo(eLoopUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eLoopUnit).getUnitCombatType())))
+									/********************************************************************************/
+									/* EXTRA_CIV_TRAITS                                                     END     */
+									/********************************************************************************/
 										{
 											iPromotionValue += 15;
 											break;
@@ -27329,7 +27361,17 @@ int CvPlayerAI::AI_trueCombatValue(UnitTypes eUnit) const
 				{
 					if (GC.getPromotionInfo((PromotionTypes)iK).getExtraCombatStr() != 0)
 					{
+					/********************************************************************************/
+					/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+					/********************************************************************************/
+					/* old
 						if ((GC.getUnitInfo(eUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes)iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eUnit).getUnitCombatType()))
+					*/
+						if ( GC.getTraitInfo((TraitTypes) iJ).isAllUnitsFreePromotion() ||
+							((GC.getUnitInfo(eUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eUnit).getUnitCombatType())))
+					/********************************************************************************/
+					/* EXTRA_CIV_TRAITS                                                     END     */
+					/********************************************************************************/
 						{
 							iCombat += GC.getPromotionInfo((PromotionTypes)iK).getExtraCombatStr();
 						}

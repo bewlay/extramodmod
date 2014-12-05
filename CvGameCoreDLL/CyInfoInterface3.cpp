@@ -884,4 +884,16 @@ void CyInfoPythonInterface3()
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                                                                END           */
 /************************************************************************************************/
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+	python::class_<CvUnitArtStyleTypeInfo, python::bases<CvInfoBase> >("CvUnitArtStyleTypeInfo")
+		.def("getEarlyArtDefineTag", &CvUnitArtStyleTypeInfo::getEarlyArtDefineTag, "string (int iMesh, int iUnit)")
+		.def("getMiddleArtDefineTag", &CvUnitArtStyleTypeInfo::getMiddleArtDefineTag, "string (int iMesh, int iUnit)")
+		.def("getLateArtDefineTag", &CvUnitArtStyleTypeInfo::getLateArtDefineTag, "string (int iMesh, int iUnit)")
+		;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
+
 }

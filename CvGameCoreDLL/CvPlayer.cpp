@@ -337,10 +337,21 @@ void CvPlayer::init(PlayerTypes eID)
         }
 
 //FfH: Added by Kael 08/14/2007
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+	/********************************************************************************/
+	/* old
         if (GC.getCivilizationInfo(getCivilizationType()).getCivTrait() != NO_TRAIT)
         {
             setHasTrait((TraitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivTrait(), true);
         }
+	*/
+		for( int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++ )
+			if( GC.getCivilizationInfo( getCivilizationType() ).isCivTraits( iTrait ) )
+				setHasTrait( (TraitTypes) iTrait, true );
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                                                     END     */
+	/********************************************************************************/
 		setAlignment(GC.getLeaderHeadInfo(getLeaderType()).getAlignment());
         GC.getGameINLINE().changeGlobalCounterLimit(GC.getDefineINT("GLOBAL_COUNTER_LIMIT_PER_PLAYER"));
 //FfH: End Add
@@ -566,10 +577,21 @@ void CvPlayer::initInGame(PlayerTypes eID, bool bSetAlive)
 		}
 
 //FfH: Added for FFH
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+	/********************************************************************************/
+	/* old
         if (GC.getCivilizationInfo(getCivilizationType()).getCivTrait() != NO_TRAIT)
         {
             setHasTrait((TraitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivTrait(), true);
         }
+	*/
+		for( int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++ )
+			if( GC.getCivilizationInfo( getCivilizationType() ).isCivTraits( iTrait ) )
+				setHasTrait( (TraitTypes) iTrait, true );
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                                                     END     */
+	/********************************************************************************/
 		setAlignment(GC.getLeaderHeadInfo(getLeaderType()).getAlignment());
         GC.getGameINLINE().changeGlobalCounterLimit(GC.getDefineINT("GLOBAL_COUNTER_LIMIT_PER_PLAYER"));
 //FfH: End Add

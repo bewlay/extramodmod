@@ -1684,10 +1684,23 @@ void CyUnit::rangeStrike(int iX, int iY)
 	}
 }
 
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/* Fix                                                                          */
+/********************************************************************************/
+/* old
 const CvArtInfoUnit* CyUnit::getArtInfo(int i, EraTypes eEra) const
 {
 	return m_pUnit ? m_pUnit->getArtInfo(i, eEra) : NULL;
 }
+*/
+const CvArtInfoUnit* CyUnit::getArtInfo(int i, int /*EraTypes*/ eEra) const
+{
+	return m_pUnit ? m_pUnit->getArtInfo( i, (EraTypes) eEra ) : NULL;
+}
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 
 std::string CyUnit::getButton() const
 {

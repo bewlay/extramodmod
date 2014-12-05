@@ -1454,21 +1454,50 @@ class CvEventManager:
 		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS):
 			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI'):
 				unit.setReligion(-1)
+		# EXTRA_CIV_TRAITS 08/2013 lfgr
+			if( pPlayer.hasTrait( gc.getInfoTypeForString( 'TRAIT_DIVERSE' ) ) ) :
+		# EXTRA_CIV_TRAITS end
 				if unit.getRace() == -1:
 					iChance = 40
 					if CyGame().getSorenRandNum(100, "Grigori Racial Diversity") <= iChance:
-						race = CyGame().getSorenRandNum(3, "Bob")
-						if race == 0 and unit.isAlive():
-							unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ORC'), True)
-						elif race == 1 and unit.isAlive():
-							race = CyGame().getSorenRandNum(2, "Elvish division")
-							if race == 0:
-								unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ELF'), True)
-							elif race == 1:
-								unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DARK_ELF'), True)
-						elif race == 2:
-							if (unit.isAlive()):
-								unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DWARF'), True)
+					# EXTRA_CIV_TRAITS 08/2013 lfgr
+					#	race = CyGame().getSorenRandNum(3, "Bob")
+					#	if race == 0 and unit.isAlive():
+					#		unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ORC'), True)
+					#	elif race == 1 and unit.isAlive():
+					#		race = CyGame().getSorenRandNum(2, "Elvish division")
+					#		if race == 0:
+					#			unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ELF'), True)
+					#		elif race == 1:
+					#			unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DARK_ELF'), True)
+					#	elif race == 2:
+					#		if (unit.isAlive()):
+					#			unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DWARF'), True)
+						eOrc = gc.getInfoTypeForString('PROMOTION_ORC')
+						eElf = gc.getInfoTypeForString('PROMOTION_ELF')
+						eDarkElf = gc.getInfoTypeForString('PROMOTION_DARK_ELF')
+						eDwarf = gc.getInfoTypeForString('PROMOTION_DWARF')
+						
+						leRandomRaces = []
+						
+						sOrcADT = gc.getUnitArtStyleTypeInfo( gc.getPromotionInfo( eOrc ).getUnitArtStyleType() ).getEarlyArtDefineTag( 0, unit.getUnitType() )
+						sElfADT = gc.getUnitArtStyleTypeInfo( gc.getPromotionInfo( eElf ).getUnitArtStyleType() ).getEarlyArtDefineTag( 0, unit.getUnitType() )
+						sDarkElfUAT = gc.getUnitArtStyleTypeInfo( gc.getPromotionInfo( eDarkElf ).getUnitArtStyleType() ).getEarlyArtDefineTag( 0, unit.getUnitType() )
+						sDwarfUAT = gc.getUnitArtStyleTypeInfo( gc.getPromotionInfo( eDwarf ).getUnitArtStyleType() ).getEarlyArtDefineTag( 0, unit.getUnitType() )
+						if( sOrcADT != None and sOrcADT != unit.getArtInfo( 0, 0 ).getTag() ) :
+							leRandomRaces.append( eOrc )
+							leRandomRaces.append( eOrc )
+						if( sElfADT != None and sElfADT != unit.getArtInfo( 0, 0 ).getTag() ) :
+							leRandomRaces.append( eElf )
+						if( sDarkElfUAT != None and sDarkElfUAT != unit.getArtInfo( 0, 0 ).getTag() ) :
+							leRandomRaces.append( eDarkElf )
+						if( sDwarfUAT != None and sDwarfUAT != unit.getArtInfo( 0, 0 ).getTag() ) :
+							leRandomRaces.append( eDwarf )
+							leRandomRaces.append( eDwarf )
+						
+						if( len( leRandomRaces ) > 0 ) :
+							unit.setHasPromotion( leRandomRaces[CyGame().getSorenRandNum( len( leRandomRaces ), "Diverse Trait Random Race" )], True )
+					# EXTRA_CIV_TRAITS end
 		# End Advanced Tactics
 
 		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_BEAST_OF_AGARES'):
