@@ -1595,7 +1595,7 @@
 				<TraitType>TRAIT_AGNOSTIC</TraitType>
 				<TraitType>TRAIT_WINTERBORN</TraitType>
 			</CivTraits>
-			<DefaultRace>NONEs</DefaultRace>
+			<DefaultRace>NONE</DefaultRace>
 			<Help>TXT_KEY_CIV_ILLIANS_HELP</Help>
 			<Hero>UNIT_WILBOMAN</Hero>
 			<MaintainFeatures>
