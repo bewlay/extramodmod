@@ -25874,6 +25874,10 @@
 					<PromotionType>PROMOTION_DEMON</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_COLD_RESISTANCE</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<iCombatDefense>33</iCombatDefense>
 			<iModifyGlobalCounter>3</iModifyGlobalCounter>
