@@ -4185,6 +4185,11 @@ public:
 	bool readPass2(CvXMLLoadUtility* pXML);
 //FfH: End Add
 
+// Features modified by Armageddon Counter START
+	int getFeatureDown() const;
+	int getFeatureUp() const;
+// Features modified by Armageddon Counter END
+
 	// Arrays
 
 	int getYieldChange(int i) const;						// Exposed to Python
@@ -4240,6 +4245,11 @@ protected:
 	int m_iRequireResist;
 	CvString m_szPythonOnMove;
 //FfH: End Add
+
+// Features modified by Armageddon Counter START
+	int m_iFeatureDown;
+	int m_iFeatureUp;
+// Features modified by Armageddon Counter END
 
 	// Arrays
 

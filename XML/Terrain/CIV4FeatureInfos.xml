@@ -483,6 +483,8 @@
 			<PrereqStateReligion>NONE</PrereqStateReligion>
             <PythonOnMove></PythonOnMove>
 			<RequireResist>NONE</RequireResist>
+			<FeatureDown>NONE</FeatureDown>
+			<FeatureUp>FEATURE_OBSIDIAN_PLAINS</FeatureUp>
 		</FeatureInfo>
 		<FeatureInfo>
 			<Type>FEATURE_FOREST</Type>
@@ -1453,6 +1455,8 @@
 			<PrereqStateReligion>NONE</PrereqStateReligion>
             <PythonOnMove></PythonOnMove>
 			<RequireResist>NONE</RequireResist>
+			<FeatureDown>FEATURE_FLOOD_PLAINS</FeatureDown>
+			<FeatureUp>NONE</FeatureUp>
 		</FeatureInfo>
 		<FeatureInfo>
 			<Type>FEATURE_VOLCANO</Type>

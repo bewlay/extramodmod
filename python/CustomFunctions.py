@@ -662,6 +662,7 @@ class CustomFunctions:
 		iAForest = gc.getInfoTypeForString( 'FEATURE_FOREST_ANCIENT' )
 		iNForest = gc.getInfoTypeForString( 'FEATURE_FOREST_NEW' )
 		iBForest = gc.getInfoTypeForString( 'FEATURE_FOREST_BURNT' )
+		iObsPlains = gc.getInfoTypeForString( 'FEATURE_OBSIDIAN_PLAINS' )
 		iCount = CyGame().getGlobalCounter()
 		for i in range ( CyMap().numPlots() ):
 			pPlot = CyMap().plotByIndex( i )
@@ -757,11 +758,9 @@ class CustomFunctions:
 							pPlot.setBonusType( iRice )
 						else:
 							pPlot.setBonusType( iWheat )
-			if iTerrain == iBurningSands:
-				if pPlot.isCity() == False:
-					if pPlot.isPeak() == False:
-						if CyGame().getSorenRandNum( 100, "Flames" ) < iFlamesSpreadChance:
-							pPlot.setFeatureType( iFlames, 0 )
+			if iTerrain == iBurningSands and not pPlot.isCity() and not pPlot.isPeak() and iFeature != iObsPlains:
+				if CyGame().getSorenRandNum(100, "Flames") < iFlamesSpreadChance:
+					pPlot.setFeatureType(iFlames, 0)
 
 #AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
 	def doTurnGrigori( self, iPlayer ):

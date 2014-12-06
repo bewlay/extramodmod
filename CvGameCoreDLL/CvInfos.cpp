@@ -17172,6 +17172,11 @@ m_iPrereqStateReligion(NO_RELIGION),
 m_iRequireResist(NO_DAMAGE),
 //FfH: End Add
 
+// Features modified by Armageddon Counter START
+m_iFeatureDown(NO_FEATURE),
+m_iFeatureUp(NO_FEATURE),
+// Features modified by Armageddon Counter END
+
 m_piYieldChange(NULL),
 m_piRiverYieldChange(NULL),
 m_piHillsYieldChange(NULL),
@@ -17372,6 +17377,18 @@ int CvFeatureInfo::getRequireResist() const
 }
 //FfH: End Add
 
+// Features modified by Armageddon Counter START
+int CvFeatureInfo::getFeatureDown() const
+{
+	return m_iFeatureDown;
+}
+
+int CvFeatureInfo::getFeatureUp() const
+{
+	return m_iFeatureUp;
+}
+// Features modified by Armageddon Counter END
+
 // Arrays
 
 int CvFeatureInfo::getYieldChange(int i) const
@@ -17532,6 +17549,12 @@ bool CvFeatureInfo::readPass2(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "FeatureUpgrade");
 	m_iFeatureUpgrade = GC.getInfoTypeForString(szTextVal);
+// Features modified by Armageddon Counter START
+	pXML->GetChildXmlValByName(szTextVal, "FeatureDown");
+	m_iFeatureDown = GC.getInfoTypeForString(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "FeatureUp");
+	m_iFeatureUp = GC.getInfoTypeForString(szTextVal);
+// Features modified by Armageddon Counter END
 
 	return true;
 }

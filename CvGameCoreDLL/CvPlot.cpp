@@ -12169,21 +12169,32 @@ void CvPlot::changePlotCounter(int iChange)
 		const int iPlotCounterDown	= GC.getTerrainInfo(getTerrainType()).getPlotCounterDown();
 		const int iPlotCounterUp	= GC.getTerrainInfo(getTerrainType()).getPlotCounterUp();
 		bool bChange = false;
+		bool bIsUpChange;
 		if (getPlotCounter() < iPlotCounterDown && iPlotCounterDown <= iOldCounter)
 		{
 			setTerrainType((TerrainTypes)GC.getTerrainInfo(getTerrainType()).getTerrainDown(), true, true);
 			bChange = true;
+			bIsUpChange = false;
 		}
 		if (iOldCounter <= iPlotCounterUp && iPlotCounterUp < getPlotCounter())
 		{
 			setTerrainType((TerrainTypes)GC.getTerrainInfo(getTerrainType()).getTerrainUp(), true, true);
 			bChange = true;
+			bIsUpChange = true;
 		}
 //<<<<Unofficial Bug Fix: End Modify
 		if (bChange)
 		{
 			if (getFeatureType() != NO_FEATURE)
 			{
+				// Features modified by Armageddon Counter START
+				CvFeatureInfo &kCurrentFeature = GC.getFeatureInfo(getFeatureType());
+				FeatureTypes iNextFeatureType = (FeatureTypes) ((bIsUpChange) ? kCurrentFeature.getFeatureUp() : kCurrentFeature.getFeatureDown());
+				if (iNextFeatureType != NO_FEATURE && GC.getFeatureInfo(iNextFeatureType).isTerrain(getTerrainType()))
+				{
+					setFeatureType(iNextFeatureType);
+				} else
+				// Features modified by Armageddon Counter END
 				if (!GC.getFeatureInfo(getFeatureType()).isTerrain(getTerrainType()))
 				{
 					setFeatureType(NO_FEATURE);

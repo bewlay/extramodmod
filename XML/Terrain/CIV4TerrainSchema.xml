@@ -152,6 +152,8 @@
 	<ElementType name="PrereqStateReligion" content="textOnly"/>
 	<ElementType name="PythonOnMove" content="textOnly"/>
 	<ElementType name="RequireResist" content="textOnly"/>
+	<ElementType name="FeatureDown" content="textOnly"/>
+	<ElementType name="FeatureUp" content="textOnly"/>
 	<ElementType name="FeatureInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -192,6 +194,8 @@
 		<element type="PrereqStateReligion"/>
 		<element type="PythonOnMove"/>
 		<element type="RequireResist"/>
+		<element type="FeatureUp" minOccurs="0"/>
+		<element type="FeatureDown" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="FeatureInfos" content="eltOnly">
 		<element type="FeatureInfo" maxOccurs="*"/>
