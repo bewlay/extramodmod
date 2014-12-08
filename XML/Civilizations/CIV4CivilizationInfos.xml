@@ -1253,7 +1253,7 @@
 					<BuildingType>BUILDING_FORUM</BuildingType>
 				</Building>
 				<Building>
-					<BuildingClassType>BUILDINGCLASS_CIV_BUILDING2</BuildingClassType>
+					<BuildingClassType>BUILDINGCLASS_MUSEUM</BuildingClassType>
 					<BuildingType>BUILDING_MUSEUM</BuildingType>
 				</Building>
 			</Buildings>

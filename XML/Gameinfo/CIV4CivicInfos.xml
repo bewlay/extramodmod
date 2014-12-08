@@ -1491,6 +1491,10 @@
                     <BuildingType>BUILDINGCLASS_LIBRARY</BuildingType>
                     <iHappinessChange>1</iHappinessChange>
                 </BuildingHappinessChange>
+                <BuildingHappinessChange>
+                    <BuildingType>BUILDINGCLASS_MUSEUM</BuildingType>
+                    <iHappinessChange>1</iHappinessChange>
+                </BuildingHappinessChange>
             </BuildingHappinessChanges>
             <BuildingHealthChanges>
             </BuildingHealthChanges>
