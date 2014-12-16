@@ -1827,6 +1827,16 @@ void CvMap::calculateWilderness()
 		pLoopPlot->setWilderness( std::min( 100, iNewWilderness ) );
 	}
 	
+	SAFE_DELETE_ARRAY( piAreaMaxWilderness );
+	SAFE_DELETE_ARRAY( piAreaMinWilderness );
+	SAFE_DELETE_ARRAY( piUAreaMinAvDist );
+	SAFE_DELETE_ARRAY( piUAreaMaxAvDist );
+	SAFE_DELETE_ARRAY( pfPlotWilderness );
+	SAFE_DELETE_ARRAY( piUAreaMeanX );
+	SAFE_DELETE_ARRAY( piUAreaMeanY );
+	SAFE_DELETE_ARRAY( pfAreaNormFactor );
+	SAFE_DELETE_ARRAY( pfAreaNormShift );
+	
 	// LFGR_TEST
 	if( GC.getDefineINT( "DEBUG_PAINT_WILDERNESS" ) == 1 )
 	{

@@ -39,6 +39,16 @@ struct CvTerrainAmountCache
 	float *afYieldAmount;
 	float *afImprovementAmount;
 	float *afBonusAmount;
+
+	virtual ~CvTerrainAmountCache()
+	{
+		SAFE_DELETE_ARRAY( afPlotAmount );
+		SAFE_DELETE_ARRAY( afTerrainAmount );
+		SAFE_DELETE_ARRAY( afFeatureAmount );
+		SAFE_DELETE_ARRAY( afYieldAmount );
+		SAFE_DELETE_ARRAY( afImprovementAmount );
+		SAFE_DELETE_ARRAY( afBonusAmount );
+	}
 };
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                                                                END           */
