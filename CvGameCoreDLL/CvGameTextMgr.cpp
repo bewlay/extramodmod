@@ -5760,7 +5760,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 	}
 	else if (bShift && !bAlt && (gDLL->getChtLvl() > 0))
 	{
-	// LFGR_TEST
+#ifdef _DEBUG
 		szString.append( "Animal Spawning: " );
 		szString.append( pPlot->bPlotAnimalValid ? L"Valid" : ( pPlot->bPlotAnimalEverValid ? L"Invalid" : L"Never valid" ) );
 		szString.append( NEWLINE );
@@ -5769,7 +5769,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		szString.append( NEWLINE );
 		szString.append( CvWString::format( L"Lair unit count: %d", pPlot->getLairUnitCount() ) );
 		szString.append( NEWLINE );
-	// LFGR_TEST end
+#endif
 
 		szString.append(GC.getTerrainInfo(pPlot->getTerrainType()).getDescription());
 		

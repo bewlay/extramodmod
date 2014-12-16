@@ -7518,10 +7518,10 @@ void CvGame::createBarbarianUnits()
 			vbPlotAnimalValid[iPlot] = bValid; // LFGR_TODO: && !bVisible?
 			vbPlotBarbValid[iPlot] = bValid;
 
-		// LFGR_TEST
+#ifdef _DEBUG
 			pPlot->bPlotAnimalEverValid = vbPlotAnimalValid[iPlot];
 			pPlot->bPlotBarbEverValid = vbPlotBarbValid[iPlot];
-		// LFGR_TEST end
+#endif
 		}
 		
 		// Find existing units and make plots based on number of units invalid
@@ -7631,10 +7631,10 @@ void CvGame::createBarbarianUnits()
 		{
 			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
 			
-		// LFGR_TEST
+#ifdef _DEBUG
 			pPlot->bPlotAnimalValid = vbPlotAnimalValid[iPlot];
 			pPlot->bPlotBarbValid = vbPlotBarbValid[iPlot];
-		// LFGR_TEST end
+#endif
 			
 			if( bAnimals && vbPlotAnimalValid[iPlot] )
 			{

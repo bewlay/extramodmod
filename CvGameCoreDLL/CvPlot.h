@@ -679,12 +679,12 @@ public:
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
 	
-// LFGR_TEST
+#ifdef _DEBUG
 	bool bPlotAnimalEverValid;
 	bool bPlotAnimalValid;
 	bool bPlotBarbEverValid;
 	bool bPlotBarbValid;
-// LFGR_TEST end
+#endif
 
 protected:
 
