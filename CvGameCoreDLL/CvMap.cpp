@@ -1578,8 +1578,6 @@ void CvMap::calculateWilderness()
 		int iLoopY = pLoopPlot->getY_INLINE();
 		int iLoopArea = pLoopPlot->getArea() & FLTA_INDEX_MASK; // No idea why plots not simply store 0, 1, 2...
 		bool bWaterArea = getArea( iLoopArea )->isWater();
-
-		// LFGR_TODO: Wilderness from terrain and feature
 		
 		int iNearestDist = -1;
 		int iSecondNearestDist = -1;
