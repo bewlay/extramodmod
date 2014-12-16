@@ -2207,5 +2207,18 @@ void CyEnumsPythonInterface()
 		.value("LEADERCATEGORY_BARBARIAN", LEADERCATEGORY_BARBARIAN) // Barbarian leader.
 		;
 // Leader categories END
-
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+	python::enum_<SpawnTypes>("SpawnTypes")
+		.value("NO_SPAWN", NO_SPAWN)
+		;
+	python::enum_<SpawnPrereqTypes>("SpawnPrereqTypes")
+		.value("NO_SPAWN_PREREQ", NO_SPAWN_PREREQ)
+		;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 }
