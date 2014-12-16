@@ -7482,24 +7482,7 @@ void CvGame::createBarbarianUnits()
 					bValid = false;
 
 			if( bValid )
-			{
-				bool bVisible = false;
-
-				// Visibility
-				// Not sure if isVisibleToCivTeam is sufficient here, it doesn't check isBarbarian().
-				for( int iTeam = 0; iTeam < MAX_CIV_TEAMS; iTeam++ )
-				{
-					if( GET_TEAM( (TeamTypes) iTeam ).isAlive() && !GET_TEAM( (TeamTypes) iTeam ).isBarbarian() )
-					{
-						if( pPlot->isVisible( (TeamTypes) iTeam, false) )
-						{
-							bVisible = true;
-							break;
-						}
-					}
-				}
-				vbPlotVisible[iPlot] = bVisible;
-			}
+				vbPlotVisible[iPlot] = pPlot->isVisibleToCivTeam();
 			
 			if( bValid )
 			{
