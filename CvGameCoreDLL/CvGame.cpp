@@ -7498,7 +7498,7 @@ void CvGame::createBarbarianUnits()
 				}
 			}
 			
-			vbPlotAnimalValid[iPlot] = bValid; // LFGR_TODO: && !bVisible?
+			vbPlotAnimalValid[iPlot] = bValid && !vbPlotVisible[iPlot];
 			vbPlotBarbValid[iPlot] = bValid;
 
 #ifdef _DEBUG
