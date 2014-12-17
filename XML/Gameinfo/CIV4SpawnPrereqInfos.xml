@@ -42,24 +42,16 @@
 		</SpawnPrereqInfo>
 		
 		<SpawnPrereqInfo> <!-- SPAWN_PREREQ_ARCANE -->
-			<!-- Tiers: 0-8 -->
+			<!-- Tiers: 0-6 -->
 			<Type>SPAWN_PREREQ_ARCANE</Type>
 			<WildernessTiers>
 				<WildernessTier>
 					<iMinWilderness>0</iMinWilderness>
-					<iMaxWilderness>40</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>35</iMinWilderness>
-					<iMaxWilderness>65</iMaxWilderness>
+					<iMaxWilderness>60</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>60</iMinWilderness>
-					<iMaxWilderness>80</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>75</iMinWilderness>
-					<iMaxWilderness>95</iMaxWilderness>
+					<iMaxWilderness>90</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>90</iMinWilderness>
@@ -109,24 +101,16 @@
 		</SpawnPrereqInfo>
 		
 		<SpawnPrereqInfo> <!-- SPAWN_PREREQ_ARCHERY -->
-			<!-- Tiers: 0-8 -->
+			<!-- Tiers: 0-6 -->
 			<Type>SPAWN_PREREQ_ARCHERY</Type>
 			<WildernessTiers>
 				<WildernessTier>
 					<iMinWilderness>0</iMinWilderness>
-					<iMaxWilderness>40</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>35</iMinWilderness>
-					<iMaxWilderness>65</iMaxWilderness>
+					<iMaxWilderness>60</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>60</iMinWilderness>
-					<iMaxWilderness>80</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>75</iMinWilderness>
-					<iMaxWilderness>95</iMaxWilderness>
+					<iMaxWilderness>90</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>90</iMinWilderness>
@@ -173,24 +157,16 @@
 		</SpawnPrereqInfo>
 		
 		<SpawnPrereqInfo> <!-- SPAWN_PREREQ_DISCIPLE -->
-			<!-- Tiers: 0-8 -->
+			<!-- Tiers: 0-6 -->
 			<Type>SPAWN_PREREQ_DISCIPLE</Type>
 			<WildernessTiers>
 				<WildernessTier>
 					<iMinWilderness>0</iMinWilderness>
-					<iMaxWilderness>40</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>35</iMinWilderness>
-					<iMaxWilderness>65</iMaxWilderness>
+					<iMaxWilderness>60</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>60</iMinWilderness>
-					<iMaxWilderness>80</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>75</iMinWilderness>
-					<iMaxWilderness>95</iMaxWilderness>
+					<iMaxWilderness>90</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>90</iMinWilderness>
@@ -236,24 +212,16 @@
 		</SpawnPrereqInfo>
 		
 		<SpawnPrereqInfo> <!-- SPAWN_PREREQ_MELEE -->
-			<!-- Tiers: 0-8 -->
+			<!-- Tiers: 0-6 -->
 			<Type>SPAWN_PREREQ_MELEE</Type>
 			<WildernessTiers>
 				<WildernessTier>
 					<iMinWilderness>0</iMinWilderness>
-					<iMaxWilderness>40</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>35</iMinWilderness>
-					<iMaxWilderness>65</iMaxWilderness>
+					<iMaxWilderness>60</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>60</iMinWilderness>
-					<iMaxWilderness>80</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>75</iMinWilderness>
-					<iMaxWilderness>95</iMaxWilderness>
+					<iMaxWilderness>90</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>90</iMinWilderness>
@@ -299,24 +267,16 @@
 		</SpawnPrereqInfo>
 		
 		<SpawnPrereqInfo> <!-- SPAWN_PREREQ_MOUNTED -->
-			<!-- Tiers: 0-8 -->
+			<!-- Tiers: 0-6 -->
 			<Type>SPAWN_PREREQ_MOUNTED</Type>
 			<WildernessTiers>
 				<WildernessTier>
 					<iMinWilderness>0</iMinWilderness>
-					<iMaxWilderness>40</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>35</iMinWilderness>
-					<iMaxWilderness>65</iMaxWilderness>
+					<iMaxWilderness>60</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>60</iMinWilderness>
-					<iMaxWilderness>80</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>75</iMinWilderness>
-					<iMaxWilderness>95</iMaxWilderness>
+					<iMaxWilderness>90</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>90</iMinWilderness>
@@ -364,24 +324,16 @@
 		</SpawnPrereqInfo>
 		
 		<SpawnPrereqInfo> <!-- SPAWN_PREREQ_NAVAL -->
-			<!-- Tiers: 0-8 -->
+			<!-- Tiers: 0-6 -->
 			<Type>SPAWN_PREREQ_NAVAL</Type>
 			<WildernessTiers>
 				<WildernessTier>
 					<iMinWilderness>0</iMinWilderness>
-					<iMaxWilderness>40</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>35</iMinWilderness>
-					<iMaxWilderness>65</iMaxWilderness>
+					<iMaxWilderness>60</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>60</iMinWilderness>
-					<iMaxWilderness>80</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>75</iMinWilderness>
-					<iMaxWilderness>95</iMaxWilderness>
+					<iMaxWilderness>90</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>90</iMinWilderness>
@@ -427,24 +379,16 @@
 		</SpawnPrereqInfo>
 		
 		<SpawnPrereqInfo> <!-- SPAWN_PREREQ_RECON -->
-			<!-- Tiers: 0-8 -->
+			<!-- Tiers: 0-6 -->
 			<Type>SPAWN_PREREQ_RECON</Type>
 			<WildernessTiers>
 				<WildernessTier>
 					<iMinWilderness>0</iMinWilderness>
-					<iMaxWilderness>40</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>35</iMinWilderness>
-					<iMaxWilderness>65</iMaxWilderness>
+					<iMaxWilderness>60</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>60</iMinWilderness>
-					<iMaxWilderness>80</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>75</iMinWilderness>
-					<iMaxWilderness>95</iMaxWilderness>
+					<iMaxWilderness>90</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>90</iMinWilderness>
