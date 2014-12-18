@@ -20,6 +20,45 @@ gc = CyGlobalContext()
 cf = CustomFunctions.CustomFunctions()
 sf = ScenarioFunctions.ScenarioFunctions()
 
+# Cache initializations.
+lliFertilityBonuses = [
+		[
+			gc.getInfoTypeForString('BONUS_WHEAT'),
+			gc.getInfoTypeForString('BONUS_RICE'),
+			gc.getInfoTypeForString('BONUS_CORN')
+		],
+
+		# Animal
+		[
+			gc.getInfoTypeForString('BONUS_COW'),
+			gc.getInfoTypeForString('BONUS_SHEEP'),
+			gc.getInfoTypeForString('BONUS_BISON'),
+			gc.getInfoTypeForString('BONUS_PIG')
+		],
+
+		# Plantation
+		[
+			gc.getInfoTypeForString('BONUS_BANANA'),
+			gc.getInfoTypeForString('BONUS_SUGAR'),
+			gc.getInfoTypeForString('BONUS_COTTON')
+		],
+
+		# Fur
+		[
+			gc.getInfoTypeForString('BONUS_DEER'),
+			gc.getInfoTypeForString('BONUS_FUR')
+		],
+
+		# Sea
+		[
+			gc.getInfoTypeForString('BONUS_CLAM'),
+			gc.getInfoTypeForString('BONUS_CRAB'),
+			gc.getInfoTypeForString('BONUS_FISH'),
+			gc.getInfoTypeForString('BONUS_SHRIMP'),
+		]
+	]
+# Caches end
+
 def cast(argsList):
 	pCaster, eSpell = argsList
 	spell = gc.getSpellInfo(eSpell)
@@ -1303,6 +1342,13 @@ def spellExtort(caster):
 	iGoldPerPop = (iBaseGoldPerPop * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()) / 100
 	pPlayer.changeGold(pCity.getPopulation()*iGoldPerPop)
 	pCity.changeHurryAngerTimer(3)
+
+def helpExtort( lpUnits ) :
+	pUnit = lpUnits[0]
+	pCity = pUnit.plot().getPlotCity()
+	iBaseGoldPerPop = 15
+	iTotalGold = pCity.getPopulation() * ((iBaseGoldPerPop * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()) / 100)
+	return CyTranslator().getText( 'TXT_KEY_SPELL_EXTORT_PYHELP', ( pCity.getName(), iTotalGold ) )
 
 def reqFeed(caster):
 	if caster.getDamage() == 0:
@@ -3082,16 +3128,18 @@ def reqRiftOpen(pCaster):
 	return False
 
 def spellRiftOpen(pCaster):
+	iRiftOpened = gc.getInfoTypeForString('PROMOTION_RIFT_OPENED')
 	pCaster.setDuration(1)
-	pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_RIFT_OPENED'), True)
+	pCaster.setHasPromotion(iRiftOpened, True)
 	pCaster.setBaseCombatStr(10)
 	pPlayer = gc.getPlayer(pCaster.getOwner())
 	pOriginalCaster = pPlayer.getUnit(pCaster.getSummoner())
 	pOriginalCaster.setHasCasted(True)
-	pOriginalCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_RIFT_OPENED'), True)
+	pOriginalCaster.setHasPromotion(iRiftOpened, True)
 	CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_SPELL_RIFT_OPENED_MESSAGE", (pCaster.baseCombatStr(), )),'',1,'Art/Interface/Buttons/Units/Lightning Elemental.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
 
-def reqRiftCross(pCaster):
+def getRiftCrossUnits(pCaster):
+	lpUnits = []
 	pPlot = pCaster.plot()
 	pPlayer = gc.getPlayer(pCaster.getOwner())
 	iRift = gc.getInfoTypeForString('UNIT_RIFT')
@@ -3101,60 +3149,87 @@ def reqRiftCross(pCaster):
 		if pLoopUnit.getOwner() == pCaster.getOwner() and pLoopUnit.isHasPromotion(iRiftOpened):
 			if pLoopUnit.getDuration() > 0 and pLoopUnit.getUnitType() == iRift and pLoopUnit.getSummoner() != -1:
 				pOriginalCaster = pPlayer.getUnit(pLoopUnit.getSummoner())
-				if pOriginalCaster.isHasPromotion(iRiftOpened):
-					return True
-			else:
-				pLoopUnitID = pLoopUnit.getID()
-				py = PyPlayer(pLoopUnit.getOwner())
-				for pRiftUnit in py.getUnitList():
-					if pRiftUnit.getUnitType() == iRift and pRiftUnit.getSummoner() == pLoopUnitID and pRiftUnit.isHasPromotion(iRiftOpened) and pRiftUnit.getDuration() > 0:
-						return True
-	return False
-
-def spellRiftCross(pCaster):
-	pRiftUnit = None
-	pDestinationUnit = None
-	pPlot = pCaster.plot()
-	pPlayer = gc.getPlayer(pCaster.getOwner())
-	iRift = gc.getInfoTypeForString('UNIT_RIFT')
-	iRiftOpened = gc.getInfoTypeForString('PROMOTION_RIFT_OPENED')
-	for i in range(pPlot.getNumUnits()):
-		pLoopUnit = pPlot.getUnit(i)
-		if pLoopUnit.getOwner() == pCaster.getOwner() and pLoopUnit.isHasPromotion(iRiftOpened):
-			if pLoopUnit.getDuration() > 0 and pLoopUnit.getUnitType() == iRift and pLoopUnit.getSummoner() != -1:
-				pRiftUnit = pLoopUnit
-				pDestinationUnit = pPlayer.getUnit(pLoopUnit.getSummoner())
+				lpUnits = [pLoopUnit, pOriginalCaster, pOriginalCaster]
 				break
 			else:
 				pLoopUnitID = pLoopUnit.getID()
 				py = PyPlayer(pLoopUnit.getOwner())
 				for pLoopRiftUnit in py.getUnitList():
 					if pLoopRiftUnit.getUnitType() == iRift and pLoopRiftUnit.getSummoner() == pLoopUnitID:
-						pRiftUnit = pLoopRiftUnit
-						pDestinationUnit = pLoopRiftUnit
+						lpUnits = [pLoopRiftUnit, pLoopUnit, pLoopRiftUnit]
 						break
 				break
+	return lpUnits
+
+def reqRiftCross(pCaster):
+	return len(getRiftCrossUnits(pCaster)) > 0
+
+def spellRiftCross(pCaster):
+	lpUnitsRift = getRiftCrossUnits(pCaster)
+	pRiftUnit = lpUnitsRift[0]
+	pOriginalCaster = lpUnitsRift[1]
+	pDestinationUnit = lpUnitsRift[2]
+	pPlot = pCaster.plot()
+	iRiftOpened = gc.getInfoTypeForString('PROMOTION_RIFT_OPENED')
+	iHeld = gc.getInfoTypeForString('PROMOTION_HELD')
 
 	#A unit crossing a rift from inside a cage must be freed from it
-	if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
-		pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
+	if pCaster.isHasPromotion(iHeld) and pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
+		pCaster.setHasPromotion(iHeld, False)
 		#Now we have to check if the cage has to be eliminated.
 		bRemoveCage = True
 		for i in range(pPlot.getNumUnits()):
 			pUnit = pPlot.getUnit(i)
-			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')):
+			if pUnit.isHasPromotion(iHeld):
 				bRemoveCage = False
 				break
 		if bRemoveCage:
-			pPlot.setImprovementType(-1)
+			pPlot.setImprovementType(ImprovementTypes.NO_IMPROVEMENT)
 
+	# The unit crosses the rift.
 	pCaster.setXY(pDestinationUnit.getX(), pDestinationUnit.getY(), False, True, True)
 	pRiftUnit.setBaseCombatStr(pRiftUnit.baseCombatStr() - 1)
 	if pRiftUnit.baseCombatStr() == 0:
+		# The rift is now closed.
 		pRiftUnit.kill(True, PlayerTypes.NO_PLAYER)
+		pOriginalCaster.setHasPromotion(iRiftOpened, False)
 		CyInterface().addMessage(pRiftUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_SPELL_RIFT_CROSS_CLOSED_MESSAGE", (gc.getUnitInfo(pCaster.getUnitType()).getDescription(), )),'',1,'Art/Interface/Buttons/Units/Lightning Elemental.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
 	else:
 		CyInterface().addMessage(pRiftUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_SPELL_RIFT_CROSS_NUMBER_MESSAGE", (gc.getUnitInfo(pCaster.getUnitType()).getDescription(), pRiftUnit.baseCombatStr())),'',1,'Art/Interface/Buttons/Units/Lightning Elemental.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+
+def helpRiftCross( lpUnits ) :
+	pCaster = lpUnits[0]
+	lpUnitsRift = getRiftCrossUnits(pCaster)
+	pRiftUnit = lpUnitsRift[0]
+	pDestinationUnit = lpUnitsRift[2]
+
+	iCurrRiftCross = pRiftUnit.baseCombatStr()
+	iCrossingUnits = len(lpUnits)
+
+	iWillCrossUnits = min(iCurrRiftCross, iCrossingUnits)
+	iFinalRiftCross = max(iCurrRiftCross - iCrossingUnits, 0)
+
+	sNewLine = CyTranslator().getText( '[NEWLINE]', () )
+
+	if iCrossingUnits == 1:
+		sHelp = CyTranslator().getText( 'TXT_KEY_SPELL_RIFT_CROSS_PYHELP_UNITS_ONE', () )
+	elif iCrossingUnits == iWillCrossUnits:
+		sHelp = CyTranslator().getText( 'TXT_KEY_SPELL_RIFT_CROSS_PYHELP_UNITS_ALL', ( iWillCrossUnits, ) )
+	else:
+		sHelp = CyTranslator().getText( 'TXT_KEY_SPELL_RIFT_CROSS_PYHELP_UNITS_SOME', ( iWillCrossUnits, iCrossingUnits ) )
+	
+	sHelp += sNewLine
+	sHelp += CyTranslator().getText( 'TXT_KEY_SPELL_RIFT_CROSS_PYHELP_DESTINATION', ( pDestinationUnit.getName(), ) )
+	sHelp += sNewLine
+	
+	if iFinalRiftCross > 0:
+		# The rift will not end up closed.
+		sHelp += CyTranslator().getText( 'TXT_KEY_SPELL_RIFT_CROSS_PYHELP_NOT_CLOSED', ( iFinalRiftCross, ) )
+	else:
+		# The rift will close
+		sHelp += CyTranslator().getText( 'TXT_KEY_SPELL_RIFT_CROSS_PYHELP_CLOSED', () )
+
+	return sHelp
 
 def spellSing(caster):
 	pPlot = caster.plot()
@@ -4544,6 +4619,22 @@ def reqDropEquipmentPiecesBarnaxus(caster):
 
 	return True
 
+# Helper method for all 
+def getFertilityBonus(iBonus):
+	if iBonus == BonusTypes.NO_BONUS:
+		return BonusTypes.NO_BONUS
+
+	iNewBonus = BonusTypes.NO_BONUS
+	# We try to find the resource in one of the lists.
+	for lBonusList in lliFertilityBonuses:
+		if iBonus in lBonusList:
+			# If the resource is found, then it must be converted to the resource following it in the same list.
+			iIndex = (lBonusList.index(iBonus) + 1) % len (lBonusList)
+			iNewBonus = lBonusList[iIndex]
+			break
+
+	return iNewBonus
+		
 #Rise from Erebus
 def reqFertility(caster):
 	pPlot = caster.plot()
@@ -4556,35 +4647,10 @@ def reqFertility(caster):
 	if pPlayer.getTeam() != gc.getPlayer(ePlotOwner).getTeam():
 		return False
 
-	pBonus = pPlot.getBonusType(-1)
-	if pBonus == -1:
-		return False
+	iBonus = pPlot.getBonusType(-1)
 
-	iWheat  = gc.getInfoTypeForString('BONUS_WHEAT')
-	iRice   = gc.getInfoTypeForString('BONUS_RICE')
-	iCorn   = gc.getInfoTypeForString('BONUS_CORN')
-
-	iCow    = gc.getInfoTypeForString('BONUS_COW')
-	iSheep  = gc.getInfoTypeForString('BONUS_SHEEP')
- 	iBison  = gc.getInfoTypeForString('BONUS_BISON')
- 	iPig    = gc.getInfoTypeForString('BONUS_PIG')
-
-	iBanana = gc.getInfoTypeForString('BONUS_BANANA')
-	iSugar  = gc.getInfoTypeForString('BONUS_SUGAR')
- 	iCotton = gc.getInfoTypeForString('BONUS_COTTON')
-
-	iDeer   = gc.getInfoTypeForString('BONUS_DEER')
-	iFur    = gc.getInfoTypeForString('BONUS_FUR')
-
-	iClam   = gc.getInfoTypeForString('BONUS_CLAM')
-	iCrab   = gc.getInfoTypeForString('BONUS_CRAB')
- 	iFish   = gc.getInfoTypeForString('BONUS_FISH')
- 	iShrimp = gc.getInfoTypeForString('BONUS_SHRIMP')
-
-	if pBonus == iWheat or pBonus == iRice or pBonus == iCorn or pBonus == iCow or pBonus == iSheep or pBonus == iBison or pBonus == iPig or pBonus == iBanana or pBonus == iSugar or pBonus == iCotton or pBonus == iDeer or pBonus == iFur or pBonus == iClam or pBonus == iCrab or pBonus == iFish or pBonus == iShrimp:
-		return True
-
-	return False
+	iNextBonus = getFertilityBonus(iBonus)
+	return iNextBonus != BonusTypes.NO_BONUS
 
 #Rise from Erebus
 def spellFertility(caster):
@@ -4592,65 +4658,19 @@ def spellFertility(caster):
 	pPlayer = gc.getPlayer(iPlayer)
 	pPlot = caster.plot()
 
-	pBonus = pPlot.getBonusType(-1)
+	iBonus = pPlot.getBonusType(-1)
+	iNextBonus = getFertilityBonus(iBonus)
 
-	iWheat  = gc.getInfoTypeForString('BONUS_WHEAT')
-	iRice   = gc.getInfoTypeForString('BONUS_RICE')
-	iCorn   = gc.getInfoTypeForString('BONUS_CORN')
+	if iNextBonus != BonusTypes.NO_BONUS:
+ 		pPlot.setBonusType(iNextBonus)
 
-	iCow    = gc.getInfoTypeForString('BONUS_COW')
-	iSheep  = gc.getInfoTypeForString('BONUS_SHEEP')
-	iBison  = gc.getInfoTypeForString('BONUS_BISON')
- 	iPig    = gc.getInfoTypeForString('BONUS_PIG')
+def helpFertility( lpUnits ) :
+	pUnit = lpUnits[0]
+	pPlot = pUnit.plot()
+	iBonus = pPlot.getBonusType(-1)
+	iNextBonus = getFertilityBonus(iBonus)
 
-	iBanana = gc.getInfoTypeForString('BONUS_BANANA')
-	iSugar  = gc.getInfoTypeForString('BONUS_SUGAR')
- 	iCotton = gc.getInfoTypeForString('BONUS_COTTON')
-
-	iDeer   = gc.getInfoTypeForString('BONUS_DEER')
-	iFur    = gc.getInfoTypeForString('BONUS_FUR')
-
-	iClam   = gc.getInfoTypeForString('BONUS_CLAM')
-	iCrab   = gc.getInfoTypeForString('BONUS_CRAB')
- 	iFish   = gc.getInfoTypeForString('BONUS_FISH')
- 	iShrimp = gc.getInfoTypeForString('BONUS_SHRIMP')
-
- 	if pBonus == iWheat:
- 		pPlot.setBonusType(iRice)
- 	elif pBonus == iRice:
- 		pPlot.setBonusType(iCorn)
-  	elif pBonus == iCorn:
-  		pPlot.setBonusType(iWheat)
-
-  	elif pBonus == iCow:
- 		pPlot.setBonusType(iSheep)
- 	elif pBonus == iSheep:
- 		pPlot.setBonusType(iBison)
- 	elif pBonus == iBison:
- 		pPlot.setBonusType(iPig)
- 	elif pBonus == iPig:
- 		pPlot.setBonusType(iCow)
-
-  	elif pBonus == iBanana:
- 		pPlot.setBonusType(iSugar)
- 	elif pBonus == iSugar:
- 		pPlot.setBonusType(iCotton)
- 	elif pBonus == iCotton:
- 		pPlot.setBonusType(iBanana)
-
-  	elif pBonus == iDeer:
- 		pPlot.setBonusType(iFur)
- 	elif pBonus == iFur:
- 		pPlot.setBonusType(iDeer)
-
-  	elif pBonus == iClam:
- 		pPlot.setBonusType(iCrab)
- 	elif pBonus == iCrab:
- 		pPlot.setBonusType(iFish)
- 	elif pBonus == iFish:
- 		pPlot.setBonusType(iShrimp)
- 	elif pBonus == iShrimp:
- 		pPlot.setBonusType(iClam)
+	return CyTranslator().getText( 'TXT_KEY_SPELL_FERTILITY_PYHELP', ( gc.getBonusInfo(iBonus).getDescription(), gc.getBonusInfo(iNextBonus).getDescription() ) )
 
 def spellUpgradeLucian(pCaster):
 	pPlayer = gc.getPlayer(pCaster.getOwner())
