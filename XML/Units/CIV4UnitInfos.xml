@@ -7410,6 +7410,7 @@
 			<bMilitaryHappiness>1</bMilitaryHappiness>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK</UnitAIType>
@@ -7420,8 +7421,9 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<iCost>45</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -7453,6 +7455,7 @@
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
 			<iWeaponTier>3</iWeaponTier>
+			<PrereqBuildingClass>BUILDINGCLASS_CARNIVAL</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_CENTAUR_CHARGER -->
 			<Class>UNITCLASS_CHARIOT</Class>
@@ -17334,6 +17337,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK_CITY</UnitAIType>
@@ -17352,8 +17356,9 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<iCost>240</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -17401,6 +17406,7 @@
 					<iCombat>1</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<PrereqBuildingClass>BUILDINGCLASS_GROVE</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_MARDERO -->
 			<Class>UNITCLASS_MARDERO</Class>
@@ -18119,6 +18125,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
@@ -18129,8 +18136,9 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<iCost>240</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -18161,6 +18169,7 @@
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
 			<iCombatDefense>11</iCombatDefense>
 			<iTier>4</iTier>
+			<PrereqBuildingClass>BUILDINGCLASS_OBSIDIAN_GATE</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_MISTFORM -->
 			<Class>UNITCLASS_MISTFORM</Class>
@@ -18319,6 +18328,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitClassUpgrades>
 				<UnitClassUpgrade>
 					<UnitClassUpgradeType>UNITCLASS_ARCHMAGE</UnitClassUpgradeType>
@@ -18423,8 +18433,10 @@
 					<bBuild>1</bBuild>
 				</Build>
 			</Builds>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<iAIWeight>150</iAIWeight>
+			<iCost>150</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -18461,6 +18473,7 @@
 			<bFreeXP>1</bFreeXP>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>3</iTier>
+			<PrereqBuildingClass>BUILDINGCLASS_MAGE_GUILD</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_MOKKA -->
 			<Class>UNITCLASS_MOKKA</Class>
@@ -21621,6 +21634,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK</UnitAIType>
@@ -21635,8 +21649,9 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<iCost>150</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -21668,6 +21683,7 @@
 					<iCombat>1</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<PrereqBuildingClass>BUILDINGCLASS_GAMBLING_HOUSE</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_ROSIER -->
 			<Class>UNITCLASS_ROSIER</Class>
@@ -23926,6 +23942,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_COUNTER</UnitAIType>
@@ -23936,8 +23953,9 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<iCost>150</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -24082,6 +24100,7 @@
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
 			<iTier>1</iTier>
+			<PrereqBuildingClass>BUILDINGCLASS_PUBLIC_BATHS</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_TAR_DEMON -->
 			<Class>UNITCLASS_TAR_DEMON</Class>
@@ -24097,6 +24116,7 @@
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
 			<bFlatMovementCost>1</bFlatMovementCost>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
@@ -24104,8 +24124,9 @@
 				</UnitAI>
 			</UnitAIs>
 			<ReligionType>RELIGION_THE_ASHEN_VEIL</ReligionType>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<iCost>150</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -24143,6 +24164,7 @@
 					<iCombat>1</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<PrereqBuildingClass>BUILDINGCLASS_TEMPLE_OF_THE_VEIL</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_TEUTORIX -->
 			<Class>UNITCLASS_TEUTORIX</Class>
