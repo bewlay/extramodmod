@@ -360,6 +360,12 @@
                     <iCombat>1</iCombat>
                 </DamageTypeCombat>
             </DamageTypeCombats>
+            <DamageTypeResists>
+                <DamageTypeResist>
+                    <DamageType>DAMAGE_FIRE</DamageType>
+                    <iResist>15</iResist>
+                </DamageTypeResist>
+			</DamageTypeResists> 
         </PromotionInfo>
 		<PromotionInfo>
 			<Type>PROMOTION_BLINDED</Type>
