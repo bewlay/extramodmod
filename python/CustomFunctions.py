@@ -874,19 +874,19 @@ class CustomFunctions:
 			iVault6 = gc.getInfoTypeForString( 'BUILDING_DWARVEN_VAULT_FULL' )
 			iVault7 = gc.getInfoTypeForString( 'BUILDING_DWARVEN_VAULT_OVERFLOWING' )
 			iGold = pPlayer.getGold() / pPlayer.getNumCities()
-			if iGold <= 49:
+			if iGold <= 24:
 				iNewVault = iVault1
-			if ( iGold >= 50 and iGold <= 99 ):
+			if (iGold >= 25 and iGold <= 49):
 				iNewVault = iVault2
-			if ( iGold >= 100 and iGold <= 149 ):
+			if (iGold >= 50 and iGold <= 74):
 				iNewVault = iVault3
-			if ( iGold >= 150 and iGold <= 199 ):
+			if (iGold >= 75 and iGold <= 99):
 				iNewVault = iVault4
-			if ( iGold >= 200 and iGold <= 299 ):
+			if (iGold >= 100 and iGold <= 149):
 				iNewVault = iVault5
-			if ( iGold >= 300 and iGold <= 499 ):
+			if (iGold >= 150 and iGold <= 249):
 				iNewVault = iVault6
-			if iGold >= 500:
+			if iGold >= 250:
 				iNewVault = iVault7
 			for pyCity in PyPlayer( iPlayer ).getCityList():
 				pCity = pyCity.GetCy()
