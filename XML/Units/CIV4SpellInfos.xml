@@ -704,6 +704,27 @@
             <Button>Art/Interface/Buttons/Promotions/CrownofBrillance.dds</Button>
         </SpellInfo>
         <SpellInfo>
+            <Type>SPELL_CROWN_OF_BRILLANCE_CHALID</Type>
+            <Description>TXT_KEY_SPELL_CROWN_OF_BRILLANCE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitClassPrereq>UNITCLASS_CHALID</UnitClassPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <iRange>1</iRange>
+            <iDamage>30</iDamage>
+            <iDamageLimit>60</iDamageLimit>
+            <DamageType>DAMAGE_HOLY</DamageType>
+            <AddPromotionType1>PROMOTION_CROWN_OF_BRILLANCE</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bImmuneTeam>1</bImmuneTeam>
+            <bImmuneNeutral>1</bImmuneNeutral>
+            <PyRequirement>reqCrownOfBrillance(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_EARTHQUAKE</Sound>
+            <Button>Art/Interface/Buttons/Promotions/CrownofBrillance.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
             <Type>SPELL_CRUSH</Type>
             <Description>TXT_KEY_SPELL_CRUSH</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -5088,6 +5109,23 @@
             <Civilopedia>TXT_KEY_SPELL_UNYIELDING_ORDER_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_UNYIELDING_ORDER_HELP</Help>
             <UnitClassPrereq>UNITCLASS_HIGH_PRIEST_OF_THE_ORDER</UnitClassPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bInBordersOnly>1</bInBordersOnly>
+            <bInCityOnly>1</bInCityOnly>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <CreateBuildingType>BUILDING_UNYIELDING_ORDER</CreateBuildingType>
+            <PyResult>spellUnyieldingOrder(pCaster)</PyResult>
+            <Effect>EFFECT_CREATION</Effect>
+            <Sound>AS3D_SPELL_HOPE</Sound>
+            <Button>Art/Interface/Buttons/Buildings/Unyieldingorder.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_UNYIELDING_ORDER_SPHENER</Type>
+            <Description>TXT_KEY_SPELL_UNYIELDING_ORDER</Description>
+            <Civilopedia>TXT_KEY_SPELL_UNYIELDING_ORDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_UNYIELDING_ORDER_HELP</Help>
+            <UnitClassPrereq>UNITCLASS_SPHENER</UnitClassPrereq>
             <bAllowAI>1</bAllowAI>
             <bInBordersOnly>1</bInBordersOnly>
             <bInCityOnly>1</bInCityOnly>
