@@ -10233,7 +10233,7 @@
 			<StateReligion>RELIGION_FELLOWSHIP_OF_LEAVES</StateReligion>
 			<PrereqReligion>RELIGION_FELLOWSHIP_OF_LEAVES</PrereqReligion>
 			<PrereqTech>TECH_WAY_OF_THE_FORESTS</PrereqTech>
-			<iCost>60</iCost>
+			<iCost>75</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
