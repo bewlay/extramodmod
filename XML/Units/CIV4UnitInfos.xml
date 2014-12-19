@@ -6416,7 +6416,7 @@
 			<ReligionType>RELIGION_THE_EMPYREAN</ReligionType>
 			<StateReligion>RELIGION_THE_EMPYREAN</StateReligion>
 			<PrereqReligion>RELIGION_THE_EMPYREAN</PrereqReligion>
-			<PrereqTech>TECH_RIGHTEOUSNESS</PrereqTech>
+			<PrereqTech>TECH_RELIGIOUS_LAW</PrereqTech>
 			<iAIWeight>200</iAIWeight>
 			<iCost>300</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>

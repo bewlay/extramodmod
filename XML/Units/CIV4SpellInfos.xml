@@ -2865,6 +2865,7 @@
             <Description>TXT_KEY_SPELL_PILLAR_OF_FIRE</Description>
             <Civilopedia>TXT_KEY_SPELL_PILLAR_OF_FIRE_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_PILLAR_OF_FIRE_HELP</Help>
+			<TechPrereq>TECH_RIGHTEOUSNESS</TechPrereq>
             <UnitClassPrereq>UNITCLASS_CHALID</UnitClassPrereq>
             <bAllowAI>1</bAllowAI>
             <iAIWeight>300</iAIWeight>
