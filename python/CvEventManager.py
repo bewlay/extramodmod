@@ -2516,8 +2516,8 @@ class CvEventManager:
 
 		if pCity.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_PLANAR_GATE')) > 0:
 			## Scaled planar gate probability.
-			iMax = 1 + 0.03 * CyGame().getGlobalCounter()
-			iMult = 1 + 0.015 * CyGame().getGlobalCounter()
+			iMax = 1 + 0.333 * CyGame().getGlobalCounter()
+			iMult = 1 + 0.06 * CyGame().getGlobalCounter()
 
 			if CyGame().getSorenRandNum(10000, "Planar Gate") < gc.getDefineINT('PLANAR_GATE_CHANCE') * iMult:
 				listUnits = []
