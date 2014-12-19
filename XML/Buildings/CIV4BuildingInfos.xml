@@ -27542,7 +27542,7 @@
 			<iModifyGlobalCounter>0</iModifyGlobalCounter>
 			<iPlotRadius>0</iPlotRadius>
 			<iResistMagic>0</iResistMagic>
-			<FreeBonus2>BONUS_MANA_CHAOS</FreeBonus2>
+			<FreeBonus2>BONUS_MANA_ENTROPY</FreeBonus2>
 			<FreeBonus3>BONUS_MANA_DEATH</FreeBonus3>
 			<PrereqCiv></PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
