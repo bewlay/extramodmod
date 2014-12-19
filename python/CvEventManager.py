@@ -2549,8 +2549,8 @@ class CvEventManager:
 					CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_PLANAR_GATE",()),'AS2D_DISCOVERBONUS',1,gc.getUnitInfo(newUnit.getUnitType()).getButton(),ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
 					if iUnit == gc.getInfoTypeForString('UNIT_MOBIUS_WITCH'):
 						promotions = [ 'PROMOTION_AIR1','PROMOTION_BODY1','PROMOTION_CHAOS1','PROMOTION_CREATION1','PROMOTION_DEATH1','PROMOTION_DIMENSIONAL1','PROMOTION_EARTH1','PROMOTION_ENCHANTMENT1','PROMOTION_ENTROPY1','PROMOTION_FORCE1','PROMOTION_FIRE1','PROMOTION_ICE1','PROMOTION_LAW1','PROMOTION_LIFE1','PROMOTION_METAMAGIC1','PROMOTION_MIND1','PROMOTION_NATURE1','PROMOTION_SHADOW1','PROMOTION_SPIRIT1','PROMOTION_SUN1','PROMOTION_WATER1' ]
-						newUnit.setLevel(4)
-						newUnit.setExperience(14, -1)
+						pUnit.setLevel(2)
+						pUnit.setExperience(5, -1)
 						for i in promotions:
 							if CyGame().getSorenRandNum(10, "Bob") == 1:
 								newUnit.setHasPromotion(gc.getInfoTypeForString(i), True)
