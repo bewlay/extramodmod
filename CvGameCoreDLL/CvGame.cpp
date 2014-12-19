@@ -7482,24 +7482,7 @@ void CvGame::createBarbarianUnits()
 					bValid = false;
 
 			if( bValid )
-			{
-				bool bVisible = false;
-
-				// Visibility
-				// Not sure if isVisibleToCivTeam is sufficient here, it doesn't check isBarbarian().
-				for( int iTeam = 0; iTeam < MAX_CIV_TEAMS; iTeam++ )
-				{
-					if( GET_TEAM( (TeamTypes) iTeam ).isAlive() && !GET_TEAM( (TeamTypes) iTeam ).isBarbarian() )
-					{
-						if( pPlot->isVisible( (TeamTypes) iTeam, false) )
-						{
-							bVisible = true;
-							break;
-						}
-					}
-				}
-				vbPlotVisible[iPlot] = bVisible;
-			}
+				vbPlotVisible[iPlot] = pPlot->isVisibleToCivTeam();
 			
 			if( bValid )
 			{
@@ -7515,13 +7498,13 @@ void CvGame::createBarbarianUnits()
 				}
 			}
 			
-			vbPlotAnimalValid[iPlot] = bValid; // LFGR_TODO: && !bVisible?
+			vbPlotAnimalValid[iPlot] = bValid && !vbPlotVisible[iPlot];
 			vbPlotBarbValid[iPlot] = bValid;
 
-		// LFGR_TEST
+#ifdef _DEBUG
 			pPlot->bPlotAnimalEverValid = vbPlotAnimalValid[iPlot];
 			pPlot->bPlotBarbEverValid = vbPlotBarbValid[iPlot];
-		// LFGR_TEST end
+#endif
 		}
 		
 		// Find existing units and make plots based on number of units invalid
@@ -7631,20 +7614,32 @@ void CvGame::createBarbarianUnits()
 		{
 			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
 			
-		// LFGR_TEST
+#ifdef _DEBUG
 			pPlot->bPlotAnimalValid = vbPlotAnimalValid[iPlot];
 			pPlot->bPlotBarbValid = vbPlotBarbValid[iPlot];
-		// LFGR_TEST end
+#endif
 			
 			if( bAnimals && vbPlotAnimalValid[iPlot] )
 			{
 				float fAnimalChance = ( pPlot->isWater() ? PLOT_CHANCE_ANIMAL_WATER : PLOT_CHANCE_ANIMAL );
 				
 				// Faster respawning in higher wilderness
-				float fSpeedMod = GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED" ) * ( 1 + pPlot->getWilderness() / 100.0f );
+				float fSpeedMod = GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED" );
+				if( !isOption( GAMEOPTION_NO_WILDERNESS ) )
+					 fSpeedMod *= ( 1 + pPlot->getWilderness() / 100.0f );
 				// Slower Respawning on visible tiles
 				if( vbPlotVisible[iPlot] )
 					fSpeedMod *= GC.getDefineFLOAT( "VISIBLE_TILE_SPAWNING_SPEED_MOD" );
+
+				// Terrain affects spawning speed
+				float fTerrainSpeedMod = GC.getDefineFLOAT( "TERRAIN_SPAWNING_SPEED_MOD_BASE" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_COMMERCE ), GC.getDefineINT( "TSSM_COMMERCE_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_COMMERCE_EXTRA_SPEED" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_FOOD ), GC.getDefineINT( "TSSM_FOOD_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_FOOD_EXTRA_SPEED" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_PRODUCTION ), GC.getDefineINT( "TSSM_PRODUCTION_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_PRODUCTION_EXTRA_SPEED" );
+				fSpeedMod *= fTerrainSpeedMod;
 
 				fAnimalChance *= std::min( 1.0f, fSpeedMod );
 
@@ -7684,11 +7679,23 @@ void CvGame::createBarbarianUnits()
 				float fBarbChance = ( pPlot->isWater() ? PLOT_CHANCE_BARB_WATER : PLOT_CHANCE_BARB );
 				
 				// Faster respawning in higher wilderness
-				float fSpeedMod = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED" ) * ( 1 + pPlot->getWilderness() / 100.0f );
+				float fSpeedMod = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED" );
+				if( !isOption( GAMEOPTION_NO_WILDERNESS ) )
+					 fSpeedMod *= ( 1 + pPlot->getWilderness() / 100.0f );
 				// Slower Respawning on visible tiles
 				if( vbPlotVisible[iPlot] )
 					fSpeedMod *= GC.getDefineFLOAT( "VISIBLE_TILE_SPAWNING_SPEED_MOD" );
 				
+				// Terrain affects spawning speed
+				float fTerrainSpeedMod = GC.getDefineFLOAT( "TERRAIN_SPAWNING_SPEED_MOD_BASE" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_COMMERCE ), GC.getDefineINT( "TSSM_COMMERCE_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_COMMERCE_EXTRA_SPEED" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_FOOD ), GC.getDefineINT( "TSSM_FOOD_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_FOOD_EXTRA_SPEED" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_PRODUCTION ), GC.getDefineINT( "TSSM_PRODUCTION_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_PRODUCTION_EXTRA_SPEED" );
+				fSpeedMod *= fTerrainSpeedMod;
+
 				fBarbChance *= std::min( 1.0f, fSpeedMod );
 
 				if( fBarbChance > 0 )
@@ -7780,8 +7787,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 		CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
 		logBBAI("WILDERNESS - SpawnInfo %s chosen!", kBestSpawn.getType() );
 		
-		UnitAITypes eUnitAI = bAnimal ? UNITAI_ANIMAL : ( pPlot->area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
-		pPlot->createSpawn( eBestSpawn, eUnitAI );
+		pPlot->createSpawn( eBestSpawn );
 	}
 	else
 	{

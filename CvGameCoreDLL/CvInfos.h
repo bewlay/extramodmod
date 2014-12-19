@@ -7885,6 +7885,7 @@ public:
 	int getTerrainFlavourType() const;
 	int getUnitArtStyleType() const;
 	int getSpawnPrereqType() const;
+	int getUnitAIType() const;
 	
 	int getWeight() const;
 	int getValidTerrainWeight() const;
@@ -7892,8 +7893,9 @@ public:
 	
 	int getMinRandomPromotions() const;
 	int getMaxRandomPromotions() const;
-
-	int getNumRandomIncludedSpawns() const;
+	
+	int getMinIncludedSpawns() const;
+	int getMaxIncludedSpawns() const;
 	
 	int getCreateLairAge() const;
 	int getCreateLairLevel() const;
@@ -7902,6 +7904,7 @@ public:
 	int getMaxTier() const;
 	
 	bool isNeverSpawn() const;
+	bool isNoWildernessIgnoreSpawnPrereq() const;
 	bool isExplorationResult() const;
 	bool isAnimal() const;
 	bool isWater() const;
@@ -7909,14 +7912,17 @@ public:
 	bool isNoRace() const;
 	bool isExplorationNoPush() const;
 	bool isNoDefender() const;
+	bool isNoMinWilderness() const;
 	
 	int getNumSpawnUnits( int eUnit ) const;
 	
 	// LFGR_TODO: is...
 	bool getUnitPromotions( int ePromotion ) const;
-	bool isIncludedSpawns( int eSpawn ) const;
-	bool getPrereqTechs( int eTech ) const;
-	bool getObsoleteTechs( int eTech ) const;
+	
+	int getIncludedSpawnMin( int eSpawn ) const;
+	int getIncludedSpawnMax( int eSpawn ) const;
+	bool isIncludedSpawnIgnoreTerrain( int eSpawn ) const;
+	bool isIncludedSpawnCountSeparately( int eSpawn ) const;
 
 	bool read(CvXMLLoadUtility* pXML);
 	bool readPass2(CvXMLLoadUtility* pXML);
@@ -7931,19 +7937,22 @@ protected:
 	int m_eUnitArtStyleType;
 	int m_eTerrainFlavourType;
 	int m_eSpawnPrereqType;
+	int m_eUnitAIType;
 	
 	int m_iWeight;
 	int m_iValidTerrainWeight;
 	int m_iPrereqGlobalCounter;
 	int m_iMinRandomPromotions;
 	int m_iMaxRandomPromotions;
-	int m_iNumRandomIncludedSpawns;
+	int m_iMinIncludedSpawns;
+	int m_iMaxIncludedSpawns;
 	int m_iCreateLairLevel;
 	int m_iCreateLairAge;
 	int m_iMinTier;
 	int m_iMaxTier;
-
+	
 	bool m_bNeverSpawn;
+	bool m_bNoWildernessIgnoreSpawnPrereq;
 	bool m_bExplorationResult;
 	bool m_bExplorationNoPush;
 	bool m_bNoDefender;
@@ -7951,13 +7960,18 @@ protected:
 	bool m_bWater;
 	
 	bool m_bNoRace;
+	bool m_bNoMinWilderness;
 
 	// Arrays
 	
 	int* m_piNumSpawnUnits;
 	
 	bool* m_pbUnitPromotions;
-	bool* m_pbIncludedSpawns;
+
+	int* m_piIncludedSpawnMin;
+	int* m_piIncludedSpawnMax;
+	bool* m_pbIncludedSpawnIgnoreTerrain;
+	bool* m_pbIncludedSpawnCountSeparately;
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -1594,7 +1594,8 @@ void CvUnit::doTurn()
 					bool bValid = true;
 
 					int iRadius = GC.getDefineINT( "AV_LAIR_DISTANCE", 5 );
-					iRadius = std::max( 1, (int) ( iRadius * ( 1.4 - 0.8 * plot()->getWilderness() / 100 ) + 0.5 ) );
+					if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
+						iRadius = std::max( 1, (int) ( iRadius * ( 1.4 - 0.8 * plot()->getWilderness() / 100 ) + 0.5 ) );
 					for( int iChangeX = -iRadius; bValid && iChangeX <= iRadius; iChangeX++ )
 					{
 						for( int iChangeY = -iRadius; bValid && iChangeY <= iRadius; iChangeY++ )
@@ -3873,7 +3874,7 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 /* UnitMinWilderness                                                                            */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
-	if(isBarbarian())
+	if( isBarbarian() && !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
 	{
 		int iMinWilderness = getMinWilderness() - GC.getDefineINT( "UNIT_MOVE_MIN_WILDERNESS_RANGE", 5 );
 
@@ -4598,17 +4599,6 @@ bool CvUnit::canLoadUnit(const CvUnit* pUnit, const CvPlot* pPlot) const
 	{
 		return false;
 	}
-	
-/************************************************************************************************/
-/* WILDERNESS                             10/2013                                 lfgr          */
-/* WildernessMisc                                                                               */
-/* Units with minWilderness can't load onto ship. Temporary?                                    */
-/************************************************************************************************/
-	if( getMinWilderness() > 0 )
-		return false;
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
 
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                       06/23/10                     Mongoose & jdog5000      */

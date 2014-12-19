@@ -257,16 +257,11 @@ class CvGameUtils:
 			if eUnit == gc.getInfoTypeForString('UNIT_WORKBOAT'):
 				return True
 
-		if eUnit == gc.getInfoTypeForString('UNIT_ACHERON'):
-			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_ACHERON):
-				return True
-		# WILDERNESS 09/2013 lfgr / WildernessMisc - cannot train acheron in captured cities and low wilderness.
-			iMinWilderness = 50
-			if( pCity.plot().getWilderness() < iMinWilderness ) :
-				return True
-			if( pCity.getOriginalOwner() != pCity.getOwner() ) :
-				return True
-		# WILDERNESS end
+	# WILDERNESS 09/2013 lfgr / SpawnAcheron
+	#	if eUnit == gc.getInfoTypeForString('UNIT_ACHERON'):
+	#		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_ACHERON):
+	#			return True
+	# WILDERNESS end
 
 		if eUnit == gc.getInfoTypeForString('UNIT_DUIN'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_DUIN):

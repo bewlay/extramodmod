@@ -39,6 +39,16 @@ struct CvTerrainAmountCache
 	float *afYieldAmount;
 	float *afImprovementAmount;
 	float *afBonusAmount;
+
+	virtual ~CvTerrainAmountCache()
+	{
+		SAFE_DELETE_ARRAY( afPlotAmount );
+		SAFE_DELETE_ARRAY( afTerrainAmount );
+		SAFE_DELETE_ARRAY( afFeatureAmount );
+		SAFE_DELETE_ARRAY( afYieldAmount );
+		SAFE_DELETE_ARRAY( afImprovementAmount );
+		SAFE_DELETE_ARRAY( afBonusAmount );
+	}
 };
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                                                                END           */
@@ -670,8 +680,8 @@ public:
 
 	int getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType ) const;
 	bool isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon = false ) const;
-	int getSpawnValue( SpawnTypes eSpawnType, bool bCheckTech = true, bool bDungeon = false ) const; // exposed to python
-	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI, int iLairPlot = -1 ); // exposed to python
+	int getSpawnValue( SpawnTypes eSpawnType, bool bCheckTech = true, bool bDungeon = false, bool bIgnoreTerrain = false ) const; // exposed to python
+	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI = NO_UNITAI, int iLairPlot = -1 ); // exposed to python
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
@@ -679,12 +689,12 @@ public:
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
 	
-// LFGR_TEST
+#ifdef _DEBUG
 	bool bPlotAnimalEverValid;
 	bool bPlotAnimalValid;
 	bool bPlotBarbEverValid;
 	bool bPlotBarbValid;
-// LFGR_TEST end
+#endif
 
 protected:
 

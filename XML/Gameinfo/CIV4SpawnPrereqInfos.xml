@@ -297,6 +297,46 @@
 				</TechTier>
 			</TechTiers>
 		</SpawnPrereqInfo>
+		<SpawnPrereqInfo> <!-- SPAWN_PREREQ_MELEE_NO_WILDERNESS -->
+			<!-- Tiers: 0-4 -->
+			<Type>SPAWN_PREREQ_MELEE_NO_WILDERNESS</Type>
+			<TechTiers>
+				<TechTier>
+					<ObsoleteTechs>
+						<Tech>TECH_BRONZE_WORKING</Tech>
+					</ObsoleteTechs>
+				</TechTier>
+				<TechTier>
+					<PrereqTechs>
+						<Tech>TECH_MINING</Tech>
+					</PrereqTechs>
+					<ObsoleteTechs>
+						<Tech>TECH_SMELTING</Tech>
+					</ObsoleteTechs>
+				</TechTier>
+				<TechTier>
+					<PrereqTechs>
+						<Tech>TECH_BRONZE_WORKING</Tech>
+					</PrereqTechs>
+					<ObsoleteTechs>
+						<Tech>TECH_IRON_WORKING</Tech>
+					</ObsoleteTechs>
+				</TechTier>
+				<TechTier>
+					<PrereqTechs>
+						<Tech>TECH_SMELTING</Tech>
+					</PrereqTechs>
+					<ObsoleteTechs>
+						<Tech>TECH_MITHRIL_WORKING</Tech>
+					</ObsoleteTechs>
+				</TechTier>
+				<TechTier>
+					<PrereqTechs>
+						<Tech>TECH_IRON_WORKING</Tech>
+					</PrereqTechs>
+				</TechTier>
+			</TechTiers>
+		</SpawnPrereqInfo>
 		
 		<SpawnPrereqInfo> <!-- SPAWN_PREREQ_MOUNTED -->
 			<!-- Tiers: 0-8 -->
@@ -364,30 +404,62 @@
 		</SpawnPrereqInfo>
 		
 		<SpawnPrereqInfo> <!-- SPAWN_PREREQ_NAVAL -->
-			<!-- Tiers: 0-8 -->
+			<!-- Tiers: 0-6 -->
 			<Type>SPAWN_PREREQ_NAVAL</Type>
 			<WildernessTiers>
 				<WildernessTier>
 					<iMinWilderness>0</iMinWilderness>
-					<iMaxWilderness>40</iMaxWilderness>
+					<iMaxWilderness>55</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
-					<iMinWilderness>35</iMinWilderness>
-					<iMaxWilderness>65</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>60</iMinWilderness>
+					<iMinWilderness>55</iMinWilderness>
 					<iMaxWilderness>80</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>75</iMinWilderness>
-					<iMaxWilderness>95</iMaxWilderness>
-				</WildernessTier>
-				<WildernessTier>
-					<iMinWilderness>90</iMinWilderness>
 					<iMaxWilderness>100</iMaxWilderness>
 				</WildernessTier>
 			</WildernessTiers>
+			<TechTiers>
+				<TechTier>
+					<ObsoleteTechs>
+						<Tech>TECH_SAILING</Tech>
+					</ObsoleteTechs>
+				</TechTier>
+				<TechTier>
+					<PrereqTechs>
+						<Tech>TECH_FISHING</Tech>
+					</PrereqTechs>
+					<ObsoleteTechs>
+						<Tech>TECH_OPTICS</Tech>
+					</ObsoleteTechs>
+				</TechTier>
+				<TechTier>
+					<PrereqTechs>
+						<Tech>TECH_SAILING</Tech>
+					</PrereqTechs>
+					<ObsoleteTechs>
+						<Tech>TECH_ASTRONOMY</Tech>
+					</ObsoleteTechs>
+				</TechTier>
+				<TechTier>
+					<PrereqTechs>
+						<Tech>TECH_OPTICS</Tech>
+					</PrereqTechs>
+					<ObsoleteTechs>
+						<Tech>TECH_GUILDS</Tech>
+					</ObsoleteTechs>
+				</TechTier>
+				<TechTier>
+					<PrereqTechs>
+						<Tech>TECH_ASTRONOMY</Tech>
+					</PrereqTechs>
+				</TechTier>
+			</TechTiers>
+		</SpawnPrereqInfo>
+		<SpawnPrereqInfo> <!-- SPAWN_PREREQ_NAVAL_NO_WILDERNESS -->
+			<!-- Tiers: 0-4 -->
+			<Type>SPAWN_PREREQ_NAVAL_NO_WILDERNESS</Type>
 			<TechTiers>
 				<TechTier>
 					<ObsoleteTechs>

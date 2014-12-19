@@ -608,10 +608,6 @@ void CvPlot::doTurn()
 							UnitAITypes eUnitAI = NO_UNITAI;
 							if( !bDefended && !kBestSpawn.isNoDefender() )
 								eUnitAI = UNITAI_LAIRGUARDIAN;
-							else if( kBestSpawn.isAnimal() )
-								eUnitAI = UNITAI_ANIMAL;
-							else
-								eUnitAI = area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK;
 
 							createSpawn( eBestSpawn, eUnitAI, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
                         }
@@ -2626,8 +2622,9 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 /* ImprovementWilderness                                                                        */
 /************************************************************************************************/
 	
-	if ( kImprovement.getMinWilderness() > getWilderness() ||
-			kImprovement.getMaxWilderness() < getWilderness() )
+	if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && 
+		( GC.getImprovementInfo( eImprovement ).getMinWilderness() > getWilderness() ||
+			GC.getImprovementInfo( eImprovement ).getMaxWilderness() < getWilderness() ) )
 	{
 		return false;
 	}
@@ -12883,7 +12880,8 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 {
 	CvSpawnPrereqInfo& kSpawnPrereq = GC.getSpawnPrereqInfo( eSpawnPrereqType );
 
-	int iWilderness = bDungeon ? getLairDanger() : getWilderness();
+	int iWilderness = bDungeon ? getLairDanger() :
+			( GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) ? 0 : getWilderness() );
 
 	if( kSpawnPrereq.getNumTechTiers() == 0 )
 	{
@@ -12905,8 +12903,9 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 
 		for( int iWildernessTier = 0; iWildernessTier <= iMaxWildernessTier; iWildernessTier++ )
 		{
-			if( iWilderness >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
-				iWilderness <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) )
+			if( kSpawnPrereq.getNumWildernessTiers() == 0 ||
+				( iWilderness >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
+				iWilderness <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) ) )
 			{
 				// Found a valid Wilderness tier
 				// Now get range of fitting tech tiers
@@ -12939,25 +12938,26 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 	return false;
 }
 
-int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon ) const
+int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon, bool bIgnoreTerrain ) const
 {
 	if( eSpawn == NO_SPAWN )
 		return 0;
 
 	CvSpawnInfo& kSpawn = GC.getSpawnInfo( (SpawnTypes) eSpawn );
 
-	if( area()->isWater() != kSpawn.isWater() )
+	if( !bIgnoreTerrain && area()->isWater() != kSpawn.isWater() )
 		return 0;
 
-	if( !isValidSpawnTier( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(), kSpawn.getMaxTier(), bCheckTech, bDungeon ) )
-		return 0;
+	if( !( GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && kSpawn.isNoWildernessIgnoreSpawnPrereq() ) )
+		if( !isValidSpawnTier( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(), kSpawn.getMaxTier(), bCheckTech, bDungeon ) )
+			return 0;
 
 	if( GC.getGameINLINE().getGlobalCounter() < kSpawn.getPrereqGlobalCounter() )
 		return 0;
 
 	int iValue = kSpawn.getWeight();
 	
-	if( kSpawn.getTerrainFlavourType() != NO_TERRAIN_FLAVOUR )
+	if( !bIgnoreTerrain && kSpawn.getTerrainFlavourType() != NO_TERRAIN_FLAVOUR )
 	{
 		int iTerrainValue = getSpawnTerrainWeight( (TerrainFlavourTypes) kSpawn.getTerrainFlavourType() );
 		if( iTerrainValue > 0 )
@@ -13003,21 +13003,11 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 			bRandPromotions = true;
 	}
 
-	// Random Included Spawns
-	std::vector< std::pair<SpawnTypes,int> > veIncludedSpawns;
-	for( int eIncSpawn = 0; eIncSpawn < GC.getNumSpawnInfos(); eIncSpawn++ )
-		if( kSpawn.isIncludedSpawns( eIncSpawn ) )
-		{
-			int iValue = getSpawnValue( (SpawnTypes) eIncSpawn );
-			if( iValue > 0 )
-				veIncludedSpawns.push_back( std::pair<SpawnTypes,int>( (SpawnTypes) eIncSpawn, iValue ) );
-		}
-
-	int iRandomIncludedSpawns = 0;
-	if( kSpawn.getNumRandomIncludedSpawns() == -1 )
-		iRandomIncludedSpawns = (int) veIncludedSpawns.size();
-	else
-		iRandomIncludedSpawns = std::min( (int) veIncludedSpawns.size(), kSpawn.getNumRandomIncludedSpawns() );
+	// UnitAI
+	if( eUnitAI == NO_UNITAI )
+		eUnitAI = (UnitAITypes) kSpawn.getUnitAIType();
+	if( eUnitAI == NO_UNITAI )
+		eUnitAI = kSpawn.isAnimal() ? UNITAI_ANIMAL : ( kSpawn.isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
 
 	for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
 	{
@@ -13025,7 +13015,8 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 		{
 			CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, getX_INLINE(), getY_INLINE(), eUnitAI );
 			
-			pUnit->setMinWilderness( getWilderness() );
+			if( !kSpawn.isNoMinWilderness() && !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
+				pUnit->setMinWilderness( getWilderness() );
 			
 			if ( kSpawn.isAnimal() )
 				pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
@@ -13073,30 +13064,69 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 		}
 	}
 
-	// LFGR_TODO: Join Group
-	if( iRandomIncludedSpawns > 0 )
+	// Random Included Spawns
+	int iIncludedSpawns = kSpawn.getMinIncludedSpawns() + GC.getGameINLINE().getSorenRandNum( kSpawn.getMaxIncludedSpawns() - kSpawn.getMinIncludedSpawns() + 1, "Included spawns" );
+
+	std::vector< std::pair<SpawnTypes,std::pair<int,int> > > veIncludedSpawns;
+	for( int eIncSpawn = 0; eIncSpawn < GC.getNumSpawnInfos(); eIncSpawn++ )
 	{
-		std::vector< std::pair<SpawnTypes,int> > veTmpIncSpawns = veIncludedSpawns;
-		while( iRandomIncludedSpawns > 0 && veIncludedSpawns.size() > 0 )
+		if( kSpawn.getIncludedSpawnMax( eIncSpawn ) != 0 )
 		{
-			int iBestIndex = -1;
-			int iBestValue = 0;
-			for( unsigned int i = 0; i < veTmpIncSpawns.size(); i++ )
+			int iValue = getSpawnValue( (SpawnTypes) eIncSpawn, true, false, kSpawn.isIncludedSpawnIgnoreTerrain( eIncSpawn ) );
+			if( iValue > 0 )
 			{
-				int iLoopVal = veTmpIncSpawns[i].second;
-				iLoopVal += GC.getGameINLINE().getSorenRandNum( 100, "SpawnInfo rand weight" );
-				if( iLoopVal > iBestValue )
+				int iMinSpawning = kSpawn.getIncludedSpawnMin( eIncSpawn );
+				int iMaxSpawning = kSpawn.getIncludedSpawnMax( eIncSpawn );
+
+				for( int i = 0; i < iMinSpawning; i++ )
+					createSpawn( (SpawnTypes) eIncSpawn, NO_UNITAI, iLairPlot );
+				
+				if( kSpawn.isIncludedSpawnCountSeparately( eIncSpawn ) )
 				{
-					iBestValue = iLoopVal;
-					iBestIndex = i;
+					// spawn remaining random spawns
+					int iRemainingSpawns = GC.getGameINLINE().getSorenRandNum( iMaxSpawning - iMinSpawning + 1, "Included spawns" );
+					for( int i = 0; i < iRemainingSpawns; i++ )
+						createSpawn( (SpawnTypes) eIncSpawn, NO_UNITAI, iLairPlot );
 				}
+				else
+					iIncludedSpawns -= iMinSpawning;
+				
+				if( !kSpawn.isIncludedSpawnCountSeparately( eIncSpawn ) && ( iMaxSpawning == -1 || iMinSpawning < iMaxSpawning ) )
+					veIncludedSpawns.push_back( std::pair<SpawnTypes, std::pair<int,int> >( (SpawnTypes) eIncSpawn, std::pair<int,int>( iMinSpawning, iValue ) ) );
 			}
-			if( iBestIndex != -1 )
+		}
+	}
+
+	// LFGR_TODO: Join Group (if same UnitAI)
+
+	while( iIncludedSpawns > 0 )
+	{
+		int iBestIndex = -1;
+		int iBestValue = 0;
+		for( unsigned int i = 0; i < veIncludedSpawns.size(); i++ )
+		{
+			int iLoopVal = veIncludedSpawns[i].second.second;
+			iLoopVal += GC.getGameINLINE().getSorenRandNum( 100, "SpawnInfo rand weight" );
+			if( iLoopVal > iBestValue )
 			{
-				createSpawn( veTmpIncSpawns[iBestIndex].first, eUnitAI, iLairPlot );
-				veIncludedSpawns.erase( veIncludedSpawns.begin() + iBestIndex );
-				iRandomIncludedSpawns--;
+				iBestValue = iLoopVal;
+				iBestIndex = i;
 			}
+		}
+		if( iBestIndex != -1 )
+		{
+			SpawnTypes eIncSpawn = veIncludedSpawns[iBestIndex].first;
+			createSpawn( eIncSpawn, NO_UNITAI, iLairPlot );
+
+			veIncludedSpawns[iBestIndex].second.first++;
+			if( kSpawn.getIncludedSpawnMax( eIncSpawn ) != -1 && veIncludedSpawns[iBestIndex].second.first >= kSpawn.getIncludedSpawnMax( eIncSpawn ) )
+				veIncludedSpawns.erase( veIncludedSpawns.begin() + iBestIndex );
+			iIncludedSpawns--;
+		}
+		else
+		{
+			FAssertMsg( iBestIndex == -1, "No valid included spawn found" );
+			break;
 		}
 	}
 }

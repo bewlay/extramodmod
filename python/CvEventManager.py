@@ -563,6 +563,32 @@ class CvEventManager:
 						cf.addUnit(iUnit)
 						if( CyGame().getAIAutoPlay(CyGame().getActivePlayer()) == 0 ) :
 							cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_ORTHUS_CREATION",()), str(gc.getUnitInfo(iUnit).getImage()))
+		
+	# lfgr barbsplus 08/2014 // SpawnAcheron
+		if not CyGame().isUnitClassMaxedOut(gc.getInfoTypeForString('UNITCLASS_ACHERON'), 0):
+			if( gc.getGame().isOption( GameOptionTypes.GAMEOPTION_BARBARIAN_WORLD ) ) :
+				iChance = 5
+			else :
+				iChance = 10
+			if( CyGame().getSorenRandNum( 100, "Acheron spawn" ) < iChance ) :
+				if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_ACHERON):
+					pyBarbPlayer = PyPlayer( gc.getBARBARIAN_PLAYER() )
+					if( pyBarbPlayer.getNumCities() * 2 >= CyGame().countCivPlayersAlive() ) :
+						iBestWilderness = -1
+						pBestCity = None
+						for pyCity in pyBarbPlayer.getCityList() :
+							pCity = pyCity.GetCy()
+							if( pCity.getOriginalOwner() != pCity.getOwner() ) :
+								continue
+							iWilderness = pCity.plot().getWilderness() + CyGame().getSorenRandNum( 10, "Acheron city Wilderness" )
+							if( iWilderness > iBestWilderness ) :
+								iBestWilderness = iWilderness
+								pBestCity = pCity
+						
+						if( pBestCity != None ) :
+							acheron = gc.getPlayer( gc.getBARBARIAN_PLAYER() ).initUnit( gc.getInfoTypeForString( 'UNIT_ACHERON' ), pBestCity.plot().getX(), pBestCity.plot().getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH )
+							self.onUnitBuilt( ( pBestCity, acheron ) ) # hack to get effects
+	# lfgr end
 
 		if not CyGame().isOption(gc.getInfoTypeForString('GAMEOPTION_NO_PLOT_COUNTER')):
 			cf.doHellTerrain()

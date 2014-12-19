@@ -1578,8 +1578,6 @@ void CvMap::calculateWilderness()
 		int iLoopY = pLoopPlot->getY_INLINE();
 		int iLoopArea = pLoopPlot->getArea() & FLTA_INDEX_MASK; // No idea why plots not simply store 0, 1, 2...
 		bool bWaterArea = getArea( iLoopArea )->isWater();
-
-		// LFGR_TODO: Wilderness from terrain and feature
 		
 		int iNearestDist = -1;
 		int iSecondNearestDist = -1;
@@ -1828,6 +1826,16 @@ void CvMap::calculateWilderness()
 		}
 		pLoopPlot->setWilderness( std::min( 100, iNewWilderness ) );
 	}
+	
+	SAFE_DELETE_ARRAY( piAreaMaxWilderness );
+	SAFE_DELETE_ARRAY( piAreaMinWilderness );
+	SAFE_DELETE_ARRAY( piUAreaMinAvDist );
+	SAFE_DELETE_ARRAY( piUAreaMaxAvDist );
+	SAFE_DELETE_ARRAY( pfPlotWilderness );
+	SAFE_DELETE_ARRAY( piUAreaMeanX );
+	SAFE_DELETE_ARRAY( piUAreaMeanY );
+	SAFE_DELETE_ARRAY( pfAreaNormFactor );
+	SAFE_DELETE_ARRAY( pfAreaNormShift );
 	
 	// LFGR_TEST
 	if( GC.getDefineINT( "DEBUG_PAINT_WILDERNESS" ) == 1 )

@@ -28878,7 +28878,8 @@ CvSpawnInfo::CvSpawnInfo():
 	m_eCreateLair( NO_IMPROVEMENT ),
 	m_eTerrainFlavourType( NO_TERRAIN_FLAVOUR ),
 	m_eUnitArtStyleType( NO_UNIT_ARTSTYLE ),
-	m_eSpawnPrereqType( NO_UNIT_ARTSTYLE ),
+	m_eSpawnPrereqType( NO_SPAWN_PREREQ ),
+	m_eUnitAIType( NO_UNITAI ),
 	m_iWeight( 0 ),
 	m_iValidTerrainWeight( 0 ),
 	m_iMinTier( 0 ),
@@ -28886,19 +28887,25 @@ CvSpawnInfo::CvSpawnInfo():
 	m_iPrereqGlobalCounter( 0 ),
 	m_iMinRandomPromotions( -1 ),
 	m_iMaxRandomPromotions( -1 ),
-	m_iNumRandomIncludedSpawns( -1 ),
+	m_iMinIncludedSpawns( 0 ),
+	m_iMaxIncludedSpawns( 0 ),
 	m_iCreateLairAge(0),
 	m_iCreateLairLevel(0),
 	m_bNeverSpawn( false ),
+	m_bNoWildernessIgnoreSpawnPrereq( false ),
 	m_bExplorationResult( false ),
 	m_bExplorationNoPush( false ),
 	m_bNoDefender( false ),
 	m_bAnimal( false ),
 	m_bWater( false ),
 	m_bNoRace( false ),
+	m_bNoMinWilderness( false ),
 	m_piNumSpawnUnits( NULL ),
 	m_pbUnitPromotions( NULL ),
-	m_pbIncludedSpawns( NULL )
+	m_piIncludedSpawnMin( NULL ),
+	m_piIncludedSpawnMax( NULL ),
+	m_pbIncludedSpawnIgnoreTerrain( NULL ),
+	m_pbIncludedSpawnCountSeparately( NULL )
 {
 }
 
@@ -28906,7 +28913,10 @@ CvSpawnInfo::~CvSpawnInfo()
 {
 	SAFE_DELETE_ARRAY( m_piNumSpawnUnits );
 	SAFE_DELETE_ARRAY( m_pbUnitPromotions );
-	SAFE_DELETE_ARRAY( m_pbIncludedSpawns );
+	SAFE_DELETE_ARRAY( m_piIncludedSpawnMin );
+	SAFE_DELETE_ARRAY( m_piIncludedSpawnMax );
+	SAFE_DELETE_ARRAY( m_pbIncludedSpawnIgnoreTerrain );
+	SAFE_DELETE_ARRAY( m_pbIncludedSpawnCountSeparately );
 }
 
 int CvSpawnInfo::getCreateLair() const
@@ -28927,6 +28937,11 @@ int CvSpawnInfo::getUnitArtStyleType() const
 int CvSpawnInfo::getSpawnPrereqType() const
 {
 	return m_eSpawnPrereqType;
+}
+
+int CvSpawnInfo::getUnitAIType() const
+{
+	return m_eUnitAIType;
 }
 
 int CvSpawnInfo::getWeight() const
@@ -28964,9 +28979,14 @@ int CvSpawnInfo::getMaxRandomPromotions() const
 	return m_iMaxRandomPromotions;
 }
 
-int CvSpawnInfo::getNumRandomIncludedSpawns() const
+int CvSpawnInfo::getMinIncludedSpawns() const
 {
-	return m_iNumRandomIncludedSpawns;
+	return m_iMinIncludedSpawns;
+}
+
+int CvSpawnInfo::getMaxIncludedSpawns() const
+{
+	return m_iMaxIncludedSpawns;
 }
 
 int CvSpawnInfo::getCreateLairAge() const
@@ -28982,6 +29002,11 @@ int CvSpawnInfo::getCreateLairLevel() const
 bool CvSpawnInfo::isNeverSpawn() const
 {
 	return m_bNeverSpawn;
+}
+
+bool CvSpawnInfo::isNoWildernessIgnoreSpawnPrereq() const
+{
+	return m_bNoWildernessIgnoreSpawnPrereq;
 }
 
 bool CvSpawnInfo::isExplorationResult() const
@@ -29014,6 +29039,11 @@ bool CvSpawnInfo::isNoRace() const
 	return m_bNoRace;
 }
 
+bool CvSpawnInfo::isNoMinWilderness() const
+{
+	return m_bNoMinWilderness;
+}
+
 int CvSpawnInfo::getNumSpawnUnits( int i ) const
 {
 	FAssertMsg( i < GC.getNumUnitInfos(), "Index out of bounds" );
@@ -29028,17 +29058,38 @@ bool CvSpawnInfo::getUnitPromotions( int i ) const
 	return m_pbUnitPromotions ? m_pbUnitPromotions[i] : false;
 }
 
-bool CvSpawnInfo::isIncludedSpawns( int i ) const
+int CvSpawnInfo::getIncludedSpawnMin( int eSpawn ) const
 {
-	FAssertMsg( i < GC.getNumSpawnInfos(), "Index out of bounds" );
-	FAssertMsg( i > -1, "Index out of bounds" );
-	return m_pbIncludedSpawns ? m_pbIncludedSpawns[i] : false;
+	FAssertMsg( eSpawn < GC.getNumSpawnInfos(), "Index out of bounds" );
+	FAssertMsg( eSpawn > -1, "Index out of bounds" );
+	return m_piIncludedSpawnMin ? m_piIncludedSpawnMin[eSpawn] : false;
+}
+
+int CvSpawnInfo::getIncludedSpawnMax( int eSpawn ) const
+{
+	FAssertMsg( eSpawn < GC.getNumSpawnInfos(), "Index out of bounds" );
+	FAssertMsg( eSpawn > -1, "Index out of bounds" );
+	return m_piIncludedSpawnMax ? m_piIncludedSpawnMax[eSpawn] : false;
+}
+
+bool CvSpawnInfo::isIncludedSpawnIgnoreTerrain( int eSpawn ) const
+{
+	FAssertMsg( eSpawn < GC.getNumSpawnInfos(), "Index out of bounds" );
+	FAssertMsg( eSpawn > -1, "Index out of bounds" );
+	return m_pbIncludedSpawnIgnoreTerrain ? m_pbIncludedSpawnIgnoreTerrain[eSpawn] : false;
+}
+
+bool CvSpawnInfo::isIncludedSpawnCountSeparately( int eSpawn ) const
+{
+	FAssertMsg( eSpawn < GC.getNumSpawnInfos(), "Index out of bounds" );
+	FAssertMsg( eSpawn > -1, "Index out of bounds" );
+	return m_pbIncludedSpawnCountSeparately ? m_pbIncludedSpawnCountSeparately[eSpawn] : false;
 }
 
 void CvSpawnInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
-	
+	/*
 	stream->Read(&m_eCreateLair);
 	stream->Read(&m_eTerrainFlavourType);
 	stream->Read(&m_eUnitArtStyleType);
@@ -29073,12 +29124,13 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_pbIncludedSpawns);
 	m_pbIncludedSpawns = new bool[GC.getNumSpawnInfos()];
 	stream->Read(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
+	*/
 }
 
 void CvSpawnInfo::write(FDataStreamBase* stream)
 {
 	CvInfoBase::write(stream);
-	
+	/*
 	stream->Write(m_eCreateLair);
 	stream->Write(m_eTerrainFlavourType);
 	stream->Write(m_eUnitArtStyleType);
@@ -29106,6 +29158,7 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumUnitInfos(), m_piNumSpawnUnits);
 	stream->Write(GC.getNumPromotionInfos(), m_pbUnitPromotions);
 	stream->Write(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
+	*/
 }
 
 bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
@@ -29124,6 +29177,8 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	m_eUnitArtStyleType = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(szTextVal, "SpawnPrereqType");
 	m_eSpawnPrereqType = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "UnitAIType");
+	m_eUnitAIType = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iWeight, "iBaseWeight");
 	pXML->GetChildXmlValByName(&m_iValidTerrainWeight, "iValidTerrainWeight" );
@@ -29132,16 +29187,33 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iPrereqGlobalCounter, "iPrereqGlobalCounter");
 	pXML->GetChildXmlValByName(&m_iMinRandomPromotions, "iMinRandomPromotions", -1);
 	pXML->GetChildXmlValByName(&m_iMaxRandomPromotions, "iMaxRandomPromotions", -1);
-	pXML->GetChildXmlValByName(&m_iNumRandomIncludedSpawns, "iNumRandomIncludedSpawns", -1);
+	pXML->GetChildXmlValByName(&m_iMinIncludedSpawns, "iMinIncludedSpawns", 0);
+	pXML->GetChildXmlValByName(&m_iMaxIncludedSpawns, "iMaxIncludedSpawns", 0);
 	pXML->GetChildXmlValByName(&m_iCreateLairAge, "iCreateLairAge" );
 	pXML->GetChildXmlValByName(&m_iCreateLairLevel, "iCreateLairLevel" );
 	pXML->GetChildXmlValByName(&m_bNeverSpawn, "bNeverSpawn");
+	pXML->GetChildXmlValByName(&m_bNoWildernessIgnoreSpawnPrereq, "bNoWildernessIgnoreSpawnPrereq");
 	pXML->GetChildXmlValByName(&m_bExplorationResult, "bExplorationResult");
 	pXML->GetChildXmlValByName(&m_bExplorationNoPush, "bExplorationNoPush");
 	pXML->GetChildXmlValByName(&m_bNoDefender, "bNoDefender");
 	pXML->GetChildXmlValByName(&m_bAnimal, "bAnimal");
 	pXML->GetChildXmlValByName(&m_bWater, "bWater");
 	pXML->GetChildXmlValByName(&m_bNoRace, "bNoRace");
+	pXML->GetChildXmlValByName(&m_bNoMinWilderness, "bNoMinWilderness");
+	
+	if( m_iMaxRandomPromotions < -1 || m_iMinRandomPromotions < -1 || m_iMaxRandomPromotions < m_iMinRandomPromotions )
+	{
+		char szMessage[1024];
+		sprintf( szMessage, "Invalid <m_iMinRandomPromotions> or <m_iMaxRandomPromotions>.\n Current XML file is: %s\n Current type is: %s", GC.getCurrentXMLFile().GetCString(), getType() );
+		gDLL->MessageBox( szMessage, "XML Error" );
+	}
+	
+	if( m_iMaxIncludedSpawns < 0 || m_iMinIncludedSpawns < 0 || m_iMaxIncludedSpawns < m_iMinIncludedSpawns )
+	{
+		char szMessage[1024];
+		sprintf( szMessage, "Invalid <m_iMinIncludedSpawns> or <m_iMaxIncludedSpawns>.\n Current XML file is: %s\n Current type is: %s", GC.getCurrentXMLFile().GetCString(), getType() );
+		gDLL->MessageBox( szMessage, "XML Error" );
+	}
 	
 	pXML->SetVariableListTagPair( &m_piNumSpawnUnits, "SpawnUnits", sizeof( GC.getUnitInfo( (UnitTypes) 0 ) ), GC.getNumUnitInfos() );
 	
@@ -29153,38 +29225,86 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 bool CvSpawnInfo::readPass2(CvXMLLoadUtility* pXML)
 {
 	CvString szTextVal;
-
-	m_pbIncludedSpawns = new bool[GC.getNumSpawnInfos()];
-	for (int i = 0; i < GC.getNumSpawnInfos(); ++i)
+	
+	m_piIncludedSpawnMin = new int[GC.getNumSpawnInfos()];
+	m_piIncludedSpawnMax = new int[GC.getNumSpawnInfos()];
+	m_pbIncludedSpawnIgnoreTerrain = new bool[GC.getNumSpawnInfos()];
+	m_pbIncludedSpawnCountSeparately = new bool[GC.getNumSpawnInfos()];
+	for( int i = 0; i < GC.getNumSpawnInfos(); ++i )
 	{
-		m_pbIncludedSpawns[i] = false;
+		m_piIncludedSpawnMin[i] = -2; // -2 means not touched
+		m_piIncludedSpawnMax[i] = -2;
+		m_pbIncludedSpawnIgnoreTerrain[i] = false;
+		m_pbIncludedSpawnCountSeparately[i] = false;
 	}
 
-	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"IncludedSpawns"))
+	if(gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(),"IncludedSpawns" ) )
 	{
-		if (pXML->SkipToNextVal())
+		if( pXML->SkipToNextVal() )
 		{
-			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+			// Now were inside <IncludedSpawns>
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren( pXML->GetXML() );
 
-			if (0 < iNumSibs)
+			if( 0 < iNumSibs )
 			{
-				if (pXML->GetChildXmlVal(szTextVal))
+				if( gDLL->getXMLIFace()->SetToChild( pXML->GetXML() ) )
 				{
-					for ( int i = 0; i < iNumSibs; i++)
+					for ( int i = 0; i < iNumSibs; i++ )
 					{
-						int iSpawn = pXML->FindInInfoClass(szTextVal);
-						if( iSpawn > -1 && iSpawn < GC.getNumSpawnInfos() )
-							m_pbIncludedSpawns[iSpawn] = true;
-						if (!pXML->GetNextXmlVal(szTextVal))
+						// Now were inside <IncludedSpawn>
+
+						int eSpawn;
+						pXML->GetChildXmlValByName(szTextVal, "SpawnType");
+						eSpawn = pXML->FindInInfoClass(szTextVal);
+						
+						if( m_piIncludedSpawnMin[eSpawn] != -2 )
+						{
+							char szMessage[1024];
+							sprintf( szMessage, "IncludedSpawns: SpawnType %s referenced in two <IncludedSpawn> structs.\n Current XML file is: %s\n Current type is: %s", szTextVal.GetCString(), GC.getCurrentXMLFile().GetCString(), getType() );
+							gDLL->MessageBox( szMessage, "XML Error" );
+						}
+						
+						pXML->GetChildXmlValByName( &m_piIncludedSpawnMin[eSpawn], "iMin", 0 );
+						pXML->GetChildXmlValByName( &m_piIncludedSpawnMax[eSpawn], "iMax", -1 );
+						pXML->GetChildXmlValByName( &m_pbIncludedSpawnIgnoreTerrain[eSpawn], "bIgnoreTerrain" );
+						pXML->GetChildXmlValByName( &m_pbIncludedSpawnCountSeparately[eSpawn], "bCountSeparately" );
+						
+						if( m_pbIncludedSpawnCountSeparately[eSpawn] && m_piIncludedSpawnMax[eSpawn] == -1 )
+						{
+							char szMessage[1024];
+							sprintf( szMessage, "IncludedSpawns: <bCountSeparately> requires <iMax> (SpawnType %s).\n Current XML file is: %s\n Current type is: %s", szTextVal.GetCString(), GC.getCurrentXMLFile().GetCString(), getType() );
+							gDLL->MessageBox( szMessage, "XML Error" );
+
+							m_piIncludedSpawnMax[eSpawn] = m_piIncludedSpawnMin[eSpawn];
+						}
+
+						if( m_piIncludedSpawnMin[eSpawn] < 0 || m_piIncludedSpawnMax[eSpawn] < -1 || ( m_piIncludedSpawnMax[eSpawn] != -1 && m_piIncludedSpawnMax[eSpawn] < m_piIncludedSpawnMin[eSpawn] ) )
+						{
+							char szMessage[1024];
+							sprintf( szMessage, "IncludedSpawns: Invalid <iMin> or <iMax> for SpawnType %s.\n Current XML file is: %s\n Current type is: %s", szTextVal.GetCString(), GC.getCurrentXMLFile().GetCString(), getType() );
+							gDLL->MessageBox( szMessage, "XML Error" );
+						}
+
+						if( !gDLL->getXMLIFace()->NextSibling( pXML->GetXML() ) )
+						{
 							break;
+						}
 					}
 
-					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+					gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
 				}
 			}
 		}
 
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	for( int i = 0; i < GC.getNumSpawnInfos(); ++i )
+	{
+		if( m_piIncludedSpawnMin[i] == -2 )
+			m_piIncludedSpawnMin[i] = 0;
+		if( m_piIncludedSpawnMax[i] == -2 )
+			m_piIncludedSpawnMax[i] = 0;
 	}
 
 	return true;
