@@ -13279,6 +13279,12 @@
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
 			<iWithdrawalProb>35</iWithdrawalProb>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
 			<iCultureGarrison>5</iCultureGarrison>
 			<iAsset>9</iAsset>
 			<iPower>10</iPower>
@@ -13359,6 +13365,12 @@
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
 			<iWithdrawalProb>35</iWithdrawalProb>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
 			<iCultureGarrison>5</iCultureGarrison>
 			<iAsset>9</iAsset>
 			<iPower>10</iPower>
@@ -13443,6 +13455,12 @@
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
 			<iWithdrawalProb>35</iWithdrawalProb>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
 			<iCultureGarrison>5</iCultureGarrison>
 			<iAsset>9</iAsset>
 			<iPower>10</iPower>
@@ -13533,6 +13551,12 @@
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
 			<iWithdrawalProb>35</iWithdrawalProb>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
 			<iCultureGarrison>5</iCultureGarrison>
 			<iAsset>9</iAsset>
 			<iPower>10</iPower>
@@ -13614,6 +13638,12 @@
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
 			<iWithdrawalProb>35</iWithdrawalProb>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
 			<iCultureGarrison>5</iCultureGarrison>
 			<iAsset>9</iAsset>
 			<iPower>10</iPower>
