@@ -25947,7 +25947,7 @@
 			<iModifyGlobalCounter>0</iModifyGlobalCounter>
 			<iPlotRadius>0</iPlotRadius>
 			<iResistMagic>0</iResistMagic>
-			<FreeBonus2>BONUS_GOLD</FreeBonus2>
+			<FreeBonus2>BONUS_MANA_ENCHANTMENT</FreeBonus2>
 			<FreeBonus3>BONUS_MANA_LAW</FreeBonus3>
 			<PrereqCiv></PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
