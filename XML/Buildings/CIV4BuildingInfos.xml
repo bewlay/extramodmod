@@ -9168,7 +9168,7 @@
 			</SpecialistCommerceChanges>
 		</BuildingInfo>
 		<BuildingInfo>
-			<BuildingClass>BUILDINGCLASS_COURTHOUSE</BuildingClass>
+			<BuildingClass>BUILDINGCLASS_CIV_BUILDING2</BuildingClass>
 			<Type>BUILDING_GOVERNORS_MANOR</Type>
 			<SpecialBuildingType>NONE</SpecialBuildingType>
 			<Description>TXT_KEY_BUILDING_GOVERNORS_MANOR</Description>
@@ -9241,7 +9241,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>180</iCost>
+			<iCost>120</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -9270,7 +9270,7 @@
 			<iFreeSpecialist>0</iFreeSpecialist>
 			<iAreaFreeSpecialist>0</iAreaFreeSpecialist>
 			<iGlobalFreeSpecialist>0</iGlobalFreeSpecialist>
-			<iMaintenanceModifier>-20</iMaintenanceModifier>
+			<iMaintenanceModifier>0</iMaintenanceModifier>
 			<iWarWearinessModifier>-25</iWarWearinessModifier>
 			<iGlobalWarWearinessModifier>0</iGlobalWarWearinessModifier>
 			<iEnemyWarWearinessModifier>0</iEnemyWarWearinessModifier>
@@ -9398,7 +9398,7 @@
 			<iResistMagic>0</iResistMagic>
 			<FreeBonus2>NONE</FreeBonus2>
 			<FreeBonus3>NONE</FreeBonus3>
-			<PrereqCiv></PrereqCiv>
+			<PrereqCiv>CIVILIZATION_CALABIM</PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
 			<RemovePromotion>NONE</RemovePromotion>
 			<SpecialistCommerceChanges>

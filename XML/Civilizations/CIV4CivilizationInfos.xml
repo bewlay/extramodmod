@@ -510,10 +510,6 @@
 					<BuildingType>NONE</BuildingType>
 				</Building>
 				<Building>
-					<BuildingClassType>BUILDINGCLASS_COURTHOUSE</BuildingClassType>
-					<BuildingType>BUILDING_GOVERNORS_MANOR</BuildingType>
-				</Building>
-				<Building>
 					<BuildingClassType>BUILDINGCLASS_ELDER_COUNCIL</BuildingClassType>
 					<BuildingType>NONE</BuildingType>
 				</Building>
@@ -521,10 +517,14 @@
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_CALABIM</BuildingType>
 				</Building>
-		                <Building>
-		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
-		                    <BuildingType>BUILDING_BREEDING_PIT</BuildingType>
-		                </Building>
+				<Building>
+					<BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
+					<BuildingType>BUILDING_BREEDING_PIT</BuildingType>
+				</Building>
+                <Building>
+                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING2</BuildingClassType>
+                    <BuildingType>BUILDING_GOVERNORS_MANOR</BuildingType>
+                </Building>
 			</Buildings>
 			<Units>
 				<Unit>
