@@ -1847,12 +1847,18 @@ class CvEventManager:
 							iIronWeapon		= gc.getInfoTypeForString('PROMOTION_IRON_WEAPONS')
 							iMobility1		= gc.getInfoTypeForString('PROMOTION_MOBILITY1')
 							iSettlerBonus	= gc.getInfoTypeForString('PROMOTION_STARTING_SETTLER')
-							liStartingUnits = [	(2,	gc.getInfoTypeForString('UNIT_LONGBOWMAN'),	[iMobility1]				),
+
+							iScaleFactor = 1 + CyGame().getNumCities()/(CyGame().countCivPlayersAlive()-1)/2
+
+							liStartingUnits = [	(2,	gc.getInfoTypeForString('UNIT_LONGBOWMAN'),	[iMobility1, iIronWeapon]				),
 												(2,	gc.getInfoTypeForString('UNIT_CHAMPION'),	[iMobility1, iIronWeapon]	),
-												(1,	gc.getInfoTypeForString('UNIT_WORKER'),		[]							),
+												(1 * iScaleFactor,	gc.getInfoTypeForString('UNIT_AXEMAN'),		[iIronWeapon]	),
+												(1 * iScaleFactor,	gc.getInfoTypeForString('UNIT_WORKER'),		[]							),
 												(1,	gc.getInfoTypeForString('UNIT_IMP'),		[iMobility1]				),
-												(3,	gc.getInfoTypeForString('UNIT_MANES'),		[]							),
-												(2,	gc.getInfoTypeForString('UNIT_SETTLER'),	[iSettlerBonus]				)	]
+												(2 * iScaleFactor,	gc.getInfoTypeForString('UNIT_MANES'),		[]							),
+												(1,	gc.getInfoTypeForString('UNIT_SETTLER'),	[iSettlerBonus]				),
+												(1 * iScaleFactor,	gc.getInfoTypeForString('UNIT_SETTLER'),	[]				)	]
+
 							for iNumUnits, iUnit, liPromotions in liStartingUnits:
 								for iLoop in range(iNumUnits):
 									pNewUnit = pInfernalPlayer.initUnit(iUnit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_NORTH)
