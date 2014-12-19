@@ -3243,10 +3243,12 @@ class CvMainInterface:
 
 						if not CyInterface().isCityScreenUp():
 							# ExtraModMod technology propagation START
-							if eCommerce == CommerceTypes.COMMERCE_RESEARCH:
-								iCommerceRate = gc.getPlayer(ePlayer).calculateBaseNetResearch()
-							else:
-								iCommerceRate = gc.getPlayer(ePlayer).getCommerceRate(CommerceTypes(eCommerce))
+							#if eCommerce == CommerceTypes.COMMERCE_RESEARCH:
+								#iCommerceRate = gc.getPlayer(ePlayer).calculateBaseNetResearch()
+							#else:
+								#iCommerceRate = gc.getPlayer(ePlayer).getCommerceRate(CommerceTypes(eCommerce))
+							# Technology propagation not shown because of http://forums.civfanatics.com/showthread.php?p=13578251#post13578251
+							iCommerceRate = gc.getPlayer(ePlayer).getCommerceRate(CommerceTypes(eCommerce))
 							# ExtraModMod technology propagation END
 							szOutText = u"<font=2>" + localText.getText("TXT_KEY_MISC_POS_GOLD_PER_TURN", (iCommerceRate, )) + u"</font>"
 							szString = "RateText" + str(iI)
