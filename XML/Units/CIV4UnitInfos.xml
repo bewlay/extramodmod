@@ -17621,7 +17621,6 @@
 			<iCombatDefense>11</iCombatDefense>
 			<iDefensiveStrikeChance>40</iDefensiveStrikeChance>
 			<iDefensiveStrikeDamage>20</iDefensiveStrikeDamage>
-			<iMinLevel>6</iMinLevel>
 			<iTier>4</iTier>
 			<iWeaponTier>3</iWeaponTier>
 			<PrereqBuildingClass>BUILDINGCLASS_ARCHERY_RANGE</PrereqBuildingClass>
