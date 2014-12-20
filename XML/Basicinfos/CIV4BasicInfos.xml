@@ -7,6 +7,11 @@
 <Civ4BasicInfos xmlns="x-schema:CIV4BasicInfoSchema.xml">
 	<ConceptInfos>
 		<ConceptInfo>
+			<Type>CONCEPT_ADVENTURER_COUNTER</Type>
+			<Description>TXT_KEY_CONCEPT_ADVENTURER_COUNTER</Description>
+			<Civilopedia>TXT_KEY_CONCEPT_ADVENTURER_COUNTER_PEDIA</Civilopedia>
+		</ConceptInfo>
+		<ConceptInfo>
 			<Type>CONCEPT_AFFINITY</Type>
 			<Description>TXT_KEY_CONCEPT_AFFINITY</Description>
 			<Civilopedia>TXT_KEY_CONCEPT_AFFINITY_PEDIA</Civilopedia>
@@ -20,6 +25,11 @@
 			<Type>CONCEPT_ARMAGEDDON_COUNTER</Type>
 			<Description>TXT_KEY_CONCEPT_ARMAGEDDON_COUNTER</Description>
 			<Civilopedia>TXT_KEY_CONCEPT_ARMAGEDDON_COUNTER_PEDIA</Civilopedia>
+		</ConceptInfo>
+		<ConceptInfo>
+			<Type>CONCEPT_BUG_REPORTS</Type>
+			<Description>TXT_KEY_CONCEPT_BUG_REPORTS</Description>
+			<Civilopedia>TXT_KEY_CONCEPT_BUG_REPORTS_PEDIA</Civilopedia>
 		</ConceptInfo>
 		<ConceptInfo>
 			<Type>CONCEPT_CRIME_RATE</Type>
@@ -60,6 +70,11 @@
 			<Type>CONCEPT_MANA</Type>
 			<Description>TXT_KEY_CONCEPT_MANA</Description>
 			<Civilopedia>TXT_KEY_CONCEPT_MANA_PEDIA</Civilopedia>
+		</ConceptInfo>
+		<ConceptInfo>
+			<Type>CONCEPT_MULTIPLE_PRODUCTION</Type>
+			<Description>TXT_KEY_CONCEPT_MULTIPLE_PRODUCTION</Description>
+			<Civilopedia>TXT_KEY_CONCEPT_MULTIPLE_PRODUCTION_PEDIA</Civilopedia>
 		</ConceptInfo>
 		<ConceptInfo>
 			<Type>CONCEPT_NAVAL_CREWS</Type>

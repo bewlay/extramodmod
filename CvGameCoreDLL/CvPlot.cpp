@@ -48,6 +48,14 @@ std::set<ImprovementTypes> CvPlot::c_aePirateCoveTypes;
 /**	END	                                        												**/
 /*************************************************************************************************/
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Debug                                                                                        */
+/************************************************************************************************/
+#include "BetterBTSAI.h"
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 // Public Functions...
 
@@ -275,6 +283,17 @@ void CvPlot::reset(int iX, int iY, bool bConstructorCall)
     m_iTempTerrainTimer = 0;
 //FfH: End Add
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, LairUnitCounter                                                              */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+    m_iWilderness = 0;
+    m_iLairUnitCount = 0;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 // Enhanced End of Winter
 	m_eRealFeatureType = NO_FEATURE;
 	m_iRealFeatureVariety = -1;
@@ -282,6 +301,7 @@ void CvPlot::reset(int iX, int iY, bool bConstructorCall)
 	m_eRealBonusType = NO_BONUS;
 	m_iTempBonusTimer = 0;
 // End Enhanced End of Winter
+
 	m_plotCity.reset();
 	m_workingCity.reset();
 	m_workingCityOverride.reset();
@@ -515,79 +535,116 @@ void CvPlot::doTurn()
                 }
             }
 		}
-        int iUnit = GC.getImprovementInfo(eImprovement).getSpawnUnitType();
-        if (iUnit != NO_UNIT)
-        {
-            if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_BARBARIANS))
-            {
-                CvArea* pArea = GC.getMapINLINE().getArea(getArea());
-                if (pArea->getNumUnownedTiles() > 0)
-                {
-                    int iTiles = GC.getDefineINT("TILES_PER_SPAWN");
-                    if (GC.getUnitInfo((UnitTypes)iUnit).isAnimal())
-                    {
-                        iTiles *= 2;
-                    }
-					// Tholal - put more rage into Raging Barbarians
-					else if (bRagingBarbs)
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* ImprovementSpawnTypes                                                                        */
+	/* Changed system, removed some old code.                                                       */
+	/************************************************************************************************/
+		bool bDoubleAnimals = GC.getGameINLINE().isOption( GAMEOPTION_DOUBLE_ANIMALS );
+
+		SpawnTypes eBestSpawn = NO_SPAWN;
+		int iBestValue = 0;
+		bool bSpawnAvailable = false;
+
+		for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+		{
+			if( GC.getImprovementInfo( getImprovementType() ).getSpawnTypes( eLoopSpawn ) )
+			{
+				bSpawnAvailable = true;
+				CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
+
+				int iValue = getSpawnValue( (SpawnTypes) eLoopSpawn );
+
+				if( iValue > 0 )
+				{
+					iValue += GC.getGameINLINE().getSorenRandNum(100, "Barb Unit Selection");
+
+					if (iValue > iBestValue)
 					{
-						iTiles /= 2;
+						eBestSpawn = (SpawnTypes) eLoopSpawn;
+						iBestValue = iValue;
+					}
+				}
+			}
+		}
+		if( eBestSpawn != NO_SPAWN )
+        {
+			if ( !GC.getGameINLINE().isOption( GAMEOPTION_NO_BARBARIANS ) )
+            {
+				CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
+
+				int iChance = GC.getDefineINT( "BASE_BARBS_PER_LAIR" );
+				iChance *= GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getLairSpawnRate();
+				if ( kBestSpawn.isAnimal() )
+				{
+					if( bDoubleAnimals )
+						iChance = iChance * 3 / 2;
+					iChance /= 2;
+				}
+				// Tholal - put more rage into Raging Barbarians
+				else if( !kBestSpawn.isAnimal() )
+				{
+					if( bRagingBarbs )
+						iChance = iChance * 3 / 2;
+				}
+				iChance = std::max( 1, iChance );
+				iChance -= getLairUnitCount();
+				
+				// ALN - increase spawn rate if not defended
+				bool bFort = (GC.getImprovementInfo(eImprovement).getDefenseModifier() > 0);
+				int iDefenders = plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER);
+				bool bDefended = iDefenders > (bFort ? 1 : 0);
+
+				if( iChance < 1 && !bDefended )
+					iChance = 1;
+
+				if( iChance > 0 )
+				{
+                    iChance *= 10000;
+					
+				// lfgr fix 08/2013
+					if ( !bDefended || bRagingBarbs ) // Tholal - put more rage into Raging Barbarians
+				// lfgr end
+					{
+						iChance *= 2;
 					}
 
-                    if (pArea->getUnitsPerPlayer((PlayerTypes)BARBARIAN_PLAYER) == 0 || (pArea->getNumUnownedTiles() / pArea->getUnitsPerPlayer((PlayerTypes)BARBARIAN_PLAYER)) > iTiles)
+					iChance = (int) ( iChance * GC.getDefineFLOAT( "LAIR_SPAWNING_SPEED" ) );
+
+					if( kBestSpawn.isAnimal() )
+						iChance /= 2;
+
+                    iChance /= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
+					
+					if  (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Unit") < iChance )
                     {
-                        int iChance = GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getLairSpawnRate();
-						
-						// ALN - increase spawn rate if not defended
-						bool bGoblinFort = (GC.getImprovementInfo(eImprovement).getDefenseModifier() > 0);
-						int iDefenders = plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER);
-						bool bDefended = iDefenders > (bGoblinFort ? 1 : 0);
-						
-                        iChance *= 10000;
-
-						if (iDefenders == 0 || bRagingBarbs) // Tholal - put more rage into Raging Barbarians
-						{
-							iChance *= 2;
-						}
-
-                        iChance /= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
-						
-						// ALN - reduce 'bear den' overspawning
-						if (GC.getUnitInfo((UnitTypes)iUnit).isAnimal())
-						{
-							iChance /= 3;
-						}
-						
-                        if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Unit") < iChance)
+                        if (!isVisibleOtherUnit(BARBARIAN_PLAYER))
                         {
-                            if (!isVisibleOtherUnit(BARBARIAN_PLAYER))
-                            {
-                                CvUnit* pUnit;
-                                pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit((UnitTypes)iUnit, getX_INLINE(), getY_INLINE(), UNITAI_ATTACK);
+							// init spawn units
+							UnitAITypes eUnitAI = NO_UNITAI;
+							if( !bDefended && !kBestSpawn.isNoDefender() )
+								eUnitAI = UNITAI_LAIRGUARDIAN;
 
-								if (GC.getImprovementInfo(eImprovement).getFreeSpawnPromotion() != NO_PROMOTION)
-								{
-									if ((GC.getPromotionInfo((PromotionTypes)GC.getImprovementInfo(eImprovement).getFreeSpawnPromotion())).isRace())
-									{
-										pUnit->setRace(NO_PROMOTION);
-									}
-									pUnit->setHasPromotion((PromotionTypes)GC.getImprovementInfo(eImprovement).getFreeSpawnPromotion(), true);
-								}
-								if (pUnit->isAnimal())
-                                {
-                                    pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
-									pUnit->AI_setUnitAIType(UNITAI_ANIMAL);		
-                                }
-								if (!bDefended)
-								{
-									pUnit->AI_setUnitAIType(UNITAI_LAIRGUARDIAN);
-								}
-                            }
+							createSpawn( eBestSpawn, eUnitAI, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
                         }
                     }
                 }
             }
         }
+		else
+		{
+			if( bSpawnAvailable && !GC.getImprovementInfo( getImprovementType() ).isUnique() )
+			{
+				logBBAI("WILDERNESS - ImprovementSpawnTypes - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
+						getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( getTerrainType() ).getType() : "NONE",
+						getFeatureType() != NO_FEATURE ? GC.getFeatureInfo( getFeatureType() ).getType() : "NONE",
+						getImprovementType() != NO_IMPROVEMENT ? GC.getImprovementInfo( getImprovementType() ).getType() : "NONE" );
+				FAssertMsg( false, "See BBAI.log" );
+			}
+		}
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
         if (GC.getImprovementInfo(getImprovementType()).getFeatureUpgrade() != NO_FEATURE)
         {
             if (GC.getGameINLINE().getSorenRandNum(100, "Feature Upgrade") < GC.getDefineINT("FEATURE_UPGRADE_CHANCE"))
@@ -2629,6 +2686,40 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 	{
 		return false;
 	}
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementWilderness                                                                        */
+/************************************************************************************************/
+	
+	if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && 
+		( GC.getImprovementInfo( eImprovement ).getMinWilderness() > getWilderness() ||
+			GC.getImprovementInfo( eImprovement ).getMaxWilderness() < getWilderness() ) )
+	{
+		return false;
+	}
+
+	if( !kImprovement.isUnique() )
+	{
+		bool bHasSpawn = false;
+		bool bCanSpawn = false;
+
+		for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+		{
+			if( kImprovement.getSpawnTypes( eSpawn ) )
+			{
+				bHasSpawn = true;
+				bCanSpawn = getSpawnValue( (SpawnTypes) eSpawn, false ) > 0;
+			}
+		}
+
+		if( bHasSpawn && !bCanSpawn )
+			return false;
+	}
+	
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (kImprovement.isHillsMakesValid() && isHills())
 	{
@@ -4594,7 +4685,26 @@ bool CvPlot::isRevealedGoody(TeamTypes eTeam) const
 //FfH: Added by Kael 08/27/2007
     if (getImprovementType() != NO_IMPROVEMENT)
     {
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* ImprovementSpawnTypes                                                                        */
+	/************************************************************************************************/
+	/*
         if (GC.getImprovementInfo((ImprovementTypes)getImprovementType()).getSpawnUnitType() != NO_UNIT)
+	*/
+		bool bValid = false;
+		for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+		{
+			if( GC.getImprovementInfo((ImprovementTypes)getImprovementType()).getSpawnTypes( eSpawn ) )
+			{
+				bValid = true;
+			}
+		}
+		
+		if( bValid )
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
         {
             if (!GC.getImprovementInfo((ImprovementTypes)getImprovementType()).isPermanent())
             {
@@ -6818,6 +6928,23 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 
 	if (getImprovementType() != eNewValue)
 	{
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* LairUnitCounter                                                                              */
+	/* Update Lair counter                                                                          */
+	/************************************************************************************************/
+		if( isLair() && ( eNewValue == NO_IMPROVEMENT || ( eNewValue != GC.getImprovementInfo( eOldImprovement ).getImprovementUpgrade() && eNewValue != GC.getImprovementInfo( eOldImprovement ).getImprovementPillage() ) ) )
+		{
+			// LFGR_TODO: Multibarb
+			CvPlayer& kBarbPlayer = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() );
+			int iLoop;
+			for (CvUnit* pLoopUnit = kBarbPlayer.firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = kBarbPlayer.nextUnit(&iLoop))
+				if( pLoopUnit->getLairPlot() == GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) )
+					pLoopUnit->setLairPlot( -1 );
+		}
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
 		if (getImprovementType() != NO_IMPROVEMENT)
 		{
 			if (area())
@@ -6863,6 +6990,53 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 
 		if (getImprovementType() != NO_IMPROVEMENT)
 		{
+		/************************************************************************************************/
+		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* LairGuardian                                                                                 */
+		/************************************************************************************************/
+			if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_BARBARIANS ) )
+			{
+				SpawnTypes eBestSpawn = NO_SPAWN;
+				int iBestValue = 0;
+				bool bSpawnAvailable = false;
+				for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+				{
+					if( GC.getImprovementInfo( getImprovementType() ).isGuardianSpawnType( eLoopSpawn ) )
+					{
+						bSpawnAvailable = true;
+						CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
+
+						int iValue = getSpawnValue( (SpawnTypes) eLoopSpawn );
+
+						if( iValue > 0 )
+						{
+							iValue += GC.getGameINLINE().getSorenRandNum(100, "Spawn selection");
+
+							if (iValue > iBestValue)
+							{
+								eBestSpawn = (SpawnTypes) eLoopSpawn;
+								iBestValue = iValue;
+							}
+						}
+					}
+				}
+				if( eBestSpawn != NO_SPAWN )
+					createSpawn( eBestSpawn, UNITAI_LAIRGUARDIAN, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
+				else
+				{
+					if( bSpawnAvailable )
+					{
+						logBBAI("WILDERNESS - LairGuardian - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
+								getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( getTerrainType() ).getType() : "NONE",
+								getFeatureType() != NO_FEATURE ? GC.getFeatureInfo( getFeatureType() ).getType() : "NONE",
+								getImprovementType() != NO_IMPROVEMENT ? GC.getImprovementInfo( getImprovementType() ).getType() : "NONE" );
+						FAssertMsg( false, "See BBAI.log" );
+					}
+				}
+			}
+		/************************************************************************************************/
+		/* WILDERNESS                                                                     END           */
+		/************************************************************************************************/
 			if (area())
 			{
 				area()->changeNumImprovements(getImprovementType(), 1);
@@ -10464,6 +10638,16 @@ void CvPlot::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iPortalExitY);
 	pStream->Read(&m_iTempTerrainTimer);
 //FfH: End Add
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, LairUnitCounter                                                              */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	pStream->Read(&m_iWilderness);
+	pStream->Read(&m_iLairUnitCount);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 // Enhanced End of Winter
 	pStream->Read(&m_eRealFeatureType);
@@ -10724,6 +10908,17 @@ void CvPlot::write(FDataStreamBase* pStream)
 	pStream->Write(m_iTempTerrainTimer);
 //FfH: End Add
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, LairUnitCounter                                                              */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	pStream->Write(m_iWilderness);
+	pStream->Write(m_iLairUnitCount);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 // Enhanced End of Winter
 	pStream->Write(m_eRealFeatureType);
 	pStream->Write(m_iRealFeatureVariety);
@@ -10731,6 +10926,7 @@ void CvPlot::write(FDataStreamBase* pStream)
 	pStream->Write(m_eRealBonusType);
 	pStream->Write(m_iTempBonusTimer);
 // End Enhanced End of Winter
+
 	if (NULL == m_aiCulture)
 	{
 		pStream->Write((char)0);
@@ -12082,21 +12278,32 @@ void CvPlot::changePlotCounter(int iChange)
 		const int iPlotCounterDown	= GC.getTerrainInfo(getTerrainType()).getPlotCounterDown();
 		const int iPlotCounterUp	= GC.getTerrainInfo(getTerrainType()).getPlotCounterUp();
 		bool bChange = false;
+		bool bIsUpChange;
 		if (getPlotCounter() < iPlotCounterDown && iPlotCounterDown <= iOldCounter)
 		{
 			setTerrainType((TerrainTypes)GC.getTerrainInfo(getTerrainType()).getTerrainDown(), true, true);
 			bChange = true;
+			bIsUpChange = false;
 		}
 		if (iOldCounter <= iPlotCounterUp && iPlotCounterUp < getPlotCounter())
 		{
 			setTerrainType((TerrainTypes)GC.getTerrainInfo(getTerrainType()).getTerrainUp(), true, true);
 			bChange = true;
+			bIsUpChange = true;
 		}
 //<<<<Unofficial Bug Fix: End Modify
 		if (bChange)
 		{
 			if (getFeatureType() != NO_FEATURE)
 			{
+				// Features modified by Armageddon Counter START
+				CvFeatureInfo &kCurrentFeature = GC.getFeatureInfo(getFeatureType());
+				FeatureTypes iNextFeatureType = (FeatureTypes) ((bIsUpChange) ? kCurrentFeature.getFeatureUp() : kCurrentFeature.getFeatureDown());
+				if (iNextFeatureType != NO_FEATURE && GC.getFeatureInfo(iNextFeatureType).isTerrain(getTerrainType()))
+				{
+					setFeatureType(iNextFeatureType);
+				} else
+				// Features modified by Armageddon Counter END
 				if (!GC.getFeatureInfo(getFeatureType()).isTerrain(getTerrainType()))
 				{
 					setFeatureType(NO_FEATURE);
@@ -12400,11 +12607,19 @@ bool CvPlot::isFeatureRemove(BuildTypes eBuild) const
 }
 //<<<<Unofficial Bug Fix: End Add
 
+// LFGR_TODO: Is the animal/not animal separation really needed?
 bool CvPlot::isLair(bool bIgnoreIsAnimal, bool bAnimal) const
 {
 	ImprovementTypes eImprovement = getImprovementType();
 	if (eImprovement != NO_IMPROVEMENT)
 	{
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* ImprovementSpawnTypes                                                                        */
+	/* Now supports improvements with animal AND no-animal spawns, although this should normally    */
+	/* not occur.                                                                                   */
+	/************************************************************************************************/
+	/*
 		int iUnit = GC.getImprovementInfo(eImprovement).getSpawnUnitType();
 		if (iUnit != NO_UNIT)
 		{
@@ -12413,6 +12628,28 @@ bool CvPlot::isLair(bool bIgnoreIsAnimal, bool bAnimal) const
 				return true;
 			}
 		}
+	*/
+		bool bSpawnNoAnimal = false;
+		bool bSpawnAnimal = false;
+		for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+		{
+			if( GC.getImprovementInfo((ImprovementTypes)eImprovement).getSpawnTypes( eSpawn ) )
+			{
+				if( !bSpawnNoAnimal )
+					bSpawnNoAnimal = !GC.getSpawnInfo( (SpawnTypes) eSpawn ).isAnimal();
+				if( !bSpawnAnimal )
+					bSpawnAnimal = GC.getSpawnInfo( (SpawnTypes) eSpawn ).isAnimal();
+
+				if( bSpawnNoAnimal && bSpawnAnimal )
+					break;
+			}
+		}
+		if( bSpawnNoAnimal || bSpawnAnimal )
+			if( bIgnoreIsAnimal || ( bSpawnAnimal && bAnimal ) || ( bSpawnNoAnimal && !bAnimal ) )
+				return true;
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
 	}
 	return false;
 }

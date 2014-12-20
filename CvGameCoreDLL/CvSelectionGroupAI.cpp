@@ -214,7 +214,8 @@ bool CvSelectionGroupAI::AI_update()
 		iTempHack++;
 		if (iTempHack > 100)
 		{
-			FAssert(false);
+			// (Seemingly bogus) assert removed by Terkhen
+			// FAssert(false);
 			CvUnit* pHeadUnit = getHeadUnit();
 			if (NULL != pHeadUnit)
 			{

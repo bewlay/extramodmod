@@ -147,17 +147,24 @@
 			<bVisible>0</bVisible>
 		</GameOptionInfo>
 		<GameOptionInfo>
+			<Type>GAMEOPTION_TECHNOLOGY_PROPAGATION</Type>
+			<Description>TXT_KEY_GAME_OPTION_TECHNOLOGY_PROPAGATION</Description>
+			<Help>TXT_KEY_GAME_OPTION_TECHNOLOGY_PROPAGATION_HELP</Help>
+			<bDefault>1</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
+		<GameOptionInfo>
 			<Type>GAMEOPTION_NO_TECH_TRADING</Type>
 			<Description>TXT_KEY_GAME_OPTION_NO_TECH_TRADING</Description>
 			<Help>TXT_KEY_GAME_OPTION_NO_TECH_TRADING_HELP</Help>
-			<bDefault>0</bDefault>
+			<bDefault>1</bDefault>
 			<bVisible>1</bVisible>
 		</GameOptionInfo>
 		<GameOptionInfo>
 			<Type>GAMEOPTION_NO_TECH_BROKERING</Type>
 			<Description>TXT_KEY_GAME_OPTION_NO_TECH_BROKERING</Description>
 			<Help>TXT_KEY_GAME_OPTION_NO_TECH_BROKERING_HELP</Help>
-			<bDefault>0</bDefault>
+			<bDefault>1</bDefault>
 			<bVisible>1</bVisible>
 		</GameOptionInfo>
 		<GameOptionInfo>
@@ -591,7 +598,7 @@
 			<Type>GAMEOPTION_PUPPET_STATES</Type>
 			<Description>TXT_KEY_GAME_OPTION_PUPPET_STATES</Description>
 			<Help>TXT_KEY_GAME_OPTION_PUPPET_STATES_HELP</Help>
-			<bDefault>0</bDefault>
+			<bDefault>1</bDefault>
 			<bVisible>1</bVisible>
 		</GameOptionInfo>
 		<GameOptionInfo>
@@ -605,6 +612,36 @@
 			<Type>GAMEOPTION_ADVANCED_TACTICS</Type>
 			<Description>TXT_KEY_GAME_OPTION_ADVANCED_TACTICS</Description>
 			<Help>TXT_KEY_GAME_OPTION_ADVANCED_TACTICS_HELP</Help>
+			<bDefault>1</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
+		<GameOptionInfo>
+			<Type>GAMEOPTION_LEADER_SCENEXTRA</Type>
+			<Description>TXT_KEY_GAME_OPTION_LEADER_SCENEXTRA</Description>
+			<Help>TXT_KEY_GAME_OPTION_LEADER_SCENEXTRA_HELP</Help>
+			<bDefault>1</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
+		<GameOptionInfo>
+			<Type>GAMEOPTION_LEADER_EXTRA</Type>
+			<Description>TXT_KEY_GAME_OPTION_LEADER_EXTRA</Description>
+			<Help>TXT_KEY_GAME_OPTION_LEADER_EXTRA_HELP</Help>
+			<bDefault>1</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
+		<GameOptionInfo>
+			<!-- TERRAIN_FLAVOUR 04/2013 lfgr -->
+			<Type>GAMEOPTION_FLAVOUR_START</Type>
+			<Description>TXT_KEY_GAME_OPTION_FLAVOUR_START</Description>
+			<Help>TXT_KEY_GAME_OPTION_FLAVOUR_START_HELP</Help>
+			<bDefault>0</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
+		<GameOptionInfo>
+			<!-- WILDERNESS 11/2014 lfgr / NoWilderness -->
+			<Type>GAMEOPTION_NO_WILDERNESS</Type>
+			<Description>TXT_KEY_GAME_OPTION_NO_WILDERNESS</Description>
+			<Help>TXT_KEY_GAME_OPTION_NO_WILDERNESS_HELP</Help>
 			<bDefault>0</bDefault>
 			<bVisible>1</bVisible>
 		</GameOptionInfo>

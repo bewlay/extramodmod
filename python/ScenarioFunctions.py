@@ -1895,7 +1895,7 @@ class ScenarioFunctions:
 
 	def onUnitKilled(self, pUnit, iAttacker):
 		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_WB_INTO_THE_DESERT):
-			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GREAT_COMMANDER')):
+			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GREAT_GENERAL')):
 				iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
 				if pUnit.getScenarioCounter() == iDecius:
 					pPlayer = gc.getPlayer(pUnit.getOwner())
@@ -1932,7 +1932,7 @@ class ScenarioFunctions:
 							pLoopUnit = pPlayer.getUnit(iUnit)
 							if pLoopUnit.getUnitType() == gc.getInfoTypeForString('UNIT_ROSIER_OATHTAKER'):
 								pLoopUnit.kill(True,0)
-			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GREAT_COMMANDER')):
+			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GREAT_GENERAL')):
 				iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
 				if pUnit.getScenarioCounter() == iDecius:
 					pPlayer = gc.getPlayer(pUnit.getOwner())
@@ -1975,7 +1975,7 @@ class ScenarioFunctions:
 		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_WB_MULCARN_REBORN):
 			if pUnit.getUnitType() == gc.getInfoTypeForString('UNIT_AURIC_ASCENDED'):
 				gc.getGame().setWinner(0, 2) #Falamar wins
-			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GREAT_COMMANDER')):
+			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GREAT_GENERAL')):
 				iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
 				if pUnit.getScenarioCounter() == iDecius:
 					pPlayer = gc.getPlayer(pUnit.getOwner())
@@ -2067,7 +2067,7 @@ class ScenarioFunctions:
 					CyInterface().setDirty(InterfaceDirtyBits.Score_DIRTY_BIT, True)
 
 		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_WB_WAGES_OF_SIN):
-			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GREAT_COMMANDER')):
+			if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GREAT_GENERAL')):
 				iDecius = gc.getInfoTypeForString('UNIT_DECIUS')
 				if pUnit.getScenarioCounter() == iDecius:
 					pPlayer = gc.getPlayer(pUnit.getOwner())

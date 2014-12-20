@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Extra Resources ModComp for MNAI -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+    <TEXT>
+		<Tag>TXT_KEY_BONUS_AMBER</Tag>
+		<English>Amber</English>
+		<French>Amber</French>
+		<German>Bernstein</German>
+		<Italian>Amber</Italian>
+		<Spanish>Ámbar</Spanish>
+    </TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BONUS_AMBER_PEDIA</Tag>
+		<English>[TAB]Amber is formed from the resin of trees that have been buried in the depths of the earth for countless centuries. Amber is appreciated for its use in jewelry and for the distinctive scent it creates when it is burnt.</English>
+		<French>[TAB]Amber is formed from the resin of trees that have been buried in the depths of the earth for countless centuries. Amber is appreciated for its use in jewelry and for the distinctive scent it creates when it is burnt.</French>
+		<German>[TAB]Amber is formed from the resin of trees that have been buried in the depths of the earth for countless centuries. Amber is appreciated for its use in jewelry and for the distinctive scent it creates when it is burnt.</German>
+		<Italian>[TAB]Amber is formed from the resin of trees that have been buried in the depths of the earth for countless centuries. Amber is appreciated for its use in jewelry and for the distinctive scent it creates when it is burnt.</Italian>
+		<Spanish>[TAB]El Ámbar se forma a partir de la resina de árboles que han estado enterrados en las profundidades de la tierra durante incontables siglos. El Ámbar es apreciado por su uso en joyería  por el distintivo olor que produce al ser quemado.</Spanish>
+	</TEXT>
+    <TEXT>
+		<Tag>TXT_KEY_BONUS_BISON</Tag>
+		<English>Bison</English>
+		<French>Bison</French>
+		<German>Bison</German>
+		<Italian>Bison</Italian>
+		<Spanish>Bisonte</Spanish>
+    </TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BONUS_BISON_PEDIA</Tag>
+		<English>[TAB]Bison are large, even-toed ungulates. Bison are nomadic grazers and travel in herds.</English>
+		<French>[TAB]Bison are large, even-toed ungulates. Bison are nomadic grazers and travel in herds.</French>
+		<German>[TAB]Bison are large, even-toed ungulates. Bison are nomadic grazers and travel in herds.</German>
+		<Italian>[TAB]Bison are large, even-toed ungulates. Bison are nomadic grazers and travel in herds.</Italian>
+		<Spanish>[TAB]Bison are large, even-toed ungulates. Bison are nomadic grazers and travel in herds.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BONUS_SALT</Tag>
+		<English>Salt</English>
+		<French>Sel</French>
+		<German>Salz</German>
+		<Italian>Sale</Italian>
+		<Spanish>Sal</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BONUS_SALT_PEDIA</Tag>
+		<English>[TAB]Salt is greatly appreciated for its ability to preserve food. In addition to its conservative qualities, salt improves the taste of food and as a result it is also used as seasoning.</English>
+		<French>[TAB]Salt is greatly appreciated for its ability to preserve food. In addition to its conservative qualities, salt improves the taste of food and as a result it is also used as seasoning.</French>
+		<German>[TAB]Salt is greatly appreciated for its ability to preserve food. In addition to its conservative qualities, salt improves the taste of food and as a result it is also used as seasoning.</German>
+		<Italian>[TAB]Salt is greatly appreciated for its ability to preserve food. In addition to its conservative qualities, salt improves the taste of food and as a result it is also used as seasoning.</Italian>
+		<Spanish>[TAB]La sal es profundamente apreciada por su capacidad para preservar la comida. Además de sus capacidades de conservación, la sal mejora el sabor de la comida y por lo tanto también es empleada como condimento.</Spanish>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_BONUS_SHRIMP</Tag>
+		<English>Shrimp</English>
+		<French>Shrimp</French>
+		<German>Garnelen</German>
+		<Italian>Shrimp</Italian>
+		<Spanish>Gambas</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BONUS_SHRIMP_PEDIA</Tag>
+		<English>Shrimp are aquatic crustaceans that live in schools and can swim rapidly backwards. Shrimp are an important food source for larger animals, from fish to whales, and they are also caught for human consumption.</English>
+		<French>Shrimp are aquatic crustaceans that live in schools and can swim rapidly backwards. Shrimp are an important food source for larger animals, from fish to whales, and they are also caught for human consumption.</French>
+		<German>Shrimp are aquatic crustaceans that live in schools and can swim rapidly backwards. Shrimp are an important food source for larger animals, from fish to whales, and they are also caught for human consumption.</German>
+		<Italian>Shrimp are aquatic crustaceans that live in schools and can swim rapidly backwards. Shrimp are an important food source for larger animals, from fish to whales, and they are also caught for human consumption.</Italian>
+		<Spanish>Las gambas son crustáceos acuáticos que viven en bancos y pueden nadar rápidamente hacia atrás. Las gambas son una importante fuente de alimento para animales grandes tales como peces o ballenas, y también son capturadas para el consumo humano.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BONUS_STONE_PEDIA</Tag>
+		<English>[TAB]Stone has always been and remains one of the most important building materials. Civilizations which possess Stone will be able to build certain buildings faster.</English>
+		<French>[TAB]Stone has always been and remains one of the most important building materials. Civilizations which possess Stone will be able to build certain buildings faster.</French>
+		<German>[TAB]Stone has always been and remains one of the most important building materials. Civilizations which possess Stone will be able to build certain buildings faster.</German>
+		<Italian>[TAB]Stone has always been and remains one of the most important building materials. Civilizations which possess Stone will be able to build certain buildings faster.</Italian>
+		<Spanish>[TAB]La piedra ha sido y sigue siendo uno de los materiales m&#225;s importantes de construcci&#243;n. Las civilizationes que posean Piedra serán capaces de construir ciertos edificios mas rápidamente.</Spanish>
+	</TEXT>
+</Civ4GameText>

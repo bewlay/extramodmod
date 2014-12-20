@@ -1684,10 +1684,23 @@ void CyUnit::rangeStrike(int iX, int iY)
 	}
 }
 
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/* Fix                                                                          */
+/********************************************************************************/
+/* old
 const CvArtInfoUnit* CyUnit::getArtInfo(int i, EraTypes eEra) const
 {
 	return m_pUnit ? m_pUnit->getArtInfo(i, eEra) : NULL;
 }
+*/
+const CvArtInfoUnit* CyUnit::getArtInfo(int i, int /*EraTypes*/ eEra) const
+{
+	return m_pUnit ? m_pUnit->getArtInfo( i, (EraTypes) eEra ) : NULL;
+}
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 
 std::string CyUnit::getButton() const
 {
@@ -2000,3 +2013,20 @@ void CyUnit::joinGroup(CySelectionGroup* pNewGroup)
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/************************************************************************************************/
+int CyUnit::getExplorationLevel() const
+{
+	return m_pUnit ? m_pUnit->getExplorationLevel() : 0;
+}
+
+bool CyUnit::canDoExploration( CyPlot* pPlot ) const
+{
+	return m_pUnit ? m_pUnit->canDoExploration( pPlot->getPlot() ) : false;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/

@@ -214,6 +214,7 @@
 	<ElementType name="ReligionWeightModifiers" content="eltOnly">
 		<element type="ReligionWeightModifier" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="LeaderCategory" content="textOnly"/>
 	<ElementType name="LeaderHeadInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -330,6 +331,7 @@
 		<element type="FavoriteWonder"/>
 		<element type="PermanentTrait" minOccurs="0"/>
 		<element type="ReligionWeightModifiers"/>
+		<element type="LeaderCategory"/>
 	</ElementType>
 	<ElementType name="LeaderHeadInfos" content="eltOnly">
 		<element type="LeaderHeadInfo" maxOccurs="*"/>
@@ -395,6 +397,10 @@
 	<ElementType name="FreePromotionUnitCombats" content="eltOnly">
 		<element type="FreePromotionUnitCombat" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+<!-- EXTRA_TRAITS 08/2013 lfgr -->
+	<ElementType name="bAllUnitsFreePromotion" content="textOnly"/>
+	<ElementType name="Button" content="textOnly"/>
+<!-- EXTRA_TRAITS -->
 	<ElementType name="TraitInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -431,6 +437,10 @@
 		<element type="CommerceModifiers"/>
 		<element type="FreePromotions"/>
 		<element type="FreePromotionUnitCombats"/>
+<!-- EXTRA_TRAITS 08/2013 lfgr -->
+		<element type="bAllUnitsFreePromotion" minOccurs="0"/>
+		<element type="Button" minOccurs="0"/>
+<!-- EXTRA_TRAITS -->
 	</ElementType>
 	<ElementType name="TraitInfos" content="eltOnly">
 		<element type="TraitInfo" maxOccurs="*"/>
@@ -515,7 +525,11 @@
 	<ElementType name="CivilizationSelectionSound" content="textOnly"/>
 	<ElementType name="CivilizationActionSound" content="textOnly"/>
 	<ElementType name="UnitArtStyleType" content="textOnly"/>
-	<ElementType name="CivTrait" content="textOnly"/>
+<!-- EXTRA_TRAITS 08/2013 lfgr -->
+	<ElementType name="CivTraits" content="eltOnly">
+		<element type="TraitType" maxOccurs="*"/>
+	</ElementType>
+<!-- EXTRA_TRAITS -->
 	<ElementType name="DefaultRace" content="textOnly"/>
 	<ElementType name="Hero" content="textOnly"/>
 	<ElementType name="FeatureType" content="textOnly"/>
@@ -542,6 +556,9 @@
 	<ElementType name="TerrainYieldChanges" content="eltOnly">
 		<element type="TerrainYieldChange" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+<!-- TERRAIN_FLAVOUR 03/2013 lfgr -->
+	<ElementType name="TerrainFlavour" content="textOnly"/>
+<!-- TERRAIN_FLAVOUR end -->
 	<ElementType name="CivilizationInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description" minOccurs="0"/>
@@ -568,11 +585,16 @@
 		<element type="CivilizationSelectionSound" minOccurs="0"/>
 		<element type="CivilizationActionSound" minOccurs="0"/>
 		<element type="bGraphicalOnly" minOccurs="0"/>
-		<element type="CivTrait" minOccurs="0"/>
+	<!-- EXTRA_TRAITS 08/2013 lfgr -->
+		<element type="CivTraits" minOccurs="0"/>
+	<!-- EXTRA_TRAITS -->
 		<element type="DefaultRace" minOccurs="0"/>
 		<element type="Help" minOccurs="0"/>
 		<element type="Hero" minOccurs="0"/>
 		<element type="MaintainFeatures" minOccurs="0"/>
+<!-- TERRAIN_FLAVOUR 03/2013 lfgr -->
+		<element type="TerrainFlavour" minOccurs="0"/>
+<!-- TERRAIN_FLAVOUR end -->
 	</ElementType>
 	<ElementType name="CivilizationInfos" content="eltOnly">
 		<element type="CivilizationInfo" maxOccurs="*"/>

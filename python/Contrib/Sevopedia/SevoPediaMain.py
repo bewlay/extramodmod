@@ -193,7 +193,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 			SevoScreenEnums.PEDIA_ABILITIES		: self.placeAbilities,
 ##--------	BUGFfH: End Add
 			SevoScreenEnums.PEDIA_CONCEPTS		: self.placeConcepts,
-			SevoScreenEnums.PEDIA_BTS_CONCEPTS	: self.placeBTSConcepts,
+#			SevoScreenEnums.PEDIA_BTS_CONCEPTS	: self.placeBTSConcepts,
 			SevoScreenEnums.PEDIA_HINTS		: self.placeHints,
 			SevoScreenEnums.PEDIA_SHORTCUTS  	: self.placeShortcuts,
 			SevoScreenEnums.PEDIA_STRATEGY  	: self.placeStrategy,
@@ -250,7 +250,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 			SevoScreenEnums.PEDIA_ABILITIES		: SevoPediaSpell.SevoPediaSpell(self),
 ##--------	BUGFfH: End Add
 			SevoScreenEnums.PEDIA_CONCEPTS		: SevoPediaHistory.SevoPediaHistory(self),
-			SevoScreenEnums.PEDIA_BTS_CONCEPTS	: SevoPediaHistory.SevoPediaHistory(self),
+#			SevoScreenEnums.PEDIA_BTS_CONCEPTS	: SevoPediaHistory.SevoPediaHistory(self),
 			SevoScreenEnums.PEDIA_SHORTCUTS  	: SevoPediaHistory.SevoPediaHistory(self),
 			SevoScreenEnums.PEDIA_STRATEGY  	: SevoPediaHistory.SevoPediaHistory(self),
 			}
@@ -350,9 +350,9 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 				BugUtil.debug("MINOR Leader!")	
 				iCategory = SevoScreenEnums.PEDIA_MINOR_LEADERS	
 	# MINOR_LEADERS_PEDIA end
-		elif (iCategory == SevoScreenEnums.PEDIA_BTS_CONCEPTS):
-			iCategory = self.determineNewConceptSubCategory(iItem)
-			BugUtil.debug("Switching to category %d" % iCategory)
+#		elif (iCategory == SevoScreenEnums.PEDIA_BTS_CONCEPTS):
+#			iCategory = self.determineNewConceptSubCategory(iItem)
+#			BugUtil.debug("Switching to category %d" % iCategory)
 		self.showContents(bIsLink, iCategory)
 		screen.setSelectedListBoxStringGFC(self.CATEGORY_LIST_ID, iCategory - (SevoScreenEnums.PEDIA_MAIN + 1))
 		if (iCategory not in (SevoScreenEnums.PEDIA_UNIT_UPGRADES, SevoScreenEnums.PEDIA_PROMOTION_TREE, SevoScreenEnums.PEDIA_HINTS)):
@@ -387,9 +387,9 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 ##--------	BUGFfH: End Delete
 		if (self.isStrategyInfo(info)):
 			return SevoScreenEnums.PEDIA_STRATEGY
-		if (self.isShortcutInfo(info)):
-			return SevoScreenEnums.PEDIA_SHORTCUTS
-		return SevoScreenEnums.PEDIA_BTS_CONCEPTS
+#		if (self.isShortcutInfo(info)):
+		return SevoScreenEnums.PEDIA_SHORTCUTS
+#		return SevoScreenEnums.PEDIA_BTS_CONCEPTS
 
 	def isContentsShowing(self):
 		return self.tab == self.TAB_TOC
@@ -467,7 +467,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 		self.szCategorySpells = localText.getText("TXT_KEY_PEDIA_CATEGORY_SPELLS", ())
 		self.szCategoryAbilities	= localText.getText("TXT_KEY_PEDIA_CATEGORY_ABILITY", ())	
 		self.szCategoryConcepts		= localText.getText("TXT_KEY_PEDIA_CATEGORY_CONCEPT", ())
-		self.szCategoryConceptsNew	= localText.getText("TXT_KEY_PEDIA_CATEGORY_CONCEPT_NEW", ())
+#		self.szCategoryConceptsNew	= localText.getText("TXT_KEY_PEDIA_CATEGORY_CONCEPT_NEW", ())
 		self.szCategoryHints		= localText.getText("TXT_KEY_PEDIA_CATEGORY_HINTS", ())
 		self.szCategoryShortcuts	= localText.getText("TXT_KEY_PEDIA_CATEGORY_SHORTCUTS", ())
 ##--------	BUGFfH: Deleted by Denev 2009/08/12
@@ -517,7 +517,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 			["SPELLS",  self.szCategorySpells],
 			["SPELLS",	self.szCategoryAbilities],
 			["HINTS",	self.szCategoryConcepts],
-			["HINTS",	self.szCategoryConceptsNew],
+#			["HINTS",	self.szCategoryConceptsNew],
 			["HINTS",	self.szCategoryHints],
 			["HINTS",	self.szCategoryShortcuts],
 ##--------	BUGFfH: Deleted by Denev 2009/08/12
@@ -1162,9 +1162,9 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 		for i in range(gc.getNumConceptInfos()):
 			if (gc.getConceptInfo(i).isMatchForLink(szLink, False)):
 				return self.pediaJump(SevoScreenEnums.PEDIA_CONCEPTS, i, True, True)
-		for i in range(gc.getNumNewConceptInfos()):
-			if (gc.getNewConceptInfo(i).isMatchForLink(szLink, False)):
-				return self.pediaJump(SevoScreenEnums.PEDIA_BTS_CONCEPTS, i, True, True)
+#		for i in range(gc.getNumNewConceptInfos()):
+#			if (gc.getNewConceptInfo(i).isMatchForLink(szLink, False)):
+#				return self.pediaJump(SevoScreenEnums.PEDIA_BTS_CONCEPTS, i, True, True)
 
 
 

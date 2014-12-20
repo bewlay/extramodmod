@@ -17,6 +17,11 @@
             <Button>Art/Interface/Buttons/Death.dds</Button>
 		</DamageInfo>
 		<DamageInfo>
+			<Type>DAMAGE_FORCE</Type>
+			<Description>TXT_KEY_DAMAGE_FORCE</Description>
+            <Button>Art/Interface/Buttons/Fire.dds</Button>
+		</DamageInfo>
+		<DamageInfo>
 			<Type>DAMAGE_FIRE</Type>
 			<Description>TXT_KEY_DAMAGE_FIRE</Description>
             <Button>Art/Interface/Buttons/Fire.dds</Button>

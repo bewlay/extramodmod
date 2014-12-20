@@ -249,7 +249,7 @@ class CvGameUtils:
 			if pCity.getPopulation() <= 5:
 				return True
 
-		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
+		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_MEMBERSHIP')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
 			if eUnit == gc.getInfoTypeForString('UNIT_WORKER'):
 				return True
 			if eUnit == gc.getInfoTypeForString('UNIT_SETTLER'):
@@ -257,9 +257,11 @@ class CvGameUtils:
 			if eUnit == gc.getInfoTypeForString('UNIT_WORKBOAT'):
 				return True
 
-		if eUnit == gc.getInfoTypeForString('UNIT_ACHERON'):
-			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_ACHERON):
-				return True
+	# WILDERNESS 09/2013 lfgr / SpawnAcheron
+	#	if eUnit == gc.getInfoTypeForString('UNIT_ACHERON'):
+	#		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_ACHERON):
+	#			return True
+	# WILDERNESS end
 
 		if eUnit == gc.getInfoTypeForString('UNIT_DUIN'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_DUIN):
@@ -269,6 +271,7 @@ class CvGameUtils:
 			bBlock = sf.cannotTrain(pCity, eUnit, bContinue, bTestVisible, bIgnoreCost, bIgnoreUpgrades)
 			if bBlock:
 				return True
+
 
 		return False
 
@@ -304,7 +307,7 @@ class CvGameUtils:
 			if eBuilding == gc.getInfoTypeForString('BUILDING_TEMPLE_OF_THE_ORDER'):
 				return True
 
-		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
+		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_MEMBERSHIP')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
 			if eBuilding == gc.getInfoTypeForString('BUILDING_ELDER_COUNCIL'):
 				return True
 			if eBuilding == gc.getInfoTypeForString('BUILDING_MARKET'):
@@ -520,6 +523,27 @@ class CvGameUtils:
 					pCity.pushOrder(OrderTypes.ORDER_TRAIN, gc.getInfoTypeForString('UNIT_HAWK'), -1, False, False, False, False)
 					return 1
 
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+			## Grigori should build Adventurer Counter buildings
+			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI'):
+				if (pCity.getCultureLevel() > 1) and (pCity.getPopulation() > 4):
+					## The most important one is the Adventurer's Guild.
+					if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_ADVENTURERS_GUILD'), True, False, False):
+						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_ADVENTURERS_GUILD'),-1, False, False, False, False)
+						return 1
+					## If the leader is Organized, it should also build Command Posts.
+					elif pCity.canConstruct(gc.getInfoTypeForString('BUILDING_COMMAND_POST'), True, False, False):
+						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_COMMAND_POST'),-1, False, False, False, False)
+						return 1
+						## If the city has enough specialists, it should have a Citizens' Forum.
+						iNumSpecialists = 0
+						for eSpec in range(gc.getNumSpecialistInfos()):
+							iNumSpecialists += pCity.getSpecialistCount(eSpec) + pCity.getFreeSpecialistCount(eSpec)
+						if iNumSpecialists > 2:
+							pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_FORUM'),-1, False, False, False, False)
+							return 1
+
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
 		return False
 
 	def AI_unitUpdate(self,argsList):
@@ -1071,6 +1095,14 @@ class CvGameUtils:
 					if CyGame().getSorenRandNum(100, "Asylum") < 10:
 						pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CRAZED'), True)
 						pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ENRAGED'), True)
+
+		if pUnit.getUnitClassType() == gc.getInfoTypeForString('UNITCLASS_MOBIUS_WITCH'):
+			promotions = [ 'PROMOTION_AIR1','PROMOTION_BODY1','PROMOTION_CHAOS1','PROMOTION_CREATION1','PROMOTION_DEATH1','PROMOTION_DIMENSIONAL1','PROMOTION_EARTH1','PROMOTION_ENCHANTMENT1','PROMOTION_ENTROPY1','PROMOTION_FORCE1','PROMOTION_FIRE1','PROMOTION_ICE1','PROMOTION_LAW1','PROMOTION_LIFE1','PROMOTION_METAMAGIC1','PROMOTION_MIND1','PROMOTION_NATURE1','PROMOTION_SHADOW1','PROMOTION_SPIRIT1','PROMOTION_SUN1','PROMOTION_WATER1' ]
+			pUnit.setLevel(2)
+			pUnit.setExperience(5, -1)
+			for i in promotions:
+				if CyGame().getSorenRandNum(10, "Timon") == 1:
+					pUnit.setHasPromotion(gc.getInfoTypeForString(i), True)
 
 		if pUnit.getRace() == gc.getInfoTypeForString('PROMOTION_GOLEM'):
 			if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_BLASTING_WORKSHOP')) > 0:
