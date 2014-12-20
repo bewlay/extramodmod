@@ -24028,6 +24028,7 @@
 					<iCombat>2</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<PrereqBuildingClass>BUILDINGCLASS_PUBLIC_BATHS</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_SUPPLIES -->
 			<Class>UNITCLASS_SUPPLIES</Class>
