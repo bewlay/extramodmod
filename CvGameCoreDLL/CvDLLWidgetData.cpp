@@ -5142,11 +5142,14 @@ void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStr
 {
 	CvWString szTempBuffer;
 
-
+// ExtraModMod version number.
+	szBuffer.append(gDLL->getText("TXT_KEY_VERSION"));
+	szBuffer.append(NEWLINE);
+//
 
 // More Naval AI version number
 	// Add string showing version number
-	szTempBuffer.Format(L"%S", "More Naval AI v2.6");
+	szTempBuffer.Format(L"%S", "Based on More Naval AI v2.6");
 	szBuffer.append(szTempBuffer);
 	szBuffer.append(NEWLINE);
 // End More Naval AI

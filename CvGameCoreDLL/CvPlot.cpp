@@ -12654,6 +12654,598 @@ bool CvPlot::isLair(bool bIgnoreIsAnimal, bool bAnimal) const
 	return false;
 }
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+CvTerrainAmountCache CvPlot::getTerrainAmounts( int iRadius )
+{
+	if( iRadius == -1 )
+		iRadius = GC.getDefineINT( "TERRAIN_FLAVOUR_RADIUS", 3 );
+
+	CvTerrainAmountCache result;
+	
+	// Get plot terrain, feature and improvement amounts
+	result.afPlotAmount = new float[NUM_PLOT_TYPES];
+	for( int i = 0; i < NUM_PLOT_TYPES; i++ )
+		result.afPlotAmount[i] = 0;
+
+	result.afTerrainAmount = new float[GC.getNumTerrainInfos()];
+	for( int i = 0; i < GC.getNumTerrainInfos(); i++ )
+		result.afTerrainAmount[i] = 0;
+
+	result.afFeatureAmount = new float[GC.getNumFeatureInfos()];
+	for( int i = 0; i < GC.getNumFeatureInfos(); i++ )
+		result.afFeatureAmount[i] = 0;
+	
+	result.afYieldAmount = new float[NUM_YIELD_TYPES];
+	for( int i = 0; i < NUM_YIELD_TYPES; i++ )
+		result.afYieldAmount[i] = 0;
+	
+	result.afImprovementAmount = new float[GC.getNumImprovementInfos()];
+	for( int i = 0; i < GC.getNumImprovementInfos(); i++ )
+		result.afImprovementAmount[i] = 0;
+
+	result.afBonusAmount = new float[GC.getNumBonusInfos()];
+	for( int i = 0; i < GC.getNumBonusInfos(); i++ )
+		result.afBonusAmount[i] = 0;
+
+	// Used for normalization
+	float fTotalPercentWeight = 0;
+	float fTotalPassablePercentWeight = 0;
+	
+//	logBBAI( "\tGet surrounding Terrain" );
+	for( int iChangeX = -iRadius; iChangeX <= iRadius; iChangeX++ )
+		for( int iChangeY = -iRadius; iChangeY <= iRadius; iChangeY++ )
+		{
+			int iX = getX_INLINE() + iChangeX;
+			int iY = getY_INLINE() + iChangeY;
+	
+			if( iX < 0 || iY < 0 || iX >= GC.getMapINLINE().getGridWidthINLINE() || iY >= GC.getMapINLINE().getGridHeightINLINE() )
+				continue;
+
+			float fPlotDistance = sqrt( (float) iChangeX * iChangeX + iChangeY * iChangeY );
+			if( fPlotDistance <= iRadius + 0.5 )
+			{
+				CvPlot* pPlot = GC.getMapINLINE().plot( iX, iY );
+
+				// divide by circle perimeter, to avoid that plots farther away just outnumber plots nearer
+				float fWeight = 1.0f / ( 1.0f + fPlotDistance );
+
+				logBBAI( "\t\tPlot %d|%d Weight: %f", iX, iY, fWeight );
+				
+				fTotalPercentWeight += fWeight;
+
+				if( pPlot->getPlotType() != NO_PLOT )
+					result.afPlotAmount[pPlot->getPlotType()] += fWeight;
+
+				// if any pPlot->getYield( x ) > 1, the total yield weight after normalization (/fTotalWeight)
+				// may be > 1.0 (as opposed to all other total weights after normalization)
+				for( int iYield = 0; iYield < NUM_YIELD_TYPES; iYield++ )
+					result.afYieldAmount[iYield] += fWeight * pPlot->getYield( (YieldTypes) iYield );
+				
+				if( pPlot->getTerrainType() != NO_TERRAIN )
+					if( !pPlot->isPeak() && !pPlot->isWater() ) // peak and water is left out
+					{
+						fTotalPassablePercentWeight += fWeight;
+						result.afTerrainAmount[pPlot->getTerrainType()] += fWeight;
+					}
+
+				if( pPlot->getFeatureType() != NO_FEATURE )
+					result.afFeatureAmount[pPlot->getFeatureType()] += fWeight;
+
+				// Bonus and improvements don't suffer that much from distance
+
+				if( pPlot->getImprovementType() != NO_IMPROVEMENT )
+					result.afImprovementAmount[pPlot->getImprovementType()] += sqrt( fWeight );
+
+				if( pPlot->getBonusType() != NO_BONUS )
+					result.afBonusAmount[pPlot->getBonusType()] += sqrt( fWeight );
+			}
+		}
+	
+	// Normalize, to get a total terrain, total feature and total improvement weight (also counting NO_XXX!) of about 1.0
+	for( int i = 0; i < NUM_PLOT_TYPES; i++ )
+		if( result.afPlotAmount[i] > 0 )
+		{
+//			logBBAI( "\t\tOrig Weight of PlotType #%d: %f", i, afPlotAmount[i] );
+			result.afPlotAmount[i] /= fTotalPercentWeight;
+//			logBBAI( "\t\tWeight of PlotType #%d: %f", i, afPlotAmount[i] );
+		}
+	for( int i = 0; i < GC.getNumTerrainInfos(); i++ )
+		if( result.afTerrainAmount[i] > 0 )
+		{
+//			logBBAI( "\t\tOrig Weight of %s: %f", GC.getTerrainInfo( (TerrainTypes) i ).getType(), afTerrainAmount[i] );
+			result.afTerrainAmount[i] /= fTotalPassablePercentWeight;
+//			logBBAI( "\t\tWeight of %s: %f", GC.getTerrainInfo( (TerrainTypes) i ).getType(), afTerrainAmount[i] );
+		}
+	for( int i = 0; i < GC.getNumFeatureInfos(); i++ )
+		if( result.afFeatureAmount[i] > 0 )
+		{
+//			logBBAI( "\t\tOrig Weight of %s: %f", GC.getFeatureInfo( (FeatureTypes) i ).getType(), afFeatureAmount[i] );
+			result.afFeatureAmount[i] /= fTotalPercentWeight;
+//			logBBAI( "\t\tWeight of %s: %f", GC.getFeatureInfo( (FeatureTypes) i ).getType(), afFeatureAmount[i] );
+		}
+	for( int i = 0; i < NUM_YIELD_TYPES; i++ )
+		if( result.afYieldAmount[i] > 0 )
+		{
+//			logBBAI( "\t\tOrig Weight of YieldType #%d: %f", i, afYieldAmount[i] );
+			result.afYieldAmount[i] /= fTotalPercentWeight;
+//			logBBAI( "\t\tWeight of YieldType #%d: %f", i, afYieldAmount[i] );
+		}
+
+	// Bonuses and (unique) improvements are NOT normalized
+
+	return result;
+}
+
+float CvPlot::calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, CvTerrainAmountCache* pTerrainAmounts )
+{
+	// LFGR_TODO: required central plot type/terrain/feature/improvement
+
+	CvTerrainFlavourInfo &kTerrainFlavour = GC.getTerrainFlavourInfo( eTerrainFlavour );
+
+	float fWeight = (float) kTerrainFlavour.getBaseWeight();
+	
+	logBBAI( "\t\tBase Weight: %f", fWeight );
+
+	if( kTerrainFlavour.getCoastalWeight() != 0 )
+	{
+		// check for coastal plot
+		bool bCoastal = false;
+		if ( !isWater() )
+		{
+			for ( int i = 0; i < NUM_DIRECTION_TYPES; i++ )
+			{
+				CvPlot* pAdjacentPlot = plotDirection( getX_INLINE(), getY_INLINE(), ( (DirectionTypes)i ) );
+
+				if (pAdjacentPlot != NULL)
+				{
+					if ( pAdjacentPlot->isWater() && !pAdjacentPlot->isLake() )
+					{
+						bCoastal = true;
+						break;
+					}
+				}
+			}
+		}
+
+		if( bCoastal )
+		{
+			fWeight += kTerrainFlavour.getCoastalWeight();
+			logBBAI( "\t\tAdd %d from Plot being coastal",
+					kTerrainFlavour.getCoastalWeight() );
+		}
+	}
+
+	// Calculate isolation percent
+	if( kTerrainFlavour.getIsolationPercentWeight() != 0 )
+	{
+		float fPlayerMaxMinDistance = 0;
+		float fPlotMinDistance = -1;
+		for( int ePlayer1 = 0; ePlayer1 < GC.getMAX_CIV_PLAYERS(); ePlayer1++ )
+		{
+			float fPlayerMinDistance = -1;
+			for( int ePlayer2 = 0; ePlayer2 < GC.getMAX_CIV_PLAYERS(); ePlayer2++ )
+			{
+				if( ePlayer1 != ePlayer2 )
+				{
+					CvPlot* pStartingPlot1 = GET_PLAYER( (PlayerTypes) ePlayer1 ).getStartingPlot();
+					CvPlot* pStartingPlot2 = GET_PLAYER( (PlayerTypes) ePlayer2 ).getStartingPlot();
+					if( pStartingPlot1 != NULL && pStartingPlot2 != NULL )
+					{
+						int iDistX = abs( pStartingPlot1->getX_INLINE() - pStartingPlot2->getX_INLINE() );
+						int iDistY = abs( pStartingPlot1->getY_INLINE() - pStartingPlot2->getY_INLINE() );
+						float fDistance = sqrt( (float) ( iDistX * iDistX + iDistY * iDistY ) );
+					
+						if( fPlayerMinDistance == -1 || fDistance < fPlayerMinDistance )
+							fPlayerMinDistance = fDistance;
+					
+						if( ePlayer1 < ePlayer2 ) // avoid double check
+							if( this == pStartingPlot1 || this == pStartingPlot2 )
+								if( fPlotMinDistance == -1 || fDistance < fPlotMinDistance )
+									fPlotMinDistance = fDistance;
+					}
+				}
+			}
+			if( fPlayerMinDistance > fPlayerMaxMinDistance )
+				fPlayerMaxMinDistance = fPlayerMinDistance;
+		}
+
+		if( fPlotMinDistance != -1 )
+		{
+			float fIsolation = ( fPlotMinDistance / fPlayerMaxMinDistance - 0.5f ) * 2;
+			fWeight += fIsolation * kTerrainFlavour.getIsolationPercentWeight();
+		}
+	}
+	
+	for( int i = 0; i < NUM_PLOT_TYPES; i++ )
+		if( kTerrainFlavour.getPlotPercentWeight( i ) != 0 && pTerrainAmounts->afPlotAmount[i] != 0 )
+		{
+			fWeight += pTerrainAmounts->afPlotAmount[i] *  kTerrainFlavour.getPlotPercentWeight( i );
+			logBBAI( "\t\tAdd %f = %f * %d from Plot #%d",
+					pTerrainAmounts->afPlotAmount[i] *  kTerrainFlavour.getPlotPercentWeight( i ),
+					pTerrainAmounts->afPlotAmount[i],
+					kTerrainFlavour.getPlotPercentWeight( i ),
+					i );
+		}
+	for( int i = 0; i < GC.getNumTerrainInfos(); i++ )
+		if( kTerrainFlavour.getTerrainPercentWeight( i ) != 0 && pTerrainAmounts->afTerrainAmount[i] != 0 )
+		{
+			fWeight += pTerrainAmounts->afTerrainAmount[i] *  kTerrainFlavour.getTerrainPercentWeight( i );
+			logBBAI( "\t\tAdd %f = %f * %d from Terrain %s",
+					pTerrainAmounts->afTerrainAmount[i] *  kTerrainFlavour.getTerrainPercentWeight( i ),
+					pTerrainAmounts->afTerrainAmount[i],
+					kTerrainFlavour.getTerrainPercentWeight( i ),
+					GC.getTerrainInfo( (TerrainTypes) i ).getType() );
+		}
+	for( int i = 0; i < GC.getNumFeatureInfos(); i++ )
+		if( kTerrainFlavour.getFeaturePercentWeight( i ) != 0 && pTerrainAmounts->afFeatureAmount[i] != 0 )
+		{
+			fWeight += pTerrainAmounts->afFeatureAmount[i] *  kTerrainFlavour.getFeaturePercentWeight( i );
+			logBBAI( "\t\tAdd %f = %f * %d from Feature %s",
+					pTerrainAmounts->afFeatureAmount[i] *  kTerrainFlavour.getFeaturePercentWeight( i ),
+					pTerrainAmounts->afFeatureAmount[i], 
+					kTerrainFlavour.getFeaturePercentWeight( i ),
+					GC.getFeatureInfo( (FeatureTypes) i ).getType() );
+		}
+	for( int i = 0; i < NUM_YIELD_TYPES; i++ )
+		if( kTerrainFlavour.getYieldOnPlotPercentWeight( i ) != 0 && pTerrainAmounts->afYieldAmount[i] != 0 )
+		{
+			fWeight += pTerrainAmounts->afYieldAmount[i] *  kTerrainFlavour.getYieldOnPlotPercentWeight( i );
+			logBBAI( "\t\tAdd %f = %f * %d from Yield %s",
+					pTerrainAmounts->afYieldAmount[i] *  kTerrainFlavour.getYieldOnPlotPercentWeight( i ),
+					pTerrainAmounts->afYieldAmount[i], 
+					kTerrainFlavour.getYieldOnPlotPercentWeight( i ),
+					GC.getYieldInfo( (YieldTypes) i ).getType() );
+		}
+	for( int i = 0; i < GC.getNumImprovementInfos(); i++ )
+		if( kTerrainFlavour.getImprovementCountWeight( i ) != 0 && pTerrainAmounts->afImprovementAmount[i] != 0 )
+		{
+			fWeight += pTerrainAmounts->afImprovementAmount[i] * kTerrainFlavour.getImprovementCountWeight( i );
+			logBBAI( "\t\tAdd %f = %f * %d from improvement %s",
+					pTerrainAmounts->afImprovementAmount[i] *  kTerrainFlavour.getImprovementCountWeight( i ),
+					pTerrainAmounts->afImprovementAmount[i], 
+					kTerrainFlavour.getImprovementCountWeight( i ),
+					GC.getImprovementInfo( (ImprovementTypes) i ).getType() );
+		}
+	for( int i = 0; i < GC.getNumBonusInfos(); i++ )
+		if( kTerrainFlavour.getBonusCountWeight( i ) != 0 && pTerrainAmounts->afBonusAmount[i] != 0 )
+		{
+			fWeight += pTerrainAmounts->afBonusAmount[i] * kTerrainFlavour.getBonusCountWeight( i );
+			logBBAI( "\t\tAdd %f = %f * %d from bonus %s",
+					pTerrainAmounts->afBonusAmount[i] *  kTerrainFlavour.getBonusCountWeight( i ),
+					pTerrainAmounts->afBonusAmount[i], 
+					kTerrainFlavour.getBonusCountWeight( i ),
+					GC.getBonusInfo( (BonusTypes) i ).getType() );
+		}
+
+	logBBAI( "\t\tReturning Weight: %f", fWeight );
+
+	return fWeight;
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, LairUnitCounter, SpawnInfo                                                   */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+int CvPlot::getWilderness() const
+{
+	return m_iWilderness;
+}
+
+void CvPlot::setWilderness(int iNewValue)
+{
+	m_iWilderness = iNewValue;
+}
+
+
+int CvPlot::getLairDanger() const
+{
+	if( getImprovementType() != NO_IMPROVEMENT && GC.getImprovementInfo( getImprovementType() ).isUnique() )
+		return getWilderness() + ( 100 - getWilderness() ) / 2;
+	else
+		return getWilderness();
+}
+
+int CvPlot::getLairUnitCount() const
+{
+	return m_iLairUnitCount;
+}
+
+void CvPlot::setLairUnitCount(int iNewValue)
+{
+	FAssert( iNewValue >= 0 );
+	m_iLairUnitCount = iNewValue;
+}
+
+int CvPlot::getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType ) const
+{
+	FAssertMsg( eTerrainFlavourType < GC.getNumTerrainFlavourInfos(), "Index out of bounds" );
+	FAssertMsg( eTerrainFlavourType > -1, "Index out of bounds" );
+
+	// don't use calcTerrainFlavourWeight, we're using a slightly different method here (f.e. regarding sea tiles)
+	CvTerrainFlavourInfo& kTerrainFlavour = GC.getTerrainFlavourInfo( eTerrainFlavourType );
+	int iTerrainValue = kTerrainFlavour.getBaseWeight();
+	if( isCoastalLand() )
+		iTerrainValue += kTerrainFlavour.getCoastalWeight();
+	if( getPlotType() != NO_PLOT )
+		iTerrainValue += kTerrainFlavour.getPlotPercentWeight( getPlotType() );
+	if( getTerrainType() != NO_TERRAIN )
+		iTerrainValue += kTerrainFlavour.getTerrainPercentWeight( getTerrainType() );
+	if( getFeatureType() != NO_FEATURE )
+		iTerrainValue += kTerrainFlavour.getFeaturePercentWeight( getFeatureType() );
+	if( getImprovementType() != NO_IMPROVEMENT )
+		iTerrainValue += kTerrainFlavour.getImprovementCountWeight( getImprovementType() );
+	if( getBonusType() != NO_BONUS )
+		iTerrainValue += kTerrainFlavour.getBonusCountWeight( getBonusType() );
+	for( int eYield = 0; eYield < NUM_YIELD_TYPES; eYield++ )
+		iTerrainValue += kTerrainFlavour.getYieldOnPlotPercentWeight( eYield ) * getYield( (YieldTypes) eYield );
+	
+	return iTerrainValue;
+}
+
+bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon ) const
+{
+	CvSpawnPrereqInfo& kSpawnPrereq = GC.getSpawnPrereqInfo( eSpawnPrereqType );
+
+	int iWilderness = bDungeon ? getLairDanger() :
+			( GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) ? 0 : getWilderness() );
+
+	if( kSpawnPrereq.getNumTechTiers() == 0 )
+	{
+		// A wilderness tier must match alone
+		for( int iWildernessTier = iMinTier; iWildernessTier <= iMaxTier; iWildernessTier++ )
+		{
+			if( iWilderness >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
+				iWilderness <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) )
+			{
+				return true;
+			}
+		}
+	}
+	else // kSpawnPrereq.getNumTechTiers() > 1
+	{
+		// No tier available means tier = 0
+		// Don't go higher than iMaxTier
+		int iMaxWildernessTier = std::max( 0, std::min( iMaxTier, kSpawnPrereq.getNumWildernessTiers() - 1 ) );
+
+		for( int iWildernessTier = 0; iWildernessTier <= iMaxWildernessTier; iWildernessTier++ )
+		{
+			if( kSpawnPrereq.getNumWildernessTiers() == 0 ||
+				( iWilderness >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
+				iWilderness <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) ) )
+			{
+				// Found a valid Wilderness tier
+				// Now get range of fitting tech tiers
+				int iMinTechTier = std::min( std::max( 0, iMinTier - iWildernessTier ), kSpawnPrereq.getNumTechTiers() - 1 );
+				int iMaxTechTier = std::min( iMaxTier - iWildernessTier, kSpawnPrereq.getNumTechTiers() - 1 );
+
+				for( int iTechTier = iMinTechTier; iTechTier <= iMaxTechTier; iTechTier++ )
+				{
+					// Check validity of each fitting tech tier
+					bool bValid = true;
+
+					if( bCheckTech )
+					{
+						for( int eTech = 0; eTech < GC.getNumTechInfos(); eTech++ )
+						{
+							if( kSpawnPrereq.isPrereqTech( iTechTier, (TechTypes) eTech ) && !GET_TEAM(BARBARIAN_TEAM).isHasTech( (TechTypes) eTech ) )
+								bValid = false;
+							if( kSpawnPrereq.isObsoleteTech( iTechTier, (TechTypes) eTech ) && GET_TEAM(BARBARIAN_TEAM).isHasTech( (TechTypes) eTech ) )
+								bValid = false;
+						}
+					}
+
+					if( bValid )
+						return true;
+				}
+			}
+		}
+	}
+
+	return false;
+}
+
+int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon, bool bIgnoreTerrain ) const
+{
+	if( eSpawn == NO_SPAWN )
+		return 0;
+
+	CvSpawnInfo& kSpawn = GC.getSpawnInfo( (SpawnTypes) eSpawn );
+
+	if( !bIgnoreTerrain && area()->isWater() != kSpawn.isWater() )
+		return 0;
+
+	if( !( GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && kSpawn.isNoWildernessIgnoreSpawnPrereq() ) )
+		if( !isValidSpawnTier( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(), kSpawn.getMaxTier(), bCheckTech, bDungeon ) )
+			return 0;
+
+	if( GC.getGameINLINE().getGlobalCounter() < kSpawn.getPrereqGlobalCounter() )
+		return 0;
+
+	int iValue = kSpawn.getWeight();
+	
+	if( !bIgnoreTerrain && kSpawn.getTerrainFlavourType() != NO_TERRAIN_FLAVOUR )
+	{
+		int iTerrainValue = getSpawnTerrainWeight( (TerrainFlavourTypes) kSpawn.getTerrainFlavourType() );
+		if( iTerrainValue > 0 )
+			iValue += kSpawn.getValidTerrainWeight();
+		iValue += iTerrainValue;
+	}
+	
+	return iValue;
+}
+
+void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot )
+{
+	if( eSpawn == NO_SPAWN )
+	{
+		FAssert( false );
+		return;
+	}
+
+	CvSpawnInfo& kSpawn = GC.getSpawnInfo( eSpawn );
+
+	CvUnit* pHeadUnit = NULL;
+
+	// Random Promotions
+	std::vector<PromotionTypes> vePromotions;
+	for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ )
+		if( kSpawn.getUnitPromotions( ePromotion ) )
+			vePromotions.push_back( (PromotionTypes) ePromotion );
+
+	bool bRandPromotions = false;
+	int iMinRandPromotions = kSpawn.getMinRandomPromotions();
+	int iMaxRandPromotions = kSpawn.getMaxRandomPromotions();
+
+	FAssertMsg( iMaxRandPromotions == -1 || iMaxRandPromotions >= iMaxRandPromotions, "" );
+
+	if( iMinRandPromotions != -1 || iMaxRandPromotions != 1 )
+	{
+		if( iMaxRandPromotions == -1 )
+			iMaxRandPromotions = vePromotions.size();
+		if( iMinRandPromotions == -1 )
+			iMinRandPromotions = 0;
+		
+		if( iMaxRandPromotions != vePromotions.size() || iMaxRandPromotions != vePromotions.size() )
+			bRandPromotions = true;
+	}
+
+	// UnitAI
+	if( eUnitAI == NO_UNITAI )
+		eUnitAI = (UnitAITypes) kSpawn.getUnitAIType();
+	if( eUnitAI == NO_UNITAI )
+		eUnitAI = kSpawn.isAnimal() ? UNITAI_ANIMAL : ( kSpawn.isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
+
+	for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
+	{
+		for( int j = 0; j < kSpawn.getNumSpawnUnits( (UnitTypes) eUnit ); j++ )
+		{
+			CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, getX_INLINE(), getY_INLINE(), eUnitAI );
+			
+			if( !kSpawn.isNoMinWilderness() && !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
+				pUnit->setMinWilderness( getWilderness() );
+			
+			if ( kSpawn.isAnimal() )
+				pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
+			
+			if( kSpawn.isNoRace() )
+				pUnit->setRace( NO_PROMOTION );
+
+			if( bRandPromotions )
+			{
+				std::vector<PromotionTypes> veTmpPromotions = vePromotions;
+				int iNumPromotions = iMinRandPromotions + GC.getGameINLINE().getSorenRandNum( iMaxRandPromotions - iMinRandPromotions + 1, "SpawnInfo num promotions" );
+				while( iNumPromotions > 0 && veTmpPromotions.size() > 0 )
+				{
+					int iRnd = GC.getGameINLINE().getSorenRandNum( veTmpPromotions.size(), "SpawnInfo rand promotion" );
+					pUnit->setHasPromotion( veTmpPromotions[iRnd], true );
+					veTmpPromotions.erase( veTmpPromotions.begin() + iRnd );
+					iNumPromotions--;
+				}
+			}
+			else
+			{
+				for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ )
+					if( kSpawn.getUnitPromotions( ePromotion ) )
+						pUnit->setHasPromotion( (PromotionTypes) ePromotion, true );
+			}
+			
+			// Lair unit counter
+			if( iLairPlot != -1 )
+			{
+				pUnit->setLairPlot( iLairPlot );
+			}
+			
+			if( kSpawn.getUnitArtStyleType() != NO_UNIT_ARTSTYLE )
+				pUnit->setUnitArtStyleType( kSpawn.getUnitArtStyleType() );
+
+			pUnit->reloadEntity();
+
+			if( pHeadUnit == NULL )
+				pHeadUnit = pUnit;
+			else
+				pUnit->joinGroup( pHeadUnit->getGroup() );
+
+			// CreateLair
+			pUnit->setSpawnType( eSpawn );
+		}
+	}
+
+	// Random Included Spawns
+	int iIncludedSpawns = kSpawn.getMinIncludedSpawns() + GC.getGameINLINE().getSorenRandNum( kSpawn.getMaxIncludedSpawns() - kSpawn.getMinIncludedSpawns() + 1, "Included spawns" );
+
+	std::vector< std::pair<SpawnTypes,std::pair<int,int> > > veIncludedSpawns;
+	for( int eIncSpawn = 0; eIncSpawn < GC.getNumSpawnInfos(); eIncSpawn++ )
+	{
+		if( kSpawn.getIncludedSpawnMax( eIncSpawn ) != 0 )
+		{
+			int iValue = getSpawnValue( (SpawnTypes) eIncSpawn, true, false, kSpawn.isIncludedSpawnIgnoreTerrain( eIncSpawn ) );
+			if( iValue > 0 )
+			{
+				int iMinSpawning = kSpawn.getIncludedSpawnMin( eIncSpawn );
+				int iMaxSpawning = kSpawn.getIncludedSpawnMax( eIncSpawn );
+
+				for( int i = 0; i < iMinSpawning; i++ )
+					createSpawn( (SpawnTypes) eIncSpawn, NO_UNITAI, iLairPlot );
+				
+				if( kSpawn.isIncludedSpawnCountSeparately( eIncSpawn ) )
+				{
+					// spawn remaining random spawns
+					int iRemainingSpawns = GC.getGameINLINE().getSorenRandNum( iMaxSpawning - iMinSpawning + 1, "Included spawns" );
+					for( int i = 0; i < iRemainingSpawns; i++ )
+						createSpawn( (SpawnTypes) eIncSpawn, NO_UNITAI, iLairPlot );
+				}
+				else
+					iIncludedSpawns -= iMinSpawning;
+				
+				if( !kSpawn.isIncludedSpawnCountSeparately( eIncSpawn ) && ( iMaxSpawning == -1 || iMinSpawning < iMaxSpawning ) )
+					veIncludedSpawns.push_back( std::pair<SpawnTypes, std::pair<int,int> >( (SpawnTypes) eIncSpawn, std::pair<int,int>( iMinSpawning, iValue ) ) );
+			}
+		}
+	}
+
+	// LFGR_TODO: Join Group (if same UnitAI)
+
+	while( iIncludedSpawns > 0 )
+	{
+		int iBestIndex = -1;
+		int iBestValue = 0;
+		for( unsigned int i = 0; i < veIncludedSpawns.size(); i++ )
+		{
+			int iLoopVal = veIncludedSpawns[i].second.second;
+			iLoopVal += GC.getGameINLINE().getSorenRandNum( 100, "SpawnInfo rand weight" );
+			if( iLoopVal > iBestValue )
+			{
+				iBestValue = iLoopVal;
+				iBestIndex = i;
+			}
+		}
+		if( iBestIndex != -1 )
+		{
+			SpawnTypes eIncSpawn = veIncludedSpawns[iBestIndex].first;
+			createSpawn( eIncSpawn, NO_UNITAI, iLairPlot );
+
+			veIncludedSpawns[iBestIndex].second.first++;
+			if( kSpawn.getIncludedSpawnMax( eIncSpawn ) != -1 && veIncludedSpawns[iBestIndex].second.first >= kSpawn.getIncludedSpawnMax( eIncSpawn ) )
+				veIncludedSpawns.erase( veIncludedSpawns.begin() + iBestIndex );
+			iIncludedSpawns--;
+		}
+		else
+		{
+			FAssertMsg( iBestIndex == -1, "No valid included spawn found" );
+			break;
+		}
+	}
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 // Enhanced End of Winter
 FeatureTypes CvPlot::getRealFeatureType() const
 {
