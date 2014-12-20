@@ -1317,17 +1317,20 @@ class CvMainInterface:
 				if (pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD') and pPlayer.getNumCities() > 0):
 					if (((pPlayer.calculateGoldRate() != 0) and not (pPlayer.isAnarchy())) or (pPlayer.getGold() != 0)):
 						iGold = pPlayer.getGold() / pPlayer.getNumCities()
-						if iGold <= 49:
+						vaultText = str(" ")
+						if iGold <= 24:
 							vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_EMPTY")
-						if (iGold >= 50 and iGold <= 99):
+						if (iGold >= 25 and iGold <= 49):
 							vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_LOW")
-						if (iGold >= 150 and iGold <= 199):
+						#if (iGold >= 50 and iGold <= 74):
+						#	vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_LOW")
+						if (iGold >= 75 and iGold <= 99):
 							vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_STOCKED")
-						if (iGold >= 200 and iGold <= 299):
+						if (iGold >= 100 and iGold <= 149):
 							vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_ABUNDANT")
-						if (iGold >= 300 and iGold <= 499):
+						if (iGold >= 150 and iGold <= 249):
 							vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_FULL")
-						if iGold >= 500:
+						if iGold >= 250:
 							vaultText = BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_OVERFLOWING")
 						SRstr = u"<font=2i>%s</font>" %(str(" ") + str(iGold) + BugUtil.getText("TXT_KEY_MISC_DWARVEN_VAULT_PER_CITY") + str(" ") + vaultText)
 						screen.setText( "KhazadText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iHorizontalPosition + 12, iVerticalPosition + 2, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
