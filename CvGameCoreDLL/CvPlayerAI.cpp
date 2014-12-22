@@ -15468,10 +15468,13 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 			{
 				iTempValue += ((((AI_avoidScience()) ? 50 : 25) * iCities) / GC.getHurryInfo((HurryTypes)iI).getGoldPerProduction());
 
+				/**
+				 * In ExtraModMod, victory buildings cannot be rushed.
 				if (AI_isDoVictoryStrategy(AI_VICTORY_ALTAR4) || AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY4))
 				{
 					iTempValue += 5000;
 				}
+				*/
 			}
 			if (GC.getHurryInfo((HurryTypes)iI).getProductionPerPopulation() > 0)
 			{

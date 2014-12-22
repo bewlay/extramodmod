@@ -3929,6 +3929,16 @@ bool CvCity::canHurry(HurryTypes eHurry, bool bTestVisible) const
 		return false;
 	}
 
+	CLLNode<OrderData>* pOrderNode = headOrderQueueNode();
+	
+	if (pOrderNode != NULL && pOrderNode->m_data.eOrderType == ORDER_CONSTRUCT)
+	{
+		BuildingTypes eBuilding = (BuildingTypes)(pOrderNode->m_data.iData1);
+		if (GC.getBuildingInfo(eBuilding).isVictoryBuilding()) {
+			return false;
+		}
+	}
+
 	if (getProduction() >= getProductionNeeded())
 	{
 		return false;
