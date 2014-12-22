@@ -1293,12 +1293,12 @@ class CvMainInterface:
 # Show the calculated values.
 					if fGrigoriActual > 0:
 						SRstr = u"<font=2i>%s</font>" %(str(" ") + str(fGrigoriActual) + str(" / ") + str(fGrigoriMod) + str(" "))
-						screen.setImageButton("AdventurerChance", "Art/Interface/Buttons/Units/Adventurer.dds", iHorizontalPosition, iVerticalPosition, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-						screen.setText( "SRText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iHorizontalPosition + 12, iVerticalPosition + 2, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-						screen.setHitTest( "SRText", HitTestTypes.HITTEST_NOHIT )
+						screen.setImageButton("GrigoriImage", "Art/Interface/Buttons/Units/Adventurer.dds", iHorizontalPosition, iVerticalPosition, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setText( "GrigoriText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iHorizontalPosition + 12, iVerticalPosition + 2, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setHitTest( "GrigoriText", HitTestTypes.HITTEST_NOHIT )
 					else:
-						screen.hide( "AdventurerChance" )
-						screen.hide( "SRText" )
+						screen.hide( "GrigoriImage" )
+						screen.hide( "GrigoriText" )
 #AdventurerCounter End
 
 				if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KURIOTATES') and pPlayer.getNumCities() > 0 and pPlayer.getMaxCities() != -1:
@@ -3577,6 +3577,12 @@ class CvMainInterface:
 		screen.hide( "CultureBar" )
 		screen.hide( "MaintenanceText" )
 		screen.hide( "MaintenanceAmountText" )
+
+		screen.hide( "GrigoriImage" )
+		screen.hide( "GrigoriText" )
+		screen.hide( "KhazadText" )
+		screen.hide( "KuriotateCities" )
+		screen.hide( "KurioText" )
 
 # BUG - Progress Bar - Tick Marks - start
 		self.pBarPopulationBar.hide(screen)
