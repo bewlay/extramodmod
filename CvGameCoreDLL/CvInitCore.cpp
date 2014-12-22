@@ -1184,6 +1184,18 @@ void CvInitCore::setVictory(VictoryTypes eVictoryID, bool bVictory)
 	if ( checkBounds(eVictoryID, 0, m_iNumVictories) )
 	{
 		m_abVictories[eVictoryID] = bVictory;
+/*************************************************************************************************/
+/**	EasyBreezy								01/16/09						Xienwolf, modified	**/
+/**																								**/
+/**					Prevents selection of conflicting/overridding Victory Conditions			**/
+/*************************************************************************************************/
+		VictoryTypes victoryType = (VictoryTypes) GC.getVictoryInfo(eVictoryID).getLinkedVictory();
+		if (bVictory && victoryType != NO_VICTORY) {
+			setVictory(victoryType, false);
+		}
+/*************************************************************************************************/
+/**	EasyBreezy								END													**/
+/*************************************************************************************************/
 	}
 }
 

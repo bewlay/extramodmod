@@ -13448,6 +13448,15 @@ m_bEndScore(false),
 m_bConquest(false),
 m_bDiploVote(false),
 m_bPermanent(false)
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**										Initial Values											**/
+/*************************************************************************************************/
+,m_iLinkedVictory(NO_VICTORY)
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 {
 }
 
@@ -13532,6 +13541,18 @@ const char* CvVictoryInfo::getMovie() const
 	return m_szMovie;
 }
 
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**									Called for Logic Checks										**/
+/*************************************************************************************************/
+int CvVictoryInfo::getLinkedVictory() const
+{
+	return m_iLinkedVictory;
+}
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 
 //
 // read from xml
@@ -13564,6 +13585,28 @@ bool CvVictoryInfo::read(CvXMLLoadUtility* pXML)
 
 	return true;
 }
+
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**					Second Pass to reference information within the same file					**/
+/*************************************************************************************************/
+bool CvVictoryInfo::readPass2(CvXMLLoadUtility* pXML)
+{
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+	CvString szTextVal;
+
+	pXML->GetChildXmlValByName(szTextVal, "LinkedVictory");
+	m_iLinkedVictory = GC.getInfoTypeForString(szTextVal);
+
+	return true;
+}
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 
 //======================================================================================================
 //					CvHurryInfo
