@@ -21332,6 +21332,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 			else
 			{
 				int iOffset = GC.getGameINLINE().getSorenRandNum(GC.getNumReligionInfos(), "Event pick religion");
+				logBBAI( "EVENT_DEBUG - initTriggeredData #%d \"%s\": Picking random religion with offset: %i", eEventTrigger, GC.getEventTriggerInfo( eEventTrigger ).getType(), iOffset);
 
 				for (int i = 0; i < GC.getNumReligionInfos(); ++i)
 				{
@@ -21357,6 +21358,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 		if (NO_CORPORATION == eCorporation)
 		{
 			int iOffset = GC.getGameINLINE().getSorenRandNum(GC.getNumCorporationInfos(), "Event pick corporation");
+			logBBAI( "EVENT_DEBUG - initTriggeredData #%d \"%s\": Picking random corporation with offset: %i", eEventTrigger, GC.getEventTriggerInfo( eEventTrigger ).getType(), iOffset);
 
 			for (int i = 0; i < GC.getNumCorporationInfos(); ++i)
 			{
@@ -21381,6 +21383,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 		if (apPlots.size() > 0)
 		{
 			int iChosen = GC.getGameINLINE().getSorenRandNum(apPlots.size(), "Event pick plot");
+			logBBAI( "EVENT_DEBUG - initTriggeredData #%d \"%s\": Picking random plot: %i", eEventTrigger, GC.getEventTriggerInfo( eEventTrigger ).getType(), iChosen);
 			pPlot = apPlots[iChosen];
 
 			if (NULL == pCity)
@@ -21422,6 +21425,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 			if (aeBuildings.size() > 0)
 			{
 				int iChosen = GC.getGameINLINE().getSorenRandNum(aeBuildings.size(), "Event pick building");
+				logBBAI( "EVENT_DEBUG - initTriggeredData #%d \"%s\": Picking random building: %i", eEventTrigger, GC.getEventTriggerInfo( eEventTrigger ).getType(), iChosen);
 				eBuilding = aeBuildings[iChosen];
 			}
 			else
@@ -21544,6 +21548,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 			if (aePlayers.size() > 0)
 			{
 				int iChosen = GC.getGameINLINE().getSorenRandNum(aePlayers.size(), "Event pick player");
+				logBBAI( "EVENT_DEBUG - initTriggeredData #%d \"%s\": Picking random player: %i", eEventTrigger, GC.getEventTriggerInfo( eEventTrigger ).getType(), iChosen);
 				eOtherPlayer = aePlayers[iChosen];
 				pOtherPlayerCity = apCities[iChosen];
 			}
@@ -21641,6 +21646,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 	if (aszTexts.size() > 0)
 	{
 		int iText = GC.getGameINLINE().getSorenRandNum(aszTexts.size(), "Event Text choice");
+		logBBAI( "EVENT_DEBUG - initTriggeredData #%d \"%s\": Picking event text choice: %i", eEventTrigger, GC.getEventTriggerInfo( eEventTrigger ).getType(), iText);
 
 		pTriggerData->m_szText = gDLL->getText(aszTexts[iText].GetCString(),
 			eOtherPlayer != NO_PLAYER ? GET_PLAYER(eOtherPlayer).getCivilizationAdjectiveKey() : L"",
@@ -21665,6 +21671,7 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 	if (kTrigger.getNumWorldNews() > 0)
 	{
 		int iText = GC.getGameINLINE().getSorenRandNum(kTrigger.getNumWorldNews(), "Trigger World News choice");
+		logBBAI( "EVENT_DEBUG - initTriggeredData #%d \"%s\": Picking world news text choice: %i", eEventTrigger, GC.getEventTriggerInfo( eEventTrigger ).getType(), iText);
 
 		pTriggerData->m_szGlobalText = gDLL->getText(kTrigger.getWorldNews(iText).GetCString(),
 			getCivilizationAdjectiveKey(),
@@ -23074,6 +23081,7 @@ void CvPlayer::doEvents()
 			EventTriggeredData* pTriggerData = initTriggeredData((EventTriggerTypes)i);
 			if (NULL != pTriggerData)
 			{
+				logBBAI( "EVENT_DEBUG - Assigning a total weight of %i to EventTrigger \"%s\" in the list of possible EventTriggers", iTotalWeight, GC.getEventTriggerInfo( pTriggerData->m_eTrigger ).getType() );
 				iTotalWeight += iWeight;
 				aePossibleEventTriggerWeights.push_back(std::make_pair(pTriggerData, iTotalWeight));
 			}
@@ -23086,11 +23094,13 @@ void CvPlayer::doEvents()
 	{
 		bool bFired = false;
 		int iValue = GC.getGameINLINE().getSorenRandNum(iTotalWeight, "Event trigger");
+		logBBAI( "EVENT_DEBUG - Chosen random value: %i (total: %i)", iValue, iTotalWeight );
 		for (std::vector< std::pair<EventTriggeredData*, int> >::iterator it = aePossibleEventTriggerWeights.begin(); it != aePossibleEventTriggerWeights.end(); ++it)
 		{
 			EventTriggeredData* pTriggerData = (*it).first;
 			if (NULL != pTriggerData)
 			{
+				logBBAI( "EVENT_DEBUG - Checking EventTrigger \"%s\"", GC.getEventTriggerInfo( pTriggerData->m_eTrigger ).getType() );
 				if (iValue < (*it).second && !bFired)
 				{
 					trigger(*pTriggerData);
@@ -23098,6 +23108,7 @@ void CvPlayer::doEvents()
 				}
 				else
 				{
+					logBBAI( "EVENT_DEBUG - EventTrigger \"%s\" not triggered", GC.getEventTriggerInfo( pTriggerData->m_eTrigger ).getType() );
 					deleteEventTriggered(pTriggerData->getID());
 				}
 			}
@@ -23475,7 +23486,7 @@ CvUnit* CvPlayer::pickTriggerUnit(EventTriggerTypes eTrigger, CvPlot* pPlot, boo
 int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
 {
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eTrigger);
-
+	logBBAI( "EVENT_DEBUG - Getting EventTrigger weight \"%s\"", kTrigger.getType() );
 	// lfgr cmt: check simple requirements
 
 	if (NO_HANDICAP != kTrigger.getMinDifficulty())
