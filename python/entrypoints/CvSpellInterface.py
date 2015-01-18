@@ -564,6 +564,7 @@ def spellArcaneLacuna(caster):
 				pPlayer2.changeDisableSpellcasting(iDelay)
 
 def reqArdor(caster):
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
 	pPlayer = gc.getPlayer(caster.getOwner())
 	if pPlayer.getGreatPeopleCreated() == 0 and pPlayer.getCivCounterMod() <= 600:
 		return False
@@ -571,12 +572,15 @@ def reqArdor(caster):
 		if pPlayer.getGreatPeopleCreated() < 6 and pPlayer.getCivCounterMod() <= 2400:
 			return False
 	return True
+#AdventurerCounter End (Imported from Rise from Erebus, modified by Terkhen)
 
 def spellArdor(caster):
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
 	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlayer.setGreatPeopleCreated(0)
 	pPlayer.setGreatPeopleThresholdModifier(0)
 	pPlayer.setCivCounterMod(600)
+#AdventurerCounter End (Imported from Rise from Erebus, modified by Terkhen)
 
 def reqArenaBattle(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
