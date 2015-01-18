@@ -39600,6 +39600,7 @@
 		   <SpecialistCommerceChanges>
 		   </SpecialistCommerceChanges>
 		</BuildingInfo>
+		<!-- AdventurerCounter End (Imported from Rise from Erebus, modified by Terkhen) -->
 		<BuildingInfo>
 			<BuildingClass>BUILDINGCLASS_COURTHOUSE</BuildingClass>
 			<Type>BUILDING_FORUM</Type>
@@ -39833,6 +39834,7 @@
 			<SpecialistCommerceChanges>
 			</SpecialistCommerceChanges>
 		</BuildingInfo>
+		<!-- AdventurerCounter End (Imported from Rise from Erebus, modified by Terkhen) -->
 		<BuildingInfo>
 			<BuildingClass>BUILDINGCLASS_GROWTH</BuildingClass>
 			<Type>BUILDING_GROWTH</Type>
