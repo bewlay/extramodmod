@@ -523,27 +523,6 @@ class CvGameUtils:
 					pCity.pushOrder(OrderTypes.ORDER_TRAIN, gc.getInfoTypeForString('UNIT_HAWK'), -1, False, False, False, False)
 					return 1
 
-#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
-			## Grigori should build Adventurer Counter buildings
-			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI'):
-				if (pCity.getCultureLevel() > 1) and (pCity.getPopulation() > 4):
-					## The most important one is the Adventurer's Guild.
-					if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_ADVENTURERS_GUILD'), True, False, False):
-						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_ADVENTURERS_GUILD'),-1, False, False, False, False)
-						return 1
-					## If the leader is Organized, it should also build Command Posts.
-					elif pCity.canConstruct(gc.getInfoTypeForString('BUILDING_COMMAND_POST'), True, False, False):
-						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_COMMAND_POST'),-1, False, False, False, False)
-						return 1
-						## If the city has enough specialists, it should have a Citizens' Forum.
-						iNumSpecialists = 0
-						for eSpec in range(gc.getNumSpecialistInfos()):
-							iNumSpecialists += pCity.getSpecialistCount(eSpec) + pCity.getFreeSpecialistCount(eSpec)
-						if iNumSpecialists > 2:
-							pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_FORUM'),-1, False, False, False, False)
-							return 1
-
-#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
 		return False
 
 	def AI_unitUpdate(self,argsList):

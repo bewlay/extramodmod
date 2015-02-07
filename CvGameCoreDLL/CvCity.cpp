@@ -4800,9 +4800,22 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 		changeBuildingDefense(kBuildingInfo.getDefenseModifier() * iChange);
 		changeBuildingBombardDefense(kBuildingInfo.getBombardDefenseModifier() * iChange);
 
-		changeBaseGreatPeopleRate(kBuildingInfo.getGreatPeopleRateChange() * iChange);
+		// AdventurerCounter: Do not add Adventurer GPP to the pool START
+		// Old code:
+		// changeBaseGreatPeopleRate(kBuildingInfo.getGreatPeopleRateChange() * iChange);
+		if (kBuildingInfo.getGreatPeopleUnitClass() == NO_UNITCLASS ||
+				kBuildingInfo.getGreatPeopleUnitClass() != (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_ADVENTURER"))
+		{
+			changeBaseGreatPeopleRate(kBuildingInfo.getGreatPeopleRateChange() * iChange);
+		}
+		// AdventurerCounter: Do not add Adventurer GPP to the pool END
 
-		if (kBuildingInfo.getGreatPeopleUnitClass() != NO_UNITCLASS)
+		// AdventurerCounter: Do not add Adventurer GPP to the pool START
+		// Old code:
+		// if (kBuildingInfo.getGreatPeopleUnitClass() != NO_UNITCLASS)
+		if (kBuildingInfo.getGreatPeopleUnitClass() != NO_UNITCLASS &&
+				kBuildingInfo.getGreatPeopleUnitClass() != (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_ADVENTURER"))
+		// AdventurerCounter: Do not add Adventurer GPP to the pool END
 		{
 			eGreatPeopleUnit = ((UnitTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(kBuildingInfo.getGreatPeopleUnitClass())));
 

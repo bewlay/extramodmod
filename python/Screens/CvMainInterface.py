@@ -8,6 +8,7 @@ import CvEventInterface
 #RevolutionDCM - used by the revwatch advisor code
 import CvScreensInterface
 import time
+import CustomFunctions
 
 # BUG - DLL - start
 import BugDll
@@ -1288,7 +1289,7 @@ class CvMainInterface:
 
 # Figure the counter values.
 					fGrigoriActual = pPlayer.getCivCounter()
-					fGrigoriMod = pPlayer.getCivCounterMod()
+					fGrigoriMod = CustomFunctions.CustomFunctions().getAdventurerThreshold(gc.getGame().getActivePlayer())
 
 # Show the calculated values.
 					if fGrigoriActual > 0:

@@ -12,6 +12,11 @@ import CvCameraControls
 gc = CyGlobalContext()
 PyPlayer = PyHelpers.PyPlayer
 
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+lAdventurerBuildings = []
+lAdventurerBuildingsPoints = []
+#AdventurerCounter End
+
 class CustomFunctions:
 
 	def addBonus( self, iBonus, iNum, sIcon ):
@@ -763,104 +768,79 @@ class CustomFunctions:
 					pPlot.setFeatureType(iFlames, 0)
 
 #AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+	def getAdventurerThreshold( self, iPlayer):
+		pPlayer = gc.getPlayer( iPlayer )
+		# We simulate CvPlayer::greatPeopleThreshold(false) to calculate the current threshold based upon the number of spawned adventurers.
+		iThresholdModifier = 0
+		iSpawnedAdventurers	= pPlayer.getCivCounterMod()
+		for iNumAdventurers in range(1, iSpawnedAdventurers+1):
+			iThresholdModifier += gc.getDefineINT("GREAT_PEOPLE_THRESHOLD")  * ((iNumAdventurers / 10) + 1)
+			iThresholdModifier = max( 0, iThresholdModifier )
+
+		# Threshold based in internal constants and number of adventurers spawned.
+		iThreshold = (gc.getDefineINT("GREAT_PEOPLE_THRESHOLD") * max(0, (iThresholdModifier + 100))) / 100
+		# Game speed adjustment.
+		iThreshold *= gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getGreatPeoplePercent()
+		iThreshold /= 100
+		#Game era adjustment.
+		iThreshold *= gc.getEraInfo(gc.getGame().getStartEra()).getGreatPeoplePercent()
+		iThreshold /= 100;
+		
+		return max(1, iThreshold)
+
 	def doTurnGrigori( self, iPlayer ):
-		gc = CyGlobalContext() 
 		pPlayer = gc.getPlayer( iPlayer )
 	
 		self.doChanceAdventurerSpawn( iPlayer )
 
-		iGrigoriSpawn 	 = pPlayer.getCivCounter()
-		iGrigoriMod 	 = pPlayer.getCivCounterMod()
+		iCurrentPoints		= pPlayer.getCivCounter()
+		iSpawnedAdventurers	= pPlayer.getCivCounterMod()
 
-# Initialize the adventurer counter in case it has not been initialized.		
-		if iGrigoriMod < 600:
-			pPlayer.setCivCounterMod( 600 )
-			iGrigoriMod = 600
+		# Initialize the number of spawned adventurers in case it has not been initialized.		
+		if iSpawnedAdventurers < 0:
+			pPlayer.setCivCounterMod( 0 )
+			iSpawnedAdventurers = 0
 
-		if iGrigoriSpawn >= iGrigoriMod:
-			# Spawn an adventurer.
+		# Calculate current adventurer threshold.
+		iThreshold = self.getAdventurerThreshold(iPlayer)
+
+		if iCurrentPoints >= iThreshold:
+			# Spawn an adventurer in the capital.
 			pCapital = pPlayer.getCapitalCity()
 			pAdventurer = pPlayer.createGreatPeople( gc.getInfoTypeForString( 'UNIT_ADVENTURER' ), False, False, pCapital.getX(), pCapital.getY() )
-			pPlayer.changeCivCounter( 0 - iGrigoriMod )
-			pPlayer.changeCivCounterMod( 600 )
+			# Reduce the number of adventurer points.
+			pPlayer.changeCivCounter( 0 - iThreshold )
+			# Increase the amount of built adventurers.
+			pPlayer.changeCivCounterMod( 1 )
 
 	def doChanceAdventurerSpawn( self, iPlayer ):
 		gc = CyGlobalContext() 
 		pPlayer = gc.getPlayer( iPlayer )
 
-		if pPlayer.getNumCities() > 0 and pPlayer.getDisableProduction() == 0:
-			iNumTaverns = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_TAVERN_GRIGORI' ) )
-			iNumGuilds 		 = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_ADVENTURERS_GUILD' ) )
-			iNumPalace 		 = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_PALACE_GRIGORI' ) )
+		# Buildings that produce adventurer points are cached only once.
+		if (len(lAdventurerBuildings) == 0):
+			for iBuilding in range(gc.getNumBuildingInfos()):
+				pBuildingInfo = gc.getBuildingInfo(iBuilding)
+				if (pBuildingInfo.getGreatPeopleUnitClass() == gc.getInfoTypeForString( 'UNITCLASS_ADVENTURER' )):
+					lAdventurerBuildings.append(iBuilding)
+					lAdventurerBuildingsPoints.append(pBuildingInfo.getGreatPeopleRateChange())
 
-			iNumArchery = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_ARCHERY_RANGE' ) )
-			iNumHunting = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_HUNTING_LODGE' ) )
-			iNumInfirmary = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_INFIRMARY' ) )
-			iNumMageGuild = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_MAGE_GUILD' ) )
-			iNumStable = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_STABLE' ) )
-			iNumTrainingYard = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_TRAINING_YARD' ) )
+		# Calculate the amount of adventurer points granted by each city.
+		fTotalPoints = 0.0
+		apCityList = PyPlayer(iPlayer).getCityList()
+		for pyCity in apCityList:
+			pCity = pyCity.GetCy()
+			if not pCity.isDisorder():
+				fCityPoints = 0.0
+				for i in range(len(lAdventurerBuildings)):
+					fCityPoints += pCity.getNumBuilding(lAdventurerBuildings[i]) * lAdventurerBuildingsPoints[i]
+				# This value already takes into account any changes to GPP caused by civics, traits, buildings...
+				fTotalPoints += (fCityPoints * pCity.getTotalGreatPeopleRateModifier()) / 100.0
 
-			iNumCommandPost = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_COMMAND_POST' ) )
-			iNumNationalEpic = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_NATIONAL_EPIC' ) )
-			iNumHeroicEpic = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_HEROIC_EPIC' ) )
-			iNumDragonsHoard = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_THE_DRAGONS_HORDE' ) )
-			
-# Different buildings give different modifiers.
-			iMinor = 1
-			iSmall = 3
-			iMedium = 6
-			iBig = 12
-			iHuge = 20
 
-# Original "adventurer" buildings.
-			iPalaceMod = iNumPalace * iHuge
-			iTavernsMod = iNumTaverns * iMedium
-			iGuildsMod 		 = iNumGuilds * iMedium
-
-# Additional buildings.
-			iArcheryMod = iNumArchery * iMinor
-			iHuntingMod = iNumHunting * iMinor
-			iInfirmaryMod = iNumInfirmary * iMinor
-			iMageGuildMod = iNumMageGuild * iMinor
-			iStableMod = iNumStable * iMinor
-			iTrainingYardMod = iNumTrainingYard * iMinor
-
-			iCommandPostMod = iNumCommandPost * iSmall
-			iNationalEpicMod = iNumNationalEpic * iBig
-			iHeroicEpicMod = iNumHeroicEpic * iBig
-			iDragonsHoardMod = iNumDragonsHoard * iHuge
-
-			iBuildingMod = iPalaceMod + iTavernsMod + iGuildsMod + iArcheryMod + iHuntingMod + iMageGuildMod + iStableMod + iTrainingYardMod + iCommandPostMod + iNationalEpicMod + iHeroicEpicMod + iDragonsHoardMod
-
-# Allows specialists to influence the adventurer counter after their city has built a Citizen's Forum.
-			iForum = gc.getInfoTypeForString( 'BUILDING_FORUM' )
-			iNumSpecialists = 0
-
-			for pyCity in PyPlayer( iPlayer ).getCityList():
-				pCity = pyCity.GetCy()
-				if pCity.getNumBuilding( iForum ) > 0:
-					for eSpec in range( gc.getNumSpecialistInfos() ):
-						iNumSpecialists += pCity.getSpecialistCount( eSpec ) + pCity.getFreeSpecialistCount( eSpec )
-
-			iSpecialistMod = ( iNumSpecialists * iMinor )
-
-# Civics can give a multiplier.
-			iCivicMult = 1
-
-			iRepublic = gc.getInfoTypeForString( 'CIVIC_REPUBLIC' )
-			iPacifism = gc.getInfoTypeForString( 'CIVIC_PACIFISM' )
-
-			if pPlayer.isCivic( iRepublic ):
-				iCivicMult = 1.10
-			elif pPlayer.isCivic( iPacifism ):
-				iCivicMult = 1.10
-
-# Actual value
-			iGrigoriSpawn = round( ( ( iBuildingMod + iSpecialistMod ) * iCivicMult ), 2 )
-			iGrigoriSpawn = int( iGrigoriSpawn )
-			iGrigoriSpawn = self.scaleInverse( iGrigoriSpawn )
-			
-			pPlayer.changeCivCounter( iGrigoriSpawn )
+		# The value is converted to integer and added to the civ counter.
+		iTotalPoints = int(round(fTotalPoints))
+		pPlayer.changeCivCounter(iTotalPoints)
 #AdventurerCounter End
 
 	def doTurnKhazad( self, iPlayer ):
@@ -1622,15 +1602,3 @@ class CustomFunctions:
 
 		return sFull
 
-#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
-	def scaleInverse( self, iGameTurns ):
-		#Scales things by gamespeed; Longer game speeds yield smaller amounts. Use for incremental effects (Spawn Functions, for instance)
-		gc 			 	 = CyGlobalContext() #Cause local variables are faster
-		getInfoType	 	 = gc.getInfoTypeForString
-		gameSpeedInfo 	 = gc.getGameSpeedInfo
-		iNumTurnsChosenSpeed = gameSpeedInfo( CyGame().getGameSpeedType() ).getGameTurnInfo( 0 ).iNumGameTurnsPerIncrement
-		iNumTurnsNormalSpeed = gameSpeedInfo( getInfoType( "GAMESPEED_NORMAL" ) ).getGameTurnInfo( 0 ).iNumGameTurnsPerIncrement
-		fScalingFactor = float( iNumTurnsNormalSpeed ) / float( iNumTurnsChosenSpeed )
-		iGameTurnsScaled = int( fScalingFactor * iGameTurns )
-		return max( 1, iGameTurnsScaled )
-#AdventurerCounter End
