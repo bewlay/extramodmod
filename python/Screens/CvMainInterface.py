@@ -229,6 +229,13 @@ g_pSelectedUnit = 0
 iHelpX = 120
 #FfH: End Add
 
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+# This value depends on the x resolution of the screen. It is obtained from the code that places the domestic advisor button and the rest.
+xCoordAdvCounter = 253
+yCoordAdvCounter = 57
+widthAdvCounter = 228
+#AdventurerCounter End
+
 # BUG - start
 g_mainInterface = None
 def onSwitchHotSeatPlayer(argsList):
@@ -1170,6 +1177,15 @@ class CvMainInterface:
 		
 		screen.registerHideList( szHideList, len(szHideList), 0 )
 
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+		screen.addStackedBarGFC( "AdventurerCounterBar", self.xResolution - xCoordAdvCounter, yCoordAdvCounter, widthAdvCounter, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+		screen.setStackedBarColors( "AdventurerCounterBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_STORED") )
+		screen.setStackedBarColors( "AdventurerCounterBar", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_RATE") )
+		screen.setStackedBarColors( "AdventurerCounterBar", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.setStackedBarColors( "AdventurerCounterBar", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.hide( "AdventurerCounterBar" )
+#AdventurerCounter End
+
 		return 0
 
 	# Will update the screen (every 250 MS)
@@ -1279,28 +1295,10 @@ class CvMainInterface:
 				screen.setText( "ACText", "Background", ACstr, CvUtil.FONT_CENTER_JUSTIFY, xResolution - iEndOfTurnPosX, yResolution - 157, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 				screen.setHitTest( "ACText", HitTestTypes.HITTEST_NOHIT )
 
-#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
 			if (not CyInterface().isCityScreenUp() and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START and CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_SHOW):	
 
 				iHorizontalPosition = 270
 				iVerticalPosition = 50
-
-				if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI') and pPlayer.getNumCities() > 0:
-
-# Figure the counter values.
-					fGrigoriActual = pPlayer.getCivCounter()
-					fGrigoriMod = CustomFunctions.CustomFunctions().getAdventurerThreshold(gc.getGame().getActivePlayer())
-
-# Show the calculated values.
-					if fGrigoriActual > 0:
-						SRstr = u"<font=2i>%s</font>" %(str(" ") + str(fGrigoriActual) + str(" / ") + str(fGrigoriMod) + str(" "))
-						screen.setImageButton("GrigoriImage", "Art/Interface/Buttons/Units/Adventurer.dds", iHorizontalPosition, iVerticalPosition, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-						screen.setText( "GrigoriText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iHorizontalPosition + 12, iVerticalPosition + 2, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-						screen.setHitTest( "GrigoriText", HitTestTypes.HITTEST_NOHIT )
-					else:
-						screen.hide( "GrigoriImage" )
-						screen.hide( "GrigoriText" )
-#AdventurerCounter End
 
 				if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KURIOTATES') and pPlayer.getNumCities() > 0 and pPlayer.getMaxCities() != -1:
 					iNumCities = pPlayer.getNumCities();
@@ -1592,6 +1590,10 @@ class CvMainInterface:
 		screen = CyGInterfaceScreen( "MainInterface", CvScreenEnums.MAIN_INTERFACE )
 		
 		xResolution = screen.getXResolution()
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+		if ( CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY  and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START):
+			self.updateAdventurerCounterBar(screen)
+#AdventurerCounter End
 
 # BUG - Great Person Bar - start
 		if ( CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY  and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START):
@@ -3211,6 +3213,11 @@ class CvMainInterface:
 		self.pBarResearchBar_w.hide(screen)
 # BUG - Progress Bar - Tick Marks - end
 
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+		screen.hide( "AdventurerCounterBar" )
+		screen.hide( "AdventurerCounterBarText" )
+#AdventurerCounter End
+
 		bShift = CyInterface().shiftKey()
 		
 		xResolution = screen.getXResolution()
@@ -3392,7 +3399,11 @@ class CvMainInterface:
 				self.updateGreatGeneralBar(screen)
 				## ExtraModMod end
 # BUG - Great General Bar - end
-					
+
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+				self.updateAdventurerCounterBar(screen)
+#AdventurerCounter End
+
 		return 0
 		
 # BUG - Great Person Bar - start
@@ -3469,7 +3480,33 @@ class CvMainInterface:
 			screen.setBarPercentage( szGreatGeneralBar, InfoBarTypes.INFOBAR_STORED, fProgress )
 			screen.show( szGreatGeneralBar )
 # BUG - Great General Bar - end
-					
+
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+	def updateAdventurerCounterBar(self, screen):
+		pPlayer = gc.getPlayer(gc.getGame().getActivePlayer())
+		if (not CyInterface().isCityScreenUp() and pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI') and pPlayer.getNumCities() > 0):
+			iCurrentPoints	= pPlayer.getCivCounter()
+			iThreshold		= CustomFunctions.CustomFunctions().getAdventurerThreshold(gc.getGame().getActivePlayer())
+			iCurrentRate	= CustomFunctions.CustomFunctions().getAdventurerPointRate(gc.getGame().getActivePlayer())
+
+			if iCurrentRate == 0:
+				szText = BugUtil.getText("TXT_KEY_INTERFACE_ADVENTURER_COUNTER_NONE")
+			else:
+				iAdventurerTurns = (iThreshold - iCurrentPoints + iCurrentRate - 1) / iCurrentRate
+				szText = BugUtil.getText("TXT_KEY_INTERFACE_ADVENTURER_COUNTER_TURNS", (iAdventurerTurns,))
+
+			szText = u"<font=2>%s</font>" % szText
+			szAdventurerCounterBar = "AdventurerCounterBar"
+			screen.setText( "AdventurerCounterBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, self.xResolution - xCoordAdvCounter + widthAdvCounter / 2, yCoordAdvCounter + 4, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+			screen.setHitTest( "AdventurerCounterBarText", HitTestTypes.HITTEST_NOHIT )
+			screen.show( "AdventurerCounterBarText" )
+
+			screen.setBarPercentage( szAdventurerCounterBar, InfoBarTypes.INFOBAR_RATE, float(iCurrentRate) / float(iThreshold) )
+			screen.setBarPercentage( szAdventurerCounterBar, InfoBarTypes.INFOBAR_STORED, float(iCurrentPoints) / float(iThreshold) )
+
+			screen.show( szAdventurerCounterBar )
+#AdventurerCounter End
+
 	def updateTimeText( self ):
 		
 		global g_szTimeText
@@ -3579,8 +3616,6 @@ class CvMainInterface:
 		screen.hide( "MaintenanceText" )
 		screen.hide( "MaintenanceAmountText" )
 
-		screen.hide( "GrigoriImage" )
-		screen.hide( "GrigoriText" )
 		screen.hide( "KhazadText" )
 		screen.hide( "KuriotateCities" )
 		screen.hide( "KurioText" )

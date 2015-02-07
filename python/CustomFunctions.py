@@ -788,6 +788,34 @@ class CustomFunctions:
 		
 		return max(1, iThreshold)
 
+	def getAdventurerPointRate( self, iPlayer):
+		pPlayer = gc.getPlayer( iPlayer )
+
+		# Buildings that produce adventurer points are cached only once.
+		if (len(lAdventurerBuildings) == 0):
+			for iBuilding in range(gc.getNumBuildingInfos()):
+				pBuildingInfo = gc.getBuildingInfo(iBuilding)
+				if (pBuildingInfo.getGreatPeopleUnitClass() == gc.getInfoTypeForString( 'UNITCLASS_ADVENTURER' )):
+					lAdventurerBuildings.append(iBuilding)
+					lAdventurerBuildingsPoints.append(pBuildingInfo.getGreatPeopleRateChange())
+
+		# Calculate the amount of adventurer points granted by each city.
+		fTotalPoints = 0.0
+		apCityList = PyPlayer(iPlayer).getCityList()
+		for pyCity in apCityList:
+			pCity = pyCity.GetCy()
+			if not pCity.isDisorder():
+				fCityPoints = 0.0
+				for i in range(len(lAdventurerBuildings)):
+					fCityPoints += pCity.getNumBuilding(lAdventurerBuildings[i]) * lAdventurerBuildingsPoints[i]
+				# This value already takes into account any changes to GPP caused by civics, traits, buildings...
+				fTotalPoints += (fCityPoints * pCity.getTotalGreatPeopleRateModifier()) / 100.0
+
+
+		# The value is converted to integer and added to the civ counter.
+		iTotalPoints = int(round(fTotalPoints))
+		return iTotalPoints
+
 	def doTurnGrigori( self, iPlayer ):
 		pPlayer = gc.getPlayer( iPlayer )
 	
@@ -814,32 +842,8 @@ class CustomFunctions:
 			pPlayer.changeCivCounterMod( 1 )
 
 	def doChanceAdventurerSpawn( self, iPlayer ):
-		gc = CyGlobalContext() 
+		iTotalPoints = self.getAdventurerPointRate( iPlayer )
 		pPlayer = gc.getPlayer( iPlayer )
-
-		# Buildings that produce adventurer points are cached only once.
-		if (len(lAdventurerBuildings) == 0):
-			for iBuilding in range(gc.getNumBuildingInfos()):
-				pBuildingInfo = gc.getBuildingInfo(iBuilding)
-				if (pBuildingInfo.getGreatPeopleUnitClass() == gc.getInfoTypeForString( 'UNITCLASS_ADVENTURER' )):
-					lAdventurerBuildings.append(iBuilding)
-					lAdventurerBuildingsPoints.append(pBuildingInfo.getGreatPeopleRateChange())
-
-		# Calculate the amount of adventurer points granted by each city.
-		fTotalPoints = 0.0
-		apCityList = PyPlayer(iPlayer).getCityList()
-		for pyCity in apCityList:
-			pCity = pyCity.GetCy()
-			if not pCity.isDisorder():
-				fCityPoints = 0.0
-				for i in range(len(lAdventurerBuildings)):
-					fCityPoints += pCity.getNumBuilding(lAdventurerBuildings[i]) * lAdventurerBuildingsPoints[i]
-				# This value already takes into account any changes to GPP caused by civics, traits, buildings...
-				fTotalPoints += (fCityPoints * pCity.getTotalGreatPeopleRateModifier()) / 100.0
-
-
-		# The value is converted to integer and added to the civ counter.
-		iTotalPoints = int(round(fTotalPoints))
 		pPlayer.changeCivCounter(iTotalPoints)
 #AdventurerCounter End
 
