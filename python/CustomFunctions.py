@@ -817,22 +817,27 @@ class CustomFunctions:
 		return iTotalPoints
 
 	def doTurnGrigori( self, iPlayer ):
+		CvUtil.pyPrint( "Adventurer Counter: Start." )
 		pPlayer = gc.getPlayer( iPlayer )
-	
+
 		self.doChanceAdventurerSpawn( iPlayer )
 
-		iCurrentPoints		= pPlayer.getCivCounter()
 		iSpawnedAdventurers	= pPlayer.getCivCounterMod()
 
 		# Initialize the number of spawned adventurers in case it has not been initialized.		
 		if iSpawnedAdventurers < 0:
+			CvUtil.pyPrint( " Adventurer Counter: Initializing number of already spawned adventurers to 0." )
 			pPlayer.setCivCounterMod( 0 )
 			iSpawnedAdventurers = 0
 
+		CvUtil.pyPrint( "  Adventurer Counter: Number of adventurers already spawned : %i" % iSpawnedAdventurers )
+		iCurrentPoints		= pPlayer.getCivCounter()
+		CvUtil.pyPrint( "  Adventurer Counter: Current number of adventurer points : %i" % iCurrentPoints )
 		# Calculate current adventurer threshold.
 		iThreshold = self.getAdventurerThreshold(iPlayer)
-
+		CvUtil.pyPrint( "  Adventurer Counter: Current threshold : %i" % iThreshold )
 		if iCurrentPoints >= iThreshold:
+			CvUtil.pyPrint( "  Adventurer Counter: The threshold has been surpassed so a new adventurer is going to be created." )
 			# Spawn an adventurer in the capital.
 			pCapital = pPlayer.getCapitalCity()
 			pAdventurer = pPlayer.createGreatPeople( gc.getInfoTypeForString( 'UNIT_ADVENTURER' ), False, False, pCapital.getX(), pCapital.getY() )
