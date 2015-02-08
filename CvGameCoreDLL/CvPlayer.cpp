@@ -19450,6 +19450,11 @@ void CvPlayer::doWarnings()
 									// don't show warning for land-based barbarians when player has Great Wall
 									continue;
 								}
+								if (pUnit->isHeld())
+								{
+									// Ignore held units.
+									continue;
+								}
 							}
 // BUG - Ignore Harmless Barbarians - end
 
