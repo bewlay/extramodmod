@@ -14516,6 +14516,13 @@ void CvCity::doProduction(bool bAllowNoProduction)
 
 			popOrder(0, true, true);
 
+			// Choose production again for AI.
+			// See http://forums.civfanatics.com/showpost.php?p=8808616&postcount=59
+			if (!isHuman())
+			{
+				AI_chooseProduction();
+			}
+
 			//to eliminate pre-build exploits for all Wonders and all Projects
 			if (isProductionWonder() || isProductionProject())
 			{
