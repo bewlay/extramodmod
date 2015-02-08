@@ -3489,6 +3489,7 @@ class CvMainInterface:
 				iAdventurerTurns = (iThreshold - iCurrentPoints + iCurrentRate - 1) / iCurrentRate
 				szText = BugUtil.getText("TXT_KEY_INTERFACE_ADVENTURER_COUNTER_TURNS", (iAdventurerTurns,))
 #AdventurerCounter End
+
 #Khazad vault display Start
 		if (not CyInterface().isCityScreenUp() and pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD') and pPlayer.getNumCities() > 0 and (((pPlayer.calculateGoldRate() != 0) and not (pPlayer.isAnarchy())) or (pPlayer.getGold() != 0))):
 			showBar = True
@@ -3518,6 +3519,16 @@ class CvMainInterface:
 
 			szText = BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_GENERAL", (vaultText,iCurrentPoints))
 #Khazad vault display End
+
+#Elohim sanctuary display Start
+		if (not CyInterface().isCityScreenUp() and pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_ELOHIM') and pPlayer.getSanctuaryTimer() > 0):
+			showBar = True
+			iCurrentPoints	= pPlayer.getSanctuaryTimer()
+			iThreshold		= (30 * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()) / 100
+			iCurrentRate	= 0
+			szText = BugUtil.getText("TXT_KEY_DISPLAY_ELOHIM_SANCTUARY", (iCurrentPoints,))
+#Elohim sanctuary display End
+
 		if showBar:
 			szText = u"<font=2>%s</font>" % szText
 			szCivSpecificBar = "CivSpecificBar"
@@ -3526,7 +3537,8 @@ class CvMainInterface:
 			screen.show( "CivSpecificBarText" )
 
 			screen.setBarPercentage( szCivSpecificBar, InfoBarTypes.INFOBAR_STORED, float(iCurrentPoints) / float(iThreshold) )
-			screen.setBarPercentage( szCivSpecificBar, InfoBarTypes.INFOBAR_RATE, float(iCurrentRate) / float(iThreshold - iCurrentPoints) )
+			if iCurrentRate > 0:
+				screen.setBarPercentage( szCivSpecificBar, InfoBarTypes.INFOBAR_RATE, float(iCurrentRate) / float(iThreshold - iCurrentPoints) )
 
 			screen.show( szCivSpecificBar )
 

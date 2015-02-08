@@ -65,6 +65,13 @@
 		<Italian>Overflowing</Italian>
 		<Spanish>Desbordada</Spanish>
 	</TEXT>
-			<English>[TAB]The Khazad judge their leaders by the amount of gold they are able to amass. The Dwarven Vault represents this amount. It will be upgraded automatically depending on the amount of Gold per City (GpC).[NEWLINE][NEWLINE]000-049 GpC: Dwarven Vault (Empty) +2 [ICON_UNHAPPY][NEWLINE]050-099 GpC: Dwarven Vault (Low) +1 [ICON_UNHAPPY][NEWLINE]100-149 GpC: Dwarven Vault[NEWLINE]150-199 GpC: Dwarven Vault (Stocked) +1 [ICON_HAPPY][NEWLINE]200-299 GpC: Dwarven Vault (Abundant) +10% [ICON_PRODUCTION], +2 [ICON_HAPPY][NEWLINE]300-499 GpC: Dwarven Vault (Full) +25% [ICON_PRODUCTION], +2 [ICON_HAPPY][NEWLINE]500 or more GpC: Dwarven Vault (Overflowing) +40% [ICON_PRODUCTION], +3 [ICON_HAPPY][PARAGRAPH:2]So if a Khazad player has 2000 gold and 10 cities he would have 200 Gold per City (GpC) which would earn him a free Dwarven Vault (Abundant) in each of his cities.</English>
 	<!-- Khazad vault display End -->
+	<TEXT>
+		<Tag>TXT_KEY_DISPLAY_ELOHIM_SANCTUARY</Tag>
+		<English>Sanctuary (%d1 turns remaining)</English>
+		<French>Sanctuary (%d1 turns remaining)</French>
+		<German>Sanctuary (%d1 turns remaining)</German>
+		<Italian>Sanctuary (%d1 turns remaining)</Italian>
+		<Spanish>Sanctuary (%d1 turns remaining)</Spanish>
+	</TEXT>
 </Civ4GameText>
