@@ -1428,6 +1428,9 @@ class CvInfoScreen:
 
 		pPlayer = gc.getPlayer(self.iActivePlayer)
 
+		# One user claimed to get a python error because this variable wasn't assigned.
+		# I don't see how this could have happened, but we are going to initialize it just in case.
+		iEconomy = 0
 		iEconomyGameAverage = 0
 		iIndustryGameAverage = 0
 		iAgricultureGameAverage = 0
