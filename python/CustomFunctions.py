@@ -793,15 +793,18 @@ class CustomFunctions:
 
 		# Buildings that produce adventurer points are cached only once.
 		if (len(lAdventurerBuildings) == 0):
+			CvUtil.pyPrint( "  Adventurer Counter: The cache of buildings that grant Adventurer points needs to be initialized." )
 			for iBuilding in range(gc.getNumBuildingInfos()):
 				pBuildingInfo = gc.getBuildingInfo(iBuilding)
 				if (pBuildingInfo.getGreatPeopleUnitClass() == gc.getInfoTypeForString( 'UNITCLASS_ADVENTURER' )):
+					CvUtil.pyPrint( "    Adventurer Counter: %s grants %i adventurer points." % (pBuildingInfo.getDescription(), pBuildingInfo.getGreatPeopleRateChange()) )
 					lAdventurerBuildings.append(iBuilding)
 					lAdventurerBuildingsPoints.append(pBuildingInfo.getGreatPeopleRateChange())
 
 		# Calculate the amount of adventurer points granted by each city.
 		fTotalPoints = 0.0
 		apCityList = PyPlayer(iPlayer).getCityList()
+		CvUtil.pyPrint( "  Adventurer Counter: Calculating the amount of points contributed by cities." )
 		for pyCity in apCityList:
 			pCity = pyCity.GetCy()
 			if not pCity.isDisorder():
@@ -809,11 +812,15 @@ class CustomFunctions:
 				for i in range(len(lAdventurerBuildings)):
 					fCityPoints += pCity.getNumBuilding(lAdventurerBuildings[i]) * lAdventurerBuildingsPoints[i]
 				# This value already takes into account any changes to GPP caused by civics, traits, buildings...
-				fTotalPoints += (fCityPoints * pCity.getTotalGreatPeopleRateModifier()) / 100.0
+				CvUtil.pyPrint( "    Adventurer Counter: %s contributes with %f points." % (pCity.getName(), fCityPoints))
+				fCityPoints = (fCityPoints * pCity.getTotalGreatPeopleRateModifier()) / 100.0
+				CvUtil.pyPrint( "    Adventurer Counter: After applying the rate modifier, %s contributes with %f points." % (pCity.getName(), fCityPoints))
+				fTotalPoints += fCityPoints
 
 
-		# The value is converted to integer and added to the civ counter.
+		# The value is converted to integer.
 		iTotalPoints = int(round(fTotalPoints))
+		CvUtil.pyPrint( "  Adventurer Counter: The total number of points contributed by cities is: %i." % iTotalPoints)
 		return iTotalPoints
 
 	def doTurnGrigori( self, iPlayer ):
@@ -826,7 +833,7 @@ class CustomFunctions:
 
 		# Initialize the number of spawned adventurers in case it has not been initialized.		
 		if iSpawnedAdventurers < 0:
-			CvUtil.pyPrint( " Adventurer Counter: Initializing number of already spawned adventurers to 0." )
+			CvUtil.pyPrint( "  Adventurer Counter: Initializing number of already spawned adventurers to 0." )
 			pPlayer.setCivCounterMod( 0 )
 			iSpawnedAdventurers = 0
 
