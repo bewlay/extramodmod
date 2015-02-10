@@ -1221,22 +1221,6 @@ void CyPlot::createSpawn( int /*SpawnTypes*/ eSpawnType, int /*UnitAITypes*/ eUn
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
-// Enhanced End of Winter - adapted from FlavourMod by Jean Elcard
-void CyPlot::setTempFeatureType(int /*FeatureTypes*/ eFeature, int iVariety, int iTimer)
-{
-	if (m_pPlot)
-		m_pPlot->setTempFeatureType((FeatureTypes) eFeature, iVariety, iTimer);
-}
-
-void CyPlot::setTempBonusType(int /*BonusTypes*/ eBonus, int iTimer)
-{
-	if (m_pPlot)
-		m_pPlot->setTempBonusType((BonusTypes) eBonus, iTimer);
-}
-// End Enhanced End of Winter
-
-
-
 // Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
 TerrainTypes CyPlot::getRealTerrainType() const
 {
