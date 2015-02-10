@@ -10,6 +10,10 @@ import PyHelpers
 import CustomFunctions
 import ScenarioFunctions
 
+# lfgr BARBS_PLUS 01/2015
+import BarbsPlusDefines
+# lfgr end
+
 # lfgr GP_NAMES 07/2013
 import SdToolKitCustom as SDTK
 # lfgr end
@@ -4782,28 +4786,7 @@ def helpSellAnimal( lpUnits ) :
 		return CyTranslator().getText( 'TXT_KEY_SPELL_SELL_ANIMAL_HELP', ( len( lpUnits ), iMinGold, iMaxGold ) )
 
 def getAnimalSellValue( pUnit ) :
-	# Standard unit values
-	# TODO: cache
-	liUnitValues = [-1] * gc.getNumUnitInfos()
-	liUnitValues[gc.getInfoTypeForString( "UNIT_BABY_SPIDER" )] = 5
-	liUnitValues[gc.getInfoTypeForString( "UNIT_BEAR" )] = 20
-	liUnitValues[gc.getInfoTypeForString( "UNIT_CAVE_BEAR" )] = 30
-	liUnitValues[gc.getInfoTypeForString( "UNIT_ELEPHANT" )] = 40
-	liUnitValues[gc.getInfoTypeForString( "UNIT_GIANT_SPIDER" )] = 15
-	liUnitValues[gc.getInfoTypeForString( "UNIT_GORILLA" )] = 20
-	liUnitValues[gc.getInfoTypeForString( "UNIT_GRIFFON" )] = 35
-	liUnitValues[gc.getInfoTypeForString( "UNIT_LION" )] = 15
-	liUnitValues[gc.getInfoTypeForString( "UNIT_LION_PRIDE" )] = 20
-	liUnitValues[gc.getInfoTypeForString( "UNIT_PANTHER" )] = 30
-	liUnitValues[gc.getInfoTypeForString( "UNIT_POLAR_BEAR" )] = 20
-	liUnitValues[gc.getInfoTypeForString( "UNIT_SCORPION" )] = 15
-	liUnitValues[gc.getInfoTypeForString( "UNIT_TIGER" )] = 25
-	liUnitValues[gc.getInfoTypeForString( "UNIT_WOLF" )] = 10
-	liUnitValues[gc.getInfoTypeForString( "UNIT_WOLF_PACK" )] = 15
-	liUnitValues[gc.getInfoTypeForString( "UNIT_SEA_SERPENT" )] = 50
-	liUnitValues[gc.getInfoTypeForString( "UNIT_GIANT_TORTOISE" )] = 60
-	
-	iStdGold = liUnitValues[pUnit.getUnitType()]
+	iStdGold = BarbsPlusDefines.liAnimalValues[pUnit.getUnitType()]
 	if( iStdGold == -1 ) :
 		raise Exception( "Sell value for this animal not defined!" )
 	iLevel = pUnit.getLevel()

@@ -7412,7 +7412,7 @@ void CvGame::createBarbarianUnits()
 	}
 	else
 	{
-		if (GC.getEraInfo(getCurrentEra()).isNoAnimals())
+		if (GC.getEraInfo((EraTypes)getCurrentPeriod()).isNoAnimals())
 			bAnimals = false;
 		else if (GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal() <= 0)
 			bAnimals = false;

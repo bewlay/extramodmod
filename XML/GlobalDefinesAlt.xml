@@ -1145,7 +1145,7 @@
     </Define>
     <Define>
         <DefineName>LAIR_GUARDIAN_STARTING_PLOT_MIN_DISTANCE</DefineName>
-        <iDefineIntVal>5</iDefineIntVal>
+        <iDefineIntVal>0</iDefineIntVal>
     </Define>
 <!-- WILDERNESS end -->
 </Civ4Defines>

@@ -5773,7 +5773,7 @@
             <Button>Art/Interface/Buttons/Equipment/Gela.dds</Button>
         </SpellInfo>
         <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // AnimalSpells -->
-            <Type>SPELL_SELL_ANIMAL_WOLF_PACK</Type>
+            <Type>SPELL_SELL_ANIMAL</Type>
             <Description>TXT_KEY_SPELL_SELL_ANIMAL</Description>
             <Civilopedia>TXT_KEY_SPELL_SELL_ANIMAL_PEDIA</Civilopedia>
             <UnitCombatPrereq>UNITCOMBAT_ANIMAL</UnitCombatPrereq>
