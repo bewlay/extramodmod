@@ -64,6 +64,26 @@
 			<VictoryMovie>ART_DEF_MOVIE_VICTORY_CONQUEST</VictoryMovie>
 		</VictoryInfo>
 		<VictoryInfo>
+			<Type>VICTORY_DOMINATION_QUICK</Type>
+			<Description>TXT_KEY_VICTORY_DOMINATION_QUICK</Description>
+			<Civilopedia>TXT_KEY_VICTORY_DOMINATION_PEDIA</Civilopedia>
+			<bTargetScore>0</bTargetScore>
+			<bEndScore>0</bEndScore>
+			<bConquest>0</bConquest>
+			<bDiploVote>0</bDiploVote>
+			<bPermanent>0</bPermanent>
+			<iPopulationPercentLead>15</iPopulationPercentLead>
+			<iLandPercent>50</iLandPercent>
+			<iMinLandPercent>35</iMinLandPercent>
+			<iReligionPercent>0</iReligionPercent>
+			<CityCulture>NONE</CityCulture>
+			<iNumCultureCities>0</iNumCultureCities>
+			<iTotalCultureRatio>0</iTotalCultureRatio>
+			<iVictoryDelayTurns>0</iVictoryDelayTurns>
+			<VictoryMovie>ART_DEF_MOVIE_VICTORY_DOMINATION</VictoryMovie>
+			<LinkedVictory>VICTORY_DOMINATION</LinkedVictory>
+		</VictoryInfo>
+		<VictoryInfo>
 			<Type>VICTORY_DOMINATION</Type>
 			<Description>TXT_KEY_VICTORY_DOMINATION</Description>
 			<Civilopedia>TXT_KEY_VICTORY_DOMINATION_PEDIA</Civilopedia>
@@ -73,7 +93,7 @@
 			<bDiploVote>0</bDiploVote>
 			<bPermanent>0</bPermanent>
 			<iPopulationPercentLead>25</iPopulationPercentLead>
-			<iLandPercent>78</iLandPercent>
+			<iLandPercent>70</iLandPercent>
 			<iMinLandPercent>51</iMinLandPercent>
 			<iReligionPercent>0</iReligionPercent>
 			<CityCulture>NONE</CityCulture>
@@ -81,6 +101,27 @@
 			<iTotalCultureRatio>0</iTotalCultureRatio>
 			<iVictoryDelayTurns>0</iVictoryDelayTurns>
 			<VictoryMovie>ART_DEF_MOVIE_VICTORY_DOMINATION</VictoryMovie>
+			<LinkedVictory>VICTORY_DOMINATION_QUICK</LinkedVictory>
+		</VictoryInfo>
+		<VictoryInfo>
+			<Type>VICTORY_CULTURAL_QUICK</Type>
+			<Description>TXT_KEY_VICTORY_CULTURAL_QUICK</Description>
+			<Civilopedia>TXT_KEY_VICTORY_CULTURAL_PEDIA</Civilopedia>
+			<bTargetScore>0</bTargetScore>
+			<bEndScore>0</bEndScore>
+			<bConquest>0</bConquest>
+			<bDiploVote>0</bDiploVote>
+			<bPermanent>0</bPermanent>
+			<iPopulationPercentLead>0</iPopulationPercentLead>
+			<iLandPercent>0</iLandPercent>
+			<iMinLandPercent>0</iMinLandPercent>
+			<iReligionPercent>0</iReligionPercent>
+			<CityCulture>CULTURELEVEL_INFLUENTIAL</CityCulture>
+			<iNumCultureCities>4</iNumCultureCities>
+			<iTotalCultureRatio>0</iTotalCultureRatio>
+			<iVictoryDelayTurns>0</iVictoryDelayTurns>
+			<VictoryMovie>ART_DEF_MOVIE_VICTORY_CULTURAL</VictoryMovie>
+			<LinkedVictory>VICTORY_CULTURAL</LinkedVictory>
 		</VictoryInfo>
 		<VictoryInfo>
 			<Type>VICTORY_CULTURAL</Type>
@@ -100,6 +141,27 @@
 			<iTotalCultureRatio>0</iTotalCultureRatio>
 			<iVictoryDelayTurns>0</iVictoryDelayTurns>
 			<VictoryMovie>ART_DEF_MOVIE_VICTORY_CULTURAL</VictoryMovie>
+			<LinkedVictory>VICTORY_CULTURAL_QUICK</LinkedVictory>
+		</VictoryInfo>
+		<VictoryInfo>
+			<Type>VICTORY_RELIGIOUS_QUICK</Type>
+			<Description>TXT_KEY_VICTORY_RELIGIOUS_QUICK</Description>
+			<Civilopedia>TXT_KEY_VICTORY_CULTURAL_PEDIA</Civilopedia>
+			<bTargetScore>0</bTargetScore>
+			<bEndScore>0</bEndScore>
+			<bConquest>0</bConquest>
+			<bDiploVote>0</bDiploVote>
+			<bPermanent>0</bPermanent>
+			<iPopulationPercentLead>0</iPopulationPercentLead>
+			<iLandPercent>0</iLandPercent>
+			<iMinLandPercent>0</iMinLandPercent>
+			<iReligionPercent>55</iReligionPercent>
+			<CityCulture>NONE</CityCulture>
+			<iNumCultureCities>0</iNumCultureCities>
+			<iTotalCultureRatio>0</iTotalCultureRatio>
+			<iVictoryDelayTurns>0</iVictoryDelayTurns>
+			<VictoryMovie>ART_DEF_MOVIE_VICTORY_CULTURAL</VictoryMovie>
+			<LinkedVictory>VICTORY_RELIGIOUS</LinkedVictory>
 		</VictoryInfo>
 		<VictoryInfo>
 			<Type>VICTORY_RELIGIOUS</Type>
@@ -113,12 +175,13 @@
 			<iPopulationPercentLead>0</iPopulationPercentLead>
 			<iLandPercent>0</iLandPercent>
 			<iMinLandPercent>0</iMinLandPercent>
-			<iReligionPercent>80</iReligionPercent>
+			<iReligionPercent>75</iReligionPercent>
 			<CityCulture>NONE</CityCulture>
 			<iNumCultureCities>0</iNumCultureCities>
 			<iTotalCultureRatio>0</iTotalCultureRatio>
 			<iVictoryDelayTurns>0</iVictoryDelayTurns>
 			<VictoryMovie>ART_DEF_MOVIE_VICTORY_CULTURAL</VictoryMovie>
+			<LinkedVictory>VICTORY_RELIGIOUS_QUICK</LinkedVictory>
 		</VictoryInfo>
 		<VictoryInfo>
 			<Type>VICTORY_TOWER_OF_MASTERY</Type>

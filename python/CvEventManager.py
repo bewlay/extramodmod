@@ -33,6 +33,9 @@ import CvCorporationScreen
 import OOSLogger
 #FfH: End Add
 
+# Prophecy of Ragnarok and Multiple production: Ensure that it is only used once per turn.
+import SdToolKitCustom as SDTK
+
 ## Ultrapack ##
 import WBCityEditScreen
 import WBUnitScreen
@@ -419,6 +422,39 @@ class CvEventManager:
 		else:
 			introMovie = CvIntroMovieScreen.CvIntroMovieScreen()
 			introMovie.interfaceScreen()
+		
+		# TERRAIN_FLAVOUR_TEST lfgr
+		# use CTRL-SHIFT-L to change player and see their values
+		# may take VERY long on big maps with much players
+		PLACE_SIGNS = False
+		ONLY_HUMAN_PLAYER = True
+		
+		if( PLACE_SIGNS ) :
+			for iPlayer in range( gc.getMAX_PLAYERS() ) :
+				pPlayer = gc.getPlayer( iPlayer )
+				if( pPlayer.isAlive() and not pPlayer.isBarbarian() and ( not ONLY_HUMAN_PLAYER or pPlayer.isHuman() ) ) :
+					for iPlot in range( CyMap().numPlots() ) :
+						pPlot = CyMap().plotByIndex( iPlot )
+						if( not pPlot.isPeak() and not pPlot.isWater() ) :
+							fWeight = pPlot.calcTerrainFlavourWeight( gc.getCivilizationInfo( pPlayer.getCivilizationType() ).getTerrainFlavour(), -1 )
+							CyEngine().removeLandmark( pPlot ) # avoid graphical oddities
+							CyEngine().addSign( pPlot, iPlayer, str( int( fWeight ) ) )
+#		for iPlot in range( CyMap().numPlots() ) :
+#			pPlot = CyMap().plotByIndex( iPlot )
+#			if( not pPlot.isPeak() and not pPlot.isWater() ) :
+#				fBestWeight = -1000000
+#				eBestTerrainFlavour = -1
+#				for eTerrainFlavour in range( gc.getNumTerrainFlavourInfos() ) :
+#					fWeight = pPlot.calcTerrainFlavourWeight( eTerrainFlavour, 2 )
+#					if( fWeight > fBestWeight ) :
+#						fBestWeight = fWeight
+#						eBestTerrainFlavour = eTerrainFlavour
+#				
+#				if( eBestTerrainFlavour != -1 ) :
+#					str = gc.getTerrainFlavourInfo( eBestTerrainFlavour ).getType()
+#					str = str[len("FLAVOUR_CIV_"):]
+#					CyEngine().addLandmark( pPlot, str )
+		# TERRAIN_FLAVOUR_TEST end
 
 		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_THAW):
 # Enhanced End of Winter - Adpated from FlavourMod
@@ -567,13 +603,15 @@ class CvEventManager:
 				CyGame().changeTrophyValue(t, 1)
 				sf.addPopupWB(CyTranslator().getText("TXT_KEY_FFH_INTRO",()),'art/interface/popups/FfHIntro.dds')
 
-		if CyGame().isOption(gc.getInfoTypeForString('GAMEOPTION_NO_BARBARIANS')) == False and (not CyGame().getWBMapScript()):
-			iGoblinFort = gc.getInfoTypeForString('IMPROVEMENT_GOBLIN_FORT')
-			bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-			for i in range (CyMap().numPlots()):
-				pPlot = CyMap().plotByIndex(i)
-				if pPlot.getImprovementType() == iGoblinFort:
-					bPlayer.initUnit(gc.getInfoTypeForString('UNIT_ARCHER_SCORPION_CLAN'), pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_LAIRGUARDIAN, DirectionTypes.DIRECTION_SOUTH)
+	# WILDERNESS 09/2013 lfgr / LairGuardians: Guardians added via XML
+	#	if CyGame().isOption(gc.getInfoTypeForString('GAMEOPTION_NO_BARBARIANS')) == False:
+	#		iGoblinFort = gc.getInfoTypeForString('IMPROVEMENT_GOBLIN_FORT')
+	#		bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
+	#		for i in range (CyMap().numPlots()):
+	#			pPlot = CyMap().plotByIndex(i)
+	#			if pPlot.getImprovementType() == iGoblinFort:
+	#				bPlayer.initUnit(gc.getInfoTypeForString('UNIT_ARCHER_SCORPION_CLAN'), pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_LAIRGUARDIAN, DirectionTypes.DIRECTION_SOUTH)
+	# WILDERNESS end
 
 		if (gc.getGame().getGameTurnYear() == gc.getDefineINT("START_YEAR") and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_START)):
 			if not CyGame().getWBMapScript():
@@ -642,6 +680,32 @@ class CvEventManager:
 						cf.addUnit(iUnit)
 						if( CyGame().getAIAutoPlay(CyGame().getActivePlayer()) == 0 ) :
 							cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_ORTHUS_CREATION",()), str(gc.getUnitInfo(iUnit).getImage()))
+		
+	# lfgr barbsplus 08/2014 // SpawnAcheron
+		if not CyGame().isUnitClassMaxedOut(gc.getInfoTypeForString('UNITCLASS_ACHERON'), 0):
+			if( gc.getGame().isOption( GameOptionTypes.GAMEOPTION_BARBARIAN_WORLD ) ) :
+				iChance = 5
+			else :
+				iChance = 10
+			if( CyGame().getSorenRandNum( 100, "Acheron spawn" ) < iChance ) :
+				if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_ACHERON):
+					pyBarbPlayer = PyPlayer( gc.getBARBARIAN_PLAYER() )
+					if( pyBarbPlayer.getNumCities() * 2 >= CyGame().countCivPlayersAlive() ) :
+						iBestWilderness = -1
+						pBestCity = None
+						for pyCity in pyBarbPlayer.getCityList() :
+							pCity = pyCity.GetCy()
+							if( pCity.getOriginalOwner() != pCity.getOwner() ) :
+								continue
+							iWilderness = pCity.plot().getWilderness() + CyGame().getSorenRandNum( 10, "Acheron city Wilderness" )
+							if( iWilderness > iBestWilderness ) :
+								iBestWilderness = iWilderness
+								pBestCity = pCity
+						
+						if( pBestCity != None ) :
+							acheron = gc.getPlayer( gc.getBARBARIAN_PLAYER() ).initUnit( gc.getInfoTypeForString( 'UNIT_ACHERON' ), pBestCity.plot().getX(), pBestCity.plot().getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH )
+							self.onUnitBuilt( ( pBestCity, acheron ) ) # hack to get effects
+	# lfgr end
 
 		if not CyGame().isOption(gc.getInfoTypeForString('GAMEOPTION_NO_PLOT_COUNTER')):
 			cf.doHellTerrain()
@@ -673,8 +737,19 @@ class CvEventManager:
 			if not CyGame().getWBMapScript():
 				cf.warScript(iPlayer)
 
-		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
+		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_MEMBERSHIP')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
 			cf.doCrusade(iPlayer)
+
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+		if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI'):
+			cf.doTurnGrigori(iPlayer)
+#AdventurerCounter End
+
+# Prophecy of Ragnarok and Multiple production: Ensure that it is only used once per turn.
+		if( not SDTK.sdObjectExists( "ProphecyRagnarok", pPlayer ) ) :
+			SDTK.sdObjectInit( "ProphecyRagnarok", pPlayer, {} )
+
+		SDTK.sdObjectSetVal( "ProphecyRagnarok", pPlayer, "UsedThisTurn", False )
 
 		if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD'):
 			cf.doTurnKhazad(iPlayer)
@@ -687,23 +762,34 @@ class CvEventManager:
 				triggerData = pPlayer.initTriggeredData(iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1)
 
 		if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_ADAPTIVE')):
-			iBaseCycle = 100
+			iBaseCycle = 75
 			iCycle = (iBaseCycle * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()) / 100
 			for i in range(10):
 				if (i * iCycle) - 5 == iGameTurn:
 					iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_TRAIT_ADAPTIVE')
 					triggerData = pPlayer.initTriggeredData(iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1)
 
-		if pPlayer.isHuman():
-			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_BARBARIAN')):
-				eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
-				iTeam = pPlayer.getTeam()
-				if eTeam.isAtWar(iTeam) == False:
-					if 2 * CyGame().getPlayerScore(iPlayer) >= 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)):
-						if iGameTurn >= 20:
-							eTeam.declareWar(iTeam, False, WarPlanTypes.WARPLAN_TOTAL)
-							if iPlayer == CyGame().getActivePlayer():
-								cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
+	# WILDERNESS 09/2013 lfgr / WildernessMisc - Also BarbarianAlly AI will declare war against barbs if too strong.
+	#	if pPlayer.isHuman():
+	#		if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_BARBARIAN')):
+	#			eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
+	#			iTeam = pPlayer.getTeam()
+	#			if eTeam.isAtWar(iTeam) == False:
+	#				if 2 * CyGame().getPlayerScore(iPlayer) >= 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)):
+	#					if iGameTurn >= 20:
+	#						eTeam.declareWar(iTeam, false, WarPlanTypes.WARPLAN_TOTAL)
+	#						if iPlayer == CyGame().getActivePlayer():
+	#							cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
+		if( pPlayer.isHuman() or gc.getGame().isOption( GameOptionTypes.GAMEOPTION_RAGING_BARBARIANS ) ) :
+			eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
+			iTeam = pPlayer.getTeam()
+			if eTeam.isAtWar(iTeam) == False:
+				if 2 * CyGame().getPlayerScore(iPlayer) >= 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)):
+					if iGameTurn >= 20:
+						eTeam.declareWar(iTeam, False, WarPlanTypes.WARPLAN_TOTAL)
+						if iPlayer == CyGame().getActivePlayer():
+							cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_BARBARIAN_DECLARE_WAR",()), 'art/interface/popups/Barbarian.dds')
+	# WILDERNESS end
 
 
 	def onEndPlayerTurn(self, argsList):
@@ -830,7 +916,11 @@ class CvEventManager:
 		pPlot = CyMap().plot(iX, iY)
 
 		if gc.getImprovementInfo(iImprovement).isUnique():
-			CyEngine().addLandmark(pPlot, CvUtil.convertToStr(gc.getImprovementInfo(iImprovement).getDescription()))
+		# lfgr fix
+		#	CyEngine().addLandmark(pPlot, CvUtil.convertToStr(gc.getImprovementInfo(iImprovement).getDescription()))
+			CyEngine().removeSign(pPlot, -1)
+			CyEngine().addSign(pPlot, -1, CvUtil.convertToStr(gc.getImprovementInfo(iImprovement).getDescription()))
+		# lfgr end
 
 			if iImprovement == gc.getInfoTypeForString('IMPROVEMENT_RING_OF_CARCER'):
 				pPlot.setMinLevel(15)
@@ -1090,10 +1180,13 @@ class CvEventManager:
 							pUnit.kill(False, pCity.getOwner())
 
 		elif iProjectType == gc.getInfoTypeForString('PROJECT_GENESIS'):
-			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_ILLIANS'):
-				cf.snowgenesis(iPlayer)
-			else:
-				cf.genesis(iPlayer)
+			for iLoopPlayer in range(gc.getMAX_PLAYERS()):
+				pLoopPlayer = gc.getPlayer(iLoopPlayer)
+				if pLoopPlayer.getTeam() == pPlayer.getTeam():
+					if pLoopPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_ILLIANS'):
+						cf.snowgenesis(iLoopPlayer)
+					else:
+						cf.genesis(iLoopPlayer)
 
 		elif iProjectType == gc.getInfoTypeForString('PROJECT_GLORY_EVERLASTING'):
 			iDemon = gc.getInfoTypeForString('PROMOTION_DEMON')
@@ -1213,11 +1306,8 @@ class CvEventManager:
 
 		elif iProjectType == gc.getInfoTypeForString('PROJECT_THE_WHITE_HAND'):
 			newUnit1 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_PRIEST_OF_WINTER'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-			newUnit1.setName("Dumannios")
 			newUnit2 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_PRIEST_OF_WINTER'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-			newUnit2.setName("Riuros")
 			newUnit3 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_PRIEST_OF_WINTER'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-			newUnit3.setName("Anagantios")
 
 		elif iProjectType == gc.getInfoTypeForString('PROJECT_THE_DEEPENING'):
 			iDesert = gc.getInfoTypeForString('TERRAIN_DESERT')
@@ -1392,7 +1482,7 @@ class CvEventManager:
 		iChanneling3 = gc.getInfoTypeForString('PROMOTION_CHANNELING3')
 
 		if unit.getUnitCombatType() == gc.getInfoTypeForString('UNITCOMBAT_ADEPT'):
-			lCheckThis = ['AIR', 'BODY', 'CHAOS', 'DEATH', 'EARTH', 'ENCHANTMENT', 'ENTROPY', 'FIRE', 'ICE', 'LAW', 'LIFE', 'METAMAGIC', 'MIND', 'NATURE', 'SHADOW', 'SPIRIT', 'SUN', 'WATER']
+			lCheckThis = ['AIR', 'BODY', 'CHAOS', 'CREATION', 'DEATH', 'DIMENSIONAL', 'EARTH', 'ENCHANTMENT', 'ENTROPY', 'FIRE', 'FORCE', 'ICE', 'LAW', 'LIFE', 'METAMAGIC', 'MIND', 'NATURE', 'SHADOW', 'SPIRIT', 'SUN', 'WATER']
 			for item in lCheckThis:
 				iNum = pPlayer.getNumAvailableBonuses(gc.getInfoTypeForString('BONUS_MANA_' + item))
 				if iNum > 1:
@@ -1497,25 +1587,62 @@ class CvEventManager:
 		player = PyPlayer(city.getOwner())
 		pPlayer = gc.getPlayer(unit.getOwner())
 
+# Prophecy of Ragnarok and Multiple production: Ensure that it is only used once per turn.
+		if city.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_PROPHECY_OF_RAGNAROK')) > 0:
+			bUsedThisTurn = SDTK.sdObjectGetVal( "ProphecyRagnarok", pPlayer, "UsedThisTurn" )
+			if not bUsedThisTurn:
+				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PROPHECY_MARK'), True)
+				SDTK.sdObjectSetVal( "ProphecyRagnarok", pPlayer, "UsedThisTurn", True )
+				CvUtil.pyPrint('Unit adquired Prophecy Mark; ProphecyRagnarok variable is now: %s' %(SDTK.sdObjectGetVal( "ProphecyRagnarok", pPlayer, "UsedThisTurn" ),))
+
 		# Advanced Tactics - Diverse Grigori (idea and base code taken from FFH Tweakmod)
 		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS):
 			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI'):
 				unit.setReligion(-1)
+		# EXTRA_CIV_TRAITS 08/2013 lfgr
+			if( pPlayer.hasTrait( gc.getInfoTypeForString( 'TRAIT_DIVERSE' ) ) ) :
+		# EXTRA_CIV_TRAITS end
 				if unit.getRace() == -1:
 					iChance = 40
 					if CyGame().getSorenRandNum(100, "Grigori Racial Diversity") <= iChance:
-						race = CyGame().getSorenRandNum(3, "Bob")
-						if race == 0 and unit.isAlive():
-							unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ORC'), True)
-						elif race == 1 and unit.isAlive():
-							race = CyGame().getSorenRandNum(2, "Elvish division")
-							if race == 0:
-								unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ELF'), True)
-							elif race == 1:
-								unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DARK_ELF'), True)
-						elif race == 2:
-							if (unit.isAlive()):
-								unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DWARF'), True)
+					# EXTRA_CIV_TRAITS 08/2013 lfgr
+					#	race = CyGame().getSorenRandNum(3, "Bob")
+					#	if race == 0 and unit.isAlive():
+					#		unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ORC'), True)
+					#	elif race == 1 and unit.isAlive():
+					#		race = CyGame().getSorenRandNum(2, "Elvish division")
+					#		if race == 0:
+					#			unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ELF'), True)
+					#		elif race == 1:
+					#			unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DARK_ELF'), True)
+					#	elif race == 2:
+					#		if (unit.isAlive()):
+					#			unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_DWARF'), True)
+						eOrc = gc.getInfoTypeForString('PROMOTION_ORC')
+						eElf = gc.getInfoTypeForString('PROMOTION_ELF')
+						eDarkElf = gc.getInfoTypeForString('PROMOTION_DARK_ELF')
+						eDwarf = gc.getInfoTypeForString('PROMOTION_DWARF')
+						
+						leRandomRaces = []
+						
+						sOrcADT = gc.getUnitArtStyleTypeInfo( gc.getPromotionInfo( eOrc ).getUnitArtStyleType() ).getEarlyArtDefineTag( 0, unit.getUnitType() )
+						sElfADT = gc.getUnitArtStyleTypeInfo( gc.getPromotionInfo( eElf ).getUnitArtStyleType() ).getEarlyArtDefineTag( 0, unit.getUnitType() )
+						sDarkElfUAT = gc.getUnitArtStyleTypeInfo( gc.getPromotionInfo( eDarkElf ).getUnitArtStyleType() ).getEarlyArtDefineTag( 0, unit.getUnitType() )
+						sDwarfUAT = gc.getUnitArtStyleTypeInfo( gc.getPromotionInfo( eDwarf ).getUnitArtStyleType() ).getEarlyArtDefineTag( 0, unit.getUnitType() )
+						if( sOrcADT != None and sOrcADT != unit.getArtInfo( 0, 0 ).getTag() ) :
+							leRandomRaces.append( eOrc )
+							leRandomRaces.append( eOrc )
+						if( sElfADT != None and sElfADT != unit.getArtInfo( 0, 0 ).getTag() ) :
+							leRandomRaces.append( eElf )
+						if( sDarkElfUAT != None and sDarkElfUAT != unit.getArtInfo( 0, 0 ).getTag() ) :
+							leRandomRaces.append( eDarkElf )
+						if( sDwarfUAT != None and sDwarfUAT != unit.getArtInfo( 0, 0 ).getTag() ) :
+							leRandomRaces.append( eDwarf )
+							leRandomRaces.append( eDwarf )
+						
+						if( len( leRandomRaces ) > 0 ) :
+							unit.setHasPromotion( leRandomRaces[CyGame().getSorenRandNum( len( leRandomRaces ), "Diverse Trait Random Race" )], True )
+					# EXTRA_CIV_TRAITS end
 		# End Advanced Tactics
 
 		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_BEAST_OF_AGARES'):
@@ -1547,6 +1674,24 @@ class CvEventManager:
 						if unit.isAlive():
 							newUnit = pPlayer.initUnit(unit.getUnitType(), city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 							city.applyBuildEffects(newUnit)
+
+		if city.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_BLESSING')) > 0:
+			if unit.isAlive() and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_WORKER') and unit.getUnitAIType() != gc.getInfoTypeForString('UNITAI_SETTLE'):
+				unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_STRONG'), True)
+
+		# Paramander with metal weapons fix
+		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_PARAMANDER'):
+			iBronze = gc.getInfoTypeForString('PROMOTION_BRONZE_WEAPONS')
+			iIron = gc.getInfoTypeForString('PROMOTION_IRON_WEAPONS')
+			iMithril = gc.getInfoTypeForString('PROMOTION_MITHRIL_WEAPONS')
+			if city.hasBonus(gc.getInfoTypeForString('BONUS_MITHRIL')):
+				unit.setHasPromotion(iBronze, False)
+				unit.setHasPromotion(iIron, False)
+				unit.setHasPromotion(iMithril, True)
+			else:
+				unit.setHasPromotion(iBronze, False)
+				unit.setHasPromotion(iIron, True)
+				unit.setHasPromotion(iMithril, False)
 
 		CvAdvisorUtils.unitBuiltFeats(city, unit)
 
@@ -1616,6 +1761,27 @@ class CvEventManager:
 		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_ACHERON'):
 			unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
 
+			# more events mod starts # 
+		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_GOBLIN') or unit.getUnitType() == gc.getInfoTypeForString('UNIT_GOBLIN_SCORPION_CLAN'):
+			if CyGame().getSorenRandNum(1000, "Goblin2")<40:
+				if iPlayer == gc.getBARBARIAN_PLAYER() :
+					iX = unit.getX()
+					iY = unit.getY()
+					int=1
+					pAttacker = gc.getPlayer(iAttacker)
+					for iiX in range(iX-2, iX+2, 1):
+						for iiY in range(iY-2, iY+2, 1):
+							pPlot2 = CyMap().plot(iiX,iiY)
+							for i in range(pPlot2.getNumUnits()):
+								pUnit2 = pPlot2.getUnit(i)
+								if pUnit2.getOwner()== iAttacker:
+									iWorker = gc.getInfoTypeForString('UNITCLASS_WORKER')
+									iSettler = gc.getInfoTypeForString('UNITCLASS_SETTLER')
+									if not pUnit2.getUnitClassType() == iWorker and not pUnit2.getUnitClassType() == iSettler and int==1 :
+										iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_ORPHANED_GOBLIN')
+										triggerData = pAttacker.initTriggeredData(iEvent, true, -1, pUnit2.getX(), pUnit2.getY(), pUnit2.getOwner(), -1, -1, -1, pUnit2.getID(), -1)
+										int=0
+					# more events mod ends #
 		if CyGame().getWBMapScript():
 			sf.onUnitKilled(unit, iAttacker)
 
@@ -1649,10 +1815,12 @@ class CvEventManager:
 	def onUnitPromoted(self, argsList):
 		'Unit Promoted'
 		pUnit, iPromotion = argsList
+
 		if not self.__LOG_UNITPROMOTED:
 			return
+		player = PyPlayer(pUnit.getOwner())
 		CvUtil.pyPrint('Unit Promotion Event: %s - %s' %(player.getCivilizationName(), pUnit.getName(),))
-
+	
 	def onUnitSelected(self, argsList):
 		'Unit Selected'
 		unit = argsList[0]
@@ -1764,7 +1932,8 @@ class CvEventManager:
 				if (iReligion==pPlayer.getFavoriteReligion()):
 					pPlayer.getCapitalCity().setHasReligion(iReligion,True,True,True)	
 				if CyGame().isReligionFounded(iReligion):
-					cf.giftUnit(iUnit, pPlayer.getCivilizationType(), 0, -1, -1)
+					newUnit = pPlayer.initUnit(iUnit, pPlayer.getCapitalCity().getX(), pPlayer.getCapitalCity().getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
+					newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_MISSIONARY'), True)
 
 		if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_HYBOREM_OR_BASIUM):
 			if iTechType == gc.getInfoTypeForString('TECH_INFERNAL_PACT') and iPlayer != -1:
@@ -1778,49 +1947,28 @@ class CvEventManager:
 					iInfernalPlayer = pPlayer.initNewEmpire(gc.getInfoTypeForString('LEADER_HYBOREM'), gc.getInfoTypeForString('CIVILIZATION_INFERNAL'))
 					if iInfernalPlayer != PlayerTypes.NO_PLAYER:
 						pInfernalPlayer = gc.getPlayer(iInfernalPlayer)
-						pTeam = gc.getTeam(pInfernalPlayer.getTeam())
 
 						pBestPlot = -1
 						iBestPlot = -1
 						for iLoop in range (CyMap().numPlots()):
 							pPlot = CyMap().plotByIndex(iLoop)
-							iX = pPlot.getX()
-							iY = pPlot.getY()
 							iPlot = -1
-							if pInfernalPlayer.canFound(iX, iY):
+							if pInfernalPlayer.canFound(pPlot.getX(), pPlot.getY()):
 								if pPlot.getNumUnits() == 0:
-									iPlot = CyGame().getSorenRandNum(50, "Place Hyborem")
+									iPlot = CyGame().getSorenRandNum(10, "Place Hyborem")
 									iPlot += 50
 									iPlot += pPlot.area().getNumTiles() * 2
 									iPlot += pPlot.area().getNumUnownedTiles() * 10
 
-									## Check Big Fat Cross for other players, resources and terrain
-									for iCityPlotX in range(iX-1, iX+2, 1):
-										for iCityPlotY in range(iY-1, iY+2, 1):
-											pCityPlot = CyMap().plot(iCityPlotX,iCityPlotY)
-											iCityTerrain = pCityPlot.getTerrainType()
-											iCityPlot = pCityPlot.getPlotType()
-											iCityBonus = pCityPlot.getBonusType(TeamTypes.NO_TEAM)
-
-											for jPlayer in range(gc.getMAX_PLAYERS()):
-												lPlayer = gc.getPlayer(jPlayer)
-												if lPlayer.isAlive():
-													if pCityPlot.getCulture(jPlayer) > 100:
-														iPlot -= 250
-											if pPlot.isAdjacentOwned():
-												iPlot -= 25
-											else:
-												iPlot += 15
-											if (iCityTerrain == gc.getInfoTypeForString('TERRAIN_SNOW')) or (iCityTerrain == gc.getInfoTypeForString("TERRAIN_DESERT")):
-												iPlot -= 25
-											elif (iCityTerrain == gc.getInfoTypeForString('TERRAIN_TUNDRA')):
-												iPlot -= 10
-											if (pCityPlot.isWater()):
-												iPlot -= 25
-											elif not iCityBonus == BonusTypes.NO_BONUS:
-												iPlot += gc.getBonusInfo(iCityBonus).getYieldChange(YieldTypes.YIELD_PRODUCTION) * 25
-												iPlot += gc.getBonusInfo(iCityBonus).getYieldChange(YieldTypes.YIELD_COMMERCE) * 15
-
+									for jPlayer in range(gc.getMAX_PLAYERS()):
+										lPlayer = gc.getPlayer(jPlayer)
+										if lPlayer.isAlive():
+											if pPlot.getCulture(jPlayer) > 100:
+												iPlot -= 250
+									if pPlot.isAdjacentOwned():
+										iPlot -= 25
+									if (pPlot.getTerrainType() == gc.getInfoTypeForString('TERRAIN_SNOW')) or (pPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT")):
+										iPlot -= 25
 							if iPlot > iBestPlot:
 								iBestPlot = iPlot
 								pBestPlot = pPlot
@@ -1844,12 +1992,18 @@ class CvEventManager:
 							iIronWeapon		= gc.getInfoTypeForString('PROMOTION_IRON_WEAPONS')
 							iMobility1		= gc.getInfoTypeForString('PROMOTION_MOBILITY1')
 							iSettlerBonus	= gc.getInfoTypeForString('PROMOTION_STARTING_SETTLER')
-							liStartingUnits = [	(2,	gc.getInfoTypeForString('UNIT_LONGBOWMAN'),	[iMobility1]				),
+
+							iScaleFactor = 1 + CyGame().getNumCities()/(CyGame().countCivPlayersAlive()-1)/2
+
+							liStartingUnits = [	(2,	gc.getInfoTypeForString('UNIT_LONGBOWMAN'),	[iMobility1, iIronWeapon]				),
 												(2,	gc.getInfoTypeForString('UNIT_CHAMPION'),	[iMobility1, iIronWeapon]	),
-												(1,	gc.getInfoTypeForString('UNIT_WORKER'),		[]							),
+												(1 * iScaleFactor,	gc.getInfoTypeForString('UNIT_AXEMAN'),		[iIronWeapon]	),
+												(1 * iScaleFactor,	gc.getInfoTypeForString('UNIT_WORKER'),		[]							),
 												(1,	gc.getInfoTypeForString('UNIT_IMP'),		[iMobility1]				),
-												(3,	gc.getInfoTypeForString('UNIT_MANES'),		[]							),
-												(2,	gc.getInfoTypeForString('UNIT_SETTLER'),	[iSettlerBonus]				)	]
+												(2 * iScaleFactor,	gc.getInfoTypeForString('UNIT_MANES'),		[]							),
+												(1,	gc.getInfoTypeForString('UNIT_SETTLER'),	[iSettlerBonus]				),
+												(1 * iScaleFactor,	gc.getInfoTypeForString('UNIT_SETTLER'),	[]				)	]
+
 							for iNumUnits, iUnit, liPromotions in liStartingUnits:
 								for iLoop in range(iNumUnits):
 									pNewUnit = pInfernalPlayer.initUnit(iUnit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_NORTH)
@@ -2166,6 +2320,55 @@ class CvEventManager:
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_AMURITES",()),'art/interface/popups/Valledia.dds')
 				elif iLeader == gc.getInfoTypeForString('LEADER_VARN'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_MALAKIM",()),'art/interface/popups/Varn.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_ANAGANTIOS_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_MULCARN_REBORN_DEFEATED_ANAGANTIOS",()),'art/interface/popups/Anagantios.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_AVERAX_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_SHEAIM",()),'art/interface/popups/averax.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_DUIN_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_DOVIELLO",()),'art/interface/popups/baron duin halfmorn.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_BRAEDEN_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_BRAEDEN",()),'art/interface/popups/braeden.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_OSTANES_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_HIPPUS",()),'art/interface/popups/ostanes.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_ULDANOR_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_HIPPUS",()),'art/interface/popups/uldanor.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_CHERON_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_KURIOTATES",()),'art/interface/popups/cheron.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_DUMANNIOS_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_MULCARN_REBORN_DEFEATED_DUMANNIOS",()),'art/interface/popups/Dumannios.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_FURIA_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_THE_MOMUS_DEFEATED_FURIA",()),'art/interface/popups/Furia.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_GOSEA_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_SHEAIM",()),'art/interface/popups/gosea.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_HAFGAN_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_CLAN_OF_EMBERS",()),'art/interface/popups/barbarian.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_KANE_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_MALAKIM",()),'art/interface/popups/kane.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_MAHON_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_BENEATH_THE_HEEL_DEFEATED_MAHON",()),'art/interface/popups/mahon.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_MALCHAVIC_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_SHEAIM",()),'art/interface/popups/malchavic.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_MELISANDRE_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_THE_MOMUS_DEFEATED_MELISANDRE",()),'art/interface/popups/Melisandre.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_KOUN_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_GRIGORI",()),'art/interface/popups/koun.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_RIUROS_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_MULCARN_REBORN_DEFEATED_RIUROS",()),'art/interface/popups/Riuros.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_RIVANNA_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_SVARTALFAR",()),'art/interface/popups/rivanna.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_SHEKINAH_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_SIDAR",()),'art/interface/popups/shekinah.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_TETHIRA_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_BANNOR",()),'art/interface/popups/tethira.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_THESSALONICA_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_ELOHIM",()),'art/interface/popups/thessalonica.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_TYA_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_AMURITES",()),'art/interface/popups/tya.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_VOLANNA_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_SVARTALFAR",()),'art/interface/popups/volanna.dds')
+				elif iLeader ==  gc.getInfoTypeForString('LEADER_WEEVIL_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_WB_THE_MOMUS_DEFEATED_WEEVIL",()),'art/interface/popups/Weevil.dds')
+
 
 	def onPlayerChangeStateReligion(self, argsList):
 	## Platy Builder ##
@@ -2208,7 +2411,7 @@ class CvEventManager:
 
 		if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
 			city.setHasReligion(gc.getInfoTypeForString('RELIGION_THE_ASHEN_VEIL'), True, True, True)
-			city.setPopulation(3)
+			city.setPopulation(6)
 			city.setNumRealBuilding(gc.getInfoTypeForString('BUILDING_ELDER_COUNCIL'), 1)
 			city.setNumRealBuilding(gc.getInfoTypeForString('BUILDING_TRAINING_YARD'), 1)
 			city.setNumRealBuilding(gc.getInfoTypeForString('BUILDING_OBSIDIAN_GATE'), 1)
@@ -2323,6 +2526,13 @@ class CvEventManager:
 			pCity.setNumRealBuilding(gc.getInfoTypeForString('BUILDING_MAGE_GUILD'), 1)
 			pCity.setNumRealBuilding(gc.getInfoTypeForString('BUILDING_DEMONIC_CITIZENS'), 1)
 ## END FFH
+
+	def onCityAcquiredAndKept(self, argsList):
+		'City Acquired and Kept'
+		iOwner,pCity = argsList
+
+
+		CvUtil.pyPrint('City Acquired Event: %s' %(pCity.getName()))
 
 	def onCityAcquiredAndKept(self, argsList):
 		'City Acquired and Kept'
@@ -2462,17 +2672,10 @@ class CvEventManager:
 									CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_EYES_AND_EARS_NETWORK_FREE_TECH",()),'AS2D_TECH_DING',1,'Art/Interface/Buttons/Buildings/Eyesandearsnetwork.dds',ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
 
 		if pCity.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_PLANAR_GATE')) > 0:
-			iMax = 1
-			iMult = 1
-			if CyGame().getGlobalCounter() >= 50:
-				iMax = 2
-				iMult = 1.5
-			if CyGame().getGlobalCounter() >= 75:
-				iMax = 3
-				iMult = 2
-			if CyGame().getGlobalCounter() == 100:
-				iMax = 4
-				iMult = 2.5
+			## Scaled planar gate probability.
+			iMax = 1 + 0.333 * CyGame().getGlobalCounter()
+			iMult = 1 + 0.06 * CyGame().getGlobalCounter()
+
 			if CyGame().getSorenRandNum(10000, "Planar Gate") < gc.getDefineINT('PLANAR_GATE_CHANCE') * iMult:
 				listUnits = []
 				iMax = iMax * pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_PLANAR_GATE'))
@@ -2502,9 +2705,9 @@ class CvEventManager:
 					newUnit = pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 					CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_PLANAR_GATE",()),'AS2D_DISCOVERBONUS',1,gc.getUnitInfo(newUnit.getUnitType()).getButton(),ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
 					if iUnit == gc.getInfoTypeForString('UNIT_MOBIUS_WITCH'):
-						promotions = [ 'PROMOTION_AIR1','PROMOTION_BODY1','PROMOTION_CHAOS1','PROMOTION_DEATH1','PROMOTION_EARTH1','PROMOTION_ENCHANTMENT1','PROMOTION_ENTROPY1','PROMOTION_FIRE1','PROMOTION_LAW1','PROMOTION_LIFE1','PROMOTION_MIND1','PROMOTION_NATURE1','PROMOTION_SHADOW1','PROMOTION_SPIRIT1','PROMOTION_SUN1','PROMOTION_WATER1' ]
-						newUnit.setLevel(4)
-						newUnit.setExperience(14, -1)
+						promotions = [ 'PROMOTION_AIR1','PROMOTION_BODY1','PROMOTION_CHAOS1','PROMOTION_CREATION1','PROMOTION_DEATH1','PROMOTION_DIMENSIONAL1','PROMOTION_EARTH1','PROMOTION_ENCHANTMENT1','PROMOTION_ENTROPY1','PROMOTION_FORCE1','PROMOTION_FIRE1','PROMOTION_ICE1','PROMOTION_LAW1','PROMOTION_LIFE1','PROMOTION_METAMAGIC1','PROMOTION_MIND1','PROMOTION_NATURE1','PROMOTION_SHADOW1','PROMOTION_SPIRIT1','PROMOTION_SUN1','PROMOTION_WATER1' ]
+						newUnit.setLevel(2)
+						newUnit.setExperience(5, -1)
 						for i in promotions:
 							if CyGame().getSorenRandNum(10, "Bob") == 1:
 								newUnit.setHasPromotion(gc.getInfoTypeForString(i), True)
@@ -2531,6 +2734,22 @@ class CvEventManager:
 #						iUnit = gc.getInfoTypeForString('UNIT_SON_OF_THE_INFERNO')
 					newUnit = pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
+	# more events mod starts #	
+		
+		if CyGame().getScenarioCounter()==4:
+			if gc.getPlayer(pCity.getOwner()).getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_MERCURIANS'):
+				for i in range(pPlot.getNumUnits()):
+					pUnit = pPlot.getUnit(i)
+					if pUnit.isHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA')):
+						pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
+						pPlayer2 = gc.getPlayer(pUnit.getOwner())
+						pPlayer2.AI_changeAttitudeExtra(3,1)
+						newUnit = pPlayer2.initUnit(gc.getInfoTypeForString('UNIT_ANGEL'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+						newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HERO'), True) 
+						CyInterface().addMessage(pUnit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_BASIUM_GELA",()),"",1,'Art/Interface/Buttons/Units/Basium.dds',ColorTypes(8),pUnit.getX(),pUnit.getY(),True,True)
+						CyGame().changeGlobalCounter(-10)
+						
+			# more events mod ends #
 		CvAdvisorUtils.cityAdvise(pCity, iPlayer)
 
 	def onCityBuildingUnit(self, argsList):

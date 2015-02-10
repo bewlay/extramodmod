@@ -1,0 +1,25 @@
+General Search String: WILDERNESS
+
+Components:
+	WildernessMisc
+	WildernessFix
+	Debug
+
+	AnimalSpells - XML, Python / Some spells involving self-sacrificing animals
+	CreateLair - DLL, XML / New system for creating lairs
+	ImprovementSpawnTypes - DLL, Python, XML / Lairs spawns are chosen from a set of SpawnTypes
+	ImprovementWilderness - DLL, XML / Min and Max plot wilderness for placing improvements / Original by Sephi
+	LairGuardian - DLL, Python, XML / Guardians auto-spawn on certain lairs / Idea from RifE
+	LairUnitCounter - DLL / Lairs have a maximum of spawned units existing at once
+	NewLairs - XML
+	NewUnits - XML / New Barbarian Units and associated buildings
+	PlotWilderness - DLL / Each plot has a wilderness value assigned / Original by Sephi
+	PromotionCaptureApply - DLL, XML / Captured units (animals) can grant a promotion
+	PromotionExplResultBonus - DLL, Python, XML / Promotions can alter lair exploration results / Idea from RifE
+	SpawnInfo - DLL, XML / An info type to handle randoms spawns, spawns from lairs and spawns from exploration results, changes to random spawning
+	SpawnAcheron - XML, Python / Acheron now can spawn (rather than being built) in one of the non-captured barbarian cities with the highest wilderness when the number of barbarian cities is equal or greater than half number of players.
+	UnitSpawnType - DLL / When a unit is spawned, the SpawnType is assigned to it to better identification used by other components
+	UnitMinWilderness - DLL / Units have a min wilderness to enter
+	WildernessExploration - DLL, Python, XML / New System for Lair Exploration, unique features don't vanish but become unexplorable for some time.
+
+The components may be dependent on each other.

@@ -616,6 +616,7 @@ public:
 	bool isHasBuildingClass(int /*BuildingClassTypes*/ iIndex) const;
 	bool isSettlement() const;
     void setCivilizationType(int iNewValue);
+    int getPlotRadius() const;
     void setPlotRadius(int iNewValue);
     void setSettlement(bool bNewValue);
 //FfH: End Add

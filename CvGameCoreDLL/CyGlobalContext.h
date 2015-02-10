@@ -98,6 +98,9 @@ public:
     CvUnitArtStyleTypeInfo* getUnitArtStyleTypeInfo(int i) const;
 
 	int getInfoTypeForString(const char* szInfoType) const;
+// Special method provided for MapScripts to prevent them from triggering assertions.
+	int getInfoTypeForStringNoAsserts(const char* szInfoType) const;
+// End
 	int getTypesEnum(const char* szType) const;
 
 	int getNumPlayerColorInfos() const { return GC.getNumPlayerColorInfos(); }
@@ -130,6 +133,23 @@ public:
 
 	CvGraphicOptionInfo* getGraphicOptionInfo(int i) const;
 	CvGraphicOptionInfo* getGraphicOptionsInfoByIndex(int i) const;
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	CvTerrainFlavourInfo* getTerrainFlavourInfo(int i) const;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+	CvSpawnInfo* getSpawnInfo(int i) const;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// ArtInfos
 	CvArtInfoInterface* getInterfaceArtInfo(int i) const;
@@ -230,6 +250,23 @@ public:
 	int getNumMainMenus() const { return GC.getNumMainMenus(); }
 	int getNumInvisibleInfos() const { return GC.getNumInvisibleInfos(); }
 	int getNumVoteSourceInfos() const { return GC.getNumVoteSourceInfos(); }
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	int getNumTerrainFlavourInfos() const { return GC.getNumTerrainFlavourInfos(); }
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+	int getNumSpawnInfos() const { return GC.getNumSpawnInfos(); }
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// ArtInfos
 	int getNumInterfaceArtInfos() const { return ARTFILEMGR.getNumInterfaceArtInfos(); }

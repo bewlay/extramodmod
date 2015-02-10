@@ -27,6 +27,34 @@ class CvFlagEntity;
 typedef bool (*ConstPlotUnitFunc)( const CvUnit* pUnit, int iData1, int iData2);
 typedef bool (*PlotUnitFunc)(CvUnit* pUnit, int iData1, int iData2);
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        09/2013                                 lfgr          */
+/************************************************************************************************/
+struct CvTerrainAmountCache
+{
+	int iRadius;
+	float *afPlotAmount;
+	float *afTerrainAmount;
+	float *afFeatureAmount;
+	float *afYieldAmount;
+	float *afImprovementAmount;
+	float *afBonusAmount;
+
+	virtual ~CvTerrainAmountCache()
+	{
+		SAFE_DELETE_ARRAY( afPlotAmount );
+		SAFE_DELETE_ARRAY( afTerrainAmount );
+		SAFE_DELETE_ARRAY( afFeatureAmount );
+		SAFE_DELETE_ARRAY( afYieldAmount );
+		SAFE_DELETE_ARRAY( afImprovementAmount );
+		SAFE_DELETE_ARRAY( afBonusAmount );
+	}
+};
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+
 class CvPlot
 {
 
@@ -621,6 +649,36 @@ public:
 	bool isFeatureRemove(BuildTypes eBuild) const;
 //<<<<Unofficial Bug Fix: End Add
 	bool isLair(bool bIgnoreIsAnimal = true, bool bAnimal = false) const;
+	
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	CvTerrainAmountCache getTerrainAmounts( int iRadius = -1 );
+	float calcTerrainFlavourWeight( TerrainFlavourTypes eTerrainFlavour, CvTerrainAmountCache* pTerrainAmounts ); // exposed to python
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, LairUnitCounter, SpawnInfo, SpawnPrereqInfo                                  */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	int getWilderness() const; // exposed to python
+	void setWilderness(int iNewValue);
+	
+	int getLairDanger() const; // exposed to python
+
+	int getLairUnitCount() const;
+	void setLairUnitCount(int iNewValue);
+
+	int getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType ) const;
+	bool isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon = false ) const;
+	int getSpawnValue( SpawnTypes eSpawnType, bool bCheckTech = true, bool bDungeon = false, bool bIgnoreTerrain = false ) const; // exposed to python
+	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI = NO_UNITAI, int iLairPlot = -1 ); // exposed to python
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 // Temporary map features (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
 	TerrainTypes getRealTerrainType() const;
@@ -664,6 +722,13 @@ public:
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
+	
+#ifdef _DEBUG
+	bool bPlotAnimalEverValid;
+	bool bPlotAnimalValid;
+	bool bPlotBarbEverValid;
+	bool bPlotBarbValid;
+#endif
 
 protected:
 
@@ -798,8 +863,18 @@ protected:
 /**	END	                                        												**/
 /*************************************************************************************************/
 
-// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, LairUnitCounter                                                              */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	int m_iWilderness;
+	int m_iLairUnitCount;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
 	int m_iTempFeatureTimer;
 	int m_iTempBonusTimer;
 	int m_iTempImprovementTimer;

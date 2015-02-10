@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<!-- Khazad vault display Start -->
+	<TEXT>
+		<Tag>TXT_KEY_DISPLAY_DWARVEN_VAULT_GENERAL</Tag>
+		<English>Vault: %s1 (%d2 [ICON_GOLD] per city)</English>
+		<French>Vault: %s1 (%d2 [ICON_GOLD] per city)</French>
+		<German>Vault: %s1 (%d2 [ICON_GOLD] per city)</German>
+		<Italian>Vault: %s1 (%d2 [ICON_GOLD] per city)</Italian>
+		<Spanish>Vault: %s1 (%d2 [ICON_GOLD] per city)</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DISPLAY_DWARVEN_VAULT_EMPTY</Tag>
+		<English>Empty</English>
+		<French>Vide</French>
+		<German>Leer</German>
+		<Italian>Empty</Italian>
+		<Spanish>Vacía</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DISPLAY_DWARVEN_VAULT_LOW</Tag>
+		<English>Low</English>
+		<French>Basse</French>
+		<German>Kaum gefüllt</German>
+		<Italian>Low</Italian>
+		<Spanish>Poco llena</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DISPLAY_DWARVEN_VAULT_NORMAL</Tag>
+		<English>Normal</English>
+		<French>Normal</French>
+		<German>Normal</German>
+		<Italian>Normal</Italian>
+		<Spanish>Normal</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DISPLAY_DWARVEN_VAULT_STOCKED</Tag>
+		<English>Stocked</English>
+		<French>Approvisionnée</French>
+		<German>Gut gefüllt</German>
+		<Italian>Stocked</Italian>
+		<Spanish>Repleta</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DISPLAY_DWARVEN_VAULT_ABUNDANT</Tag>
+		<English>Abundant</English>
+		<French>Abondante</French>
+		<German>Reichlich gefüllt</German>
+		<Italian>Abundant</Italian>
+		<Spanish>Abundante</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DISPLAY_DWARVEN_VAULT_FULL</Tag>
+		<English>Full</English>
+		<French>Pleine</French>
+		<German>Voll</German>
+		<Italian>Full</Italian>
+		<Spanish>Llena</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DISPLAY_DWARVEN_VAULT_OVERFLOWING</Tag>
+		<English>Overflowing</English>
+		<French>Débordante</French>
+		<German>Überfüllt</German>
+		<Italian>Overflowing</Italian>
+		<Spanish>Desbordada</Spanish>
+	</TEXT>
+	<!-- Khazad vault display End -->
+	<TEXT>
+		<Tag>TXT_KEY_DISPLAY_ELOHIM_SANCTUARY</Tag>
+		<English>Sanctuary (%d1 turns remaining)</English>
+		<French>Sanctuary (%d1 turns remaining)</French>
+		<German>Sanctuary (%d1 turns remaining)</German>
+		<Italian>Sanctuary (%d1 turns remaining)</Italian>
+		<Spanish>Sanctuary (%d1 turns remaining)</Spanish>
+	</TEXT>
+</Civ4GameText>

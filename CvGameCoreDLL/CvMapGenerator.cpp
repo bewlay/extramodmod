@@ -253,7 +253,13 @@ void CvMapGenerator::addGameElements()
 
 	addGoodies();
 	gDLL->logMemState("CvMapGen after add goodies");
-
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness                                                                               */
+/* Moved to CvGame::setInitialItems() (after wilderness calculation)                            */
+/************************************************************************************************/
+/*
 //FfH: Added by Kael 10/04/2008
     if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_IMPROVEMENTS))
     {
@@ -264,6 +270,10 @@ void CvMapGenerator::addGameElements()
         addImprovements();
     }
 //FfH: End Add
+*/
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// Call for Python to make map modifications after it's been generated
 	afterGeneration();
@@ -1270,21 +1280,81 @@ void CvMapGenerator::addImprovements()
                 {
                     for (int iJ = 0; iJ < GC.getNumImprovementInfos(); iJ++)
                     {
-						if (pPlot->canHaveImprovement((ImprovementTypes)iJ, NO_TEAM))
-						{
-							int iImprovementChance = GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement");
-							if (iImprovementChance < GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability())
+                        if (pPlot->canHaveImprovement((ImprovementTypes)iJ, NO_TEAM))
+                        {
+						/************************************************************************************************/
+						/* WILDERNESS                             08/2013                                 lfgr          */
+						/* ImprovementSpawnTypes                                                                        */
+						/************************************************************************************************/
+						/*
+							if (GC.getImprovementInfo((ImprovementTypes)iJ).getSpawnUnitType() != NO_UNIT)
+						*/
+							bool bValid = false;
+							for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
 							{
-								if (GC.getImprovementInfo((ImprovementTypes)iJ).getSpawnUnitType() != NO_UNIT)
+								if( GC.getImprovementInfo((ImprovementTypes)iJ).getSpawnTypes( eSpawn ) )
 								{
-									if (pPlot->isVisibleToCivTeam()) // does this even work? I think civs havent been placed yet
+									bValid = true;
+									break;
+								}
+							}
+							if( bValid )
+						/************************************************************************************************/
+						/* WILDERNESS                                                                     END           */
+						/************************************************************************************************/
+							{
+								if (!pPlot->isVisibleToCivTeam())
+								{
+								/************************************************************************************************/
+								/* WILDERNESS                             08/2013                                 lfgr          */
+								/* WildernessMisc, LairGuardian                                                                 */
+								/* More Lairs in higher wilderness, Lairs with guardians have a min distance to starting plots. */
+								/* Features are not erased when placing lairs (from Orbis by Ahwaric)                           */
+								/************************************************************************************************/
+								/*
+									if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement") < GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability())
 									{
-										continue;
+										pPlot->setImprovementType((ImprovementTypes)iJ);
+										pPlot->setFeatureType(NO_FEATURE);
+								*/
+									int iProbability = GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability();
+									
+									if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
+										iProbability += (int) ( iProbability * ( pPlot->getWilderness() * 2 / 100.0 ) );
+									
+									if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement") < iProbability)
+									{
+										bool bValid = true;
+
+										// Lair Guardian min distance from starting plots
+										bool bGuardian = false;
+										for( int eLoopSpawn = 0; !bGuardian && eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+											if( GC.getImprovementInfo( (ImprovementTypes) iJ ).isGuardianSpawnType( eLoopSpawn ) )
+												if( int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn ) > 0 )
+													bGuardian = true;
+
+										if( bGuardian )
+										{
+											int iRadius = GC.getDefineINT( "LAIR_GUARDIAN_STARTING_PLOT_MIN_DISTANCE", 5 );
+											for( int iPlayer = 0; bValid && iPlayer < GC.getMAX_CIV_PLAYERS(); iPlayer++ )
+											{
+												CvPlot* pStartingPlot = GET_PLAYER( (PlayerTypes) iPlayer ).getStartingPlot();
+												if( pStartingPlot != NULL && stepDistance( pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), pPlot->getX_INLINE(), pPlot->getY_INLINE() ) <= iRadius )
+													bValid = false;
+											}
+
+										}
+										
+										if( bValid )
+										{
+											pPlot->setImprovementType( (ImprovementTypes) iJ );
+											// pPlot->setFeatureType( NO_FEATURE );
+										}
+								/************************************************************************************************/
+								/* WILDERNESS                                                                     END           */
+								/************************************************************************************************/
 									}
 								}
-								logBBAI("  Placing %S at %d, %d", GC.getImprovementInfo((ImprovementTypes)iJ).getDescription(), pPlot->getX(), pPlot->getY());
-								pPlot->setImprovementType((ImprovementTypes)iJ);
-								pPlot->setFeatureType(NO_FEATURE);
 							}
                         }
                     }

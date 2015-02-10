@@ -8179,7 +8179,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=40,y=28
-	ImprovementType=IMPROVEMENT_MUSHROOMS
+	ImprovementType=BONUS_MUSHROOMS
 	TerrainType=TERRAIN_BROKEN_LANDS
 	PlotType=2
 EndPlot

@@ -85,6 +85,9 @@ void CyGlobalContextPythonInterface4(python::class_<CyGlobalContext>& x)
 		.def("getColorInfo", &CyGlobalContext::getColorInfo, python::return_value_policy<python::reference_existing_object>(), "ColorInfo (int id)")
 
 		.def("getInfoTypeForString", &CyGlobalContext::getInfoTypeForString, "int (string) - returns the info index with the matching type string")
+// Special method provided for MapScripts to prevent them from triggering assertions.
+		.def("getInfoTypeForStringNoAsserts", &CyGlobalContext::getInfoTypeForStringNoAsserts, "int (string) - returns the info index with the matching type string. Will not trigger asserts")
+// End
 		.def("getTypesEnum", &CyGlobalContext::getTypesEnum, "int (string) - returns the type enum from a type string")
 
 		.def("getNumPlayerColorInfos", &CyGlobalContext::getNumPlayerColorInfos, "int () - Returns number of PlayerColorInfos")
@@ -116,6 +119,25 @@ void CyGlobalContextPythonInterface4(python::class_<CyGlobalContext>& x)
 
 		.def("getNumVoteSourceInfos", &CyGlobalContext::getNumVoteSourceInfos, "int ()")
 		.def("getVoteSourceInfo", &CyGlobalContext::getVoteSourceInfo, python::return_value_policy<python::reference_existing_object>(), "Returns info object")
+		
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+		.def("getNumTerrainFlavourInfos", &CyGlobalContext::getNumTerrainFlavourInfos, "() - Total TerrainFlavour Infos XML\\Terrain\\CIV4TerrainFlavourInfos.xml")
+		.def("getTerrainFlavourInfo", &CyGlobalContext::getTerrainFlavourInfo, python::return_value_policy<python::reference_existing_object>(), "(TerrainFlavourID) - CvInfo for TerrainFlavourID")
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+		.def("getNumSpawnInfos", &CyGlobalContext::getNumSpawnInfos, "int ()")
+		.def("getSpawnInfo", &CyGlobalContext::getSpawnInfo, python::return_value_policy<python::reference_existing_object>(), "Returns info object")
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 		// ArtInfos
 		.def("getNumInterfaceArtInfos", &CyGlobalContext::getNumInterfaceArtInfos, "() - Total InterfaceArtnology Infos XML\\InterfaceArtnologies\\CIV4InterfaceArtInfos.xml")

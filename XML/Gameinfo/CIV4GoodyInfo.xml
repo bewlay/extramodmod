@@ -627,8 +627,8 @@
 			<iMinBarbarians>0</iMinBarbarians>
 		</GoodyInfo>
 		<GoodyInfo>
-			<Type>GOODY_EXPLORE_LAIR_PRISONER_COMMANDER</Type>
-			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_PRISONER_COMMANDER</Description>
+			<Type>GOODY_EXPLORE_LAIR_PRISONER_GENERAL</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_PRISONER_GENERAL</Description>
 			<Sound/>
 			<iGold>0</iGold>
 			<iGoldRand1>0</iGoldRand1>
@@ -641,7 +641,7 @@
 			<iDamagePrereq>0</iDamagePrereq>
 			<bTech>0</bTech>
 			<bBad>0</bBad>
-			<UnitClass>UNITCLASS_COMMANDER</UnitClass>
+			<UnitClass>UNITCLASS_GREAT_GENERAL</UnitClass>
 			<BarbarianClass>NONE</BarbarianClass>
 			<iBarbarianUnitProb>0</iBarbarianUnitProb>
 			<iMinBarbarians>0</iMinBarbarians>

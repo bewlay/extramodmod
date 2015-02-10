@@ -794,6 +794,7 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_NO_BARBARIANS,
 	GAMEOPTION_RANDOM_PERSONALITIES,
 	GAMEOPTION_PICK_RELIGION,
+	GAMEOPTION_TECHNOLOGY_PROPAGATION,
 	GAMEOPTION_NO_TECH_TRADING,
 	GAMEOPTION_NO_TECH_BROKERING,
 	GAMEOPTION_PERMANENT_ALLIANCES,
@@ -863,6 +864,29 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_REVOLUTIONS,
 	GAMEOPTION_ADVANCED_TACTICS,
 // MNAI End
+
+// Leader categories START
+	GAMEOPTION_LEADER_SCENEXTRA,
+	GAMEOPTION_LEADER_EXTRA,
+// Leader categories END
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+	GAMEOPTION_FLAVOUR_START, // exposed to python
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* NoWilderness                                                                                 */
+/************************************************************************************************/
+	GAMEOPTION_NO_WILDERNESS,
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 #ifdef _USRDLL
 	NUM_GAMEOPTION_TYPES
@@ -1101,6 +1125,23 @@ enum LeaderHeadTypes			// Exposed to Python
 {
 	NO_LEADER = -1,
 };
+
+// Leader categories START
+enum LeaderHeadCategories
+{
+	NO_LEADERCATEGORY = -1,
+	LEADERCATEGORY_STANDARD,	// Leader playable in vanilla FFH2.
+	LEADERCATEGORY_SCENARIO,	// Scenario leader in vanilla FFH2.
+	LEADERCATEGORY_SCENEXTRA,	// Scenario leader modified in ExtraModMod to have a comparable power level.
+	LEADERCATEGORY_EXTRA,		// Leader not present in vanilla FFH2.
+	LEADERCATEGORY_ALIGNMENT,	// Fake leader used for the "play as alignment" selection.
+	LEADERCATEGORY_BARBARIAN,    // Barbarian leader.
+#ifdef _USRDLL
+	NUM_LEADERCATEGORIES
+#endif
+
+};
+// Leader categories END
 
 // Used for managing Art Differences based on nationality
 enum ArtStyleTypes				// Exposed to Python
@@ -3082,5 +3123,36 @@ enum CivilopediaWidgetShowTypes
 	CIVILOPEDIA_WIDGET_SHOW_LAND,
 	CIVILOPEDIA_WIDGET_SHOW_WATER,
 };
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+
+// LFGR_TODO: expose to python?
+
+enum TerrainFlavourTypes
+{
+	NO_TERRAIN_FLAVOUR = -1,
+};
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+enum SpawnTypes
+{
+	NO_SPAWN = -1
+};
+
+enum SpawnPrereqTypes
+{
+	NO_SPAWN_PREREQ = -1
+};
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 #endif	// CVENUMS_h

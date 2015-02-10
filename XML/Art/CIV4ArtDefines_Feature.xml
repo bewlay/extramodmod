@@ -636,13 +636,13 @@
 			<bRiverArt>0</bRiverArt>
 			<TileArtType>TILE_ART_TYPE_NONE</TileArtType>
 			<LightType>LIGHT_TYPE_SUN</LightType>
-			<fScale>12.0</fScale>
+			<fScale>20.0</fScale>
 			<fInterfaceScale>1.0</fInterfaceScale>
 			<Button>Art/Interface/Buttons/TerrainFeatures/Volcano.dds</Button>
 			<FeatureVariety>
 				<FeatureArtPieces>
 					<FeatureArtPiece>
-						<ModelFile>Art/Terrain/Features/Volcano/dormant_volcano.nif</ModelFile>
+						<ModelFile>Art/Terrain/Features/Volcano/DragonLair.nif</ModelFile>
 						<Connections></Connections>
 					</FeatureArtPiece>
 				</FeatureArtPieces>

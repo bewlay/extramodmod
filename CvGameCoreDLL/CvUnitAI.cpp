@@ -809,6 +809,7 @@ bool CvUnitAI::AI_update()
 // so for efficiency, we should only check them once.
 bool CvUnitAI::AI_follow(bool bFirst)
 {
+	PROFILE_FUNC();
 	FAssert(getDomainType() != DOMAIN_AIR);
 
 	if (AI_followBombard())
@@ -2006,8 +2007,20 @@ void CvUnitAI::AI_settleMove()
 	// Tholal AI - modified from BBAI
 	int iDanger = kOwner.AI_getPlotDanger(plot(), 2);
 	int iNeededSettleDefenders = (GC.getGameINLINE().isOption(GAMEOPTION_RAGING_BARBARIANS) ? 4 : 3);
-
+	
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
+/* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
+/************************************************************************************************/
+/* old
 	if (GET_TEAM(getTeam()).isBarbarianAlly() && GET_TEAM(getTeam()).getAtWarCount(true) == 0)
+*/
+	// LFGR_TODO: Multibarb
+	if (!GET_TEAM(getTeam()).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) && GET_TEAM(getTeam()).getAtWarCount(true) == 0)
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	{
 		iNeededSettleDefenders = 2;
 	}
@@ -2792,9 +2805,15 @@ void CvUnitAI::AI_barbAttackMove()
 	bool bSemiAggressive = (GC.getGameINLINE().getNumCivCities() > (GC.getGameINLINE().countCivPlayersAlive() * iCaution / 3));
 	bool bPassiveAggressive = (GC.getGameINLINE().getNumCivCities() > (GC.getGameINLINE().countCivPlayersAlive() * iCaution / 4) || bEnemyTerritory);
 	
+/************************************************************************************************/
+/* WILDERNESS                             01/2014                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/* bNoDefenderTag                                                                               */
+/************************************************************************************************/
+/* old
 	// heros and aggressive units will wait till someone else starts defending the plot then move on
 	// otherwise switch UnitAIs
-	/*
+
 	if (!bHero && plot()->isLair(false, isAnimal()))
 	{
 		if (plot()->plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER) == 0)
@@ -2813,7 +2832,24 @@ void CvUnitAI::AI_barbAttackMove()
 			}
 		}
 	}
-	*/
+*/
+	// Switch UnitAIs for non-aggressive units
+	bool bNoDefender = getSpawnType() != NO_SPAWN && GC.getSpawnInfo( getSpawnType() ).isNoDefender();
+	if( plot()->isLair( false, isAnimal() ) && plot()->plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER) == 0 )
+	{
+		if( !bNoDefender && !bHero /*&& iCaution < 4*/ )
+		{
+			AI_setUnitAIType(UNITAI_LAIRGUARDIAN);
+			if( getGroup()->getNumUnits() > 1 )
+				joinGroup(NULL);
+			getGroup()->pushMission(MISSION_SKIP);
+			return;
+		}
+		// Heroes don't wait
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	
 	// Heros shouldn't be guarding cities or goodies
 	if (!bHero && ((!bAttackCity || !bAttack) && iCaution > 4))
@@ -15945,6 +15981,20 @@ bool CvUnitAI::AI_patrol()
 									iValue += 10000;
 								}
 							}
+						/************************************************************************************************/
+						/* WILDERNESS                             08/2013                                 lfgr          */
+						/* WildernessMisc                                                                               */
+						/* Animals stay in appropriate territory if possible and nothing to attack.                     */
+						/************************************************************************************************/
+							if ( AI_getUnitAIType() == UNITAI_ANIMAL && getSpawnType() != NO_SPAWN )
+							{
+								if( GC.getSpawnInfo( getSpawnType() ).getTerrainFlavourType() != NO_TERRAIN_FLAVOUR
+										&& pAdjacentPlot->getSpawnTerrainWeight( (TerrainFlavourTypes) GC.getSpawnInfo( getSpawnType() ).getTerrainFlavourType() ) > 0 )
+									iValue += 100000;
+							}
+						/************************************************************************************************/
+						/* WILDERNESS                                                                     END           */
+						/************************************************************************************************/
 						}
 						else
 						{
@@ -17001,8 +17051,20 @@ bool CvUnitAI::AI_goToTargetBarbCity(int iMaxPathTurns)
 	int iBestValue;
 	int iLoop;
 	int iI;
-
+	
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
+/* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
+/************************************************************************************************/
+/* old
 	if (isBarbarian() || GET_TEAM(getTeam()).isBarbarianAlly())
+*/
+	// LFGR_TODO: Multibarb
+	if( isBarbarian() || !GET_TEAM(getTeam()).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) )
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	{
 		return false;
 	}
@@ -27548,8 +27610,19 @@ void CvUnitAI::AI_HiddenNationalityMove()
 // look around for sea lairs to explore
 bool CvUnitAI::AI_exploreLairSea(int iRange)
 {
-
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
+/* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
+/************************************************************************************************/
+/* old
 	if (GET_TEAM(getTeam()).isBarbarianAlly())
+*/
+	// LFGR_TODO: Multibarb
+	if( !GET_TEAM(getTeam()).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) )
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	{
 		return false;
 	}
@@ -27662,8 +27735,19 @@ bool CvUnitAI::AI_exploreLairSea(int iRange)
 // look around for lairs to explore
 bool CvUnitAI::AI_exploreLair(int iRange)
 {
-
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
+/* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
+/************************************************************************************************/
+/* old
 	if (GET_TEAM(getTeam()).isBarbarianAlly())
+*/
+	// LFGR_TODO: Multibarb
+	if( !GET_TEAM(getTeam()).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) )
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	{
 		return false;
 	}
@@ -27694,6 +27778,18 @@ bool CvUnitAI::AI_exploreLair(int iRange)
 						{
 							if (!pLoopPlot->isVisibleEnemyDefender(this))
 							{
+							/************************************************************************************************/
+							/* WILDERNESS                             08/2013                                 lfgr          */
+							/* WildernessExploration                                                                        */
+							/************************************************************************************************/
+								if( GC.getImprovementInfo((ImprovementTypes)pLoopPlot->getImprovementType()).isExplorable() )
+								{
+									if( !canDoExploration( pLoopPlot ) )
+										continue;
+								}
+							/************************************************************************************************/
+							/* WILDERNESS                                                                     END           */
+							/************************************************************************************************/
 								if (generatePath(pLoopPlot, 0, true, &iPathTurns))
 								{
 									if (iPathTurns <= iRange)
@@ -28039,7 +28135,19 @@ void CvUnitAI::AI_ConquestMove()
 	}
 
 	bool bHuntBarbs = false;
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
+/* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
+/************************************************************************************************/
+/* old
 	if (area()->getCitiesPerPlayer(BARBARIAN_PLAYER) > 0 && !GET_TEAM(getTeam()).isBarbarianAlly())
+*/
+	// LFGR_TODO: Multibarb
+	if (area()->getCitiesPerPlayer(BARBARIAN_PLAYER) > 0 && GET_TEAM(getTeam()).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ))
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	{
 		if ((eAreaAIType != AREAAI_OFFENSIVE) && (eAreaAIType != AREAAI_DEFENSIVE) && !bAlert1 && !bTurtle)
 		{
@@ -28558,7 +28666,19 @@ void CvUnitAI::AI_ConquestMove()
 	}
 
 	bHuntBarbs = false;
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
+/* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
+/************************************************************************************************/
+/* old
 	if ((area()->getCitiesPerPlayer(BARBARIAN_PLAYER) > 0) && !GET_TEAM(getTeam()).isBarbarianAlly())
+*/
+	// LFGR_TODO: Multibarb
+	if ((area()->getCitiesPerPlayer(BARBARIAN_PLAYER) > 0) && GET_TEAM(getTeam()).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ))
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	{
 		if ((area()->getAreaAIType(getTeam()) != AREAAI_OFFENSIVE) && (area()->getAreaAIType(getTeam()) != AREAAI_DEFENSIVE))
 		{
@@ -28915,7 +29035,19 @@ void CvUnitAI::AI_heromove()
 	
     if (getUnitClassType()==GC.getDefineINT("UNITCLASS_RANTINE"))
     {
+	/************************************************************************************************/
+	/* WILDERNESS                             09/2013                                 lfgr          */
+	/* WildernessMisc                                                                               */
+	/* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
+	/************************************************************************************************/
+	/* old
 		if (GET_TEAM(getTeam()).isBarbarianAlly() && getLevel() < 8)
+	*/
+		// LFGR_TODO: Multibarb
+		if (!GET_TEAM(getTeam()).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) && getLevel() < 8)
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
 		{
 			if (AI_Rantinemove())
 			{
@@ -29510,11 +29642,24 @@ void CvUnitAI::AI_mageCast()
         if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_INSPIRATION")) == 0)
             cast(GC.getInfoTypeForString("SPELL_INSPIRATION"));
 
-
+	// Spirit III (EitB)
+    if (canCast(GC.getInfoTypeForString("SPELL_ILLUMINATION"),false))
+        if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_ILLUMINATION")) == 0)
+            cast(GC.getInfoTypeForString("SPELL_ILLUMINATION"));
 
     if (canCast(GC.getInfoTypeForString("SPELL_HOPE"),false))
         if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_HOPE")) == 0)
             cast(GC.getInfoTypeForString("SPELL_HOPE"));
+
+	// Creation I
+	if (canCast(GC.getInfoTypeForString("SPELL_GROWTH"),false))
+		if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_GROWTH")) == 0)
+			cast(GC.getInfoTypeForString("SPELL_GROWTH"));
+
+	// Creation III
+	if (canCast(GC.getInfoTypeForString("SPELL_BLESSING"),false))
+		if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_BLESSING")) == 0)
+			cast(GC.getInfoTypeForString("SPELL_BLESSING"));
 
 // Spells to boost the Garrison Units
     if (canCast(GC.getInfoTypeForString("SPELL_DANCE_OF_BLADES"),false))

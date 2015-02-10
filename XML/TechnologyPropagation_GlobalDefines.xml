@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+	Technology propagation: Plain BTS includes an adjustment to research rate based on how many civs you have met which already know a tech.
+	Technology propagation takes into account relationships between teams, and their unique FFH2 similarities.
+-->
+<!-- Created by Terkhen, based on Technology diffusion by jdog5000 -->
+<Civ4Defines xmlns="x-schema:CIV4GlobalDefinesSchema.xml">
+	<Define>
+		<!-- Maximum % increase in research that technology propagation from teams can provide. -->
+		<DefineName>TECH_PROPAGATION_TEAMS_MAX</DefineName>
+		<iDefineIntVal>100</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- Initial % for the propagation contribution of a team if it has a right of passage with the researcher. -->
+		<DefineName>TECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE</DefineName>
+		<iDefineIntVal>15</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- Initial % for the propagation contribution of a team if it the master of the researcher. -->
+		<DefineName>TECH_PROPAGATION_TEAMS_MASTER</DefineName>
+		<iDefineIntVal>30</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- Initial % for the propagation contribution of a team if it has open borders with the researcher. -->
+		<DefineName>TECH_PROPAGATION_TEAMS_OPEN_BORDERS</DefineName>
+		<iDefineIntVal>45</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- Initial % for the propagation contribution of a team if it the vassal of the researcher. -->
+		<DefineName>TECH_PROPAGATION_TEAMS_VASSAL</DefineName>
+		<iDefineIntVal>60</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- Additional % for the propagation contribution of a team if the researcher has an embassy with it. -->
+		<DefineName>TECH_PROPAGATION_TEAMS_EMBASSY</DefineName>
+		<iDefineIntVal>15</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- Additional % for the propagation contribution of a team if one of its members shares alignment with the researcher. -->
+		<DefineName>TECH_PROPAGATION_TEAMS_ALIGMENT</DefineName>
+		<iDefineIntVal>10</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- Additional % for the propagation contribution of a team if one of its members shares religion with the researcher. -->
+		<DefineName>TECH_PROPAGATION_TEAMS_RELIGION</DefineName>
+		<iDefineIntVal>10</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- Additional % for the propagation contribution of a team if it has a defensive pact with the researcher. -->
+		<DefineName>TECH_PROPAGATION_TEAMS_DEFENSIVE_PACT</DefineName>
+		<iDefineIntVal>15</iDefineIntVal>
+	</Define>
+</Civ4Defines>

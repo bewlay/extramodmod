@@ -701,9 +701,30 @@ public:
 	int getHighestUnitTier(bool bIncludeHeroes, bool bIncludeLimitedUnits) const;
 	// End MNAI
 
+// Leader categories START
+	int getLeaderCategory() const;
+// Leader categories END
+
+// ExtraModMod technology propagation START
+	int calculateTechPropagationResearchModifier(int /*TechTypes*/ eTech) const;
+// ExtraModMod technology propagation END
+
 // BUG - Reminder Mod - start
 	void addReminder(int iGameTurn, std::wstring szMessage) const;
 // BUG - Reminder Mod - start
+/*************************************************************************************************/
+/**	CivCounter			               		10/27/09    						Valkrionn		**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+    int getCivCounter() const;
+    void changeCivCounter(int iChange);
+	void setCivCounter(int iNewValue);
+    int getCivCounterMod() const;
+    void changeCivCounterMod(int iChange);
+	void setCivCounterMod(int iNewValue);
+/*************************************************************************************************/
+/**	CivCounter							END													**/
+/*************************************************************************************************/
 private:
 	CvPlayer* m_pPlayer;
 };

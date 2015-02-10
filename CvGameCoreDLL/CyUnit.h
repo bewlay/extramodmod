@@ -402,8 +402,18 @@ public:
 
 	int /*UnitAITypes*/ getUnitAIType();
 	void setUnitAIType(int /*UnitAITypes*/ iNewValue);
-
+	
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/* Fix                                                                          */
+/********************************************************************************/
+/* old
 	const CvArtInfoUnit* getArtInfo(int i, EraTypes eEra) const;
+*/
+	const CvArtInfoUnit* getArtInfo(int i, int /*EraTypes*/ eEra) const;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	std::string getButton() const;
 
 //FfH Spell System: Added by Kael 07/23/2007
@@ -474,6 +484,16 @@ public:
 	bool isAvatarOfCivLeader() const;
 	void setAvatarOfCivLeader(bool bNewValue);
 //<<<<Unofficial Bug Fix: End Add
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/************************************************************************************************/
+	int getExplorationLevel() const;
+	bool canDoExploration( CyPlot* pPlot ) const;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	bool isPermanentSummon() const;
     void setPermanentSummon(bool newvalue);
