@@ -472,13 +472,18 @@ class CvGameUtils:
 		## AI catches for buildings and projects that have python-only effects
 		if not pPlayer.isHuman():
 			## Barbarians
-			if pPlayer.isBarbarian():
-				if pCity.canTrain(gc.getInfoTypeForString('UNIT_ACHERON'), True, False):
-					pCity.pushOrder(OrderTypes.ORDER_TRAIN, gc.getInfoTypeForString('UNIT_ACHERON'), -1, False, False, False, False)
-					return 1
+
+			# Acheron cannot be built anymore START
+			# Old code
+			#if pPlayer.isBarbarian():
+			#	if pCity.canTrain(gc.getInfoTypeForString('UNIT_ACHERON'), True, False):
+			#		pCity.pushOrder(OrderTypes.ORDER_TRAIN, gc.getInfoTypeForString('UNIT_ACHERON'), -1, False, False, False, False)
+			#		return 1
 		
 			## Illians - make sure we build our best projects
-			elif pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_ILLIANS'):
+			#elif pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_ILLIANS'):
+			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_ILLIANS'):
+			# END
 				if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_TEMPLE_OF_THE_HAND'), True, False, False):
 					iBadTileCount = 0
 					for iiX in range(pCity.getX()-1, pCity.getX()+2, 1):
