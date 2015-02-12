@@ -3661,7 +3661,8 @@ CvSelectionGroup* CvPlayer::cycleSelectionGroups(CvUnit* pUnit, bool bForward, b
 
 bool CvPlayer::hasTrait(TraitTypes eTrait) const
 {
-	FAssertMsg((getLeaderType() >= 0), "getLeaderType() is less than zero");
+// The following line has been commented because it triggers an assert with the new World Builder code in CvWBDesc.
+//	FAssertMsg((getLeaderType() >= 0), "getLeaderType() is less than zero");
 	FAssertMsg((eTrait >= 0), "eTrait is less than zero");
 
 //FfH: Scriptable Leader Traits: Modified by Kael 08/08/2007
