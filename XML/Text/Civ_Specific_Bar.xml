@@ -66,12 +66,4 @@
 		<Spanish>Desbordada</Spanish>
 	</TEXT>
 	<!-- Khazad vault display End -->
-	<TEXT>
-		<Tag>TXT_KEY_DISPLAY_ELOHIM_SANCTUARY</Tag>
-		<English>Sanctuary (%d1 turns remaining)</English>
-		<French>Sanctuary (%d1 turns remaining)</French>
-		<German>Sanctuary (%d1 turns remaining)</German>
-		<Italian>Sanctuary (%d1 turns remaining)</Italian>
-		<Spanish>Sanctuary (%d1 turns remaining)</Spanish>
-	</TEXT>
 </Civ4GameText>

@@ -3520,15 +3520,6 @@ class CvMainInterface:
 			szText = BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_GENERAL", (vaultText,iCurrentPoints))
 #Khazad vault display End
 
-#Elohim sanctuary display Start
-		if (not CyInterface().isCityScreenUp() and pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_ELOHIM') and pPlayer.getSanctuaryTimer() > 0):
-			showBar = True
-			iCurrentPoints	= pPlayer.getSanctuaryTimer()
-			iThreshold		= (30 * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()) / 100
-			iCurrentRate	= 0
-			szText = BugUtil.getText("TXT_KEY_DISPLAY_ELOHIM_SANCTUARY", (iCurrentPoints,))
-#Elohim sanctuary display End
-
 		if showBar:
 			szText = u"<font=2>%s</font>" % szText
 			szCivSpecificBar = "CivSpecificBar"
@@ -5596,6 +5587,13 @@ class CvMainInterface:
 					szBuffer = u"<font=2>"
 					szName = "DisableSpellcastingTag"
 					szBuffer = szBuffer + localText.getColorText("TXT_KEY_MESSAGE_DISABLE_SPELLCASTING", (pPlayer.getDisableSpellcasting(), ()), gc.getInfoTypeForString("COLOR_RED"))
+					szBuffer = szBuffer + "</font>"
+
+				if pPlayer.getSanctuaryTimer() > 0:
+					iCountSpecial += 1
+					szBuffer = u"<font=2>"
+					szName = "SanctuaryTimerTag"
+					szBuffer = szBuffer + localText.getColorText("TXT_KEY_MESSAGE_SANCTUARY_TIMER", (pPlayer.getSanctuaryTimer(), ()), gc.getInfoTypeForString("COLOR_GREEN"))
 					szBuffer = szBuffer + "</font>"
 
 #					screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, xResolution - 12, yCoord - ((iCount + iCountSpecial) * iBtnHeight), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
