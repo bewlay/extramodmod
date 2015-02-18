@@ -229,14 +229,14 @@ g_pSelectedUnit = 0
 iHelpX = 120
 #FfH: End Add
 
-#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
-#Khazad vault display Start
+#CustomizableBars Start
 # This value depends on the x resolution of the screen. It is obtained from the code that places the domestic advisor button and the rest.
-xCoordCivSpecificBar = 253
-yCoordCivSpecificBar = 57
-widthCivSpecificBar = 228
-#Khazad vault display End
-#AdventurerCounter End
+xCoordCustomizableBars = 253
+yCoordCustomizableBars = 57
+widthCustomizableBars = 228
+iSeparationCustomizableBars = 8
+iMaxCustomizableBars = 4
+#CustomizableBars End
 
 # BUG - start
 g_mainInterface = None
@@ -1179,16 +1179,17 @@ class CvMainInterface:
 		
 		screen.registerHideList( szHideList, len(szHideList), 0 )
 
-#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
-#Khazad vault display Start
-		screen.addStackedBarGFC( "CivSpecificBar", self.xResolution - xCoordCivSpecificBar, yCoordCivSpecificBar, widthCivSpecificBar, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-		screen.setStackedBarColors( "CivSpecificBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_STORED") )
-		screen.setStackedBarColors( "CivSpecificBar", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_RATE") )
-		screen.setStackedBarColors( "CivSpecificBar", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
-		screen.setStackedBarColors( "CivSpecificBar", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
-		screen.hide( "CivSpecificBar" )
-#Khazad vault display End
-#AdventurerCounter End
+#CustomizableBars Start
+		for i in range (iMaxCustomizableBars):
+			szBarName = "CustomizableBar" + str(i)
+			yCoord = yCoordCustomizableBars + (iSeparationCustomizableBars + iStackBarHeight) * i
+			screen.addStackedBarGFC( szBarName, self.xResolution - xCoordCustomizableBars, yCoord, widthCustomizableBars, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+			screen.setStackedBarColors( szBarName, InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_STORED") )
+			screen.setStackedBarColors( szBarName, InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_RATE") )
+			screen.setStackedBarColors( szBarName, InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
+			screen.setStackedBarColors( szBarName, InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
+			screen.hide( szBarName )
+#CustomizableBars End
 
 		return 0
 
@@ -1562,7 +1563,7 @@ class CvMainInterface:
 		else:
 			screen.hideEndTurn( "EndTurnButton" )
 
-		return 0
+		# return 0
 
 	# Update the miscellaneous buttons
 	def updateMiscButtons( self ):
@@ -1570,12 +1571,10 @@ class CvMainInterface:
 		screen = CyGInterfaceScreen( "MainInterface", CvScreenEnums.MAIN_INTERFACE )
 		
 		xResolution = screen.getXResolution()
-#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
-#Khazad vault display Start
+#CustomizableBars Start
 		if ( CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY  and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START):
-			self.updateCivSpecificBar(screen)
-#Khazad vault display End
-#AdventurerCounter End
+			self.updateCustomizableBars(screen)
+#CustomizableBars End
 
 # BUG - Great Person Bar - start
 		if ( CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY  and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START):
@@ -3195,12 +3194,12 @@ class CvMainInterface:
 		self.pBarResearchBar_w.hide(screen)
 # BUG - Progress Bar - Tick Marks - end
 
-#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
-#Khazad vault display Start
-		screen.hide( "CivSpecificBar" )
-		screen.hide( "CivSpecificBarText" )
-#Khazad vault display End
-#AdventurerCounter End
+#CustomizableBars Start
+		for i in range (iMaxCustomizableBars):
+			screen.hide( "CustomizableBar" + str(i) )
+			screen.hide( "CustomizableBarText" + str(i) )
+#CustomizableBars Start
+
 
 		bShift = CyInterface().shiftKey()
 		
@@ -3384,11 +3383,9 @@ class CvMainInterface:
 				## ExtraModMod end
 # BUG - Great General Bar - end
 
-#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
-#Khazad vault display Start
-				self.updateCivSpecificBar(screen)
-#Khazad vault display End
-#AdventurerCounter End
+#CustomizableBars Start
+				self.updateCustomizableBars(screen)
+#CustomizableBars End
 
 		return 0
 		
@@ -3467,32 +3464,37 @@ class CvMainInterface:
 			screen.show( szGreatGeneralBar )
 # BUG - Great General Bar - end
 
-	def updateCivSpecificBar(self, screen):
+#CustomizableBars Start
+	def updateCustomizableBars(self, screen):
 		pPlayer = gc.getPlayer(gc.getGame().getActivePlayer())
-		xCoordText = self.xResolution - xCoordCivSpecificBar + widthCivSpecificBar / 2
-		yCoordText = yCoordCivSpecificBar + 4
-		showBar = False
 		iCurrentRate = 0
 		iCurrentPoints = 0
 		iThreshold = 0
 		szText = ""
+		lCurrentRate = []
+		lCurrentPoints = []
+		lThreshold = []
+		lszText = []
+
 #AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
 		if (not CyInterface().isCityScreenUp() and pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI') and pPlayer.getNumCities() > 0):
-			showBar = True
 			iCurrentPoints	= pPlayer.getCivCounter()
 			iThreshold		= CustomFunctions.CustomFunctions().getAdventurerThreshold(gc.getGame().getActivePlayer())
 			iCurrentRate	= CustomFunctions.CustomFunctions().getAdventurerPointRate(gc.getGame().getActivePlayer())
 
+			lCurrentRate.append(iCurrentRate)
+			lCurrentPoints.append(iCurrentPoints)
+			lThreshold.append(iThreshold)
+
 			if iCurrentRate == 0:
-				szText = BugUtil.getText("TXT_KEY_INTERFACE_ADVENTURER_COUNTER_NONE")
+				lszText.append(BugUtil.getText("TXT_KEY_INTERFACE_ADVENTURER_COUNTER_NONE"))
 			else:
 				iAdventurerTurns = (iThreshold - iCurrentPoints + iCurrentRate - 1) / iCurrentRate
-				szText = BugUtil.getText("TXT_KEY_INTERFACE_ADVENTURER_COUNTER_TURNS", (iAdventurerTurns,))
+				lszText.append(BugUtil.getText("TXT_KEY_INTERFACE_ADVENTURER_COUNTER_TURNS", (iAdventurerTurns,))) 
 #AdventurerCounter End
 
 #Khazad vault display Start
 		if (not CyInterface().isCityScreenUp() and pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD') and pPlayer.getNumCities() > 0 and (((pPlayer.calculateGoldRate() != 0) and not (pPlayer.isAnarchy())) or (pPlayer.getGold() != 0))):
-			showBar = True
 			iCurrentPoints = pPlayer.getGold() / pPlayer.getNumCities()
 			iCurrentRate = pPlayer.calculateGoldRate()
 			if iCurrentPoints <= 24:
@@ -3517,21 +3519,31 @@ class CvMainInterface:
 				iThreshold = 250
 				vaultText = BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_OVERFLOWING")
 
-			szText = BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_GENERAL", (vaultText,iCurrentPoints))
+			lCurrentRate.append(iCurrentRate)
+			lCurrentPoints.append(iCurrentPoints)
+			lThreshold.append(iThreshold)
+			lszText.append(BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_GENERAL", (vaultText,iCurrentPoints)))
 #Khazad vault display End
 
-		if showBar:
-			szText = u"<font=2>%s</font>" % szText
-			szCivSpecificBar = "CivSpecificBar"
-			screen.setText( "CivSpecificBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoordText, yCoordText, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-			screen.setHitTest( "CivSpecificBarText", HitTestTypes.HITTEST_NOHIT )
-			screen.show( "CivSpecificBarText" )
+		xCoordText = self.xResolution - xCoordCustomizableBars + widthCustomizableBars / 2
+		yCoordText = yCoordCustomizableBars + 4
 
-			screen.setBarPercentage( szCivSpecificBar, InfoBarTypes.INFOBAR_STORED, float(iCurrentPoints) / float(iThreshold) )
-			if iCurrentRate > 0:
-				screen.setBarPercentage( szCivSpecificBar, InfoBarTypes.INFOBAR_RATE, float(iCurrentRate) / float(iThreshold - iCurrentPoints) )
+		for i in range (min(len(lCurrentRate), iMaxCustomizableBars)):
+			szText = u"<font=2>%s</font>" % lszText[i]
+			szBarName = "CustomizableBar" + str(i)
+			szTextName = "CustomizableBarText" + str(i)
 
-			screen.show( szCivSpecificBar )
+			yCoord = yCoordText + (iSeparationCustomizableBars + iStackBarHeight) * i
+			screen.setText( szTextName, "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoordText, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+			screen.setHitTest( szTextName, HitTestTypes.HITTEST_NOHIT )
+			screen.show( szTextName )
+
+			screen.setBarPercentage( szBarName, InfoBarTypes.INFOBAR_STORED, float(lCurrentPoints[i]) / float(lThreshold[i]) )
+			if lCurrentRate[i] > 0:
+				screen.setBarPercentage( szBarName, InfoBarTypes.INFOBAR_RATE, float(lCurrentRate[i]) / float(lThreshold[i] - lCurrentPoints[i]) )
+
+			screen.show( szBarName )
+#CustomizableBars End
 
 	def updateTimeText( self ):
 		
