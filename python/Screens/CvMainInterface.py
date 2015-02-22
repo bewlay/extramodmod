@@ -3466,6 +3466,9 @@ class CvMainInterface:
 
 #CustomizableBars Start
 	def updateCustomizableBars(self, screen):
+		if (CyInterface().isCityScreenUp()):
+			return
+
 		pPlayer = gc.getPlayer(gc.getGame().getActivePlayer())
 		iCurrentRate = 0
 		iCurrentPoints = 0
@@ -3476,8 +3479,10 @@ class CvMainInterface:
 		lThreshold = []
 		lszText = []
 
+#CustomizableBars: Define any conditions that use one of the bars here.
+
 #AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
-		if (not CyInterface().isCityScreenUp() and pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI') and pPlayer.getNumCities() > 0):
+		if (pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI') and pPlayer.getNumCities() > 0):
 			iCurrentPoints	= pPlayer.getCivCounter()
 			iThreshold		= CustomFunctions.CustomFunctions().getAdventurerThreshold(gc.getGame().getActivePlayer())
 			iCurrentRate	= CustomFunctions.CustomFunctions().getAdventurerPointRate(gc.getGame().getActivePlayer())
@@ -3494,7 +3499,7 @@ class CvMainInterface:
 #AdventurerCounter End
 
 #Khazad vault display Start
-		if (not CyInterface().isCityScreenUp() and pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD') and pPlayer.getNumCities() > 0 and (((pPlayer.calculateGoldRate() != 0) and not (pPlayer.isAnarchy())) or (pPlayer.getGold() != 0))):
+		if (pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD') and pPlayer.getNumCities() > 0 and (((pPlayer.calculateGoldRate() != 0) and not (pPlayer.isAnarchy())) or (pPlayer.getGold() != 0))):
 			iCurrentPoints = pPlayer.getGold() / pPlayer.getNumCities()
 			iCurrentRate = pPlayer.calculateGoldRate()
 			if iCurrentPoints <= 24:
@@ -3524,6 +3529,18 @@ class CvMainInterface:
 			lThreshold.append(iThreshold)
 			lszText.append(BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_GENERAL", (vaultText,iCurrentPoints)))
 #Khazad vault display End
+
+#Adaptive tweaks START
+		if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_ADAPTIVE')):
+			iBaseCycle = 75
+			iCycle = (iBaseCycle * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()) / 100
+			iProgress = gc.getGame().getGameTurn() % iCycle
+
+			lCurrentRate.append(1)
+			lCurrentPoints.append(iProgress)
+			lThreshold.append(iCycle)
+			lszText.append(BugUtil.getText("TXT_KEY_DISPLAY_TRAIT_ADAPTIVE", (iCycle - iProgress,)))
+#Adaptive tweaks END
 
 		xCoordText = self.xResolution - xCoordCustomizableBars + widthCustomizableBars / 2
 		yCoordText = yCoordCustomizableBars + 4

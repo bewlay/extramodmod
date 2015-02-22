@@ -1498,7 +1498,7 @@
 			<bBarbarianAlly>0</bBarbarianAlly>
 			<bIgnoreFood>0</bIgnoreFood>
 			<bInsane>0</bInsane>
-			<bSelectable>0</bSelectable>
+			<bSelectable>1</bSelectable>
 			<bSprawling>0</bSprawling>
 			<iFreeXPFromCombat>0</iFreeXPFromCombat>
 			<iMaxCities>-1</iMaxCities>
@@ -1659,7 +1659,7 @@
 			<bBarbarianAlly>0</bBarbarianAlly>
 			<bIgnoreFood>0</bIgnoreFood>
 			<bInsane>0</bInsane>
-			<bSelectable>1</bSelectable>
+			<bSelectable>0</bSelectable>
 			<bSprawling>0</bSprawling>
 			<iFreeXPFromCombat>0</iFreeXPFromCombat>
 			<iMaxCities>-1</iMaxCities>
@@ -1704,7 +1704,7 @@
 			<bBarbarianAlly>0</bBarbarianAlly>
 			<bIgnoreFood>0</bIgnoreFood>
 			<bInsane>0</bInsane>
-			<bSelectable>1</bSelectable>
+			<bSelectable>0</bSelectable>
 			<bSprawling>0</bSprawling>
 			<iFreeXPFromCombat>0</iFreeXPFromCombat>
 			<iMaxCities>-1</iMaxCities>
@@ -1749,7 +1749,7 @@
 			<bBarbarianAlly>0</bBarbarianAlly>
 			<bIgnoreFood>0</bIgnoreFood>
 			<bInsane>0</bInsane>
-			<bSelectable>1</bSelectable>
+			<bSelectable>0</bSelectable>
 			<bSprawling>0</bSprawling>
 			<iFreeXPFromCombat>0</iFreeXPFromCombat>
 			<iMaxCities>-1</iMaxCities>

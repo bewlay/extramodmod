@@ -761,13 +761,15 @@ class CvEventManager:
 				iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_TRAIT_INSANE')
 				triggerData = pPlayer.initTriggeredData(iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1)
 
+#Adaptive tweaks START
 		if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_ADAPTIVE')):
 			iBaseCycle = 75
 			iCycle = (iBaseCycle * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()) / 100
-			for i in range(10):
-				if (i * iCycle) - 5 == iGameTurn:
-					iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_TRAIT_ADAPTIVE')
-					triggerData = pPlayer.initTriggeredData(iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1)
+			iProgress = (iGameTurn + 1) % iCycle
+			if iGameTurn >= (iCycle / 2) and iProgress == 0:
+				iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_TRAIT_ADAPTIVE')
+				triggerData = pPlayer.initTriggeredData(iEvent, True, -1, -1, -1, iPlayer, -1, -1, -1, -1, -1)
+#Adaptive tweaks END
 
 	# WILDERNESS 09/2013 lfgr / WildernessMisc - Also BarbarianAlly AI will declare war against barbs if too strong.
 	#	if pPlayer.isHuman():
