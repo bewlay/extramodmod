@@ -77,5 +77,15 @@
 		<Spanish>Trait change: (%d1)</Spanish>
 	</TEXT>
 	<!-- Adaptive tweaks END -->
+	<!-- Barbarian bar START -->
+	<TEXT>
+		<Tag>TXT_KEY_DISPLAY_TRAIT_BARBARIAN</Tag>
+		<English>Barbarian mistrust: (%d1%)</English>
+		<French>Barbarian mistrust: (%d1%)</French>
+		<German>Barbarian mistrust: (%d1%)</German>
+		<Italian>Barbarian mistrust: (%d1%)</Italian>
+		<Spanish>Barbarian mistrust: (%d1%)</Spanish>
+	</TEXT>
+	<!-- Barbarian bar END -->
 	<!-- CustomizableBars End -->
 </Civ4GameText>

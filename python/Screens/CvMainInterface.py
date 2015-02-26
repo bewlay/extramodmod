@@ -3542,6 +3542,19 @@ class CvMainInterface:
 			lszText.append(BugUtil.getText("TXT_KEY_DISPLAY_TRAIT_ADAPTIVE", (iCycle - iProgress,)))
 #Adaptive tweaks END
 
+#Barbarian bar START
+		eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
+		iTeam = pPlayer.getTeam()
+		if eTeam.isAtWar(iTeam) == False:
+			iCurrentPoints = 2 * CyGame().getPlayerScore(gc.getGame().getActivePlayer())
+			iThreshold = 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1))
+			lCurrentRate.append(0)
+			lCurrentPoints.append(iCurrentPoints)
+			lThreshold.append(iThreshold)
+			iPercentage = int(100 * float(min(iThreshold, iCurrentPoints)) / float(iThreshold))
+			lszText.append(BugUtil.getText("TXT_KEY_DISPLAY_TRAIT_BARBARIAN", (iPercentage,)))
+#Barbarian bar END
+
 		xCoordText = self.xResolution - xCoordCustomizableBars + widthCustomizableBars / 2
 		yCoordText = yCoordCustomizableBars + 4
 
