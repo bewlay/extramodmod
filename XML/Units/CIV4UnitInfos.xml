@@ -7448,6 +7448,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_FESTIVALS</PrereqTech>
 			<iCost>45</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -17438,6 +17439,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_COMMUNE_WITH_NATURE</PrereqTech>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -18217,6 +18219,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_PASS_THROUGH_THE_ETHER</PrereqTech>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -18522,6 +18525,7 @@
 				</Build>
 			</Builds>
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_KNOWLEDGE_OF_THE_ETHER</PrereqTech>
 			<iAIWeight>150</iAIWeight>
 			<iCost>150</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -21738,6 +21742,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_MATHEMATICS</PrereqTech>
 			<iCost>150</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -24038,6 +24043,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_SANITATION</PrereqTech>
 			<iCost>150</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -24210,6 +24216,7 @@
 			</UnitAIs>
 			<ReligionType>RELIGION_THE_ASHEN_VEIL</ReligionType>
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_CORRUPTION_OF_SPIRIT</PrereqTech>
 			<iCost>150</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
