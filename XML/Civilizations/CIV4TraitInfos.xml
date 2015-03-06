@@ -715,6 +715,10 @@
 					<PromotionType>PROMOTION_SUMMONER</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_EXTENSION1</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<FreePromotionUnitCombats>
 				<FreePromotionUnitCombat>
