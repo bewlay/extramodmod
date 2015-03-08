@@ -1501,3 +1501,13 @@ int CyGame::getWarningStatus() const
 }
 #endif
 // BUFFY - Security Checks - end
+
+// Automatic OOS detection START
+void CyGame::setOOSVisible()
+{
+	if (m_pGame)
+	{
+        m_pGame->setOOSVisible();
+	}
+}
+// Automatic OOS detection END

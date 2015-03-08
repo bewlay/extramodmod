@@ -378,6 +378,9 @@ void CyGamePythonInterface()
 		.def("getWarningStatus", &CyGame::getWarningStatus, "int getWarningStatus()")
 #endif
 // BUFFY - Security Checks - end
+// Automatic OOS detection START
+	.def("setOOSVisible", &CyGame::setOOSVisible)
+// Automatic OOS detection END
 		;
 
 	python::class_<CyDeal>("CyDeal")

@@ -21,6 +21,9 @@ CvString CvInitCore::exeName;
 bool CvInitCore::bPathsSet;
 // BUG - EXE/DLL Paths - end
 
+// Logging.
+#include "BetterBTSAI.h"
+
 // Public Functions...
 
 CvInitCore::CvInitCore()
@@ -325,6 +328,16 @@ PlayerTypes CvInitCore::getAvailableSlot()
 		if ( (getSlotClaim(eID) == SLOTCLAIM_UNASSIGNED) && (getSlotStatus(eID) == SS_OPEN) )
 		{
 			setSlotClaim(eID, SLOTCLAIM_ASSIGNED);
+// Automatic OOS detection START
+#ifdef AUTOMATIC_OOS_DETECTION
+			CvPlayer& kPlayer = GET_PLAYER(eID);
+			if (kPlayer.getID() != NO_PLAYER && kPlayer.isAlive()) {
+				// Automate the claimed slot.
+				logBBAI("  Automating human player number %i.", i);
+				GC.getGameINLINE().setForcedAIAutoPlay(eID, 600, true);
+			}
+#endif //AUTOMATIC_OOS_DETECTION
+// Automatic OOS detection END
 			return eID;
 		}
 	}
@@ -338,6 +351,16 @@ PlayerTypes CvInitCore::getAvailableSlot()
 			if ( (getSlotClaim(eID) == SLOTCLAIM_UNASSIGNED) && (getSlotStatus(eID) == SS_COMPUTER) )
 			{
 				setSlotClaim(eID, SLOTCLAIM_ASSIGNED);
+// Automatic OOS detection START
+#ifdef AUTOMATIC_OOS_DETECTION
+				// Automate the claimed slot.
+				CvPlayer& kPlayer = GET_PLAYER(eID);
+				if (kPlayer.getID() != NO_PLAYER && kPlayer.isAlive()) {
+					logBBAI("  Automating human player number %i.", i);
+					GC.getGameINLINE().setForcedAIAutoPlay(eID, 600, true);
+				}
+#endif //AUTOMATIC_OOS_DETECTION
+// Automatic OOS detection END
 				return eID;
 			}
 		}

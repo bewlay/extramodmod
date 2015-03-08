@@ -540,6 +540,24 @@ void CvGame::setInitialItems()
 
 	initFreeUnits();
 
+// Automatic OOS detection START
+#ifdef AUTOMATIC_OOS_DETECTION
+	logBBAI("---- AUTOMATIC OOS DETECTION ----");
+	logBBAI("Proceeding to force human players to play automatically.");
+	// All human players are forced to play automated...
+	for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)
+	{
+		CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iPlayer);
+		if (kPlayer.isAlive() && kPlayer.isHuman())
+		{
+			logBBAI("  Automating human player number %i.", iPlayer);
+			// ... for a number of turns that allows enough testing.
+			setForcedAIAutoPlay((PlayerTypes)iPlayer, 600, true);
+		}
+	}
+#endif //AUTOMATIC_OOS_DETECTION
+// Automatic OOS detection END
+
 	for (int i = 0; i < MAX_PLAYERS; ++i)
 	{
 		CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)i);
@@ -967,6 +985,9 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 	{
 		AI_reset();
 	}
+// Automatic OOS detection START
+	m_bOOSVisible = false;
+// Automatic OOS detection END
 }
 
 
@@ -2519,11 +2540,35 @@ void CvGame::update()
 		pyArgs.add(getTurnSlice());
 		CvEventReporter::getInstance().genericEvent("gameUpdate", pyArgs.makeFunctionArgs());
 
+// Automatic OOS detection START
+#ifdef AUTOMATIC_OOS_DETECTION
+		// At this point, the OOS log is already written. Automation should stop if an OOS is reached.
+		if (m_bOOSVisible)
+		{
+			logBBAI("---- AUTOMATIC OOS DETECTION ----");
+			logBBAI("OOS error detected. Stopping automation.");
+			for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)
+			{
+				if (isForcedAIAutoPlay((PlayerTypes)iPlayer) || getAIAutoPlay((PlayerTypes)iPlayer) > 0)
+				{
+					logBBAI("  Removing automation for human player number %i.", iPlayer);
+					setForcedAIAutoPlay((PlayerTypes)iPlayer, 0, true);
+				}
+			}
+			// Each player creates its own savegame.
+			// gDLL->getEngineIFace()->SaveGame(CvString::format("OOSSave - %s", GET_PLAYER(getActivePlayer()).getName()), SAVEGAME_NORMAL);
+			// Set the variable to its previous value.
+			m_bOOSVisible = false;
+		}
+#endif //AUTOMATIC_OOS_DETECTION
+// Autosaves are disabled under automatic OOS detection.
+#ifndef AUTOMATIC_OOS_DETECTION
 		if (getTurnSlice() == 0)
 		{
 			gDLL->getEngineIFace()->AutoSave(true);
 		}
-
+#endif //AUTOMATIC_OOS_DETECTION
+// Automatic OOS detection END
 		if (getNumGameTurnActive() == 0)
 		{
 			if (!isPbem() || !getPbemTurnSent())
@@ -6732,7 +6777,12 @@ void CvGame::doTurn()
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Automatic OOS detection START
+// Autosaves are disabled under automatic OOS detection.
+#ifndef AUTOMATIC_OOS_DETECTION
 	gDLL->getEngineIFace()->AutoSave();
+#endif //AUTOMATIC_OOS_DETECTION
+// Automatic OOS detection END
 }
 
 
@@ -8739,7 +8789,140 @@ int CvGame::getSorenRandNum(int iNum, const char* pszLog)
 	return m_sorenRand.get(iNum, pszLog);
 }
 
+// Automatic OOS detection START
+#ifdef AUTOMATIC_OOS_DETECTION
+#include "PrimeNumberGen.h"
+/*
+ * Strict checksum. It requires a LOT OF TIME for being calculated so it SHOULD NOT be used in normal games.
+ *
+ * All values are calculated on every turn, instead of just in specific turn slices.
+ *
+ * Added additional values to the checksum.
+ *
+ * Uses always different prime numbers for each subcalculation (but always in the same sequence).
+ * With the original implementation, minor changes such as one player losing one yield and another one
+ * getting it may not appear as a difference because in the normal code they are multiplied by the same value.
+ */
+int CvGame::calculateSyncChecksum()
+{
+	int iLoop;
+	int iI, iJ;
 
+	CvWStringBuffer szBuffer;
+	szBuffer.append(gDLL->getText("TXT_KEY_VERSION"));
+
+	// The initial values could be a source of collision, but I'm going to try to not get very paranoid.
+	int iValue = szBuffer.getShortHash();
+	iValue += getMapRand().getSeed();
+	iValue += getSorenRand().getSeed();
+
+	// Make sure that we always use primes in the same order.
+	restartPrimes();
+
+	iValue += getGlobalCounter() * getNextPrime();
+	iValue += getNumCities() * getNextPrime();
+	iValue += getTotalPopulation() * getNextPrime();
+	iValue += getNumDeals() * getNextPrime();
+
+	iValue += GC.getMapINLINE().getOwnedPlots() * getNextPrime();
+	iValue += GC.getMapINLINE().getNumAreas() * getNextPrime();
+
+	for (iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iI);
+		if (kPlayer.isEverAlive())
+		{
+			iValue += getPlayerScore((PlayerTypes)iI) * getNextPrime();
+			// Slice 0
+			iValue += kPlayer.getTotalPopulation() * getNextPrime();
+			iValue += kPlayer.getTotalLand() * getNextPrime();
+			iValue += kPlayer.getGold() * getNextPrime();
+			iValue += kPlayer.getAssets() * getNextPrime();
+			iValue += kPlayer.getPower() * getNextPrime();
+			iValue += kPlayer.getNumCities() * getNextPrime();
+			iValue += kPlayer.getNumUnits() * getNextPrime();
+			iValue += kPlayer.getNumSelectionGroups() * getNextPrime();
+
+			// Slice 1
+			for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
+			{
+				iValue += kPlayer.calculateTotalYield((YieldTypes)iJ) * getNextPrime();
+			}
+
+			for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
+			{
+				iValue += kPlayer.getCommerceRate((CommerceTypes)iJ) * getNextPrime();
+			}
+
+			// Slice 2
+			for (iJ = 0; iJ < GC.getNumBonusInfos(); iJ++)
+			{
+				iValue += kPlayer.getNumAvailableBonuses((BonusTypes)iJ) * getNextPrime();
+				iValue += kPlayer.getBonusImport((BonusTypes)iJ) * getNextPrime();
+				iValue += kPlayer.getBonusExport((BonusTypes)iJ) * getNextPrime();
+			}
+
+			for (iJ = 0; iJ < GC.getNumImprovementInfos(); iJ++)
+			{
+				iValue += kPlayer.getImprovementCount((ImprovementTypes)iJ) * getNextPrime();
+			}
+
+			for (iJ = 0; iJ < GC.getNumBuildingClassInfos(); iJ++)
+			{
+				iValue += kPlayer.getBuildingClassCountPlusMaking((BuildingClassTypes)iJ) * getNextPrime();
+			}
+
+			for (iJ = 0; iJ < GC.getNumUnitClassInfos(); iJ++)
+			{
+				iValue += kPlayer.getUnitClassCountPlusMaking((UnitClassTypes)iJ) * getNextPrime();
+			}
+
+			for (iJ = 0; iJ < NUM_UNITAI_TYPES; iJ++)
+			{
+				iValue += kPlayer.AI_totalUnitAIs((UnitAITypes)iJ) * getNextPrime();
+			}
+
+			// Slice 3
+			for (CvUnit* pLoopUnit = GET_PLAYER((PlayerTypes)iI).firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = GET_PLAYER((PlayerTypes)iI).nextUnit(&iLoop))
+			{
+				iValue += (pLoopUnit->getX_INLINE() * getNextPrime());
+				iValue += (pLoopUnit->getY_INLINE() * getNextPrime());
+				iValue += (pLoopUnit->getDamage() * getNextPrime());
+				iValue += (pLoopUnit->getExperience() * getNextPrime());
+				iValue += (pLoopUnit->getLevel() * getNextPrime());
+			}
+
+			// Extra values.
+
+			// These values are not in OOSLogger, but their differences will show up in BBAILog.
+			iValue += kPlayer.getNumEventsTriggered() * getNextPrime();
+			iValue += kPlayer.getNumTriggersFired() * getNextPrime();
+
+			// City values are in OOSLogger.
+			for (CvCity* pCity = kPlayer.firstCity(&iLoop); NULL != pCity; pCity = kPlayer.nextCity(&iLoop))
+			{
+				iValue += pCity->getX() * getNextPrime();
+				iValue += pCity->getY() * getNextPrime();
+				iValue += pCity->getGameTurnFounded() * getNextPrime();
+				iValue += pCity->getPopulation() * getNextPrime();
+				iValue += pCity->getNumBuildings() * getNextPrime();
+				iValue += pCity->countNumImprovedPlots() * getNextPrime();
+				iValue += pCity->getProductionTurnsLeft() * getNextPrime();
+				iValue += pCity->happyLevel() * getNextPrime();
+				iValue += pCity->unhappyLevel(0) * getNextPrime();
+				iValue += pCity->goodHealth() * getNextPrime();
+				iValue += pCity->badHealth(false) * getNextPrime();
+				iValue += pCity->getWorkingPopulation() * getNextPrime();
+				iValue += pCity->getSpecialistPopulation() * getNextPrime();
+				iValue += pCity->getNumGreatPeople() * getNextPrime();
+			}
+		}
+	}
+
+	logBBAI("AUTOMATIC OOS DETECTION: Checksum at turn %i is %i", getGameTurn(), iValue);
+	return iValue;
+}
+#else
 int CvGame::calculateSyncChecksum()
 {
 	PROFILE_FUNC();
@@ -8849,7 +9032,8 @@ int CvGame::calculateSyncChecksum()
 
 	return iValue;
 }
-
+#endif //AUTOMATIC_OOS_DETECTION
+// Automatic OOS detection END
 
 int CvGame::calculateOptionsChecksum()
 {
@@ -11375,3 +11559,9 @@ int CvGame::getWarningStatus() const
 #endif
 // BUFFY - Security Checks - end
 
+// Automatic OOS detection START
+void CvGame::setOOSVisible()
+{
+	m_bOOSVisible = true;
+}
+// Automatic OOS detection START

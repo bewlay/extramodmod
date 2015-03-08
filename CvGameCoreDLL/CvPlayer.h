@@ -1338,6 +1338,11 @@ public:
 // ExtraModMod technology propagation START
 	int calculateTechPropagationResearchModifier(TechTypes eTech) const; // Exposed to Python
 // ExtraModMod technology propagation END
+
+// Automatic OOS detection START
+	int getNumTriggersFired() const;
+// Automatic OOS detection END
+
 	virtual void AI_init() = 0;
 	virtual void AI_reset(bool bConstructor) = 0;
 	virtual void AI_doTurnPre() = 0;

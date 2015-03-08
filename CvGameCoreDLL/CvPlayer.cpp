@@ -4308,6 +4308,13 @@ const TCHAR* CvPlayer::getUnitButton(UnitTypes eUnit) const
 //<<<<Unofficial Bug Fix: End Modify
 }
 
+// Automatic OOS detection START
+#ifdef AUTOMATIC_OOS_DETECTION
+#include <windows.h>
+#endif //AUTOMATIC_OOS_DETECTION
+// Automatic OOS detection END
+
+
 void CvPlayer::doTurn()
 {
 	PROFILE_FUNC();
@@ -4511,6 +4518,15 @@ void CvPlayer::doTurn()
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
+
+// Automatic OOS detection START
+#ifdef AUTOMATIC_OOS_DETECTION
+	if (getID() == GC.getGameINLINE().getActivePlayer()) {
+		// If human players don't take some time to do their stuff, Civilization IV engine goes awry.
+		Sleep(1000);
+	}
+#endif //AUTOMATIC_OOS_DETECTION
+// Automatic OOS detection END
 
 	CvEventReporter::getInstance().endPlayerTurn( GC.getGameINLINE().getGameTurn(),  getID());
 }
@@ -28153,3 +28169,10 @@ int CvPlayer::getHighestUnitTier(bool bIncludeHeroes, bool bIncludeLimitedUnits)
 }
 
 // End MNAI
+
+// Automatic OOS detection START
+int CvPlayer::getNumTriggersFired() const
+{
+	return m_triggersFired.size();
+}
+// Automatic OOS detection END

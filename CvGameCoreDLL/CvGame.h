@@ -653,6 +653,10 @@ public:
 	int getCurrentPeriod() const;
 	// End Tholal AI
 
+// Automatic OOS detection START
+	void setOOSVisible();
+// Automatic OOS detection END
+
 protected:
 	int m_iElapsedGameTurns;
 	int m_iStartTurn;
@@ -771,6 +775,12 @@ protected:
 
 	std::vector<PlotExtraYield> m_aPlotExtraYields;
 	std::vector<PlotExtraCost> m_aPlotExtraCosts;
+
+// Automatic OOS detection START
+// This value is not meant to be saved. In fact, it should not even exist, but the isOosVisible method only seems to be exposed to python so we need this hack.
+	bool m_bOOSVisible;
+// Automatic OOS detection END
+
 #if 1 //defined(USE_OLD_CODE)
 	stdext::hash_map<VoteSourceTypes, ReligionTypes> m_mapVoteSourceReligions;
 #else
