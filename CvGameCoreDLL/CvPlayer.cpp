@@ -4521,7 +4521,7 @@ void CvPlayer::doTurn()
 
 // Automatic OOS detection START
 #ifdef AUTOMATIC_OOS_DETECTION
-	if (getID() == GC.getGameINLINE().getActivePlayer()) {
+	if (getID() == GC.getGameINLINE().getActivePlayer() && GC.getGameINLINE().isGameMultiPlayer()) {
 		// If human players don't take some time to do their stuff, Civilization IV engine goes awry.
 		Sleep(1000);
 	}
