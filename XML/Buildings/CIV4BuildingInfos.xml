@@ -20432,7 +20432,7 @@
 			<Description>TXT_KEY_BUILDING_MERCURIAN_GATE</Description>
 			<Civilopedia>TXT_KEY_BUILDING_MERCURIAN_GATE_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_BUILDING_MERCURIAN_GATE_STRATEGY</Strategy>
-			<Help></Help>
+			<Help>TXT_KEY_BUILDING_MERCURIAN_GATE_STRATEGY</Help>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<ArtDefineTag>ART_DEF_BUILDING_MERCURIAN_GATE</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>
