@@ -1053,11 +1053,19 @@
 	</TEXT>
 	<TEXT><!-- EVENT_PRINCESS_RULE_4 -->
 		<Tag>TXT_KEY_EVENT_PRINCESS_RULE_4</Tag>
-		<English>Don't kill it! Oh wait...</English>
-		<French>Don't kill it! Oh wait...</French>
-		<German>Don't kill it! Oh wait...</German>
-		<Italian>Don't kill it! Oh wait...</Italian>
-		<Spanish>Don't kill it! Oh wait...</Spanish>
+		<English>Don't kill it!</English>
+		<French>Don't kill it!</French>
+		<German>Don't kill it!</German>
+		<Italian>Don't kill it!</Italian>
+		<Spanish>Don't kill it!</Spanish>
+	</TEXT>
+	<TEXT><!-- EVENT_PRINCESS_RULE_4_MESSAGE -->
+		<Tag>TXT_KEY_EVENT_PRINCESS_RULE_4_MESSAGE</Tag>
+		<English>A few days later, a scouting party encounters the unicorn again. Or at least, the parts of it that haven't been picked clean by scavengers already. Judging by the amount of bite- and claw-marks on the corpse, it would appear that this innocent creature was ill-suited for the wildlands of Erebus.</English>
+		<French>A few days later, a scouting party encounters the unicorn again. Or at least, the parts of it that haven't been picked clean by scavengers already. Judging by the amount of bite- and claw-marks on the corpse, it would appear that this innocent creature was ill-suited for the wildlands of Erebus.</French>
+		<German>A few days later, a scouting party encounters the unicorn again. Or at least, the parts of it that haven't been picked clean by scavengers already. Judging by the amount of bite- and claw-marks on the corpse, it would appear that this innocent creature was ill-suited for the wildlands of Erebus.</German>
+		<Italian>A few days later, a scouting party encounters the unicorn again. Or at least, the parts of it that haven't been picked clean by scavengers already. Judging by the amount of bite- and claw-marks on the corpse, it would appear that this innocent creature was ill-suited for the wildlands of Erebus.</Italian>
+		<Spanish>A few days later, a scouting party encounters the unicorn again. Or at least, the parts of it that haven't been picked clean by scavengers already. Judging by the amount of bite- and claw-marks on the corpse, it would appear that this innocent creature was ill-suited for the wildlands of Erebus.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_CORRUPT_JUDGE -->
 		<Tag>TXT_KEY_EVENT_CORRUPT_JUDGE</Tag>
