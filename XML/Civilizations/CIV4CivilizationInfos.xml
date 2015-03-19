@@ -450,7 +450,7 @@
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 				<Leader>
-					<LeaderName>LEADER_DECIUS</LeaderName>
+					<LeaderName>LEADER_DECIUS_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 				<Leader>
@@ -608,7 +608,7 @@
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 				<Leader>
-					<LeaderName>LEADER_DECIUS</LeaderName>
+					<LeaderName>LEADER_DECIUS_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 				<Leader>
@@ -2670,7 +2670,7 @@
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 				<Leader>
-					<LeaderName>LEADER_DECIUS</LeaderName>
+					<LeaderName>LEADER_DECIUS_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 				<Leader>
