@@ -1449,7 +1449,11 @@
 			<ExtraYieldThresholds/>
 			<TradeYieldModifiers/>
 			<CommerceChanges/>
-			<CommerceModifiers/>
+			<CommerceModifiers>
+				<iCommerce>0</iCommerce>
+				<iCommerce>0</iCommerce>
+				<iCommerce>-10</iCommerce>
+			</CommerceModifiers>
 			<FreePromotions>
 				<FreePromotion>
 					<PromotionType>PROMOTION_SAVAGE</PromotionType>
@@ -1457,10 +1461,6 @@
 				</FreePromotion>
 			</FreePromotions>
 			<FreePromotionUnitCombats>
-				<FreePromotionUnitCombat>
-					<UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
-					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
-				</FreePromotionUnitCombat>
 				<FreePromotionUnitCombat>
 					<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>

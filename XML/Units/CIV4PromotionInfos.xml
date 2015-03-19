@@ -6190,9 +6190,12 @@
             <Description>TXT_KEY_PROMOTION_SAVAGE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
             <TechPrereq>TECH_NEVER</TechPrereq>
+            <bAlwaysHeal>1</bAlwaysHeal>
+            <iEnemyHealChange>10</iEnemyHealChange>
+            <iNeutralHealChange>10</iNeutralHealChange>
+            <iFriendlyHealChange>10</iFriendlyHealChange>
             <Button>Art/Interface/Buttons/Promotions/Enraged.dds</Button>
             <bImmuneToFear>1</bImmuneToFear>
-			<iCombatHealPercent>10</iCombatHealPercent>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_SCORCHED_STAFF</Type>
