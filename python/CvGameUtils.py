@@ -353,6 +353,10 @@ class CvGameUtils:
 			if pCity.isCapital():
 				return True
 
+		if eBuilding == gc.getInfoTypeForString('BUILDING_GUILD_OF_THE_NINE'):
+			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_GUILD_OF_THE_NINE):
+				return True
+
 		iAltar1 = gc.getInfoTypeForString('BUILDING_ALTAR_OF_THE_LUONNOTAR')
 		iAltar2 = gc.getInfoTypeForString('BUILDING_ALTAR_OF_THE_LUONNOTAR_ANOINTED')
 		iAltar3 = gc.getInfoTypeForString('BUILDING_ALTAR_OF_THE_LUONNOTAR_BLESSED')

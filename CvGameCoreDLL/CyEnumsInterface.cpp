@@ -671,6 +671,7 @@ void CyEnumsPythonInterface()
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
+		.value("GAMEOPTION_NO_GUILD_OF_THE_NINE", GAMEOPTION_NO_GUILD_OF_THE_NINE)
 
 		.value("NUM_GAMEOPTION_TYPES", NUM_GAMEOPTION_TYPES)
 		;

@@ -163,6 +163,13 @@
 			<bVisible>1</bVisible>
 		</GameOptionInfo>
 		<GameOptionInfo>
+			<Type>GAMEOPTION_NO_GUILD_OF_THE_NINE</Type>
+			<Description>TXT_KEY_GAME_OPTION_NO_GUILD_OF_THE_NINE</Description>
+			<Help>TXT_KEY_GAME_OPTION_NO_GUILD_OF_THE_NINE_HELP</Help>
+			<bDefault>0</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
+		<GameOptionInfo>
 			<Type>GAMEOPTION_DIFFICULTY_CLASSIFIER</Type>
 			<Description>TXT_KEY_GAME_OPTION_DIFFICULTY_CLASSIFIER</Description>
 			<Help>TXT_KEY_GAME_OPTION_CLASSIFIER_HELP</Help>
