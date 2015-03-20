@@ -260,6 +260,29 @@ class CvGameUtils:
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_DUIN):
 				return True
 
+		iMax = 1 + 0.333 * CyGame().getGlobalCounter() * pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_PLANAR_GATE'))
+
+		if iMax > 1:
+			iUnitClass = UnitClassTypes.NO_UNITCLASS
+			if eUnit == gc.getInfoTypeForString('UNIT_REVELERS'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_REVELERS')
+			if eUnit == gc.getInfoTypeForString('UNIT_MOBIUS_WITCH'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_MOBIUS_WITCH')
+			if eUnit == gc.getInfoTypeForString('UNIT_CHAOS_MARAUDER'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_CHAOS_MARAUDER')
+			if eUnit == gc.getInfoTypeForString('UNIT_MANTICORE'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_MANTICORE')
+				iMax /= 2
+			if eUnit == gc.getInfoTypeForString('UNIT_SUCCUBUS'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_SUCCUBUS')
+			if eUnit == gc.getInfoTypeForString('UNIT_MINOTAUR'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_MINOTAUR')
+				iMax /= 2
+			if eUnit == gc.getInfoTypeForString('UNIT_TAR_DEMON'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_TAR_DEMON')
+			if iUnitClass != UnitClassTypes.NO_UNITCLASS and pPlayer.getUnitClassCount(iUnitClass) >= iMax:
+				return True
+
 		if CyGame().getWBMapScript():
 			bBlock = sf.cannotTrain(pCity, eUnit, bContinue, bTestVisible, bIgnoreCost, bIgnoreUpgrades)
 			if bBlock:

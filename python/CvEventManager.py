@@ -2675,12 +2675,11 @@ class CvEventManager:
 
 		if pCity.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_PLANAR_GATE')) > 0:
 			## Scaled planar gate probability.
-			iMax = 1 + 0.333 * CyGame().getGlobalCounter()
 			iMult = 1 + 0.06 * CyGame().getGlobalCounter()
 
 			if CyGame().getSorenRandNum(10000, "Planar Gate") < gc.getDefineINT('PLANAR_GATE_CHANCE') * iMult:
 				listUnits = []
-				iMax = iMax * pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_PLANAR_GATE'))
+				iMax = 1 + 0.333 * CyGame().getGlobalCounter() * pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_PLANAR_GATE'))
 				if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_GAMBLING_HOUSE')) > 0:
 					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_REVELERS')) < iMax:
 						listUnits.append(gc.getInfoTypeForString('UNIT_REVELERS'))
@@ -2691,13 +2690,13 @@ class CvEventManager:
 					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_CHAOS_MARAUDER')) < iMax:
 						listUnits.append(gc.getInfoTypeForString('UNIT_CHAOS_MARAUDER'))
 				if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_GROVE')) > 0:
-					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_MANTICORE')) < iMax:
+					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_MANTICORE')) < (iMax / 2):
 						listUnits.append(gc.getInfoTypeForString('UNIT_MANTICORE'))
 				if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_PUBLIC_BATHS')) > 0:
 					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_SUCCUBUS')) < iMax:
 						listUnits.append(gc.getInfoTypeForString('UNIT_SUCCUBUS'))
 				if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_OBSIDIAN_GATE')) > 0:
-					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_MINOTAUR')) < iMax:
+					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_MINOTAUR')) < (iMax / 2):
 						listUnits.append(gc.getInfoTypeForString('UNIT_MINOTAUR'))
 				if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_TEMPLE_OF_THE_VEIL')) > 0:
 					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_TAR_DEMON')) < iMax:
