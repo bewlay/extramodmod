@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_GUILD_OF_THE_NINE</Tag>
+		<English>No Guild of the Nine</English>
+		<French>No Guild of the Nine</French>
+		<German>No Guild of the Nine</German>
+		<Italian>No Guild of the Nine</Italian>
+		<Spanish>No Guild of the Nine</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_GUILD_OF_THE_NINE_HELP</Tag>
+		<English>Disables the Guild of the Nine</English>
+		<French>Disables the Guild of the Nine</French>
+		<German>Disables the Guild of the Nine</German>
+		<Italian>Disables the Guild of the Nine</Italian>
+		<Spanish>Disables the Guild of the Nine</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_RANDOM_TRAITS</Tag>
+		<English>Random Traits</English>
+		<French>Random Traits</French>
+		<German>Random Traits</German>
+		<Italian>Random Traits</Italian>
+		<Spanish>Random Traits</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_RANDOM_TRAITS</Tag>
+		<English>All leaders start with two or three traits, chosen randomly</English>
+		<French>All leaders start with two or three traits, chosen randomly</French>
+		<German>All leaders start with two or three traits, chosen randomly</German>
+		<Italian>All leaders start with two or three traits, chosen randomly</Italian>
+		<Spanish>All leaders start with two or three traits, chosen randomly</Spanish>
+	</TEXT>
+</Civ4GameText>

@@ -189,6 +189,39 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_abOptions);
 }
 
+void CvPlayer::addRandomTrait()
+{
+	// Ugly, hardcoded code. I could create XML tags in the future, but for now we'll keep it like this.
+	std::vector<int> lNormalTraits;
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_PHILOSOPHICAL"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_AGGRESSIVE"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_SPIRITUAL"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_EXPANSIVE"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_INDUSTRIOUS"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_CREATIVE"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_FINANCIAL"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_ORGANIZED"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_CHARISMATIC"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_ARCANE"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_RAIDERS"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_SUMMONER"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_AGRARIAN"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_SAVAGE"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_SLAVER"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_SAGE"));
+	lNormalTraits.push_back(GC.getInfoTypeForString("TRAIT_IMPERIALISTIC"));
+
+	bool bAddedTrait = false;
+	while (!bAddedTrait)
+	{
+		int iTraitIndex = GC.getGameINLINE().getSorenRandNum(lNormalTraits.size(), "Choosing random trait.");
+		if (!hasTrait((TraitTypes)lNormalTraits[iTraitIndex]))
+		{
+			setHasTrait((TraitTypes)lNormalTraits[iTraitIndex], true);
+			bAddedTrait = true;
+		}
+	}
+}
 
 void CvPlayer::init(PlayerTypes eID)
 {
@@ -284,6 +317,47 @@ void CvPlayer::init(PlayerTypes eID)
 			setCommercePercent(((CommerceTypes)iI), GC.getCommerceInfo((CommerceTypes)iI).getInitialPercent());
 		}
 
+		// Random traits START
+		if (GC.getGameINLINE().isOption(GAMEOPTION_RANDOM_TRAITS))
+		{
+			int iNumNormalTraits = 2;
+			bool bInsane = false;
+			if (GC.getGameINLINE().getSorenRandNum(100, "Chance of being an insane leader") < 3)
+			{
+				bInsane = true;
+				iNumNormalTraits = 3;
+			}
+
+			int iChosenTraits = 0;
+			while (iChosenTraits < iNumNormalTraits)
+			{
+				addRandomTrait();
+				iChosenTraits++;
+			}
+
+			if (bInsane)
+			{
+				setHasTrait((TraitTypes)GC.getInfoTypeForString("TRAIT_INSANE"), true);
+			}
+			else
+			{
+				if (GC.getGameINLINE().getSorenRandNum(100, "Chance of having a third, minor trait") < 25)
+				{
+					std::vector<int> lThirdTraits;
+					lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_MAGIC_RESISTANT"));
+					lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_BARBARIAN"));
+					lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_DEFENDER"));
+					lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_INGENUITY"));
+					lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_TOLERANT"));
+
+					int iTraitIndex = GC.getGameINLINE().getSorenRandNum(lThirdTraits.size(), "Choosing random third trait.");
+					setHasTrait((TraitTypes)lThirdTraits[iTraitIndex], true);
+				}
+			}
+		}
+		else
+		{
+		// Random traits END
 		FAssertMsg((GC.getNumTraitInfos() > 0), "GC.getNumTraitInfos() is less than or equal to zero but is expected to be larger than zero in CvPlayer::init");
 		for (iI = 0; iI < GC.getNumTraitInfos(); iI++)
 		{
@@ -328,14 +402,14 @@ void CvPlayer::init(PlayerTypes eID)
 //					}
 //				}
 //			}
-            if (GC.getLeaderHeadInfo(getLeaderType()).hasTrait((TraitTypes)iI))
-            {
-                setHasTrait((TraitTypes)iI, true);
-            }
+
+		if (GC.getLeaderHeadInfo(getLeaderType()).hasTrait((TraitTypes)iI))
+		{
+			setHasTrait((TraitTypes)iI, true);
+		}
+		}
 //FfH: End Modify
-
-        }
-
+	}
 //FfH: Added by Kael 08/14/2007
 	/********************************************************************************/
 	/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */

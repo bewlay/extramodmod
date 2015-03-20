@@ -395,6 +395,13 @@
 			<bVisible>0</bVisible>
 		</GameOptionInfo>
 		<GameOptionInfo>
+			<Type>GAMEOPTION_RANDOM_TRAITS</Type>
+			<Description>TXT_KEY_GAME_OPTION_RANDOM_TRAITS</Description>
+			<Help>TXT_KEY_GAME_OPTION_RANDOM_TRAITS</Help>
+			<bDefault>0</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
+		<GameOptionInfo>
 			<Type>GAMEOPTION_TECHNOLOGY_CLASSIFIER</Type>
 			<Description>TXT_KEY_GAME_OPTION_TECHNOLOGY_CLASSIFIER</Description>
 			<Help>TXT_KEY_GAME_OPTION_CLASSIFIER_HELP</Help>
