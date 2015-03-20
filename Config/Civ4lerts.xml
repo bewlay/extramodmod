@@ -19,7 +19,7 @@
 		<section id="Civ4lerts">
 			<!-- Move this outside of INI once Mod objects hold options -->
 			<option id="Enabled" key="Enabled" 
-					type="boolean" default="False" 
+					type="boolean" default="True" 
 					get="isEnabled" set="setEnabled" 
 					label="Enable Civ4lerts" 
 					help="When checked, messages are displayed to alert you to various pending and existing conditions using Dr. Elmer Jiggle's Civ4lerts mod."/>
@@ -84,7 +84,7 @@
 					label="Gold" 
 					help="."/>
 			<list   id="GoldTradeThresh" key="Gold Trade Threshold" 
-					type="int" default="50" listType="int" 
+					type="int" default="100" listType="int" 
 					values="25, 50, 100, 200, 300, 500, 1000" 
 					get="getGoldTradeThreshold" set="setGoldTradeThreshold" 
 					label="Threshold" 
@@ -95,7 +95,7 @@
 					label="Gold Per Turn" 
 					help="."/>
 			<list   id="GoldPerTurnTradeThresh" key="Gold Per Turn Threshold" 
-					type="int" default="5" listType="int" 
+					type="int" default="10" listType="int" 
 					values="1, 2, 3, 5, 10, 15, 20, 25, 30, 50, 100" 
 					get="getGoldPerTurnTradeThreshold" set="setGoldPerTurnTradeThreshold" 
 					label="Threshold" 
