@@ -646,6 +646,7 @@
             </UnitCombats>
             <Button>Art/Interface/Buttons/Promotions/BountyHunter.dds</Button>
             <iGoldFromCombat>2</iGoldFromCombat>
+			<iExplorationResultBonus>5</iExplorationResultBonus>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_BRONZE_WEAPONS</Type>
@@ -1557,6 +1558,7 @@
             <bImmuneToFear>1</bImmuneToFear>
             <iAIWeight>50</iAIWeight>
             <iMinLevel>-1</iMinLevel>
+			<iExplorationResultBonus>5</iExplorationResultBonus>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_COVER</Type>
@@ -5459,6 +5461,7 @@
             <iCombatPercentDefense>10</iCombatPercentDefense>
             <iExpireChance>10</iExpireChance>
             <iMinLevel>-1</iMinLevel>
+			<iExplorationResultBonus>5</iExplorationResultBonus>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_MUTATED</Type>
@@ -7536,6 +7539,7 @@
             <iFreeXPFromCombat>1</iFreeXPFromCombat>
             <iMinLevel>-1</iMinLevel>
             <iResistMagic>10</iResistMagic>
+			<iExplorationResultBonus>10</iExplorationResultBonus>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_VAMPIRE</Type>
