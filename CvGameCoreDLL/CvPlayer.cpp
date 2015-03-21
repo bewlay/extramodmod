@@ -189,6 +189,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_abOptions);
 }
 
+// Player traits game options START
 void CvPlayer::addRandomTrait()
 {
 	// Ugly, hardcoded code. I could create XML tags in the future, but for now we'll keep it like this.
@@ -222,6 +223,78 @@ void CvPlayer::addRandomTrait()
 		}
 	}
 }
+
+void CvPlayer::setLeaderTraits()
+{
+	int iInsane = GC.getInfoTypeForString("TRAIT_INSANE");
+	if (GC.getGameINLINE().isOption(GAMEOPTION_RANDOM_TRAITS) ||
+		(GC.getGameINLINE().isOption(GAMEOPTION_INSANE_LEADERS) &&
+		!GC.getLeaderHeadInfo(getLeaderType()).hasTrait((TraitTypes) iInsane)))
+	{
+		int iNumNormalTraits = 2;
+		bool bInsane = false;
+		if ((GC.getGameINLINE().isOption(GAMEOPTION_INSANE_LEADERS) &&
+			!GC.getLeaderHeadInfo(getLeaderType()).hasTrait((TraitTypes) iInsane)) ||
+			GC.getGameINLINE().getSorenRandNum(100, "Chance of being an insane leader") < 3)
+		{
+			bInsane = true;
+			iNumNormalTraits = 3;
+		}
+
+		int iChosenTraits = 0;
+		while (iChosenTraits < iNumNormalTraits)
+		{
+			addRandomTrait();
+			iChosenTraits++;
+		}
+
+		if (bInsane)
+		{
+			setHasTrait((TraitTypes) iInsane, true);
+		}
+		else
+		{
+			if (GC.getGameINLINE().getSorenRandNum(100, "Chance of having a third, minor trait") < 25)
+			{
+				std::vector<int> lThirdTraits;
+				lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_MAGIC_RESISTANT"));
+				lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_BARBARIAN"));
+				lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_DEFENDER"));
+				lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_INGENUITY"));
+				lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_TOLERANT"));
+
+				int iTraitIndex = GC.getGameINLINE().getSorenRandNum(lThirdTraits.size(), "Choosing random third trait.");
+				setHasTrait((TraitTypes)lThirdTraits[iTraitIndex], true);
+			}
+		}
+	}
+	else if (GC.getGameINLINE().isOption(GAMEOPTION_INSANE_LEADERS) &&
+		GC.getLeaderHeadInfo(getLeaderType()).hasTrait((TraitTypes) iInsane))
+	{
+		// Insane leaders are sane with this game option. Who would have suspected this?
+		FAssertMsg((GC.getNumTraitInfos() > 0), "GC.getNumTraitInfos() is less than or equal to zero but is expected to be larger than zero in CvPlayer::init");
+		for (int iI = 0; iI < GC.getNumTraitInfos(); iI++)
+		{
+			if (GC.getLeaderHeadInfo(getLeaderType()).hasTrait((TraitTypes)iI) && iInsane != iI)
+			{
+				setHasTrait((TraitTypes)iI, true);
+			}
+		}
+	}
+	else
+	{
+		// Default vanilla code for assigning traits.
+		FAssertMsg((GC.getNumTraitInfos() > 0), "GC.getNumTraitInfos() is less than or equal to zero but is expected to be larger than zero in CvPlayer::init");
+		for (int iI = 0; iI < GC.getNumTraitInfos(); iI++)
+		{
+			if (GC.getLeaderHeadInfo(getLeaderType()).hasTrait((TraitTypes)iI))
+			{
+				setHasTrait((TraitTypes)iI, true);
+			}
+		}
+	}
+}
+// Player traits game options END
 
 void CvPlayer::init(PlayerTypes eID)
 {
@@ -317,100 +390,11 @@ void CvPlayer::init(PlayerTypes eID)
 			setCommercePercent(((CommerceTypes)iI), GC.getCommerceInfo((CommerceTypes)iI).getInitialPercent());
 		}
 
-		// Random traits START
-		if (GC.getGameINLINE().isOption(GAMEOPTION_RANDOM_TRAITS))
-		{
-			int iNumNormalTraits = 2;
-			bool bInsane = false;
-			if (GC.getGameINLINE().getSorenRandNum(100, "Chance of being an insane leader") < 3)
-			{
-				bInsane = true;
-				iNumNormalTraits = 3;
-			}
+// Player traits game options START
+		setLeaderTraits();
+// Player traits game options END
 
-			int iChosenTraits = 0;
-			while (iChosenTraits < iNumNormalTraits)
-			{
-				addRandomTrait();
-				iChosenTraits++;
-			}
-
-			if (bInsane)
-			{
-				setHasTrait((TraitTypes)GC.getInfoTypeForString("TRAIT_INSANE"), true);
-			}
-			else
-			{
-				if (GC.getGameINLINE().getSorenRandNum(100, "Chance of having a third, minor trait") < 25)
-				{
-					std::vector<int> lThirdTraits;
-					lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_MAGIC_RESISTANT"));
-					lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_BARBARIAN"));
-					lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_DEFENDER"));
-					lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_INGENUITY"));
-					lThirdTraits.push_back(GC.getInfoTypeForString("TRAIT_TOLERANT"));
-
-					int iTraitIndex = GC.getGameINLINE().getSorenRandNum(lThirdTraits.size(), "Choosing random third trait.");
-					setHasTrait((TraitTypes)lThirdTraits[iTraitIndex], true);
-				}
-			}
-		}
-		else
-		{
-		// Random traits END
-		FAssertMsg((GC.getNumTraitInfos() > 0), "GC.getNumTraitInfos() is less than or equal to zero but is expected to be larger than zero in CvPlayer::init");
-		for (iI = 0; iI < GC.getNumTraitInfos(); iI++)
-		{
-
-//FfH: Modified by Kael 0/06/2007
-//			if (hasTrait((TraitTypes)iI))
-//			{
-//				changeExtraHealth(GC.getTraitInfo((TraitTypes)iI).getHealth());
-//				changeExtraHappiness(GC.getTraitInfo((TraitTypes)iI).getHappiness());
-//
-//				for (iJ = 0; iJ < GC.getNumBuildingInfos(); iJ++)
-//				{
-//					changeExtraBuildingHappiness((BuildingTypes)iJ, GC.getBuildingInfo((BuildingTypes)iJ).getHappinessTraits(iI));
-//				}
-//
-//				changeUpkeepModifier(GC.getTraitInfo((TraitTypes)iI).getUpkeepModifier());
-//				changeLevelExperienceModifier(GC.getTraitInfo((TraitTypes)iI).getLevelExperienceModifier());
-//				changeGreatPeopleRateModifier(GC.getTraitInfo((TraitTypes)iI).getGreatPeopleRateModifier());
-//				changeGreatGeneralRateModifier(GC.getTraitInfo((TraitTypes)iI).getGreatGeneralRateModifier());
-//				changeDomesticGreatGeneralRateModifier(GC.getTraitInfo((TraitTypes)iI).getDomesticGreatGeneralRateModifier());
-//
-//				changeMaxGlobalBuildingProductionModifier(GC.getTraitInfo((TraitTypes)iI).getMaxGlobalBuildingProductionModifier());
-//				changeMaxTeamBuildingProductionModifier(GC.getTraitInfo((TraitTypes)iI).getMaxTeamBuildingProductionModifier());
-//				changeMaxPlayerBuildingProductionModifier(GC.getTraitInfo((TraitTypes)iI).getMaxPlayerBuildingProductionModifier());
-//
-//				for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
-//				{
-//					changeTradeYieldModifier(((YieldTypes)iJ), GC.getTraitInfo((TraitTypes)iI).getTradeYieldModifier(iJ));
-//				}
-//
-//				for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
-//				{
-//					changeFreeCityCommerce(((CommerceTypes)iJ), GC.getTraitInfo((TraitTypes)iI).getCommerceChange(iJ));
-//					changeCommerceRateModifier(((CommerceTypes)iJ), GC.getTraitInfo((TraitTypes)iI).getCommerceModifier(iJ));
-//				}
-//
-//				for (iJ = 0; iJ < GC.getNumCivicOptionInfos(); iJ++)
-//				{
-//					if (GC.getCivicOptionInfo((CivicOptionTypes) iJ).getTraitNoUpkeep(iI))
-//					{
-//						changeNoCivicUpkeepCount(((CivicOptionTypes)iJ), 1);
-//					}
-//				}
-//			}
-
-		if (GC.getLeaderHeadInfo(getLeaderType()).hasTrait((TraitTypes)iI))
-		{
-			setHasTrait((TraitTypes)iI, true);
-		}
-		}
-//FfH: End Modify
-	}
-//FfH: Added by Kael 08/14/2007
+//FfH: Added for FFH
 	/********************************************************************************/
 	/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
 	/********************************************************************************/
@@ -599,56 +583,9 @@ void CvPlayer::initInGame(PlayerTypes eID, bool bSetAlive)
 			setCommercePercent(((CommerceTypes)iI), GC.getCommerceInfo((CommerceTypes)iI).getInitialPercent());
 		}
 
-		FAssertMsg((GC.getNumTraitInfos() > 0), "GC.getNumTraitInfos() is less than or equal to zero but is expected to be larger than zero in CvPlayer::init");
-		for (iI = 0; iI < GC.getNumTraitInfos(); iI++)
-		{
-			/* Modified for FFH
-			if (hasTrait((TraitTypes)iI))
-			{
-				changeExtraHealth(GC.getTraitInfo((TraitTypes)iI).getHealth());
-				changeExtraHappiness(GC.getTraitInfo((TraitTypes)iI).getHappiness());
-
-				for (iJ = 0; iJ < GC.getNumBuildingInfos(); iJ++)
-				{
-					changeExtraBuildingHappiness((BuildingTypes)iJ, GC.getBuildingInfo((BuildingTypes)iJ).getHappinessTraits(iI));
-				}
-
-				changeUpkeepModifier(GC.getTraitInfo((TraitTypes)iI).getUpkeepModifier());
-				changeLevelExperienceModifier(GC.getTraitInfo((TraitTypes)iI).getLevelExperienceModifier());
-				changeGreatPeopleRateModifier(GC.getTraitInfo((TraitTypes)iI).getGreatPeopleRateModifier());
-				changeGreatGeneralRateModifier(GC.getTraitInfo((TraitTypes)iI).getGreatGeneralRateModifier());
-				changeDomesticGreatGeneralRateModifier(GC.getTraitInfo((TraitTypes)iI).getDomesticGreatGeneralRateModifier());
-
-				changeMaxGlobalBuildingProductionModifier(GC.getTraitInfo((TraitTypes)iI).getMaxGlobalBuildingProductionModifier());
-				changeMaxTeamBuildingProductionModifier(GC.getTraitInfo((TraitTypes)iI).getMaxTeamBuildingProductionModifier());
-				changeMaxPlayerBuildingProductionModifier(GC.getTraitInfo((TraitTypes)iI).getMaxPlayerBuildingProductionModifier());
-
-				for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
-				{
-					changeTradeYieldModifier(((YieldTypes)iJ), GC.getTraitInfo((TraitTypes)iI).getTradeYieldModifier(iJ));
-				}
-
-				for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
-				{
-					changeFreeCityCommerce(((CommerceTypes)iJ), GC.getTraitInfo((TraitTypes)iI).getCommerceChange(iJ));
-					changeCommerceRateModifier(((CommerceTypes)iJ), GC.getTraitInfo((TraitTypes)iI).getCommerceModifier(iJ));
-				}
-
-				for (iJ = 0; iJ < GC.getNumCivicOptionInfos(); iJ++)
-				{
-					if (GC.getCivicOptionInfo((CivicOptionTypes) iJ).getTraitNoUpkeep(iI))
-					{
-						changeNoCivicUpkeepCount(((CivicOptionTypes)iJ), 1);
-					}
-				}
-			}
-			*/
-
-			if (GC.getLeaderHeadInfo(getLeaderType()).hasTrait((TraitTypes)iI))
-            {
-                setHasTrait((TraitTypes)iI, true);
-            }
-		}
+// Player traits game options START
+		setLeaderTraits();
+// Player traits game options END
 
 //FfH: Added for FFH
 	/********************************************************************************/
