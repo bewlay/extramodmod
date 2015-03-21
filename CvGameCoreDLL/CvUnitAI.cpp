@@ -1526,7 +1526,7 @@ int CvUnitAI::AI_getBarbLeadership(int& iFollowers) const
 	// sorry goblins, you won't be leading any stacks of doom
 	iLeadership = std::min((baseCombatStr() * 2) + 1, iLeadership);
 	// undead don't lead large groups
-	if (!bHero & !isAlive())
+	if (!bHero && !isAlive())
 	{
 		iLeadership -= 1;
 		iLeadership = std::min(5 + (AI_getBirthmark3() % 2), iLeadership);
@@ -11048,18 +11048,16 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 	if ((eUnitAI == UNITAI_ATTACK) ||
 		(eUnitAI == UNITAI_COUNTER) ||
 		(eUnitAI == UNITAI_CITY_COUNTER) ||
-		  (eUnitAI == UNITAI_ATTACK_SEA) ||
-		  (eUnitAI == UNITAI_RESERVE_SEA) ||
-			(eUnitAI == UNITAI_ATTACK_SEA) ||
-			(eUnitAI == UNITAI_PARADROP) ||
-			(eUnitAI == UNITAI_PIRATE_SEA) ||
-			(eUnitAI == UNITAI_RESERVE_SEA) ||
-			(eUnitAI == UNITAI_ESCORT_SEA) ||
-			(eUnitAI == UNITAI_CARRIER_SEA) ||
-			(eUnitAI == UNITAI_ATTACK_AIR) ||
-			(eUnitAI == UNITAI_CARRIER_AIR) ||
-			isSummoner() ||
-			(eUnitAI == UNITAI_HERO))
+		(eUnitAI == UNITAI_ATTACK_SEA) ||
+		(eUnitAI == UNITAI_RESERVE_SEA) ||
+		(eUnitAI == UNITAI_PARADROP) ||
+		(eUnitAI == UNITAI_PIRATE_SEA) ||
+		(eUnitAI == UNITAI_ESCORT_SEA) ||
+		(eUnitAI == UNITAI_CARRIER_SEA) ||
+		(eUnitAI == UNITAI_ATTACK_AIR) ||
+		(eUnitAI == UNITAI_CARRIER_AIR) ||
+		isSummoner() ||
+		(eUnitAI == UNITAI_HERO))
 	{
 		iValue += (iTemp * 2);
 	}
@@ -17188,7 +17186,10 @@ bool CvUnitAI::AI_pillageAroundCity(CvCity* pTargetCity, int iBonusValueThreshol
 	pBestPlot = NULL;
 	pBestPillagePlot = NULL;
 
-	for( int iI = 0; iI < NUM_CITY_PLOTS; iI++ )
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	for( int iI = 0; iI < NUM_CITY_PLOTS; iI++ )
+	for (int iI = 0; iI < pTargetCity->getNumCityPlots(); iI++)
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		pLoopPlot = pTargetCity->getCityIndexPlot(iI);
 

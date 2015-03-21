@@ -924,9 +924,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bFoundedFirstCity = false;
 	m_bStrike = false;
 
-	// Puppet States
-	m_bPuppetState = false;
-	// End Puppet States
+	m_bPuppetState = false; // MNAI - Puppet States
 
 	// Sephi AI (New Functions Definition)
     m_eFavoriteReligion = NO_RELIGION;
@@ -2128,7 +2126,7 @@ void CvPlayer::addFreeUnit(UnitTypes eUnit, UnitAITypes eUnitAI)
 			pStartingPlot = getCapitalCity()->plot();
 		}
 	}
-	// MNAI End
+	// MNAI - End Puppet States
 
 	if (pStartingPlot != NULL)
 	{
@@ -2142,16 +2140,20 @@ void CvPlayer::addFreeUnit(UnitTypes eUnit, UnitAITypes eUnitAI)
 			{
 				if (!(GC.getUnitInfo(eUnit).isFound()))
 				{
-
-//FfH: Modified by Kael 09/16/2008
-//					iRandOffset = GC.getGameINLINE().getSorenRandNum(NUM_CITY_PLOTS, "Place Units (Player)");
-//					for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
-					iRandOffset = GC.getGameINLINE().getSorenRandNum(21, "Place Units (Player)");
-					for (iI = 0; iI < 21; iI++)
-//FfH: End Modify
-
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+/*
+					iRandOffset = GC.getGameINLINE().getSorenRandNum(NUM_CITY_PLOTS, "Place Units (Player)");
+					for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
 					{
 						pLoopPlot = plotCity(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), ((iI + iRandOffset) % NUM_CITY_PLOTS));
+*/
+					const int iNextCityPlots = ::calculateNumCityPlots(getNextCityRadius());
+
+					iRandOffset = GC.getGameINLINE().getSorenRandNum(iNextCityPlots, "Place Units (Player)");
+					for (iI = 0; iI < iNextCityPlots; iI++)
+					{
+						pLoopPlot = plotCity(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), ((iI + iRandOffset) % iNextCityPlots));
+//<<<<Unofficial Bug Fix: End Modify
 
 						if (pLoopPlot != NULL)
 						{
@@ -2212,10 +2214,10 @@ int CvPlayer::startingPlotRange() const
 
 	iRange *= (GC.getMapINLINE().getLandPlots() / (GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities() * GC.getGameINLINE().countCivPlayersAlive()));
 
-//FfH: Modified by Kael 11/18/2007
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
 //	iRange /= NUM_CITY_PLOTS;
-	iRange /= 21;
-//FfH: End Modify
+	iRange /= ::calculateNumCityPlots(getNextCityRadius());
+//<<<<Unofficial Bug Fix: End Modify
 
 	iRange += std::min(((GC.getMapINLINE().getNumAreas() + 1) / 2), GC.getGameINLINE().countCivPlayersAlive());
 
@@ -2324,8 +2326,16 @@ int CvPlayer::findStartingArea() const
 			int iTileValue = ((pLoopArea->calculateTotalBestNatureYield() + (pLoopArea->countCoastalLand() * 2) + pLoopArea->getNumRiverEdges() + (pLoopArea->getNumTiles())) + 1);
 			iValue = iTileValue / iNumPlayersOnArea;
 
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+/*
 			iValue *= std::min(NUM_CITY_PLOTS + 1, pLoopArea->getNumTiles() + 1);
 			iValue /= (NUM_CITY_PLOTS + 1);
+*/
+			const int iNextCityPlots = ::calculateNumCityPlots(getNextCityRadius());
+
+			iValue *= std::min(iNextCityPlots + 1, pLoopArea->getNumTiles() + 1);
+			iValue /= (iNextCityPlots + 1);
+//<<<<Unofficial Bug Fix: End Modify
 
 			if (iNumPlayersOnArea <= 2)
 			{
@@ -2495,9 +2505,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	int* paiBuildingOriginalTime;
 	CvWString szBuffer;
 	CvWString szName;
-	/*** PUPPET STATES 04/21/08 by DPII ***/
-	CvWString szTempBuffer;
-	/*************************************/
+	CvWString szTempBuffer; // MNAI - Puppet States
 	bool abEverOwned[MAX_PLAYERS];
 	int aiCulture[MAX_PLAYERS];
 	PlayerTypes eOldOwner;
@@ -2695,7 +2703,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	int iCiv = pOldCity->getTrueCivilizationType();
 	if (iCiv == GC.getDefineINT("BARBARIAN_CIVILIZATION"))
 	{
-	    iCiv = NO_CIVILIZATION;
+		iCiv = NO_CIVILIZATION;
 	}
 //FfH: End Add
 
@@ -2777,10 +2785,10 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	bRecapture = ((eHighestCulturePlayer != NO_PLAYER) ? (GET_PLAYER(eHighestCulturePlayer).getTeam() == getTeam()) : false);
 
 //FfH: Added by Kael 09/21/2008
-    if (GET_PLAYER(pOldCity->getOwner()).getNumCities() == 1)
-    {
-        changePlayersKilled(1);
-    }
+	if (GET_PLAYER(pOldCity->getOwner()).getNumCities() == 1)
+	{
+		changePlayersKilled(1);
+	}
 //FfH: End Add
 
 	pOldCity->kill(false);
@@ -2815,10 +2823,10 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	pNewCity->changeDefenseDamage(iDamage);
 
 //FfH: Added by Kael 07/05/2008
-    if (iCiv != NO_CIVILIZATION)
-    {
-        pNewCity->setCivilizationType(iCiv);
-    }
+	if (iCiv != NO_CIVILIZATION)
+	{
+		pNewCity->setCivilizationType(iCiv);
+	}
 //FfH: End Add
 
 /************************************************************************************************/
@@ -4371,7 +4379,7 @@ void CvPlayer::doTurn()
 			findNewCapital();
 		}
 	}
-	// MNAI End
+	// MNAI - End Puppet States
 
 	GC.getGameINLINE().verifyDeals();
 	AI_doTurnPre();
@@ -5976,7 +5984,7 @@ bool CvPlayer::canTradeWith(PlayerTypes eWhoTo) const
 	{
 		return true;
 	}
-// MNAI End
+// MNAI - End Puppet States
 
 	return false;
 }
@@ -6075,7 +6083,7 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 		{
 			return false;
 		}
-		// MNAI End
+		// MNAI - End Puppet States
 
 		if (canTradeNetworkWith(eWhoTo))
 		{
@@ -19837,6 +19845,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 
 	// tech bug fix
 	pStream->Read(&m_bChoosingFreeTech);
+	pStream->Read(&m_bPuppetState); // MNAI - Puppet States
 
 /*************************************************************************************************/
 /**	CivCounter			               		10/27/09    						Valkrionn		**/
@@ -19847,9 +19856,6 @@ void CvPlayer::read(FDataStreamBase* pStream)
 /*************************************************************************************************/
 /**	CivCounter								END													**/
 /*************************************************************************************************/
-	// Puppet States
-	pStream->Read(&m_bPuppetState);
-	// End Puppet States
 
 	// Sephi AI (New Functions Definition)
     pStream->Read((int*)&m_eFavoriteReligion);
@@ -20440,6 +20446,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	// Tech bug fix
 	pStream->Write(m_bChoosingFreeTech);
 
+	pStream->Write(m_bPuppetState); // MNAI - Puppet States
 /*************************************************************************************************/
 /**	CivCounter			               		10/27/09    						Valkrionn		**/
 /**										Stores Spawn Information								**/
@@ -20450,9 +20457,6 @@ void CvPlayer::write(FDataStreamBase* pStream)
 /**	CivCounter								END													**/
 /*************************************************************************************************/
 
-	// Puppet States
-	pStream->Write(m_bPuppetState);
-	// End Puppet States
 
 	// Sephi AI (New Functions Definition) Sephi
     pStream->Write(m_eFavoriteReligion);
@@ -21210,9 +21214,10 @@ EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger,
 		{
 			if (bPickPlot)
 			{
-				// ALN FfHBugFix NextLine...
-				// for (int iPlot = 0; iPlot < NUM_CITY_PLOTS; ++iPlot)
-				for (int iPlot = 0; iPlot < pCity->getNumCityPlots(); ++iPlot)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//				for (int iPlot = 0; iPlot < NUM_CITY_PLOTS; ++iPlot)
+				for (int iPlot = 0; iPlot < ::calculateNumCityPlots(getNextCityRadius()); ++iPlot)
+//<<<<Unofficial Bug Fix: End Modify
 				{
 					if (CITY_HOME_PLOT != iPlot)
 					{
@@ -24352,8 +24357,8 @@ PlayerTypes CvPlayer::initNewEmpire(LeaderHeadTypes eNewLeader, CivilizationType
 }
 //<<<<Unofficial Bug Fix: End Add
 
-// PUPPET STATES 07/15/08 by DPII
-// returns a player number for the new player
+// MNAI - Puppet States
+//returns a player number for the new player
 PlayerTypes CvPlayer::getPuppetPlayer() const
 {
     PlayerTypes eNewPlayer = NO_PLAYER;
@@ -24830,8 +24835,8 @@ PlayerTypes CvPlayer::findPuppetPlayer(PlayerTypes eParent) const
     }
     return NO_PLAYER;
 }
+// MNAI - End Puppet States
 
-/************************************************************************/
 /************************************************************************************************/
 /* REVOLUTION_MOD                         11/15/08                                jdog5000      */
 /*                                                                                              */
@@ -27126,7 +27131,10 @@ void CvPlayer::getReligionLayerColors(ReligionTypes eSelectedReligion, std::vect
 						}
 
 						// loop through the city's plots
-						for (int iJ = 0; iJ < NUM_CITY_PLOTS; iJ++)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//						for (int iJ = 0; iJ < NUM_CITY_PLOTS; iJ++)
+						for (int iJ = 0; iJ < ::calculateNumCityPlots(getNextCityRadius()); iJ++)
+//<<<<Unofficial Bug Fix: End Modify
 						{
 							CvPlot* pLoopPlot = plotCity(pLoopCity->getX(), pLoopCity->getY(), iJ);
 							if (pLoopPlot != NULL)
@@ -27759,7 +27767,7 @@ void CvPlayer::setGreatPeopleThresholdModifier(int iNewValue)
 }
 //FfH: End Add
 
-// Puppet State functions (added by Tholal)
+// MNAI - Puppet States
 bool CvPlayer::isPuppetState() const
 {
 	return m_bPuppetState;
@@ -27769,7 +27777,7 @@ void CvPlayer::setPuppetState(bool newvalue)
 {
     m_bPuppetState = newvalue;
 }
-// End Puppet State Functions
+// MNAI - End Puppet States
 
 /*************************************************************************************************/
 /** Sephi AI (Lanun Pirate Coves) (merged from Skyre Mod)                                       **/
@@ -27860,6 +27868,37 @@ void CvPlayer::AI_doTowerMastery()
 	return;
 }
 // End Sephi AI
+
+//>>>>Unofficial Bug Fix: Added by Denev 2010/04/04
+bool CvPlayer::isRegularCityMaxedOut() const
+{
+	if (getMaxCities() != -1)
+	{
+		if (getNumCities() - getNumSettlements() >= getMaxCities())
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+int CvPlayer::getNextCityRadius() const
+{
+	int iNextCityRadius = CITY_PLOTS_DEFAULT_RADIUS;
+
+	if (isSprawling())
+	{
+		iNextCityRadius++;
+	}
+
+	if (isRegularCityMaxedOut())
+	{
+		iNextCityRadius = 1;
+	}
+
+	return iNextCityRadius;
+}
 
 //>>>>Unofficial Bug Fix: Added by Denev 2009/09/29
 //*** Assimilated city produces a unit with original civilization artstyle.

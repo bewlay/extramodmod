@@ -1963,7 +1963,10 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 				iRazeValue -= pCity->calculateTeamCulturePercent(getTeam());
 
 				CvPlot* pLoopPlot = NULL;
-				for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//				for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+				for (iI = 0; iI < ::calculateNumCityPlots(getNextCityRadius()); iI++)
+//<<<<Unofficial Bug Fix: End Modify
 				{
 					pLoopPlot = plotCity(pCity->getX_INLINE(), pCity->getY_INLINE(), iI);
 
@@ -2501,30 +2504,16 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 	int iSpecialProduction = 0;
 	int iSpecialCommerce = 0;
 
-/*************************************************************************************************/
-/**	BETTER AI (Better City Placement) Sephi                                             		**/
-/**	adjust for Kuriotates																		**/
-/*************************************************************************************************/
-    int iNumCityPlots = 21;
-
 	bool bSprawlingExpand = false;
-
     if (isSprawling())
     {
-        if (getNumCities() < getMaxCities())
+        if (!isRegularCityMaxedOut())
         {
-            iNumCityPlots = 37;
 			bSprawlingExpand = true;
-        }
-        else
-        {
-            iNumCityPlots = 9;
-        }
+		}
     }
-/*************************************************************************************************/
-/**	END	                                        												**/
-/*************************************************************************************************/
 
+	int iNumCityPlots = ::calculateNumCityPlots(getNextCityRadius());
 	bool bNeutralTerritory = true;
 	bool bPirate = isPirate();
 
@@ -2603,7 +2592,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 						CvPlot* pCitySitePlot = AI_getCitySite(iJ);
 						if (pCitySitePlot != pPlot)
 						{
-							if (plotDistance(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), pCitySitePlot->getX_INLINE(), pCitySitePlot->getY_INLINE()) <= CITY_PLOTS_RADIUS)
+						if (plotDistance(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), pCitySitePlot->getX_INLINE(), pCitySitePlot->getY_INLINE()) <= getNextCityRadius())
 							{
 								//Plot is inside the radius of a city site
 								abCitySiteRadius[iI] = true;
@@ -4010,8 +3999,10 @@ int CvPlayerAI::AI_targetCityValue(CvCity* pCity, bool bRandomize, bool bIgnoreA
 		iValue += std::min( 8, (AI_adjacentPotentialAttackers(pCity->plot()) + 2)/3 );
 	}
 
-	//for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
-	for (iI = 0; iI < iNumCityPlots; iI++)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//	for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+	for (iI = 0; iI < ::calculateNumCityPlots(getNextCityRadius()); iI++)
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		pLoopPlot = plotCity(pCity->getX_INLINE(), pCity->getY_INLINE(), iI);
 
@@ -4115,6 +4106,7 @@ int CvPlayerAI::AI_targetCityValue(CvCity* pCity, bool bRandomize, bool bIgnoreA
 		{
 		case ATTITUDE_FURIOUS:
 			iAttitudeMod = 6;
+			break;
 
 		case ATTITUDE_ANNOYED:
 			iAttitudeMod = 4;
@@ -6062,6 +6054,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		{
 			AlignmentTypes eAlignment = (AlignmentTypes)GC.getLeaderHeadInfo(getPersonalityType()).getAlignment();
 
+			/*
 			bool bHaveMyReligion = false;
 			bool bHaveMyHolyCity = false;
 			bool bHaveOurHolyCity = false;
@@ -6095,6 +6088,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					}
 				}
 			}
+			*/
 
 			bool bHasReligion = (getStateReligion() != NO_RELIGION);
 			ReligionTypes eFavorite = (ReligionTypes)GC.getLeaderHeadInfo(getLeaderType()).getFavoriteReligion();
@@ -13220,6 +13214,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 	case UNITAI_ENGINEER:
 	case UNITAI_INQUISITOR:
 	case UNITAI_FEASTING:
+	case UNITAI_SHADE:
 		iValue += 1500;
 		break;
 
@@ -17783,7 +17778,7 @@ void CvPlayerAI::AI_doCivics()
 			int iTestAnarchy = getCivicAnarchyLength(&aeBestCivic[0]);
 			// using 20 percent as a rough estimate of revolution cost, and 2 percent just for a bit of inertia.
 			// reduced threshold if we are already going to have a revolution.
-			int iThreshold = (iTestAnarchy > iAnarchyLength ? (!bFirstPass | bWantSwitch ? 14 : 24) : 2);
+			int iThreshold = (iTestAnarchy > iAnarchyLength ? (!bFirstPass || bWantSwitch ? 14 : 24) : 2);
 
 			if (100*iBestValue > (100+iThreshold)*aiCurrentValue[iI])
 			{
@@ -18291,7 +18286,10 @@ void CvPlayerAI::AI_doDiplo()
 													iCount = 0;
 													iPossibleCount = 0;
 
-													for (iJ = 0; iJ < NUM_CITY_PLOTS; iJ++)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//													for (iJ = 0; iJ < NUM_CITY_PLOTS; iJ++)
+													for (iJ = 0; iJ < ::calculateNumCityPlots(GET_PLAYER((PlayerTypes)iI).getNextCityRadius()); iJ++)
+//<<<<Unofficial Bug Fix: End Modify
 													{
 														pLoopPlot = plotCity(pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE(), iJ);
 
@@ -24172,7 +24170,10 @@ int CvPlayerAI::AI_countDeadlockedBonuses(CvPlot* pPlot) const
     {
         for (iDY = -(iRange); iDY <= iRange; iDY++)
         {
-            if (plotDistance(iDX, iDY, 0, 0) > CITY_PLOTS_RADIUS)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//			if (plotDistance(iDX, iDY, 0, 0) > CITY_PLOTS_RADIUS)
+			if (plotDistance(iDX, iDY, 0, 0) > getNextCityRadius())
+//<<<<Unofficial Bug Fix: End Modify
             {
                 pLoopPlot = plotXY(pPlot->getX_INLINE(), pPlot->getY_INLINE(), iDX, iDY);
 
@@ -24186,7 +24187,10 @@ int CvPlayerAI::AI_countDeadlockedBonuses(CvPlot* pPlot) const
                             bool bNeverFound = true;
                             //potentially blockable resource
                             //look for a city site within a city radius
-                            for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//							for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+							for (iI = 0; iI < ::calculateNumCityPlots(getNextCityRadius()); iI++)
+//<<<<Unofficial Bug Fix: End Modify
                             {
                                 pLoopPlot2 = plotCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), iI);
                                 if (pLoopPlot2 != NULL)
@@ -25729,7 +25733,10 @@ void CvPlayerAI::AI_doAdvancedStart(bool bNoExit)
 			{
 				if (pLoopPlot->getBonusType(getTeam()) != NO_BONUS)
 				{
-					AI_advancedStartRevealRadius(pLoopPlot, CITY_PLOTS_RADIUS);
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//					AI_advancedStartRevealRadius(pLoopPlot, CITY_PLOTS_RADIUS);
+					AI_advancedStartRevealRadius(pLoopPlot, getNextCityRadius());
+//<<<<Unofficial Bug Fix: End Modify
 				}
 				else
 				{
@@ -26106,12 +26113,10 @@ void CvPlayerAI::AI_updateCitySites(int iMinFoundValueThreshold, int iMaxSites) 
 				{
 					if (!AI_isPlotCitySite(pLoopPlot))
 					{
-
-//FfH: Modified by Kael 07/13/2008
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
 //						iValue *= std::min(NUM_CITY_PLOTS * 2, pLoopPlot->area()->getNumUnownedTiles());
-						iValue *= std::min(42, pLoopPlot->area()->getNumUnownedTiles());
-//FfH: End Modify
-
+						iValue *= std::min(::calculateNumCityPlots(getNextCityRadius()) * 2, pLoopPlot->area()->getNumUnownedTiles());
+//<<<<Unofficial Bug Fix: End Modify
 						if (iValue > iBestFoundValue)
 						{
 							iBestFoundValue = iValue;
@@ -26124,7 +26129,10 @@ void CvPlayerAI::AI_updateCitySites(int iMinFoundValueThreshold, int iMaxSites) 
 		if (pBestFoundPlot != NULL)
 		{
 			m_aiAICitySites.push_back(GC.getMapINLINE().plotNum(pBestFoundPlot->getX_INLINE(), pBestFoundPlot->getY_INLINE()));
-			AI_recalculateFoundValues(pBestFoundPlot->getX_INLINE(), pBestFoundPlot->getY_INLINE(), CITY_PLOTS_RADIUS, 2 * CITY_PLOTS_RADIUS);
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//			AI_recalculateFoundValues(pBestFoundPlot->getX_INLINE(), pBestFoundPlot->getY_INLINE(), CITY_PLOTS_RADIUS, 2 * CITY_PLOTS_RADIUS);
+			AI_recalculateFoundValues(pBestFoundPlot->getX_INLINE(), pBestFoundPlot->getY_INLINE(), getNextCityRadius(), 2 * getNextCityRadius());
+//<<<<Unofficial Bug Fix: End Modify
 		}
 		else
 		{
@@ -27445,7 +27453,7 @@ int CvPlayerAI::AI_getCivicShareAttitude(PlayerTypes ePlayer) const
 }
 //FfH: End Add
 
-// Puppet States
+// MNAI - Puppet States
 int CvPlayerAI::AI_getPuppetAttitude(PlayerTypes ePlayer) const
 {
 	CvPlayer& kPlayer = GET_PLAYER(ePlayer);
@@ -27463,7 +27471,7 @@ int CvPlayerAI::AI_getPuppetAttitude(PlayerTypes ePlayer) const
 
 	return 0;
 }
-// End Puppet States
+// MNAI - End Puppet States
 
 // Attitude cache
 void CvPlayerAI::AI_invalidateAttitudeCache(PlayerTypes ePlayer)

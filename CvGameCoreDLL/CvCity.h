@@ -1214,9 +1214,9 @@ public:
 /*************************************************************************************************/
 /*************************************************************************************************/
 
-	// Tholal AI - new function
+	// MNAI - new function
 	int getAltarLevel();
-	// End Tholal AI
+	// MNAI - end new functions
 
 	bool hasShrine(ReligionTypes eReligion);
 	void processVoteSourceBonus(VoteSourceTypes eVoteSource, bool bActive);
@@ -1229,7 +1229,7 @@ public:
 
 	// MNAI - Puppet States
 	bool canJoinPuppetState(PlayerTypes eOfPlayer) const;
-	// MNAI End
+	// MNAI - End Puppet States
 protected:
 
 	int m_iID;
