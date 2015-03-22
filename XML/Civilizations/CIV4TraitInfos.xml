@@ -1478,7 +1478,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>Art/Interface/Buttons/Promotions/Enraged.dds</Button>
+            <Button>Art/Interface/Buttons/Promotions/savage.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SLAVER</Type>

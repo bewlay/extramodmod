@@ -6194,7 +6194,7 @@
             <iEnemyHealChange>10</iEnemyHealChange>
             <iNeutralHealChange>10</iNeutralHealChange>
             <iFriendlyHealChange>10</iFriendlyHealChange>
-            <Button>Art/Interface/Buttons/Promotions/Enraged.dds</Button>
+            <Button>Art/Interface/Buttons/Promotions/savage.dds</Button>
             <bImmuneToFear>1</bImmuneToFear>
         </PromotionInfo>
         <PromotionInfo>
