@@ -467,6 +467,7 @@ class CustomFunctions:
 				if( not pPlot.isWater() ) :
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_JADE_TORC' ) )
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_ROD_OF_WINDS' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_HAUBERK_OF_ABJURATION' ) )
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_TIMOR_MASK' ) )
 					
 					if( bHasHunting and not bHasPoisons ) :

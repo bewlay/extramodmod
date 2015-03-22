@@ -8107,6 +8107,14 @@
             <Button>Art/Interface/Buttons/Units/Wolf_Pack.dds</Button>
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_HAUBERK_OF_ABJURATION</Type>
+            <Description>TXT_KEY_EQUIPMENT_HAUBERK_OF_ABJURATION</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Equipment/hauberkofabjuration.dds</Button>
+            <bEquipment>1</bEquipment>
+            <bImmuneToMagic>1</bImmuneToMagic>
+        </PromotionInfo>
 <!-- MORE EVENTS MOD STARTS -->		
 		<PromotionInfo>
             <Type>PROMOTION_PIKE_OF_TEARS</Type>

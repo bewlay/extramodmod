@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+	WILDERNESS 09/2013 lfgr / WildernessExploration
+-->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<!-- New equipment text -->
+	<TEXT>
+		<Tag>TXT_KEY_EQUIPMENT_HAUBERK_OF_ABJURATION</Tag>
+		<English>Hauberk of Abjuration</English>
+		<French>Hauberk of Abjuration</French>
+		<German>Hauberk of Abjuration</German>
+		<Italian>Hauberk of Abjuration</Italian>
+		<Spanish>Hauberk of Abjuration</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_ROD_OF_WINDS</Tag>
+		<English>Your unit discovers an ancient artifact, the Hauberk of Abjuration.</English>
+		<French>Your unit discovers an ancient artifact, the Rod of Winds.</French>
+		<German>Eure Einheit entdeckt ein uraltes Artefakt, das Zepter des Windes.</German>
+		<Italian>Your unit discovers an ancient artifact, the Rod of Winds.</Italian>
+		<Spanish>Tu unidad descubre un antiguo artefacto, el Báculo de los Vientos.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_ROD_OF_WINDS</Tag>
+		<English>Drop Hauberk of Abjuration</English>
+		<French>Drop Hauberk of Abjuration</French>
+		<German>Drop Hauberk of Abjuration</German>
+		<Italian>Drop Hauberk of Abjuration</Italian>
+		<Spanish>Drop Hauberk of Abjuration</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_ROD_OF_WINDS</Tag>
+		<English>Take Hauberk of Abjuration</English>
+		<French>Take Hauberk of Abjuration</French>
+		<German>Take Hauberk of Abjuration</German>
+		<Italian>Take Hauberk of Abjuration</Italian>
+		<Spanish>Take Hauberk of Abjuration</Spanish>
+	</TEXT>
+
+</Civ4GameText>
