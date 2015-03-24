@@ -562,13 +562,13 @@ class CvEventManager:
 							cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_ORTHUS_CREATION",()), str(gc.getUnitInfo(iUnit).getImage()))
 		
 	# lfgr barbsplus 08/2014 // SpawnAcheron
-		if not CyGame().isUnitClassMaxedOut(gc.getInfoTypeForString('UNITCLASS_ACHERON'), 0):
-			if( gc.getGame().isOption( GameOptionTypes.GAMEOPTION_BARBARIAN_WORLD ) ) :
-				iChance = 5
-			else :
-				iChance = 10
-			if( CyGame().getSorenRandNum( 100, "Acheron spawn" ) < iChance ) :
-				if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_ACHERON):
+		if not CyGame().isUnitClassMaxedOut( gc.getInfoTypeForString('UNITCLASS_ACHERON'), 0 ) :
+			if not gc.getGame().isOption( GameOptionTypes.GAMEOPTION_NO_ACHERON ) :
+				if( gc.getGame().isOption( GameOptionTypes.GAMEOPTION_BARBARIAN_WORLD ) ) :
+					iChance = 5
+				else :
+					iChance = 10
+				if( CyGame().getSorenRandNum( 100, "Acheron spawn" ) < iChance ) :
 					pyBarbPlayer = PyPlayer( gc.getBARBARIAN_PLAYER() )
 					if( pyBarbPlayer.getNumCities() * 2 >= CyGame().countCivPlayersAlive() ) :
 						iBestWilderness = -1
