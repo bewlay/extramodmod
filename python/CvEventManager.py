@@ -682,13 +682,13 @@ class CvEventManager:
 							cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_ORTHUS_CREATION",()), str(gc.getUnitInfo(iUnit).getImage()))
 		
 	# lfgr barbsplus 08/2014 // SpawnAcheron
-		if not CyGame().isUnitClassMaxedOut(gc.getInfoTypeForString('UNITCLASS_ACHERON'), 0):
-			if( gc.getGame().isOption( GameOptionTypes.GAMEOPTION_BARBARIAN_WORLD ) ) :
-				iChance = 5
-			else :
-				iChance = 10
-			if( CyGame().getSorenRandNum( 100, "Acheron spawn" ) < iChance ) :
-				if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_ACHERON):
+		if not CyGame().isUnitClassMaxedOut( gc.getInfoTypeForString('UNITCLASS_ACHERON'), 0 ) :
+			if not gc.getGame().isOption( GameOptionTypes.GAMEOPTION_NO_ACHERON ) :
+				if( gc.getGame().isOption( GameOptionTypes.GAMEOPTION_BARBARIAN_WORLD ) ) :
+					iChance = 5
+				else :
+					iChance = 10
+				if( CyGame().getSorenRandNum( 100, "Acheron spawn" ) < iChance ) :
 					pyBarbPlayer = PyPlayer( gc.getBARBARIAN_PLAYER() )
 					if( pyBarbPlayer.getNumCities() * 2 >= CyGame().countCivPlayersAlive() ) :
 						iBestWilderness = -1
@@ -1759,8 +1759,13 @@ class CvEventManager:
 						pUnit.changeExperience(iXP, -1, False, False, False)
 #						unit.changeExperience(iXP * -1, -1, False, False, False)
 						CyInterface().addMessage(unit.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_SPIRIT_GUIDE",()),'AS2D_DISCOVERBONUS',1,'Art/Interface/Buttons/Promotions/SpiritGuide.dds',ColorTypes(7),pUnit.getX(),pUnit.getY(),True,True)
-
-		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_ACHERON'):
+	
+	# WILDERNESS 03/2015 lfgr / WildernessMisc: Disciples of Acheron start with Held promotion
+	#	if unit.getUnitType() == gc.getInfoTypeForString('UNIT_ACHERON'):
+		if( unit.getUnitType() == gc.getInfoTypeForString('UNIT_ACHERON')
+				or unit.getUnitType() == gc.getInfoTypeForString('UNIT_DISCIPLE_OF_ACHERON')
+				or unit.getUnitType() == gc.getInfoTypeForString('UNIT_SON_OF_THE_INFERNO') ) :
+	# WILDERNESS END
 			unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
 
 			# more events mod starts # 
@@ -2734,6 +2739,9 @@ class CvEventManager:
 #					if eTeam.isHasTech(gc.getInfoTypeForString('TECH_SORCERY')):
 #						iUnit = gc.getInfoTypeForString('UNIT_SON_OF_THE_INFERNO')
 					newUnit = pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				# WILDERNESS 01/2015 lfgr / WildernessMisc: Disciples of Acheron start with Held promotion
+					newUnit.setHasPromotion( gc.getInfoTypeForString( 'PROMOTION_HELD' ), True )
+				# WILDERNESS END
 
 	# more events mod starts #	
 		

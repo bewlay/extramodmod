@@ -2710,40 +2710,6 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 	{
 		return false;
 	}
-	
-/************************************************************************************************/
-/* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementWilderness                                                                        */
-/************************************************************************************************/
-	
-	if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && 
-		( GC.getImprovementInfo( eImprovement ).getMinWilderness() > getWilderness() ||
-			GC.getImprovementInfo( eImprovement ).getMaxWilderness() < getWilderness() ) )
-	{
-		return false;
-	}
-
-	if( !kImprovement.isUnique() )
-	{
-		bool bHasSpawn = false;
-		bool bCanSpawn = false;
-
-		for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
-		{
-			if( kImprovement.getSpawnTypes( eSpawn ) )
-			{
-				bHasSpawn = true;
-				bCanSpawn = getSpawnValue( (SpawnTypes) eSpawn, false ) > 0;
-			}
-		}
-
-		if( bHasSpawn && !bCanSpawn )
-			return false;
-	}
-	
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
 
 	if (kImprovement.isHillsMakesValid() && isHills())
 	{
@@ -2817,6 +2783,46 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 			return false;
 		}
 	}
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementWilderness                                                                        */
+/************************************************************************************************/
+	
+	if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && 
+		( GC.getImprovementInfo( eImprovement ).getMinWilderness() > getWilderness() ||
+			GC.getImprovementInfo( eImprovement ).getMaxWilderness() < getWilderness() ) )
+	{
+		return false;
+	}
+
+	if( !kImprovement.isUnique() )
+	{
+		bool bHasSpawn = false;
+		bool bCanSpawn = false;
+
+		for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+		{
+			if( kImprovement.getSpawnTypes( eSpawn ) )
+			{
+				bHasSpawn = true;
+				bCanSpawn = getSpawnValue( (SpawnTypes) eSpawn, false ) > 0;
+				if( bCanSpawn == true )
+					break;
+			}
+		}
+
+		if( bHasSpawn && !bCanSpawn )
+		{
+			logBBAI( "Preventing placement of %s, because it can't spawn units here", kImprovement.getType() );
+
+			return false;
+		}
+	}
+	
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	return true;
 }
