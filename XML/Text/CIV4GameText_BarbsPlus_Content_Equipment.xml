@@ -10,31 +10,31 @@
 		<French>Hauberk of Abjuration</French>
 		<German>Hauberk of Abjuration</German>
 		<Italian>Hauberk of Abjuration</Italian>
-		<Spanish>Hauberk of Abjuration</Spanish>
+		<Spanish>Armadura de Abjuración</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_ROD_OF_WINDS</Tag>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_HAUBERK_OF_ABJURATION</Tag>
 		<English>Your unit discovers an ancient artifact, the Hauberk of Abjuration.</English>
-		<French>Your unit discovers an ancient artifact, the Rod of Winds.</French>
-		<German>Eure Einheit entdeckt ein uraltes Artefakt, das Zepter des Windes.</German>
-		<Italian>Your unit discovers an ancient artifact, the Rod of Winds.</Italian>
-		<Spanish>Tu unidad descubre un antiguo artefacto, el Báculo de los Vientos.</Spanish>
+		<French>Your unit discovers an ancient artifact, the Hauberk of Abjuration.</French>
+		<German>Your unit discovers an ancient artifact, the Hauberk of Abjuration.</German>
+		<Italian>Your unit discovers an ancient artifact, the Hauberk of Abjuration.</Italian>
+		<Spanish>Tu unidad descubre un antiguo artefacto,la Armadura de Abjuración.</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_SPELL_DROP_ROD_OF_WINDS</Tag>
+		<Tag>TXT_KEY_SPELL_DROP_HAUBERK_OF_ABJURATION</Tag>
 		<English>Drop Hauberk of Abjuration</English>
 		<French>Drop Hauberk of Abjuration</French>
 		<German>Drop Hauberk of Abjuration</German>
 		<Italian>Drop Hauberk of Abjuration</Italian>
-		<Spanish>Drop Hauberk of Abjuration</Spanish>
+		<Spanish>Dejar Armadura de Abjuración</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_SPELL_TAKE_ROD_OF_WINDS</Tag>
+		<Tag>TXT_KEY_SPELL_TAKE_HAUBERK_OF_ABJURATION</Tag>
 		<English>Take Hauberk of Abjuration</English>
 		<French>Take Hauberk of Abjuration</French>
 		<German>Take Hauberk of Abjuration</German>
 		<Italian>Take Hauberk of Abjuration</Italian>
-		<Spanish>Take Hauberk of Abjuration</Spanish>
+		<Spanish>Tomar Armadura de Abjuración</Spanish>
 	</TEXT>
 
 </Civ4GameText>
