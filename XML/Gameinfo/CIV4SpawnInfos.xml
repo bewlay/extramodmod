@@ -2177,6 +2177,20 @@
 		<!-- BARB SPAWNS -->
 
 		<!-- Basic Water -->
+		<SpawnInfo> <!-- SPAWN_GALLEY -->
+			<Type>SPAWN_GALLEY</Type>
+			<iBaseWeight>100</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_NAVAL</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
+			<bWater>1</bWater>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GALLEY</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_CARAVEL -->
 			<Type>SPAWN_CARAVEL</Type>
 			<iBaseWeight>50</iBaseWeight>
@@ -2237,7 +2251,7 @@
 		<!-- Water with crew -->
 		<SpawnInfo> <!-- SPAWN_GALLEY_PIRATE -->
 			<Type>SPAWN_GALLEY_PIRATE</Type>
-			<iBaseWeight>75</iBaseWeight>
+			<iBaseWeight>90</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_NAVAL_NO_WILDERNESS</SpawnPrereqType>
 			<iMinSpawnTier>2</iMinSpawnTier>
 			<iMaxSpawnTier>4</iMaxSpawnTier>
@@ -2275,7 +2289,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_GALLEON_PIRATE -->
 			<Type>SPAWN_GALLEON_PIRATE</Type>
-			<iBaseWeight>75</iBaseWeight>
+			<iBaseWeight>90</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_NAVAL_NO_WILDERNESS</SpawnPrereqType>
 			<iMinSpawnTier>4</iMinSpawnTier>
 			<iMaxSpawnTier>4</iMaxSpawnTier>
