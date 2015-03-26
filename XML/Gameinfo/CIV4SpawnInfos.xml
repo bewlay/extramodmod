@@ -2633,7 +2633,7 @@
 			<Type>SPAWN_NOMAD_HUNTER</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_NOMAD</TerrainFlavourType>
-			<iValidTerrainWeight>25</iValidTerrainWeight>
+			<iValidTerrainWeight>15</iValidTerrainWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
 			<iMinSpawnTier>2</iMinSpawnTier>
 			<iMaxSpawnTier>4</iMaxSpawnTier>
@@ -2814,7 +2814,7 @@
 			<Type>SPAWN_WINTERBORN_HUNTER</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_WINTERBORN</TerrainFlavourType>
-			<iValidTerrainWeight>50</iValidTerrainWeight>
+			<iValidTerrainWeight>40</iValidTerrainWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
 			<iMinSpawnTier>2</iMinSpawnTier>
 			<iMaxSpawnTier>4</iMaxSpawnTier>
@@ -2993,7 +2993,7 @@
 			<Type>SPAWN_HELLHOUND</Type>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_DEMON</TerrainFlavourType>
-			<iValidTerrainWeight>25</iValidTerrainWeight>
+			<iValidTerrainWeight>15</iValidTerrainWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
 			<iMinSpawnTier>2</iMinSpawnTier>
 			<iMaxSpawnTier>4</iMaxSpawnTier>
