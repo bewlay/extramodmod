@@ -1018,10 +1018,7 @@ m_bOpenBordersTrading(false),
 m_bDefensivePactTrading(false),
 m_bPermanentAllianceTrading(false),
 m_bVassalStateTrading(false),
-// MNAI - Puppet States
-m_bPuppetStateTrading(false),
-// MNAI End
-
+m_bPuppetStateTrading(false), // MNAI - Puppet States
 m_bBridgeBuilding(false),
 m_bIrrigation(false),
 m_bIgnoreIrrigation(false),
@@ -1235,7 +1232,7 @@ bool CvTechInfo::isPuppetStateTrading() const
 {
 	return m_bPuppetStateTrading;
 }
-// MNAI End
+// MNAI - End Puppet States
 
 bool CvTechInfo::isBridgeBuilding() const
 {
@@ -1397,9 +1394,7 @@ void CvTechInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bDefensivePactTrading);
 	stream->Read(&m_bPermanentAllianceTrading);
 	stream->Read(&m_bVassalStateTrading);
-	// MNAI - Puppet States
-	stream->Read(&m_bPuppetStateTrading);
-	// MNAI End
+	stream->Read(&m_bPuppetStateTrading); // MNAI - Puppet States
 	stream->Read(&m_bBridgeBuilding);
 	stream->Read(&m_bIrrigation);
 	stream->Read(&m_bIgnoreIrrigation);
@@ -1490,9 +1485,7 @@ void CvTechInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bDefensivePactTrading);
 	stream->Write(m_bPermanentAllianceTrading);
 	stream->Write(m_bVassalStateTrading);
-	// MNAI - Puppet States
-	stream->Write(m_bPuppetStateTrading);
-	// MNAI End
+	stream->Write(m_bPuppetStateTrading); // MNAI - Puppet States
 	stream->Write(m_bBridgeBuilding);
 	stream->Write(m_bIrrigation);
 	stream->Write(m_bIgnoreIrrigation);
@@ -1574,9 +1567,7 @@ bool CvTechInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bDefensivePactTrading, "bDefensivePactTrading");
 	pXML->GetChildXmlValByName(&m_bPermanentAllianceTrading, "bPermanentAllianceTrading");
 	pXML->GetChildXmlValByName(&m_bVassalStateTrading, "bVassalTrading");
-// MNAI - Puppet States
-	pXML->GetChildXmlValByName(&m_bPuppetStateTrading, "bPuppetTrading");
-// MNAI End
+	pXML->GetChildXmlValByName(&m_bPuppetStateTrading, "bPuppetTrading"); // MNAI - Puppet States
 	pXML->GetChildXmlValByName(&m_bBridgeBuilding, "bBridgeBuilding");
 	pXML->GetChildXmlValByName(&m_bIrrigation, "bIrrigation");
 	pXML->GetChildXmlValByName(&m_bIgnoreIrrigation, "bIgnoreIrrigation");
@@ -12567,7 +12558,16 @@ m_pbCivilizationDisableTechs(NULL),
 m_paszCityNames(NULL),
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 m_iCivTrait(NO_TRAIT),
+*/
+m_pbCivTraits(NULL),
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 m_iDefaultRace(NO_PROMOTION),
 m_iHero(NO_UNIT),
 m_pbMaintainFeatures(NULL),
@@ -12762,10 +12762,24 @@ void CvCivilizationInfo::setArtDefineTag(const TCHAR* szVal)
 }
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 int CvCivilizationInfo::getCivTrait() const
 {
 	return m_iCivTrait;
 }
+*/
+bool CvCivilizationInfo::isCivTraits( int i ) const
+{
+	FAssertMsg(i < GC.getNumTraitInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_pbCivTraits ? m_pbCivTraits[i] : false;
+}
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 
 int CvCivilizationInfo::getDefaultRace() const
 {
@@ -12930,7 +12944,18 @@ void CvCivilizationInfo::read(FDataStreamBase* stream)
 	stream->ReadString(m_szAdjectiveKey);
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	stream->Read(&m_iCivTrait);
+*/
+	SAFE_DELETE_ARRAY(m_pbCivTraits);
+	m_pbCivTraits = new bool[GC.getNumTraitInfos()];
+	stream->Read(GC.getNumTraitInfos(), m_pbCivTraits);
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 	stream->Read(&m_iDefaultRace);
 	stream->Read(&m_iHero);
 
@@ -13009,7 +13034,16 @@ void CvCivilizationInfo::write(FDataStreamBase* stream)
 	stream->WriteString(m_szAdjectiveKey);
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	stream->Write(m_iCivTrait);
+*/
+	stream->Write(GC.getNumTraitInfos(), m_pbCivTraits);
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 	stream->Write(m_iDefaultRace);
 	stream->Write(m_iHero);
 	stream->Write(GC.getNumFeatureInfos(), m_pbMaintainFeatures);
@@ -13315,8 +13349,50 @@ bool CvCivilizationInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "CivilizationSelectionSound");
 
 //FfH: Added by Kael 08/06/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	pXML->GetChildXmlValByName(szTextVal, "CivTrait");
 	m_iCivTrait = GC.getInfoTypeForString(szTextVal);
+*/
+	m_pbCivTraits = new bool[GC.getNumTraitInfos()];
+	for (int i = 0; i < GC.getNumTraitInfos(); ++i)
+	{
+		m_pbCivTraits[i] = false;
+	}
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"CivTraits"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						int iTrait = pXML->FindInInfoClass(szTextVal);
+						if( iTrait > -1 && iTrait < GC.getNumTraitInfos() )
+							m_pbCivTraits[iTrait] = true;
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 	pXML->GetChildXmlValByName(szTextVal, "DefaultRace");
 	m_iDefaultRace = GC.getInfoTypeForString(szTextVal);
 	pXML->GetChildXmlValByName(szTextVal, "Hero");
@@ -13363,6 +13439,15 @@ m_bEndScore(false),
 m_bConquest(false),
 m_bDiploVote(false),
 m_bPermanent(false)
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**										Initial Values											**/
+/*************************************************************************************************/
+,m_iLinkedVictory(NO_VICTORY)
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 {
 }
 
@@ -13447,6 +13532,18 @@ const char* CvVictoryInfo::getMovie() const
 	return m_szMovie;
 }
 
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**									Called for Logic Checks										**/
+/*************************************************************************************************/
+int CvVictoryInfo::getLinkedVictory() const
+{
+	return m_iLinkedVictory;
+}
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 
 //
 // read from xml
@@ -13479,6 +13576,28 @@ bool CvVictoryInfo::read(CvXMLLoadUtility* pXML)
 
 	return true;
 }
+
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**					Second Pass to reference information within the same file					**/
+/*************************************************************************************************/
+bool CvVictoryInfo::readPass2(CvXMLLoadUtility* pXML)
+{
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+	CvString szTextVal;
+
+	pXML->GetChildXmlValByName(szTextVal, "LinkedVictory");
+	m_iLinkedVictory = GC.getInfoTypeForString(szTextVal);
+
+	return true;
+}
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 
 //======================================================================================================
 //					CvHurryInfo
@@ -17087,6 +17206,11 @@ m_iPrereqStateReligion(NO_RELIGION),
 m_iRequireResist(NO_DAMAGE),
 //FfH: End Add
 
+// Features modified by Armageddon Counter START
+m_iFeatureDown(NO_FEATURE),
+m_iFeatureUp(NO_FEATURE),
+// Features modified by Armageddon Counter END
+
 m_piYieldChange(NULL),
 m_piRiverYieldChange(NULL),
 m_piHillsYieldChange(NULL),
@@ -17287,6 +17411,18 @@ int CvFeatureInfo::getRequireResist() const
 }
 //FfH: End Add
 
+// Features modified by Armageddon Counter START
+int CvFeatureInfo::getFeatureDown() const
+{
+	return m_iFeatureDown;
+}
+
+int CvFeatureInfo::getFeatureUp() const
+{
+	return m_iFeatureUp;
+}
+// Features modified by Armageddon Counter END
+
 // Arrays
 
 int CvFeatureInfo::getYieldChange(int i) const
@@ -17447,6 +17583,12 @@ bool CvFeatureInfo::readPass2(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "FeatureUpgrade");
 	m_iFeatureUpgrade = GC.getInfoTypeForString(szTextVal);
+// Features modified by Armageddon Counter START
+	pXML->GetChildXmlValByName(szTextVal, "FeatureDown");
+	m_iFeatureDown = GC.getInfoTypeForString(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "FeatureUp");
+	m_iFeatureUp = GC.getInfoTypeForString(szTextVal);
+// Features modified by Armageddon Counter END
 
 	return true;
 }
@@ -21090,6 +21232,13 @@ m_bIgnoreFood(false),
 m_bInsane(false),
 m_bSelectable(false),
 m_bSprawling(false),
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+m_bAllUnitsFreePromotion(false),
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 m_iFreeXPFromCombat(0),
 m_iMaxCities(-1),
 m_iPillagingGold(0),
@@ -21230,6 +21379,16 @@ bool CvTraitInfo::isSprawling() const
 {
 	return m_bSprawling;
 }
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+bool CvTraitInfo::isAllUnitsFreePromotion() const
+{
+	return m_bAllUnitsFreePromotion;
+}
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 
 int CvTraitInfo::getFreeXPFromCombat() const
 {
@@ -21325,6 +21484,13 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bIgnoreFood, "bIgnoreFood");
 	pXML->GetChildXmlValByName(&m_bInsane, "bInsane");
 	pXML->GetChildXmlValByName(&m_bSelectable, "bSelectable");
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+	pXML->GetChildXmlValByName(&m_bAllUnitsFreePromotion, "bAllUnitsFreePromotion");
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	pXML->GetChildXmlValByName(&m_bSprawling, "bSprawling");
 	pXML->GetChildXmlValByName(&m_iFreeXPFromCombat, "iFreeXPFromCombat");
 	pXML->GetChildXmlValByName(&m_iMaxCities, "iMaxCities");

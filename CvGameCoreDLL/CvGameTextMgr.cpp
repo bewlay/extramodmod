@@ -5775,7 +5775,68 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		
 		if (pPlot->getTempTerrainTimer() > 0)
 		{
-			szString.append(CvWString::format(L" (temp terrain (%d turns left))", pPlot->getTempTerrainTimer()));
+			szString.append(CvWString::format(L" (Temp Terrain: %d turns left)", pPlot->getTempTerrainTimer()));
+			szString.append(CvWString::format(L"\n --Real Terrain: %s", GC.getTerrainInfo(pPlot->getRealTerrainType()).getDescription()));
+		}
+		if (pPlot->getTempBonusTimer() > 0)
+		{
+			if (pPlot->getBonusType() == NO_BONUS)
+			{
+				szString.append(CvWString::format(L"\n Temp Bonus: NO_BONUS (%d turns left)", pPlot->getTempBonusTimer()));
+			}
+			else
+			{
+				szString.append(CvWString::format(L"\n Temp Bonus: %s (%d turns left)", GC.getBonusInfo(pPlot->getBonusType()).getDescription(), pPlot->getTempBonusTimer()));
+			}
+			if (pPlot->getRealBonusType() != NO_BONUS)
+			{
+				szString.append(CvWString::format(L"\n --Real Bonus: %s", GC.getBonusInfo(pPlot->getRealBonusType()).getDescription()));
+			}
+		}
+		if (pPlot->getTempFeatureTimer() > 0)
+		{
+			if (pPlot->getFeatureType() == NO_FEATURE)
+			{
+				szString.append(CvWString::format(L"\n Temp Feature: NO_FEATURE (%d turns left)", pPlot->getTempFeatureTimer()));
+			}
+			else
+			{
+				szString.append(CvWString::format(L"\n Temp Feature: %s (%d turns left)", GC.getFeatureInfo(pPlot->getFeatureType()).getDescription(), pPlot->getTempFeatureTimer()));
+			}
+			if (pPlot->getRealFeatureType() != NO_FEATURE)
+			{
+				szString.append(CvWString::format(L"\n --Real Feature: %s", GC.getFeatureInfo(pPlot->getRealFeatureType()).getDescription()));
+			}
+		}
+		if (pPlot->getTempImprovementTimer() > 0)
+		{
+			if (pPlot->getImprovementType() == NO_IMPROVEMENT)
+			{
+				szString.append(CvWString::format(L"\n Temp Improvement: NO_IMPROVEMENT (%d turns left)", pPlot->getTempImprovementTimer()));
+			}
+			else
+			{
+				szString.append(CvWString::format(L"\n Temp Improvement: %s (%d turns left)", GC.getImprovementInfo(pPlot->getImprovementType()).getDescription(), pPlot->getTempImprovementTimer()));
+			}
+			if (pPlot->getRealImprovementType() != NO_IMPROVEMENT)
+			{
+				szString.append(CvWString::format(L"\n --Real Improvement: %s", GC.getImprovementInfo(pPlot->getRealImprovementType()).getDescription()));
+			}
+		}
+		if (pPlot->getTempRouteTimer() > 0)
+		{
+			if (pPlot->getRouteType() == NO_ROUTE)
+			{
+				szString.append(CvWString::format(L"\n Temp Route: NO_ROUTE (%d turns left)", pPlot->getTempRouteTimer()));
+			}
+			else
+			{
+				szString.append(CvWString::format(L"\n Temp Route %s (%d turns left)", GC.getRouteInfo(pPlot->getRouteType()).getDescription(), pPlot->getTempRouteTimer()));
+			}
+			if (pPlot->getRealRouteType() != NO_ROUTE)
+			{
+				szString.append(CvWString::format(L"\n --Real Route: %s", GC.getRouteInfo(pPlot->getRealRouteType()).getDescription()));
+			}
 		}
 
 		FAssert((0 < GC.getNumBonusInfos()) && "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvInterface::updateHelpStrings");
@@ -7015,7 +7076,10 @@ void CvGameTextMgr::setCityPlotYieldValueString(CvWStringBuffer &szString, CvCit
 
 	CvPlot* pPlot = NULL;
 
-	if (iIndex >= 0 && iIndex < NUM_CITY_PLOTS)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	if (iIndex >= 0 && iIndex < NUM_CITY_PLOTS)
+	if (iIndex >= 0 && iIndex < pCity->getNumCityPlots())
+//<<<<Unofficial Bug Fix: End Modify
 		pPlot = pCity->getCityIndexPlot(iIndex);
 	
 	if (pPlot != NULL && pPlot->getWorkingCity() == pCity)
@@ -7834,7 +7898,19 @@ void CvGameTextMgr::parseTraits(CvWStringBuffer &szHelpString, TraitTypes eTrait
 		if (bFoundPromotion)
 		{
 			szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_FREE_PROMOTIONS", szTempBuffer.GetCString()));
-
+			
+			/********************************************************************************/
+			/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+			/********************************************************************************/
+			if( kTraitInfo.isAllUnitsFreePromotion() )
+			{
+				szTempBuffer.Format(L"\n        %c", gDLL->getSymbolID(BULLET_CHAR));
+				szHelpString.append( szTempBuffer );
+				szHelpString.append( gDLL->getText("TXT_KEY_TRAIT_FREE_PROMOTIONS_ALL_UNITS" ) );
+			}
+			/********************************************************************************/
+			/* EXTRA_CIV_TRAITS                                                     END     */
+			/********************************************************************************/
 			for (iJ = 0; iJ < GC.getNumUnitCombatInfos(); iJ++)
 			{
 				if (kTraitInfo.isFreePromotionUnitCombat(iJ))
@@ -8270,6 +8346,10 @@ void CvGameTextMgr::parseCivInfos(CvWStringBuffer &szInfoText, CivilizationTypes
 
 //FfH: Added by Kael 09/02/2008
         //Civ Trait
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+	/********************************************************************************/
+	/* old
         if (GC.getCivilizationInfo(eCivilization).getCivTrait() != NO_TRAIT)
         {
             szText = gDLL->getText("TXT_KEY_CIV_TRAIT");
@@ -8289,6 +8369,44 @@ void CvGameTextMgr::parseCivInfos(CvWStringBuffer &szInfoText, CivilizationTypes
                 szInfoText.append(szBuffer);
             }
         }
+	*/
+		bool bWroteTitle = false;
+		for( int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++ )
+		{
+			if ( GC.getCivilizationInfo(eCivilization).isCivTraits( iTrait ) )
+			{
+				if (bDawnOfMan)
+				{
+					if( !bWroteTitle )
+					{
+						szTempString.Format(L"%s:", gDLL->getText("TXT_KEY_CIV_TRAITS").GetCString());
+						szInfoText.append(szTempString);
+						bWroteTitle = true;
+					}
+					else
+						szInfoText.append( L", " );
+					szBuffer.Format(L" %s", GC.getTraitInfo((TraitTypes)iTrait).getDescription());
+					szInfoText.append(szBuffer);
+				}
+				else
+				{
+					if( !bWroteTitle )
+					{
+						szBuffer.Format(NEWLINE SETCOLR L"%s" ENDCOLR , TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), gDLL->getText("TXT_KEY_CIV_TRAITS").GetCString());
+						szInfoText.append(szBuffer);
+						bWroteTitle = true;
+					}
+					szText.Format((bLinks ? L"%s" : L"%s"), GC.getTraitInfo((TraitTypes)iTrait).getDescription());
+					szBuffer.Format(L"%s  %c%s", NEWLINE, gDLL->getSymbolID(BULLET_CHAR), szText.GetCString());
+					szInfoText.append(szBuffer);
+				}
+			}
+		}
+		if (bDawnOfMan)
+			szInfoText.append( L"\n" );
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 
         //Civ Hero
         if (GC.getCivilizationInfo(eCivilization).getHero() != NO_UNIT)
@@ -11287,7 +11405,7 @@ void CvGameTextMgr::setTechTradeHelp(CvWStringBuffer &szBuffer, TechTypes eTech,
 	// MNAI - Puppet States
 	//	Enables puppet states...
 	buildPuppetStateString(szBuffer, eTech, true, bPlayerContext);
-	// MNAI End
+	// MNAI - End Puppet States
 
 	//	Build farm, irrigation, etc...
 	for (iI = 0; iI < GC.getNumBuildInfos(); ++iI)
@@ -11533,6 +11651,15 @@ void CvGameTextMgr::setTechTradeHelp(CvWStringBuffer &szBuffer, TechTypes eTech,
 
 			szTempBuffer.Format(L" (%d/%d %c)", GET_TEAM(GC.getGameINLINE().getActiveTeam()).getResearchProgress(eTech), GET_TEAM(GC.getGameINLINE().getActiveTeam()).getResearchCost(eTech), GC.getCommerceInfo(COMMERCE_RESEARCH).getChar());
 			szBuffer.append(szTempBuffer);
+
+			// ExtraModMod technology propagation START
+			int iTechPropagation = GET_PLAYER(GC.getGameINLINE().getActivePlayer()).calculateTechPropagationResearchModifier(eTech);
+			if (iTechPropagation > 0)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_TECHNOLOGY_PROPAGATION_YIELD", iTechPropagation, GC.getCommerceInfo(COMMERCE_RESEARCH).getChar()));
+			}
+			// ExtraModMod technology propagation END
 		}
 	}
 
@@ -17593,7 +17720,7 @@ void CvGameTextMgr::buildPuppetStateString(CvWStringBuffer &szBuffer, TechTypes 
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_PUPPET_STATES"));
 	}
 }
-// MNAI End
+// MNAI - End Puppet States
 
 
 void CvGameTextMgr::buildBridgeString(CvWStringBuffer &szBuffer, TechTypes eTech, bool bList, bool bPlayerContext)
@@ -18588,8 +18715,11 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 						{
 							szBuffer.append(" (Puppet State)");
 						}
-						// MNAI End
-						setVassalRevoltHelp(szBuffer, (TeamTypes)iTeam, kTeam.getID());
+						// MNAI - End Puppet States
+						else
+						{
+							setVassalRevoltHelp(szBuffer, (TeamTypes)iTeam, kTeam.getID());
+						}
 					}
 					else if (kLoopTeam.isVassal(kTeam.getID()))
 					{
@@ -18822,7 +18952,7 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 			szBuffer.append(NEWLINE);
 			szBuffer.append(szTempBuffer);
 		}
-		// MNAI End
+		// MNAI - End Puppet States
 
 		for (iI = 0; iI < NUM_MEMORY_TYPES; ++iI)
 		{

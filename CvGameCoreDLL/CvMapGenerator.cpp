@@ -14,6 +14,7 @@
 #include "CyPlot.h"
 #include "CyArgsList.h"
 
+#include "BetterBTSAI.h"
 //
 // static
 //

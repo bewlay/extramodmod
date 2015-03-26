@@ -16,7 +16,7 @@
 	<options id="MapFinder" file="MapFinder.ini">
 		<section id="MapFinder">
 			<option id="Enabled" key="Enabled" 
-					type="boolean" default="True"/>
+					type="boolean" default="False"/>
 			
 			<option id="Path" key="Path" 
 					type="string" default="C:\Program Files\Civ4_Map_Finder"/>

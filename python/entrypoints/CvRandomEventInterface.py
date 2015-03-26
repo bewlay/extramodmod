@@ -2098,7 +2098,10 @@ def doTraitInsane(argsList):
 	iTraitCount = 0
 	for i in range(gc.getNumTraitInfos()):
 		if (pPlayer.hasTrait(i) and i != gc.getInfoTypeForString('TRAIT_INSANE')):
-			if (i != pCivilization.getCivTrait()):
+		# EXTRA_CIV_TRAITS 08/2013 lfgr
+		#	if (i != pCivilization.getCivTrait()):
+			if( not pCivilization.isCivTraits( i ) ) :
+		# EXTRA_CIV_TRAITS end
 				pPlayer.setHasTrait(i, False)
 				iTraitCount += 1
 
@@ -4387,17 +4390,13 @@ def canDoThatKindOfDay5(argsList):
 		return True
 	return False
 
-def CanDoPrincessRule4 (argsList):
+# lfgr: removed CanDoPrincessRule4 (03/2015)
+
+# lfgr: added 03/2015
+def doPrincessRule4( argsList ) :
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	if pCity.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_PALACE_MERCURIANS')) == 0:
-		return False
-	else: 
-		if pCity.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_PALACE_INFERNAL')) == 0:
-			return False
-	return True
+	CyInterface().addMessage(kTriggeredData.ePlayer,True,25,CyTranslator().getText("TXT_KEY_EVENT_PRINCESS_RULE_4_MESSAGE",()),'',1,'Art/Interface/Buttons/General/unhealthy_person.dds',ColorTypes(7),kTriggeredData.iPlotX,kTriggeredData.iPlotY,True,True)
 
 def CanDoCorruptJudge4 (argsList):
 	iEvent = argsList[0]

@@ -161,45 +161,38 @@ class CvGameUtils:
 		if eTech == gc.getInfoTypeForString('TECH_ORDERS_FROM_HEAVEN'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_RELIGION_1):
 				return True
-#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
 			if bNonReligiousPlayer:
 				return True
 
 		if eTech == gc.getInfoTypeForString('TECH_WAY_OF_THE_EARTHMOTHER'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_RELIGION_3):
 				return True
-#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
 			if bNonReligiousPlayer:
 				return True
 
 		if eTech == gc.getInfoTypeForString('TECH_WAY_OF_THE_FORESTS'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_RELIGION_0):
 				return True
-#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
 			if bNonReligiousPlayer:
 				return True
 
 		if eTech == gc.getInfoTypeForString('TECH_MESSAGE_FROM_THE_DEEP'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_RELIGION_2):
 				return True
-#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
 			if bNonReligiousPlayer:
 				return True
 
 		if eTech == gc.getInfoTypeForString('TECH_CORRUPTION_OF_SPIRIT'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_RELIGION_4):
 				return True
-#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
 			if bNonReligiousPlayer:
 				return True
 
 		if eTech == gc.getInfoTypeForString('TECH_HONOR'):
-#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
 			if bNonReligiousPlayer:
 				return True
 
 		if eTech == gc.getInfoTypeForString('TECH_DECEPTION'):
-#			if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_AGNOSTIC')):
 			if bNonReligiousPlayer:
 				return True
 
@@ -265,6 +258,29 @@ class CvGameUtils:
 
 		if eUnit == gc.getInfoTypeForString('UNIT_DUIN'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_DUIN):
+				return True
+
+		iMax = 1 + 0.333 * CyGame().getGlobalCounter() * pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_PLANAR_GATE'))
+
+		if iMax > 1:
+			iUnitClass = UnitClassTypes.NO_UNITCLASS
+			if eUnit == gc.getInfoTypeForString('UNIT_REVELERS'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_REVELERS')
+			if eUnit == gc.getInfoTypeForString('UNIT_MOBIUS_WITCH'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_MOBIUS_WITCH')
+			if eUnit == gc.getInfoTypeForString('UNIT_CHAOS_MARAUDER'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_CHAOS_MARAUDER')
+			if eUnit == gc.getInfoTypeForString('UNIT_MANTICORE'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_MANTICORE')
+				iMax /= 2
+			if eUnit == gc.getInfoTypeForString('UNIT_SUCCUBUS'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_SUCCUBUS')
+			if eUnit == gc.getInfoTypeForString('UNIT_MINOTAUR'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_MINOTAUR')
+				iMax /= 2
+			if eUnit == gc.getInfoTypeForString('UNIT_TAR_DEMON'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_TAR_DEMON')
+			if iUnitClass != UnitClassTypes.NO_UNITCLASS and pPlayer.getUnitClassCount(iUnitClass) >= iMax:
 				return True
 
 		if CyGame().getWBMapScript():
@@ -358,6 +374,10 @@ class CvGameUtils:
 			if pPlayer.getStateReligion() == gc.getInfoTypeForString('RELIGION_THE_ASHEN_VEIL'):
 				return True
 			if pCity.isCapital():
+				return True
+
+		if eBuilding == gc.getInfoTypeForString('BUILDING_GUILD_OF_THE_NINE'):
+			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_GUILD_OF_THE_NINE):
 				return True
 
 		iAltar1 = gc.getInfoTypeForString('BUILDING_ALTAR_OF_THE_LUONNOTAR')
@@ -478,8 +498,19 @@ class CvGameUtils:
 
 		## AI catches for buildings and projects that have python-only effects
 		if not pPlayer.isHuman():
+			## Barbarians
+
+			# Acheron cannot be built anymore START
+			# Old code
+			#if pPlayer.isBarbarian():
+			#	if pCity.canTrain(gc.getInfoTypeForString('UNIT_ACHERON'), True, False):
+			#		pCity.pushOrder(OrderTypes.ORDER_TRAIN, gc.getInfoTypeForString('UNIT_ACHERON'), -1, False, False, False, False)
+			#		return 1
+		
 			## Illians - make sure we build our best projects
+			#elif pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_ILLIANS'):
 			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_ILLIANS'):
+			# END
 				if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_TEMPLE_OF_THE_HAND'), True, False, False):
 					iBadTileCount = 0
 					for iiX in range(pCity.getX()-1, pCity.getX()+2, 1):
@@ -500,20 +531,20 @@ class CvGameUtils:
 						pCity.pushOrder(OrderTypes.ORDER_CREATE,gc.getInfoTypeForString('PROJECT_ASCENSION'),-1, False, False, False, False)
 						return 1
 			## Clan should build Warrens
-			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_CLAN_OF_EMBERS'):
+			elif pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_CLAN_OF_EMBERS'):
 				if (pCity.getCultureLevel() > 1) and (pCity.getPopulation() > 3):
 					if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_WARRENS'), True, False, False):
 						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_WARRENS'),-1, False, False, False, False)
 						return 1
 			## Amurites should build Cave of Ancestors
-			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_AMURITES'):
+			elif pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_AMURITES'):
 				if (pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_MAGE_GUILD')) > 0):
 					if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_CAVE_OF_ANCESTORS'), True, False, False):
 						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_CAVE_OF_ANCESTORS'),-1, False, False, False, False)
 						return 1
 			## Demons should build Demon Altars
 			#if gc.getCivilizationInfo(pPlayer.getCivilizationType()).getDefaultRace == gc.getInfoTypeForString('PROMOTION_DEMON'):
-			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
+			elif pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
 				if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_DEMONS_ALTAR'), True, False, False):
 						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_DEMONS_ALTAR'),-1, False, False, False, False)
 						return 1
@@ -523,27 +554,6 @@ class CvGameUtils:
 					pCity.pushOrder(OrderTypes.ORDER_TRAIN, gc.getInfoTypeForString('UNIT_HAWK'), -1, False, False, False, False)
 					return 1
 
-#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
-			## Grigori should build Adventurer Counter buildings
-			if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI'):
-				if (pCity.getCultureLevel() > 1) and (pCity.getPopulation() > 4):
-					## The most important one is the Adventurer's Guild.
-					if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_ADVENTURERS_GUILD'), True, False, False):
-						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_ADVENTURERS_GUILD'),-1, False, False, False, False)
-						return 1
-					## If the leader is Organized, it should also build Command Posts.
-					elif pCity.canConstruct(gc.getInfoTypeForString('BUILDING_COMMAND_POST'), True, False, False):
-						pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_COMMAND_POST'),-1, False, False, False, False)
-						return 1
-						## If the city has enough specialists, it should have a Citizens' Forum.
-						iNumSpecialists = 0
-						for eSpec in range(gc.getNumSpecialistInfos()):
-							iNumSpecialists += pCity.getSpecialistCount(eSpec) + pCity.getFreeSpecialistCount(eSpec)
-						if iNumSpecialists > 2:
-							pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT,gc.getInfoTypeForString('BUILDING_FORUM'),-1, False, False, False, False)
-							return 1
-
-#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
 		return False
 
 	def AI_unitUpdate(self,argsList):
@@ -1095,6 +1105,14 @@ class CvGameUtils:
 					if CyGame().getSorenRandNum(100, "Asylum") < 10:
 						pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CRAZED'), True)
 						pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ENRAGED'), True)
+
+		if pUnit.getUnitClassType() == gc.getInfoTypeForString('UNITCLASS_MOBIUS_WITCH'):
+			promotions = [ 'PROMOTION_AIR1','PROMOTION_BODY1','PROMOTION_CHAOS1','PROMOTION_CREATION1','PROMOTION_DEATH1','PROMOTION_DIMENSIONAL1','PROMOTION_EARTH1','PROMOTION_ENCHANTMENT1','PROMOTION_ENTROPY1','PROMOTION_FORCE1','PROMOTION_FIRE1','PROMOTION_ICE1','PROMOTION_LAW1','PROMOTION_LIFE1','PROMOTION_METAMAGIC1','PROMOTION_MIND1','PROMOTION_NATURE1','PROMOTION_SHADOW1','PROMOTION_SPIRIT1','PROMOTION_SUN1','PROMOTION_WATER1' ]
+			pUnit.setLevel(2)
+			pUnit.setExperience(5, -1)
+			for i in promotions:
+				if CyGame().getSorenRandNum(10, "Timon") == 1:
+					pUnit.setHasPromotion(gc.getInfoTypeForString(i), True)
 
 		if pUnit.getRace() == gc.getInfoTypeForString('PROMOTION_GOLEM'):
 			if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_BLASTING_WORKSHOP')) > 0:

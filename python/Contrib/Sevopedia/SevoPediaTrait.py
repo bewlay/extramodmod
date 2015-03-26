@@ -119,7 +119,10 @@ class SevoPediaTrait:
 #BUGFfH: Added by Denev 2009/09/10
 		for iCivilization in range(gc.getNumCivilizationInfos()):
 			pCivilization = gc.getCivilizationInfo(iCivilization)
-			if pCivilization.getCivTrait() == self.iTrait:
+		# EXTRA_CIV_TRAITS 08/2013 lfgr
+		#	if pCivilization.getCivTrait() == self.iTrait:
+			if( pCivilization.isCivTraits( self.iTrait ) ) :
+		# EXTRA_CIV_TRAITS end
 				screen.attachImageButton(panelName, "", pCivilization.getButton(), GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, iCivilization, 1, False)
 #FfH: End Add
 

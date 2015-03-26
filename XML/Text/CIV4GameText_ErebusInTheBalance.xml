@@ -34,12 +34,20 @@
     </TEXT>
     <TEXT>
         <Tag>TXT_KEY_SPELL_EXTORT_HELP</Tag>
-        <English>[ICON_BULLET]The Nightwatch will collect the council's Tithe.[NEWLINE][ICON_BULLET]Gain gold based on the population of the city and gamespeed, increases unhappiness and kills population.</English>
-        <French>[ICON_BULLET]The Nightwatch will collect the council's Tithe.[NEWLINE][ICON_BULLET]Gain gold based on the population of the city and gamespeed, increases unhappiness and kills population.</French>
-        <German>[ICON_BULLET]The Nightwatch will collect the council's Tithe.[NEWLINE][ICON_BULLET]Gain gold based on the population of the city and gamespeed, increases unhappiness and kills population.</German>
-        <Italian>[ICON_BULLET]The Nightwatch will collect the council's Tithe.[NEWLINE][ICON_BULLET]Gain gold based on the population of the city and gamespeed, increases unhappiness and kills population.</Italian>
-        <Spanish>[ICON_BULLET]La Guardia de la Noche recolecta el Diezmo del concilio.[NEWLINE][ICON_BULLET]Se gana una cantidad de oro dependiente de la población de la ciudad y la velocidad de juego, pero incrementa la infelicidad y mata población.</Spanish>
+        <English>[ICON_BULLET]The Nightwatch will collect the council's Tithe.[NEWLINE][ICON_BULLET]Gain [ICON_GOLD] based on the population of the city and gamespeed, increases unhappiness and kills population.</English>
+        <French>[ICON_BULLET]The Nightwatch will collect the council's Tithe.[NEWLINE][ICON_BULLET]Gain [ICON_GOLD] based on the population of the city and gamespeed, increases unhappiness and kills population.</French>
+        <German>[ICON_BULLET]The Nightwatch will collect the council's Tithe.[NEWLINE][ICON_BULLET]Gain [ICON_GOLD] based on the population of the city and gamespeed, increases unhappiness and kills population.</German>
+        <Italian>[ICON_BULLET]The Nightwatch will collect the council's Tithe.[NEWLINE][ICON_BULLET]Gain [ICON_GOLD] based on the population of the city and gamespeed, increases unhappiness and kills population.</Italian>
+        <Spanish>[ICON_BULLET]La Guardia de la Noche recolecta el Diezmo del concilio.[NEWLINE][ICON_BULLET]Se gana una cantidad de [ICON_GOLD] dependiente de la población de la ciudad y la velocidad de juego, pero incrementa la infelicidad y mata población.</Spanish>
     </TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_EXTORT_PYHELP</Tag>
+		<English>[ICON_BULLET]Increases unhappiness and kills population on %s1. Grants %d2 [ICON_GOLD].</English>
+		<French>[ICON_BULLET]Increases unhappiness and kills population on %s1. Grants %d2 [ICON_GOLD].</French>
+		<German>[ICON_BULLET]Increases unhappiness and kills population on %s1. Grants %d2 [ICON_GOLD].</German>
+		<Italian>[ICON_BULLET]Increases unhappiness and kills population on %s1. Grants %d2 [ICON_GOLD].</Italian>
+		<Spanish>[ICON_BULLET]Incrementa la infelicidad y mata población en %s1. Otorga %d2 [ICON_GOLD].</Spanish>
+	</TEXT>
     <TEXT>
         <Tag>TXT_KEY_SPELL_ILLUMINATION</Tag>
         <English>Illuminate</English>
@@ -50,10 +58,10 @@
     </TEXT>
     <TEXT>
         <Tag>TXT_KEY_SPELL_ILLUMINATION_HELP</Tag>
-        <English>[ICON_BULLET]Illuminates the city, granting +50% GPP and calming any enraged units that enter.</English>
-        <French>[ICON_BULLET]Illuminates the city, granting +50% GPP and calming any enraged units that enter.</French>
-        <German>[ICON_BULLET]Illuminates the city, granting +50% GPP and calming any enraged units that enter.</German>
-        <Italian>[ICON_BULLET]Illuminates the city, granting +50% GPP and calming any enraged units that enter.</Italian>
+        <English>[ICON_BULLET]Illuminates the city, granting +50% Great Person points and calming any enraged units that enter.</English>
+        <French>[ICON_BULLET]Illuminates the city, granting +50% Great Person points and calming any enraged units that enter.</French>
+        <German>[ICON_BULLET]Illuminates the city, granting +50% Great Person points and calming any enraged units that enter.</German>
+        <Italian>[ICON_BULLET]Illuminates the city, granting +50% Great Person points and calming any enraged units that enter.</Italian>
         <Spanish>[ICON_BULLET]Ilumina a la ciudad, incrementando en un 50% la adquisición de puntos de Grandes Personas y calmando a cualquier unidad Enfurecida que entre en ella.</Spanish>
     </TEXT>
     <TEXT>

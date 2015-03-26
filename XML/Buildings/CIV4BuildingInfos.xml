@@ -5021,8 +5021,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>UNITCLASS_ADVENTURER</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>2</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -9168,7 +9168,7 @@
 			</SpecialistCommerceChanges>
 		</BuildingInfo>
 		<BuildingInfo>
-			<BuildingClass>BUILDINGCLASS_COURTHOUSE</BuildingClass>
+			<BuildingClass>BUILDINGCLASS_CIV_BUILDING2</BuildingClass>
 			<Type>BUILDING_GOVERNORS_MANOR</Type>
 			<SpecialBuildingType>NONE</SpecialBuildingType>
 			<Description>TXT_KEY_BUILDING_GOVERNORS_MANOR</Description>
@@ -9241,7 +9241,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>180</iCost>
+			<iCost>120</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -9270,7 +9270,7 @@
 			<iFreeSpecialist>0</iFreeSpecialist>
 			<iAreaFreeSpecialist>0</iAreaFreeSpecialist>
 			<iGlobalFreeSpecialist>0</iGlobalFreeSpecialist>
-			<iMaintenanceModifier>-20</iMaintenanceModifier>
+			<iMaintenanceModifier>0</iMaintenanceModifier>
 			<iWarWearinessModifier>-25</iWarWearinessModifier>
 			<iGlobalWarWearinessModifier>0</iGlobalWarWearinessModifier>
 			<iEnemyWarWearinessModifier>0</iEnemyWarWearinessModifier>
@@ -9398,7 +9398,7 @@
 			<iResistMagic>0</iResistMagic>
 			<FreeBonus2>NONE</FreeBonus2>
 			<FreeBonus3>NONE</FreeBonus3>
-			<PrereqCiv></PrereqCiv>
+			<PrereqCiv>CIVILIZATION_CALABIM</PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
 			<RemovePromotion>NONE</RemovePromotion>
 			<SpecialistCommerceChanges>
@@ -18669,7 +18669,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>220</iCost>
+			<iCost>175</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -20432,7 +20432,7 @@
 			<Description>TXT_KEY_BUILDING_MERCURIAN_GATE</Description>
 			<Civilopedia>TXT_KEY_BUILDING_MERCURIAN_GATE_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_BUILDING_MERCURIAN_GATE_STRATEGY</Strategy>
-			<Help></Help>
+			<Help>TXT_KEY_BUILDING_MERCURIAN_GATE_STRATEGY</Help>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<ArtDefineTag>ART_DEF_BUILDING_MERCURIAN_GATE</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>
@@ -24855,8 +24855,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>UNITCLASS_ADVENTURER</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>2</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -25947,7 +25947,7 @@
 			<iModifyGlobalCounter>0</iModifyGlobalCounter>
 			<iPlotRadius>0</iPlotRadius>
 			<iResistMagic>0</iResistMagic>
-			<FreeBonus2>BONUS_GOLD</FreeBonus2>
+			<FreeBonus2>BONUS_MANA_ENCHANTMENT</FreeBonus2>
 			<FreeBonus3>BONUS_MANA_LAW</FreeBonus3>
 			<PrereqCiv></PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
@@ -26254,7 +26254,7 @@
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iConquestProb>0</iConquestProb>
-			<iCitiesPrereq>4</iCitiesPrereq>
+			<iCitiesPrereq>2</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
 			<iLevelPrereq>0</iLevelPrereq>
 			<iMinLatitude>0</iMinLatitude>
@@ -27542,7 +27542,7 @@
 			<iModifyGlobalCounter>0</iModifyGlobalCounter>
 			<iPlotRadius>0</iPlotRadius>
 			<iResistMagic>0</iResistMagic>
-			<FreeBonus2>BONUS_MANA_CHAOS</FreeBonus2>
+			<FreeBonus2>BONUS_MANA_ENTROPY</FreeBonus2>
 			<FreeBonus3>BONUS_MANA_DEATH</FreeBonus3>
 			<PrereqCiv></PrereqCiv>
 			<PrereqTrait>NONE</PrereqTrait>
@@ -28540,7 +28540,7 @@
 			<Description>TXT_KEY_BUILDING_PROPHECY_OF_RAGNAROK</Description>
 			<Civilopedia>TXT_KEY_BUILDING_PROPHECY_OF_RAGNAROK_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_BUILDING_PROPHECY_OF_RAGNAROK_STRATEGY</Strategy>
-			<Help></Help>
+			<Help>TXT_KEY_BUILDING_PROPHECY_OF_RAGNAROK_HELP</Help>
 			<Advisor>ADVISOR_RELIGION</Advisor>
 			<ArtDefineTag>ART_DEF_BUILDING_ANGKOR_WAT</ArtDefineTag>
 			<MovieDefineTag>ART_DEF_MOVIE_PROPHECY_OF_RAGNAROK</MovieDefineTag>
@@ -28572,7 +28572,7 @@
 			<FreeBonus>NONE</FreeBonus>
 			<iNumFreeBonuses>0</iNumFreeBonuses>
 			<FreeBuilding>NONE</FreeBuilding>
-			<FreePromotion>PROMOTION_PROPHECY_MARK</FreePromotion>
+			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
 			<GreatPeopleUnitClass>UNITCLASS_PROPHET</GreatPeopleUnitClass>
 			<iGreatPeopleRateChange>2</iGreatPeopleRateChange>
@@ -32503,8 +32503,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>UNITCLASS_ADVENTURER</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>1</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -39607,7 +39607,7 @@
 			<Description>TXT_KEY_BUILDING_FORUM</Description>
 			<Civilopedia>TXT_KEY_BUILDING_PLACEHOLDER_PEDIA</Civilopedia>
 			<Strategy></Strategy>
-			<Help>TXT_KEY_BUILDING_FORUM_HELP</Help>
+			<Help></Help>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<ArtDefineTag>ART_DEF_BUILDING_ROMAN_FORUM</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>
@@ -39645,8 +39645,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>UNITCLASS_ADVENTURER</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>1</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -40272,7 +40272,7 @@
 			</SpecialistCommerceChanges>
 		</BuildingInfo>
 		<BuildingInfo>
-			<BuildingClass>BUILDINGCLASS_CIV_BUILDING2</BuildingClass>
+			<BuildingClass>BUILDINGCLASS_MUSEUM</BuildingClass>
 			<Type>BUILDING_MUSEUM</Type>
 			<SpecialBuildingType>NONE</SpecialBuildingType>
 			<Description>TXT_KEY_BUILDING_MUSEUM</Description>
@@ -40316,8 +40316,8 @@
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
-			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
+			<GreatPeopleUnitClass>UNITCLASS_ADVENTURER</GreatPeopleUnitClass>
+			<iGreatPeopleRateChange>1</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>
@@ -40341,7 +40341,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>1</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>220</iCost>
+			<iCost>120</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>130</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -40378,7 +40378,7 @@
 			<iHealth>0</iHealth>
 			<iAreaHealth>0</iAreaHealth>
 			<iGlobalHealth>0</iGlobalHealth>
-			<iHappiness>1</iHappiness>
+			<iHappiness>0</iHappiness>
 			<iAreaHappiness>0</iAreaHappiness>
 			<iGlobalHappiness>0</iGlobalHappiness>
 			<iStateReligionHappiness>0</iStateReligionHappiness>
@@ -40413,13 +40413,13 @@
 			<CommerceChanges>
 			</CommerceChanges>
 			<ObsoleteSafeCommerceChanges>
-				<iCommerce>0</iCommerce>
-				<iCommerce>0</iCommerce>
-				<iCommerce>1</iCommerce>
 			</ObsoleteSafeCommerceChanges>
 			<CommerceChangeDoubleTimes>
 			</CommerceChangeDoubleTimes>
 			<CommerceModifiers>
+				<iCommerce>0</iCommerce>
+				<iCommerce>0</iCommerce>
+				<iCommerce>20</iCommerce>
 			</CommerceModifiers>
 			<GlobalCommerceModifiers>
 			</GlobalCommerceModifiers>
@@ -40432,6 +40432,10 @@
 			<ReligionChanges>
 			</ReligionChanges>
 			<SpecialistCounts>
+				<SpecialistCount>
+					<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+					<iSpecialistCount>1</iSpecialistCount>
+				</SpecialistCount>
 			</SpecialistCounts>
 			<FreeSpecialistCounts>
 			</FreeSpecialistCounts>

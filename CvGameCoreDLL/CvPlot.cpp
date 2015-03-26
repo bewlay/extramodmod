@@ -294,6 +294,17 @@ void CvPlot::reset(int iX, int iY, bool bConstructorCall)
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	m_eRealFeatureType = NO_FEATURE;
+	m_iRealFeatureVariety = -1;
+	m_iTempFeatureTimer = 0;
+	m_eRealBonusType = NO_BONUS;
+	m_iTempBonusTimer = 0;
+	m_eRealImprovementType = NO_IMPROVEMENT;
+	m_iTempImprovementTimer = 0;
+	m_eRealRouteType = NO_ROUTE;
+	m_iTempRouteTimer = 0;
+// End Temporary Map Items
 	m_plotCity.reset();
 	m_workingCity.reset();
 	m_workingCityOverride.reset();
@@ -393,10 +404,19 @@ void CvPlot::erase()
 	setRouteType(NO_ROUTE, false);
 	setFeatureType(NO_FEATURE);
 
-//FfH: Added by Kael 10/14/2009
+	// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
    	m_eRealTerrainType = NO_TERRAIN;
     m_iTempTerrainTimer = 0;
-//FfH: End Add
+	m_eRealFeatureType = NO_FEATURE;
+	m_iRealFeatureVariety = -1;
+	m_iTempFeatureTimer = 0;
+	m_eRealBonusType = NO_BONUS;
+	m_iTempBonusTimer = 0;
+	m_eRealImprovementType = NO_IMPROVEMENT;
+	m_iTempImprovementTimer = 0;
+	m_eRealRouteType = NO_ROUTE;
+	m_iTempRouteTimer = 0;
+	// End Temporary Map Items
 
 	// disable rivers
 	setNOfRiver(false, NO_CARDINALDIRECTION);
@@ -655,20 +675,94 @@ void CvPlot::doTurn()
 
 	verifyUnitValidPlot();
 
-//FfH: Added by Kael 11/02/2007
-    if (getTempTerrainTimer() > 0)
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+    if (isHasTempTerrain())
     {
         changeTempTerrainTimer(-1);
         if (getTempTerrainTimer() == 0)
         {
-			if(getRealTerrainType()!=NO_TERRAIN)	// added Sephi
+			if (getRealTerrainType() != NO_TERRAIN)
 			{
 				setTerrainType(getRealTerrainType(),true,true);
 				setRealTerrainType(NO_TERRAIN);
 			}
         }
     }
-//FfH: End Add
+
+	if (isHasTempFeature())
+	{
+		changeTempFeatureTimer(-1);
+
+		if (getTempFeatureTimer() == 0)
+		{
+			setFeatureType(getRealFeatureType(), getRealFeatureVariety());
+			setRealFeatureType(NO_FEATURE);
+		}
+	}
+
+	if (isHasTempBonus())
+	{
+		changeTempBonusTimer(-1);
+
+		if (getTempBonusTimer() == 0)
+		{
+			CvCity* pCity;
+			pCity = GC.getMapINLINE().findCity(getX_INLINE(), getY_INLINE(), getOwnerINLINE(), NO_TEAM, false);
+
+			if (pCity != NULL)
+			{
+				if (isRevealed(pCity->getTeam(), false))
+				{
+					if (stepDistance(getX(), getY(), pCity->getX(), pCity->getY()) <= 5)
+					{	
+						CvWString szBuffer;
+
+						if (getBonusType() != NO_BONUS)
+						{
+							if (GET_TEAM(pCity->getTeam()).isHasTech((TechTypes)(GC.getBonusInfo(getBonusType()).getTechReveal())))
+							{
+								szBuffer = gDLL->getText("TXT_KEY_MISC_LOST_RESOURCE", GC.getBonusInfo(getBonusType()).getTextKeyWide(), pCity->getNameKey());
+								gDLL->getInterfaceIFace()->addMessage(pCity->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MINOR_EVENT, GC.getBonusInfo(getBonusType()).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
+							}
+						}
+
+						if (getRealBonusType() != NO_BONUS)
+						{
+							if (GET_TEAM(pCity->getTeam()).isHasTech((TechTypes)(GC.getBonusInfo(getRealBonusType()).getTechReveal())))
+							{
+								szBuffer = gDLL->getText("TXT_KEY_MISC_DISCOVERED_RESOURCE", GC.getBonusInfo(getRealBonusType()).getTextKeyWide(), pCity->getNameKey());
+								gDLL->getInterfaceIFace()->addMessage(pCity->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MINOR_EVENT, GC.getBonusInfo(getRealBonusType()).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
+							}
+						}
+					}
+				}
+			}
+
+			setBonusType(getRealBonusType());
+			setRealBonusType(NO_BONUS);
+		}
+	}
+
+	if (isHasTempImprovement())
+    {
+        changeTempImprovementTimer(-1);
+        if (getTempImprovementTimer() == 0)
+        {
+			setImprovementType(getRealImprovementType());
+			setRealImprovementType(NO_IMPROVEMENT);
+        }
+    }
+
+	if (isHasTempRoute())
+    {
+        changeTempRouteTimer(-1);
+        if (getTempRouteTimer() == 0)
+        {
+			setRouteType(getRealRouteType(), true);
+			setRealRouteType(NO_ROUTE);
+        }
+    }
+// End Temporary Map Items
 
 	/*
 	if (!isOwned())
@@ -4297,7 +4391,10 @@ PlayerTypes CvPlot::calculateCulturalOwner() const
 			iBestPriority = MAX_INT;
 			pBestCity = NULL;
 
-			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+			for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -5866,7 +5963,10 @@ bool CvPlot::isPotentialCityWorkForArea(CvArea* pArea) const
 	CvPlot* pLoopPlot;
 	int iI;
 
-	for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+	for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -5896,11 +5996,10 @@ void CvPlot::updatePotentialCityWork()
 
 	bValid = false;
 
-//FfH: Modified by Kael 07/12/208
-//  for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
-	for (iI = 0; iI < 21; ++iI)
-//FfH: End Modify
-
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+	for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_DEFAULT_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -5938,7 +6037,10 @@ void CvPlot::updateShowCitySymbols()
 
 	bNewShowCitySymbols = false;
 
-	for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+	for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -6393,7 +6495,10 @@ void CvPlot::setPlotType(PlotTypes eNewValue, bool bRecalculate, bool bRebuildGr
 				}
 			}
 
-			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+			for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -6631,6 +6736,13 @@ void CvPlot::setFeatureType(FeatureTypes eNewValue, int iVariety)
 
 	eOldFeature = getFeatureType();
 
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	if (isHasTempFeature())
+	{
+		changeTempFeatureTimer(-getTempFeatureTimer());
+	}
+// End Temporary Map Items
+
 	if (eNewValue != NO_FEATURE)
 	{
 		if (iVariety == -1)
@@ -6681,7 +6793,10 @@ void CvPlot::setFeatureType(FeatureTypes eNewValue, int iVariety)
 			updateRiverSymbolArt(true);
 		}
 
-		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+		for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -6793,6 +6908,14 @@ BonusTypes CvPlot::getNonObsoleteBonusType(TeamTypes eTeam) const
 
 void CvPlot::setBonusType(BonusTypes eNewValue)
 {
+
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	if (isHasTempBonus())
+	{
+		changeTempBonusTimer(-getTempBonusTimer());
+	}
+// End Temporary Map Items
+
 	if (getBonusType() != eNewValue)
 	{
 		if (getBonusType() != NO_BONUS)
@@ -6846,6 +6969,13 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 {
 	int iI;
 	ImprovementTypes eOldImprovement = getImprovementType();
+
+	// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	if (isHasTempImprovement())
+	{
+		changeTempImprovementTimer(-getTempImprovementTimer());
+	}
+	// End Temporary Map Items
 
 	if (getImprovementType() != eNewValue)
 	{
@@ -6980,7 +7110,10 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 		updateIrrigated();
 		updateYield();
 
-		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+		for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			CvPlot* pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -7057,6 +7190,13 @@ void CvPlot::setRouteType(RouteTypes eNewValue, bool bUpdatePlotGroups)
 {
 	bool bOldRoute;
 	int iI;
+
+	// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	if (isHasTempRoute())
+	{
+		changeTempRouteTimer(-getTempRouteTimer());
+	}
+	// End Temporary Map Items
 
 	if (getRouteType() != eNewValue)
 	{
@@ -7135,8 +7275,10 @@ void CvPlot::setPlotCity(CvCity* pNewValue)
 	{
 		if (isCity())
 		{
-			//for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
-			for (iI = 0; iI > getPlotCity()->getNumCityPlots(); ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+			for (iI = 0; iI < ::calculateNumCityPlots(getPlotCity()->getPlotRadius()); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -7187,7 +7329,10 @@ void CvPlot::setPlotCity(CvCity* pNewValue)
 
 		if (isCity())
 		{
-			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+			for (iI = 0; iI < ::calculateNumCityPlots(pNewValue->getPlotRadius()); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -7234,7 +7379,10 @@ void CvPlot::updateWorkingCity()
 	{
 		iBestPlot = 0;
 
-		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+		for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -7244,40 +7392,68 @@ void CvPlot::updateWorkingCity()
 
 				if (pLoopCity != NULL)
 				{
-/*************************************************************************************************/
-/**	BUGFIX (modified CityRadius) Sephi                                      					**/
-/**																								**/
-/**	makes sure an AI city only tries to work plots it can actually use 							**/
-/*************************************************************************************************/
-					if (iI<pLoopCity->getNumCityPlots())
+//>>>>Unofficial Bug Fix: Added by Denev 2010/04/05
+					if (::plotDistance(getX_INLINE(), getY_INLINE(), pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE()) <= pLoopCity->getPlotRadius())
 					{
-/*************************************************************************************************/
-/**	END	                                        												**/
-/*************************************************************************************************/
+//<<<<Unofficial Bug Fix: End Add
 						if (pLoopCity->getOwnerINLINE() == getOwnerINLINE())
 						{
 							// XXX use getGameTurnAcquired() instead???
+//>>>>Better AI: Modified by Denev 2010/07/12
+//*** Settlements don't disturb regular cities.
+/*
 							if ((pBestCity == NULL) ||
 								  (GC.getCityPlotPriority()[iI] < GC.getCityPlotPriority()[iBestPlot]) ||
 								  ((GC.getCityPlotPriority()[iI] == GC.getCityPlotPriority()[iBestPlot]) &&
 								   ((pLoopCity->getGameTurnFounded() < pBestCity->getGameTurnFounded()) ||
 									((pLoopCity->getGameTurnFounded() == pBestCity->getGameTurnFounded()) &&
 									 (pLoopCity->getID() < pBestCity->getID())))))
+*/							bool bUpdateBest = false;
+
+							if (pBestCity == NULL)
+							{
+								bUpdateBest = true;
+							}
+							else
+							{
+								int iLoopPriority = (pLoopCity->isSettlement()) ? MAX_INT : GC.getCityPlotPriority()[iI];
+								int iBestPriority = (pBestCity->isSettlement()) ? MAX_INT : GC.getCityPlotPriority()[iBestPlot];
+
+								if (iLoopPriority < iBestPriority)
+								{
+									bUpdateBest = true;
+								}
+								else
+								if (iLoopPriority == iBestPriority)
+								{
+									int iLoopFoundedTurn = pLoopCity->getGameTurnFounded();
+									int iBestFoundedTurn = pBestCity->getGameTurnFounded();
+
+									if (iLoopFoundedTurn < iBestFoundedTurn)
+									{
+										bUpdateBest = true;
+									}
+									else
+									if (iLoopFoundedTurn == iBestFoundedTurn)
+									{
+										if (pLoopCity->getID() < pBestCity->getID())
+										{
+											bUpdateBest = true;
+										}
+									}
+								}
+							}
+
+							if (bUpdateBest)
+//<<<<Better AI: End Modify
 							{
 								iBestPlot = iI;
 								pBestCity = pLoopCity;
 							}
 						}
-/*************************************************************************************************/
-/**	BUGFIX (modified CityRadius) Sephi                                      					**/
-/**																								**/
-/**	makes sure an AI city only tries to work plots it can actually use 							**/
-/*************************************************************************************************/
+//>>>>Unofficial Bug Fix: Added by Denev 2010/04/05
 					}
-/*************************************************************************************************/
-/**	END	                                        												**/
-/*************************************************************************************************/
-
+//<<<<Unofficial Bug Fix: End Add
 				}
 			}
 		}
@@ -7480,7 +7656,16 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 	// Take into account civilization specific changes to terrain yields.
 	if (isOwned())
 	{
-		iYield += GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getTerrainYieldChanges(getTerrainType(), eYield, isRiver());
+		CivilizationTypes eOwnerType = GET_PLAYER(getOwnerINLINE()).getCivilizationType();
+		CvCity* pWorkingCity = getWorkingCity();
+
+		// For tolerant civilizations, the terrain yield changes of the civilization of the city is used instead.
+		if (pWorkingCity != NULL && pWorkingCity->getCivilizationType() != NO_CIVILIZATION)
+		{
+			eOwnerType = pWorkingCity->getCivilizationType();
+		}
+
+		iYield += GC.getCivilizationInfo(eOwnerType).getTerrainYieldChanges(getTerrainType(), eYield, isRiver());
 	}
 
 	return std::max(0, iYield);
@@ -10105,7 +10290,19 @@ void CvPlot::doFeature()
 /************************************************************************************************/
 
 								{
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+/**
 									setFeatureType((FeatureTypes)iI);
+**/
+									if (getTempTerrainTimer() > 0  && !GC.getFeatureInfo((FeatureTypes)iI).isTerrain(getRealTerrainType()))
+									{
+										setTempFeatureType((FeatureTypes)iI, -1, getTempTerrainTimer());
+									}
+									else
+									{
+										setFeatureType((FeatureTypes)iI);
+									}
+// End Temporary Map Items
 
 									pCity = GC.getMapINLINE().findCity(getX_INLINE(), getY_INLINE(), getOwnerINLINE(), NO_TEAM, false);
 
@@ -10558,6 +10755,17 @@ void CvPlot::read(FDataStreamBase* pStream)
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	pStream->Read(&m_eRealFeatureType);
+	pStream->Read(&m_iRealFeatureVariety);
+	pStream->Read(&m_iTempFeatureTimer);
+	pStream->Read(&m_eRealBonusType);
+	pStream->Read(&m_iTempBonusTimer);
+	pStream->Read(&m_eRealImprovementType);
+	pStream->Read(&m_iTempImprovementTimer);
+	pStream->Read(&m_eRealRouteType);
+	pStream->Read(&m_iTempRouteTimer);
+// End Temporary Map Items
 	SAFE_DELETE_ARRAY(m_aiCulture);
 	pStream->Read(&cCount);
 	if (cCount > 0)
@@ -10821,6 +11029,17 @@ void CvPlot::write(FDataStreamBase* pStream)
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	pStream->Write(m_eRealFeatureType);
+	pStream->Write(m_iRealFeatureVariety);
+	pStream->Write(m_iTempFeatureTimer);
+	pStream->Write(m_eRealBonusType);
+	pStream->Write(m_iTempBonusTimer);
+	pStream->Write(m_eRealImprovementType);
+	pStream->Write(m_iTempImprovementTimer);
+	pStream->Write(m_eRealRouteType);
+	pStream->Write(m_iTempRouteTimer);
+// Temporary Map Items
 	if (NULL == m_aiCulture)
 	{
 		pStream->Write((char)0);
@@ -12172,21 +12391,32 @@ void CvPlot::changePlotCounter(int iChange)
 		const int iPlotCounterDown	= GC.getTerrainInfo(getTerrainType()).getPlotCounterDown();
 		const int iPlotCounterUp	= GC.getTerrainInfo(getTerrainType()).getPlotCounterUp();
 		bool bChange = false;
+		bool bIsUpChange;
 		if (getPlotCounter() < iPlotCounterDown && iPlotCounterDown <= iOldCounter)
 		{
 			setTerrainType((TerrainTypes)GC.getTerrainInfo(getTerrainType()).getTerrainDown(), true, true);
 			bChange = true;
+			bIsUpChange = false;
 		}
 		if (iOldCounter <= iPlotCounterUp && iPlotCounterUp < getPlotCounter())
 		{
 			setTerrainType((TerrainTypes)GC.getTerrainInfo(getTerrainType()).getTerrainUp(), true, true);
 			bChange = true;
+			bIsUpChange = true;
 		}
 //<<<<Unofficial Bug Fix: End Modify
 		if (bChange)
 		{
 			if (getFeatureType() != NO_FEATURE)
 			{
+				// Features modified by Armageddon Counter START
+				CvFeatureInfo &kCurrentFeature = GC.getFeatureInfo(getFeatureType());
+				FeatureTypes iNextFeatureType = (FeatureTypes) ((bIsUpChange) ? kCurrentFeature.getFeatureUp() : kCurrentFeature.getFeatureDown());
+				if (iNextFeatureType != NO_FEATURE && GC.getFeatureInfo(iNextFeatureType).isTerrain(getTerrainType()))
+				{
+					setFeatureType(iNextFeatureType);
+				} else
+				// Features modified by Armageddon Counter END
 				if (!GC.getFeatureInfo(getFeatureType()).isTerrain(getTerrainType()))
 				{
 					setFeatureType(NO_FEATURE);
@@ -12324,57 +12554,6 @@ int CvPlot::getRangeDefense(TeamTypes eDefender, int iRange, bool bFinal, bool b
         }
     }
     return iBestModifier;
-}
-
-TerrainTypes CvPlot::getRealTerrainType() const
-{
-	return (TerrainTypes)m_eRealTerrainType;
-}
-
-void CvPlot::setRealTerrainType(TerrainTypes eNewValue)
-{
-    m_eRealTerrainType = eNewValue;
-}
-
-void CvPlot::setTempTerrainType(TerrainTypes eNewValue, int iTimer)
-{
-//>>>>Unofficial Bug Fix: Added by Denev 2009/12/28
-//*** If new value is not assigned, reset temporary terrain.
-	if (iTimer == 0 || eNewValue == NO_TERRAIN)
-	{
-		changeTempTerrainTimer(getTempTerrainTimer() * -1);
-		if (getRealTerrainType() != NO_TERRAIN)
-		{
-			setTerrainType(getRealTerrainType(), true, true);
-			setRealTerrainType(NO_TERRAIN);
-		}
-
-		return;
-	}
-//<<<<Unofficial Bug Fix: End Add
-
-	if (getTerrainType() != eNewValue)
-	{
-		if (getRealTerrainType() == NO_TERRAIN) //Dont overwrite the real terrain if we double temp
-		{
-			setRealTerrainType(getTerrainType());
-		}
-		changeTempTerrainTimer(iTimer);
-		setTerrainType(eNewValue, true, true, true);
-	}
-}
-
-int CvPlot::getTempTerrainTimer() const
-{
-    return m_iTempTerrainTimer;
-}
-
-void CvPlot::changeTempTerrainTimer(int iChange)
-{
-    if (iChange != 0)
-    {
-        m_iTempTerrainTimer += iChange;
-    }
 }
 
 int CvPlot::getPortalExitX() const
@@ -13128,3 +13307,240 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
+
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+// return Real Map Item type
+TerrainTypes CvPlot::getRealTerrainType() const
+{
+	return (TerrainTypes)m_eRealTerrainType;
+}
+
+FeatureTypes CvPlot::getRealFeatureType() const
+{
+	return (FeatureTypes) m_eRealFeatureType;
+}
+
+int CvPlot::getRealFeatureVariety() const
+{
+	return (FeatureTypes) m_iRealFeatureVariety;
+}
+
+BonusTypes CvPlot::getRealBonusType() const
+{
+	return (BonusTypes) m_eRealBonusType;
+}
+
+ImprovementTypes CvPlot::getRealImprovementType() const
+{
+	return (ImprovementTypes) m_eRealImprovementType;
+}
+
+RouteTypes CvPlot::getRealRouteType() const
+{
+	return (RouteTypes) m_eRealRouteType;
+}
+
+// setting Real Map Items
+void CvPlot::setRealTerrainType(TerrainTypes eNewValue)
+{
+    m_eRealTerrainType = eNewValue;
+}
+
+void CvPlot::setRealFeatureType(FeatureTypes eFeature)
+{
+	m_eRealFeatureType = eFeature;
+}
+
+void CvPlot::setRealFeatureVariety(int iVariety)
+{
+	m_iRealFeatureVariety = iVariety;
+}
+
+void CvPlot::setRealBonusType(BonusTypes eBonus)
+{
+	m_eRealBonusType = eBonus;
+}
+
+void CvPlot::setRealImprovementType(ImprovementTypes eImprovement)
+{
+	m_eRealImprovementType = eImprovement;
+}
+
+void CvPlot::setRealRouteType(RouteTypes eRoute)
+{
+	m_eRealRouteType = eRoute;
+}
+
+// setting Temporary Map Items
+void CvPlot::setTempTerrainType(TerrainTypes eNewValue, int iTimer)
+{
+//>>>>Unofficial Bug Fix: Added by Denev 2009/12/28
+//*** If new value is not assigned, reset temporary terrain.
+	if (iTimer == 0 || eNewValue == NO_TERRAIN)
+	{
+		changeTempTerrainTimer(getTempTerrainTimer() * -1);
+		if (getRealTerrainType() != NO_TERRAIN)
+		{
+			setTerrainType(getRealTerrainType(), true, true);
+			setRealTerrainType(NO_TERRAIN);
+		}
+
+		return;
+	}
+//<<<<Unofficial Bug Fix: End Add
+	if (getTerrainType() != eNewValue)
+	{
+		if (!isHasTempTerrain()) //Dont overwrite the real terrain if we double temp
+		{
+			setRealTerrainType(getTerrainType());
+		}
+		changeTempTerrainTimer(iTimer);
+		setTerrainType(eNewValue, true, true, true);
+	}
+}
+
+void CvPlot::setTempFeatureType(FeatureTypes eFeature, int iVariety, int iTimer)
+{
+	if (getFeatureType() != eFeature || getFeatureVariety() != iVariety)
+	{
+		if (!isHasTempFeature())
+		{
+			setRealFeatureType(getFeatureType());
+			setRealFeatureVariety(getFeatureVariety());
+		}
+		setFeatureType(eFeature, iVariety);
+		changeTempFeatureTimer(iTimer);
+	}
+}
+
+void CvPlot::setTempBonusType(BonusTypes eBonus, int iTimer)
+{
+	if (getBonusType(NO_TEAM) != eBonus)
+	{
+		if (!isHasTempBonus())
+		{
+			setRealBonusType(getBonusType(NO_TEAM));
+		}
+		setBonusType(eBonus);
+		changeTempBonusTimer(iTimer);
+	}
+}
+
+void CvPlot::setTempImprovementType(ImprovementTypes eImprovement, int iTimer)
+{
+	if (getImprovementType() != eImprovement)
+	{
+		if (!isHasTempImprovement())
+		{
+			setRealImprovementType(getImprovementType());
+		}
+		setImprovementType(eImprovement);
+		changeTempImprovementTimer(iTimer);
+	}
+}
+
+void CvPlot::setTempRouteType(RouteTypes eRoute, int iTimer)
+{
+	if (getRouteType() != eRoute)
+	{
+		if (!isHasTempRoute())
+		{
+			setRealRouteType(getRouteType());
+		}
+		setRouteType(eRoute, true);
+		changeTempRouteTimer(iTimer);
+	}
+}
+// return timer count for Temporary Map Items
+int CvPlot::getTempTerrainTimer() const
+{
+    return m_iTempTerrainTimer;
+}
+
+int CvPlot::getTempFeatureTimer() const
+{
+	return m_iTempFeatureTimer;
+}
+
+int CvPlot::getTempBonusTimer() const
+{
+	return m_iTempBonusTimer;
+}
+
+int CvPlot::getTempImprovementTimer() const
+{
+	return m_iTempImprovementTimer;
+}
+
+int CvPlot::getTempRouteTimer() const
+{
+	return m_iTempRouteTimer;
+}
+
+// boolean checks for Temporary Map Items
+bool CvPlot::isHasTempTerrain()
+{
+	return getTempTerrainTimer() > 0;
+}
+
+bool CvPlot::isHasTempFeature()
+{
+	return getTempFeatureTimer() > 0;
+}
+
+bool CvPlot::isHasTempBonus()
+{
+	return getTempBonusTimer() > 0;
+}
+
+bool CvPlot::isHasTempImprovement()
+{
+	return getTempImprovementTimer() > 0;
+}
+
+bool CvPlot::isHasTempRoute()
+{
+	return getTempRouteTimer() > 0;
+}
+
+// functions for changing the timers for Temporary Map Items
+void CvPlot::changeTempTerrainTimer(int iChange)
+{
+    if (iChange != 0)
+    {
+        m_iTempTerrainTimer += iChange;
+    }
+}
+
+void CvPlot::changeTempFeatureTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iTempFeatureTimer += iChange;
+	}
+}
+
+void CvPlot::changeTempBonusTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iTempBonusTimer += iChange;
+	}
+}
+
+void CvPlot::changeTempImprovementTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iTempImprovementTimer += iChange;
+	}
+}
+
+void CvPlot::changeTempRouteTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iTempRouteTimer += iChange;
+	}
+}
+// End Temporary Map Items

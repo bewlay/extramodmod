@@ -336,9 +336,9 @@ public:
 	bool isDefensivePactTrading() const;	// Exposed to Python
 	bool isPermanentAllianceTrading() const;	// Exposed to Python
 	bool isVassalStateTrading() const;	// Exposed to Python
-// MNAI - Puppet States
+	// MNAI - Puppet States
 	bool isPuppetStateTrading() const;	// Exposed to Python
-// MNAI End
+	// MNAI - End Puppet States
 	bool isBridgeBuilding() const;				// Exposed to Python
 	bool isIrrigation() const;						// Exposed to Python
 	bool isIgnoreIrrigation() const;			// Exposed to Python
@@ -422,9 +422,9 @@ protected:
 	bool m_bDefensivePactTrading;
 	bool m_bPermanentAllianceTrading;
 	bool m_bVassalStateTrading;
-// MNAI - Puppet States
+	// MNAI - Puppet States
 	bool m_bPuppetStateTrading;
-// MNAI End
+	// MNAI - End Puppet States
 	bool m_bBridgeBuilding;
 	bool m_bIrrigation;
 	bool m_bIgnoreIrrigation;
@@ -3003,7 +3003,16 @@ public:
 	void setDerivativeCiv(int iCiv);
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	int getCivTrait() const;
+*/
+	bool isCivTraits( int i ) const;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	int getDefaultRace() const;
 	int getHero() const;
 	bool isMaintainFeatures(int i) const;
@@ -3074,6 +3083,16 @@ protected:
 	bool* m_pbCivilizationDisableTechs;
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+/* old
+	int m_iCivTrait;
+*/
+	bool* m_pbCivTraits;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	int m_iCivTrait;
 	int m_iDefaultRace;
 	int m_iHero;
@@ -3132,6 +3151,16 @@ public:
 	const char* getMovie() const;
 
 	bool read(CvXMLLoadUtility* pXML);
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**								Defines Function for Use in .cpp								**/
+/*************************************************************************************************/
+	int getLinkedVictory() const;
+	bool readPass2(CvXMLLoadUtility* pXML);
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
 
 protected:
@@ -3152,7 +3181,15 @@ protected:
 	bool m_bPermanent;
 
 	CvString m_szMovie;
-
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**								Defines Variable for Use in .cpp								**/
+/*************************************************************************************************/
+	int m_iLinkedVictory;
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -4166,6 +4203,11 @@ public:
 	bool readPass2(CvXMLLoadUtility* pXML);
 //FfH: End Add
 
+// Features modified by Armageddon Counter START
+	int getFeatureDown() const;
+	int getFeatureUp() const;
+// Features modified by Armageddon Counter END
+
 	// Arrays
 
 	int getYieldChange(int i) const;						// Exposed to Python
@@ -4221,6 +4263,11 @@ protected:
 	int m_iRequireResist;
 	CvString m_szPythonOnMove;
 //FfH: End Add
+
+// Features modified by Armageddon Counter START
+	int m_iFeatureDown;
+	int m_iFeatureUp;
+// Features modified by Armageddon Counter END
 
 	// Arrays
 
@@ -5406,6 +5453,13 @@ public:
     bool isInsane() const;
     bool isSelectable() const;
     bool isSprawling() const;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+	bool isAllUnitsFreePromotion() const;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
     int getFreeXPFromCombat() const;
     int getMaxCities() const;
     int getPillagingGold() const;
@@ -5450,6 +5504,13 @@ protected:
 	bool m_bInsane;
 	bool m_bSelectable;
 	bool m_bSprawling;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+	bool m_bAllUnitsFreePromotion;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	int m_iFreeXPFromCombat;
 	int m_iMaxCities;
 	int m_iPillagingGold;

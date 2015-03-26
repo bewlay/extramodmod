@@ -8,7 +8,7 @@
 	<Define>
 		<!-- Maximum % increase in research that technology propagation from teams can provide. -->
 		<DefineName>TECH_PROPAGATION_TEAMS_MAX</DefineName>
-		<iDefineIntVal>30</iDefineIntVal>
+		<iDefineIntVal>100</iDefineIntVal>
 	</Define>
 	<Define>
 		<!-- Initial % for the propagation contribution of a team if it has a right of passage with the researcher. -->

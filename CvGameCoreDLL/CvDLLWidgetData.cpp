@@ -677,7 +677,7 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 	case WIDGET_HELP_PUPPET_STATE:
 		parsePuppetStateHelp(widgetDataStruct, szBuffer);
 		break;
-// MNAI End
+// MNAI - End Puppet States
 	}
 }
 
@@ -1027,9 +1027,7 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 	case WIDGET_HELP_SPELL:
 //FfH: End Add
 
-// MNAI - Puppet States
-	case WIDGET_HELP_PUPPET_STATE:
-// MNAI End
+	case WIDGET_HELP_PUPPET_STATE: // MNAI - Puppet States
 		break;
 	}
 
@@ -2031,6 +2029,18 @@ void CvDLLWidgetData::parseHurryHelp(CvWidgetDataStruct &widgetDataStruct, CvWSt
 	if (pHeadSelectedCity != NULL)
 	{
 		szBuffer.assign(gDLL->getText("TXT_KEY_MISC_HURRY_PROD", pHeadSelectedCity->getProductionNameKey()));
+
+		CLLNode<OrderData>* pOrderNode = pHeadSelectedCity->headOrderQueueNode();
+
+		if (pOrderNode != NULL && pOrderNode->m_data.eOrderType == ORDER_CONSTRUCT)
+		{
+			BuildingTypes eBuilding = (BuildingTypes)(pOrderNode->m_data.iData1);
+			if (GC.getBuildingInfo(eBuilding).isVictoryBuilding()) {
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_HURRY_PROD_VICTORY_BUILDING"));
+				return;
+			}
+		}
 
 		iHurryGold = pHeadSelectedCity->hurryGold((HurryTypes)(widgetDataStruct.m_iData1));
 
@@ -5142,8 +5152,6 @@ void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStr
 {
 	CvWString szTempBuffer;
 
-
-
 // ExtraModMod version number.
 	szBuffer.append(gDLL->getText("TXT_KEY_VERSION"));
 	szBuffer.append(NEWLINE);
@@ -5151,7 +5159,7 @@ void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStr
 
 // More Naval AI version number
 	// Add string showing version number
-	szTempBuffer.Format(L"%S", "Based on More Naval AI v2.53");
+	szTempBuffer.Format(L"%S", "Based on More Naval AI v2.61");
 	szBuffer.append(szTempBuffer);
 	szBuffer.append(NEWLINE);
 // End More Naval AI
@@ -5729,7 +5737,7 @@ void CvDLLWidgetData::parsePuppetStateHelp(CvWidgetDataStruct &widgetDataStruct,
 {
 	GAMETEXT.buildPuppetStateString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
 }
-// MNAI End
+// MNAI - End Puppet States
 
 void CvDLLWidgetData::parseBuildBridgeHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
 {

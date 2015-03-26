@@ -253,6 +253,7 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 	m_iDefensivePactTradingCount = 0;
 	m_iPermanentAllianceTradingCount = 0;
 	m_iVassalTradingCount = 0;
+	m_iPuppetTradingCount = 0; // MNAI - Puppet States
 	m_iBridgeBuildingCount = 0;
 	m_iIrrigationCount = 0;
 	m_iIgnoreIrrigationCount = 0;
@@ -4221,7 +4222,7 @@ void CvTeam::changePuppetTradingCount(int iChange)
 	m_iPuppetTradingCount += iChange;
 	FAssert(getPuppetTradingCount() >= 0);
 }
-// MNAI End
+// MNAI - End Puppet States
 
 int CvTeam::getBridgeBuildingCount() const
 {
@@ -6887,7 +6888,7 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 	{
 		changePuppetTradingCount(iChange);
 	}
-// MNAI End
+// MNAI - End Puppet States
 
 	if (GC.getTechInfo(eTech).isBridgeBuilding())
 	{
@@ -7392,6 +7393,7 @@ void CvTeam::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iDefensivePactTradingCount);
 	pStream->Read(&m_iPermanentAllianceTradingCount);
 	pStream->Read(&m_iVassalTradingCount);
+	pStream->Read(&m_iPuppetTradingCount); // MNAI - Puppet States
 	pStream->Read(&m_iBridgeBuildingCount);
 	pStream->Read(&m_iIrrigationCount);
 	pStream->Read(&m_iIgnoreIrrigationCount);
@@ -7519,6 +7521,7 @@ void CvTeam::write(FDataStreamBase* pStream)
 	pStream->Write(m_iDefensivePactTradingCount);
 	pStream->Write(m_iPermanentAllianceTradingCount);
 	pStream->Write(m_iVassalTradingCount);
+	pStream->Write(m_iPuppetTradingCount); // MNAI - Puppet States
 	pStream->Write(m_iBridgeBuildingCount);
 	pStream->Write(m_iIrrigationCount);
 	pStream->Write(m_iIgnoreIrrigationCount);

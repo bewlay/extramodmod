@@ -16,4 +16,12 @@
 		<Italian>Some research progress is granted from teams that already knows the researched technology.</Italian>
 		<Spanish>Otorga progreso en las investigaciones por cada equipo que ya conozca la tecnología investigada.</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECHNOLOGY_PROPAGATION_YIELD</Tag>
+		<English>[ICON_BULLET]%D1%%%F2 from technology propagation</English>
+		<French>[ICON_BULLET]%D1%%%F2 from technology propagation</French>
+		<German>[ICON_BULLET]%D1%%%F2 from technology propagation</German>
+		<Italian>[ICON_BULLET]%D1%%%F2 from technology propagation</Italian>
+		<Spanish>[ICON_BULLET]%D1%%%F2 por propagación de tecnologías</Spanish>
+	</TEXT>
 </Civ4GameText>
