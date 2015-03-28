@@ -40,6 +40,7 @@ credits = [
 			"MagisterCultuum - Resources, spell changes, unique feature changes, new unique features",
 			"Master of Mana team - Resources, feature, promotion and civic art",
 			"Nightinggale - Makefile",
+			"OzzyKP - Ozzy's Map of Erebus",
 			"Pazyryk - Unique feature exploration changes",
 			"platyping - Creative trait changes",
 			"Qgqqqqq - Erebus in the Balance (included nearly completely in ExtraModMod)",
