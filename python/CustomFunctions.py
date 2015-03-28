@@ -135,18 +135,21 @@ class CustomFunctions:
 		ePillageImprovement = gc.getImprovementInfo( pPlot.getImprovementType() ).getImprovementPillage()
 		bNoDestroy = ( ePillageImprovement != -1 )
 		
-		eSpawn = self.pickSpawn( pUnit )
+		# Invisible units don't get spawns
+		if( not pUnit.isInvisible( gc.getBARBARIAN_TEAM(), False ) ) :
+			eSpawn = self.pickSpawn( pUnit )
+			if( eSpawn == None ) :
+				CvUtil.pyPrint( "WARNING: No spawn outcome available" )
+		else :
+			eSpawn = None
 		tOutcome = self.pickNonSpawnOutcome( pUnit, bEpic, bNoDestroy )
 		
-		if( eSpawn == None and tOutcome == None ) :
-			CvUtil.pyPrint( "ERROR: Neither spawn nor non-spawn outcome available, adding 'NOTHING'" )
-			iDestroyLair = self.doNonSpawnOutcome( pUnit, ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
-		elif( eSpawn == None ) :
-			CvUtil.pyPrint( "WARNING: No spawn outcome available" )
+		if( tOutcome == None ) :
+			CvUtil.pyPrint( "WARNING: No non-spawn outcome available, adding 'NOTHING'" )
+			tOutcome = ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' )
+		
+		if( eSpawn == None ) :
 			iDestroyLair = self.doNonSpawnOutcome( pUnit, tOutcome )
-		elif( tOutcome == None ) :
-			CvUtil.pyPrint( "WARNING: No non-spawn outcome available" )
-			iDestroyLair = self.doSpawn( pUnit, eSpawn )
 		else :
 			if( CyGame().getSorenRandNum( 100, "Explore Lair" ) < 50 ) :
 				iDestroyLair = self.doSpawn( pUnit, eSpawn )
