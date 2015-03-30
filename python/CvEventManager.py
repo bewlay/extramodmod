@@ -1911,8 +1911,7 @@ class CvEventManager:
 					popupInfo.setData1(iTechType)
 					popupInfo.setText(u"showTechSplash")
 					popupInfo.addPopup(iPlayer)
-		if iPlayer != -1 and iPlayer != gc.getBARBARIAN_PLAYER():
-			pPlayer = gc.getPlayer(iPlayer)
+		if iPlayer != -1 and iPlayer != gc.getBARBARIAN_PLAYER() and not pPlayer.getCapitalCity().isNone():
 			iReligion = -1
 			if iTechType == gc.getInfoTypeForString('TECH_CORRUPTION_OF_SPIRIT'):
 				iUnit = gc.getInfoTypeForString('UNIT_DISCIPLE_THE_ASHEN_VEIL')
