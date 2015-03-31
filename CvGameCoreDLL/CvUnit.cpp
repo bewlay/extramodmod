@@ -8868,6 +8868,17 @@ bool CvUnit::canUpgrade(UnitTypes eUnit, bool bTestVisible) const
 		}
 	}
 
+/************************************************************************************************/
+/* WILDERNESS                             03/2015                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/* Barbarians can't upgrade units with SpawnInfo (weird promotions/artstyle)                    */
+/************************************************************************************************/
+	if( getSpawnType() != NO_SPAWN && isBarbarian() )
+		return false;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 	CvUnitInfo& kUnitInfo = GC.getUnitInfo(eUnit);
 
 	// no cross-religion upgrades for religious units
