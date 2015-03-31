@@ -2,11 +2,11 @@
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_CLASSIFIER_HELP</Tag>
-		<English>This game option is just used to classify real game options.</English>
-		<French>This game option is just used to classify real game options.</French>
-		<German>This game option is just used to classify real game options.</German>
-		<Italian>This game option is just used to classify real game options.</Italian>
-		<Spanish>This game option is just used to classify real game options.</Spanish>
+		<English>This game option is just used to classify real game options</English>
+		<French>This game option is just used to classify real game options</French>
+		<German>This game option is just used to classify real game options</German>
+		<Italian>This game option is just used to classify real game options</Italian>
+		<Spanish>Esta opción se emplea solamente para clasificar a las opciones reales</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_BARBARIANS_ANIMALS_CLASSIFIER</Tag>
@@ -14,7 +14,7 @@
 		<French>·  BARBARIANS AND ANIMALS</French>
 		<German>·  BARBARIANS AND ANIMALS</German>
 		<Italian>·  BARBARIANS AND ANIMALS</Italian>
-		<Spanish>·  BARBARIANS AND ANIMALS</Spanish>
+		<Spanish>·  BÁRBAROS Y ANIMALES</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_AI_CLASSIFIER</Tag>
@@ -22,7 +22,7 @@
 		<French>·  AI</French>
 		<German>·  AI</German>
 		<Italian>·  AI</Italian>
-		<Spanish>·  AI</Spanish>
+		<Spanish>·  IA</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_WORLD_CLASSIFIER</Tag>
@@ -30,7 +30,7 @@
 		<French>·  WORLD</French>
 		<German>·  WORLD</German>
 		<Italian>·  WORLD</Italian>
-		<Spanish>·  WORLD</Spanish>
+		<Spanish>·  MUNDO</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_DIFFICULTY_CLASSIFIER</Tag>
@@ -38,7 +38,7 @@
 		<French>·  DIFFICULTY</French>
 		<German>·  DIFFICULTY</German>
 		<Italian>·  DIFFICULTY</Italian>
-		<Spanish>·  DIFFICULTY</Spanish>
+		<Spanish>·  DIFICULTAD</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_AC_CLASSIFIER</Tag>
@@ -46,7 +46,7 @@
 		<French>·  ARMAGEDDON COUNTER</French>
 		<German>·  ARMAGEDDON COUNTER</German>
 		<Italian>·  ARMAGEDDON COUNTER</Italian>
-		<Spanish>·  ARMAGEDDON COUNTER</Spanish>
+		<Spanish>·  ARMAGEDÓN</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_WAR_PEACE_CLASSIFIER</Tag>
@@ -54,7 +54,7 @@
 		<French>·  WAR AND PEACE</French>
 		<German>·  WAR AND PEACE</German>
 		<Italian>·  WAR AND PEACE</Italian>
-		<Spanish>·  WAR AND PEACE</Spanish>
+		<Spanish>·  GUERRA Y PAZ</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_CITIES_CLASSIFIER</Tag>
@@ -62,7 +62,7 @@
 		<French>·  CITIES</French>
 		<German>·  CITIES</German>
 		<Italian>·  CITIES</Italian>
-		<Spanish>·  CITIES</Spanish>
+		<Spanish>·  CIUDADES</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_LEADERS_CLASSIFIER</Tag>
@@ -70,7 +70,7 @@
 		<French>·  LEADERS</French>
 		<German>·  LEADERS</German>
 		<Italian>·  LEADERS</Italian>
-		<Spanish>·  LEADERS</Spanish>
+		<Spanish>·  LÍDERES</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_TECHNOLOGY_CLASSIFIER</Tag>
@@ -78,7 +78,7 @@
 		<French>·  TECHNOLOGY</French>
 		<German>·  TECHNOLOGY</German>
 		<Italian>·  TECHNOLOGY</Italian>
-		<Spanish>·  TECHNOLOGY</Spanish>
+		<Spanish>·  TECNOLOGÍA</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_RELIGION_CLASSIFIER</Tag>
@@ -86,7 +86,7 @@
 		<French>·  RELIGION</French>
 		<German>·  RELIGION</German>
 		<Italian>·  RELIGION</Italian>
-		<Spanish>·  RELIGION</Spanish>
+		<Spanish>·  RELIGIÓN</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_ADVANCED_OPTIONS_CLASSIFIER</Tag>
@@ -94,6 +94,6 @@
 		<French>·  ADVANCED OPTIONS</French>
 		<German>·  ADVANCED OPTIONS</German>
 		<Italian>·  ADVANCED OPTIONS</Italian>
-		<Spanish>·  ADVANCED OPTIONS</Spanish>
+		<Spanish>·  OPCIONES AVANZADAS</Spanish>
 	</TEXT>
 </Civ4GameText>

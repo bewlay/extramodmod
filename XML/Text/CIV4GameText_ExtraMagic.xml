@@ -351,7 +351,7 @@
 		<French>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</French>
 		<German>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</German>
 		<Italian>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</Italian>
-		<Spanish>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</Spanish>
+		<Spanish>[ICON_BULLET]Crea un [LINK=FEATURE_LABYRINTH]Laberinto[\LINK] en la casilla</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_MAGIC_MISSILE</Tag>

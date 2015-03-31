@@ -2,11 +2,11 @@
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_INSANE_LEADERS</Tag>
-		<English>Insane Leaders</English>
-		<French>Insane Leaders</French>
-		<German>Insane Leaders</German>
-		<Italian>Insane Leaders</Italian>
-		<Spanish>Insane Leaders</Spanish>
+		<English>Insanity</English>
+		<French>Insanity</French>
+		<German>Insanity</German>
+		<Italian>Insanity</Italian>
+		<Spanish>Demencia</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_INSANE_LEADERS_HELP</Tag>
@@ -14,7 +14,7 @@
 		<French>All leaders start with the Insane trait</French>
 		<German>All leaders start with the Insane trait</German>
 		<Italian>All leaders start with the Insane trait</Italian>
-		<Spanish>All leaders start with the Insane trait</Spanish>
+		<Spanish>Todos los líderes comienzan con la habilidad Demente</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_NO_GUILD_OF_THE_NINE</Tag>
@@ -22,7 +22,7 @@
 		<French>No Guild of the Nine</French>
 		<German>No Guild of the Nine</German>
 		<Italian>No Guild of the Nine</Italian>
-		<Spanish>No Guild of the Nine</Spanish>
+		<Spanish>Sin Gremio de los Nueve</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_NO_GUILD_OF_THE_NINE_HELP</Tag>
@@ -30,7 +30,7 @@
 		<French>Disables the Guild of the Nine</French>
 		<German>Disables the Guild of the Nine</German>
 		<Italian>Disables the Guild of the Nine</Italian>
-		<Spanish>Disables the Guild of the Nine</Spanish>
+		<Spanish>Deshabilita el Gremio de los Nueve</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_RANDOM_TRAITS</Tag>
@@ -38,7 +38,7 @@
 		<French>Random Traits</French>
 		<German>Random Traits</German>
 		<Italian>Random Traits</Italian>
-		<Spanish>Random Traits</Spanish>
+		<Spanish>Habilidades Aleatorias</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_RANDOM_TRAITS_HELP</Tag>
@@ -46,6 +46,6 @@
 		<French>All leaders start with two or three traits, chosen randomly</French>
 		<German>All leaders start with two or three traits, chosen randomly</German>
 		<Italian>All leaders start with two or three traits, chosen randomly</Italian>
-		<Spanish>All leaders start with two or three traits, chosen randomly</Spanish>
+		<Spanish>Todos los líderes comienzan con dos o tres habilidades, elegidas aleatoriamente</Spanish>
 	</TEXT>
 </Civ4GameText>

@@ -8,7 +8,7 @@
 		<French>Vault: %s1 (%d2 [ICON_GOLD] per city)</French>
 		<German>Vault: %s1 (%d2 [ICON_GOLD] per city)</German>
 		<Italian>Vault: %s1 (%d2 [ICON_GOLD] per city)</Italian>
-		<Spanish>Vault: %s1 (%d2 [ICON_GOLD] per city)</Spanish>
+		<Spanish>Bóveda: %s1 (%d2 [ICON_GOLD] por ciudad)</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_DISPLAY_DWARVEN_VAULT_EMPTY</Tag>
@@ -74,7 +74,7 @@
 		<French>Trait change: (%d1)</French>
 		<German>Trait change: (%d1)</German>
 		<Italian>Trait change: (%d1)</Italian>
-		<Spanish>Trait change: (%d1)</Spanish>
+		<Spanish>Cambio Habilidad: (%d1)</Spanish>
 	</TEXT>
 	<!-- Adaptive tweaks END -->
 	<!-- Barbarian bar START -->
@@ -84,7 +84,7 @@
 		<French>Barbarian mistrust: (%d1%)</French>
 		<German>Barbarian mistrust: (%d1%)</German>
 		<Italian>Barbarian mistrust: (%d1%)</Italian>
-		<Spanish>Barbarian mistrust: (%d1%)</Spanish>
+		<Spanish>Desconfianza bárbara: (%d1%)</Spanish>
 	</TEXT>
 	<!-- Barbarian bar END -->
 	<!-- CustomizableBars End -->

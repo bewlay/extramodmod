@@ -24506,7 +24506,7 @@ bool CvPlayer::getPuppetLeaders(CivLeaderArray& aLeaders) const
 // Leader categories START
 				// Extra scenario leaders are currently always allowed as valid leaders for puppet states,
 				// even if their game option is disabled.
-				CvLeaderHeadInfo currentLeader = GC.getLeaderHeadInfo((LeaderHeadTypes)j);
+				CvLeaderHeadInfo& currentLeader = GC.getLeaderHeadInfo((LeaderHeadTypes)j);
 
 				if (currentLeader.getLeaderCategory() == LEADERCATEGORY_EXTRA && !GC.getGameINLINE().isOption(GAMEOPTION_LEADER_EXTRA)) {
 					// If extra leaders have not been selected, avoid using them.

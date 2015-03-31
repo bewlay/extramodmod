@@ -67,12 +67,12 @@
 					help="When checked, displays an alert when a city has been pacified, ending occupation."/>
 			
 			<option id="CityCanHurryPop" key="City Can Hurry Pop" 
-					type="boolean" default="True" and="Enabled" 
+					type="boolean" default="False" and="Enabled" 
 					get="isShowCityCanHurryPopAlert" set="setShowCityCanHurryPopAlert" 
 					label="Can Hurry w. Population" 
 					help="When checked, displays an alert once a city can hurry the item it's building with the whip."/>
 			<option id="CityCanHurryGold" key="City Can Hurry Gold" 
-					type="boolean" default="True" and="Enabled" 
+					type="boolean" default="False" and="Enabled" 
 					get="isShowCityCanHurryGoldAlert" set="setShowCityCanHurryGoldAlert" 
 					label="Can Hurry w. Gold" 
 					help="When checked, displays an alert once a city can hurry the item it's building with gold."/>
