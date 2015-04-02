@@ -4786,7 +4786,7 @@ def helpSellAnimal( lpUnits ) :
 		return CyTranslator().getText( 'TXT_KEY_SPELL_SELL_ANIMAL_HELP', ( len( lpUnits ), iMinGold, iMaxGold ) )
 
 def getAnimalSellValue( pUnit ) :
-	iStdGold = BarbsPlusDefines.liAnimalValues[pUnit.getUnitType()]
+	iStdGold = BarbsPlusDefines.getAnimalValue( pUnit.getUnitType() )
 	if( iStdGold == -1 ) :
 		raise Exception( "Sell value for this animal not defined!" )
 	iLevel = pUnit.getLevel()

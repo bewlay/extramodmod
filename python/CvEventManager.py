@@ -60,6 +60,10 @@ game = gc.getGame()
 cs = CvCorporationScreen.cs
 #FfH: Card Game: end
 
+# lfgr WILDERNESS 03/2015
+import BarbsPlusDefines
+# lfgr end
+
 Blizzards = Blizzards.Blizzards()		#Added in Blizzards: TC01
 
 # globals
@@ -650,7 +654,10 @@ class CvEventManager:
 
 		if not CyGame().isUnitClassMaxedOut(gc.getInfoTypeForString('UNITCLASS_ORTHUS'), 0):
 			if not CyGame().isOption(gc.getInfoTypeForString('GAMEOPTION_NO_ORTHUS')):
-				iOrthusTurn = 75
+			# WILDERNESS 03/2015 lfgr / WildernessMisc
+			#	iOrthusTurn = 75
+				iOrthusTurn = BarbsPlusDefines.ORTHUS_TURN
+			# WILDERNESS end
 				bOrthus = False
 				if CyGame().getGameSpeedType() == gc.getInfoTypeForString('GAMESPEED_QUICK'):
 					if iGameTurn >= iOrthusTurn / 3 * 2:
@@ -666,15 +673,43 @@ class CvEventManager:
 						bOrthus = True
 				if bOrthus:
 					bValid=True
+				# WILDERNESS 03/2015 lfgr / WildernessMisc
+				# Let Orthus Spawn preferably in Medium Wilderness
+				#	for i in range (CyMap().numPlots()):
+				#		pPlot = CyMap().plotByIndex(i)
+				#		iPlot = -1
+				#		if pPlot.getImprovementType()==gc.getInfoTypeForString('IMPROVEMENT_GOBLIN_FORT'):
+				#			bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
+				#			if not pPlot.isVisibleOtherUnit(gc.getBARBARIAN_PLAYER()):
+				#				bPlayer.initUnit(gc.getInfoTypeForString('UNIT_ORTHUS'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+				#				bValid=False
+				#				break
+					lpBestPlots = []
+					bBestPlotsPref = False # whether the best plot has preferred wilderness
 					for i in range (CyMap().numPlots()):
 						pPlot = CyMap().plotByIndex(i)
-						iPlot = -1
-						if pPlot.getImprovementType()==gc.getInfoTypeForString('IMPROVEMENT_GOBLIN_FORT'):
+						if pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_GOBLIN_FORT') :
 							bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
 							if not pPlot.isVisibleOtherUnit(gc.getBARBARIAN_PLAYER()):
-								bPlayer.initUnit(gc.getInfoTypeForString('UNIT_ORTHUS'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-								bValid=False
-								break
+								if( pPlot.getWilderness() >= BarbsPlusDefines.ORTHUS_PREF_MIN_WILDERNESS
+										and pPlot.getWilderness() <= BarbsPlusDefines.ORTHUS_PREF_MAX_WILDERNESS ) :
+									if( not bBestPlotsPref ) :
+										CvUtil.pyPrint( "Got first pref plot: %d|%d" % ( pPlot.getX(), pPlot.getY() ) )
+										bBestPlotsPref = True
+										lpBestPlots = [pPlot]
+									else :
+										CvUtil.pyPrint( "Got another pref plot: %d|%d" % ( pPlot.getX(), pPlot.getY() ) )
+										lpBestPlots.append( pPlot )
+								else :
+									if( not bBestPlotsPref ) :
+										CvUtil.pyPrint( "Got plot: %d|%d" % ( pPlot.getX(), pPlot.getY() ) )
+										lpBestPlots.append( pPlot )
+					
+					if( len( lpBestPlots ) != 0 ) :
+						pBestPlot = lpBestPlots[CyGame().getSorenRandNum( len( lpBestPlots ), "Acheron spawn" )]
+						bPlayer.initUnit( gc.getInfoTypeForString('UNIT_ORTHUS'), pBestPlot.getX(), pBestPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH )
+						bValid = False
+				# WILDERNESS end
 					if bValid:
 						iUnit = gc.getInfoTypeForString('UNIT_ORTHUS')
 						cf.addUnit(iUnit)
