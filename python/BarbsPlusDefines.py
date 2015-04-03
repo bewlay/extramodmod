@@ -31,7 +31,7 @@ def getAnimalValue( eUnitType ) :
 	return liAnimalValues[eUnitType]
 
 # Turn of Orthus' appearance (normal game speed)
-ORTHUS_TURN = 1 #75
+ORTHUS_TURN = 75
 
 # Orthus' preferred spawning wilderness
 ORTHUS_PREF_MIN_WILDERNESS = 40
