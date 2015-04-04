@@ -320,7 +320,7 @@
             <PromotionPrereq1>PROMOTION_CHANNELING2</PromotionPrereq1>
             <PromotionPrereq2>PROMOTION_DIVINE</PromotionPrereq2>
             <ReligionPrereq>RELIGION_FELLOWSHIP_OF_LEAVES</ReligionPrereq>
-            <bAllowAI>0</bAllowAI>
+            <bAllowAI>1</bAllowAI>
             <bAllowAutomateTerrain>1</bAllowAutomateTerrain>
             <bInBordersOnly>1</bInBordersOnly>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
@@ -686,9 +686,28 @@
             <Type>SPELL_CROWN_OF_BRILLANCE</Type>
             <Description>TXT_KEY_SPELL_CROWN_OF_BRILLANCE</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <PromotionPrereq1>PROMOTION_CHANNELING3</PromotionPrereq1>
-            <PromotionPrereq2>PROMOTION_DIVINE</PromotionPrereq2>
-            <ReligionPrereq>RELIGION_THE_EMPYREAN</ReligionPrereq>
+            <UnitClassPrereq>UNITCLASS_HIGH_PRIEST_OF_THE_EMPYREAN</UnitClassPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <iRange>1</iRange>
+            <iDamage>30</iDamage>
+            <iDamageLimit>60</iDamageLimit>
+            <DamageType>DAMAGE_HOLY</DamageType>
+            <AddPromotionType1>PROMOTION_CROWN_OF_BRILLANCE</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bImmuneTeam>1</bImmuneTeam>
+            <bImmuneNeutral>1</bImmuneNeutral>
+            <PyRequirement>reqCrownOfBrillance(pCaster)</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_EARTHQUAKE</Sound>
+            <Button>Art/Interface/Buttons/Promotions/CrownofBrillance.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_CROWN_OF_BRILLANCE_CHALID</Type>
+            <Description>TXT_KEY_SPELL_CROWN_OF_BRILLANCE</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <UnitClassPrereq>UNITCLASS_CHALID</UnitClassPrereq>
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -1467,9 +1486,7 @@
             <Description>TXT_KEY_SPELL_EARTHQUAKE</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_EARTHQUAKE_HELP</Help>
-            <PromotionPrereq1>PROMOTION_CHANNELING3</PromotionPrereq1>
-            <PromotionPrereq2>PROMOTION_DIVINE</PromotionPrereq2>
-            <ReligionPrereq>RELIGION_RUNES_OF_KILMORPH</ReligionPrereq>
+            <UnitClassPrereq>UNITCLASS_HIGH_PRIEST_OF_KILMORPH</UnitClassPrereq>
             <bAllowAI>1</bAllowAI>
             <bCausesWar>1</bCausesWar>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
@@ -1832,6 +1849,7 @@
 			<bHasCasted>1</bHasCasted>
 			<PyResult>spellFertility(pCaster)</PyResult>
 			<PyRequirement>reqFertility(pCaster)</PyRequirement>
+			<PyHelp>helpFertility(lpUnits)</PyHelp>
 			<Effect>EFFECT_SPELL1</Effect>
 			<Sound>AS2D_POSITIVE_DINK</Sound>
 			<Button>Art/Interface/Buttons/Spells/fertility.dds</Button>
@@ -2269,6 +2287,7 @@
             <iChangePopulation>-1</iChangePopulation>
             <PyResult>spellExtort(pCaster)</PyResult>
             <PyRequirement>reqExtort(pCaster)</PyRequirement>
+			<PyHelp>helpExtort(lpUnits)</PyHelp>
             <Effect>EFFECT_SACRIFICE</Effect>
             <Sound>AS3D_SPELL_FEAST</Sound>
             <Button>Art/Interface/Buttons/Buildings/Moneychanger.dds</Button>
@@ -2296,9 +2315,7 @@
             <Type>SPELL_HELLFIRE</Type>
             <Description>TXT_KEY_SPELL_HELLFIRE</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <PromotionPrereq1>PROMOTION_CHANNELING3</PromotionPrereq1>
-            <PromotionPrereq2>PROMOTION_DIVINE</PromotionPrereq2>
-            <ReligionPrereq>RELIGION_THE_ASHEN_VEIL</ReligionPrereq>
+            <UnitClassPrereq>UNITCLASS_HIGH_PRIEST_OF_THE_VEIL</UnitClassPrereq>
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -2863,6 +2880,7 @@
             <Description>TXT_KEY_SPELL_PILLAR_OF_FIRE</Description>
             <Civilopedia>TXT_KEY_SPELL_PILLAR_OF_FIRE_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_PILLAR_OF_FIRE_HELP</Help>
+			<TechPrereq>TECH_RIGHTEOUSNESS</TechPrereq>
             <UnitClassPrereq>UNITCLASS_CHALID</UnitClassPrereq>
             <bAllowAI>1</bAllowAI>
             <iAIWeight>300</iAIWeight>
@@ -3292,6 +3310,7 @@
             <bHasCasted>1</bHasCasted>
             <PyResult>spellRiftCross(pCaster)</PyResult>
             <PyRequirement>reqRiftCross(pCaster)</PyRequirement>
+			<PyHelp>helpRiftCross(lpUnits)</PyHelp>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_DEFILE</Sound>
             <Button>Art/Interface/Buttons/Units/Lightning Elemental.dds</Button>
@@ -3836,9 +3855,7 @@
             <Type>SPELL_SUMMON_BALOR</Type>
             <Description>TXT_KEY_SPELL_SUMMON_BALOR</Description>
             <Civilopedia>TXT_KEY_SPELL_SUMMON_BALOR_PEDIA</Civilopedia>
-            <PromotionPrereq1>PROMOTION_CHANNELING3</PromotionPrereq1>
-            <PromotionPrereq2>PROMOTION_DIVINE</PromotionPrereq2>
-            <ReligionPrereq>RELIGION_THE_ASHEN_VEIL</ReligionPrereq>
+            <UnitClassPrereq>UNITCLASS_HIGH_PRIEST_OF_THE_VEIL</UnitClassPrereq>
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -3922,9 +3939,7 @@
             <Type>SPELL_SUMMON_KRAKEN</Type>
             <Description>TXT_KEY_SPELL_SUMMON_KRAKEN</Description>
             <Civilopedia>TXT_KEY_SPELL_SUMMON_KRAKEN_PEDIA</Civilopedia>
-            <PromotionPrereq1>PROMOTION_CHANNELING3</PromotionPrereq1>
-            <PromotionPrereq2>PROMOTION_DIVINE</PromotionPrereq2>
-            <ReligionPrereq>RELIGION_OCTOPUS_OVERLORDS</ReligionPrereq>
+            <UnitClassPrereq>UNITCLASS_HIGH_PRIEST_OF_THE_OVERLORDS</UnitClassPrereq>
             <bAllowAI>1</bAllowAI>
             <bAdjacentToWaterOnly>1</bAdjacentToWaterOnly>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
@@ -4029,11 +4044,9 @@
             <Type>SPELL_SUMMON_TREANT</Type>
             <Description>TXT_KEY_SPELL_SUMMON_TREANT</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <PromotionPrereq1>PROMOTION_CHANNELING3</PromotionPrereq1>
-            <PromotionPrereq2>PROMOTION_DIVINE</PromotionPrereq2>
+            <UnitClassPrereq>UNITCLASS_HIGH_PRIEST_OF_LEAVES</UnitClassPrereq>
             <FeatureOrPrereq1>FEATURE_FOREST</FeatureOrPrereq1>
             <FeatureOrPrereq2>FEATURE_FOREST_ANCIENT</FeatureOrPrereq2>
-            <ReligionPrereq>RELIGION_FELLOWSHIP_OF_LEAVES</ReligionPrereq>
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -5095,9 +5108,24 @@
             <Description>TXT_KEY_SPELL_UNYIELDING_ORDER</Description>
             <Civilopedia>TXT_KEY_SPELL_UNYIELDING_ORDER_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_UNYIELDING_ORDER_HELP</Help>
-            <PromotionPrereq1>PROMOTION_CHANNELING3</PromotionPrereq1>
-            <PromotionPrereq2>PROMOTION_DIVINE</PromotionPrereq2>
-            <ReligionPrereq>RELIGION_THE_ORDER</ReligionPrereq>
+            <UnitClassPrereq>UNITCLASS_HIGH_PRIEST_OF_THE_ORDER</UnitClassPrereq>
+            <bAllowAI>1</bAllowAI>
+            <bInBordersOnly>1</bInBordersOnly>
+            <bInCityOnly>1</bInCityOnly>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <CreateBuildingType>BUILDING_UNYIELDING_ORDER</CreateBuildingType>
+            <PyResult>spellUnyieldingOrder(pCaster)</PyResult>
+            <Effect>EFFECT_CREATION</Effect>
+            <Sound>AS3D_SPELL_HOPE</Sound>
+            <Button>Art/Interface/Buttons/Buildings/Unyieldingorder.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_UNYIELDING_ORDER_SPHENER</Type>
+            <Description>TXT_KEY_SPELL_UNYIELDING_ORDER</Description>
+            <Civilopedia>TXT_KEY_SPELL_UNYIELDING_ORDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_UNYIELDING_ORDER_HELP</Help>
+            <UnitClassPrereq>UNITCLASS_SPHENER</UnitClassPrereq>
             <bAllowAI>1</bAllowAI>
             <bInBordersOnly>1</bInBordersOnly>
             <bInCityOnly>1</bInCityOnly>

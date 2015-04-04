@@ -1644,6 +1644,18 @@
 			<DefaultBuilding>BUILDING_THE_NEXUS</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
+		<BuildingClassInfo>
+			<Type>BUILDINGCLASS_MUSEUM</Type>
+			<Description>TXT_KEY_BUILDING_MUSEUM</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_MUSEUM</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
 		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
 			<Type>BUILDINGCLASS_BEAR_TROPHY</Type>
 			<Description>TXT_KEY_BUILDING_BEAR_TROPHY</Description>

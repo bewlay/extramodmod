@@ -272,8 +272,16 @@ class SevoPediaCivilization:
 	def placeTrait(self):
 		screen = self.top.getScreen()
 		panelName = self.top.getNextWidgetName()
-		screen.addPanel(panelName, localText.getText("TXT_KEY_CIV_TRAIT", ()), "", False, True, self.X_CIV_TRAIT, self.Y_CIV_TRAIT, self.W_CIV_TRAIT, self.H_CIV_TRAIT, PanelStyles.PANEL_STYLE_BLUE50)
+	# EXTRA_CIV_TRAITS 08/2013 lfgr
+	#	screen.addPanel(panelName, localText.getText("TXT_KEY_CIV_TRAIT", ()), "", False, True, self.X_CIV_TRAIT, self.Y_CIV_TRAIT, self.W_CIV_TRAIT, self.H_CIV_TRAIT, PanelStyles.PANEL_STYLE_BLUE50)
+	#	screen.attachLabel(panelName, "", "  ")
+		screen.addPanel(panelName, localText.getText("TXT_KEY_CIV_TRAITS", ()), "", False, True, self.X_CIV_TRAIT, self.Y_CIV_TRAIT, self.W_CIV_TRAIT, self.H_CIV_TRAIT, PanelStyles.PANEL_STYLE_BLUE50)
 		screen.attachLabel(panelName, "", "  ")
+		
+		for iTrait in range( gc.getNumTraitInfos() ) :
+			if( gc.getCivilizationInfo(self.iCivilization).isCivTraits( iTrait ) ) :
+				screen.attachImageButton(panelName, "", gc.getTraitInfo(iTrait).getButton(), GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_TRAIT, iTrait, -1, False)
+	# EXTRA_CIV_TRAITS end
 
 		#terrain yield modifier
 		ltTerrainModifier = []
@@ -297,6 +305,11 @@ class SevoPediaCivilization:
 		#place panel with variable title
 
 		#place each buttons
+	# EXTRA_CIV_TRAITS 08/2013 lfgr
+		# to help distinguish
+		if( len( ltTerrainModifier ) > 0 ) :
+			screen.attachLabel(panelName, "", localText.getText("TXT_KEY_MISC_CIV_TERRAIN", ()) + ":" )
+	# EXTRA_CIV_TRAITS end
 		for iTerrain, szYield in ltTerrainModifier:
 			childPanelName = self.top.getNextWidgetName()
 			screen.attachLabel(panelName, "", "  ")

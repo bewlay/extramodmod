@@ -424,9 +424,7 @@ void CyEnumsPythonInterface()
 		.value("WIDGET_PEDIA_JUMP_TO_TRAIT", WIDGET_PEDIA_JUMP_TO_TRAIT)
 		.value("WIDGET_HELP_TRAIT", WIDGET_HELP_TRAIT)
 //<<<<BUGFfH: End Add
-// MNAI - Puppet States
-		.value("WIDGET_HELP_PUPPET_STATE", WIDGET_HELP_PUPPET_STATE)
-// MNAI End
+		.value("WIDGET_HELP_PUPPET_STATE", WIDGET_HELP_PUPPET_STATE) // MNAI - Puppet States
 		.value("NUM_WIDGET_TYPES", NUM_WIDGET_TYPES)
 		;
 
@@ -581,6 +579,10 @@ void CyEnumsPythonInterface()
 		.value("GAMEOPTION_FLIPPING_AFTER_CONQUEST", GAMEOPTION_FLIPPING_AFTER_CONQUEST)
 		.value("GAMEOPTION_NO_BARBARIANS", GAMEOPTION_NO_BARBARIANS)
 		.value("GAMEOPTION_RANDOM_PERSONALITIES", GAMEOPTION_RANDOM_PERSONALITIES)
+		// Player traits game options START
+		.value("GAMEOPTION_RANDOM_TRAITS", GAMEOPTION_RANDOM_TRAITS)
+		.value("GAMEOPTION_INSANE_LEADERS", GAMEOPTION_INSANE_LEADERS)
+		// Player traits game options END
 		.value("GAMEOPTION_PICK_RELIGION", GAMEOPTION_PICK_RELIGION)
 		.value("GAMEOPTION_TECHNOLOGY_PROPAGATION", GAMEOPTION_TECHNOLOGY_PROPAGATION)
 		.value("GAMEOPTION_NO_TECH_TRADING", GAMEOPTION_NO_TECH_TRADING)
@@ -664,13 +666,14 @@ void CyEnumsPythonInterface()
 /* TERRAIN_FLAVOUR                                                                END           */
 /************************************************************************************************/
 /************************************************************************************************/
-/* WILDERNESS                             08/2013                                 lfgr          */
+/* WILDERNESS                             03/2015                                 lfgr          */
 /* NoWilderness                                                                                 */
 /************************************************************************************************/
-		.value("GAMEOPTION_NO_WILDERNESS", GAMEOPTION_FLAVOUR_START)
+		.value("GAMEOPTION_NO_WILDERNESS", GAMEOPTION_NO_WILDERNESS)
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
+		.value("GAMEOPTION_NO_GUILD_OF_THE_NINE", GAMEOPTION_NO_GUILD_OF_THE_NINE)
 
 		.value("NUM_GAMEOPTION_TYPES", NUM_GAMEOPTION_TYPES)
 		;
@@ -1106,6 +1109,7 @@ void CyEnumsPythonInterface()
 		// ALN LairGuards Start
 		.value("UNITAI_LAIRGUARDIAN", UNITAI_LAIRGUARDIAN)
 		// ALN End
+		.value("UNITAI_SHADE", UNITAI_SHADE)
 		.value("NUM_UNITAI_TYPES", NUM_UNITAI_TYPES)
 		;
 

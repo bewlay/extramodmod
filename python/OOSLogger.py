@@ -22,7 +22,13 @@ def doGameUpdate():
 
 	if (bOOS and not bWroteLog):
 		writeLog()
+		# Automatic OOS detection START
+		gc.getGame().setOOSVisible()
+		# Automatic OOS detection END
 		bWroteLog = True
+	# Make sure that OOS will be generated when the game is not restarted after an OOS.
+	if (not bOOS):
+		bWroteLog = False
 
 def writeLog():
 	playername = CvUtil.convertToStr(gc.getPlayer(gc.getGame().getActivePlayer()).getName())

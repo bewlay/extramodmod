@@ -330,6 +330,14 @@
 		<Spanish>[ICON_BULLET]Convierte recursos de grano, animales, mar o campamento a un tipo de recurso diferente del mismo grupo</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_SPELL_FERTILITY_PYHELP</Tag>
+		<English>[ICON_BULLET]Convert the %s1 in the tile to %s2.</English>
+		<French>[ICON_BULLET]Convert the %s1 in the tile to %s2.</French>
+		<German>[ICON_BULLET]Convert the %s1 in the tile to %s2.</German>
+		<Italian>[ICON_BULLET]Convert the %s1 in the tile to %s2.</Italian>
+		<Spanish>[ICON_BULLET]Convierte el %s1 en la casilla a %s2.</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_SPELL_LABYRINTH</Tag>
 		<English>Create Labyrinth</English>
 		<French>Create Labyrinth</French>
@@ -343,7 +351,7 @@
 		<French>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</French>
 		<German>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</German>
 		<Italian>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</Italian>
-		<Spanish>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</Spanish>
+		<Spanish>[ICON_BULLET]Crea un [LINK=FEATURE_LABYRINTH]Laberinto[\LINK] en la casilla</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_MAGIC_MISSILE</Tag>
@@ -384,6 +392,54 @@
 		<German>Allows the unit to cross the rift, moving instantly from the rift to the rift's caster or viceversa</German>
 		<Italian>Allows the unit to cross the rift, moving instantly from the rift to the rift's caster or viceversa</Italian>
 		<Spanish>Permite a la unidad cruzar el vórtice, moviéndose instantáneamente desde el vórtice hasta el lanzador del vórtice o viceversa</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_CROSS_PYHELP_UNITS_ONE</Tag>
+		<English>[ICON_BULLET]The unit will cross the rift.</English>
+		<French>[ICON_BULLET]The unit will cross the rift.</French>
+		<German>[ICON_BULLET]The unit will cross the rift.</German>
+		<Italian>[ICON_BULLET]The unit will cross the rift.</Italian>
+		<Spanish>[ICON_BULLET]The unit will cross the rift.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_CROSS_PYHELP_UNITS_ALL</Tag>
+		<English>[ICON_BULLET]%d1 units will cross the rift.</English>
+		<French>[ICON_BULLET]%d1 units will cross the rift.</French>
+		<German>[ICON_BULLET]%d1 units will cross the rift.</German>
+		<Italian>[ICON_BULLET]%d1 units will cross the rift.</Italian>
+		<Spanish>[ICON_BULLET]%d1 units will cross the rift.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_CROSS_PYHELP_UNITS_SOME</Tag>
+		<English>[ICON_BULLET]%d1 of %d2 units will cross the rift.</English>
+		<French>[ICON_BULLET]%d1 of %d2 units will cross the rift.</French>
+		<German>[ICON_BULLET]%d1 of %d2 units will cross the rift.</German>
+		<Italian>[ICON_BULLET]%d1 of %d2 units will cross the rift.</Italian>
+		<Spanish>[ICON_BULLET]%d1 of %d2 units will cross the rift.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_CROSS_PYHELP_DESTINATION</Tag>
+		<English>[ICON_BULLET]Units crossing the rift will arrive at the position of unit %s1.</English>
+		<French>[ICON_BULLET]Units crossing the rift will arrive at the position of unit %s1.</French>
+		<German>[ICON_BULLET]Units crossing the rift will arrive at the position of unit %s1.</German>
+		<Italian>[ICON_BULLET]Units crossing the rift will arrive at the position of unit %s1.</Italian>
+		<Spanish>[ICON_BULLET]Units crossing the rift will arrive at the position of unit %s1.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_CROSS_PYHELP_NOT_CLOSED</Tag>
+		<English>[ICON_BULLET]%d1 more units can still cross the rift.</English>
+		<French>[ICON_BULLET]%d1 more units can still cross the rift.</French>
+		<German>[ICON_BULLET]%d1 more units can still cross the rift.</German>
+		<Italian>[ICON_BULLET]%d1 more units can still cross the rift.</Italian>
+		<Spanish>[ICON_BULLET]%d1 more units can still cross the rift.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_RIFT_CROSS_PYHELP_CLOSED</Tag>
+		<English>[ICON_BULLET]The rift will be closed.</English>
+		<French>[ICON_BULLET]The rift will be closed.</French>
+		<German>[ICON_BULLET]The rift will be closed.</German>
+		<Italian>[ICON_BULLET]The rift will be closed.</Italian>
+		<Spanish>[ICON_BULLET]The rift will be closed.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CROSS_CLOSED_MESSAGE</Tag>

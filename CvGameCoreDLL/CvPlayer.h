@@ -1137,7 +1137,7 @@ public:
 	PlayerTypes initNewEmpire(LeaderHeadTypes eNewLeader, CivilizationTypes eNewCiv);
 //<<<<Unofficial Bug Fix: End Add
 
-    /*** PUPPET STATES 04/21/08 by DPII ***/
+    // MNAI - Puppet States
     DllExport bool makePuppet(PlayerTypes eSplitPlayer = NO_PLAYER, CvCity* pVassalCapital = NULL);
     DllExport bool canMakePuppet(PlayerTypes eFromPlayer) const;
     PlayerTypes getPuppetPlayer() const;
@@ -1148,7 +1148,7 @@ public:
 
 	bool isPuppetState() const;
 	void setPuppetState(bool newvalue);
-    /*** PUPPET STATES END ***/
+    // MNAI - End Puppet States
 
 /************************************************************************************************/
 /* REVOLUTION_MOD                         11/15/08                                jdog5000      */
@@ -1322,6 +1322,9 @@ public:
 	void AI_doTowerMastery();
 // End Sephi AI
 
+//>>>>Unofficial Bug Fix: Added by Denev 2010/04/04
+	bool isRegularCityMaxedOut() const;
+	int getNextCityRadius() const;
 //>>>>Unofficial Bug Fix: Added by Denev 2009/09/29
 //*** Assimilated city produces a unit with original civilization artstyle.
 	UnitArtStyleTypes getUnitArtStyleType() const;
@@ -1332,8 +1335,16 @@ public:
 // BUG - Reminder Mod - end
 
 // Leader categories START
-	int getLeaderCategory() const;
+	int getLeaderCategory() const; // Exposed to Python
 // Leader categories END
+
+// ExtraModMod technology propagation START
+	int calculateTechPropagationResearchModifier(TechTypes eTech) const; // Exposed to Python
+// ExtraModMod technology propagation END
+
+// Automatic OOS detection START
+	int getNumTriggersFired() const;
+// Automatic OOS detection END
 
 	virtual void AI_init() = 0;
 	virtual void AI_reset(bool bConstructor) = 0;
@@ -1587,8 +1598,7 @@ protected:
 	PlayerTypes m_eParent;
 	TeamTypes m_eTeamType;
 
-	// Puppet States
-	bool m_bPuppetState;
+	bool m_bPuppetState; // MNAI - Puppet States
 
 /*************************************************************************************************/
 /**	BETTER AI (New Functions Definition) Sephi                                 					**/
@@ -1776,6 +1786,10 @@ protected:
 	void getResourceLayerColors(GlobeLayerResourceOptionTypes eOption, std::vector<NiColorA>& aColors, std::vector<CvPlotIndicatorData>& aIndicators) const;  // used by Globeview resource layer
 	void getReligionLayerColors(ReligionTypes eSelectedReligion, std::vector<NiColorA>& aColors, std::vector<CvPlotIndicatorData>& aIndicators) const;  // used by Globeview religion layer
 	void getCultureLayerColors(std::vector<NiColorA>& aColors, std::vector<CvPlotIndicatorData>& aIndicators) const;  // used by Globeview culture layer
+	// Player traits game options START
+	void addRandomTrait();
+	void setLeaderTraits();
+	// Player traits game options END
 };
 
 #endif

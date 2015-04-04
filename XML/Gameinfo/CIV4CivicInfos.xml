@@ -1491,6 +1491,10 @@
                     <BuildingType>BUILDINGCLASS_LIBRARY</BuildingType>
                     <iHappinessChange>1</iHappinessChange>
                 </BuildingHappinessChange>
+                <BuildingHappinessChange>
+                    <BuildingType>BUILDINGCLASS_MUSEUM</BuildingType>
+                    <iHappinessChange>1</iHappinessChange>
+                </BuildingHappinessChange>
             </BuildingHappinessChanges>
             <BuildingHealthChanges>
             </BuildingHealthChanges>
@@ -3259,7 +3263,7 @@
             <Strategy></Strategy>
             <Help></Help>
             <Button>Art/Interface/Buttons/Buildings/Dies Diei.dds</Button>
-            <TechPrereq>TECH_HONOR</TechPrereq>
+            <TechPrereq>TECH_MEDICINE</TechPrereq>
             <iAnarchyLength>0</iAnarchyLength>
             <Upkeep>UPKEEP_LOW</Upkeep>
             <iAIWeight>10</iAIWeight>
@@ -3351,7 +3355,7 @@
             <Strategy></Strategy>
             <Help></Help>
             <Button>Art/Interface/Buttons/Buildings/Nox Noctis.dds</Button>
-            <TechPrereq>TECH_DECEPTION</TechPrereq>
+            <TechPrereq>TECH_POISONS</TechPrereq>
             <iAnarchyLength>0</iAnarchyLength>
             <Upkeep>UPKEEP_LOW</Upkeep>
             <iAIWeight>10</iAIWeight>

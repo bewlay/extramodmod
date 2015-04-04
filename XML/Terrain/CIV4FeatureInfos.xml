@@ -483,6 +483,8 @@
 			<PrereqStateReligion>NONE</PrereqStateReligion>
             <PythonOnMove></PythonOnMove>
 			<RequireResist>NONE</RequireResist>
+			<FeatureDown>NONE</FeatureDown>
+			<FeatureUp>FEATURE_OBSIDIAN_PLAINS</FeatureUp>
 		</FeatureInfo>
 		<FeatureInfo>
 			<Type>FEATURE_FOREST</Type>
@@ -1453,6 +1455,8 @@
 			<PrereqStateReligion>NONE</PrereqStateReligion>
             <PythonOnMove></PythonOnMove>
 			<RequireResist>NONE</RequireResist>
+			<FeatureDown>FEATURE_FLOOD_PLAINS</FeatureDown>
+			<FeatureUp>NONE</FeatureUp>
 		</FeatureInfo>
 		<FeatureInfo>
 			<Type>FEATURE_VOLCANO</Type>
@@ -1741,6 +1745,30 @@
 				</TerrainBoolean>
 				<TerrainBoolean>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<bTerrain>1</bTerrain>
+				</TerrainBoolean>
+				<TerrainBoolean>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<bTerrain>1</bTerrain>
+				</TerrainBoolean>
+				<TerrainBoolean>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<bTerrain>1</bTerrain>
+				</TerrainBoolean>
+				<TerrainBoolean>
+					<TerrainType>TERRAIN_PEAK</TerrainType>
+					<bTerrain>1</bTerrain>
+				</TerrainBoolean>
+				<TerrainBoolean>
+					<TerrainType>TERRAIN_HILL</TerrainType>
+					<bTerrain>1</bTerrain>
+				</TerrainBoolean>
+				<TerrainBoolean>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<bTerrain>1</bTerrain>
+				</TerrainBoolean>
+				<TerrainBoolean>
+					<TerrainType>TERRAIN_OCEAN</TerrainType>
 					<bTerrain>1</bTerrain>
 				</TerrainBoolean>
 			</TerrainBooleans>

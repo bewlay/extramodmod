@@ -1186,6 +1186,14 @@
 					<UnitAIType>UNITAI_WARWIZARD</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
 			</UnitAIs>
 			<NotUnitAIs>
 				<UnitAI>
@@ -1351,6 +1359,14 @@
 					<UnitAIType>UNITAI_WARWIZARD</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
 			</UnitAIs>
 			<NotUnitAIs>
 				<UnitAI>
@@ -1527,6 +1543,14 @@
 					<UnitAIType>UNITAI_WARWIZARD</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
 			</UnitAIs>
 			<NotUnitAIs>
 				<UnitAI>
@@ -4511,7 +4535,7 @@
 			</UnitAIs>
 			<PrereqBuilding>BUILDING_SCULPTORS_STUDIO</PrereqBuilding>
 			<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
-			<iCost>60</iCost>
+			<iCost>45</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -5784,7 +5808,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqTech>TECH_MACHINERY</PrereqTech>
-			<iCost>360</iCost>
+			<iCost>240</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -6416,7 +6440,7 @@
 			<ReligionType>RELIGION_THE_EMPYREAN</ReligionType>
 			<StateReligion>RELIGION_THE_EMPYREAN</StateReligion>
 			<PrereqReligion>RELIGION_THE_EMPYREAN</PrereqReligion>
-			<PrereqTech>TECH_RIGHTEOUSNESS</PrereqTech>
+			<PrereqTech>TECH_RELIGIOUS_LAW</PrereqTech>
 			<iAIWeight>200</iAIWeight>
 			<iCost>300</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
@@ -7073,7 +7097,7 @@
 				<BonusType>NONE</BonusType>
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
-			<iCost>180</iCost>
+			<iCost>120</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -7412,6 +7436,7 @@
 			<bMilitaryHappiness>1</bMilitaryHappiness>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK</UnitAIType>
@@ -7422,8 +7447,10 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_FESTIVALS</PrereqTech>
+			<iCost>45</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -7455,6 +7482,7 @@
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
 			<iWeaponTier>3</iWeaponTier>
+			<PrereqBuildingClass>BUILDINGCLASS_CARNIVAL</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_CENTAUR_CHARGER -->
 			<Class>UNITCLASS_CHARIOT</Class>
@@ -7561,7 +7589,7 @@
 			<PrereqBuilding>BUILDING_SIEGE_WORKSHOP</PrereqBuilding>
 			<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
+				<PrereqTech>TECH_TRADE</PrereqTech>
 			</TechTypes>
 			<BonusType>NONE</BonusType>
 			<PrereqBonuses>
@@ -7637,7 +7665,7 @@
 			<PrereqBuilding>BUILDING_SIEGE_WORKSHOP</PrereqBuilding>
 			<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
+				<PrereqTech>TECH_TRADE</PrereqTech>
 			</TechTypes>
 			<BonusType>NONE</BonusType>
 			<PrereqBonuses>
@@ -10232,7 +10260,7 @@
 			<StateReligion>RELIGION_FELLOWSHIP_OF_LEAVES</StateReligion>
 			<PrereqReligion>RELIGION_FELLOWSHIP_OF_LEAVES</PrereqReligion>
 			<PrereqTech>TECH_WAY_OF_THE_FORESTS</PrereqTech>
-			<iCost>60</iCost>
+			<iCost>75</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
@@ -10708,7 +10736,7 @@
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>4</iMoves>
-			<iAirUnitCap>1</iAirUnitCap>
+            <iAirUnitCap>0</iAirUnitCap>
 			<iNukeRange>-1</iNukeRange>
 			<iCombat>10</iCombat>
 			<iCombatLimit>100</iCombatLimit>
@@ -10717,6 +10745,7 @@
 			<iBombardRate>10</iBombardRate>
 			<SpecialCargo>SPECIALUNIT_BIRD</SpecialCargo>
 			<DomainCargo>DOMAIN_AIR</DomainCargo>
+            <iCargo>1</iCargo>
 			<iAsset>10</iAsset>
 			<iPower>15</iPower>
 			<UnitMeshGroups>
@@ -13278,6 +13307,12 @@
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
 			<iWithdrawalProb>35</iWithdrawalProb>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
 			<iCultureGarrison>5</iCultureGarrison>
 			<iAsset>9</iAsset>
 			<iPower>10</iPower>
@@ -13358,6 +13393,12 @@
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
 			<iWithdrawalProb>35</iWithdrawalProb>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
 			<iCultureGarrison>5</iCultureGarrison>
 			<iAsset>9</iAsset>
 			<iPower>10</iPower>
@@ -13442,6 +13483,12 @@
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
 			<iWithdrawalProb>35</iWithdrawalProb>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
 			<iCultureGarrison>5</iCultureGarrison>
 			<iAsset>9</iAsset>
 			<iPower>10</iPower>
@@ -13532,6 +13579,12 @@
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
 			<iWithdrawalProb>35</iWithdrawalProb>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
 			<iCultureGarrison>5</iCultureGarrison>
 			<iAsset>9</iAsset>
 			<iPower>10</iPower>
@@ -13613,6 +13666,12 @@
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
 			<iWithdrawalProb>35</iWithdrawalProb>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+                    <iUnitCombatMod>40</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
 			<iCultureGarrison>5</iCultureGarrison>
 			<iAsset>9</iAsset>
 			<iPower>10</iPower>
@@ -16200,7 +16259,7 @@
 			</UnitAIs>
 			<PrereqBuilding>BUILDING_SCULPTORS_STUDIO</PrereqBuilding>
 			<PrereqTech>TECH_ENGINEERING</PrereqTech>
-			<iCost>180</iCost>
+			<iCost>120</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
@@ -16546,6 +16605,14 @@
 					<UnitAIType>UNITAI_WARWIZARD</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
 			</UnitAIs>
 			<NotUnitAIs>
 				<UnitAI>
@@ -16717,6 +16784,14 @@
 					<UnitAIType>UNITAI_WARWIZARD</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
 			</UnitAIs>
 			<NotUnitAIs>
 				<UnitAI>
@@ -16884,6 +16959,14 @@
 					<UnitAIType>UNITAI_WARWIZARD</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
 			</UnitAIs>
 			<NotUnitAIs>
 				<UnitAI>
@@ -17336,6 +17419,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK_CITY</UnitAIType>
@@ -17354,8 +17438,10 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_COMMUNE_WITH_NATURE</PrereqTech>
+			<iCost>240</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -17403,6 +17489,7 @@
 					<iCombat>1</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<PrereqBuildingClass>BUILDINGCLASS_GROVE</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_MARDERO -->
 			<Class>UNITCLASS_MARDERO</Class>
@@ -17617,7 +17704,6 @@
 			<iCombatDefense>11</iCombatDefense>
 			<iDefensiveStrikeChance>40</iDefensiveStrikeChance>
 			<iDefensiveStrikeDamage>20</iDefensiveStrikeDamage>
-			<iMinLevel>6</iMinLevel>
 			<iTier>4</iTier>
 			<iWeaponTier>3</iWeaponTier>
 			<PrereqBuildingClass>BUILDINGCLASS_ARCHERY_RANGE</PrereqBuildingClass>
@@ -18121,6 +18207,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
@@ -18131,8 +18218,10 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_PASS_THROUGH_THE_ETHER</PrereqTech>
+			<iCost>240</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -18163,6 +18252,7 @@
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
 			<iCombatDefense>11</iCombatDefense>
 			<iTier>4</iTier>
+			<PrereqBuildingClass>BUILDINGCLASS_OBSIDIAN_GATE</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_MISTFORM -->
 			<Class>UNITCLASS_MISTFORM</Class>
@@ -18321,6 +18411,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitClassUpgrades>
 				<UnitClassUpgrade>
 					<UnitClassUpgradeType>UNITCLASS_ARCHMAGE</UnitClassUpgradeType>
@@ -18336,6 +18427,14 @@
 					<UnitAIType>UNITAI_WARWIZARD</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
 			</UnitAIs>
 			<NotUnitAIs>
 				<UnitAI>
@@ -18425,8 +18524,11 @@
 					<bBuild>1</bBuild>
 				</Build>
 			</Builds>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_KNOWLEDGE_OF_THE_ETHER</PrereqTech>
+			<iAIWeight>150</iAIWeight>
+			<iCost>150</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -18463,6 +18565,7 @@
 			<bFreeXP>1</bFreeXP>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>3</iTier>
+			<PrereqBuildingClass>BUILDINGCLASS_MAGE_GUILD</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_MOKKA -->
 			<Class>UNITCLASS_MOKKA</Class>
@@ -21623,6 +21726,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK</UnitAIType>
@@ -21637,8 +21741,10 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_MATHEMATICS</PrereqTech>
+			<iCost>150</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -21670,6 +21776,7 @@
 					<iCombat>1</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<PrereqBuildingClass>BUILDINGCLASS_GAMBLING_HOUSE</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_ROSIER -->
 			<Class>UNITCLASS_ROSIER</Class>
@@ -22512,7 +22619,7 @@
 			<Type>UNIT_GOBLIN_SCORPION_CLAN</Type>
 			<Combat>UNITCOMBAT_RECON</Combat>
 			<Domain>DOMAIN_LAND</Domain>
-			<DefaultUnitAI>UNITAI_EXPLORE</DefaultUnitAI>
+            <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<SeeInvisible>INVISIBLE_ANIMAL</SeeInvisible>
 			<Description>TXT_KEY_UNIT_GOBLIN_SCORPION_CLAN</Description>
 			<Civilopedia>TXT_KEY_UNIT_GOBLIN_PEDIA</Civilopedia>
@@ -22524,15 +22631,11 @@
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<UnitAIs>
 				<UnitAI>
-					<UnitAIType>UNITAI_EXPLORE</UnitAIType>
+                    <UnitAIType>UNITAI_ATTACK</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
 			<NotUnitAIs>
-				<UnitAI>
-					<UnitAIType>UNITAI_ATTACK</UnitAIType>
-					<bUnitAI>1</bUnitAI>
-				</UnitAI>
 				<UnitAI>
 					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
 					<bUnitAI>1</bUnitAI>
@@ -22910,7 +23013,7 @@
 			<Class>UNITCLASS_SHADE</Class>
 			<Type>UNIT_SHADE</Type>
 			<Domain>DOMAIN_LAND</Domain>
-			<DefaultUnitAI>UNITAI_GENERAL</DefaultUnitAI>
+            <DefaultUnitAI>UNITAI_SHADE</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_SHADE</Description>
 			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_SHADE_STRATEGY</Strategy>
@@ -23928,6 +24031,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_COUNTER</UnitAIType>
@@ -23938,8 +24042,10 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_SANITATION</PrereqTech>
+			<iCost>150</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -23981,6 +24087,7 @@
 					<iCombat>2</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<PrereqBuildingClass>BUILDINGCLASS_PUBLIC_BATHS</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_SUPPLIES -->
 			<Class>UNITCLASS_SUPPLIES</Class>
@@ -24084,6 +24191,7 @@
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
 			<iTier>1</iTier>
+			<PrereqBuildingClass>BUILDINGCLASS_PUBLIC_BATHS</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_TAR_DEMON -->
 			<Class>UNITCLASS_TAR_DEMON</Class>
@@ -24099,6 +24207,7 @@
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
 			<bFlatMovementCost>1</bFlatMovementCost>
+			<PrereqCiv>CIVILIZATION_SHEAIM</PrereqCiv>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
@@ -24106,8 +24215,10 @@
 				</UnitAI>
 			</UnitAIs>
 			<ReligionType>RELIGION_THE_ASHEN_VEIL</ReligionType>
-			<iCost>-1</iCost>
-			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
+			<PrereqTech>TECH_CORRUPTION_OF_SPIRIT</PrereqTech>
+			<iCost>150</iCost>
+			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
@@ -24145,6 +24256,7 @@
 					<iCombat>1</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<PrereqBuildingClass>BUILDINGCLASS_TEMPLE_OF_THE_VEIL</PrereqBuildingClass>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_TEUTORIX -->
 			<Class>UNITCLASS_TEUTORIX</Class>
@@ -25874,6 +25986,10 @@
 				</FreePromotion>
 				<FreePromotion>
 					<PromotionType>PROMOTION_DEMON</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_COLD_RESISTANCE</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>

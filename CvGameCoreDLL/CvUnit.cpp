@@ -259,7 +259,17 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 			{
 				if (GC.getTraitInfo((TraitTypes) iI).isFreePromotion(iJ))
 				{
+				/********************************************************************************/
+				/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+				/********************************************************************************/
+				/* old
 					if ((getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iI).isFreePromotionUnitCombat(getUnitCombatType()))
+				*/
+					if ( GC.getTraitInfo((TraitTypes) iI).isAllUnitsFreePromotion() ||
+						((getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iI).isFreePromotionUnitCombat(getUnitCombatType())))
+				/********************************************************************************/
+				/* EXTRA_CIV_TRAITS                                                     END     */
+				/********************************************************************************/
 					{
 						setHasPromotion(((PromotionTypes)iJ), true);
 					}
@@ -1168,6 +1178,10 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 		if (!bConvert)
 		{
 			CvLeaderHeadInfo& kLeaderHeadInfo = GC.getLeaderHeadInfo(GET_PLAYER(getOwnerINLINE()).getLeaderType());
+		/********************************************************************************/
+		/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+		/********************************************************************************/
+		/* old
 			const TraitTypes eCivTrait = (TraitTypes)GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getCivTrait();
 
 			for (int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++)
@@ -1175,6 +1189,15 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 				if (kLeaderHeadInfo.hasTrait(iTrait))
 				{
 					if (iTrait != eCivTrait)
+		*/
+			for (int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++)
+			{
+				if (kLeaderHeadInfo.hasTrait(iTrait))
+				{
+					if ( !GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).isCivTraits( iTrait ) )
+		/********************************************************************************/
+		/* EXTRA_CIV_TRAITS                                                     END     */
+		/********************************************************************************/
 					{
 						GET_PLAYER(getOwnerINLINE()).setHasTrait((TraitTypes)iTrait, false);
 					}
@@ -8530,7 +8553,7 @@ void CvUnit::promote(PromotionTypes ePromotion, int iLeaderUnitId)
 
 //FfH Units: Modified by Kael 08/04/2007
 //	if (!GC.getPromotionInfo(ePromotion).isLeader())
-	if ((!GC.getPromotionInfo(ePromotion).isLeader()) && getFreePromotionPick() == 0)
+	if ((!GC.getPromotionInfo(ePromotion).isLeader()) && !(getFreePromotionPick() > 0))
 //FfH: End Modify
 
 	{
@@ -8844,6 +8867,17 @@ bool CvUnit::canUpgrade(UnitTypes eUnit, bool bTestVisible) const
 			return false;
 		}
 	}
+
+/************************************************************************************************/
+/* WILDERNESS                             03/2015                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/* Barbarians can't upgrade units with SpawnInfo (weird promotions/artstyle)                    */
+/************************************************************************************************/
+	if( getSpawnType() != NO_SPAWN && isBarbarian() )
+		return false;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	CvUnitInfo& kUnitInfo = GC.getUnitInfo(eUnit);
 
@@ -12437,7 +12471,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 					bAnimalLair = true;
 				}
 
-				if (!isHuman() || kImprovementInfo.isPermanent() == false)
+                if (kImprovementInfo.isPermanent() == false)
 				{
 					if (atWar(getTeam(), GET_PLAYER(BARBARIAN_PLAYER).getTeam()) || (bAnimalLair && !isBarbarian()))
 					{

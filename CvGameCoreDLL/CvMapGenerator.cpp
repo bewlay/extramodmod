@@ -14,6 +14,7 @@
 #include "CyPlot.h"
 #include "CyArgsList.h"
 
+#include "BetterBTSAI.h"
 //
 // static
 //
@@ -1279,83 +1280,64 @@ void CvMapGenerator::addImprovements()
                 {
                     for (int iJ = 0; iJ < GC.getNumImprovementInfos(); iJ++)
                     {
-                        if (pPlot->canHaveImprovement((ImprovementTypes)iJ, NO_TEAM))
+					/************************************************************************************************/
+					/* WILDERNESS                             08/2013, 03/2015                        lfgr          */
+					/* ImprovementSpawnTypes, WildernessMisc, LairGuardian                                          */
+					/* New spawn system and cleanup. Removed old code.                                              */
+					/* More Lairs in higher wilderness, Lairs with guardians have a min distance to starting plots  */
+					/* and can't spawn on other units.                                                              */
+					/* Features are not erased when placing lairs (from Orbis by Ahwaric)                           */
+					/************************************************************************************************/
+						ImprovementTypes eImprovement = (ImprovementTypes) iJ;
+
+						int iProbability = GC.getImprovementInfo( eImprovement ).getAppearanceProbability();
+						
+                        if( iProbability > 0 && pPlot->canHaveImprovement( eImprovement, NO_TEAM ) )
                         {
-						/************************************************************************************************/
-						/* WILDERNESS                             08/2013                                 lfgr          */
-						/* ImprovementSpawnTypes                                                                        */
-						/************************************************************************************************/
-						/*
-							if (GC.getImprovementInfo((ImprovementTypes)iJ).getSpawnUnitType() != NO_UNIT)
-						*/
-							bool bValid = false;
-							for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+							bool bGuardian = false;
+							for( int eLoopSpawn = 0; !bGuardian && eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+								if( GC.getImprovementInfo( eImprovement ).isGuardianSpawnType( eLoopSpawn ) )
+									if( int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn ) > 0 )
+										bGuardian = true;
+
+							if( bGuardian && pPlot->getNumUnits() != 0 )
 							{
-								if( GC.getImprovementInfo((ImprovementTypes)iJ).getSpawnTypes( eSpawn ) )
-								{
-									bValid = true;
-									break;
-								}
+								bValid = false;
 							}
+
 							if( bValid )
-						/************************************************************************************************/
-						/* WILDERNESS                                                                     END           */
-						/************************************************************************************************/
 							{
-								if (!pPlot->isVisibleToCivTeam())
+								// More Lairs in higher wilderness
+								if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
+									iProbability += (int) ( iProbability * ( pPlot->getWilderness() * 2 / 100.0 ) );
+								
+								if (GC.getGameINLINE().getSorenRandNum( 10000, "Spawn Improvement" ) < iProbability)
 								{
-								/************************************************************************************************/
-								/* WILDERNESS                             08/2013                                 lfgr          */
-								/* WildernessMisc, LairGuardian                                                                 */
-								/* More Lairs in higher wilderness, Lairs with guardians have a min distance to starting plots. */
-								/* Features are not erased when placing lairs (from Orbis by Ahwaric)                           */
-								/************************************************************************************************/
-								/*
-									if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement") < GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability())
+									bool bValid = true;
+
+									// Lair Guardian min distance from starting plots
+									if( bGuardian )
 									{
-										pPlot->setImprovementType((ImprovementTypes)iJ);
-										pPlot->setFeatureType(NO_FEATURE);
-								*/
-									int iProbability = GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability();
+										int iRadius = GC.getDefineINT( "LAIR_GUARDIAN_STARTING_PLOT_MIN_DISTANCE", 0 );
+										for( int iPlayer = 0; bValid && iPlayer < GC.getMAX_CIV_PLAYERS(); iPlayer++ )
+										{
+											CvPlot* pStartingPlot = GET_PLAYER( (PlayerTypes) iPlayer ).getStartingPlot();
+											if( pStartingPlot != NULL && stepDistance( pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), pPlot->getX_INLINE(), pPlot->getY_INLINE() ) <= iRadius )
+												bValid = false;
+										}
+
+									}
 									
-									if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
-										iProbability += (int) ( iProbability * ( pPlot->getWilderness() * 2 / 100.0 ) );
-									
-									if (GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement") < iProbability)
+									if( bValid )
 									{
-										bool bValid = true;
-
-										// Lair Guardian min distance from starting plots
-										bool bGuardian = false;
-										for( int eLoopSpawn = 0; !bGuardian && eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
-											if( GC.getImprovementInfo( (ImprovementTypes) iJ ).isGuardianSpawnType( eLoopSpawn ) )
-												if( int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn ) > 0 )
-													bGuardian = true;
-
-										if( bGuardian )
-										{
-											int iRadius = GC.getDefineINT( "LAIR_GUARDIAN_STARTING_PLOT_MIN_DISTANCE", 5 );
-											for( int iPlayer = 0; bValid && iPlayer < GC.getMAX_CIV_PLAYERS(); iPlayer++ )
-											{
-												CvPlot* pStartingPlot = GET_PLAYER( (PlayerTypes) iPlayer ).getStartingPlot();
-												if( pStartingPlot != NULL && stepDistance( pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), pPlot->getX_INLINE(), pPlot->getY_INLINE() ) <= iRadius )
-													bValid = false;
-											}
-
-										}
-										
-										if( bValid )
-										{
-											pPlot->setImprovementType( (ImprovementTypes) iJ );
-											// pPlot->setFeatureType( NO_FEATURE );
-										}
-								/************************************************************************************************/
-								/* WILDERNESS                                                                     END           */
-								/************************************************************************************************/
+										pPlot->setImprovementType( (ImprovementTypes) iJ );
 									}
 								}
 							}
                         }
+					/************************************************************************************************/
+					/* WILDERNESS                                                                     END           */
+					/************************************************************************************************/
                     }
                 }
             }

@@ -273,13 +273,12 @@ void CvCityAI::AI_assignWorkingPlots()
 	}
 
 	// remove all assigned plots if we automated
-
 	if (!isHuman() || isCitizensAutomated())
 	{
 
 //FfH: Modified by Kael 11/18/2007
-//	    for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
-        for (iI = 0; iI < getNumCityPlots(); iI++)
+//		for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+		for (iI = 0; iI < getNumCityPlots(); iI++)
 //FfH: End Modify
 
 		{
@@ -2062,6 +2061,8 @@ void CvCityAI::AI_chooseProduction()
 					iOdds = 13;
 				}
 
+				iOdds += iFreeSeaExperience;
+
 				if( iOdds >= 0 )
 				{
 					// if (kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_EXPLORE_SEA) == 0) // original code
@@ -2182,7 +2183,7 @@ void CvCityAI::AI_chooseProduction()
 	{
 		if (kPlayer.AI_totalUnitAIs(UNITAI_ASSAULT_SEA) < kPlayer.countNumCoastalCitiesByArea(pWaterArea))
 		{
-			if (AI_chooseUnit(UNITAI_ASSAULT_SEA, 50))
+			if (AI_chooseUnit(UNITAI_ASSAULT_SEA, (50 + iFreeSeaExperience)))
 			{
 				return;
 			}
@@ -3404,7 +3405,7 @@ void CvCityAI::AI_chooseProduction()
 		}
 		if (kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_PIRATE_SEA) < iNeededPirates)
 		{
-			if (kPlayer.AI_calculateUnitAIViability(UNITAI_PIRATE_SEA, DOMAIN_SEA) > 49)
+			if ((kPlayer.AI_calculateUnitAIViability(UNITAI_PIRATE_SEA, DOMAIN_SEA) + iFreeSeaExperience ) > 49)
 			{
 				if (AI_chooseUnit(UNITAI_PIRATE_SEA, iWaterPercent / (1 + iPirateCount)))
 				{
@@ -4300,7 +4301,17 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync, AdvisorTypes
 											{
 												if (GC.getTraitInfo((TraitTypes) iJ).isFreePromotion(iK) && !GC.getUnitInfo(eLoopUnit).getFreePromotions((PromotionTypes)iK))
 												{
+												/********************************************************************************/
+												/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+												/********************************************************************************/
+												/* old
 													if ((GC.getUnitInfo(eLoopUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eLoopUnit).getUnitCombatType()))
+												*/
+													if ( GC.getTraitInfo((TraitTypes) iJ).isAllUnitsFreePromotion() ||
+														((GC.getUnitInfo(eLoopUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eLoopUnit).getUnitCombatType())))
+												/********************************************************************************/
+												/* EXTRA_CIV_TRAITS                                                     END     */
+												/********************************************************************************/
 													{
 														iPromotionValue += 10;
 														break;
@@ -5090,7 +5101,17 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 											{
 												if (GC.getTraitInfo((TraitTypes) iJ).isFreePromotion(iK))
 												{
+												/********************************************************************************/
+												/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+												/********************************************************************************/
+												/* old
 													if ((GC.getUnitInfo(eLoopUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eLoopUnit).getUnitCombatType()))
+												*/
+													if ( GC.getTraitInfo((TraitTypes) iJ).isAllUnitsFreePromotion() ||
+														((GC.getUnitInfo(eLoopUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eLoopUnit).getUnitCombatType())))
+												/********************************************************************************/
+												/* EXTRA_CIV_TRAITS                                                     END     */
+												/********************************************************************************/
 													{
 														iUnitTempValue += 3;
 													}

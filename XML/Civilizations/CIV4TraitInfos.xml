@@ -4,6 +4,8 @@
 <!-- Copyright Firaxis Games 2005 -->
 <!-- -->
 <!-- Leader Trait Infos -->
+
+<!-- EXTRA_CIV_TRAITS 08/2013 lfgr: added Buttons -->
 <Civ4TraitInfos xmlns="x-schema:CIV4CivilizationsSchema.xml">
 	<TraitInfos>
 		<TraitInfo>
@@ -42,6 +44,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+			<Button>Art/Interface/Buttons/Buildings/Eldercouncil.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_AGGRESSIVE</Type>
@@ -109,6 +112,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>,Art/Interface/Buttons/Promotions/Combat1.dds,Art/Interface/Buttons/Promotions_Atlas.dds,8,2</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SPIRITUAL</Type>
@@ -160,6 +164,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/Favored.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_EXPANSIVE</Type>
@@ -196,6 +201,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+            <Button>Art/Interface/Buttons/Units/Settler.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_INDUSTRIOUS</Type>
@@ -233,6 +239,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+			<Button>,Art/Interface/Buttons/Buildings/Forge.dds,Art/Interface/Buttons/Buildings_Atlas.dds,1,9</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_CREATIVE</Type>
@@ -278,6 +285,7 @@
 			</CommerceModifiers>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+			<Button>Art/Interface/Buttons/Buildings/Grand_Menagerie.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_FINANCIAL</Type>
@@ -327,6 +335,7 @@
 			</CommerceModifiers>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+            <Button>Art/Interface/Buttons/TechTree/Currency.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_ORGANIZED</Type>
@@ -364,6 +373,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+			<Button>Art/Interface/Buttons/Buildings/Governorsmanor.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_CHARISMATIC</Type>
@@ -400,6 +410,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+            <Button>Art/Interface/Buttons/Promotions/Charmed.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_ARCANE</Type>
@@ -451,6 +462,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/Potency.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_MAGIC_RESISTANT</Type>
@@ -514,6 +526,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/Magicresistance.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_AGNOSTIC</Type>
@@ -551,6 +564,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+            <Button>Art/Interface/Buttons/Units/Inquisitor Grigori.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_BARBARIAN</Type>
@@ -592,6 +606,7 @@
 			</CommerceModifiers>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+			<Button>,Art/Interface/Buttons/Civilizations/Barbarian.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,4,5</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_RAIDERS</Type>
@@ -659,6 +674,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>,Art/Interface/Buttons/Promotions/Commando.dds,Art/Interface/Buttons/Promotions_Atlas.dds,1,3</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SUMMONER</Type>
@@ -699,6 +715,10 @@
 					<PromotionType>PROMOTION_SUMMONER</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_EXTENSION1</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<FreePromotionUnitCombats>
 				<FreePromotionUnitCombat>
@@ -706,6 +726,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/Summoner.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_DEFENDER</Type>
@@ -769,6 +790,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/Homeland.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SPRAWLING</Type>
@@ -806,6 +828,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+			<Button>Art/Interface/Buttons/Buildings/City_of_a_Thousand_Slums.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_INGENUITY</Type>
@@ -843,6 +866,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+            <Button>,Art/Interface/Buttons/TechTree/Mathematics.dds,Art/Interface/Buttons/TechTree_Atlas.dds,3,5</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_ADAPTIVE</Type>
@@ -880,6 +904,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+			<Button>,Art/Interface/Buttons/BaseTerrain/Desert.dds,Art/Interface/Buttons/BaseTerrain_TerrainFeatures_Atlas.dds,2,1</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_INSANE</Type>
@@ -917,6 +942,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+			<Button>,Art/interface/LeaderHeads/Perpentach button.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_FALLOW</Type>
@@ -954,6 +980,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+			<Button>Art/Interface/Buttons/BaseTerrain/BrokenLands.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_TOLERANT</Type>
@@ -991,6 +1018,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+            <Button>Art/Interface/Buttons/Units/Devout.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_DEXTEROUS</Type>
@@ -1038,6 +1066,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/Dexterous.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_GUARDSMAN</Type>
@@ -1089,6 +1118,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/Guardsman.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_HORSELORD</Type>
@@ -1136,6 +1166,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/Horselord.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SINISTER</Type>
@@ -1183,6 +1214,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/Sinister.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SUNDERED</Type>
@@ -1230,6 +1262,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/Sundered.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_FOOLISH</Type>
@@ -1271,6 +1304,7 @@
 			</CommerceModifiers>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+            <Button>Art/Interface/Buttons/Units/Puppet.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_WEAK</Type>
@@ -1338,6 +1372,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/Weak.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_AGRARIAN</Type>
@@ -1379,6 +1414,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+			<Button>,Art/Interface/Buttons/Builds/BuildFarm.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,3,7</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SAVAGE</Type>
@@ -1413,7 +1449,11 @@
 			<ExtraYieldThresholds/>
 			<TradeYieldModifiers/>
 			<CommerceChanges/>
-			<CommerceModifiers/>
+			<CommerceModifiers>
+				<iCommerce>0</iCommerce>
+				<iCommerce>0</iCommerce>
+				<iCommerce>-10</iCommerce>
+			</CommerceModifiers>
 			<FreePromotions>
 				<FreePromotion>
 					<PromotionType>PROMOTION_SAVAGE</PromotionType>
@@ -1421,10 +1461,6 @@
 				</FreePromotion>
 			</FreePromotions>
 			<FreePromotionUnitCombats>
-				<FreePromotionUnitCombat>
-					<UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
-					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
-				</FreePromotionUnitCombat>
 				<FreePromotionUnitCombat>
 					<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
@@ -1442,6 +1478,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>Art/Interface/Buttons/Promotions/savage.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SLAVER</Type>
@@ -1465,7 +1502,7 @@
 			<bBarbarianAlly>0</bBarbarianAlly>
 			<bIgnoreFood>0</bIgnoreFood>
 			<bInsane>0</bInsane>
-			<bSelectable>0</bSelectable>
+			<bSelectable>1</bSelectable>
 			<bSprawling>0</bSprawling>
 			<iFreeXPFromCombat>0</iFreeXPFromCombat>
 			<iMaxCities>-1</iMaxCities>
@@ -1521,6 +1558,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
+            <Button>,Art/Interface/Buttons/Civics/Slavery.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,8,2</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SAGE</Type>
@@ -1562,6 +1600,7 @@
 			</CommerceModifiers>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+			<Button>,Art/Interface/Buttons/Buildings/Library.dds,Art/Interface/Buttons/Buildings_Atlas.dds,5,4</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_IMPERIALISTIC</Type>
@@ -1599,6 +1638,136 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
+            <Button>Art/Interface/Buttons/Civics/Aristocracy.dds</Button>
+		</TraitInfo>
+		<TraitInfo>
+			<!-- EXTRA_CIV_TRAITS 08/2013 lfgr -->
+			<Type>TRAIT_WINTERBORN</Type>
+			<Description>TXT_KEY_TRAIT_WINTERBORN</Description>
+			<ShortDescription>TXT_KEY_TRAIT_WINTERBORN_SHORT</ShortDescription>
+			<Help/>
+			<iHealth>0</iHealth>
+			<iHappiness>0</iHappiness>
+			<iMaxAnarchy>-1</iMaxAnarchy>
+			<iUpkeepModifier>0</iUpkeepModifier>
+			<iLevelExperienceModifier>0</iLevelExperienceModifier>
+			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+			<iMaxGlobalBuildingProductionModifier>0</iMaxGlobalBuildingProductionModifier>
+			<iMaxTeamBuildingProductionModifier>0</iMaxTeamBuildingProductionModifier>
+			<iMaxPlayerBuildingProductionModifier>0</iMaxPlayerBuildingProductionModifier>
+			<bAdaptive>0</bAdaptive>
+			<bAgnostic>0</bAgnostic>
+			<bAssimilation>0</bAssimilation>
+			<bBarbarianAlly>0</bBarbarianAlly>
+			<bIgnoreFood>0</bIgnoreFood>
+			<bInsane>0</bInsane>
+			<bSelectable>0</bSelectable>
+			<bSprawling>0</bSprawling>
+			<iFreeXPFromCombat>0</iFreeXPFromCombat>
+			<iMaxCities>-1</iMaxCities>
+			<iPillagingGold>0</iPillagingGold>
+			<iStartingGold>0</iStartingGold>
+			<iSummonDuration>0</iSummonDuration>
+			<iUpgradeCostModifier>0</iUpgradeCostModifier>
+			<ExtraYieldThresholds/>
+			<TradeYieldModifiers/>
+			<CommerceChanges/>
+			<CommerceModifiers/>
+			<FreePromotions>
+				<FreePromotion>
+					<PromotionType>PROMOTION_WINTERBORN</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			</FreePromotions>
+			<FreePromotionUnitCombats/>
+			<bAllUnitsFreePromotion>1</bAllUnitsFreePromotion>
+            <Button>Art/Interface/Buttons/Promotions/Winterborn.dds</Button>
+		</TraitInfo>
+		<TraitInfo>
+			<!-- EXTRA_CIV_TRAITS 08/2013 lfgr-->
+			<Type>TRAIT_NOMAD</Type>
+			<Description>TXT_KEY_TRAIT_NOMAD</Description>
+			<ShortDescription>TXT_KEY_TRAIT_NOMAD_SHORT</ShortDescription>
+			<Help/>
+			<iHealth>0</iHealth>
+			<iHappiness>0</iHappiness>
+			<iMaxAnarchy>-1</iMaxAnarchy>
+			<iUpkeepModifier>0</iUpkeepModifier>
+			<iLevelExperienceModifier>0</iLevelExperienceModifier>
+			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+			<iMaxGlobalBuildingProductionModifier>0</iMaxGlobalBuildingProductionModifier>
+			<iMaxTeamBuildingProductionModifier>0</iMaxTeamBuildingProductionModifier>
+			<iMaxPlayerBuildingProductionModifier>0</iMaxPlayerBuildingProductionModifier>
+			<bAdaptive>0</bAdaptive>
+			<bAgnostic>0</bAgnostic>
+			<bAssimilation>0</bAssimilation>
+			<bBarbarianAlly>0</bBarbarianAlly>
+			<bIgnoreFood>0</bIgnoreFood>
+			<bInsane>0</bInsane>
+			<bSelectable>0</bSelectable>
+			<bSprawling>0</bSprawling>
+			<iFreeXPFromCombat>0</iFreeXPFromCombat>
+			<iMaxCities>-1</iMaxCities>
+			<iPillagingGold>0</iPillagingGold>
+			<iStartingGold>0</iStartingGold>
+			<iSummonDuration>0</iSummonDuration>
+			<iUpgradeCostModifier>0</iUpgradeCostModifier>
+			<ExtraYieldThresholds/>
+			<TradeYieldModifiers/>
+			<CommerceChanges/>
+			<CommerceModifiers/>
+			<FreePromotions>
+				<FreePromotion>
+					<PromotionType>PROMOTION_NOMAD</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			</FreePromotions>
+			<FreePromotionUnitCombats/>
+			<bAllUnitsFreePromotion>1</bAllUnitsFreePromotion>
+            <Button>Art/Interface/Buttons/Promotions/Nomad.dds</Button>
+		</TraitInfo>
+		<TraitInfo>
+			<!-- EXTRA_CIV_TRAITS 08/2013 lfgr-->
+			<Type>TRAIT_DIVERSE</Type>
+			<Description>TXT_KEY_TRAIT_DIVERSE</Description>
+			<ShortDescription>TXT_KEY_TRAIT_DIVERSE_SHORT</ShortDescription>
+			<Help>TXT_KEY_TRAIT_DIVERSE_HELP</Help>
+			<iHealth>0</iHealth>
+			<iHappiness>0</iHappiness>
+			<iMaxAnarchy>-1</iMaxAnarchy>
+			<iUpkeepModifier>0</iUpkeepModifier>
+			<iLevelExperienceModifier>0</iLevelExperienceModifier>
+			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+			<iMaxGlobalBuildingProductionModifier>0</iMaxGlobalBuildingProductionModifier>
+			<iMaxTeamBuildingProductionModifier>0</iMaxTeamBuildingProductionModifier>
+			<iMaxPlayerBuildingProductionModifier>0</iMaxPlayerBuildingProductionModifier>
+			<bAdaptive>0</bAdaptive>
+			<bAgnostic>0</bAgnostic>
+			<bAssimilation>0</bAssimilation>
+			<bBarbarianAlly>0</bBarbarianAlly>
+			<bIgnoreFood>0</bIgnoreFood>
+			<bInsane>0</bInsane>
+			<bSelectable>0</bSelectable>
+			<bSprawling>0</bSprawling>
+			<iFreeXPFromCombat>0</iFreeXPFromCombat>
+			<iMaxCities>-1</iMaxCities>
+			<iPillagingGold>0</iPillagingGold>
+			<iStartingGold>0</iStartingGold>
+			<iSummonDuration>0</iSummonDuration>
+			<iUpgradeCostModifier>0</iUpgradeCostModifier>
+			<ExtraYieldThresholds/>
+			<TradeYieldModifiers/>
+			<CommerceChanges/>
+			<CommerceModifiers/>
+			<FreePromotions/>
+			<FreePromotionUnitCombats/>
+            <Button>Art/Interface/Buttons/Promotions/Centaur.dds</Button>
 		</TraitInfo>
 	</TraitInfos>
 </Civ4TraitInfos>

@@ -169,7 +169,7 @@ CFLAGS  = $(Release_CFLAGS)
 LDFLAGS = $(Release_LDFLAGS)
 !ENDIF
 !IF "$(TARGET)" == "Assert"
-CFLAGS  = $(Release_CFLAGS) /DFASSERT_ENABLE /DLOG_AI
+CFLAGS  = $(Release_CFLAGS) /DFASSERT_ENABLE
 LDFLAGS = $(Release_LDFLAGS)
 !ENDIF
 !IF "$(TARGET)" == "Profile"
@@ -179,9 +179,13 @@ LDFLAGS = $(Release_LDFLAGS)
 CFLAGS  = $(Release_CFLAGS) /Zi
 LDFLAGS = $(Debug_LDFLAGS)
 !ENDIF
+!IF "$(TARGET)" == "OOS"
+CFLAGS  = $(Release_CFLAGS) /DAUTOMATIC_OOS_DETECTION
+LDFLAGS = $(Release_LDFLAGS)
+!ENDIF
 
 !IFNDEF CFLAGS
-!ERROR Target "$(TARGET)" not supported. Supported targets: Debug Release Assert Profile
+!ERROR Target "$(TARGET)" not supported. Supported targets: Debug Release Assert Profile OOS
 !ENDIF
 
 #### Targets ####

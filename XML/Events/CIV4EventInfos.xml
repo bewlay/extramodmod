@@ -6445,12 +6445,10 @@
 			<Type>EVENT_PRINCESS_RULE_4</Type>
 			<Description>TXT_KEY_EVENT_PRINCESS_RULE_4</Description>
 			<bPickCity>1</bPickCity>
-			<UnitClass>UNITCLASS_WRATH</UnitClass>
-			<iNumFreeUnits>1</iNumFreeUnits>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCanDo>CanDoPrincessRule4</PythonCanDo>
+			<PythonCallback>doPrincessRule4</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
+			<iAIValue>0</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- CORRUPT_JUDGE_1 -->
 			<Type>EVENT_CORRUPT_JUDGE_1</Type>

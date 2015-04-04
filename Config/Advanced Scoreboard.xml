@@ -39,7 +39,7 @@
 					get="isScoreDeltaIncludeCurrentTurn" set="setScoreDeltaIncludeCurrentTurn" dirtyBit="Score"/>
 			
 			<list   id="DisplayName" key="Display Name" 
-					type="int" default="2" listType="string" 
+					type="int" default="4" listType="string" 
 					get="getDisplayName" set="setDisplayName" dirtyBit="Score">
 				<choice id="Leader" get="isShowLeaderName" set="setShowLeaderName"/>
 				<choice id="Civilization" get="isShowCivName" set="setShowCivName"/>
@@ -98,7 +98,7 @@
 			
 			<!-- Power Ratio -->
 			<option id="Power" key="Power" 
-					type="boolean" default="False"
+					type="boolean" default="True"
 					get="isShowPower" set="setShowPower" dirtyBit="Score"/>
 			<list   id="PowerFormula" key="Power Formula" 
 					type="int" default="1" listType="string" 
