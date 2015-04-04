@@ -35,6 +35,7 @@
                     <iCombat>2</iCombat>
                 </DamageTypeCombat>
             </DamageTypeCombats>
+			<iExplorationResultBonus>10</iExplorationResultBonus>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_AIR1</Type>
