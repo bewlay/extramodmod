@@ -28,7 +28,8 @@ PyPlayer = PyHelpers.PyPlayer
 def canTriggerAeronsChosen(argsList):
 	"""
 		Unit must have the Marksman promotion
-		Unit must be not summoned
+		Unit must not be summoned
+		Unit must not be a world unit
 	"""
 	kTriggeredData = argsList[0]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -37,6 +38,8 @@ def canTriggerAeronsChosen(argsList):
 	if not pUnit.isHasPromotion(iMark):
 		return False
 	if pUnit.getDuration() > 0:
+		return False
+	if gc.getUnitClassInfo( pUnit.getUnitClassType() ).getMaxGlobalInstances() > -1 :
 		return False
 	if pUnit.getSummoner() != -1:
 		return False
