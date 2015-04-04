@@ -3547,7 +3547,7 @@ class CvMainInterface:
 		iTeam = pPlayer.getTeam()
 		if eTeam.isAtWar(iTeam) == False:
 			iCurrentPoints = 2 * CyGame().getPlayerScore(gc.getGame().getActivePlayer())
-			iThreshold = min(1, 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)))
+			iThreshold = max(1, 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)))
 			lCurrentRate.append(0)
 			lCurrentPoints.append(iCurrentPoints)
 			lThreshold.append(iThreshold)
