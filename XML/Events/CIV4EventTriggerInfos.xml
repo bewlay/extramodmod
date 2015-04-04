@@ -4172,6 +4172,7 @@
 			<Type>EVENTTRIGGER_PATRON_OF_KNOWLEDGE</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_PATRON_OF_KNOWLEDGE_1</Text>
+				<Text>TXT_KEY_EVENTTRIGGER_PATRON_OF_KNOWLEDGE_2</Text>
 			</WorldNewsTexts>
 			<TriggerTexts>
 				<TriggerText>
@@ -4200,6 +4201,7 @@
 			<bGlobal>1</bGlobal>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
+			<bRequiresValidEvent>1</bRequiresValidEvent>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PENGUINS -->
 			<Type>EVENTTRIGGER_PENGUINS</Type>
