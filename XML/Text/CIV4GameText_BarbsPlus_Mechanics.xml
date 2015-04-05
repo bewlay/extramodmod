@@ -9,7 +9,7 @@
 		<French>[ICON_BULLET]%D1%% better results from lair exploration</French>
 		<German>[ICON_BULLET]%D1%% better results from lair exploration</German>
 		<Italian>[ICON_BULLET]%D1%% better results from lair exploration</Italian>
-		<Spanish>[ICON_BULLET]%D1%% better results from lair exploration</Spanish>
+		<Spanish>[ICON_BULLET]%D1%% mejor resultado al explorar guaridas</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS</Tag>
@@ -17,7 +17,7 @@
 		<French>[ICON_BULLET]Exploration Skills: %s1</French>
 		<German>[ICON_BULLET]Exploration Skills: %s1</German>
 		<Italian>[ICON_BULLET]Exploration Skills: %s1</Italian>
-		<Spanish>[ICON_BULLET]Exploration Skills: %s1</Spanish>
+		<Spanish>[ICON_BULLET]Habilidad de exploración: %s1</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_1</Tag>
@@ -25,7 +25,7 @@
 		<French>Novice</French>
 		<German>Novice</German>
 		<Italian>Novice</Italian>
-		<Spanish>Novice</Spanish>
+		<Spanish>Novato</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_2</Tag>
@@ -33,7 +33,7 @@
 		<French>Moderate</French>
 		<German>Moderate</German>
 		<Italian>Moderate</Italian>
-		<Spanish>Moderate</Spanish>
+		<Spanish>Moderado</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_3</Tag>
@@ -41,7 +41,7 @@
 		<French>Advanced</French>
 		<German>Advanced</German>
 		<Italian>Advanced</Italian>
-		<Spanish>Advanced</Spanish>
+		<Spanish>Avanzado</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_4</Tag>
@@ -49,7 +49,7 @@
 		<French>Expert</French>
 		<German>Expert</German>
 		<Italian>Expert</Italian>
-		<Spanish>Expert</Spanish>
+		<Spanish>Experto</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_5</Tag>
@@ -57,7 +57,7 @@
 		<French>Master</French>
 		<German>Master</German>
 		<Italian>Master</Italian>
-		<Spanish>Master</Spanish>
+		<Spanish>Maestro</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL</Tag>
@@ -65,7 +65,7 @@
 		<French>[ICON_BULLET]Risk and Reward: %s1</French>
 		<German>[ICON_BULLET]Risk and Reward: %s1</German>
 		<Italian>[ICON_BULLET]Risk and Reward: %s1</Italian>
-		<Spanish>[ICON_BULLET]Risk and Reward: %s1</Spanish>
+		<Spanish>[ICON_BULLET]Riesgo y Recompensa: %s1</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_1</Tag>
@@ -73,7 +73,7 @@
 		<French>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</French>
 		<German>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</German>
 		<Italian>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</Italian>
-		<Spanish>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</Spanish>
+		<Spanish>[COLOR_POSITIVE_TEXT]Bajo[COLOR_REVERT]</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_2</Tag>
@@ -81,7 +81,7 @@
 		<French>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</French>
 		<German>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</German>
 		<Italian>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</Italian>
-		<Spanish>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</Spanish>
+		<Spanish>[COLOR_PLAYER_YELLOW_TEXT]Medio[COLOR_REVERT]</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_3</Tag>
@@ -89,7 +89,7 @@
 		<French>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</French>
 		<German>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</German>
 		<Italian>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</Italian>
-		<Spanish>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</Spanish>
+		<Spanish>[COLOR_PLAYER_ORANGE_TEXT]Alto[COLOR_REVERT]</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_4</Tag>
@@ -97,7 +97,7 @@
 		<French>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</French>
 		<German>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</German>
 		<Italian>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</Italian>
-		<Spanish>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</Spanish>
+		<Spanish>[COLOR_NEGATIVE_TEXT]Muy Alto[COLOR_REVERT]</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_5</Tag>
@@ -105,7 +105,7 @@
 		<French>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</French>
 		<German>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</German>
 		<Italian>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</Italian>
-		<Spanish>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</Spanish>
+		<Spanish>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendario[COLOR_REVERT]</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_LOW</Tag>
@@ -113,7 +113,7 @@
 		<French>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</French>
 		<German>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</German>
 		<Italian>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</Italian>
-		<Spanish>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</Spanish>
+		<Spanish>[ICON_BULLET]Posibilidades de Exploración: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_MEDIUM</Tag>
@@ -121,7 +121,7 @@
 		<French>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</French>
 		<German>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</German>
 		<Italian>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</Italian>
-		<Spanish>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</Spanish>
+		<Spanish>[ICON_BULLET]Posibilidades de Exploración: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_HIGH</Tag>
@@ -129,7 +129,7 @@
 		<French>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</French>
 		<German>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</German>
 		<Italian>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</Italian>
-		<Spanish>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</Spanish>
+		<Spanish>[ICON_BULLET]Posibilidades de Exploración: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_LAIR_EXPLORED</Tag>
@@ -137,7 +137,7 @@
 		<French>There seems not to be anything left to explore in the lair.</French>
 		<German>There seems not to be anything left to explore in the lair.</German>
 		<Italian>There seems not to be anything left to explore in the lair.</Italian>
-		<Spanish>There seems not to be anything left to explore in the lair.</Spanish>
+		<Spanish>No parece quedar nada por explorar en la guarida.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_SPAWN_UNITS</Tag>
@@ -153,7 +153,7 @@
 		<French>Your %s1_UnitName gained the %s2_PromotionName promotion</French>
 		<German>Your %s1_UnitName gained the %s2_PromotionName promotion</German>
 		<Italian>Your %s1_UnitName gained the %s2_PromotionName promotion</Italian>
-		<Spanish>Your %s1_UnitName gained the %s2_PromotionName promotion</Spanish>
+		<Spanish>Tu %s1_UnitName ha adquirido la promoción %s2_PromotionName</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PEDIA_PROMOTION_CAPTURE_APPLY</Tag>
@@ -161,7 +161,7 @@
 		<French>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</French>
 		<German>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</German>
 		<Italian>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</Italian>
-		<Spanish>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</Spanish>
+		<Spanish>[ICON_BULLET]Otorga la promoción [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] al ser capturado</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_SELL_ANIMAL</Tag>
@@ -169,7 +169,7 @@
 		<French>Sell Animal</French>
 		<German>Sell Animal</German>
 		<Italian>Sell Animal</Italian>
-		<Spanish>Sell Animal</Spanish>
+		<Spanish>Vender Animal</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_SELL_ANIMAL_PEDIA</Tag>
@@ -185,7 +185,7 @@
 		<French>You sold an animal for %d1_gold [ICON_GOLD]</French>
 		<German>You sold an animal for %d1_gold [ICON_GOLD]</German>
 		<Italian>You sold an animal for %d1_gold [ICON_GOLD]</Italian>
-		<Spanish>You sold an animal for %d1_gold [ICON_GOLD]</Spanish>
+		<Spanish>Vendiste un animal por %d1_gold [ICON_GOLD]</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_SELL_ANIMAL_HELP</Tag>
@@ -193,7 +193,7 @@
 		<French>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</French>
 		<German>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</German>
 		<Italian>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</Italian>
-		<Spanish>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</Spanish>
+		<Spanish>[ICON_BULLET]Vender %d1_numAnimals animales por %d2_minGold-%d3_maxGold [ICON_GOLD] (dependiendo de su rareza y nivel)</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_SELL_ONE_ANIMAL_HELP</Tag>
@@ -201,7 +201,7 @@
 		<French>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</French>
 		<German>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</German>
 		<Italian>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</Italian>
-		<Spanish>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</Spanish>
+		<Spanish>[ICON_BULLET]Vender animal por %d1_minGold-%d2_maxGold [ICON_GOLD] (dependiendo de su rareza y nivel)</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_NO_WILDERNESS</Tag>
@@ -209,7 +209,7 @@
 		<French>No Wilderness</French>
 		<German>Keine Wildnis</German>
 		<Italian>No Wilderness</Italian>
-		<Spanish>No Wilderness</Spanish>
+		<Spanish>Sin zonas salvajes</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_NO_WILDERNESS_HELP</Tag>
@@ -217,6 +217,6 @@
 		<French>Barbarians spawning further away from your starting point aren't stronger.</French>
 		<German>Barbarians spawning further away from your starting point aren't stronger.</German>
 		<Italian>Barbarians spawning further away from your starting point aren't stronger.</Italian>
-		<Spanish>Barbarians spawning further away from your starting point aren't stronger.</Spanish>
+		<Spanish>Los bárbaros que aparecen más lejos de los puntos de inicio no son necesariamente más fuertes.</Spanish>
 	</TEXT>
 </Civ4GameText>
