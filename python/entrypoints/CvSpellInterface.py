@@ -1047,6 +1047,18 @@ def spellDispelMagic(caster):
 					pPlot.setBonusType(gc.getInfoTypeForString('BONUS_MANA'))
 					pPlot.setImprovementType(-1)
 
+def getDisruptRemovedCulture(caster):
+	pPlot = caster.plot()
+	pCity = pPlot.getPlotCity()
+	iPlayer2 = pCity.getOwner()
+	# Disrupt usually removes 80% of the current culture production of the city.
+	fCultureRemoved = (80.0 * float(pCity.getCommerceRate(CommerceTypes.COMMERCE_CULTURE))) / 100.0
+	# If the value is smaller than 3, it will be made 3 (so it can win against monuments).
+	fCultureRemoved = max(fCultureRemoved, 3.0)
+	# Disrupt cannot remove more culture than the current culture.
+	fCultureRemoved = min(fCultureRemoved, float(pCity.getCulture(iPlayer2)))
+	return int(fCultureRemoved)
+
 def reqDisrupt(caster):
 	pPlot = caster.plot()
 	pCity = pPlot.getPlotCity()
@@ -1058,22 +1070,23 @@ def spellDisrupt(caster):
 	pPlot = caster.plot()
 	pCity = pPlot.getPlotCity()
 	iPlayer = caster.getOwner()
-	pPlayer = gc.getPlayer(iPlayer)
 	iPlayer2 = pCity.getOwner()
-	pPlayer2 = gc.getPlayer(iPlayer2)
 	pCity.changeHurryAngerTimer(2)
-	iRnd = CyGame().getSorenRandNum(3, "Disrupt")
+	# Value of culture that will be removed by disrupt at this city.
+	iCultureRemoved = getDisruptRemovedCulture(caster)
 	
-	if iRnd > pCity.getCulture(iPlayer2):
-		iRnd =  pCity.getCulture(iPlayer2)
-	
-	if iRnd != 0:
-		pCity.changeCulture(iPlayer2,-1 * iRnd,True)
+	if iCultureRemoved != 0:
+		pCity.changeCulture(iPlayer2,-1 * iCultureRemoved,True)
 	CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_DISRUPT_ENEMY",()),'',1,'Art/Interface/Buttons/Spells/Disrupt.dds',ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
 	CyInterface().addMessage(iPlayer2,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_DISRUPT",()),'',1,'Art/Interface/Buttons/Spells/Disrupt.dds',ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
-	if pCity.getCulture(iPlayer2) < 1:
-		pPlayer.acquireCity(pCity,false,false)
-		pPlayer2.AI_changeAttitudeExtra(iPlayer,-6)
+	# Disrupt no longer steals cities.
+
+def helpDisrupt( lpUnits ) :
+	pCaster = lpUnits[0]
+	pCity = pCaster.plot().getPlotCity()
+	# Value of culture that will be removed by disrupt at this city.
+	iCultureRemoved = getDisruptRemovedCulture(pCaster)
+	return CyTranslator().getText( 'TXT_KEY_SPELL_DISRUPT_PYHELP', ( iCultureRemoved, pCity.getName() ) )
 
 def reqDivineRetribution(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())

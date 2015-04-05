@@ -867,7 +867,6 @@
             <Type>SPELL_DISRUPT</Type>
             <Description>TXT_KEY_SPELL_DISRUPT</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <Help>TXT_KEY_SPELL_DISRUPT_HELP</Help>
             <UnitClassPrereq>UNITCLASS_LOKI</UnitClassPrereq>
             <bAllowAI>1</bAllowAI>
             <bInCityOnly>1</bInCityOnly>
@@ -876,6 +875,7 @@
             <bHasCasted>1</bHasCasted>
             <PyResult>spellDisrupt(pCaster)</PyResult>
             <PyRequirement>reqDisrupt(pCaster)</PyRequirement>
+			<PyHelp>helpDisrupt(lpUnits)</PyHelp>
             <Effect>EFFECT_SPELL2</Effect>
             <Sound>AS3D_SPELL_REVOLT</Sound>
             <Button>Art/Interface/Buttons/Spells/Disrupt.dds</Button>
