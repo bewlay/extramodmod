@@ -5676,6 +5676,14 @@
                     <UnitAIType>UNITAI_WARWIZARD</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
             </UnitAIs>
             <NotUnitAIs>
                 <UnitAI>
@@ -5974,6 +5982,14 @@
                 </UnitAI>
                 <UnitAI>
                     <UnitAIType>UNITAI_WARWIZARD</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
             </UnitAIs>
@@ -6284,6 +6300,14 @@
                 </UnitAI>
                 <UnitAI>
                     <UnitAIType>UNITAI_WARWIZARD</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
             </UnitAIs>
@@ -14968,7 +14992,7 @@
             <iCultureGarrison>16</iCultureGarrison>
             <iExtraCost>0</iExtraCost>
             <iAsset>14</iAsset>
-            <iPower>20</iPower>
+            <iPower>45</iPower>
             <UnitMeshGroups>
             <iGroupSize>1</iGroupSize>
             <fMaxSpeed>1.75</fMaxSpeed>
@@ -27504,7 +27528,7 @@
             <Capture>NONE</Capture>
             <Combat>UNITCOMBAT_DISCIPLE</Combat>
             <Domain>DOMAIN_LAND</Domain>
-            <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+            <DefaultUnitAI>UNITAI_HERO</DefaultUnitAI>
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_DRUID</Description>
@@ -31934,7 +31958,7 @@
             <iMoves>4</iMoves>
             <bNoRevealMap>0</bNoRevealMap>
             <iAirRange>0</iAirRange>
-            <iAirUnitCap>1</iAirUnitCap>
+            <iAirUnitCap>0</iAirUnitCap>
             <iDropRange>0</iDropRange>
             <iNukeRange>-1</iNukeRange>
             <iWorkRate>0</iWorkRate>
@@ -32001,7 +32025,7 @@
             <iBombardRate>10</iBombardRate>
             <SpecialCargo>SPECIALUNIT_BIRD</SpecialCargo>
             <DomainCargo>DOMAIN_AIR</DomainCargo>
-            <iCargo>0</iCargo>
+            <iCargo>1</iCargo>
             <iConscription>0</iConscription>
             <iCultureGarrison>0</iCultureGarrison>
             <iExtraCost>0</iExtraCost>
@@ -42413,7 +42437,7 @@
             <iCultureGarrison>16</iCultureGarrison>
             <iExtraCost>0</iExtraCost>
             <iAsset>14</iAsset>
-            <iPower>25</iPower>
+            <iPower>45</iPower>
             <UnitMeshGroups>
             <iGroupSize>1</iGroupSize>
             <fMaxSpeed>1.75</fMaxSpeed>
@@ -48910,6 +48934,14 @@
                     <UnitAIType>UNITAI_WARWIZARD</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
             </UnitAIs>
             <NotUnitAIs>
                 <UnitAI>
@@ -49215,6 +49247,14 @@
                     <UnitAIType>UNITAI_WARWIZARD</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
             </UnitAIs>
             <NotUnitAIs>
                 <UnitAI>
@@ -49514,6 +49554,14 @@
                 </UnitAI>
                 <UnitAI>
                     <UnitAIType>UNITAI_WARWIZARD</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
             </UnitAIs>
@@ -53649,6 +53697,14 @@
                 </UnitAI>
                 <UnitAI>
                     <UnitAIType>UNITAI_WARWIZARD</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_MANA_UPGRADE</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_TERRAFORMER</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
             </UnitAIs>
@@ -64762,7 +64818,7 @@
             <Capture>NONE</Capture>
             <Combat>UNITCOMBAT_RECON</Combat>
             <Domain>DOMAIN_LAND</Domain>
-            <DefaultUnitAI>UNITAI_EXPLORE</DefaultUnitAI>
+            <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
             <Invisible>NONE</Invisible>
             <SeeInvisible>INVISIBLE_ANIMAL</SeeInvisible>
             <Description>TXT_KEY_UNIT_GOBLIN_SCORPION_CLAN</Description>
@@ -64817,15 +64873,11 @@
             </FlankingStrikes>
             <UnitAIs>
                 <UnitAI>
-                    <UnitAIType>UNITAI_EXPLORE</UnitAIType>
+                    <UnitAIType>UNITAI_ATTACK</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
             </UnitAIs>
             <NotUnitAIs>
-                <UnitAI>
-                    <UnitAIType>UNITAI_ATTACK</UnitAIType>
-                    <bUnitAI>1</bUnitAI>
-                </UnitAI>
                 <UnitAI>
                     <UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
                     <bUnitAI>1</bUnitAI>
@@ -66090,7 +66142,7 @@
             <Capture>NONE</Capture>
             <Combat>NONE</Combat>
             <Domain>DOMAIN_LAND</Domain>
-            <DefaultUnitAI>UNITAI_GENERAL</DefaultUnitAI>
+            <DefaultUnitAI>UNITAI_SHADE</DefaultUnitAI>
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_SHADE</Description>

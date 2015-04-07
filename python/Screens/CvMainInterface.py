@@ -4940,6 +4940,8 @@ class CvMainInterface:
 		screen.hide( szName )
 		szName = "DisableSpellcastingTag"
 		screen.hide( szName )
+		szName = "SanctuaryTimerTag"
+		screen.hide( szName )
 #FfH: End Add
 
 		# < Revolution Mod Start >
@@ -5177,7 +5179,8 @@ class CvMainInterface:
 														szTempBuffer = " (" + localText.getColorText("TXT_KEY_ALIGNMENT_GOOD", (), gc.getInfoTypeForString("COLOR_YELLOW")) + ") "
 													#szBuffer = szBuffer + szTempBuffer
 													szPlayerName = szPlayerName + szTempBuffer
-													scores.setName(szPlayerName)
+													if (bAlignIcons):
+														scores.setName(szPlayerName)
 #FfH: End Add
 													if (gc.getPlayer(ePlayer).canTradeNetworkWith(gc.getGame().getActivePlayer()) and (ePlayer != gc.getGame().getActivePlayer())):
 														szTempBuffer = u"%c" %(CyGame().getSymbolID(FontSymbols.TRADE_CHAR))
@@ -5461,6 +5464,16 @@ class CvMainInterface:
 					szBuffer = u"<font=2>"
 					szName = "DisableSpellcastingTag"
 					szBuffer = szBuffer + localText.getColorText("TXT_KEY_MESSAGE_DISABLE_SPELLCASTING", (pPlayer.getDisableSpellcasting(), ()), gc.getInfoTypeForString("COLOR_RED"))
+					szBuffer = szBuffer + "</font>"
+					
+					screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, xResolution - 12, 100+(iCountSpecial*iBtnHeight), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+					screen.show( szName )
+					
+				if pPlayer.getSanctuaryTimer() > 0:
+					iCountSpecial += 1
+					szBuffer = u"<font=2>"
+					szName = "SanctuaryTimerTag"
+					szBuffer = szBuffer + localText.getColorText("TXT_KEY_MESSAGE_SANCTUARY_TIMER", (pPlayer.getSanctuaryTimer(), ()), gc.getInfoTypeForString("COLOR_GREEN"))
 					szBuffer = szBuffer + "</font>"
 
 #					screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, xResolution - 12, yCoord - ((iCount + iCountSpecial) * iBtnHeight), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )

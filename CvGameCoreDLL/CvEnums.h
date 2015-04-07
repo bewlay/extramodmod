@@ -578,7 +578,7 @@ enum WidgetTypes					// Exposed to Python
 //FfH: End Add
 // MNAI - Puppet States
 	WIDGET_HELP_PUPPET_STATE,
-// MNAI End
+// MNAI - End Puppet States
 
 #ifdef _USRDLL
 	NUM_WIDGET_TYPES
@@ -1467,6 +1467,7 @@ enum UnitAITypes			// Exposed to Python
 	// ALN LairGuards Start
 	UNITAI_LAIRGUARDIAN,
 	// ALN End
+	UNITAI_SHADE, // MNAI
 
 	NUM_UNITAI_TYPES
 };

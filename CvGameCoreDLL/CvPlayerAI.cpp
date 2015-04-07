@@ -790,7 +790,7 @@ void CvPlayerAI::AI_doTurnUnitsPost()
 		//int iUnitValue;
 
 		//Tholal ToDo - Manes hit this upgrade section before they ever get a chance to 'cast'
-		// Tholal ToDo - arrange units in a sorted list then try and upgrade rather than running through whole list three times
+		// Tholal ToDo - arrange units in a sorted list by level then try and upgrade rather than running through whole list three times
 		// pass 0
 		logBBAI("   Checking for Upgrades...");
 		for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
@@ -1963,7 +1963,10 @@ void CvPlayerAI::AI_conquerCity(CvCity* pCity)
 				iRazeValue -= pCity->calculateTeamCulturePercent(getTeam());
 
 				CvPlot* pLoopPlot = NULL;
-				for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//				for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+				for (iI = 0; iI < ::calculateNumCityPlots(getNextCityRadius()); iI++)
+//<<<<Unofficial Bug Fix: End Modify
 				{
 					pLoopPlot = plotCity(pCity->getX_INLINE(), pCity->getY_INLINE(), iI);
 
@@ -2218,6 +2221,7 @@ DomainTypes CvPlayerAI::AI_unitAIDomainType(UnitAITypes eUnitAI) const
 	// ALN LairGuards Start
 	case UNITAI_LAIRGUARDIAN:
 	// ALN End
+	case UNITAI_SHADE:
 		return DOMAIN_LAND;
 		break;
 
@@ -2469,6 +2473,7 @@ int CvPlayerAI::AI_commerceWeight(CommerceTypes eCommerce, CvCity* pCity) const
 }
 
 // Improved as per Blake - thanks!
+// bStartLoc is used for placing starting units only
 int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStartingLoc) const
 {
 	CvCity* pNearestCity;
@@ -2499,30 +2504,16 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 	int iSpecialProduction = 0;
 	int iSpecialCommerce = 0;
 
-/*************************************************************************************************/
-/**	BETTER AI (Better City Placement) Sephi                                             		**/
-/**	adjust for Kuriotates																		**/
-/*************************************************************************************************/
-    int iNumCityPlots = 21;
-
 	bool bSprawlingExpand = false;
-
     if (isSprawling())
     {
-        if (getNumCities() < getMaxCities())
+        if (!isRegularCityMaxedOut())
         {
-            iNumCityPlots = 37;
 			bSprawlingExpand = true;
-        }
-        else
-        {
-            iNumCityPlots = 9;
-        }
+		}
     }
-/*************************************************************************************************/
-/**	END	                                        												**/
-/*************************************************************************************************/
 
+	int iNumCityPlots = ::calculateNumCityPlots(getNextCityRadius());
 	bool bNeutralTerritory = true;
 	bool bPirate = isPirate();
 
@@ -2540,29 +2531,12 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
     if (pPlot->getBonusType() != NO_BONUS)
 	{
 		if (GC.getBonusInfo((BonusTypes)pPlot->getBonusType()).isMana())
-		//if (GC.getBonusInfo((BonusTypes)pPlot->getBonusType()).getBonusClassType() == GC.getDefineINT("BONUSCLASS_MANA_RAW") || 
-		//	(GC.getBonusInfo((BonusTypes)pPlot->getBonusType()).getBonusClassType() == GC.getDefineINT("BONUSCLASS_MANA")))
 		{
 			return 0;
 		}
     }
 
 	bIsCoastal = pPlot->isCoastalLand(GC.getMIN_WATER_SIZE_FOR_OCEAN());
-
-	// Pirates want a coastal city for their capitol
-	// TODO - make sure this doesnt break them on all-land maps
-	/*
-    if (getNumCities() == 0)
-    {
-		if (bPirate)
-        {
-            if (!bIsCoastal)
-            {
-                return 0;
-            }
-        }
-    }
-	*/
 
 	pArea = pPlot->area();
 	iNumAreaCities = pArea->getCitiesPerPlayer(getID());
@@ -2618,7 +2592,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 						CvPlot* pCitySitePlot = AI_getCitySite(iJ);
 						if (pCitySitePlot != pPlot)
 						{
-							if (plotDistance(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), pCitySitePlot->getX_INLINE(), pCitySitePlot->getY_INLINE()) <= CITY_PLOTS_RADIUS)
+						if (plotDistance(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), pCitySitePlot->getX_INLINE(), pCitySitePlot->getY_INLINE()) <= getNextCityRadius())
 							{
 								//Plot is inside the radius of a city site
 								abCitySiteRadius[iI] = true;
@@ -2657,7 +2631,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 		}
 	}
 
-	//if (bStartingLoc)
+	if (bStartingLoc)
 	{
 		if (pPlot->isGoody())
 		{
@@ -2668,7 +2642,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 		{
 			pLoopPlot = plotCity(iX, iY, iI);
 
-			// dont place first city near the map edge
+			// dont start players near the map edge
 			if (pLoopPlot == NULL)
 			{
 				return 0;
@@ -2700,7 +2674,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 	{
 		pLoopPlot = plotCity(iX, iY, iI);
 
-		if (iI != CITY_HOME_PLOT)
+		if (iI != CITY_HOME_PLOT && pLoopPlot != NULL)
 		{
 			eFeature = pLoopPlot->getFeatureType();
 			if ((pLoopPlot == NULL) || pLoopPlot->isImpassable())
@@ -2779,7 +2753,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 
 	iBadTile /= 2;
 
-//	if (!bStartingLoc)
+	if (!bStartingLoc)
 	{
 		if ((iBadTile > (iNumCityPlots / 2)) || (pArea->getNumTiles() <= 2))
 		{
@@ -3494,7 +3468,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 	{
 		iRange = GREATER_FOUND_RANGE;
 		int iGreaterBadTile = 0;
-
+		// ToDo - put in minimums for starting food and prod
 		for (iDX = -(iRange); iDX <= iRange; iDX++)
 		{
 			for (iDY = -(iRange); iDY <= iRange; iDY++)
@@ -3509,7 +3483,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 						{
 						    iTempValue = 0;
 							iTempValue += (pLoopPlot->getYield(YIELD_FOOD) * 15);
-							iTempValue += (pLoopPlot->getYield(YIELD_PRODUCTION) * 11);
+							iTempValue += (pLoopPlot->getYield(YIELD_PRODUCTION) * 15);
 							iTempValue += (pLoopPlot->getYield(YIELD_COMMERCE) * 5);
 							iValue += iTempValue;
 							if (iTempValue < 21)
@@ -3643,73 +3617,82 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 
 	if (pNearestCity != NULL)
 	{
-		if (isBarbarian())
+		if ((getCapitalCity() != NULL) &&
+			getCapitalCity()->getArea() == pNearestCity->getArea())
 		{
-			iValue -= (std::max(0, (8 - plotDistance(iX, iY, pNearestCity->getX_INLINE(), pNearestCity->getY_INLINE()))) * 200);
-		}
-		else
-		{
-		    int iDistance = plotDistance(iX, iY, pNearestCity->getX_INLINE(), pNearestCity->getY_INLINE());
-		    int iNumCities = getNumCities();
-
-			if (iDistance > (bSprawlingExpand ? 6 : 5))
-		    {
-		    	iValue -= (iDistance - 5) * 500;
-		    }
-
-			if (bSprawlingExpand)
+			if (isBarbarian())
 			{
-				if (iDistance < 5)
-				{
-					iValue /= 2;
-				}
+				//iValue -= (std::max(0, (8 - plotDistance(iX, iY, pNearestCity->getX_INLINE(), pNearestCity->getY_INLINE()))) * 200);
 			}
-			/*
-			iValue *= (8 + iNumCities * 4);
-			iValue /= (2 + (iNumCities * 4) + iDistance);
-			*/
-			if (pNearestCity->isCapital())
+			else
 			{
-				iValue *= 150;
-				iValue /= 100;
-			}
-			else if (getCapitalCity() != NULL)
-			{
-				//Provide up to a 50% boost to value (80% for adv.start)
-				//for city sites which are relatively close to the core
-				//compared with the most distance city from the core
-				//(having a boost rather than distance penalty avoids some distortion)
-
-				//This is not primarly about maitenance but more about empire
-				//shape as such forbidden palace/state property are not big deal.
-				CvCity* pLoopCity;
-				int iLoop;
-				int iMaxDistanceFromCapital = 0;
-
-				int iCapitalX = getCapitalCity()->getX();
-				int iCapitalY = getCapitalCity()->getY();
-
-				for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+				
+				int iDistance = plotDistance(iX, iY, pNearestCity->getX_INLINE(), pNearestCity->getY_INLINE());
+				int iNumCities = getNumCities();
+				
+				if (iDistance > (bSprawlingExpand ? 6 : 5))
 				{
-					iMaxDistanceFromCapital = std::max(iMaxDistanceFromCapital, plotDistance(iCapitalX, iCapitalY, pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE()));
+		    		iValue -= (iDistance - 5) * 500;
 				}
 
-				int iDistanceToCapital = plotDistance(iCapitalX, iCapitalY, iX, iY);
+				/*
+				if (bSprawlingExpand)
+				{
+					if (iDistance < 5)
+					{
+						iValue /= 2;
+					}
+				}
+				*/
+				/*
+				iValue *= (8 + iNumCities * 4);
+				iValue /= (2 + (iNumCities * 4) + iDistance);
+				*/
+				if (pNearestCity->isCapital())
+				{
+					iValue *= 150;
+					iValue /= 100;
+				}
+				else if (getCapitalCity() != NULL)
+				{
+					//Provide up to a 50% boost to value (80% for adv.start)
+					//for city sites which are relatively close to the core
+					//compared with the most distance city from the core
+					//(having a boost rather than distance penalty avoids some distortion)
 
-				FAssert(iMaxDistanceFromCapital > 0);
-				iValue *= 100 + (((bAdvancedStart ? 80 : 50) * std::max(0, (iMaxDistanceFromCapital - iDistance))) / iMaxDistanceFromCapital);
-				iValue /= 100;
+					//This is not primarly about maitenance but more about empire
+					//shape as such forbidden palace/state property are not big deal.
+					CvCity* pLoopCity;
+					int iLoop;
+					int iMaxDistanceFromCapital = 0;
+
+					int iCapitalX = getCapitalCity()->getX();
+					int iCapitalY = getCapitalCity()->getY();
+
+					for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+					{
+						iMaxDistanceFromCapital = std::max(iMaxDistanceFromCapital, plotDistance(iCapitalX, iCapitalY, pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE()));
+					}
+
+					int iDistanceToCapital = plotDistance(iCapitalX, iCapitalY, iX, iY);
+
+					FAssert(iMaxDistanceFromCapital > 0);
+					iValue *= 100 + (((bAdvancedStart ? 80 : 50) * std::max(0, (iMaxDistanceFromCapital - iDistance))) / iMaxDistanceFromCapital);
+					iValue /= 100;
+				}
 			}
 		}
 	}
 	else
 	{
+		/*
 		pNearestCity = GC.getMapINLINE().findCity(iX, iY, ((isBarbarian()) ? NO_PLAYER : getID()), ((isBarbarian()) ? NO_TEAM : getTeam()), false);
 		if (pNearestCity != NULL)
 		{
 			int iDistance = plotDistance(iX, iY, pNearestCity->getX_INLINE(), pNearestCity->getY_INLINE());
 			iValue -= std::min(500 * iDistance, (8000 * iDistance) / GC.getMapINLINE().maxPlotDistance());
 		}
+		*/
 	}
 
 	if (iValue <= 0)
@@ -3842,6 +3825,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 	// ALN FfH-AI Start
 	// I don't want to make a hard and fast rule that the city can't border a cityRadius tile
 	// but I want to damn well discourage it
+	/*
 	for (int iI = 0; iI < 9; iI++)
 	{
 		pLoopPlot = plotCity(iX, iY, iI);
@@ -3854,6 +3838,7 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 			}
 		}
 	}
+	*/
 	// ALN End
 
 
@@ -4003,8 +3988,10 @@ int CvPlayerAI::AI_targetCityValue(CvCity* pCity, bool bRandomize, bool bIgnoreA
 		iValue += std::min( 8, (AI_adjacentPotentialAttackers(pCity->plot()) + 2)/3 );
 	}
 
-	//for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
-	for (iI = 0; iI < iNumCityPlots; iI++)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//	for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+	for (iI = 0; iI < ::calculateNumCityPlots(getNextCityRadius()); iI++)
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		pLoopPlot = plotCity(pCity->getX_INLINE(), pCity->getY_INLINE(), iI);
 
@@ -4108,6 +4095,7 @@ int CvPlayerAI::AI_targetCityValue(CvCity* pCity, bool bRandomize, bool bIgnoreA
 		{
 		case ATTITUDE_FURIOUS:
 			iAttitudeMod = 6;
+			break;
 
 		case ATTITUDE_ANNOYED:
 			iAttitudeMod = 4;
@@ -4567,10 +4555,13 @@ bool CvPlayerAI::AI_isFinancialTrouble(int iSafePercent, bool bIgnoreWarplans) c
 	{
 		return false;
 	}
+	/*
 	int iNetCommerce = 1 + getCommerceRate(COMMERCE_GOLD) + getCommerceRate(COMMERCE_RESEARCH) + std::max(0, getGoldPerTurn());
 	int iNetExpenses = calculateInflatedCosts() + std::max(0, -getGoldPerTurn());
 	
 	int iFundedPercent = (100 * (iNetCommerce - iNetExpenses)) / std::max(1, iNetCommerce);
+	*/
+	int iFundedPercent = AI_getFundedPercent();
 	
 	if (!bIgnoreWarplans)
 	{
@@ -5369,6 +5360,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 			if (eImprovement != NO_IMPROVEMENT)
 			{
 				CvImprovementInfo& kImprovement = GC.getImprovementInfo(eImprovement);
+
+				int iPossiblePlots = countNumAvailablePlotsForImprovement(eImprovement);
 				
 				int iImprovementValue = 300;
 
@@ -5425,6 +5418,9 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 					iTempValue *= AI_yieldWeight((YieldTypes)iK);
 					iTempValue /= 100;
+
+					iTempValue *= iPossiblePlots;
+					iTempValue /= 3;
 
 					iImprovementValue += iTempValue;
 				}
@@ -5681,15 +5677,29 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	}
 	iValue += iBuildValue;
 
-	// does tech reveal bonus resources
+	// does tech reveal or enable bonus resources
 	int iBestRevealValue = 0;
 	for (int iJ = 0; iJ < GC.getNumBonusInfos(); iJ++)
 	{
-		if (GC.getBonusInfo((BonusTypes)iJ).getTechReveal() == eTech)
+		if (GC.getBonusInfo((BonusTypes)iJ).getTechCityTrade() == eTech)
+		{
+			if (countOwnedBonuses((BonusTypes)iJ) > 0)
+			{
+				int iObjectiveValue = 0;
+				iObjectiveValue += (AI_bonusVal((BonusTypes)iJ) * 50);
+				iObjectiveValue += (GC.getBonusInfo((BonusTypes)iJ).getAIObjective() + GC.getBonusInfo((BonusTypes)iJ).getAITradeModifier()) * 25;
+				if ((gPlayerLogLevel > 3) && bDebugLog && (iBuildValue > 0))
+				{
+					logBBAI("     Objective Value for %S: %d", GC.getBonusInfo((BonusTypes)iJ).getText(), iObjectiveValue);
+				}
+				iValue += iObjectiveValue;
+			}
+		}
+		if ((GC.getBonusInfo((BonusTypes)iJ).getTechReveal() == eTech))
 		{
 			int iRevealValue = 150;
 			iRevealValue += (AI_bonusVal((BonusTypes)iJ) * 25);
-			
+
 			BonusClassTypes eBonusClass = (BonusClassTypes)GC.getBonusInfo((BonusTypes)iJ).getBonusClassType();
 			int iBonusClassTotal = (paiBonusClassRevealed[eBonusClass] + paiBonusClassUnrevealed[eBonusClass]);
 			
@@ -5724,6 +5734,12 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 			
 		}
 	}
+
+	if ((gPlayerLogLevel > 3) && bDebugLog && (iBestRevealValue > 0))
+	{
+		logBBAI("   Best Reveal value: %d \n", iBestRevealValue);
+	}
+
 	iValue += iBestRevealValue;
 
 
@@ -5748,7 +5764,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	for (iI = 0; iI < GC.getNumPromotionInfos(); iI++)
 	{
-		if (GC.getPromotionInfo((PromotionTypes)iI).getTechPrereq() != NO_TECH) //GC.getInfoTypeForString("TECH_NEVER"))
+		if (GC.getPromotionInfo((PromotionTypes)iI).getTechPrereq() != NO_TECH)
 		{
 			if (GC.getPromotionInfo((PromotionTypes)iI).getTechPrereq() == eTech)
 			{
@@ -6027,6 +6043,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		{
 			AlignmentTypes eAlignment = (AlignmentTypes)GC.getLeaderHeadInfo(getPersonalityType()).getAlignment();
 
+			/*
 			bool bHaveMyReligion = false;
 			bool bHaveMyHolyCity = false;
 			bool bHaveOurHolyCity = false;
@@ -6060,6 +6077,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					}
 				}
 			}
+			*/
 
 			bool bHasReligion = (getStateReligion() != NO_RELIGION);
 			ReligionTypes eFavorite = (ReligionTypes)GC.getLeaderHeadInfo(getLeaderType()).getFavoriteReligion();
@@ -7072,7 +7090,7 @@ int CvPlayerAI::AI_techBuildingValue( TechTypes eTech, int iPathLength, bool &bE
 	return std::max(0, iValue);
 }
 
-
+// the bDebugLog variable is to keep this from spamming the log file when viewing the tech values in-game
 int CvPlayerAI::AI_techUnitValue( TechTypes eTech, int iPathLength, bool &bEnablesUnitWonder, bool bDebugLog ) const
 {
 	bool bWarPlan = (GET_TEAM(getTeam()).getAnyWarPlanCount(true) > 0);
@@ -7192,16 +7210,10 @@ int CvPlayerAI::AI_techUnitValue( TechTypes eTech, int iPathLength, bool &bEnabl
 					{
 						if (kLoopUnit.getUnitCombatType() == eFavoriteUnitCombat)
 						{
-							iUnitValue += 1050;
-
-							if (GC.getLogging() && bDebugLog)
+							iUnitValue += 1250;
+							if (gPlayerLogLevel > 3 && bDebugLog)
 							{
-								if (gDLL->getChtLvl() > 0)
-								{
-									char szOut[1024];
-									sprintf(szOut, "       FAVORITE UNITCOMBAT\n");
-									gDLL->messageControlLog(szOut);
-								}
+								logBBAI("       FAVORITE UNITCOMBAT");
 							}
 						}
 					}
@@ -7511,8 +7523,7 @@ int CvPlayerAI::AI_techUnitValue( TechTypes eTech, int iPathLength, bool &bEnabl
 
 						iMilitaryValue += iCombatValue * 150;
 						iMilitaryValue += kLoopUnit.getWeaponTier() * 150;
-						//iMilitaryValue += iTier * 100;
-						//iMilitaryValue *= iTier;
+						iMilitaryValue += kLoopUnit.getMoves() * 100;
 						
 						if (getHighestUnitTier(false, true) >= iTier && !isWorldUnitClass(eUnitClass) && !(GC.getLeaderHeadInfo(getPersonalityType()).getFavoriteTech() == eTech))
 						{
@@ -7571,14 +7582,14 @@ int CvPlayerAI::AI_techUnitValue( TechTypes eTech, int iPathLength, bool &bEnabl
 							iUnitValue += 1000;
 						}
 
-						if( kLoopUnit.getUnitAIType(UNITAI_CITY_DEFENSE) )
+						if (kLoopUnit.getUnitAIType(UNITAI_CITY_DEFENSE))
 						{
 							//iUnitValue += (2000 * GC.getGameINLINE().AI_combatValue(eLoopUnit))/100;
 							iUnitValue += (2000 * AI_combatValue(eLoopUnit))/100;
 						}
 					}
 
-					if( AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST3) )
+					if (AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST3))
 					{
 						if( kLoopUnit.getUnitAIType(UNITAI_ATTACK_CITY) )
 						{
@@ -7586,12 +7597,19 @@ int CvPlayerAI::AI_techUnitValue( TechTypes eTech, int iPathLength, bool &bEnabl
 							iUnitValue += (1500 * AI_combatValue(eLoopUnit))/100;
 						}
 					}
-					else if( AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST2) )
+					else if (AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST2))
 					{
 						if( kLoopUnit.getUnitAIType(UNITAI_ATTACK_CITY) )
 						{
 							//iUnitValue += (500 * GC.getGameINLINE().AI_combatValue(eLoopUnit))/100;
 							iUnitValue += (500 * AI_combatValue(eLoopUnit))/100;
+						}
+					}
+					else if( AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST1) )
+					{
+						if( kLoopUnit.getUnitAIType(UNITAI_ATTACK_CITY) )
+						{
+							iUnitValue += (250 * AI_combatValue(eLoopUnit))/100;
 						}
 					}
 					
@@ -9686,6 +9704,10 @@ PlayerVoteTypes CvPlayerAI::AI_diploVote(const VoteSelectionSubData& kVoteData, 
             {
                 bValid = false;
             }
+			if (AI_getTowerManaValue((BonusTypes)GC.getVoteInfo(eVote).getNoBonus()) > 0)
+			{
+				bValid = false;
+			}
         }
 //FfH: End Add
 
@@ -9893,6 +9915,13 @@ bool CvPlayerAI::AI_considerOffer(PlayerTypes ePlayer, const CLinkList<TradeData
 			if( !(GET_TEAM(getTeam()).AI_acceptSurrender(GET_PLAYER(ePlayer).getTeam())) )
 			{
 				return false;
+			}
+		}
+		else if ( pNode->m_data.m_eItemType == TRADE_OPEN_BORDERS ) // Vassals should not deny Open Borders requests
+		{
+			if (GET_TEAM(getTeam()).isVassal(GET_PLAYER(ePlayer).getTeam()))
+			{
+				return true;
 			}
 		}
 	}
@@ -10708,7 +10737,8 @@ int CvPlayerAI::AI_bonusVal(BonusTypes eBonus, int iChange) const
 	int iBonusCount = getNumAvailableBonuses(eBonus);
 
 	// calculations for mana will be handled in BaseBonusVal
-	if (GC.getBonusInfo(eBonus).getBonusClassType() == GC.getDefineINT("BONUSCLASS_MANA"))
+	//if (GC.getBonusInfo(eBonus).getBonusClassType() == GC.getDefineINT("BONUSCLASS_MANA"))
+	if (GC.getBonusInfo(eBonus).isMana())
 	{
 		iValue += AI_baseBonusVal(eBonus);
 	}
@@ -11090,14 +11120,12 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus) const
 
 			// Tholal AI - mana valuation
 			// HARCODE - lots of it!
-			// Note: we could loop through spells, find which ones require this mana and then value those spells. Too much? Probably the best way to do it in the long run
-			// value spells that provide promotions for favorite unitcombat
-			// NOTE: make sure the values add up to the appropriate range
 			// TODO: Add valuation for unit affinities?
 
 			if (bMana)
 			{
 				int iNumBonuses = countOwnedBonuses(eBonus);
+				/*
 				if (AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY1))
 				{
 					if (iNumBonuses == 0)
@@ -11105,8 +11133,9 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus) const
 						iValue += 50;
 					}
 				}
+				*/
 
-				bool bSummoner = hasTrait((TraitTypes)GC.getInfoTypeForString("TRAIT_SUMMONER"));
+				int bSummonChange = getSummonDuration();
 				for (int iSpell = 0; iSpell < GC.getNumSpellInfos(); iSpell++)
 				{
 					CvSpellInfo &kSpellInfo = GC.getSpellInfo((SpellTypes)iSpell);
@@ -11120,7 +11149,7 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus) const
 							// summons
 							if (kSpellInfo.getCreateUnitType() != NO_UNIT)
 							{
-								iValue += (bSummoner ? 50 : 25);// ToDo - extract some info about the unit and how useful it will be to us
+								iValue += 25 + (bSummonChange * 50);// ToDo - extract some info about the unit and how useful it will be to us
 							}
 							
 							//Todo - find a way to check for actual need (ie Water mana for desert)
@@ -11174,10 +11203,10 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus) const
 
 				if ((BonusTypes)eBonus == GC.getInfoTypeForString("BONUS_MANA_FIRE"))
 				{
+					bStack = true;
 					if (getCivilizationType() == GC.getInfoTypeForString("CIVILIZATION_LUCHUIRP") || getCivilizationType() == GC.getInfoTypeForString("CIVILIZATION_LJOSALFAR") ||
 						getCivilizationType() == GC.getInfoTypeForString("CIVILIZATION_SVARTALFAR"))
 					{
-						bStack = true;
 						iValue += 150;
 					}
 				}
@@ -11209,10 +11238,10 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus) const
 
 				if ((BonusTypes)eBonus == GC.getInfoTypeForString("BONUS_MANA_DEATH"))
 				{
+					bStack = true;
 					if (getCivilizationType() == GC.getInfoTypeForString("CIVILIZATION_SHEAIM") ||
 						iNumBonuses > 0)
 					{
-						bStack = true;
 						iValue += 150;
 					}
 				}
@@ -11304,8 +11333,9 @@ int CvPlayerAI::AI_bonusTradeVal(BonusTypes eBonus, PlayerTypes ePlayer, int iCh
 
 	iValue = AI_bonusVal(eBonus, iChange);
 
-	iValue *= ((std::min(getNumCities(), GET_PLAYER(ePlayer).getNumCities()) + 3) * 30);
-	iValue /= 100;
+	// MNAI - commenting these two lines out. Whether or not a bonus is more valuable when you have more cities is decided in AI_baseBonusVal
+	//iValue *= ((std::min(getNumCities(), GET_PLAYER(ePlayer).getNumCities()) + 3) * 30);
+	//iValue /= 100;
 
 	iValue *= std::max(0, (GC.getBonusInfo(eBonus).getAITradeModifier() + 100));
 	iValue /= 100;
@@ -12638,6 +12668,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 
 		case UNITAI_ATTACK_CITY_LEMMING:
 		case UNITAI_LAIRGUARDIAN:
+		case UNITAI_SHADE:
 			bValid = false;
 			break;
 
@@ -13162,6 +13193,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 	case UNITAI_ENGINEER:
 	case UNITAI_INQUISITOR:
 	case UNITAI_FEASTING:
+	case UNITAI_SHADE:
 		iValue += 1500;
 		break;
 
@@ -13696,6 +13728,134 @@ int CvPlayerAI::AI_neededExecutives(CvArea* pArea, CorporationTypes eCorporation
 	return iCount;
 }
 
+// K-Mod. This function is used to replace the old (broken) "unit cost percentage" calculation used by the AI
+int CvPlayerAI::AI_unitCostPerMil() const
+{
+	// original "cost percentage" = calculateUnitCost() * 100 / std::max(1, calculatePreInflatedCosts());
+	// If iUnitCostPercentage is calculated as above, decreasing maintenance will actually decrease the max units.
+	// If a builds a courthouse or switches to state property, it would then think it needs to get rid of units!
+	// It makes no sense, and civs with a surplus of cash still won't want to build units. So lets try it another way...
+	int iUnitCost = calculateUnitCost() * std::max(0, calculateInflationRate() + 100) / 100;
+	if (iUnitCost <= getNumCities()/2) // cf with the final line
+		return 0;
+
+	int iTotalRaw = calculateTotalYield(YIELD_COMMERCE);
+
+	int iFunds = iTotalRaw * AI_averageCommerceMultiplier(COMMERCE_GOLD) / 100;
+	iFunds += getGoldPerTurn() - calculateInflatedCosts();
+	iFunds += getCommerceRate(COMMERCE_GOLD) - iTotalRaw * AI_averageCommerceMultiplier(COMMERCE_GOLD) * getCommercePercent(COMMERCE_GOLD) / 10000;
+	return std::max(0, iUnitCost-getNumCities()/2) * 1000 / std::max(1, iFunds); // # cities is there to offset early-game distortion.
+}
+
+// This function gives an approximate / recommended maximum on our unit spending. Note though that it isn't a hard cap.
+// we might go as high has 20 point above the "maximum"; and of course, the maximum might later go down.
+// So this should only be used as a guide.
+int CvPlayerAI::AI_maxUnitCostPerMil(CvArea* pArea, int iBuildProb) const
+{
+	if (isBarbarian())
+		return 500;
+
+	if (GC.getGameINLINE().isOption(GAMEOPTION_ALWAYS_PEACE))
+		return 20; // ??
+
+	if (iBuildProb < 0)
+		iBuildProb = GC.getLeaderHeadInfo(getPersonalityType()).getBuildUnitProb() + 6; // a rough estimate.
+
+	bool bTotalWar = GET_TEAM(getTeam()).getWarPlanCount(WARPLAN_TOTAL, true);
+	bool bAggressiveAI = GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI);
+
+	int iMaxUnitSpending = (bAggressiveAI ? 30 : 20) + iBuildProb*4/3;
+
+	if (AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST4))
+	{
+		iMaxUnitSpending += 30;
+	}
+	else if (AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST3 | AI_VICTORY_DOMINATION3))
+	{
+		iMaxUnitSpending += 20;
+	}
+	else if (AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST1))
+	{
+		iMaxUnitSpending += 10;
+	}
+
+	if (!bTotalWar)
+	{
+		iMaxUnitSpending += AI_isDoStrategy(AI_STRATEGY_ALERT1) ? 15 + iBuildProb / 3 : 0;
+		iMaxUnitSpending += AI_isDoStrategy(AI_STRATEGY_ALERT2) ? 15 + iBuildProb / 3 : 0;
+		// note. the boost from alert1 + alert2 matches the boost from total war. (see below).
+	}
+
+	if (AI_isDoStrategy(AI_STRATEGY_FINAL_WAR))
+	{
+		iMaxUnitSpending += 300;
+	}
+	else
+	{
+		iMaxUnitSpending += bTotalWar ? 30 + iBuildProb*2/3 : 0;
+		if (pArea)
+		{
+			switch (pArea->getAreaAIType(getTeam()))
+			{
+			case AREAAI_OFFENSIVE:
+				iMaxUnitSpending += 40;
+				break;
+
+			case AREAAI_DEFENSIVE:
+				iMaxUnitSpending += 75;
+				break;
+
+			case AREAAI_MASSING:
+				iMaxUnitSpending += 75;
+				break;
+
+			case AREAAI_ASSAULT:
+				iMaxUnitSpending += 40;
+				break;
+
+			case AREAAI_ASSAULT_MASSING:
+				iMaxUnitSpending += 70;
+				break;
+
+			case AREAAI_ASSAULT_ASSIST:
+				iMaxUnitSpending += 35;
+				break;
+
+			case AREAAI_NEUTRAL:
+				// think of 'dagger' as being prep for total war.
+				FAssert(!bTotalWar);
+				iMaxUnitSpending += AI_isDoStrategy(AI_STRATEGY_DAGGER) ? 20 + iBuildProb*2/3 : 0;
+				break;
+			default:
+				FAssert(false);
+			}
+		}
+		else
+		{
+			if (GET_TEAM(getTeam()).getAnyWarPlanCount(true))
+				iMaxUnitSpending += 55;
+			else
+			{
+				FAssert(!bTotalWar);
+				iMaxUnitSpending += AI_isDoStrategy(AI_STRATEGY_DAGGER) ? 20 + iBuildProb*2/3 : 0;
+			}
+		}
+	}
+	return iMaxUnitSpending;
+}
+bool CvPlayerAI::AI_isLandWar(CvArea* pArea) const
+{
+	switch(pArea->getAreaAIType(getTeam()))
+	{
+	case AREAAI_OFFENSIVE:
+	case AREAAI_MASSING:
+	case AREAAI_DEFENSIVE:
+		return true;
+	default:
+		return false;
+	}
+}
+// K-Mod end
 
 int CvPlayerAI::AI_adjacentPotentialAttackers(CvPlot* pPlot, bool bTestCanMove) const
 {
@@ -14557,13 +14717,8 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 			return 0;
 		}
 	}
-
-	// Tholal ToDo - zero out civic if it interferes with mana for towers
-	// loop through mana, is it banned and do we need it for a tower (AI_isNeededTowerMana())? IF so, civic vaue is 0
-	// not sure how to identify the overcouncil here without hardcoding.
-    // if (GC.getGameINLINE().isNoBonus(eBonus))
-    
-	/* - Commenting this out - religion can be changed, so dont automatically zero out religious civics
+   
+	/* MNAI - Commenting this section out - religion can be changed, so dont automatically zero out religious civics
 	if (kCivic.getPrereqReligion() != NO_RELIGION)
 	{
 		if (kCivic.getPrereqReligion() != getStateReligion())
@@ -14572,6 +14727,29 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 		}
 	}
 	*/
+
+	// MNAI - devalue overcouncil if mana ban is interfering with Tower Victory
+	if (AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY1))
+	{
+		 //if (isFullMember((VoteSourceTypes)0))
+		if (GC.getVoteSourceInfo((VoteSourceTypes)0).getCivic() == eCivic)
+		//if (kCivic.getType() == "CIVIC_OVERCOUNCIL") // HARDCODE
+		{
+			for (int iBonus = 0; iBonus < GC.getNumBonusInfos(); iBonus++)
+			{
+				BonusTypes eBonus = (BonusTypes)iBonus;
+
+				if (GC.getGameINLINE().isNoBonus(eBonus))
+				{
+					if (AI_getTowerManaValue(eBonus) > 0)
+					{
+						return -20;
+					}
+				}
+			}
+		}
+	}
+	// End MNAI
 
 	bWarPlan = (kTeam.getAnyWarPlanCount(true) > 0);
 	if( bWarPlan )
@@ -15647,14 +15825,12 @@ ReligionTypes CvPlayerAI::AI_bestReligion() const
 	// End Tholal AI
 
 	// Do we have a religion hero already?
+	/*
 	if (getStateReligion() != NO_RELIGION)
 	{
 		CvReligionInfo& kReligionInfo = GC.getReligionInfo(getStateReligion());
-		//for (int iIndex = 0; iIndex < kReligionInfo.getNumReligionHeroes(); iIndex++)
-		//{
 			if (kReligionInfo.getReligionHero1() != NO_UNITCLASS)
 			{
-				//if (getUnitClassCountPlusMaking(kReligionInfo.getReligionHero1()) > 0)
 				if (getUnitClassCount(kReligionInfo.getReligionHero1()) > 0)
 				{
 					return getStateReligion();
@@ -15662,14 +15838,13 @@ ReligionTypes CvPlayerAI::AI_bestReligion() const
 			}
 			if (kReligionInfo.getReligionHero2() != NO_UNITCLASS)
 			{
-				//if (getUnitClassCountPlusMaking(kReligionInfo.getReligionHero2()) > 0)
 				if (getUnitClassCount(kReligionInfo.getReligionHero2()) > 0)
 				{
 					return getStateReligion();
 				}
 			}
-		//}
 	}
+	*/
 
 	ReligionTypes eFavorite = (ReligionTypes)GC.getLeaderHeadInfo(getLeaderType()).getFavoriteReligion();
 
@@ -15737,11 +15912,12 @@ int CvPlayerAI::AI_religionValue(ReligionTypes eReligion) const
 	{
 		return 0;
 	}
-
+	
+	CvReligionInfo& kReligion = GC.getReligionInfo(eReligion);
 //>>>>Better AI: Added by Denev 2010/07/21
 	if (AI_isDoVictoryStrategy(AI_VICTORY_ALTAR2))
 	{
-		if (GC.getReligionInfo(eReligion).getAlignmentBest() == ALIGNMENT_EVIL)
+		if (kReligion.getAlignmentBest() == ALIGNMENT_EVIL)
 		{
 			return 0;
 		}
@@ -15749,6 +15925,7 @@ int CvPlayerAI::AI_religionValue(ReligionTypes eReligion) const
 //>>>>Better AI: End Add
 
 	int iValue = 0;
+	
 	
 	if (getStateReligion() == NO_RELIGION)
 	{
@@ -15822,47 +15999,45 @@ int CvPlayerAI::AI_religionValue(ReligionTypes eReligion) const
         }
 	}
 
-	// need some base value for the units
-	// Tholal AI - add value for unused heros
+	// MNAI Start
 	const UnitClassTypes eReligionHeroClass1 = (UnitClassTypes)GC.getReligionInfo(eReligion).getReligionHero1();
 	const UnitClassTypes eReligionHeroClass2 = (UnitClassTypes)GC.getReligionInfo(eReligion).getReligionHero2();
 
 	if (eReligionHeroClass1 != NO_UNITCLASS)
 	{
-		if (!GC.getGameINLINE().isUnitClassMaxedOut(eReligionHeroClass1))
+		if (!GC.getGameINLINE().isUnitClassMaxedOut(eReligionHeroClass1) || getUnitClassCount(eReligionHeroClass1) > 0)
 		{
-			CvUnitInfo &kHero1 = GC.getUnitInfo((UnitTypes)GC.getReligionInfo(eReligion).getReligionHero1());
+			CvUnitInfo &kHero1 = GC.getUnitInfo((UnitTypes)kReligion.getReligionHero1());
 			iValue += kHero1.getTier() * 10;
-			//iValue *= 5;
-			//iValue /= 3;
-			//iValue -= GC.getGameINLINE().countReligionLevels(eReligion);
 		}
 	}
 
 	if (eReligionHeroClass2 != NO_UNITCLASS)
 	{
-		if (!GC.getGameINLINE().isUnitClassMaxedOut(eReligionHeroClass2))
+		if (!GC.getGameINLINE().isUnitClassMaxedOut(eReligionHeroClass2) || getUnitClassCount(eReligionHeroClass2) > 0)
 		{
-			iValue += GC.getUnitInfo((UnitTypes)GC.getReligionInfo(eReligion).getReligionHero2()).getTier() * 10;
-			//iValue *= 4;
-			//iValue /= 3;
-			//iValue -= GC.getGameINLINE().countReligionLevels(eReligion);
+			iValue += GC.getUnitInfo((UnitTypes)kReligion.getReligionHero2()).getTier() * 10;
 		}
 	}
 
-	// Add value for like alignments
+	// To Do - add value for religious buildings and units
+	// AI_getBuildingReligionValue(eBuilding)
+	// AI_getUnitReligionValue(eUnit)
+	
+	// +10% value if this religion matches our alignment
 	if (GC.getReligionInfo(eReligion).getAlignment() == getAlignment())
 	{
 		iValue *= 10;
 		iValue /= 9;
 	}
 
+	// double value if its our favorite religion
 	if (eReligion == getFavoriteReligion())
 	{
 		iValue *= 2;
 	}
 
-	// End Tholal AI
+	// End MNAI
 
 //>>>>Unofficial Bug Fix: Added by Denev 2010/03/11
 	iValue *= 100 + GC.getLeaderHeadInfo(getPersonalityType()).getReligionWeightModifier(eReligion);
@@ -17566,7 +17741,7 @@ void CvPlayerAI::AI_doCivics()
 			int iTestAnarchy = getCivicAnarchyLength(&aeBestCivic[0]);
 			// using 20 percent as a rough estimate of revolution cost, and 2 percent just for a bit of inertia.
 			// reduced threshold if we are already going to have a revolution.
-			int iThreshold = (iTestAnarchy > iAnarchyLength ? (!bFirstPass | bWantSwitch ? 14 : 24) : 2);
+			int iThreshold = (iTestAnarchy > iAnarchyLength ? (!bFirstPass || bWantSwitch ? 14 : 24) : 2);
 
 			if (100*iBestValue > (100+iThreshold)*aiCurrentValue[iI])
 			{
@@ -18074,7 +18249,10 @@ void CvPlayerAI::AI_doDiplo()
 													iCount = 0;
 													iPossibleCount = 0;
 
-													for (iJ = 0; iJ < NUM_CITY_PLOTS; iJ++)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//													for (iJ = 0; iJ < NUM_CITY_PLOTS; iJ++)
+													for (iJ = 0; iJ < ::calculateNumCityPlots(GET_PLAYER((PlayerTypes)iI).getNextCityRadius()); iJ++)
+//<<<<Unofficial Bug Fix: End Modify
 													{
 														pLoopPlot = plotCity(pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE(), iJ);
 
@@ -22324,7 +22502,7 @@ int CvPlayerAI::AI_getTowerMasteryVictoryStage() const
 	// if we have magic type traits, pursue a Tower victory - HARDCODE
 	bool bHasMageTrait = false;
 
-	bool bSummoner = hasTrait((TraitTypes)GC.getInfoTypeForString("TRAIT_SUMMONER"));
+	bool bSummoner = (getSummonDuration() > 0);
 	bool bSundered = hasTrait((TraitTypes)GC.getInfoTypeForString("TRAIT_SUNDERED"));
 	bool bArcane = hasTrait((TraitTypes)GC.getInfoTypeForString("TRAIT_ARCANE"));
 
@@ -22350,7 +22528,12 @@ int CvPlayerAI::AI_getTowerMasteryVictoryStage() const
 	*/
 
 	//TODO - reference getMojoFactor() instead?
+	if (AI_getMojoFactor() > 10)
+	{
+		return 1;
+	}
 	// Count amount of mana
+	/*
 	int iTotalMana = 0;
 	for (int iK = 0; iK < GC.getNumBonusInfos(); iK++)
 	{
@@ -22368,6 +22551,7 @@ int CvPlayerAI::AI_getTowerMasteryVictoryStage() const
 	{
 		return 1;
 	}
+	*/
 
 	if (bHasMageTrait)
 	{
@@ -22847,6 +23031,8 @@ int CvPlayerAI::AI_getStrategyHash() const
         return m_iStrategyHash;
     }
     
+	logBBAI("Checking Strategies...");
+
     int iNonsense = AI_getStrategyRand();
     
 	int iMetCount = kTeam.getHasMetCivCount(true);
@@ -22997,12 +23183,12 @@ int CvPlayerAI::AI_getStrategyHash() const
 	{
 		if( (m_iStrategyHash & AI_STRATEGY_LAND_BLITZ) && !(iLastStrategyHash & AI_STRATEGY_LAND_BLITZ) )
 		{
-			logBBAI( "  Player %d (%S) starts strategy AI_STRATEGY_LAND_BLITZ on turn %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn());
+			logBBAI( "  starting strategy AI_STRATEGY_LAND_BLITZ on turn %d", GC.getGameINLINE().getGameTurn());
 		}
 
 		if( (m_iStrategyHash & AI_STRATEGY_AIR_BLITZ) && !(iLastStrategyHash & AI_STRATEGY_AIR_BLITZ) )
 		{
-			logBBAI( "  Player %d (%S) starts strategy AI_STRATEGY_AIR_BLITZ on turn %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn());
+			logBBAI( "  starting strategy AI_STRATEGY_AIR_BLITZ on turn %d", GC.getGameINLINE().getGameTurn());
 		}
 	}
     
@@ -23120,12 +23306,12 @@ int CvPlayerAI::AI_getStrategyHash() const
 	{
 		if( (m_iStrategyHash & AI_STRATEGY_TURTLE) && !(iLastStrategyHash & AI_STRATEGY_TURTLE) )
 		{
-			logBBAI( "  Player %d (%S) starts strategy AI_STRATEGY_TURTLE on turn %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn());
+			logBBAI( "  starting strategy AI_STRATEGY_TURTLE on turn %d", GC.getGameINLINE().getGameTurn());
 		}
 
 		if( !(m_iStrategyHash & AI_STRATEGY_TURTLE) && (iLastStrategyHash & AI_STRATEGY_TURTLE) )
 		{
-			logBBAI( "  Player %d (%S) stops strategy AI_STRATEGY_TURTLE on turn %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn());
+			logBBAI( "  stopping strategy AI_STRATEGY_TURTLE on turn %d", GC.getGameINLINE().getGameTurn());
 		}
 	}
 	
@@ -23173,7 +23359,7 @@ int CvPlayerAI::AI_getStrategyHash() const
 
 									if( gPlayerLogLevel >= 2 )
 									{
-										logBBAI( "    Player %d (%S) wary of %S because of war memory %d", getID(), getCivilizationDescription(0), GET_PLAYER((PlayerTypes)iI).getCivilizationDescription(0), iWarMemory);
+										logBBAI( "    wary of %S because of war memory %d", GET_PLAYER((PlayerTypes)iI).getCivilizationDescription(0), iWarMemory);
 									}
 								}
 							}
@@ -23284,22 +23470,22 @@ int CvPlayerAI::AI_getStrategyHash() const
 	{
 		if( (m_iStrategyHash & AI_STRATEGY_ALERT1) && !(iLastStrategyHash & AI_STRATEGY_ALERT1) )
 		{
-			logBBAI( "  Player %d (%S) starts strategy AI_STRATEGY_ALERT1 on turn %d with iParanoia %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn(), iParanoia);
+			logBBAI( "  starting strategy AI_STRATEGY_ALERT1 on turn %d with iParanoia %d", GC.getGameINLINE().getGameTurn(), iParanoia);
 		}
 
 		if( !(m_iStrategyHash & AI_STRATEGY_ALERT1) && (iLastStrategyHash & AI_STRATEGY_ALERT1) )
 		{
-			logBBAI( "  Player %d (%S) stops strategy AI_STRATEGY_ALERT1 on turn %d with iParanoia %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn(), iParanoia);
+			logBBAI( "  stopping strategy AI_STRATEGY_ALERT1 on turn %d with iParanoia %d", GC.getGameINLINE().getGameTurn(), iParanoia);
 		}
 
 		if( (m_iStrategyHash & AI_STRATEGY_ALERT2) && !(iLastStrategyHash & AI_STRATEGY_ALERT2) )
 		{
-			logBBAI( "  Player %d (%S) starts strategy AI_STRATEGY_ALERT2 on turn %d with iParanoia %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn(), iParanoia);
+			logBBAI( "  starting strategy AI_STRATEGY_ALERT2 on turn %d with iParanoia %d", GC.getGameINLINE().getGameTurn(), iParanoia);
 		}
 
 		if( !(m_iStrategyHash & AI_STRATEGY_ALERT2) && (iLastStrategyHash & AI_STRATEGY_ALERT2) )
 		{
-			logBBAI( "  Player %d (%S) stops strategy AI_STRATEGY_ALERT2 on turn %d with iParanoia %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn(), iParanoia);
+			logBBAI( "  stopping strategy AI_STRATEGY_ALERT2 on turn %d with iParanoia %d", GC.getGameINLINE().getGameTurn(), iParanoia);
 		}
 	}
 
@@ -23453,12 +23639,12 @@ int CvPlayerAI::AI_getStrategyHash() const
 		{
 			if( (m_iStrategyHash & AI_STRATEGY_DAGGER) && !(iLastStrategyHash & AI_STRATEGY_DAGGER) )
 			{
-				logBBAI( "  Player %d (%S) starts strategy AI_STRATEGY_DAGGER on turn %d with iDagger %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn(), iDagger);
+				logBBAI( "  starting strategy AI_STRATEGY_DAGGER on turn %d with iDagger %d", GC.getGameINLINE().getGameTurn(), iDagger);
 			}
 
 			if( !(m_iStrategyHash & AI_STRATEGY_DAGGER) && (iLastStrategyHash & AI_STRATEGY_DAGGER) )
 			{
-				logBBAI( "  Player %d (%S) stops strategy AI_STRATEGY_DAGGER on turn %d with iDagger %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn(), iDagger);
+				logBBAI( "  stopping strategy AI_STRATEGY_DAGGER on turn %d with iDagger %d", GC.getGameINLINE().getGameTurn(), iDagger);
 			}
 		}
 	}
@@ -23577,24 +23763,25 @@ int CvPlayerAI::AI_getStrategyHash() const
 		{
 			if( (m_iStrategyHash & AI_STRATEGY_CRUSH) && !(iLastStrategyHash & AI_STRATEGY_CRUSH) )
 			{
-				logBBAI( "  Player %d (%S) starts strategy AI_STRATEGY_CRUSH on turn %d with iCrushValue %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn(), iCrushValue);
+				logBBAI( "  starting strategy AI_STRATEGY_CRUSH on turn %d with iCrushValue %d", GC.getGameINLINE().getGameTurn(), iCrushValue);
 			}
 
 			if( !(m_iStrategyHash & AI_STRATEGY_CRUSH) && (iLastStrategyHash & AI_STRATEGY_CRUSH) )
 			{
-				logBBAI( "  Player %d (%S) stops strategy AI_STRATEGY_CRUSH on turn %d with iCrushValue %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn(), iCrushValue);
+				logBBAI( "  stopping strategy AI_STRATEGY_CRUSH on turn %d with iCrushValue %d", GC.getGameINLINE().getGameTurn(), iCrushValue);
 			}
 		}
 	}
 
 	// K-Mod
 	{//production
-		int iProductionValue = iNonsense % (5 + AI_getFlavorValue(AI_FLAVOR_PRODUCTION)/2);
+		//int iProductionValue = iNonsense % (5 + AI_getFlavorValue(AI_FLAVOR_PRODUCTION)/2);
+		int iProductionValue = AI_getFlavorValue(AI_FLAVOR_PRODUCTION);
 		iProductionValue += (iLastStrategyHash & AI_STRATEGY_PRODUCTION) ? 1 : 0;
 		iProductionValue += AI_getFlavorValue(AI_FLAVOR_PRODUCTION) > 0 ? 1 : 0;
 		iProductionValue += (m_iStrategyHash & AI_STRATEGY_DAGGER) ? 1 : 0;
 		iProductionValue += (m_iStrategyHash & AI_STRATEGY_CRUSH) ? 1 : 0;
-		iProductionValue += AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST4 | AI_VICTORY_SPACE4) ? 3 : 0;
+		iProductionValue += AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST2 | AI_VICTORY_SPACE4 | AI_VICTORY_TOWERMASTERY2) ? 3 : 0;
 		// warplans. (done manually rather than using getWarPlanCount, so that we only have to do the loop once.)
 		bool bAnyWarPlans = false;
 		bool bTotalWar = false;
@@ -23617,7 +23804,7 @@ int CvPlayerAI::AI_getStrategyHash() const
 			}
 		}
 		iProductionValue += bAnyWarPlans ? 1 : 0;
-		iProductionValue += bTotalWar ? 3 : 0;
+		iProductionValue -= bTotalWar ? 3 : 0;
 
 		if (iProductionValue >= 10)
 		{
@@ -23628,12 +23815,12 @@ int CvPlayerAI::AI_getStrategyHash() const
 		{
 			if( (m_iStrategyHash & AI_STRATEGY_PRODUCTION) && !(iLastStrategyHash & AI_STRATEGY_PRODUCTION) )
 			{
-				logBBAI( "  Player %d (%S) starts strategy AI_STRATEGY_PRODUCTION on turn %d with iProductionValue %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn(), iProductionValue);
+				logBBAI( "  starting strategy AI_STRATEGY_PRODUCTION on turn %d with iProductionValue %d", GC.getGameINLINE().getGameTurn(), iProductionValue);
 			}
 
 			if( !(m_iStrategyHash & AI_STRATEGY_PRODUCTION) && (iLastStrategyHash & AI_STRATEGY_PRODUCTION) )
 			{
-				logBBAI( "  Player %d (%S) stops strategy AI_STRATEGY_PRODUCTION on turn %d with iProductionValue %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn(), iProductionValue);
+				logBBAI( "  stopping strategy AI_STRATEGY_PRODUCTION on turn %d with iProductionValue %d", GC.getGameINLINE().getGameTurn(), iProductionValue);
 			}
 		}
 	}
@@ -23889,12 +24076,12 @@ int CvPlayerAI::AI_getStrategyHash() const
 		{
 			if( (m_iStrategyHash & AI_STRATEGY_ECONOMY_FOCUS) && !(iLastStrategyHash & AI_STRATEGY_ECONOMY_FOCUS) )
 			{
-				logBBAI( "  Player %d (%S) starts strategy AI_STRATEGY_ECONOMY_FOCUS on turn %d with iFocus %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn(), iFocus);
+				logBBAI( "  starting strategy AI_STRATEGY_ECONOMY_FOCUS on turn %d with iFocus %d", GC.getGameINLINE().getGameTurn(), iFocus);
 			}
 
 			if( !(m_iStrategyHash & AI_STRATEGY_ECONOMY_FOCUS) && (iLastStrategyHash & AI_STRATEGY_ECONOMY_FOCUS) )
 			{
-				logBBAI( "  Player %d (%S) stops strategy AI_STRATEGY_ECONOMY_FOCUS on turn %d with iFocus %d", getID(), getCivilizationDescription(0), GC.getGameINLINE().getGameTurn(), iFocus);
+				logBBAI( "  stopping strategy AI_STRATEGY_ECONOMY_FOCUS on turn %d with iFocus %d", GC.getGameINLINE().getGameTurn(), iFocus);
 			}
 		}
 	}
@@ -23946,7 +24133,10 @@ int CvPlayerAI::AI_countDeadlockedBonuses(CvPlot* pPlot) const
     {
         for (iDY = -(iRange); iDY <= iRange; iDY++)
         {
-            if (plotDistance(iDX, iDY, 0, 0) > CITY_PLOTS_RADIUS)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//			if (plotDistance(iDX, iDY, 0, 0) > CITY_PLOTS_RADIUS)
+			if (plotDistance(iDX, iDY, 0, 0) > getNextCityRadius())
+//<<<<Unofficial Bug Fix: End Modify
             {
                 pLoopPlot = plotXY(pPlot->getX_INLINE(), pPlot->getY_INLINE(), iDX, iDY);
 
@@ -23960,7 +24150,10 @@ int CvPlayerAI::AI_countDeadlockedBonuses(CvPlot* pPlot) const
                             bool bNeverFound = true;
                             //potentially blockable resource
                             //look for a city site within a city radius
-                            for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//							for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+							for (iI = 0; iI < ::calculateNumCityPlots(getNextCityRadius()); iI++)
+//<<<<Unofficial Bug Fix: End Modify
                             {
                                 pLoopPlot2 = plotCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), iI);
                                 if (pLoopPlot2 != NULL)
@@ -24556,13 +24749,17 @@ int CvPlayerAI::AI_getTotalFloatingDefendersNeeded(CvArea* pArea) const
 /*                                                                                              */
 /* War strategy AI, Victory Strategy AI                                                         */
 /************************************************************************************************/
-	if( pArea->getAreaAIType(getTeam()) == AREAAI_DEFENSIVE || pArea->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE || pArea->getAreaAIType(getTeam()) == AREAAI_MASSING )
+	if (AI_isLandWar(pArea))
 	{
-		if( iAreaCities <= std::min(4, pArea->getNumCities()/3) )
+		iDefenders += iAreaCities;
+		if (!AI_isPrimaryArea(pArea))
 		{
-			// Land war here, as floating defenders are based on cities/population need to make sure
-			// AI defends its footholds in new continents well.
-			iDefenders += GET_TEAM(getTeam()).countEnemyPopulationByArea(pArea) / 14;
+			if( iAreaCities <= std::min(4, pArea->getNumCities()/3) )
+			{
+				// Land war here, as floating defenders are based on cities/population need to make sure
+				// AI defends its footholds in new continents well.
+				iDefenders += GET_TEAM(getTeam()).countEnemyPopulationByArea(pArea) / 14;
+			}
 		}
 	}
 
@@ -25489,7 +25686,10 @@ void CvPlayerAI::AI_doAdvancedStart(bool bNoExit)
 			{
 				if (pLoopPlot->getBonusType(getTeam()) != NO_BONUS)
 				{
-					AI_advancedStartRevealRadius(pLoopPlot, CITY_PLOTS_RADIUS);
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//					AI_advancedStartRevealRadius(pLoopPlot, CITY_PLOTS_RADIUS);
+					AI_advancedStartRevealRadius(pLoopPlot, getNextCityRadius());
+//<<<<Unofficial Bug Fix: End Modify
 				}
 				else
 				{
@@ -25866,12 +26066,10 @@ void CvPlayerAI::AI_updateCitySites(int iMinFoundValueThreshold, int iMaxSites) 
 				{
 					if (!AI_isPlotCitySite(pLoopPlot))
 					{
-
-//FfH: Modified by Kael 07/13/2008
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
 //						iValue *= std::min(NUM_CITY_PLOTS * 2, pLoopPlot->area()->getNumUnownedTiles());
-						iValue *= std::min(42, pLoopPlot->area()->getNumUnownedTiles());
-//FfH: End Modify
-
+						iValue *= std::min(::calculateNumCityPlots(getNextCityRadius()) * 2, pLoopPlot->area()->getNumUnownedTiles());
+//<<<<Unofficial Bug Fix: End Modify
 						if (iValue > iBestFoundValue)
 						{
 							iBestFoundValue = iValue;
@@ -25884,7 +26082,10 @@ void CvPlayerAI::AI_updateCitySites(int iMinFoundValueThreshold, int iMaxSites) 
 		if (pBestFoundPlot != NULL)
 		{
 			m_aiAICitySites.push_back(GC.getMapINLINE().plotNum(pBestFoundPlot->getX_INLINE(), pBestFoundPlot->getY_INLINE()));
-			AI_recalculateFoundValues(pBestFoundPlot->getX_INLINE(), pBestFoundPlot->getY_INLINE(), CITY_PLOTS_RADIUS, 2 * CITY_PLOTS_RADIUS);
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/06
+//			AI_recalculateFoundValues(pBestFoundPlot->getX_INLINE(), pBestFoundPlot->getY_INLINE(), CITY_PLOTS_RADIUS, 2 * CITY_PLOTS_RADIUS);
+			AI_recalculateFoundValues(pBestFoundPlot->getX_INLINE(), pBestFoundPlot->getY_INLINE(), getNextCityRadius(), 2 * getNextCityRadius());
+//<<<<Unofficial Bug Fix: End Modify
 		}
 		else
 		{
@@ -27195,7 +27396,7 @@ int CvPlayerAI::AI_getCivicShareAttitude(PlayerTypes ePlayer) const
 }
 //FfH: End Add
 
-// Puppet States
+// MNAI - Puppet States
 int CvPlayerAI::AI_getPuppetAttitude(PlayerTypes ePlayer) const
 {
 	CvPlayer& kPlayer = GET_PLAYER(ePlayer);
@@ -27213,7 +27414,7 @@ int CvPlayerAI::AI_getPuppetAttitude(PlayerTypes ePlayer) const
 
 	return 0;
 }
-// End Puppet States
+// MNAI - End Puppet States
 
 // Attitude cache
 void CvPlayerAI::AI_invalidateAttitudeCache(PlayerTypes ePlayer)
@@ -27245,6 +27446,7 @@ int CvPlayerAI::AI_getTowerManaValue(BonusTypes eBonus) const
     }
 
 	// Don't count mana that we can't use due to Overcouncil resolutions
+	/*
     if (isFullMember((VoteSourceTypes)0))
     {
         if (GC.getGameINLINE().isNoBonus(eBonus))
@@ -27252,6 +27454,7 @@ int CvPlayerAI::AI_getTowerManaValue(BonusTypes eBonus) const
             return 0;
         }
     }
+	*/
 
 	if (getNumAvailableBonuses(eBonus) > 0)
 	{
@@ -27492,66 +27695,13 @@ int CvPlayerAI::AI_getTowerManaValue(BonusTypes eBonus) const
 
 	iBestTowerManaValue += iNumCompletedTowers;
 
+	if (AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY1))
+		iBestTowerManaValue *= 10;
+
 	return iBestTowerManaValue;
 }
 
-bool CvPlayerAI::AI_isNeededTowerMana(BonusTypes eBonus) const
-{
-	// No need to worry about Tower mana if we're about to win
-	if (AI_isDoVictoryStrategyLevel4())
-	{
-		return false;
-	}
-
-	// Don't count mana that we can't use due to Overcouncil resolutions
-    if (isFullMember((VoteSourceTypes)0))
-    {
-        if (GC.getGameINLINE().isNoBonus(eBonus))
-        {
-            return false;
-        }
-    }
-
-	// get prereq buildings for Mastery Tower
-	// Do we have tech for the building? If yes, then get prereq bonuses
-	// if eBonusTYpe == prereq bonnus and number of eBonusType we have is 0, return true
-	//
-	//	int iMasteryTower = gc.getInfoTypeForString('BUILDINGCLASS_TOWER_OF_MASTERY');
-	/*
-	for (iI = 0; iI < numBuildingClassInfos; iI++)
-	{
-		if (getBuildingClassPrereqBuilding(((BuildingClassTypes)iI), GC.getInfoTypeForString('BUILDINGCLASS_TOWER_OF_MASTERY')))
-		{
-			return false;
-		}
-	}
-	/*
-	int iAlterationTower = GC.getInfoTypeForString('BUILDINGCLASS_TOWER_OF_ALTERATION');
-
-	if (getBuildingClassCount((BuildingClassTypes)iAlterationTower) == 0)
-	{
-		if (isHasTech  canConstruct(iAlterationTower))
-		{
-			// Get mana requirements
-			// check if we have it
-			// check it if matches eBonus
-			for (iI = 0; iI < GC.getNUM_BUILDING_PREREQ_OR_BONUSES(); iI++)
-			{
-				if (GC.getBuildingInfo(eBuilding).getPrereqOrBonuses(iI) != NO_BONUS)
-				{
-					if (!hasBonus((BonusTypes)GC.getBuildingInfo(eBuilding).getPrereqOrBonuses(iI)))
-					{
-						 return false;
-					}
-				}
-			}
-		}
-	}
-*/
-	return false;
-}
-
-// Mage factor
+// Used to approximate how much this player might be interested in magic techs and units
 int CvPlayerAI::AI_getMojoFactor() const
 {
 	int iValue = 0;
@@ -27559,7 +27709,8 @@ int CvPlayerAI::AI_getMojoFactor() const
 	// Count amount of mana
 	for (int iK = 0; iK < GC.getNumBonusInfos(); iK++)
 	{
-		if (GC.getBonusInfo((BonusTypes)iK).getBonusClassType() == (GC.getDefineINT("BONUSCLASS_MANA")))
+		//if (GC.getBonusInfo((BonusTypes)iK).getBonusClassType() == (GC.getDefineINT("BONUSCLASS_MANA")))
+		if (GC.getBonusInfo((BonusTypes)iK).isMana())
 		{
 			iValue += getNumAvailableBonuses((BonusTypes)iK) * 2;
 			if (getNumAvailableBonuses((BonusTypes)iK) > 1)
@@ -27567,6 +27718,8 @@ int CvPlayerAI::AI_getMojoFactor() const
 				iValue += 2;
 			}
 		}
+
+		// Tholal ToDo - dump this section
 		if (GC.getBonusInfo((BonusTypes)iK).getBonusClassType() == (GC.getDefineINT("BONUSCLASS_MANA_RAW")))
 		{
 			iValue += countOwnedBonuses((BonusTypes)iK) * 5; // we overvalue rawmana to encourage the AI to pursue techs and units to help it convert the mana
@@ -27593,7 +27746,10 @@ int CvPlayerAI::AI_getMojoFactor() const
 			}
 		}
 	}
-	// ToDo - remove this hardcode
+
+	iValue += getSummonDuration();
+
+	// ToDo - remove this hardcode - note: this is done due to the fact that the Khazad have no mage units
 	if (getCivilizationType() == GC.getDefineINT("CIVILIZATION_KHAZAD"))
 	{
 		iValue /= 2;

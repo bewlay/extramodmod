@@ -85,6 +85,13 @@ void CvUnitAI::AI_reset(UnitAITypes eUnitAI)
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
+	if (eUnitAI != NO_UNITAI)
+	{
+		if (!GC.getUnitInfo(getUnitType()).getUnitAIType(eUnitAI))
+		{
+			eUnitAI = (UnitAITypes)GC.getUnitInfo(getUnitType()).getDefaultUnitAIType();
+		}
+	}
 
 	m_eUnitAIType = eUnitAI;
 
@@ -133,13 +140,7 @@ bool CvUnitAI::AI_update()
 		// Tholal AI - Shades
 		if (getUnitClassType() == GC.getInfoTypeForString("UNITCLASS_SHADE"))
 		{
-			AI_setGroupflag(GROUPFLAG_NONE);
-			//AI_setUnitAIType(UNITAI_CITY_DEFENSE);
-			joinGroup(NULL);
-			if (AI_join())
-			{
-				return false;
-			}
+			AI_ShadeMove();
 		}
 		
 		// Bring out the comfy chair!
@@ -219,11 +220,13 @@ bool CvUnitAI::AI_update()
                 {
                     if ((m_pUnitInfo->getForceBuildings(eBuilding)) || (m_pUnitInfo->getBuildings(eBuilding)))
                     {
-                        if (canConstruct(plot(),eBuilding))
+                       /*
+						if (canConstruct(plot(),eBuilding))
                         {
                             construct(eBuilding);
                             return false;
                         }
+						*/
                         bDoesBuild = true;
                     }
                 }
@@ -784,6 +787,9 @@ bool CvUnitAI::AI_update()
 				AI_lairGuardianMove();
 				break;
 
+			case UNITAI_SHADE:
+				AI_ShadeMove();
+				break;
 				
 			default:
 				FAssert(false);
@@ -898,15 +904,6 @@ void CvUnitAI::AI_upgrade()
 			// use a random factor. less than 100, so that the upgrade must be better than the current unit.
 			iValue *= 80 + GC.getGameINLINE().getSorenRandNum(21, "AI Upgrade");
 
-			int iUpgradeTier = GC.getUnitInfo(eLoopUnit).getTier();
-			if (iUpgradeTier > 2)
-			{
-				if ((getLevel() < (iUpgradeTier + 1)) && (getUnitCombatType() != GC.getInfoTypeForString("UNITCOMBAT_DISCIPLE")))
-				{
-					iValue = 0;
-				}
-			}
-
 			// (believe it or not, AI_unitValue is faster than canUpgrade.)
 			if (iValue > iBestValue && canUpgrade(eLoopUnit))
 			{
@@ -918,7 +915,7 @@ void CvUnitAI::AI_upgrade()
 
 	if (eBestUnit != NO_UNIT)
 	{
-		logBBAI("    %S (unit %d - %S) upgrading to %S (value: %d)", getName().GetCString(), getID(), GC.getUnitAIInfo(AI_getUnitAIType()).getDescription(),GC.getUnitInfo(eBestUnit).getDescription(), iBestValue);
+		logBBAI("    %S (unit %d - %S, level %d) upgrading to %S (value: %d)", getName().GetCString(), getID(), GC.getUnitAIInfo(AI_getUnitAIType()).getDescription(), getLevel(), GC.getUnitInfo(eBestUnit).getDescription(), iBestValue);
 		//upgrade(eBestUnit);
 		// K-Mod. Ungroup the unit, so that we don't cause the whole group to miss their turn.
 		CvUnit* pUpgradeUnit = upgrade(eBestUnit);
@@ -1206,6 +1203,7 @@ int CvUnitAI::AI_groupFirstVal()
 		break;
 
 	case UNITAI_LAIRGUARDIAN:
+	case UNITAI_SHADE:
 		break;
 
 	default:
@@ -1527,7 +1525,7 @@ int CvUnitAI::AI_getBarbLeadership(int& iFollowers) const
 	// sorry goblins, you won't be leading any stacks of doom
 	iLeadership = std::min((baseCombatStr() * 2) + 1, iLeadership);
 	// undead don't lead large groups
-	if (!bHero & !isAlive())
+	if (!bHero && !isAlive())
 	{
 		iLeadership -= 1;
 		iLeadership = std::min(5 + (AI_getBirthmark3() % 2), iLeadership);
@@ -3057,7 +3055,7 @@ void CvUnitAI::AI_attackMove()
 /* Unit AI, Settler AI, Efficiency                                                              */
 /************************************************************************************************/
 	bool bDanger = (GET_PLAYER(getOwnerINLINE()).AI_getAnyPlotDanger(plot(), 3));
-
+	bool bLandWar = GET_PLAYER(getOwnerINLINE()).AI_isLandWar(area()); // K-Mod
 	if( getGroup()->getNumUnits() > 2 )
 	{
 		UnitAITypes eGroupAI = getGroup()->getHeadUnitAI();
@@ -3253,7 +3251,7 @@ void CvUnitAI::AI_attackMove()
 					return;
 				}
 
-				bool bLandWar = ((eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE) || (eAreaAIType == AREAAI_MASSING));
+				//bool bLandWar = ((eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE) || (eAreaAIType == AREAAI_MASSING));
 				if (!bLandWar)
 				{
 					// Fill transports before starting new one, but not just full of our unit ai
@@ -3563,7 +3561,8 @@ void CvUnitAI::AI_paratrooperMove()
 			}
 			
 			AreaAITypes eAreaAIType = area()->getAreaAIType(getTeam());
-			bool bLandWar = ((eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE) || (eAreaAIType == AREAAI_MASSING));		
+			//bool bLandWar = ((eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE) || (eAreaAIType == AREAAI_MASSING));		
+			bool bLandWar = GET_PLAYER(getOwnerINLINE()).AI_isLandWar(area()); // K-Mod
 			if (!bLandWar)
 			{
 				if (AI_load(UNITAI_ASSAULT_SEA, MISSIONAI_LOAD_ASSAULT, NO_UNITAI, -1, -1, -1, 0, MOVE_SAFE_TERRITORY, 4))
@@ -3689,7 +3688,8 @@ void CvUnitAI::AI_attackCityMove()
 	const CvPlayerAI& kOwner = GET_PLAYER(getOwnerINLINE());
 
 	AreaAITypes eAreaAIType = area()->getAreaAIType(getTeam());
-    bool bLandWar = !isBarbarian() && ((eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE) || (eAreaAIType == AREAAI_MASSING));
+    //bool bLandWar = !isBarbarian() && ((eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE) || (eAreaAIType == AREAAI_MASSING));
+	bool bLandWar = !isBarbarian() && kOwner.AI_isLandWar(area()); // K-Mod
 	bool bAssault = !isBarbarian() && ((eAreaAIType == AREAAI_ASSAULT) || (eAreaAIType == AREAAI_ASSAULT_ASSIST) || (eAreaAIType == AREAAI_ASSAULT_MASSING));
 
 	bool bTurtle = kOwner.AI_isDoStrategy(AI_STRATEGY_TURTLE);
@@ -5594,14 +5594,11 @@ void CvUnitAI::AI_missionaryMove()
 {
 	PROFILE_FUNC();
 
-	// Tholal AI - added variable
 	CvPlayerAI& kPlayer = GET_PLAYER(getOwnerINLINE());
 
 	CvCity* pLoopCity;
-	CvPlot* pBestGreatWorkPlot;
-	//int iValue;
+	CvPlot* pBestGreatWorkPlot = NULL;
 	int iLoop;
-	pBestGreatWorkPlot = NULL;
 
 // Tholal AI - modifications to improve Missionary AI
 
@@ -5781,11 +5778,9 @@ void CvUnitAI::AI_prophetMove()
 {
 	PROFILE_FUNC();
 
-/*************************************************************************************************/
-/**	BETTER AI (Altar) Sephi                                          		                **/
-/**																								**/
-/**						                                            							**/
-/*************************************************************************************************/
+	logBBAI("    %S (%d) starting ProphetMove", getName().GetCString(), getID());
+
+	// Sephi AI (Altar)
 	if (GET_PLAYER(getOwnerINLINE()).AI_isDoVictoryStrategy(AI_VICTORY_ALTAR1))
     {
         if (AI_construct(10000,10000))
@@ -5793,11 +5788,9 @@ void CvUnitAI::AI_prophetMove()
             return;
         }
     }
-/*************************************************************************************************/
-/**	END	                                        												**/
-/*************************************************************************************************/
+	// End Sephi AI
 
-	if (AI_construct(1))
+	if (AI_construct())
 	{
 		return;
 	}
@@ -6147,7 +6140,7 @@ void CvUnitAI::AI_generalMove()
 		}
 	}
 
-	if (AI_construct(1))
+	if (AI_construct())
 	{
 		return;
 	}
@@ -8123,7 +8116,7 @@ void CvUnitAI::AI_assaultSeaMove()
 	bool bAttack = false;
 	bool bNoWarPlans = (GET_TEAM(getTeam()).getAnyWarPlanCount(true) == 0);
 	bool bAttackBarbarian = false;
-	bool bLandWar = false;
+	//bool bLandWar = false;
 	bool bIsBarbarian = isBarbarian();
 	
 	// Count forts as cities
@@ -8139,7 +8132,8 @@ void CvUnitAI::AI_assaultSeaMove()
 	int iEscorts = getGroup()->countNumUnitAIType(UNITAI_ESCORT_SEA) + getGroup()->countNumUnitAIType(UNITAI_ATTACK_SEA);
 
 	AreaAITypes eAreaAIType = area()->getAreaAIType(getTeam());
-	bLandWar = !bIsBarbarian && ((eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE) || (eAreaAIType == AREAAI_MASSING));
+	//bLandWar = !bIsBarbarian && ((eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE) || (eAreaAIType == AREAAI_MASSING));
+	bool bLandWar = !bIsBarbarian && kOwner.AI_isLandWar(area()); // K-Mod
 
 	// Plot danger case handled above
 
@@ -10478,10 +10472,11 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 
 	UnitAITypes eUnitAI = AI_getUnitAIType();
 	int iLevel = getLevel();
+	CvPlayerAI& kPlayer = GET_PLAYER(getOwnerINLINE());
 
 	iValue = 0;
 
-	bool bFinancialTrouble = GET_PLAYER(getOwnerINLINE()).AI_isFinancialTrouble();
+	bool bFinancialTrouble = kPlayer.AI_isFinancialTrouble();
 
 	CvPromotionInfo& kPromotion = GC.getPromotionInfo(ePromotion);
 
@@ -10607,12 +10602,12 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 	// Inquisitor
 	if (ePromotion == ((PromotionTypes)GC.getInfoTypeForString("PROMOTION_INQUISITOR")))
 	{
-		if (GET_PLAYER(getOwnerINLINE()).AI_isDoVictoryStrategy(AI_VICTORY_RELIGION2))
+		if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_RELIGION2))
 		{
-			int iNeededInquisitors = (GET_PLAYER(getOwnerINLINE()).getNumCities() / 5);
+			int iNeededInquisitors = (kPlayer.getNumCities() / 5);
 			iNeededInquisitors = std::max(1, iNeededInquisitors);
 
-			if (GET_PLAYER(getOwnerINLINE()).AI_getNumAIUnits(UNITAI_INQUISITOR) < iNeededInquisitors)
+			if (kPlayer.AI_getNumAIUnits(UNITAI_INQUISITOR) < iNeededInquisitors)
 			{
 				iValue += 140;
 			}
@@ -10622,7 +10617,7 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 	//Metamagic for Tower Victory Strategies
 	if (ePromotion == ((PromotionTypes)GC.getInfoTypeForString("PROMOTION_METAMAGIC1")) || ePromotion == ((PromotionTypes)GC.getInfoTypeForString("PROMOTION_METAMAGIC2")))
 	{
-		if (GET_PLAYER(getOwnerINLINE()).AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY1))
+		if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY1))
 		{
 			if ((eUnitAI == UNITAI_MANA_UPGRADE))
 			{
@@ -10639,9 +10634,9 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 			iValue += 30;
 		}
 
-		if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION)
+		if (kPlayer.getStateReligion() != NO_RELIGION)
 		{
-			if (GET_PLAYER(getOwnerINLINE()).getStateReligion() == ((ReligionTypes)GC.getInfoTypeForString("RELIGION_FELLOWSHIP_OF_LEAVES")))
+			if (kPlayer.getStateReligion() == ((ReligionTypes)GC.getInfoTypeForString("RELIGION_FELLOWSHIP_OF_LEAVES")))
 			{
 				iValue += 25;
 			}
@@ -11017,18 +11012,16 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 	if ((eUnitAI == UNITAI_ATTACK) ||
 		(eUnitAI == UNITAI_COUNTER) ||
 		(eUnitAI == UNITAI_CITY_COUNTER) ||
-		  (eUnitAI == UNITAI_ATTACK_SEA) ||
-		  (eUnitAI == UNITAI_RESERVE_SEA) ||
-			(eUnitAI == UNITAI_ATTACK_SEA) ||
-			(eUnitAI == UNITAI_PARADROP) ||
-			(eUnitAI == UNITAI_PIRATE_SEA) ||
-			(eUnitAI == UNITAI_RESERVE_SEA) ||
-			(eUnitAI == UNITAI_ESCORT_SEA) ||
-			(eUnitAI == UNITAI_CARRIER_SEA) ||
-			(eUnitAI == UNITAI_ATTACK_AIR) ||
-			(eUnitAI == UNITAI_CARRIER_AIR) ||
-			isSummoner() ||
-			(eUnitAI == UNITAI_HERO))
+		(eUnitAI == UNITAI_ATTACK_SEA) ||
+		(eUnitAI == UNITAI_RESERVE_SEA) ||
+		(eUnitAI == UNITAI_PARADROP) ||
+		(eUnitAI == UNITAI_PIRATE_SEA) ||
+		(eUnitAI == UNITAI_ESCORT_SEA) ||
+		(eUnitAI == UNITAI_CARRIER_SEA) ||
+		(eUnitAI == UNITAI_ATTACK_AIR) ||
+		(eUnitAI == UNITAI_CARRIER_AIR) ||
+		isSummoner() ||
+		(eUnitAI == UNITAI_HERO))
 	{
 		iValue += (iTemp * 2);
 	}
@@ -11148,7 +11141,7 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 		if (iTemp > 0)
 		{
 			PlayerTypes eOwner = plot()->calculateCulturalOwner();
-			if (eOwner != NO_PLAYER && GET_PLAYER(eOwner).getTeam() != GET_PLAYER(getOwnerINLINE()).getTeam())
+			if (eOwner != NO_PLAYER && GET_PLAYER(eOwner).getTeam() != kPlayer.getTeam())
 			{
 				iValue += (iTemp / 2);
 			}
@@ -11513,9 +11506,10 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 	if (isChanneler())
 	{
 		// traits - HARDCODE
-		bool bSummoner = GET_PLAYER(getOwnerINLINE()).hasTrait((TraitTypes)GC.getInfoTypeForString("TRAIT_SUMMONER"));
-		bool bSundered = GET_PLAYER(getOwnerINLINE()).hasTrait((TraitTypes)GC.getInfoTypeForString("TRAIT_SUNDERED"));
-		bool bArcane = GET_PLAYER(getOwnerINLINE()).hasTrait((TraitTypes)GC.getInfoTypeForString("TRAIT_ARCANE"));
+		bool bSundered = kPlayer.hasTrait((TraitTypes)GC.getInfoTypeForString("TRAIT_SUNDERED"));
+		bool bArcane = kPlayer.hasTrait((TraitTypes)GC.getInfoTypeForString("TRAIT_ARCANE"));
+
+		int iSummonDurationBonus = kPlayer.getSummonDuration();
 		
 		/* - all sorts of traits give free promos - need way to properly sort out ones that are useful to mages
 		int iNumMageTraits = 0;
@@ -11523,7 +11517,7 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 		{
 			if (GC.getTraitInfo((TraitTypes)iJ).isFreePromotionUnitCombat(GC.getDefineINT("UNITCOMBAT_ADEPT")))
 			{
-				if (GET_PLAYER(getOwnerINLINE()).hasTrait((TraitTypes)iJ))
+				if (kPlayer.hasTrait((TraitTypes)iJ))
 				{
 					iNumMageTraits++;
 				}
@@ -11555,7 +11549,7 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 			{
 				if (kSpellInfo.getPromotionPrereq1() == ePromotion)
 				{
-					iValue += GC.getGameINLINE().getSorenRandNum(10, "AI Spell Promote") + GET_PLAYER(getOwnerINLINE()).AI_getMojoFactor(); // added this to try and get a better distribution of spells
+					iValue += GC.getGameINLINE().getSorenRandNum(10, "AI Spell Promote") + kPlayer.AI_getMojoFactor(); // added this to try and get a better distribution of spells
 
 					if (!isDirectDamageCaster()) // if we dont already have a damage spell
 					{
@@ -11591,16 +11585,21 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 						{
 							if (kCreateUnitInfo.getBonusAffinity((BonusTypes)iBonuses) != 0)
 							{
-								iTempValue += GET_PLAYER(getOwnerINLINE()).countOwnedBonuses((BonusTypes)iBonuses);
+								iTempValue += kPlayer.countOwnedBonuses((BonusTypes)iBonuses);
 							}
 						}
 
 
 						int iModValue = 0; //iNumMageTraits;
 
-						if (bSummoner || bSundered || bArcane)
+						if (bSundered || bArcane)
 						{
 							iModValue += 1;
+						}
+
+						if (!kSpellInfo.isPermanentUnitCreate())
+						{
+							iModValue += iSummonDurationBonus;
 						}
 
 						// heroes make powerful summoners
@@ -15213,13 +15212,15 @@ bool CvUnitAI::AI_construct(int iMaxCount, int iMaxSingleBuildingCount, int iThr
 	eBestBuilding = NO_BUILDING;
 	iCount = 0;
 
-	for (pLoopCity = GET_PLAYER(getOwnerINLINE()).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER(getOwnerINLINE()).nextCity(&iLoop))
+	CvPlayer &kPlayer = GET_PLAYER(getOwnerINLINE());
+
+	for (pLoopCity = kPlayer.firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER(getOwnerINLINE()).nextCity(&iLoop))
 	{
 		if (AI_plotValid(pLoopCity->plot()) && pLoopCity->area() == area())
 		{
 			if (!(pLoopCity->plot()->isVisibleEnemyUnit(this)))
 			{
-				if (GET_PLAYER(getOwnerINLINE()).AI_plotTargetMissionAIs(pLoopCity->plot(), MISSIONAI_CONSTRUCT, getGroup()) == 0)
+				if (kPlayer.AI_plotTargetMissionAIs(pLoopCity->plot(), MISSIONAI_CONSTRUCT, getGroup()) == 0)
 				{
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      04/03/09                                jdog5000      */
@@ -15236,56 +15237,59 @@ bool CvUnitAI::AI_construct(int iMaxCount, int iMaxSingleBuildingCount, int iThr
 							BuildingTypes eBuilding = (BuildingTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(iI);
 
 							if (NO_BUILDING != eBuilding)
-						{
-							bool bDoesBuild = false;
-							if ((m_pUnitInfo->getForceBuildings(eBuilding))
-								|| (m_pUnitInfo->getBuildings(eBuilding)))
 							{
-								bDoesBuild = true;
-							}
-
-							if (bDoesBuild && (pLoopCity->getNumBuilding(eBuilding) > 0))
-							{
-								iCount++;
-								if (iCount >= iMaxCount)
+								bool bDoesBuild = false;
+								if ((m_pUnitInfo->getForceBuildings(eBuilding))
+									|| (m_pUnitInfo->getBuildings(eBuilding)))
 								{
-									return false;
+									bDoesBuild = true;
 								}
-							}
 
-							if (bDoesBuild && GET_PLAYER(getOwnerINLINE()).getBuildingClassCount((BuildingClassTypes)GC.getBuildingInfo(eBuilding).getBuildingClassType()) < iMaxSingleBuildingCount)
-							{
-								if (canConstruct(pLoopCity->plot(), eBuilding))
+								if (bDoesBuild && (pLoopCity->getNumBuilding(eBuilding) > 0))
 								{
-									iValue = pLoopCity->AI_buildingValue(eBuilding);
-/*************************************************************************************************/
-/**	BETTER AI (Religion Victory) Sephi                                          		                **/
-/**																								**/
-/**						                                            							**/
-/*************************************************************************************************/
-                                    if(AI_getUnitAIType()==UNITAI_PROPHET)
-                                    {
-										if(pLoopCity->isCapital())
-                                        {
-                                            iValue+=10000;
-                                        }
-                                    }
-
-									// Tholal AI - Holy Shrines
-									if (pLoopCity->isHolyCity())
+									iCount++;
+									if (iCount >= iMaxCount)
 									{
-										iValue+=20001;
+										return false;
 									}
-									// End Tholal AI
-/*************************************************************************************************/
-/**	END	                                        												**/
-/*************************************************************************************************/
+								}
 
-									if ((iValue > iThreshold) && (iValue > iBestValue))
+								if (bDoesBuild && kPlayer.getBuildingClassCount((BuildingClassTypes)GC.getBuildingInfo(eBuilding).getBuildingClassType()) < iMaxSingleBuildingCount)
+								{
+									if (canConstruct(pLoopCity->plot(), eBuilding))
 									{
-										iBestValue = iValue;
-										pBestPlot = getPathEndTurnPlot();
-										pBestConstructPlot = pLoopCity->plot();
+										iValue = pLoopCity->AI_buildingValue(eBuilding);
+
+										// Sephi AI (Religion Victory)
+										/*
+										if (AI_getUnitAIType()==UNITAI_PROPHET)
+										{
+											if (pLoopCity->isCapital())
+											{
+												iValue+=10000;
+											}
+										}
+										*/
+										// End Sephi AI
+
+										// Tholal AI - Holy Shrines
+										if (GC.getBuildingInfo(eBuilding).getHolyCity() != NO_RELIGION)
+										{
+											if (kPlayer.getStateReligion() != NO_RELIGION)
+											{
+												if (GC.getBuildingInfo(eBuilding).getHolyCity() == kPlayer.getStateReligion())
+												{
+													iValue+=20001;
+												}
+											}
+										}
+										// End Tholal AI
+
+										if ((iValue > iThreshold) && (iValue > iBestValue))
+										{
+											iBestValue = iValue;
+											pBestPlot = getPathEndTurnPlot();
+											pBestConstructPlot = pLoopCity->plot();
 											eBestBuilding = eBuilding;
 										}
 									}
@@ -15300,6 +15304,7 @@ bool CvUnitAI::AI_construct(int iMaxCount, int iMaxSingleBuildingCount, int iThr
 
 	if ((pBestPlot != NULL) && (pBestConstructPlot != NULL) && (eBestBuilding != NO_BUILDING))
 	{
+		logBBAI("  %S constructing %S at %d, %d (value: %d)", getName().GetCString(), GC.getBuildingInfo(eBestBuilding).getText(), pBestPlot->getX(), pBestPlot->getY(), iBestValue);
 		if (atPlot(pBestConstructPlot))
 		{
 			getGroup()->pushMission(MISSION_CONSTRUCT, eBestBuilding);
@@ -15645,9 +15650,10 @@ bool CvUnitAI::AI_offensiveAirlift()
 
 				if (pTargetCity != NULL)
 				{
-					AreaAITypes eAreaAIType = pTargetCity->area()->getAreaAIType(getTeam());
+					/* AreaAITypes eAreaAIType = pTargetCity->area()->getAreaAIType(getTeam());
 					if (((eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE) || (eAreaAIType == AREAAI_MASSING))
-						|| pTargetCity->AI_isDanger())
+						|| pTargetCity->AI_isDanger()) */
+					if (GET_PLAYER(getOwnerINLINE()).AI_isLandWar(pTargetCity->area()) || pTargetCity->AI_isDanger()) // K-Mod
 					{
 						iValue = 10000;
 
@@ -17118,7 +17124,10 @@ bool CvUnitAI::AI_pillageAroundCity(CvCity* pTargetCity, int iBonusValueThreshol
 	pBestPlot = NULL;
 	pBestPillagePlot = NULL;
 
-	for( int iI = 0; iI < NUM_CITY_PLOTS; iI++ )
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	for( int iI = 0; iI < NUM_CITY_PLOTS; iI++ )
+	for (int iI = 0; iI < pTargetCity->getNumCityPlots(); iI++)
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		pLoopPlot = pTargetCity->getCityIndexPlot(iI);
 
@@ -17456,10 +17465,7 @@ bool CvUnitAI::AI_anyAttack(int iRange, int iOddsThreshold, int iMinStack, bool 
 				{
 					if( (bAllowCities) || !(pLoopPlot->isCity(false)) )
 					{
-						// Super Forts begin *AI_offense* - modified if statement so forts will be attacked too
-						if (pLoopPlot->isVisibleEnemyUnit(this) || (pLoopPlot->isCity(GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS)) && AI_potentialEnemy(pLoopPlot->getTeam())))
-						//if (pLoopPlot->isVisibleEnemyUnit(this) || (pLoopPlot->isCity() && AI_potentialEnemy(pLoopPlot->getTeam()))) - Original Code
-						// Super Forts end
+						if (pLoopPlot->isVisibleEnemyUnit(this))
 						{
 							if (pLoopPlot->getNumVisibleEnemyDefenders(this) >= iMinStack)
 							{
@@ -21066,7 +21072,7 @@ bool CvUnitAI::AI_fortTerritory(bool bCanal, bool bAirbase)
 					}
 
 					int iMinAcceptableValue = 0;
-					if(pLoopPlot->getOwnerINLINE() == NO_PLAYER)
+					if(pLoopPlot->getOwnerINLINE() == NO_PLAYER || pLoopPlot->isBeingWorked())
 					{	// Don't go outside borders for low values
 						iMinAcceptableValue += 150;
 					}
@@ -26591,7 +26597,7 @@ void CvUnitAI::AI_chooseGroupflag()
 			int iAttackCityCount = kPlayer.AI_totalAreaUnitAIs(plot()->area(), UNITAI_ATTACK_CITY);
 			int iAttackCount = kPlayer.AI_totalAreaUnitAIs(plot()->area(), UNITAI_ATTACK);
 
-			if (iAttackCount > iAttackCityCount)
+			if ((iAttackCount * 2) > iAttackCityCount)
 			{
 				AI_setUnitAIType(UNITAI_ATTACK_CITY);
 			}
@@ -27087,6 +27093,17 @@ void CvUnitAI::AI_PatrolMove()
 		return;
 	}
 
+	// this should be in the AI_guardcity function
+	if (plot()->isCity() && plot()->getOwner() == getOwner() && bDanger)
+	{
+		if (plot()->getPlotCity()->AI_neededDefenders() >= plot()->getNumDefenders(getOwnerINLINE()))
+		{
+			logBBAI("   ...staying to guard city");
+			getGroup()->pushMission(MISSION_SKIP);
+			return;
+		}
+	}
+
 	// Attack choking units
 	if( plot()->getOwnerINLINE() == getOwnerINLINE() && bDanger )
 	{
@@ -27169,7 +27186,7 @@ void CvUnitAI::AI_PatrolMove()
 		return;
 	}
 
-	if (!bDanger && !bHero)
+	if (!bDanger && !bHero && !bAtWar)
 	{
 		if (AI_group(UNITAI_SETTLE, 1, -1, -1, false, false, false, 3, true))
 		{
@@ -27268,7 +27285,7 @@ void CvUnitAI::AI_PatrolMove()
 				return;
 			}
 
-			bool bLandWar = ((eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE) || (eAreaAIType == AREAAI_MASSING));
+			bool bLandWar = GET_PLAYER(getOwnerINLINE()).AI_isLandWar(area());
 			if (!bLandWar)
 			{
 				// Fill transports before starting new one, but not just full of our unit ai
@@ -27862,7 +27879,8 @@ void CvUnitAI::AI_ConquestMove()
 
 
 	AreaAITypes eAreaAIType = area()->getAreaAIType(getTeam());
-    bool bLandWar = !isBarbarian() && ((eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE) || (eAreaAIType == AREAAI_MASSING));
+    //bool bLandWar = !isBarbarian() && ((eAreaAIType == AREAAI_OFFENSIVE) || (eAreaAIType == AREAAI_DEFENSIVE) || (eAreaAIType == AREAAI_MASSING));
+	bool bLandWar = !isBarbarian() && kPlayer.AI_isLandWar(area());
 	bool bAssault = !isBarbarian() && ((eAreaAIType == AREAAI_ASSAULT) || (eAreaAIType == AREAAI_ASSAULT_ASSIST) || (eAreaAIType == AREAAI_ASSAULT_MASSING));
 
 	bool bTurtle = kPlayer.AI_isDoStrategy(AI_STRATEGY_TURTLE);
@@ -27884,8 +27902,8 @@ void CvUnitAI::AI_ConquestMove()
 	
 	bool bFinancialTrouble = kPlayer.AI_isFinancialTrouble();
 
-	int bStackSize = getGroup()->getNumUnits();
-	bool bLargeGroup = (bStackSize > (kPlayer.getNumCities() *6));
+	//int bStackSize = getGroup()->getNumUnits();
+	//bool bLargeGroup = (bStackSize > (kPlayer.getNumCities() *6));
 
 
 	bool bHero = false;
@@ -27898,18 +27916,14 @@ void CvUnitAI::AI_ConquestMove()
 			break;
         case UNITAI_WARWIZARD:
 			bWizard = true;
-			/*
-			if (getUnitCombatType() != GC.getInfoTypeForString("UNITCOMBAT_ADEPT"))
-			{
-				AI_setUnitAIType(UNITAI_ATTACK_CITY);
-			}
-			*/
             break;
 		case UNITAI_RESERVE:
 			AI_setUnitAIType(UNITAI_ATTACK_CITY);
 			break;
 		case UNITAI_ATTACK:
-			if ((getLevel() > 4) || ((kPlayer.AI_getNumAIUnits(UNITAI_ATTACK_CITY) < kPlayer.getNumCities())))
+			if ((getLevel() > 4) 
+				|| (kPlayer.AI_getNumAIUnits(UNITAI_ATTACK) > (kPlayer.getNumCities() * (bLandWar ? 2 : 4)))
+				|| (kPlayer.AI_getNumAIUnits(UNITAI_ATTACK_CITY) < kPlayer.getNumCities()))
 			{
 				AI_setUnitAIType(UNITAI_ATTACK_CITY);
 				break;
@@ -28053,7 +28067,7 @@ void CvUnitAI::AI_ConquestMove()
         iBestValue = getGroup()->getNumUnits();
         pBestUnit = NULL;
 
-        if (getGroup()->getNumUnits() == 1)
+        //if (getGroup()->getNumUnits() == 1)
         {
 			if (GET_PLAYER(getOwnerINLINE()).AI_unitTargetMissionAIs(this, MISSIONAI_GROUP) == 0)
 			{
@@ -28074,33 +28088,37 @@ void CvUnitAI::AI_ConquestMove()
 										{
 											if (!(pLoopPlot->isVisibleEnemyUnit(this)))
 											{
-												if (generatePath(pLoopPlot, 0, true, &iPathTurns))
+												if ((getGroup()->getNumUnits() == 1) ||
+													atPlot(pLoopPlot))
 												{
-													iValue = 10 * pLoopSelectionGroup->getHeadUnit()->getLevel();
-													iValue += pLoopSelectionGroup->getNumUnits();
-													if (pLoopSelectionGroup->getHeadUnit()->AI_getUnitAIType() == UNITAI_HERO)
+													if (generatePath(pLoopPlot, 0, true, &iPathTurns))
 													{
-														iValue *= 2;
-													}
+														iValue = 10 * pLoopSelectionGroup->getHeadUnit()->getLevel();
+														iValue += pLoopSelectionGroup->getNumUnits();
+														if (pLoopSelectionGroup->getHeadUnit()->AI_getUnitAIType() == UNITAI_HERO)
+														{
+															iValue *= 2;
+														}
 
-													if (pLoopSelectionGroup->getHeadUnit()->isAvatarOfCivLeader())
-													{
-														iValue *= 5;
-													}
+														if (pLoopSelectionGroup->getHeadUnit()->isAvatarOfCivLeader())
+														{
+															iValue *= 5;
+														}
 
-													if (atPlot(pLoopPlot))
-													{
-														iValue *= 2;
-													}
-													else
-													{
-														iValue /= (iPathTurns + 1);
-													}
+														if (atPlot(pLoopPlot))
+														{
+															iValue *= 2;
+														}
+														else
+														{
+															iValue /= (iPathTurns + 1);
+														}
 
-													if (iValue > iBestValue)
-													{
-														iBestValue = iValue;
-														pBestUnit = pLoopSelectionGroup->getHeadUnit();
+														if (iValue > iBestValue)
+														{
+															iBestValue = iValue;
+															pBestUnit = pLoopSelectionGroup->getHeadUnit();
+														}
 													}
 												}
 											}
@@ -28116,16 +28134,33 @@ void CvUnitAI::AI_ConquestMove()
             {
                 if (atPlot(pBestUnit->plot()))
                 {
-                    joinGroup(pBestUnit->getGroup());
-                    return;
+					if( gUnitLogLevel >= 3 )
+					{
+						logBBAI("       ...joining group on plot");
+					}
+					if (getGroup()->getNumUnits() == 1)
+					{
+	                    joinGroup(pBestUnit->getGroup());
+		                return;
+					}
+					else
+					{
+						getGroup()->mergeIntoGroup(pBestUnit->getGroup());
+	                    return;
+					}
                 }
                 else
                 {
+					if( gUnitLogLevel >= 2 )
+					{
+						logBBAI("       ...moving to merge group");
+					}
 					getGroup()->pushMission(MISSION_MOVE_TO_UNIT, pBestUnit->getOwnerINLINE(), pBestUnit->getID(), 0, false, false, MISSIONAI_GROUP, NULL, pBestUnit);
                     return;
                 }
             }
         }
+		/*
         else
         {
 			bool bMerge = false;
@@ -28149,7 +28184,7 @@ void CvUnitAI::AI_ConquestMove()
 										{
 											if (generatePath(pPlot, 0, true, &iPathTurns))
 											{
-												if (pLoopSelectionGroup->getNumUnits() >= (getGroup()->getNumUnits() * 3))
+												if (pLoopSelectionGroup->getNumUnits() > (getGroup()->getNumUnits() * 2))
 												{
 													if (iPathTurns < 5)
 													{
@@ -28168,6 +28203,7 @@ void CvUnitAI::AI_ConquestMove()
                 }
             }
 
+
 			if (bMerge)
 			{
                 if (atPlot(pBestUnit->plot()))
@@ -28182,6 +28218,7 @@ void CvUnitAI::AI_ConquestMove()
                 }
 			}
 		}
+		*/
 	}
 
 	bool bAtWar = isEnemy(plot()->getTeam());
@@ -28256,7 +28293,7 @@ void CvUnitAI::AI_ConquestMove()
 		return;
 	}
 		
-	if (AI_groupMergeRange(UNITAI_ATTACK_CITY, 0, false, true, bIgnoreFaster))
+	if (AI_groupMergeRange(UNITAI_ATTACK_CITY, 0, true, true, bIgnoreFaster))
 	{
 		logBBAI("      ...merging with attack city unit");
 		return;
@@ -28898,7 +28935,7 @@ void CvUnitAI::AI_heromove()
 		joinGroup(NULL);
 	}
 
-	if (GET_TEAM(getTeam()).getAtWarCount(true) > 0)
+	if ((GET_TEAM(getTeam()).getAnyWarPlanCount(true) > 0) || isAvatarOfCivLeader())
 	{
 		AI_setGroupflag(GROUPFLAG_CONQUEST);
 	}
@@ -29240,11 +29277,11 @@ void CvUnitAI::AI_upgrademanaMove()
 	}
 	
 	int iValue = 0;
-	int iBestValue = 10;
+	int iBestValue = 0;
 	int iPathTurns;
 	bool bBonusRawMana = false;
 	bool bBonusMana = false;
-	int iRange = 15;
+	//int iRange = 15;
 
 	CvPlot* pBestPlot = NULL;
 	BuildTypes eBuild = NO_BUILD;
@@ -29255,11 +29292,18 @@ void CvUnitAI::AI_upgrademanaMove()
 	bool bReadytoBuild = false;
 	// loop through plots in range
 	// ToDo - make this a map search?
+	/*
 	for (int iX = -iRange; iX <= iRange; iX++)
 	{
 		for (int iY = -iRange; iY <= iRange; iY++)
 		{
-			CvPlot* pLoopPlot = plotXY(getX_INLINE(), getY_INLINE(), iX, iY);
+		*/
+	{
+		for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+		{
+			CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+
+			//CvPlot* pLoopPlot = plotXY(getX_INLINE(), getY_INLINE(), iX, iY);
 			if (pLoopPlot != NULL)
 			{
 				if ( pLoopPlot->getOwner() == getOwner())
@@ -29272,7 +29316,8 @@ void CvUnitAI::AI_upgrademanaMove()
 							bBonusMana = false;
 
 							// HARDCODE - should have some sort of global variable to let the AI know about mana - XML tag?
-							if (GC.getBonusInfo(pLoopPlot->getBonusType()).getBonusClassType() == GC.getDefineINT("BONUSCLASS_MANA"))
+							//if (GC.getBonusInfo(pLoopPlot->getBonusType()).getBonusClassType() == GC.getDefineINT("BONUSCLASS_MANA"))
+							if (GC.getBonusInfo(pLoopPlot->getBonusType()).isMana())
 							{
 								// check to make sure we don't check existing nodes
 								if (pLoopPlot->getImprovementType() == NO_IMPROVEMENT)
@@ -29299,25 +29344,26 @@ void CvUnitAI::AI_upgrademanaMove()
 								// found mana, now check path
 								if (generatePath(pLoopPlot, 0, true, &iPathTurns))
 								{
+									// we can reach the mana, now make sure we have a build
 									bool bFoundBuild = false;
-									// we can reach mana, now make sure we can build
 									for (int iJ = 0; iJ < GC.getNumBuildInfos(); iJ++)
 									{
 										eBuild = ((BuildTypes)iJ);
 										if (canBuild(pLoopPlot, eBuild))
 										{
-											iValue = iPathTurns;
-
-											if (iValue < iBestValue)
-											{
-												pBestPlot = pLoopPlot;
-												bFoundBuild = true;
-											}
-										}
-
-										if (bFoundBuild)
-										{
+											bFoundBuild = true;
 											break;
+										}
+									}
+									
+									if (bFoundBuild)
+									{
+										iValue = 100 / (iPathTurns +1);
+
+										if (iValue > iBestValue)
+										{
+											pBestPlot = pLoopPlot;
+											iBestValue = iValue;
 										}
 									}
 								}
@@ -29333,6 +29379,11 @@ void CvUnitAI::AI_upgrademanaMove()
 	{
 		if (atPlot(pBestPlot))
 		{
+			if (isHasCasted()) // casting blocks mana builds
+			{
+				getGroup()->pushMission(MISSION_FORTIFY);
+				return;
+			}
 			iBestValue = 0;
 			eBestBuild = NO_BUILD;
 
@@ -29346,7 +29397,7 @@ void CvUnitAI::AI_upgrademanaMove()
 					ImprovementTypes eImprovement = (ImprovementTypes)GC.getBuildInfo(eBuild).getImprovement();
 					BonusTypes eNewBonus = (BonusTypes)GC.getImprovementInfo(eImprovement).getBonusConvert();
 
-					iValue = kPlayer.AI_bonusVal(eNewBonus);
+					iValue = kPlayer.AI_bonusVal(eNewBonus) + 1;
 
 					if( gUnitLogLevel >= 3 )
 					{
@@ -29366,7 +29417,7 @@ void CvUnitAI::AI_upgrademanaMove()
 			{
 				if( gUnitLogLevel >= 2 )
 				{
-					logBBAI("     %S (unit %d) building %S with value of %d", getName().GetCString(), getID(), GC.getBuildInfo((BuildTypes)eBuild).getDescription(), iValue);
+					logBBAI("     %S (unit %d) building %S with value of %d at plot %d, %d", getName().GetCString(), getID(), GC.getBuildInfo((BuildTypes)eBestBuild).getDescription(), iBestValue, plot()->getX(), plot()->getY());
 				}
 
 				getGroup()->pushMission(MISSION_BUILD, eBestBuild, -1, 0, false, false, MISSIONAI_BUILD, plot());
@@ -29377,7 +29428,7 @@ void CvUnitAI::AI_upgrademanaMove()
 		{
 			if( gUnitLogLevel >= 3 )
 			{
-				logBBAI("      ...moving to mana node at plot %d, %d", getName().GetCString(), getID(), pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
+				logBBAI("      ...moving to mana node at plot %d, %d", pBestPlot->getX(), pBestPlot->getY());
 			}
 
 			getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), MOVE_AVOID_ENEMY_WEIGHT_2);
@@ -29545,16 +29596,21 @@ bool CvUnitAI::AI_mageMove()
 
 void CvUnitAI::AI_terraformerMove()
 {
-	if (!isChanneler())
-	{
-		AI_setUnitAIType(UNITAI_ATTACK_CITY);
-		AI_setGroupflag(GROUPFLAG_CONQUEST);
-		return;
-	}
 
 	if( gUnitLogLevel >= 3)
 	{
 			logBBAI("     %S (Unit %d) starting terraformer move\n", getName().GetCString(), getID());
+	}
+
+	if (!isChanneler())
+	{
+		if( gUnitLogLevel >= 3)
+		{
+			logBBAI("       WARNING! Not a Channeler! Resetting AI for this unit.\n");
+		}
+		AI_setUnitAIType((UnitAITypes)m_pUnitInfo->getDefaultUnitAIType());
+		AI_setGroupflag(GROUPFLAG_NONE);
+		return;
 	}
 
 	if (plot()->isCity() && (GET_PLAYER(getOwnerINLINE()).AI_getAnyPlotDanger(plot(), 3)))
@@ -29562,13 +29618,6 @@ void CvUnitAI::AI_terraformerMove()
         getGroup()->pushMission(MISSION_SKIP);
 		return;
 	}
-	// ToDo - try and move some of the terraformer python function into the DLL
-	// loop through spells
-	// if is allowautomateterrain()
-	// need to avoid scorching the wrong places - this is the tricky part without harcoding it
-	// cast spell; break
-	// if !canmove; return
-	// else look for work -> go to python for this
 
     CyUnit* pyUnit1 = new CyUnit(this);
     CyArgsList argsList1;
@@ -29578,21 +29627,43 @@ void CvUnitAI::AI_terraformerMove()
     delete pyUnit1;	// python fxn must not hold on to this pointer
     if (lResult != 1)
     {
-		if (getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_ADEPT"))
+		// lResult of 2 means that the unit has been told to move somewhere or 
+		// that the unit cannot move (either it already has or something is preventing it from moving)
+		if (lResult == 2)
 		{
-			if (isDeBuffer() || isBuffer() || isDirectDamageCaster())
+			if (isHasCasted())
 			{
-				AI_setUnitAIType(UNITAI_WARWIZARD);
+				getGroup()->pushMission(MISSION_SKIP);
+				return;
 			}
 			else
 			{
-				AI_setUnitAIType(UNITAI_MAGE);
+				int iSpell = chooseSpell();
+				if (iSpell != NO_SPELL)
+				{
+					cast(iSpell);
+				}
+				return;
 			}
 		}
-		else
+
+		if (GET_TEAM(getTeam()).getAtWarCount(false) > 0) //nothing to do and we're at war
 		{
-			// Tholal note - are there other terraformers that arent mages or medics? This should probably be more dynamic
-			AI_setUnitAIType(UNITAI_MEDIC);
+			if (getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_ADEPT"))
+			{
+				if (isDeBuffer() || isBuffer() || isDirectDamageCaster())
+				{
+					AI_setUnitAIType(UNITAI_WARWIZARD);
+				}
+				else
+				{
+					AI_setUnitAIType(UNITAI_MAGE);
+				}
+			}
+			else
+			{
+				AI_setUnitAIType((UnitAITypes)m_pUnitInfo->getDefaultUnitAIType());
+			}
 		}
 
 		if (AI_retreatToCity())
@@ -29604,10 +29675,12 @@ void CvUnitAI::AI_terraformerMove()
 		return;
     }
 	// Tholal note: terraformers can get stuck in loop, if they've casted, are at a terraformable plot and have movement left
+	/*
 	if (isHasCasted())
 	{
 		getGroup()->pushMission(MISSION_SKIP);
 	}
+	*/
 	return;
 }
 //returns true if the Unit can Summon stuff
@@ -30338,6 +30411,51 @@ void CvUnitAI::AI_SvartalfarKidnapMove()
     return;
 }
 
+void CvUnitAI::AI_ShadeMove()
+{
+
+	const CvPlayerAI& kOwner = GET_PLAYER(getOwnerINLINE());
+
+	if( gUnitLogLevel >= 2 )
+	{
+		logBBAI("    %S (unit %d) starting Shade move (size %d)", getName().GetCString(), getID(), getGroup()->getNumUnits());
+	}
+
+	if (getGroup()->getNumUnits() > 1)
+	{
+		if( gUnitLogLevel >= 2 )
+		{
+			logBBAI("       ...degrouping");
+		}
+		AI_setGroupflag(GROUPFLAG_NONE);
+		joinGroup(NULL);
+	}
+
+	if (AI_join())
+	{
+		return;
+	}
+
+	if (kOwner.getCapitalCity() != NULL)
+	{
+		const CvPlot* pPlot = kOwner.getCapitalCity()->plot();
+		int iPathTurns;
+
+		if (generatePath(pPlot, MOVE_NO_ENEMY_TERRITORY, true, &iPathTurns))
+		{
+			logBBAI("       ...moving to capital");
+			getGroup()->pushMission(MISSION_MOVE_TO, pPlot->getX_INLINE(), pPlot->getY_INLINE(), MOVE_AVOID_ENEMY_WEIGHT_3);
+			return;
+		}
+	}
+
+	if (AI_retreatToCity())
+	{
+		return;
+	}
+}
+
+
 /*************************************************************************************************/
 /** Skyre Mod                                                                                   **/
 /** BETTER AI (Lanun Pirate Coves) merged Sephi                                                 **/
@@ -30388,7 +30506,7 @@ bool CvUnitAI::AI_buildPirateCove()
                 continue;
             }
 
-			// Tholal AI (by Red Key) - smarter cove placement
+			// MNAI (by Red Key) - smarter cove placement
 			int idX = std::abs(pLoopPlot->getX() - pLoopPlot->getWorkingCity()->getX());
 			int idY = std::abs(pLoopPlot->getY() - pLoopPlot->getWorkingCity()->getY());
 			int iPlotValue = std::max(idX,idY) * 10 + std::min(idX,idY); 
@@ -30411,7 +30529,7 @@ bool CvUnitAI::AI_buildPirateCove()
                 }
             }
 			iPlotValue *= iValueModifier;
-			// End Tholal AI
+			// End MNAI
 
             if (iPlotValue > iBestPlotValue)
             {

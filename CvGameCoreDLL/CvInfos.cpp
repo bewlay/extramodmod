@@ -1018,10 +1018,7 @@ m_bOpenBordersTrading(false),
 m_bDefensivePactTrading(false),
 m_bPermanentAllianceTrading(false),
 m_bVassalStateTrading(false),
-// MNAI - Puppet States
-m_bPuppetStateTrading(false),
-// MNAI End
-
+m_bPuppetStateTrading(false), // MNAI - Puppet States
 m_bBridgeBuilding(false),
 m_bIrrigation(false),
 m_bIgnoreIrrigation(false),
@@ -1235,7 +1232,7 @@ bool CvTechInfo::isPuppetStateTrading() const
 {
 	return m_bPuppetStateTrading;
 }
-// MNAI End
+// MNAI - End Puppet States
 
 bool CvTechInfo::isBridgeBuilding() const
 {
@@ -1397,9 +1394,7 @@ void CvTechInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bDefensivePactTrading);
 	stream->Read(&m_bPermanentAllianceTrading);
 	stream->Read(&m_bVassalStateTrading);
-	// MNAI - Puppet States
-	stream->Read(&m_bPuppetStateTrading);
-	// MNAI End
+	stream->Read(&m_bPuppetStateTrading); // MNAI - Puppet States
 	stream->Read(&m_bBridgeBuilding);
 	stream->Read(&m_bIrrigation);
 	stream->Read(&m_bIgnoreIrrigation);
@@ -1490,9 +1485,7 @@ void CvTechInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bDefensivePactTrading);
 	stream->Write(m_bPermanentAllianceTrading);
 	stream->Write(m_bVassalStateTrading);
-	// MNAI - Puppet States
-	stream->Write(m_bPuppetStateTrading);
-	// MNAI End
+	stream->Write(m_bPuppetStateTrading); // MNAI - Puppet States
 	stream->Write(m_bBridgeBuilding);
 	stream->Write(m_bIrrigation);
 	stream->Write(m_bIgnoreIrrigation);
@@ -1574,9 +1567,7 @@ bool CvTechInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bDefensivePactTrading, "bDefensivePactTrading");
 	pXML->GetChildXmlValByName(&m_bPermanentAllianceTrading, "bPermanentAllianceTrading");
 	pXML->GetChildXmlValByName(&m_bVassalStateTrading, "bVassalTrading");
-// MNAI - Puppet States
-	pXML->GetChildXmlValByName(&m_bPuppetStateTrading, "bPuppetTrading");
-// MNAI End
+	pXML->GetChildXmlValByName(&m_bPuppetStateTrading, "bPuppetTrading"); // MNAI - Puppet States
 	pXML->GetChildXmlValByName(&m_bBridgeBuilding, "bBridgeBuilding");
 	pXML->GetChildXmlValByName(&m_bIrrigation, "bIrrigation");
 	pXML->GetChildXmlValByName(&m_bIgnoreIrrigation, "bIgnoreIrrigation");
@@ -1858,6 +1849,8 @@ m_piDamageTypeResist(NULL),
 m_bAllowsMoveImpassable(false),
 m_bAllowsMoveLimitedBorders(false),
 m_bCastingBlocked(false),
+m_bBlocksUpgrade (false),
+m_bBlocksGifting (false),
 m_bUpgradeOutsideBorders(false)
 // End MNAI
 
@@ -2534,6 +2527,16 @@ bool CvPromotionInfo::isCastingBlocked() const
 	return m_bCastingBlocked;
 }
 
+bool CvPromotionInfo::isBlocksUpgrade() const
+{
+	return m_bBlocksUpgrade;
+}
+
+bool CvPromotionInfo::isBlocksGifting() const
+{
+	return m_bBlocksGifting;
+}
+
 bool CvPromotionInfo::isUpgradeOutsideBorders() const
 {
 	return m_bUpgradeOutsideBorders;
@@ -2752,6 +2755,8 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bAllowsMoveImpassable);
 	stream->Read(&m_bAllowsMoveLimitedBorders);
 	stream->Read(&m_bCastingBlocked);
+	stream->Read(&m_bBlocksUpgrade);
+	stream->Read(&m_bBlocksGifting);
 	stream->Read(&m_bUpgradeOutsideBorders);
 	// End MNAI
 
@@ -2932,6 +2937,8 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bAllowsMoveImpassable);
 	stream->Write(m_bAllowsMoveLimitedBorders);
 	stream->Write(m_bCastingBlocked);
+	stream->Write(m_bBlocksUpgrade);
+	stream->Write(m_bBlocksGifting);
 	stream->Write(m_bUpgradeOutsideBorders);
 	// End MNAI
 
@@ -3097,8 +3104,9 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bAllowsMoveImpassable, "bAllowsMoveImpassable");
 	pXML->GetChildXmlValByName(&m_bAllowsMoveLimitedBorders, "bAllowsMoveLimitedBorders");
 	pXML->GetChildXmlValByName(&m_bCastingBlocked, "bCastingBlocked");
+	pXML->GetChildXmlValByName(&m_bBlocksUpgrade, "bBlocksUpgrade");
+	pXML->GetChildXmlValByName(&m_bBlocksGifting, "bBlocksGifting");
 	pXML->GetChildXmlValByName(&m_bUpgradeOutsideBorders, "bUpgradeOutsideBorders");
-
 	// End MNAI
 
 	return true;
@@ -7707,8 +7715,6 @@ m_iExpInBorderModifier(0),
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-m_bUpgradeAnywhere(false),
-m_bAllowInquisitions(false),
 m_bDisallowInquisitions(false),
 m_iRevIdxLocal(0),
 m_iRevIdxNational(0),
@@ -7987,16 +7993,6 @@ int CvCivicInfo::getExpInBorderModifier() const
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-bool CvCivicInfo::isUpgradeAnywhere() const
-{
-	return m_bUpgradeAnywhere;
-}
-
-bool CvCivicInfo::isAllowInquisitions() const
-{
-	return m_bAllowInquisitions;
-}
-
 bool CvCivicInfo::isDisallowInquisitions() const
 {
 	return m_bDisallowInquisitions;
@@ -8369,8 +8365,6 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	stream->Read(&m_bUpgradeAnywhere);
-	stream->Read(&m_bAllowInquisitions);
 	stream->Read(&m_bDisallowInquisitions);
 	stream->Read(&m_iRevIdxLocal);
 	stream->Read(&m_iRevIdxNational);
@@ -8534,8 +8528,6 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	stream->Write(&m_bUpgradeAnywhere);
-	stream->Write(&m_bAllowInquisitions);
 	stream->Write(&m_bDisallowInquisitions);
 	stream->Write(&m_iRevIdxLocal);
 	stream->Write(&m_iRevIdxNational);
@@ -8675,8 +8667,6 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	pXML->GetChildXmlValByName(&m_bUpgradeAnywhere, "bUpgradeAnywhere");
-	pXML->GetChildXmlValByName(&m_bAllowInquisitions, "bAllowInquisitions");
 	pXML->GetChildXmlValByName(&m_bDisallowInquisitions, "bDisallowInquisitions");
 	pXML->GetChildXmlValByName(&m_iRevIdxLocal, "iRevIdxLocal");
 	pXML->GetChildXmlValByName(&m_iRevIdxNational, "iRevIdxNational");
@@ -9224,7 +9214,6 @@ m_iEspionageDefenseModifier(0),
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-m_iUnitUpgradePriceModifier(0),
 m_iRevIdxLocal(0),
 m_iRevIdxNational(0),
 m_iRevIdxDistanceModifier(0),
@@ -9845,11 +9834,6 @@ int CvBuildingInfo::getEspionageDefenseModifier() const
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-int CvBuildingInfo::getUnitUpgradePriceModifier() const	
-{
-	return m_iUnitUpgradePriceModifier;
-}
-
 int CvBuildingInfo::getRevIdxLocal() const	
 {
 	return m_iRevIdxLocal;
@@ -10647,7 +10631,6 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	stream->Read(&m_iUnitUpgradePriceModifier);
 	stream->Read(&m_iRevIdxLocal);
 	stream->Read(&m_iRevIdxNational);
 	stream->Read(&m_iRevIdxDistanceModifier);
@@ -11014,7 +10997,6 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	stream->Write(m_iUnitUpgradePriceModifier);
 	stream->Write(m_iRevIdxLocal);
 	stream->Write(m_iRevIdxNational);
 	stream->Write(m_iRevIdxDistanceModifier);
@@ -11401,7 +11383,6 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	pXML->GetChildXmlValByName(&m_iUnitUpgradePriceModifier, "iUnitUpgradePriceModifier");
 	pXML->GetChildXmlValByName(&m_iRevIdxLocal, "iRevIdxLocal");
 	pXML->GetChildXmlValByName(&m_iRevIdxNational, "iRevIdxNational");
 	pXML->GetChildXmlValByName(&m_iRevIdxDistanceModifier, "iRevIdxDistanceModifier");

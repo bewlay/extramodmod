@@ -122,10 +122,13 @@ public:
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION);							// Exposed to Python
-	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true);
+// lfgr 04/2014 bugfix
+//	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true);
+	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, bool bGift = false);
+// lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, CvWString szName = "");
+	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, bool bGift = false, CvWString szName = "");
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -240,6 +243,9 @@ public:
 /************************************************************************************************/
 	// MNAI - new functions
 	int countNumOwnedTerrainTypes(TerrainTypes eTerrain) const;
+	int countNumOwnedHills() const;
+	int countNumOwnedRiverSide() const;
+	int countNumAvailablePlotsForImprovement(ImprovementTypes eImprovement) const;
 	int getHighestUnitTier(bool bIncludeHeroes = false, bool bIncludeLimitedUnits = false) const;
 	// End MNAI
 	int countNumCoastalCities() const;																																		// Exposed to Python
@@ -532,9 +538,6 @@ public:
 	bool isNonStateReligionCommerce() const;
 	void changeNonStateReligionCommerce(int iNewValue);
 
-	bool isUpgradeAnywhere() const;	
-	void changeUpgradeAnywhere(int iNewValue);
-
 	int getRevIdxLocal() const;																																		// Exposed to Python
 	void changeRevIdxLocal(int iChange);
 
@@ -559,15 +562,8 @@ public:
 	float getRevIdxGoodReligionMod() const;																																		// Exposed to Python
 	void changeRevIdxGoodReligionMod(float fChange);
 
-	//bool isInquisitionConditions() const;																																		// Exposed to Python
-	//void setInquisitionConditions();
-
-	//int getUnitUpgradePriceModifier() const;																																		// Exposed to Python
-	//void changeUnitUpgradePriceModifier(int iChange);
-
-	//bool canFoundReligion() const;																																		// Exposed to Python
-
-	//bool isBuildingClassRequiredToTrain(BuildingClassTypes eBuildingClass, UnitTypes eUnit) const;																			// Exposed to Python
+	bool canInquisition() const;																																		// Exposed to Python
+	void setCanInquisition(bool bNewValue);
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
 /************************************************************************************************/
@@ -1142,7 +1138,7 @@ public:
 	PlayerTypes initNewEmpire(LeaderHeadTypes eNewLeader, CivilizationTypes eNewCiv);
 //<<<<Unofficial Bug Fix: End Add
 
-    /*** PUPPET STATES 04/21/08 by DPII ***/
+    // MNAI - Puppet States
     DllExport bool makePuppet(PlayerTypes eSplitPlayer = NO_PLAYER, CvCity* pVassalCapital = NULL);
     DllExport bool canMakePuppet(PlayerTypes eFromPlayer) const;
     PlayerTypes getPuppetPlayer() const;
@@ -1153,7 +1149,7 @@ public:
 
 	bool isPuppetState() const;
 	void setPuppetState(bool newvalue);
-    /*** PUPPET STATES END ***/
+    // MNAI - End Puppet States
 
 /************************************************************************************************/
 /* REVOLUTION_MOD                         11/15/08                                jdog5000      */
@@ -1314,6 +1310,9 @@ public:
 	void AI_doTowerMastery();
 // End Sephi AI
 
+//>>>>Unofficial Bug Fix: Added by Denev 2010/04/04
+	bool isRegularCityMaxedOut() const;
+	int getNextCityRadius() const;
 //>>>>Unofficial Bug Fix: Added by Denev 2009/09/29
 //*** Assimilated city produces a unit with original civilization artstyle.
 	UnitArtStyleTypes getUnitArtStyleType() const;
@@ -1442,7 +1441,6 @@ protected:
 /* Player Functions                                                                             */
 /************************************************************************************************/
 	int m_iNonStateReligionCommerceCount;
-	int m_iUpgradeAnywhereCount;
 	int m_iRevIdxLocal;
 	int m_iRevIdxNational;
 	int m_iRevIdxDistanceModifier;
@@ -1451,8 +1449,7 @@ protected:
 	float m_fRevIdxNationalityMod;
 	float m_fRevIdxBadReligionMod;
 	float m_fRevIdxGoodReligionMod;
-	//bool m_bInquisitionConditions;
-	//int m_iUnitUpgradePriceModifier;
+	bool m_bCanInquisition;
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
 /************************************************************************************************/
@@ -1577,8 +1574,7 @@ protected:
 	PlayerTypes m_eParent;
 	TeamTypes m_eTeamType;
 
-	// Puppet States
-	bool m_bPuppetState;
+	bool m_bPuppetState; // MNAI - Puppet States
 
 /*************************************************************************************************/
 /**	BETTER AI (New Functions Definition) Sephi                                 					**/

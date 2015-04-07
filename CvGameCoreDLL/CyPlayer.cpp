@@ -1294,11 +1294,6 @@ bool CyPlayer::isNonStateReligionCommerce() const
     return m_pPlayer ? m_pPlayer->isNonStateReligionCommerce() : false;
 }
 
-bool CyPlayer::isUpgradeAnywhere() const
-{
-    return m_pPlayer ? m_pPlayer->isUpgradeAnywhere() : false;
-}
-
 int CyPlayer::getRevIdxLocal()
 {
 	return m_pPlayer ? m_pPlayer->getRevIdxLocal() : 0;
@@ -1338,12 +1333,11 @@ float CyPlayer::getRevIdxGoodReligionMod()
 {
 	return m_pPlayer ? m_pPlayer->getRevIdxGoodReligionMod() : 0;
 }
-/*
-int CyPlayer::getUnitUpgradePriceModifier()
+
+bool CyPlayer::canInquisition() 
 {
-	return m_pPlayer ? m_pPlayer->getUnitUpgradePriceModifier() : 0;
+	return m_pPlayer->canInquisition();
 }
-*/
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
 /************************************************************************************************/
@@ -2669,7 +2663,6 @@ bool CyPlayer::canMakePuppet(int /*PlayerTypes*/ eFromPlayer) const
     return false;
 }
 
-// Puppet State functions (added by Tholal)
 bool CyPlayer::isPuppetState() const
 {
 	return m_pPlayer ? m_pPlayer->isPuppetState() : false;
@@ -2681,7 +2674,7 @@ void CyPlayer::setPuppetState(bool newvalue)
         m_pPlayer->setPuppetState(newvalue);
 }
 
-// End MNAI
+// MNAI - End Puppet States
 
 bool CyPlayer::canHaveTradeRoutesWith(int iPlayer)
 {
@@ -2703,6 +2696,12 @@ bool CyPlayer::canSeeCivic(int iCivic) const
 bool CyPlayer::canSeeReligion(int iReligion) const
 {
     return m_pPlayer ? m_pPlayer->canSeeReligion(iReligion, NULL) : false;
+}
+
+
+int CyPlayer::getSanctuaryTimer() const
+{
+	return m_pPlayer ? m_pPlayer->getSanctuaryTimer() : -1;
 }
 
 void CyPlayer::changeSanctuaryTimer(int iChange)

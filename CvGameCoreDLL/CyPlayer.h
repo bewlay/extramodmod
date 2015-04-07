@@ -330,7 +330,6 @@ public:
 /* Player Functions                                                                             */
 /************************************************************************************************/
 	bool isNonStateReligionCommerce() const;
-	bool isUpgradeAnywhere() const;
 	int getRevIdxLocal();
 	int getRevIdxNational();
 	int getRevIdxDistanceModifier();
@@ -339,10 +338,7 @@ public:
 	float getRevIdxNationalityMod();
 	float getRevIdxBadReligionMod();
 	float getRevIdxGoodReligionMod();
-	//bool isInquisitionConditions();
-	//int getUnitUpgradePriceModifier();
-	//bool canFoundReligion();
-	//bool isBuildingClassRequiredToTrain(int /*BuildingClassTypes*/ iBuildingClass, int /*UnitTypes*/ iUnit);
+	bool canInquisition();
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
 /************************************************************************************************/
@@ -652,7 +648,7 @@ public:
 
 	bool isPuppetState() const;
 	void setPuppetState (bool bNewValue);
-    // End MNAI
+    // MNAI - End Puppet States
 	
 	bool canHaveTradeRoutesWith(int iPlayer);
 
@@ -661,6 +657,7 @@ public:
 //FfH Alignment: Added by Kael 08/09/2007
     bool canSeeCivic(int iCivic) const;
     bool canSeeReligion(int iReligion) const;
+	int getSanctuaryTimer() const;
 	void changeSanctuaryTimer(int iChange);
 	int getAlignment() const;
     void setAlignment(int /*AlignmentTypes*/ iAlignment);

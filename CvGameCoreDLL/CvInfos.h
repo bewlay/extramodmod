@@ -336,9 +336,9 @@ public:
 	bool isDefensivePactTrading() const;	// Exposed to Python
 	bool isPermanentAllianceTrading() const;	// Exposed to Python
 	bool isVassalStateTrading() const;	// Exposed to Python
-// MNAI - Puppet States
+	// MNAI - Puppet States
 	bool isPuppetStateTrading() const;	// Exposed to Python
-// MNAI End
+	// MNAI - End Puppet States
 	bool isBridgeBuilding() const;				// Exposed to Python
 	bool isIrrigation() const;						// Exposed to Python
 	bool isIgnoreIrrigation() const;			// Exposed to Python
@@ -422,9 +422,9 @@ protected:
 	bool m_bDefensivePactTrading;
 	bool m_bPermanentAllianceTrading;
 	bool m_bVassalStateTrading;
-// MNAI - Puppet States
+	// MNAI - Puppet States
 	bool m_bPuppetStateTrading;
-// MNAI End
+	// MNAI - End Puppet States
 	bool m_bBridgeBuilding;
 	bool m_bIrrigation;
 	bool m_bIgnoreIrrigation;
@@ -626,6 +626,8 @@ public:
 	bool isAllowsMoveImpassable() const;
 	bool isAllowsMoveLimitedBorders() const;
 	bool isCastingBlocked() const;
+	bool isBlocksUpgrade() const;
+	bool isBlocksGifting() const;
 	bool isUpgradeOutsideBorders() const;
 	// End MNAI
 
@@ -773,6 +775,8 @@ protected:
 	bool m_bAllowsMoveImpassable;
 	bool m_bAllowsMoveLimitedBorders;
 	bool m_bCastingBlocked;
+	bool m_bBlocksUpgrade;
+	bool m_bBlocksGifting;
 	bool m_bUpgradeOutsideBorders;
 	// End MNAI
 
@@ -1887,8 +1891,6 @@ public:
 /*                                                                                              */
 /* RevCivicEffects                                                                              */
 /************************************************************************************************/
-	bool isUpgradeAnywhere() const;
-	bool isAllowInquisitions() const;
 	bool isDisallowInquisitions() const;
 	int getRevIdxLocal() const;
 	int getRevIdxNational() const;
@@ -2013,8 +2015,6 @@ protected:
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	int m_bUpgradeAnywhere;
-	int m_bAllowInquisitions;
 	int m_bDisallowInquisitions;
 	int m_iRevIdxLocal;
 	int m_iRevIdxNational;
@@ -2269,7 +2269,6 @@ public:
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	int getUnitUpgradePriceModifier() const;					// Exposed to Python
 	int getRevIdxLocal() const;					// Exposed to Python
 	int getRevIdxNational() const;					// Exposed to Python
 	int getRevIdxDistanceModifier() const;					// Exposed to Python
@@ -2515,7 +2514,6 @@ protected:
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	int m_iUnitUpgradePriceModifier;
 	int m_iRevIdxLocal;
 	int m_iRevIdxNational;
 	int m_iRevIdxDistanceModifier;

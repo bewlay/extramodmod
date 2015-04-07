@@ -124,10 +124,13 @@ void CvUnit::reloadEntity()
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection)
-void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit)
+// lfgr 04/2014 bugfix
+//void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit)
+void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, bool bGift)
+// lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, CvWString szName)
+void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, bool bGift, CvWString szName)
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -336,7 +339,10 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 	AI_init(eUnitAI);
 
 //FfH Units: Added by Kael 04/18/2008
-	if (m_pUnitInfo->getFreePromotionPick() > 0)
+// lfgr 04/2014 bugfix
+//	if (m_pUnitInfo->getFreePromotionPick() > 0)
+	if ( !bGift && m_pUnitInfo->getFreePromotionPick() > 0)
+// lfgr end
 	{
 	    changeFreePromotionPick(m_pUnitInfo->getFreePromotionPick());
         setPromotionReady(true);
@@ -531,6 +537,8 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_iCanMoveImpassable = 0;
 	m_iCanMoveLimitedBorders = 0;
 	m_iCastingBlocked = 0;
+	m_iUpgradeBlocked = 0;
+	m_iGiftingBlocked = 0;
 	m_iUpgradeOutsideBorders = 0;
 //>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	m_bAvatarOfCivLeader = false;
@@ -720,10 +728,19 @@ void CvUnit::convert(CvUnit* pUnit)
             setHasPromotion((PromotionTypes)GC.getDefineINT("WEAPON_PROMOTION_TIER3"), false);
         }
     }
+// lfgr 04/2014 bugfix
+/* old
     if (m_pUnitInfo->getFreePromotionPick() > 0 && getGameTurnCreated() == GC.getGameINLINE().getGameTurn())
 	{
         setPromotionReady(true);
     }
+*/
+	if( pUnit->getFreePromotionPick() > 0 )
+	{
+		changeFreePromotionPick( pUnit->getFreePromotionPick() );
+	}
+// lfgr end
+
     setDuration(pUnit->getDuration());
     if (pUnit->getReligion() != NO_RELIGION && getReligion() == NO_RELIGION)
     {
@@ -774,6 +791,10 @@ void CvUnit::convert(CvUnit* pUnit)
 	int iOldModifier = std::max(1, 100 + GET_PLAYER(pUnit->getOwnerINLINE()).getLevelExperienceModifier());
 	int iOurModifier = std::max(1, 100 + GET_PLAYER(getOwnerINLINE()).getLevelExperienceModifier());
 	setExperience(std::max(0, (pUnit->getExperience() * iOurModifier) / iOldModifier));
+
+// lfgr 04/2014 bugfix
+    testPromotionReady();
+// lfgr end
 
 	setName(pUnit->getNameNoDesc());
 // BUG - Unit Name - start
@@ -4205,6 +4226,11 @@ bool CvUnit::canGift(bool bTestVisible, bool bTestTransport)
 //FfH: End Add
 	}
 
+	if (isGiftingBlocked())
+	{
+		return false;
+	}
+
 	if (isAvatarOfCivLeader())
 	{
 		return false;
@@ -4346,7 +4372,10 @@ void CvUnit::gift(bool bTestTransport)
 	}
 
 	FAssertMsg(plot()->getOwnerINLINE() != NO_PLAYER, "plot()->getOwnerINLINE() is not expected to be equal with NO_PLAYER");
-	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType());
+// lfgr 04/2014 bugfix
+//	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType());
+	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType(), NO_DIRECTION, true, true);
+// lfgr end
 
 	FAssertMsg(pGiftUnit != NULL, "GiftUnit is not assigned a valid value");
 
@@ -5201,6 +5230,8 @@ bool CvUnit::airlift(int iX, int iY)
 	finishMoves();
 
 	setXY(pTargetPlot->getX_INLINE(), pTargetPlot->getY_INLINE());
+
+	logBBAI("    %S (%d) airlifting to plot %d, %d", getName().GetCString(), getID(), pTargetPlot->getX_INLINE(), pTargetPlot->getY_INLINE());    
 
 	return true;
 }
@@ -8377,7 +8408,7 @@ void CvUnit::promote(PromotionTypes ePromotion, int iLeaderUnitId)
 
 //FfH Units: Modified by Kael 08/04/2007
 //	if (!GC.getPromotionInfo(ePromotion).isLeader())
-	if ((!GC.getPromotionInfo(ePromotion).isLeader()) && getFreePromotionPick() == 0)
+	if ((!GC.getPromotionInfo(ePromotion).isLeader()) && !(getFreePromotionPick() > 0))
 //FfH: End Modify
 
 	{
@@ -8670,6 +8701,11 @@ bool CvUnit::upgradeAvailable(UnitTypes eFromUnit, UnitClassTypes eToUnitClass, 
 bool CvUnit::canUpgrade(UnitTypes eUnit, bool bTestVisible) const
 {
 	if (eUnit == NO_UNIT)
+	{
+		return false;
+	}
+
+	if (isUpgradeBlocked())
 	{
 		return false;
 	}
@@ -12274,7 +12310,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 					bAnimalLair = true;
 				}
 
-                if (!isHuman() || kImprovementInfo.isPermanent() == false)
+                if (kImprovementInfo.isPermanent() == false)
                 {
                     if (atWar(getTeam(), GET_PLAYER(BARBARIAN_PLAYER).getTeam()) || (bAnimalLair && !isBarbarian()))
                     {
@@ -13451,12 +13487,17 @@ void CvUnit::setMadeInterception(bool bNewValue)
 
 bool CvUnit::isPromotionReady() const
 {
+// lfgr 04/2014 bugfix
+// Commented out: now handled in testPromotionReady()
+/*
 	//FfH - Free Promotions (Kael 08/04/2007)
     if (getFreePromotionPick() > 0)
     {
         return true;
     }
 	//End FfH
+*/
+// lfgr end
 
 	return m_bPromotionReady;
 }
@@ -13497,7 +13538,12 @@ void CvUnit::setPromotionReady(bool bNewValue)
 
 void CvUnit::testPromotionReady()
 {
+// lfgr 04/2014 bugfix
+/* old
 	setPromotionReady((getExperience() >= experienceNeeded()) && canAcquirePromotionAny());
+*/
+	setPromotionReady( getFreePromotionPick() > 0 || (getExperience() >= experienceNeeded() ) && canAcquirePromotionAny());
+// lfgr end
 }
 
 
@@ -14457,6 +14503,8 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 		changeCanMoveImpassable((kPromotionInfo.isAllowsMoveImpassable()) ? iChange : 0);
 		changeCanMoveLimitedBorders((kPromotionInfo.isAllowsMoveLimitedBorders()) ? iChange : 0);
 		changeCastingBlocked((kPromotionInfo.isCastingBlocked()) ? iChange : 0);
+		changeUpgradeBlocked((kPromotionInfo.isBlocksUpgrade()) ? iChange : 0);
+		changeGiftingBlocked((kPromotionInfo.isBlocksGifting()) ? iChange : 0);
 		changeUpgradeOutsideBorders((kPromotionInfo.isUpgradeOutsideBorders()) ? iChange : 0);
 		// End MNAI
 
@@ -17897,6 +17945,20 @@ int CvUnit::getDuration() const
 
 void CvUnit::setDuration(int iNewValue)
 {
+	/*
+	* Bugfix: If a unit is made temporary or permanent in a place in which units must pay supply costs,
+	* the NumOutsideUnits variable must be updated accordingly.
+	*/
+	if (m_iDuration != iNewValue && plot()->getTeam() != getTeam() && (plot()->getTeam() == NO_TEAM || !GET_TEAM(plot()->getTeam()).isVassal(getTeam()))) {
+		   if (m_iDuration == 0) {
+				   // The unit is now temporary.
+				   GET_PLAYER(getOwnerINLINE()).changeNumOutsideUnits(-1);
+		   } else if (iNewValue == 0) {
+				   // The unit is now permanent.
+				   GET_PLAYER(getOwnerINLINE()).changeNumOutsideUnits(1);
+		   }
+	}
+
 	m_iDuration = iNewValue;
 }
 
@@ -19848,6 +19910,32 @@ void CvUnit::changeCastingBlocked(int iNewValue)
     }
 }
 
+bool CvUnit::isUpgradeBlocked() const
+{
+	return m_iUpgradeBlocked == 0 ? false : true;
+}
+
+void CvUnit::changeUpgradeBlocked(int iNewValue)
+{
+    if (iNewValue != 0)
+    {
+        m_iUpgradeBlocked += iNewValue;
+    }
+}
+
+bool CvUnit::isGiftingBlocked() const
+{
+	return m_iGiftingBlocked == 0 ? false : true;
+}
+
+void CvUnit::changeGiftingBlocked(int iNewValue)
+{
+    if (iNewValue != 0)
+    {
+        m_iGiftingBlocked += iNewValue;
+    }
+}
+
 bool CvUnit::isUpgradeOutsideBorders() const
 {
 	return m_iUpgradeOutsideBorders == 0 ? false : true;
@@ -20006,6 +20094,8 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCanMoveImpassable);
 	pStream->Read(&m_iCanMoveLimitedBorders);
 	pStream->Read(&m_iCastingBlocked);
+	pStream->Read(&m_iUpgradeBlocked);
+	pStream->Read(&m_iGiftingBlocked);
 	pStream->Read(&m_iUpgradeOutsideBorders);
 	// End MNAI
 
@@ -20175,6 +20265,8 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCanMoveImpassable);
 	pStream->Write(m_iCanMoveLimitedBorders);
 	pStream->Write(m_iCastingBlocked);
+	pStream->Write(m_iUpgradeBlocked);
+	pStream->Write(m_iGiftingBlocked);
 	pStream->Write(m_iUpgradeOutsideBorders);
 	// End MNAI
 

@@ -677,7 +677,7 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 	case WIDGET_HELP_PUPPET_STATE:
 		parsePuppetStateHelp(widgetDataStruct, szBuffer);
 		break;
-// MNAI End
+// MNAI - End Puppet States
 	}
 }
 
@@ -1027,9 +1027,7 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 	case WIDGET_HELP_SPELL:
 //FfH: End Add
 
-// MNAI - Puppet States
-	case WIDGET_HELP_PUPPET_STATE:
-// MNAI End
+	case WIDGET_HELP_PUPPET_STATE: // MNAI - Puppet States
 		break;
 	}
 
@@ -5122,7 +5120,7 @@ void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStr
 
 // More Naval AI version number
 	// Add string showing version number
-	szTempBuffer.Format(L"%S", "More Naval AI v2.53");
+	szTempBuffer.Format(L"%S", "More Naval AI v2.61");
 	szBuffer.append(szTempBuffer);
 	szBuffer.append(NEWLINE);
 // End More Naval AI
@@ -5700,7 +5698,7 @@ void CvDLLWidgetData::parsePuppetStateHelp(CvWidgetDataStruct &widgetDataStruct,
 {
 	GAMETEXT.buildPuppetStateString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
 }
-// MNAI End
+// MNAI - End Puppet States
 
 void CvDLLWidgetData::parseBuildBridgeHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
 {

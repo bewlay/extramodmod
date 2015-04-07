@@ -10,6 +10,8 @@ import PyHelpers
 import CustomFunctions
 import ScenarioFunctions
 
+import Blizzards		#Added in Blizzards: TC01
+
 # lfgr GP_NAMES 07/2013
 import SdToolKitCustom as SDTK
 # lfgr end
@@ -19,6 +21,8 @@ PyPlayer = PyHelpers.PyPlayer
 gc = CyGlobalContext()
 cf = CustomFunctions.CustomFunctions()
 sf = ScenarioFunctions.ScenarioFunctions()
+
+Blizzards = Blizzards.Blizzards()		#Added in Blizzards: TC01
 
 def cast(argsList):
 	pCaster, eSpell = argsList
@@ -69,6 +73,17 @@ def postCombatWon(argsList):
 	pCaster, pOpponent = argsList
 	unit = gc.getUnitInfo(pCaster.getUnitType())
 	eval(unit.getPyPostCombatWon())
+
+# SpellPyHelp 11/2013 lfgr
+def getSpellHelp( argsList ) :
+	eSpell, ePlayer, leUnits = argsList
+	pSpell = gc.getSpellInfo( eSpell )
+	pPlayer = gc.getPlayer( ePlayer )
+	lpUnits = []
+	for eUnit in leUnits :
+		lpUnits.append( pPlayer.getUnit( eUnit ) )
+	return eval( pSpell.getPyHelp() )
+# SpellPyHelp END
 
 def findClearPlot(pUnit, plot):
 	BestPlot = -1
@@ -605,12 +620,16 @@ def spellCallBlizzard(caster):
 		pBlizPlot.setFeatureType(-1, -1)
 	pPlot = caster.plot()
 	pPlot.setFeatureType(iBlizzard, 0)
-	if pPlot.getTerrainType() == gc.getInfoTypeForString('TERRAIN_GRASS'):
-		pPlot.setTerrainType(iTundra,True,True)
-	if pPlot.getTerrainType() == gc.getInfoTypeForString('TERRAIN_PLAINS'):
-		pPlot.setTerrainType(iTundra,True,True)
-	if pPlot.getTerrainType() == gc.getInfoTypeForString('TERRAIN_DESERT'):
-		pPlot.setTerrainType(iTundra,True,True)
+#Changed in Blizzards: TC01
+	Blizzards.doBlizzard(pPlot)
+#	Original Code:
+#	if pPlot.getTerrainType() == gc.getInfoTypeForString('TERRAIN_GRASS'):
+#		pPlot.setTerrainType(iTundra,True,True)
+#	if pPlot.getTerrainType() == gc.getInfoTypeForString('TERRAIN_PLAINS'):
+#		pPlot.setTerrainType(iTundra,True,True)
+#	if pPlot.getTerrainType() == gc.getInfoTypeForString('TERRAIN_DESERT'):
+#		pPlot.setTerrainType(iTundra,True,True)
+#End of Blizzards
 
 def reqCallForm(caster):
 	if caster.getSummoner() == -1:
@@ -1520,7 +1539,7 @@ def reqHeal(caster):
 	iPoisoned = gc.getInfoTypeForString('PROMOTION_POISONED')
 	for i in range(pPlot.getNumUnits()):
 		pUnit = pPlot.getUnit(i)
-		if (pUnit.isAlive() and pUnit.getDamage() > 0):
+		if (pUnit.isAlive() and pUnit.getDamage() > 0 and not pUnit.isImmuneToMagic()):
 			return True
 		if pUnit.isHasPromotion(iPoisoned):
 			return True
@@ -1531,9 +1550,10 @@ def spellHeal(caster,amount):
 	iPoisoned = gc.getInfoTypeForString('PROMOTION_POISONED')
 	for i in range(pPlot.getNumUnits()):
 		pUnit = pPlot.getUnit(i)
-		pUnit.setHasPromotion(iPoisoned,False)
-		if pUnit.isAlive():
-			pUnit.changeDamage(-amount, PlayerTypes.NO_PLAYER)
+		if not pUnit.isImmuneToMagic():
+			pUnit.setHasPromotion(iPoisoned,False)
+			if pUnit.isAlive():
+				pUnit.changeDamage(-amount, PlayerTypes.NO_PLAYER)
 
 def reqHealingSalve(caster):
 	if caster.getDamage() == 0:
@@ -1684,9 +1704,9 @@ def applyHyboremsWhisper(argsList):
 	lpVeilCities = cf.getAshenVeilCities(iPlayer, iCasterID, iNumCities)
 
 	if iButtonId == iNumCities * 2:
-		pPlayer = gc.getPlayer(iPlayer)
-		pPlayer.acquireCity(lpVeilCities[iCurrentSelected], False, True)
-		return
+		pCity = lpVeilCities[iCurrentSelected]
+		CyMessageControl().sendModNetMessage(CvUtil.HyboremWhisper, iPlayer, pCity.getX(), pCity.getY(), 0)
+ 		return
 
 	iClickedKind = iButtonId % 2
 	iPickedUpIndex = iButtonId // 2
@@ -1716,14 +1736,16 @@ def reqInquisition(caster):
 	pCity = pPlot.getPlotCity()
 	pPlayer = gc.getPlayer(caster.getOwner())
 	StateBelief = pPlayer.getStateReligion()
-	if StateBelief == -1:
-		if caster.getOwner() != pCity.getOwner():
+	
+	if pPlayer.canInquisition():
+		if StateBelief == -1:
+			if caster.getOwner() != pCity.getOwner():
+				return False
+		if (StateBelief != gc.getPlayer(pCity.getOwner()).getStateReligion()):
 			return False
-	if (StateBelief != gc.getPlayer(pCity.getOwner()).getStateReligion()):
-		return False
-	for iTarget in range(gc.getNumReligionInfos()):
-		if (StateBelief != iTarget and pCity.isHasReligion(iTarget) and pCity.isHolyCityByType(iTarget) == False):
-			return True
+		for iTarget in range(gc.getNumReligionInfos()):
+			if (StateBelief != iTarget and pCity.isHasReligion(iTarget) and pCity.isHolyCityByType(iTarget) == False):
+				return True
 	return False
 
 def spellInquisition(caster):
@@ -3662,7 +3684,7 @@ def spellWildHunt(caster):
 	for pUnit in py.getUnitList():
 		pPlot = pUnit.plot()
 		if pUnit.baseCombatStr() > 0 and pUnit.isAlive() and not pPlot.isWater() and not pPlot.isPeak():
-			newUnit = pPlayer.initUnit(iWolf, pUnit.getX(), pUnit.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+			newUnit = pPlayer.initUnit(iWolf, pUnit.getX(), pUnit.getY(), UnitAITypes.UNITAI_ATTACK_CITY, DirectionTypes.DIRECTION_SOUTH)
 			if pUnit.baseCombatStr() > 3:
 				i = (pUnit.baseCombatStr() - 2) / 2
 				newUnit.setBaseCombatStr(2 + i)

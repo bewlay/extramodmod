@@ -252,6 +252,10 @@ bool CvSelectionGroupAI::AI_update()
 
 			if (pHeadUnit->AI_update())
 			{
+				if (iTempHack == 99)
+				{
+					FAssertMsg(false, "unit about to be stuck in loop");
+				}
 				// AI_update returns true when we should abort the loop and wait until next slice
 				break;
 			}
@@ -514,7 +518,7 @@ CvUnit* CvSelectionGroupAI::AI_getBestGroupSacrifice(const CvPlot* pPlot, bool b
 					if (bForce || pLoopUnit->canMoveInto(pPlot, true))
 					{
                         int iValue = pLoopUnit->AI_sacrificeValue(pPlot);
-						FAssertMsg(iValue > 0, "iValue is expected to be greater than 0");
+						//FAssertMsg(iValue > 0, "iValue is expected to be greater than 0");
 /*************************************************************************************************/
 /**	BETTER AI (Summons make good groupattack sacrifice units) Sephi              				**/
 /*************************************************************************************************/
@@ -527,16 +531,15 @@ CvUnit* CvSelectionGroupAI::AI_getBestGroupSacrifice(const CvPlot* pPlot, bool b
 /*************************************************************************************************/
                         if (!GET_PLAYER(pLoopUnit->getOwnerINLINE()).isHuman())
                         {
-                            if (pLoopUnit->AI_getUnitAIType()==UNITAI_WARWIZARD)
+                            if (pLoopUnit->AI_getUnitAIType() == UNITAI_WARWIZARD)
                             {
 	                            iValue = 0;
                             }
-
-                            if (pLoopUnit->AI_getUnitAIType()==UNITAI_HERO)
+                            else if (pLoopUnit->AI_getUnitAIType() == UNITAI_HERO)
                             {
 	                            iValue = 0;
                             }
-							if (pLoopUnit->getLevel()>4)
+							else if (pLoopUnit->getLevel() > 4)
 							{
 	                            iValue = 1;
 							}
@@ -800,6 +803,7 @@ bool CvSelectionGroupAI::AI_isDeclareWar(const CvPlot* pPlot)
 /*************************************************************************************************/
 			case UNITAI_INQUISITOR:
 			case UNITAI_LAIRGUARDIAN:
+			case UNITAI_SHADE:
 				break;
 
 			case UNITAI_ATTACK_SEA:

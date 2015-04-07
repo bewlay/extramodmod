@@ -1530,6 +1530,16 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_UNIT_CASTING_BLOCKED"));
 			}
+			if (pUnit->isUpgradeBlocked())
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_UPGRADE_BLOCKED"));
+			}
+			if (pUnit->isGiftingBlocked())
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_GIFTING_BLOCKED"));
+			}
 			if (pUnit->isUpgradeOutsideBorders())
 			{
 				szString.append(NEWLINE);
@@ -2690,7 +2700,8 @@ void CvGameTextMgr::setPlotListHelp(CvWStringBuffer &szString, CvPlot* pPlot, bo
 							{
 								szString.append(CvWString::format(L"\nTarget City: None"));
 							}
-
+							
+							/*
 							if( gDLL->shiftKey() )
 							{
 								CvCity* pLoopCity;
@@ -2720,6 +2731,7 @@ void CvGameTextMgr::setPlotListHelp(CvWStringBuffer &szString, CvPlot* pPlot, bo
 									}
 								}
 							}
+							*/
 						}
 					}
 /************************************************************************************************/
@@ -4541,6 +4553,26 @@ It is fine for a human player mouse-over (which is what it is used for).
                         }
                     }
 
+					// MNAI Start - FfH Promotions: Added by Kael 0813/2007
+					for (int iJ=0;iJ<GC.getNumPromotionInfos();iJ++)
+					{
+						if (pDefender->isHasPromotion((PromotionTypes)iJ) && GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatMod()>0)
+						{
+							if (pAttacker->isHasPromotion((PromotionTypes)GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatType()))
+							{
+								szString.append(NEWLINE);
+								szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatMod(), GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatType()).getTextKeyWide()));
+							}
+						}
+					}
+
+					iModifier = GC.getGameINLINE().getGlobalCounter() * pDefender->getCombatPercentGlobalCounter() / 100;
+					if (iModifier != 0)
+					{
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_STIGMATA", iModifier));
+					}
+					//End MNAI
 
                     szString.append(gDLL->getText("TXT_KEY_COLOR_REVERT"));
 
@@ -4620,6 +4652,26 @@ It is fine for a human player mouse-over (which is what it is used for).
                             szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_UNIT_MOD", -iModifier, GC.getTerrainInfo(pPlot->getTerrainType()).getTextKeyWide()));
                         }
                     }
+					// MNAI Start - FfH Promotions: Added by Kael 0813/2007 - Merged into ACO by MNAI
+					for (int iJ=0; iJ < GC.getNumPromotionInfos(); iJ++)
+					{
+						if (pAttacker->isHasPromotion((PromotionTypes)iJ) && GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatMod()>0)
+						{
+							if (pDefender->isHasPromotion((PromotionTypes)GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatType()))
+							{
+								szString.append(NEWLINE);
+								szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatMod(), GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatType()).getTextKeyWide()));
+							}
+						}
+					}
+
+					iModifier = GC.getGameINLINE().getGlobalCounter() * pAttacker->getCombatPercentGlobalCounter() / 100;
+					if (iModifier != 0)
+					{
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_STIGMATA", iModifier));
+					}
+					// End MNAI
 
                     iModifier = pAttacker->getKamikazePercent();
                     if (iModifier != 0)
@@ -4786,7 +4838,7 @@ It is fine for a human player mouse-over (which is what it is used for).
                 }
             }
 
-            iModifier = GC.getGameINLINE().getGlobalCounter() * pDefender->getCombatPercentGlobalCounter() / 100;
+            iModifier = GC.getGameINLINE().getGlobalCounter() * pAttacker->getCombatPercentGlobalCounter() / 100;
             if (iModifier != 0)
             {
                 szString.append(NEWLINE);
@@ -5000,6 +5052,27 @@ It is fine for a human player mouse-over (which is what it is used for).
 					szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_UNIT_MOD", iModifier, GC.getTerrainInfo(pPlot->getTerrainType()).getTextKeyWide()));
 				}
 			}
+
+			// MNAI Start - FfH Promotions: Added by Kael 0813/2007
+            for (int iJ=0;iJ<GC.getNumPromotionInfos();iJ++)
+            {
+                if (pDefender->isHasPromotion((PromotionTypes)iJ) && GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatMod()>0)
+                {
+                    if (pAttacker->isHasPromotion((PromotionTypes)GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatType()))
+                    {
+                        szString.append(NEWLINE);
+                        szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatMod(), GC.getPromotionInfo((PromotionTypes)GC.getPromotionInfo((PromotionTypes)iJ).getPromotionCombatType()).getTextKeyWide()));
+                    }
+                }
+            }
+
+            iModifier = GC.getGameINLINE().getGlobalCounter() * pDefender->getCombatPercentGlobalCounter() / 100;
+            if (iModifier != 0)
+            {
+                szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_STIGMATA", iModifier));
+            }
+			// End MNAI
 
 			if (!(pAttacker->immuneToFirstStrikes()))
 			{
@@ -5597,7 +5670,68 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 
 		if (pPlot->getTempTerrainTimer() > 0)
 		{
-			szString.append(CvWString::format(L" (temp terrain (%d turns left))", pPlot->getTempTerrainTimer()));
+			szString.append(CvWString::format(L" (Temp Terrain: %d turns left)", pPlot->getTempTerrainTimer()));
+			szString.append(CvWString::format(L"\n --Real Terrain: %s", GC.getTerrainInfo(pPlot->getRealTerrainType()).getDescription()));
+		}
+		if (pPlot->getTempBonusTimer() > 0)
+		{
+			if (pPlot->getBonusType() == NO_BONUS)
+			{
+				szString.append(CvWString::format(L"\n Temp Bonus: NO_BONUS (%d turns left)", pPlot->getTempBonusTimer()));
+			}
+			else
+			{
+				szString.append(CvWString::format(L"\n Temp Bonus: %s (%d turns left)", GC.getBonusInfo(pPlot->getBonusType()).getDescription(), pPlot->getTempBonusTimer()));
+			}
+			if (pPlot->getRealBonusType() != NO_BONUS)
+			{
+				szString.append(CvWString::format(L"\n --Real Bonus: %s", GC.getBonusInfo(pPlot->getRealBonusType()).getDescription()));
+			}
+		}
+		if (pPlot->getTempFeatureTimer() > 0)
+		{
+			if (pPlot->getFeatureType() == NO_FEATURE)
+			{
+				szString.append(CvWString::format(L"\n Temp Feature: NO_FEATURE (%d turns left)", pPlot->getTempFeatureTimer()));
+			}
+			else
+			{
+				szString.append(CvWString::format(L"\n Temp Feature: %s (%d turns left)", GC.getFeatureInfo(pPlot->getFeatureType()).getDescription(), pPlot->getTempFeatureTimer()));
+			}
+			if (pPlot->getRealFeatureType() != NO_FEATURE)
+			{
+				szString.append(CvWString::format(L"\n --Real Feature: %s", GC.getFeatureInfo(pPlot->getRealFeatureType()).getDescription()));
+			}
+		}
+		if (pPlot->getTempImprovementTimer() > 0)
+		{
+			if (pPlot->getImprovementType() == NO_IMPROVEMENT)
+			{
+				szString.append(CvWString::format(L"\n Temp Improvement: NO_IMPROVEMENT (%d turns left)", pPlot->getTempImprovementTimer()));
+			}
+			else
+			{
+				szString.append(CvWString::format(L"\n Temp Improvement: %s (%d turns left)", GC.getImprovementInfo(pPlot->getImprovementType()).getDescription(), pPlot->getTempImprovementTimer()));
+			}
+			if (pPlot->getRealImprovementType() != NO_IMPROVEMENT)
+			{
+				szString.append(CvWString::format(L"\n --Real Improvement: %s", GC.getImprovementInfo(pPlot->getRealImprovementType()).getDescription()));
+			}
+		}
+		if (pPlot->getTempRouteTimer() > 0)
+		{
+			if (pPlot->getRouteType() == NO_ROUTE)
+			{
+				szString.append(CvWString::format(L"\n Temp Route: NO_ROUTE (%d turns left)", pPlot->getTempRouteTimer()));
+			}
+			else
+			{
+				szString.append(CvWString::format(L"\n Temp Route %s (%d turns left)", GC.getRouteInfo(pPlot->getRouteType()).getDescription(), pPlot->getTempRouteTimer()));
+			}
+			if (pPlot->getRealRouteType() != NO_ROUTE)
+			{
+				szString.append(CvWString::format(L"\n --Real Route: %s", GC.getRouteInfo(pPlot->getRealRouteType()).getDescription()));
+			}
 		}
 
 		FAssert((0 < GC.getNumBonusInfos()) && "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvInterface::updateHelpStrings");
@@ -6792,7 +6926,10 @@ void CvGameTextMgr::setCityPlotYieldValueString(CvWStringBuffer &szString, CvCit
 
 	CvPlot* pPlot = NULL;
 
-	if (iIndex >= 0 && iIndex < NUM_CITY_PLOTS)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	if (iIndex >= 0 && iIndex < NUM_CITY_PLOTS)
+	if (iIndex >= 0 && iIndex < pCity->getNumCityPlots())
+//<<<<Unofficial Bug Fix: End Modify
 		pPlot = pCity->getCityIndexPlot(iIndex);
 	
 	if (pPlot != NULL && pPlot->getWorkingCity() == pCity)
@@ -9328,6 +9465,16 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CASTING_BLOCKED_PEDIA"));
     }
+	if (kPromotionInfo.isBlocksUpgrade())
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_UPGRADE_BLOCKED_PEDIA"));
+    }
+	if (kPromotionInfo.isBlocksGifting())
+    {
+        szBuffer.append(pcNewline);
+        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_GIFTING_BLOCKED_PEDIA"));
+    }
 	if (kPromotionInfo.isUpgradeOutsideBorders())
     {
         szBuffer.append(pcNewline);
@@ -10172,31 +10319,11 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-/*
-	if (kCivic.isUpgradeAnywhere())
+	if (kCivic.isDisallowInquisitions())
 	{
 		szHelpText.append(NEWLINE);
-		szHelpText.append(gDLL->getText("TXT_KEY_CAN_UPGRADE_ANYWHERE"));	
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_DISALLOW_INQUISITONS"));
 	}
-
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_INQUISITIONS))
-	{
-		if (kCivic.isAllowInquisitions())
-		{
-			szHelpText.append(NEWLINE);
-			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_ALLOW_INQUISITONS"));
-		}
-	}
-
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_INQUISITIONS))
-	{
-		if (kCivic.isDisallowInquisitions())
-		{
-			szHelpText.append(NEWLINE);
-			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_DISALLOW_INQUISITONS"));
-		}
-	}
-*/
 
 	if (GC.getGameINLINE().isOption(GAMEOPTION_REVOLUTIONS))
 	{
@@ -10895,6 +11022,15 @@ void CvGameTextMgr::setTechTradeHelp(CvWStringBuffer &szBuffer, TechTypes eTech,
 		}
 	}
 
+	//	Enable Bonuses
+	for (iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+	{
+		if (GC.getBonusInfo((BonusTypes)iI).getTechCityTrade() == eTech)
+		{
+			buildEnableBonusString(szBuffer, iI, true);
+		}
+	}
+
 	for (iI = 0; iI < GC.getNumSpecialBuildingInfos(); ++iI)
 	{
 		if (GC.getSpecialBuildingInfo((SpecialBuildingTypes) iI).getObsoleteTech() == eTech)
@@ -10984,7 +11120,7 @@ void CvGameTextMgr::setTechTradeHelp(CvWStringBuffer &szBuffer, TechTypes eTech,
 	// MNAI - Puppet States
 	//	Enables puppet states...
 	buildPuppetStateString(szBuffer, eTech, true, bPlayerContext);
-	// MNAI End
+	// MNAI - End Puppet States
 
 	//	Build farm, irrigation, etc...
 	for (iI = 0; iI < GC.getNumBuildInfos(); ++iI)
@@ -16977,6 +17113,17 @@ void CvGameTextMgr::buildObsoleteBonusString(CvWStringBuffer &szBuffer, int iIte
 	szBuffer.append(gDLL->getText("TXT_KEY_TECH_OBSOLETES", GC.getBonusInfo((BonusTypes) iItem).getTextKeyWide()));
 }
 
+void CvGameTextMgr::buildEnableBonusString(CvWStringBuffer &szBuffer, int iItem, bool bList, bool bPlayerContext)
+{
+	CvWString szTempBuffer;
+
+	if (bList)
+	{
+		szBuffer.append(NEWLINE);
+	}
+	szBuffer.append(gDLL->getText("TXT_KEY_TECH_ENABLES", GC.getBonusInfo((BonusTypes) iItem).getTextKeyWide()));
+}
+
 void CvGameTextMgr::buildObsoleteSpecialString(CvWStringBuffer &szBuffer, int iItem, bool bList, bool bPlayerContext)
 {
 	CvWString szTempBuffer;
@@ -17252,7 +17399,7 @@ void CvGameTextMgr::buildPuppetStateString(CvWStringBuffer &szBuffer, TechTypes 
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_PUPPET_STATES"));
 	}
 }
-// MNAI End
+// MNAI - End Puppet States
 
 
 void CvGameTextMgr::buildBridgeString(CvWStringBuffer &szBuffer, TechTypes eTech, bool bList, bool bPlayerContext)
@@ -18229,8 +18376,11 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 						{
 							szBuffer.append(" (Puppet State)");
 						}
-						// MNAI End
-						setVassalRevoltHelp(szBuffer, (TeamTypes)iTeam, kTeam.getID());
+						// MNAI - End Puppet States
+						else
+						{
+							setVassalRevoltHelp(szBuffer, (TeamTypes)iTeam, kTeam.getID());
+						}
 					}
 					else if (kLoopTeam.isVassal(kTeam.getID()))
 					{
@@ -18463,7 +18613,7 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 			szBuffer.append(NEWLINE);
 			szBuffer.append(szTempBuffer);
 		}
-		// MNAI End
+		// MNAI - End Puppet States
 
 		for (iI = 0; iI < NUM_MEMORY_TYPES; ++iI)
 		{
