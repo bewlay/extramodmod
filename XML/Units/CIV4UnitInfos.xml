@@ -1073,6 +1073,10 @@
 					<PromotionType>PROMOTION_SENTRY</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_FEAR</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<iCombatDefense>21</iCombatDefense>
 			<iTier>4</iTier>
@@ -1148,6 +1152,10 @@
 				</FreePromotion>
 				<FreePromotion>
 					<PromotionType>PROMOTION_SENTRY2</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_FEAR</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -9162,6 +9170,10 @@
 					<PromotionType>PROMOTION_IMMUNE_COLD</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_FEAR</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<iCombatDefense>14</iCombatDefense>
 			<iTier>4</iTier>
@@ -10176,6 +10188,10 @@
 				</FreePromotion>
 				<FreePromotion>
 					<PromotionType>PROMOTION_SENTRY</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_FEAR</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>

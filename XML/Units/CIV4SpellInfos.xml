@@ -350,6 +350,7 @@
             <Description>TXT_KEY_SPELL_BREATH_FIRE</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <PromotionPrereq1>PROMOTION_DRAGON</PromotionPrereq1>
+            <PromotionPrereq2>PROMOTION_FEAR</PromotionPrereq2>
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -3373,6 +3374,7 @@
             <Civilopedia>TXT_KEY_SPELL_ROAR_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_ROAR_HELP</Help>
             <PromotionPrereq1>PROMOTION_DRAGON</PromotionPrereq1>
+			<PromotionPrereq2>PROMOTION_FEAR</PromotionPrereq2>
             <bAllowAI>1</bAllowAI>
             <iAIWeight>30</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
