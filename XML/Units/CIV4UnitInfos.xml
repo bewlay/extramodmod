@@ -25383,6 +25383,10 @@
 					<TerrainType>TERRAIN_DESERT</TerrainType>
 					<bTerrainImpassable>1</bTerrainImpassable>
 				</TerrainImpassable>
+				<TerrainImpassable>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<bTerrainImpassable>1</bTerrainImpassable>
+				</TerrainImpassable>
 			</TerrainImpassables>
 			<iCombat>7</iCombat>
 			<iCombatLimit>100</iCombatLimit>
