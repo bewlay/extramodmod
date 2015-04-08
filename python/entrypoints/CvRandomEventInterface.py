@@ -781,17 +781,6 @@ def doJudgementWrong(argsList):
 	CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_JUDGEMENT_WRONG", ()),'',1,'Art/Interface/Buttons/General/unhealthy_person.dds',ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
 	pCity.changeCrime(3)
 
-######## LETUM_FRIGUS (lfgr: moved to XML)
-
-def doLetumFrigus3(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	iPlayer = kTriggeredData.ePlayer
-	pPlayer = gc.getPlayer(iPlayer)
-	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_AGGRESSIVE'),True)
-
-######## (lfgr: not reviewed)
-
 def canTriggerLunaticCity(argsList):
 	eTrigger = argsList[0]
 	ePlayer = argsList[1]

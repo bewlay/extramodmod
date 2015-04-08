@@ -2500,9 +2500,8 @@
 		<EventInfo><!-- LETUM_FRIGUS_3 -->
 			<Type>EVENT_LETUM_FRIGUS_3</Type>
 			<Description>TXT_KEY_EVENT_LETUM_FRIGUS_3</Description>
-			<Help>TXT_KEY_EVENT_LETUM_FRIGUS_3_HELP</Help>
+			<bGoldenAge>1</bGoldenAge>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doLetumFrigus3</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqCivilization>CIVILIZATION_ILLIANS</PrereqCivilization>
