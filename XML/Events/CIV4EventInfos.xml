@@ -5500,7 +5500,6 @@
 		<EventInfo><!-- CENTAUR_PANTS_1 -->
 			<Type>EVENT_CENTAUR_PANTS_1</Type>
 			<Description>TXT_KEY_EVENT_CENTAUR_PANTS_1</Description>
-			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -5508,7 +5507,6 @@
 		<EventInfo><!-- CENTAUR_PANTS_2 -->
 			<Type>EVENT_CENTAUR_PANTS_2</Type>
 			<Description>TXT_KEY_EVENT_CENTAUR_PANTS_2</Description>
-			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
