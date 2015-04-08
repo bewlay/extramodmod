@@ -3873,7 +3873,6 @@
 				<Event>EVENT_MURDERED_WIFE_3</Event>
 				<Event>EVENT_MURDERED_WIFE_4</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
@@ -4671,7 +4670,6 @@
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<PythonCanDo>canTriggerUniqueFeatureAifonIsle</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- UNIQUE_FEATURE_BRADELINES_WELL -->
@@ -4693,7 +4691,6 @@
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<PythonCanDo>canTriggerUniqueFeatureBradelinesWell</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- UNIQUE_FEATURE_BROKEN_SEPULCHER -->
@@ -4715,7 +4712,6 @@
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<PythonCanDo>canTriggerUniqueFeatureBrokenSepulcher</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- UNIQUE_FEATURE_GUARDIAN -->
@@ -4737,7 +4733,6 @@
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<PythonCanDo>canTriggerUniqueFeatureGuardian</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- UNIQUE_FEATURE_LETUM_FRIGUS -->
@@ -4759,7 +4754,6 @@
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<PythonCanDo>canTriggerUniqueFeatureLetumFrigus</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- UNIQUE_FEATURE_LETUM_FRIGUS_ILLIANS -->
@@ -4781,7 +4775,6 @@
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<PythonCanDo>canTriggerUniqueFeatureLetumFrigusIllians</PythonCanDo>
 			<PrereqLeader>LEADER_AURIC</PrereqLeader>
 		</EventTriggerInfo>
@@ -4804,7 +4797,6 @@
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<PythonCanDo>canTriggerUniqueFeaturePyreOfTheSeraphic</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- RABBIT -->
@@ -7097,7 +7089,6 @@
 				<Event>EVENT_MAGNADINE_HIRE_UNITS_MERCENARY</Event>
 				<Event>EVENT_MAGNADINE_HIRE_UNITS_NONE</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- WB_THE_BLACK_TOWER_PICK_CIV -->
 			<Type>EVENTTRIGGER_WB_THE_BLACK_TOWER_PICK_CIV</Type>
@@ -7425,7 +7416,6 @@
 				<Event>EVENT_SHRINE_CAMULOS_2</Event>
 				<Event>EVENT_SHRINE_CAMULOS_3</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<bPickCity>1</bPickCity>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- COUNTERFEIT -->
@@ -7450,7 +7440,6 @@
 				<Event>EVENT_COUNTERFEIT_2</Event>
 				<Event>EVENT_COUNTERFEIT_3</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- FOOD_SICKNESS -->
 			<Type>EVENTTRIGGER_FOOD_SICKNESS</Type>
@@ -7474,7 +7463,6 @@
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
 			<bRecurring>1</bRecurring>
-			<bPickPlayer>1</bPickPlayer>
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDoUnit>canTriggerFoodSicknessUnit</PythonCanDoUnit>
 			<PythonCallback>doFoodSickness</PythonCallback>
@@ -7499,7 +7487,6 @@
 				<Event>EVENT_WEREWOLF_MORALITY_GOOD_1</Event>
 				<Event>EVENT_WEREWOLF_MORALITY_GOOD_2</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- WEREWOLF_MORALITY_BAD -->
 			<Type>EVENTTRIGGER_WEREWOLF_MORALITY_BAD</Type>
@@ -7521,7 +7508,6 @@
 				<Event>EVENT_WEREWOLF_MORALITY_BAD_1</Event>
 				<Event>EVENT_WEREWOLF_MORALITY_BAD_2</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- IRON_ORB -->
 			<Type>EVENTTRIGGER_IRON_ORB</Type>
@@ -7549,7 +7535,6 @@
 				<Event>EVENT_IRON_ORB_2</Event>
 				<Event>EVENT_IRON_ORB_3</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<bPickCity>1</bPickCity>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- ANCIENT_CITY -->
@@ -7573,7 +7558,6 @@
 				<Event>EVENT_ANCIENT_CITY_1</Event>
 				<Event>EVENT_ANCIENT_CITY_2</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<bPickCity>1</bPickCity>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- BAREKE -->
@@ -7598,7 +7582,6 @@
 				<Event>EVENT_BAREKE_2</Event>
 				<Event>EVENT_BAREKE_3</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<bPickCity>1</bPickCity>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- CLAIRONE -->
@@ -7624,7 +7607,6 @@
 			<OrPreReqs>
 				<PrereqTech>TECH_FESTIVALS</PrereqTech>
 			</OrPreReqs>
-			<bPickPlayer>1</bPickPlayer>
 			<bPickCity>1</bPickCity>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- CENTAUR_PANTS -->
@@ -7650,7 +7632,6 @@
 			<OrPreReqs>
 				<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
 			</OrPreReqs>
-			<bPickPlayer>1</bPickPlayer>
 			<PrereqLeader>LEADER_CARDITH</PrereqLeader>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PARITH -->
@@ -7679,7 +7660,6 @@
 				<Event>EVENT_PARITH_NO</Event>
 				<Event>EVENT_PARITH_YES</Event>
 			</Events>
-			<bPickPlayer>1</bPickPlayer>
 			<PythonCanDo>canTriggerParith</PythonCanDo>
 		</EventTriggerInfo>
 		<!-- MORE EVENTS MOD STARTS (lfgr: tweaked) -->
