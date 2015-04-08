@@ -7598,15 +7598,13 @@
 			<EventArt>Art\EventImages\e_clairone.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
+			<iMinPopulation>8</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CLAIRONE_1</Event>
 				<Event>EVENT_CLAIRONE_2</Event>
 			</Events>
-			<OrPreReqs>
-				<PrereqTech>TECH_FESTIVALS</PrereqTech>
-			</OrPreReqs>
 			<bPickCity>1</bPickCity>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- CENTAUR_PANTS -->

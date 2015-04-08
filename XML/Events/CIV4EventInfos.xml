@@ -5492,7 +5492,7 @@
 			<bPickCity>1</bPickCity>
 			<UnitClass>UNITCLASS_ARTIST</UnitClass>
 			<iNumFreeUnits>1</iNumFreeUnits>
-			<iHurryAnger>5</iHurryAnger>
+			<iHurryAnger>3</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
