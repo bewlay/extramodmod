@@ -58,6 +58,7 @@ def writeLog():
 
 	pFile.write("Next Map Rand Value: %d\n" % CyGame().getMapRand().get(10000, "OOS Log"))
 	pFile.write("Next Soren Rand Value: %d\n" % CyGame().getSorenRand().get(10000, "OOS Log"))
+	pFile.write("Turn slice: %d\n" % (CyGame().getTurnSlice() % 4))
 
 	pFile.write("Global counter: %d\n" % CyGame().getGlobalCounter() )
 	pFile.write("Total cities: %d\n" % CyGame().getNumCities() )
