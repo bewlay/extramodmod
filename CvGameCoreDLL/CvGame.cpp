@@ -8869,6 +8869,12 @@ int CvGame::getSorenRandNum(int iNum, const char* pszLog)
  * Uses always different prime numbers for each subcalculation (but always in the same sequence).
  * With the original implementation, minor changes such as one player losing one yield and another one
  * getting it may not appear as a difference because in the normal code they are multiplied by the same value.
+ *
+ * With this implementation, it should be possible to calculate the exact point at which something went wrong if we have the final value
+ * from other computers. In order to prevent overflows, it could switch the problematic values (version and seeds) to the end of the
+ * calculation and reduce prime digits by 1.
+ *
+ * IsOOSVisible should be replaced by direct calls to CvGameTextMgr::setOOSSeeds. If something is different, we have an OOS.
  */
 int CvGame::calculateSyncChecksum()
 {
@@ -8896,7 +8902,7 @@ int CvGame::calculateSyncChecksum()
 
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
 	{
-		CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iI);
+		CvPlayerAI& kPlayer = GET_PLAYER((PlayerTypes)iI);
 		if (kPlayer.isEverAlive())
 		{
 			iValue += getPlayerScore((PlayerTypes)iI) * getNextPrime();
@@ -8965,24 +8971,44 @@ int CvGame::calculateSyncChecksum()
 			iValue += kPlayer.getNumEventsTriggered() * getNextPrime();
 			iValue += kPlayer.getNumTriggersFired() * getNextPrime();
 
-			// City values are in OOSLogger.
-			for (CvCity* pCity = kPlayer.firstCity(&iLoop); NULL != pCity; pCity = kPlayer.nextCity(&iLoop))
+			for (CvCity* pLoopCity = kPlayer.firstCity(&iLoop); NULL != pLoopCity; pLoopCity = kPlayer.nextCity(&iLoop))
 			{
-				iValue += pCity->getX() * getNextPrime();
-				iValue += pCity->getY() * getNextPrime();
-				iValue += pCity->getGameTurnFounded() * getNextPrime();
-				iValue += pCity->getPopulation() * getNextPrime();
-				iValue += pCity->getNumBuildings() * getNextPrime();
-				iValue += pCity->countNumImprovedPlots() * getNextPrime();
-				iValue += pCity->getProductionTurnsLeft() * getNextPrime();
-				iValue += pCity->happyLevel() * getNextPrime();
-				iValue += pCity->unhappyLevel(0) * getNextPrime();
-				iValue += pCity->goodHealth() * getNextPrime();
-				iValue += pCity->badHealth(false) * getNextPrime();
-				iValue += pCity->getWorkingPopulation() * getNextPrime();
-				iValue += pCity->getSpecialistPopulation() * getNextPrime();
-				iValue += pCity->getNumGreatPeople() * getNextPrime();
+				// City values are in OOSLogger.
+				iValue += pLoopCity->getX() * getNextPrime();
+				iValue += pLoopCity->getY() * getNextPrime();
+				iValue += pLoopCity->getGameTurnFounded() * getNextPrime();
+				iValue += pLoopCity->getPopulation() * getNextPrime();
+				iValue += pLoopCity->getNumBuildings() * getNextPrime();
+				iValue += pLoopCity->countNumImprovedPlots() * getNextPrime();
+				iValue += pLoopCity->getProductionTurnsLeft() * getNextPrime();
+				iValue += pLoopCity->happyLevel() * getNextPrime();
+				iValue += pLoopCity->unhappyLevel(0) * getNextPrime();
+				iValue += pLoopCity->goodHealth() * getNextPrime();
+				iValue += pLoopCity->badHealth(false) * getNextPrime();
+				iValue += pLoopCity->getWorkingPopulation() * getNextPrime();
+				iValue += pLoopCity->getSpecialistPopulation() * getNextPrime();
+				iValue += pLoopCity->getNumGreatPeople() * getNextPrime();
+
+				// K-Mod - new checks.
+				// These new values are not shown in OOSLogger.
+				for (iJ = 0; iJ < GC.getNumReligionInfos(); iJ++)
+				{
+					iValue += pLoopCity->isHasReligion((ReligionTypes) iJ) * (iJ + 1) * getNextPrime();
+				}
+				for (iJ = 0; iJ < GC.getNumEventInfos(); iJ++)
+				{
+					iValue += pLoopCity->isEventOccured((EventTypes) iJ) * (iJ + 1) * getNextPrime();
+				}
+				// K-Mod end
 			}
+
+			// K-Mod - new checks.
+			// AI Attitude cache. Not shown in OOSLogger.
+			for (iJ = 0; iJ < MAX_PLAYERS; iJ++)
+			{
+				iValue += kPlayer.AI_getAttitudeVal((PlayerTypes)iJ, false) * getNextPrime();
+			}
+			// K-Mod end
 		}
 	}
 
