@@ -13958,11 +13958,14 @@ void CvUnit::setCombatUnit(CvUnit* pCombatUnit, bool bAttacking)
 						pCombatUnit->getOwnerINLINE(), pCombatUnit->getID(), GET_PLAYER(pCombatUnit->getOwnerINLINE()).getNameKey(), pCombatUnit->getName().GetCString(), pCombatUnit->currCombatStr(pCombatUnit->plot(), this));
 			}
 
+			/* Original BtS code. Moved by K-Mod in order to fix an OOS in pitboss games.
 			if (getDomainType() == DOMAIN_LAND
 				&& !m_pUnitInfo->isIgnoreBuildingDefense()
 				&& pCombatUnit->plot()->getPlotCity()
 				&& pCombatUnit->plot()->getPlotCity()->getBuildingDefense() > 0
 				&& cityAttackModifier() >= GC.getDefineINT("MIN_CITY_ATTACK_MODIFIER_FOR_SIEGE_TOWER"))
+				*/
+			if (showSiegeTower(pCombatUnit)) // K-Mod
 			{
 				CvDLLEntity::SetSiegeTower(true);
 			}
@@ -14007,6 +14010,17 @@ void CvUnit::setCombatUnit(CvUnit* pCombatUnit, bool bAttacking)
 	}
 }
 
+// K-Mod. Return true if the combat animation should include a seige tower
+// (code copied from setCombatUnit, above)
+bool CvUnit::showSiegeTower(CvUnit* pDefender) const
+{
+	return getDomainType() == DOMAIN_LAND
+		&& !m_pUnitInfo->isIgnoreBuildingDefense()
+		&& pDefender->plot()->getPlotCity()
+		&& pDefender->plot()->getPlotCity()->getBuildingDefense() > 0
+		&& cityAttackModifier() >= GC.getDefineINT("MIN_CITY_ATTACK_MODIFIER_FOR_SIEGE_TOWER");
+}
+// K-Mod end
 
 CvUnit* CvUnit::getTransportUnit() const
 {
@@ -15559,8 +15573,13 @@ int CvUnit::planBattle( CvBattleDefinition & kBattleDefinition ) const
 	int extraTime = 0;
 	if((attackerLeader && attackerDie) || (defenderLeader && defenderDie))
 		extraTime = BATTLE_TURNS_MELEE;
-	if(gDLL->getEntityIFace()->GetSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_ATTACKER)->getUnitEntity()) || gDLL->getEntityIFace()->GetSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_DEFENDER)->getUnitEntity()))
+	// K-Mod code for fixing an OOS error in pitboss games.
+	//if(gDLL->getEntityIFace()->GetSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_ATTACKER)->getUnitEntity()) || gDLL->getEntityIFace()->GetSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_DEFENDER)->getUnitEntity()))
+		//extraTime = BATTLE_TURNS_MELEE;
+	if (kBattleDefinition.getUnit(BATTLE_UNIT_ATTACKER)->showSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_DEFENDER)))
+	{
 		extraTime = BATTLE_TURNS_MELEE;
+	}
 
 	return BATTLE_TURNS_SETUP + BATTLE_TURNS_ENDING + kBattleDefinition.getNumMeleeRounds() * BATTLE_TURNS_MELEE + kBattleDefinition.getNumRangedRounds() * BATTLE_TURNS_MELEE + extraTime;
 }

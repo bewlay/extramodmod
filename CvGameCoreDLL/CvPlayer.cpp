@@ -25080,7 +25080,10 @@ void CvPlayer::launch(VictoryTypes eVictory)
 	kTeam.finalizeProjectArtTypes();
 	kTeam.setVictoryCountdown(eVictory, kTeam.getVictoryDelay(eVictory));
 
-	gDLL->getEngineIFace()->AddLaunch(getID());
+	// K-Mod. The spaceship launch causes pitboss to crash
+	if (!gDLL->IsPitbossHost())
+		gDLL->getEngineIFace()->AddLaunch(getID());
+	// K-Mod end.
 
 	kTeam.setCanLaunch(eVictory, false);
 

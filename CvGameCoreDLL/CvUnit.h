@@ -683,6 +683,7 @@ public:
 
 	DllExport CvUnit* getCombatUnit() const;
 	void setCombatUnit(CvUnit* pUnit, bool bAttacking = false);
+	bool showSiegeTower(CvUnit* pDefender) const; // K-Mod
 
 	CvUnit* getTransportUnit() const;																							// Exposed to Python
 	bool isCargo() const;																													// Exposed to Python
