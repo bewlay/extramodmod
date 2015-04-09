@@ -7,6 +7,7 @@ import Popup as PyPopup
 import PyHelpers
 import CvScreenEnums
 import CvCameraControls
+from operator import itemgetter # K-Mod (used to avoid OOS when sorting)
 
 # globals
 gc = CyGlobalContext()
@@ -1149,7 +1150,7 @@ class CustomFunctions:
 
 					ltVeilCities.append( ( iValue, pTargetCity ) )
 
-		ltVeilCities.sort()
+		ltVeilCities.sort(key=itemgetter(0)) # Sorting by pointers can cause OOS.
 		ltVeilCities.reverse()
 		lpVeilCities = []
 		if len( ltVeilCities ) > 0:
