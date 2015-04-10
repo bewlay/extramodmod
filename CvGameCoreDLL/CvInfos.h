@@ -913,6 +913,9 @@ public:
 	bool isRemoveHasCasted() const;
 	bool isResistable() const;
 	bool isSacrificeCaster() const;
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	bool isNoInterruptUnitCycling() const;
+//<<<<Spell Interrupt Unit Cycling: End Add
 	bool isRemoveInvalidFeature() const;	// MNAI
 
 	const TCHAR* getSound() const;
@@ -1021,6 +1024,9 @@ protected:
     bool m_bPush;
     bool m_bRemoveHasCasted;
     bool m_bSacrificeCaster;
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	bool m_bNoInterruptUnitCycling;
+//<<<<Spell Interrupt Unit Cycling: End Add
 	bool m_bRemoveInvalidFeature;	// MNAI
     int m_iChangePopulation;
     int m_iCost;
