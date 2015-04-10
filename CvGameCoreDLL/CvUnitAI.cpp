@@ -2109,6 +2109,7 @@ void CvUnitAI::AI_settleMove()
 /* Gold AI                                                                                      */
 /************************************************************************************************/
 	// No new settling of colonies when AI is in financial trouble
+	/*
 	if( plot()->isCity() && (plot()->getOwnerINLINE() == getOwnerINLINE()) )
 	{
 		if( kOwner.AI_isFinancialTrouble() )
@@ -2116,6 +2117,7 @@ void CvUnitAI::AI_settleMove()
 			iOtherBestFoundValue = 0;
 		}
 	}
+	*/
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
@@ -2130,7 +2132,7 @@ void CvUnitAI::AI_settleMove()
 			}
 		}
 	}
-	
+	/*
 	if ((iAreaBestFoundValue > 0) && plot()->isBestAdjacentFound(getOwnerINLINE()))
 	{
 		if (canFound(plot()))
@@ -2144,6 +2146,7 @@ void CvUnitAI::AI_settleMove()
 			return;
 		}
 	}
+	*/
 
 	if (!GC.getGameINLINE().isOption(GAMEOPTION_ALWAYS_PEACE) && !GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI) && !getGroup()->canDefend())
 	{
@@ -2247,6 +2250,12 @@ void CvUnitAI::AI_workerMove()
 
 	bCanRoute = canBuildRoute();
 	bNextCity = false;
+	const CvPlayerAI& kOwner = GET_PLAYER(getOwnerINLINE());
+
+	if (AI_construct())
+	{
+		return;
+	}
 
 	// Tholal AI - Catch for upgraded worker units
 	if (m_pUnitInfo->getWorkRate() == 0)
@@ -2336,7 +2345,7 @@ void CvUnitAI::AI_workerMove()
 
 **/
 
-    if (GET_PLAYER(getOwnerINLINE()).AI_isPlotThreatened(plot(), 3))
+    if (kOwner.AI_isPlotThreatened(plot(), 3))
     {
         bool bDanger = true;
         if (bDanger)
@@ -2367,7 +2376,8 @@ void CvUnitAI::AI_workerMove()
 				if (!(plot()->isConnectedToCapital()))
 				{
 					ImprovementTypes eImprovement = plot()->getImprovementType();
-					if (NO_IMPROVEMENT != eImprovement && GC.getImprovementInfo(eImprovement).isImprovementBonusTrade(eNonObsoleteBonus))
+					//if (NO_IMPROVEMENT != eImprovement && GC.getImprovementInfo(eImprovement).isImprovementBonusTrade(eNonObsoleteBonus))
+					if (kOwner.doesImprovementConnectBonus(eImprovement, eNonObsoleteBonus))
 					{
 						if (AI_connectPlot(plot()))
 						{
@@ -2474,10 +2484,10 @@ void CvUnitAI::AI_workerMove()
 	if (GC.getGame().getSorenRandNum(5, "AI Worker build Fort with Priority"))
 	{
 		// Super Forts begin *canal* *choke*
-		CvPlayerAI& kPlayer = GET_PLAYER(getOwnerINLINE());
-		bool bCanal = kPlayer.countNumCoastalCities() > 0; //((100 * area()->getNumCities()) / std::max(1, GC.getGame().getNumCities()) < 85);
+		//CvPlayerAI& kPlayer = GET_PLAYER(getOwnerINLINE());
+		bool bCanal = kOwner.countNumCoastalCities() > 0; //((100 * area()->getNumCities()) / std::max(1, GC.getGame().getNumCities()) < 85);
 		bool bAirbase = false;
-		bAirbase = (kPlayer.AI_totalUnitAIs(UNITAI_PARADROP) || kPlayer.AI_totalUnitAIs(UNITAI_ATTACK_AIR) || kPlayer.AI_totalUnitAIs(UNITAI_MISSILE_AIR));
+		bAirbase = (kOwner.AI_totalUnitAIs(UNITAI_PARADROP) || kOwner.AI_totalUnitAIs(UNITAI_ATTACK_AIR) || kOwner.AI_totalUnitAIs(UNITAI_MISSILE_AIR));
 		
 //		if (bCanal || bAirbase)
 //		{
@@ -6264,7 +6274,8 @@ void CvUnitAI::AI_generalMove()
 void CvUnitAI::AI_merchantMove()
 {
 	PROFILE_FUNC();
-
+	logBBAI("    %S (%d) starting MerchantMove", getName().GetCString(), getID());
+	
 	if (AI_construct())
 	{
 		return;
@@ -11775,13 +11786,16 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 					// Bloom - not currently used for any selectable spell promotions in base FFH
 					if (kSpellInfo.getCreateFeatureType() != NO_FEATURE)
 					{
-						if (eUnitAI == UNITAI_TERRAFORMER)
+						if (plot()->getOwner() == getOwner())
 						{
-							iValue += 35;
-						}
-						else
-						{
-							iValue += 10;
+							if (eUnitAI == UNITAI_TERRAFORMER)
+							{
+								iValue += 35;
+							}
+							else
+							{
+								iValue += 10;
+							}
 						}
 					}
 
@@ -14177,6 +14191,7 @@ bool CvUnitAI::AI_goldenAge()
 {
 	if (canGoldenAge(plot()))
 	{
+		logBBAI("    %S (%d) starting Golden Age (%d units used)", getName().GetCString(), getID(), GET_PLAYER(getOwnerINLINE()).unitsRequiredForGoldenAge());
 		getGroup()->pushMission(MISSION_GOLDEN_AGE);
 		return true;
 	}
@@ -20966,7 +20981,8 @@ bool CvUnitAI::AI_irrigateTerritory()
 						{
 							eNonObsoleteBonus = pLoopPlot->getNonObsoleteBonusType(getTeam());
 
-							if ((eImprovement == NO_IMPROVEMENT) || (eNonObsoleteBonus == NO_BONUS) || !(GC.getImprovementInfo(eImprovement).isImprovementBonusTrade(eNonObsoleteBonus)))
+							//if ((eImprovement == NO_IMPROVEMENT) || (eNonObsoleteBonus == NO_BONUS) || !(GC.getImprovementInfo(eImprovement).isImprovementBonusTrade(eNonObsoleteBonus)))
+							if (eImprovement == NO_IMPROVEMENT || eNonObsoleteBonus == NO_BONUS || !GET_PLAYER(getOwnerINLINE()).doesImprovementConnectBonus(eImprovement, eNonObsoleteBonus))
 							{
 								if (pLoopPlot->isIrrigationAvailable(true))
 								{
@@ -21261,6 +21277,7 @@ bool CvUnitAI::AI_improveBonus(int iMinValue, CvPlot** ppBestPlot, BuildTypes* p
 {
 	PROFILE_FUNC();
 
+	const CvPlayerAI& kOwner = GET_PLAYER(getOwnerINLINE());
 	CvPlot* pLoopPlot;
 	CvPlot* pBestPlot;
 	ImprovementTypes eImprovement;
@@ -21404,7 +21421,8 @@ bool CvUnitAI::AI_improveBonus(int iMinValue, CvPlot** ppBestPlot, BuildTypes* p
 									// Super Forts *AI_worker* (added if statement)
 									if(pLoopPlot->getOwnerINLINE() == getOwnerINLINE() || (GC.getImprovementInfo((ImprovementTypes)GC.getBuildInfo(eBuild).getImprovement()).isActsAsCity() && GC.getImprovementInfo((ImprovementTypes)GC.getBuildInfo(eBuild).getImprovement()).isOutsideBorders()))
 									{
-										if (GC.getImprovementInfo((ImprovementTypes) GC.getBuildInfo(eBuild).getImprovement()).isImprovementBonusTrade(eNonObsoleteBonus) || (!pLoopPlot->isCityRadius() && GC.getImprovementInfo((ImprovementTypes) GC.getBuildInfo(eBuild).getImprovement()).isActsAsCity()))
+										//if (GC.getImprovementInfo((ImprovementTypes) GC.getBuildInfo(eBuild).getImprovement()).isImprovementBonusTrade(eNonObsoleteBonus) || (!pLoopPlot->isCityRadius() && GC.getImprovementInfo((ImprovementTypes) GC.getBuildInfo(eBuild).getImprovement()).isActsAsCity()))
+										if (kOwner.doesImprovementConnectBonus((ImprovementTypes)GC.getBuildInfo(eBuild).getImprovement(), eNonObsoleteBonus)) // K-Mod
 										{
 											if (canBuild(pLoopPlot, eBuild))
 											{
@@ -21458,26 +21476,32 @@ bool CvUnitAI::AI_improveBonus(int iMinValue, CvPlot** ppBestPlot, BuildTypes* p
                         {
                         	if (generatePath(pLoopPlot, 0, true, &iPathTurns))
 							{
-								iValue = GET_PLAYER(getOwnerINLINE()).AI_bonusVal(eNonObsoleteBonus);
+								iValue = kOwner.AI_bonusVal(eNonObsoleteBonus);
 
 								if (bDoImprove)
 								{
 									eImprovement = (ImprovementTypes)GC.getBuildInfo(eBestTempBuild).getImprovement();
 									FAssert(eImprovement != NO_IMPROVEMENT);
 									//iValue += (GC.getImprovementInfo((ImprovementTypes) GC.getBuildInfo(eBestTempBuild).getImprovement()))
-									iValue += 5 * pLoopPlot->calculateImprovementYieldChange(eImprovement, YIELD_FOOD, getOwner(), false);
+									iValue += 5 * pLoopPlot->calculateImprovementYieldChange(eImprovement, YIELD_FOOD, getOwnerINLINE(), false);
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/02/21
+//*** Elvish civilization can see the amount of production from forest chopping.
+/*
 									iValue += 5 * pLoopPlot->calculateNatureYield(YIELD_FOOD, getTeam(), (pLoopPlot->getFeatureType() == NO_FEATURE) ? true : (GC.getBuildInfo(eBestTempBuild).isFeatureRemove(pLoopPlot->getFeatureType())
 
 //FfH: Added by Kael 04/24/2008
-                                      && !GC.getCivilizationInfo(getCivilizationType()).isMaintainFeatures(pLoopPlot->getFeatureType()))
+									  && !GC.getCivilizationInfo(getCivilizationType()).isMaintainFeatures(pLoopPlot->getFeatureType()))
 //FfH: End Add
 
 									);
+*/
+									iValue += 5 * pLoopPlot->calculateNatureYield(YIELD_FOOD, getOwnerINLINE(), pLoopPlot->isFeatureRemove(eBestTempBuild));
+//<<<<Unofficial Bug Fix: End Modify
 								}
 
 								iValue += std::max(0, 100 * GC.getBonusInfo(eNonObsoleteBonus).getAIObjective());
 
-								if (GET_PLAYER(getOwnerINLINE()).getNumTradeableBonuses(eNonObsoleteBonus) == 0)
+								if (kOwner.getNumTradeableBonuses(eNonObsoleteBonus) == 0)
 								{
 									iValue *= 2;
 								}
@@ -21492,11 +21516,11 @@ bool CvUnitAI::AI_improveBonus(int iMinValue, CvPlot** ppBestPlot, BuildTypes* p
 									iMaxWorkers = AI_calculatePlotWorkersNeeded(pLoopPlot, eBestTempBuild);
 									if (getPathLastNode()->m_iData1 == 0)
 									{
-										iMaxWorkers = std::min((iMaxWorkers + 1) / 2, 1 + GET_PLAYER(getOwnerINLINE()).AI_baseBonusVal(eNonObsoleteBonus) / 20);
+										iMaxWorkers = std::min((iMaxWorkers + 1) / 2, 1 + kOwner.AI_baseBonusVal(eNonObsoleteBonus) / 20);
 									}
 								}
 
-								if ((GET_PLAYER(getOwnerINLINE()).AI_plotTargetMissionAIs(pLoopPlot, MISSIONAI_BUILD, getGroup()) < iMaxWorkers)
+								if ((kOwner.AI_plotTargetMissionAIs(pLoopPlot, MISSIONAI_BUILD, getGroup()) < iMaxWorkers)
 									&& (!bDoImprove || (pLoopPlot->getBuildTurnsLeft(eBestTempBuild, 0, 0) > (iPathTurns * 2 - 1))))
 								{
 									if (bDoImprove)
@@ -21528,7 +21552,8 @@ bool CvUnitAI::AI_improveBonus(int iMinValue, CvPlot** ppBestPlot, BuildTypes* p
 									{
 										FAssert(bCanRoute && !bIsConnected);
 										eImprovement = pLoopPlot->getImprovementType();
-										if ((eImprovement != NO_IMPROVEMENT) && (GC.getImprovementInfo(eImprovement).isImprovementBonusTrade(eNonObsoleteBonus)))
+										//if ((eImprovement != NO_IMPROVEMENT) && (GC.getImprovementInfo(eImprovement).isImprovementBonusTrade(eNonObsoleteBonus)))
+										if (kOwner.doesImprovementConnectBonus(eImprovement, eNonObsoleteBonus))
 										{
 											iValue *= 1000;
 											iValue /= (iPathTurns + 1);
@@ -21856,7 +21881,8 @@ bool CvUnitAI::AI_connectBonus(bool bTestTrade)
 				{
 					if (!(pLoopPlot->isConnectedToCapital()))
 					{
-						if (!bTestTrade || ((pLoopPlot->getImprovementType() != NO_IMPROVEMENT) && (GC.getImprovementInfo(pLoopPlot->getImprovementType()).isImprovementBonusTrade(eNonObsoleteBonus))))
+						//if (!bTestTrade || ((pLoopPlot->getImprovementType() != NO_IMPROVEMENT) && (GC.getImprovementInfo(pLoopPlot->getImprovementType()).isImprovementBonusTrade(eNonObsoleteBonus))))
+						if (!bTestTrade || GET_PLAYER(getOwnerINLINE()).doesImprovementConnectBonus(pLoopPlot->getImprovementType(), eNonObsoleteBonus))
 						{
 							if (AI_connectPlot(pLoopPlot))
 							{
@@ -24270,33 +24296,36 @@ bool CvUnitAI::AI_trade(int iValueThreshold)
 		{
 			for (pLoopCity = GET_PLAYER((PlayerTypes)iI).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER((PlayerTypes)iI).nextCity(&iLoop))
 			{
-				if (AI_plotValid(pLoopCity->plot()))
+				if (pLoopCity->isRevealed(getTeam(), false))
 				{
-                    if (getTeam() != pLoopCity->getTeam())
-				    {
-                        iValue = getTradeGold(pLoopCity->plot());
+					if (AI_plotValid(pLoopCity->plot()))
+					{
+						if (getTeam() != pLoopCity->getTeam())
+						{
+							iValue = getTradeGold(pLoopCity->plot());
 
-                        if ((iValue >= iValueThreshold) && canTrade(pLoopCity->plot(), true))
-                        {
-                            if (!(pLoopCity->plot()->isVisibleEnemyUnit(this)))
-                            {
-                                if (generatePath(pLoopCity->plot(), 0, true, &iPathTurns))
-                                {
-                                    FAssert(iPathTurns > 0);
+							if ((iValue >= iValueThreshold) && canTrade(pLoopCity->plot(), true))
+							{
+								if (!(pLoopCity->plot()->isVisibleEnemyUnit(this)))
+								{
+									if (generatePath(pLoopCity->plot(), 0, true, &iPathTurns))
+									{
+										FAssert(iPathTurns > 0);
 
-                                    iValue /= (4 + iPathTurns);
+										iValue /= (4 + iPathTurns);
 
-                                    if (iValue > iBestValue)
-                                    {
-                                        iBestValue = iValue;
-                                        pBestPlot = getPathEndTurnPlot();
-                                        pBestTradePlot = pLoopCity->plot();
-                                    }
-                                }
+										if (iValue > iBestValue)
+										{
+											iBestValue = iValue;
+											pBestPlot = getPathEndTurnPlot();
+											pBestTradePlot = pLoopCity->plot();
+										}
+									}
 
-                            }
-                        }
-				    }
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -24306,12 +24335,14 @@ bool CvUnitAI::AI_trade(int iValueThreshold)
 	{
 		if (atPlot(pBestTradePlot))
 		{
+			logBBAI("    %S (%d) starting Trade Mission at %d, %d", getName().GetCString(), getID(), pBestPlot->getX(), pBestPlot->getY());
 			getGroup()->pushMission(MISSION_TRADE);
 			return true;
 		}
 		else
 		{
 			FAssert(!atPlot(pBestPlot));
+			logBBAI("    %S (%d) moving to %d, %d for Trade Mission", getName().GetCString(), getID(), pBestPlot->getX(), pBestPlot->getY());
 			getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
 			return true;
 		}
@@ -25269,7 +25300,8 @@ int CvUnitAI::AI_pillageValue(CvPlot* pPlot, int iBonusValueThreshold)
 
 		if (eNonObsoleteBonus != NO_BONUS)
 		{
-			if (GC.getImprovementInfo(eImprovement).isImprovementBonusTrade(eNonObsoleteBonus))
+			//if (GC.getImprovementInfo(eImprovement).isImprovementBonusTrade(eNonObsoleteBonus))
+			if (GET_PLAYER(pPlot->getOwnerINLINE()).doesImprovementConnectBonus(eImprovement, eNonObsoleteBonus)) // K-Mod
 			{
 				iTempValue = iBonusValue * 4;
 
@@ -27132,9 +27164,9 @@ void CvUnitAI::AI_PatrolMove()
 		}
 	}
 
-	if (!bHero && (GET_TEAM(getTeam()).getAtWarCount(false) == 0))
+	if (!bHero)
 	{
-		if (!bDanger || !bInCity)
+		if ((GET_TEAM(getTeam()).getAtWarCount(false) == 0) || (!bDanger || !bInCity))
 		{
 			if (AI_group(UNITAI_SETTLE, 3, -1, -1, false, false, false, 3, false))
 			{
@@ -28253,6 +28285,10 @@ void CvUnitAI::AI_ConquestMove()
 					}
 					else
 					{
+						if( gUnitLogLevel >= 3 )
+						{
+							logBBAI("       ...merging into group on plot");
+						}
 						getGroup()->mergeIntoGroup(pBestUnit->getGroup());
 	                    return;
 					}
@@ -29776,6 +29812,18 @@ void CvUnitAI::AI_terraformerMove()
 		return;
 	}
 
+	if (GET_PLAYER(getOwnerINLINE()).getDisableSpellcasting() > 0)
+	{
+		if (AI_retreatToCity())
+		{
+			if( gUnitLogLevel >= 3)
+			{
+				logBBAI("       ...retreating to city due to disabled spellcasting\n");
+			}
+			return;
+		}
+	}
+
 	if (plot()->isCity() && (GET_PLAYER(getOwnerINLINE()).AI_getAnyPlotDanger(plot(), 3)))
 	{
         getGroup()->pushMission(MISSION_SKIP);
@@ -29788,6 +29836,16 @@ void CvUnitAI::AI_terraformerMove()
     long lResult=-1;
     gDLL->getPythonIFace()->callFunction(PYGameModule, "AI_MageTurn", argsList1.makeFunctionArgs(), &lResult);
     delete pyUnit1;	// python fxn must not hold on to this pointer
+	if( gUnitLogLevel >= 3)
+	{
+		logBBAI("     ...python result of %d\n", lResult);
+	
+		if (isHasCasted())
+		{
+			logBBAI("     ...unit has already cast a spell this turn\n");
+		}
+	}
+	
     if (lResult != 1)
     {
 		// lResult of 2 means that the unit has been told to move somewhere or 
@@ -29801,12 +29859,21 @@ void CvUnitAI::AI_terraformerMove()
 			}
 			else
 			{
+				if( gUnitLogLevel >= 3)
+				{
+					logBBAI("     ...choosing a spell...\n");
+				}				
 				int iSpell = chooseSpell();
 				if (iSpell != NO_SPELL)
 				{
 					cast(iSpell);
+					return;
 				}
-				return;
+				else // we have someplace to go but no useful spell to cast at the moment
+				{
+					getGroup()->pushMission(MISSION_SKIP);
+					return;
+				}
 			}
 		}
 
@@ -29838,12 +29905,13 @@ void CvUnitAI::AI_terraformerMove()
 		return;
     }
 	// Tholal note: terraformers can get stuck in loop, if they've casted, are at a terraformable plot and have movement left
-	/*
+	
 	if (isHasCasted())
 	{
-		getGroup()->pushMission(MISSION_SKIP);
+		getGroup()->pushMission(MISSION_SENTRY);
+		//finishMoves();
 	}
-	*/
+	
 	return;
 }
 //returns true if the Unit can Summon stuff

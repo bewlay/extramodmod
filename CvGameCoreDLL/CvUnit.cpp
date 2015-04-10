@@ -1038,6 +1038,12 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 
     GC.getGameINLINE().changeGlobalCounter(-1 * m_pUnitInfo->getModifyGlobalCounter());
 
+	if (bIllusion) // Make sure that we properly adjust the stats when an Illusionary unit is removed from the game
+	{
+		GC.getGameINLINE().decrementUnitCreatedCount(getUnitType());
+		GC.getGameINLINE().decrementUnitClassCreatedCount((UnitClassTypes)(m_pUnitInfo->getUnitClassType()));
+	}
+
 	for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
 	{
 	    if (isHasPromotion((PromotionTypes)iI))
@@ -1058,7 +1064,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 	    }
 	}
 	if (isWorldUnitClass((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) && GC.getGameINLINE().getUnitClassCreatedCount((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) == 1
-		&& !m_pUnitInfo->isObject())
+		&& !m_pUnitInfo->isObject() && !bIllusion)
 	{
 		for (int iI = 0; iI < MAX_PLAYERS; iI++)
 		{
@@ -7663,17 +7669,6 @@ TechTypes CvUnit::getDiscoveryTech() const
 
 int CvUnit::getDiscoverResearch(TechTypes eTech) const
 {
-	int iResearch;
-
-	iResearch = (m_pUnitInfo->getBaseDiscover() + (m_pUnitInfo->getDiscoverMultiplier() * GET_TEAM(getTeam()).getTotalPopulation()));
-
-	iResearch *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitDiscoverPercent();
-	iResearch /= 100;
-
-    if (eTech != NO_TECH)
-    {
-        iResearch = std::min(GET_TEAM(getTeam()).getResearchLeft(eTech), iResearch);
-    }
 
 //FfH: Added by Kael 08/18/2008
     if (isHasCasted())
@@ -7681,6 +7676,20 @@ int CvUnit::getDiscoverResearch(TechTypes eTech) const
         return 0;
     }
 //FfH: End Add
+
+	int iResearch;
+
+    if (eTech != NO_TECH)
+    {
+        iResearch = std::min(GET_TEAM(getTeam()).getResearchLeft(eTech), iResearch);
+    }
+	else
+	{
+		iResearch = (m_pUnitInfo->getBaseDiscover() + (m_pUnitInfo->getDiscoverMultiplier() * GET_TEAM(getTeam()).getTotalPopulation()));
+
+		iResearch *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitDiscoverPercent();
+		iResearch /= 100;
+	}
 
 	return std::max(0, iResearch);
 }

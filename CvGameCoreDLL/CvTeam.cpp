@@ -6622,6 +6622,26 @@ void CvTeam::changeImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes e
 	}
 }
 
+// K-Mod. In the original code, there seems to be a lot of confusion about what the exact conditions are for a bonus being connected.
+// There were heaps of bugs where CvImprovementInfo::isImprovementBonusTrade was mistakenly used as the sole condition for a bonus being connected or not.
+// I created this function to make the situation a bit more clear...
+bool CvTeam::doesImprovementConnectBonus(ImprovementTypes eImprovement, BonusTypes eBonus) const
+{
+	FAssert(eImprovement < GC.getNumImprovementInfos());
+	FAssert(eBonus < GC.getNumBonusInfos());
+
+	if (eImprovement == NO_IMPROVEMENT || eBonus == NO_BONUS)
+		return false;
+
+	const CvImprovementInfo& kImprovementInfo = GC.getImprovementInfo(eImprovement);
+	const CvBonusInfo& kBonusInfo = GC.getBonusInfo(eBonus);
+
+	if (!isHasTech((TechTypes)kBonusInfo.getTechCityTrade()) || (kBonusInfo.getTechObsolete() != NO_TECH && isHasTech((TechTypes)kBonusInfo.getTechObsolete())))
+		return false;
+
+	return kImprovementInfo.isImprovementBonusTrade(eBonus) || kImprovementInfo.isActsAsCity();
+}
+// K-Mod end
 // Protected Functions...
 
 void CvTeam::doWarWeariness()
@@ -6818,13 +6838,15 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 	CvPlot* pLoopPlot;
 	BonusTypes eBonus;
 	int iI, iJ;
+	
+	CvTechInfo& kTech = GC.getTechInfo(eTech); 
 
-	if (GC.getTechInfo(eTech).isExtraWaterSeeFrom())
+	if (kTech.isExtraWaterSeeFrom())
 	{
 		changeExtraWaterSeeFromCount(iChange);
 	}
 
-	if (GC.getTechInfo(eTech).isMapCentering())
+	if (kTech.isMapCentering())
 	{
 		if (iChange > 0)
 		{
@@ -6832,22 +6854,22 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 		}
 	}
 
-	if (GC.getTechInfo(eTech).isMapTrading())
+	if (kTech.isMapTrading())
 	{
 		changeMapTradingCount(iChange);
 	}
 
-	if (GC.getTechInfo(eTech).isTechTrading())
+	if (kTech.isTechTrading())
 	{
 		changeTechTradingCount(iChange);
 	}
 
-	if (GC.getTechInfo(eTech).isGoldTrading())
+	if (kTech.isGoldTrading())
 	{
 		changeGoldTradingCount(iChange);
 	}
 
-	if (GC.getTechInfo(eTech).isOpenBordersTrading())
+	if (kTech.isOpenBordersTrading())
 	{
 		changeOpenBordersTradingCount(iChange);
 	}
@@ -6856,56 +6878,56 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 /*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
-	if (GC.getTechInfo(eTech).isLimitedBordersTrading())
+	if (kTech.isLimitedBordersTrading())
 	{
 		changeLimitedBordersTradingCount(iChange);
 	}
 	
-	if (GC.getTechInfo(eTech).isEmbassyTrading())
+	if (kTech.isEmbassyTrading())
 	{
 		changeEmbassyTradingCount(iChange);
 	}
 /************************************************************************************************/
 /* Afforess	                     END                                                            */
 /************************************************************************************************/
-	if (GC.getTechInfo(eTech).isDefensivePactTrading())
+	if (kTech.isDefensivePactTrading())
 	{
 		changeDefensivePactTradingCount(iChange);
 	}
 
-	if (GC.getTechInfo(eTech).isPermanentAllianceTrading())
+	if (kTech.isPermanentAllianceTrading())
 	{
 		changePermanentAllianceTradingCount(iChange);
 	}
 
-	if (GC.getTechInfo(eTech).isVassalStateTrading())
+	if (kTech.isVassalStateTrading())
 	{
 		changeVassalTradingCount(iChange);
 	}
 
 // MNAI - Puppet States
-	if (GC.getTechInfo(eTech).isPuppetStateTrading())
+	if (kTech.isPuppetStateTrading())
 	{
 		changePuppetTradingCount(iChange);
 	}
 // MNAI - End Puppet States
 
-	if (GC.getTechInfo(eTech).isBridgeBuilding())
+	if (kTech.isBridgeBuilding())
 	{
 		changeBridgeBuildingCount(iChange);
 	}
 
-	if (GC.getTechInfo(eTech).isIrrigation())
+	if (kTech.isIrrigation())
 	{
 		changeIrrigationCount(iChange);
 	}
 
-	if (GC.getTechInfo(eTech).isIgnoreIrrigation())
+	if (kTech.isIgnoreIrrigation())
 	{
 		changeIgnoreIrrigationCount(iChange);
 	}
 
-	if (GC.getTechInfo(eTech).isWaterWork())
+	if (kTech.isWaterWork())
 	{
 		changeWaterWorkCount(iChange);
 	}
@@ -6917,12 +6939,12 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 
 	for (iI = 0; iI < NUM_DOMAIN_TYPES; iI++)
 	{
-		changeExtraMoves(((DomainTypes)iI), (GC.getTechInfo(eTech).getDomainExtraMoves(iI) * iChange));
+		changeExtraMoves(((DomainTypes)iI), (kTech.getDomainExtraMoves(iI) * iChange));
 	}
 
 	for (iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
 	{
-		if (GC.getTechInfo(eTech).isCommerceFlexible(iI))
+		if (kTech.isCommerceFlexible(iI))
 		{
 			changeCommerceFlexibleCount(((CommerceTypes)iI), iChange);
 		}
@@ -6930,13 +6952,13 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 
 	for (iI = 0; iI < GC.getNumTerrainInfos(); iI++)
 	{
-		if (GC.getTechInfo(eTech).isTerrainTrade(iI))
+		if (kTech.isTerrainTrade(iI))
 		{
 			changeTerrainTradeCount(((TerrainTypes)iI), iChange);
 		}
 	}
 
-	if (GC.getTechInfo(eTech).isRiverTrade())
+	if (kTech.isRiverTrade())
 	{
 		changeRiverTradeCount(iChange);
 	}
@@ -6969,14 +6991,14 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 	{
 		if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
 		{
-			GET_PLAYER((PlayerTypes)iI).changeFeatureProductionModifier(GC.getTechInfo(eTech).getFeatureProductionModifier() * iChange);
-			GET_PLAYER((PlayerTypes)iI).changeWorkerSpeedModifier(GC.getTechInfo(eTech).getWorkerSpeedModifier() * iChange);
-			GET_PLAYER((PlayerTypes)iI).changeTradeRoutes(GC.getTechInfo(eTech).getTradeRoutes() * iChange);
-			GET_PLAYER((PlayerTypes)iI).changeExtraHealth(GC.getTechInfo(eTech).getHealth() * iChange);
-			GET_PLAYER((PlayerTypes)iI).changeExtraHappiness(GC.getTechInfo(eTech).getHappiness() * iChange);
+			GET_PLAYER((PlayerTypes)iI).changeFeatureProductionModifier(kTech.getFeatureProductionModifier() * iChange);
+			GET_PLAYER((PlayerTypes)iI).changeWorkerSpeedModifier(kTech.getWorkerSpeedModifier() * iChange);
+			GET_PLAYER((PlayerTypes)iI).changeTradeRoutes(kTech.getTradeRoutes() * iChange);
+			GET_PLAYER((PlayerTypes)iI).changeExtraHealth(kTech.getHealth() * iChange);
+			GET_PLAYER((PlayerTypes)iI).changeExtraHappiness(kTech.getHappiness() * iChange);
 
-			GET_PLAYER((PlayerTypes)iI).changeAssets(GC.getTechInfo(eTech).getAssetValue() * iChange);
-			GET_PLAYER((PlayerTypes)iI).changePower(GC.getTechInfo(eTech).getPowerValue() * iChange);
+			GET_PLAYER((PlayerTypes)iI).changeAssets(kTech.getAssetValue() * iChange);
+			GET_PLAYER((PlayerTypes)iI).changePower(kTech.getPowerValue() * iChange);
 			GET_PLAYER((PlayerTypes)iI).changeTechScore(getTechScore(eTech) * iChange);
 		}
 	}
