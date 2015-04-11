@@ -1295,7 +1295,7 @@ void CvMapGenerator::addImprovements()
 
 						int iProbability = GC.getImprovementInfo( eImprovement ).getAppearanceProbability();
 						
-                        if( iProbability > 0 && pPlot->canHaveImprovement( eImprovement, NO_TEAM ) )
+                        if( iProbability > 0 && pPlot->canHaveImprovement( eImprovement, NO_PLAYER ) )
                         {
 							bool bGuardian = false;
 							for( int eLoopSpawn = 0; !bGuardian && eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
