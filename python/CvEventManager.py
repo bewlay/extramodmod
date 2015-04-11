@@ -643,11 +643,12 @@ class CvEventManager:
 
 		CvAdvisorUtils.resetNoLiberateCities()
 ## Hidden XML game option stabilizer by platyping ##
-		for i in xrange(gc.getNumGameOptionInfos()):
-			Info = gc.getGameOptionInfo(i)
-			if Info.getVisible(): continue
-			# Enforce that hidden game options have the values they are supposed to have.
-			CyGame().setOption(i, Info.getDefault())
+		if not CyGame().getWBMapScript(): # Scenarios are allowed to have any game options.
+			for i in xrange(gc.getNumGameOptionInfos()):
+				Info = gc.getGameOptionInfo(i)
+				if Info.getVisible(): continue
+				# Enforce that hidden game options have the values they are supposed to have.
+				CyGame().setOption(i, Info.getDefault())
 ## Hidden XML game option stabilizer END ##
 
 	def onGameEnd(self, argsList):
