@@ -194,7 +194,6 @@
 			<iMaxRandomPromotions>2</iMaxRandomPromotions>
 			<UnitPromotions>
 				<PromotionType>PROMOTION_BLITZ</PromotionType>
-				<PromotionType>PROMOTION_FEAR</PromotionType>
 				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
 				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
 				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
