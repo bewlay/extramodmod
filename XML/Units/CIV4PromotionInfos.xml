@@ -8117,6 +8117,14 @@
             <Button>Art/Interface/Buttons/Units/Wolf_Pack.dds</Button>
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_COMPELLING_JEWEL</Type>
+            <Description>TXT_KEY_EQUIPMENT_COMPELLING_JEWEL</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Equipment/compellingjewel.dds</Button>
+			<iCombatCapturePercent>10</iCombatCapturePercent>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
         <PromotionInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
             <Type>PROMOTION_HAUBERK_OF_ABJURATION</Type>
             <Description>TXT_KEY_EQUIPMENT_HAUBERK_OF_ABJURATION</Description>

@@ -26306,6 +26306,45 @@
 			<bCanMoveLimitedBorders>1</bCanMoveLimitedBorders>
 		</UnitInfo>
 		<UnitInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
+			<Class>EQUIPMENTCLASS_COMPELLING_JEWEL</Class>
+			<Type>EQUIPMENT_COMPELLING_JEWEL</Type>
+			<Capture>EQUIPMENTCLASS_COMPELLING_JEWEL</Capture>
+			<Domain>DOMAIN_IMMOBILE</Domain>
+			<DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
+			<Description>TXT_KEY_EQUIPMENT_COMPELLING_JEWEL</Description>
+			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Advisor>ADVISOR_MILITARY</Advisor>
+			<bQuickCombat>1</bQuickCombat>
+			<bMechanized>1</bMechanized>
+			<UnitAIs>
+				<UnitAI>
+					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+			</UnitAIs>
+			<iCost>-1</iCost>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iNukeRange>-1</iNukeRange>
+			<iCombat>0</iCombat>
+			<iCombatLimit>100</iCombatLimit>
+			<UnitMeshGroups>
+				<iGroupSize>1</iGroupSize>
+				<fMaxSpeed>1.75</fMaxSpeed>
+				<fPadTime>1</fPadTime>
+				<iMeleeWaveSize>1</iMeleeWaveSize>
+				<iRangedWaveSize>0</iRangedWaveSize>
+				<UnitMeshGroup>
+					<iRequired>1</iRequired>
+					<EarlyArtDefineTag>ART_DEF_EQUIPMENT_TREASURE</EarlyArtDefineTag>
+				</UnitMeshGroup>
+			</UnitMeshGroups>
+			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<bGraphicalOnly>1</bGraphicalOnly>
+			<bObject>1</bObject>
+			<EquipmentPromotion>PROMOTION_COMPELLING_JEWEL</EquipmentPromotion>
+		</UnitInfo>
+		<UnitInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
 			<Class>EQUIPMENTCLASS_HAUBERK_OF_ABJURATION</Class>
 			<Type>EQUIPMENT_HAUBERK_OF_ABJURATION</Type>
 			<Capture>EQUIPMENTCLASS_HAUBERK_OF_ABJURATION</Capture>

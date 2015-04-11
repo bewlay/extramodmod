@@ -5,6 +5,38 @@
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<!-- New equipment text -->
 	<TEXT>
+		<Tag>TXT_KEY_EQUIPMENT_COMPELLING_JEWEL</Tag>
+		<English>Compelling Jewel</English>
+		<French>Compelling Jewel</French>
+		<German>Compelling Jewel</German>
+		<Italian>Compelling Jewel</Italian>
+		<Spanish>Joya de la Persuasión</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_COMPELLING_JEWEL</Tag>
+		<English>In the depths of the lair, your unit finds a group of corpses kneeling in front of a throne. Sitting in the throne, another long-dead body is holding a magic jewel.</English>
+		<French>In the depths of the lair, your unit finds a group of corpses kneeling in front of a throne. Sitting in the throne, another long-dead body is holding a magic jewel.</French>
+		<German>In the depths of the lair, your unit finds a group of corpses kneeling in front of a throne. Sitting in the throne, another long-dead body is holding a magic jewel.</German>
+		<Italian>In the depths of the lair, your unit finds a group of corpses kneeling in front of a throne. Sitting in the throne, another long-dead body is holding a magic jewel.</Italian>
+		<Spanish>En las profundidades de la guarida, tu unidad encuentra a un grupo de cadáveres arrodillados en frente de un trono. Sentado en dicho trono, otro cadáver antiguo sujeta una joya mágica.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_COMPELLING_JEWEL</Tag>
+		<English>Drop Compelling Jewel</English>
+		<French>Drop Compelling Jewel</French>
+		<German>Drop Compelling Jewel</German>
+		<Italian>Drop Compelling Jewel</Italian>
+		<Spanish>Dejar Joya de la Persuasión</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_COMPELLING_JEWEL</Tag>
+		<English>Take Compelling Jewel</English>
+		<French>Take Compelling Jewel</French>
+		<German>Take Compelling Jewel</German>
+		<Italian>Take Compelling Jewel</Italian>
+		<Spanish>Tomar Joya de la Persuasión</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_EQUIPMENT_HAUBERK_OF_ABJURATION</Tag>
 		<English>Hauberk of Abjuration</English>
 		<French>Hauberk of Abjuration</French>
@@ -36,5 +68,4 @@
 		<Italian>Take Hauberk of Abjuration</Italian>
 		<Spanish>Tomar Armadura de Abjuración</Spanish>
 	</TEXT>
-
 </Civ4GameText>
