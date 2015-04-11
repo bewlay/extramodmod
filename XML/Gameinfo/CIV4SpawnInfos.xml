@@ -212,6 +212,42 @@
 				</IncludedSpawn>
 			</IncludedSpawns>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WIGHT -->
+			<Type>SPAWN_EXPLO_BOSS_WIGHT</Type>
+			<iBaseWeight>-25</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BARROW_GHOUL</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>4</iMinSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<bNoDefender>1</bNoDefender>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WIGHT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>1</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_FEAR</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_STRENGTH</PromotionType>
+				<PromotionType>PROMOTION_HEROIC_DEFENSE</PromotionType>
+				<PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+				<PromotionType>PROMOTION_MOBILITY1</PromotionType>
+				<PromotionType>PROMOTION_SHADOWWALK</PromotionType>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
+			<iMinIncludedSpawns>1</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>1</iMaxIncludedSpawns>
+			<IncludedSpawns>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_GHOUL</SpawnType>
+				</IncludedSpawn>
+			</IncludedSpawns>
+		</SpawnInfo>
 		
 		<!-- Animal -->
 		<SpawnInfo> <!-- SPAWN_EXPLO_SCORPION_1 -->
@@ -1116,6 +1152,21 @@
 				<SpawnUnit>
 					<Unit>UNIT_SKELETON</Unit>
 					<iNumUnits>5</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_GHOUL -->
+			<Type>SPAWN_EXPLO_COMP_GHOUL</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BARROW_GHOUL</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>6</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_GHOUL</Unit>
+					<iNumUnits>3</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
