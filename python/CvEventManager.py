@@ -2315,6 +2315,8 @@ class CvEventManager:
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_AMURITES",()),'art/interface/popups/Dain.dds')
 				elif iLeader == gc.getInfoTypeForString('LEADER_DECIUS'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_DECIUS",()),'art/interface/popups/Decius.dds')
+				elif iLeader == gc.getInfoTypeForString('LEADER_DECIUS_EXTRA'):
+					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_DECIUS",()),'art/interface/popups/Decius.dds')
 				elif iLeader == gc.getInfoTypeForString('LEADER_EINION'):
 					cf.addPopup(CyTranslator().getText("TXT_KEY_POPUP_DEFEATED_ELOHIM",()),'art/interface/popups/Einion.dds')
 				elif iLeader == gc.getInfoTypeForString('LEADER_ETHNE'):
