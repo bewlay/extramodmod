@@ -934,19 +934,44 @@ class StagingPage(wx.wizard.WizardPageSimple):
 		self.optionsSizer.Add(centerSizer, 0, wx.ALIGN_CENTER_HORIZONTAL)
 
 		# Create the CheckBox side
-		optionsBorder = wx.StaticBox(self, -1, ((localText.getText("TXT_KEY_PITBOSS_GAME_OPTIONS", ()))))
-		checkBoxSizer = wx.StaticBoxSizer(optionsBorder, wx.VERTICAL)
+		optionsBorder1 = wx.StaticBox(self, -1, ((localText.getText("TXT_KEY_PITBOSS_GAME_OPTIONS", ()) + ' 1')))
+		checkBoxSizer1 = wx.StaticBoxSizer(optionsBorder1, wx.VERTICAL)
+		optionsBorder2 = wx.StaticBox(self, -1, ((localText.getText("TXT_KEY_PITBOSS_GAME_OPTIONS", ()) + ' 2')))
+		checkBoxSizer2 = wx.StaticBoxSizer(optionsBorder2, wx.VERTICAL)
+		optionsBorder3 = wx.StaticBox(self, -1, ((localText.getText("TXT_KEY_PITBOSS_GAME_OPTIONS", ()) + ' 3')))
+		checkBoxSizer3 = wx.StaticBoxSizer(optionsBorder3, wx.VERTICAL)
+		optionsBorder4 = wx.StaticBox(self, -1, ((localText.getText("TXT_KEY_PITBOSS_GAME_OPTIONS", ()) + ' 4')))
+		checkBoxSizer4 = wx.StaticBoxSizer(optionsBorder4, wx.VERTICAL)
 
 		# Create and add the Options checkboxes
 		rowNum = 0
+		iTotal = 0
 		for rowNum in range(PB.getNumOptions()):
-			checkBox = wx.CheckBox(self, rowNum, (PB.getOptionDescAt(rowNum)))
-			checkBox.SetValue(gameData.getOptionAt(rowNum))
-			checkBoxSizer.Add(checkBox, 0, wx.TOP, 5)
-			self.optionArray.append(checkBox)
-			self.Bind(wx.EVT_CHECKBOX, self.OnOptionChoice, checkBox)
+			if PB.isOptionValid(rowNum):
+				iTotal = iTotal + 1
 
-		self.optionsSizer.Add(checkBoxSizer, 0, wx.LEFT, 10)
+		iCurrent = 0
+
+		for rowNum in range(PB.getNumOptions()):
+			if PB.isOptionValid(rowNum):
+				checkBox = wx.CheckBox(self, rowNum, (PB.getOptionDescAt(rowNum)))
+				checkBox.SetValue(gameData.getOptionAt(rowNum))
+				if iCurrent < iTotal / 4:
+					checkBoxSizer1.Add(checkBox, 0, wx.TOP, 5)
+				elif iCurrent < iTotal / 2:
+					checkBoxSizer2.Add(checkBox, 0, wx.TOP, 5)
+				elif iCurrent < (3 * iTotal) / 4:
+					checkBoxSizer3.Add(checkBox, 0, wx.TOP, 5)
+				else:
+					checkBoxSizer4.Add(checkBox, 0, wx.TOP, 5)
+				iCurrent = iCurrent + 1
+				self.optionArray.append(checkBox)
+				self.Bind(wx.EVT_CHECKBOX, self.OnOptionChoice, checkBox)
+
+		self.optionsSizer.Add(checkBoxSizer1, 0, wx.LEFT, 10)
+		self.optionsSizer.Add(checkBoxSizer2, 0, wx.LEFT, 10)
+		self.optionsSizer.Add(checkBoxSizer3, 0, wx.LEFT, 10)
+		self.optionsSizer.Add(checkBoxSizer4, 0, wx.LEFT, 10)
 
 		# Entry box for number of advanced start points
 		advancedStartPointsSizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -984,7 +1009,7 @@ class StagingPage(wx.wizard.WizardPageSimple):
 		for rowNum in range(PB.getNumHandicaps()):
 			diffList.append((PB.getHandicapAt(rowNum)))
 
-		playerPanel = wx.lib.scrolledpanel.ScrolledPanel(self, -1, size=(425, 300), style = wx.SUNKEN_BORDER)
+		playerPanel = wx.lib.scrolledpanel.ScrolledPanel(self, -1, size=(625, 400), style = wx.SUNKEN_BORDER)
 		panelSizer = wx.BoxSizer(wx.VERTICAL)
 
 		# Create a row - enough for the max players in a Pitboss game
@@ -1329,8 +1354,9 @@ class StagingPage(wx.wizard.WizardPageSimple):
 		# Set the options selected
 		rowNum = 0
 		for rowNum in range(PB.getNumOptions()):
-			self.optionArray[rowNum].SetValue(gameData.getOptionAt(rowNum))
-			self.optionArray[rowNum].Enable(not bSaved and not PB.forceOptions() and PB.isOptionValid(rowNum))
+			if PB.isOptionValid(rowNum):
+				self.optionArray[rowNum].SetValue(gameData.getOptionAt(rowNum))
+				self.optionArray[rowNum].Enable(not bSaved and not PB.forceOptions() and PB.isOptionValid(rowNum))
 
 		# Have the app suggest number of players based on map size
 		PB.suggestPlayerSetup()
