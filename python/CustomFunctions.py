@@ -396,7 +396,7 @@ class CustomFunctions:
 					dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENRAGED', ['PROMOTION_ENRAGED'] ) )
 			if( pUnit.getLevel() == 1 and iChallenge >= 35 ) :
 				dslOutcomes['Bad'].append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DEATH', 'DEATH' ) )
-				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, "Your Unit receives the Burning Blood Promotion", ['PROMOTION_BURNING_BLOOD'] ) ) # LFGR_TODO
+				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BURNING_BLOOD', ['PROMOTION_BURNING_BLOOD'] ) )
 			if( iExploLevel < 25 and iChallenge >= 35 ) :
 				if( pUnit.isAlive() ) :
 					dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CRAZED', ['PROMOTION_CRAZED'] ) )
@@ -427,7 +427,7 @@ class CustomFunctions:
 					dslOutcomes['Good'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_SUPPLIES' ) )
 					dslOutcomes['Good'].append( ( 'Goody', 80, 'GOODY_EXPLORE_LAIR_ITEM_HEALING_SALVE' ) )
 			if( iChallenge >= 35 and iChallenge < 60 ) :
-				dslOutcomes['Good'].append( ( 'Promotions', 80, True, "Your Unit receives the Courage Promotion", ['PROMOTION_COURAGE'] ) ) # LFGR_TODO
+				dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COURAGE', ['PROMOTION_COURAGE'] ) )
 				if( bMelee ) :
 					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENCHANTED_BLADE', ['PROMOTION_ENCHANTED_BLADE'] ) )
 				if( bAdept ) :
@@ -449,7 +449,7 @@ class CustomFunctions:
 							if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_BRONZE_WEAPONS' ) ) ):
 								dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BRONZE_WEAPONS', ['PROMOTION_BRONZE_WEAPONS'] ) )
 			if( iChallenge >= 60 ) :
-				dslOutcomes['Good'].append( ( 'Promotions', 100, True, "Your Unit receives the Valor Promotion", ['PROMOTION_VALOR'] ) ) # LFGR_TODO
+				dslOutcomes['Good'].append( ( 'Promotions', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_VALOR', ['PROMOTION_VALOR'] ) )
 				dslOutcomes['Good'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_TREASURE_VAULT' ) )
 				dslOutcomes['Good'].append( ( 'Goody', 100, 'GOODY_GRAVE_TECH' ) )
 				dslOutcomes['Good'].append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_GOLDEN_AGE', 'GOLDEN_AGE' ) )
