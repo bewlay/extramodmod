@@ -5790,7 +5790,7 @@
             <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
             <Button>Art/Interface/Buttons/techtree/currency.dds</Button>
         </SpellInfo>
-        <SpellInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
+        <SpellInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
             <Type>SPELL_DROP_COMPELLING_JEWEL_ITEM</Type>
             <Description>TXT_KEY_SPELL_DROP_COMPELLING_JEWEL</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -5847,7 +5847,7 @@
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Equipment/compellingjewel.dds</Button>
         </SpellInfo>
-        <SpellInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
+        <SpellInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
             <Type>SPELL_DROP_HEART_AMULET_ITEM</Type>
             <Description>TXT_KEY_SPELL_DROP_HEART_AMULET</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -5903,6 +5903,63 @@
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Equipment/heartamulet.dds</Button>
+        </SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>SPELL_DROP_MENACING_HELM_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_MENACING_HELM</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_MENACING_HELM</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_MENACING_HELM</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_MENACING_HELM</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_MENACING_HELM')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/menacinghelm.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_TAKE_MENACING_HELM_PROMOTION</Type>
+            <Description>TXT_KEY_SPELL_TAKE_MENACING_HELM</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
+            <PromotionInStackPrereq>PROMOTION_MENACING_HELM</PromotionInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>50</iAIWeight>
+            <bHasCasted>1</bHasCasted>
+            <bAbility>1</bAbility>
+            <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_MENACING_HELM')</PyResult>
+            <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_MENACING_HELM')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/menacinghelm.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_TAKE_MENACING_HELM_UNIT</Type>
+            <Description>TXT_KEY_SPELL_TAKE_MENACING_HELM</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
+            <UnitInStackPrereq>EQUIPMENT_MENACING_HELM</UnitInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>500</iAIWeight>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_MENACING_HELM</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_MENACING_HELM')</PyResult>
+            <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_MENACING_HELM')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/menacinghelm.dds</Button>
         </SpellInfo>
         <SpellInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
             <Type>SPELL_DROP_HAUBERK_OF_ABJURATION_ITEM</Type>

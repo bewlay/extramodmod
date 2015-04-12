@@ -8118,6 +8118,14 @@
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
         <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_COMPELLING_JEWEL</Type>
+            <Description>TXT_KEY_EQUIPMENT_COMPELLING_JEWEL</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Equipment/compellingjewel.dds</Button>
+			<iCombatCapturePercent>10</iCombatCapturePercent>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
             <Type>PROMOTION_HEART_AMULET</Type>
             <Description>TXT_KEY_EQUIPMENT_HEART_AMULET</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
@@ -8129,11 +8137,11 @@
             <bEquipment>1</bEquipment>
         </PromotionInfo>
         <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
-            <Type>PROMOTION_COMPELLING_JEWEL</Type>
-            <Description>TXT_KEY_EQUIPMENT_COMPELLING_JEWEL</Description>
+            <Type>PROMOTION_MENACING_HELM</Type>
+            <Description>TXT_KEY_EQUIPMENT_MENACING_HELM</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
-            <Button>Art/Interface/Buttons/Equipment/compellingjewel.dds</Button>
-			<iCombatCapturePercent>10</iCombatCapturePercent>
+            <Button>Art/Interface/Buttons/Equipment/menacinghelm.dds</Button>
+			<bFear>1</bFear>
             <bEquipment>1</bEquipment>
         </PromotionInfo>
         <PromotionInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
