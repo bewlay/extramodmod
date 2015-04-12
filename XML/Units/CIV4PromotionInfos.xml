@@ -8200,6 +8200,14 @@
             <bEquipment>1</bEquipment>
         </PromotionInfo>
         <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_RADIANT_AMULET</Type>
+            <Description>TXT_KEY_EQUIPMENT_RADIANT_AMULET</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Equipment/radiantamulet.dds</Button>
+            <bSeeInvisible>1</bSeeInvisible>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
             <Type>PROMOTION_WYRMSLAYER</Type>
             <Description>TXT_KEY_EQUIPMENT_WYRMSLAYER</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>

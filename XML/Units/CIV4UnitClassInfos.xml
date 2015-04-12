@@ -2342,6 +2342,15 @@
 			<DefaultUnit>EQUIPMENT_OBSIDIAN_SPEAR</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+			<Type>EQUIPMENTCLASS_RADIANT_AMULET</Type>
+			<Description>TXT_KEY_EQUIPMENT_RADIANT_AMULET</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>EQUIPMENT_RADIANT_AMULET</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
 			<Type>EQUIPMENTCLASS_WYRMSLAYER</Type>
 			<Description>TXT_KEY_EQUIPMENT_WYRMSLAYER</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>

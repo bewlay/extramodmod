@@ -220,6 +220,38 @@
 		<Italian>Take Obsidian Spear</Italian>
 		<Spanish>Tomar Lanza de Obsidiana</Spanish>
 	</TEXT>
+	<TEXT> <!-- Master of Mana -->
+		<Tag>TXT_KEY_EQUIPMENT_RADIANT_AMULET</Tag>
+		<English>Radiant Amulet</English>
+		<French>Radiant Amulet</French>
+		<German>Radiant Amulet</German>
+		<Italian>Radiant Amulet</Italian>
+		<Spanish>Amuleto Radiante</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_RADIANT_AMULET</Tag>
+		<English>After nearly becoming lost forever in the dark shadows of the lair, your unit finds a magic amulet which allows it to find the true path.</English>
+		<French>After nearly becoming lost forever in the dark shadows of the lair, your unit finds a magic amulet which allows it to find the true path.</French>
+		<German>After nearly becoming lost forever in the dark shadows of the lair, your unit finds a magic amulet which allows it to find the true path.</German>
+		<Italian>After nearly becoming lost forever in the dark shadows of the lair, your unit finds a magic amulet which allows it to find the true path.</Italian>
+		<Spanish>Tras casi perderse para siempre en las oscuras sombras de la guarida, tu unidad encuentra un amuleto mágico que le permite encontrar el auténtico camino a seguir.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_RADIANT_AMULET</Tag>
+		<English>Drop Radiant Amulet</English>
+		<French>Drop Radiant Amulet</French>
+		<German>Drop Radiant Amulet</German>
+		<Italian>Drop Radiant Amulet</Italian>
+		<Spanish>Dejar Amuleto Radiante</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_RADIANT_AMULET</Tag>
+		<English>Take Radiant Amulet</English>
+		<French>Take Radiant Amulet</French>
+		<German>Take Radiant Amulet</German>
+		<Italian>Take Radiant Amulet</Italian>
+		<Spanish>Tomar Amuleto Radiante</Spanish>
+	</TEXT>
 	<TEXT> <!-- Art from Master of Mana -->
 		<Tag>TXT_KEY_EQUIPMENT_WYRMSLAYER</Tag>
 		<English>Wyrmslayer</English>

@@ -489,6 +489,7 @@ class CustomFunctions:
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_HEART_AMULET' ) )
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_MENACING_HELM' ) )
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_WYRMSLAYER' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_RADIANT_AMULET' ) )
 
 					if( bArcher ) :
 						dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_ANCIENT_BOW' ) )
