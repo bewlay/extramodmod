@@ -8180,6 +8180,15 @@
             <Button>Art/Interface/Buttons/Equipment/patrianartifact.dds</Button>
             <bEquipment>1</bEquipment>
         </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_WYRMSLAYER</Type>
+            <Description>TXT_KEY_EQUIPMENT_WYRMSLAYER</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Equipment/wyrmslayer.dds</Button>
+            <PromotionCombatType>PROMOTION_DRAGON</PromotionCombatType>
+            <iPromotionCombatMod>100</iPromotionCombatMod>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
 <!-- MORE EVENTS MOD STARTS -->		
 		<PromotionInfo>
             <Type>PROMOTION_PIKE_OF_TEARS</Type>

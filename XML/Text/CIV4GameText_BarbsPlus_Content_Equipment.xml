@@ -188,4 +188,36 @@
 		<Italian>Drop Patrian Artifact</Italian>
 		<Spanish>Dejar Artefacto de Patria</Spanish>
 	</TEXT>
+	<TEXT> <!-- art from Master of Mana -->
+		<Tag>TXT_KEY_EQUIPMENT_WYRMSLAYER</Tag>
+		<English>Wyrmslayer</English>
+		<French>Wyrmslayer</French>
+		<German>Wyrmslayer</German>
+		<Italian>Wyrmslayer</Italian>
+		<Spanish>Matadragones</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_WYRMSLAYER</Tag>
+		<English>Your unit finds an ancient weapon from the Age of Dragons, the Wyrmslayer.</English>
+		<French>Your unit finds an ancient weapon from the Age of Dragons, the Wyrmslayer.</French>
+		<German>Your unit finds an ancient weapon from the Age of Dragons, the Wyrmslayer.</German>
+		<Italian>Your unit finds an ancient weapon from the Age of Dragons, the Wyrmslayer.</Italian>
+		<Spanish>Tu unidad encuentra un arma antigua de la Edad de los Dragones, la Matadragones.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_WYRMSLAYER</Tag>
+		<English>Drop Wyrmslayer</English>
+		<French>Drop Wyrmslayer</French>
+		<German>Drop Wyrmslayer</German>
+		<Italian>Drop Wyrmslayer</Italian>
+		<Spanish>Dejar Matadragones</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_WYRMSLAYER</Tag>
+		<English>Take Wyrmslayer</English>
+		<French>Take Wyrmslayer</French>
+		<German>Take Wyrmslayer</German>
+		<Italian>Take Wyrmslayer</Italian>
+		<Spanish>Tomar Matadragones</Spanish>
+	</TEXT>
 </Civ4GameText>

@@ -6095,5 +6095,62 @@
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Equipment/patrianartifact.dds</Button>
         </SpellInfo>
+        <SpellInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>SPELL_DROP_WYRMSLAYER_ITEM</Type>
+            <Description>TXT_KEY_SPELL_DROP_WYRMSLAYER</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+			<Help>TXT_KEY_SPELL_DROP_EQUIPMENT_HELP</Help>
+            <PromotionPrereq1>PROMOTION_WYRMSLAYER</PromotionPrereq1>
+            <bAllowAI>0</bAllowAI>
+            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+            <bHasCasted>1</bHasCasted>
+            <RemovePromotionType1>PROMOTION_WYRMSLAYER</RemovePromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <CreateUnitType>EQUIPMENT_WYRMSLAYER</CreateUnitType>
+            <iCreateUnitNum>1</iCreateUnitNum>
+            <bPermanentUnitCreate>1</bPermanentUnitCreate>
+            <bAbility>1</bAbility>
+            <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_WYRMSLAYER')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/wyrmslayer.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_TAKE_WYRMSLAYER_PROMOTION</Type>
+            <Description>TXT_KEY_SPELL_TAKE_WYRMSLAYER</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
+            <PromotionInStackPrereq>PROMOTION_WYRMSLAYER</PromotionInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>50</iAIWeight>
+            <bHasCasted>1</bHasCasted>
+            <bAbility>1</bAbility>
+            <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_WYRMSLAYER')</PyResult>
+            <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_WYRMSLAYER')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/wyrmslayer.dds</Button>
+        </SpellInfo>
+        <SpellInfo>
+            <Type>SPELL_TAKE_WYRMSLAYER_UNIT</Type>
+            <Description>TXT_KEY_SPELL_TAKE_WYRMSLAYER</Description>
+            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help>TXT_KEY_SPELL_TAKE_EQUIPMENT_HELP</Help>
+            <UnitInStackPrereq>EQUIPMENT_WYRMSLAYER</UnitInStackPrereq>
+            <bAllowAI>1</bAllowAI>
+            <iAIWeight>500</iAIWeight>
+            <bHasCasted>1</bHasCasted>
+            <AddPromotionType1>PROMOTION_WYRMSLAYER</AddPromotionType1>
+            <bBuffCasterOnly>1</bBuffCasterOnly>
+            <bAbility>1</bAbility>
+            <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_WYRMSLAYER')</PyResult>
+            <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_WYRMSLAYER')</PyRequirement>
+            <Effect>EFFECT_SPELL1</Effect>
+            <Sound>AS3D_SPELL_TRAIN</Sound>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Equipment/wyrmslayer.dds</Button>
+        </SpellInfo>
     </SpellInfos>
 </Civ4SpellInfos>

@@ -2332,6 +2332,15 @@
 			<iInstanceCostModifier>0</iInstanceCostModifier>
 			<DefaultUnit>EQUIPMENT_HAUBERK_OF_ABJURATION</DefaultUnit>
 		</UnitClassInfo>
+		<UnitClassInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+			<Type>EQUIPMENTCLASS_WYRMSLAYER</Type>
+			<Description>TXT_KEY_EQUIPMENT_WYRMSLAYER</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>EQUIPMENT_WYRMSLAYER</DefaultUnit>
+		</UnitClassInfo>
 <!-- MORE EVENTS MOD STARTS -->		
 		<UnitClassInfo>
 			<Type>EQUIPMENTCLASS_PIKE_OF_TEARS</Type>
