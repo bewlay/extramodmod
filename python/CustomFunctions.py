@@ -234,6 +234,9 @@ class CustomFunctions:
 				pUnit.setHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_BRONZE_WEAPONS' ), False )
 			elif( sType == 'GOLDEN_AGE' ) :
 				pPlayer.changeGoldenAgeTurns( CyGame().goldenAgeLength() )
+			elif( sType == 'COUNCIL_OF_ESUS' ) :
+				pUnit.setReligion( self.saveGetInfoType( gc.getNumReligionInfos(), 'RELIGION_COUNCIL_OF_ESUS' ))
+				pUnit.setHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_ESUS_AGENT' ), True )
 			else :
 				raise Exception( "Unknown special outcome type: %s" % ( tOutcome[0] ) )
 		
@@ -369,6 +372,7 @@ class CustomFunctions:
 		bMalakim = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_MALAKIM" ) )
 		bMercurians = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_MERCURIANS" ) )
 		bSheaim = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_SHEAIM" ) )
+		bSvartalfar = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_SVARTALFAR" ) )
 		
 		bGood = ( pPlayer.getAlignment() == gc.getInfoTypeForString( 'ALIGNMENT_GOOD' ) )
 		
@@ -467,7 +471,8 @@ class CustomFunctions:
 							dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ASHEN' ) )
 						if( bMalakim or bHasTrade ) :
 							dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_EMPYREAN' ) )
-						# LFGR_TODO: Council of Esus: Svartalfar or Trade
+						if( bSvartalfar or bHasTrade ):
+							dslOutcomes['Religion'].append( ( 'Special', 90, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COUNCIL_OF_ESUS', 'COUNCIL_OF_ESUS' ) )
 						if( bBannor or bHasCodeOfLaws ) :
 							dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ORDER' ) )
 				if( pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_CRAZED' ) ) ) : # Enraged isn't sufficient

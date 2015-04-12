@@ -112,6 +112,14 @@
 		<Spanish>Un poder oscuro influencia a tu unidad, otorgándole una fuerza sacrílega y una insaciable sed de sangre.</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_COUNCIL_OF_ESUS</Tag>
+		<English>Your unit finds an ancient shrine dedicated to the god of Deceit. What it believes to have found inside changes its life forever.</English>
+		<French>Your unit finds an ancient shrine dedicated to the god of Deceit. What it believes to have found inside changes its life forever.</French>
+		<German>Your unit finds an ancient shrine dedicated to the god of Deceit. What it believes to have found inside changes its life forever.</German>
+		<Italian>Your unit finds an ancient shrine dedicated to the god of Deceit. What it believes to have found inside changes its life forever.</Italian>
+		<Spanish>Tu unidad encuentra un antiguo santuario dedicado al dios del Engaño. Lo que cree haber encontrado dentro cambia su vida para siempre.</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_COURAGE</Tag>
 		<English>The dangers faced in the lair have strengthened the resolve of your unit.</English>
 		<French>The dangers faced in the lair have strengthened the resolve of your unit.</French>
