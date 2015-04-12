@@ -1087,6 +1087,26 @@
 			<iMinBarbarians>0</iMinBarbarians>
 		</GoodyInfo>
 		<GoodyInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
+			<Type>GOODY_EXPLORE_LAIR_ITEM_HEART_AMULET</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_HEART_AMULET</Description>
+			<Sound>AS2D_GOODY_GOLD</Sound>
+			<iGold>0</iGold>
+			<iGoldRand1>0</iGoldRand1>
+			<iGoldRand2>0</iGoldRand2>
+			<iMapOffset>0</iMapOffset>
+			<iMapRange>0</iMapRange>
+			<iMapProb>0</iMapProb>
+			<iExperience>0</iExperience>
+			<iHealing>0</iHealing>
+			<iDamagePrereq>0</iDamagePrereq>
+			<bTech>0</bTech>
+			<bBad>0</bBad>
+			<UnitClass>EQUIPMENTCLASS_HEART_AMULET</UnitClass>
+			<BarbarianClass>NONE</BarbarianClass>
+			<iBarbarianUnitProb>0</iBarbarianUnitProb>
+			<iMinBarbarians>0</iMinBarbarians>
+		</GoodyInfo>
+		<GoodyInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
 			<Type>GOODY_EXPLORE_LAIR_ITEM_COMPELLING_JEWEL</Type>
 			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_COMPELLING_JEWEL</Description>
 			<Sound>AS2D_GOODY_GOLD</Sound>

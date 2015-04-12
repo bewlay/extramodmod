@@ -4,7 +4,39 @@
 -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<!-- New equipment text -->
+	<TEXT> <!-- Rise from Erebus -->
+		<Tag>TXT_KEY_EQUIPMENT_HEART_AMULET</Tag>
+		<English>Heart Amulet</English>
+		<French>Heart Amulet</French>
+		<German>Heart Amulet</German>
+		<Italian>Heart Amulet</Italian>
+		<Spanish>Amuleto Corazón</Spanish>
+	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_HEART_AMULET</Tag>
+		<English>Hidden under a pile of rubble, your unit finds a Heart Amulet.</English>
+		<French>Hidden under a pile of rubble, your unit finds a Heart Amulet.</French>
+		<German>Hidden under a pile of rubble, your unit finds a Heart Amulet.</German>
+		<Italian>Hidden under a pile of rubble, your unit finds a Heart Amulet.</Italian>
+		<Spanish>Bajo una pila de escombros, tu unidad encuentra un Amuleto Corazón.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_HEART_AMULET</Tag>
+		<English>Drop Heart Amulet</English>
+		<French>Drop Heart Amulet</French>
+		<German>Drop Heart Amulet</German>
+		<Italian>Drop Heart Amulet</Italian>
+		<Spanish>Dejar Amuleto Corazón</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_HEART_AMULET</Tag>
+		<English>Take Heart Amulet</English>
+		<French>Take Heart Amulet</French>
+		<German>Take Heart Amulet</German>
+		<Italian>Take Heart Amulet</Italian>
+		<Spanish>Tomar Amuleto Corazón</Spanish>
+	</TEXT>
+	<TEXT> <!-- Rise from Erebus -->
 		<Tag>TXT_KEY_EQUIPMENT_COMPELLING_JEWEL</Tag>
 		<English>Compelling Jewel</English>
 		<French>Compelling Jewel</French>
@@ -36,7 +68,7 @@
 		<Italian>Take Compelling Jewel</Italian>
 		<Spanish>Tomar Joya de la Persuasión</Spanish>
 	</TEXT>
-	<TEXT>
+	<TEXT> <!-- Rise from Erebus -->
 		<Tag>TXT_KEY_EQUIPMENT_HAUBERK_OF_ABJURATION</Tag>
 		<English>Hauberk of Abjuration</English>
 		<French>Hauberk of Abjuration</French>

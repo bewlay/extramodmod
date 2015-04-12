@@ -8118,6 +8118,17 @@
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
         <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_HEART_AMULET</Type>
+            <Description>TXT_KEY_EQUIPMENT_HEART_AMULET</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <bAlwaysHeal>1</bAlwaysHeal>
+            <iEnemyHealChange>10</iEnemyHealChange>
+            <iNeutralHealChange>10</iNeutralHealChange>
+            <iFriendlyHealChange>10</iFriendlyHealChange>
+            <Button>Art/Interface/Buttons/Equipment/heartamulet.dds</Button>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
             <Type>PROMOTION_COMPELLING_JEWEL</Type>
             <Description>TXT_KEY_EQUIPMENT_COMPELLING_JEWEL</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>

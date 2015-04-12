@@ -2288,6 +2288,15 @@
 			<DefaultUnit>UNIT_WIGHT</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
+			<Type>EQUIPMENTCLASS_HEART_AMULET</Type>
+			<Description>TXT_KEY_EQUIPMENT_HEART_AMULET</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>EQUIPMENT_HEART_AMULET</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
 			<Type>EQUIPMENTCLASS_COMPELLING_JEWEL</Type>
 			<Description>TXT_KEY_EQUIPMENT_COMPELLING_JEWEL</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
