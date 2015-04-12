@@ -96,6 +96,14 @@
 		<Spanish>Descubres una densa veta de mithril bajo la guarida.</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_BLESS</Tag>
+		<English>The forces of good bless your unit.</English>
+		<French>The forces of good bless your unit.</French>
+		<German>The forces of good bless your unit.</German>
+		<Italian>The forces of good bless your unit.</Italian>
+		<Spanish>Los poderes del bien bendicen a tu unidad.</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_BURNING_BLOOD</Tag>
 		<English>A dark power influences your unit, granting it unholy strength and unquenchable bloodthirst.</English>
 		<French>A dark power influences your unit, granting it unholy strength and unquenchable bloodthirst.</French>

@@ -438,6 +438,8 @@ class CustomFunctions:
 					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_FLAMING_ARROWS', ['PROMOTION_FLAMING_ARROWS'] ) )
 				if( bDisciple ) :
 					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_SHIELD_OF_FAITH', ['PROMOTION_SHIELD_OF_FAITH'] ) )
+				if( bGood ):
+					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BLESS', ['PROMOTION_BLESS'] ) )
 				
 				if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 1 ) :
 					if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_MITHRIL_WEAPONS' ) ) ) :
