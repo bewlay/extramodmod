@@ -8181,6 +8181,25 @@
             <bEquipment>1</bEquipment>
         </PromotionInfo>
         <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_OBSIDIAN_SPEAR</Type>
+            <Description>TXT_KEY_EQUIPMENT_OBSIDIAN_SPEAR</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+                    <iUnitCombatMod>80</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
+            <UnitCombats>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+            </UnitCombats>
+            <Button>Art/Interface/Buttons/Equipment/obsidianspear.dds</Button>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
             <Type>PROMOTION_WYRMSLAYER</Type>
             <Description>TXT_KEY_EQUIPMENT_WYRMSLAYER</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>

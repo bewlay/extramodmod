@@ -188,7 +188,39 @@
 		<Italian>Drop Patrian Artifact</Italian>
 		<Spanish>Dejar Artefacto de Patria</Spanish>
 	</TEXT>
-	<TEXT> <!-- art from Master of Mana -->
+	<TEXT> <!-- Platyping, art from Master of Mana -->
+		<Tag>TXT_KEY_EQUIPMENT_OBSIDIAN_SPEAR</Tag>
+		<English>Obsidian Spear</English>
+		<French>Obsidian Spear</French>
+		<German>Obsidian Spear</German>
+		<Italian>Obsidian Spear</Italian>
+		<Spanish>Lanza de Obsidiana</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_OBSIDIAN_SPEAR</Tag>
+		<English>Your unit finds an extremely heavy and durable spear in one of the darkest corridors of the lair.</English>
+		<French>Your unit finds an extremely heavy and durable spear in one of the darkest corridors of the lair.</French>
+		<German>Your unit finds an extremely heavy and durable spear in one of the darkest corridors of the lair.</German>
+		<Italian>Your unit finds an extremely heavy and durable spear in one of the darkest corridors of the lair.</Italian>
+		<Spanish>Tu unidad halla una lanza extremadamente pesada y duradera en uno de los más oscuros pasadizos de la guarida.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_OBSIDIAN_SPEAR</Tag>
+		<English>Drop Obsidian Spear</English>
+		<French>Drop Obsidian Spear</French>
+		<German>Drop Obsidian Spear</German>
+		<Italian>Drop Obsidian Spear</Italian>
+		<Spanish>Dejar Lanza de Obsidiana</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_OBSIDIAN_SPEAR</Tag>
+		<English>Take Obsidian Spear</English>
+		<French>Take Obsidian Spear</French>
+		<German>Take Obsidian Spear</German>
+		<Italian>Take Obsidian Spear</Italian>
+		<Spanish>Tomar Lanza de Obsidiana</Spanish>
+	</TEXT>
+	<TEXT> <!-- Art from Master of Mana -->
 		<Tag>TXT_KEY_EQUIPMENT_WYRMSLAYER</Tag>
 		<English>Wyrmslayer</English>
 		<French>Wyrmslayer</French>
