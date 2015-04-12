@@ -488,6 +488,7 @@ class CustomFunctions:
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_COMPELLING_JEWEL' ) )
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_HEART_AMULET' ) )
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_MENACING_HELM' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_ANCIENT_BOW' ) )
 					
 					if( bHasHunting and not bHasPoisons ) :
 						dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ASSASSIN' ) )

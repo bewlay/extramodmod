@@ -4,6 +4,38 @@
 -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<!-- New equipment text -->
+	<TEXT> <!-- Rise from Erebus, art from Master of Mana -->
+		<Tag>TXT_KEY_EQUIPMENT_ANCIENT_BOW</Tag>
+		<English>Ancient Bow</English>
+		<French>Ancient Bow</French>
+		<German>Ancient Bow</German>
+		<Italian>Ancient Bow</Italian>
+		<Spanish>Arco Ancestral</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_ANCIENT_BOW</Tag>
+		<English>Your unit uncovers a weapon from past ages, the Ancient Bow.</English>
+		<French>Your unit uncovers a weapon from past ages, the Ancient Bow.</French>
+		<German>Your unit uncovers a weapon from past ages, the Ancient Bow.</German>
+		<Italian>Your unit uncovers a weapon from past ages, the Ancient Bow.</Italian>
+		<Spanish>Tu unidad encuentra un arma de eras pasadas, el Arco Ancestral.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_ANCIENT_BOW</Tag>
+		<English>Drop Ancient Bow</English>
+		<French>Drop Ancient Bow</French>
+		<German>Drop Ancient Bow</German>
+		<Italian>Drop Ancient Bow</Italian>
+		<Spanish>Dejar Arco Ancestral</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_ANCIENT_BOW</Tag>
+		<English>Take Ancient Bow</English>
+		<French>Take Ancient Bow</French>
+		<German>Take Ancient Bow</German>
+		<Italian>Take Ancient Bow</Italian>
+		<Spanish>Tomar Arco Ancestral</Spanish>
+	</TEXT>
 	<TEXT> <!-- Rise from Erebus -->
 		<Tag>TXT_KEY_EQUIPMENT_COMPELLING_JEWEL</Tag>
 		<English>Compelling Jewel</English>

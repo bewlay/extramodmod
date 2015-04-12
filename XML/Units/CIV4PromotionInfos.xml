@@ -8118,6 +8118,27 @@
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
         <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_ANCIENT_BOW</Type>
+            <Description>TXT_KEY_EQUIPMENT_ANCIENT_BOW</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+                    <iUnitCombatMod>25</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
+            <UnitCombats>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+            </UnitCombats>
+            <Button>Art/Interface/Buttons/Equipment/ancientbow.dds</Button>
+            <bEquipment>1</bEquipment>
+            <iDefensiveStrikeChance>10</iDefensiveStrikeChance>
+            <iDefensiveStrikeDamage>5</iDefensiveStrikeDamage>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
             <Type>PROMOTION_COMPELLING_JEWEL</Type>
             <Description>TXT_KEY_EQUIPMENT_COMPELLING_JEWEL</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
