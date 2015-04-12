@@ -1068,12 +1068,6 @@ def doPenguins(argsList):
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	pPlot.setBonusType(gc.getInfoTypeForString('BONUS_PENGUINS'))
 
-def canTriggerPickAlignment(argsList):
-	kTriggeredData = argsList[0]
-	if CyGame().getWBMapScript():
-		return False
-	return True
-
 def doPickAlignment1(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]

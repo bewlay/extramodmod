@@ -4326,8 +4326,7 @@
 				<Event>EVENT_PICK_ALIGNMENT_2</Event>
 				<Event>EVENT_PICK_ALIGNMENT_3</Event>
 			</Events>
-			<PythonCanDo>canTriggerPickAlignment</PythonCanDo>
-			<PrereqLeader>LEADER_DECIUS</PrereqLeader>
+			<PrereqLeader>LEADER_DECIUS_EXTRA</PrereqLeader>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PRAIRIE_DOGS -->
 			<Type>EVENTTRIGGER_PRAIRIE_DOGS</Type>

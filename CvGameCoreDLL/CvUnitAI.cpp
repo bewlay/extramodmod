@@ -29154,10 +29154,17 @@ bool CvUnitAI::AI_Lokimove()
 		joinGroup(NULL);
 	}
 
+
 	// HARDCODE!
     if (plot()->isCity())
 	{
-		if (!bFinancialTrouble && plot()->getPlotCity()->getCulture(plot()->getPlotCity()->getOwnerINLINE())==0)
+		int iVictoryLevel = plot()->getPlotCity()->getCultureThreshold(GC.getGameINLINE().culturalVictoryCultureLevel());
+		int iCultureLevel = plot()->getPlotCity()->getCulture(plot()->getPlotCity()->getOwnerINLINE());
+		bool bIsNearLegendary = ((2 * iCultureLevel) > iVictoryLevel) && !(iCultureLevel > iVictoryLevel);
+		if (!bFinancialTrouble &&
+				(iCultureLevel <= 1 || iCultureLevel == (iVictoryLevel - 1) &&
+				plot()->getPlotCity()->getTeam() != getTeam() &&
+				!(GET_TEAM(plot()->getPlotCity()->getTeam())).isVassal(getTeam())))
 	    {
 			if (canCast(GC.getDefineINT("SPELL_DISRUPT"),false))
 				cast(GC.getDefineINT("SPELL_DISRUPT"));
@@ -29203,14 +29210,25 @@ bool CvUnitAI::AI_Lokimove()
 						{
 							if (generatePath(pLoopCity->plot(), 0, true, &iPathTurns))
 							{
-								iValue = pLoopCity->getPopulation();
+								iValue = 2 * pLoopCity->getPopulation();
 
-								if (pLoopCity->getCulture(pLoopCity->getOwnerINLINE())==0)
+								int iCultureLevel = pLoopCity->getCulture((PlayerTypes)iI);
+								int iVictoryLevel = pLoopCity->getCultureThreshold(GC.getGameINLINE().culturalVictoryCultureLevel());
+
+								if (iCultureLevel == (iVictoryLevel - 1))
 								{
-									iValue *= 20;
+									// Loki will try to delay cultural victories.
+									iValue *= 15;
 								}
-								
-								iValue /= iPathTurns;
+								else if (iCultureLevel <= 1)
+								{
+									// Cities with small cultural levels are good targets in order to help with expanding Balseraph frontiers.
+									iValue *= 5;
+								}
+
+								// When targetting cities, Loki should not wander far away from its own territory.
+								int iDistance = plotDistance(pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE(), kPlayer.getCapitalCity()->getX_INLINE(), kPlayer.getCapitalCity()->getY_INLINE());
+								iValue /= iDistance;
 
 								if (iValue > iBestValue)
 								{

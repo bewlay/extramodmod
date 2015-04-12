@@ -298,6 +298,14 @@
 		<Spanish>[ICON_BULLET]Bendición crea un efecto temporal (representado como un edificio) en la ciudad que permanece hasta que el lanzador se marcha. Las unidades vivas se producen mas rápidamente en las ciudades que tengan una Bendición, y comienzan con la promoción Fuerte. También abre un espacio de especialista para todos los tipos de especialistas.</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_SPELL_DISRUPT_PYHELP</Tag>
+		<English>[ICON_BULLET]Will remove %d1 [ICON_CULTURE] from %s2</English>
+		<French>[ICON_BULLET]Will remove %d1 [ICON_CULTURE] from %s2</French>
+		<German>[ICON_BULLET]Will remove %d1 [ICON_CULTURE] from %s2</German>
+		<Italian>[ICON_BULLET]Will remove %d1 [ICON_CULTURE] from %s2</Italian>
+		<Spanish>[ICON_BULLET]Eliminará %d1 [ICON_CULTURE] de %s2</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_SPELL_GROWTH</Tag>
 		<English>Cause Growth</English>
 		<French>Cause Growth</French>

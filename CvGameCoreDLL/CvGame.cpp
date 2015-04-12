@@ -7863,8 +7863,8 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 	bool bVerbose = true;
 
 	logBBAI( "WILDERNESS - Creating Semi-Random %s Spawn", bAnimal ? "animal" : "barb" );
-
-	SpawnTypes eBestSpawn = NO_SPAWN;
+	
+	int* aiValues = new int[GC.getNumSpawnInfos()];
 	int iBestValue = 0;
 
 	for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
@@ -7883,21 +7883,64 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 		{
 			int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn );
 
-			if( bVerbose && iValue > 0 )
+			if( iValue > 0 && bVerbose )
 				logBBAI( "WILDERNESS - SpawnInfo %s: %d", kLoopSpawn.getType(), iValue );
 
-			if( iValue > 0 )
-			{
-				iValue += getSorenRandNum(100, "Barb Unit Selection");
+			if( iValue > iBestValue )
+				iBestValue = iValue;
 
-				if( iValue > iBestValue || ( iValue == iBestValue && getSorenRandNum( 2, "Bob" ) == 1 ) )
-				{
-					eBestSpawn = (SpawnTypes) eLoopSpawn;
-					iBestValue = iValue;
-				}
+			aiValues[eLoopSpawn] = max( iValue, 0 );
+		}
+		else
+			aiValues[eLoopSpawn] = 0;
+	}
+	
+	SpawnTypes eBestSpawn = NO_SPAWN;
+	
+	if( bVerbose )
+		logBBAI( "WILDERNESS - Best Value: %d", iBestValue );
+
+	if( iBestValue > 0 )
+	{
+		int iTotalValue = 0;
+
+		for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+		{
+			if( aiValues[eLoopSpawn] > 0 )
+			{
+				aiValues[eLoopSpawn] += 100 - iBestValue;
+
+				if( aiValues[eLoopSpawn] > 0 ) // still?
+					iTotalValue += aiValues[eLoopSpawn];
+				else
+					aiValues[eLoopSpawn] = 0;
 			}
 		}
+
+		FAssert( iTotalValue >= 0 );
+
+		int iRand = getSorenRandNum( iTotalValue, "Barb Unit Selection" );
+		
+		if( bVerbose )
+			logBBAI( "WILDERNESS - Rand %d out of %d", iRand, iTotalValue );
+
+		int iCurrentValue = 0;
+		for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+		{
+			FAssert( aiValues[eLoopSpawn] >= 0 );
+			iCurrentValue += aiValues[eLoopSpawn];
+			if( iCurrentValue > iRand )
+			{
+				eBestSpawn = (SpawnTypes) eLoopSpawn;
+				break;
+			}
+			
+			if( bVerbose && aiValues[eLoopSpawn] )
+				logBBAI( "WILDERNESS - Not #%d, now %d", eLoopSpawn, iCurrentValue );
+		}
 	}
+
+	SAFE_DELETE_ARRAY( aiValues );
 
 	if ( eBestSpawn != NO_SPAWN )
 	{
