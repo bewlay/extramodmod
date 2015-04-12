@@ -432,6 +432,7 @@ class CustomFunctions:
 					dslOutcomes['Good'].append( ( 'Goody', 80, 'GOODY_EXPLORE_LAIR_ITEM_HEALING_SALVE' ) )
 			if( iChallenge >= 35 and iChallenge < 60 ) :
 				dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COURAGE', ['PROMOTION_COURAGE'] ) )
+				dslOutcomes['Item'].append( ( 'Promotions', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_PATRIAN_ARTIFACT', ['PROMOTION_PATRIAN_ARTIFACT'] ) )
 				if( bMelee ) :
 					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENCHANTED_BLADE', ['PROMOTION_ENCHANTED_BLADE'] ) )
 				if( bAdept ) :

@@ -3157,5 +3157,15 @@
 			<KFM/>
 			<Button>Art/Interface/Buttons/Buildings/scorpion_cage.dds</Button>
 		</BuildingArtInfo>
+		<BuildingArtInfo>
+			<Type>ART_DEF_BUILDING_PATRIAN_ARTIFACT</Type> <!-- WILDERNESS 04/2015 terkhen // New Equipment -->
+			<LSystem>LSYSTEM_3x2</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1.2</fScale>
+			<fInterfaceScale>0.58</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Library/Library.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Equipment/patrianartifact.dds</Button>
+		</BuildingArtInfo>
 	</BuildingArtInfos>
 </Civ4ArtDefines>

@@ -8152,6 +8152,13 @@
             <bEquipment>1</bEquipment>
             <bImmuneToMagic>1</bImmuneToMagic>
         </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_PATRIAN_ARTIFACT</Type>
+            <Description>TXT_KEY_EQUIPMENT_PATRIAN_ARTIFACT</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Equipment/patrianartifact.dds</Button>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
 <!-- MORE EVENTS MOD STARTS -->		
 		<PromotionInfo>
             <Type>PROMOTION_PIKE_OF_TEARS</Type>

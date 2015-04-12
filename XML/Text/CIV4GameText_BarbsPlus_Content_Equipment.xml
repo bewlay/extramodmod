@@ -132,4 +132,28 @@
 		<Italian>Take Hauberk of Abjuration</Italian>
 		<Spanish>Tomar Armadura de Abjuración</Spanish>
 	</TEXT>
+	<TEXT> <!-- Art from Master of Mana -->
+		<Tag>TXT_KEY_EQUIPMENT_PATRIAN_ARTIFACT</Tag>
+		<English>Patrian Artifact</English>
+		<French>Patrian Artifact</French>
+		<German>Patrian Artifact</German>
+		<Italian>Patrian Artifact</Italian>
+		<Spanish>Artefacto de Patria</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_PATRIAN_ARTIFACT</Tag>
+		<English>Your unit finds an arcane relic from the times of ancient Patria.</English>
+		<French>Your unit finds an arcane relic from the times of ancient Patria.</French>
+		<German>Your unit finds an arcane relic from the times of ancient Patria.</German>
+		<Italian>Your unit finds an arcane relic from the times of ancient Patria.</Italian>
+		<Spanish>Tu unidad encuentra una reliquia arcana procedente de los tiempos de Patria.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_PATRIAN_ARTIFACT</Tag>
+		<English>Drop Patrian Artifact</English>
+		<French>Drop Patrian Artifact</French>
+		<German>Drop Patrian Artifact</German>
+		<Italian>Drop Patrian Artifact</Italian>
+		<Spanish>Dejar Artefacto de Patria</Spanish>
+	</TEXT>
 </Civ4GameText>
