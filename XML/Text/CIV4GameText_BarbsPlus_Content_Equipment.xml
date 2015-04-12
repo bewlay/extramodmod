@@ -4,6 +4,38 @@
 -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<!-- New equipment text -->
+	<TEXT> <!-- Master of Mana -->
+		<Tag>TXT_KEY_EQUIPMENT_AMULET_SEAS</Tag>
+		<English>Amulet of the Seas</English>
+		<French>Amulet of the Seas</French>
+		<German>Amulet of the Seas</German>
+		<Italian>Amulet of the Seas</Italian>
+		<Spanish>Amuleto de los Mares</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_AMULET_SEAS</Tag>
+		<English>In the middle of a pool of dark waters, your unit find an amulet miraculously kept afloat.</English>
+		<French>In the middle of a pool of dark waters, your unit find an amulet miraculously kept afloat.</French>
+		<German>In the middle of a pool of dark waters, your unit find an amulet miraculously kept afloat.</German>
+		<Italian>In the middle of a pool of dark waters, your unit find an amulet miraculously kept afloat.</Italian>
+		<Spanish>En el medio de una zona de aguas oscuras, tu unidad encuentra un amuleto que se mantiene a flote de forma milagrosa.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_AMULET_SEAS</Tag>
+		<English>Drop Amulet of the Seas</English>
+		<French>Drop Amulet of the Seas</French>
+		<German>Drop Amulet of the Seas</German>
+		<Italian>Drop Amulet of the Seas</Italian>
+		<Spanish>Dejar Amuleto de los Mares</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_AMULET_SEAS</Tag>
+		<English>Take Amulet of the Seas</English>
+		<French>Take Amulet of the Seas</French>
+		<German>Take Amulet of the Seas</German>
+		<Italian>Take Amulet of the Seas</Italian>
+		<Spanish>Tomar Amuleto de los Mares</Spanish>
+	</TEXT>
 	<TEXT> <!-- Rise from Erebus, art from Master of Mana -->
 		<Tag>TXT_KEY_EQUIPMENT_ANCIENT_BOW</Tag>
 		<English>Ancient Bow</English>

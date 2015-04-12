@@ -8118,6 +8118,16 @@
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
         <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_AMULET_SEAS</Type>
+            <Description>TXT_KEY_EQUIPMENT_AMULET_SEAS</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <bAmphib>1</bAmphib>
+            <bRiver>1</bRiver>
+            <Button>Art/Interface/Buttons/Equipment/amuletseas.dds</Button>
+            <bWaterWalking>1</bWaterWalking>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
             <Type>PROMOTION_ANCIENT_BOW</Type>
             <Description>TXT_KEY_EQUIPMENT_ANCIENT_BOW</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>

@@ -480,6 +480,7 @@ class CustomFunctions:
 					if( not pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_DEMON' ) ) ) : # For the possessed outcome (we don't know the former race); LFGR_TODO: Save former race in SDTK or create new "Demonic Possession" promo
 						dslOutcomes['RemoveMalus'].append( ( 'RemovePromotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_REMOVE_CRAZED', ['PROMOTION_ENRAGED', 'PROMOTION_CRAZED'] ) )
 			if( iChallenge >= 75 ) :
+				dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_AMULET_SEAS' ) )
 				if( not pPlot.isWater() ) :
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_JADE_TORC' ) )
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_ROD_OF_WINDS' ) )
