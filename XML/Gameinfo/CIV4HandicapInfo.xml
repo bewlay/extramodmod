@@ -325,7 +325,7 @@
             <iAttitudeChange>-1</iAttitudeChange>
             <iNoTechTradeModifier>70</iNoTechTradeModifier>
             <iTechTradeKnownModifier>0</iTechTradeKnownModifier>
-            <iUnownedTilesPerGameAnimal>40</iUnownedTilesPerGameAnimal>
+            <iUnownedTilesPerGameAnimal>50</iUnownedTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianUnit>50</iUnownedTilesPerBarbarianUnit>
             <iUnownedWaterTilesPerBarbarianUnit>330</iUnownedWaterTilesPerBarbarianUnit>
             <iUnownedWaterTilesPerGameAnimal>495</iUnownedWaterTilesPerGameAnimal>
