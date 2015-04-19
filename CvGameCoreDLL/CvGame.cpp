@@ -7561,7 +7561,7 @@ void CvGame::createBarbarianUnits()
 		int VALID_TILES_PER_BARB = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerBarbarianUnit();
 		int VALID_TILES_PER_BARB_WATER = GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerBarbarianUnit();
 		int VALID_TILES_PER_ANIMAL = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerGameAnimal();
-		int VALID_TILES_PER_ANIMAL_WATER = VALID_TILES_PER_ANIMAL * VALID_TILES_PER_BARB_WATER / VALID_TILES_PER_BARB; // LFGR_TODO: Extra tag for handicap infos
+		int VALID_TILES_PER_ANIMAL_WATER = GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerGameAnimal();
 		
 		float PLOT_CHANCE_BARB = ( bRagingBarbs ? 2 : 1 ) / (float) VALID_TILES_PER_BARB;
 		float PLOT_CHANCE_BARB_WATER = ( bRagingBarbs ? 2 : 1 ) / (float) VALID_TILES_PER_BARB_WATER;

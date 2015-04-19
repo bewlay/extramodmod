@@ -34,6 +34,7 @@
             <iUnownedTilesPerGameAnimal>120</iUnownedTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianUnit>120</iUnownedTilesPerBarbarianUnit>
             <iUnownedWaterTilesPerBarbarianUnit>900</iUnownedWaterTilesPerBarbarianUnit>
+            <iUnownedWaterTilesPerGameAnimal>900</iUnownedWaterTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianCity>160</iUnownedTilesPerBarbarianCity>
             <iBarbarianCreationTurnsElapsed>50</iBarbarianCreationTurnsElapsed>
             <iBarbarianCityCreationTurnsElapsed>55</iBarbarianCityCreationTurnsElapsed>
@@ -135,6 +136,7 @@
             <iUnownedTilesPerGameAnimal>80</iUnownedTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianUnit>80</iUnownedTilesPerBarbarianUnit>
             <iUnownedWaterTilesPerBarbarianUnit>600</iUnownedWaterTilesPerBarbarianUnit>
+            <iUnownedWaterTilesPerGameAnimal>600</iUnownedWaterTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianCity>120</iUnownedTilesPerBarbarianCity>
             <iBarbarianCreationTurnsElapsed>45</iBarbarianCreationTurnsElapsed>
             <iBarbarianCityCreationTurnsElapsed>50</iBarbarianCityCreationTurnsElapsed>
@@ -232,6 +234,7 @@
             <iUnownedTilesPerGameAnimal>60</iUnownedTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianUnit>60</iUnownedTilesPerBarbarianUnit>
             <iUnownedWaterTilesPerBarbarianUnit>450</iUnownedWaterTilesPerBarbarianUnit>
+            <iUnownedWaterTilesPerGameAnimal>450</iUnownedWaterTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianCity>80</iUnownedTilesPerBarbarianCity>
             <iBarbarianCreationTurnsElapsed>40</iBarbarianCreationTurnsElapsed>
             <iBarbarianCityCreationTurnsElapsed>45</iBarbarianCityCreationTurnsElapsed>
@@ -325,6 +328,7 @@
             <iUnownedTilesPerGameAnimal>40</iUnownedTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianUnit>50</iUnownedTilesPerBarbarianUnit>
             <iUnownedWaterTilesPerBarbarianUnit>330</iUnownedWaterTilesPerBarbarianUnit>
+            <iUnownedWaterTilesPerGameAnimal>330</iUnownedWaterTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianCity>70</iUnownedTilesPerBarbarianCity>
             <iBarbarianCreationTurnsElapsed>35</iBarbarianCreationTurnsElapsed>
             <iBarbarianCityCreationTurnsElapsed>40</iBarbarianCityCreationTurnsElapsed>
@@ -414,6 +418,7 @@
             <iUnownedTilesPerGameAnimal>40</iUnownedTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianUnit>40</iUnownedTilesPerBarbarianUnit>
             <iUnownedWaterTilesPerBarbarianUnit>300</iUnownedWaterTilesPerBarbarianUnit>
+            <iUnownedWaterTilesPerGameAnimal>300</iUnownedWaterTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianCity>65</iUnownedTilesPerBarbarianCity>
             <iBarbarianCreationTurnsElapsed>30</iBarbarianCreationTurnsElapsed>
             <iBarbarianCityCreationTurnsElapsed>35</iBarbarianCityCreationTurnsElapsed>
@@ -504,6 +509,7 @@
             <iUnownedTilesPerGameAnimal>35</iUnownedTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianUnit>35</iUnownedTilesPerBarbarianUnit>
             <iUnownedWaterTilesPerBarbarianUnit>270</iUnownedWaterTilesPerBarbarianUnit>
+            <iUnownedWaterTilesPerGameAnimal>270</iUnownedWaterTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianCity>60</iUnownedTilesPerBarbarianCity>
             <iBarbarianCreationTurnsElapsed>25</iBarbarianCreationTurnsElapsed>
             <iBarbarianCityCreationTurnsElapsed>30</iBarbarianCityCreationTurnsElapsed>
@@ -598,6 +604,7 @@
             <iUnownedTilesPerGameAnimal>30</iUnownedTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianUnit>30</iUnownedTilesPerBarbarianUnit>
             <iUnownedWaterTilesPerBarbarianUnit>240</iUnownedWaterTilesPerBarbarianUnit>
+            <iUnownedWaterTilesPerGameAnimal>240</iUnownedWaterTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianCity>55</iUnownedTilesPerBarbarianCity>
             <iBarbarianCreationTurnsElapsed>20</iBarbarianCreationTurnsElapsed>
             <iBarbarianCityCreationTurnsElapsed>25</iBarbarianCityCreationTurnsElapsed>
@@ -696,6 +703,7 @@
             <iUnownedTilesPerGameAnimal>25</iUnownedTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianUnit>25</iUnownedTilesPerBarbarianUnit>
             <iUnownedWaterTilesPerBarbarianUnit>210</iUnownedWaterTilesPerBarbarianUnit>
+            <iUnownedWaterTilesPerGameAnimal>210</iUnownedWaterTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianCity>50</iUnownedTilesPerBarbarianCity>
             <iBarbarianCreationTurnsElapsed>15</iBarbarianCreationTurnsElapsed>
             <iBarbarianCityCreationTurnsElapsed>20</iBarbarianCityCreationTurnsElapsed>
@@ -798,6 +806,7 @@
             <iUnownedTilesPerGameAnimal>20</iUnownedTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianUnit>20</iUnownedTilesPerBarbarianUnit>
             <iUnownedWaterTilesPerBarbarianUnit>180</iUnownedWaterTilesPerBarbarianUnit>
+            <iUnownedWaterTilesPerGameAnimal>180</iUnownedWaterTilesPerGameAnimal>
             <iUnownedTilesPerBarbarianCity>45</iUnownedTilesPerBarbarianCity>
             <iBarbarianCreationTurnsElapsed>10</iBarbarianCreationTurnsElapsed>
             <iBarbarianCityCreationTurnsElapsed>15</iBarbarianCityCreationTurnsElapsed>
