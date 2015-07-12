@@ -1,0 +1,32 @@
+Code
+	cf.getCivilization() doesn't work correctly with rev etc.
+	"Food stores" seems not to work.
+
+Events
+	"Serial Killer" / "Enlist him" should not be available for Luchuirp / Sheaim (Axeman UU)
+	Review "Brothers in need"
+	"Clairone" only in cities with at least X extra happiness and size Y (So +5 Unhappiness can only anger Z% of the population)
+	Review "Unfortunate Assassin"/3
+	Calabim Sanctuary
+		Requires other player to be Calabim, but not pleased
+	Guild of the nine event should occur regularly like Over/Undercouncil gift
+	Enchanter: requires living unit
+	Famine
+		/1: +1 Armageddon
+		does it actually affect the other player?
+	Friendly Locals
+		plot not owned by player, not city, living unit
+		/1: +1 XP, heals unit, unable to move 1 turn
+		/2: -
+	Inn To Housing/1: +1 temp unhappy
+	Looters: Add an option for esus
+	
+	Constellation Events should state what they do with the "Continue"-Button tooltip, like some already do.
+
+EVENTTRIGGER_GROUPs
+	NON_RANDOM
+	COUNCIL_SUPPORT
+	GUILD_OF_THE_NINE
+	MANA_FLARE
+	SIGN
+	OTHER

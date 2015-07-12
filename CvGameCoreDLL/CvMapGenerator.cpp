@@ -256,7 +256,13 @@ void CvMapGenerator::addGameElements()
 
 	addGoodies();
 	gDLL->logMemState("CvMapGen after add goodies");
-
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness                                                                               */
+/* Moved to CvGame::setInitialItems() (after wilderness calculation)                            */
+/************************************************************************************************/
+/*
 //FfH: Added by Kael 10/04/2008
     if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_IMPROVEMENTS))
     {
@@ -267,6 +273,10 @@ void CvMapGenerator::addGameElements()
         addImprovements();
     }
 //FfH: End Add
+*/
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// Call for Python to make map modifications after it's been generated
 	afterGeneration();
@@ -1273,26 +1283,64 @@ void CvMapGenerator::addImprovements()
                 {
                     for (int iJ = 0; iJ < GC.getNumImprovementInfos(); iJ++)
                     {
-//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
-//						if (pPlot->canHaveImprovement((ImprovementTypes)iJ, NO_TEAM))
-						if (pPlot->canHaveImprovement((ImprovementTypes)iJ, NO_PLAYER))
-//<<<<Unofficial Bug Fix: End Modify
-						{
-							int iImprovementChance = GC.getGameINLINE().getSorenRandNum(10000, "Spawn Improvement");
-							if (iImprovementChance < GC.getImprovementInfo((ImprovementTypes)iJ).getAppearanceProbability())
+					/************************************************************************************************/
+					/* WILDERNESS                             08/2013, 03/2015                        lfgr          */
+					/* ImprovementSpawnTypes, WildernessMisc, LairGuardian                                          */
+					/* New spawn system and cleanup. Removed old code.                                              */
+					/* More Lairs in higher wilderness, Lairs with guardians have a min distance to starting plots  */
+					/* and can't spawn on other units.                                                              */
+					/* Features are not erased when placing lairs (from Orbis by Ahwaric)                           */
+					/************************************************************************************************/
+						ImprovementTypes eImprovement = (ImprovementTypes) iJ;
+
+						int iProbability = GC.getImprovementInfo( eImprovement ).getAppearanceProbability();
+						
+                        if( iProbability > 0 && pPlot->canHaveImprovement( eImprovement, NO_PLAYER ) )
+                        {
+							bool bGuardian = false;
+							for( int eLoopSpawn = 0; !bGuardian && eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+								if( GC.getImprovementInfo( eImprovement ).isGuardianSpawnType( eLoopSpawn ) )
+									if( int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn ) > 0 )
+										bGuardian = true;
+
+							if( bGuardian && pPlot->getNumUnits() != 0 )
 							{
-								if (GC.getImprovementInfo((ImprovementTypes)iJ).getSpawnUnitType() != NO_UNIT)
+								bValid = false;
+							}
+
+							if( bValid )
+							{
+								// More Lairs in higher wilderness
+								if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
+									iProbability += (int) ( iProbability * ( pPlot->getWilderness() * 2 / 100.0 ) );
+								
+								if (GC.getGameINLINE().getSorenRandNum( 10000, "Spawn Improvement" ) < iProbability)
 								{
-									if (pPlot->isVisibleToCivTeam()) // does this even work? I think civs havent been placed yet
+									bool bValid = true;
+
+									// Lair Guardian min distance from starting plots
+									if( bGuardian )
 									{
-										continue;
+										int iRadius = GC.getDefineINT( "LAIR_GUARDIAN_STARTING_PLOT_MIN_DISTANCE", 0 );
+										for( int iPlayer = 0; bValid && iPlayer < GC.getMAX_CIV_PLAYERS(); iPlayer++ )
+										{
+											CvPlot* pStartingPlot = GET_PLAYER( (PlayerTypes) iPlayer ).getStartingPlot();
+											if( pStartingPlot != NULL && stepDistance( pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), pPlot->getX_INLINE(), pPlot->getY_INLINE() ) <= iRadius )
+												bValid = false;
+										}
+
+									}
+									
+									if( bValid )
+									{
+										pPlot->setImprovementType( (ImprovementTypes) iJ );
 									}
 								}
-								logBBAI("  Placing %S at %d, %d", GC.getImprovementInfo((ImprovementTypes)iJ).getDescription(), pPlot->getX(), pPlot->getY());
-								pPlot->setImprovementType((ImprovementTypes)iJ);
-								pPlot->setFeatureType(NO_FEATURE);
 							}
                         }
+					/************************************************************************************************/
+					/* WILDERNESS                                                                     END           */
+					/************************************************************************************************/
                     }
                 }
             }

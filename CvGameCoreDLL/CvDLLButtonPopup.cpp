@@ -23,6 +23,10 @@
 #include "CvEventReporter.h"
 #include "CvMessageControl.h"
 
+// lfgr EVENT_DEBUG
+#include "BetterBTSAI.h"
+// lfgr end
+
 // BUG - start
 // RevolutionDCM - BugMod included in CvGlobals.h
 //#include "BugMod.h"
@@ -905,6 +909,10 @@ void CvDLLButtonPopup::OnFocus(CvPopup* pPopup, CvPopupInfo &info)
 // returns false if popup is not launched
 bool CvDLLButtonPopup::launchButtonPopup(CvPopup* pPopup, CvPopupInfo &info)
 {
+	// lfgr EVENT_DEBUG
+	//logBBAI( "EVENT_DEBUG - Launching Button Popup (Type %d) \"%s\"", info.getButtonPopupType(), info.getText().c_str() );
+	// lfgr end
+
 	bool bLaunched = false;
 
 	switch (info.getButtonPopupType())
@@ -2658,23 +2666,58 @@ bool CvDLLButtonPopup::launchVassalGrantTributePopup(CvPopup* pPopup, CvPopupInf
 
 bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 {
+	// lfgr EVENT_DEBUG
+	//logBBAI( "EVENT_DEBUG - Launching Popup \"%s\"", info.getText().c_str() );
+	// lfgr end
+
 	CvPlayer& kActivePlayer = GET_PLAYER(GC.getGameINLINE().getActivePlayer());
 	EventTriggeredData* pTriggeredData = kActivePlayer.getEventTriggered(info.getData1());
 	if (NULL == pTriggeredData)
 	{
+		// lfgr EVENT_DEBUG
+		logBBAI( "EVENT_DEBUG - ABORTED! No Triggered Data." );
+		FAssertMsg( false, "EVENT_DEBUG - ABORTED! No Triggered Data." );
+		// lfgr end
 		return false;
 	}
 
 	if (pTriggeredData->m_eTrigger == NO_EVENTTRIGGER)
 	{
+		// lfgr EVENT_DEBUG
+		logBBAI( "EVENT_DEBUG - ABORTED! No EventTrigger." );
+		FAssertMsg( false, "EVENT_DEBUG - ABORTED! No EventTrigger." );
+		// lfgr end
 		return false;
 	}
 
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(pTriggeredData->m_eTrigger);
 
-	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, pTriggeredData->m_szText);
-
+/************************************************************************************************/
+/* EVENTS_ENHANCED                          09/2013                                 lfgr        */
+/************************************************************************************************/
+	
+	// check for available events
 	bool bEventAvailable = false;
+	for (int i = 0; i < kTrigger.getNumEvents(); i++)
+		if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).canDoEvent((EventTypes)kTrigger.getEvent(i), *pTriggeredData))
+			bEventAvailable = true;
+	if (!bEventAvailable)
+	{
+		// lfgr EVENT_DEBUG
+		logBBAI( "EVENT_DEBUG - ABORTED! No available Event." );
+		//FAssertMsg( false, "EVENT_DEBUG - ABORTED! No available Event." );
+		gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText( "TXT_KEY_ERROR_NO_AVAILABLE_EVENT", CvWString( kTrigger.getType() ).c_str() ).c_str() );
+	}
+
+// Begin EmperorFool: Events with Images
+	if (kTrigger.getEventArt())
+	{
+		gDLL->getInterfaceIFace()->popupAddDDS(pPopup, kTrigger.getEventArt());
+	}
+// End EmperorFool: Events with Images
+
+	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, pTriggeredData->m_szText + "\n");
+	
 	for (int i = 0; i < kTrigger.getNumEvents(); i++)
 	{
 		if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).canDoEvent((EventTypes)kTrigger.getEvent(i), *pTriggeredData))
@@ -2684,14 +2727,25 @@ bool CvDLLButtonPopup::launchEventPopup(CvPopup* pPopup, CvPopupInfo &info)
 		}
 		else
 		{
+		// Hide unavailable event options if BugOption is checked. Idea by Ronkhar
+		/* old
+			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, GC.getEventInfo((EventTypes)kTrigger.getEvent(i)).getDescription(), ARTFILEMGR.getInterfaceArtInfo("INTERFACE_EVENT_UNAVAILABLE_BULLET")->getPath(), -1, WIDGET_CHOOSE_EVENT, kTrigger.getEvent(i), info.getData1(), false);
+		*/
+		if( !getBugOptionBOOL("EventsEnhanced__HideUnavailableOptions", false ) )
 			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, GC.getEventInfo((EventTypes)kTrigger.getEvent(i)).getDescription(), ARTFILEMGR.getInterfaceArtInfo("INTERFACE_EVENT_UNAVAILABLE_BULLET")->getPath(), -1, WIDGET_CHOOSE_EVENT, kTrigger.getEvent(i), info.getData1(), false);
 		}
 	}
 
+/* commented out to better find bugs; its launched with OK button then
 	if (!bEventAvailable)
 	{
 		return false;
 	}
+*/
+
+/************************************************************************************************/
+/* EVENTS_ENHANCED                          END                                                 */
+/************************************************************************************************/
 
 	if (kTrigger.isPickCity())
 	{

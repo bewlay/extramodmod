@@ -22,7 +22,13 @@ def doGameUpdate():
 
 	if (bOOS and not bWroteLog):
 		writeLog()
+		# Automatic OOS detection START
+		gc.getGame().setOOSVisible()
+		# Automatic OOS detection END
 		bWroteLog = True
+	# Make sure that OOS will be generated when the game is not restarted after an OOS.
+	if (not bOOS):
+		bWroteLog = False
 
 def writeLog():
 	playername = CvUtil.convertToStr(gc.getPlayer(gc.getGame().getActivePlayer()).getName())
@@ -43,6 +49,7 @@ def writeLog():
 	pFile.write(CvUtil.convertToStr(CyTranslator().getText("TXT_KEY_VERSION", ())))
 	pFile.write("\n\n")
 
+
 	pFile.write("  GLOBALS  \n")
 
 	pFile.write(SEPERATOR)
@@ -51,13 +58,16 @@ def writeLog():
 
 	pFile.write("Next Map Rand Value: %d\n" % CyGame().getMapRand().get(10000, "OOS Log"))
 	pFile.write("Next Soren Rand Value: %d\n" % CyGame().getSorenRand().get(10000, "OOS Log"))
+	pFile.write("Turn slice: %d\n" % (CyGame().getTurnSlice() % 4))
 
-	pFile.write("Total num cities: %d\n" % CyGame().getNumCities() )
+	pFile.write("Global counter: %d\n" % CyGame().getGlobalCounter() )
+	pFile.write("Total cities: %d\n" % CyGame().getNumCities() )
+	pFile.write("Total civilization cities: %d\n" % CyGame().getNumCivCities() )
 	pFile.write("Total population: %d\n" % CyGame().getTotalPopulation() )
-	pFile.write("Total Deals: %d\n" % CyGame().getNumDeals() )
+	pFile.write("Total deals: %d\n" % CyGame().getNumDeals() )
 
 	pFile.write("Total owned plots: %d\n" % CyMap().getOwnedPlots() )
-	pFile.write("Total num areas: %d\n" % CyMap().getNumAreas() )
+	pFile.write("Total number of areas: %d\n" % CyMap().getNumAreas() )
 
 	pFile.write("\n\n")
 
@@ -91,6 +101,8 @@ def writeLog():
 			pFile.write("Player %d Num Units: %d\n" % (iPlayer, pPlayer.getNumUnits() ) )
 			pFile.write("Player %d Num Selection Groups: %d\n" % (iPlayer, pPlayer.getNumSelectionGroups() ) )
 			pFile.write("Player %d Difficulty: %d\n" % (iPlayer, pPlayer.getHandicapType() ))
+			pFile.write("Player %d Religion: %s\n" % (iPlayer, CvUtil.convertToStr(pPlayer.getStateReligionKey()) ))
+			pFile.write("Player %d Total culture: %d\n" % (iPlayer, pPlayer.countTotalCulture() ))
 
 			pFile.write("\n\n")
 
@@ -165,7 +177,13 @@ def writeLog():
 					pFile.write("Buildings: %d\n" % pCity.getNumBuildings() )
 					pFile.write("Improved Plots: %d\n" % pCity.countNumImprovedPlots() )
 					pFile.write("Producing: %s\n" % pCity.getProductionName() )
+					pFile.write("Turns remaining for production: %d\n" % pCity.getProductionTurnsLeft() )
+					pFile.write("%d happiness, %d unhappiness, %d health, %d unhealth\n" % (pCity.happyLevel(), pCity.unhappyLevel(0), pCity.goodHealth(), pCity.badHealth(False)) )
 					pFile.write("%d Tiles Worked, %d Specialists, %d Great People\n" % (pCity.getWorkingPopulation(), pCity.getSpecialistPopulation(), pCity.getNumGreatPeople()) )
+					pFile.write("City radius: %d\n" % pCity.getPlotRadius() )
+					if (pCity.isSettlement()):
+						pFile.write("City is a settlement")
+
 
 					pLoopCityTuple = pPlayer.nextCity(pLoopCityTuple[1], False)
 					pFile.write("\n")

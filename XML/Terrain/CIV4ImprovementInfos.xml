@@ -35,7 +35,9 @@
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
             <iPillageGold>0</iPillageGold>
-            <bOutsideBorders>0</bOutsideBorders>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration - To let its explored version upgrade to it -->
+            <bOutsideBorders>1</bOutsideBorders>
+		<!-- WILDERNESS end -->
             <TerrainMakesValids>
                 <TerrainMakesValid>
                     <TerrainType>TERRAIN_OCEAN</TerrainType>
@@ -44,7 +46,22 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
-            <ImprovementPillage></ImprovementPillage>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_WATER</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <ImprovementPillage>IMPROVEMENT_AIFON_ISLE_EXPLORED</ImprovementPillage>
+		<!-- WILDERNESS end -->
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
             </TechYieldChanges>
@@ -54,17 +71,276 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>0</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+		<!-- WILDERNESS 08/2013 lfgr  / ImprovementWilderness -->
+            <iMinWilderness>50</iMinWilderness>
+		<!-- WILDERNESS end -->
+            <BonusConvert>BONUS_MANA_WATER</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
+        </ImprovementInfo>
+        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr -->
+            <Type>IMPROVEMENT_AIFON_ISLE_EXPLORED</Type>
+            <Description>TXT_KEY_IMPROVEMENT_AIFON_ISLE_EXPLORED</Description>
+            <Civilopedia>TXT_KEY_IMPROVEMENT_AIFON_ISLE_PEDIA</Civilopedia>
+            <Help></Help>
+            <ArtDefineTag>ART_DEF_IMPROVEMENT_AIFON_ISLE</ArtDefineTag>
+            <bActsAsCity>0</bActsAsCity>
+            <bHillsMakesValid>0</bHillsMakesValid>
+            <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+            <bRiverSideMakesValid>0</bRiverSideMakesValid>
+            <bNoFreshWater>0</bNoFreshWater>
+            <bRequiresFlatlands>0</bRequiresFlatlands>
+            <bRequiresRiverSide>0</bRequiresRiverSide>
+            <bRequiresIrrigation>0</bRequiresIrrigation>
+            <bCarriesIrrigation>0</bCarriesIrrigation>
+            <bRequiresFeature>0</bRequiresFeature>
+            <bWater>1</bWater>
+            <bGoody>0</bGoody>
+            <bPermanent>1</bPermanent>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+            <iTilesPerGoody>0</iTilesPerGoody>
+            <iGoodyRange>0</iGoodyRange>
+            <iFeatureGrowth>0</iFeatureGrowth>
+            <iUpgradeTime>100</iUpgradeTime>
+            <iAirBombDefense>0</iAirBombDefense>
+            <iDefenseModifier>0</iDefenseModifier>
+            <iHappiness>0</iHappiness>
+            <iPillageGold>0</iPillageGold>
+            <bOutsideBorders>0</bOutsideBorders>
+            <TerrainMakesValids>
+            </TerrainMakesValids>
+            <FeatureMakesValids>
+            </FeatureMakesValids>
+			<BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_WATER</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
+            <ImprovementPillage></ImprovementPillage>
+            <ImprovementUpgrade>IMPROVEMENT_AIFON_ISLE</ImprovementUpgrade>
+            <TechYieldChanges>
+            </TechYieldChanges>
+            <RouteYieldChanges>
+            </RouteYieldChanges>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <bRequiresPeak>0</bRequiresPeak>
+            <bUnique>1</bUnique>
+            <bExploreTarget>0</bExploreTarget>
+            <iAppearanceProbability>0</iAppearanceProbability>
+            <iHealRateChange>0</iHealRateChange>
+            <iRange>0</iRange>
+            <iRangeDefenseModifier>0</iRangeDefenseModifier>
+            <iVisibilityChange>0</iVisibilityChange>
+            <BonusConvert>BONUS_MANA_WATER</BonusConvert>
+            <FeatureUpgrade>NONE</FeatureUpgrade>
+            <PrereqCivilization>NONE</PrereqCivilization>
+            <PythonAtRange></PythonAtRange>
+            <PythonOnMove></PythonOnMove>
+        </ImprovementInfo>
+        <ImprovementInfo>
+            <Type>IMPROVEMENT_BAIR_OF_LACUNA</Type>
+            <Description>TXT_KEY_IMPROVEMENT_BAIR_OF_LACUNA</Description>
+            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help></Help>
+            <ArtDefineTag>ART_DEF_IMPROVEMENT_BAIR_OF_LACUNA</ArtDefineTag>
+            <bActsAsCity>0</bActsAsCity>
+            <bHillsMakesValid>0</bHillsMakesValid>
+            <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+            <bRiverSideMakesValid>0</bRiverSideMakesValid>
+            <bNoFreshWater>0</bNoFreshWater>
+            <bRequiresFlatlands>0</bRequiresFlatlands>
+            <bRequiresRiverSide>0</bRequiresRiverSide>
+            <bRequiresIrrigation>0</bRequiresIrrigation>
+            <bCarriesIrrigation>0</bCarriesIrrigation>
+            <bRequiresFeature>0</bRequiresFeature>
+            <bWater>0</bWater>
+            <bGoody>0</bGoody>
+            <bPermanent>1</bPermanent>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+            <iTilesPerGoody>0</iTilesPerGoody>
+            <iGoodyRange>0</iGoodyRange>
+            <iFeatureGrowth>0</iFeatureGrowth>
+            <iUpgradeTime>0</iUpgradeTime>
+            <iAirBombDefense>0</iAirBombDefense>
+            <iDefenseModifier>0</iDefenseModifier>
+            <iHappiness>0</iHappiness>
+            <iPillageGold>0</iPillageGold>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration - To let its explored version upgrade to it -->
+            <bOutsideBorders>1</bOutsideBorders>
+		<!-- WILDERNESS end -->
+            <TerrainMakesValids>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_SHALLOWS</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_GRASS</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_PLAINS</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_DESERT</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_MARSH</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_TUNDRA</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_SNOW</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+            </TerrainMakesValids>
+            <FeatureMakesValids>
+            </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_DIMENSIONAL</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
+		<!-- WILDERNESS 09/2013 lfgr / ImprovementWilderness -->
+            <ImprovementPillage>IMPROVEMENT_BAIR_OF_LACUNA_EXPLORED</ImprovementPillage>
+		<!-- WILDERNESS end -->
+            <ImprovementUpgrade></ImprovementUpgrade>
+            <TechYieldChanges>
+            </TechYieldChanges>
+            <RouteYieldChanges>
+            </RouteYieldChanges>
+            <bGraphicalOnly>0</bGraphicalOnly>
+            <bRequiresPeak>0</bRequiresPeak>
+            <bUnique>1</bUnique>
+            <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
+            <iAppearanceProbability>0</iAppearanceProbability>
+            <iHealRateChange>0</iHealRateChange>
+            <iRange>0</iRange>
+            <iRangeDefenseModifier>0</iRangeDefenseModifier>
+            <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>80</iMinWilderness>
+		<!-- WILDERNESS end -->
+            <BonusConvert>BONUS_MANA_DIMENSIONAL</BonusConvert>
+            <FeatureUpgrade>NONE</FeatureUpgrade>
+            <PrereqCivilization>NONE</PrereqCivilization>
+            <PythonAtRange></PythonAtRange>
+            <PythonOnMove></PythonOnMove>
+        </ImprovementInfo>
+        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr -->
+            <Type>IMPROVEMENT_BAIR_OF_LACUNA_EXPLORED</Type>
+            <Description>TXT_KEY_IMPROVEMENT_BAIR_OF_LACUNA_EXPLORED</Description>
+            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Help></Help>
+            <ArtDefineTag>ART_DEF_IMPROVEMENT_BAIR_OF_LACUNA</ArtDefineTag>
+            <bActsAsCity>0</bActsAsCity>
+            <bHillsMakesValid>0</bHillsMakesValid>
+            <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+            <bRiverSideMakesValid>0</bRiverSideMakesValid>
+            <bNoFreshWater>0</bNoFreshWater>
+            <bRequiresFlatlands>0</bRequiresFlatlands>
+            <bRequiresRiverSide>0</bRequiresRiverSide>
+            <bRequiresIrrigation>0</bRequiresIrrigation>
+            <bCarriesIrrigation>0</bCarriesIrrigation>
+            <bRequiresFeature>0</bRequiresFeature>
+            <bWater>0</bWater>
+            <bGoody>0</bGoody>
+            <bPermanent>1</bPermanent>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+            <iTilesPerGoody>0</iTilesPerGoody>
+            <iGoodyRange>0</iGoodyRange>
+            <iFeatureGrowth>0</iFeatureGrowth>
+            <iUpgradeTime>100</iUpgradeTime>
+            <iAirBombDefense>0</iAirBombDefense>
+            <iDefenseModifier>0</iDefenseModifier>
+            <iHappiness>0</iHappiness>
+            <iPillageGold>0</iPillageGold>
+            <bOutsideBorders>0</bOutsideBorders>
+            <TerrainMakesValids>
+            </TerrainMakesValids>
+            <FeatureMakesValids>
+            </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_DIMENSIONAL</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
+            <ImprovementPillage></ImprovementPillage>
+            <ImprovementUpgrade>IMPROVEMENT_BAIR_OF_LACUNA</ImprovementUpgrade>
+            <TechYieldChanges>
+            </TechYieldChanges>
+            <RouteYieldChanges>
+            </RouteYieldChanges>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <bRequiresPeak>0</bRequiresPeak>
+            <bUnique>1</bUnique>
+            <bExploreTarget>0</bExploreTarget>
+            <iAppearanceProbability>0</iAppearanceProbability>
+            <iHealRateChange>0</iHealRateChange>
+            <iRange>0</iRange>
+            <iRangeDefenseModifier>0</iRangeDefenseModifier>
+            <iVisibilityChange>0</iVisibilityChange>
+            <BonusConvert>BONUS_MANA_DIMENSIONAL</BonusConvert>
+            <FeatureUpgrade>NONE</FeatureUpgrade>
+            <PrereqCivilization>NONE</PrereqCivilization>
+            <PythonAtRange></PythonAtRange>
+            <PythonOnMove></PythonOnMove>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_BARROW</Type>
@@ -99,7 +375,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>10</iPillageGold>
+            <iPillageGold>20</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -155,6 +431,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>75</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -165,7 +444,22 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>UNIT_SKELETON</SpawnUnitType>
+		<!-- WILDERNESS 08/2013 lfgr ImprovementSpawnTypes -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_BARROW_SKELETON</SpawnType>
+				<SpawnType>SPAWN_BARROW_SPECTRE</SpawnType>
+				<SpawnType>SPAWN_BARROW_SPECTRE_STRONG</SpawnType>
+				<SpawnType>SPAWN_BARROW_WRAITH</SpawnType>
+				<SpawnType>SPAWN_BARROW_GHOUL</SpawnType>
+				<SpawnType>SPAWN_BARROW_WIGHT</SpawnType>
+			</SpawnTypes>
+            <GuardianSpawnTypes>
+				<SpawnType>SPAWN_BARROW_GUARDIAN_SKELETON</SpawnType>
+				<SpawnType>SPAWN_BARROW_GUARDIAN_SPECTRE_STRONG</SpawnType>
+				<SpawnType>SPAWN_BARROW_GUARDIAN_GHOUL</SpawnType>
+				<SpawnType>SPAWN_BARROW_GUARDIAN_GHOUL_STRONG</SpawnType>
+			</GuardianSpawnTypes>
+		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_BEAR_DEN</Type>
@@ -204,6 +498,14 @@
                 </TerrainMakesValid>
             </TerrainMakesValids>
             <FeatureMakesValids>
+                <FeatureMakesValid>
+                    <FeatureType>FEATURE_FOREST</FeatureType>
+                    <bMakesValid>1</bMakesValid>
+                </FeatureMakesValid>
+                <FeatureMakesValid>
+                    <FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
+                    <bMakesValid>1</bMakesValid>
+                </FeatureMakesValid>
             </FeatureMakesValids>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -225,7 +527,18 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>UNIT_BEAR</SpawnUnitType>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes, LairGuardians -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_BEAR_DEN_BEAR</SpawnType>
+				<SpawnType>SPAWN_BEAR_DEN_POLAR_BEAR</SpawnType>
+				<SpawnType>SPAWN_BEAR_DEN_CAVE_BEAR</SpawnType>
+			</SpawnTypes>
+            <GuardianSpawnTypes>
+				<SpawnType>SPAWN_BEAR_DEN_BEAR</SpawnType>
+				<SpawnType>SPAWN_BEAR_DEN_POLAR_BEAR</SpawnType>
+				<SpawnType>SPAWN_BEAR_DEN_CAVE_BEAR</SpawnType>
+			</GuardianSpawnTypes>
+		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_BRADELINES_WELL</Type>
@@ -256,7 +569,9 @@
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
             <iPillageGold>0</iPillageGold>
-            <bOutsideBorders>0</bOutsideBorders>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration - To let its explored version upgrade to it -->
+            <bOutsideBorders>1</bOutsideBorders>
+		<!-- WILDERNESS end -->
             <TerrainMakesValids>
                 <TerrainMakesValid>
                     <TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
@@ -301,7 +616,22 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
-            <ImprovementPillage></ImprovementPillage>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_ENTROPY</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
+		<!-- WILDERNESS 09/2013 lfgr / ImprovementWilderness -->
+            <ImprovementPillage>IMPROVEMENT_BRADELINES_WELL_EXPLORED</ImprovementPillage>
+		<!-- WILDERNESS end -->
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
             </TechYieldChanges>
@@ -311,17 +641,90 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>0</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>40</iMinWilderness>
+		<!-- WILDERNESS end -->
+            <BonusConvert>BONUS_MANA_ENTROPY</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
+        </ImprovementInfo>
+        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <Type>IMPROVEMENT_BRADELINES_WELL_EXPLORED</Type>
+            <Description>TXT_KEY_IMPROVEMENT_BRADELINES_WELL_EXPLORED</Description>
+            <Civilopedia>TXT_KEY_IMPROVEMENT_BRADELINES_WELL_PEDIA</Civilopedia>
+            <Help></Help>
+            <ArtDefineTag>ART_DEF_IMPROVEMENT_BRADELINES_WELL</ArtDefineTag>
+            <bActsAsCity>0</bActsAsCity>
+            <bHillsMakesValid>0</bHillsMakesValid>
+            <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+            <bRiverSideMakesValid>0</bRiverSideMakesValid>
+            <bNoFreshWater>0</bNoFreshWater>
+            <bRequiresFlatlands>1</bRequiresFlatlands>
+            <bRequiresRiverSide>0</bRequiresRiverSide>
+            <bRequiresIrrigation>0</bRequiresIrrigation>
+            <bCarriesIrrigation>0</bCarriesIrrigation>
+            <bRequiresFeature>0</bRequiresFeature>
+            <bWater>0</bWater>
+            <bGoody>0</bGoody>
+            <bPermanent>1</bPermanent>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+            <iTilesPerGoody>0</iTilesPerGoody>
+            <iGoodyRange>0</iGoodyRange>
+            <iFeatureGrowth>0</iFeatureGrowth>
+            <iUpgradeTime>100</iUpgradeTime>
+            <iAirBombDefense>0</iAirBombDefense>
+            <iDefenseModifier>0</iDefenseModifier>
+            <iHappiness>0</iHappiness>
+            <iPillageGold>0</iPillageGold>
+            <bOutsideBorders>0</bOutsideBorders>
+            <TerrainMakesValids>
+            </TerrainMakesValids>
+            <FeatureMakesValids>
+            </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_ENTROPY</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
+            <ImprovementPillage></ImprovementPillage>
+            <ImprovementUpgrade>IMPROVEMENT_BRADELINES_WELL</ImprovementUpgrade>
+            <TechYieldChanges>
+            </TechYieldChanges>
+            <RouteYieldChanges>
+            </RouteYieldChanges>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <bRequiresPeak>0</bRequiresPeak>
+            <bUnique>1</bUnique>
+            <bExploreTarget>0</bExploreTarget>
+            <iAppearanceProbability>0</iAppearanceProbability>
+            <iHealRateChange>0</iHealRateChange>
+            <iRange>0</iRange>
+            <iRangeDefenseModifier>0</iRangeDefenseModifier>
+            <iVisibilityChange>0</iVisibilityChange>
+            <BonusConvert>BONUS_MANA_ENTROPY</BonusConvert>
+            <FeatureUpgrade>NONE</FeatureUpgrade>
+            <PrereqCivilization>NONE</PrereqCivilization>
+            <PythonAtRange></PythonAtRange>
+            <PythonOnMove></PythonOnMove>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_BROKEN_SEPULCHER</Type>
@@ -352,7 +755,9 @@
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
             <iPillageGold>0</iPillageGold>
-            <bOutsideBorders>0</bOutsideBorders>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration - To let its explored version upgrade to it -->
+            <bOutsideBorders>1</bOutsideBorders>
+		<!-- WILDERNESS end -->
             <TerrainMakesValids>
                 <TerrainMakesValid>
                     <TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
@@ -410,7 +815,9 @@
                     </YieldChanges>
                 </BonusTypeStruct>
             </BonusTypeStructs>
-            <ImprovementPillage></ImprovementPillage>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <ImprovementPillage>IMPROVEMENT_BROKEN_SEPULCHER_EXPLORED</ImprovementPillage>
+		<!-- WILDERNESS end -->
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
             </TechYieldChanges>
@@ -420,6 +827,80 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
+            <iAppearanceProbability>0</iAppearanceProbability>
+            <iHealRateChange>0</iHealRateChange>
+            <iRange>0</iRange>
+            <iRangeDefenseModifier>0</iRangeDefenseModifier>
+            <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>50</iMinWilderness>
+		<!-- WILDERNESS end -->
+            <BonusConvert>BONUS_MANA_DEATH</BonusConvert>
+            <FeatureUpgrade>NONE</FeatureUpgrade>
+            <PrereqCivilization>NONE</PrereqCivilization>
+            <PythonAtRange></PythonAtRange>
+            <PythonOnMove>onMoveBrokenSepulcher(pCaster, pPlot)</PythonOnMove>
+        </ImprovementInfo>
+        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr -->
+            <Type>IMPROVEMENT_BROKEN_SEPULCHER_EXPLORED</Type>
+            <Description>TXT_KEY_IMPROVEMENT_BROKEN_SEPULCHER_EXPLORED</Description>
+            <Civilopedia>TXT_KEY_IMPROVEMENT_BROKEN_SEPULCHER_PEDIA</Civilopedia>
+            <Help></Help>
+            <ArtDefineTag>ART_DEF_IMPROVEMENT_BROKEN_SEPULCHER</ArtDefineTag>
+            <bActsAsCity>0</bActsAsCity>
+            <bHillsMakesValid>0</bHillsMakesValid>
+            <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+            <bRiverSideMakesValid>0</bRiverSideMakesValid>
+            <bNoFreshWater>0</bNoFreshWater>
+            <bRequiresFlatlands>0</bRequiresFlatlands>
+            <bRequiresRiverSide>0</bRequiresRiverSide>
+            <bRequiresIrrigation>0</bRequiresIrrigation>
+            <bCarriesIrrigation>0</bCarriesIrrigation>
+            <bRequiresFeature>0</bRequiresFeature>
+            <bWater>0</bWater>
+            <bGoody>0</bGoody>
+            <bPermanent>1</bPermanent>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+            <iTilesPerGoody>0</iTilesPerGoody>
+            <iGoodyRange>0</iGoodyRange>
+            <iFeatureGrowth>0</iFeatureGrowth>
+            <iUpgradeTime>100</iUpgradeTime>
+            <iAirBombDefense>0</iAirBombDefense>
+            <iDefenseModifier>0</iDefenseModifier>
+            <iHappiness>0</iHappiness>
+            <iPillageGold>0</iPillageGold>
+            <bOutsideBorders>0</bOutsideBorders>
+            <TerrainMakesValids>
+            </TerrainMakesValids>
+            <FeatureMakesValids>
+            </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_DEATH</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
+            <ImprovementPillage></ImprovementPillage>
+            <ImprovementUpgrade>IMPROVEMENT_BROKEN_SEPULCHER</ImprovementUpgrade>
+            <TechYieldChanges>
+            </TechYieldChanges>
+            <RouteYieldChanges>
+            </RouteYieldChanges>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <bRequiresPeak>0</bRequiresPeak>
+            <bUnique>1</bUnique>
+            <bExploreTarget>0</bExploreTarget>
             <iAppearanceProbability>0</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -429,8 +910,7 @@
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
-            <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
+            <PythonOnMove>onMoveBrokenSepulcher(pCaster, pPlot)</PythonOnMove>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_CAGE</Type>
@@ -486,7 +966,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_CAMP</Type>
@@ -516,7 +995,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -556,6 +1035,17 @@
                         <iYieldChange>1</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
+				<BonusTypeStruct>
+					<BonusType>BONUS_PENGUINS</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>4</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
             </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -577,7 +1067,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_CASTLE</Type>
@@ -608,7 +1097,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>25</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>10</iPillageGold>
+            <iPillageGold>20</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -674,7 +1163,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<iCulture>2</iCulture>
 			<iCultureRange>1</iCultureRange>
 			<iSeeFrom>1</iSeeFrom>
@@ -712,7 +1200,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>40</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>15</iPillageGold>
+            <iPillageGold>30</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -778,7 +1266,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<iCulture>3</iCulture>
 			<iCultureRange>1</iCultureRange>
 			<iSeeFrom>1</iSeeFrom>
@@ -840,7 +1327,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_COTTAGE</Type>
@@ -881,7 +1367,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>10</iPillageGold>
+            <iPillageGold>20</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -931,7 +1417,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_DRAGON_BONES</Type>
@@ -1052,12 +1537,14 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_IVORY</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_DUNGEON</Type>
@@ -1143,6 +1630,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>75</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -1153,7 +1643,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_ENCLAVE</Type>
@@ -1189,7 +1678,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>30</iPillageGold>
+            <iPillageGold>60</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -1223,7 +1712,6 @@
             <PrereqCivilization>CIVILIZATION_KURIOTATES</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_FARM</Type>
@@ -1264,7 +1752,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -1357,7 +1845,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_FISHING_BOATS</Type>
@@ -1388,7 +1875,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -1439,10 +1926,29 @@
                         <iYieldChange>2</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_SHRIMP</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
             </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
+                <TechYieldChange>
+                    <PrereqTech>TECH_SEAFARING</PrereqTech>
+                    <TechYields>
+                        <iYield>0</iYield>
+                        <iYield>0</iYield>
+                        <iYield>1</iYield>
+                    </TechYields>
+                </TechYieldChange>
             </TechYieldChanges>
             <RouteYieldChanges>
             </RouteYieldChanges>
@@ -1460,7 +1966,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_FORT</Type>
@@ -1491,7 +1996,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>10</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -1557,7 +2062,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<iCulture>1</iCulture>
 			<iCultureRange>0</iCultureRange>
 			<iUnique>2</iUnique>
@@ -1638,17 +2142,34 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>50</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>1</iRange>
             <iRangeDefenseModifier>5</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>UNIT_GOBLIN_SCORPION_CLAN</SpawnUnitType>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes, LairGuardians -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_GOBLIN_FORT_GOBLIN_SCORPION_CLAN</SpawnType>
+				<SpawnType>SPAWN_GOBLIN_FORT_WOLF_RIDER_SCORPION_CLAN</SpawnType>
+				<SpawnType>SPAWN_GOBLIN_FORT_CHARIOT_SCORPION_CLAN</SpawnType>
+				<SpawnType>SPAWN_GOBLIN_FORT_ARCHER_SCORPION_CLAN</SpawnType>
+			</SpawnTypes>
+            <GuardianSpawnTypes>
+				<SpawnType>SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN_WEAK</SpawnType>
+				<SpawnType>SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN</SpawnType>
+			</GuardianSpawnTypes>
+		<!-- WILDERNESS end -->
 			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
@@ -1750,7 +2271,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_GRAVEYARD</Type>
@@ -1842,7 +2362,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_GUARDIAN</Type>
@@ -1929,12 +2448,14 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>30</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange>atRangeGuardian(pCaster, pPlot)</PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_HAMLET</Type>
@@ -1970,7 +2491,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>15</iPillageGold>
+            <iPillageGold>30</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -1996,7 +2517,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_HELLFIRE</Type>
@@ -2026,7 +2546,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>10</iPillageGold>
+            <iPillageGold>20</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -2093,8 +2613,11 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>UNIT_CHAMPION</SpawnUnitType>
-            <FreeSpawnPromotion>PROMOTION_DEMON</FreeSpawnPromotion>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_HELLFIRE_CHAMPION</SpawnType>
+			</SpawnTypes>
+		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_JUNGLE_ALTAR</Type>
@@ -2151,7 +2674,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange>atRangeJungleAltar(pCaster, pPlot)</PythonAtRange>
             <PythonOnMove>onMoveJungleAltar(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_LAND_WORKED</Type>
@@ -2207,7 +2729,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_LETUM_FRIGUS</Type>
@@ -2279,12 +2800,14 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>40</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_ICE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMoveLetumFrigus(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_LION_DEN</Type>
@@ -2323,6 +2846,10 @@
                 </TerrainMakesValid>
             </TerrainMakesValids>
             <FeatureMakesValids>
+                <FeatureMakesValid>
+                    <FeatureType>FEATURE_SCRUB</FeatureType>
+                    <bMakesValid>1</bMakesValid>
+                </FeatureMakesValid>
             </FeatureMakesValids>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -2344,7 +2871,18 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>UNIT_LION</SpawnUnitType>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes, LairGuardians -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_LION_DEN_LION</SpawnType>
+				<SpawnType>SPAWN_LION_DEN_LION_PRIDE</SpawnType>
+				<SpawnType>SPAWN_LION_DEN_STRONG_LION_PRIDE</SpawnType>
+			</SpawnTypes>
+            <GuardianSpawnTypes>
+				<SpawnType>SPAWN_LION_DEN_LION</SpawnType>
+				<SpawnType>SPAWN_LION_DEN_LION_PRIDE</SpawnType>
+				<SpawnType>SPAWN_LION_DEN_STRONG_LION_PRIDE</SpawnType>
+			</GuardianSpawnTypes>
+		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_LUMBERMILL</Type>
@@ -2384,13 +2922,17 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
             <FeatureMakesValids>
                 <FeatureMakesValid>
                     <FeatureType>FEATURE_FOREST</FeatureType>
+                    <bMakesValid>1</bMakesValid>
+                </FeatureMakesValid>
+                <FeatureMakesValid>
+                    <FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
                     <bMakesValid>1</bMakesValid>
                 </FeatureMakesValid>
             </FeatureMakesValids>
@@ -2414,7 +2956,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MAELSTROM</Type>
@@ -2454,6 +2995,19 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_AIR</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
@@ -2469,12 +3023,14 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>30</iMinWilderness>
+		<!-- WILDERNESS end -->
+            <BonusConvert>BONUS_MANA_AIR</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMoveMaelstrom(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_AIR</Type>
@@ -2555,7 +3111,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_BODY</Type>
@@ -2636,7 +3191,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_CHAOS</Type>
@@ -2717,8 +3271,87 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
+		<ImprovementInfo>
+			<Type>IMPROVEMENT_MANA_CREATION</Type>
+			<Description>TXT_KEY_IMPROVEMENT_MANA_CREATION</Description>
+			<Civilopedia></Civilopedia>
+			<Help></Help>
+			<ArtDefineTag>ART_DEF_IMPROVEMENT_MANA_CREATION</ArtDefineTag>
+			<bActsAsCity>0</bActsAsCity>
+			<bHillsMakesValid>0</bHillsMakesValid>
+			<bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+			<bRiverSideMakesValid>0</bRiverSideMakesValid>
+			<bNoFreshWater>0</bNoFreshWater>
+			<bRequiresFlatlands>0</bRequiresFlatlands>
+			<bRequiresRiverSide>0</bRequiresRiverSide>
+			<bRequiresIrrigation>0</bRequiresIrrigation>
+			<bCarriesIrrigation>0</bCarriesIrrigation>
+			<bRequiresFeature>0</bRequiresFeature>
+			<bWater>0</bWater>
+			<bGoody>0</bGoody>
+			<bPermanent>0</bPermanent>
+            <bUseLSystem>1</bUseLSystem>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iTilesPerGoody>0</iTilesPerGoody>
+			<iGoodyRange>0</iGoodyRange>
+			<iFeatureGrowth>0</iFeatureGrowth>
+			<iUpgradeTime>0</iUpgradeTime>
+			<iAirBombDefense>0</iAirBombDefense>
+			<iDefenseModifier>0</iDefenseModifier>
+			<iHappiness>0</iHappiness>
+			<iPillageGold>0</iPillageGold>
+			<bOutsideBorders>0</bOutsideBorders>
+			<TerrainMakesValids>
+			</TerrainMakesValids>
+			<FeatureMakesValids>
+			</FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>0</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_CREATION</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
+			<ImprovementPillage></ImprovementPillage>
+			<ImprovementUpgrade></ImprovementUpgrade>
+			<TechYieldChanges>
+			</TechYieldChanges>
+			<RouteYieldChanges>
+			</RouteYieldChanges>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<bRequiresPeak>0</bRequiresPeak>
+			<bUnique>0</bUnique>
+			<bExploreTarget>0</bExploreTarget>
+			<iAppearanceProbability>0</iAppearanceProbability>
+			<iHealRateChange>0</iHealRateChange>
+			<iRange>0</iRange>
+			<iRangeDefenseModifier>0</iRangeDefenseModifier>
+			<iVisibilityChange>0</iVisibilityChange>
+			<BonusConvert>BONUS_MANA_CREATION</BonusConvert>
+			<FeatureUpgrade>NONE</FeatureUpgrade>
+			<PrereqCivilization>NONE</PrereqCivilization>
+			<PythonAtRange></PythonAtRange>
+			<PythonOnMove></PythonOnMove>
+		</ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_DEATH</Type>
             <Description>TXT_KEY_IMPROVEMENT_MANA_DEATH</Description>
@@ -2798,8 +3431,87 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
+		<ImprovementInfo>
+			<Type>IMPROVEMENT_MANA_DIMENSIONAL</Type>
+			<Description>TXT_KEY_IMPROVEMENT_MANA_DIMENSIONAL</Description>
+			<Civilopedia></Civilopedia>
+			<Help></Help>
+			<ArtDefineTag>ART_DEF_IMPROVEMENT_MANA_DIMENSIONAL</ArtDefineTag>
+			<bActsAsCity>0</bActsAsCity>
+			<bHillsMakesValid>0</bHillsMakesValid>
+			<bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+			<bRiverSideMakesValid>0</bRiverSideMakesValid>
+			<bNoFreshWater>0</bNoFreshWater>
+			<bRequiresFlatlands>0</bRequiresFlatlands>
+			<bRequiresRiverSide>0</bRequiresRiverSide>
+			<bRequiresIrrigation>0</bRequiresIrrigation>
+			<bCarriesIrrigation>0</bCarriesIrrigation>
+			<bRequiresFeature>0</bRequiresFeature>
+			<bWater>0</bWater>
+			<bGoody>0</bGoody>
+			<bPermanent>0</bPermanent>
+            <bUseLSystem>1</bUseLSystem>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iTilesPerGoody>0</iTilesPerGoody>
+			<iGoodyRange>0</iGoodyRange>
+			<iFeatureGrowth>0</iFeatureGrowth>
+			<iUpgradeTime>0</iUpgradeTime>
+			<iAirBombDefense>0</iAirBombDefense>
+			<iDefenseModifier>0</iDefenseModifier>
+			<iHappiness>0</iHappiness>
+			<iPillageGold>0</iPillageGold>
+			<bOutsideBorders>0</bOutsideBorders>
+			<TerrainMakesValids>
+			</TerrainMakesValids>
+			<FeatureMakesValids>
+			</FeatureMakesValids>
+			<BonusTypeStructs>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA_DIMENSIONAL</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+			</BonusTypeStructs>
+			<ImprovementPillage></ImprovementPillage>
+			<ImprovementUpgrade></ImprovementUpgrade>
+			<TechYieldChanges>
+			</TechYieldChanges>
+			<RouteYieldChanges>
+			</RouteYieldChanges>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<bRequiresPeak>0</bRequiresPeak>
+			<bUnique>0</bUnique>
+			<bExploreTarget>0</bExploreTarget>
+			<iAppearanceProbability>0</iAppearanceProbability>
+			<iHealRateChange>0</iHealRateChange>
+			<iRange>0</iRange>
+			<iRangeDefenseModifier>0</iRangeDefenseModifier>
+			<iVisibilityChange>0</iVisibilityChange>
+			<BonusConvert>BONUS_MANA_DIMENSIONAL</BonusConvert>
+			<FeatureUpgrade>NONE</FeatureUpgrade>
+			<PrereqCivilization>NONE</PrereqCivilization>
+			<PythonAtRange></PythonAtRange>
+			<PythonOnMove></PythonOnMove>
+		</ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_EARTH</Type>
             <Description>TXT_KEY_IMPROVEMENT_MANA_EARTH</Description>
@@ -2879,7 +3591,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_ENCHANTMENT</Type>
@@ -2960,7 +3671,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_ENTROPY</Type>
@@ -3041,7 +3751,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_FIRE</Type>
@@ -3122,8 +3831,167 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
+		<ImprovementInfo>
+			<Type>IMPROVEMENT_MANA_FORCE</Type>
+			<Description>TXT_KEY_IMPROVEMENT_MANA_FORCE</Description>
+			<Civilopedia></Civilopedia>
+			<Help></Help>
+			<ArtDefineTag>ART_DEF_IMPROVEMENT_MANA_FORCE</ArtDefineTag>
+			<bActsAsCity>0</bActsAsCity>
+			<bHillsMakesValid>0</bHillsMakesValid>
+			<bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+			<bRiverSideMakesValid>0</bRiverSideMakesValid>
+			<bNoFreshWater>0</bNoFreshWater>
+			<bRequiresFlatlands>0</bRequiresFlatlands>
+			<bRequiresRiverSide>0</bRequiresRiverSide>
+			<bRequiresIrrigation>0</bRequiresIrrigation>
+			<bCarriesIrrigation>0</bCarriesIrrigation>
+			<bRequiresFeature>0</bRequiresFeature>
+			<bWater>0</bWater>
+			<bGoody>0</bGoody>
+			<bPermanent>0</bPermanent>
+            <bUseLSystem>1</bUseLSystem>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iTilesPerGoody>0</iTilesPerGoody>
+			<iGoodyRange>0</iGoodyRange>
+			<iFeatureGrowth>0</iFeatureGrowth>
+			<iUpgradeTime>0</iUpgradeTime>
+			<iAirBombDefense>0</iAirBombDefense>
+			<iDefenseModifier>0</iDefenseModifier>
+			<iHappiness>0</iHappiness>
+			<iPillageGold>0</iPillageGold>
+			<bOutsideBorders>0</bOutsideBorders>
+			<TerrainMakesValids>
+			</TerrainMakesValids>
+			<FeatureMakesValids>
+			</FeatureMakesValids>
+			<BonusTypeStructs>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA_FORCE</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+			</BonusTypeStructs>
+			<ImprovementPillage></ImprovementPillage>
+			<ImprovementUpgrade></ImprovementUpgrade>
+			<TechYieldChanges>
+			</TechYieldChanges>
+			<RouteYieldChanges>
+			</RouteYieldChanges>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<bRequiresPeak>0</bRequiresPeak>
+			<bUnique>0</bUnique>
+			<bExploreTarget>0</bExploreTarget>
+			<iAppearanceProbability>0</iAppearanceProbability>
+			<iHealRateChange>0</iHealRateChange>
+			<iRange>0</iRange>
+			<iRangeDefenseModifier>0</iRangeDefenseModifier>
+			<iVisibilityChange>0</iVisibilityChange>
+			<BonusConvert>BONUS_MANA_FORCE</BonusConvert>
+			<FeatureUpgrade>NONE</FeatureUpgrade>
+			<PrereqCivilization>NONE</PrereqCivilization>
+			<PythonAtRange></PythonAtRange>
+			<PythonOnMove></PythonOnMove>
+		</ImprovementInfo>
+		<ImprovementInfo>
+			<Type>IMPROVEMENT_MANA_ICE</Type>
+			<Description>TXT_KEY_IMPROVEMENT_MANA_ICE</Description>
+			<Civilopedia></Civilopedia>
+			<Help></Help>
+			<ArtDefineTag>ART_DEF_IMPROVEMENT_MANA_ICE</ArtDefineTag>
+			<bActsAsCity>0</bActsAsCity>
+			<bHillsMakesValid>0</bHillsMakesValid>
+			<bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+			<bRiverSideMakesValid>0</bRiverSideMakesValid>
+			<bNoFreshWater>0</bNoFreshWater>
+			<bRequiresFlatlands>0</bRequiresFlatlands>
+			<bRequiresRiverSide>0</bRequiresRiverSide>
+			<bRequiresIrrigation>0</bRequiresIrrigation>
+			<bCarriesIrrigation>0</bCarriesIrrigation>
+			<bRequiresFeature>0</bRequiresFeature>
+			<bWater>0</bWater>
+			<bGoody>0</bGoody>
+			<bPermanent>0</bPermanent>
+            <bUseLSystem>1</bUseLSystem>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iTilesPerGoody>0</iTilesPerGoody>
+			<iGoodyRange>0</iGoodyRange>
+			<iFeatureGrowth>0</iFeatureGrowth>
+			<iUpgradeTime>0</iUpgradeTime>
+			<iAirBombDefense>0</iAirBombDefense>
+			<iDefenseModifier>0</iDefenseModifier>
+			<iHappiness>0</iHappiness>
+			<iPillageGold>0</iPillageGold>
+			<bOutsideBorders>0</bOutsideBorders>
+			<TerrainMakesValids>
+			</TerrainMakesValids>
+			<FeatureMakesValids>
+			</FeatureMakesValids>
+			<BonusTypeStructs>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA_ICE</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+			</BonusTypeStructs>
+			<ImprovementPillage></ImprovementPillage>
+			<ImprovementUpgrade></ImprovementUpgrade>
+			<TechYieldChanges>
+			</TechYieldChanges>
+			<RouteYieldChanges>
+			</RouteYieldChanges>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<bRequiresPeak>0</bRequiresPeak>
+			<bUnique>0</bUnique>
+			<bExploreTarget>0</bExploreTarget>
+			<iAppearanceProbability>0</iAppearanceProbability>
+			<iHealRateChange>0</iHealRateChange>
+			<iRange>0</iRange>
+			<iRangeDefenseModifier>0</iRangeDefenseModifier>
+			<iVisibilityChange>0</iVisibilityChange>
+			<BonusConvert>BONUS_MANA_ICE</BonusConvert>
+			<FeatureUpgrade>NONE</FeatureUpgrade>
+			<PrereqCivilization>NONE</PrereqCivilization>
+			<PythonAtRange></PythonAtRange>
+			<PythonOnMove></PythonOnMove>
+		</ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_LAW</Type>
             <Description>TXT_KEY_IMPROVEMENT_MANA_LAW</Description>
@@ -3203,7 +4071,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_LIFE</Type>
@@ -3284,7 +4151,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_METAMAGIC</Type>
@@ -3365,7 +4231,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_MIND</Type>
@@ -3446,7 +4311,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_NATURE</Type>
@@ -3527,7 +4391,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_SHADOW</Type>
@@ -3608,7 +4471,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_SPIRIT</Type>
@@ -3689,7 +4551,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_SUN</Type>
@@ -3770,7 +4631,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MANA_WATER</Type>
@@ -3851,7 +4711,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MINE</Type>
@@ -3886,7 +4745,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>10</iPillageGold>
+            <iPillageGold>20</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -3959,6 +4818,28 @@
                         <iYieldChange>0</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MUSHROOMS</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>5000</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>-1</iYieldChange>
+                        <iYieldChange>1</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_AMBER</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>10000</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>-1</iYieldChange>
+                        <iYieldChange>5</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
             </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -3988,7 +4869,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MIRROR_OF_HEAVEN</Type>
@@ -4061,12 +4941,14 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>6</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_SUN</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMoveMirrorOfHeaven(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_MONSTER_SKELETON</Type>
@@ -4122,84 +5004,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
-        </ImprovementInfo>
-        <ImprovementInfo>
-            <Type>IMPROVEMENT_MUSHROOMS</Type>
-            <Description>TXT_KEY_IMPROVEMENT_MUSHROOMS</Description>
-            <Civilopedia></Civilopedia>
-            <Help></Help>
-            <ArtDefineTag>ART_DEF_IMPROVEMENT_MUSHROOMS</ArtDefineTag>
-            <YieldChanges>
-                <iYieldChange>2</iYieldChange>
-                <iYieldChange>0</iYieldChange>
-                <iYieldChange>0</iYieldChange>
-            </YieldChanges>
-            <bActsAsCity>0</bActsAsCity>
-            <bHillsMakesValid>0</bHillsMakesValid>
-            <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
-            <bRiverSideMakesValid>0</bRiverSideMakesValid>
-            <bNoFreshWater>0</bNoFreshWater>
-            <bRequiresFlatlands>0</bRequiresFlatlands>
-            <bRequiresRiverSide>0</bRequiresRiverSide>
-            <bRequiresIrrigation>0</bRequiresIrrigation>
-            <bCarriesIrrigation>0</bCarriesIrrigation>
-            <bRequiresFeature>0</bRequiresFeature>
-            <bWater>0</bWater>
-            <bGoody>0</bGoody>
-            <bPermanent>0</bPermanent>
-            <iAdvancedStartCost>-1</iAdvancedStartCost>
-            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-            <iTilesPerGoody>0</iTilesPerGoody>
-            <iGoodyRange>0</iGoodyRange>
-            <iFeatureGrowth>0</iFeatureGrowth>
-            <iUpgradeTime>0</iUpgradeTime>
-            <iAirBombDefense>0</iAirBombDefense>
-            <iDefenseModifier>0</iDefenseModifier>
-            <iHappiness>0</iHappiness>
-            <iPillageGold>0</iPillageGold>
-            <bOutsideBorders>0</bOutsideBorders>
-            <TerrainMakesValids>
-                <TerrainMakesValid>
-                    <TerrainType>TERRAIN_GRASS</TerrainType>
-                    <bMakesValid>1</bMakesValid>
-                </TerrainMakesValid>
-                <TerrainMakesValid>
-                    <TerrainType>TERRAIN_PLAINS</TerrainType>
-                    <bMakesValid>1</bMakesValid>
-                </TerrainMakesValid>
-                <TerrainMakesValid>
-                    <TerrainType>TERRAIN_MARSH</TerrainType>
-                    <bMakesValid>1</bMakesValid>
-                </TerrainMakesValid>
-                <TerrainMakesValid>
-                    <TerrainType>TERRAIN_TUNDRA</TerrainType>
-                    <bMakesValid>1</bMakesValid>
-                </TerrainMakesValid>
-            </TerrainMakesValids>
-            <FeatureMakesValids>
-            </FeatureMakesValids>
-            <ImprovementPillage></ImprovementPillage>
-            <ImprovementUpgrade></ImprovementUpgrade>
-            <TechYieldChanges>
-            </TechYieldChanges>
-            <RouteYieldChanges>
-            </RouteYieldChanges>
-            <bGraphicalOnly>0</bGraphicalOnly>
-            <bRequiresPeak>0</bRequiresPeak>
-            <bUnique>0</bUnique>
-            <bExploreTarget>0</bExploreTarget>
-            <iAppearanceProbability>0</iAppearanceProbability>
-            <iHealRateChange>0</iHealRateChange>
-            <iRange>0</iRange>
-            <iRangeDefenseModifier>0</iRangeDefenseModifier>
-            <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
-            <FeatureUpgrade>NONE</FeatureUpgrade>
-            <PrereqCivilization>NONE</PrereqCivilization>
-            <PythonAtRange></PythonAtRange>
-            <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_NECROTOTEM</Type>
@@ -4256,7 +5060,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange>atRangeNecrototem(pCaster, pPlot)</PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_ODIOS_PRISON</Type>
@@ -4328,6 +5131,19 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_BODY</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
@@ -4343,13 +5159,189 @@
             <iRange>3</iRange>
             <iRangeDefenseModifier>25</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>30</iMinWilderness>
+		<!-- WILDERNESS end -->
+            <BonusConvert>BONUS_MANA_BODY</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
+        <ImprovementInfo>
+			<Type>IMPROVEMENT_PALUS</Type>
+			<Description>TXT_KEY_IMPROVEMENT_PALUS</Description>
+			<Civilopedia>TXT_KEY_LEADER_PERPENTACH_PEDIA</Civilopedia>
+			<Help/>
+			<ArtDefineTag>ART_DEF_IMPROVEMENT_PALUS</ArtDefineTag>
+			<bActsAsCity>0</bActsAsCity>
+			<bHillsMakesValid>0</bHillsMakesValid>
+			<bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+			<bRiverSideMakesValid>0</bRiverSideMakesValid>
+			<bNoFreshWater>1</bNoFreshWater>
+			<bRequiresFlatlands>0</bRequiresFlatlands>
+			<bRequiresRiverSide>0</bRequiresRiverSide>
+			<bRequiresIrrigation>0</bRequiresIrrigation>
+			<bCarriesIrrigation>0</bCarriesIrrigation>
+			<bRequiresFeature>0</bRequiresFeature>
+			<bWater>0</bWater>
+			<bGoody>0</bGoody>
+			<bPermanent>1</bPermanent>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iTilesPerGoody>0</iTilesPerGoody>
+			<iGoodyRange>0</iGoodyRange>
+			<iFeatureGrowth>0</iFeatureGrowth>
+			<iUpgradeTime>0</iUpgradeTime>
+			<iAirBombDefense>0</iAirBombDefense>
+			<iDefenseModifier>50</iDefenseModifier>
+			<iHappiness>0</iHappiness>
+			<iPillageGold>0</iPillageGold>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration - To let its explored version upgrade to it -->
+            <bOutsideBorders>1</bOutsideBorders>
+		<!-- WILDERNESS end -->
+			<TerrainMakesValids>
+				<TerrainMakesValid>
+					<TerrainType>TERRAIN_BROKEN_LANDS</TerrainType>
+					<bMakesValid>1</bMakesValid>
+				</TerrainMakesValid>
+				<TerrainMakesValid>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<bMakesValid>1</bMakesValid>
+				</TerrainMakesValid>
+				<TerrainMakesValid>
+					<TerrainType>TERRAIN_FIELDS_OF_PERDITION</TerrainType>
+					<bMakesValid>1</bMakesValid>
+				</TerrainMakesValid>
+				<TerrainMakesValid>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<bMakesValid>1</bMakesValid>
+				</TerrainMakesValid>
+				<TerrainMakesValid>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<bMakesValid>1</bMakesValid>
+				</TerrainMakesValid>
+				<TerrainMakesValid>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<bMakesValid>1</bMakesValid>
+				</TerrainMakesValid>
+				<TerrainMakesValid>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<bMakesValid>1</bMakesValid>
+				</TerrainMakesValid>
+			</TerrainMakesValids>
+			<FeatureMakesValids>
+			</FeatureMakesValids>
+			<BonusTypeStructs>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA_MIND</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+			</BonusTypeStructs>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <ImprovementPillage>IMPROVEMENT_PALUS_EXPLORED</ImprovementPillage>
+		<!-- WILDERNESS end -->
+			<ImprovementUpgrade/>
+			<TechYieldChanges>
+			</TechYieldChanges>
+			<RouteYieldChanges>
+			</RouteYieldChanges>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<bRequiresPeak>0</bRequiresPeak>
+			<bUnique>1</bUnique>
+			<bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
+			<iAppearanceProbability>0</iAppearanceProbability>
+			<iHealRateChange>0</iHealRateChange>
+			<iRange>0</iRange>
+			<iRangeDefenseModifier>0</iRangeDefenseModifier>
+			<iVisibilityChange>3</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>30</iMinWilderness>
+		<!-- WILDERNESS end -->
+			<BonusConvert>BONUS_MANA_MIND</BonusConvert>
+			<FeatureUpgrade/>
+			<PrereqCivilization/>
+			<PythonAtRange/>
+			<PythonOnMove></PythonOnMove>
+		</ImprovementInfo>
+        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr -->
+			<Type>IMPROVEMENT_PALUS_EXPLORED</Type>
+			<Description>TXT_KEY_IMPROVEMENT_PALUS_EXPLORED</Description>
+			<Civilopedia>TXT_KEY_LEADER_PERPENTACH_PEDIA</Civilopedia>
+			<Help/>
+			<ArtDefineTag>ART_DEF_IMPROVEMENT_PALUS</ArtDefineTag>
+			<bActsAsCity>0</bActsAsCity>
+			<bHillsMakesValid>0</bHillsMakesValid>
+			<bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+			<bRiverSideMakesValid>0</bRiverSideMakesValid>
+			<bNoFreshWater>1</bNoFreshWater>
+			<bRequiresFlatlands>0</bRequiresFlatlands>
+			<bRequiresRiverSide>0</bRequiresRiverSide>
+			<bRequiresIrrigation>0</bRequiresIrrigation>
+			<bCarriesIrrigation>0</bCarriesIrrigation>
+			<bRequiresFeature>0</bRequiresFeature>
+			<bWater>0</bWater>
+			<bGoody>0</bGoody>
+			<bPermanent>1</bPermanent>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iTilesPerGoody>0</iTilesPerGoody>
+			<iGoodyRange>0</iGoodyRange>
+			<iFeatureGrowth>0</iFeatureGrowth>
+			<iUpgradeTime>100</iUpgradeTime>
+			<iAirBombDefense>0</iAirBombDefense>
+			<iDefenseModifier>50</iDefenseModifier>
+			<iHappiness>0</iHappiness>
+			<iPillageGold>0</iPillageGold>
+			<bOutsideBorders>1</bOutsideBorders>
+			<TerrainMakesValids>
+			</TerrainMakesValids>
+			<FeatureMakesValids>
+			</FeatureMakesValids>
+			<BonusTypeStructs>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA_MIND</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+			</BonusTypeStructs>
+			<ImprovementPillage/>
+			<ImprovementUpgrade>IMPROVEMENT_PALUS</ImprovementUpgrade>
+			<TechYieldChanges>
+			</TechYieldChanges>
+			<RouteYieldChanges>
+			</RouteYieldChanges>
+			<bGraphicalOnly>1</bGraphicalOnly>
+			<bRequiresPeak>0</bRequiresPeak>
+			<bUnique>1</bUnique>
+			<bExploreTarget>0</bExploreTarget>
+			<iAppearanceProbability>0</iAppearanceProbability>
+			<iHealRateChange>0</iHealRateChange>
+			<iRange>0</iRange>
+			<iRangeDefenseModifier>0</iRangeDefenseModifier>
+			<iVisibilityChange>3</iVisibilityChange>
+			<BonusConvert>BONUS_MANA_MIND</BonusConvert>
+			<FeatureUpgrade/>
+			<PrereqCivilization/>
+			<PythonAtRange/>
+			<PythonOnMove></PythonOnMove>
+		</ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_PASTURE</Type>
             <Description>TXT_KEY_IMPROVEMENT_PASTURE</Description>
@@ -4378,13 +5370,24 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
             <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_BISON</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>1</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
                 <BonusTypeStruct>
                     <BonusType>BONUS_COW</BonusType>
                     <bBonusMakesValid>1</bBonusMakesValid>
@@ -4472,63 +5475,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
-        </ImprovementInfo>
-        <ImprovementInfo>
-            <Type>IMPROVEMENT_PENGUINS</Type>
-            <Description>TXT_KEY_IMPROVEMENT_PENGUINS</Description>
-            <Civilopedia></Civilopedia>
-            <Help></Help>
-            <ArtDefineTag>ART_DEF_IMPROVEMENT_PENGUINS</ArtDefineTag>
-            <bActsAsCity>0</bActsAsCity>
-            <bHillsMakesValid>0</bHillsMakesValid>
-            <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
-            <bRiverSideMakesValid>0</bRiverSideMakesValid>
-            <bNoFreshWater>0</bNoFreshWater>
-            <bRequiresFlatlands>0</bRequiresFlatlands>
-            <bRequiresRiverSide>0</bRequiresRiverSide>
-            <bRequiresIrrigation>0</bRequiresIrrigation>
-            <bCarriesIrrigation>0</bCarriesIrrigation>
-            <bRequiresFeature>0</bRequiresFeature>
-            <bWater>0</bWater>
-            <bGoody>0</bGoody>
-            <bPermanent>0</bPermanent>
-            <iAdvancedStartCost>-1</iAdvancedStartCost>
-            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-            <iTilesPerGoody>0</iTilesPerGoody>
-            <iGoodyRange>0</iGoodyRange>
-            <iFeatureGrowth>0</iFeatureGrowth>
-            <iUpgradeTime>0</iUpgradeTime>
-            <iAirBombDefense>0</iAirBombDefense>
-            <iDefenseModifier>0</iDefenseModifier>
-            <iHappiness>1</iHappiness>
-            <iPillageGold>0</iPillageGold>
-            <bOutsideBorders>0</bOutsideBorders>
-            <TerrainMakesValids>
-            </TerrainMakesValids>
-            <FeatureMakesValids>
-            </FeatureMakesValids>
-            <ImprovementPillage></ImprovementPillage>
-            <ImprovementUpgrade></ImprovementUpgrade>
-            <TechYieldChanges>
-            </TechYieldChanges>
-            <RouteYieldChanges>
-            </RouteYieldChanges>
-            <bGraphicalOnly>0</bGraphicalOnly>
-            <bRequiresPeak>0</bRequiresPeak>
-            <bUnique>0</bUnique>
-            <bExploreTarget>0</bExploreTarget>
-            <iAppearanceProbability>0</iAppearanceProbability>
-            <iHealRateChange>0</iHealRateChange>
-            <iRange>0</iRange>
-            <iRangeDefenseModifier>0</iRangeDefenseModifier>
-            <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
-            <FeatureUpgrade>NONE</FeatureUpgrade>
-            <PrereqCivilization>NONE</PrereqCivilization>
-            <PythonAtRange></PythonAtRange>
-            <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_PIRATE_COVE</Type>
@@ -4564,7 +5510,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>10</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -4594,7 +5540,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
@@ -4631,7 +5576,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>20</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -4661,7 +5606,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
@@ -4698,7 +5642,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>30</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>1</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -4728,7 +5672,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
@@ -4760,7 +5703,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -4775,7 +5718,7 @@
                     <YieldChanges>
                         <iYieldChange>2</iYieldChange>
                         <iYieldChange>0</iYieldChange>
-                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>1</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
                 <BonusTypeStruct>
@@ -4830,7 +5773,7 @@
                     <YieldChanges>
                         <iYieldChange>1</iYieldChange>
                         <iYieldChange>0</iYieldChange>
-                        <iYieldChange>1</iYieldChange>
+                        <iYieldChange>2</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
                 <BonusTypeStruct>
@@ -4841,7 +5784,7 @@
                     <YieldChanges>
                         <iYieldChange>0</iYieldChange>
                         <iYieldChange>0</iYieldChange>
-                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>3</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
                 <BonusTypeStruct>
@@ -4862,7 +5805,7 @@
                     <iDiscoverRand>0</iDiscoverRand>
                     <YieldChanges>
                         <iYieldChange>0</iYieldChange>
-                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>1</iYieldChange>
                         <iYieldChange>2</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
@@ -4887,7 +5830,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_POOL_OF_TEARS</Type>
@@ -4935,6 +5877,19 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_SPIRIT</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
@@ -4950,12 +5905,14 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>20</iMinWilderness>
+		<!-- WILDERNESS end -->
+            <BonusConvert>BONUS_MANA_SPIRIT</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMovePoolOfTears(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_PYRE_OF_THE_SERAPHIC</Type>
@@ -4986,7 +5943,9 @@
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
             <iPillageGold>0</iPillageGold>
-            <bOutsideBorders>0</bOutsideBorders>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration - To let its explored version upgrade to it -->
+            <bOutsideBorders>1</bOutsideBorders>
+		<!-- WILDERNESS end -->
             <TerrainMakesValids>
                 <TerrainMakesValid>
                     <TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
@@ -5020,7 +5979,9 @@
                     </YieldChanges>
                 </BonusTypeStruct>
             </BonusTypeStructs>
-            <ImprovementPillage></ImprovementPillage>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <ImprovementPillage>IMPROVEMENT_PYRE_OF_THE_SERAPHIC_EXPLORED</ImprovementPillage>
+		<!-- WILDERNESS end -->
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
             </TechYieldChanges>
@@ -5030,6 +5991,80 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
+            <iAppearanceProbability>0</iAppearanceProbability>
+            <iHealRateChange>0</iHealRateChange>
+            <iRange>0</iRange>
+            <iRangeDefenseModifier>0</iRangeDefenseModifier>
+            <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementWilderness -->
+            <iMinWilderness>20</iMinWilderness>
+		<!-- WILDERNESS end -->
+            <BonusConvert>BONUS_MANA_FIRE</BonusConvert>
+            <FeatureUpgrade>NONE</FeatureUpgrade>
+            <PrereqCivilization>NONE</PrereqCivilization>
+            <PythonAtRange></PythonAtRange>
+            <PythonOnMove>onMovePyreOfTheSeraphic(pCaster, pPlot)</PythonOnMove>
+        </ImprovementInfo>
+		<ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <Type>IMPROVEMENT_PYRE_OF_THE_SERAPHIC_EXPLORED</Type>
+            <Description>TXT_KEY_IMPROVEMENT_PYRE_OF_THE_SERAPHIC_EXPLORED</Description>
+            <Civilopedia>TXT_KEY_IMPROVEMENT_PYRE_OF_THE_SERAPHIC_PEDIA</Civilopedia>
+            <Help></Help>
+            <ArtDefineTag>ART_DEF_IMPROVEMENT_PYRE_OF_THE_SERAPHIC</ArtDefineTag>
+            <bActsAsCity>0</bActsAsCity>
+            <bHillsMakesValid>0</bHillsMakesValid>
+            <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+            <bRiverSideMakesValid>0</bRiverSideMakesValid>
+            <bNoFreshWater>0</bNoFreshWater>
+            <bRequiresFlatlands>1</bRequiresFlatlands>
+            <bRequiresRiverSide>0</bRequiresRiverSide>
+            <bRequiresIrrigation>0</bRequiresIrrigation>
+            <bCarriesIrrigation>0</bCarriesIrrigation>
+            <bRequiresFeature>0</bRequiresFeature>
+            <bWater>0</bWater>
+            <bGoody>0</bGoody>
+            <bPermanent>1</bPermanent>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+            <iTilesPerGoody>0</iTilesPerGoody>
+            <iGoodyRange>0</iGoodyRange>
+            <iFeatureGrowth>0</iFeatureGrowth>
+            <iUpgradeTime>100</iUpgradeTime>
+            <iAirBombDefense>0</iAirBombDefense>
+            <iDefenseModifier>0</iDefenseModifier>
+            <iHappiness>0</iHappiness>
+            <iPillageGold>0</iPillageGold>
+            <bOutsideBorders>0</bOutsideBorders>
+            <TerrainMakesValids>
+            </TerrainMakesValids>
+            <FeatureMakesValids>
+            </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_FIRE</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
+            <ImprovementPillage></ImprovementPillage>
+            <ImprovementUpgrade>IMPROVEMENT_PYRE_OF_THE_SERAPHIC</ImprovementUpgrade>
+            <TechYieldChanges>
+            </TechYieldChanges>
+            <RouteYieldChanges>
+            </RouteYieldChanges>
+            <bGraphicalOnly>1</bGraphicalOnly>
+            <bRequiresPeak>0</bRequiresPeak>
+            <bUnique>1</bUnique>
+            <bExploreTarget>0</bExploreTarget>
             <iAppearanceProbability>0</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -5039,8 +6074,7 @@
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
-            <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
+            <PythonOnMove>onMovePyreOfTheSeraphic(pCaster, pPlot)</PythonOnMove>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_QUARRY</Type>
@@ -5070,7 +6104,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -5099,6 +6133,28 @@
                         <iYieldChange>0</iYieldChange>
                     </YieldChanges>
                 </BonusTypeStruct>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_STONE</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>2</iYieldChange>
+                        <iYieldChange>1</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+                 <BonusTypeStruct>
+                    <BonusType>BONUS_SALT</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>1</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>2</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
             </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
@@ -5120,7 +6176,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_REMNANTS_OF_PATRIA</Type>
@@ -5181,6 +6236,19 @@
             </TerrainMakesValids>
             <FeatureMakesValids>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_METAMAGIC</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
@@ -5212,12 +6280,14 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
+            <BonusConvert>BONUS_MANA_METAMAGIC</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_RING_OF_CARCER</Type>
@@ -5272,12 +6342,14 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
+            <iMinWilderness>50</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>NONE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_RUINS</Type>
@@ -5347,6 +6419,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>75</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -5357,7 +6432,18 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>UNIT_LIZARDMAN</SpawnUnitType>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes, LairGuardians -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_RUINS_LIZARDMAN_WEAK</SpawnType>
+				<SpawnType>SPAWN_RUINS_LIZARDMAN</SpawnType>
+				<SpawnType>SPAWN_RUINS_LIZARDMAN_RANGER_WEAK</SpawnType>
+				<SpawnType>SPAWN_RUINS_LIZARDMAN_RANGER</SpawnType>
+			</SpawnTypes>
+            <GuardianSpawnTypes>
+				<SpawnType>SPAWN_RUINS_GUARDIAN_LIZARDMAN</SpawnType>
+				<SpawnType>SPAWN_RUINS_GUARDIAN_LIZARDMAN_RANGER</SpawnType>
+			</GuardianSpawnTypes>
+		<!-- WILDERNESS end -->
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_SEVEN_PINES</Type>
@@ -5409,6 +6495,19 @@
                     <bMakesValid>1</bMakesValid>
                 </FeatureMakesValid>
             </FeatureMakesValids>
+            <BonusTypeStructs>
+                <BonusTypeStruct>
+                    <BonusType>BONUS_MANA_FORCE</BonusType>
+                    <bBonusMakesValid>1</bBonusMakesValid>
+                    <bBonusTrade>1</bBonusTrade>
+                    <iDiscoverRand>0</iDiscoverRand>
+                    <YieldChanges>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                        <iYieldChange>0</iYieldChange>
+                    </YieldChanges>
+                </BonusTypeStruct>
+            </BonusTypeStructs>
             <ImprovementPillage></ImprovementPillage>
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
@@ -5424,12 +6523,14 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
-            <BonusConvert>NONE</BonusConvert>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
+            <BonusConvert>BONUS_MANA_FORCE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_SHIP_WRECK</Type>
@@ -5479,6 +6580,9 @@
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>1</bExploreTarget>
+		<!-- WILDERNESS 09/2013 lfgr / WildernessExploration -->
+            <bExplorable>1</bExplorable>
+		<!-- WILDERNESS end -->
             <iAppearanceProbability>100</iAppearanceProbability>
             <iHealRateChange>0</iHealRateChange>
             <iRange>0</iRange>
@@ -5489,7 +6593,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_SMOKE</Type>
@@ -5586,7 +6689,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_SNAKE_PILLAR</Type>
@@ -5630,7 +6732,7 @@
             <ImprovementUpgrade></ImprovementUpgrade>
             <TechYieldChanges>
                 <TechYieldChange>
-                    <PrereqTech>TECH_WAY_OF_THE_WICKED</PrereqTech>
+                    <PrereqTech>TECH_PHILOSOPHY</PrereqTech>
                     <TechYields>
                         <iYield>0</iYield>
                         <iYield>1</iYield>
@@ -5662,7 +6764,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_STANDING_STONES</Type>
@@ -5766,13 +6867,103 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
+            <iMinWilderness>10</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_EARTH</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
+		<ImprovementInfo>
+			<Type>IMPROVEMENT_TARCHS_TOWER</Type>
+			<Description>TXT_KEY_IMPROVEMENT_TARCHS_TOWER</Description>
+			<Civilopedia>TXT_KEY_IMPROVEMENT_TARCHS_TOWER_PEDIA</Civilopedia>
+			<Help></Help>
+			<ArtDefineTag>ART_DEF_IMPROVEMENT_TARCHS_TOWER</ArtDefineTag>
+			<bActsAsCity>0</bActsAsCity>
+			<bHillsMakesValid>1</bHillsMakesValid>
+			<bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+			<bRiverSideMakesValid>0</bRiverSideMakesValid>
+			<bNoFreshWater>1</bNoFreshWater>
+			<bRequiresFlatlands>0</bRequiresFlatlands>
+			<bRequiresRiverSide>0</bRequiresRiverSide>
+			<bRequiresIrrigation>0</bRequiresIrrigation>
+			<bCarriesIrrigation>0</bCarriesIrrigation>
+			<bRequiresFeature>0</bRequiresFeature>
+			<bWater>0</bWater>
+			<bGoody>0</bGoody>
+			<bPermanent>1</bPermanent>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+			<iTilesPerGoody>0</iTilesPerGoody>
+			<iGoodyRange>0</iGoodyRange>
+			<iFeatureGrowth>0</iFeatureGrowth>
+			<iUpgradeTime>0</iUpgradeTime>
+			<iAirBombDefense>0</iAirBombDefense>
+			<iDefenseModifier>50</iDefenseModifier>
+			<iHappiness>0</iHappiness>
+			<iPillageGold>0</iPillageGold>
+			<bOutsideBorders>1</bOutsideBorders>
+			<TerrainMakesValids>
+				<TerrainMakesValid>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<bMakesValid>1</bMakesValid>
+				</TerrainMakesValid>
+				<TerrainMakesValid>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<bMakesValid>1</bMakesValid>
+				</TerrainMakesValid>
+				<TerrainMakesValid>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<bMakesValid>1</bMakesValid>
+				</TerrainMakesValid>
+				<TerrainMakesValid>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<bMakesValid>1</bMakesValid>
+				</TerrainMakesValid>
+			</TerrainMakesValids>
+			<FeatureMakesValids>
+			</FeatureMakesValids>
+			<BonusTypeStructs>
+				<BonusTypeStruct>
+					<BonusType>BONUS_MANA_AIR</BonusType>
+					<bBonusMakesValid>1</bBonusMakesValid>
+					<bBonusTrade>1</bBonusTrade>
+					<iDiscoverRand>0</iDiscoverRand>
+					<YieldChanges>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+						<iYieldChange>0</iYieldChange>
+					</YieldChanges>
+				</BonusTypeStruct>
+			</BonusTypeStructs>
+			<ImprovementPillage/>
+			<ImprovementUpgrade/>
+			<TechYieldChanges>
+			</TechYieldChanges>
+			<RouteYieldChanges>
+			</RouteYieldChanges>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<bRequiresPeak>0</bRequiresPeak>
+			<bUnique>1</bUnique>
+			<bExploreTarget>0</bExploreTarget>
+			<iAppearanceProbability>0</iAppearanceProbability>
+			<iHealRateChange>0</iHealRateChange>
+			<iRange>0</iRange>
+			<iRangeDefenseModifier>0</iRangeDefenseModifier>
+			<iVisibilityChange>2</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
+            <iMinWilderness>30</iMinWilderness>
+		<!-- WILDERNESS end -->
+			<BonusConvert>BONUS_MANA_AIR</BonusConvert>
+			<FeatureUpgrade/>
+			<PrereqCivilization/>
+			<PythonAtRange/>
+			<PythonOnMove></PythonOnMove>
+			<iSeeFrom>1</iSeeFrom>
+		</ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_TOMB_OF_SUCELLUS</Type>
             <Description>TXT_KEY_IMPROVEMENT_TOMB_OF_SUCELLUS</Description>
@@ -5851,12 +7042,14 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
+            <iMinWilderness>20</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_MANA_LIFE</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_TOWER</Type>
@@ -5948,7 +7141,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
 			<iSeeFrom>1</iSeeFrom>
 			<bBombardable>1</bBombardable>
         </ImprovementInfo>
@@ -5986,7 +7178,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>25</iPillageGold>
+            <iPillageGold>50</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -6020,7 +7212,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_VILLAGE</Type>
@@ -6056,7 +7247,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>20</iPillageGold>
+            <iPillageGold>40</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -6090,7 +7281,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_WARNING_POST</Type>
@@ -6147,7 +7337,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMoveWarningPost(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_WATER_WORKED</Type>
@@ -6203,7 +7392,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_WHALING_BOATS</Type>
@@ -6233,7 +7421,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -6272,7 +7460,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_WINDMILL</Type>
@@ -6307,7 +7494,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -6341,7 +7528,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_WINERY</Type>
@@ -6372,7 +7558,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>10</iPillageGold>
+            <iPillageGold>20</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
             </TerrainMakesValids>
@@ -6411,9 +7597,83 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
-        <ImprovementInfo>
+        <ImprovementInfo> <!-- WILDERNESS 09/2013 lfgr / NewLairs, ImprovementSpawnTypes -->
+            <Type>IMPROVEMENT_WOLF_DEN</Type>
+            <Description>TXT_KEY_IMPROVEMENT_WOLF_DEN</Description>
+            <Civilopedia>TXT_KEY_IMPROVEMENT_WOLF_DEN_PEDIA</Civilopedia>
+            <Help></Help>
+            <ArtDefineTag>ART_DEF_IMPROVEMENT_WOLF_DEN</ArtDefineTag>
+            <bActsAsCity>0</bActsAsCity>
+            <bHillsMakesValid>0</bHillsMakesValid>
+            <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
+            <bRiverSideMakesValid>0</bRiverSideMakesValid>
+            <bNoFreshWater>0</bNoFreshWater>
+            <bRequiresFlatlands>0</bRequiresFlatlands>
+            <bRequiresRiverSide>0</bRequiresRiverSide>
+            <bRequiresIrrigation>0</bRequiresIrrigation>
+            <bCarriesIrrigation>0</bCarriesIrrigation>
+            <bRequiresFeature>0</bRequiresFeature>
+            <bWater>0</bWater>
+            <bGoody>0</bGoody>
+            <bPermanent>0</bPermanent>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+            <iTilesPerGoody>0</iTilesPerGoody>
+            <iGoodyRange>0</iGoodyRange>
+            <iFeatureGrowth>0</iFeatureGrowth>
+            <iUpgradeTime>0</iUpgradeTime>
+            <iAirBombDefense>0</iAirBombDefense>
+            <iDefenseModifier>0</iDefenseModifier>
+            <iHappiness>0</iHappiness>
+            <iPillageGold>0</iPillageGold>
+            <bOutsideBorders>1</bOutsideBorders>
+            <TerrainMakesValids>
+            </TerrainMakesValids>
+            <FeatureMakesValids>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_TUNDRA</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+                <TerrainMakesValid>
+                    <TerrainType>TERRAIN_SNOW</TerrainType>
+                    <bMakesValid>1</bMakesValid>
+                </TerrainMakesValid>
+            </FeatureMakesValids>
+            <ImprovementPillage></ImprovementPillage>
+            <ImprovementUpgrade></ImprovementUpgrade>
+            <TechYieldChanges>
+            </TechYieldChanges>
+            <RouteYieldChanges>
+            </RouteYieldChanges>
+            <bGraphicalOnly>0</bGraphicalOnly>
+            <bRequiresPeak>0</bRequiresPeak>
+            <bUnique>0</bUnique>
+            <bExploreTarget>0</bExploreTarget>
+            <iAppearanceProbability>0</iAppearanceProbability>
+            <iHealRateChange>0</iHealRateChange>
+            <iRange>0</iRange>
+            <iRangeDefenseModifier>0</iRangeDefenseModifier>
+            <iVisibilityChange>0</iVisibilityChange>
+            <BonusConvert>NONE</BonusConvert>
+            <FeatureUpgrade>NONE</FeatureUpgrade>
+            <PrereqCivilization>NONE</PrereqCivilization>
+            <PythonAtRange></PythonAtRange>
+            <PythonOnMove></PythonOnMove>
+		<!-- WILDERNESS 09/2013 lfgr / ImprovementSpawnTypes, LairGuardians -->
+            <SpawnTypes>
+				<SpawnType>SPAWN_WOLF_DEN_WOLF</SpawnType>
+				<SpawnType>SPAWN_WOLF_DEN_WOLF_PACK</SpawnType>
+				<SpawnType>SPAWN_WOLF_DEN_STRONG_WOLF_PACK</SpawnType>
+			</SpawnTypes>
+            <GuardianSpawnTypes>
+				<SpawnType>SPAWN_WOLF_DEN_WOLF</SpawnType>
+				<SpawnType>SPAWN_WOLF_DEN_WOLF_PACK</SpawnType>
+				<SpawnType>SPAWN_WOLF_DEN_STRONG_WOLF_PACK</SpawnType>
+			</GuardianSpawnTypes>
+		<!-- WILDERNESS end -->
+        </ImprovementInfo>
+		<ImprovementInfo>
             <Type>IMPROVEMENT_WORKSHOP</Type>
             <Description>TXT_KEY_IMPROVEMENT_WORKSHOP</Description>
             <Civilopedia></Civilopedia>
@@ -6451,7 +7711,7 @@
             <iAirBombDefense>0</iAirBombDefense>
             <iDefenseModifier>0</iDefenseModifier>
             <iHappiness>0</iHappiness>
-            <iPillageGold>5</iPillageGold>
+            <iPillageGold>10</iPillageGold>
             <bOutsideBorders>0</bOutsideBorders>
             <TerrainMakesValids>
                 <TerrainMakesValid>
@@ -6525,7 +7785,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_YGGDRASIL</Type>
@@ -6626,12 +7885,14 @@
             <iRange>0</iRange>
             <iRangeDefenseModifier>0</iRangeDefenseModifier>
             <iVisibilityChange>0</iVisibilityChange>
+		<!-- WILDERNESS 08/2013 lfgr / ImprovementMinWilderness -->
+            <iMinWilderness>30</iMinWilderness>
+		<!-- WILDERNESS end -->
             <BonusConvert>BONUS_FRUIT_OF_YGGDRASIL</BonusConvert>
             <FeatureUpgrade>NONE</FeatureUpgrade>
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_PORTAL</Type>
@@ -6687,7 +7948,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove>onMovePortal(pCaster, pPlot)</PythonOnMove>
-            <SpawnUnitType>NONE</SpawnUnitType>
         </ImprovementInfo>
     </ImprovementInfos>
 </Civ4ImprovementInfos>

@@ -128,6 +128,9 @@ public:
 	bool isProductionBuilding() const;																						// Exposed to Python
 	bool isProductionProject() const;																							// Exposed to Python
 	bool isProductionProcess() const;																		// Exposed to Python
+//Multiple Production: Added by Denev 07/01/2009
+	bool isProductionWonder() const;
+//Multiple Production: End Add
 
 	bool canContinueProduction(OrderData order);														// Exposed to Python
 	int getProductionExperience(UnitTypes eUnit = NO_UNIT);									// Exposed to Python
@@ -167,10 +170,17 @@ public:
 	int getProductionModifier(BuildingTypes eBuilding) const;											// Exposed to Python
 	int getProductionModifier(ProjectTypes eProject) const;												// Exposed to Python
 
-	int getOverflowProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, int iDiff, int iModifiedProduction) const;
-	int getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow) const;
+//Multiple Production: Modified by Denev 07/01/2009
+//	int getOverflowProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, int iDiff, int iModifiedProduction) const;
+//	int getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow) const;
+	int getOverflowProductionDifference() const;
+	int getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow, bool bYield = true) const;
+//Multiple Production: End Modify
 	int getCurrentProductionDifference(bool bIgnoreFood, bool bOverflow) const;				// Exposed to Python
 	int getExtraProductionDifference(int iExtra) const;																					// Exposed to Python
+//Multiple Production: Added by Denev 07/01/2009
+	void clearLostProduction();
+//Multiple Production: End Add
 
 	bool canHurry(HurryTypes eHurry, bool bTestVisible = false) const;		// Exposed to Python
 	void hurry(HurryTypes eHurry);																						// Exposed to Python
@@ -593,6 +603,16 @@ public:
 	int getMilitaryProductionModifier() const;														// Exposed to Python
 	void changeMilitaryProductionModifier(int iChange);
 
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	int getLivingProductionModifier() const;														// MISSING EXPOSITION TO PYTHON
+	void changeLivingProductionModifier(int iChange);                                               // MISSING EXPOSITION TO PYTHON
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
+
 	int getSpaceProductionModifier() const;																// Exposed to Python
 	void changeSpaceProductionModifier(int iChange);
 
@@ -705,6 +725,11 @@ public:
 
 	bool isPlundered() const;																		// Exposed to Python
 	void setPlundered(bool bNewValue);																// Exposed to Python
+
+//Multiple Production: Added by Denev 07/10/2009
+	bool isBuiltFoodProducedUnit() const;
+	void setBuiltFoodProducedUnit(bool bNewValue);
+//Multiple Production: End Add
 
 	DllExport PlayerTypes getOwner() const;																// Exposed to Python
 #ifdef _USRDLL
@@ -1072,7 +1097,7 @@ public:
     bool isSettlement() const;							// Exposed to Python
     void setSettlement(bool bNewValue);					// Exposed to Python
     int getNumCityPlots() const;
-    int getPlotRadius() const;
+    int getPlotRadius() const;							// Exposed to Python
     void setPlotRadius(int iNewValue);					// Exposed to Python
 	bool isUnhappyProduction() const;					// lfgr: Exposed to python
 	void changeUnhappyProduction(int iChange);
@@ -1275,7 +1300,20 @@ protected:
 	int m_iMaxFoodKeptPercent;
 	int m_iOverflowProduction;
 	int m_iFeatureProduction;
+//Multiple Production: Added by Denev 07/01/2009
+	int m_iLostProductionBase;
+	int m_iLostProductionModified;
+	int m_iGoldFromLostProduction;
+//Multiple Production: End Add
 	int m_iMilitaryProductionModifier;
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	int m_iLivingProductionModifier;
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	int m_iSpaceProductionModifier;
 	int m_iExtraTradeRoutes;
 	int m_iTradeRouteModifier;
@@ -1310,6 +1348,9 @@ protected:
 	bool m_bInfoDirty;
 	bool m_bLayoutDirty;
 	bool m_bPlundered;
+//Multiple Production: Added by Denev 07/10/2009
+	bool m_bBuiltFoodProducedUnit;
+//Multiple Production: End Add
 
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                       12/07/09                         denev & jdog5000     */

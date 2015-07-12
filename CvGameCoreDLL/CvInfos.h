@@ -621,6 +621,16 @@ public:
 	int getBonusAffinity(int i) const;
 	int getDamageTypeCombat(int i) const;
 	int getDamageTypeResist(int i) const;
+	int getEnslavementChance() const;
+	
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* PromotionExplResultBonus                                                                     */
+/************************************************************************************************/
+	int getExplorationResultBonus() const;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// MNAI - additional promotion tags
 	bool isAllowsMoveImpassable() const;
@@ -629,6 +639,7 @@ public:
 	bool isBlocksUpgrade() const;
 	bool isBlocksGifting() const;
 	bool isUpgradeOutsideBorders() const;
+	bool isAlwaysSpreadReligion() const;
 	// End MNAI
 
 	bool readPass3();
@@ -769,7 +780,17 @@ protected:
 	int* m_piBonusAffinity;
 	int* m_piDamageTypeCombat;
 	int* m_piDamageTypeResist;
+	int m_iEnslavementChance;
 //FfH: End Add
+	
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* PromotionExplResultBonus                                                                     */
+/************************************************************************************************/
+	int m_iExplorationResultBonus;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// MNAI - additional promotion tags
 	bool m_bAllowsMoveImpassable;
@@ -778,6 +799,7 @@ protected:
 	bool m_bBlocksUpgrade;
 	bool m_bBlocksGifting;
 	bool m_bUpgradeOutsideBorders;
+	bool m_bAlwaysSpreadReligion;
 	// End MNAI
 
 	// Arrays
@@ -891,13 +913,24 @@ public:
 	bool isRemoveHasCasted() const;
 	bool isResistable() const;
 	bool isSacrificeCaster() const;
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	bool isNoInterruptUnitCycling() const;
+//<<<<Spell Interrupt Unit Cycling: End Add
 	bool isRemoveInvalidFeature() const;	// MNAI
 
 	const TCHAR* getSound() const;
 	const TCHAR* getPyMiscast() const;
 	const TCHAR* getPyResult() const;
 	const TCHAR* getPyRequirement() const;
-	const TCHAR* getPyAlternateReq() const;	// MNAI
+	const TCHAR* getPyAlternateReq() const;	// MNAI	
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+	const TCHAR* getPyHelp() const;
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
+
 	int getCommandType() const;
 	void setCommandType(int iNewType);
 	// MNAI begin
@@ -991,6 +1024,9 @@ protected:
     bool m_bPush;
     bool m_bRemoveHasCasted;
     bool m_bSacrificeCaster;
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	bool m_bNoInterruptUnitCycling;
+//<<<<Spell Interrupt Unit Cycling: End Add
 	bool m_bRemoveInvalidFeature;	// MNAI
     int m_iChangePopulation;
     int m_iCost;
@@ -1002,6 +1038,14 @@ protected:
 	CvString m_szPyResult;
 	CvString m_szPyRequirement;
 	CvString m_szPyAlternateReq;	// MNAI
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+	CvString m_szPyHelp;
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
+
 	CvString m_szSound;
 	// MNAI begin
 	/*
@@ -1405,11 +1449,40 @@ public:
 
 	bool readPass2(CvXMLLoadUtility* pXML);
 	bool readPass3();
+
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	bool isAlive(CivilizationTypes eCiv) const;
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 //FfH: End Add
 
 // BUG - Unit Experience - start
 	bool canAcquireExperience() const;				// Exposed to Python
 // BUG - Unit Experience - end
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* (Deprecated)                                                                                 */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	int getMinWilderness() const; // Deprecated
+	int getMaxWilderness() const; // Deprecated
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             10/2013                                 lfgr          */
+/* PromotionCaptureApply                                                                        */
+/************************************************************************************************/
+	int getPromotionCaptureApply() const;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// Arrays
 
@@ -1655,6 +1728,26 @@ protected:
 	CvString m_szImage;
 	std::vector<CvString> m_aszExtraXML2forPass3;
 //FfH: End Add
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* (Deprecated)                                                                                 */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	int m_iMinWilderness; // Deprecated
+	int m_iMaxWilderness; // Deprecated
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             10/2013                                 lfgr          */
+/* PromotionCaptureApply                                                                        */
+/************************************************************************************************/
+	int m_iPromotionCaptureApply;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// Arrays
 
@@ -2226,6 +2319,14 @@ public:
 	int getStateReligionHappiness() const;				// Exposed to Python
 	int getWorkerSpeedModifier() const;				// Exposed to Python
 	int getMilitaryProductionModifier() const;				// Exposed to Python
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	int getLivingProductionModifier() const;				// MISSING EXPOSITION TO PYTHON
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	int getSpaceProductionModifier() const;				// Exposed to Python
 	int getGlobalSpaceProductionModifier() const;				// Exposed to Python
 	int getTradeRoutes() const;				// Exposed to Python
@@ -2471,6 +2572,14 @@ protected:
 	int m_iStateReligionHappiness;
 	int m_iWorkerSpeedModifier;
 	int m_iMilitaryProductionModifier;
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	int m_iLivingProductionModifier;
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	int m_iSpaceProductionModifier;
 	int m_iGlobalSpaceProductionModifier;
 	int m_iTradeRoutes;
@@ -2900,11 +3009,29 @@ public:
 	void setDerivativeCiv(int iCiv);
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	int getCivTrait() const;
+*/
+	bool isCivTraits( int i ) const;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	int getDefaultRace() const;
 	int getHero() const;
 	bool isMaintainFeatures(int i) const;
 //FfH: End Add
+	
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+	// LFGR_TODO: expose
+	int getTerrainFlavour() const;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 
 /*************************************************************************************************/
 /**	New Tag Defs	(CivilizationInfos)		01/12/09								Xienwolf	**/
@@ -2935,6 +3062,14 @@ protected:
 	int m_iActionSoundScriptId;
 	int m_iDerivativeCiv;
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+	int m_iTerrainFlavour;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
 	bool m_bAIPlayable;
 	bool m_bPlayable;
 
@@ -2954,6 +3089,16 @@ protected:
 	bool* m_pbCivilizationDisableTechs;
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+/* old
+	int m_iCivTrait;
+*/
+	bool* m_pbCivTraits;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	int m_iCivTrait;
 	int m_iDefaultRace;
 	int m_iHero;
@@ -3012,6 +3157,16 @@ public:
 	const char* getMovie() const;
 
 	bool read(CvXMLLoadUtility* pXML);
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**								Defines Function for Use in .cpp								**/
+/*************************************************************************************************/
+	int getLinkedVictory() const;
+	bool readPass2(CvXMLLoadUtility* pXML);
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
 
 protected:
@@ -3032,7 +3187,15 @@ protected:
 	bool m_bPermanent;
 
 	CvString m_szMovie;
-
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**								Defines Variable for Use in .cpp								**/
+/*************************************************************************************************/
+	int m_iLinkedVictory;
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -3671,8 +3834,25 @@ public:
 	int getPrereqCivilization() const;
 	const TCHAR* getPythonAtRange() const;
 	const TCHAR* getPythonOnMove() const;
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, LairGuardians, ImprovementWilderness, WildernessExploration           */
+/************************************************************************************************/
+/*
 	int getSpawnUnitType() const;
 	int getFreeSpawnPromotion() const;
+*/
+	bool getSpawnTypes( int eSpawn ) const;
+
+	bool isGuardianSpawnType( int eSpawn ) const;
+
+	int getMinWilderness() const;
+	int getMaxWilderness() const;
+
+	bool isExplorable() const;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	int getVisibilityChange() const;
 	bool readPass3();
 //FfH: End Add
@@ -3743,11 +3923,29 @@ protected:
 	int m_iPrereqCivilization;
 	CvString m_szPythonAtRange;
 	CvString m_szPythonOnMove;
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, LairGuardians, ImprovementWilderness, WildernessExploration           */
+/************************************************************************************************/
+/*
 	int m_iSpawnUnitType;
 	int m_iFreeSpawnPromotion;
-	int m_iVisibilityChange;
+*/
+	bool* m_pbSpawnTypes;
 
+	bool* m_pbGuardianSpawnTypes;
+	
+	int m_iMinWilderness;
+	int m_iMaxWilderness;
+
+	bool m_bExplorable;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+	int m_iVisibilityChange;
+	
 	std::vector<CvString> m_aszExtraXML2forPass3;
+	std::vector<CvString> m_aszExtraXML3forPass3;
 //FfH: End Add
 
 	// Arrays
@@ -4011,6 +4209,11 @@ public:
 	bool readPass2(CvXMLLoadUtility* pXML);
 //FfH: End Add
 
+// Features modified by Armageddon Counter START
+	int getFeatureDown() const;
+	int getFeatureUp() const;
+// Features modified by Armageddon Counter END
+
 	// Arrays
 
 	int getYieldChange(int i) const;						// Exposed to Python
@@ -4066,6 +4269,11 @@ protected:
 	int m_iRequireResist;
 	CvString m_szPythonOnMove;
 //FfH: End Add
+
+// Features modified by Armageddon Counter START
+	int m_iFeatureDown;
+	int m_iFeatureUp;
+// Features modified by Armageddon Counter END
 
 	// Arrays
 
@@ -4510,6 +4718,10 @@ public:
     int getReligionWeightModifier(int i) const;
 //FfH: End Add
 
+// Leader categories START
+	int getLeaderCategory() const;
+// Leader categories END
+
 	void write(FDataStreamBase* stream);
 	void read(FDataStreamBase* stream);
 	bool read(CvXMLLoadUtility* pXML);
@@ -4625,6 +4837,10 @@ protected:
 	int m_iPermanentTrait;
     int* m_piReligionWeightModifier;
 //FfH: End Add
+
+// Leader categories START
+	int m_iLeaderCategory;
+// Leader categories END
 
 	// Arrays
 
@@ -5243,6 +5459,13 @@ public:
     bool isInsane() const;
     bool isSelectable() const;
     bool isSprawling() const;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+	bool isAllUnitsFreePromotion() const;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
     int getFreeXPFromCombat() const;
     int getMaxCities() const;
     int getPillagingGold() const;
@@ -5287,6 +5510,13 @@ protected:
 	bool m_bInsane;
 	bool m_bSelectable;
 	bool m_bSprawling;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+	bool m_bAllUnitsFreePromotion;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	int m_iFreeXPFromCombat;
 	int m_iMaxCities;
 	int m_iPillagingGold;
@@ -6972,6 +7202,13 @@ public:
 	int getUnitDamagedWeight() const;			// Exposed to Python
 	int getUnitDistanceWeight() const;		// Exposed to Python
 	int getUnitExperienceWeight() const;		// Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	int getUnitMinLevel() const; // Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	int getMinTreasury() const;				// Exposed to Python
 
 	int getBuildingRequired(int i) const;		// Exposed to Python
@@ -7009,6 +7246,10 @@ public:
 	const CvWString& getWorldNews(int i) const;
 	int getNumWorldNews() const;
 
+// Start EmperorFool: Events with Images
+	DllExport const TCHAR* getEventArt() const;				// Exposed to Python
+// End EmperorFool: Events with Images
+
 	bool isSinglePlayer() const;				// Exposed to Python
 	bool isTeam() const;						// Exposed to Python
 	bool isRecurring() const;					// Exposed to Python
@@ -7031,6 +7272,13 @@ public:
 	bool isProbabilityUnitMultiply() const;	// Exposed to Python
 	bool isProbabilityBuildingMultiply() const;	// Exposed to Python
 	bool isPrereqEventCity() const;			// Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	bool isRequiresValidEvent() const; // Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	const char* getPythonCallback() const;
 	const char* getPythonCanDo() const;
@@ -7077,6 +7325,13 @@ private:
 	int m_iUnitDamagedWeight;
 	int m_iUnitDistanceWeight;
 	int m_iUnitExperienceWeight;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	int m_iUnitMinLevel;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	int m_iMinTreasury;
 
 	std::vector<int> m_aiUnitsRequired;
@@ -7097,6 +7352,10 @@ private:
 	std::vector<int> m_aiTextEra;
 	std::vector<CvWString> m_aszText;
 	std::vector<CvWString> m_aszWorldNews;
+
+// Start EmperorFool: Events with Images
+	CvString m_szEventArt;
+// End EmperorFool: Events with Images
 
 	bool m_bSinglePlayer;
 	bool m_bTeam;
@@ -7120,6 +7379,13 @@ private:
 	bool m_bProbabilityUnitMultiply;
 	bool m_bProbabilityBuildingMultiply;
 	bool m_bPrereqEventCity;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+	bool m_bRequiresValidEvent;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	CvString m_szPythonCallback;
 	CvString m_szPythonCanDo;
@@ -7207,6 +7473,14 @@ public:
 	int getInflationModifier() const;			// Exposed to Python
 	int getSpaceProductionModifier() const;	// Exposed to Python
 	int getAIValue() const;	// Exposed to Python
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	bool isUnitPromotion( int iUnitPromotion );
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	int getAdditionalEventChance(int i) const;// Exposed to Python
 	int getAdditionalEventTime(int i) const;	// Exposed to Python
@@ -7322,6 +7596,14 @@ private:
 	int m_iPrereqReligion;
 	int m_iPrereqStateReligion;
 //FfH: End Add
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	bool* m_pbUnitPromotions;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	int* m_piTechFlavorValue;
 	int* m_piPlotExtraYields;
@@ -7540,4 +7822,222 @@ protected:
 	std::string m_szLoading;
 	std::string m_szLoadingSlideshow;
 };
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+
+// LFGR_TODO expose to python
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//  class: CvTerrainFlavourInfo
+//
+//  DESC: LFGR_TODO
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvTerrainFlavourInfo :
+	public CvInfoBase
+{
+	//---------------------------------------PUBLIC INTERFACE---------------------------------
+public:
+
+	CvTerrainFlavourInfo();
+	virtual ~CvTerrainFlavourInfo();
+	
+	// ints
+	int getBaseWeight() const;
+	int getIsolationPercentWeight() const;
+	int getCoastalWeight() const;
+
+	// Arrays
+	int getPlotPercentWeight( int ePlotType ) const;
+	int getTerrainPercentWeight( int eTerrain ) const;
+	int getFeaturePercentWeight( int eFeature ) const;
+	int getImprovementCountWeight( int eImprovement ) const;
+	int getBonusCountWeight( int eBonus ) const;
+	int getYieldOnPlotPercentWeight( int eYield ) const;
+
+	bool read(CvXMLLoadUtility* pXML);
+	DllExport void read(FDataStreamBase* stream);
+	DllExport void write(FDataStreamBase* stream);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+
+protected:
+	
+	// ints
+	int m_iBaseWeight;
+	int m_iIsolationPercentWeight;
+	int m_iCoastalWeight;
+
+	// Arrays
+	int* m_piPlotPercentWeight;
+	int* m_piTerrainPercentWeight;
+	int* m_piFeaturePercentWeight;
+	int* m_piImprovementCountWeight;
+	int* m_piBonusCountWeight;
+	int* m_piYieldOnPlotPercentWeight;
+};
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//  class : CvSpawnInfo
+//
+//  DESC: Controls barbarian unit spawning
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvSpawnInfo :
+	public CvInfoBase
+{
+	//---------------------------------------PUBLIC INTERFACE---------------------------------
+public:
+
+	CvSpawnInfo();
+	virtual ~CvSpawnInfo();
+	
+	int getCreateLair() const;
+	int getTerrainFlavourType() const;
+	int getUnitArtStyleType() const;
+	int getSpawnPrereqType() const;
+	int getUnitAIType() const;
+	
+	int getWeight() const;
+	int getValidTerrainWeight() const;
+	int getPrereqGlobalCounter() const;
+	
+	int getMinRandomPromotions() const;
+	int getMaxRandomPromotions() const;
+	
+	int getMinIncludedSpawns() const;
+	int getMaxIncludedSpawns() const;
+	
+	int getCreateLairAge() const;
+	int getCreateLairLevel() const;
+	
+	int getMinTier() const;
+	int getMaxTier() const;
+	
+	bool isNeverSpawn() const;
+	bool isNoWildernessIgnoreSpawnPrereq() const;
+	bool isExplorationResult() const;
+	bool isAnimal() const;
+	bool isWater() const;
+	
+	bool isNoRace() const;
+	bool isExplorationNoPush() const;
+	bool isNoDefender() const;
+	bool isNoMinWilderness() const;
+	
+	int getNumSpawnUnits( int eUnit ) const;
+	
+	// LFGR_TODO: is...
+	bool getUnitPromotions( int ePromotion ) const;
+	
+	int getIncludedSpawnMin( int eSpawn ) const;
+	int getIncludedSpawnMax( int eSpawn ) const;
+	bool isIncludedSpawnIgnoreTerrain( int eSpawn ) const;
+	bool isIncludedSpawnCountSeparately( int eSpawn ) const;
+
+	bool read(CvXMLLoadUtility* pXML);
+	bool readPass2(CvXMLLoadUtility* pXML);
+	void read(FDataStreamBase* stream);
+	void write(FDataStreamBase* stream);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+
+protected:
+	
+	int m_eCreateLair;
+	int m_eUnitArtStyleType;
+	int m_eTerrainFlavourType;
+	int m_eSpawnPrereqType;
+	int m_eUnitAIType;
+	
+	int m_iWeight;
+	int m_iValidTerrainWeight;
+	int m_iPrereqGlobalCounter;
+	int m_iMinRandomPromotions;
+	int m_iMaxRandomPromotions;
+	int m_iMinIncludedSpawns;
+	int m_iMaxIncludedSpawns;
+	int m_iCreateLairLevel;
+	int m_iCreateLairAge;
+	int m_iMinTier;
+	int m_iMaxTier;
+	
+	bool m_bNeverSpawn;
+	bool m_bNoWildernessIgnoreSpawnPrereq;
+	bool m_bExplorationResult;
+	bool m_bExplorationNoPush;
+	bool m_bNoDefender;
+	bool m_bAnimal;
+	bool m_bWater;
+	
+	bool m_bNoRace;
+	bool m_bNoMinWilderness;
+
+	// Arrays
+	
+	int* m_piNumSpawnUnits;
+	
+	bool* m_pbUnitPromotions;
+
+	int* m_piIncludedSpawnMin;
+	int* m_piIncludedSpawnMax;
+	bool* m_pbIncludedSpawnIgnoreTerrain;
+	bool* m_pbIncludedSpawnCountSeparately;
+};
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//  class : CvSpawnPrereqInfo
+//
+//  DESC: Manages requirements for CvSpawnInfos
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvSpawnPrereqInfo :
+	public CvInfoBase
+{
+	//---------------------------------------PUBLIC INTERFACE---------------------------------
+public:
+
+	CvSpawnPrereqInfo();
+	virtual ~CvSpawnPrereqInfo();
+
+	int getNumWildernessTiers() const;
+	int getMinWilderness( int iTier ) const;
+	int getMaxWilderness( int iTier ) const;
+	
+	int getNumTechTiers() const;
+	bool isPrereqTech( int iTier, int eTech ) const;
+	bool isObsoleteTech( int iTier, int eTech ) const;
+
+	bool read(CvXMLLoadUtility* pXML);
+	void read(FDataStreamBase* stream);
+	void write(FDataStreamBase* stream);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+
+protected:
+	
+	std::vector<int> m_viMinWildernessTiers;
+	std::vector<int> m_viMaxWildernessTiers;
+	std::vector<bool*> m_vpiPrereqTechTiers;
+	std::vector<bool*> m_vpiObsoleteTechTiers;
+};
+
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 #endif

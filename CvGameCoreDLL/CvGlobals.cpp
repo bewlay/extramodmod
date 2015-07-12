@@ -239,6 +239,16 @@ m_iUSE_PLOT_REVEALED_CALLBACK(0),
 m_iUSE_COMBAT_RESULT_CALLBACK(0),
 //FfH: End Add
 
+m_iTECH_PROPAGATION_TEAMS_MAX(30),
+m_iTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE(15),
+m_iTECH_PROPAGATION_TEAMS_MASTER(30),
+m_iTECH_PROPAGATION_TEAMS_OPEN_BORDERS(45),
+m_iTECH_PROPAGATION_TEAMS_VASSAL(60),
+m_iTECH_PROPAGATION_TEAMS_EMBASSY(15),
+m_iTECH_PROPAGATION_TEAMS_ALIGMENT(10),
+m_iTECH_PROPAGATION_TEAMS_RELIGION(10),
+m_iTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT(15),
+
 m_paHints(NULL),
 m_paMainMenus(NULL)
 /************************************************************************************************/
@@ -1244,6 +1254,7 @@ CvFeatureInfo& CvGlobals::getFeatureInfo(FeatureTypes eFeatureNum)
 	FAssert(eFeatureNum < GC.getNumFeatureInfos());
 	return *(m_paFeatureInfo[eFeatureNum]);
 }
+
 
 int& CvGlobals::getNumPlayableCivilizationInfos()
 {
@@ -2592,6 +2603,70 @@ CvUnitArtStyleTypeInfo& CvGlobals::getUnitArtStyleTypeInfo(UnitArtStyleTypes eUn
 	return *(m_paUnitArtStyleTypeInfo[eUnitArtStyleTypeNum]);
 }
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+int CvGlobals::getNumTerrainFlavourInfos()
+{
+	return (int)m_paTerrainFlavourInfo.size();
+}
+
+std::vector<CvTerrainFlavourInfo*>& CvGlobals::getTerrainFlavourInfo()	// For Moose - XML Load Util, CvInfos
+{
+	return m_paTerrainFlavourInfo;
+}
+
+CvTerrainFlavourInfo& CvGlobals::getTerrainFlavourInfo(TerrainFlavourTypes eTerrainFlavourNum)
+{
+	FAssert(eTerrainFlavourNum > -1);
+	FAssert(eTerrainFlavourNum < GC.getNumTerrainFlavourInfos());
+	return *(m_paTerrainFlavourInfo[eTerrainFlavourNum]);
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+int CvGlobals::getNumSpawnInfos()
+{
+    return (int)m_paSpawnInfo.size();
+}
+
+std::vector<CvSpawnInfo*>& CvGlobals::getSpawnInfo()
+{
+	return m_paSpawnInfo;
+}
+
+CvSpawnInfo& CvGlobals::getSpawnInfo(SpawnTypes eSpawnNum)
+{
+	FAssert(eSpawnNum > -1);
+	FAssert(eSpawnNum < GC.getNumSpawnInfos());
+	return *(m_paSpawnInfo[eSpawnNum]);
+}
+
+int CvGlobals::getNumSpawnPrereqInfos()
+{
+    return (int)m_paSpawnPrereqInfo.size();
+}
+
+std::vector<CvSpawnPrereqInfo*>& CvGlobals::getSpawnPrereqInfo()
+{
+	return m_paSpawnPrereqInfo;
+}
+
+CvSpawnPrereqInfo& CvGlobals::getSpawnPrereqInfo(SpawnPrereqTypes eSpawnPrereqNum)
+{
+	FAssert(eSpawnPrereqNum > -1);
+	FAssert(eSpawnPrereqNum < GC.getNumSpawnPrereqInfos());
+	return *(m_paSpawnPrereqInfo[eSpawnPrereqNum]);
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 int& CvGlobals::getNumCitySizeTypes()
 {
 	return m_iNumCitySizeTypes;
@@ -3500,6 +3575,33 @@ void CvGlobals::writeEventTriggerInfoArray(FDataStreamBase* pStream)
 	writeInfoArray(pStream, m_paEventTriggerInfo);
 }
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+bool CvGlobals::readSpawnInfoArray(FDataStreamBase* pStream)
+{
+	return readInfoArray(pStream, m_paSpawnInfo, "CvSpawnInfo");
+}
+
+void CvGlobals::writeSpawnInfoArray(FDataStreamBase* pStream)
+{
+	writeInfoArray(pStream, m_paSpawnInfo);
+}
+
+bool CvGlobals::readSpawnPrereqInfoArray(FDataStreamBase* pStream)
+{
+	return readInfoArray(pStream, m_paSpawnPrereqInfo, "CvSpawnPrereqInfo");
+}
+
+void CvGlobals::writeSpawnPrereqInfoArray(FDataStreamBase* pStream)
+{
+	writeInfoArray(pStream, m_paSpawnPrereqInfo);
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 
 //
 // Global Types Hash Map
@@ -3711,6 +3813,28 @@ void CvGlobals::deleteInfoArrays()
 	deleteInfoArray(m_paEntityEventInfo);
 	deleteInfoArray(m_paAnimationCategoryInfo);
 	deleteInfoArray(m_paAnimationPathInfo);
+	
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	deleteInfoArray(m_paTerrainFlavourInfo);
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+	deleteInfoArray(m_paSpawnInfo);
+	deleteInfoArray(m_paSpawnPrereqInfo);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
+// Leader categories START
+	deleteInfoArray(m_paLeaderCategoryInfos);
+// Leader categories END
 
 	clearTypesMap();
 	m_aInfoVectors.clear();
@@ -3932,3 +4056,61 @@ bool CvGlobals::isDYNAMIC_CIV_NAMES()
 	return m_bDYNAMIC_CIV_NAMES;
 }
 
+// Leader categories START
+std::vector<CvInfoBase*>& CvGlobals::getLeaderCategoryInfo()
+{
+	return m_paLeaderCategoryInfos;
+}
+
+CvInfoBase& CvGlobals::getLeaderCategoryInfo(LeaderHeadCategories eLeaderCategoryNum)
+{
+	FAssert(eLeaderCategoryNum >= 0);
+	FAssert(eLeaderCategoryNum < NUM_LEADERCATEGORIES);
+	return *(m_paLeaderCategoryInfos[eLeaderCategoryNum]);
+}
+// Leader categories END
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_MAX()
+{
+	return m_iTECH_PROPAGATION_TEAMS_MAX;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE()
+{
+	return m_iTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_MASTER()
+{
+	return m_iTECH_PROPAGATION_TEAMS_MASTER;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_OPEN_BORDERS()
+{
+	return m_iTECH_PROPAGATION_TEAMS_OPEN_BORDERS;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_VASSAL()
+{
+	return m_iTECH_PROPAGATION_TEAMS_VASSAL;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_EMBASSY()
+{
+	return m_iTECH_PROPAGATION_TEAMS_EMBASSY;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_ALIGMENT()
+{
+	return m_iTECH_PROPAGATION_TEAMS_ALIGMENT;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_RELIGION()
+{
+	return m_iTECH_PROPAGATION_TEAMS_RELIGION;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT()
+{
+	return m_iTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT;
+}

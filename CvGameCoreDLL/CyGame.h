@@ -390,6 +390,10 @@ public:
 #endif
 // BUFFY - Security Checks - end
 
+// Automatic OOS detection START
+	void setOOSVisible();
+// Automatic OOS detection END
+
 protected:
 	CvGame* m_pGame;
 };

@@ -154,6 +154,7 @@
 	<ElementType name="iStateReligionHappiness" content="textOnly" dt:type="int"/>
 	<ElementType name="iWorkerSpeedModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iMilitaryProductionModifier" content="textOnly" dt:type="int"/>
+	<ElementType name="iLivingProductionModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iSpaceProductionModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iGlobalSpaceProductionModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iTradeRoutes" content="textOnly" dt:type="int"/>
@@ -517,6 +518,7 @@
 		<element type="iStateReligionHappiness"/>
 		<element type="iWorkerSpeedModifier"/>
 		<element type="iMilitaryProductionModifier"/>
+		<element type="iLivingProductionModifier" minOccurs="0"/>
 		<element type="iSpaceProductionModifier"/>
 		<element type="iGlobalSpaceProductionModifier"/>
 		<element type="iTradeRoutes"/>

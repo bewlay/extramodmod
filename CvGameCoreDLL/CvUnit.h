@@ -73,13 +73,22 @@ public:
 	virtual ~CvUnit();
 
 	void reloadEntity();
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Added parameter szName                                                                       */
+/************************************************************************************************/
+/*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection);
 // lfgr 04/2014 bugfix
 //	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit = true);
-	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit = true, bool bGift = false);
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
+*/
+	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit = true, CvWString szName = "", bool bGift = false);
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	void uninit();
 	void reset(int iID = 0, UnitTypes eUnit = NO_UNIT, PlayerTypes eOwner = NO_PLAYER, bool bConstructorCall = false);
 	void setupGraphical();
@@ -674,6 +683,7 @@ public:
 
 	DllExport CvUnit* getCombatUnit() const;
 	void setCombatUnit(CvUnit* pUnit, bool bAttacking = false);
+	bool showSiegeTower(CvUnit* pDefender) const; // K-Mod
 
 	CvUnit* getTransportUnit() const;																							// Exposed to Python
 	bool isCargo() const;																													// Exposed to Python
@@ -1028,9 +1038,33 @@ public:
 	void changeGiftingBlocked(int iNewValue);
 	bool isUpgradeOutsideBorders() const;
 	void changeUpgradeOutsideBorders(int iNewValue);
+	bool isAlwaysSpreadReligion() const;
+	void changeAlwaysSpreadReligion(int iNewValue);
 	// End MNAI
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
+/************************************************************************************************/
+	int getMinWilderness() const;
+	void setMinWilderness( int iNewValue );
+	
+	int getLairPlot() const;
+	void setLairPlot( int iPlot );
+	
+	SpawnTypes getSpawnType() const;
+	void setSpawnType( SpawnTypes eNewValue );
+
+	int getExplorationLevel() const;
+	int getExplorationResultBonus() const;
+	void changeExplorationResultBonus( int iChange );
+	bool canDoExploration( CvPlot* pPlot = NULL ) const;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	virtual int AI_promotionValue(PromotionTypes ePromotion) = 0;
+
+	int getEnslavementChance() const;
 //FfH: End Add
 
 protected:
@@ -1167,6 +1201,7 @@ protected:
 	int m_iUpgradeBlocked;
 	int m_iGiftingBlocked;
 	int m_iUpgradeOutsideBorders;
+	int m_iAlwaysSpreadReligion;
 	// End MNAI
 
 //>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
@@ -1196,6 +1231,20 @@ protected:
 	int* m_paiExtraFeatureAttackPercent;
 	int* m_paiExtraFeatureDefensePercent;
 	int* m_paiExtraUnitCombatModifier;
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
+/************************************************************************************************/
+	int m_iMinWilderness;
+
+	int m_iLairPlot;
+	
+	SpawnTypes m_eSpawnType;
+
+	int m_iExplorationResultBonus;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	bool canAdvance(const CvPlot* pPlot, int iThreshold) const;
 	void collateralCombat(const CvPlot* pPlot, CvUnit* pSkipUnit = NULL);

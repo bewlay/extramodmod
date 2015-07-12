@@ -641,6 +641,14 @@ void CyInfoPythonInterface3()
 		.def("getConvertUnitType", &CvSpellInfo::getConvertUnitType, "int ()")
 //<<<<BUGFfH: End Add
 
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+		.def("getPyHelp", &CvSpellInfo::getPyHelp, "string ()")
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
+
 		;
 //FfH: End Add
 
@@ -670,6 +678,13 @@ void CyInfoPythonInterface3()
 		.def("getUnitDamagedWeight", &CvEventTriggerInfo::getUnitDamagedWeight, "int ()")
 		.def("getUnitDistanceWeight", &CvEventTriggerInfo::getUnitDistanceWeight, "int ()")
 		.def("getUnitExperienceWeight", &CvEventTriggerInfo::getUnitExperienceWeight, "int ()")
+	/************************************************************************************************/
+	/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+	/************************************************************************************************/
+		.def("getUnitMinLevel", &CvEventTriggerInfo::getUnitMinLevel, "int ()")
+	/************************************************************************************************/
+	/* EVENT_NEW_TAGS                          END                                                  */
+	/************************************************************************************************/
 		.def("getMinTreasury", &CvEventTriggerInfo::getMinTreasury, "int ()")
 
 		.def("getUnitRequired", &CvEventTriggerInfo::getUnitRequired, "int (int)")
@@ -718,6 +733,13 @@ void CyInfoPythonInterface3()
 		.def("isProbabilityUnitMultiply", &CvEventTriggerInfo::isProbabilityUnitMultiply, "bool ()")
 		.def("isProbabilityBuildingMultiply", &CvEventTriggerInfo::isProbabilityBuildingMultiply, "bool ()")
 		.def("isPrereqEventCity", &CvEventTriggerInfo::isPrereqEventCity, "bool ()")
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+		.def("isRequiresValidEvent", &CvEventTriggerInfo::isRequiresValidEvent, "bool ()")
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 		;
 
 	python::class_<CvEventInfo, python::bases<CvInfoBase> >("CvEventInfo")
@@ -844,4 +866,22 @@ void CyInfoPythonInterface3()
 		.def("getLoading", &CvMainMenuInfo::getLoading, "string ()")
 		.def("getLoadingSlideshow", &CvMainMenuInfo::getLoadingSlideshow, "string ()")
 		;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	python::class_<CvTerrainFlavourInfo, python::bases<CvInfoBase> >("CvTerrainFlavourInfo")
+		.def("getBaseWeight", &CvTerrainFlavourInfo::getBaseWeight, "int ()")
+		.def("getIsolationPercentWeight", &CvTerrainFlavourInfo::getIsolationPercentWeight, "int ()")
+		.def("getCoastalWeight", &CvTerrainFlavourInfo::getCoastalWeight, "int ()")
+		
+		.def("getPlotPercentWeight", &CvTerrainFlavourInfo::getPlotPercentWeight, "int (PlotTypes ePlot)")
+		.def("getTerrainPercentWeight", &CvTerrainFlavourInfo::getTerrainPercentWeight, "int (TerrainTypes eTerrain)")
+		.def("getFeaturePercentWeight", &CvTerrainFlavourInfo::getFeaturePercentWeight, "int (FeatureTypes eFeature)")
+		.def("getImprovementCountWeight", &CvTerrainFlavourInfo::getImprovementCountWeight, "int (ImprovementTypes eImprovement)")
+		.def("getBonusCountWeight", &CvTerrainFlavourInfo::getBonusCountWeight, "int (BonusTypes eBonus)")
+		.def("getYieldOnPlotPercentWeight", &CvTerrainFlavourInfo::getYieldOnPlotPercentWeight, "int (YieldTypes eYield)")
+		;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 }

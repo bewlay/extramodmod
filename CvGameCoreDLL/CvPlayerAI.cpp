@@ -3640,18 +3640,19 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 			if ((getCapitalCity() != NULL) &&
 				getCapitalCity()->getArea() == pNearestCity->getArea())
 			{
+				
 				int iDistance = plotDistance(iX, iY, pNearestCity->getX_INLINE(), pNearestCity->getY_INLINE());
 				int iNumCities = getNumCities();
 				
 				if (iDistance > (bSprawlingExpand ? 6 : 5))
 				{
-		    		iValue -= (iDistance - 5) * 500;
+					iValue -= (iDistance - 5) * 500;
 				}
 
 				/*
 				if (iDistance > (bSprawlingExpand ? 6 : 5))
 				{
-		    		iValue -= (iDistance - 5) * 500;
+					iValue -= (iDistance - 5) * 500;
 				}
 				*/
 
@@ -3851,6 +3852,17 @@ int CvPlayerAI::AI_foundValue(int iX, int iY, int iMinRivalRange, bool bStarting
 	}
 	*/
 	// ALN End
+	
+/************************************************************************************************/
+/* WILDERNESS                             10/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
+/* Improved city placing AI                                                                     */
+/************************************************************************************************/
+	if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
+		iValue = (int) ( iValue / std::max( 1.0f, pPlot->getWilderness() / 50.0f + 1.0f ) );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 
 	return std::max(1, iValue);
@@ -7777,7 +7789,17 @@ int CvPlayerAI::AI_techUnitValue( TechTypes eTech, int iPathLength, bool &bEnabl
 					// account for traits
 					for (int iJ = 0; iJ < GC.getNumTraitInfos(); iJ++)
 					{
+					/********************************************************************************/
+					/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+					/********************************************************************************/
+					/* old
 						if ((kLoopUnit.getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes)iJ).isFreePromotionUnitCombat(kLoopUnit.getUnitCombatType()))
+					*/
+						if ( GC.getTraitInfo((TraitTypes) iJ).isAllUnitsFreePromotion() ||
+							((kLoopUnit.getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(kLoopUnit.getUnitCombatType())))
+					/********************************************************************************/
+					/* EXTRA_CIV_TRAITS                                                     END     */
+					/********************************************************************************/
 						{
 							if (hasTrait((TraitTypes)iJ))
 							{
@@ -13374,7 +13396,17 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 				{
 					if (GC.getTraitInfo((TraitTypes) iI).isFreePromotion(iK))
 					{
+					/********************************************************************************/
+					/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+					/********************************************************************************/
+					/* old
 						if ((kUnitInfo.getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iI).isFreePromotionUnitCombat(kUnitInfo.getUnitCombatType()))
+					*/
+						if ( GC.getTraitInfo((TraitTypes) iI).isAllUnitsFreePromotion() ||
+							((kUnitInfo.getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iI).isFreePromotionUnitCombat(kUnitInfo.getUnitCombatType())))
+					/********************************************************************************/
+					/* EXTRA_CIV_TRAITS                                                     END     */
+					/********************************************************************************/
 						{
 							iTraitMod += 10;
 						}
@@ -13446,7 +13478,6 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 
 	return std::max(0, iValue);
 }
-
 
 int CvPlayerAI::AI_totalUnitAIs(UnitAITypes eUnitAI) const
 {
@@ -13598,6 +13629,8 @@ int CvPlayerAI::AI_neededWorkers(CvArea* pArea) const
 	}
 
 	iCount += getUnitClassCountPlusMaking((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SETTLER")) * 5;
+
+	// EXTRA_CIV_LEADERS TODO: also take traits into account
 
 	// Tholal AI - account for racial changes to work rates
 	int iDefaultRace = GC.getCivilizationInfo(getCivilizationType()).getDefaultRace();
@@ -14875,8 +14908,10 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 
 	iValue += ((kCivic.getGreatPeopleRateModifier() * iGreatPeopleTotalDelta) / (((AI_isDoVictoryStrategy(AI_VICTORY_ALTAR2 || AI_VICTORY_CULTURE2)) ? 10 : 50) + iCities));
 //<<<<Better AI: End Modify
-	
+	/** ExtraModMod: Great Generals are available unconditionally.
 	if ( bWarPlan && GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+	*/
+	if (bWarPlan)
 	{
 		iValue += ((kCivic.getGreatGeneralRateModifier() * getNumMilitaryUnits()) / 50);
 		iValue += ((kCivic.getDomesticGreatGeneralRateModifier() * getNumMilitaryUnits()) / 100);
@@ -15461,10 +15496,13 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 			{
 				iTempValue += ((((AI_avoidScience()) ? 50 : 25) * iCities) / GC.getHurryInfo((HurryTypes)iI).getGoldPerProduction());
 
+				/**
+				 * In ExtraModMod, victory buildings cannot be rushed.
 				if (AI_isDoVictoryStrategy(AI_VICTORY_ALTAR4) || AI_isDoVictoryStrategy(AI_VICTORY_TOWERMASTERY4))
 				{
 					iTempValue += 5000;
 				}
+				*/
 			}
 			if (GC.getHurryInfo((HurryTypes)iI).getProductionPerPopulation() > 0)
 			{
@@ -17025,6 +17063,15 @@ void CvPlayerAI::AI_changeMemoryCount(PlayerTypes eIndex1, MemoryTypes eIndex2, 
 // BUG - Update Attitude Icons - end
 	GET_PLAYER(getID()).AI_invalidateAttitudeCache(eIndex1);
 	FAssert(AI_getMemoryCount(eIndex1, eIndex2) >= 0);
+	
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           08/21/13                                lfgr        */
+/* Really update attitude                                                                       */
+/************************************************************************************************/
+	GET_PLAYER(getID()).AI_invalidateAttitudeCache(eIndex1);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 }
 
 int CvPlayerAI::AI_calculateGoldenAgeValue() const
@@ -25031,7 +25078,17 @@ UnitTypes CvPlayerAI::AI_bestAdvancedStartUnitAI(CvPlot* pPlot, UnitAITypes eUni
 								{
 									if (GC.getTraitInfo((TraitTypes) iJ).isFreePromotion(iK))
 									{
+									/********************************************************************************/
+									/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+									/********************************************************************************/
+									/* old
 										if ((GC.getUnitInfo(eLoopUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eLoopUnit).getUnitCombatType()))
+									*/
+										if ( GC.getTraitInfo((TraitTypes) iJ).isAllUnitsFreePromotion() ||
+											((GC.getUnitInfo(eLoopUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eLoopUnit).getUnitCombatType())))
+									/********************************************************************************/
+									/* EXTRA_CIV_TRAITS                                                     END     */
+									/********************************************************************************/
 										{
 											iPromotionValue += 15;
 											break;
@@ -27409,7 +27466,17 @@ int CvPlayerAI::AI_trueCombatValue(UnitTypes eUnit) const
 				{
 					if (GC.getPromotionInfo((PromotionTypes)iK).getExtraCombatStr() != 0)
 					{
+					/********************************************************************************/
+					/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+					/********************************************************************************/
+					/* old
 						if ((GC.getUnitInfo(eUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes)iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eUnit).getUnitCombatType()))
+					*/
+						if ( GC.getTraitInfo((TraitTypes) iJ).isAllUnitsFreePromotion() ||
+							((GC.getUnitInfo(eUnit).getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iJ).isFreePromotionUnitCombat(GC.getUnitInfo(eUnit).getUnitCombatType())))
+					/********************************************************************************/
+					/* EXTRA_CIV_TRAITS                                                     END     */
+					/********************************************************************************/
 						{
 							iCombat += GC.getPromotionInfo((PromotionTypes)iK).getExtraCombatStr();
 						}

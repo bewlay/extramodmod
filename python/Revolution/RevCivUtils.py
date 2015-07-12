@@ -307,21 +307,23 @@ class RevCivDefines :
 		for idx in range( 0, gc.getNumCivilizationInfos() ) :
 			self.liMinorLeaders.append( list() )
 
-		self.liMinorLeaders[self.iAmurite] = [self.iTya]
-		self.liMinorLeaders[self.iBannor] = [self.iTethira]
-		self.liMinorLeaders[self.iBalseraph] = [self.iMelisandre, self.iFuria, self.iWeevil]
-		self.liMinorLeaders[self.iClan] = [self.iHafgan]
-		self.liMinorLeaders[self.iCalabim] = [self.iMahon]
-		self.liMinorLeaders[self.iDoviello] = [self.iVolanna, self.iDuin]
-		self.liMinorLeaders[self.iElohim] = [self.iThessalonica]
-		self.liMinorLeaders[self.iGrigori] = [self.iKoun]
-		self.liMinorLeaders[self.iHippus] = [self.iOstanes, self.iUldanor]
-		self.liMinorLeaders[self.iIllians] = [self.iDumannios, self.iRiuros, self.iAnaganios, self.iBraeden]
+## There are no minor leaders in ExtraModMod.
+#		self.liMinorLeaders[self.iAmurite] = [self.iTya]
+#		self.liMinorLeaders[self.iBannor] = [self.iTethira]
+#		self.liMinorLeaders[self.iBalseraph] = [self.iMelisandre, self.iFuria, self.iWeevil]
+#		self.liMinorLeaders[self.iClan] = [self.iHafgan]
+#		self.liMinorLeaders[self.iCalabim] = [self.iMahon]
+#		self.liMinorLeaders[self.iDoviello] = [self.iVolanna, self.iDuin]
+#		self.liMinorLeaders[self.iElohim] = [self.iThessalonica]
+#		self.liMinorLeaders[self.iGrigori] = [self.iKoun]
+#		self.liMinorLeaders[self.iHippus] = [self.iOstanes, self.iUldanor]
+#		self.liMinorLeaders[self.iIllians] = [self.iDumannios, self.iRiuros, self.iAnaganios, self.iBraeden]
+# Except for Infernal leaders
 		self.liMinorLeaders[self.iInfernal] = [self.iSallos, self.iJudecca, self.iOuzza, self.iMeresin, self.iStatius, self.iLethe]
-		self.liMinorLeaders[self.iMalakim] = [self.iKane]
-		self.liMinorLeaders[self.iSheaim] = [self.iAverax, self.iGosea, self.iMalchavic]
-		self.liMinorLeaders[self.iSidar] = [self.iShekinah]
-		self.liMinorLeaders[self.iSvartalfar] = [self.iVolanna, self.iRivanna]
+#		self.liMinorLeaders[self.iMalakim] = [self.iKane]
+#		self.liMinorLeaders[self.iSheaim] = [self.iAverax, self.iGosea, self.iMalchavic]
+#		self.liMinorLeaders[self.iSidar] = [self.iShekinah]
+#		self.liMinorLeaders[self.iSvartalfar] = [self.iVolanna, self.iRivanna]
 
 		# religions
 
@@ -486,6 +488,13 @@ class RevCivDefines :
 		liLeaders = list()
 
 		for leaderType in range( 0, gc.getNumLeaderHeadInfos() ) :
+# Leader categories START
+			# Extra scenario leaders are currently always allowed as valid leaders for revolutions, even if their game option is disabled.
+#			if ( gc.getLeaderHeadInfo( leaderType ).getLeaderCategory() == gc.getInfoTypeForString( 'LEADERCATEGORY_EXTRA' ) and not game.isOption( GameOptionTypes.GAMEOPTION_LEADER_EXTRA )) :
+				# If extra leaders have not been selected, avoid using them.
+				
+#				continue
+# Leader categories END
 			if( gc.getCivilizationInfo( iCiv ).isLeaders( leaderType ) or game.isOption( GameOptionTypes.GAMEOPTION_LEAD_ANY_CIV ) or ( leaderType in self.liMinorLeaders[iCiv] ) ) :
 				liLeaders.append( leaderType )
 

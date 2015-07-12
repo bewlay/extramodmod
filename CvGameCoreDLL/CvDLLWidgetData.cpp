@@ -2030,6 +2030,18 @@ void CvDLLWidgetData::parseHurryHelp(CvWidgetDataStruct &widgetDataStruct, CvWSt
 	{
 		szBuffer.assign(gDLL->getText("TXT_KEY_MISC_HURRY_PROD", pHeadSelectedCity->getProductionNameKey()));
 
+		CLLNode<OrderData>* pOrderNode = pHeadSelectedCity->headOrderQueueNode();
+
+		if (pOrderNode != NULL && pOrderNode->m_data.eOrderType == ORDER_CONSTRUCT)
+		{
+			BuildingTypes eBuilding = (BuildingTypes)(pOrderNode->m_data.iData1);
+			if (GC.getBuildingInfo(eBuilding).isVictoryBuilding()) {
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_HURRY_PROD_VICTORY_BUILDING"));
+				return;
+			}
+		}
+
 		iHurryGold = pHeadSelectedCity->hurryGold((HurryTypes)(widgetDataStruct.m_iData1));
 
 		if (iHurryGold > 0)
@@ -3246,9 +3258,33 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 
 //FfH: Added by Kael 07/23/2007
 			else if (GC.getActionInfo(widgetDataStruct.m_iData1).getCommandType() == COMMAND_CAST)
-			{
+ 			{
+			/********************************************************************************/
+			/* SpellPyHelp                        11/2013                           lfgr    */
+			/********************************************************************************/
+			/* old
 				GAMETEXT.parseSpellHelp(szBuffer, ((SpellTypes)(GC.getActionInfo(widgetDataStruct.m_iData1).getCommandData())));
-			}
+			*/
+				int iSpell = GC.getActionInfo(widgetDataStruct.m_iData1).getCommandData();
+				std::vector<CvUnit*> vpValidUnits;
+
+				pSelectedUnitNode = gDLL->getInterfaceIFace()->headSelectionListNode();
+
+				while( pSelectedUnitNode != NULL )
+				{
+					pSelectedUnit = ::getUnit( pSelectedUnitNode->m_data );
+
+					if( pSelectedUnit->canCast( iSpell, false ) )
+						vpValidUnits.push_back( pSelectedUnit );
+
+					pSelectedUnitNode = gDLL->getInterfaceIFace()->nextSelectionListNode( pSelectedUnitNode );
+				}
+				
+				GAMETEXT.parseSpellHelp(szBuffer, (SpellTypes) iSpell, NEWLINE, &vpValidUnits );
+			/********************************************************************************/
+			/* SpellPyHelp                                                          END     */
+			/********************************************************************************/
+ 			}
 
 //FfH: End Add
 
@@ -5118,8 +5154,12 @@ void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStr
 {
 	CvWString szTempBuffer;
 
-// More Naval AI version number
+// ExtraModMod version number.
 	szBuffer.append(gDLL->getText("TXT_KEY_VERSION"));
+	szBuffer.append(NEWLINE);
+//
+// More Naval AI version number
+	szBuffer.append(gDLL->getText("TXT_KEY_VERSION_MNAI"));
 	szBuffer.append(NEWLINE);
 // End More Naval AI
 

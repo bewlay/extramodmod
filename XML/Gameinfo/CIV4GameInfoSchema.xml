@@ -527,10 +527,12 @@
 		<element type="iTotalCultureRatio"/>
 		<element type="iVictoryDelayTurns"/>
 		<element type="VictoryMovie"/>
+		<element type="LinkedVictory" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="VictoryInfos" content="eltOnly">
 		<element type="VictoryInfo" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="LinkedVictory" content="textOnly"/>
 	<ElementType name="VictoryPrereq" content="textOnly"/>
 	<ElementType name="AnyonePrereqProject" content="textOnly"/>
 	<ElementType name="iMaxGlobalInstances" content="textOnly" dt:type="int"/>

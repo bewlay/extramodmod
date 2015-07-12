@@ -135,6 +135,14 @@
 			<BackgroundKFM/>
 		</LeaderheadArtInfo>
 		<LeaderheadArtInfo>
+			<Type>ART_DEF_LEADER_CHERON</Type>
+			<Button>Art/interface/LeaderHeads/cheron button.dds</Button>
+			<NIF>Art/interface/LeaderHeads/Cheron.dds</NIF>
+			<KFM/>
+			<NoShaderNIF/>
+			<BackgroundKFM/>
+		</LeaderheadArtInfo>
+		<LeaderheadArtInfo>
 			<Type>ART_DEF_LEADER_AMELANCHIER</Type>
 			<Button>,Art/interface/LeaderHeads/Amelanchier button.dds</Button>
 			<NIF>art/interface/LeaderHeads/Amelanchier.dds</NIF>

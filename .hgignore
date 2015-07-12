@@ -1,0 +1,25 @@
+syntax: glob
+.svn
+dev
+*.bat
+*.lnk
+*.FPK
+.hgignore
+Art\Movies
+CvGameCoreDLL.dll
+CvGameCoreDLL/Makefile.settings
+CvGameCoreDLL/*CvGameCoreDLL.opensdf
+CvGameCoreDLL/*CvGameCoreDLL.sdf
+CvGameCoreDLL/*CvGameCoreDLL.sln
+CvGameCoreDLL/*CvGameCoreDLL.suo
+CvGameCoreDLL/CvGameCoreDLL.vcxproj
+CvGameCoreDLL/CvGameCoreDLL.vcxproj.user
+CvGameCoreDLL/*.pdb
+CvGameCoreDLL/depends
+CvGameCoreDLL/comment_template.txt
+CvGameCoreDLL/Assert
+CvGameCoreDLL/Debug
+CvGameCoreDLL/Profile
+CvGameCoreDLL/Release
+XML/Text/CIV4GameText_MapScriptTools.xml
+python/MapScriptTools.py

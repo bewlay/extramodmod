@@ -172,6 +172,9 @@
 	
 	<load mod="BUFFY"/>
 	
+	<!-- Events Enhanced lfgr 05/2013 -->
+	
+	<load mod="Events Enhanced"/>
 	
 	<!-- Options Screen -->
 	
@@ -195,6 +198,9 @@
 		<tab module="BugUnitNameOptionsTab"/>
 		
 		<tab module="BugAutologOptionsTab"/>
+	
+		<!-- Events Enhanced lfgr 05/2013 -->
+		<tab module="EventsEnhancedOptionsTab"/>
 		
 		<tab module="BugSystemOptionsTab"/>
 		<tab module="BugCreditsOptionsTab"/>

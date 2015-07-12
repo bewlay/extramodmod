@@ -473,6 +473,17 @@ void CyUnitPythonInterface1(python::class_<CyUnit>& x)
 //<<<<Unofficial Bug Fix: End Add
 		.def("isPermanentSummon", &CyUnit::isPermanentSummon, "bool ()")
 		.def("setPermanentSummon", &CyUnit::setPermanentSummon, "void (bool bNewValue)")
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/************************************************************************************************/
+		.def("getExplorationLevel", &CyUnit::getExplorationLevel, "int ()")
+		.def("canDoExploration", &CyUnit::canDoExploration, "bool (CyPlot pPlot) - pPlot may be None")
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 //FfH: End Add
 
 		;

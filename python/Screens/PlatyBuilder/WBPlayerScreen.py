@@ -287,7 +287,10 @@ class WBPlayerScreen:
 			sColor = CyTranslator().getText("[COLOR_WARNING_TEXT]", ())
 			if pPlayer.hasTrait(iTrait):
 				sColor = CyTranslator().getText("[COLOR_POSITIVE_TEXT]", ())
-			elif iTrait == gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivTrait():
+			# EXTRA_CIV_TRAITS 12/2014 Terkhen
+			# elif iTrait == gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivTrait():
+			elif gc.getCivilizationInfo(pPlayer.getCivilizationType()).isCivTraits( iTrait ):
+			# EXTRA_CIV_TRAITS end
 				sColor = CyTranslator().getText("[COLOR_YELLOW]", ())
 			elif gc.getLeaderHeadInfo(pPlayer.getLeaderType()).hasTrait(iTrait):#I thought it would be useful to show  what traits a leader lost and could regain if its avatar was ressureted
 				sColor = CyTranslator().getText("[COLOR_YELLOW]", ())

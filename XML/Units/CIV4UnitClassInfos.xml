@@ -224,6 +224,15 @@
 			<DefaultUnit>UNIT_ROSIER_OATHTAKER</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
+			<Type>UNITCLASS_RUNEWYN</Type>
+			<Description>TXT_KEY_UNIT_RUNEWYN</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_RUNEWYN</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
 			<Type>UNITCLASS_IRA</Type>
 			<Description>TXT_KEY_UNIT_IRA</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -325,7 +334,7 @@
 		<UnitClassInfo>
 			<Type>UNITCLASS_LUCIAN</Type>
 			<Description>TXT_KEY_UNIT_LUCIAN</Description>
-			<iMaxGlobalInstances>1</iMaxGlobalInstances>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>-1</iMaxTeamInstances>
 			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
 			<iInstanceCostModifier>0</iInstanceCostModifier>
@@ -1673,6 +1682,15 @@
 			<DefaultUnit>UNIT_MAGE</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
+			<Type>UNITCLASS_MAGIC_MISSILE</Type>
+			<Description>TXT_KEY_UNIT_MAGIC_MISSILE</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_MAGIC_MISSILE</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
 			<Type>UNITCLASS_HORSEMAN</Type>
 			<Description>TXT_KEY_UNIT_HORSEMAN</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -2114,13 +2132,13 @@
 			<DefaultUnit>UNIT_GREATER_WEREWOLF</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
-			<Type>UNITCLASS_COMMANDER</Type>
-			<Description>TXT_KEY_UNIT_COMMANDER</Description>
-			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<Type>UNITCLASS_DECIUS</Type>
+			<Description>TXT_KEY_LEADER_DECIUS</Description>
+			<iMaxGlobalInstances>1</iMaxGlobalInstances>
 			<iMaxTeamInstances>-1</iMaxTeamInstances>
 			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
 			<iInstanceCostModifier>0</iInstanceCostModifier>
-			<DefaultUnit>UNIT_COMMANDER</DefaultUnit>
+			<DefaultUnit>UNIT_DECIUS</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
 			<Type>UNITCLASS_DUIN</Type>
@@ -2239,5 +2257,63 @@
 			<iInstanceCostModifier>0</iInstanceCostModifier>
 			<DefaultUnit>UNIT_GREAT_GENERAL</DefaultUnit>
 		</UnitClassInfo>
+		<UnitClassInfo>
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
+			<Type>UNITCLASS_PANTHER</Type>
+			<Description>TXT_KEY_UNIT_PANTHER</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_PANTHER</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
+			<Type>UNITCLASS_GHOUL</Type>
+			<Description>TXT_KEY_UNIT_GHOUL</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_GHOUL</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
+			<!-- WILDERNESS 08/2013 lfgr / NewUnits -->
+			<Type>UNITCLASS_WIGHT</Type>
+			<Description>TXT_KEY_UNIT_WIGHT</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_WIGHT</DefaultUnit>
+		</UnitClassInfo>
+<!-- MORE EVENTS MOD STARTS -->		
+		<UnitClassInfo>
+			<Type>EQUIPMENTCLASS_PIKE_OF_TEARS</Type>
+			<Description>TXT_KEY_EQUIPMENT_PIKE_OF_TEARS</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>EQUIPMENT_PIKE_OF_TEARS</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
+			<Type>EQUIPMENTCLASS_FROZEN_FLAME</Type>
+			<Description>TXT_KEY_EQUIPMENT_FROZEN_FLAME</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>EQUIPMENT_FROZEN_FLAME</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
+			<Type>EQUIPMENTCLASS_SOL</Type>
+			<Description>TXT_KEY_EQUIPMENT_SOL</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>EQUIPMENT_SOL</DefaultUnit>
+		</UnitClassInfo>	
 	</UnitClassInfos>
 </Civ4UnitClassInfos>

@@ -449,6 +449,14 @@ public:
 
 	bool isGreatPersonBorn(CvWString& szName) const;
 	void addGreatPersonBornName(const CvWString& szName);
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* From CvUnit::init()                                                                          */
+/************************************************************************************************/
+	CvWString getNewGreatPersonBornName( UnitTypes iUnitType );
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	DllExport int getIndexAfterLastDeal();																								// Exposed to Python
 	DllExport int getNumDeals();																													// Exposed to Python
@@ -645,6 +653,10 @@ public:
 	int getCurrentPeriod() const;
 	// End Tholal AI
 
+// Automatic OOS detection START
+	void setOOSVisible();
+// Automatic OOS detection END
+
 protected:
 	int m_iElapsedGameTurns;
 	int m_iStartTurn;
@@ -763,6 +775,12 @@ protected:
 
 	std::vector<PlotExtraYield> m_aPlotExtraYields;
 	std::vector<PlotExtraCost> m_aPlotExtraCosts;
+
+// Automatic OOS detection START
+// This value is not meant to be saved. In fact, it should not even exist, but the isOosVisible method only seems to be exposed to python so we need this hack.
+	bool m_bOOSVisible;
+// Automatic OOS detection END
+
 #if 1 //defined(USE_OLD_CODE)
 	stdext::hash_map<VoteSourceTypes, ReligionTypes> m_mapVoteSourceReligions;
 #else
@@ -823,6 +841,14 @@ protected:
 	void createBarbarianCities();
 	void createBarbarianUnits();
 	void createAnimals();
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+	void createBarbarianSpawn( CvPlot* pPlot, bool bAnimal );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	void verifyCivics();
 

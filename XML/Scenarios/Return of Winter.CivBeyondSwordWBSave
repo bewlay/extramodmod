@@ -1313,7 +1313,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=3,y=26
-	ImprovementType=IMPROVEMENT_PENGUINS
+	BonusType=BONUS_PENGUINS
 	TerrainType=TERRAIN_SNOW
 	PlotType=2
 EndPlot

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- Basic Infos -->
+<Civ4LeaderCategoryInfos xmlns="x-schema:CIV4BasicInfoSchema.xml">
+	<LeaderCategoryInfos>
+		<LeaderCategoryInfo>
+			<Type>LEADERCATEGORY_STANDARD</Type>
+			<Description>TXT_KEY_LEADERCATEGORY_STANDARD</Description>
+		</LeaderCategoryInfo>
+		<LeaderCategoryInfo>
+			<Type>LEADERCATEGORY_SCENARIO</Type>
+			<Description>TXT_KEY_LEADERCATEGORY_SCENARIO</Description>
+		</LeaderCategoryInfo>
+		<LeaderCategoryInfo>
+			<Type>LEADERCATEGORY_SCENEXTRA</Type>
+			<Description>TXT_KEY_LEADERCATEGORY_SCENEXTRA</Description>
+		</LeaderCategoryInfo>
+		<LeaderCategoryInfo>
+			<Type>LEADERCATEGORY_EXTRA</Type>
+			<Description>TXT_KEY_LEADERCATEGORY_EXTRA</Description>
+		</LeaderCategoryInfo>
+		<LeaderCategoryInfo>
+			<Type>LEADERCATEGORY_ALIGNMENT</Type>
+			<Description>TXT_KEY_LEADERCATEGORY_ALIGNMENT</Description>
+		</LeaderCategoryInfo>
+		<LeaderCategoryInfo>
+			<Type>LEADERCATEGORY_BARBARIAN</Type>
+			<Description>TXT_KEY_LEADERCATEGORY_BARBARIAN</Description>
+		</LeaderCategoryInfo>
+	</LeaderCategoryInfos>
+</Civ4LeaderCategoryInfos>

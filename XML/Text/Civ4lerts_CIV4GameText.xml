@@ -67,7 +67,7 @@
 		<French>[COLOR_YIELD_FOOD]%s2 is the new worst enemy of %s1 (was you).[COLOR_REVERT]</French>
 		<German>[COLOR_YIELD_FOOD]%s2 ist der neue Erzfeind von %s1 (war Ihr).[COLOR_REVERT]</German>
 		<Italian>[COLOR_YIELD_FOOD]%s2 is the new worst enemy of %s1 (was you).[COLOR_REVERT]</Italian>
-		<Spanish>[COLOR_YIELD_FOOD]%s2 es el nuevo peor enemigo de %s1 (was you).[COLOR_REVERT]</Spanish>
+		<Spanish>[COLOR_YIELD_FOOD]%s2 es el nuevo peor enemigo de %s1 (eras tú).[COLOR_REVERT]</Spanish>
 		<Finnish>[COLOR_YIELD_FOOD]%s2 is the new worst enemy of %s1 (was you).[COLOR_REVERT]</Finnish>
 	</TEXT>
 	<TEXT>
@@ -76,7 +76,7 @@
 		<French>[COLOR_NEGATIVE_TEXT]You are the new worst enemy of %s1 (was %s2).[COLOR_REVERT]</French>
 		<German>[COLOR_NEGATIVE_TEXT]Ihr seid der neue Erzfeind von %s1 (statt %s2).[COLOR_REVERT]</German>
 		<Italian>[COLOR_NEGATIVE_TEXT]You are the new worst enemy of %s1 (was %s2).[COLOR_REVERT]</Italian>
-		<Spanish>[COLOR_NEGATIVE_TEXT]Eres el nuevo peor enemigo de %s1 (was %s2).[COLOR_REVERT]</Spanish>
+		<Spanish>[COLOR_NEGATIVE_TEXT]Eres el nuevo peor enemigo de %s1 (era %s2).[COLOR_REVERT]</Spanish>
 		<Finnish>[COLOR_NEGATIVE_TEXT]You are the new worst enemy of %s1 (was %s2).[COLOR_REVERT]</Finnish>
 	</TEXT>
 	<TEXT>
@@ -85,7 +85,7 @@
 		<French>[COLOR_YIELD_FOOD]%s2 is the new worst enemy of %s1 (was %s3).[COLOR_REVERT]</French>
 		<German>[COLOR_YIELD_FOOD]%s2 ist der neue Erzfeind von %s1 (war %s3).[COLOR_REVERT]</German>
 		<Italian>[COLOR_YIELD_FOOD]%s2 is the new worst enemy of %s1 (was %s3).[COLOR_REVERT]</Italian>
-		<Spanish>[COLOR_YIELD_FOOD]%s2 es el nuevo peor enemigo de %s1 (was %s3).[COLOR_REVERT]</Spanish>
+		<Spanish>[COLOR_YIELD_FOOD]%s2 es el nuevo peor enemigo de %s1 (era %s3).[COLOR_REVERT]</Spanish>
 		<Finnish>[COLOR_YIELD_FOOD]%s2 is the new worst enemy of %s1 (was %s3).[COLOR_REVERT]</Finnish>
 	</TEXT>
 	
