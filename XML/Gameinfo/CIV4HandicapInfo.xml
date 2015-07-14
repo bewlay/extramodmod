@@ -665,7 +665,7 @@
                     <bFreeTech>1</bFreeTech>
                 </FreeTech>
             </AIFreeTechs>
-            <iAIFreeXP>4</iAIFreeXP>
+            <iAIFreeXP>3</iAIFreeXP>
             <iLairSpawnRate>4</iLairSpawnRate>
         </HandicapInfo>
         <HandicapInfo>
@@ -767,7 +767,7 @@
                     <bFreeTech>1</bFreeTech>
                 </FreeTech>
             </AIFreeTechs>
-            <iAIFreeXP>6</iAIFreeXP>
+            <iAIFreeXP>4</iAIFreeXP>
             <iLairSpawnRate>4</iLairSpawnRate>
         </HandicapInfo>
         <HandicapInfo>
@@ -873,7 +873,7 @@
                     <bFreeTech>1</bFreeTech>
                 </FreeTech>
             </AIFreeTechs>
-            <iAIFreeXP>8</iAIFreeXP>
+            <iAIFreeXP>6</iAIFreeXP>
             <iLairSpawnRate>5</iLairSpawnRate>
         </HandicapInfo>
     </HandicapInfos>
