@@ -1215,7 +1215,13 @@ int CyPlot::getSpawnValue( int /*SpawnTypes*/ eSpawnType, bool bDungeon ) const
 void CyPlot::createSpawn( int /*SpawnTypes*/ eSpawnType, int /*UnitAITypes*/ eUnitAI )
 {
 	if( m_pPlot )
-		m_pPlot->createSpawn( (SpawnTypes) eSpawnType, (UnitAITypes) eUnitAI );
+	{
+		// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
+		int iMinWilderness = m_pPlot->calcMinWilderness( (SpawnTypes) eSpawnType );
+		// Choose a random number between this plot's wilderness and the required wilderness for the spawn
+		iMinWilderness += GC.getGameINLINE().getSorenRandNum( m_pPlot->getWilderness() - iMinWilderness, "Spawn Wilderness" );
+		m_pPlot->createSpawn( (SpawnTypes) eSpawnType,iMinWilderness, (UnitAITypes) eUnitAI );
+	}
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

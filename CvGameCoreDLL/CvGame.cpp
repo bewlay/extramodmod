@@ -7947,7 +7947,11 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 		CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
 		logBBAI("WILDERNESS - SpawnInfo %s chosen!", kBestSpawn.getType() );
 		
-		pPlot->createSpawn( eBestSpawn );
+		// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
+		int iMinWilderness = pPlot->calcMinWilderness( eBestSpawn );
+		// Choose a random number between this plot's wilderness and the required wilderness for the spawn
+		iMinWilderness += GC.getGameINLINE().getSorenRandNum( pPlot->getWilderness() - iMinWilderness, "Spawn Wilderness" );
+		pPlot->createSpawn( eBestSpawn, iMinWilderness );
 	}
 	else
 	{

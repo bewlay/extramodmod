@@ -2314,6 +2314,10 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			{
 				szTempBuffer.Format(L"\nSpawnInfo = %S.", GC.getSpawnInfo( pUnit->getSpawnType() ).getType() );
 				szString.append(szTempBuffer);
+				
+				szTempBuffer.Format(L"\nCalculated min Wilderness = %d.", pUnit->plot()->calcMinWilderness( pUnit->getSpawnType() ) );
+				szString.append(szTempBuffer);
+
 				if( GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLair() != NO_IMPROVEMENT )
 				{
 					szTempBuffer.Format(L"\nCreate Lair = %s.", GC.getImprovementInfo( (ImprovementTypes) GC.getSpawnInfo( pUnit->getSpawnType() ).getCreateLair() ).getDescription() );

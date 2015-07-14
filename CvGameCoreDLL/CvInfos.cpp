@@ -29481,11 +29481,22 @@ bool CvSpawnPrereqInfo::read(CvXMLLoadUtility* pXML)
 
 			if ( (0 < iNumSibs) && (gDLL->getXMLIFace()->SetToChild(pXML->GetXML())) )
 			{
+				// check that iMinWilderness is rising
+				int iLastMinWilderness = -1;
+
 				for( int iTier = 0; iTier < iNumSibs; iTier++ )
 				{
 					int iMinWilderness, iMaxWilderness;
 					pXML->GetChildXmlValByName( &iMinWilderness, "iMinWilderness" );
 					pXML->GetChildXmlValByName( &iMaxWilderness, "iMaxWilderness" );
+
+					if( iMinWilderness < iLastMinWilderness )
+					{
+						CvString szError;
+						szError.Format("iMinWilderness in SpawnPrereqInfo %s must be rising. Current XML file is: %s", getType(), GC.getCurrentXMLFile().GetCString());
+						FAssertMsg( false, szError.c_str());
+						gDLL->logMsg("xml.log", szError);
+					}
 					
 					m_viMinWildernessTiers.push_back( iMinWilderness );
 					m_viMaxWildernessTiers.push_back( iMaxWilderness );
