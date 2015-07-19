@@ -9033,7 +9033,9 @@ int CvGame::calculateSyncChecksum()
 			// AI Attitude cache. Not shown in OOSLogger.
 			for (iJ = 0; iJ < MAX_PLAYERS; iJ++)
 			{
-				iValue += kPlayer.AI_getAttitudeVal((PlayerTypes)iJ, false) * getNextPrime();
+				if (iJ != kPlayer.getID() && GET_PLAYER((PlayerTypes)iJ).isAlive()) {
+					iValue += kPlayer.AI_getAttitudeVal((PlayerTypes)iJ, false) * getNextPrime();
+				}
 			}
 			// K-Mod end
 		}
