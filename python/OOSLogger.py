@@ -31,6 +31,10 @@ def doGameUpdate():
 		bWroteLog = False
 
 def writeLog():
+	if not CyGame().isPitbossHost():
+		playername = CvUtil.convertToStr(gc.getPlayer(gc.getGame().getActivePlayer()).getName())
+	else:
+		playername = "PitBoss"
 	playername = CvUtil.convertToStr(gc.getPlayer(gc.getGame().getActivePlayer()).getName())
 	szNewFilename = BugPath.getRootDir() + "\\Logs\\" + "OOSLog - %s - " % (playername) + "Turn %s" % (gc.getGame().getGameTurn()) + ".txt"
 	pFile = open(szNewFilename, "w")
