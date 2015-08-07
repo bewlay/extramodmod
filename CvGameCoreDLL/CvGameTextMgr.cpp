@@ -127,7 +127,7 @@ void CvGameTextMgr::setYearStr(CvWString& szString, int iGameTurn, bool bSave, C
 	{
 		if (bSave)
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_BC_SAVE", CvWString::format(L"%04d", -iTurnYear).GetCString());
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_SAVE", CvWString::format(L"%04d", -iTurnYear).GetCString());
 		}
 		else
 		{
@@ -138,7 +138,7 @@ void CvGameTextMgr::setYearStr(CvWString& szString, int iGameTurn, bool bSave, C
 	{
 		if (bSave)
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD_SAVE", CvWString::format(L"%04d", iTurnYear).GetCString());
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_SAVE", CvWString::format(L"%04d", iTurnYear).GetCString());
 		}
 		else
 		{
@@ -149,7 +149,7 @@ void CvGameTextMgr::setYearStr(CvWString& szString, int iGameTurn, bool bSave, C
 	{
 		if (bSave)
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD_SAVE", L"0001");
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_SAVE", L"0001");
 		}
 		else
 		{
