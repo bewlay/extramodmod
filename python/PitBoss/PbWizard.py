@@ -953,9 +953,11 @@ class StagingPage(wx.wizard.WizardPageSimple):
 		iCurrent = 0
 
 		for rowNum in range(PB.getNumOptions()):
+			#Invalid options are not displayed, but they must be initialized.
+			checkBox = wx.CheckBox(self, rowNum, (PB.getOptionDescAt(rowNum)))
+			self.optionArray.append(checkBox)
+			checkBox.SetValue(gameData.getOptionAt(rowNum))
 			if PB.isOptionValid(rowNum):
-				checkBox = wx.CheckBox(self, rowNum, (PB.getOptionDescAt(rowNum)))
-				checkBox.SetValue(gameData.getOptionAt(rowNum))
 				if iCurrent < iTotal / 4:
 					checkBoxSizer1.Add(checkBox, 0, wx.TOP, 5)
 				elif iCurrent < iTotal / 2:
@@ -965,7 +967,6 @@ class StagingPage(wx.wizard.WizardPageSimple):
 				else:
 					checkBoxSizer4.Add(checkBox, 0, wx.TOP, 5)
 				iCurrent = iCurrent + 1
-				self.optionArray.append(checkBox)
 				self.Bind(wx.EVT_CHECKBOX, self.OnOptionChoice, checkBox)
 
 		self.optionsSizer.Add(checkBoxSizer1, 0, wx.LEFT, 10)
