@@ -14791,23 +14791,7 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 				if (iYear != MIN_INT)
 				{
 					// year built
-					CvWString szYear;
-
-					if (iYear < 0)
-					{
-						szYear = gDLL->getText("TXT_KEY_TIME_BC", -iYear);
-					}
-					else if (iYear > 0)
-					{
-						szYear = gDLL->getText("TXT_KEY_TIME_AD", iYear);
-					}
-					else
-					{
-						szYear = gDLL->getText("TXT_KEY_TIME_AD", 1);
-					}
-
 					szBuffer.append(NEWLINE);
-					//szBuffer.append(gDLL->getText("TXT_KEY_BUG_YEAR_BUILT", szYear.GetCString()));
 					szBuffer.append(gDLL->getText("TXT_KEY_BUG_YEAR_BUILT", iYear));
 
 					// double commerce
