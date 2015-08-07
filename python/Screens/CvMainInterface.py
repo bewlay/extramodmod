@@ -3631,17 +3631,19 @@ class CvMainInterface:
 						g_szTimeText += u" "
 				g_szTimeText += u"%2.2f%%" %( 100 *(float(gc.getGame().getElapsedGameTurns()) / float(gc.getGame().getMaxTurns())) )
 			
-			if (bShowDateGA):
+			if (bShowDateGA and gc.getPlayer(ePlayer).isGoldenAge()):
+				## FFH fix: Show only golden age, not date.
 				if (bFirst):
 					bFirst = False
 				else:
 					g_szTimeText += u" - "
-				szDateGA = unicode(CyGameTextMgr().getInterfaceTimeStr(ePlayer))
-				if(ClockOpt.isUseEraColor()):
-					iEraColor = ClockOpt.getEraColor(gc.getEraInfo(gc.getPlayer(ePlayer).getCurrentEra()).getType())
-					if (iEraColor >= 0):
-						szDateGA = localText.changeTextColor(szDateGA, iEraColor)
-				g_szTimeText += szDateGA
+				g_szTimeText += u"%c(%d)" % (CyGame().getSymbolID(FontSymbols.GOLDEN_AGE_CHAR), gc.getPlayer(ePlayer).getGoldenAgeTurns())
+				#szDateGA = unicode(CyGameTextMgr().getInterfaceTimeStr(ePlayer))
+				#if(ClockOpt.isUseEraColor()):
+					#iEraColor = ClockOpt.getEraColor(gc.getEraInfo(gc.getPlayer(ePlayer).getCurrentEra()).getType())
+					#if (iEraColor >= 0):
+						#szDateGA = localText.changeTextColor(szDateGA, iEraColor)
+				#g_szTimeText += szDateGA
 		else:
 			"""
 			Original Clock

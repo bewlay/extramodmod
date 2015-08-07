@@ -265,11 +265,11 @@
 		<Spanish>turno %d1_TurnNum</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_CITY_FOUNDED</Tag>
-		<English>Founded: turn %d1</English>
-		<French>Fondation de : tour %d1</French>
-		<German>Gegr&#252;ndet: runde %d1</German>
-		<Italian>Fondata: turno %d1</Italian>
-		<Spanish>Fundada: turno %d1</Spanish>
+		<Tag>TXT_KEY_TIME_TURN_DATE</Tag>
+		<English>Turn %d1_TurnNum</English>
+		<French>Tour %d1_TurnNum</French>
+		<German>Runde %d1_TurnNum</German>
+		<Italian>Turno %d1_TurnNum</Italian>
+		<Spanish>Turno %d1_TurnNum</Spanish>
 	</TEXT>
 </Civ4GameText>
