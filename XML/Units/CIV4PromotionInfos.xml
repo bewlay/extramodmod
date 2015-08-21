@@ -5987,12 +5987,6 @@
             <Description>TXT_KEY_PROMOTION_FAVORED</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
             <TechPrereq>TECH_NEVER</TechPrereq>
-            <UnitCombats>
-                <UnitCombat>
-                    <UnitCombatType>UNITCOMBAT_DISCIPLE</UnitCombatType>
-                    <bUnitCombat>1</bUnitCombat>
-                </UnitCombat>
-            </UnitCombats>
             <Button>Art/Interface/Buttons/Promotions/Favored.dds</Button>
             <bValidate>1</bValidate>
             <iCasterResistModify>-10</iCasterResistModify>

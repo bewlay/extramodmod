@@ -1073,6 +1073,10 @@
 					<PromotionType>PROMOTION_SENTRY</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_FEAR</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<iCombatDefense>21</iCombatDefense>
 			<iTier>4</iTier>
@@ -1148,6 +1152,10 @@
 				</FreePromotion>
 				<FreePromotion>
 					<PromotionType>PROMOTION_SENTRY2</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_FEAR</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -2308,6 +2316,10 @@
 				</UnitAI>
 				<UnitAI>
 					<UnitAIType>UNITAI_COUNTER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_ATTACK</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
@@ -4580,7 +4592,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_AZER</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_AZER_PEDIA</Civilopedia>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
 			<bMilitaryProduction>1</bMilitaryProduction>
@@ -5150,7 +5162,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK_CITY</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_BEAST_OF_AGARES</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_BEAST_OF_AGARES_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_BEAST_OF_AGARES_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -5580,7 +5592,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_BERSERKER</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_BERSERKER_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_BERSERKER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -7235,7 +7247,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_OGRE</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_OGRE_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_OGRE_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -7491,7 +7503,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_CENTAUR_CHARGER</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_CENTAUR_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_CENTAUR_CHARGER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -9162,6 +9174,10 @@
 					<PromotionType>PROMOTION_IMMUNE_COLD</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_FEAR</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<iCombatDefense>14</iCombatDefense>
 			<iTier>4</iTier>
@@ -9778,7 +9794,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_EARTH_ELEMENTAL</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_EARTH_ELEMENTAL_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_EARTH_ELEMENTAL_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -10176,6 +10192,10 @@
 				</FreePromotion>
 				<FreePromotion>
 					<PromotionType>PROMOTION_SENTRY</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_FEAR</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -10841,6 +10861,10 @@
 					<UnitAIType>UNITAI_CITY_COUNTER</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_ATTACK</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -11904,7 +11928,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ANIMAL</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_GRIFFON</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_GRIFFON_PEDIA</Civilopedia>
 			<Advisor>NONE</Advisor>
 			<bAnimal>1</bAnimal>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -13342,7 +13366,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_CENTAUR_ARCHER</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_CENTAUR_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_CENTAUR_ARCHER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -13618,7 +13642,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_NYXKIN</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_NYXKIN_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_HORSE_ARCHER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -13793,7 +13817,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_CENTAUR</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_CENTAUR_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_CENTAUR_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -14983,7 +15007,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_IRA</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_IRA_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_IRA_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -15173,7 +15197,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_CENTAUR_LANCER</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_CENTAUR_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_CENTAUR_LANCER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -17412,7 +17436,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_MANTICORE</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_MANTICORE_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_MANTICORE_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -18200,7 +18224,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_MINOTAUR</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_MINOTAUR_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_MINOTAUR_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -18404,7 +18428,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_WARWIZARD</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_MOBIUS_WITCH</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_MOBIUS_WITCH_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_MOBIUS_WITCH_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -19457,7 +19481,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK_CITY</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_STONESKIN_OGRE</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_OGRE_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_STONESKIN_OGRE_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -19599,7 +19623,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_PIT_BEAST</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_PIT_BEAST_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_PIT_BEAST_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -23428,7 +23452,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK_CITY</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_SKELETON</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_SKELETON_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_SKELETON_STRATEGY</Strategy>
 			<Advisor>NONE</Advisor>
 			<bMilitaryProduction>1</bMilitaryProduction>
@@ -23682,8 +23706,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_SPECTRE</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
-			<Strategy>TXT_KEY_UNIT_SPECTRE_STRATEGY</Strategy>
+			<Civilopedia>TXT_KEY_UNIT_SPECTRE_PEDIA</Civilopedia>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
 			<bMilitaryProduction>1</bMilitaryProduction>
@@ -23936,7 +23959,7 @@
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ATTACK_CITY</DefaultUnitAI>
 			<Description>TXT_KEY_UNIT_STYGIAN_GUARD</Description>
-			<Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_UNIT_STYGIAN_GUARD_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_STYGIAN_GUARD_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bMilitaryHappiness>1</bMilitaryHappiness>
@@ -25381,6 +25404,10 @@
 			<TerrainImpassables>
 				<TerrainImpassable>
 					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<bTerrainImpassable>1</bTerrainImpassable>
+				</TerrainImpassable>
+				<TerrainImpassable>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
 					<bTerrainImpassable>1</bTerrainImpassable>
 				</TerrainImpassable>
 			</TerrainImpassables>

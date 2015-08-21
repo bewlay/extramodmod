@@ -248,4 +248,28 @@
 		<Italian>Contatta il giocatore %s1_PlyrName della civilt&#224; %s2:2_CivName</Italian>
 		<Spanish>Contactar con %s1_PlyrName de los %s2_CivName</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TIME_TURN_SAVE</Tag>
+		<English>TURN-%s1_Date</English>
+		<French>TURN-%s1_Date</French>
+		<German>TURN-%s1_Date</German>
+		<Italian>TURN-%s1_Date</Italian>
+		<Spanish>TURN-%s1_Date</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TIME_TURN_STANDALONE</Tag>
+		<English>turn %d1_TurnNum</English>
+		<French>tour %d1_TurnNum</French>
+		<German>runde %d1_TurnNum</German>
+		<Italian>turno %d1_TurnNum</Italian>
+		<Spanish>turno %d1_TurnNum</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TIME_TURN_DATE</Tag>
+		<English>Turn %d1_TurnNum</English>
+		<French>Tour %d1_TurnNum</French>
+		<German>Runde %d1_TurnNum</German>
+		<Italian>Turno %d1_TurnNum</Italian>
+		<Spanish>Turno %d1_TurnNum</Spanish>
+	</TEXT>
 </Civ4GameText>

@@ -37,8 +37,9 @@
             <bCasterNoDuration>1</bCasterNoDuration>
             <bHasCasted>1</bHasCasted>
             <bIgnoreHasCasted>1</bIgnoreHasCasted>
-	    <bAbility>1</bAbility>			
+			<bAbility>1</bAbility>			
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellAddToFleshGolem(pCaster)</PyResult>
             <PyRequirement>reqAddToFleshGolem(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -63,6 +64,7 @@
             <CreateBuildingType>BUILDING_ELF_CAGE</CreateBuildingType>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_DISPEL_MAGIC</Sound>
             <bGraphicalOnly>0</bGraphicalOnly>
@@ -86,6 +88,7 @@
             <CreateBuildingType>BUILDING_DWARF_CAGE</CreateBuildingType>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_DISPEL_MAGIC</Sound>
             <bGraphicalOnly>0</bGraphicalOnly>
@@ -109,6 +112,7 @@
             <CreateBuildingType>BUILDING_ELF_CAGE</CreateBuildingType>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_DISPEL_MAGIC</Sound>
             <bGraphicalOnly>0</bGraphicalOnly>
@@ -131,6 +135,7 @@
             <CreateBuildingType>BUILDING_HUMAN_CAGE</CreateBuildingType>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqAddToFreakShowHuman(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_DISPEL_MAGIC</Sound>
@@ -155,6 +160,7 @@
             <CreateBuildingType>BUILDING_ORC_CAGE</CreateBuildingType>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_DISPEL_MAGIC</Sound>
             <bGraphicalOnly>0</bGraphicalOnly>
@@ -173,6 +179,7 @@
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellAddToWolfPack(pCaster)</PyResult>
             <PyRequirement>reqAddToWolfPack(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -189,6 +196,7 @@
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
 			<iDelay>3</iDelay>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
 			<PyResult>spellAnimateFrostlings(pCaster)</PyResult>
             <Effect>EFFECT_ICE_SUMMON</Effect>
             <Sound>AS3D_SPELL_SPRING</Sound>
@@ -206,6 +214,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellArcaneLacuna(pCaster)</PyResult>
             <PyRequirement>reqArcaneLacuna(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -223,6 +232,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellArdor(pCaster)</PyResult>
             <PyRequirement>reqArdor(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -240,6 +250,7 @@
             <iAIWeight>10</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellArenaBattle(pCaster)</PyResult>
             <PyRequirement>reqArenaBattle(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -350,6 +361,7 @@
             <Description>TXT_KEY_SPELL_BREATH_FIRE</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <PromotionPrereq1>PROMOTION_DRAGON</PromotionPrereq1>
+            <PromotionPrereq2>PROMOTION_FEAR</PromotionPrereq2>
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -370,7 +382,8 @@
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_BURNING_BLOOD</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
-	    <bAbility>1</bAbility>
+			<bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_BURNING_BLOOD</Effect>
             <Sound>AS3D_SPELL_BURNING_BLOOD</Sound>
             <bGraphicalOnly>0</bGraphicalOnly>
@@ -386,6 +399,7 @@
             <iAIWeight>150</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellCallBlizzard(pCaster)</PyResult>
             <PyRequirement>reqCallBlizzard(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -402,6 +416,7 @@
             <iAIWeight>50</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellCallBlizzard(pCaster)</PyResult>
             <PyRequirement>reqCallBlizzard(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -418,6 +433,7 @@
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellCallForm(pCaster)</PyResult>
             <PyRequirement>reqCallForm(pCaster)</PyRequirement>
             <Effect>EFFECT_ENTROPY_SUMMON</Effect>
@@ -471,6 +487,7 @@
             <bIgnoreHasCasted>1</bIgnoreHasCasted>
             <bRemoveHasCasted>1</bRemoveHasCasted>
             <iChangePopulation>-1</iChangePopulation>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_WITHER</Effect>
             <Sound>AS3D_SPELL_CONSUME_SOUL</Sound>
             <Button>Art/Interface/Buttons/Spells/Consumesoul.dds</Button>
@@ -561,6 +578,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iDelay>3</iDelay>
             <PyResult>spellCreateBatteringRam(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
@@ -616,6 +634,7 @@
             <RemovePromotionType2>PROMOTION_SKELETON_CREW</RemovePromotionType2>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqCrewBuccaneers(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_CREW</Sound>
@@ -637,6 +656,7 @@
             <RemovePromotionType2>PROMOTION_SKELETON_CREW</RemovePromotionType2>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqCrewLongshoremen(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_CREW</Sound>
@@ -655,6 +675,7 @@
             <RemovePromotionType3>PROMOTION_SKELETON_CREW</RemovePromotionType3>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqCrewNormalCrew(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_CREW</Sound>
@@ -676,6 +697,7 @@
             <RemovePromotionType2>PROMOTION_LONGSHOREMEN</RemovePromotionType2>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqCrewSkeletonCrew(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_CREW</Sound>
@@ -780,6 +802,7 @@
             <AddPromotionType1>PROMOTION_DECIUS</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellDeciusJoin(pCaster)</PyResult>
             <PyRequirement>reqDeciusJoin(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -797,6 +820,7 @@
             <RemovePromotionType1>PROMOTION_DECIUS</RemovePromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellDeciusSplit(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_COMMANDER_SPLIT</Sound>
@@ -809,6 +833,7 @@
             <bDisplayWhenDisabled>0</bDisplayWhenDisabled>
             <bIgnoreHasCasted>1</bIgnoreHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellDeclareBarbs(pCaster)</PyResult>
             <PyRequirement>reqDeclareBarbs(pCaster)</PyRequirement>
             <Button>Art/Interface/Buttons/Civilizations/Barbarian.dds</Button>
@@ -825,6 +850,7 @@
             <RemovePromotionType1>PROMOTION_HIDDEN_NATIONALITY</RemovePromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellDeclareNationality(pCaster)</PyResult>
             <PyRequirement>reqDeclareNationality(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -887,13 +913,14 @@
             <Help>TXT_KEY_SPELL_DIVINE_RETRIBUTION_HELP</Help>
             <UnitClassPrereq>UNITCLASS_BASIUM</UnitClassPrereq>
 <!-- BUGFfH: Added by Denev 2009/09/15 -->
-		<CivilizationPrereq>CIVILIZATION_MERCURIANS</CivilizationPrereq>
+			<CivilizationPrereq>CIVILIZATION_MERCURIANS</CivilizationPrereq>
 <!-- BUGFfH: End Add -->
             <bAllowAI>1</bAllowAI>
             <bGlobal>1</bGlobal>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellDivineRetribution(pCaster)</PyResult>
             <PyRequirement>reqDivineRetribution(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -916,6 +943,7 @@
             <bImmuneTeam>1</bImmuneTeam>
             <bImmuneNeutral>1</bImmuneNeutral>
             <bImmuneNotAlive>1</bImmuneNotAlive>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellDomination(pCaster)</PyResult>
             <PyRequirement>reqDomination(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -937,6 +965,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_ATHAME')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -958,6 +987,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_BLACK_MIRROR')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -979,6 +1009,7 @@
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <CreateBuildingType>BUILDING_CROWN_OF_AKHARIEN</CreateBuildingType>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
@@ -999,6 +1030,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_CROWN_OF_AKHARIEN')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1020,6 +1052,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_CROWN_OF_COMMAND')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1041,6 +1074,7 @@
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <CreateBuildingType>BUILDING_THE_DRAGONS_HORDE</CreateBuildingType>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
@@ -1061,6 +1095,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_DRAGONS_HORDE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1082,6 +1117,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_EMPTY_BIER')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1103,6 +1139,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_GELA')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1124,6 +1161,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_GOLDEN_HAMMER')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1145,6 +1183,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_HEALING_SALVE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1166,6 +1205,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_INFERNAL_GRIMOIRE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1187,6 +1227,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_JADE_TORC')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1208,6 +1249,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_NETHER_BLADE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1229,6 +1271,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_ORTHUSS_AXE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1250,6 +1293,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
 			<PyRequirement>reqDropEquipmentPiecesBarnaxus(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1271,6 +1315,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_POTION_OF_INVISIBILITY')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1292,6 +1337,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_POTION_OF_RESTORATION')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1313,6 +1359,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_ROD_OF_WINDS')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1334,6 +1381,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_SCORCHED_STAFF')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1355,6 +1403,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_STAFF_OF_SOULS')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1376,6 +1425,7 @@
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <CreateBuildingType>BUILDING_SYLIVENS_PERFECT_LYRE</CreateBuildingType>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
@@ -1396,6 +1446,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_SYLIVENS_PERFECT_LYRE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1417,6 +1468,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_TIMOR_MASK')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1438,6 +1490,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_GODSLAYER')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1459,6 +1512,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_WAR')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -1476,6 +1530,7 @@
             <bInCityOnly>1</bInCityOnly>
             <bHasCasted>1</bHasCasted>
             <ConvertUnitType>UNIT_DROWN</ConvertUnitType>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>60</iCost>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_DROWN</Sound>
@@ -1553,6 +1608,7 @@
             <ImprovementPrereq>IMPROVEMENT_PORTAL</ImprovementPrereq>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellEnterPortal(pCaster)</PyResult>
             <Effect>EFFECT_SPELL2</Effect>
             <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
@@ -1813,7 +1869,8 @@
             <bInCityOnly>1</bInCityOnly>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <bAbility>1</bAbility>			
+            <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iChangePopulation>-1</iChangePopulation>
             <PyResult>spellFeast(pCaster)</PyResult>
             <PyRequirement>reqFeast(pCaster)</PyRequirement>
@@ -1832,7 +1889,8 @@
             <iAIWeight>10</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <bAbility>1</bAbility>						
+            <bAbility>1</bAbility>	
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellFeed(pCaster)</PyResult>
             <PyRequirement>reqFeed(pCaster)</PyRequirement>
             <Effect>EFFECT_SACRIFICE</Effect>
@@ -1906,6 +1964,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellForTheHorde(pCaster)</PyResult>
             <PyRequirement>reqForTheHorde(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -1923,6 +1982,7 @@
             <iAIWeight>100</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellFormWolfPack(pCaster)</PyResult>
             <PyRequirement>reqFormWolfPack(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -1943,6 +2003,7 @@
             <SpreadReligion>RELIGION_RUNES_OF_KILMORPH</SpreadReligion>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_FOUND_TEMPLE</Sound>
             <bGraphicalOnly>0</bGraphicalOnly>
@@ -1961,6 +2022,7 @@
             <SpreadReligion>RELIGION_FELLOWSHIP_OF_LEAVES</SpreadReligion>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_FOUND_TEMPLE</Sound>
             <bGraphicalOnly>0</bGraphicalOnly>
@@ -1979,6 +2041,7 @@
             <SpreadReligion>RELIGION_THE_EMPYREAN</SpreadReligion>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_FOUND_TEMPLE</Sound>
             <bGraphicalOnly>0</bGraphicalOnly>
@@ -1997,6 +2060,7 @@
             <SpreadReligion>RELIGION_THE_ORDER</SpreadReligion>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_FOUND_TEMPLE</Sound>
             <bGraphicalOnly>0</bGraphicalOnly>
@@ -2015,6 +2079,7 @@
             <SpreadReligion>RELIGION_OCTOPUS_OVERLORDS</SpreadReligion>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_FOUND_TEMPLE</Sound>
             <bGraphicalOnly>0</bGraphicalOnly>
@@ -2033,6 +2098,7 @@
             <SpreadReligion>RELIGION_THE_ASHEN_VEIL</SpreadReligion>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_FOUND_TEMPLE</Sound>
             <bGraphicalOnly>0</bGraphicalOnly>
@@ -2048,7 +2114,8 @@
             <iAIWeight>100</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <bAbility>1</bAbility>			
+            <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellGiftVampirism(pCaster)</PyResult>
             <PyRequirement>reqGiftVampirism(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -2067,6 +2134,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellGiftsOfNantosuelta(pCaster)</PyResult>
             <PyRequirement>reqGiftsOfNantosuelta(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -2152,6 +2220,7 @@
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <iRange>1</iRange>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellHastursRazor(pCaster)</PyResult>
             <PyRequirement>reqHastursRazor(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -2186,6 +2255,7 @@
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_BLUR</AddPromotionType1>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>12</iCost>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_CHARM_PERSON</Sound>
@@ -2208,6 +2278,7 @@
             <bImmuneNeutral>1</bImmuneNeutral>
             <bImmuneEnemy>1</bImmuneEnemy>
             <bImmuneNotAlive>1</bImmuneNotAlive>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>60</iCost>
             <Effect>EFFECT_WIND_SWIRL</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
@@ -2228,6 +2299,7 @@
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_POISONED_BLADE</AddPromotionType1>
             <bImmuneNeutral>1</bImmuneNeutral>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>90</iCost>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
@@ -2247,6 +2319,7 @@
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_REGENERATION</AddPromotionType1>
             <bImmuneNotAlive>1</bImmuneNotAlive>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>120</iCost>
             <Effect>EFFECT_CREATION</Effect>
             <Sound>AS3D_SPELL_BLESS</Sound>
@@ -2265,6 +2338,7 @@
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_SHADOWWALK</AddPromotionType1>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>60</iCost>
             <Effect>EFFECT_SWORDS_SPARKS</Effect>
             <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
@@ -2284,6 +2358,7 @@
             <bInCityOnly>1</bInCityOnly>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iChangePopulation>-1</iChangePopulation>
             <PyResult>spellExtort(pCaster)</PyResult>
             <PyRequirement>reqExtort(pCaster)</PyRequirement>
@@ -2349,6 +2424,7 @@
             <AddPromotionType1>PROMOTION_HIDDEN</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqHide(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HOPE</Sound>
@@ -2365,6 +2441,7 @@
             <AddPromotionType1>PROMOTION_HIDDEN</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>30</iCost>
             <PyRequirement>reqHide(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -2379,6 +2456,7 @@
             <TechPrereq>TECH_ARCHERY</TechPrereq>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>60</iCost>
             <PyResult>spellHireArcher(pCaster)</PyResult>
             <PyRequirement>reqHireScorpionClan(pCaster)</PyRequirement>
@@ -2395,6 +2473,7 @@
             <TechPrereq>TECH_TRADE</TechPrereq>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>120</iCost>
             <PyResult>spellHireChariot(pCaster)</PyResult>
             <PyRequirement>reqHireScorpionClan(pCaster)</PyRequirement>
@@ -2410,6 +2489,7 @@
             <ImprovementPrereq>IMPROVEMENT_GOBLIN_FORT</ImprovementPrereq>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>30</iCost>
             <PyResult>spellHireGoblin(pCaster)</PyResult>
             <PyRequirement>reqHireScorpionClan(pCaster)</PyRequirement>
@@ -2427,6 +2507,7 @@
             <bInCityOnly>1</bInCityOnly>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellHireUnits(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HOPE</Sound>
@@ -2440,6 +2521,7 @@
             <TechPrereq>TECH_HORSEBACK_RIDING</TechPrereq>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>60</iCost>
             <PyResult>spellHireWolfRider(pCaster)</PyResult>
             <PyRequirement>reqHireScorpionClan(pCaster)</PyRequirement>
@@ -2476,6 +2558,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellHyboremsWhisper(pCaster)</PyResult>
             <PyRequirement>reqHyboremsWhisper(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -2492,6 +2575,7 @@
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellImpersonateLeader(pCaster)</PyResult>
             <PyRequirement>reqImpersonateLeader(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -2558,6 +2642,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellIntoTheMist(pCaster)</PyResult>
             <PyRequirement>reqIntoTheMist(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -2621,6 +2706,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellLegends(pCaster)</PyResult>
             <PyRequirement>reqLegends(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -2640,6 +2726,7 @@
             <AddPromotionType1>PROMOTION_UNDEAD</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <ConvertUnitType>UNIT_LICH</ConvertUnitType>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqLichdom(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_DEFILE</Sound>
@@ -2704,6 +2791,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellMarchOfTheTrees(pCaster)</PyResult>
             <PyRequirement>reqMarchOfTheTrees(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -2789,6 +2877,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellMotherLode(pCaster)</PyResult>
             <PyRequirement>reqMotherLode(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -2835,6 +2924,7 @@
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <bSacrificeCaster>1</bSacrificeCaster>
             <PyResult>spellPeace(pCaster)</PyResult>
             <PyRequirement>reqPeace(pCaster)</PyRequirement>
@@ -2851,6 +2941,7 @@
             <bAllowAI>1</bAllowAI>
             <bInBordersOnly>1</bInBordersOnly>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellPeaceSevenPines(pCaster)</PyResult>
             <PyRequirement>reqPeaceSevenPines(pCaster)</PyRequirement>
             <Effect>EFFECT_CREATION</Effect>
@@ -2905,8 +2996,9 @@
             <bHasCasted>1</bHasCasted>
             <CreateImprovementType>IMPROVEMENT_PIRATE_COVE</CreateImprovementType>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <bSacrificeCaster>1</bSacrificeCaster>
-	    <PyResult>spellPirateCove(pCaster)</PyResult>
+			<PyResult>spellPirateCove(pCaster)</PyResult>
             <PyRequirement>reqPirateCove(pCaster)</PyRequirement>
             <Effect>EFFECT_CREATION</Effect>
             <Sound>AS3D_SPELL_PIRATE_COVE</Sound>
@@ -2969,6 +3061,7 @@
             <iAIWeight>300</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellPromoteSettlement(pCaster)</PyResult>
             <PyRequirement>reqPromoteSettlement(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -3004,6 +3097,7 @@
             <bGlobal>1</bGlobal>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellRagingSeas(pCaster)</PyResult>
             <PyRequirement>reqRagingSeas(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -3038,6 +3132,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellRally(pCaster)</PyResult>
             <PyRequirement>reqRally(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -3052,6 +3147,7 @@
             <PromotionPrereq1>PROMOTION_INFERNAL_GRIMOIRE</PromotionPrereq1>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellReadTheGrimoire(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -3106,6 +3202,7 @@
             <bInCityOnly>1</bInCityOnly>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>180</iCost>
             <PyResult>spellRecruitMercenary(pCaster)</PyResult>
             <PyRequirement>reqRecruitMercenary(pCaster)</PyRequirement>
@@ -3126,6 +3223,7 @@
             <bInCityOnly>1</bInCityOnly>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>200</iCost>
             <PyResult>spellRecruitNightwatch(pCaster)</PyResult>
             <PyRequirement>reqRecruitNightwatch(pCaster)</PyRequirement>
@@ -3154,6 +3252,7 @@
             <Help>TXT_KEY_SPELL_RELEASE_FROM_CAGE_HELP</Help>
             <ImprovementPrereq>IMPROVEMENT_CAGE</ImprovementPrereq>
             <bAllowAI>1</bAllowAI>
+            <iAIWeight>10</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <RemovePromotionType1>PROMOTION_HELD</RemovePromotionType1>
@@ -3177,6 +3276,7 @@
             <bGlobal>1</bGlobal>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellReligiousFervor(pCaster)</PyResult>
             <PyRequirement>reqReligiousFervor(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -3243,6 +3343,7 @@
             <BuildingClassOwnedPrereq>BUILDINGCLASS_NOX_NOCTIS</BuildingClassOwnedPrereq>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellReveal(pCaster)</PyResult>
             <PyRequirement>reqReveal(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -3280,6 +3381,7 @@
             <bGlobal>1</bGlobal>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellRevelry(pCaster)</PyResult>
             <PyRequirement>reqRevelry(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -3361,6 +3463,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellRiverOfBlood(pCaster)</PyResult>
             <PyRequirement>reqRiverOfBlood(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -3373,6 +3476,7 @@
             <Civilopedia>TXT_KEY_SPELL_ROAR_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_ROAR_HELP</Help>
             <PromotionPrereq1>PROMOTION_DRAGON</PromotionPrereq1>
+			<PromotionPrereq2>PROMOTION_FEAR</PromotionPrereq2>
             <bAllowAI>1</bAllowAI>
             <iAIWeight>30</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
@@ -3436,6 +3540,7 @@
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellSacrificeAltar(pCaster)</PyResult>
             <Effect>EFFECT_SACRIFICE</Effect>
             <Sound>AS3D_SPELL_SACRIFICE</Sound>
@@ -3486,6 +3591,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellSanctuary(pCaster)</PyResult>
             <PyRequirement>reqSanctuary(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -3520,6 +3626,7 @@
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
 			<PyResult>spellSeverSoul(pCaster)</PyResult>
 			<PyRequirement>reqSeverSoul(pCaster)</PyRequirement>
             <Effect>EFFECT_ENTROPY_SUMMON</Effect>
@@ -3562,6 +3669,7 @@
             <UnitClassPrereq>UNITCLASS_GUYBRUSH</UnitClassPrereq>
             <bIgnoreHasCasted>1</bIgnoreHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellSing(pCaster)</PyResult>
             <Button>Art/Interface/Buttons/Spells/Sing.dds</Button>
         </SpellInfo>
@@ -3574,6 +3682,7 @@
             <bAllowAI>1</bAllowAI>
             <bCasterMustBeAlive>1</bCasterMustBeAlive>
             <bIgnoreHasCasted>1</bIgnoreHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellSironasTouch(pCaster)</PyResult>
             <PyRequirement>reqSironasTouch(pCaster)</PyRequirement>
             <Effect>EFFECT_CREATION</Effect>
@@ -3591,6 +3700,7 @@
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
             <iCost>30</iCost>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellSlaveTradeBuy(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
@@ -3606,6 +3716,7 @@
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>-10</iCost>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
@@ -3734,6 +3845,7 @@
             <bHasCasted>1</bHasCasted>
             <SpreadReligion>RELIGION_COUNCIL_OF_ESUS</SpreadReligion>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>100</iCost>
             <PyRequirement>reqSpreadTheCouncilOfEsus(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -3768,6 +3880,7 @@
             <AddPromotionType2>PROMOTION_FATIGUED</AddPromotionType2>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqSprint(pCaster)</PyRequirement>
             <Effect>EFFECT_WIND_SWIRL</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>
@@ -3784,6 +3897,7 @@
             <iAIWeight>50</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellStasis(pCaster)</PyResult>
             <PyRequirement>reqStasis(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4094,6 +4208,7 @@
             <bAllowAI>1</bAllowAI>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_ATHAME')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_ATHAME')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4113,6 +4228,7 @@
             <AddPromotionType1>PROMOTION_ATHAME</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_ATHAME')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_ATHAME')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4129,6 +4245,7 @@
             <bAllowAI>1</bAllowAI>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_BLACK_MIRROR')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_BLACK_MIRROR')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4148,6 +4265,7 @@
             <AddPromotionType1>PROMOTION_BLACK_MIRROR</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_BLACK_MIRROR')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_BLACK_MIRROR')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4167,6 +4285,7 @@
             <AddPromotionType1>PROMOTION_CROWN_OF_AKHARIEN</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentBuilding(pCaster,'EQUIPMENT_CROWN_OF_AKHARIEN')</PyResult>
             <PyRequirement>reqTakeEquipmentBuilding(pCaster,'EQUIPMENT_CROWN_OF_AKHARIEN')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4183,6 +4302,7 @@
             <bAllowAI>1</bAllowAI>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_CROWN_OF_AKHARIEN')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_CROWN_OF_AKHARIEN')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4202,6 +4322,7 @@
             <AddPromotionType1>PROMOTION_CROWN_OF_AKHARIEN</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_CROWN_OF_AKHARIEN')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_CROWN_OF_AKHARIEN')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4218,6 +4339,7 @@
             <bAllowAI>1</bAllowAI>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_CROWN_OF_COMMAND')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_CROWN_OF_COMMAND')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4237,6 +4359,7 @@
             <AddPromotionType1>PROMOTION_CROWN_OF_COMMAND</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_CROWN_OF_COMMAND')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_CROWN_OF_COMMAND')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4256,6 +4379,7 @@
             <AddPromotionType1>PROMOTION_DRAGONS_HORDE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentBuilding(pCaster,'EQUIPMENT_DRAGONS_HORDE')</PyResult>
             <PyRequirement>reqTakeEquipmentBuilding(pCaster,'EQUIPMENT_DRAGONS_HORDE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4272,6 +4396,7 @@
             <bAllowAI>1</bAllowAI>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_DRAGONS_HORDE')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_DRAGONS_HORDE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4291,6 +4416,7 @@
             <AddPromotionType1>PROMOTION_DRAGONS_HORDE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_DRAGONS_HORDE')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_DRAGONS_HORDE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4308,6 +4434,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_EMPTY_BIER')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_EMPTY_BIER')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4327,6 +4454,7 @@
             <AddPromotionType1>PROMOTION_EMPTY_BIER</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_EMPTY_BIER')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_EMPTY_BIER')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4344,6 +4472,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_GELA')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_GELA')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4363,6 +4492,7 @@
             <AddPromotionType1>PROMOTION_GELA</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_GELA')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_GELA')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4380,6 +4510,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_GOLDEN_HAMMER')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_GOLDEN_HAMMER')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4399,6 +4530,7 @@
             <AddPromotionType1>PROMOTION_GOLDEN_HAMMER</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_GOLDEN_HAMMER')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_GOLDEN_HAMMER')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4418,6 +4550,7 @@
             <AddPromotionType1>PROMOTION_GOLDEN_HAMMER</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_GOLDEN_HAMMER_NEW')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_GOLDEN_HAMMER_NEW')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4435,6 +4568,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_HEALING_SALVE')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_HEALING_SALVE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4454,6 +4588,7 @@
             <AddPromotionType1>PROMOTION_HEALING_SALVE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_HEALING_SALVE')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_HEALING_SALVE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4473,6 +4608,7 @@
             <AddPromotionType1>PROMOTION_INFERNAL_GRIMOIRE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentBuilding(pCaster,'EQUIPMENT_INFERNAL_GRIMOIRE')</PyResult>
             <PyRequirement>reqTakeEquipmentBuilding(pCaster,'EQUIPMENT_INFERNAL_GRIMOIRE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4488,6 +4624,7 @@
             <PromotionInStackPrereq>PROMOTION_INFERNAL_GRIMOIRE</PromotionInStackPrereq>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_INFERNAL_GRIMOIRE')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_INFERNAL_GRIMOIRE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4507,6 +4644,7 @@
             <AddPromotionType1>PROMOTION_INFERNAL_GRIMOIRE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_INFERNAL_GRIMOIRE')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_INFERNAL_GRIMOIRE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4524,6 +4662,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_JADE_TORC')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_JADE_TORC')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4543,6 +4682,7 @@
             <AddPromotionType1>PROMOTION_JADE_TORC</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_JADE_TORC')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_JADE_TORC')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4560,6 +4700,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_NETHER_BLADE')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_NETHER_BLADE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4579,6 +4720,7 @@
             <AddPromotionType1>PROMOTION_NETHER_BLADE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_NETHER_BLADE')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_NETHER_BLADE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4596,6 +4738,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_ORTHUSS_AXE')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_ORTHUSS_AXE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4615,6 +4758,7 @@
             <AddPromotionType1>PROMOTION_ORTHUSS_AXE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_ORTHUSS_AXE')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_ORTHUSS_AXE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4632,6 +4776,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_PIECES_OF_BARNAXUS')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_PIECES_OF_BARNAXUS')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4651,6 +4796,7 @@
             <AddPromotionType1>PROMOTION_PIECES_OF_BARNAXUS</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_PIECES_OF_BARNAXUS')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_PIECES_OF_BARNAXUS')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4668,6 +4814,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_POTION_OF_INVISIBILITY')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_POTION_OF_INVISIBILITY')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4687,6 +4834,7 @@
             <AddPromotionType1>PROMOTION_POTION_OF_INVISIBILITY</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_POTION_OF_INVISIBILITY')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_POTION_OF_INVISIBILITY')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4704,6 +4852,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_POTION_OF_RESTORATION')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_POTION_OF_RESTORATION')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4723,6 +4872,7 @@
             <AddPromotionType1>PROMOTION_POTION_OF_RESTORATION</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_POTION_OF_RESTORATION')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_POTION_OF_RESTORATION')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4740,6 +4890,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_ROD_OF_WINDS')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_ROD_OF_WINDS')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4759,6 +4910,7 @@
             <AddPromotionType1>PROMOTION_ROD_OF_WINDS</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_ROD_OF_WINDS')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_ROD_OF_WINDS')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4776,6 +4928,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_SCORCHED_STAFF')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_SCORCHED_STAFF')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4795,6 +4948,7 @@
             <AddPromotionType1>PROMOTION_SCORCHED_STAFF</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_SCORCHED_STAFF')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_SCORCHED_STAFF')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4812,6 +4966,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_STAFF_OF_SOULS')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_STAFF_OF_SOULS')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4831,6 +4986,7 @@
             <AddPromotionType1>PROMOTION_STAFF_OF_SOULS</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_STAFF_OF_SOULS')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_STAFF_OF_SOULS')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4850,6 +5006,7 @@
             <AddPromotionType1>PROMOTION_SYLIVENS_PERFECT_LYRE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentBuilding(pCaster,'EQUIPMENT_SYLIVENS_PERFECT_LYRE')</PyResult>
             <PyRequirement>reqTakeEquipmentBuilding(pCaster,'EQUIPMENT_SYLIVENS_PERFECT_LYRE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4867,6 +5024,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_SYLIVENS_PERFECT_LYRE')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_SYLIVENS_PERFECT_LYRE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4886,6 +5044,7 @@
             <AddPromotionType1>PROMOTION_SYLIVENS_PERFECT_LYRE</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_SYLIVENS_PERFECT_LYRE')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_SYLIVENS_PERFECT_LYRE')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4903,6 +5062,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_TIMOR_MASK')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_TIMOR_MASK')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4922,6 +5082,7 @@
             <AddPromotionType1>PROMOTION_TIMOR_MASK</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_TIMOR_MASK')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_TIMOR_MASK')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4939,6 +5100,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_GODSLAYER')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_GODSLAYER')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4958,6 +5120,7 @@
             <AddPromotionType1>PROMOTION_GODSLAYER</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_GODSLAYER')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_GODSLAYER')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4975,6 +5138,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_WAR')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_WAR')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -4994,6 +5158,7 @@
             <AddPromotionType1>PROMOTION_WAR</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_WAR')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_WAR')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5078,6 +5243,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTrust(pCaster)</PyResult>
             <PyRequirement>reqTrust(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5186,6 +5352,7 @@
             <bHasCasted>1</bHasCasted>
             <ConvertUnitType>UNIT_SONS_OF_ASENA</ConvertUnitType>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>40</iCost>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -5204,6 +5371,7 @@
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>80</iCost>
 			<PyResult>spellUpgradeLucian(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5224,6 +5392,7 @@
             <bHasCasted>1</bHasCasted>
             <ConvertUnitType>UNIT_BATTLEMASTER</ConvertUnitType>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>120</iCost>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -5243,6 +5412,7 @@
             <bHasCasted>1</bHasCasted>
             <ConvertUnitType>UNIT_BATTLEMASTER</ConvertUnitType>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>80</iCost>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -5261,6 +5431,7 @@
             <bHasCasted>1</bHasCasted>
             <ConvertUnitType>UNIT_BEASTMAN</ConvertUnitType>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>20</iCost>
             <PyRequirement>reqUpgradeDovielloWarrior(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5280,6 +5451,7 @@
             <bHasCasted>1</bHasCasted>
             <ConvertUnitType>UNIT_BEASTMAN</ConvertUnitType>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>20</iCost>
             <PyRequirement>reqUpgradeDovielloWarrior(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5366,6 +5538,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellVeilOfNight(pCaster)</PyResult>
             <PyRequirement>reqVeilOfNight(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5414,6 +5587,7 @@
             <iCasterMinLevel>6</iCasterMinLevel>
             <bHasCasted>1</bHasCasted>
             <ConvertUnitType>UNIT_SHADE</ConvertUnitType>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqWane(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_INSPIRATION</Sound>
@@ -5430,6 +5604,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellWarcry(pCaster)</PyResult>
             <PyRequirement>reqWarcry(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5449,6 +5624,7 @@
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_HIDDEN</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqWhiteout(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HOPE</Sound>
@@ -5465,6 +5641,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellWildHunt(pCaster)</PyResult>
             <PyRequirement>reqWildHunt(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5503,6 +5680,7 @@
             <iAIWeight>30</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellWonder(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_DEFILE</Sound>
@@ -5519,6 +5697,7 @@
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellWorldbreak(pCaster)</PyResult>
             <PyRequirement>reqWorldbreak(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5536,6 +5715,7 @@
             <AddPromotionType1>PROMOTION_GREAT_GENERAL</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellGreatGeneralJoin(pCaster)</PyResult>
             <PyRequirement>reqGreatGeneralJoin(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5552,6 +5732,7 @@
             <RemovePromotionType1>PROMOTION_GREAT_GENERAL</RemovePromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellGreatGeneralSplit(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_COMMANDER_SPLIT</Sound>
@@ -5567,6 +5748,7 @@
 			<AddPromotionType1>PROMOTION_MARKSMAN</AddPromotionType1>
 			<RemovePromotionType1>PROMOTION_MARKSMAN_DISABLED</RemovePromotionType1>
 			<bBuffCasterOnly>1</bBuffCasterOnly>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
 			<Effect>EFFECT_SPELL1</Effect>
 			<Sound>AS3D_SPELL_TRAIN</Sound>
 			<Button>Art/Interface/Buttons/Promotions/Marksman.dds</Button>
@@ -5581,6 +5763,7 @@
 			<AddPromotionType1>PROMOTION_MARKSMAN_DISABLED</AddPromotionType1>
 			<RemovePromotionType1>PROMOTION_MARKSMAN</RemovePromotionType1>
 			<bBuffCasterOnly>1</bBuffCasterOnly>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
 			<Effect>EFFECT_SPELL1</Effect>
 			<Sound>AS3D_SPELL_TRAIN</Sound>
 			<Button>Art/Interface/Buttons/Promotions/Marksman.dds</Button>
@@ -5601,6 +5784,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_PIKE_OF_TEARS')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -5617,6 +5801,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_PIKE_OF_TEARS')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_PIKE_OF_TEARS')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5636,6 +5821,7 @@
             <AddPromotionType1>PROMOTION_PIKE_OF_TEARS</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_PIKE_OF_TEARS')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_PIKE_OF_TEARS')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5657,6 +5843,7 @@
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <CreateBuildingType>BUILDING_FROZEN_FLAME</CreateBuildingType>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
@@ -5674,6 +5861,7 @@
             <AddPromotionType1>PROMOTION_FROZEN_FLAME</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentBuilding(pCaster,'EQUIPMENT_FROZEN_FLAME')</PyResult>
             <PyRequirement>reqTakeEquipmentBuilding(pCaster,'EQUIPMENT_FROZEN_FLAME')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5690,6 +5878,7 @@
             <bAllowAI>1</bAllowAI>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_FROZEN_FLAME')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_FROZEN_FLAME')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5708,6 +5897,7 @@
             <AddPromotionType1>PROMOTION_FROZEN_FLAME</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_FROZEN_FLAME')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_FROZEN_FLAME')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5730,6 +5920,7 @@
             <iCreateUnitNum>1</iCreateUnitNum>
             <bPermanentUnitCreate>1</bPermanentUnitCreate>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyRequirement>reqDropEquipmentPromotion(pCaster,'EQUIPMENT_SOL')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
@@ -5746,6 +5937,7 @@
             <iAIWeight>50</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentPromotion(pCaster,'EQUIPMENT_SOL')</PyResult>
             <PyRequirement>reqTakeEquipmentPromotion(pCaster,'EQUIPMENT_SOL')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5765,6 +5957,7 @@
             <AddPromotionType1>PROMOTION_SOL</AddPromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellTakeEquipmentUnit(pCaster,'EQUIPMENT_SOL')</PyResult>
             <PyRequirement>reqTakeEquipmentUnit(pCaster,'EQUIPMENT_SOL')</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
@@ -5782,6 +5975,7 @@
             <bInCityOnly>1</bInCityOnly>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
+			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <bSacrificeCaster>1</bSacrificeCaster>
             <PyResult>spellSellAnimal(pCaster)</PyResult>
             <PyRequirement>reqConsumeAnimal(pCaster)</PyRequirement>

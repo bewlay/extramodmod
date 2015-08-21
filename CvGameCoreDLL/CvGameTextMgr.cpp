@@ -127,33 +127,33 @@ void CvGameTextMgr::setYearStr(CvWString& szString, int iGameTurn, bool bSave, C
 	{
 		if (bSave)
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_BC_SAVE", CvWString::format(L"%04d", -iTurnYear).GetCString());
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_SAVE", CvWString::format(L"%04d", -iTurnYear).GetCString());
 		}
 		else
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_BC", -(iTurnYear));
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_DATE", -(iTurnYear));
 		}
 	}
 	else if (iTurnYear > 0)
 	{
 		if (bSave)
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD_SAVE", CvWString::format(L"%04d", iTurnYear).GetCString());
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_SAVE", CvWString::format(L"%04d", iTurnYear).GetCString());
 		}
 		else
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD", iTurnYear);
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_DATE", iTurnYear);
 		}
 	}
 	else
 	{
 		if (bSave)
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD_SAVE", L"0001");
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_SAVE", L"0001");
 		}
 		else
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD", 1);
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_DATE", 1);
 		}
 	}
 }
@@ -5939,6 +5939,8 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		int iCalcFoundValue = GET_PLAYER(eActivePlayer).AI_foundValue(pPlot->getX_INLINE(), pPlot->getY_INLINE(), -1, false);
 		int iStartingFoundValue = GET_PLAYER(eActivePlayer).AI_foundValue(pPlot->getX_INLINE(), pPlot->getY_INLINE(), -1, true);
 
+		
+		//szString.append(CvWString::format(L"\nCity Radius Count: %d", pPlot->getCityRadiusCount()));
 		szTempBuffer.Format(L"\nFound Value: %d, (%d, %d)", iActualFoundValue, iCalcFoundValue, iStartingFoundValue);
 		szString.append(szTempBuffer);
 
@@ -5949,14 +5951,82 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
             int iBuildValue = pWorkingCity->AI_getBestBuildValue(iPlotIndex);
             BuildTypes eBestBuild = pWorkingCity->AI_getBestBuild(iPlotIndex);
 
+/************************************************************************************************/
+/* BETTER_BTS_AI_MOD                      06/25/09                                jdog5000      */
+/*                                                                                              */
+/* Debug                                                                                        */
+/************************************************************************************************/
+			szString.append(NEWLINE);
+
+			int iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange;
+			pWorkingCity->AI_getYieldMultipliers( iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange );
+
+			szTempBuffer.Format(L"\n%s yield multipliers: ", pWorkingCity->getName().c_str() );
+			szString.append(szTempBuffer);
+			szTempBuffer.Format(L"\n   Food %d, Prod %d, Com %d, DesFoodChange %d", iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange );
+			szString.append(szTempBuffer);
+			szTempBuffer.Format(L"\nTarget pop: %d, (%d good tiles)", pWorkingCity->AI_getTargetPopulation(), pWorkingCity->AI_countGoodPlots() );
+			szString.append(szTempBuffer);
+
+			ImprovementTypes eImprovement = pPlot->getImprovementType();
+
             if (NO_BUILD != eBestBuild)
             {
-                szTempBuffer.Format(L"\nBest Build: %s (%d)", GC.getBuildInfo(eBestBuild).getDescription(), iBuildValue);
+				
+				if( GC.getBuildInfo(eBestBuild).getImprovement() != NO_IMPROVEMENT && eImprovement != NO_IMPROVEMENT && eImprovement != GC.getBuildInfo(eBestBuild).getImprovement() )
+				{
+					szTempBuffer.Format(SETCOLR L"\nBest Build: %s (%d) replacing %s" ENDCOLR, TEXT_COLOR("COLOR_RED"), GC.getBuildInfo(eBestBuild).getDescription(), iBuildValue, GC.getImprovementInfo(eImprovement).getDescription());
+				}
+				else
+				{
+					szTempBuffer.Format(SETCOLR L"\nBest Build: %s (%d)" ENDCOLR, TEXT_COLOR("COLOR_HIGHLIGHT_TEXT"), GC.getBuildInfo(eBestBuild).getDescription(), iBuildValue);
+				}
+				
                 szString.append(szTempBuffer);
-            }
+			}
+
+			szTempBuffer.Format(L"\nBuild Values: ");
+			szString.append(szTempBuffer);
+
+			for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
+			{
+				if( pPlot->canHaveImprovement((ImprovementTypes)iI, pWorkingCity->getOwnerINLINE()) )
+				{
+					int iBuildValue = pWorkingCity->AI_getImprovementValue( pPlot, (ImprovementTypes)iI, iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange);
+					//int iOldValue = pWorkingCity->AI_getImprovementValue( pPlot, (ImprovementTypes)iI, iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange);
+
+					//szTempBuffer.Format(L"\n   %s : %d  (old %d)", GC.getImprovementInfo((ImprovementTypes)iI).getDescription(), iOtherBuildValue, iOldValue );
+					if (iBuildValue != 0)
+					{
+						szTempBuffer.Format(L"\n   %s : %d", GC.getImprovementInfo((ImprovementTypes)iI).getDescription(), iBuildValue );
+						szString.append(szTempBuffer);
+					}
+				}
+			}
+
+			/*
+			szTempBuffer.Format(L"\nStandard Build Values: ");
+			szString.append(szTempBuffer);
+
+			for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
+			{
+				int iOtherBuildValue = pWorkingCity->AI_getImprovementValue( pPlot, (ImprovementTypes)iI, 100, 100, 100, 0);
+				if( iOtherBuildValue > 0 )
+				{
+					szTempBuffer.Format(L"\n   %s : %d", GC.getImprovementInfo((ImprovementTypes)iI).getDescription(), iOtherBuildValue);
+					szString.append(szTempBuffer);
+				}
+			}
+			*/
+
+			szString.append(NEWLINE);
+/************************************************************************************************/
+/* BETTER_BTS_AI_MOD                       END                                                  */
+/************************************************************************************************/		
+
 		}
 
-		{
+		/*{
 			szTempBuffer.Format(L"\nStack Str: land=%d(%d), sea=%d(%d), air=%d(%d)",
 				pPlot->AI_sumStrength(NO_PLAYER, NO_PLAYER, DOMAIN_LAND, false, false, false),
 				pPlot->AI_sumStrength(NO_PLAYER, NO_PLAYER, DOMAIN_LAND, true, false, false),
@@ -5965,14 +6035,14 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 				pPlot->AI_sumStrength(NO_PLAYER, NO_PLAYER, DOMAIN_AIR, false, false, false),
 				pPlot->AI_sumStrength(NO_PLAYER, NO_PLAYER, DOMAIN_AIR, true, false, false));
 			szString.append(szTempBuffer);
-		}
+		}*/
 
 		if (pPlot->getPlotCity() != NULL)
 		{
 			PlayerTypes ePlayer = pPlot->getOwnerINLINE();
 			CvPlayerAI& kPlayer = GET_PLAYER(ePlayer);
 
-			szString.append(CvWString::format(L"\n\nI spy with my little eye..."));
+			szString.append(CvWString::format(L"\n\nAI unit class weights ..."));
 			for (iI = 0; iI < GC.getNumUnitClassInfos(); ++iI)
 			{
 				if (kPlayer.AI_getUnitClassWeight((UnitClassTypes)iI) != 0)
@@ -5980,7 +6050,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 					szString.append(CvWString::format(L"\n%s = %d", GC.getUnitClassInfo((UnitClassTypes)iI).getDescription(), kPlayer.AI_getUnitClassWeight((UnitClassTypes)iI)));
 				}
 			}
-			szString.append(CvWString::format(L"\n\nalso unit combat types..."));
+			szString.append(CvWString::format(L"\n\nalso unit combat type weights..."));
 			for (iI = 0; iI < GC.getNumUnitCombatInfos(); ++iI)
 			{
 				if (kPlayer.AI_getUnitCombatWeight((UnitCombatTypes)iI) != 0)
@@ -6738,7 +6808,10 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 							CvImprovementInfo& kImprovementInfo = GC.getImprovementInfo((ImprovementTypes) GC.getBuildInfo((BuildTypes) iI).getImprovement());
 							if (kImprovementInfo.isImprovementBonusTrade(eBonus))
 							{
-								if (pPlot->canHaveImprovement(((ImprovementTypes)(GC.getBuildInfo((BuildTypes) iI).getImprovement())), GC.getGameINLINE().getActiveTeam(), true))
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+//								if (pPlot->canHaveImprovement(((ImprovementTypes)(GC.getBuildInfo((BuildTypes) iI).getImprovement())), GC.getGameINLINE().getActiveTeam(), true))
+								if (pPlot->canHaveImprovement(((ImprovementTypes)(GC.getBuildInfo((BuildTypes) iI).getImprovement())), GC.getGameINLINE().getActivePlayer(), true))
+//<<<<Unofficial Bug Fix: End Modify
 								{
 									if (GET_TEAM(GC.getGameINLINE().getActiveTeam()).isHasTech((TechTypes)GC.getBuildInfo((BuildTypes) iI).getTechPrereq()))
 									{
@@ -14722,23 +14795,7 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 				if (iYear != MIN_INT)
 				{
 					// year built
-					CvWString szYear;
-
-					if (iYear < 0)
-					{
-						szYear = gDLL->getText("TXT_KEY_TIME_BC", -iYear);
-					}
-					else if (iYear > 0)
-					{
-						szYear = gDLL->getText("TXT_KEY_TIME_AD", iYear);
-					}
-					else
-					{
-						szYear = gDLL->getText("TXT_KEY_TIME_AD", 1);
-					}
-
 					szBuffer.append(NEWLINE);
-					//szBuffer.append(gDLL->getText("TXT_KEY_BUG_YEAR_BUILT", szYear.GetCString()));
 					szBuffer.append(gDLL->getText("TXT_KEY_BUG_YEAR_BUILT", iYear));
 
 					// double commerce
