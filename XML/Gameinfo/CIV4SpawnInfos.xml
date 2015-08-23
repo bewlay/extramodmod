@@ -100,6 +100,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_AZER -->
 			<Type>SPAWN_EXPLO_BOSS_AZER</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_AZER</Description>
 			<iBaseWeight>90</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
 			<iMinSpawnTier>3</iMinSpawnTier>
@@ -146,6 +147,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_LICH -->
 			<Type>SPAWN_EXPLO_BOSS_LICH</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_LICH</Description>
 			<iBaseWeight>-50</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
 			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
@@ -176,6 +178,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WRAITH -->
 			<Type>SPAWN_EXPLO_BOSS_WRAITH</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_WRAITH</Description>
 			<iBaseWeight>-25</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
 			<SpawnPrereqType>SPAWN_PREREQ_ARCANE</SpawnPrereqType>
@@ -334,6 +337,7 @@
 		<!-- Disciple -->
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_BALOR -->
 			<Type>SPAWN_EXPLO_BOSS_BALOR</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_BALOR</Description>
 			<iBaseWeight>90</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_DISCIPLE</SpawnPrereqType>
 			<iMinSpawnTier>5</iMinSpawnTier>
@@ -384,6 +388,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_EIDOLON -->
 			<Type>SPAWN_EXPLO_BOSS_EIDOLON</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_EIDOLON</Description>
 			<iBaseWeight>90</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_DISCIPLE</SpawnPrereqType>
 			<iMinSpawnTier>4</iMinSpawnTier>
@@ -460,6 +465,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_AXEMAN_ORC -->
 			<Type>SPAWN_EXPLO_BOSS_AXEMAN_ORC</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_AXEMAN_ORC</Description>
 			<iBaseWeight>75</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
 			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
@@ -525,6 +531,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_OGRE -->
 			<Type>SPAWN_EXPLO_BOSS_OGRE</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_OGRE</Description>
 			<iBaseWeight>65</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
 			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
@@ -569,6 +576,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_OGRE_WARCHIEF -->
 			<Type>SPAWN_EXPLO_BOSS_OGRE_WARCHIEF</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_OGRE</Description>
 			<iBaseWeight>65</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
 			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
@@ -615,7 +623,8 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_VAMPIRE -->
 			<Type>SPAWN_EXPLO_BOSS_VAMPIRE</Type>
-			<!-- LFGR_TODO: Only if Calabim not in game -->
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_VAMPIRE</Description>
+			<!-- LFGR_TODO: Only if Calabim not in game? -->
 			<iBaseWeight>65</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_VAMPIRE_EXTRA</TerrainFlavourType>
 			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
@@ -666,6 +675,7 @@
 		<!-- Mounted -->
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_DEATH_KNIGHT -->
 			<Type>SPAWN_EXPLO_BOSS_DEATH_KNIGHT</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_DEATH_KNIGHT</Description>
 			<iBaseWeight>90</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_MOUNTED</SpawnPrereqType>
 			<iMinSpawnTier>5</iMinSpawnTier>
@@ -754,6 +764,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_MANTICORE -->
 			<Type>SPAWN_EXPLO_BOSS_MANTICORE</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_MANTICORE</Description>
 			<iBaseWeight>90</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
 			<iMinSpawnTier>5</iMinSpawnTier>
@@ -807,6 +818,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_SATYR -->
 			<Type>SPAWN_EXPLO_BOSS_SATYR</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_SATYR</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_FOREST_DEFENDER</TerrainFlavourType>
 			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
@@ -844,6 +856,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WEREWOLF -->
 			<Type>SPAWN_EXPLO_BOSS_WEREWOLF</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_WRAITH</Description>
 			<iBaseWeight>65</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_WEREWOLF_EXTRA</TerrainFlavourType>
 			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
@@ -920,6 +933,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_STYGIAN_GUARD -->
 			<Type>SPAWN_EXPLO_BOSS_STYGIAN_GUARD</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_STYGIAN_GUARD</Description>
 			<iBaseWeight>-20</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_COAST</TerrainFlavourType>
 			<SpawnPrereqType>SPAWN_PREREQ_DISCIPLE</SpawnPrereqType>
@@ -959,6 +973,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_KRAKEN -->
 			<Type>SPAWN_EXPLO_BOSS_KRAKEN</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_KRAKEN</Description>
 			<iBaseWeight>80</iBaseWeight>
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>4</iMinSpawnTier>
