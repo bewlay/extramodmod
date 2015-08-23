@@ -13309,7 +13309,9 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, int iMinWilderness, UnitAITypes eUn
 	{
 		for( int j = 0; j < kSpawn.getNumSpawnUnits( (UnitTypes) eUnit ); j++ )
 		{
-			CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, getX_INLINE(), getY_INLINE(), eUnitAI );
+			CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, getX_INLINE(), getY_INLINE() );
+			// Force this UnitAI
+			pUnit->AI_setUnitAIType( eUnitAI );
 			
 			if( !kSpawn.isNoMinWilderness() && !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
 			{
