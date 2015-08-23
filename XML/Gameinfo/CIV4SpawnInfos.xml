@@ -7,8 +7,8 @@
 		<!-- EXPLORATION SPAWNS -->
 
 		<!-- Arcane -->
-		<SpawnInfo> <!-- SPAWN_EXPLO_SKELETON_1 -->
-			<Type>SPAWN_EXPLO_SKELETON_1</Type>
+		<SpawnInfo> <!-- SPAWN_EXPLO_SKELETON -->
+			<Type>SPAWN_EXPLO_SKELETON</Type>
 			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SKELETON</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
@@ -24,8 +24,8 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_SKELETON_2 -->
-			<Type>SPAWN_EXPLO_SKELETON_2</Type>
+		<SpawnInfo> <!-- SPAWN_EXPLO_SKELETON_HORDE_1 -->
+			<Type>SPAWN_EXPLO_SKELETON_HORDE_1</Type>
 			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SKELETON</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
@@ -41,8 +41,8 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_SKELETON_3 -->
-			<Type>SPAWN_EXPLO_SKELETON_3</Type>
+		<SpawnInfo> <!-- SPAWN_EXPLO_SKELETON_HORDE_2 -->
+			<Type>SPAWN_EXPLO_SKELETON_HORDE_2</Type>
 			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_SPAWN_SKELETON</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
@@ -61,8 +61,8 @@
 				<PromotionType>PROMOTION_STRONG</PromotionType>
 			</UnitPromotions>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_SPECTRE_1 -->
-			<Type>SPAWN_EXPLO_SPECTRE_1</Type>
+		<SpawnInfo> <!-- SPAWN_EXPLO_SPECTRE -->
+			<Type>SPAWN_EXPLO_SPECTRE</Type>
 			<Description>TXT_KEY_GOODY_GRAVE_SPECTRE</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
@@ -78,8 +78,8 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_EXPLO_SPECTRE_2 -->
-			<Type>SPAWN_EXPLO_SPECTRE_2</Type>
+		<SpawnInfo> <!-- SPAWN_EXPLO_SPECTRE_HORDE -->
+			<Type>SPAWN_EXPLO_SPECTRE_HORDE</Type>
 			<Description>TXT_KEY_GOODY_GRAVE_SPECTRE</Description>
 			<iBaseWeight>0</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_BARROW_DEFAULT</TerrainFlavourType>
@@ -431,6 +431,33 @@
 		</SpawnInfo>
 		
 		<!-- Melee -->
+		<SpawnInfo> <!-- SPAWN_EXPLO_BANDITS -->
+			<Type>SPAWN_EXPLO_BANDITS</Type>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BANDITS</Description>
+			<iBaseWeight>100</iBaseWeight>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bExplorationResult>1</bExplorationResult>
+			<SpawnUnits />
+			<iMinIncludedSpawns>2</iMinIncludedSpawns>
+			<iMaxIncludedSpawns>4</iMaxIncludedSpawns>
+			<IncludedSpawns>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_BANDITS_SAVAGE</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_BANDITS_BANDIT</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_BANDITS_WARRIOR_ORC</SpawnType>
+				</IncludedSpawn>
+				<IncludedSpawn>
+					<SpawnType>SPAWN_EXPLO_COMP_BANDITS_AXEMAN_ORC</SpawnType>
+				</IncludedSpawn>
+			</IncludedSpawns>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_AXEMAN_ORC -->
 			<Type>SPAWN_EXPLO_BOSS_AXEMAN_ORC</Type>
 			<iBaseWeight>75</iBaseWeight>
@@ -966,7 +993,161 @@
 			</IncludedSpawns>
 		</SpawnInfo>
 		
-		<!-- Companions -->
+		<!-- Bandit Companions -->
+		
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_BANDITS_SAVAGE-->
+			<Type>SPAWN_EXPLO_COMP_BANDITS_SAVAGE</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SAVAGE_EXTRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>1</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_SAVAGE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>0</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_BEAR_TROPHY</PromotionType>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_BOUNTY_HUNTER</PromotionType>
+				<PromotionType>PROMOTION_CITY_RAIDER1</PromotionType>
+				<PromotionType>PROMOTION_COMBAT1</PromotionType>
+				<PromotionType>PROMOTION_COMMANDO</PromotionType>
+				<PromotionType>PROMOTION_COVER</PromotionType>
+				<PromotionType>PROMOTION_DISEASED</PromotionType>
+				<PromotionType>PROMOTION_GUERILLA1</PromotionType>
+				<PromotionType>PROMOTION_HEAVY</PromotionType>
+				<PromotionType>PROMOTION_LIGHT</PromotionType>
+				<PromotionType>PROMOTION_MARCH</PromotionType>
+				<PromotionType>PROMOTION_SAVAGE</PromotionType>
+				<PromotionType>PROMOTION_SCOURGE</PromotionType>
+				<PromotionType>PROMOTION_SENTRY</PromotionType>
+				<PromotionType>PROMOTION_SHOCK</PromotionType>
+				<PromotionType>PROMOTION_SINISTER</PromotionType>
+				<PromotionType>PROMOTION_WOODSMAN1</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_BANDITS_BANDIT-->
+			<Type>SPAWN_EXPLO_COMP_BANDITS_BANDIT</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SAVAGE_EXTRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<bNoRace>1</bNoRace>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_BANDIT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>0</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_BEAR_TROPHY</PromotionType>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_BOUNTY_HUNTER</PromotionType>
+				<PromotionType>PROMOTION_CITY_RAIDER1</PromotionType>
+				<PromotionType>PROMOTION_COMBAT1</PromotionType>
+				<PromotionType>PROMOTION_COMMANDO</PromotionType>
+				<PromotionType>PROMOTION_COVER</PromotionType>
+				<PromotionType>PROMOTION_DISEASED</PromotionType>
+				<PromotionType>PROMOTION_GUERILLA1</PromotionType>
+				<PromotionType>PROMOTION_HEAVY</PromotionType>
+				<PromotionType>PROMOTION_LIGHT</PromotionType>
+				<PromotionType>PROMOTION_MARCH</PromotionType>
+				<PromotionType>PROMOTION_SAVAGE</PromotionType>
+				<PromotionType>PROMOTION_SCOURGE</PromotionType>
+				<PromotionType>PROMOTION_SENTRY</PromotionType>
+				<PromotionType>PROMOTION_SHOCK</PromotionType>
+				<PromotionType>PROMOTION_SINISTER</PromotionType>
+				<PromotionType>PROMOTION_WOODSMAN1</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_BANDITS_WARRIOR_ORC-->
+			<Type>SPAWN_EXPLO_COMP_BANDITS_WARRIOR_ORC</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>1</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_WARRIOR</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>0</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_BEAR_TROPHY</PromotionType>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_BOUNTY_HUNTER</PromotionType>
+				<PromotionType>PROMOTION_CITY_RAIDER1</PromotionType>
+				<PromotionType>PROMOTION_COMBAT1</PromotionType>
+				<PromotionType>PROMOTION_COMMANDO</PromotionType>
+				<PromotionType>PROMOTION_COVER</PromotionType>
+				<PromotionType>PROMOTION_DISEASED</PromotionType>
+				<PromotionType>PROMOTION_GUERILLA1</PromotionType>
+				<PromotionType>PROMOTION_HEAVY</PromotionType>
+				<PromotionType>PROMOTION_LIGHT</PromotionType>
+				<PromotionType>PROMOTION_MARCH</PromotionType>
+				<PromotionType>PROMOTION_SAVAGE</PromotionType>
+				<PromotionType>PROMOTION_SCOURGE</PromotionType>
+				<PromotionType>PROMOTION_SENTRY</PromotionType>
+				<PromotionType>PROMOTION_SHOCK</PromotionType>
+				<PromotionType>PROMOTION_SINISTER</PromotionType>
+				<PromotionType>PROMOTION_WOODSMAN1</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_BANDITS_AXEMAN_ORC-->
+			<Type>SPAWN_EXPLO_COMP_BANDITS_AXEMAN_ORC</Type>
+			<iBaseWeight>75</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_ORC_EXTRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_MELEE</SpawnPrereqType>
+			<iMinSpawnTier>2</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNeverSpawn>1</bNeverSpawn>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_AXEMAN</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<iMinRandomPromotions>0</iMinRandomPromotions>
+			<iMaxRandomPromotions>2</iMaxRandomPromotions>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_BEAR_TROPHY</PromotionType>
+				<PromotionType>PROMOTION_BLITZ</PromotionType>
+				<PromotionType>PROMOTION_BOUNTY_HUNTER</PromotionType>
+				<PromotionType>PROMOTION_CITY_RAIDER1</PromotionType>
+				<PromotionType>PROMOTION_COMBAT1</PromotionType>
+				<PromotionType>PROMOTION_COMMANDO</PromotionType>
+				<PromotionType>PROMOTION_COVER</PromotionType>
+				<PromotionType>PROMOTION_DISEASED</PromotionType>
+				<PromotionType>PROMOTION_GUERILLA1</PromotionType>
+				<PromotionType>PROMOTION_HEAVY</PromotionType>
+				<PromotionType>PROMOTION_LIGHT</PromotionType>
+				<PromotionType>PROMOTION_MARCH</PromotionType>
+				<PromotionType>PROMOTION_SAVAGE</PromotionType>
+				<PromotionType>PROMOTION_SCOURGE</PromotionType>
+				<PromotionType>PROMOTION_SENTRY</PromotionType>
+				<PromotionType>PROMOTION_SHOCK</PromotionType>
+				<PromotionType>PROMOTION_SINISTER</PromotionType>
+				<PromotionType>PROMOTION_WOODSMAN1</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		
+		<!-- Boss Companions -->
+		
 		<SpawnInfo> <!-- SPAWN_EXPLO_COMP_AXEMAN_ORC-->
 			<Type>SPAWN_EXPLO_COMP_AXEMAN_ORC</Type>
 			<iBaseWeight>75</iBaseWeight>
