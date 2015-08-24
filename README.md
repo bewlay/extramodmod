@@ -1,5 +1,7 @@
 #**ExtraModMod**#
 
+**Forum Thread:** http://forums.civfanatics.com/showthread.php?t=486227
+
 ExtraModMod is a modification of the popular [Fall from Heaven II mod](http://forums.civfanatics.com/showthread.php?t=171398) for [Civilization IV](http://www.civiv.com/). ExtraModMod strives to improve and expand the gameplay of the original mod, to add new interesting options and features and to stay true to the [original lore of Fall from Heaven](http://forums.civfanatics.com/forumdisplay.php?f=279). Most new features included in the mod are quite stable, but some parts are still undergoing development. Testing, feedback and contributions are encouraged and highly appreciated.
 
 
