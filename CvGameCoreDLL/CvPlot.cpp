@@ -13295,7 +13295,7 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, int iMinWilderness, UnitAITypes eUn
 		if( iMinRandPromotions == -1 )
 			iMinRandPromotions = 0;
 		
-		if( iMaxRandPromotions != vePromotions.size() || iMaxRandPromotions != vePromotions.size() )
+		if( iMaxRandPromotions != vePromotions.size() || iMinRandPromotions != 0 )
 			bRandPromotions = true;
 	}
 
