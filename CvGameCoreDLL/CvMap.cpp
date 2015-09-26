@@ -38,6 +38,7 @@
 /* Debug                                                                                        */
 /************************************************************************************************/
 #include "BetterBTSAI.h"
+#include <map>
 /************************************************************************************************/
 /* WILDERNESS                              END                                                  */
 /************************************************************************************************/
@@ -1462,6 +1463,9 @@ void CvMap::calculateAreas()
 /************************************************************************************************/
 void CvMap::calculateWilderness()
 {
+	// Variable used for area iterators
+	int iLoop;
+
 	logBBAI( "calculateWilderness()" );
 
 	bool bLogVerbose = true;
@@ -1486,85 +1490,84 @@ void CvMap::calculateWilderness()
 				getArea( iArea )->getNumStartingPlots() > 0 ? ", inhabited" : "" );
 #endif
 
-	// LFGR_TODO: The method of using an area array will probably cause trouble if an area was deleted before.
-	
 	// Continents
 	// Find geometric mean for uninhabited continents
-	int* piUAreaMeanX = new int[getNumAreas()];
-	int* piUAreaMeanY = new int[getNumAreas()];
+	std::map<int, int> miiUAreaMeanX;
+	std::map<int, int> miiUAreaMeanY;
 
 	// Count number of uninhabited continent tiles
 	int iNumUAreaTiles = 0;
 	
-	for( int iArea = 0; iArea < getNumAreas(); iArea++ )
+	for( CvArea* pLoopArea = firstArea( &iLoop ); pLoopArea != NULL; pLoopArea = nextArea( &iLoop ) )
 	{
-		if( getArea( iArea )->getNumStartingPlots() == 0 && !getArea( iArea )->isWater() )
+		if( pLoopArea->getNumStartingPlots() == 0 && !pLoopArea->isWater() )
 		{
-			piUAreaMeanX[iArea] = 0;
-			piUAreaMeanY[iArea] = 0;
-			iNumUAreaTiles += getArea( iArea )->getNumTiles();
+			miiUAreaMeanX[pLoopArea->getID()] = 0;
+			miiUAreaMeanY[pLoopArea->getID()] = 0;
+			iNumUAreaTiles += pLoopArea->getNumTiles();
 		}
 		else
 		{
-			piUAreaMeanX[iArea] = -1;
-			piUAreaMeanY[iArea] = -1;
+			miiUAreaMeanX[pLoopArea->getID()] = -1;
+			miiUAreaMeanY[pLoopArea->getID()] = -1;
 		}
 	}
 
 	for( int iPlot = 0; iPlot < numPlotsINLINE(); iPlot++ )
 	{
 		CvPlot* pLoopPlot = plotByIndexINLINE( iPlot );
-		int iLoopArea = pLoopPlot->getArea() & FLTA_INDEX_MASK; // No idea why plots not simply store 0, 1, 2...
-		FAssertMsg( iLoopArea < getNumAreas(), "iLoopArea >= getNumAreas()" );
+		int iLoopArea = pLoopPlot->getArea();
 		if( getArea( iLoopArea )->getNumStartingPlots() == 0 && !getArea( iLoopArea )->isWater() )
 		{
-			piUAreaMeanX[iLoopArea] += pLoopPlot->getX_INLINE();
-			piUAreaMeanY[iLoopArea] += pLoopPlot->getY_INLINE();
+			miiUAreaMeanX[iLoopArea] += pLoopPlot->getX_INLINE();
+			miiUAreaMeanY[iLoopArea] += pLoopPlot->getY_INLINE();
 		}
 	}
 	
 	logBBAI( "  Uninhabited contintent centers:" );
-	for( int iArea = 0; iArea < getNumAreas(); iArea++ )
+	for( CvArea* pLoopArea = firstArea( &iLoop ); pLoopArea != NULL; pLoopArea = nextArea( &iLoop ) )
 	{
-		if( getArea( iArea )->getNumStartingPlots() == 0 && !getArea( iArea )->isWater() )
+		if( pLoopArea->getNumStartingPlots() == 0 && !pLoopArea->isWater() )
 		{
-			piUAreaMeanX[iArea] /= getArea( iArea )->getNumTiles();
-			piUAreaMeanY[iArea] /= getArea( iArea )->getNumTiles();
+			miiUAreaMeanX[pLoopArea->getID()] /= pLoopArea->getNumTiles();
+			miiUAreaMeanY[pLoopArea->getID()] /= pLoopArea->getNumTiles();
 
-			logBBAI( "    Area #%d: %d|%d", iArea, piUAreaMeanX[iArea], piUAreaMeanY[iArea] );
+			logBBAI( "    Area #%d: %d|%d", pLoopArea->getID(), miiUAreaMeanX[pLoopArea->getID()], miiUAreaMeanY[pLoopArea->getID()] );
 		}
 	}
 	
-	float WILDERNESS_NEAREST_DISTANCE_FACTOR = GC.getDefineFLOAT( "WILDERNESS_NEAREST_DISTANCE_FACTOR" );
-	float WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR = GC.getDefineFLOAT( "WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR" );
+	const float WILDERNESS_NEAREST_DISTANCE_FACTOR = GC.getDefineFLOAT( "WILDERNESS_NEAREST_DISTANCE_FACTOR" );
+	const float WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR = GC.getDefineFLOAT( "WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR" );
 
 	// Store max and min wilderness for all continents
-	int* piAreaMaxWilderness = new int[getNumAreas()];
-	int* piAreaMinWilderness = new int[getNumAreas()];
+	std::map<int, int> miiAreaMaxWilderness;
+	std::map<int, int> miiAreaMinWilderness;
 	int iWaterAreaMaxWilderness = -1;
+
 	// Store max and min average starting plot distance for all uninhabited continents
-	int* piUAreaMinAvDist = new int[getNumAreas()];
-	int* piUAreaMaxAvDist = new int[getNumAreas()];
+	std::map<int, int>miiUAreaMinAvDist;
+	std::map<int, int> miiUAreaMaxAvDist;
 	int iUAreaMaxMaxAvDist = -1;
 	// Store max continent size divided by number of players on that continent
 	int iMaxInhabitedContinentSizePerPlayer = -1;
-	// Store first iteration wildernesses. Use float since it's scaled after normalization.
+	// Store first iteration wilderness values. Use float since it's scaled after normalization.
 	float* pfPlotWilderness = new float[numPlotsINLINE()];
 	
-	for( int iArea = 0; iArea < getNumAreas(); iArea++ )
+	for( CvArea* pLoopArea = firstArea( &iLoop ); pLoopArea != NULL; pLoopArea = nextArea( &iLoop ) )
 	{
-		piAreaMaxWilderness[iArea] = -1;
-		piAreaMinWilderness[iArea] = -1;
-		piUAreaMinAvDist[iArea] = -1;
-		piUAreaMaxAvDist[iArea] = -1;
+		int iArea = pLoopArea->getID();
+		miiAreaMaxWilderness[iArea] = -1;
+		miiAreaMinWilderness[iArea] = -1;
+		miiUAreaMinAvDist[iArea] = -1;
+		miiUAreaMaxAvDist[iArea] = -1;
 
 		if( !getArea( iArea )->isWater() )
 			if( getArea( iArea )->getNumStartingPlots() > 0 )
 				if( iMaxInhabitedContinentSizePerPlayer == -1 || getArea( iArea )->getNumTiles() / getArea( iArea )->getNumStartingPlots() > iMaxInhabitedContinentSizePerPlayer )
 					iMaxInhabitedContinentSizePerPlayer = getArea( iArea )->getNumTiles() / getArea( iArea )->getNumStartingPlots();
 		
-		logBBAI( "    Area #%d after init real min and max: %d, %d", iArea, piAreaMinWilderness[iArea], piAreaMaxWilderness[iArea] );
-		logBBAI( "    Area #%d after init UArea min and max dist: %d, %d", iArea, piUAreaMinAvDist[iArea], piUAreaMaxAvDist[iArea] );
+		logBBAI( "    Area #%d after init real min and max: %d, %d", iArea, miiAreaMinWilderness[iArea], miiAreaMaxWilderness[iArea] );
+		logBBAI( "    Area #%d after init UArea min and max dist: %d, %d", iArea, miiUAreaMinAvDist[iArea], miiUAreaMaxAvDist[iArea] );
 	}
 	
 	logBBAI( "  Max inhabited continent size per player: %d", iMaxInhabitedContinentSizePerPlayer );
@@ -1576,7 +1579,7 @@ void CvMap::calculateWilderness()
 		CvPlot* pLoopPlot = plotByIndexINLINE( iPlot );
 		int iLoopX = pLoopPlot->getX_INLINE();
 		int iLoopY = pLoopPlot->getY_INLINE();
-		int iLoopArea = pLoopPlot->getArea() & FLTA_INDEX_MASK; // No idea why plots not simply store 0, 1, 2...
+		int iLoopArea = pLoopPlot->getArea();
 		bool bWaterArea = getArea( iLoopArea )->isWater();
 		
 		int iNearestDist = -1;
@@ -1631,7 +1634,7 @@ void CvMap::calculateWilderness()
 		else
 		{
 			// Plots on uninhabited continents
-			int iDist = stepDistance( iLoopX, iLoopY, piUAreaMeanX[iLoopArea], piUAreaMeanY[iLoopArea] );
+			int iDist = stepDistance( iLoopX, iLoopY, miiUAreaMeanX[iLoopArea], miiUAreaMeanY[iLoopArea] );
 			fWilderness = std::max( 100.0f - iDist, 0.0f );
 			if( bLogVerbose )
 				logBBAI( "      Plot at %d|%d #%d/%d uninhabited; Center distance: %d; Wilderness: %f",
@@ -1639,17 +1642,17 @@ void CvMap::calculateWilderness()
 			
 			if( !pLoopPlot->isImpassable() )
 			{
-				if( piUAreaMaxAvDist[iLoopArea] == -1 || (int) fAvDist > piUAreaMaxAvDist[iLoopArea] )
+				if( miiUAreaMaxAvDist[iLoopArea] == -1 || (int) fAvDist > miiUAreaMaxAvDist[iLoopArea] )
 				{
 					if( bLogVerbose )
 					logBBAI( "      New area max dist!" );
-					piUAreaMaxAvDist[iLoopArea] = (int) fAvDist;
+					miiUAreaMaxAvDist[iLoopArea] = (int) fAvDist;
 				}
-				if( piUAreaMinAvDist[iLoopArea] == -1 || (int) fAvDist < piUAreaMinAvDist[iLoopArea] )
+				if( miiUAreaMinAvDist[iLoopArea] == -1 || (int) fAvDist < miiUAreaMinAvDist[iLoopArea] )
 				{
 					if( bLogVerbose )
 					logBBAI( "      New area min dist!" );
-					piUAreaMinAvDist[iLoopArea] = (int) fAvDist;
+					miiUAreaMinAvDist[iLoopArea] = (int) fAvDist;
 				}
 			
 				if( iUAreaMaxMaxAvDist == -1 || (int) fAvDist > iUAreaMaxMaxAvDist )
@@ -1672,20 +1675,20 @@ void CvMap::calculateWilderness()
 					iWaterAreaMaxWilderness = (int) fWilderness;
 			}
 		
-			if( piAreaMaxWilderness[iLoopArea] == -1 || (int) fWilderness > piAreaMaxWilderness[iLoopArea] )
+			if( miiAreaMaxWilderness[iLoopArea] == -1 || (int) fWilderness > miiAreaMaxWilderness[iLoopArea] )
 			{
 				if( bLogVerbose )
 					logBBAI( "      New area max wilderness!" );
-				piAreaMaxWilderness[iLoopArea] = (int) fWilderness;
+				miiAreaMaxWilderness[iLoopArea] = (int) fWilderness;
 			}
 			/*
 			else
 				if( bLogVerbose )
 					logBBAI( "      Area max wilderness stays %d.", piAreaMaxWilderness[iLoopArea] );
 			*/
-			if( piAreaMinWilderness[iLoopArea] == -1 || (int) fWilderness < piAreaMinWilderness[iLoopArea] )
+			if( miiAreaMinWilderness[iLoopArea] == -1 || (int) fWilderness < miiAreaMinWilderness[iLoopArea] )
 			{
-				piAreaMinWilderness[iLoopArea] = (int) fWilderness;
+				miiAreaMinWilderness[iLoopArea] = (int) fWilderness;
 				if( bLogVerbose )
 					logBBAI( "      New area min wilderness!" );
 			}
@@ -1734,20 +1737,21 @@ void CvMap::calculateWilderness()
 	*/
 
 	// f and s
-	float* pfAreaNormFactor = new float[getNumAreas()];
-	float* pfAreaNormShift = new float[getNumAreas()];
+	std::map<int,float> mifAreaNormFactor;
+	std::map<int,float> mifAreaNormShift;
 
 	logBBAI( "  Normalization" );
 	logBBAI( "    Water Max Wilderness: %d", iWaterAreaMaxWilderness );
 	logBBAI( "    UArea Max Distance: %d", iUAreaMaxMaxAvDist );
 	
-	for( int iArea = 0; iArea < getNumAreas(); iArea++ )
+	for( CvArea* pLoopArea = firstArea( &iLoop ); pLoopArea != NULL; pLoopArea = nextArea( &iLoop ) )
 	{
-		int iActualMin = piAreaMinWilderness[iArea];
-		int iActualMax = piAreaMaxWilderness[iArea];
+		int iArea = pLoopArea->getID();
+		int iActualMin = miiAreaMinWilderness[iArea];
+		int iActualMax = miiAreaMaxWilderness[iArea];
 		int iRequiredMin = 0;
 		int iRequiredMax = 100;
-		if( getArea( iArea )->isWater() )
+		if( pLoopArea->isWater() )
 		{
 			// ocean or lake
 			logBBAI( "    Area #%d is water", iArea );
@@ -1756,14 +1760,14 @@ void CvMap::calculateWilderness()
 			iRequiredMin = iActualMin;
 			iRequiredMax = 100;
 		}
-		else if( getArea( iArea )->getNumStartingPlots() > 0 )
+		else if( pLoopArea->getNumStartingPlots() > 0 )
 		{
 			// inhabited continent
 			logBBAI( "    Area #%d is inhabited", iArea );
 
 			iRequiredMin = 0;
 			iRequiredMax = MIN_MAX_INHABITED_WILDERNESS + ( MAX_MAX_INHABITED_WILDERNESS - MIN_MAX_INHABITED_WILDERNESS )
-					* ( getArea( iArea )->getNumTiles() / getArea( iArea )->getNumStartingPlots() ) / iMaxInhabitedContinentSizePerPlayer;
+					* ( pLoopArea->getNumTiles() / pLoopArea->getNumStartingPlots() ) / iMaxInhabitedContinentSizePerPlayer;
 		}
 		else
 		{
@@ -1772,44 +1776,44 @@ void CvMap::calculateWilderness()
 
 			iActualMax = 100;
 			// LFGR_TODO this can lead to a continent with its center near to the player, but streching far away getting high wilderness values. Maybe need iUAreaCenterMaxAvDist.
-			iRequiredMax = 100 * piUAreaMaxAvDist[iArea] / iUAreaMaxMaxAvDist;
+			iRequiredMax = 100 * miiUAreaMaxAvDist[iArea] / iUAreaMaxMaxAvDist;
 			// this should be okay
-			iRequiredMin = 100 * piUAreaMinAvDist[iArea] / iUAreaMaxMaxAvDist;
+			iRequiredMin = 100 * miiUAreaMinAvDist[iArea] / iUAreaMaxMaxAvDist;
 		}
 		if( iActualMin != iActualMax )
 		{
-			pfAreaNormShift[iArea] = ( (float) iRequiredMin - ( (float) iActualMin * (float) iRequiredMax ) / (float) iActualMax ) / ( 1.0f - (float) iActualMin / (float) iActualMax );
-			pfAreaNormFactor[iArea] = ( (float) iRequiredMax - pfAreaNormShift[iArea] ) / (float) iActualMax;
+			mifAreaNormShift[iArea] = ( (float) iRequiredMin - ( (float) iActualMin * (float) iRequiredMax ) / (float) iActualMax ) / ( 1.0f - (float) iActualMin / (float) iActualMax );
+			mifAreaNormFactor[iArea] = ( (float) iRequiredMax - mifAreaNormShift[iArea] ) / (float) iActualMax;
 		}
 		else
 		{
 			logBBAI( "      !!! aMax = aMin !!! Tiles: %d", getArea( iArea )->getNumTiles() );
-			pfAreaNormShift[iArea] = (float) iRequiredMax - iActualMax;
-			pfAreaNormFactor[iArea] = 1.0f;
+			mifAreaNormShift[iArea] = (float) iRequiredMax - iActualMax;
+			mifAreaNormFactor[iArea] = 1.0f;
 		}
 
-		if( getArea( iArea )->getNumStartingPlots() > 0 || getArea( iArea )->isWater() )
+		if( pLoopArea->getNumStartingPlots() > 0 || pLoopArea->isWater() )
 		{
 			// Now, since we ensured a maximum increase of 1.0 per plot before normalization, we can check the factor.
-			if( pfAreaNormFactor[iArea] > WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT )
+			if( mifAreaNormFactor[iArea] > WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT )
 			{
-				logBBAI( "      Factor %f exceeds limit", pfAreaNormFactor[iArea] );
-				pfAreaNormFactor[iArea] = WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT;
+				logBBAI( "      Factor %f exceeds limit", mifAreaNormFactor[iArea] );
+				mifAreaNormFactor[iArea] = WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT;
 
 				// We want to retain min wilderness.
 				// rMin = aMin * f + s => s = rMin - aMin * f
-				pfAreaNormShift[iArea] = (float) iRequiredMin - iActualMin * pfAreaNormFactor[iArea];
+				mifAreaNormShift[iArea] = (float) iRequiredMin - iActualMin * mifAreaNormFactor[iArea];
 
 #ifdef LOG_AI
 				// Update for logging
-				iRequiredMax = (int) ( iActualMax * pfAreaNormFactor[iArea] + pfAreaNormShift[iArea] );
+				iRequiredMax = (int) ( iActualMax * mifAreaNormFactor[iArea] + mifAreaNormShift[iArea] );
 #endif
 			}
 		}
 
-		logBBAI( "      Real min and max: %d, %d", piAreaMinWilderness[iArea], piAreaMaxWilderness[iArea] );
-		logBBAI( "      UArea min and max dist: %d, %d", piUAreaMinAvDist[iArea], piUAreaMaxAvDist[iArea] );
-		logBBAI( "      Factor: %f, Shift: %f", pfAreaNormFactor[iArea], pfAreaNormShift[iArea] );
+		logBBAI( "      Real min and max: %d, %d", miiAreaMinWilderness[iArea], miiAreaMaxWilderness[iArea] );
+		logBBAI( "      UArea min and max dist: %d, %d", miiUAreaMinAvDist[iArea], miiUAreaMaxAvDist[iArea] );
+		logBBAI( "      Factor: %f, Shift: %f", mifAreaNormFactor[iArea], mifAreaNormShift[iArea] );
 		logBBAI( "      Wilderness: %d-%d -> %d-%d", iActualMin, iActualMax, iRequiredMin, iRequiredMax );
 	}
 	
@@ -1817,8 +1821,8 @@ void CvMap::calculateWilderness()
 	for( int iPlot = 0; iPlot < numPlotsINLINE(); iPlot++ )
 	{
 		CvPlot* pLoopPlot = plotByIndexINLINE( iPlot );
-		int iLoopArea = pLoopPlot->getArea() & FLTA_INDEX_MASK; // No idea why plots not simply store 0, 1, 2...
-		int iNewWilderness = (int) ( pfAreaNormFactor[iLoopArea] * pfPlotWilderness[iPlot] + pfAreaNormShift[iLoopArea] );
+		int iLoopArea = pLoopPlot->getArea();
+		int iNewWilderness = (int) ( mifAreaNormFactor[iLoopArea] * pfPlotWilderness[iPlot] + mifAreaNormShift[iLoopArea] );
 		if( bLogVerbose )
 		{
 			logBBAI( "    Plot %d|%d: %f -> %d", pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), pfPlotWilderness[iPlot], iNewWilderness );
@@ -1827,15 +1831,7 @@ void CvMap::calculateWilderness()
 		pLoopPlot->setWilderness( std::min( 100, iNewWilderness ) );
 	}
 	
-	SAFE_DELETE_ARRAY( piAreaMaxWilderness );
-	SAFE_DELETE_ARRAY( piAreaMinWilderness );
-	SAFE_DELETE_ARRAY( piUAreaMinAvDist );
-	SAFE_DELETE_ARRAY( piUAreaMaxAvDist );
 	SAFE_DELETE_ARRAY( pfPlotWilderness );
-	SAFE_DELETE_ARRAY( piUAreaMeanX );
-	SAFE_DELETE_ARRAY( piUAreaMeanY );
-	SAFE_DELETE_ARRAY( pfAreaNormFactor );
-	SAFE_DELETE_ARRAY( pfAreaNormShift );
 	
 	// LFGR_TEST
 	if( GC.getDefineINT( "DEBUG_PAINT_WILDERNESS" ) == 1 )
