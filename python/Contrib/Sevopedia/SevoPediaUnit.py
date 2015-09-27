@@ -440,15 +440,19 @@ class SevoPediaUnit:
 ##--------	BUGFfH: End Add
 
 	def getUnitType(self, iUnit):
-		if isWorldUnitClass(gc.getUnitInfo(iUnit).getUnitClassType()):
-			return SevoScreenEnums.TYPE_WORLDUNIT
-		bSummon=false
-		for i in range(gc.getNumSpellInfos()):
-			if gc.getSpellInfo(i).getCreateUnitType()==iUnit:
-				bSummon=true
-				break
-		if bSummon:
-			return SevoScreenEnums.TYPE_SUMMON
+#		if isWorldUnitClass(gc.getUnitInfo(iUnit).getUnitClassType()):
+#			return SevoScreenEnums.TYPE_WORLDUNIT
+#		bSummon=false
+#		for i in range(gc.getNumSpellInfos()):
+#			if gc.getSpellInfo(i).getCreateUnitType()==iUnit:
+#				bSummon=true
+#				break
+#		if bSummon:
+#			return SevoScreenEnums.TYPE_SUMMON
+
+		if gc.getUnitInfo(iUnit).isAnimal():
+			return SevoScreenEnums.TYPE_ANIMAL
+
 		return SevoScreenEnums.TYPE_REGULAR
 
 

@@ -32,6 +32,9 @@
 /* General AI                                                                                   */
 /************************************************************************************************/
 #include "FAStarNode.h"
+
+// AI Logging
+#include "BetterBTSAI.h"
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
@@ -628,8 +631,14 @@ void CvPlot::doTurn()
 							UnitAITypes eUnitAI = NO_UNITAI;
 							if( !bDefended && !kBestSpawn.isNoDefender() )
 								eUnitAI = UNITAI_LAIRGUARDIAN;
-
-							createSpawn( eBestSpawn, eUnitAI, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
+							
+							logBBAI("WILDERNESS - Spawning from lair" );
+							
+							// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
+							int iMinWilderness = calcMinWilderness( eBestSpawn );
+							// Choose a random number between this plot's wilderness and the required wilderness for the spawn
+							iMinWilderness += GC.getGameINLINE().getSorenRandNum( getWilderness() - iMinWilderness, "Spawn Wilderness" );
+							createSpawn( eBestSpawn, iMinWilderness, eUnitAI, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
                         }
                     }
                 }
@@ -1822,7 +1831,10 @@ bool CvPlot::canHavePotentialIrrigation() const
 	{
 		if (GC.getImprovementInfo((ImprovementTypes)iI).isCarriesIrrigation())
 		{
-			if (canHaveImprovement(((ImprovementTypes)iI), NO_TEAM, true))
+//>>>>Unofficial Bug Fix: Added by Denev 2010/05/04
+//			if (canHaveImprovement(((ImprovementTypes)iI), NO_TEAM, true))
+			if (canHaveImprovement(((ImprovementTypes)iI), NO_PLAYER, true))
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				return true;
 			}
@@ -2604,8 +2616,15 @@ bool CvPlot::canHaveBonus(BonusTypes eBonus, bool bIgnoreLatitude) const
 }
 
 
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+/*
 bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, bool bPotential) const
 {
+*/
+bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, PlayerTypes ePlayer, bool bPotential) const
+{
+	TeamTypes eTeam = (ePlayer != NO_PLAYER) ? GET_PLAYER(ePlayer).getTeam() : NO_TEAM;
+//<<<<Unofficial Bug Fix: End Modify
 	CvPlot* pLoopPlot;
 	bool bValid;
 	int iI;
@@ -2770,7 +2789,10 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 
 	for (iI = 0; iI < NUM_YIELD_TYPES; ++iI)
 	{
-		if (calculateNatureYield(((YieldTypes)iI), eTeam) < kImprovement.getPrereqNatureYield(iI))
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+//		if (calculateNatureYield(((YieldTypes)iI), eTeam) < GC.getImprovementInfo(eImprovement).getPrereqNatureYield(iI))
+		if (calculateNatureYield(((YieldTypes)iI), ePlayer) < GC.getImprovementInfo(eImprovement).getPrereqNatureYield(iI))
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			return false;
 		}
@@ -2873,7 +2895,10 @@ bool CvPlot::canBuild(BuildTypes eBuild, PlayerTypes ePlayer, bool bTestVisible)
 
 	if (eImprovement != NO_IMPROVEMENT)
 	{
-		if (!canHaveImprovement(eImprovement, GET_PLAYER(ePlayer).getTeam(), bTestVisible))
+//>>>>Unofficial Bug Fix: Added by Denev 2010/05/04
+//		if (!canHaveImprovement(eImprovement, GET_PLAYER(ePlayer).getTeam(), bTestVisible))
+		if (!canHaveImprovement(eImprovement, ePlayer, bTestVisible))
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			return false;
 		}
@@ -7072,7 +7097,16 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 					}
 				}
 				if( eBestSpawn != NO_SPAWN )
-					createSpawn( eBestSpawn, UNITAI_LAIRGUARDIAN, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
+				{
+					logBBAI("WILDERNESS - Spawning lair defender" );
+
+					// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
+					int iMinWilderness = calcMinWilderness( eBestSpawn );
+					// Choose a random number between this plot's wilderness and the required wilderness for the spawn
+					iMinWilderness += GC.getGameINLINE().getSorenRandNum( getWilderness() - iMinWilderness, "Spawn Wilderness" );
+							
+					createSpawn( eBestSpawn, iMinWilderness, UNITAI_LAIRGUARDIAN, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
+				}
 				else
 				{
 					if( bSpawnAvailable )
@@ -7596,8 +7630,19 @@ int CvPlot::getYield(YieldTypes eIndex) const
 }
 
 
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/25
+/*
 int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnoreFeature) const
 {
+*/
+int CvPlot::calculateNatureYield(YieldTypes eYield, PlayerTypes ePlayer, bool bIgnoreFeature, bool bIgnoreBonus) const
+{
+	TeamTypes eTeam = NO_TEAM;
+	if (ePlayer != NO_PLAYER)
+	{
+		eTeam = GET_PLAYER(ePlayer).getTeam();
+	}
+//<<<<Unofficial Bug Fix: End Modify
 	BonusTypes eBonus;
 	int iYield;
 
@@ -7625,15 +7670,22 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 		iYield += GC.getYieldInfo(eYield).getLakeChange();
 	}
 
-	if (eTeam != NO_TEAM)
+//>>>>Better AI: Added by Denev 2010/04/29
+	if (!bIgnoreBonus)
 	{
-		eBonus = getBonusType(eTeam);
-
-		if (eBonus != NO_BONUS)
+//<<<<Better AI: End Add
+		if (eTeam != NO_TEAM)
 		{
-			iYield += GC.getBonusInfo(eBonus).getYieldChange(eYield);
+			eBonus = getBonusType(eTeam);
+
+			if (eBonus != NO_BONUS)
+			{
+				iYield += GC.getBonusInfo(eBonus).getYieldChange(eYield);
+			}
 		}
+//>>>>Better AI: Added by Denev 2010/04/29
 	}
+//<<<<Better AI: End Add
 
 	if (isRiver())
 	{
@@ -7672,6 +7724,8 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 }
 
 
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/25
+/*
 int CvPlot::calculateBestNatureYield(YieldTypes eIndex, TeamTypes eTeam) const
 {
 	return std::max(calculateNatureYield(eIndex, eTeam, false), calculateNatureYield(eIndex, eTeam, true));
@@ -7682,6 +7736,26 @@ int CvPlot::calculateTotalBestNatureYield(TeamTypes eTeam) const
 {
 	return (calculateBestNatureYield(YIELD_FOOD, eTeam) + calculateBestNatureYield(YIELD_PRODUCTION, eTeam) + calculateBestNatureYield(YIELD_COMMERCE, eTeam));
 }
+*/
+int CvPlot::calculateBestNatureYield(YieldTypes eIndex, PlayerTypes ePlayer) const
+{
+	return std::max(calculateNatureYield(eIndex, ePlayer, false), calculateNatureYield(eIndex, ePlayer, true));
+}
+
+
+int CvPlot::calculateTotalBestNatureYield(PlayerTypes ePlayer) const
+{
+	int iYieldWithFeature = 0;
+	int iYieldWithoutFeature = 0;
+	for (int iYieldType = 0; iYieldType < NUM_YIELD_TYPES; iYieldType++)
+	{
+		iYieldWithFeature		+= calculateNatureYield((YieldTypes)iYieldType, ePlayer, false);
+		iYieldWithoutFeature	+= calculateNatureYield((YieldTypes)iYieldType, ePlayer, true);
+	}
+
+	return std::max(iYieldWithFeature, iYieldWithoutFeature);
+}
+//<<<<Unofficial Bug Fix: End Modify
 
 
 /************************************************************************************************/
@@ -7778,7 +7852,10 @@ int CvPlot::calculateImprovementYieldChange(ImprovementTypes eImprovement, Yield
 	return iYield;
 */
 	// Improvement cannot actually produce negative yield
-	int iCurrYield = calculateNatureYield(eYield, (ePlayer == NO_PLAYER) ? NO_TEAM : GET_PLAYER(ePlayer).getTeam(), bOptimal);
+//>>>>Better AI: Modified by Denev 2010/07/08
+//	int iCurrYield = calculateNatureYield(eYield, (ePlayer == NO_PLAYER) ? NO_TEAM : GET_PLAYER(ePlayer).getTeam(), bOptimal);
+	int iCurrYield = calculateNatureYield(eYield, ePlayer, bOptimal);
+//<<<<Unofficial Bug Fix: End Modify
 
 	return std::max( -iCurrYield, iYield );
 /*************************************************************************************************/
@@ -7847,7 +7924,10 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 		eRoute = getRouteType();
 	}
 
-	iYield = calculateNatureYield(eYield, ((ePlayer != NO_PLAYER) ? GET_PLAYER(ePlayer).getTeam() : NO_TEAM));
+//>>>>Better AI: Modified by Denev 2010/05/04
+//	iYield = calculateNatureYield(eYield, ((ePlayer != NO_PLAYER) ? GET_PLAYER(ePlayer).getTeam() : NO_TEAM));
+	iYield = calculateNatureYield(eYield, ePlayer);
+//<<<<Unofficial Bug Fix: End Modify
 
 	if (eImprovement != NO_IMPROVEMENT)
 	{
@@ -8216,7 +8296,7 @@ bool CvPlot::isBestAdjacentFound(PlayerTypes eIndex)
 
 	int iPlotValue = GET_PLAYER(eIndex).AI_foundValue(getX_INLINE(), getY_INLINE());
 
-	if (iPlotValue == 0)
+	if (iPlotValue <= 0)
 	{
 		return false;
 	}
@@ -11380,7 +11460,10 @@ int CvPlot::calculateMaxYield(YieldTypes eYield) const
 		return 0;
 	}
 
-	int iMaxYield = calculateNatureYield(eYield, NO_TEAM);
+//>>>>Better AI: Modified by Denev 2010/05/04
+//	int iMaxYield = calculateNatureYield(eYield, NO_TEAM);
+	int iMaxYield = calculateNatureYield(eYield, NO_PLAYER);
+//<<<<Unofficial Bug Fix: End Modify
 
 	int iImprovementYield = 0;
 	for (int iImprovement = 0; iImprovement < GC.getNumImprovementInfos(); iImprovement++)
@@ -11461,7 +11544,10 @@ int CvPlot::getYieldWithBuild(BuildTypes eBuild, YieldTypes eYield, bool bWithUp
 //<<<<Unofficial Bug Fix: End Delete
 	}
 
-	iYield += calculateNatureYield(eYield, getTeam(), bIgnoreFeature);
+//>>>>Better AI: Modified by Denev 2010/05/04
+//	iYield += calculateNatureYield(eYield, getTeam(), bIgnoreFeature);
+	iYield += calculateNatureYield(eYield, getOwnerINLINE(), bIgnoreFeature);
+//<<<<Unofficial Bug Fix: End Modify
 
 	ImprovementTypes eImprovement = (ImprovementTypes)GC.getBuildInfo(eBuild).getImprovement();
 
@@ -11711,7 +11797,10 @@ bool CvPlot::canApplyEvent(EventTypes eEvent) const
 	{
 		if (NO_IMPROVEMENT != kEvent.getImprovement())
 		{
-			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getTeam()))
+//>>>>Unofficial Bug Fix: Added by Denev 2010/05/04
+//			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getTeam()))
+			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getOwnerINLINE()))
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				return false;
 			}
@@ -13050,10 +13139,14 @@ int CvPlot::getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType ) con
 	return iTerrainValue;
 }
 
-bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon ) const
+std::pair<int,int> CvPlot::getMinTiers( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon ) const
 {
 	CvSpawnPrereqInfo& kSpawnPrereq = GC.getSpawnPrereqInfo( eSpawnPrereqType );
-
+	
+	FAssert( iMinTier >= 0 );
+	FAssert( iMinTier <= iMaxTier );
+	FAssert( iMaxTier <= std::max( kSpawnPrereq.getNumWildernessTiers() - 1, 0 ) + std::max( kSpawnPrereq.getNumTechTiers() - 1, 0 ) );
+	
 	int iWilderness = bDungeon ? getLairDanger() :
 			( GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) ? 0 : getWilderness() );
 
@@ -13065,11 +13158,11 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 			if( iWilderness >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
 				iWilderness <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) )
 			{
-				return true;
+				return std::pair<int,int>( iWildernessTier, -1 );
 			}
 		}
 	}
-	else // kSpawnPrereq.getNumTechTiers() > 1
+	else // kSpawnPrereq.getNumTechTiers() >= 1
 	{
 		// No tier available means tier = 0
 		// Don't go higher than iMaxTier
@@ -13103,13 +13196,38 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 					}
 
 					if( bValid )
-						return true;
+					{
+						// Found valid tech tier
+
+						if( kSpawnPrereq.getNumWildernessTiers() == 0 )
+							iWildernessTier = -1;
+						return std::pair<int,int>( iWildernessTier, iTechTier );
+					}
 				}
 			}
 		}
 	}
 
-	return false;
+	return std::pair<int,int>( -1, -1 );
+}
+
+bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon ) const
+{
+	return getMinTiers( eSpawnPrereqType, iMinTier, iMaxTier, bCheckTech, bDungeon ) != std::pair<int,int>( -1, -1 );
+}
+
+int CvPlot::calcMinWilderness( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon ) const
+{
+	CvSpawnInfo& kSpawn = GC.getSpawnInfo( eSpawn );
+	int iMinTier = kSpawn.getMinTier();
+	
+	int iMinWildernessTier = getMinTiers( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(),
+				kSpawn.getMaxTier(), bCheckTech, bDungeon ).first;
+
+	if( iMinWildernessTier == -1 )
+		return 0;
+	else
+		return GC.getSpawnPrereqInfo( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType() ).getMinWilderness( iMinWildernessTier );
 }
 
 int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon, bool bIgnoreTerrain ) const
@@ -13142,8 +13260,10 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon, bo
 	return iValue;
 }
 
-void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot )
+void CvPlot::createSpawn( SpawnTypes eSpawn, int iMinWilderness, UnitAITypes eUnitAI, int iLairPlot )
 {
+	FAssert( iMinWilderness >= 0 );
+
 	if( eSpawn == NO_SPAWN )
 	{
 		FAssert( false );
@@ -13151,6 +13271,8 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 	}
 
 	CvSpawnInfo& kSpawn = GC.getSpawnInfo( eSpawn );
+	
+	logBBAI( "Creating spawn %s%s", kSpawn.getType(), iLairPlot != -1 ? " from lair" : "" );
 
 	CvUnit* pHeadUnit = NULL;
 
@@ -13187,10 +13309,14 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 	{
 		for( int j = 0; j < kSpawn.getNumSpawnUnits( (UnitTypes) eUnit ); j++ )
 		{
-			CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, getX_INLINE(), getY_INLINE(), eUnitAI );
+			CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, getX_INLINE(), getY_INLINE() );
+			// Force this UnitAI
+			pUnit->AI_setUnitAIType( eUnitAI );
 			
 			if( !kSpawn.isNoMinWilderness() && !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
-				pUnit->setMinWilderness( getWilderness() );
+			{
+				pUnit->setMinWilderness( iMinWilderness );
+			}
 			
 			if ( kSpawn.isAnimal() )
 				pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
@@ -13253,14 +13379,14 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 				int iMaxSpawning = kSpawn.getIncludedSpawnMax( eIncSpawn );
 
 				for( int i = 0; i < iMinSpawning; i++ )
-					createSpawn( (SpawnTypes) eIncSpawn, NO_UNITAI, iLairPlot );
+					createSpawn( (SpawnTypes) eIncSpawn, iMinWilderness, NO_UNITAI, iLairPlot );
 				
 				if( kSpawn.isIncludedSpawnCountSeparately( eIncSpawn ) )
 				{
 					// spawn remaining random spawns
 					int iRemainingSpawns = GC.getGameINLINE().getSorenRandNum( iMaxSpawning - iMinSpawning + 1, "Included spawns" );
 					for( int i = 0; i < iRemainingSpawns; i++ )
-						createSpawn( (SpawnTypes) eIncSpawn, NO_UNITAI, iLairPlot );
+						createSpawn( (SpawnTypes) eIncSpawn, iMinWilderness, NO_UNITAI, iLairPlot );
 				}
 				else
 					iIncludedSpawns -= iMinSpawning;
@@ -13290,7 +13416,7 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 		if( iBestIndex != -1 )
 		{
 			SpawnTypes eIncSpawn = veIncludedSpawns[iBestIndex].first;
-			createSpawn( eIncSpawn, NO_UNITAI, iLairPlot );
+			createSpawn( eIncSpawn, iMinWilderness, NO_UNITAI, iLairPlot );
 
 			veIncludedSpawns[iBestIndex].second.first++;
 			if( kSpawn.getIncludedSpawnMax( eIncSpawn ) != -1 && veIncludedSpawns[iBestIndex].second.first >= kSpawn.getIncludedSpawnMax( eIncSpawn ) )
@@ -13299,7 +13425,7 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 		}
 		else
 		{
-			FAssertMsg( iBestIndex == -1, "No valid included spawn found" );
+			FAssertMsg( false, "No valid included spawn found" );
 			break;
 		}
 	}

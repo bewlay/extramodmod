@@ -1750,7 +1750,7 @@ def applyHyboremsWhisper(argsList):
 	if iButtonId == iNumCities * 2:
 		pCity = lpVeilCities[iCurrentSelected]
 		CyMessageControl().sendModNetMessage(CvUtil.HyboremWhisper, iPlayer, pCity.getX(), pCity.getY(), 0)
-		return
+ 		return
 
 	iClickedKind = iButtonId % 2
 	iPickedUpIndex = iButtonId // 2

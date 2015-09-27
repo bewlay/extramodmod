@@ -141,7 +141,7 @@
             </TechYieldChanges>
             <RouteYieldChanges>
             </RouteYieldChanges>
-            <bGraphicalOnly>0</bGraphicalOnly>
+            <bGraphicalOnly>1</bGraphicalOnly>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -327,7 +327,7 @@
             </TechYieldChanges>
             <RouteYieldChanges>
             </RouteYieldChanges>
-            <bGraphicalOnly>0</bGraphicalOnly>
+            <bGraphicalOnly>1</bGraphicalOnly>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -711,7 +711,7 @@
             </TechYieldChanges>
             <RouteYieldChanges>
             </RouteYieldChanges>
-            <bGraphicalOnly>0</bGraphicalOnly>
+            <bGraphicalOnly>1</bGraphicalOnly>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -897,7 +897,7 @@
             </TechYieldChanges>
             <RouteYieldChanges>
             </RouteYieldChanges>
-            <bGraphicalOnly>0</bGraphicalOnly>
+            <bGraphicalOnly>1</bGraphicalOnly>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -5327,7 +5327,7 @@
 			</TechYieldChanges>
 			<RouteYieldChanges>
 			</RouteYieldChanges>
-			<bGraphicalOnly>0</bGraphicalOnly>
+			<bGraphicalOnly>1</bGraphicalOnly>
 			<bRequiresPeak>0</bRequiresPeak>
 			<bUnique>1</bUnique>
 			<bExploreTarget>0</bExploreTarget>
@@ -6061,7 +6061,7 @@
             </TechYieldChanges>
             <RouteYieldChanges>
             </RouteYieldChanges>
-            <bGraphicalOnly>0</bGraphicalOnly>
+            <bGraphicalOnly>1</bGraphicalOnly>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>0</bExploreTarget>

@@ -913,6 +913,9 @@ public:
 	bool isRemoveHasCasted() const;
 	bool isResistable() const;
 	bool isSacrificeCaster() const;
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	bool isNoInterruptUnitCycling() const;
+//<<<<Spell Interrupt Unit Cycling: End Add
 	bool isRemoveInvalidFeature() const;	// MNAI
 
 	const TCHAR* getSound() const;
@@ -1021,6 +1024,9 @@ protected:
     bool m_bPush;
     bool m_bRemoveHasCasted;
     bool m_bSacrificeCaster;
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	bool m_bNoInterruptUnitCycling;
+//<<<<Spell Interrupt Unit Cycling: End Add
 	bool m_bRemoveInvalidFeature;	// MNAI
     int m_iChangePopulation;
     int m_iCost;
@@ -3264,6 +3270,14 @@ public:
 	int getTechTradeKnownModifier() const;				// Exposed to Python
 	int getUnownedTilesPerGameAnimal() const;				// Exposed to Python
 	int getUnownedTilesPerBarbarianUnit() const;				// Exposed to Python
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	int getUnownedWaterTilesPerGameAnimal() const;				// Exposed to Python
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	int getUnownedWaterTilesPerBarbarianUnit() const;				// Exposed to Python
 	int getUnownedTilesPerBarbarianCity() const;				// Exposed to Python
 	int getBarbarianCreationTurnsElapsed() const;				// Exposed to Python
@@ -3343,6 +3357,14 @@ protected:
 	int m_iTechTradeKnownModifier;
 	int m_iUnownedTilesPerGameAnimal;
 	int m_iUnownedTilesPerBarbarianUnit;
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	int m_iUnownedWaterTilesPerGameAnimal;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	int m_iUnownedWaterTilesPerBarbarianUnit;
 	int m_iUnownedTilesPerBarbarianCity;
 	int m_iBarbarianCreationTurnsElapsed;

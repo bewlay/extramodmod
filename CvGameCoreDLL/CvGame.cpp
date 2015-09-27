@@ -528,9 +528,9 @@ void CvGame::setInitialItems()
 //FfH: Added by Kael 09/16/2008
     if (isOption(GAMEOPTION_BARBARIAN_WORLD))
     {
-        for (int iI = 0; iI < MAX_PLAYERS; iI++)
+        for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
         {
-            if (GET_PLAYER((PlayerTypes)iI).isAlive() && iI != BARBARIAN_PLAYER)
+            if (GET_PLAYER((PlayerTypes)iI).isAlive())// && iI != BARBARIAN_PLAYER)
             {
                 foundBarbarianCity();
             }
@@ -1919,17 +1919,23 @@ void CvGame::normalizeAddFoodBonuses()
 									}
 								}
 							}
-							else if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, GET_PLAYER((PlayerTypes)iI).getTeam()) >= 2)
-						    {
-						        iGoodNatureTileCount++;
-						    }
+//>>>>Better AI: Modified by Denev 2010/05/03
+//							else if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, GET_PLAYER((PlayerTypes)iI).getTeam()) >= 2)
+							else if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, (PlayerTypes)iI) >= 2)
+//<<<<Better AI: End Modify
+							{
+								iGoodNatureTileCount++;
+							}
 						}
 						else
 						{
-                            if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, GET_PLAYER((PlayerTypes)iI).getTeam()) >= 3)
-						    {
-						        iGoodNatureTileCount++;
-						    }
+//>>>>Better AI: Modified by Denev 2010/05/03
+//							if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, GET_PLAYER((PlayerTypes)iI).getTeam()) >= 3)
+							if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, (PlayerTypes)iI) >= 3)
+//<<<<Better AI: End Modify
+							{
+								iGoodNatureTileCount++;
+							}
 						}
 					}
 				}
@@ -2026,8 +2032,14 @@ void CvGame::normalizeAddGoodTerrain()
 					{
 						if (pLoopPlot != pStartingPlot)
 						{
+//>>>>Better AI: Modified by Denev 2010/05/03
+/*
 							if ((pLoopPlot->calculateNatureYield(YIELD_FOOD, GET_PLAYER((PlayerTypes)iI).getTeam()) >= GC.getFOOD_CONSUMPTION_PER_POPULATION()) &&
 								  (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, GET_PLAYER((PlayerTypes)iI).getTeam()) > 0))
+*/
+							if ((pLoopPlot->calculateNatureYield(YIELD_FOOD, (PlayerTypes)iI) >= GC.getFOOD_CONSUMPTION_PER_POPULATION()) &&
+								  (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, (PlayerTypes)iI) > 0))
+//<<<<Better AI: End Modify
 							{
 								iGoodPlot++;
 							}
@@ -2059,7 +2071,10 @@ void CvGame::normalizeAddGoodTerrain()
 									{
 										bChanged = false;
 
-										if (pLoopPlot->calculateNatureYield(YIELD_FOOD, GET_PLAYER((PlayerTypes)iI).getTeam()) < GC.getFOOD_CONSUMPTION_PER_POPULATION())
+//>>>>Better AI: Modified by Denev 2010/05/03
+//										if (pLoopPlot->calculateNatureYield(YIELD_FOOD, GET_PLAYER((PlayerTypes)iI).getTeam()) < GC.getFOOD_CONSUMPTION_PER_POPULATION())
+										if (pLoopPlot->calculateNatureYield(YIELD_FOOD, (PlayerTypes)iI) < GC.getFOOD_CONSUMPTION_PER_POPULATION())
+//<<<<Better AI: End Modify
 										{
 											for (iK = 0; iK < GC.getNumTerrainInfos(); iK++)
 											{
@@ -2085,7 +2100,10 @@ void CvGame::normalizeAddGoodTerrain()
 											}
 										}
 
-										if (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, GET_PLAYER((PlayerTypes)iI).getTeam()) == 0)
+//>>>>Better AI: Modified by Denev 2010/05/03
+//										if (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, GET_PLAYER((PlayerTypes)iI).getTeam()) == 0)
+										if (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, (PlayerTypes)iI) == 0)
+//<<<<Better AI: End Modify
 										{
 											for (iK = 0; iK < GC.getNumFeatureInfos(); iK++)
 											{
@@ -2140,6 +2158,8 @@ void CvGame::normalizeAddExtras()
 			if (pStartingPlot != NULL)
 			{
 				int iValue = GET_PLAYER((PlayerTypes)iI).AI_foundValue(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), -1, true);
+				//if (iValue < 0) // to account for debugging codes in the return values for AI_foundValue
+				//	iValue =0;
 				iTotalValue += iValue;
                 iPlayerCount++;
 
@@ -4522,7 +4542,10 @@ void CvGame::initScoreCalculation()
 		CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE(i);
 		if (!pPlot->isWater() || pPlot->isAdjacentToLand())
 		{
-			iMaxFood += pPlot->calculateBestNatureYield(YIELD_FOOD, NO_TEAM);
+//>>>>Better AI: Modified by Denev 2010/05/03
+//			iMaxFood += pPlot->calculateBestNatureYield(YIELD_FOOD, NO_TEAM);
+			iMaxFood += pPlot->calculateBestNatureYield(YIELD_FOOD, NO_PLAYER);
+//<<<<Better AI: End Modify
 		}
 	}
 	m_iMaxPopulation = getPopulationScore(iMaxFood / std::max(1, GC.getFOOD_CONSUMPTION_PER_POPULATION()));
@@ -5304,7 +5327,8 @@ void CvGame::setActivePlayer(PlayerTypes eNewValue, bool bForceHotSeat)
 		int iActiveNetId = ((NO_PLAYER != eOldActivePlayer) ? GET_PLAYER(eOldActivePlayer).getNetID() : -1);
 		GC.getInitCore().setActivePlayer(eNewValue);
 
-		if (GET_PLAYER(eNewValue).isHuman() && (isHotSeat() || isPbem() || bForceHotSeat))
+		//if (GET_PLAYER(eNewValue).isHuman() && (isHotSeat() || isPbem() || bForceHotSeat))
+		if (eNewValue != NO_PLAYER && GET_PLAYER(eNewValue).isHuman() && (isHotSeat() || isPbem() || bForceHotSeat)) // K-Mod pitboss fixes
 		{
 			gDLL->getPassword(eNewValue);
 			setHotPbemBetweenTurns(false);
@@ -6943,7 +6967,10 @@ void CvGame::doGlobalWarming()
 				}
 				else if (pPlot->getTerrainType() != eWarmingTerrain)
 				{
-					if (pPlot->calculateTotalBestNatureYield(NO_TEAM) > 1)
+//>>>>Better AI: Modified by Denev 2010/05/03
+//					if (pPlot->calculateTotalBestNatureYield(NO_TEAM) > 1)
+					if (pPlot->calculateTotalBestNatureYield(NO_PLAYER) > 1)
+//<<<<Better AI: End Modify
 					{
 						pPlot->setTerrainType(eWarmingTerrain);
 						bChanged = true;
@@ -7561,7 +7588,7 @@ void CvGame::createBarbarianUnits()
 		int VALID_TILES_PER_BARB = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerBarbarianUnit();
 		int VALID_TILES_PER_BARB_WATER = GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerBarbarianUnit();
 		int VALID_TILES_PER_ANIMAL = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerGameAnimal();
-		int VALID_TILES_PER_ANIMAL_WATER = VALID_TILES_PER_ANIMAL * VALID_TILES_PER_BARB_WATER / VALID_TILES_PER_BARB; // LFGR_TODO: Extra tag for handicap infos
+		int VALID_TILES_PER_ANIMAL_WATER = GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerGameAnimal();
 		
 		float PLOT_CHANCE_BARB = ( bRagingBarbs ? 2 : 1 ) / (float) VALID_TILES_PER_BARB;
 		float PLOT_CHANCE_BARB_WATER = ( bRagingBarbs ? 2 : 1 ) / (float) VALID_TILES_PER_BARB_WATER;
@@ -7947,7 +7974,11 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 		CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
 		logBBAI("WILDERNESS - SpawnInfo %s chosen!", kBestSpawn.getType() );
 		
-		pPlot->createSpawn( eBestSpawn );
+		// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
+		int iMinWilderness = pPlot->calcMinWilderness( eBestSpawn );
+		// Choose a random number between this plot's wilderness and the required wilderness for the spawn
+		iMinWilderness += GC.getGameINLINE().getSorenRandNum( pPlot->getWilderness() - iMinWilderness, "Spawn Wilderness" );
+		pPlot->createSpawn( eBestSpawn, iMinWilderness );
 	}
 	else
 	{
@@ -8912,6 +8943,12 @@ int CvGame::getSorenRandNum(int iNum, const char* pszLog)
  * Uses always different prime numbers for each subcalculation (but always in the same sequence).
  * With the original implementation, minor changes such as one player losing one yield and another one
  * getting it may not appear as a difference because in the normal code they are multiplied by the same value.
+ *
+ * With this implementation, it should be possible to calculate the exact point at which something went wrong if we have the final value
+ * from other computers. In order to prevent overflows, it could switch the problematic values (version and seeds) to the end of the
+ * calculation and reduce prime digits by 1.
+ *
+ * IsOOSVisible should be replaced by direct calls to CvGameTextMgr::setOOSSeeds. If something is different, we have an OOS.
  */
 int CvGame::calculateSyncChecksum()
 {
@@ -8939,7 +8976,7 @@ int CvGame::calculateSyncChecksum()
 
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
 	{
-		CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iI);
+		CvPlayerAI& kPlayer = GET_PLAYER((PlayerTypes)iI);
 		if (kPlayer.isEverAlive())
 		{
 			iValue += getPlayerScore((PlayerTypes)iI) * getNextPrime();
@@ -9008,24 +9045,46 @@ int CvGame::calculateSyncChecksum()
 			iValue += kPlayer.getNumEventsTriggered() * getNextPrime();
 			iValue += kPlayer.getNumTriggersFired() * getNextPrime();
 
-			// City values are in OOSLogger.
-			for (CvCity* pCity = kPlayer.firstCity(&iLoop); NULL != pCity; pCity = kPlayer.nextCity(&iLoop))
+			for (CvCity* pLoopCity = kPlayer.firstCity(&iLoop); NULL != pLoopCity; pLoopCity = kPlayer.nextCity(&iLoop))
 			{
-				iValue += pCity->getX() * getNextPrime();
-				iValue += pCity->getY() * getNextPrime();
-				iValue += pCity->getGameTurnFounded() * getNextPrime();
-				iValue += pCity->getPopulation() * getNextPrime();
-				iValue += pCity->getNumBuildings() * getNextPrime();
-				iValue += pCity->countNumImprovedPlots() * getNextPrime();
-				iValue += pCity->getProductionTurnsLeft() * getNextPrime();
-				iValue += pCity->happyLevel() * getNextPrime();
-				iValue += pCity->unhappyLevel(0) * getNextPrime();
-				iValue += pCity->goodHealth() * getNextPrime();
-				iValue += pCity->badHealth(false) * getNextPrime();
-				iValue += pCity->getWorkingPopulation() * getNextPrime();
-				iValue += pCity->getSpecialistPopulation() * getNextPrime();
-				iValue += pCity->getNumGreatPeople() * getNextPrime();
+				// City values are in OOSLogger.
+				iValue += pLoopCity->getX() * getNextPrime();
+				iValue += pLoopCity->getY() * getNextPrime();
+				iValue += pLoopCity->getGameTurnFounded() * getNextPrime();
+				iValue += pLoopCity->getPopulation() * getNextPrime();
+				iValue += pLoopCity->getNumBuildings() * getNextPrime();
+				iValue += pLoopCity->countNumImprovedPlots() * getNextPrime();
+				iValue += pLoopCity->getProductionTurnsLeft() * getNextPrime();
+				iValue += pLoopCity->happyLevel() * getNextPrime();
+				iValue += pLoopCity->unhappyLevel(0) * getNextPrime();
+				iValue += pLoopCity->goodHealth() * getNextPrime();
+				iValue += pLoopCity->badHealth(false) * getNextPrime();
+				iValue += pLoopCity->getWorkingPopulation() * getNextPrime();
+				iValue += pLoopCity->getSpecialistPopulation() * getNextPrime();
+				iValue += pLoopCity->getNumGreatPeople() * getNextPrime();
+
+				// K-Mod - new checks.
+				// These new values are not shown in OOSLogger.
+				for (iJ = 0; iJ < GC.getNumReligionInfos(); iJ++)
+				{
+					iValue += pLoopCity->isHasReligion((ReligionTypes) iJ) * (iJ + 1) * getNextPrime();
+				}
+				for (iJ = 0; iJ < GC.getNumEventInfos(); iJ++)
+				{
+					iValue += pLoopCity->isEventOccured((EventTypes) iJ) * (iJ + 1) * getNextPrime();
+				}
+				// K-Mod end
 			}
+
+			// K-Mod - new checks.
+			// AI Attitude cache. Not shown in OOSLogger.
+			for (iJ = 0; iJ < MAX_PLAYERS; iJ++)
+			{
+				if (iJ != kPlayer.getID() && GET_PLAYER((PlayerTypes)iJ).isAlive()) {
+					iValue += kPlayer.AI_getAttitudeVal((PlayerTypes)iJ, false) * getNextPrime();
+				}
+			}
+			// K-Mod end
 		}
 	}
 
@@ -9045,11 +9104,11 @@ int CvGame::calculateSyncChecksum()
 
 	iValue = 0;
 
-	// Version control for multiplayer games
+// Version control for multiplayer games
 	CvWStringBuffer szBuffer;
 	szBuffer.append(gDLL->getText("TXT_KEY_VERSION"));
-
 	iValue += szBuffer.getShortHash();
+// Version control end
 
 	iValue += getMapRand().getSeed();
 	iValue += getSorenRand().getSeed();
@@ -11382,17 +11441,9 @@ void CvGame::foundBarbarianCity()
                     if (pPlotI != NULL)
                     {
                         iDist = GC.getMapINLINE().calculatePathDistance(pPlotI, pLoopPlot);
-                        if (iDist == -1)
-                        {
-                            iValue += 100;
-                        }
-                        else if (iDist < 5)
+						if (iDist < 4)
                         {
                             bValid = false;
-                        }
-                        else
-                        {
-                            iValue += iDist * 10;
                         }
                     }
                 }
@@ -11421,9 +11472,9 @@ void CvGame::foundBarbarianCity()
 		/************************************************************************************************/
             if (bValid)
             {
-                iValue += GET_PLAYER(BARBARIAN_PLAYER).AI_foundValue(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), GC.getDefineINT("MIN_BARBARIAN_CITY_STARTING_DISTANCE"));
-                iValue += pLoopPlot->area()->getNumOwnedTiles() + 10;
-                iValue += getSorenRandNum(250, "Barb City Found");
+                iValue += GET_PLAYER(BARBARIAN_PLAYER).AI_foundValue(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), GC.getDefineINT("MIN_BARBARIAN_CITY_STARTING_DISTANCE"), true);
+                //iValue += pLoopPlot->area()->getNumOwnedTiles() + 10;
+                iValue += getSorenRandNum(100, "Barb City Found");
                 if (iValue > iBestValue)
                 {
                     iBestValue = iValue;
@@ -11432,6 +11483,9 @@ void CvGame::foundBarbarianCity()
 			}
         }
 	}
+
+	logBBAI("BEST VALUE: %d", iBestValue);
+
 	if (pBestPlot != NULL)
 	{
 		GET_PLAYER(BARBARIAN_PLAYER).found(pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());

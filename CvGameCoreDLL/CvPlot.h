@@ -143,7 +143,10 @@ public:
 	void updateSeeFromSight(bool bIncrement, bool bUpdatePlotGroups);
 
 	bool canHaveBonus(BonusTypes eBonus, bool bIgnoreLatitude = false) const;																						// Exposed to Python
-	bool canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam = NO_TEAM, bool bPotential = false) const;		// Exposed to Python
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+//	bool canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam = NO_TEAM, bool bPotential = false) const;		// Exposed to Python
+	bool canHaveImprovement(ImprovementTypes eImprovement, PlayerTypes ePlayer = NO_PLAYER, bool bPotential = false) const;		// Exposed to Python
+//<<<<Unofficial Bug Fix: End Modify
 
 	bool canBuild(BuildTypes eBuild, PlayerTypes ePlayer = NO_PLAYER, bool bTestVisible = false) const;														// Exposed to Python
 	int getBuildTime(BuildTypes eBuild) const;																																										// Exposed to Python
@@ -441,9 +444,16 @@ public:
 
 	short* getYield();
 	DllExport int getYield(YieldTypes eIndex) const;																										// Exposed to Python
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/25
+/*
 	int calculateNatureYield(YieldTypes eIndex, TeamTypes eTeam, bool bIgnoreFeature = false) const;		// Exposed to Python
 	int calculateBestNatureYield(YieldTypes eIndex, TeamTypes eTeam) const;															// Exposed to Python
 	int calculateTotalBestNatureYield(TeamTypes eTeam) const;																						// Exposed to Python
+*/
+	int calculateNatureYield(YieldTypes eIndex, PlayerTypes ePlayer, bool bIgnoreFeature = false, bool bIgnoreBonus = false) const;
+	int calculateBestNatureYield(YieldTypes eIndex, PlayerTypes ePlayer) const;
+	int calculateTotalBestNatureYield(PlayerTypes ePlayer) const;
+//<<<<Unofficial Bug Fix: End Modify
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/06/09                                jdog5000      */
 /*                                                                                              */
@@ -673,9 +683,13 @@ public:
 	void setLairUnitCount(int iNewValue);
 
 	int getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType ) const;
-	bool isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon = false ) const;
+
+	std::pair<int,int> getMinTiers( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech = true, bool bDungeon = false ) const;
+	bool isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech = true, bool bDungeon = false ) const;
+	int calcMinWilderness( SpawnTypes eSpawnType, bool bCheckTech = true, bool bDungeon = false ) const;
+
 	int getSpawnValue( SpawnTypes eSpawnType, bool bCheckTech = true, bool bDungeon = false, bool bIgnoreTerrain = false ) const; // exposed to python
-	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI = NO_UNITAI, int iLairPlot = -1 ); // exposed to python
+	void createSpawn( SpawnTypes eSpawnType, int iMinWilderness, UnitAITypes eUnitAI = NO_UNITAI, int iLairPlot = -1 ); // exposed to python
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

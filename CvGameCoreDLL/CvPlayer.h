@@ -257,6 +257,7 @@ public:
 	DllExport int countNumCitiesConnectedToCapital() const;																								// Exposed to Python
 	int countPotentialForeignTradeCities(CvArea* pIgnoreArea = NULL) const;																// Exposed to Python
 	int countPotentialForeignTradeCitiesConnected() const;																								// Exposed to Python
+	bool doesImprovementConnectBonus(ImprovementTypes eImprovement, BonusTypes eBonus) const; // K-Mod
 
 	DllExport bool canContact(PlayerTypes ePlayer) const;																									// Exposed to Python
 	void contact(PlayerTypes ePlayer);																															// Exposed to Python
@@ -1139,9 +1140,18 @@ public:
 
     // MNAI - Puppet States
     DllExport bool makePuppet(PlayerTypes eSplitPlayer = NO_PLAYER, CvCity* pVassalCapital = NULL);
+/********************************************************************************/
+/* MinorPuppetLeaders	03/2015											lfgr	*/
+/********************************************************************************/
+/* old
     DllExport bool canMakePuppet(PlayerTypes eFromPlayer) const;
+*/
+    DllExport bool canMakePuppet( CvCity* pVassalCapital ) const;
+/********************************************************************************/
+/* MinorPuppetLeaders	End												lfgr	*/
+/********************************************************************************/
     PlayerTypes getPuppetPlayer() const;
-    bool getPuppetLeaders(CivLeaderArray& aLeaders) const;
+// lfgr MinorPuppetLeaders 03/2015: removed getPuppetLeaders(). Now handled in python.
     DllExport bool annex(PlayerTypes eAnnexPlayer) const;
 
     PlayerTypes findPuppetPlayer(PlayerTypes eParent) const;

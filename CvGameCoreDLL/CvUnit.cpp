@@ -1038,6 +1038,12 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 
     GC.getGameINLINE().changeGlobalCounter(-1 * m_pUnitInfo->getModifyGlobalCounter());
 
+	if (bIllusion) // Make sure that we properly adjust the stats when an Illusionary unit is removed from the game
+	{
+		GC.getGameINLINE().decrementUnitCreatedCount(getUnitType());
+		GC.getGameINLINE().decrementUnitClassCreatedCount((UnitClassTypes)(m_pUnitInfo->getUnitClassType()));
+	}
+
 	for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
 	{
 	    if (isHasPromotion((PromotionTypes)iI))
@@ -1058,7 +1064,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 	    }
 	}
 	if (isWorldUnitClass((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) && GC.getGameINLINE().getUnitClassCreatedCount((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) == 1
-		&& !m_pUnitInfo->isObject())
+		&& !m_pUnitInfo->isObject() && !bIllusion)
 	{
 		for (int iI = 0; iI < MAX_PLAYERS; iI++)
 		{
@@ -3678,7 +3684,7 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 	{
 		if (!bAttack)
 		{
-			if (pPlot->isEnemyCity(*this))
+			if (pPlot->isEnemyCity(*this) && !isHiddenNationality())
 			{
 				return false;
 			}
@@ -6452,6 +6458,11 @@ bool CvUnit::pillage()
 	{
 		eTempRoute = pPlot->getRouteType();
 		pPlot->setRouteType(NO_ROUTE, true); // XXX downgrade rail???
+
+		// Show messages when roads are pillaged. Based on code by The_J.
+		szBuffer = gDLL->getText("TXT_KEY_MISC_IMP_DESTROYED", GC.getRouteInfo(eTempRoute).getTextKeyWide(), getNameKey(), getVisualCivAdjective(pPlot->getTeam()));
+		gDLL->getInterfaceIFace()->addMessage(pPlot->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE(), true, true);
+		// Show messages when roads are pillaged END
 	}
 
 	changeMoves(GC.getMOVE_DENOMINATOR());
@@ -7658,17 +7669,6 @@ TechTypes CvUnit::getDiscoveryTech() const
 
 int CvUnit::getDiscoverResearch(TechTypes eTech) const
 {
-	int iResearch;
-
-	iResearch = (m_pUnitInfo->getBaseDiscover() + (m_pUnitInfo->getDiscoverMultiplier() * GET_TEAM(getTeam()).getTotalPopulation()));
-
-	iResearch *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitDiscoverPercent();
-	iResearch /= 100;
-
-    if (eTech != NO_TECH)
-    {
-        iResearch = std::min(GET_TEAM(getTeam()).getResearchLeft(eTech), iResearch);
-    }
 
 //FfH: Added by Kael 08/18/2008
     if (isHasCasted())
@@ -7677,22 +7677,36 @@ int CvUnit::getDiscoverResearch(TechTypes eTech) const
     }
 //FfH: End Add
 
-	return std::max(0, iResearch);
+	int iResearch = (m_pUnitInfo->getBaseDiscover() + (m_pUnitInfo->getDiscoverMultiplier() * GET_TEAM(getTeam()).getTotalPopulation()));
+	if (iResearch > 0) {
+		iResearch *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitDiscoverPercent();
+		iResearch /= 100;
+		if (eTech != NO_TECH)
+		{
+			iResearch = std::min(GET_TEAM(getTeam()).getResearchLeft(eTech), iResearch);
+		}
+	} else if (iResearch < 0) {
+		iResearch = 0;
+	}
+
+	return iResearch;
 }
 
 
 bool CvUnit::canDiscover(const CvPlot* pPlot) const
 {
+	// The TechTypes parameter is only used for checking the maximum value that the discover research can take.
+	// In this case we only want to check if the unit can make any research at all, so the parameter is not needed.
+	if (getDiscoverResearch(NO_TECH) == 0)
+	{
+		return false;
+	}
+
 	TechTypes eTech;
 
 	eTech = getDiscoveryTech();
 
 	if (eTech == NO_TECH)
-	{
-		return false;
-	}
-
-	if (getDiscoverResearch(eTech) == 0)
 	{
 		return false;
 	}
@@ -13953,11 +13967,14 @@ void CvUnit::setCombatUnit(CvUnit* pCombatUnit, bool bAttacking)
 						pCombatUnit->getOwnerINLINE(), pCombatUnit->getID(), GET_PLAYER(pCombatUnit->getOwnerINLINE()).getNameKey(), pCombatUnit->getName().GetCString(), pCombatUnit->currCombatStr(pCombatUnit->plot(), this));
 			}
 
+			/* Original BtS code. Moved by K-Mod in order to fix an OOS in pitboss games.
 			if (getDomainType() == DOMAIN_LAND
 				&& !m_pUnitInfo->isIgnoreBuildingDefense()
 				&& pCombatUnit->plot()->getPlotCity()
 				&& pCombatUnit->plot()->getPlotCity()->getBuildingDefense() > 0
 				&& cityAttackModifier() >= GC.getDefineINT("MIN_CITY_ATTACK_MODIFIER_FOR_SIEGE_TOWER"))
+				*/
+			if (showSiegeTower(pCombatUnit)) // K-Mod
 			{
 				CvDLLEntity::SetSiegeTower(true);
 			}
@@ -14002,6 +14019,17 @@ void CvUnit::setCombatUnit(CvUnit* pCombatUnit, bool bAttacking)
 	}
 }
 
+// K-Mod. Return true if the combat animation should include a seige tower
+// (code copied from setCombatUnit, above)
+bool CvUnit::showSiegeTower(CvUnit* pDefender) const
+{
+	return getDomainType() == DOMAIN_LAND
+		&& !m_pUnitInfo->isIgnoreBuildingDefense()
+		&& pDefender->plot()->getPlotCity()
+		&& pDefender->plot()->getPlotCity()->getBuildingDefense() > 0
+		&& cityAttackModifier() >= GC.getDefineINT("MIN_CITY_ATTACK_MODIFIER_FOR_SIEGE_TOWER");
+}
+// K-Mod end
 
 CvUnit* CvUnit::getTransportUnit() const
 {
@@ -15554,8 +15582,13 @@ int CvUnit::planBattle( CvBattleDefinition & kBattleDefinition ) const
 	int extraTime = 0;
 	if((attackerLeader && attackerDie) || (defenderLeader && defenderDie))
 		extraTime = BATTLE_TURNS_MELEE;
-	if(gDLL->getEntityIFace()->GetSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_ATTACKER)->getUnitEntity()) || gDLL->getEntityIFace()->GetSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_DEFENDER)->getUnitEntity()))
+	// K-Mod code for fixing an OOS error in pitboss games.
+	//if(gDLL->getEntityIFace()->GetSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_ATTACKER)->getUnitEntity()) || gDLL->getEntityIFace()->GetSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_DEFENDER)->getUnitEntity()))
+		//extraTime = BATTLE_TURNS_MELEE;
+	if (kBattleDefinition.getUnit(BATTLE_UNIT_ATTACKER)->showSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_DEFENDER)))
+	{
 		extraTime = BATTLE_TURNS_MELEE;
+	}
 
 	return BATTLE_TURNS_SETUP + BATTLE_TURNS_ENDING + kBattleDefinition.getNumMeleeRounds() * BATTLE_TURNS_MELEE + kBattleDefinition.getNumRangedRounds() * BATTLE_TURNS_MELEE + extraTime;
 }
@@ -17367,11 +17400,23 @@ void CvUnit::cast(int spell)
         gDLL->getPythonIFace()->callFunction(PYSpellModule, "cast", argsList.makeFunctionArgs()); //, &lResult
         delete pyUnit; // python fxn must not hold on to this pointer
     }
+
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+/*	Casting spell triggers unit cycling	*/
+	if (!getGroup()->readyToSelect(true) && !getGroup()->isBusy())
+	{
+//		gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
+//		gDLL->getInterfaceIFace()->changeCycleSelectionCounter((GET_PLAYER(getOwnerINLINE()).isOption(PLAYEROPTION_QUICK_MOVES)) ? 1 : 2);
+		GC.getGameINLINE().updateSelectionList();
+	}
+//<<<<Spell Interrupt Unit Cycling: End Add
+
     gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
     if (kSpellInfo.isSacrificeCaster())
     {
         kill(false);
     }
+
 }
 
 void CvUnit::castAddPromotion(int spell)
@@ -19219,7 +19264,7 @@ void CvUnit::doDamage(int iDmg, int iDmgLimit, CvUnit* pAttacker, int iDmgType, 
 				szMessage = gDLL->getText("TXT_KEY_MESSAGE_DAMAGED_BY", m_pUnitInfo->getDescription(), iDmg, GC.getDamageTypeInfo((DamageTypes)iDmgType).getDescription());
 			}
 			gDLL->getInterfaceIFace()->addMessage((getOwnerINLINE()), true, GC.getEVENT_MESSAGE_TIME(), szMessage, "", MESSAGE_TYPE_MAJOR_EVENT, GC.getDamageTypeInfo((DamageTypes)iDmgType).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
-			if (pAttacker != NULL)
+			if (pAttacker != NULL && pAttacker != this)
 			{
 				gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)pAttacker->getOwner()), true, GC.getEVENT_MESSAGE_TIME(), szMessage, "", MESSAGE_TYPE_MAJOR_EVENT, GC.getDamageTypeInfo((DamageTypes)iDmgType).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
 				changeDamage(iDmg, pAttacker->getOwner());

@@ -40,7 +40,7 @@
 		<element type="iNumUnits"/>
 	</ElementType>
 	<ElementType name="SpawnUnits" content="eltOnly">
-		<element type="SpawnUnit" maxOccurs="*"/>
+		<element type="SpawnUnit" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 	
 	<ElementType name="PromotionType" content="textOnly"/>

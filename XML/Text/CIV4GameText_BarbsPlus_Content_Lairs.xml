@@ -159,4 +159,124 @@
 		<Italian>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</Italian>
 		<Spanish>Encuentras una habitación con una estatua y múltiples sillas, mesas y armarios. De pronto los ojos de la estatua se llenan de un profundo brillo rojo, y los muebles comienzan a moverse.</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BANDITS</Tag>
+		<English>Some Bandits are using the Lair as their Hideout. They are not thrilled by your presence.</English>
+		<French>Some Bandits are using the Lair as their Hideout. They are not thrilled by your presence.</French>
+		<German>Some Bandits are using the Lair as their Hideout. They are not thrilled by your presence.</German>
+		<Italian>Some Bandits are using the Lair as their Hideout. They are not thrilled by your presence.</Italian>
+		<Spanish>Some Bandits are using the Lair as their Hideout. They are not thrilled by your presence.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_AXEMAN_ORC</Tag>
+		<English>A group of marauding orcs attack you.</English>
+		<French>A group of marauding orcs attack you.</French>
+		<German>A group of marauding orcs attack you.</German>
+		<Italian>A group of marauding orcs attack you.</Italian>
+		<Spanish>A group of marauding orcs attack you.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_AZER</Tag>
+		<English>You stumble upon a powerful and aggressive fire spirit.</English>
+		<French>You stumble upon a powerful and aggressive fire spirit.</French>
+		<German>You stumble upon a powerful and aggressive fire spirit.</German>
+		<Italian>You stumble upon a powerful and aggressive fire spirit.</Italian>
+		<Spanish>You stumble upon a powerful and aggressive fire spirit.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_BALOR</Tag>
+		<English>You trigger an ancient summoning circle by mistake, unleashing a powerful demon upon Erebus.</English>
+		<French>You trigger an ancient summoning circle by mistake, unleashing a powerful demon upon Erebus.</French>
+		<German>You trigger an ancient summoning circle by mistake, unleashing a powerful demon upon Erebus.</German>
+		<Italian>You trigger an ancient summoning circle by mistake, unleashing a powerful demon upon Erebus.</Italian>
+		<Spanish>You trigger an ancient summoning circle by mistake, unleashing a powerful demon upon Erebus.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_DEATH_KNIGHT</Tag>
+		<English>You have the misfortune of crossing your path with a death knight.</English>
+		<French>You have the misfortune of crossing your path with a death knight.</French>
+		<German>You have the misfortune of crossing your path with a death knight.</German>
+		<Italian>You have the misfortune of crossing your path with a death knight.</Italian>
+		<Spanish>You have the misfortune of crossing your path with a death knight.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_EIDOLON</Tag>
+		<English>The lair was being used as a camping site by a cohort of demonic warriors.</English>
+		<French>The lair was being used as a camping site by a cohort of demonic warriors.</French>
+		<German>The lair was being used as a camping site by a cohort of demonic warriors.</German>
+		<Italian>The lair was being used as a camping site by a cohort of demonic warriors.</Italian>
+		<Spanish>The lair was being used as a camping site by a cohort of demonic warriors.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_KRAKEN</Tag>
+		<English>A mass of huge, tangled tentacles emerges from the water, seeking to destroy everything in their path.</English>
+		<French>A mass of huge, tangled tentacles emerges from the water, seeking to destroy everything in their path.</French>
+		<German>A mass of huge, tangled tentacles emerges from the water, seeking to destroy everything in their path.</German>
+		<Italian>A mass of huge, tangled tentacles emerges from the water, seeking to destroy everything in their path.</Italian>
+		<Spanish>A mass of huge, tangled tentacles emerges from the water, seeking to destroy everything in their path.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_LICH</Tag>
+		<English>An undead creature wielding great arcane power intends to prevent you from intruding into its lair.</English>
+		<French>An undead creature wielding great arcane power intends to prevent you from intruding into its lair.</French>
+		<German>An undead creature wielding great arcane power intends to prevent you from intruding into its lair.</German>
+		<Italian>An undead creature wielding great arcane power intends to prevent you from intruding into its lair.</Italian>
+		<Spanish>An undead creature wielding great arcane power intends to prevent you from intruding into its lair.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_MANTICORE</Tag>
+		<English>Your trail has been tracked by a hungry Manticore.</English>
+		<French>Your trail has been tracked by a hungry Manticore.</French>
+		<German>Your trail has been tracked by a hungry Manticore.</German>
+		<Italian>Your trail has been tracked by a hungry Manticore.</Italian>
+		<Spanish>Your trail has been tracked by a hungry Manticore.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_OGRE</Tag>
+		<English>A mighty ogre is using the lair as its hideout. It does not seem to have intruders in high regard.</English>
+		<French>A mighty ogre is using the lair as its hideout. It does not seem to have intruders in high regard.</French>
+		<German>A mighty ogre is using the lair as its hideout. It does not seem to have intruders in high regard.</German>
+		<Italian>A mighty ogre is using the lair as its hideout. It does not seem to have intruders in high regard.</Italian>
+		<Spanish>A mighty ogre is using the lair as its hideout. It does not seem to have intruders in high regard.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_SATYR</Tag>
+		<English>The lair is guarded by a group of defenders of the forest, prepared to repel your intrusion.</English>
+		<French>The lair is guarded by a group of defenders of the forest, prepared to repel your intrusion.</French>
+		<German>The lair is guarded by a group of defenders of the forest, prepared to repel your intrusion.</German>
+		<Italian>The lair is guarded by a group of defenders of the forest, prepared to repel your intrusion.</Italian>
+		<Spanish>The lair is guarded by a group of defenders of the forest, prepared to repel your intrusion.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_STYGIAN_GUARD</Tag>
+		<English>A silent horror rises from the dark depths.</English>
+		<French>A silent horror rises from the dark depths.</French>
+		<German>A silent horror rises from the dark depths.</German>
+		<Italian>A silent horror rises from the dark depths.</Italian>
+		<Spanish>A silent horror rises from the dark depths.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_VAMPIRE</Tag>
+		<English>Your presence attracts the attention of a vampire who has been hiding in the lair for a long time. The creature intends to unleash the frustration of centuries of anger and famine upon you.</English>
+		<French>Your presence attracts the attention of a vampire who has been hiding in the lair for a long time. The creature intends to unleash the frustration of centuries of anger and famine upon you.</French>
+		<German>Your presence attracts the attention of a vampire who has been hiding in the lair for a long time. The creature intends to unleash the frustration of centuries of anger and famine upon you.</German>
+		<Italian>Your presence attracts the attention of a vampire who has been hiding in the lair for a long time. The creature intends to unleash the frustration of centuries of anger and famine upon you.</Italian>
+		<Spanish>Your presence attracts the attention of a vampire who has been hiding in the lair for a long time. The creature intends to unleash the frustration of centuries of anger and famine upon you.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_WEREWOLF</Tag>
+		<English>Your expedition is halted by the attack of a pack of frenzied werewolves. </English>
+		<French>Your expedition is halted by the attack of a pack of frenzied werewolves. </French>
+		<German>Your expedition is halted by the attack of a pack of frenzied werewolves. </German>
+		<Italian>Your expedition is halted by the attack of a pack of frenzied werewolves. </Italian>
+		<Spanish>Your expedition is halted by the attack of a pack of frenzied werewolves. </Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_WRAITH</Tag>
+		<English>A hateful wraith emerges from the lair.</English>
+		<French>A hateful wraith emerges from the lair.</French>
+		<German>A hateful wraith emerges from the lair.</German>
+		<Italian>A hateful wraith emerges from the lair.</Italian>
+		<Spanish>A hateful wraith emerges from the lair.</Spanish>
+	</TEXT>
 </Civ4GameText>

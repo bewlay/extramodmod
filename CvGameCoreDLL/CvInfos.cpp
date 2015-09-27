@@ -3327,6 +3327,9 @@ m_bDispel(false),
 m_bPush(false),
 m_bRemoveHasCasted(false),
 m_bSacrificeCaster(false),
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+m_bNoInterruptUnitCycling(false),
+//<<<<Spell Interrupt Unit Cycling: End Add
 m_bRemoveInvalidFeature(false),	// MNAI
 m_iChangePopulation(0),
 m_iCost(0),
@@ -3610,6 +3613,13 @@ bool CvSpellInfo::isSacrificeCaster() const
 	return m_bSacrificeCaster;
 }
 
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+bool CvSpellInfo::isNoInterruptUnitCycling() const
+{
+	return m_bNoInterruptUnitCycling;
+}
+//<<<<Spell Interrupt Unit Cycling: End Add
+
 // MNAI begin
 bool CvSpellInfo::isRemoveInvalidFeature() const
 {
@@ -3892,6 +3902,9 @@ void CvSpellInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bPush);
 	stream->Read(&m_bRemoveHasCasted);
 	stream->Read(&m_bSacrificeCaster);
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	stream->Read(&m_bNoInterruptUnitCycling);
+//<<<<Spell Interrupt Unit Cycling: End Add
 	stream->Read(&m_bRemoveInvalidFeature);	// MNAI
 	stream->Read(&m_iChangePopulation);
 	stream->Read(&m_iCost);
@@ -4012,6 +4025,9 @@ void CvSpellInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bPush);
 	stream->Write(m_bRemoveHasCasted);
 	stream->Write(m_bSacrificeCaster);
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	stream->Write(m_bNoInterruptUnitCycling);
+//<<<<Spell Interrupt Unit Cycling: End Add
 	stream->Write(m_bRemoveInvalidFeature);	// MNAI
 	stream->Write(m_iChangePopulation);
 	stream->Write(m_iCost);
@@ -4160,6 +4176,9 @@ bool CvSpellInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bPush, "bPush");
 	pXML->GetChildXmlValByName(&m_bRemoveHasCasted, "bRemoveHasCasted");
 	pXML->GetChildXmlValByName(&m_bSacrificeCaster, "bSacrificeCaster");
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	pXML->GetChildXmlValByName(&m_bNoInterruptUnitCycling, "bNoInterruptUnitCycling");
+//<<<<Spell Interrupt Unit Cycling: End Add
 	pXML->GetChildXmlValByName(&m_bRemoveInvalidFeature, "bRemoveInvalidFeature");	// MNAI
 	pXML->GetChildXmlValByName(&m_iChangePopulation, "iChangePopulation");
 	pXML->GetChildXmlValByName(&m_iCost, "iCost");
@@ -13693,6 +13712,14 @@ m_iNoTechTradeModifier(0),
 m_iTechTradeKnownModifier(0),
 m_iUnownedTilesPerGameAnimal(0),
 m_iUnownedTilesPerBarbarianUnit(0),
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+m_iUnownedWaterTilesPerGameAnimal(0),
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 m_iUnownedWaterTilesPerBarbarianUnit(0),
 m_iUnownedTilesPerBarbarianCity(0),
 m_iBarbarianCreationTurnsElapsed(0),
@@ -13868,6 +13895,18 @@ int CvHandicapInfo::getUnownedTilesPerBarbarianUnit() const
 {
 	return m_iUnownedTilesPerBarbarianUnit;
 }
+
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+int CvHandicapInfo::getUnownedWaterTilesPerGameAnimal() const
+{
+	return m_iUnownedWaterTilesPerGameAnimal;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 int CvHandicapInfo::getUnownedWaterTilesPerBarbarianUnit() const
 {
@@ -14109,6 +14148,14 @@ void CvHandicapInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iTechTradeKnownModifier);
 	stream->Read(&m_iUnownedTilesPerGameAnimal);
 	stream->Read(&m_iUnownedTilesPerBarbarianUnit);
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	stream->Read(&m_iUnownedWaterTilesPerGameAnimal);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	stream->Read(&m_iUnownedWaterTilesPerBarbarianUnit);
 	stream->Read(&m_iUnownedTilesPerBarbarianCity);
 	stream->Read(&m_iBarbarianCreationTurnsElapsed);
@@ -14198,6 +14245,14 @@ void CvHandicapInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iTechTradeKnownModifier);
 	stream->Write(m_iUnownedTilesPerGameAnimal);
 	stream->Write(m_iUnownedTilesPerBarbarianUnit);
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	stream->Write(m_iUnownedWaterTilesPerGameAnimal);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	stream->Write(m_iUnownedWaterTilesPerBarbarianUnit);
 	stream->Write(m_iUnownedTilesPerBarbarianCity);
 	stream->Write(m_iBarbarianCreationTurnsElapsed);
@@ -14280,6 +14335,14 @@ bool CvHandicapInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iTechTradeKnownModifier, "iTechTradeKnownModifier");
 	pXML->GetChildXmlValByName(&m_iUnownedTilesPerGameAnimal, "iUnownedTilesPerGameAnimal");
 	pXML->GetChildXmlValByName(&m_iUnownedTilesPerBarbarianUnit, "iUnownedTilesPerBarbarianUnit");
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iUnownedWaterTilesPerGameAnimal, "iUnownedWaterTilesPerGameAnimal");
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_iUnownedWaterTilesPerBarbarianUnit, "iUnownedWaterTilesPerBarbarianUnit");
 	pXML->GetChildXmlValByName(&m_iUnownedTilesPerBarbarianCity, "iUnownedTilesPerBarbarianCity");
 	pXML->GetChildXmlValByName(&m_iBarbarianCreationTurnsElapsed, "iBarbarianCreationTurnsElapsed");
@@ -29437,11 +29500,22 @@ bool CvSpawnPrereqInfo::read(CvXMLLoadUtility* pXML)
 
 			if ( (0 < iNumSibs) && (gDLL->getXMLIFace()->SetToChild(pXML->GetXML())) )
 			{
+				// check that iMinWilderness is rising
+				int iLastMinWilderness = -1;
+
 				for( int iTier = 0; iTier < iNumSibs; iTier++ )
 				{
 					int iMinWilderness, iMaxWilderness;
 					pXML->GetChildXmlValByName( &iMinWilderness, "iMinWilderness" );
 					pXML->GetChildXmlValByName( &iMaxWilderness, "iMaxWilderness" );
+
+					if( iMinWilderness < iLastMinWilderness )
+					{
+						CvString szError;
+						szError.Format("iMinWilderness in SpawnPrereqInfo %s must be rising. Current XML file is: %s", getType(), GC.getCurrentXMLFile().GetCString());
+						FAssertMsg( false, szError.c_str());
+						gDLL->logMsg("xml.log", szError);
+					}
 					
 					m_viMinWildernessTiers.push_back( iMinWilderness );
 					m_viMaxWildernessTiers.push_back( iMaxWilderness );

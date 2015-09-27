@@ -43274,14 +43274,18 @@
 			<FavoriteCivic>CIVIC_NEUTRALITY</FavoriteCivic>
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
-				 <Trait>
+				<Trait>
 					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
-				 </Trait>
-				 <Trait>
+				</Trait>
+				<Trait>
 					<TraitType>TRAIT_SAGE</TraitType>
 					<bTrait>1</bTrait>
-				 </Trait>
+				</Trait>
+				<Trait>
+					<TraitType>TRAIT_TOLERANT</TraitType>
+					<bTrait>1</bTrait>
+				</Trait>
 			</Traits>
 			<Flavors>
 				 <Flavor>

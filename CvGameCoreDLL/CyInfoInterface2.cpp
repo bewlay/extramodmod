@@ -164,6 +164,14 @@ void CyInfoPythonInterface2()
 		.def("getTechTradeKnownModifier", &CvHandicapInfo::getTechTradeKnownModifier, "int ()")
 		.def("getUnownedTilesPerGameAnimal", &CvHandicapInfo::getUnownedTilesPerGameAnimal, "int ()")
 		.def("getUnownedTilesPerBarbarianUnit", &CvHandicapInfo::getUnownedTilesPerBarbarianUnit, "int ()")
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+		.def("getUnownedWaterTilesPerGameAnimal", &CvHandicapInfo::getUnownedWaterTilesPerGameAnimal, "int ()")
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 		.def("getUnownedWaterTilesPerBarbarianUnit", &CvHandicapInfo::getUnownedWaterTilesPerBarbarianUnit, "int ()")
 		.def("getUnownedTilesPerBarbarianCity", &CvHandicapInfo::getUnownedTilesPerBarbarianCity, "int ()")
 		.def("getBarbarianCreationTurnsElapsed", &CvHandicapInfo::getBarbarianCreationTurnsElapsed, "int ()")

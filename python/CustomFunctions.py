@@ -7,6 +7,11 @@ import Popup as PyPopup
 import PyHelpers
 import CvScreenEnums
 import CvCameraControls
+from operator import itemgetter # K-Mod (used to avoid OOS when sorting)
+
+# lfgr events enhanced 08/2014
+from math import *
+# lfgr end
 
 # globals
 gc = CyGlobalContext()
@@ -751,7 +756,8 @@ class CustomFunctions:
 					iRandom = CyGame().getSorenRandNum(1000, "Hell Terrain Volcanos")
 					if iRandom < 2:
 						iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(), 'EVENTTRIGGER_VOLCANO_CREATION')
-						triggerData = pPlayer.initTriggeredData(iEvent, True, -1, pPlot.getX(), pPlot.getY(), -1, -1, -1, -1, -1, -1)
+						if pPlot.isOwned():
+							triggerData = pPlayer.initTriggeredData(iEvent, True, -1, pPlot.getX(), pPlot.getY(), -1, -1, -1, -1, -1, -1)
 
 			if iPlotCount < 10:
 				if iBonus == iToad:
@@ -1169,7 +1175,7 @@ class CustomFunctions:
 
 					ltVeilCities.append( ( iValue, pTargetCity ) )
 
-		ltVeilCities.sort()
+		ltVeilCities.sort(key=itemgetter(0)) # Sorting by pointers can cause OOS.
 		ltVeilCities.reverse()
 		lpVeilCities = []
 		if len( ltVeilCities ) > 0:
@@ -1683,3 +1689,30 @@ class CustomFunctions:
 
 		return sFull
 
+	# lfgr events enhanced 08/2014
+	def getNearPlots( self, pPlot, iMaxDist ) :
+		lpResult = []
+		x = pPlot.getX()
+		y = pPlot.getY()
+		for x2 in range( x - iMaxDist, x + iMaxDist + 1 ) :
+			for y2 in range( y - iMaxDist, y + iMaxDist + 1 ) :
+				if( plotDistance( x, y, x2, y2 ) <= iMaxDist ) :
+					lpResult.append( CyMap().plot( x2, y2 ) )
+		return lpResult
+	
+	def getNearPlotsInOrder( self, pPlot, iMaxDist ) :
+		lpResult = []
+		x = pPlot.getX()
+		y = pPlot.getY()
+		for d in range( iMaxDist + 1 ) :
+			for x2 in range( x - d, x + d + 1 ) :
+				for y2 in range( y - d, y + d + 1 ) :
+					if( plotDistance( x, y, x2, y2 ) == d ) :
+						lpResult.append( CyMap().plot( x2, y2 ) )
+		return lpResult
+	
+	def plotDistance( x1, y1, x2, y2 ) :
+		dx = abs( x1 - x2 )
+		dy = abs( y1 - y2 )
+		return max( dx, xy ) + min( dx, dy ) / 2.0;
+	# lfgr end

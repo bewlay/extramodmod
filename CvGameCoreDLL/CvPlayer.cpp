@@ -5382,56 +5382,37 @@ int CvPlayer::countOwnedBonuses(BonusTypes eBonus, bool bCheckBlockingFeatures) 
 }
 
 
+// K-Mod. I've rearranged some stuff in this function to fix a couple of minor bugs; and to make the code neater and less error prone.
 int CvPlayer::countUnimprovedBonuses(CvArea* pArea, CvPlot* pFromPlot) const
 {
 	PROFILE_FUNC();
 
-	CvPlot* pLoopPlot;
-	ImprovementTypes eImprovement;
-	BuildTypes eBuild;
-	BonusTypes eNonObsoleteBonus;
-	int iCount;
-	int iI, iJ;
-
 	gDLL->getFAStarIFace()->ForceReset(&GC.getBorderFinder());
 
-	iCount = 0;
+	int iCount = 0;
 
-	for (iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
 	{
-		pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+		CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
 
-		if (pLoopPlot->area() == pArea)
+		if (pLoopPlot->getOwnerINLINE() == getID() && pLoopPlot->area() == pArea && !pLoopPlot->isCity())
 		{
-			if (pLoopPlot->getOwnerINLINE() == getID())
+			BonusTypes eNonObsoleteBonus = pLoopPlot->getNonObsoleteBonusType(getTeam());
+
+			if (eNonObsoleteBonus != NO_BONUS)
 			{
-				if (!(pLoopPlot->isCity()))
+				if (!doesImprovementConnectBonus(pLoopPlot->getImprovementType(), eNonObsoleteBonus))
 				{
-					eNonObsoleteBonus = pLoopPlot->getNonObsoleteBonusType(getTeam());
-
-					if (eNonObsoleteBonus != NO_BONUS)
+					if ((pFromPlot == NULL) || gDLL->getFAStarIFace()->GeneratePath(&GC.getBorderFinder(), pFromPlot->getX_INLINE(), pFromPlot->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), false, getID(), true))
 					{
-						eImprovement = pLoopPlot->getImprovementType();
-
-						if ((eImprovement == NO_IMPROVEMENT) || !(GC.getImprovementInfo(eImprovement).isImprovementBonusTrade(eNonObsoleteBonus)))
+						for (int iJ = 0; iJ < GC.getNumBuildInfos(); iJ++)
 						{
-							if ((pFromPlot == NULL) || gDLL->getFAStarIFace()->GeneratePath(&GC.getBorderFinder(), pFromPlot->getX_INLINE(), pFromPlot->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), false, getID(), true))
-							{
-								for (iJ = 0; iJ < GC.getNumBuildInfos(); iJ++)
-								{
-									eBuild = ((BuildTypes)iJ);
+							BuildTypes eBuild = ((BuildTypes)iJ);
 
-									if (GC.getBuildInfo(eBuild).getImprovement() != NO_IMPROVEMENT)
-									{
-										if (GC.getImprovementInfo((ImprovementTypes)(GC.getBuildInfo(eBuild).getImprovement())).isImprovementBonusTrade(eNonObsoleteBonus))
-										{
-											if (canBuild(pLoopPlot, eBuild))
-											{
-												iCount++;
-											}
-										}
-									}
-								}
+							if (doesImprovementConnectBonus((ImprovementTypes)GC.getBuildInfo(eBuild).getImprovement(), eNonObsoleteBonus) && canBuild(pLoopPlot, eBuild))
+							{
+								iCount++;
+								break; // K-Mod!
 							}
 						}
 					}
@@ -5458,9 +5439,10 @@ int CvPlayer::countCityFeatures(FeatureTypes eFeature) const
 
 	for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 	{
-		// ALN FhfBugFix NextLine...
-		// for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
-		for (iI = 0; iI < pLoopCity->getNumCityPlots(); iI++)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//		for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+		for (iI = 0; iI < ::calculateNumCityPlots(getNextCityRadius()); iI++)
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			pLoopPlot = plotCity(pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE(), iI);
 
@@ -5519,6 +5501,12 @@ int CvPlayer::countNumCitiesConnectedToCapital() const
 	return iCount;
 }
 
+// K-Mod
+bool CvPlayer::doesImprovementConnectBonus(ImprovementTypes eImprovement, BonusTypes eBonus) const
+{
+	return GET_TEAM(getTeam()).doesImprovementConnectBonus(eImprovement, eBonus);
+}
+// K-Mod end
 
 int CvPlayer::countPotentialForeignTradeCities(CvArea* pIgnoreArea) const
 {
@@ -5925,6 +5913,11 @@ bool CvPlayer::canTradeWith(PlayerTypes eWhoTo) const
 {
 	CvTeam& kOurTeam = GET_TEAM(getTeam());
 	CvTeam& kTheirTeam = GET_TEAM(GET_PLAYER(eWhoTo).getTeam());
+
+	if (!canContact(eWhoTo))
+	{
+		return false;
+	}
 
 	if (kTheirTeam.getNumCities() == 0)
 	{
@@ -19105,7 +19098,10 @@ int CvPlayer::getAdvancedStartImprovementCost(ImprovementTypes eImprovement, boo
 		if (bAdd)
 		{
 			// Valid Plot
-			if (!pPlot->canHaveImprovement(eImprovement, getTeam(), false))
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+//			if (!pPlot->canHaveImprovement(eImprovement, getTeam(), false))
+			if (!pPlot->canHaveImprovement(eImprovement, getID(), false))
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				return -1;
 			}
@@ -24374,8 +24370,19 @@ PlayerTypes CvPlayer::getPuppetPlayer() const
     return eNewPlayer;
 }
 
+/********************************************************************************/
+/* MinorPuppetLeaders	03/2015											lfgr	*/
+/********************************************************************************/
+/* old
 bool CvPlayer::canMakePuppet(PlayerTypes eFromPlayer) const
 {
+*/
+bool CvPlayer::canMakePuppet( CvCity* pVassalCapital ) const
+{
+	PlayerTypes eFromPlayer = pVassalCapital->getOwnerINLINE();
+/********************************************************************************/
+/* MinorPuppetLeaders	End												lfgr	*/
+/********************************************************************************/
 	// Puppet States are a type of Vassal
     if (GC.getGameINLINE().isOption(GAMEOPTION_NO_VASSAL_STATES))
     {
@@ -24418,12 +24425,31 @@ bool CvPlayer::canMakePuppet(PlayerTypes eFromPlayer) const
     {
         return false;
     }
-
+	
+/********************************************************************************/
+/* MinorPuppetLeaders	03/2015											lfgr	*/
+/********************************************************************************/
+/* old
     CivLeaderArray aLeaders;
     if (!getPuppetLeaders(aLeaders))
     {
         return false;
     }
+*/
+
+	CyArgsList argsList;
+	argsList.add( this->getID() );
+	argsList.add( pVassalCapital->getOriginalOwner() );
+	argsList.add( pVassalCapital->getID() );
+	long lResult = 0;
+	gDLL->getPythonIFace()->callFunction( PYRevModule, "getPuppetCivLeader", argsList.makeFunctionArgs(), &lResult );
+
+	if( (LeaderHeadTypes) (lResult % GC.getNumLeaderHeadInfos()) == NO_LEADER )
+		return false;
+		
+/********************************************************************************/
+/* MinorPuppetLeaders	End												lfgr	*/
+/********************************************************************************/
 
     if (findPuppetPlayer(eFromPlayer) != NO_PLAYER)
     {
@@ -24460,82 +24486,7 @@ bool CvPlayer::canMakePuppet(PlayerTypes eFromPlayer) const
     return true;
 }
 
-bool CvPlayer::getPuppetLeaders(CivLeaderArray& aLeaders) const
-{
-	aLeaders.clear();
-
-	for (int i = 0; i < GC.getNumCivilizationInfos(); ++i)
-	{
-		bool bValid = true;
-
-		if (getCivilizationType() == i)
-		{
-			bValid = false;
-		}
-
-		if (bValid)
-		{
-			if (!GC.getCivilizationInfo((CivilizationTypes)i).isPlayable() || !GC.getCivilizationInfo((CivilizationTypes)i).isAIPlayable())
-			{
-				bValid = false;
-			}
-		}
-
-		if (bValid)
-		{
-			for (int j = 0; j < MAX_CIV_PLAYERS; ++j)
-			{
-				if (getID() != j && GET_PLAYER((PlayerTypes)j).isEverAlive() && GET_PLAYER((PlayerTypes)j).getCivilizationType() == i)
-				{
-					bValid = false;
-					break;
-				}
-			}
-		}
-
-		if (bValid)
-		{
-			for (int j = 0; j < GC.getNumLeaderHeadInfos(); ++j)
-			{
-				bool bLeaderValid = true;
-				if (!GC.getCivilizationInfo((CivilizationTypes)i).isLeaders(j) && !GC.getGameINLINE().isOption(GAMEOPTION_LEAD_ANY_CIV))
-				{
-					bLeaderValid = false;
-				}
-
-// Leader categories START
-				// Extra scenario leaders are currently always allowed as valid leaders for puppet states,
-				// even if their game option is disabled.
-				CvLeaderHeadInfo& currentLeader = GC.getLeaderHeadInfo((LeaderHeadTypes)j);
-
-				if (currentLeader.getLeaderCategory() == LEADERCATEGORY_EXTRA && !GC.getGameINLINE().isOption(GAMEOPTION_LEADER_EXTRA)) {
-					// If extra leaders have not been selected, avoid using them.
-					bLeaderValid = false;
-					continue;
-				}
-// Leader categories END
-
-				if (bLeaderValid)
-				{
-					for (int k = 0; k < MAX_CIV_PLAYERS; ++k)
-					{
-						if (GET_PLAYER((PlayerTypes)k).isEverAlive() && GET_PLAYER((PlayerTypes)k).getPersonalityType() == j)
-						{
-							bLeaderValid = false;
-						}
-					}
-				}
-
-				if (bLeaderValid)
-				{
-					aLeaders.push_back(std::make_pair((CivilizationTypes)i, (LeaderHeadTypes)j));
-				}
-			}
-		}
-	}
-
-	return (aLeaders.size() > 0);
-}
+// lfgr MinorPuppetLeaders 03/2015: removed getPuppetLeaders(). Now handled in python.
 
 bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
 {
@@ -24543,7 +24494,16 @@ bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
 
     int iI;
 
+/********************************************************************************/
+/* MinorPuppetLeaders	03/2015											lfgr	*/
+/********************************************************************************/
+/* old
     if (!canMakePuppet(eSplitPlayer))
+*/
+    if ( !canMakePuppet( pVassalCapital ) )
+/********************************************************************************/
+/* MinorPuppetLeaders	End												lfgr	*/
+/********************************************************************************/
     {
         return false;
     }
@@ -25080,7 +25040,10 @@ void CvPlayer::launch(VictoryTypes eVictory)
 	kTeam.finalizeProjectArtTypes();
 	kTeam.setVictoryCountdown(eVictory, kTeam.getVictoryDelay(eVictory));
 
-	gDLL->getEngineIFace()->AddLaunch(getID());
+	// K-Mod. The spaceship launch causes pitboss to crash
+	if (!gDLL->IsPitbossHost())
+		gDLL->getEngineIFace()->AddLaunch(getID());
+	// K-Mod end.
 
 	kTeam.setCanLaunch(eVictory, false);
 
@@ -27190,15 +27153,21 @@ void CvPlayer::getCultureLayerColors(std::vector<NiColorA>& aColors, std::vector
 
 		// how many people own this plot?
 		std::vector < std::pair<int,int> > plot_owners;
-		int iNumNonzeroOwners = 0;
+		//int iNumNonzeroOwners = 0;
+		// K-Mod
+		int iTotalCulture = pLoopPlot->countTotalCulture();
+		if (iTotalCulture == 0)
+			continue;
+		// K-Mod end
 		for (int iPlayer = 0; iPlayer < MAX_CIV_PLAYERS; iPlayer++)
 		{
 			if (GET_PLAYER((PlayerTypes)iPlayer).isAlive())
 			{
 				int iCurCultureAmount = pLoopPlot->getCulture((PlayerTypes)iPlayer);
-				if (iCurCultureAmount != 0)
+				//if (iCurCultureAmount != 0)
+				if (iCurCultureAmount * 100 / iTotalCulture >= 20) // K-Mod (to reduce visual spam from small amounts of culture)
 				{
-					iNumNonzeroOwners ++;
+					//iNumNonzeroOwners ++;
 					plot_owners.push_back(std::pair<int,int>(iCurCultureAmount, iPlayer));
 				}
 			}
@@ -28180,7 +28149,7 @@ int CvPlayer::countNumAvailablePlotsForImprovement(ImprovementTypes eImprovement
 
 		if (pLoopPlot->getOwnerINLINE() == getID())
 		{
-			if (pLoopPlot->canHaveImprovement(eImprovement, getTeam()))
+			if (pLoopPlot->canHaveImprovement(eImprovement, getID()))
 			{
 				iCount++;
 			}
