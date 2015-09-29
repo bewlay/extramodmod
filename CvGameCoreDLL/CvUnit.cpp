@@ -566,6 +566,8 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+	m_iAlwaysSpreadReligion = 0;
+
 	if (!bConstructorCall)
 	{
         m_paiDamageTypeCombat = new int[GC.getNumDamageTypeInfos()];
@@ -20376,8 +20378,9 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iUpgradeBlocked);
 	pStream->Read(&m_iGiftingBlocked);
 	pStream->Read(&m_iUpgradeOutsideBorders);
-	pStream->Read(&m_iAlwaysSpreadReligion);
 	// End MNAI
+
+	pStream->Read(&m_iAlwaysSpreadReligion);
 
 	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	pStream->Read(&m_bAvatarOfCivLeader);
@@ -20560,8 +20563,9 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_iUpgradeBlocked);
 	pStream->Write(m_iGiftingBlocked);
 	pStream->Write(m_iUpgradeOutsideBorders);
-	pStream->Write(m_iAlwaysSpreadReligion);
 	// End MNAI
+
+	pStream->Write(m_iAlwaysSpreadReligion);
 
 	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	pStream->Write(m_bAvatarOfCivLeader);
