@@ -5304,42 +5304,6 @@
             <Button>Art/Interface/Buttons/Buildings/Unyieldingorder.dds</Button>
         </SpellInfo>
         <SpellInfo>
-            <Type>SPELL_UPGRADE_ARCHER</Type>
-            <Description>TXT_KEY_SPELL_UPGRADE_ARCHER</Description>
-            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <UnitPrereq>UNIT_GOBLIN_SCORPION_CLAN</UnitPrereq>
-            <CivilizationPrereq>CIVILIZATION_BARBARIAN</CivilizationPrereq>
-            <TechPrereq>TECH_ARCHERY</TechPrereq>
-            <bAllowAI>1</bAllowAI>
-            <iAIWeight>300</iAIWeight>
-            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
-            <bHasCasted>1</bHasCasted>
-            <ConvertUnitType>UNIT_ARCHER_SCORPION_CLAN</ConvertUnitType>
-            <bAbility>1</bAbility>
-            <Effect>EFFECT_SPELL1</Effect>
-            <Sound>AS3D_SPELL_TRAIN</Sound>
-            <bGraphicalOnly>1</bGraphicalOnly>
-            <Button>Art/Interface/Buttons/Units/Archer Scorpion Clan.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
-            <Type>SPELL_UPGRADE_CHARIOT</Type>
-            <Description>TXT_KEY_SPELL_UPGRADE_CHARIOT</Description>
-            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <UnitPrereq>UNIT_WOLF_RIDER_SCORPION_CLAN</UnitPrereq>
-            <CivilizationPrereq>CIVILIZATION_BARBARIAN</CivilizationPrereq>
-            <TechPrereq>TECH_TRADE</TechPrereq>
-            <bAllowAI>1</bAllowAI>
-            <iAIWeight>300</iAIWeight>
-            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
-            <bHasCasted>1</bHasCasted>
-            <ConvertUnitType>UNIT_CHARIOT_SCORPION_CLAN</ConvertUnitType>
-            <bAbility>1</bAbility>
-            <Effect>EFFECT_SPELL1</Effect>
-            <Sound>AS3D_SPELL_TRAIN</Sound>
-            <bGraphicalOnly>1</bGraphicalOnly>
-            <Button>Art/Interface/Buttons/Units/Chariot Scorpion Clan.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
             <Type>SPELL_UPGRADE_DOVIELLO_AXEMAN</Type>
             <Description>TXT_KEY_SPELL_UPGRADE_DOVIELLO_AXEMAN</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
@@ -5471,42 +5435,6 @@
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <ConvertUnitType>UNIT_SPECTRE</ConvertUnitType>
-            <bAbility>1</bAbility>
-            <Effect>EFFECT_SPELL1</Effect>
-            <Sound>AS3D_SPELL_TRAIN</Sound>
-            <bGraphicalOnly>1</bGraphicalOnly>
-            <Button>Art/Interface/Buttons/Units/Spectre.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
-            <Type>SPELL_UPGRADE_WOLF_RIDER</Type>
-            <Description>TXT_KEY_SPELL_UPGRADE_WOLF_RIDER</Description>
-            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <UnitPrereq>UNIT_GOBLIN_SCORPION_CLAN</UnitPrereq>
-            <CivilizationPrereq>CIVILIZATION_BARBARIAN</CivilizationPrereq>
-            <TechPrereq>TECH_HORSEBACK_RIDING</TechPrereq>
-            <bAllowAI>1</bAllowAI>
-            <iAIWeight>300</iAIWeight>
-            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
-            <bHasCasted>1</bHasCasted>
-            <ConvertUnitType>UNIT_WOLF_RIDER_SCORPION_CLAN</ConvertUnitType>
-            <bAbility>1</bAbility>
-            <Effect>EFFECT_SPELL1</Effect>
-            <Sound>AS3D_SPELL_TRAIN</Sound>
-            <bGraphicalOnly>1</bGraphicalOnly>
-            <Button>Art/Interface/Buttons/Units/Wolf Rider Scorpion Clan.dds</Button>
-        </SpellInfo>
-        <SpellInfo>
-            <Type>SPELL_UPGRADE_WRAITH</Type>
-            <Description>TXT_KEY_SPELL_UPGRADE_WRAITH</Description>
-            <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
-            <UnitPrereq>UNIT_SPECTRE</UnitPrereq>
-            <CivilizationPrereq>CIVILIZATION_BARBARIAN</CivilizationPrereq>
-            <bAllowAI>1</bAllowAI>
-            <iAIWeight>300</iAIWeight>
-            <iCasterMinLevel>6</iCasterMinLevel>
-            <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
-            <bHasCasted>1</bHasCasted>
-            <ConvertUnitType>UNIT_WRAITH</ConvertUnitType>
             <bAbility>1</bAbility>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
