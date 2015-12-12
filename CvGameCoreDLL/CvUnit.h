@@ -75,7 +75,7 @@ public:
 	void reloadEntity();
 /************************************************************************************************/
 /* GP_NAMES                                 07/2013                                 lfgr        */
-/* Added parameter szName                                                                       */
+/* Added parameter eName                                                                        */
 /************************************************************************************************/
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
@@ -86,7 +86,7 @@ public:
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit = true, bool bGift = false, CvWString szName = "");
+	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit = true, bool bGift = false, int eName = -1);
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/

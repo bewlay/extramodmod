@@ -117,7 +117,7 @@ public:
 	
 /************************************************************************************************/
 /* GP_NAMES                                 07/2013                                 lfgr        */
-/* Added parameter szName                                                                       */
+/* Added parameter eName                                                                        */
 /************************************************************************************************/
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
@@ -128,7 +128,7 @@ public:
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, bool bGift = false, CvWString szName = "");
+	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, bool bGift = false, int eName = -1);
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -1397,6 +1397,15 @@ public:
 	DenialTypes AI_militaryUnitTrade(CvUnit* pUnit, PlayerTypes ePlayer) const;
 /************************************************************************************************/
 /* Afforess	                     END                                                            */
+/************************************************************************************************/
+	
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* From CvUnit::init() (modified)                                                               */
+/************************************************************************************************/
+	int getNewGreatPersonBornName( UnitTypes eUnitType );
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
 /************************************************************************************************/
 
 protected:

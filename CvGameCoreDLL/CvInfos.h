@@ -1460,6 +1460,18 @@ public:
 	const TCHAR* getMiddleArtDefineTag(int i, UnitArtStyleTypes eStyle) const;				// Exposed to Python
 	void setMiddleArtDefineTag(int i, const TCHAR* szVal);
 	const TCHAR* getUnitNames(int i) const;
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+	const TCHAR* getUnitNameArt( int i ) const;
+	const TCHAR* getUnitNameQuote( int i ) const;
+	const int getUnitNamePreferredCiv( int i ) const;
+	const int getUnitNameReligion( int i ) const;
+	const int getUnitNameLeader( int i ) const;
+	const int getUnitNameRace( int i ) const;
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	const TCHAR* getFormationType() const;
 
 	const TCHAR* getButton() const;
@@ -1699,9 +1711,31 @@ protected:
 	CvString* m_paszEarlyArtDefineTags;
 	CvString* m_paszLateArtDefineTags;
 	CvString* m_paszMiddleArtDefineTags;
-	CvString* m_paszUnitNames;
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+//	CvString* m_paszUnitNames;
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	CvString m_szFormationType;
 	CvString m_szArtDefineButton;
+
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+	std::vector<CvString> m_vszUnitNames;
+	std::vector<CvString> m_vszUnitNameArt;
+	std::vector<CvString> m_vszUnitNameQuotes;
+	std::vector<int> m_viUnitNamePreferredCivs;
+	std::vector<int> m_viUnitNameReligions;
+	std::vector<int> m_viUnitNameLeaders;
+	std::vector<int> m_viUnitNameRaces;
+	
+	std::vector<CvString> m_vszUnitNamePreferredCivsForPass3;
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	std::vector<int> m_aiSeeInvisibleTypes;
 };

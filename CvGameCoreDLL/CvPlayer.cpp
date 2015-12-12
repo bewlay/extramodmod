@@ -3232,7 +3232,7 @@ bool CvPlayer::isCityNameValid(CvWString& szName, bool bTestDestroyed) const
 
 /************************************************************************************************/
 /* GP_NAMES                                 07/2013                                 lfgr        */
-/* Added parameter szName                                                                       */
+/* Added parameter eName                                                                        */
 /************************************************************************************************/
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
@@ -3243,7 +3243,7 @@ CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI,
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, bool bGift, CvWString szName)
+CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, bool bGift, int eName)
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -3258,7 +3258,7 @@ CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI,
 	{
 /************************************************************************************************/
 /* GP_NAMES                                 07/2013                                 lfgr        */
-/* Added parameter szName                                                                       */
+/* Added parameter eName                                                                        */
 /************************************************************************************************/
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
@@ -3269,7 +3269,7 @@ CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI,
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-		pUnit->init(pUnit->getID(), eUnit, ((eUnitAI == NO_UNITAI) ? (UnitAITypes)GC.getUnitInfo(eUnit).getDefaultUnitAIType() : eUnitAI), getID(), iX, iY, eFacingDirection, bPushOutExistingUnit, szName);
+		pUnit->init(pUnit->getID(), eUnit, ((eUnitAI == NO_UNITAI) ? (UnitAITypes)GC.getUnitInfo(eUnit).getDefaultUnitAIType() : eUnitAI), getID(), iX, iY, eFacingDirection, bPushOutExistingUnit, bGift, eName);
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -7256,12 +7256,8 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 	/*
         pNewUnit = initUnit(eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE());
 	*/
-		CvWString szName;
-		if( GC.getUnitInfo( eUnit ).getNumUnitNames() > 0 )
-			szName = GC.getGameINLINE().getNewGreatPersonBornName( eUnit );
-		else
-			szName = "";
-        pNewUnit = initUnit(eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), NO_UNITAI, NO_DIRECTION, true, szName);
+		int eName = getNewGreatPersonBornName( eUnit );
+        pNewUnit = initUnit(eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), NO_UNITAI, NO_DIRECTION, true, eName);
 	/************************************************************************************************/
 	/* GP_NAMES                                END                                                  */
 	/************************************************************************************************/
@@ -20644,8 +20640,8 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 	CvUnit* pGreatPeopleUnit = initUnit(eGreatPersonUnit, iX, iY);
 */
 	// If no names left, name is simply ""
-	CvWString name = GC.getGameINLINE().getNewGreatPersonBornName( eGreatPersonUnit );
-	CvUnit* pGreatPeopleUnit = initUnit(eGreatPersonUnit, iX, iY, NO_UNITAI, NO_DIRECTION, true, name);
+	int eName = getNewGreatPersonBornName( eGreatPersonUnit );
+	CvUnit* pGreatPeopleUnit = initUnit( eGreatPersonUnit, iX, iY, NO_UNITAI, NO_DIRECTION, true, false, eName );
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -27917,3 +27913,84 @@ int CvPlayer::getHighestUnitTier(bool bIncludeHeroes, bool bIncludeLimitedUnits)
 }
 
 // End MNAI
+
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* From CvUnit::init() (modified)                                                               */
+/************************************************************************************************/
+int CvPlayer::getNewGreatPersonBornName( UnitTypes eUnitType )
+{
+	CvUnitInfo& kUnitInfo = GC.getUnitInfo( eUnitType );
+
+	int iBestScore = 0;
+	std::vector<int> veBestNames;
+
+	for( int eUnitName = 0; eUnitName < kUnitInfo.getNumUnitNames(); eUnitName++ )
+	{
+		CvWString szName = gDLL->getText( kUnitInfo.getUnitNames( eUnitName ) );
+		if( GC.getGameINLINE().isGreatPersonBorn( szName ) )
+			continue;
+
+		int eLeader = kUnitInfo.getUnitNameLeader( eUnitName );
+		if( eLeader != NO_LEADER )
+		{
+			bool bLeaderFound = false;
+			for( int ePlayer = 0; ePlayer < MAX_PLAYERS; ePlayer++ )
+			{
+				if( GET_PLAYER( (PlayerTypes) ePlayer ).isAlive()
+						&& GET_PLAYER( (PlayerTypes) ePlayer ).getLeaderType() == eLeader )
+				{
+					bLeaderFound = true;
+					break;
+				}
+			}
+			if( bLeaderFound )
+				continue;
+		}
+
+		int iScore = 0;
+
+		if( kUnitInfo.getUnitNamePreferredCiv( eUnitName ) == getCivilizationType() )
+			iScore += 4;
+		else
+		{
+			if( kUnitInfo.getUnitNamePreferredCiv( eUnitName ) == NO_CIVILIZATION )
+				iScore += 1;
+			if( kUnitInfo.getUnitNameRace( eUnitName ) == GC.getCivilizationInfo( getCivilizationType() ).getDefaultRace() )
+				iScore += 1;
+		}
+		
+
+		if( kUnitInfo.getUnitNameReligion( eUnitName ) != NO_RELIGION )
+		{
+			if( kUnitInfo.getUnitNameReligion( eUnitName ) == getStateReligion() )
+				iScore += 3;
+		}
+		else // if( kUnitInfo.getUnitNameReligion( eUnitName ) == NO_RELIGION )
+			iScore += 1;
+
+		logBBAI( "Score for %S: %d", szName.c_str(), iScore );
+
+		if( iScore > iBestScore )
+		{
+			iBestScore = iScore;
+			veBestNames.clear();
+			veBestNames.push_back( eUnitName );
+		}
+		else if( iScore == iBestScore )
+			veBestNames.push_back( eUnitName );
+	}
+
+	if( veBestNames.empty() )
+		return -1;
+
+	int iRand = GC.getGameINLINE().getSorenRandNum( veBestNames.size(), "great person name" );
+	int eBestUnitName = veBestNames[iRand];
+
+	GC.getGameINLINE().addGreatPersonBornName( gDLL->getText( kUnitInfo.getUnitNames( eBestUnitName ) ) );
+
+	return eBestUnitName;
+}
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/

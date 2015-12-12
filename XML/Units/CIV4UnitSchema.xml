@@ -92,7 +92,21 @@
 		<element type="UnitClassInfo" maxOccurs="*"/>
 	</ElementType>
 	<ElementType name="Class" content="textOnly"/>
-	<ElementType name="UniqueName" content="textOnly"/>
+	<ElementType name="Art" content="textOnly"/>
+	<ElementType name="Quote" content="textOnly"/>
+	<ElementType name="Race" content="textOnly"/>
+	<ElementType name="PreferredCiv" content="textOnly"/>
+	<ElementType name="Religion" content="textOnly"/>
+	<ElementType name="Leader" content="textOnly"/>
+	<ElementType name="UniqueName" content="eltOnly">
+		<element type="Name"/>
+		<element type="Art" minOccurs="0"/>
+		<element type="Quote" minOccurs="0"/>
+		<element type="Race" minOccurs="0"/>
+		<element type="PreferredCiv" minOccurs="0"/>
+		<element type="Religion" minOccurs="0"/>
+		<element type="Leader" minOccurs="0"/>
+	</ElementType>
 	<ElementType name="UniqueNames" content="eltOnly">
 		<element type="UniqueName" minOccurs="0" maxOccurs="*"/>
 	</ElementType>

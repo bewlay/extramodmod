@@ -119,7 +119,7 @@ void CvUnit::reloadEntity()
 
 /************************************************************************************************/
 /* GP_NAMES                                 07/2013                                 lfgr        */
-/* Added parameter szName                                                                       */
+/* Added parameter eName                                                                        */
 /************************************************************************************************/
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
@@ -130,7 +130,7 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, bool bGift, CvWString szName)
+void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, bool bGift, int eName)
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -203,7 +203,29 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 		}
 	}
 */
-	setName( szName ); // use parameter
+	if( eName != -1 )
+	{
+		CvUnitInfo& kUnitInfo = GC.getUnitInfo( eUnit );
+
+		setName( gDLL->getText( kUnitInfo.getUnitNames( eName ) ) );
+		setRace( (PromotionTypes) kUnitInfo.getUnitNameRace( eName ) );
+
+		setReligion( kUnitInfo.getUnitNameReligion( eName ) );
+
+		if( GET_PLAYER( eOwner ).isHuman() && getBugOptionBOOL("EventsEnhanced__GPPopupHuman", false )
+			|| !GET_PLAYER( eOwner ).isHuman() &&  getBugOptionBOOL("EventsEnhanced__GPPopupAI", false ) )
+		{
+			// Show Quote popup
+			CvWString szQuote = kUnitInfo.getUnitNameQuote( eName );
+			if( !szQuote.empty() )
+			{
+				CvPopupInfo* pInfo = new CvPopupInfo( BUTTONPOPUP_GREAT_PERSON );
+				pInfo->setData1( eUnit );
+				pInfo->setData2( eName );
+				gDLL->getInterfaceIFace()->addPopup( pInfo, eOwner );
+			}
+		}
+	}
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
