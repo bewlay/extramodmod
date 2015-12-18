@@ -23015,10 +23015,19 @@ bool CvPlayer::checkExpireEvent(EventTypes eEvent, const EventTriggeredData& kTr
 
 	if (!kEvent.isQuest())
 	{
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/* Non-quest events no longer expire automatically after 2 turns                                */
+/************************************************************************************************/
+/* old
 		if (GC.getGameINLINE().getGameTurn() - kTriggeredData.m_iTurn > 2)
 		{
 			return true;
 		}
+*/
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 		return false;
 	}
