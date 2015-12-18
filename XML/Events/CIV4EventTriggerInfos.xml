@@ -8368,7 +8368,6 @@
 			<PythonCanDoCity>canTriggerCityCapital</PythonCanDoCity>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- UNFORTUNATE_ASSASSIN_4_CONT lfgr: added -->
-			<!-- LFGR_TODO: Add minimum turns between events -->
 			<Type>EVENTTRIGGER_UNFORTUNATE_ASSASSIN_4_CONT</Type>
 			<WorldNewsTexts>
 				<Text />
@@ -8381,6 +8380,7 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
+			<iDelay>10</iDelay>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iPlotType>-1</iPlotType>
 			<Events>
