@@ -948,6 +948,7 @@
 			<EventArt>Art\EventImages\e_circleofgaelan.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
+			<iDelay>3</iDelay>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_MAGE_GUILD</BuildingClass>
@@ -980,6 +981,7 @@
 			<EventArt>Art\EventImages\e_circleofgaelan.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
+			<iDelay>6</iDelay>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_MAGE_GUILD</BuildingClass>
