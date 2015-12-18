@@ -14,6 +14,9 @@
 	<ElementType name="QuestFailText" content="textOnly"/>
 	<ElementType name="Button" content="textOnly"/>
 	<ElementType name="bQuest" content="textOnly" dt:type="boolean"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+	<ElementType name="bNoExpire" content="textOnly" dt:type="boolean"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 	<ElementType name="EventArt" content="textOnly"/>
 	<ElementType name="bSinglePlayer" content="textOnly" dt:type="boolean"/>
 	<ElementType name="iMinTreasury" content="textOnly" dt:type="int"/>
@@ -403,6 +406,9 @@
 		<element type="OtherPlayerPopup" minOccurs="0"/>
 		<element type="QuestFailText" minOccurs="0"/>
 		<element type="bQuest" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+		<element type="bNoExpire" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 		<element type="bGlobal" minOccurs="0"/>
 		<element type="bTeam" minOccurs="0"/>
 		<element type="bPickCity" minOccurs="0"/>
