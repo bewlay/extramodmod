@@ -6983,6 +6983,13 @@ public:
 
 	int getPercentGamesActive() const;		// Exposed to Python
 	int getProbability() const;				// Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	int getDelay() const; // Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	int getNumUnits() const;					// Exposed to Python
 	int getNumBuildings() const;				// Exposed to Python
 	int getNumUnitsGlobal() const;			// Exposed to Python
@@ -7106,6 +7113,13 @@ public:
 private:
 	int m_iPercentGamesActive;
 	int m_iProbability;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	int m_iDelay;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	int m_iNumUnits;
 	int m_iNumBuildings;
 	int m_iNumUnitsGlobal;

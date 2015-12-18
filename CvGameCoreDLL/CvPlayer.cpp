@@ -96,6 +96,13 @@ CvPlayer::CvPlayer()
 	m_paiHasCorporationCount = NULL;
 	m_paiUpkeepCount = NULL;
 	m_paiSpecialistValidCount = NULL;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	m_paiEventTriggerDelayCounters = NULL;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	m_pabResearchingTech = NULL;
 	m_pabLoyalMember = NULL;
@@ -685,6 +692,13 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiHasCorporationCount);
 	SAFE_DELETE_ARRAY(m_paiUpkeepCount);
 	SAFE_DELETE_ARRAY(m_paiSpecialistValidCount);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	SAFE_DELETE_ARRAY(m_paiEventTriggerDelayCounters);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	SAFE_DELETE_ARRAY(m_pabResearchingTech);
 	SAFE_DELETE_ARRAY(m_pabLoyalMember);
@@ -1143,6 +1157,18 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		{
 			m_paiHasCorporationCount[iI] = 0;
 		}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+		FAssertMsg(m_paiEventTriggerDelayCounters==NULL, "about to leak memory, CvPlayer::m_paiEventTriggerDelayCounters");
+		m_paiEventTriggerDelayCounters = new int[GC.getNumEventTriggerInfos()];
+		for (iI = 0;iI < GC.getNumEventTriggerInfos();iI++)
+		{
+			m_paiEventTriggerDelayCounters[iI] = 0;
+		}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 		FAssertMsg(m_pabResearchingTech==NULL, "about to leak memory, CvPlayer::m_pabResearchingTech");
 		m_pabResearchingTech = new bool[GC.getNumTechInfos()];
@@ -19762,6 +19788,13 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumCorporationInfos(), m_paiHasCorporationCount);
 	pStream->Read(GC.getNumUpkeepInfos(), m_paiUpkeepCount);
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	pStream->Read( GC.getNumEventTriggerInfos(), m_paiEventTriggerDelayCounters );
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::read");
 	pStream->Read(GC.getNumTechInfos(), m_pabResearchingTech);
@@ -20353,6 +20386,13 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumCorporationInfos(), m_paiHasCorporationCount);
 	pStream->Write(GC.getNumUpkeepInfos(), m_paiUpkeepCount);
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	pStream->Write(GC.getNumEventTriggerInfos(), m_paiEventTriggerDelayCounters);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
 	pStream->Write(GC.getNumTechInfos(), m_pabResearchingTech);
@@ -22836,7 +22876,7 @@ void CvPlayer::doEvents()
 		return;
 	}
 
-	// LFGR_TODO: Figure out what this does
+	// Expire old events (not triggers!) and their triggerdata
 	CvEventMap::iterator it = m_mapEventsOccured.begin();
 	while (it != m_mapEventsOccured.end())
 	{
@@ -22878,6 +22918,7 @@ void CvPlayer::doEvents()
 	}
 
 	// lfgr cmt: get all event weights, trigger all with weight == -1, create triggeredData for all weight > 0
+	//  (the latter only if global event check succeeds.
 
 	std::vector< std::pair<EventTriggeredData*, int> > aePossibleEventTriggerWeights;
 	int iTotalWeight = 0;
@@ -22886,7 +22927,20 @@ void CvPlayer::doEvents()
 		int iWeight = getEventTriggerWeight((EventTriggerTypes)i);
 		if (iWeight == -1)
 		{
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+/* old
 			trigger((EventTriggerTypes)i);
+*/
+			int iDelay = GC.getEventTriggerInfo( (EventTriggerTypes) i ).getDelay();
+			if( iDelay <= m_paiEventTriggerDelayCounters[i] ) // always if iDelay == 0
+				trigger( (EventTriggerTypes) i );
+			else
+				m_paiEventTriggerDelayCounters[i]++;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 		}
 		else if (iWeight > 0 && bNewEventEligible)
 		{

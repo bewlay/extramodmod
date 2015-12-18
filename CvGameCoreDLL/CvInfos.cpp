@@ -24691,6 +24691,17 @@ int CvEventTriggerInfo::getProbability() const
 	return m_iProbability;
 }
 
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+int CvEventTriggerInfo::getDelay() const
+{
+	return m_iDelay;
+}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
+
 int CvEventTriggerInfo::getUnitRequired(int i) const
 {
 	return m_aiUnitsRequired[i];
@@ -25191,6 +25202,13 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 
 	stream->Read(&m_iPercentGamesActive);
 	stream->Read(&m_iProbability);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	stream->Read(&m_iDelay);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	stream->Read(&m_iNumUnits);
 	stream->Read(&m_iNumBuildings);
 	stream->Read(&m_iNumUnitsGlobal);
@@ -25417,6 +25435,13 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 
 	stream->Write(m_iPercentGamesActive);
 	stream->Write(m_iProbability);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	stream->Write(m_iDelay);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	stream->Write(m_iNumUnits);
 	stream->Write(m_iNumBuildings);
 	stream->Write(m_iNumUnitsGlobal);
@@ -25597,6 +25622,13 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(&m_iPercentGamesActive, "iPercentGamesActive");
 	pXML->GetChildXmlValByName(&m_iProbability, "iWeight");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName( &m_iDelay, "iDelay", 0 );
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	pXML->GetChildXmlValByName(&m_iNumUnits, "iNumUnits");
 	pXML->GetChildXmlValByName(&m_iNumBuildings, "iNumBuildings");
