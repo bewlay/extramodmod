@@ -11441,7 +11441,12 @@ void CvGame::foundBarbarianCity()
                     if (pPlotI != NULL)
                     {
                         iDist = GC.getMapINLINE().calculatePathDistance(pPlotI, pLoopPlot);
+					// WILDERNESS / WildernessMisc / 12/2015 lfgr
+					/* old
 						if (iDist < 4)
+					*/
+						if( iDist != -1 && iDist < 4 )
+					// WILDERNESS END
                         {
                             bValid = false;
                         }
