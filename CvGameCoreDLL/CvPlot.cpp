@@ -13240,6 +13240,9 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon, bo
 	if( !bIgnoreTerrain && area()->isWater() != kSpawn.isWater() )
 		return 0;
 
+	if( !bIgnoreTerrain && isOwned() && kSpawn.isAnimal() )
+		return 0;
+
 	if( !( GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && kSpawn.isNoWildernessIgnoreSpawnPrereq() ) )
 		if( !isValidSpawnTier( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(), kSpawn.getMaxTier(), bCheckTech, bDungeon ) )
 			return 0;
