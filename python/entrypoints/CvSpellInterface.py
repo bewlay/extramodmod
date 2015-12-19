@@ -1438,6 +1438,11 @@ def spellForTheHorde(caster):
 			if ( (pUnit.getUnitClassType()!= iDisciple) and (pUnit.getUnitClassType()!= iSon) ):
 				if CyGame().getSorenRandNum(100, "Bob") < 50:
 					pPlot = pUnit.plot()
+				# WILDERNESS 12/2015 lfgr / WildernessMisc
+				# Don't steal last defender of a city
+					if( pPlot.isCity() and pPlot.getNumDefenders( gc.getBARBARIAN_PLAYER() ) == 1 and pUnit.canDefend( pPlot ) ) :
+						continue
+				# WILDERNESS end
 					for i in range(pPlot.getNumUnits(), -1, -1):
 						pNewPlot = -1
 						pLoopUnit = pPlot.getUnit(i)
