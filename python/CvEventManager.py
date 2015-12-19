@@ -1982,7 +1982,8 @@ class CvEventManager:
 					pPlayer.getCapitalCity().setHasReligion(iReligion,True,True,True)	
 				if CyGame().isReligionFounded(iReligion):
 					newUnit = pPlayer.initUnit(iUnit, pPlayer.getCapitalCity().getX(), pPlayer.getCapitalCity().getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
-					newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_MISSIONARY'), True)
+					if iUnit != gc.getInfoTypeForString('UNIT_NIGHTWATCH'):
+						newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_MISSIONARY'), True)
 
 		if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_HYBOREM_OR_BASIUM):
 			if iTechType == gc.getInfoTypeForString('TECH_INFERNAL_PACT') and iPlayer != -1:
