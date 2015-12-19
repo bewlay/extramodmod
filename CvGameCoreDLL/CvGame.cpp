@@ -11453,30 +11453,31 @@ void CvGame::foundBarbarianCity()
                     }
                 }
             }
-		/************************************************************************************************/
-		/* WILDERNESS                             08/2013                                 lfgr          */
-		/* WildernessMisc                                                                               */
-		/* Place barb cities far away from other barb cities                                            */
-		/************************************************************************************************/
-			int iDivisor = std::max( 5, (int) ( sqrt( (double) GC.getMapINLINE().getGridWidthINLINE() * GC.getMapINLINE().getGridHeightINLINE() ) / 8.0 + 0.5 ) );
 
-			int iMinDistance = MAX_INT;
-
-			int iLoop;
-			for ( CvCity* pLoopCity = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() ).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() ).nextCity(&iLoop))
-			{
-				int iDist = stepDistance( pLoopCity->plot()->getX_INLINE(), pLoopCity->plot()->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE() );
-
-				if( iDist < iMinDistance )
-					iMinDistance = iDist;
-			}
-			if( iMinDistance != MAX_INT )
-				iValue += (int) ( iMinDistance / iDivisor ) * 900;
-		/************************************************************************************************/
-		/* WILDERNESS                                                                     END           */
-		/************************************************************************************************/
             if (bValid)
             {
+			/************************************************************************************************/
+			/* WILDERNESS                             08/2013                                 lfgr          */
+			/* WildernessMisc                                                                               */
+			/* Place barb cities far away from other barb cities                                            */
+			/************************************************************************************************/
+				int iDivisor = std::max( 5, (int) ( sqrt( (double) GC.getMapINLINE().getGridWidthINLINE() * GC.getMapINLINE().getGridHeightINLINE() ) / 8.0 + 0.5 ) );
+
+				int iMinDistance = MAX_INT;
+
+				int iLoop;
+				for ( CvCity* pLoopCity = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() ).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() ).nextCity(&iLoop))
+				{
+					int iDist = stepDistance( pLoopCity->plot()->getX_INLINE(), pLoopCity->plot()->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE() );
+
+					if( iDist < iMinDistance )
+						iMinDistance = iDist;
+				}
+				if( iMinDistance != MAX_INT )
+					iValue += (int) ( iMinDistance / iDivisor ) * 900;
+			/************************************************************************************************/
+			/* WILDERNESS                                                                     END           */
+			/************************************************************************************************/
                 iValue += GET_PLAYER(BARBARIAN_PLAYER).AI_foundValue(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), GC.getDefineINT("MIN_BARBARIAN_CITY_STARTING_DISTANCE"), true);
                 //iValue += pLoopPlot->area()->getNumOwnedTiles() + 10;
                 iValue += getSorenRandNum(100, "Barb City Found");
