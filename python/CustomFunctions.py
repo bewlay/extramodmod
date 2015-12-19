@@ -239,6 +239,9 @@ class CustomFunctions:
 				pUnit.setHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_BRONZE_WEAPONS' ), False )
 			elif( sType == 'GOLDEN_AGE' ) :
 				pPlayer.changeGoldenAgeTurns( CyGame().goldenAgeLength() )
+			elif( sType == 'COUNCIL_OF_ESUS' ) :
+				pUnit.setReligion( self.saveGetInfoType( gc.getNumReligionInfos(), 'RELIGION_COUNCIL_OF_ESUS' ))
+				pUnit.setHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_ESUS_AGENT' ), True )
 			else :
 				raise Exception( "Unknown special outcome type: %s" % ( tOutcome[0] ) )
 		
@@ -374,6 +377,7 @@ class CustomFunctions:
 		bMalakim = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_MALAKIM" ) )
 		bMercurians = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_MERCURIANS" ) )
 		bSheaim = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_SHEAIM" ) )
+		bSvartalfar = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_SVARTALFAR" ) )
 		
 		bGood = ( pPlayer.getAlignment() == gc.getInfoTypeForString( 'ALIGNMENT_GOOD' ) )
 		
@@ -401,7 +405,7 @@ class CustomFunctions:
 					dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENRAGED', ['PROMOTION_ENRAGED'] ) )
 			if( pUnit.getLevel() == 1 and iChallenge >= 35 ) :
 				dslOutcomes['Bad'].append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DEATH', 'DEATH' ) )
-				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, "Your Unit receives the Burning Blood Promotion", ['PROMOTION_BURNING_BLOOD'] ) ) # LFGR_TODO
+				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BURNING_BLOOD', ['PROMOTION_BURNING_BLOOD'] ) )
 			if( iExploLevel < 25 and iChallenge >= 35 ) :
 				if( pUnit.isAlive() ) :
 					dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CRAZED', ['PROMOTION_CRAZED'] ) )
@@ -432,7 +436,8 @@ class CustomFunctions:
 					dslOutcomes['Good'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_SUPPLIES' ) )
 					dslOutcomes['Good'].append( ( 'Goody', 80, 'GOODY_EXPLORE_LAIR_ITEM_HEALING_SALVE' ) )
 			if( iChallenge >= 35 and iChallenge < 60 ) :
-				dslOutcomes['Good'].append( ( 'Promotions', 80, True, "Your Unit receives the Courage Promotion", ['PROMOTION_COURAGE'] ) ) # LFGR_TODO
+				dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COURAGE', ['PROMOTION_COURAGE'] ) )
+				dslOutcomes['Item'].append( ( 'Promotions', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_PATRIAN_ARTIFACT', ['PROMOTION_PATRIAN_ARTIFACT'] ) )
 				if( bMelee ) :
 					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENCHANTED_BLADE', ['PROMOTION_ENCHANTED_BLADE'] ) )
 				if( bAdept ) :
@@ -443,6 +448,8 @@ class CustomFunctions:
 					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_FLAMING_ARROWS', ['PROMOTION_FLAMING_ARROWS'] ) )
 				if( bDisciple ) :
 					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_SHIELD_OF_FAITH', ['PROMOTION_SHIELD_OF_FAITH'] ) )
+				if( bGood ):
+					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BLESS', ['PROMOTION_BLESS'] ) )
 				
 				if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 1 ) :
 					if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_MITHRIL_WEAPONS' ) ) ) :
@@ -454,7 +461,7 @@ class CustomFunctions:
 							if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_BRONZE_WEAPONS' ) ) ):
 								dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BRONZE_WEAPONS', ['PROMOTION_BRONZE_WEAPONS'] ) )
 			if( iChallenge >= 60 ) :
-				dslOutcomes['Good'].append( ( 'Promotions', 100, True, "Your Unit receives the Valor Promotion", ['PROMOTION_VALOR'] ) ) # LFGR_TODO
+				dslOutcomes['Good'].append( ( 'Promotions', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_VALOR', ['PROMOTION_VALOR'] ) )
 				dslOutcomes['Good'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_TREASURE_VAULT' ) )
 				dslOutcomes['Good'].append( ( 'Goody', 100, 'GOODY_GRAVE_TECH' ) )
 				dslOutcomes['Good'].append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_GOLDEN_AGE', 'GOLDEN_AGE' ) )
@@ -470,18 +477,30 @@ class CustomFunctions:
 							dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ASHEN' ) )
 						if( bMalakim or bHasTrade ) :
 							dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_EMPYREAN' ) )
-						# LFGR_TODO: Council of Esus: Svartalfar or Trade
+						if( bSvartalfar or bHasTrade ):
+							dslOutcomes['Religion'].append( ( 'Special', 90, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COUNCIL_OF_ESUS', 'COUNCIL_OF_ESUS' ) )
 						if( bBannor or bHasCodeOfLaws ) :
 							dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ORDER' ) )
 				if( pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_CRAZED' ) ) ) : # Enraged isn't sufficient
 					if( not pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_DEMON' ) ) ) : # For the possessed outcome (we don't know the former race); LFGR_TODO: Save former race in SDTK or create new "Demonic Possession" promo
 						dslOutcomes['RemoveMalus'].append( ( 'RemovePromotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_REMOVE_CRAZED', ['PROMOTION_ENRAGED', 'PROMOTION_CRAZED'] ) )
 			if( iChallenge >= 75 ) :
+				dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_AMULET_SEAS' ) )
 				if( not pPlot.isWater() ) :
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_JADE_TORC' ) )
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_ROD_OF_WINDS' ) )
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_HAUBERK_OF_ABJURATION' ) )
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_TIMOR_MASK' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_COMPELLING_JEWEL' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_HEART_AMULET' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_MENACING_HELM' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_WYRMSLAYER' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_RADIANT_AMULET' ) )
+
+					if( bArcher ) :
+						dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_ANCIENT_BOW' ) )
+					if( bMelee ) :
+						dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_OBSIDIAN_SPEAR' ) )
 					
 					if( bHasHunting and not bHasPoisons ) :
 						dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ASSASSIN' ) )

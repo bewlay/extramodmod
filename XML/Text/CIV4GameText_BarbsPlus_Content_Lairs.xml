@@ -96,6 +96,46 @@
 		<Spanish>Descubres una densa veta de mithril bajo la guarida.</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_BLESS</Tag>
+		<English>The forces of good bless your unit.</English>
+		<French>The forces of good bless your unit.</French>
+		<German>The forces of good bless your unit.</German>
+		<Italian>The forces of good bless your unit.</Italian>
+		<Spanish>Los poderes del bien bendicen a tu unidad.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_BURNING_BLOOD</Tag>
+		<English>A dark power influences your unit, granting it unholy strength and unquenchable bloodthirst.</English>
+		<French>A dark power influences your unit, granting it unholy strength and unquenchable bloodthirst.</French>
+		<German>A dark power influences your unit, granting it unholy strength and unquenchable bloodthirst.</German>
+		<Italian>A dark power influences your unit, granting it unholy strength and unquenchable bloodthirst.</Italian>
+		<Spanish>Un poder oscuro influencia a tu unidad, otorgándole una fuerza sacrílega y una insaciable sed de sangre.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_COUNCIL_OF_ESUS</Tag>
+		<English>Your unit finds an ancient shrine dedicated to the god of Deceit. What it believes to have found inside changes its life forever.</English>
+		<French>Your unit finds an ancient shrine dedicated to the god of Deceit. What it believes to have found inside changes its life forever.</French>
+		<German>Your unit finds an ancient shrine dedicated to the god of Deceit. What it believes to have found inside changes its life forever.</German>
+		<Italian>Your unit finds an ancient shrine dedicated to the god of Deceit. What it believes to have found inside changes its life forever.</Italian>
+		<Spanish>Tu unidad encuentra un antiguo santuario dedicado al dios del Engaño. Lo que cree haber encontrado dentro cambia su vida para siempre.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_COURAGE</Tag>
+		<English>The dangers faced in the lair have strengthened the resolve of your unit.</English>
+		<French>The dangers faced in the lair have strengthened the resolve of your unit.</French>
+		<German>The dangers faced in the lair have strengthened the resolve of your unit.</German>
+		<Italian>The dangers faced in the lair have strengthened the resolve of your unit.</Italian>
+		<Spanish>Los peligros afrontados en la guarida fortalecen la voluntad de tu unidad.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_VALOR</Tag>
+		<English>Your unit's courage is rewarded with an indomitable will.</English>
+		<French>Your unit's courage is rewarded with an indomitable will.</French>
+		<German>Your unit's courage is rewarded with an indomitable will.</German>
+		<Italian>Your unit's courage is rewarded with an indomitable will.</Italian>
+		<Spanish>La valentía de tu unidad es recompensada con una voluntad inquebrantable.</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_PROPHECY_MARK</Tag>
 		<English>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</English>
 		<French>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</French>

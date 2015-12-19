@@ -4,7 +4,167 @@
 -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<!-- New equipment text -->
+	<TEXT> <!-- Master of Mana -->
+		<Tag>TXT_KEY_EQUIPMENT_AMULET_SEAS</Tag>
+		<English>Amulet of the Seas</English>
+		<French>Amulet of the Seas</French>
+		<German>Amulet of the Seas</German>
+		<Italian>Amulet of the Seas</Italian>
+		<Spanish>Amuleto de los Mares</Spanish>
+	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_AMULET_SEAS</Tag>
+		<English>In the middle of a pool of dark waters, your unit find an amulet miraculously kept afloat.</English>
+		<French>In the middle of a pool of dark waters, your unit find an amulet miraculously kept afloat.</French>
+		<German>In the middle of a pool of dark waters, your unit find an amulet miraculously kept afloat.</German>
+		<Italian>In the middle of a pool of dark waters, your unit find an amulet miraculously kept afloat.</Italian>
+		<Spanish>En el medio de una zona de aguas oscuras, tu unidad encuentra un amuleto que se mantiene a flote de forma milagrosa.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_AMULET_SEAS</Tag>
+		<English>Drop Amulet of the Seas</English>
+		<French>Drop Amulet of the Seas</French>
+		<German>Drop Amulet of the Seas</German>
+		<Italian>Drop Amulet of the Seas</Italian>
+		<Spanish>Dejar Amuleto de los Mares</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_AMULET_SEAS</Tag>
+		<English>Take Amulet of the Seas</English>
+		<French>Take Amulet of the Seas</French>
+		<German>Take Amulet of the Seas</German>
+		<Italian>Take Amulet of the Seas</Italian>
+		<Spanish>Tomar Amuleto de los Mares</Spanish>
+	</TEXT>
+	<TEXT> <!-- Rise from Erebus, art from Master of Mana -->
+		<Tag>TXT_KEY_EQUIPMENT_ANCIENT_BOW</Tag>
+		<English>Ancient Bow</English>
+		<French>Ancient Bow</French>
+		<German>Ancient Bow</German>
+		<Italian>Ancient Bow</Italian>
+		<Spanish>Arco Ancestral</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_ANCIENT_BOW</Tag>
+		<English>Your unit uncovers a weapon from past ages, the Ancient Bow.</English>
+		<French>Your unit uncovers a weapon from past ages, the Ancient Bow.</French>
+		<German>Your unit uncovers a weapon from past ages, the Ancient Bow.</German>
+		<Italian>Your unit uncovers a weapon from past ages, the Ancient Bow.</Italian>
+		<Spanish>Tu unidad encuentra un arma de eras pasadas, el Arco Ancestral.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_ANCIENT_BOW</Tag>
+		<English>Drop Ancient Bow</English>
+		<French>Drop Ancient Bow</French>
+		<German>Drop Ancient Bow</German>
+		<Italian>Drop Ancient Bow</Italian>
+		<Spanish>Dejar Arco Ancestral</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_ANCIENT_BOW</Tag>
+		<English>Take Ancient Bow</English>
+		<French>Take Ancient Bow</French>
+		<German>Take Ancient Bow</German>
+		<Italian>Take Ancient Bow</Italian>
+		<Spanish>Tomar Arco Ancestral</Spanish>
+	</TEXT>
+	<TEXT> <!-- Rise from Erebus -->
+		<Tag>TXT_KEY_EQUIPMENT_COMPELLING_JEWEL</Tag>
+		<English>Compelling Jewel</English>
+		<French>Compelling Jewel</French>
+		<German>Compelling Jewel</German>
+		<Italian>Compelling Jewel</Italian>
+		<Spanish>Joya de la Persuasión</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_COMPELLING_JEWEL</Tag>
+		<English>In the depths of the lair, your unit finds a group of corpses kneeling in front of a throne. Sitting in the throne, another long-dead body is holding a magic jewel.</English>
+		<French>In the depths of the lair, your unit finds a group of corpses kneeling in front of a throne. Sitting in the throne, another long-dead body is holding a magic jewel.</French>
+		<German>In the depths of the lair, your unit finds a group of corpses kneeling in front of a throne. Sitting in the throne, another long-dead body is holding a magic jewel.</German>
+		<Italian>In the depths of the lair, your unit finds a group of corpses kneeling in front of a throne. Sitting in the throne, another long-dead body is holding a magic jewel.</Italian>
+		<Spanish>En las profundidades de la guarida, tu unidad encuentra a un grupo de cadáveres arrodillados en frente de un trono. Sentado en dicho trono, otro cadáver antiguo sujeta una joya mágica.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_COMPELLING_JEWEL</Tag>
+		<English>Drop Compelling Jewel</English>
+		<French>Drop Compelling Jewel</French>
+		<German>Drop Compelling Jewel</German>
+		<Italian>Drop Compelling Jewel</Italian>
+		<Spanish>Dejar Joya de la Persuasión</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_COMPELLING_JEWEL</Tag>
+		<English>Take Compelling Jewel</English>
+		<French>Take Compelling Jewel</French>
+		<German>Take Compelling Jewel</German>
+		<Italian>Take Compelling Jewel</Italian>
+		<Spanish>Tomar Joya de la Persuasión</Spanish>
+	</TEXT>
+	<TEXT> <!-- Rise from Erebus -->
+		<Tag>TXT_KEY_EQUIPMENT_HEART_AMULET</Tag>
+		<English>Heart Amulet</English>
+		<French>Heart Amulet</French>
+		<German>Heart Amulet</German>
+		<Italian>Heart Amulet</Italian>
+		<Spanish>Amuleto Corazón</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_HEART_AMULET</Tag>
+		<English>Hidden under a pile of rubble, your unit finds a Heart Amulet.</English>
+		<French>Hidden under a pile of rubble, your unit finds a Heart Amulet.</French>
+		<German>Hidden under a pile of rubble, your unit finds a Heart Amulet.</German>
+		<Italian>Hidden under a pile of rubble, your unit finds a Heart Amulet.</Italian>
+		<Spanish>Bajo una pila de escombros, tu unidad encuentra un Amuleto Corazón.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_HEART_AMULET</Tag>
+		<English>Drop Heart Amulet</English>
+		<French>Drop Heart Amulet</French>
+		<German>Drop Heart Amulet</German>
+		<Italian>Drop Heart Amulet</Italian>
+		<Spanish>Dejar Amuleto Corazón</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_HEART_AMULET</Tag>
+		<English>Take Heart Amulet</English>
+		<French>Take Heart Amulet</French>
+		<German>Take Heart Amulet</German>
+		<Italian>Take Heart Amulet</Italian>
+		<Spanish>Tomar Amuleto Corazón</Spanish>
+	</TEXT>
+	<TEXT> <!-- Rise from Erebus -->
+		<Tag>TXT_KEY_EQUIPMENT_MENACING_HELM</Tag>
+		<English>Menacing Helm</English>
+		<French>Menacing Helm</French>
+		<German>Menacing Helm</German>
+		<Italian>Menacing Helm</Italian>
+		<Spanish>Casco Amenazador</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_MENACING_HELM</Tag>
+		<English>After overcoming a powerful desire to flee, your unit manages to retrieve a Menacing Helm from the lair.</English>
+		<French>After overcoming a powerful desire to flee, your unit manages to retrieve a Menacing Helm from the lair.</French>
+		<German>After overcoming a powerful desire to flee, your unit manages to retrieve a Menacing Helm from the lair.</German>
+		<Italian>After overcoming a powerful desire to flee, your unit manages to retrieve a Menacing Helm from the lair.</Italian>
+		<Spanish>Tras superar un poderoso deseo de huir, tu unidad consigue recuperar un Casco Amnazador.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_MENACING_HELM</Tag>
+		<English>Drop Menacing Helm</English>
+		<French>Drop Menacing Helm</French>
+		<German>Drop Menacing Helm</German>
+		<Italian>Drop Menacing Helm</Italian>
+		<Spanish>Dejar Casco Amenazador</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_MENACING_HELM</Tag>
+		<English>Take Menacing Helm</English>
+		<French>Take Menacing Helm</French>
+		<German>Take Menacing Helm</German>
+		<Italian>Take Menacing Helm</Italian>
+		<Spanish>Tomar Casco Amenazador</Spanish>
+	</TEXT>
+	<TEXT> <!-- Rise from Erebus -->
 		<Tag>TXT_KEY_EQUIPMENT_HAUBERK_OF_ABJURATION</Tag>
 		<English>Hauberk of Abjuration</English>
 		<French>Hauberk of Abjuration</French>
@@ -36,5 +196,124 @@
 		<Italian>Take Hauberk of Abjuration</Italian>
 		<Spanish>Tomar Armadura de Abjuración</Spanish>
 	</TEXT>
-
+	<TEXT> <!-- Art from Master of Mana -->
+		<Tag>TXT_KEY_EQUIPMENT_PATRIAN_ARTIFACT</Tag>
+		<English>Patrian Artifact</English>
+		<French>Patrian Artifact</French>
+		<German>Patrian Artifact</German>
+		<Italian>Patrian Artifact</Italian>
+		<Spanish>Artefacto de Patria</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_PATRIAN_ARTIFACT</Tag>
+		<English>Your unit finds an arcane relic from the times of ancient Patria.</English>
+		<French>Your unit finds an arcane relic from the times of ancient Patria.</French>
+		<German>Your unit finds an arcane relic from the times of ancient Patria.</German>
+		<Italian>Your unit finds an arcane relic from the times of ancient Patria.</Italian>
+		<Spanish>Tu unidad encuentra una reliquia arcana procedente de los tiempos de Patria.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_PATRIAN_ARTIFACT</Tag>
+		<English>Drop Patrian Artifact</English>
+		<French>Drop Patrian Artifact</French>
+		<German>Drop Patrian Artifact</German>
+		<Italian>Drop Patrian Artifact</Italian>
+		<Spanish>Dejar Artefacto de Patria</Spanish>
+	</TEXT>
+	<TEXT> <!-- Platyping, art from Master of Mana -->
+		<Tag>TXT_KEY_EQUIPMENT_OBSIDIAN_SPEAR</Tag>
+		<English>Obsidian Spear</English>
+		<French>Obsidian Spear</French>
+		<German>Obsidian Spear</German>
+		<Italian>Obsidian Spear</Italian>
+		<Spanish>Lanza de Obsidiana</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_OBSIDIAN_SPEAR</Tag>
+		<English>Your unit finds an extremely heavy and durable spear in one of the darkest corridors of the lair.</English>
+		<French>Your unit finds an extremely heavy and durable spear in one of the darkest corridors of the lair.</French>
+		<German>Your unit finds an extremely heavy and durable spear in one of the darkest corridors of the lair.</German>
+		<Italian>Your unit finds an extremely heavy and durable spear in one of the darkest corridors of the lair.</Italian>
+		<Spanish>Tu unidad halla una lanza extremadamente pesada y duradera en uno de los más oscuros pasadizos de la guarida.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_OBSIDIAN_SPEAR</Tag>
+		<English>Drop Obsidian Spear</English>
+		<French>Drop Obsidian Spear</French>
+		<German>Drop Obsidian Spear</German>
+		<Italian>Drop Obsidian Spear</Italian>
+		<Spanish>Dejar Lanza de Obsidiana</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_OBSIDIAN_SPEAR</Tag>
+		<English>Take Obsidian Spear</English>
+		<French>Take Obsidian Spear</French>
+		<German>Take Obsidian Spear</German>
+		<Italian>Take Obsidian Spear</Italian>
+		<Spanish>Tomar Lanza de Obsidiana</Spanish>
+	</TEXT>
+	<TEXT> <!-- Master of Mana -->
+		<Tag>TXT_KEY_EQUIPMENT_RADIANT_AMULET</Tag>
+		<English>Radiant Amulet</English>
+		<French>Radiant Amulet</French>
+		<German>Radiant Amulet</German>
+		<Italian>Radiant Amulet</Italian>
+		<Spanish>Amuleto Radiante</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_RADIANT_AMULET</Tag>
+		<English>After nearly becoming lost forever in the dark shadows of the lair, your unit finds a magic amulet which allows it to find the true path.</English>
+		<French>After nearly becoming lost forever in the dark shadows of the lair, your unit finds a magic amulet which allows it to find the true path.</French>
+		<German>After nearly becoming lost forever in the dark shadows of the lair, your unit finds a magic amulet which allows it to find the true path.</German>
+		<Italian>After nearly becoming lost forever in the dark shadows of the lair, your unit finds a magic amulet which allows it to find the true path.</Italian>
+		<Spanish>Tras casi perderse para siempre en las oscuras sombras de la guarida, tu unidad encuentra un amuleto mágico que le permite encontrar el auténtico camino a seguir.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_RADIANT_AMULET</Tag>
+		<English>Drop Radiant Amulet</English>
+		<French>Drop Radiant Amulet</French>
+		<German>Drop Radiant Amulet</German>
+		<Italian>Drop Radiant Amulet</Italian>
+		<Spanish>Dejar Amuleto Radiante</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_RADIANT_AMULET</Tag>
+		<English>Take Radiant Amulet</English>
+		<French>Take Radiant Amulet</French>
+		<German>Take Radiant Amulet</German>
+		<Italian>Take Radiant Amulet</Italian>
+		<Spanish>Tomar Amuleto Radiante</Spanish>
+	</TEXT>
+	<TEXT> <!-- Art from Master of Mana -->
+		<Tag>TXT_KEY_EQUIPMENT_WYRMSLAYER</Tag>
+		<English>Wyrmslayer</English>
+		<French>Wyrmslayer</French>
+		<German>Wyrmslayer</German>
+		<Italian>Wyrmslayer</Italian>
+		<Spanish>Matadragones</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_WYRMSLAYER</Tag>
+		<English>Your unit finds an ancient weapon from the Age of Dragons, the Wyrmslayer.</English>
+		<French>Your unit finds an ancient weapon from the Age of Dragons, the Wyrmslayer.</French>
+		<German>Your unit finds an ancient weapon from the Age of Dragons, the Wyrmslayer.</German>
+		<Italian>Your unit finds an ancient weapon from the Age of Dragons, the Wyrmslayer.</Italian>
+		<Spanish>Tu unidad encuentra un arma antigua de la Edad de los Dragones, la Matadragones.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_DROP_WYRMSLAYER</Tag>
+		<English>Drop Wyrmslayer</English>
+		<French>Drop Wyrmslayer</French>
+		<German>Drop Wyrmslayer</German>
+		<Italian>Drop Wyrmslayer</Italian>
+		<Spanish>Dejar Matadragones</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_TAKE_WYRMSLAYER</Tag>
+		<English>Take Wyrmslayer</English>
+		<French>Take Wyrmslayer</French>
+		<German>Take Wyrmslayer</German>
+		<Italian>Take Wyrmslayer</Italian>
+		<Spanish>Tomar Matadragones</Spanish>
+	</TEXT>
 </Civ4GameText>
