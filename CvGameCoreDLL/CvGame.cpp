@@ -7562,10 +7562,13 @@ void CvGame::createBarbarianUnits()
 			bAnimals = false;
 		else if (getNumCivCities() < countCivPlayersAlive())
 			bAnimals = false;
+
+		float CITIES_MOD = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_REQUIRED_CITIES_PER_PLAYER", 3.f );
+		float RB_CITIES_MOD = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_REQUIRED_CITIES_PER_PLAYER_RAGING_BARBARIANS", 2.f );
 		
 		if (GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerBarbarianUnit() <= 0)
 			bBarbs = false;
-		else if( getNumCivCities() < countCivPlayersAlive() * ( bRagingBarbs ? 2 : 3 ) )
+		else if( getNumCivCities() < countCivPlayersAlive() * ( bRagingBarbs ? RB_CITIES_MOD : CITIES_MOD ) )
 			bBarbs = false;
 	}
 
@@ -7590,10 +7593,13 @@ void CvGame::createBarbarianUnits()
 		int VALID_TILES_PER_ANIMAL = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerGameAnimal();
 		int VALID_TILES_PER_ANIMAL_WATER = GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerGameAnimal();
 		
-		float PLOT_CHANCE_BARB = ( bRagingBarbs ? 2 : 1 ) / (float) VALID_TILES_PER_BARB;
-		float PLOT_CHANCE_BARB_WATER = ( bRagingBarbs ? 2 : 1 ) / (float) VALID_TILES_PER_BARB_WATER;
-		float PLOT_CHANCE_ANIMAL = ( bDoubleAnimals ? 2 : 1 ) / (float) VALID_TILES_PER_ANIMAL;
-		float PLOT_CHANCE_ANIMAL_WATER = ( bDoubleAnimals ? 2 : 1 ) / (float) VALID_TILES_PER_ANIMAL_WATER;
+		float RAGING_BARBS_MOD = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED_MOD_RAGING_BARBARIANS", 2.f );
+		float WILDLANDS_MOD = GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED_MOD_WILDLANDS", 2.f );
+
+		float PLOT_CHANCE_BARB = ( bRagingBarbs ? RAGING_BARBS_MOD : 1 ) / (float) VALID_TILES_PER_BARB;
+		float PLOT_CHANCE_BARB_WATER = ( bRagingBarbs ? RAGING_BARBS_MOD : 1 ) / (float) VALID_TILES_PER_BARB_WATER;
+		float PLOT_CHANCE_ANIMAL = ( bDoubleAnimals ? WILDLANDS_MOD : 1 ) / (float) VALID_TILES_PER_ANIMAL;
+		float PLOT_CHANCE_ANIMAL_WATER = ( bDoubleAnimals ? WILDLANDS_MOD : 1 ) / (float) VALID_TILES_PER_ANIMAL_WATER;
 
 		// Find barbs and animals already there
 		//bool* abPlotAnimalValid = new bool[GC.getMapINLINE().numPlotsINLINE()];
