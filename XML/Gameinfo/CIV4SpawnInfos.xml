@@ -1827,7 +1827,7 @@
 			<bAnimal>1</bAnimal>
 			<SpawnUnits>
 				<SpawnUnit>
-					<Unit>UNIT_LION</Unit>
+					<Unit>UNIT_LION_PRIDE</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
