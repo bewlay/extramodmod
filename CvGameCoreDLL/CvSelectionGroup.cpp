@@ -2409,24 +2409,39 @@ bool CvSelectionGroup::canDoInterfaceModeAt(InterfaceModeTypes eInterfaceMode, C
 			if (pLoopUnit != NULL)
 			{
 				//Limit hawks a bit
-				if (plotDistance(pLoopUnit->plot()->getX(), pLoopUnit->plot()->getY(), pPlot->getX(), pPlot->getY()) < (pLoopUnit->airRange() * 2))
+				CvPlot const* const pUnitPlot = pLoopUnit->plot();
+				int const Distance = plotDistance(pUnitPlot->getX(), pUnitPlot->getY(), pPlot->getX(), pPlot->getY());
+				int const MaxRebaseRange = pLoopUnit->airRange() * 3;
+				bool const bWithinRange = Distance < MaxRebaseRange;
+
+				// Allow rebasing within team and vassal territory
+				TeamTypes const PlotTeamID = pPlot->getTeam();
+				TeamTypes const UnitTeamID = pLoopUnit->getTeam();
+				bool const bSameTeam = (PlotTeamID == UnitTeamID);
+				bool const bVassalRelationship =
+					!bSameTeam
+					&& ( PlotTeamID != NO_TEAM )
+					&& ( UnitTeamID != NO_TEAM )
+					&& ( GET_TEAM(PlotTeamID).isVassal(UnitTeamID) || GET_TEAM(UnitTeamID).isVassal(PlotTeamID) );
+
+				// Allow rebasing to carriers outside own territory (but still within range)
+				bool const bCanLoad = pLoopUnit->canLoad( pPlot );
+
+				if ( bWithinRange && (bSameTeam || bVassalRelationship || bCanLoad) )
 				{
-					// todo - make this a team check instead. maybe include vassals?
-					if (pPlot->getOwner() == pLoopUnit->getOwner())
+					if (pLoopUnit->canMoveInto(pPlot))
 					{
-						if (pLoopUnit->canMoveInto(pPlot))
+						if (GC.getUnitInfo((UnitTypes)pLoopUnit->getUnitType()).getPrereqBuilding() != NO_BUILDING)
 						{
-							if (GC.getUnitInfo((UnitTypes)pLoopUnit->getUnitType()).getPrereqBuilding() != NO_BUILDING)
-							{
-								//todo - can only rebase to cities with prereq building
-							}
-							else
-							{
-								return true;
-							}
+							//todo - can only rebase to cities with prereq building
+						}
+						else
+						{
+							return true;
 						}
 					}
 				}
+
 			}
 			break;
 
@@ -2720,6 +2735,46 @@ bool CvSelectionGroup::canAnyMove()
 
 	return false;
 }
+
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+/*	Casting spell triggers unit cycling	*/
+bool CvSelectionGroup::canAnyCast(bool bInterruptUnitCycling)
+{
+	CLLNode<IDInfo>* pUnitNode;
+	CvUnit* pLoopUnit;
+
+	pUnitNode = headUnitNode();
+
+	while (pUnitNode != NULL)
+	{
+		pLoopUnit = ::getUnit(pUnitNode->m_data);
+		pUnitNode = nextUnitNode(pUnitNode);
+
+		if (!pLoopUnit->isHasCasted())
+		{
+			for (int iSpell = 0; iSpell < GC.getNumSpellInfos(); iSpell++)
+			{
+				if (pLoopUnit->canCast(iSpell, false))
+				{
+					if (bInterruptUnitCycling)
+					{
+						if (!GC.getSpellInfo((SpellTypes)iSpell).isNoInterruptUnitCycling())
+						{
+							return true;
+						}
+					}
+					else
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+
+	return false;
+}
+//>>>>Spell Interrupt Unit Cycling: End Add
 
 bool CvSelectionGroup::hasMoved()
 {
@@ -4368,7 +4423,11 @@ bool CvSelectionGroup::groupAmphibMove(CvPlot* pPlot, int iFlags)
 
 bool CvSelectionGroup::readyToSelect(bool bAny)
 {
-	return (readyToMove(bAny) && !isAutomated());
+//>>>>Spell Interrupt Unit Cycling: Modified by Denev 2009/10/17
+/*	Casting spell triggers unit cycling	*/
+//	return (readyToMove(bAny) && !isAutomated());
+	return ((readyToMove(bAny) || readyToCast()) && !isAutomated());
+//>>>>Spell Interrupt Unit Cycling: End Modify
 }
 
 
@@ -4377,6 +4436,13 @@ bool CvSelectionGroup::readyToMove(bool bAny)
 	return (((bAny) ? canAnyMove() : canAllMove()) && (headMissionQueueNode() == NULL) && (getActivityType() == ACTIVITY_AWAKE) && !isBusy() && !isCargoBusy());
 }
 
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+/*	Casting spell triggers unit cycling	*/
+bool CvSelectionGroup::readyToCast()
+{
+	return (canAnyCast() && (getActivityType() == ACTIVITY_AWAKE) && !isBusy() && !isCargoBusy());
+}
+//>>>>Spell Interrupt Unit Cycling: End Add
 
 bool CvSelectionGroup::readyToAuto()
 {

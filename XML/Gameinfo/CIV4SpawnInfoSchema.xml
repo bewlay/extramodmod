@@ -16,15 +16,19 @@
 	<ElementType name="iPrereqGlobalCounter" content="textOnly" dt:type="int"/>
 	<ElementType name="iMinRandomPromotions" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxRandomPromotions" content="textOnly" dt:type="int"/>
-	<ElementType name="iNumRandomIncludedSpawns" content="textOnly" dt:type="int"/>
+	<ElementType name="iMinIncludedSpawns" content="textOnly" dt:type="int"/>
+	<ElementType name="iMaxIncludedSpawns" content="textOnly" dt:type="int"/>
 	<ElementType name="bNeverSpawn" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bNoWildernessIgnoreSpawnPrereq" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bExplorationResult" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bExplorationNoPush" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoDefender" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAnimal" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bWater" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoRace" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bNoMinWilderness" content="textOnly" dt:type="boolean"/>
 	<ElementType name="UnitArtStyleType" content="textOnly"/>
+	<ElementType name="UnitAIType" content="textOnly"/>
 	<ElementType name="CreateLair" content="textOnly"/>
 	<ElementType name="iCreateLairAge" content="textOnly" dt:type="int"/>
 	<ElementType name="iCreateLairLevel" content="textOnly" dt:type="int"/>
@@ -36,7 +40,7 @@
 		<element type="iNumUnits"/>
 	</ElementType>
 	<ElementType name="SpawnUnits" content="eltOnly">
-		<element type="SpawnUnit" maxOccurs="*"/>
+		<element type="SpawnUnit" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 	
 	<ElementType name="PromotionType" content="textOnly"/>
@@ -45,8 +49,19 @@
 	</ElementType>
 	
 	<ElementType name="SpawnType" content="textOnly"/>
+	<ElementType name="iMin" content="textOnly" dt:type="int"/>
+	<ElementType name="iMax" content="textOnly" dt:type="int"/>
+	<ElementType name="bIgnoreTerrain" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bCountSeparately" content="textOnly" dt:type="boolean"/>
+	<ElementType name="IncludedSpawn" content="eltOnly">
+		<element type="SpawnType"/>
+		<element type="iMin" minOccurs="0"/>
+		<element type="iMax" minOccurs="0"/>
+		<element type="bIgnoreTerrain" minOccurs="0"/>
+		<element type="bCountSeparately" minOccurs="0"/>
+	</ElementType>
 	<ElementType name="IncludedSpawns" content="eltOnly">
-		<element type="SpawnType" maxOccurs="*"/>
+		<element type="IncludedSpawn" maxOccurs="*"/>
 	</ElementType>
 	
 	<ElementType name="SpawnInfo" content="eltOnly">
@@ -58,6 +73,7 @@
 		<element type="SpawnPrereqType"/>
 		<element type="iMinSpawnTier"/>
 		<element type="iMaxSpawnTier"/>
+		<element type="bNoWildernessIgnoreSpawnPrereq" minOccurs="0"/>
 		<element type="iPrereqGlobalCounter" minOccurs="0"/>
 		<element type="bNeverSpawn" minOccurs="0"/>
 		<element type="bExplorationResult" minOccurs="0"/>
@@ -66,12 +82,15 @@
 		<element type="bAnimal" minOccurs="0"/>
 		<element type="bWater" minOccurs="0"/>
 		<element type="bNoRace" minOccurs="0"/>
+		<element type="bNoMinWilderness" minOccurs="0"/>
 		<element type="UnitArtStyleType" minOccurs="0"/>
+		<element type="UnitAIType" minOccurs="0"/>
 		<element type="SpawnUnits"/>
 		<element type="iMinRandomPromotions" minOccurs="0"/>
 		<element type="iMaxRandomPromotions" minOccurs="0"/>
 		<element type="UnitPromotions" minOccurs="0"/>
-		<element type="iNumRandomIncludedSpawns" minOccurs="0"/>
+		<element type="iMinIncludedSpawns" minOccurs="0"/>
+		<element type="iMaxIncludedSpawns" minOccurs="0"/>
 		<element type="IncludedSpawns" minOccurs="0"/>
 		<element type="PrereqTechs" minOccurs="0"/>
 		<element type="ObsoleteTechs" minOccurs="0"/>

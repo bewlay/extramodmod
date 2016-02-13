@@ -727,6 +727,11 @@ public:
 	CvString& getCurrentXMLFile();
 	void setCurrentXMLFile(const TCHAR* szFileName);
 
+// Leader categories START
+	std::vector<CvInfoBase*>& getLeaderCategoryInfo();
+	CvInfoBase& getLeaderCategoryInfo(LeaderHeadCategories eLeaderCategoryNum);
+// Leader categories END
+
 	//
 	///////////////// BEGIN global defines
 	// THESE ARE READ-ONLY
@@ -741,6 +746,9 @@ public:
 
 	DllExport int getDefineINT( const char * szName ) const;
 	DllExport float getDefineFLOAT( const char * szName ) const;
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+	float getDefineFLOAT( const char * szName, const float fDefault ) const;
+// WILDERNESS end
 	DllExport const char * getDefineSTRING( const char * szName ) const;
 	DllExport void setDefineINT( const char * szName, int iValue );
 	DllExport void setDefineFLOAT( const char * szName, float fValue );
@@ -828,6 +836,16 @@ public:
 	int getUSE_PLOT_REVEALED_CALLBACK();
 	int getUSE_COMBAT_RESULT_CALLBACK();
 //FfH: End Add
+
+	int getTECH_PROPAGATION_TEAMS_MAX();
+	int getTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE();
+	int getTECH_PROPAGATION_TEAMS_MASTER();
+	int getTECH_PROPAGATION_TEAMS_OPEN_BORDERS();
+	int getTECH_PROPAGATION_TEAMS_VASSAL();
+	int getTECH_PROPAGATION_TEAMS_EMBASSY();
+	int getTECH_PROPAGATION_TEAMS_ALIGMENT();
+	int getTECH_PROPAGATION_TEAMS_RELIGION();
+	int getTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT();
 
 	DllExport int getMAX_CIV_PLAYERS();
 	DllExport int getMAX_PLAYERS();
@@ -1045,10 +1063,13 @@ protected:
 	int* m_aiPlotDirectionY;	// [NUM_DIRECTION_TYPES];
 	int* m_aiPlotCardinalDirectionX;	// [NUM_CARDINALDIRECTION_TYPES];
 	int* m_aiPlotCardinalDirectionY;	// [NUM_CARDINALDIRECTION_TYPES];
-	int* m_aiCityPlotX;	// [NUM_CITY_PLOTS];
-	int* m_aiCityPlotY;	// [NUM_CITY_PLOTS];
-	int* m_aiCityPlotPriority;	// [NUM_CITY_PLOTS];
-	int m_aaiXYCityPlot[CITY_PLOTS_DIAMETER][CITY_PLOTS_DIAMETER];
+	int* m_aiCityPlotX;	// [::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS)];
+	int* m_aiCityPlotY;	// [::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS)];
+	int* m_aiCityPlotPriority;	// [::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS)];
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	int m_aaiXYCityPlot[CITY_PLOTS_DIAMETER][CITY_PLOTS_DIAMETER];
+	int m_aaiXYCityPlot[CITY_PLOTS_MAX_DIAMETER][CITY_PLOTS_MAX_DIAMETER];
+//<<<<Unofficial Bug Fix: End Modify
 
 	DirectionTypes* m_aeTurnLeftDirection;	// [NUM_DIRECTION_TYPES];
 	DirectionTypes* m_aeTurnRightDirection;	// [NUM_DIRECTION_TYPES];
@@ -1195,6 +1216,10 @@ protected:
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Leader categories START
+	std::vector<CvInfoBase*> m_paLeaderCategoryInfos;
+// Leader categories END
+
 	// Game Text
 	std::vector<CvGameText*> m_paGameTextXML;
 
@@ -1332,6 +1357,16 @@ protected:
 	int m_iUSE_COMBAT_RESULT_CALLBACK;
 //FfH: End Add
 
+	int m_iTECH_PROPAGATION_TEAMS_MAX;
+	int m_iTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE;
+	int m_iTECH_PROPAGATION_TEAMS_MASTER;
+	int m_iTECH_PROPAGATION_TEAMS_OPEN_BORDERS;
+	int m_iTECH_PROPAGATION_TEAMS_VASSAL;
+	int m_iTECH_PROPAGATION_TEAMS_EMBASSY;
+	int m_iTECH_PROPAGATION_TEAMS_ALIGMENT;
+	int m_iTECH_PROPAGATION_TEAMS_RELIGION;
+	int m_iTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT;
+	
 	// DLL interface
 	CvDLLUtilityIFaceBase* m_pDLL;
 

@@ -39,6 +39,16 @@ struct CvTerrainAmountCache
 	float *afYieldAmount;
 	float *afImprovementAmount;
 	float *afBonusAmount;
+
+	virtual ~CvTerrainAmountCache()
+	{
+		SAFE_DELETE_ARRAY( afPlotAmount );
+		SAFE_DELETE_ARRAY( afTerrainAmount );
+		SAFE_DELETE_ARRAY( afFeatureAmount );
+		SAFE_DELETE_ARRAY( afYieldAmount );
+		SAFE_DELETE_ARRAY( afImprovementAmount );
+		SAFE_DELETE_ARRAY( afBonusAmount );
+	}
 };
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                                                                END           */
@@ -133,7 +143,10 @@ public:
 	void updateSeeFromSight(bool bIncrement, bool bUpdatePlotGroups);
 
 	bool canHaveBonus(BonusTypes eBonus, bool bIgnoreLatitude = false) const;																						// Exposed to Python
-	bool canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam = NO_TEAM, bool bPotential = false) const;		// Exposed to Python
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+//	bool canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam = NO_TEAM, bool bPotential = false) const;		// Exposed to Python
+	bool canHaveImprovement(ImprovementTypes eImprovement, PlayerTypes ePlayer = NO_PLAYER, bool bPotential = false) const;		// Exposed to Python
+//<<<<Unofficial Bug Fix: End Modify
 
 	bool canBuild(BuildTypes eBuild, PlayerTypes ePlayer = NO_PLAYER, bool bTestVisible = false) const;														// Exposed to Python
 	int getBuildTime(BuildTypes eBuild) const;																																										// Exposed to Python
@@ -431,9 +444,16 @@ public:
 
 	short* getYield();
 	DllExport int getYield(YieldTypes eIndex) const;																										// Exposed to Python
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/25
+/*
 	int calculateNatureYield(YieldTypes eIndex, TeamTypes eTeam, bool bIgnoreFeature = false) const;		// Exposed to Python
 	int calculateBestNatureYield(YieldTypes eIndex, TeamTypes eTeam) const;															// Exposed to Python
 	int calculateTotalBestNatureYield(TeamTypes eTeam) const;																						// Exposed to Python
+*/
+	int calculateNatureYield(YieldTypes eIndex, PlayerTypes ePlayer, bool bIgnoreFeature = false, bool bIgnoreBonus = false) const;
+	int calculateBestNatureYield(YieldTypes eIndex, PlayerTypes ePlayer) const;
+	int calculateTotalBestNatureYield(PlayerTypes ePlayer) const;
+//<<<<Unofficial Bug Fix: End Modify
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/06/09                                jdog5000      */
 /*                                                                                              */
@@ -621,14 +641,8 @@ public:
     bool isPythonActive() const;
     void setPythonActive(bool bNewValue);
 	int getRangeDefense(TeamTypes eDefender, int iRange, bool bFinal, bool bExcludeCenter) const;
-
-	TerrainTypes getRealTerrainType() const;
-	void setRealTerrainType(TerrainTypes eNewValue);
-	void setTempTerrainType(TerrainTypes eNewValue, int iTimer);
-	int getTempTerrainTimer() const;
-	void changeTempTerrainTimer(int iChange);
-
 //FfH: End Add
+
 /*************************************************************************************************/
 /** Skyre Mod                                                                                   **/
 /** BETTER AI (Lanun Pirate Coves) merged Sephi                                                 **/
@@ -669,22 +683,66 @@ public:
 	void setLairUnitCount(int iNewValue);
 
 	int getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType ) const;
-	bool isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon = false ) const;
-	int getSpawnValue( SpawnTypes eSpawnType, bool bCheckTech = true, bool bDungeon = false ) const; // exposed to python
-	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI, int iLairPlot = -1 ); // exposed to python
+
+	std::pair<int,int> getMinTiers( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech = true, bool bDungeon = false ) const;
+	bool isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech = true, bool bDungeon = false ) const;
+	int calcMinWilderness( SpawnTypes eSpawnType, bool bCheckTech = true, bool bDungeon = false ) const;
+
+	int getSpawnValue( SpawnTypes eSpawnType, bool bCheckTech = true, bool bDungeon = false, bool bIgnoreTerrain = false ) const; // exposed to python
+	void createSpawn( SpawnTypes eSpawnType, int iMinWilderness, UnitAITypes eUnitAI = NO_UNITAI, int iLairPlot = -1 ); // exposed to python
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Temporary map features (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	TerrainTypes getRealTerrainType() const;
+	FeatureTypes getRealFeatureType() const;
+	int getRealFeatureVariety() const;
+	BonusTypes getRealBonusType() const;
+	ImprovementTypes getRealImprovementType() const;
+	RouteTypes getRealRouteType() const;
+
+	void setRealTerrainType(TerrainTypes eNewValue);
+	void setRealFeatureType(FeatureTypes eFeature);
+	void setRealFeatureVariety(int iVariety);
+	void setRealBonusType(BonusTypes eBonus);
+	void setRealImprovementType(ImprovementTypes eImprovement);
+	void setRealRouteType(RouteTypes eRoute);
+
+	void setTempTerrainType(TerrainTypes eNewValue, int iTimer);
+	void setTempFeatureType(FeatureTypes eFeature, int iVariety, int iTimer);
+	void setTempBonusType(BonusTypes eBonus, int iTimer);
+	void setTempImprovementType(ImprovementTypes eImprovement, int iTimer);
+	void setTempRouteType(RouteTypes eRoute, int iTimer);
+
+	int getTempTerrainTimer() const;
+	int getTempFeatureTimer() const;
+	int getTempBonusTimer() const;
+	int getTempImprovementTimer() const;
+	int getTempRouteTimer() const;
+
+	void changeTempTerrainTimer(int iChange);
+	void changeTempFeatureTimer(int iChange);
+	void changeTempBonusTimer(int iChange);
+	void changeTempImprovementTimer(int iChange);
+	void changeTempRouteTimer(int iChange);
+
+	bool isHasTempTerrain();
+	bool isHasTempFeature();
+	bool isHasTempBonus();
+	bool isHasTempImprovement();
+	bool isHasTempRoute();
+// End Temporary map features
+
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
 	
-// LFGR_TEST
+#ifdef _DEBUG
 	bool bPlotAnimalEverValid;
 	bool bPlotAnimalValid;
 	bool bPlotBarbEverValid;
 	bool bPlotBarbValid;
-// LFGR_TEST end
+#endif
 
 protected:
 
@@ -830,6 +888,17 @@ protected:
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	int m_iTempFeatureTimer;
+	int m_iTempBonusTimer;
+	int m_iTempImprovementTimer;
+	int m_iTempRouteTimer;
+	short m_eRealFeatureType;
+	int m_iRealFeatureVariety;
+	short m_eRealBonusType;
+	short /*ImprovementTypes*/ m_eRealImprovementType;
+	short /*RouteTypes*/ m_eRealRouteType;
+// End Temporary Map Items
 	// added so under cheat mode we can access protected stuff
 	friend class CvGameTextMgr;
 };

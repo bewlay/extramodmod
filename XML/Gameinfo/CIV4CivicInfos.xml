@@ -83,8 +83,6 @@
             <ImprovementYieldChanges>
             </ImprovementYieldChanges>
 				    <!-- Revolution Mod Start -->
-						<bUpgradeAnywhere>0</bUpgradeAnywhere>
-						<bAllowInquisitions>0</bAllowInquisitions>
 						<bDisallowInquisitions>0</bDisallowInquisitions>
 						<iRevIdxLocal>2</iRevIdxLocal>
 						<iRevIdxNational>2</iRevIdxNational>
@@ -539,7 +537,6 @@
             <ImprovementYieldChanges>
             </ImprovementYieldChanges>
 						<!-- Revolution Mod Start -->
-						<bAllowInquisitions>1</bAllowInquisitions>
 						<iRevIdxLocal>0</iRevIdxLocal>
 						<iRevIdxNational>0</iRevIdxNational>
 						<iRevIdxDistanceModifier>0</iRevIdxDistanceModifier>
@@ -1492,6 +1489,10 @@
             <BuildingHappinessChanges>
                 <BuildingHappinessChange>
                     <BuildingType>BUILDINGCLASS_LIBRARY</BuildingType>
+                    <iHappinessChange>1</iHappinessChange>
+                </BuildingHappinessChange>
+                <BuildingHappinessChange>
+                    <BuildingType>BUILDINGCLASS_MUSEUM</BuildingType>
                     <iHappinessChange>1</iHappinessChange>
                 </BuildingHappinessChange>
             </BuildingHappinessChanges>
@@ -3262,7 +3263,7 @@
             <Strategy></Strategy>
             <Help></Help>
             <Button>Art/Interface/Buttons/Buildings/Dies Diei.dds</Button>
-            <TechPrereq>TECH_HONOR</TechPrereq>
+            <TechPrereq>TECH_MEDICINE</TechPrereq>
             <iAnarchyLength>0</iAnarchyLength>
             <Upkeep>UPKEEP_LOW</Upkeep>
             <iAIWeight>10</iAIWeight>
@@ -3354,7 +3355,7 @@
             <Strategy></Strategy>
             <Help></Help>
             <Button>Art/Interface/Buttons/Buildings/Nox Noctis.dds</Button>
-            <TechPrereq>TECH_DECEPTION</TechPrereq>
+            <TechPrereq>TECH_POISONS</TechPrereq>
             <iAnarchyLength>0</iAnarchyLength>
             <Upkeep>UPKEEP_LOW</Upkeep>
             <iAIWeight>10</iAIWeight>

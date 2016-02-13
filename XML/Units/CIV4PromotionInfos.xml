@@ -35,6 +35,7 @@
                     <iCombat>2</iCombat>
                 </DamageTypeCombat>
             </DamageTypeCombats>
+			<iExplorationResultBonus>10</iExplorationResultBonus>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_AIR1</Type>
@@ -360,6 +361,12 @@
                     <iCombat>1</iCombat>
                 </DamageTypeCombat>
             </DamageTypeCombats>
+            <DamageTypeResists>
+                <DamageTypeResist>
+                    <DamageType>DAMAGE_FIRE</DamageType>
+                    <iResist>15</iResist>
+                </DamageTypeResist>
+			</DamageTypeResists> 
         </PromotionInfo>
 		<PromotionInfo>
 			<Type>PROMOTION_BLINDED</Type>
@@ -646,6 +653,7 @@
             </UnitCombats>
             <Button>Art/Interface/Buttons/Promotions/BountyHunter.dds</Button>
             <iGoldFromCombat>2</iGoldFromCombat>
+			<iExplorationResultBonus>5</iExplorationResultBonus>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_BRONZE_WEAPONS</Type>
@@ -1557,6 +1565,7 @@
             <bImmuneToFear>1</bImmuneToFear>
             <iAIWeight>50</iAIWeight>
             <iMinLevel>-1</iMinLevel>
+			<iExplorationResultBonus>5</iExplorationResultBonus>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_COVER</Type>
@@ -5334,6 +5343,14 @@
             <PromotionPrereqAnd>PROMOTION_CHANNELING3</PromotionPrereqAnd>
         </PromotionInfo>
         <PromotionInfo>
+            <Type>PROMOTION_MISSIONARY</Type>
+            <Description>TXT_KEY_PROMOTION_MISSIONARY</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+			<bGraphicalOnly>1</bGraphicalOnly>
+            <Button>Art/Interface/Buttons/Promotions/Blessed.dds</Button>
+            <bAlwaysSpreadReligion>1</bAlwaysSpreadReligion>
+        </PromotionInfo>
+        <PromotionInfo>
             <Type>PROMOTION_MITHRIL_WEAPONS</Type>
             <Description>TXT_KEY_PROMOTION_MITHRIL_WEAPONS</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
@@ -5451,6 +5468,7 @@
             <iCombatPercentDefense>10</iCombatPercentDefense>
             <iExpireChance>10</iExpireChance>
             <iMinLevel>-1</iMinLevel>
+			<iExplorationResultBonus>5</iExplorationResultBonus>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_MUTATED</Type>
@@ -5969,12 +5987,6 @@
             <Description>TXT_KEY_PROMOTION_FAVORED</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
             <TechPrereq>TECH_NEVER</TechPrereq>
-            <UnitCombats>
-                <UnitCombat>
-                    <UnitCombatType>UNITCOMBAT_DISCIPLE</UnitCombatType>
-                    <bUnitCombat>1</bUnitCombat>
-                </UnitCombat>
-            </UnitCombats>
             <Button>Art/Interface/Buttons/Promotions/Favored.dds</Button>
             <bValidate>1</bValidate>
             <iCasterResistModify>-10</iCasterResistModify>
@@ -6176,9 +6188,12 @@
             <Description>TXT_KEY_PROMOTION_SAVAGE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
             <TechPrereq>TECH_NEVER</TechPrereq>
-            <Button>Art/Interface/Buttons/Promotions/Enraged.dds</Button>
+            <bAlwaysHeal>1</bAlwaysHeal>
+            <iEnemyHealChange>10</iEnemyHealChange>
+            <iNeutralHealChange>10</iNeutralHealChange>
+            <iFriendlyHealChange>10</iFriendlyHealChange>
+            <Button>Art/Interface/Buttons/Promotions/savage.dds</Button>
             <bImmuneToFear>1</bImmuneToFear>
-			<iCombatHealPercent>10</iCombatHealPercent>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_SCORCHED_STAFF</Type>
@@ -7528,6 +7543,7 @@
             <iFreeXPFromCombat>1</iFreeXPFromCombat>
             <iMinLevel>-1</iMinLevel>
             <iResistMagic>10</iResistMagic>
+			<iExplorationResultBonus>10</iExplorationResultBonus>
         </PromotionInfo>
         <PromotionInfo>
             <Type>PROMOTION_VAMPIRE</Type>
@@ -8094,6 +8110,115 @@
             </UnitCombats>
             <Button>Art/Interface/Buttons/Units/Wolf_Pack.dds</Button>
             <iMinLevel>-1</iMinLevel>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_AMULET_SEAS</Type>
+            <Description>TXT_KEY_EQUIPMENT_AMULET_SEAS</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <bAmphib>1</bAmphib>
+            <bRiver>1</bRiver>
+            <Button>Art/Interface/Buttons/Equipment/amuletseas.dds</Button>
+            <bWaterWalking>1</bWaterWalking>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_ANCIENT_BOW</Type>
+            <Description>TXT_KEY_EQUIPMENT_ANCIENT_BOW</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+                    <iUnitCombatMod>25</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
+            <UnitCombats>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+            </UnitCombats>
+            <Button>Art/Interface/Buttons/Equipment/ancientbow.dds</Button>
+            <bEquipment>1</bEquipment>
+            <iDefensiveStrikeChance>10</iDefensiveStrikeChance>
+            <iDefensiveStrikeDamage>5</iDefensiveStrikeDamage>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_COMPELLING_JEWEL</Type>
+            <Description>TXT_KEY_EQUIPMENT_COMPELLING_JEWEL</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Equipment/compellingjewel.dds</Button>
+			<iCombatCapturePercent>10</iCombatCapturePercent>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_HEART_AMULET</Type>
+            <Description>TXT_KEY_EQUIPMENT_HEART_AMULET</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <bAlwaysHeal>1</bAlwaysHeal>
+            <iEnemyHealChange>10</iEnemyHealChange>
+            <iNeutralHealChange>10</iNeutralHealChange>
+            <iFriendlyHealChange>10</iFriendlyHealChange>
+            <Button>Art/Interface/Buttons/Equipment/heartamulet.dds</Button>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_MENACING_HELM</Type>
+            <Description>TXT_KEY_EQUIPMENT_MENACING_HELM</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Equipment/menacinghelm.dds</Button>
+			<bFear>1</bFear>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_HAUBERK_OF_ABJURATION</Type>
+            <Description>TXT_KEY_EQUIPMENT_HAUBERK_OF_ABJURATION</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Equipment/hauberkofabjuration.dds</Button>
+            <bEquipment>1</bEquipment>
+            <bImmuneToMagic>1</bImmuneToMagic>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_PATRIAN_ARTIFACT</Type>
+            <Description>TXT_KEY_EQUIPMENT_PATRIAN_ARTIFACT</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Equipment/patrianartifact.dds</Button>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_OBSIDIAN_SPEAR</Type>
+            <Description>TXT_KEY_EQUIPMENT_OBSIDIAN_SPEAR</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <UnitCombatMods>
+                <UnitCombatMod>
+                    <UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
+                    <iUnitCombatMod>80</iUnitCombatMod>
+                </UnitCombatMod>
+            </UnitCombatMods>
+            <UnitCombats>
+                <UnitCombat>
+                    <UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+                    <bUnitCombat>1</bUnitCombat>
+                </UnitCombat>
+            </UnitCombats>
+            <Button>Art/Interface/Buttons/Equipment/obsidianspear.dds</Button>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_RADIANT_AMULET</Type>
+            <Description>TXT_KEY_EQUIPMENT_RADIANT_AMULET</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Equipment/radiantamulet.dds</Button>
+            <bSeeInvisible>1</bSeeInvisible>
+            <bEquipment>1</bEquipment>
+        </PromotionInfo>
+        <PromotionInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+            <Type>PROMOTION_WYRMSLAYER</Type>
+            <Description>TXT_KEY_EQUIPMENT_WYRMSLAYER</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Equipment/wyrmslayer.dds</Button>
+            <PromotionCombatType>PROMOTION_DRAGON</PromotionCombatType>
+            <iPromotionCombatMod>100</iPromotionCombatMod>
+            <bEquipment>1</bEquipment>
         </PromotionInfo>
 <!-- MORE EVENTS MOD STARTS -->		
 		<PromotionInfo>

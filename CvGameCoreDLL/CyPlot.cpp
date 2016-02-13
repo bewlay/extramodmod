@@ -163,10 +163,16 @@ bool CyPlot::canHaveBonus(int /*BonusTypes*/ eBonus, bool bIgnoreLatitude)
 	return m_pPlot ? m_pPlot->canHaveBonus((BonusTypes)eBonus, bIgnoreLatitude) : false;
 }
 
-bool CyPlot::canHaveImprovement(int /* ImprovementTypes */ eImprovement, int /*TeamTypes*/ eTeam, bool bPotential)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+//bool CyPlot::canHaveImprovement(int /* ImprovementTypes */ eImprovement, int /*TeamTypes*/ eTeam, bool bPotential)
+//{
+//	return m_pPlot ? m_pPlot->canHaveImprovement(((ImprovementTypes)eImprovement), ((TeamTypes)eTeam), bPotential) : false;
+//}
+bool CyPlot::canHaveImprovement(int /* ImprovementTypes */ eImprovement, int /*PlayerTypes*/ ePlayer, bool bPotential)
 {
-	return m_pPlot ? m_pPlot->canHaveImprovement(((ImprovementTypes)eImprovement), ((TeamTypes)eTeam), bPotential) : false;
+	return m_pPlot ? m_pPlot->canHaveImprovement((ImprovementTypes)eImprovement, (PlayerTypes)ePlayer, bPotential) : false;
 }
+//<<<<Unofficial Bug Fix: End Modify
 
 bool CyPlot::canBuild(int /*BuildTypes*/ eBuild, int /*PlayerTypes*/ ePlayer, bool bTestVisible)
 {
@@ -322,6 +328,13 @@ bool CyPlot::isRevealedGoody(int /*TeamTypes*/ eTeam)
 {
 	return m_pPlot ? m_pPlot->isRevealedGoody((TeamTypes) eTeam) : false;
 }
+
+
+//bool CyPlot::isCity(bool bCheckImprovement, int /*TeamTypes*/ eForTeam)
+/*{
+	return m_pPlot ? m_pPlot->isCity(bCheckImprovement,(TeamTypes) eForTeam) : false;
+}
+*/
 
 bool CyPlot::isCity()
 {
@@ -835,6 +848,8 @@ int CyPlot::getYield(YieldTypes eIndex)
 	return m_pPlot ? m_pPlot->getYield(eIndex) : -1;
 }
 
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+/*
 int CyPlot::calculateNatureYield(YieldTypes eIndex, TeamTypes eTeam, bool bIgnoreFeature)
 {
 	return m_pPlot ? m_pPlot->calculateNatureYield(eIndex, eTeam, bIgnoreFeature) : -1;
@@ -849,6 +864,22 @@ int CyPlot::calculateTotalBestNatureYield(TeamTypes eTeam)
 {
 	return m_pPlot ? m_pPlot->calculateTotalBestNatureYield(eTeam) : -1;
 }
+*/
+int CyPlot::calculateNatureYield(YieldTypes eIndex, PlayerTypes ePlayer, bool bIgnoreFeature)
+{
+	return m_pPlot ? m_pPlot->calculateNatureYield(eIndex, ePlayer, bIgnoreFeature) : -1;
+}
+
+int CyPlot::calculateBestNatureYield(YieldTypes eIndex, PlayerTypes ePlayer)
+{
+	return m_pPlot ? m_pPlot->calculateBestNatureYield(eIndex, ePlayer) : -1;
+}
+
+int CyPlot::calculateTotalBestNatureYield(PlayerTypes ePlayer)
+{
+	return m_pPlot ? m_pPlot->calculateTotalBestNatureYield(ePlayer) : -1;
+}
+//<<<<Unofficial Bug Fix: End Modify
 
 int CyPlot::calculateImprovementYieldChange(int /*ImprovementTypes*/ eImprovement, YieldTypes eYield, int /*PlayerTypes*/ ePlayer, bool bOptimal)
 {
@@ -1146,12 +1177,6 @@ int CyPlot::getNumAnimalUnits() const
 	return m_pPlot ? m_pPlot->getNumAnimalUnits() : -1;
 }
 
-void CyPlot::setTempTerrainType(int /*TerrainTypes*/ eNewValue, int iTimer)
-{
-	if (m_pPlot)
-		m_pPlot->setTempTerrainType((TerrainTypes)eNewValue, iTimer);
-}
-
 bool CyPlot::isVisibleToCivTeam() const
 {
 	return m_pPlot ? m_pPlot->isVisibleToCivTeam() : false;
@@ -1221,8 +1246,207 @@ int CyPlot::getSpawnValue( int /*SpawnTypes*/ eSpawnType, bool bDungeon ) const
 void CyPlot::createSpawn( int /*SpawnTypes*/ eSpawnType, int /*UnitAITypes*/ eUnitAI )
 {
 	if( m_pPlot )
-		m_pPlot->createSpawn( (SpawnTypes) eSpawnType, (UnitAITypes) eUnitAI );
+	{
+		// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
+		int iMinWilderness = m_pPlot->calcMinWilderness( (SpawnTypes) eSpawnType );
+		// Choose a random number between this plot's wilderness and the required wilderness for the spawn
+		iMinWilderness += GC.getGameINLINE().getSorenRandNum( m_pPlot->getWilderness() - iMinWilderness, "Spawn Wilderness" );
+		m_pPlot->createSpawn( (SpawnTypes) eSpawnType,iMinWilderness, (UnitAITypes) eUnitAI );
+	}
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
+
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+TerrainTypes CyPlot::getRealTerrainType() const
+{
+	return m_pPlot->getRealTerrainType();
+}
+
+FeatureTypes CyPlot::getRealFeatureType() const
+{
+	return m_pPlot->getRealFeatureType();
+}
+
+int CyPlot::getRealFeatureVariety() const
+{
+	return m_pPlot ? m_pPlot->getRealFeatureVariety() : -1;
+}
+
+BonusTypes CyPlot::getRealBonusType() const
+{
+	return m_pPlot->getRealBonusType();
+}
+
+ImprovementTypes CyPlot::getRealImprovementType() const
+{
+	return m_pPlot->getRealImprovementType();
+}
+
+RouteTypes CyPlot::getRealRouteType() const
+{
+	return m_pPlot->getRealRouteType();
+}
+
+void CyPlot::setRealTerrainType(int /*TerrainTypes*/ eTerrain)
+{
+	if (m_pPlot)
+		m_pPlot->setRealTerrainType((TerrainTypes)eTerrain);
+}
+
+void CyPlot::setRealFeatureType(int /*FeatureTypes*/ eFeature)
+{
+	if (m_pPlot)
+		m_pPlot->setRealFeatureType((FeatureTypes)eFeature);
+}
+
+void CyPlot::setRealFeatureVariety(int iVariety)
+{
+	if (m_pPlot)
+		m_pPlot->setRealFeatureVariety(iVariety);
+}
+
+void CyPlot::setRealBonusType(int /*BonusTypes*/ eBonus)
+{
+	if (m_pPlot)
+		m_pPlot->setRealBonusType((BonusTypes)eBonus);
+}
+
+void CyPlot::setRealImprovementType(int /*ImprovementTypes*/ eImprovement)
+{
+	if (m_pPlot)
+		m_pPlot->setRealImprovementType((ImprovementTypes)eImprovement);
+}
+
+void CyPlot::setRealRouteType(int /*RouteTypes*/ eRoute)
+{
+	if (m_pPlot)
+		m_pPlot->setRealRouteType((RouteTypes)eRoute);
+}
+
+void CyPlot::setTempTerrainType(int /*TerrainTypes*/ eNewValue, int iTimer)
+{
+	if (m_pPlot)
+		m_pPlot->setTempTerrainType((TerrainTypes)eNewValue, iTimer);
+}
+
+void CyPlot::setTempFeatureType(int /*FeatureTypes*/ eFeature, int iVariety, int iTimer)
+{
+	if (m_pPlot)
+		m_pPlot->setTempFeatureType((FeatureTypes) eFeature, iVariety, iTimer);
+}
+
+void CyPlot::setTempBonusType(int /*BonusTypes*/ eBonus, int iTimer)
+{
+	if (m_pPlot)
+		m_pPlot->setTempBonusType((BonusTypes) eBonus, iTimer);
+}
+
+void CyPlot::setTempImprovementType(int /*BonusTypes*/ eImprovement, int iTimer)
+{
+	if (m_pPlot)
+		m_pPlot->setTempImprovementType((ImprovementTypes) eImprovement, iTimer);
+}
+
+void CyPlot::setTempRouteType(int /*RouteTypes*/ eRoute, int iTimer)
+{
+	if (m_pPlot)
+		m_pPlot->setTempRouteType((RouteTypes) eRoute, iTimer);
+}
+
+int CyPlot::getTempTerrainTimer() const
+{
+	return m_pPlot ? m_pPlot->getTempTerrainTimer() : -1;
+}
+
+int CyPlot::getTempFeatureTimer() const
+{
+	return m_pPlot ? m_pPlot->getTempFeatureTimer() : -1;
+}
+
+int CyPlot::getTempBonusTimer() const
+{
+	return m_pPlot ? m_pPlot->getTempBonusTimer() : -1;
+}
+
+int CyPlot::getTempImprovementTimer() const
+{
+	return m_pPlot ? m_pPlot->getTempImprovementTimer() : -1;
+}
+
+int CyPlot::getTempRouteTimer() const
+{
+	return m_pPlot ? m_pPlot->getTempRouteTimer() : -1;
+}
+
+void CyPlot::changeTempTerrainTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		if (m_pPlot)
+			m_pPlot->changeTempTerrainTimer(iChange);
+	}
+}
+
+void CyPlot::changeTempFeatureTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		if (m_pPlot)
+			m_pPlot->changeTempFeatureTimer(iChange);
+	}
+}
+
+void CyPlot::changeTempBonusTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		if (m_pPlot)
+			m_pPlot->changeTempBonusTimer(iChange);
+	}
+}
+
+void CyPlot::changeTempImprovementTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		if (m_pPlot)
+			m_pPlot->changeTempImprovementTimer(iChange);
+	}
+}
+
+void CyPlot::changeTempRouteTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		if (m_pPlot)
+			m_pPlot->changeTempRouteTimer(iChange);
+	}
+}
+
+bool CyPlot::isHasTempTerrain()
+{
+	return m_pPlot ? m_pPlot->isHasTempTerrain() : false;
+}
+
+bool CyPlot::isHasTempFeature()
+{
+	return m_pPlot ? m_pPlot->isHasTempFeature() : false;
+}
+
+bool CyPlot::isHasTempBonus()
+{
+	return m_pPlot ? m_pPlot->isHasTempBonus() : false;
+}
+
+bool CyPlot::isHasTempImprovement()
+{
+	return m_pPlot ? m_pPlot->isHasTempImprovement() : false;
+}
+
+bool CyPlot::isHasTempRoute()
+{
+	return m_pPlot ? m_pPlot->isHasTempRoute() : false;
+}
+// End Temporary Map Items

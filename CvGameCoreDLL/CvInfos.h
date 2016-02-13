@@ -336,9 +336,9 @@ public:
 	bool isDefensivePactTrading() const;	// Exposed to Python
 	bool isPermanentAllianceTrading() const;	// Exposed to Python
 	bool isVassalStateTrading() const;	// Exposed to Python
-// MNAI - Puppet States
+	// MNAI - Puppet States
 	bool isPuppetStateTrading() const;	// Exposed to Python
-// MNAI End
+	// MNAI - End Puppet States
 	bool isBridgeBuilding() const;				// Exposed to Python
 	bool isIrrigation() const;						// Exposed to Python
 	bool isIgnoreIrrigation() const;			// Exposed to Python
@@ -422,9 +422,9 @@ protected:
 	bool m_bDefensivePactTrading;
 	bool m_bPermanentAllianceTrading;
 	bool m_bVassalStateTrading;
-// MNAI - Puppet States
+	// MNAI - Puppet States
 	bool m_bPuppetStateTrading;
-// MNAI End
+	// MNAI - End Puppet States
 	bool m_bBridgeBuilding;
 	bool m_bIrrigation;
 	bool m_bIgnoreIrrigation;
@@ -636,7 +636,10 @@ public:
 	bool isAllowsMoveImpassable() const;
 	bool isAllowsMoveLimitedBorders() const;
 	bool isCastingBlocked() const;
+	bool isBlocksUpgrade() const;
+	bool isBlocksGifting() const;
 	bool isUpgradeOutsideBorders() const;
+	bool isAlwaysSpreadReligion() const;
 	// End MNAI
 
 	bool readPass3();
@@ -793,7 +796,10 @@ protected:
 	bool m_bAllowsMoveImpassable;
 	bool m_bAllowsMoveLimitedBorders;
 	bool m_bCastingBlocked;
+	bool m_bBlocksUpgrade;
+	bool m_bBlocksGifting;
 	bool m_bUpgradeOutsideBorders;
+	bool m_bAlwaysSpreadReligion;
 	// End MNAI
 
 	// Arrays
@@ -907,6 +913,9 @@ public:
 	bool isRemoveHasCasted() const;
 	bool isResistable() const;
 	bool isSacrificeCaster() const;
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	bool isNoInterruptUnitCycling() const;
+//<<<<Spell Interrupt Unit Cycling: End Add
 	bool isRemoveInvalidFeature() const;	// MNAI
 
 	const TCHAR* getSound() const;
@@ -1015,6 +1024,9 @@ protected:
     bool m_bPush;
     bool m_bRemoveHasCasted;
     bool m_bSacrificeCaster;
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	bool m_bNoInterruptUnitCycling;
+//<<<<Spell Interrupt Unit Cycling: End Add
 	bool m_bRemoveInvalidFeature;	// MNAI
     int m_iChangePopulation;
     int m_iCost;
@@ -1972,8 +1984,6 @@ public:
 /*                                                                                              */
 /* RevCivicEffects                                                                              */
 /************************************************************************************************/
-	bool isUpgradeAnywhere() const;
-	bool isAllowInquisitions() const;
 	bool isDisallowInquisitions() const;
 	int getRevIdxLocal() const;
 	int getRevIdxNational() const;
@@ -2098,8 +2108,6 @@ protected:
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	int m_bUpgradeAnywhere;
-	int m_bAllowInquisitions;
 	int m_bDisallowInquisitions;
 	int m_iRevIdxLocal;
 	int m_iRevIdxNational;
@@ -2362,7 +2370,6 @@ public:
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	int getUnitUpgradePriceModifier() const;					// Exposed to Python
 	int getRevIdxLocal() const;					// Exposed to Python
 	int getRevIdxNational() const;					// Exposed to Python
 	int getRevIdxDistanceModifier() const;					// Exposed to Python
@@ -2616,7 +2623,6 @@ protected:
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	int m_iUnitUpgradePriceModifier;
 	int m_iRevIdxLocal;
 	int m_iRevIdxNational;
 	int m_iRevIdxDistanceModifier;
@@ -3003,7 +3009,16 @@ public:
 	void setDerivativeCiv(int iCiv);
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	int getCivTrait() const;
+*/
+	bool isCivTraits( int i ) const;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	int getDefaultRace() const;
 	int getHero() const;
 	bool isMaintainFeatures(int i) const;
@@ -3074,6 +3089,16 @@ protected:
 	bool* m_pbCivilizationDisableTechs;
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+/* old
+	int m_iCivTrait;
+*/
+	bool* m_pbCivTraits;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	int m_iCivTrait;
 	int m_iDefaultRace;
 	int m_iHero;
@@ -3132,6 +3157,16 @@ public:
 	const char* getMovie() const;
 
 	bool read(CvXMLLoadUtility* pXML);
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**								Defines Function for Use in .cpp								**/
+/*************************************************************************************************/
+	int getLinkedVictory() const;
+	bool readPass2(CvXMLLoadUtility* pXML);
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
 
 protected:
@@ -3152,7 +3187,15 @@ protected:
 	bool m_bPermanent;
 
 	CvString m_szMovie;
-
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**								Defines Variable for Use in .cpp								**/
+/*************************************************************************************************/
+	int m_iLinkedVictory;
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -3227,6 +3270,14 @@ public:
 	int getTechTradeKnownModifier() const;				// Exposed to Python
 	int getUnownedTilesPerGameAnimal() const;				// Exposed to Python
 	int getUnownedTilesPerBarbarianUnit() const;				// Exposed to Python
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	int getUnownedWaterTilesPerGameAnimal() const;				// Exposed to Python
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	int getUnownedWaterTilesPerBarbarianUnit() const;				// Exposed to Python
 	int getUnownedTilesPerBarbarianCity() const;				// Exposed to Python
 	int getBarbarianCreationTurnsElapsed() const;				// Exposed to Python
@@ -3306,6 +3357,14 @@ protected:
 	int m_iTechTradeKnownModifier;
 	int m_iUnownedTilesPerGameAnimal;
 	int m_iUnownedTilesPerBarbarianUnit;
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	int m_iUnownedWaterTilesPerGameAnimal;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	int m_iUnownedWaterTilesPerBarbarianUnit;
 	int m_iUnownedTilesPerBarbarianCity;
 	int m_iBarbarianCreationTurnsElapsed;
@@ -4166,6 +4225,11 @@ public:
 	bool readPass2(CvXMLLoadUtility* pXML);
 //FfH: End Add
 
+// Features modified by Armageddon Counter START
+	int getFeatureDown() const;
+	int getFeatureUp() const;
+// Features modified by Armageddon Counter END
+
 	// Arrays
 
 	int getYieldChange(int i) const;						// Exposed to Python
@@ -4221,6 +4285,11 @@ protected:
 	int m_iRequireResist;
 	CvString m_szPythonOnMove;
 //FfH: End Add
+
+// Features modified by Armageddon Counter START
+	int m_iFeatureDown;
+	int m_iFeatureUp;
+// Features modified by Armageddon Counter END
 
 	// Arrays
 
@@ -4665,6 +4734,10 @@ public:
     int getReligionWeightModifier(int i) const;
 //FfH: End Add
 
+// Leader categories START
+	int getLeaderCategory() const;
+// Leader categories END
+
 	void write(FDataStreamBase* stream);
 	void read(FDataStreamBase* stream);
 	bool read(CvXMLLoadUtility* pXML);
@@ -4780,6 +4853,10 @@ protected:
 	int m_iPermanentTrait;
     int* m_piReligionWeightModifier;
 //FfH: End Add
+
+// Leader categories START
+	int m_iLeaderCategory;
+// Leader categories END
 
 	// Arrays
 
@@ -5398,6 +5475,13 @@ public:
     bool isInsane() const;
     bool isSelectable() const;
     bool isSprawling() const;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+	bool isAllUnitsFreePromotion() const;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
     int getFreeXPFromCombat() const;
     int getMaxCities() const;
     int getPillagingGold() const;
@@ -5442,6 +5526,13 @@ protected:
 	bool m_bInsane;
 	bool m_bSelectable;
 	bool m_bSprawling;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+	bool m_bAllUnitsFreePromotion;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	int m_iFreeXPFromCombat;
 	int m_iMaxCities;
 	int m_iPillagingGold;
@@ -7834,6 +7925,7 @@ public:
 	int getTerrainFlavourType() const;
 	int getUnitArtStyleType() const;
 	int getSpawnPrereqType() const;
+	int getUnitAIType() const;
 	
 	int getWeight() const;
 	int getValidTerrainWeight() const;
@@ -7841,8 +7933,9 @@ public:
 	
 	int getMinRandomPromotions() const;
 	int getMaxRandomPromotions() const;
-
-	int getNumRandomIncludedSpawns() const;
+	
+	int getMinIncludedSpawns() const;
+	int getMaxIncludedSpawns() const;
 	
 	int getCreateLairAge() const;
 	int getCreateLairLevel() const;
@@ -7851,6 +7944,7 @@ public:
 	int getMaxTier() const;
 	
 	bool isNeverSpawn() const;
+	bool isNoWildernessIgnoreSpawnPrereq() const;
 	bool isExplorationResult() const;
 	bool isAnimal() const;
 	bool isWater() const;
@@ -7858,14 +7952,17 @@ public:
 	bool isNoRace() const;
 	bool isExplorationNoPush() const;
 	bool isNoDefender() const;
+	bool isNoMinWilderness() const;
 	
 	int getNumSpawnUnits( int eUnit ) const;
 	
 	// LFGR_TODO: is...
 	bool getUnitPromotions( int ePromotion ) const;
-	bool isIncludedSpawns( int eSpawn ) const;
-	bool getPrereqTechs( int eTech ) const;
-	bool getObsoleteTechs( int eTech ) const;
+	
+	int getIncludedSpawnMin( int eSpawn ) const;
+	int getIncludedSpawnMax( int eSpawn ) const;
+	bool isIncludedSpawnIgnoreTerrain( int eSpawn ) const;
+	bool isIncludedSpawnCountSeparately( int eSpawn ) const;
 
 	bool read(CvXMLLoadUtility* pXML);
 	bool readPass2(CvXMLLoadUtility* pXML);
@@ -7880,19 +7977,22 @@ protected:
 	int m_eUnitArtStyleType;
 	int m_eTerrainFlavourType;
 	int m_eSpawnPrereqType;
+	int m_eUnitAIType;
 	
 	int m_iWeight;
 	int m_iValidTerrainWeight;
 	int m_iPrereqGlobalCounter;
 	int m_iMinRandomPromotions;
 	int m_iMaxRandomPromotions;
-	int m_iNumRandomIncludedSpawns;
+	int m_iMinIncludedSpawns;
+	int m_iMaxIncludedSpawns;
 	int m_iCreateLairLevel;
 	int m_iCreateLairAge;
 	int m_iMinTier;
 	int m_iMaxTier;
-
+	
 	bool m_bNeverSpawn;
+	bool m_bNoWildernessIgnoreSpawnPrereq;
 	bool m_bExplorationResult;
 	bool m_bExplorationNoPush;
 	bool m_bNoDefender;
@@ -7900,13 +8000,18 @@ protected:
 	bool m_bWater;
 	
 	bool m_bNoRace;
+	bool m_bNoMinWilderness;
 
 	// Arrays
 	
 	int* m_piNumSpawnUnits;
 	
 	bool* m_pbUnitPromotions;
-	bool* m_pbIncludedSpawns;
+
+	int* m_piIncludedSpawnMin;
+	int* m_piIncludedSpawnMax;
+	bool* m_pbIncludedSpawnIgnoreTerrain;
+	bool* m_pbIncludedSpawnCountSeparately;
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

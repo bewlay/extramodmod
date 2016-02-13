@@ -239,6 +239,16 @@ m_iUSE_PLOT_REVEALED_CALLBACK(0),
 m_iUSE_COMBAT_RESULT_CALLBACK(0),
 //FfH: End Add
 
+m_iTECH_PROPAGATION_TEAMS_MAX(30),
+m_iTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE(15),
+m_iTECH_PROPAGATION_TEAMS_MASTER(30),
+m_iTECH_PROPAGATION_TEAMS_OPEN_BORDERS(45),
+m_iTECH_PROPAGATION_TEAMS_VASSAL(60),
+m_iTECH_PROPAGATION_TEAMS_EMBASSY(15),
+m_iTECH_PROPAGATION_TEAMS_ALIGMENT(10),
+m_iTECH_PROPAGATION_TEAMS_RELIGION(10),
+m_iTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT(15),
+
 m_paHints(NULL),
 m_paMainMenus(NULL)
 /************************************************************************************************/
@@ -322,7 +332,10 @@ void CvGlobals::init()
 		0,	// CARDINALDIRECTION_WEST
 	};
 
-	int aiCityPlotX[NUM_CITY_PLOTS] =
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	int aiCityPlotX[NUM_CITY_PLOTS] =
+	int aiCityPlotX[NUM_MAX_CITY_PLOTS] =
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		0,
 		0, 1, 1, 1, 0,-1,-1,-1,
@@ -334,7 +347,10 @@ void CvGlobals::init()
 
 	};
 
-	int aiCityPlotY[NUM_CITY_PLOTS] =
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	int aiCityPlotY[NUM_CITY_PLOTS] =
+	int aiCityPlotY[NUM_MAX_CITY_PLOTS] =
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		0,
 		1, 1, 0,-1,-1,-1, 0, 1,
@@ -346,7 +362,10 @@ void CvGlobals::init()
 
 	};
 
-	int aiCityPlotPriority[NUM_CITY_PLOTS] =
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	int aiCityPlotPriority[NUM_CITY_PLOTS] =
+	int aiCityPlotPriority[NUM_MAX_CITY_PLOTS] =
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		0,
 		1, 2, 1, 2, 1, 2, 1, 2,
@@ -358,7 +377,10 @@ void CvGlobals::init()
 
 	};
 
-	int aaiXYCityPlot[CITY_PLOTS_DIAMETER][CITY_PLOTS_DIAMETER] =
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/05
+//	int aaiXYCityPlot[CITY_PLOTS_DIAMETER][CITY_PLOTS_DIAMETER] =
+	int aaiXYCityPlot[CITY_PLOTS_MAX_DIAMETER][CITY_PLOTS_MAX_DIAMETER] =
+//<<<<Unofficial Bug Fix: End Modify
 	{
 
 //FfH: Modified by Kael 11/18/2007
@@ -710,10 +732,18 @@ int* CvGlobals::getCityPlotPriority()
 
 int CvGlobals::getXYCityPlot(int i, int j)
 {
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/05
+/*
 	FAssertMsg(i < CITY_PLOTS_DIAMETER, "Index out of bounds");
 	FAssertMsg(i > -1, "Index out of bounds");
 	FAssertMsg(j < CITY_PLOTS_DIAMETER, "Index out of bounds");
 	FAssertMsg(j > -1, "Index out of bounds");
+*/
+	FAssertMsg(i < CITY_PLOTS_MAX_DIAMETER, "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	FAssertMsg(j < CITY_PLOTS_MAX_DIAMETER, "Index out of bounds");
+	FAssertMsg(j > -1, "Index out of bounds");
+//<<<<Unofficial Bug Fix: End Modify
 	return m_aaiXYCityPlot[i][j];
 }
 
@@ -2911,6 +2941,18 @@ int CvGlobals::getDefineINT( const char * szName ) const
 	return iReturn;
 }
 
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+float CvGlobals::getDefineFLOAT( const char * szName, const float fDefault ) const
+{
+	float fReturn = 0;
+
+	if( GC.getDefinesVarSystem()->GetValue( szName, fReturn ) )
+		return fReturn;
+
+	return fDefault;
+}
+// WILDERNESS end
+
 float CvGlobals::getDefineFLOAT( const char * szName ) const
 {
 	float fReturn = 0;
@@ -3367,7 +3409,10 @@ int CvGlobals::getINVALID_PLOT_COORD()
 
 int CvGlobals::getNUM_CITY_PLOTS()
 {
-	return NUM_CITY_PLOTS;
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	return NUM_CITY_PLOTS;
+	return ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS);
+//<<<<Unofficial Bug Fix: End Modify
 }
 
 int CvGlobals::getCITY_HOME_PLOT()
@@ -3799,6 +3844,10 @@ void CvGlobals::deleteInfoArrays()
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Leader categories START
+	deleteInfoArray(m_paLeaderCategoryInfos);
+// Leader categories END
+
 	clearTypesMap();
 	m_aInfoVectors.clear();
 }
@@ -4019,3 +4068,61 @@ bool CvGlobals::isDYNAMIC_CIV_NAMES()
 	return m_bDYNAMIC_CIV_NAMES;
 }
 
+// Leader categories START
+std::vector<CvInfoBase*>& CvGlobals::getLeaderCategoryInfo()
+{
+	return m_paLeaderCategoryInfos;
+}
+
+CvInfoBase& CvGlobals::getLeaderCategoryInfo(LeaderHeadCategories eLeaderCategoryNum)
+{
+	FAssert(eLeaderCategoryNum >= 0);
+	FAssert(eLeaderCategoryNum < NUM_LEADERCATEGORIES);
+	return *(m_paLeaderCategoryInfos[eLeaderCategoryNum]);
+}
+// Leader categories END
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_MAX()
+{
+	return m_iTECH_PROPAGATION_TEAMS_MAX;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE()
+{
+	return m_iTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_MASTER()
+{
+	return m_iTECH_PROPAGATION_TEAMS_MASTER;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_OPEN_BORDERS()
+{
+	return m_iTECH_PROPAGATION_TEAMS_OPEN_BORDERS;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_VASSAL()
+{
+	return m_iTECH_PROPAGATION_TEAMS_VASSAL;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_EMBASSY()
+{
+	return m_iTECH_PROPAGATION_TEAMS_EMBASSY;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_ALIGMENT()
+{
+	return m_iTECH_PROPAGATION_TEAMS_ALIGMENT;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_RELIGION()
+{
+	return m_iTECH_PROPAGATION_TEAMS_RELIGION;
+}
+
+int CvGlobals::getTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT()
+{
+	return m_iTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT;
+}

@@ -71,6 +71,9 @@ void reassignStartingPlots()
 				logBBAI( "Pushed player %d stays at old starting plot: %d|%d", i, aiOldXs[iOtherPlayer], aiOldYs[iOtherPlayer] );
 		}
 	}
+	
+	SAFE_DELETE_ARRAY( aiOldXs );
+	SAFE_DELETE_ARRAY( aiOldYs );
 }
 
 mat buildCostMatrix()

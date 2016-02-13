@@ -60,7 +60,7 @@ BLACKLIST=CvTextScreens
 ## However you will only be able to tell a difference if you do something with asserts other than FAssert() or FAssertMsg()
 
 Debug_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /D_DEBUG /DLOG_AI
-Release_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DFINAL_RELEASE
+Release_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DLOG_AI /DFINAL_RELEASE
 
 #### You shouldn't need to modify anything beyond this point ####
 #################################################################
@@ -169,7 +169,7 @@ CFLAGS  = $(Release_CFLAGS)
 LDFLAGS = $(Release_LDFLAGS)
 !ENDIF
 !IF "$(TARGET)" == "Assert"
-CFLAGS  = $(Release_CFLAGS) /DFASSERT_ENABLE /DLOG_AI
+CFLAGS  = $(Release_CFLAGS) /DFASSERT_ENABLE
 LDFLAGS = $(Release_LDFLAGS)
 !ENDIF
 !IF "$(TARGET)" == "Profile"
@@ -179,9 +179,13 @@ LDFLAGS = $(Release_LDFLAGS)
 CFLAGS  = $(Release_CFLAGS) /Zi
 LDFLAGS = $(Debug_LDFLAGS)
 !ENDIF
+!IF "$(TARGET)" == "OOS"
+CFLAGS  = $(Release_CFLAGS) /DAUTOMATIC_OOS_DETECTION
+LDFLAGS = $(Release_LDFLAGS)
+!ENDIF
 
 !IFNDEF CFLAGS
-!ERROR Target "$(TARGET)" not supported. Supported targets: Debug Release Assert Profile
+!ERROR Target "$(TARGET)" not supported. Supported targets: Debug Release Assert Profile OOS
 !ENDIF
 
 #### Targets ####

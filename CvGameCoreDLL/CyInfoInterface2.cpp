@@ -84,7 +84,16 @@ void CyInfoPythonInterface2()
 		.def("getUnitArtStyleType", &CvCivilizationInfo::getUnitArtStyleType, "int ()")
 		.def("getDefaultRace", &CvCivilizationInfo::getDefaultRace, "int ()")
 		.def("isMaintainFeatures", &CvCivilizationInfo::isMaintainFeatures, "bool (int i)")
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+	/********************************************************************************/
+	/* old
 		.def("getCivTrait", &CvCivilizationInfo::getCivTrait, "int ()")
+	*/
+		.def("isCivTraits", &CvCivilizationInfo::isCivTraits, "bool (int i)")
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                                                     END     */
+	/********************************************************************************/
 //FfH: End Add
 
 /*************************************************************************************************/
@@ -155,6 +164,14 @@ void CyInfoPythonInterface2()
 		.def("getTechTradeKnownModifier", &CvHandicapInfo::getTechTradeKnownModifier, "int ()")
 		.def("getUnownedTilesPerGameAnimal", &CvHandicapInfo::getUnownedTilesPerGameAnimal, "int ()")
 		.def("getUnownedTilesPerBarbarianUnit", &CvHandicapInfo::getUnownedTilesPerBarbarianUnit, "int ()")
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+		.def("getUnownedWaterTilesPerGameAnimal", &CvHandicapInfo::getUnownedWaterTilesPerGameAnimal, "int ()")
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 		.def("getUnownedWaterTilesPerBarbarianUnit", &CvHandicapInfo::getUnownedWaterTilesPerBarbarianUnit, "int ()")
 		.def("getUnownedTilesPerBarbarianCity", &CvHandicapInfo::getUnownedTilesPerBarbarianCity, "int ()")
 		.def("getBarbarianCreationTurnsElapsed", &CvHandicapInfo::getBarbarianCreationTurnsElapsed, "int ()")
@@ -422,6 +439,7 @@ void CyInfoPythonInterface2()
 		.def("isNormalize", &CvBonusInfo::isNormalize, "bool ()")
 
 		.def("getArtDefineTag", &CvBonusInfo::getArtDefineTag, "string ()")
+		.def("isMana", &CvBonusInfo::isMana, "bool ()")
 
 		// Arrays
 

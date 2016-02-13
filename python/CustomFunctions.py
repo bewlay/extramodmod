@@ -7,10 +7,20 @@ import Popup as PyPopup
 import PyHelpers
 import CvScreenEnums
 import CvCameraControls
+from operator import itemgetter # K-Mod (used to avoid OOS when sorting)
+
+# lfgr events enhanced 08/2014
+from math import *
+# lfgr end
 
 # globals
 gc = CyGlobalContext()
 PyPlayer = PyHelpers.PyPlayer
+
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+lAdventurerBuildings = []
+lAdventurerBuildingsPoints = []
+#AdventurerCounter End
 
 class CustomFunctions:
 
@@ -130,18 +140,21 @@ class CustomFunctions:
 		ePillageImprovement = gc.getImprovementInfo( pPlot.getImprovementType() ).getImprovementPillage()
 		bNoDestroy = ( ePillageImprovement != -1 )
 		
-		eSpawn = self.pickSpawn( pUnit )
+		# Invisible units don't get spawns
+		if( not pUnit.isInvisible( gc.getBARBARIAN_TEAM(), False ) ) :
+			eSpawn = self.pickSpawn( pUnit )
+			if( eSpawn == None ) :
+				CvUtil.pyPrint( "WARNING: No spawn outcome available" )
+		else :
+			eSpawn = None
 		tOutcome = self.pickNonSpawnOutcome( pUnit, bEpic, bNoDestroy )
 		
-		if( eSpawn == None and tOutcome == None ) :
-			CvUtil.pyPrint( "ERROR: Neither spawn nor non-spawn outcome available, adding 'NOTHING'" )
-			iDestroyLair = self.doNonSpawnOutcome( pUnit, ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' ) )
-		elif( eSpawn == None ) :
-			CvUtil.pyPrint( "WARNING: No spawn outcome available" )
+		if( tOutcome == None ) :
+			CvUtil.pyPrint( "WARNING: No non-spawn outcome available, adding 'NOTHING'" )
+			tOutcome = ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_NOTHING', 'NOTHING' )
+		
+		if( eSpawn == None ) :
 			iDestroyLair = self.doNonSpawnOutcome( pUnit, tOutcome )
-		elif( tOutcome == None ) :
-			CvUtil.pyPrint( "WARNING: No non-spawn outcome available" )
-			iDestroyLair = self.doSpawn( pUnit, eSpawn )
 		else :
 			if( CyGame().getSorenRandNum( 100, "Explore Lair" ) < 50 ) :
 				iDestroyLair = self.doSpawn( pUnit, eSpawn )
@@ -226,6 +239,9 @@ class CustomFunctions:
 				pUnit.setHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_BRONZE_WEAPONS' ), False )
 			elif( sType == 'GOLDEN_AGE' ) :
 				pPlayer.changeGoldenAgeTurns( CyGame().goldenAgeLength() )
+			elif( sType == 'COUNCIL_OF_ESUS' ) :
+				pUnit.setReligion( self.saveGetInfoType( gc.getNumReligionInfos(), 'RELIGION_COUNCIL_OF_ESUS' ))
+				pUnit.setHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_ESUS_AGENT' ), True )
 			else :
 				raise Exception( "Unknown special outcome type: %s" % ( tOutcome[0] ) )
 		
@@ -361,6 +377,7 @@ class CustomFunctions:
 		bMalakim = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_MALAKIM" ) )
 		bMercurians = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_MERCURIANS" ) )
 		bSheaim = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_SHEAIM" ) )
+		bSvartalfar = ( pPlayer.getCivilizationType() == self.saveGetInfoType( gc.getNumCivilizationInfos(), "CIVILIZATION_SVARTALFAR" ) )
 		
 		bGood = ( pPlayer.getAlignment() == gc.getInfoTypeForString( 'ALIGNMENT_GOOD' ) )
 		
@@ -388,7 +405,7 @@ class CustomFunctions:
 					dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENRAGED', ['PROMOTION_ENRAGED'] ) )
 			if( pUnit.getLevel() == 1 and iChallenge >= 35 ) :
 				dslOutcomes['Bad'].append( ( 'Special', 0, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_DEATH', 'DEATH' ) )
-				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, "Your Unit receives the Burning Blood Promotion", ['PROMOTION_BURNING_BLOOD'] ) ) # LFGR_TODO
+				dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BURNING_BLOOD', ['PROMOTION_BURNING_BLOOD'] ) )
 			if( iExploLevel < 25 and iChallenge >= 35 ) :
 				if( pUnit.isAlive() ) :
 					dslOutcomes['Bad'].append( ( 'Promotions', 80, False, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_CRAZED', ['PROMOTION_CRAZED'] ) )
@@ -419,7 +436,8 @@ class CustomFunctions:
 					dslOutcomes['Good'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_SUPPLIES' ) )
 					dslOutcomes['Good'].append( ( 'Goody', 80, 'GOODY_EXPLORE_LAIR_ITEM_HEALING_SALVE' ) )
 			if( iChallenge >= 35 and iChallenge < 60 ) :
-				dslOutcomes['Good'].append( ( 'Promotions', 80, True, "Your Unit receives the Courage Promotion", ['PROMOTION_COURAGE'] ) ) # LFGR_TODO
+				dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COURAGE', ['PROMOTION_COURAGE'] ) )
+				dslOutcomes['Item'].append( ( 'Promotions', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_PATRIAN_ARTIFACT', ['PROMOTION_PATRIAN_ARTIFACT'] ) )
 				if( bMelee ) :
 					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_ENCHANTED_BLADE', ['PROMOTION_ENCHANTED_BLADE'] ) )
 				if( bAdept ) :
@@ -430,6 +448,8 @@ class CustomFunctions:
 					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_FLAMING_ARROWS', ['PROMOTION_FLAMING_ARROWS'] ) )
 				if( bDisciple ) :
 					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_SHIELD_OF_FAITH', ['PROMOTION_SHIELD_OF_FAITH'] ) )
+				if( bGood ):
+					dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BLESS', ['PROMOTION_BLESS'] ) )
 				
 				if( gc.getUnitInfo( pUnit.getUnitType() ).getWeaponTier() >= 1 ) :
 					if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_MITHRIL_WEAPONS' ) ) ) :
@@ -441,7 +461,7 @@ class CustomFunctions:
 							if( not pUnit.isHasPromotion( gc.getInfoTypeForString( 'PROMOTION_BRONZE_WEAPONS' ) ) ):
 								dslOutcomes['Good'].append( ( 'Promotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_BRONZE_WEAPONS', ['PROMOTION_BRONZE_WEAPONS'] ) )
 			if( iChallenge >= 60 ) :
-				dslOutcomes['Good'].append( ( 'Promotions', 100, True, "Your Unit receives the Valor Promotion", ['PROMOTION_VALOR'] ) ) # LFGR_TODO
+				dslOutcomes['Good'].append( ( 'Promotions', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_VALOR', ['PROMOTION_VALOR'] ) )
 				dslOutcomes['Good'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_TREASURE_VAULT' ) )
 				dslOutcomes['Good'].append( ( 'Goody', 100, 'GOODY_GRAVE_TECH' ) )
 				dslOutcomes['Good'].append( ( 'Special', 100, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_GOLDEN_AGE', 'GOLDEN_AGE' ) )
@@ -457,17 +477,30 @@ class CustomFunctions:
 							dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ASHEN' ) )
 						if( bMalakim or bHasTrade ) :
 							dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_EMPYREAN' ) )
-						# LFGR_TODO: Council of Esus: Svartalfar or Trade
+						if( bSvartalfar or bHasTrade ):
+							dslOutcomes['Religion'].append( ( 'Special', 90, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_COUNCIL_OF_ESUS', 'COUNCIL_OF_ESUS' ) )
 						if( bBannor or bHasCodeOfLaws ) :
 							dslOutcomes['Religion'].append( ( 'Goody', 90, 'GOODY_EXPLORE_LAIR_PRISONER_DISCIPLE_ORDER' ) )
 				if( pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_CRAZED' ) ) ) : # Enraged isn't sufficient
 					if( not pUnit.isHasPromotion( self.saveGetInfoType( gc.getNumPromotionInfos(), 'PROMOTION_DEMON' ) ) ) : # For the possessed outcome (we don't know the former race); LFGR_TODO: Save former race in SDTK or create new "Demonic Possession" promo
 						dslOutcomes['RemoveMalus'].append( ( 'RemovePromotions', 80, True, 'TXT_KEY_MESSAGE_EXPLORE_LAIR_REMOVE_CRAZED', ['PROMOTION_ENRAGED', 'PROMOTION_CRAZED'] ) )
 			if( iChallenge >= 75 ) :
+				dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_AMULET_SEAS' ) )
 				if( not pPlot.isWater() ) :
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_JADE_TORC' ) )
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_ROD_OF_WINDS' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_HAUBERK_OF_ABJURATION' ) )
 					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_TIMOR_MASK' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_COMPELLING_JEWEL' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_HEART_AMULET' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_MENACING_HELM' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_WYRMSLAYER' ) )
+					dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_RADIANT_AMULET' ) )
+
+					if( bArcher ) :
+						dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_ANCIENT_BOW' ) )
+					if( bMelee ) :
+						dslOutcomes['Item'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_ITEM_OBSIDIAN_SPEAR' ) )
 					
 					if( bHasHunting and not bHasPoisons ) :
 						dslOutcomes['Prisoner'].append( ( 'Goody', 100, 'GOODY_EXPLORE_LAIR_PRISONER_ASSASSIN' ) )
@@ -662,6 +695,7 @@ class CustomFunctions:
 		iAForest = gc.getInfoTypeForString( 'FEATURE_FOREST_ANCIENT' )
 		iNForest = gc.getInfoTypeForString( 'FEATURE_FOREST_NEW' )
 		iBForest = gc.getInfoTypeForString( 'FEATURE_FOREST_BURNT' )
+		iObsPlains = gc.getInfoTypeForString( 'FEATURE_OBSIDIAN_PLAINS' )
 		iCount = CyGame().getGlobalCounter()
 		for i in range ( CyMap().numPlots() ):
 			pPlot = CyMap().plotByIndex( i )
@@ -715,14 +749,15 @@ class CustomFunctions:
 					pPlot.setImprovementType( iSnakePillar )
 
 				if ( iFeature == iForest or iFeature == iAForest or iFeature == iNForest or iFeature == iJungle ):
-#					iRandom = CyGame().getSorenRandNum(100, "Hell Terrain Burnt Forest")
-#					if iRandom < 10:
-					pPlot.setFeatureType( iBForest, 0 )
-#				if pPlot.isPeak() == True:
-#					iRandom = CyGame().getSorenRandNum(100, "Hell Terrain Volcanos")
-#					if iRandom < 2:
-#						iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(), 'EVENTTRIGGER_VOLCANO_CREATION')
-#						triggerData = pPlayer.initTriggeredData(iEvent, True, -1, pPlot.getX(), pPlot.getY(), -1, -1, -1, -1, -1, -1)
+					iRandom = CyGame().getSorenRandNum(100, "Hell Terrain Burnt Forest")
+					if iRandom < 10:
+						pPlot.setFeatureType(iBForest, 0)
+				if pPlot.isPeak() == True:
+					iRandom = CyGame().getSorenRandNum(1000, "Hell Terrain Volcanos")
+					if iRandom < 2:
+						iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(), 'EVENTTRIGGER_VOLCANO_CREATION')
+						if pPlot.isOwned():
+							triggerData = pPlayer.initTriggeredData(iEvent, True, -1, pPlot.getX(), pPlot.getY(), -1, -1, -1, -1, -1, -1)
 
 			if iPlotCount < 10:
 				if iBonus == iToad:
@@ -757,111 +792,100 @@ class CustomFunctions:
 							pPlot.setBonusType( iRice )
 						else:
 							pPlot.setBonusType( iWheat )
-			if iTerrain == iBurningSands:
-				if pPlot.isCity() == False:
-					if pPlot.isPeak() == False:
-						if CyGame().getSorenRandNum( 100, "Flames" ) < iFlamesSpreadChance:
-							pPlot.setFeatureType( iFlames, 0 )
+			if iTerrain == iBurningSands and not pPlot.isCity() and not pPlot.isPeak() and iFeature != iObsPlains:
+				if CyGame().getSorenRandNum(100, "Flames") < iFlamesSpreadChance:
+					pPlot.setFeatureType(iFlames, 0)
 
 #AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
-	def doTurnGrigori( self, iPlayer ):
-		gc = CyGlobalContext() 
+	def getAdventurerThreshold( self, iPlayer):
 		pPlayer = gc.getPlayer( iPlayer )
-	
+		# We simulate CvPlayer::greatPeopleThreshold(false) to calculate the current threshold based upon the number of spawned adventurers.
+		iThresholdModifier = 0
+		iSpawnedAdventurers	= pPlayer.getCivCounterMod()
+		for iNumAdventurers in range(1, iSpawnedAdventurers+1):
+			iThresholdModifier += gc.getDefineINT("GREAT_PEOPLE_THRESHOLD")  * ((iNumAdventurers / 10) + 1)
+			iThresholdModifier = max( 0, iThresholdModifier )
+
+		# Threshold based in internal constants and number of adventurers spawned.
+		iThreshold = (gc.getDefineINT("GREAT_PEOPLE_THRESHOLD") * max(0, (iThresholdModifier + 100))) / 100
+		# Game speed adjustment.
+		iThreshold *= gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getGreatPeoplePercent()
+		iThreshold /= 100
+		#Game era adjustment.
+		iThreshold *= gc.getEraInfo(gc.getGame().getStartEra()).getGreatPeoplePercent()
+		iThreshold /= 100;
+		
+		return max(1, iThreshold)
+
+	def getAdventurerPointRate( self, iPlayer):
+		pPlayer = gc.getPlayer( iPlayer )
+
+		# Buildings that produce adventurer points are cached only once.
+		if (len(lAdventurerBuildings) == 0):
+			CvUtil.pyPrint( "  Adventurer Counter: The cache of buildings that grant Adventurer points needs to be initialized." )
+			for iBuilding in range(gc.getNumBuildingInfos()):
+				pBuildingInfo = gc.getBuildingInfo(iBuilding)
+				if (pBuildingInfo.getGreatPeopleUnitClass() == gc.getInfoTypeForString( 'UNITCLASS_ADVENTURER' )):
+					CvUtil.pyPrint( "    Adventurer Counter: %s grants %i adventurer points." % (pBuildingInfo.getDescription(), pBuildingInfo.getGreatPeopleRateChange()) )
+					lAdventurerBuildings.append(iBuilding)
+					lAdventurerBuildingsPoints.append(pBuildingInfo.getGreatPeopleRateChange())
+
+		# Calculate the amount of adventurer points granted by each city.
+		fTotalPoints = 0.0
+		apCityList = PyPlayer(iPlayer).getCityList()
+		CvUtil.pyPrint( "  Adventurer Counter: Calculating the amount of points contributed by cities." )
+		for pyCity in apCityList:
+			pCity = pyCity.GetCy()
+			if not pCity.isDisorder():
+				fCityPoints = 0.0
+				for i in range(len(lAdventurerBuildings)):
+					fCityPoints += pCity.getNumBuilding(lAdventurerBuildings[i]) * lAdventurerBuildingsPoints[i]
+				# This value already takes into account any changes to GPP caused by civics, traits, buildings...
+				CvUtil.pyPrint( "    Adventurer Counter: %s contributes with %f points." % (pCity.getName(), fCityPoints))
+				fCityPoints = (fCityPoints * pCity.getTotalGreatPeopleRateModifier()) / 100.0
+				CvUtil.pyPrint( "    Adventurer Counter: After applying the rate modifier, %s contributes with %f points." % (pCity.getName(), fCityPoints))
+				fTotalPoints += fCityPoints
+
+
+		# The value is converted to integer.
+		iTotalPoints = int(round(fTotalPoints))
+		CvUtil.pyPrint( "  Adventurer Counter: The total number of points contributed by cities is: %i." % iTotalPoints)
+		return iTotalPoints
+
+	def doTurnGrigori( self, iPlayer ):
+		CvUtil.pyPrint( "Adventurer Counter: Start." )
+		pPlayer = gc.getPlayer( iPlayer )
+
 		self.doChanceAdventurerSpawn( iPlayer )
 
-		iGrigoriSpawn 	 = pPlayer.getCivCounter()
-		iGrigoriMod 	 = pPlayer.getCivCounterMod()
+		iSpawnedAdventurers	= pPlayer.getCivCounterMod()
 
-# Initialize the adventurer counter in case it has not been initialized.		
-		if iGrigoriMod < 600:
-			pPlayer.setCivCounterMod( 600 )
-			iGrigoriMod = 600
+		# Initialize the number of spawned adventurers in case it has not been initialized.		
+		if iSpawnedAdventurers < 0:
+			CvUtil.pyPrint( "  Adventurer Counter: Initializing number of already spawned adventurers to 0." )
+			pPlayer.setCivCounterMod( 0 )
+			iSpawnedAdventurers = 0
 
-		if iGrigoriSpawn >= iGrigoriMod:
-			# Spawn an adventurer.
+		CvUtil.pyPrint( "  Adventurer Counter: Number of adventurers already spawned : %i" % iSpawnedAdventurers )
+		iCurrentPoints		= pPlayer.getCivCounter()
+		CvUtil.pyPrint( "  Adventurer Counter: Current number of adventurer points : %i" % iCurrentPoints )
+		# Calculate current adventurer threshold.
+		iThreshold = self.getAdventurerThreshold(iPlayer)
+		CvUtil.pyPrint( "  Adventurer Counter: Current threshold : %i" % iThreshold )
+		if iCurrentPoints >= iThreshold:
+			CvUtil.pyPrint( "  Adventurer Counter: The threshold has been surpassed so a new adventurer is going to be created." )
+			# Spawn an adventurer in the capital.
 			pCapital = pPlayer.getCapitalCity()
 			pAdventurer = pPlayer.createGreatPeople( gc.getInfoTypeForString( 'UNIT_ADVENTURER' ), False, False, pCapital.getX(), pCapital.getY() )
-			pPlayer.changeCivCounter( 0 - iGrigoriMod )
-			pPlayer.changeCivCounterMod( 600 )
+			# Reduce the number of adventurer points.
+			pPlayer.changeCivCounter( 0 - iThreshold )
+			# Increase the amount of built adventurers.
+			pPlayer.changeCivCounterMod( 1 )
 
 	def doChanceAdventurerSpawn( self, iPlayer ):
-		gc = CyGlobalContext() 
+		iTotalPoints = self.getAdventurerPointRate( iPlayer )
 		pPlayer = gc.getPlayer( iPlayer )
-
-		if pPlayer.getNumCities() > 0 and pPlayer.getDisableProduction() == 0:
-			iNumTaverns = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_TAVERN_GRIGORI' ) )
-			iNumGuilds 		 = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_ADVENTURERS_GUILD' ) )
-			iNumPalace 		 = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_PALACE_GRIGORI' ) )
-
-			iNumArchery = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_ARCHERY_RANGE' ) )
-			iNumHunting = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_HUNTING_LODGE' ) )
-			iNumInfirmary = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_INFIRMARY' ) )
-			iNumMageGuild = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_MAGE_GUILD' ) )
-			iNumStable = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_STABLE' ) )
-			iNumTrainingYard = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_TRAINING_YARD' ) )
-
-			iNumCommandPost = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_COMMAND_POST' ) )
-			iNumNationalEpic = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_NATIONAL_EPIC' ) )
-			iNumHeroicEpic = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_HEROIC_EPIC' ) )
-			iNumDragonsHoard = pPlayer.countNumBuildings( gc.getInfoTypeForString( 'BUILDING_THE_DRAGONS_HORDE' ) )
-			
-# Different buildings give different modifiers.
-			iMinor = 1
-			iSmall = 3
-			iMedium = 6
-			iBig = 12
-			iHuge = 20
-
-# Original "adventurer" buildings.
-			iPalaceMod = iNumPalace * iHuge
-			iTavernsMod = iNumTaverns * iMedium
-			iGuildsMod 		 = iNumGuilds * iMedium
-
-# Additional buildings.
-			iArcheryMod = iNumArchery * iMinor
-			iHuntingMod = iNumHunting * iMinor
-			iInfirmaryMod = iNumInfirmary * iMinor
-			iMageGuildMod = iNumMageGuild * iMinor
-			iStableMod = iNumStable * iMinor
-			iTrainingYardMod = iNumTrainingYard * iMinor
-
-			iCommandPostMod = iNumCommandPost * iSmall
-			iNationalEpicMod = iNumNationalEpic * iBig
-			iHeroicEpicMod = iNumHeroicEpic * iBig
-			iDragonsHoardMod = iNumDragonsHoard * iHuge
-
-			iBuildingMod = iPalaceMod + iTavernsMod + iGuildsMod + iArcheryMod + iHuntingMod + iMageGuildMod + iStableMod + iTrainingYardMod + iCommandPostMod + iNationalEpicMod + iHeroicEpicMod + iDragonsHoardMod
-
-# Allows specialists to influence the adventurer counter after their city has built a Citizen's Forum.
-			iForum = gc.getInfoTypeForString( 'BUILDING_FORUM' )
-			iNumSpecialists = 0
-
-			for pyCity in PyPlayer( iPlayer ).getCityList():
-				pCity = pyCity.GetCy()
-				if pCity.getNumBuilding( iForum ) > 0:
-					for eSpec in range( gc.getNumSpecialistInfos() ):
-						iNumSpecialists += pCity.getSpecialistCount( eSpec ) + pCity.getFreeSpecialistCount( eSpec )
-
-			iSpecialistMod = ( iNumSpecialists * iMinor )
-
-# Civics can give a multiplier.
-			iCivicMult = 1
-
-			iRepublic = gc.getInfoTypeForString( 'CIVIC_REPUBLIC' )
-			iPacifism = gc.getInfoTypeForString( 'CIVIC_PACIFISM' )
-
-			if pPlayer.isCivic( iRepublic ):
-				iCivicMult = 1.10
-			elif pPlayer.isCivic( iPacifism ):
-				iCivicMult = 1.10
-
-# Actual value
-			iGrigoriSpawn = round( ( ( iBuildingMod + iSpecialistMod ) * iCivicMult ), 2 )
-			iGrigoriSpawn = int( iGrigoriSpawn )
-			iGrigoriSpawn = self.scaleInverse( iGrigoriSpawn )
-			
-			pPlayer.changeCivCounter( iGrigoriSpawn )
+		pPlayer.changeCivCounter(iTotalPoints)
 #AdventurerCounter End
 
 	def doTurnKhazad( self, iPlayer ):
@@ -875,19 +899,19 @@ class CustomFunctions:
 			iVault6 = gc.getInfoTypeForString( 'BUILDING_DWARVEN_VAULT_FULL' )
 			iVault7 = gc.getInfoTypeForString( 'BUILDING_DWARVEN_VAULT_OVERFLOWING' )
 			iGold = pPlayer.getGold() / pPlayer.getNumCities()
-			if iGold <= 49:
+			if iGold <= 24:
 				iNewVault = iVault1
-			if ( iGold >= 50 and iGold <= 99 ):
+			if (iGold >= 25 and iGold <= 49):
 				iNewVault = iVault2
-			if ( iGold >= 100 and iGold <= 149 ):
+			if (iGold >= 50 and iGold <= 74):
 				iNewVault = iVault3
-			if ( iGold >= 150 and iGold <= 199 ):
+			if (iGold >= 75 and iGold <= 99):
 				iNewVault = iVault4
-			if ( iGold >= 200 and iGold <= 299 ):
+			if (iGold >= 100 and iGold <= 149):
 				iNewVault = iVault5
-			if ( iGold >= 300 and iGold <= 499 ):
+			if (iGold >= 150 and iGold <= 249):
 				iNewVault = iVault6
-			if iGold >= 500:
+			if iGold >= 250:
 				iNewVault = iVault7
 			for pyCity in PyPlayer( iPlayer ).getCityList():
 				pCity = pyCity.GetCy()
@@ -1005,50 +1029,92 @@ class CustomFunctions:
 
 	def genesis( self, iPlayer ):
 		iBrokenLands = gc.getInfoTypeForString( 'TERRAIN_BROKEN_LANDS' )
-		iBurningSands = gc.getInfoTypeForString( 'TERRAIN_BURNING_SANDS' )
-		iDesert = gc.getInfoTypeForString( 'TERRAIN_DESERT' )
 		iFields = gc.getInfoTypeForString( 'TERRAIN_FIELDS_OF_PERDITION' )
-		iGrass = gc.getInfoTypeForString( 'TERRAIN_GRASS' )
+		iBurningSands = gc.getInfoTypeForString('TERRAIN_BURNING_SANDS')
+		iShallows = gc.getInfoTypeForString('TERRAIN_SHALLOWS')
 		iSnow = gc.getInfoTypeForString( 'TERRAIN_SNOW' )
 		iTundra = gc.getInfoTypeForString( 'TERRAIN_TUNDRA' )
 		iPlains = gc.getInfoTypeForString( 'TERRAIN_PLAINS' )
+		iDesert = gc.getInfoTypeForString('TERRAIN_DESERT')
+		iGrass = gc.getInfoTypeForString('TERRAIN_GRASS')
+		iMarsh = gc.getInfoTypeForString('TERRAIN_MARSH')
+		iSmoke = gc.getInfoTypeForString('IMPROVEMENT_SMOKE')
+		iFlames = gc.getInfoTypeForString('FEATURE_FLAMES')
 		iForestAncient = gc.getInfoTypeForString( 'FEATURE_FOREST_ANCIENT' )
 		iForest = gc.getInfoTypeForString( 'FEATURE_FOREST' )
+		
 		for i in range ( CyMap().numPlots() ):
 			pPlot = CyMap().plotByIndex( i )
 			if pPlot.getOwner() == iPlayer:
+			
+				# Change Terrain
 				iTerrain = pPlot.getTerrainType()
 				if iTerrain == iSnow:
 					pPlot.setTerrainType( iTundra, True, True )
-				if iTerrain == iTundra:
+				elif iTerrain == iTundra or iTerrain == iMarsh or iTerrain == iShallows:
 					pPlot.setTerrainType( iPlains, True, True )
-				if ( iTerrain == iDesert or iTerrain == iBurningSands ):
+				elif (iTerrain == iDesert or iTerrain == iBurningSands):
 					pPlot.setTerrainType( iPlains, True, True )
-				if ( iTerrain == iPlains or iTerrain == iFields or iTerrain == iBrokenLands ):
+				elif (iTerrain == iPlains or iTerrain == iFields or iTerrain == iBrokenLands):
 					pPlot.setTerrainType( iGrass, True, True )
-				if ( iTerrain == iGrass and pPlot.getImprovementType() == -1 and pPlot.getFeatureType() != iForestAncient and pPlot.isPeak() == False and pPlot.isCity() == False ):
+					
+				# Put out fire and smoke
+				if pPlot.getImprovementType() == iSmoke:
+					pPlot.setImprovementType(-1)
+				if pPlot.getFeatureType() == iFlames:
+					pPlot.setFeatureType(-1, -1)					
+
+				# Grow Forests - TODO - let forests grow over improvements if allowed by civs (ie Elves)
+				if (pPlot.getTerrainType() == iGrass and pPlot.getImprovementType() == -1 and pPlot.getFeatureType() != iForestAncient and pPlot.isPeak() == False and pPlot.isCity() == False):
 					pPlot.setFeatureType( iForest, 0 )
-				iTemp = pPlot.getFeatureType()
+					
+				# Remove blight
 				pPlot.changePlotCounter( -100 )
-				if iTemp != -1:
-					pPlot.setFeatureType( iTemp, 0 )
+				
+#				iTemp = pPlot.getFeatureType()
+#				if iTemp!=-1:
+#					pPlot.setFeatureType(iTemp, 0)
 
 	def snowgenesis( self, iPlayer ):
+		iBrokenLands = gc.getInfoTypeForString('TERRAIN_BROKEN_LANDS')
+		iFields = gc.getInfoTypeForString('TERRAIN_FIELDS_OF_PERDITION')
+		iBurningSands = gc.getInfoTypeForString('TERRAIN_BURNING_SANDS')
+		iShallows = gc.getInfoTypeForString('TERRAIN_SHALLOWS')
 		iSnow = gc.getInfoTypeForString( 'TERRAIN_SNOW' )
 		iTundra = gc.getInfoTypeForString( 'TERRAIN_TUNDRA' )
 		iPlains = gc.getInfoTypeForString( 'TERRAIN_PLAINS' )
 		iDesert = gc.getInfoTypeForString( 'TERRAIN_DESERT' )
 		iGrass = gc.getInfoTypeForString( 'TERRAIN_GRASS' )
+		iMarsh = gc.getInfoTypeForString('TERRAIN_MARSH')
+		iSmoke = gc.getInfoTypeForString('IMPROVEMENT_SMOKE')
+		iFlames = gc.getInfoTypeForString('FEATURE_FLAMES')
+		iForestAncient = gc.getInfoTypeForString('FEATURE_FOREST_ANCIENT')
+		iForest = gc.getInfoTypeForString('FEATURE_FOREST')
+		
 		for i in range ( CyMap().numPlots() ):
 			pPlot = CyMap().plotByIndex( i )
 			if pPlot.getOwner() == iPlayer:
-				pPlot.changePlotCounter( 0 )
-				if( pPlot.getTerrainType() == iGrass ):
+			
+				# Change terrain
+				iTerrain = pPlot.getTerrainType()
+				pPlot.changePlotCounter(-100)
+				if (iTerrain == iGrass or iTerrain == iPlains or iTerrain == iBrokenLands or iTerrain == iTundra or iTerrain == iFields):
 					pPlot.setTerrainType( iSnow, True, True )
-				elif( pPlot.getTerrainType() == iPlains ):
-					pPlot.setTerrainType( iSnow, True, True )
-				elif( pPlot.getTerrainType() == iDesert ):
+				elif (iTerrain == iDesert or iTerrain == iBurningSands or iTerrain == iMarsh or iTerrain == iShallows):
 					pPlot.setTerrainType( iTundra, True, True )
+					
+				#Put out fire and smoke
+				if pPlot.getImprovementType() == iSmoke:
+					pPlot.setImprovementType(-1)
+				if pPlot.getFeatureType() == iFlames:
+					pPlot.setFeatureType(-1, -1)
+
+				# Grow Forests
+				if (pPlot.getTerrainType() == iTundra and pPlot.getImprovementType() == -1 and pPlot.getFeatureType() != iForestAncient and pPlot.isPeak() == False and pPlot.isCity() == False):
+					pPlot.setFeatureType(iForest, 1)
+
+				# Remove blight
+				pPlot.changePlotCounter(-100)
 
 ##--------		Tweaked Hyborem: Added by Denev	--------##
 	def getAshenVeilCities( self, iCasterPlayer, iCasterID, iNum ):
@@ -1109,7 +1175,7 @@ class CustomFunctions:
 
 					ltVeilCities.append( ( iValue, pTargetCity ) )
 
-		ltVeilCities.sort()
+		ltVeilCities.sort(key=itemgetter(0)) # Sorting by pointers can cause OOS.
 		ltVeilCities.reverse()
 		lpVeilCities = []
 		if len( ltVeilCities ) > 0:
@@ -1623,15 +1689,30 @@ class CustomFunctions:
 
 		return sFull
 
-#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
-	def scaleInverse( self, iGameTurns ):
-		#Scales things by gamespeed; Longer game speeds yield smaller amounts. Use for incremental effects (Spawn Functions, for instance)
-		gc 			 	 = CyGlobalContext() #Cause local variables are faster
-		getInfoType	 	 = gc.getInfoTypeForString
-		gameSpeedInfo 	 = gc.getGameSpeedInfo
-		iNumTurnsChosenSpeed = gameSpeedInfo( CyGame().getGameSpeedType() ).getGameTurnInfo( 0 ).iNumGameTurnsPerIncrement
-		iNumTurnsNormalSpeed = gameSpeedInfo( getInfoType( "GAMESPEED_NORMAL" ) ).getGameTurnInfo( 0 ).iNumGameTurnsPerIncrement
-		fScalingFactor = float( iNumTurnsNormalSpeed ) / float( iNumTurnsChosenSpeed )
-		iGameTurnsScaled = int( fScalingFactor * iGameTurns )
-		return max( 1, iGameTurnsScaled )
-#AdventurerCounter End
+	# lfgr events enhanced 08/2014
+	def getNearPlots( self, pPlot, iMaxDist ) :
+		lpResult = []
+		x = pPlot.getX()
+		y = pPlot.getY()
+		for x2 in range( x - iMaxDist, x + iMaxDist + 1 ) :
+			for y2 in range( y - iMaxDist, y + iMaxDist + 1 ) :
+				if( plotDistance( x, y, x2, y2 ) <= iMaxDist ) :
+					lpResult.append( CyMap().plot( x2, y2 ) )
+		return lpResult
+	
+	def getNearPlotsInOrder( self, pPlot, iMaxDist ) :
+		lpResult = []
+		x = pPlot.getX()
+		y = pPlot.getY()
+		for d in range( iMaxDist + 1 ) :
+			for x2 in range( x - d, x + d + 1 ) :
+				for y2 in range( y - d, y + d + 1 ) :
+					if( plotDistance( x, y, x2, y2 ) == d ) :
+						lpResult.append( CyMap().plot( x2, y2 ) )
+		return lpResult
+	
+	def plotDistance( x1, y1, x2, y2 ) :
+		dx = abs( x1 - x2 )
+		dy = abs( y1 - y2 )
+		return max( dx, xy ) + min( dx, dy ) / 2.0;
+	# lfgr end

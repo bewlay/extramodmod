@@ -2500,9 +2500,8 @@
 		<EventInfo><!-- LETUM_FRIGUS_3 -->
 			<Type>EVENT_LETUM_FRIGUS_3</Type>
 			<Description>TXT_KEY_EVENT_LETUM_FRIGUS_3</Description>
-			<Help>TXT_KEY_EVENT_LETUM_FRIGUS_3_HELP</Help>
+			<bGoldenAge>1</bGoldenAge>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doLetumFrigus3</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqCivilization>CIVILIZATION_ILLIANS</PrereqCivilization>
@@ -5532,7 +5531,7 @@
 			<iNumFreeUnits>1</iNumFreeUnits>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
+			<iAIValue>100</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- CLAIRONE_1 -->
 			<Type>EVENT_CLAIRONE_1</Type>
@@ -5548,7 +5547,7 @@
 			<bPickCity>1</bPickCity>
 			<UnitClass>UNITCLASS_ARTIST</UnitClass>
 			<iNumFreeUnits>1</iNumFreeUnits>
-			<iHurryAnger>5</iHurryAnger>
+			<iHurryAnger>3</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -5556,7 +5555,6 @@
 		<EventInfo><!-- CENTAUR_PANTS_1 -->
 			<Type>EVENT_CENTAUR_PANTS_1</Type>
 			<Description>TXT_KEY_EVENT_CENTAUR_PANTS_1</Description>
-			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -5564,7 +5562,6 @@
 		<EventInfo><!-- CENTAUR_PANTS_2 -->
 			<Type>EVENT_CENTAUR_PANTS_2</Type>
 			<Description>TXT_KEY_EVENT_CENTAUR_PANTS_2</Description>
-			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -5758,7 +5755,6 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doHellRefugees5</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>0</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- SCHOLARS_1 -->
 			<Type>EVENT_SCHOLARS_1</Type>
@@ -6335,7 +6331,10 @@
 			<Type>EVENT_ORPHANED_GOBLIN_1</Type>
 			<Description>TXT_KEY_EVENT_ORPHANED_GOBLIN_1</Description>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doOrphanedGoblin1</PythonCallback>
+			<UnitPromotions>
+				<UnitPromotion>PROMOTION_ORC_SLAYING</UnitPromotion>
+				<UnitPromotion>PROMOTION_CRAZED</UnitPromotion>
+			</UnitPromotions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
@@ -6344,13 +6343,14 @@
 			<Type>EVENT_ORPHANED_GOBLIN_2</Type>
 			<Description>TXT_KEY_EVENT_ORPHANED_GOBLIN_2</Description>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doOrphanedGoblin2</PythonCallback>
+			<UnitPromotion>PROMOTION_ORC</UnitPromotion>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- ORPHANED_GOBLIN_3 -->
 			<Type>EVENT_ORPHANED_GOBLIN_3</Type>
 			<Description>TXT_KEY_EVENT_ORPHANED_GOBLIN_3</Description>
+			<Help>TXT_KEY_EVENT_ORPHANED_GOBLIN_3_HELP</Help>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doOrphanedGoblin3</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
@@ -6359,8 +6359,10 @@
 		<EventInfo><!-- ORPHANED_GOBLIN_4 -->
 			<Type>EVENT_ORPHANED_GOBLIN_4</Type>
 			<Description>TXT_KEY_EVENT_ORPHANED_GOBLIN_4</Description>
+			<Help>TXT_KEY_EVENT_ORPHANED_GOBLIN_4_HELP</Help>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doOrphanedGoblin4</PythonCallback>
+			<PythonCanDo>canDoOrphanedGoblin4</PythonCanDo>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
@@ -6445,12 +6447,10 @@
 			<Type>EVENT_PRINCESS_RULE_4</Type>
 			<Description>TXT_KEY_EVENT_PRINCESS_RULE_4</Description>
 			<bPickCity>1</bPickCity>
-			<UnitClass>UNITCLASS_WRATH</UnitClass>
-			<iNumFreeUnits>1</iNumFreeUnits>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCanDo>CanDoPrincessRule4</PythonCanDo>
+			<PythonCallback>doPrincessRule4</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
+			<iAIValue>0</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- CORRUPT_JUDGE_1 -->
 			<Type>EVENT_CORRUPT_JUDGE_1</Type>

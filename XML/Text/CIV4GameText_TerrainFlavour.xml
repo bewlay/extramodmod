@@ -6,7 +6,7 @@
 		<French>Flavour Start</French>
 		<German>Passende Startposition</German>
 		<Italian>Flavour Start</Italian>
-		<Spanish>Flavour Start</Spanish>
+		<Spanish>Zonas de inicio apropiadas</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_FLAVOUR_START_HELP</Tag>
@@ -14,6 +14,6 @@
 		<French>All civilizations start in flavourwise appropriate regions. Do not use if map script already provides this.</French>
 		<German>Alle Zivilisationen beginnen in zu ihnen passenden Landschaften. Nicht benutzen, falls Kartenskript dies bereits bereitstellt.</German>
 		<Italian>All civilizations start in flavourwise appropriate regions. Do not use if map script already provides this.</Italian>
-		<Spanish>All civilizations start in flavourwise appropriate regions. Do not use if map script already provides this.</Spanish>
+		<Spanish>Las civilizaciones comienzan en climas y regiones apropiados para ellas. No se debe usar esta opción si el script de mapas ya proporciona esta opción.</Spanish>
 	</TEXT>
 </Civ4GameText>

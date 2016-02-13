@@ -68,14 +68,21 @@ void CyPlayerPythonInterface2(python::class_<CyPlayer>& x)
 		.def("setParent", &CyPlayer::setParent, "void (int /*PlayerTypes*/ eParent)")
 //<<<<Unofficial Bug Fix: End Add
 
-		// MNAI
-		// Puppet States
+		// MNAI - Puppet States
 		.def("makePuppet", &CyPlayer::makePuppet, "bool (int /*PlayerTypes*/ eSplitPlayer, int (CyCity* pVassalCapital)")
-		.def("canMakePuppet", &CyPlayer::canMakePuppet, "bool (int /*PlayerTypes*/ eFromPlayer)")
+	/********************************************************************************/
+	/* MinorPuppetLeaders	03/2015											lfgr	*/
+	/********************************************************************************/
+	/* old
+		.def("canMakePuppet", &CyPlayer::canMakePuppet, "bool (int eFromPlayer)")
+	*/
+		.def("canMakePuppet", &CyPlayer::canMakePuppet, "bool (CvCity* pVassalCapital)")
+	/********************************************************************************/
+	/* MinorPuppetLeaders	End												lfgr	*/
+	/********************************************************************************/
 		.def("isPuppetState", &CyPlayer::isPuppetState, "bool ()")
-		// Revolutions
-		.def("assimilatePlayer", &CyPlayer::assimilatePlayer, "bool ( int iPlayer ) - acquire iPlayer's units and cities")
-		// MNAI End
+		// MNAI - End Puppet States
+		.def("assimilatePlayer", &CyPlayer::assimilatePlayer, "bool ( int iPlayer ) - acquire iPlayer's units and cities") // MNAI - Revolutions
 		
 		.def("canHaveTradeRoutesWith", &CyPlayer::canHaveTradeRoutesWith, "bool (int)")
 		.def("forcePeace", &CyPlayer::forcePeace, "void (int)")
@@ -111,7 +118,6 @@ void CyPlayerPythonInterface2(python::class_<CyPlayer>& x)
 		.def("updateStabilityIndexAverage", &CyPlayer::updateStabilityIndexAverage, "void ( )")
 		.def("getBestUnitType", &CyPlayer::getBestUnitType, "int ()")
 		.def("isNonStateReligionCommerce", &CyPlayer::isNonStateReligionCommerce, "bool ()")
-		.def("isUpgradeAnywhere", &CyPlayer::isUpgradeAnywhere, "bool ()")
 		.def("getRevIdxLocal", &CyPlayer::getRevIdxLocal, "int ()")
 		.def("getRevIdxNational", &CyPlayer::getRevIdxNational, "int ()")
 		.def("getRevIdxDistanceModifier", &CyPlayer::getRevIdxDistanceModifier, "int ()")
@@ -121,11 +127,13 @@ void CyPlayerPythonInterface2(python::class_<CyPlayer>& x)
 		.def("getRevIdxBadReligionMod", &CyPlayer::getRevIdxBadReligionMod, "float ()")
 		.def("getRevIdxGoodReligionMod", &CyPlayer::getRevIdxGoodReligionMod, "float ()")
 		.def("getRevolutionStabilityHistory", &CyPlayer::getRevolutionStabilityHistory, "int (int iTurn)")
+		.def("canInquisition", &CyPlayer::canInquisition, "bool ()")
 		// MNAI End
 
 //FfH Alignment: Added by Kael 08/09/2007
 		.def("canSeeCivic", &CyPlayer::canSeeCivic, "void (int iCivic)")
 		.def("canSeeReligion", &CyPlayer::canSeeReligion, "void (int iReligion)")
+		.def("getSanctuaryTimer", &CyPlayer::getSanctuaryTimer, "int ()")
 		.def("changeSanctuaryTimer", &CyPlayer::changeSanctuaryTimer, "void (int iChange)")
 		.def("getAlignment", &CyPlayer::getAlignment, "int ()")
         .def("setAlignment", &CyPlayer::setAlignment, "AlignmentTypes (iAlignment)")
@@ -165,6 +173,13 @@ void CyPlayerPythonInterface2(python::class_<CyPlayer>& x)
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
+		// MNAI - new functions
+		.def("countNumOwnedTerrainTypes",&CyPlayer::countNumOwnedTerrainTypes, "int (TerrainTypes eTerrain)")
+		.def("getHighestUnitTier",&CyPlayer::getHighestUnitTier, "int (bool bIncludeHeroes, bool bIncludeLimitedUnits)")
+		// End MNAI
 
+		// Leader categories START
+		.def("getLeaderCategory", &CyPlayer::getLeaderCategory, "int ()")
+		// Leader categories END
 		;
 }

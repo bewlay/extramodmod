@@ -32,6 +32,9 @@
 /* General AI                                                                                   */
 /************************************************************************************************/
 #include "FAStarNode.h"
+
+// AI Logging
+#include "BetterBTSAI.h"
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
@@ -294,6 +297,17 @@ void CvPlot::reset(int iX, int iY, bool bConstructorCall)
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	m_eRealFeatureType = NO_FEATURE;
+	m_iRealFeatureVariety = -1;
+	m_iTempFeatureTimer = 0;
+	m_eRealBonusType = NO_BONUS;
+	m_iTempBonusTimer = 0;
+	m_eRealImprovementType = NO_IMPROVEMENT;
+	m_iTempImprovementTimer = 0;
+	m_eRealRouteType = NO_ROUTE;
+	m_iTempRouteTimer = 0;
+// End Temporary Map Items
 	m_plotCity.reset();
 	m_workingCity.reset();
 	m_workingCityOverride.reset();
@@ -393,10 +407,19 @@ void CvPlot::erase()
 	setRouteType(NO_ROUTE, false);
 	setFeatureType(NO_FEATURE);
 
-//FfH: Added by Kael 10/14/2009
+	// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
    	m_eRealTerrainType = NO_TERRAIN;
     m_iTempTerrainTimer = 0;
-//FfH: End Add
+	m_eRealFeatureType = NO_FEATURE;
+	m_iRealFeatureVariety = -1;
+	m_iTempFeatureTimer = 0;
+	m_eRealBonusType = NO_BONUS;
+	m_iTempBonusTimer = 0;
+	m_eRealImprovementType = NO_IMPROVEMENT;
+	m_iTempImprovementTimer = 0;
+	m_eRealRouteType = NO_ROUTE;
+	m_iTempRouteTimer = 0;
+	// End Temporary Map Items
 
 	// disable rivers
 	setNOfRiver(false, NO_CARDINALDIRECTION);
@@ -608,12 +631,14 @@ void CvPlot::doTurn()
 							UnitAITypes eUnitAI = NO_UNITAI;
 							if( !bDefended && !kBestSpawn.isNoDefender() )
 								eUnitAI = UNITAI_LAIRGUARDIAN;
-							else if( kBestSpawn.isAnimal() )
-								eUnitAI = UNITAI_ANIMAL;
-							else
-								eUnitAI = area()->isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK;
-
-							createSpawn( eBestSpawn, eUnitAI, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
+							
+							logBBAI("WILDERNESS - Spawning from lair" );
+							
+							// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
+							int iMinWilderness = calcMinWilderness( eBestSpawn );
+							// Choose a random number between this plot's wilderness and the required wilderness for the spawn
+							iMinWilderness += GC.getGameINLINE().getSorenRandNum( getWilderness() - iMinWilderness, "Spawn Wilderness" );
+							createSpawn( eBestSpawn, iMinWilderness, eUnitAI, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
                         }
                     }
                 }
@@ -659,20 +684,94 @@ void CvPlot::doTurn()
 
 	verifyUnitValidPlot();
 
-//FfH: Added by Kael 11/02/2007
-    if (getTempTerrainTimer() > 0)
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+    if (isHasTempTerrain())
     {
         changeTempTerrainTimer(-1);
         if (getTempTerrainTimer() == 0)
         {
-			if(getRealTerrainType()!=NO_TERRAIN)	// added Sephi
+			if (getRealTerrainType() != NO_TERRAIN)
 			{
 				setTerrainType(getRealTerrainType(),true,true);
 				setRealTerrainType(NO_TERRAIN);
 			}
         }
     }
-//FfH: End Add
+
+	if (isHasTempFeature())
+	{
+		changeTempFeatureTimer(-1);
+
+		if (getTempFeatureTimer() == 0)
+		{
+			setFeatureType(getRealFeatureType(), getRealFeatureVariety());
+			setRealFeatureType(NO_FEATURE);
+		}
+	}
+
+	if (isHasTempBonus())
+	{
+		changeTempBonusTimer(-1);
+
+		if (getTempBonusTimer() == 0)
+		{
+			CvCity* pCity;
+			pCity = GC.getMapINLINE().findCity(getX_INLINE(), getY_INLINE(), getOwnerINLINE(), NO_TEAM, false);
+
+			if (pCity != NULL)
+			{
+				if (isRevealed(pCity->getTeam(), false))
+				{
+					if (stepDistance(getX(), getY(), pCity->getX(), pCity->getY()) <= 5)
+					{	
+						CvWString szBuffer;
+
+						if (getBonusType() != NO_BONUS)
+						{
+							if (GET_TEAM(pCity->getTeam()).isHasTech((TechTypes)(GC.getBonusInfo(getBonusType()).getTechReveal())))
+							{
+								szBuffer = gDLL->getText("TXT_KEY_MISC_LOST_RESOURCE", GC.getBonusInfo(getBonusType()).getTextKeyWide(), pCity->getNameKey());
+								gDLL->getInterfaceIFace()->addMessage(pCity->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MINOR_EVENT, GC.getBonusInfo(getBonusType()).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
+							}
+						}
+
+						if (getRealBonusType() != NO_BONUS)
+						{
+							if (GET_TEAM(pCity->getTeam()).isHasTech((TechTypes)(GC.getBonusInfo(getRealBonusType()).getTechReveal())))
+							{
+								szBuffer = gDLL->getText("TXT_KEY_MISC_DISCOVERED_RESOURCE", GC.getBonusInfo(getRealBonusType()).getTextKeyWide(), pCity->getNameKey());
+								gDLL->getInterfaceIFace()->addMessage(pCity->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MINOR_EVENT, GC.getBonusInfo(getRealBonusType()).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
+							}
+						}
+					}
+				}
+			}
+
+			setBonusType(getRealBonusType());
+			setRealBonusType(NO_BONUS);
+		}
+	}
+
+	if (isHasTempImprovement())
+    {
+        changeTempImprovementTimer(-1);
+        if (getTempImprovementTimer() == 0)
+        {
+			setImprovementType(getRealImprovementType());
+			setRealImprovementType(NO_IMPROVEMENT);
+        }
+    }
+
+	if (isHasTempRoute())
+    {
+        changeTempRouteTimer(-1);
+        if (getTempRouteTimer() == 0)
+        {
+			setRouteType(getRealRouteType(), true);
+			setRealRouteType(NO_ROUTE);
+        }
+    }
+// End Temporary Map Items
 
 	/*
 	if (!isOwned())
@@ -1732,7 +1831,10 @@ bool CvPlot::canHavePotentialIrrigation() const
 	{
 		if (GC.getImprovementInfo((ImprovementTypes)iI).isCarriesIrrigation())
 		{
-			if (canHaveImprovement(((ImprovementTypes)iI), NO_TEAM, true))
+//>>>>Unofficial Bug Fix: Added by Denev 2010/05/04
+//			if (canHaveImprovement(((ImprovementTypes)iI), NO_TEAM, true))
+			if (canHaveImprovement(((ImprovementTypes)iI), NO_PLAYER, true))
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				return true;
 			}
@@ -2514,8 +2616,15 @@ bool CvPlot::canHaveBonus(BonusTypes eBonus, bool bIgnoreLatitude) const
 }
 
 
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+/*
 bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, bool bPotential) const
 {
+*/
+bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, PlayerTypes ePlayer, bool bPotential) const
+{
+	TeamTypes eTeam = (ePlayer != NO_PLAYER) ? GET_PLAYER(ePlayer).getTeam() : NO_TEAM;
+//<<<<Unofficial Bug Fix: End Modify
 	CvPlot* pLoopPlot;
 	bool bValid;
 	int iI;
@@ -2530,6 +2639,8 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 		return false;
 	}
 
+	CvImprovementInfo& kImprovement = GC.getImprovementInfo(eImprovement);
+
 //FfH: Modified by Kael 09/10/2008
 //	if (isImpassable())
 //	{
@@ -2539,7 +2650,7 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 	{
 		if (isPeak())
 		{
-			if (!GC.getImprovementInfo(eImprovement).isRequiresPeak())
+			if (!kImprovement.isRequiresPeak())
 			{
 				return false;
 			}
@@ -2549,7 +2660,7 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 			return false;
 		}
 	}
-    if (GC.getImprovementInfo(eImprovement).isRequiresPeak())
+    if (kImprovement.isRequiresPeak())
     {
 		if (!isPeak())
 		{
@@ -2558,7 +2669,7 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
     }
 //FfH: End Modify
 
-	if (GC.getImprovementInfo(eImprovement).isWater() != isWater())
+	if (kImprovement.isWater() != isWater())
 	{
 		return false;
 	}
@@ -2572,16 +2683,16 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 	}
 
 	// Tholal AI begin
-	if((getBonusType() != NO_BONUS) && GC.getImprovementInfo(eImprovement).isActsAsCity() && GC.getBonusInfo(getBonusType()).isMana())
+	if((getBonusType() != NO_BONUS) && kImprovement.isActsAsCity() && GC.getBonusInfo(getBonusType()).isMana())
 	{
 		return false;
 	}
 	// Tholal AI end
 
 	// Super Forts begin *build*
-	if (GC.getImprovementInfo(eImprovement).getUniqueRange() > 0)
+	if (kImprovement.getUniqueRange() > 0)
 	{
-		int iUniqueRange = GC.getImprovementInfo(eImprovement).getUniqueRange();
+		int iUniqueRange = kImprovement.getUniqueRange();
 		for (int iDX = -iUniqueRange; iDX <= iUniqueRange; iDX++) 
 		{
 			for (int iDY = -iUniqueRange; iDY <= iUniqueRange; iDY++)
@@ -2599,80 +2710,47 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 	}
 	// Super Forts end
 
-	if ((getBonusType(eTeam) != NO_BONUS) && GC.getImprovementInfo(eImprovement).isImprovementBonusMakesValid(getBonusType(eTeam)))
+	if ((getBonusType(eTeam) != NO_BONUS) && kImprovement.isImprovementBonusMakesValid(getBonusType(eTeam)))
 	{
 		return true;
 	}
 
-	if (GC.getImprovementInfo(eImprovement).isNoFreshWater() && isFreshWater())
+	if (kImprovement.isNoFreshWater() && isFreshWater())
 	{
 		return false;
 	}
 
-	if (GC.getImprovementInfo(eImprovement).isRequiresFlatlands() && !isFlatlands())
+	if (kImprovement.isRequiresFlatlands() && !isFlatlands())
 	{
 		return false;
 	}
 
-	if (GC.getImprovementInfo(eImprovement).isRequiresFeature() && (getFeatureType() == NO_FEATURE))
-	{
-		return false;
-	}
-	
-/************************************************************************************************/
-/* WILDERNESS                             08/2013                                 lfgr          */
-/* ImprovementWilderness                                                                        */
-/************************************************************************************************/
-	
-	if( GC.getImprovementInfo( eImprovement ).getMinWilderness() > getWilderness() ||
-			GC.getImprovementInfo( eImprovement ).getMaxWilderness() < getWilderness() )
+	if (kImprovement.isRequiresFeature() && (getFeatureType() == NO_FEATURE))
 	{
 		return false;
 	}
 
-	if( !GC.getImprovementInfo( eImprovement ).isUnique() )
-	{
-		bool bHasSpawn = false;
-		bool bCanSpawn = false;
-
-		for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
-		{
-			if( GC.getImprovementInfo( eImprovement ).getSpawnTypes( eSpawn ) )
-			{
-				bHasSpawn = true;
-				bCanSpawn = getSpawnValue( (SpawnTypes) eSpawn, false ) > 0;
-			}
-		}
-
-		if( bHasSpawn && !bCanSpawn )
-			return false;
-	}
-	
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
-
-	if (GC.getImprovementInfo(eImprovement).isHillsMakesValid() && isHills())
+	if (kImprovement.isHillsMakesValid() && isHills())
 	{
 		bValid = true;
 	}
 
-	if (GC.getImprovementInfo(eImprovement).isFreshWaterMakesValid() && isFreshWater())
+	if (kImprovement.isFreshWaterMakesValid() && isFreshWater())
 	{
 		bValid = true;
 	}
 
-	if (GC.getImprovementInfo(eImprovement).isRiverSideMakesValid() && isRiverSide())
+	if (kImprovement.isRiverSideMakesValid() && isRiverSide())
 	{
 		bValid = true;
 	}
 
-	if (GC.getImprovementInfo(eImprovement).getTerrainMakesValid(getTerrainType()))
+	if (kImprovement.getTerrainMakesValid(getTerrainType()))
 	{
 		bValid = true;
 	}
 
-	if ((getFeatureType() != NO_FEATURE) && GC.getImprovementInfo(eImprovement).getFeatureMakesValid(getFeatureType()))
+	if ((getFeatureType() != NO_FEATURE) && kImprovement.getFeatureMakesValid(getFeatureType()))
 	{
 		bValid = true;
 	}
@@ -2682,7 +2760,7 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 		return false;
 	}
 
-	if (GC.getImprovementInfo(eImprovement).isRequiresRiverSide())
+	if (kImprovement.isRequiresRiverSide())
 	{
 		bValid = false;
 
@@ -2711,7 +2789,10 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 
 	for (iI = 0; iI < NUM_YIELD_TYPES; ++iI)
 	{
-		if (calculateNatureYield(((YieldTypes)iI), eTeam) < GC.getImprovementInfo(eImprovement).getPrereqNatureYield(iI))
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+//		if (calculateNatureYield(((YieldTypes)iI), eTeam) < GC.getImprovementInfo(eImprovement).getPrereqNatureYield(iI))
+		if (calculateNatureYield(((YieldTypes)iI), ePlayer) < GC.getImprovementInfo(eImprovement).getPrereqNatureYield(iI))
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			return false;
 		}
@@ -2719,11 +2800,51 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 
 	if ((getTeam() == NO_TEAM) || !(GET_TEAM(getTeam()).isIgnoreIrrigation()))
 	{
-		if (!bPotential && GC.getImprovementInfo(eImprovement).isRequiresIrrigation() && !isIrrigationAvailable())
+		if (!bPotential && kImprovement.isRequiresIrrigation() && !isIrrigationAvailable())
 		{
 			return false;
 		}
 	}
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementWilderness                                                                        */
+/************************************************************************************************/
+	
+	if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && 
+		( GC.getImprovementInfo( eImprovement ).getMinWilderness() > getWilderness() ||
+			GC.getImprovementInfo( eImprovement ).getMaxWilderness() < getWilderness() ) )
+	{
+		return false;
+	}
+
+	if( !kImprovement.isUnique() )
+	{
+		bool bHasSpawn = false;
+		bool bCanSpawn = false;
+
+		for( int eSpawn = 0; eSpawn < GC.getNumSpawnInfos(); eSpawn++ )
+		{
+			if( kImprovement.getSpawnTypes( eSpawn ) )
+			{
+				bHasSpawn = true;
+				bCanSpawn = getSpawnValue( (SpawnTypes) eSpawn, false ) > 0;
+				if( bCanSpawn == true )
+					break;
+			}
+		}
+
+		if( bHasSpawn && !bCanSpawn )
+		{
+			logBBAI( "Preventing placement of %s, because it can't spawn units here", kImprovement.getType() );
+
+			return false;
+		}
+	}
+	
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	return true;
 }
@@ -2774,7 +2895,10 @@ bool CvPlot::canBuild(BuildTypes eBuild, PlayerTypes ePlayer, bool bTestVisible)
 
 	if (eImprovement != NO_IMPROVEMENT)
 	{
-		if (!canHaveImprovement(eImprovement, GET_PLAYER(ePlayer).getTeam(), bTestVisible))
+//>>>>Unofficial Bug Fix: Added by Denev 2010/05/04
+//		if (!canHaveImprovement(eImprovement, GET_PLAYER(ePlayer).getTeam(), bTestVisible))
+		if (!canHaveImprovement(eImprovement, ePlayer, bTestVisible))
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			return false;
 		}
@@ -4292,7 +4416,10 @@ PlayerTypes CvPlot::calculateCulturalOwner() const
 			iBestPriority = MAX_INT;
 			pBestCity = NULL;
 
-			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+			for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -5861,7 +5988,10 @@ bool CvPlot::isPotentialCityWorkForArea(CvArea* pArea) const
 	CvPlot* pLoopPlot;
 	int iI;
 
-	for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+	for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -5891,11 +6021,10 @@ void CvPlot::updatePotentialCityWork()
 
 	bValid = false;
 
-//FfH: Modified by Kael 07/12/208
-//  for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
-	for (iI = 0; iI < 21; ++iI)
-//FfH: End Modify
-
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+	for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_DEFAULT_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -5933,7 +6062,10 @@ void CvPlot::updateShowCitySymbols()
 
 	bNewShowCitySymbols = false;
 
-	for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//	for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+	for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 	{
 		pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -6388,7 +6520,10 @@ void CvPlot::setPlotType(PlotTypes eNewValue, bool bRecalculate, bool bRebuildGr
 				}
 			}
 
-			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+			for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -6626,6 +6761,13 @@ void CvPlot::setFeatureType(FeatureTypes eNewValue, int iVariety)
 
 	eOldFeature = getFeatureType();
 
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	if (isHasTempFeature())
+	{
+		changeTempFeatureTimer(-getTempFeatureTimer());
+	}
+// End Temporary Map Items
+
 	if (eNewValue != NO_FEATURE)
 	{
 		if (iVariety == -1)
@@ -6676,7 +6818,10 @@ void CvPlot::setFeatureType(FeatureTypes eNewValue, int iVariety)
 			updateRiverSymbolArt(true);
 		}
 
-		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+		for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -6788,6 +6933,14 @@ BonusTypes CvPlot::getNonObsoleteBonusType(TeamTypes eTeam) const
 
 void CvPlot::setBonusType(BonusTypes eNewValue)
 {
+
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	if (isHasTempBonus())
+	{
+		changeTempBonusTimer(-getTempBonusTimer());
+	}
+// End Temporary Map Items
+
 	if (getBonusType() != eNewValue)
 	{
 		if (getBonusType() != NO_BONUS)
@@ -6841,6 +6994,13 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 {
 	int iI;
 	ImprovementTypes eOldImprovement = getImprovementType();
+
+	// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	if (isHasTempImprovement())
+	{
+		changeTempImprovementTimer(-getTempImprovementTimer());
+	}
+	// End Temporary Map Items
 
 	if (getImprovementType() != eNewValue)
 	{
@@ -6937,7 +7097,16 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 					}
 				}
 				if( eBestSpawn != NO_SPAWN )
-					createSpawn( eBestSpawn, UNITAI_LAIRGUARDIAN, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
+				{
+					logBBAI("WILDERNESS - Spawning lair defender" );
+
+					// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
+					int iMinWilderness = calcMinWilderness( eBestSpawn );
+					// Choose a random number between this plot's wilderness and the required wilderness for the spawn
+					iMinWilderness += GC.getGameINLINE().getSorenRandNum( getWilderness() - iMinWilderness, "Spawn Wilderness" );
+							
+					createSpawn( eBestSpawn, iMinWilderness, UNITAI_LAIRGUARDIAN, GC.getMapINLINE().plotNumINLINE( getX_INLINE(), getY_INLINE() ) );
+				}
 				else
 				{
 					if( bSpawnAvailable )
@@ -6975,7 +7144,10 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 		updateIrrigated();
 		updateYield();
 
-		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+		for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			CvPlot* pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -7052,6 +7224,13 @@ void CvPlot::setRouteType(RouteTypes eNewValue, bool bUpdatePlotGroups)
 {
 	bool bOldRoute;
 	int iI;
+
+	// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	if (isHasTempRoute())
+	{
+		changeTempRouteTimer(-getTempRouteTimer());
+	}
+	// End Temporary Map Items
 
 	if (getRouteType() != eNewValue)
 	{
@@ -7130,8 +7309,10 @@ void CvPlot::setPlotCity(CvCity* pNewValue)
 	{
 		if (isCity())
 		{
-			//for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
-			for (iI = 0; iI > getPlotCity()->getNumCityPlots(); ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+			for (iI = 0; iI < ::calculateNumCityPlots(getPlotCity()->getPlotRadius()); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -7182,7 +7363,10 @@ void CvPlot::setPlotCity(CvCity* pNewValue)
 
 		if (isCity())
 		{
-			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//			for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+			for (iI = 0; iI < ::calculateNumCityPlots(pNewValue->getPlotRadius()); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -7229,7 +7413,10 @@ void CvPlot::updateWorkingCity()
 	{
 		iBestPlot = 0;
 
-		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
+		for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); ++iI)
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
 
@@ -7239,40 +7426,68 @@ void CvPlot::updateWorkingCity()
 
 				if (pLoopCity != NULL)
 				{
-/*************************************************************************************************/
-/**	BUGFIX (modified CityRadius) Sephi                                      					**/
-/**																								**/
-/**	makes sure an AI city only tries to work plots it can actually use 							**/
-/*************************************************************************************************/
-					if (iI<pLoopCity->getNumCityPlots())
+//>>>>Unofficial Bug Fix: Added by Denev 2010/04/05
+					if (::plotDistance(getX_INLINE(), getY_INLINE(), pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE()) <= pLoopCity->getPlotRadius())
 					{
-/*************************************************************************************************/
-/**	END	                                        												**/
-/*************************************************************************************************/
+//<<<<Unofficial Bug Fix: End Add
 						if (pLoopCity->getOwnerINLINE() == getOwnerINLINE())
 						{
 							// XXX use getGameTurnAcquired() instead???
+//>>>>Better AI: Modified by Denev 2010/07/12
+//*** Settlements don't disturb regular cities.
+/*
 							if ((pBestCity == NULL) ||
 								  (GC.getCityPlotPriority()[iI] < GC.getCityPlotPriority()[iBestPlot]) ||
 								  ((GC.getCityPlotPriority()[iI] == GC.getCityPlotPriority()[iBestPlot]) &&
 								   ((pLoopCity->getGameTurnFounded() < pBestCity->getGameTurnFounded()) ||
 									((pLoopCity->getGameTurnFounded() == pBestCity->getGameTurnFounded()) &&
 									 (pLoopCity->getID() < pBestCity->getID())))))
+*/							bool bUpdateBest = false;
+
+							if (pBestCity == NULL)
+							{
+								bUpdateBest = true;
+							}
+							else
+							{
+								int iLoopPriority = (pLoopCity->isSettlement()) ? MAX_INT : GC.getCityPlotPriority()[iI];
+								int iBestPriority = (pBestCity->isSettlement()) ? MAX_INT : GC.getCityPlotPriority()[iBestPlot];
+
+								if (iLoopPriority < iBestPriority)
+								{
+									bUpdateBest = true;
+								}
+								else
+								if (iLoopPriority == iBestPriority)
+								{
+									int iLoopFoundedTurn = pLoopCity->getGameTurnFounded();
+									int iBestFoundedTurn = pBestCity->getGameTurnFounded();
+
+									if (iLoopFoundedTurn < iBestFoundedTurn)
+									{
+										bUpdateBest = true;
+									}
+									else
+									if (iLoopFoundedTurn == iBestFoundedTurn)
+									{
+										if (pLoopCity->getID() < pBestCity->getID())
+										{
+											bUpdateBest = true;
+										}
+									}
+								}
+							}
+
+							if (bUpdateBest)
+//<<<<Better AI: End Modify
 							{
 								iBestPlot = iI;
 								pBestCity = pLoopCity;
 							}
 						}
-/*************************************************************************************************/
-/**	BUGFIX (modified CityRadius) Sephi                                      					**/
-/**																								**/
-/**	makes sure an AI city only tries to work plots it can actually use 							**/
-/*************************************************************************************************/
+//>>>>Unofficial Bug Fix: Added by Denev 2010/04/05
 					}
-/*************************************************************************************************/
-/**	END	                                        												**/
-/*************************************************************************************************/
-
+//<<<<Unofficial Bug Fix: End Add
 				}
 			}
 		}
@@ -7415,8 +7630,19 @@ int CvPlot::getYield(YieldTypes eIndex) const
 }
 
 
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/25
+/*
 int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnoreFeature) const
 {
+*/
+int CvPlot::calculateNatureYield(YieldTypes eYield, PlayerTypes ePlayer, bool bIgnoreFeature, bool bIgnoreBonus) const
+{
+	TeamTypes eTeam = NO_TEAM;
+	if (ePlayer != NO_PLAYER)
+	{
+		eTeam = GET_PLAYER(ePlayer).getTeam();
+	}
+//<<<<Unofficial Bug Fix: End Modify
 	BonusTypes eBonus;
 	int iYield;
 
@@ -7444,15 +7670,22 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 		iYield += GC.getYieldInfo(eYield).getLakeChange();
 	}
 
-	if (eTeam != NO_TEAM)
+//>>>>Better AI: Added by Denev 2010/04/29
+	if (!bIgnoreBonus)
 	{
-		eBonus = getBonusType(eTeam);
-
-		if (eBonus != NO_BONUS)
+//<<<<Better AI: End Add
+		if (eTeam != NO_TEAM)
 		{
-			iYield += GC.getBonusInfo(eBonus).getYieldChange(eYield);
+			eBonus = getBonusType(eTeam);
+
+			if (eBonus != NO_BONUS)
+			{
+				iYield += GC.getBonusInfo(eBonus).getYieldChange(eYield);
+			}
 		}
+//>>>>Better AI: Added by Denev 2010/04/29
 	}
+//<<<<Better AI: End Add
 
 	if (isRiver())
 	{
@@ -7475,13 +7708,24 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 	// Take into account civilization specific changes to terrain yields.
 	if (isOwned())
 	{
-		iYield += GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getTerrainYieldChanges(getTerrainType(), eYield, isRiver());
+		CivilizationTypes eOwnerType = GET_PLAYER(getOwnerINLINE()).getCivilizationType();
+		CvCity* pWorkingCity = getWorkingCity();
+
+		// For tolerant civilizations, the terrain yield changes of the civilization of the city is used instead.
+		if (pWorkingCity != NULL && pWorkingCity->getCivilizationType() != NO_CIVILIZATION)
+		{
+			eOwnerType = pWorkingCity->getCivilizationType();
+		}
+
+		iYield += GC.getCivilizationInfo(eOwnerType).getTerrainYieldChanges(getTerrainType(), eYield, isRiver());
 	}
 
 	return std::max(0, iYield);
 }
 
 
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/25
+/*
 int CvPlot::calculateBestNatureYield(YieldTypes eIndex, TeamTypes eTeam) const
 {
 	return std::max(calculateNatureYield(eIndex, eTeam, false), calculateNatureYield(eIndex, eTeam, true));
@@ -7492,6 +7736,26 @@ int CvPlot::calculateTotalBestNatureYield(TeamTypes eTeam) const
 {
 	return (calculateBestNatureYield(YIELD_FOOD, eTeam) + calculateBestNatureYield(YIELD_PRODUCTION, eTeam) + calculateBestNatureYield(YIELD_COMMERCE, eTeam));
 }
+*/
+int CvPlot::calculateBestNatureYield(YieldTypes eIndex, PlayerTypes ePlayer) const
+{
+	return std::max(calculateNatureYield(eIndex, ePlayer, false), calculateNatureYield(eIndex, ePlayer, true));
+}
+
+
+int CvPlot::calculateTotalBestNatureYield(PlayerTypes ePlayer) const
+{
+	int iYieldWithFeature = 0;
+	int iYieldWithoutFeature = 0;
+	for (int iYieldType = 0; iYieldType < NUM_YIELD_TYPES; iYieldType++)
+	{
+		iYieldWithFeature		+= calculateNatureYield((YieldTypes)iYieldType, ePlayer, false);
+		iYieldWithoutFeature	+= calculateNatureYield((YieldTypes)iYieldType, ePlayer, true);
+	}
+
+	return std::max(iYieldWithFeature, iYieldWithoutFeature);
+}
+//<<<<Unofficial Bug Fix: End Modify
 
 
 /************************************************************************************************/
@@ -7588,7 +7852,10 @@ int CvPlot::calculateImprovementYieldChange(ImprovementTypes eImprovement, Yield
 	return iYield;
 */
 	// Improvement cannot actually produce negative yield
-	int iCurrYield = calculateNatureYield(eYield, (ePlayer == NO_PLAYER) ? NO_TEAM : GET_PLAYER(ePlayer).getTeam(), bOptimal);
+//>>>>Better AI: Modified by Denev 2010/07/08
+//	int iCurrYield = calculateNatureYield(eYield, (ePlayer == NO_PLAYER) ? NO_TEAM : GET_PLAYER(ePlayer).getTeam(), bOptimal);
+	int iCurrYield = calculateNatureYield(eYield, ePlayer, bOptimal);
+//<<<<Unofficial Bug Fix: End Modify
 
 	return std::max( -iCurrYield, iYield );
 /*************************************************************************************************/
@@ -7657,7 +7924,10 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 		eRoute = getRouteType();
 	}
 
-	iYield = calculateNatureYield(eYield, ((ePlayer != NO_PLAYER) ? GET_PLAYER(ePlayer).getTeam() : NO_TEAM));
+//>>>>Better AI: Modified by Denev 2010/05/04
+//	iYield = calculateNatureYield(eYield, ((ePlayer != NO_PLAYER) ? GET_PLAYER(ePlayer).getTeam() : NO_TEAM));
+	iYield = calculateNatureYield(eYield, ePlayer);
+//<<<<Unofficial Bug Fix: End Modify
 
 	if (eImprovement != NO_IMPROVEMENT)
 	{
@@ -8026,7 +8296,7 @@ bool CvPlot::isBestAdjacentFound(PlayerTypes eIndex)
 
 	int iPlotValue = GET_PLAYER(eIndex).AI_foundValue(getX_INLINE(), getY_INLINE());
 
-	if (iPlotValue == 0)
+	if (iPlotValue <= 0)
 	{
 		return false;
 	}
@@ -10100,7 +10370,19 @@ void CvPlot::doFeature()
 /************************************************************************************************/
 
 								{
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+/**
 									setFeatureType((FeatureTypes)iI);
+**/
+									if (getTempTerrainTimer() > 0  && !GC.getFeatureInfo((FeatureTypes)iI).isTerrain(getRealTerrainType()))
+									{
+										setTempFeatureType((FeatureTypes)iI, -1, getTempTerrainTimer());
+									}
+									else
+									{
+										setFeatureType((FeatureTypes)iI);
+									}
+// End Temporary Map Items
 
 									pCity = GC.getMapINLINE().findCity(getX_INLINE(), getY_INLINE(), getOwnerINLINE(), NO_TEAM, false);
 
@@ -10553,6 +10835,17 @@ void CvPlot::read(FDataStreamBase* pStream)
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	pStream->Read(&m_eRealFeatureType);
+	pStream->Read(&m_iRealFeatureVariety);
+	pStream->Read(&m_iTempFeatureTimer);
+	pStream->Read(&m_eRealBonusType);
+	pStream->Read(&m_iTempBonusTimer);
+	pStream->Read(&m_eRealImprovementType);
+	pStream->Read(&m_iTempImprovementTimer);
+	pStream->Read(&m_eRealRouteType);
+	pStream->Read(&m_iTempRouteTimer);
+// End Temporary Map Items
 	SAFE_DELETE_ARRAY(m_aiCulture);
 	pStream->Read(&cCount);
 	if (cCount > 0)
@@ -10816,6 +11109,17 @@ void CvPlot::write(FDataStreamBase* pStream)
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+	pStream->Write(m_eRealFeatureType);
+	pStream->Write(m_iRealFeatureVariety);
+	pStream->Write(m_iTempFeatureTimer);
+	pStream->Write(m_eRealBonusType);
+	pStream->Write(m_iTempBonusTimer);
+	pStream->Write(m_eRealImprovementType);
+	pStream->Write(m_iTempImprovementTimer);
+	pStream->Write(m_eRealRouteType);
+	pStream->Write(m_iTempRouteTimer);
+// Temporary Map Items
 	if (NULL == m_aiCulture)
 	{
 		pStream->Write((char)0);
@@ -11156,7 +11460,10 @@ int CvPlot::calculateMaxYield(YieldTypes eYield) const
 		return 0;
 	}
 
-	int iMaxYield = calculateNatureYield(eYield, NO_TEAM);
+//>>>>Better AI: Modified by Denev 2010/05/04
+//	int iMaxYield = calculateNatureYield(eYield, NO_TEAM);
+	int iMaxYield = calculateNatureYield(eYield, NO_PLAYER);
+//<<<<Unofficial Bug Fix: End Modify
 
 	int iImprovementYield = 0;
 	for (int iImprovement = 0; iImprovement < GC.getNumImprovementInfos(); iImprovement++)
@@ -11237,7 +11544,10 @@ int CvPlot::getYieldWithBuild(BuildTypes eBuild, YieldTypes eYield, bool bWithUp
 //<<<<Unofficial Bug Fix: End Delete
 	}
 
-	iYield += calculateNatureYield(eYield, getTeam(), bIgnoreFeature);
+//>>>>Better AI: Modified by Denev 2010/05/04
+//	iYield += calculateNatureYield(eYield, getTeam(), bIgnoreFeature);
+	iYield += calculateNatureYield(eYield, getOwnerINLINE(), bIgnoreFeature);
+//<<<<Unofficial Bug Fix: End Modify
 
 	ImprovementTypes eImprovement = (ImprovementTypes)GC.getBuildInfo(eBuild).getImprovement();
 
@@ -11487,7 +11797,10 @@ bool CvPlot::canApplyEvent(EventTypes eEvent) const
 	{
 		if (NO_IMPROVEMENT != kEvent.getImprovement())
 		{
-			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getTeam()))
+//>>>>Unofficial Bug Fix: Added by Denev 2010/05/04
+//			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getTeam()))
+			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getOwnerINLINE()))
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				return false;
 			}
@@ -12167,21 +12480,32 @@ void CvPlot::changePlotCounter(int iChange)
 		const int iPlotCounterDown	= GC.getTerrainInfo(getTerrainType()).getPlotCounterDown();
 		const int iPlotCounterUp	= GC.getTerrainInfo(getTerrainType()).getPlotCounterUp();
 		bool bChange = false;
+		bool bIsUpChange;
 		if (getPlotCounter() < iPlotCounterDown && iPlotCounterDown <= iOldCounter)
 		{
 			setTerrainType((TerrainTypes)GC.getTerrainInfo(getTerrainType()).getTerrainDown(), true, true);
 			bChange = true;
+			bIsUpChange = false;
 		}
 		if (iOldCounter <= iPlotCounterUp && iPlotCounterUp < getPlotCounter())
 		{
 			setTerrainType((TerrainTypes)GC.getTerrainInfo(getTerrainType()).getTerrainUp(), true, true);
 			bChange = true;
+			bIsUpChange = true;
 		}
 //<<<<Unofficial Bug Fix: End Modify
 		if (bChange)
 		{
 			if (getFeatureType() != NO_FEATURE)
 			{
+				// Features modified by Armageddon Counter START
+				CvFeatureInfo &kCurrentFeature = GC.getFeatureInfo(getFeatureType());
+				FeatureTypes iNextFeatureType = (FeatureTypes) ((bIsUpChange) ? kCurrentFeature.getFeatureUp() : kCurrentFeature.getFeatureDown());
+				if (iNextFeatureType != NO_FEATURE && GC.getFeatureInfo(iNextFeatureType).isTerrain(getTerrainType()))
+				{
+					setFeatureType(iNextFeatureType);
+				} else
+				// Features modified by Armageddon Counter END
 				if (!GC.getFeatureInfo(getFeatureType()).isTerrain(getTerrainType()))
 				{
 					setFeatureType(NO_FEATURE);
@@ -12319,57 +12643,6 @@ int CvPlot::getRangeDefense(TeamTypes eDefender, int iRange, bool bFinal, bool b
         }
     }
     return iBestModifier;
-}
-
-TerrainTypes CvPlot::getRealTerrainType() const
-{
-	return (TerrainTypes)m_eRealTerrainType;
-}
-
-void CvPlot::setRealTerrainType(TerrainTypes eNewValue)
-{
-    m_eRealTerrainType = eNewValue;
-}
-
-void CvPlot::setTempTerrainType(TerrainTypes eNewValue, int iTimer)
-{
-//>>>>Unofficial Bug Fix: Added by Denev 2009/12/28
-//*** If new value is not assigned, reset temporary terrain.
-	if (iTimer == 0 || eNewValue == NO_TERRAIN)
-	{
-		changeTempTerrainTimer(getTempTerrainTimer() * -1);
-		if (getRealTerrainType() != NO_TERRAIN)
-		{
-			setTerrainType(getRealTerrainType(), true, true);
-			setRealTerrainType(NO_TERRAIN);
-		}
-
-		return;
-	}
-//<<<<Unofficial Bug Fix: End Add
-
-	if (getTerrainType() != eNewValue)
-	{
-		if (getRealTerrainType() == NO_TERRAIN) //Dont overwrite the real terrain if we double temp
-		{
-			setRealTerrainType(getTerrainType());
-		}
-		changeTempTerrainTimer(iTimer);
-		setTerrainType(eNewValue, true, true, true);
-	}
-}
-
-int CvPlot::getTempTerrainTimer() const
-{
-    return m_iTempTerrainTimer;
-}
-
-void CvPlot::changeTempTerrainTimer(int iChange)
-{
-    if (iChange != 0)
-    {
-        m_iTempTerrainTimer += iChange;
-    }
 }
 
 int CvPlot::getPortalExitX() const
@@ -12866,11 +13139,16 @@ int CvPlot::getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType ) con
 	return iTerrainValue;
 }
 
-bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon ) const
+std::pair<int,int> CvPlot::getMinTiers( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon ) const
 {
 	CvSpawnPrereqInfo& kSpawnPrereq = GC.getSpawnPrereqInfo( eSpawnPrereqType );
-
-	int iWilderness = bDungeon ? getLairDanger() : getWilderness();
+	
+	FAssert( iMinTier >= 0 );
+	FAssert( iMinTier <= iMaxTier );
+	FAssert( iMaxTier <= std::max( kSpawnPrereq.getNumWildernessTiers() - 1, 0 ) + std::max( kSpawnPrereq.getNumTechTiers() - 1, 0 ) );
+	
+	int iWilderness = bDungeon ? getLairDanger() :
+			( GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) ? 0 : getWilderness() );
 
 	if( kSpawnPrereq.getNumTechTiers() == 0 )
 	{
@@ -12880,11 +13158,11 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 			if( iWilderness >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
 				iWilderness <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) )
 			{
-				return true;
+				return std::pair<int,int>( iWildernessTier, -1 );
 			}
 		}
 	}
-	else // kSpawnPrereq.getNumTechTiers() > 1
+	else // kSpawnPrereq.getNumTechTiers() >= 1
 	{
 		// No tier available means tier = 0
 		// Don't go higher than iMaxTier
@@ -12892,8 +13170,9 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 
 		for( int iWildernessTier = 0; iWildernessTier <= iMaxWildernessTier; iWildernessTier++ )
 		{
-			if( iWilderness >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
-				iWilderness <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) )
+			if( kSpawnPrereq.getNumWildernessTiers() == 0 ||
+				( iWilderness >= kSpawnPrereq.getMinWilderness( iWildernessTier ) &&
+				iWilderness <= kSpawnPrereq.getMaxWilderness( iWildernessTier ) ) )
 			{
 				// Found a valid Wilderness tier
 				// Now get range of fitting tech tiers
@@ -12917,34 +13196,63 @@ bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, 
 					}
 
 					if( bValid )
-						return true;
+					{
+						// Found valid tech tier
+
+						if( kSpawnPrereq.getNumWildernessTiers() == 0 )
+							iWildernessTier = -1;
+						return std::pair<int,int>( iWildernessTier, iTechTier );
+					}
 				}
 			}
 		}
 	}
 
-	return false;
+	return std::pair<int,int>( -1, -1 );
 }
 
-int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon ) const
+bool CvPlot::isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon ) const
+{
+	return getMinTiers( eSpawnPrereqType, iMinTier, iMaxTier, bCheckTech, bDungeon ) != std::pair<int,int>( -1, -1 );
+}
+
+int CvPlot::calcMinWilderness( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon ) const
+{
+	CvSpawnInfo& kSpawn = GC.getSpawnInfo( eSpawn );
+	int iMinTier = kSpawn.getMinTier();
+	
+	int iMinWildernessTier = getMinTiers( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(),
+				kSpawn.getMaxTier(), bCheckTech, bDungeon ).first;
+
+	if( iMinWildernessTier == -1 )
+		return 0;
+	else
+		return GC.getSpawnPrereqInfo( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType() ).getMinWilderness( iMinWildernessTier );
+}
+
+int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon, bool bIgnoreTerrain ) const
 {
 	if( eSpawn == NO_SPAWN )
 		return 0;
 
 	CvSpawnInfo& kSpawn = GC.getSpawnInfo( (SpawnTypes) eSpawn );
 
-	if( area()->isWater() != kSpawn.isWater() )
+	if( !bIgnoreTerrain && area()->isWater() != kSpawn.isWater() )
 		return 0;
 
-	if( !isValidSpawnTier( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(), kSpawn.getMaxTier(), bCheckTech, bDungeon ) )
+	if( !bIgnoreTerrain && isOwned() && kSpawn.isAnimal() )
 		return 0;
+
+	if( !( GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && kSpawn.isNoWildernessIgnoreSpawnPrereq() ) )
+		if( !isValidSpawnTier( (SpawnPrereqTypes) kSpawn.getSpawnPrereqType(), kSpawn.getMinTier(), kSpawn.getMaxTier(), bCheckTech, bDungeon ) )
+			return 0;
 
 	if( GC.getGameINLINE().getGlobalCounter() < kSpawn.getPrereqGlobalCounter() )
 		return 0;
 
 	int iValue = kSpawn.getWeight();
 	
-	if( kSpawn.getTerrainFlavourType() != NO_TERRAIN_FLAVOUR )
+	if( !bIgnoreTerrain && kSpawn.getTerrainFlavourType() != NO_TERRAIN_FLAVOUR )
 	{
 		int iTerrainValue = getSpawnTerrainWeight( (TerrainFlavourTypes) kSpawn.getTerrainFlavourType() );
 		if( iTerrainValue > 0 )
@@ -12955,8 +13263,10 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon ) c
 	return iValue;
 }
 
-void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot )
+void CvPlot::createSpawn( SpawnTypes eSpawn, int iMinWilderness, UnitAITypes eUnitAI, int iLairPlot )
 {
+	FAssert( iMinWilderness >= 0 );
+
 	if( eSpawn == NO_SPAWN )
 	{
 		FAssert( false );
@@ -12964,6 +13274,8 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 	}
 
 	CvSpawnInfo& kSpawn = GC.getSpawnInfo( eSpawn );
+	
+	logBBAI( "Creating spawn %s%s", kSpawn.getType(), iLairPlot != -1 ? " from lair" : "" );
 
 	CvUnit* pHeadUnit = NULL;
 
@@ -12986,33 +13298,28 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 		if( iMinRandPromotions == -1 )
 			iMinRandPromotions = 0;
 		
-		if( iMaxRandPromotions != vePromotions.size() || iMaxRandPromotions != vePromotions.size() )
+		if( iMaxRandPromotions != vePromotions.size() || iMinRandPromotions != 0 )
 			bRandPromotions = true;
 	}
 
-	// Random Included Spawns
-	std::vector< std::pair<SpawnTypes,int> > veIncludedSpawns;
-	for( int eIncSpawn = 0; eIncSpawn < GC.getNumSpawnInfos(); eIncSpawn++ )
-		if( kSpawn.isIncludedSpawns( eIncSpawn ) )
-		{
-			int iValue = getSpawnValue( (SpawnTypes) eIncSpawn );
-			if( iValue > 0 )
-				veIncludedSpawns.push_back( std::pair<SpawnTypes,int>( (SpawnTypes) eIncSpawn, iValue ) );
-		}
-
-	int iRandomIncludedSpawns = 0;
-	if( kSpawn.getNumRandomIncludedSpawns() == -1 )
-		iRandomIncludedSpawns = (int) veIncludedSpawns.size();
-	else
-		iRandomIncludedSpawns = std::min( (int) veIncludedSpawns.size(), kSpawn.getNumRandomIncludedSpawns() );
+	// UnitAI
+	if( eUnitAI == NO_UNITAI )
+		eUnitAI = (UnitAITypes) kSpawn.getUnitAIType();
+	if( eUnitAI == NO_UNITAI )
+		eUnitAI = kSpawn.isAnimal() ? UNITAI_ANIMAL : ( kSpawn.isWater() ? UNITAI_ATTACK_SEA : UNITAI_ATTACK );
 
 	for( int eUnit = 0; eUnit < GC.getNumUnitInfos(); eUnit++ )
 	{
 		for( int j = 0; j < kSpawn.getNumSpawnUnits( (UnitTypes) eUnit ); j++ )
 		{
-			CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, getX_INLINE(), getY_INLINE(), eUnitAI );
+			CvUnit* pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit( (UnitTypes) eUnit, getX_INLINE(), getY_INLINE() );
+			// Force this UnitAI
+			pUnit->AI_setUnitAIType( eUnitAI );
 			
-			pUnit->setMinWilderness( getWilderness() );
+			if( !kSpawn.isNoMinWilderness() && !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
+			{
+				pUnit->setMinWilderness( iMinWilderness );
+			}
 			
 			if ( kSpawn.isAnimal() )
 				pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
@@ -13060,33 +13367,309 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, UnitAITypes eUnitAI, int iLairPlot 
 		}
 	}
 
-	// LFGR_TODO: Join Group
-	if( iRandomIncludedSpawns > 0 )
+	// Random Included Spawns
+	int iIncludedSpawns = kSpawn.getMinIncludedSpawns() + GC.getGameINLINE().getSorenRandNum( kSpawn.getMaxIncludedSpawns() - kSpawn.getMinIncludedSpawns() + 1, "Included spawns" );
+
+	std::vector< std::pair<SpawnTypes,std::pair<int,int> > > veIncludedSpawns;
+	for( int eIncSpawn = 0; eIncSpawn < GC.getNumSpawnInfos(); eIncSpawn++ )
 	{
-		std::vector< std::pair<SpawnTypes,int> > veTmpIncSpawns = veIncludedSpawns;
-		while( iRandomIncludedSpawns > 0 && veIncludedSpawns.size() > 0 )
+		if( kSpawn.getIncludedSpawnMax( eIncSpawn ) != 0 )
 		{
-			int iBestIndex = -1;
-			int iBestValue = 0;
-			for( unsigned int i = 0; i < veTmpIncSpawns.size(); i++ )
+			int iValue = getSpawnValue( (SpawnTypes) eIncSpawn, true, false, kSpawn.isIncludedSpawnIgnoreTerrain( eIncSpawn ) );
+			if( iValue > 0 )
 			{
-				int iLoopVal = veTmpIncSpawns[i].second;
-				iLoopVal += GC.getGameINLINE().getSorenRandNum( 100, "SpawnInfo rand weight" );
-				if( iLoopVal > iBestValue )
+				int iMinSpawning = kSpawn.getIncludedSpawnMin( eIncSpawn );
+				int iMaxSpawning = kSpawn.getIncludedSpawnMax( eIncSpawn );
+
+				for( int i = 0; i < iMinSpawning; i++ )
+					createSpawn( (SpawnTypes) eIncSpawn, iMinWilderness, NO_UNITAI, iLairPlot );
+				
+				if( kSpawn.isIncludedSpawnCountSeparately( eIncSpawn ) )
 				{
-					iBestValue = iLoopVal;
-					iBestIndex = i;
+					// spawn remaining random spawns
+					int iRemainingSpawns = GC.getGameINLINE().getSorenRandNum( iMaxSpawning - iMinSpawning + 1, "Included spawns" );
+					for( int i = 0; i < iRemainingSpawns; i++ )
+						createSpawn( (SpawnTypes) eIncSpawn, iMinWilderness, NO_UNITAI, iLairPlot );
 				}
+				else
+					iIncludedSpawns -= iMinSpawning;
+				
+				if( !kSpawn.isIncludedSpawnCountSeparately( eIncSpawn ) && ( iMaxSpawning == -1 || iMinSpawning < iMaxSpawning ) )
+					veIncludedSpawns.push_back( std::pair<SpawnTypes, std::pair<int,int> >( (SpawnTypes) eIncSpawn, std::pair<int,int>( iMinSpawning, iValue ) ) );
 			}
-			if( iBestIndex != -1 )
+		}
+	}
+
+	// LFGR_TODO: Join Group (if same UnitAI)
+
+	while( iIncludedSpawns > 0 )
+	{
+		int iBestIndex = -1;
+		int iBestValue = 0;
+		for( unsigned int i = 0; i < veIncludedSpawns.size(); i++ )
+		{
+			int iLoopVal = veIncludedSpawns[i].second.second;
+			iLoopVal += GC.getGameINLINE().getSorenRandNum( 100, "SpawnInfo rand weight" );
+			if( iLoopVal > iBestValue )
 			{
-				createSpawn( veTmpIncSpawns[iBestIndex].first, eUnitAI, iLairPlot );
-				veIncludedSpawns.erase( veIncludedSpawns.begin() + iBestIndex );
-				iRandomIncludedSpawns--;
+				iBestValue = iLoopVal;
+				iBestIndex = i;
 			}
+		}
+		if( iBestIndex != -1 )
+		{
+			SpawnTypes eIncSpawn = veIncludedSpawns[iBestIndex].first;
+			createSpawn( eIncSpawn, iMinWilderness, NO_UNITAI, iLairPlot );
+
+			veIncludedSpawns[iBestIndex].second.first++;
+			if( kSpawn.getIncludedSpawnMax( eIncSpawn ) != -1 && veIncludedSpawns[iBestIndex].second.first >= kSpawn.getIncludedSpawnMax( eIncSpawn ) )
+				veIncludedSpawns.erase( veIncludedSpawns.begin() + iBestIndex );
+			iIncludedSpawns--;
+		}
+		else
+		{
+			FAssertMsg( false, "No valid included spawn found" );
+			break;
 		}
 	}
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
+
+// Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
+// return Real Map Item type
+TerrainTypes CvPlot::getRealTerrainType() const
+{
+	return (TerrainTypes)m_eRealTerrainType;
+}
+
+FeatureTypes CvPlot::getRealFeatureType() const
+{
+	return (FeatureTypes) m_eRealFeatureType;
+}
+
+int CvPlot::getRealFeatureVariety() const
+{
+	return (FeatureTypes) m_iRealFeatureVariety;
+}
+
+BonusTypes CvPlot::getRealBonusType() const
+{
+	return (BonusTypes) m_eRealBonusType;
+}
+
+ImprovementTypes CvPlot::getRealImprovementType() const
+{
+	return (ImprovementTypes) m_eRealImprovementType;
+}
+
+RouteTypes CvPlot::getRealRouteType() const
+{
+	return (RouteTypes) m_eRealRouteType;
+}
+
+// setting Real Map Items
+void CvPlot::setRealTerrainType(TerrainTypes eNewValue)
+{
+    m_eRealTerrainType = eNewValue;
+}
+
+void CvPlot::setRealFeatureType(FeatureTypes eFeature)
+{
+	m_eRealFeatureType = eFeature;
+}
+
+void CvPlot::setRealFeatureVariety(int iVariety)
+{
+	m_iRealFeatureVariety = iVariety;
+}
+
+void CvPlot::setRealBonusType(BonusTypes eBonus)
+{
+	m_eRealBonusType = eBonus;
+}
+
+void CvPlot::setRealImprovementType(ImprovementTypes eImprovement)
+{
+	m_eRealImprovementType = eImprovement;
+}
+
+void CvPlot::setRealRouteType(RouteTypes eRoute)
+{
+	m_eRealRouteType = eRoute;
+}
+
+// setting Temporary Map Items
+void CvPlot::setTempTerrainType(TerrainTypes eNewValue, int iTimer)
+{
+//>>>>Unofficial Bug Fix: Added by Denev 2009/12/28
+//*** If new value is not assigned, reset temporary terrain.
+	if (iTimer == 0 || eNewValue == NO_TERRAIN)
+	{
+		changeTempTerrainTimer(getTempTerrainTimer() * -1);
+		if (getRealTerrainType() != NO_TERRAIN)
+		{
+			setTerrainType(getRealTerrainType(), true, true);
+			setRealTerrainType(NO_TERRAIN);
+		}
+
+		return;
+	}
+//<<<<Unofficial Bug Fix: End Add
+	if (getTerrainType() != eNewValue)
+	{
+		if (!isHasTempTerrain()) //Dont overwrite the real terrain if we double temp
+		{
+			setRealTerrainType(getTerrainType());
+		}
+		changeTempTerrainTimer(iTimer);
+		setTerrainType(eNewValue, true, true, true);
+	}
+}
+
+void CvPlot::setTempFeatureType(FeatureTypes eFeature, int iVariety, int iTimer)
+{
+	if (getFeatureType() != eFeature || getFeatureVariety() != iVariety)
+	{
+		if (!isHasTempFeature())
+		{
+			setRealFeatureType(getFeatureType());
+			setRealFeatureVariety(getFeatureVariety());
+		}
+		setFeatureType(eFeature, iVariety);
+		changeTempFeatureTimer(iTimer);
+	}
+}
+
+void CvPlot::setTempBonusType(BonusTypes eBonus, int iTimer)
+{
+	if (getBonusType(NO_TEAM) != eBonus)
+	{
+		if (!isHasTempBonus())
+		{
+			setRealBonusType(getBonusType(NO_TEAM));
+		}
+		setBonusType(eBonus);
+		changeTempBonusTimer(iTimer);
+	}
+}
+
+void CvPlot::setTempImprovementType(ImprovementTypes eImprovement, int iTimer)
+{
+	if (getImprovementType() != eImprovement)
+	{
+		if (!isHasTempImprovement())
+		{
+			setRealImprovementType(getImprovementType());
+		}
+		setImprovementType(eImprovement);
+		changeTempImprovementTimer(iTimer);
+	}
+}
+
+void CvPlot::setTempRouteType(RouteTypes eRoute, int iTimer)
+{
+	if (getRouteType() != eRoute)
+	{
+		if (!isHasTempRoute())
+		{
+			setRealRouteType(getRouteType());
+		}
+		setRouteType(eRoute, true);
+		changeTempRouteTimer(iTimer);
+	}
+}
+// return timer count for Temporary Map Items
+int CvPlot::getTempTerrainTimer() const
+{
+    return m_iTempTerrainTimer;
+}
+
+int CvPlot::getTempFeatureTimer() const
+{
+	return m_iTempFeatureTimer;
+}
+
+int CvPlot::getTempBonusTimer() const
+{
+	return m_iTempBonusTimer;
+}
+
+int CvPlot::getTempImprovementTimer() const
+{
+	return m_iTempImprovementTimer;
+}
+
+int CvPlot::getTempRouteTimer() const
+{
+	return m_iTempRouteTimer;
+}
+
+// boolean checks for Temporary Map Items
+bool CvPlot::isHasTempTerrain()
+{
+	return getTempTerrainTimer() > 0;
+}
+
+bool CvPlot::isHasTempFeature()
+{
+	return getTempFeatureTimer() > 0;
+}
+
+bool CvPlot::isHasTempBonus()
+{
+	return getTempBonusTimer() > 0;
+}
+
+bool CvPlot::isHasTempImprovement()
+{
+	return getTempImprovementTimer() > 0;
+}
+
+bool CvPlot::isHasTempRoute()
+{
+	return getTempRouteTimer() > 0;
+}
+
+// functions for changing the timers for Temporary Map Items
+void CvPlot::changeTempTerrainTimer(int iChange)
+{
+    if (iChange != 0)
+    {
+        m_iTempTerrainTimer += iChange;
+    }
+}
+
+void CvPlot::changeTempFeatureTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iTempFeatureTimer += iChange;
+	}
+}
+
+void CvPlot::changeTempBonusTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iTempBonusTimer += iChange;
+	}
+}
+
+void CvPlot::changeTempImprovementTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iTempImprovementTimer += iChange;
+	}
+}
+
+void CvPlot::changeTempRouteTimer(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iTempRouteTimer += iChange;
+	}
+}
+// End Temporary Map Items

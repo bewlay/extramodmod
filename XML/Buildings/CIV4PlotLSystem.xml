@@ -4067,6 +4067,13 @@
 			<Attribute Class="Scalar">bCutTrees:1</Attribute>
 			<Attribute Class="Scalar">fCenterCut:40</Attribute>
 		</ArtRef>
+		<!-- Graveyard // WILDERNESS 04/2015 lfgr / WildernessMisc  -->
+		<ArtRef Name="goal:IMPROVEMENT_GRAVEYARD">
+			<Attribute Class="Improvement">IMPROVEMENT_GRAVEYARD</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_COUN,ERA_ORDE,ERA_EMPY,ERA_RUNE,ERA_LEAF,ERA_OCTO,ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bCutTrees:1</Attribute>
+			<Attribute Class="Scalar">fCenterCut:30</Attribute>
+		</ArtRef>
 		<!-- mine -->
 		<ArtRef Name="goal:IMPROVEMENT_MINE">
 			<Attribute Class="Improvement">IMPROVEMENT_MINE</Attribute>

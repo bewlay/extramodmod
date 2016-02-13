@@ -375,6 +375,7 @@
 	<ElementType name="iUnownedTilesPerGameAnimal" content="textOnly" dt:type="int"/>
 	<ElementType name="iUnownedTilesPerBarbarianUnit" content="textOnly" dt:type="int"/>
 	<ElementType name="iUnownedWaterTilesPerBarbarianUnit" content="textOnly" dt:type="int"/>
+	<ElementType name="iUnownedWaterTilesPerGameAnimal" content="textOnly" dt:type="int"/>
 	<ElementType name="iUnownedTilesPerBarbarianCity" content="textOnly" dt:type="int"/>
 	<ElementType name="iBarbarianCreationTurnsElapsed" content="textOnly" dt:type="int"/>
 	<ElementType name="iBarbarianCityCreationTurnsElapsed" content="textOnly" dt:type="int"/>
@@ -454,6 +455,7 @@
 		<element type="iUnownedTilesPerGameAnimal"/>
 		<element type="iUnownedTilesPerBarbarianUnit"/>
 		<element type="iUnownedWaterTilesPerBarbarianUnit"/>
+		<element type="iUnownedWaterTilesPerGameAnimal"/>
 		<element type="iUnownedTilesPerBarbarianCity"/>
 		<element type="iBarbarianCreationTurnsElapsed"/>
 		<element type="iBarbarianCityCreationTurnsElapsed"/>
@@ -527,10 +529,12 @@
 		<element type="iTotalCultureRatio"/>
 		<element type="iVictoryDelayTurns"/>
 		<element type="VictoryMovie"/>
+		<element type="LinkedVictory" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="VictoryInfos" content="eltOnly">
 		<element type="VictoryInfo" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="LinkedVictory" content="textOnly"/>
 	<ElementType name="VictoryPrereq" content="textOnly"/>
 	<ElementType name="AnyonePrereqProject" content="textOnly"/>
 	<ElementType name="iMaxGlobalInstances" content="textOnly" dt:type="int"/>
@@ -794,8 +798,6 @@
 		<element type="ImprovementYieldChange" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 <!--DPII < Revolution Mod Start > -->
-	<ElementType name="bUpgradeAnywhere" content= "textOnly" dt:type="boolean"/>
-	<ElementType name="bAllowInquisitions" content= "textOnly" dt:type="boolean"/>
 	<ElementType name="bDisallowInquisitions" content= "textOnly" dt:type="boolean"/>
 	<ElementType name="iRevIdxLocal" content= "textOnly" dt:type="int"/>
 	<ElementType name="iRevIdxNational" content= "textOnly" dt:type="int"/>
@@ -890,8 +892,6 @@
 		<element type="FeatureHappinessChanges"/>
 		<element type="ImprovementYieldChanges"/>
 <!-- DPII < Revolution Mod Start > -->
-		<element type="bUpgradeAnywhere" minOccurs="0"/>
-		<element type="bAllowInquisitions" minOccurs="0"/>
 		<element type="bDisallowInquisitions" minOccurs="0"/>
 		<element type="iRevIdxLocal" minOccurs="0"/>
 		<element type="iRevIdxNational" minOccurs="0"/>

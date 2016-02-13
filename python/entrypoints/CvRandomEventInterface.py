@@ -28,7 +28,8 @@ PyPlayer = PyHelpers.PyPlayer
 def canTriggerAeronsChosen(argsList):
 	"""
 		Unit must have the Marksman promotion
-		Unit must be not summoned
+		Unit must not be summoned
+		Unit must not be a world unit
 	"""
 	kTriggeredData = argsList[0]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -37,6 +38,8 @@ def canTriggerAeronsChosen(argsList):
 	if not pUnit.isHasPromotion(iMark):
 		return False
 	if pUnit.getDuration() > 0:
+		return False
+	if gc.getUnitClassInfo( pUnit.getUnitClassType() ).getMaxGlobalInstances() > -1 :
 		return False
 	if pUnit.getSummoner() != -1:
 		return False
@@ -781,17 +784,6 @@ def doJudgementWrong(argsList):
 	CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_JUDGEMENT_WRONG", ()),'',1,'Art/Interface/Buttons/General/unhealthy_person.dds',ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
 	pCity.changeCrime(3)
 
-######## LETUM_FRIGUS (lfgr: moved to XML)
-
-def doLetumFrigus3(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	iPlayer = kTriggeredData.ePlayer
-	pPlayer = gc.getPlayer(iPlayer)
-	pPlayer.setHasTrait(gc.getInfoTypeForString('TRAIT_AGGRESSIVE'),True)
-
-######## (lfgr: not reviewed)
-
 def canTriggerLunaticCity(argsList):
 	eTrigger = argsList[0]
 	ePlayer = argsList[1]
@@ -878,6 +870,13 @@ def doMistforms(argsList):
 	newUnit1 = bPlayer.initUnit(iMistform, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 	newUnit2 = bPlayer.initUnit(iMistform, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 	newUnit3 = bPlayer.initUnit(iMistform, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+
+def canTriggerMushrooms(argsList):
+	kTriggeredData = argsList[0]
+	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
+	if pPlot.isCity():
+		return False
+	return True
 
 def doMushrooms(argsList):
 	kTriggeredData = argsList[0]
@@ -1060,12 +1059,6 @@ def doPenguins(argsList):
 	kTriggeredData = argsList[0]
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	pPlot.setBonusType(gc.getInfoTypeForString('BONUS_PENGUINS'))
-
-def canTriggerPickAlignment(argsList):
-	kTriggeredData = argsList[0]
-	if CyGame().getWBMapScript():
-		return False
-	return True
 
 def doPickAlignment1(argsList):
 	iEvent = argsList[0]
@@ -2091,7 +2084,10 @@ def doTraitInsane(argsList):
 	iTraitCount = 0
 	for i in range(gc.getNumTraitInfos()):
 		if (pPlayer.hasTrait(i) and i != gc.getInfoTypeForString('TRAIT_INSANE')):
-			if (i != pCivilization.getCivTrait()):
+		# EXTRA_CIV_TRAITS 08/2013 lfgr
+		#	if (i != pCivilization.getCivTrait()):
+			if( not pCivilization.isCivTraits( i ) ) :
+		# EXTRA_CIV_TRAITS end
 				pPlayer.setHasTrait(i, False)
 				iTraitCount += 1
 
@@ -4174,24 +4170,7 @@ def doGhostShip (argsList):
 						CyInterface().addMessage(kTriggeredData.ePlayer,True,25,CyTranslator().getText("TXT_KEY_EVENT_GHOST_SHIP_1_6",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Maelstrom.dds',ColorTypes(7),iX,iY,True,True)
 						newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_GALLEON'), iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
-						
-def doOrphanedGoblin1 (argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	iPlayer = kTriggeredData.ePlayer
-	pPlayer = gc.getPlayer(iPlayer)
-	pUnit = pPlayer.getUnit(kTriggeredData.iUnitId)
-	pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ORC_SLAYING'), True)
-	pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CRAZED'), True)
-	
-def doOrphanedGoblin2 (argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	iPlayer = kTriggeredData.ePlayer
-	pPlayer = gc.getPlayer(iPlayer)
-	pUnit = pPlayer.getUnit(kTriggeredData.iUnitId)
-	pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ORC'), True)
-
+# lfgr: tweaked 08/2014
 def doOrphanedGoblin3(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -4201,27 +4180,18 @@ def doOrphanedGoblin3(argsList):
 	iBestValue = 0
 	pBestPlot = -1
 	bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-	iX = pUnit.getX()
-	iY = pUnit.getY()
-	for iiX in range(iX-2, iX+2, 1):
-		for iiY in range(iY-2, iY+2, 1):
-			pPlot = CyMap().plot(iiX,iiY)
-			iValue = 0
-			if not pPlot.isWater():
-				if not pPlot.isPeak():
-					if pPlot.getNumUnits() == 0:
-						iValue = CyGame().getSorenRandNum(1000, "Goblin1")
-						if iValue > iBestValue:
-							iBestValue = iValue
-							pBestPlot = pPlot
-	if (pBestPlot!=-1):						
-		if CyGame().getSorenRandNum(1000, "Goblin1")<500:
-			newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_GOBLIN'), pBestPlot.getX(),pBestPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-			newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_WEAK'), True)
-		
-		if CyGame().getSorenRandNum(1000, "Goblin1")>500:
-			newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_GOBLIN'), pBestPlot.getX(),pBestPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-			newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_WEAK'), True)
+	for pPlot in cf.getNearPlots( pUnit.plot(), 2 ) :
+		iValue = 0
+		if not pPlot.isWater():
+			if not pPlot.isPeak():
+				if pPlot.getNumUnits() == 0:
+					iValue = CyGame().getSorenRandNum(1000, "Goblin1")
+					if iValue > iBestValue:
+						iBestValue = iValue
+						pBestPlot = pPlot
+	if (pBestPlot!=-1) :
+		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_GOBLIN'), pBestPlot.getX(),pBestPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_WEAK'), True)
 
 def doOrphanedGoblin4(argsList):
 	iEvent = argsList[0]
@@ -4232,6 +4202,16 @@ def doOrphanedGoblin4(argsList):
 	pUnit.changeExperience(1* -1, -1, False, False, False)
 	pCity = pPlayer.getCapitalCity()
 	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_GOBLIN'), pCity.getX(),pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+
+# lfgr: added 08/2014
+def canDoOrphanedGoblin4(argsList):
+	iEvent = argsList[0]
+	kTriggeredData = argsList[1]
+	iPlayer = kTriggeredData.ePlayer
+	pPlayer = gc.getPlayer(iPlayer)
+	
+	pCity = pPlayer.getCapitalCity()
+	return pCity != None and not pCity.isNone()
 	
 # lfgr: fixed
 def doThatKindOfDay1 (argsList):
@@ -4380,17 +4360,13 @@ def canDoThatKindOfDay5(argsList):
 		return True
 	return False
 
-def CanDoPrincessRule4 (argsList):
+# lfgr: removed CanDoPrincessRule4 (03/2015)
+
+# lfgr: added 03/2015
+def doPrincessRule4( argsList ) :
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	if pCity.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_PALACE_MERCURIANS')) == 0:
-		return False
-	else: 
-		if pCity.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_PALACE_INFERNAL')) == 0:
-			return False
-	return True
+	CyInterface().addMessage(kTriggeredData.ePlayer,True,25,CyTranslator().getText("TXT_KEY_EVENT_PRINCESS_RULE_4_MESSAGE",()),'',1,'Art/Interface/Buttons/General/unhealthy_person.dds',ColorTypes(7),kTriggeredData.iPlotX,kTriggeredData.iPlotY,True,True)
 
 def CanDoCorruptJudge4 (argsList):
 	iEvent = argsList[0]

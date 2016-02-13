@@ -745,9 +745,18 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 			m_paiFreePromotionCount[iI] = 0;
 		}
 
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+/*
 		FAssertMsg((0 < NUM_CITY_PLOTS),  "NUM_CITY_PLOTS is not greater than zero but an array is being allocated in CvCity::reset");
 		m_pabWorkingPlot = new bool[NUM_CITY_PLOTS];
 		for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+*/
+		setPlotRadius(CITY_PLOTS_DEFAULT_RADIUS);
+
+		FAssertMsg((0 < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS)),  "::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS) is not greater than zero but an array is being allocated in CvCity::reset");
+		m_pabWorkingPlot = new bool[::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS)];
+		for (iI = 0; iI < ::calculateNumCityPlots(CITY_PLOTS_MAX_RADIUS); iI++)
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			m_pabWorkingPlot[iI] = false;
 		}
@@ -1847,7 +1856,10 @@ int CvCity::countNumImprovedPlots(ImprovementTypes eImprovement, bool bPotential
 				if (eImprovement != NO_IMPROVEMENT)
 				{
 					if (pLoopPlot->getImprovementType() == eImprovement ||
-						(bPotential && pLoopPlot->canHaveImprovement(eImprovement, getTeam())))
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+//						(bPotential && pLoopPlot->canHaveImprovement(eImprovement, getTeam())))
+						(bPotential && pLoopPlot->canHaveImprovement(eImprovement, getOwnerINLINE())))
+//<<<<Unofficial Bug Fix: End Modify
 					{
 						++iCount;
 					}
@@ -1959,8 +1971,9 @@ int CvCity::findBaseYieldRateRank(YieldTypes eYield) const
 		CvCity* pLoopCity;
 		for (pLoopCity = GET_PLAYER(getOwnerINLINE()).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER(getOwnerINLINE()).nextCity(&iLoop))
 		{
-			if ((pLoopCity->getBaseYieldRate(eYield) > iRate) ||
-				((pLoopCity->getBaseYieldRate(eYield) == iRate) && (pLoopCity->getID() < getID())))
+			int iLoopCityBaseYieldRate = pLoopCity->getBaseYieldRate(eYield);
+			if ((iLoopCityBaseYieldRate > iRate) ||
+				((iLoopCityBaseYieldRate == iRate) && (pLoopCity->getID() < getID())))
 			{
 				iRank++;
 			}
@@ -2351,11 +2364,11 @@ bool CvCity::canTrain(UnitCombatTypes eUnitCombat) const
 bool CvCity::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestVisible, bool bIgnoreCost) const
 {
 	BuildingTypes ePrereqBuilding;
-
+	CvBuildingInfo& kBuilding = GC.getBuildingInfo(eBuilding);
 //FfH: Modified by Kael 08/24/2007
 //	bool bRequiresBonus;
 //	bool bNeedsBonus;
-    if (isSettlement())
+    if (isSettlement() && (kBuilding.getHolyCity() == NO_RELIGION))
     {
         return false;
     }
@@ -2363,7 +2376,7 @@ bool CvCity::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestVis
 
 	int iI;
 	CorporationTypes eCorporation;
-	CvBuildingInfo& kBuilding = GC.getBuildingInfo(eBuilding);
+	
 	CvCivilizationInfo& kCivilization = GC.getCivilizationInfo(getCivilizationType());
 
 	if (eBuilding == NO_BUILDING)
@@ -3005,6 +3018,19 @@ int CvCity::getProductionExperience(UnitTypes eUnit)
 			iExperience += GET_PLAYER(getOwnerINLINE()).getStateReligionFreeExperience();
 		}
 	}
+
+	// MNAI - include freepromotions
+	for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+	{
+		if (getNumBuilding((BuildingTypes)iI) > 0)
+		{
+			if (GC.getBuildingInfo((BuildingTypes)iI).getFreePromotionPick() > 0)
+			{
+				iExperience += 5;
+			}
+		}
+	}
+	// End MNAI
 
 	return std::max(0, iExperience);
 }
@@ -3915,6 +3941,16 @@ bool CvCity::canHurry(HurryTypes eHurry, bool bTestVisible) const
 		return false;
 	}
 
+	CLLNode<OrderData>* pOrderNode = headOrderQueueNode();
+	
+	if (pOrderNode != NULL && pOrderNode->m_data.eOrderType == ORDER_CONSTRUCT)
+	{
+		BuildingTypes eBuilding = (BuildingTypes)(pOrderNode->m_data.iData1);
+		if (GC.getBuildingInfo(eBuilding).isVictoryBuilding()) {
+			return false;
+		}
+	}
+
 	if (getProduction() >= getProductionNeeded())
 	{
 		return false;
@@ -4776,9 +4812,22 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 		changeBuildingDefense(kBuildingInfo.getDefenseModifier() * iChange);
 		changeBuildingBombardDefense(kBuildingInfo.getBombardDefenseModifier() * iChange);
 
-		changeBaseGreatPeopleRate(kBuildingInfo.getGreatPeopleRateChange() * iChange);
+		// AdventurerCounter: Do not add Adventurer GPP to the pool START
+		// Old code:
+		// changeBaseGreatPeopleRate(kBuildingInfo.getGreatPeopleRateChange() * iChange);
+		if (kBuildingInfo.getGreatPeopleUnitClass() == NO_UNITCLASS ||
+				kBuildingInfo.getGreatPeopleUnitClass() != (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_ADVENTURER"))
+		{
+			changeBaseGreatPeopleRate(kBuildingInfo.getGreatPeopleRateChange() * iChange);
+		}
+		// AdventurerCounter: Do not add Adventurer GPP to the pool END
 
-		if (kBuildingInfo.getGreatPeopleUnitClass() != NO_UNITCLASS)
+		// AdventurerCounter: Do not add Adventurer GPP to the pool START
+		// Old code:
+		// if (kBuildingInfo.getGreatPeopleUnitClass() != NO_UNITCLASS)
+		if (kBuildingInfo.getGreatPeopleUnitClass() != NO_UNITCLASS &&
+				kBuildingInfo.getGreatPeopleUnitClass() != (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_ADVENTURER"))
+		// AdventurerCounter: Do not add Adventurer GPP to the pool END
 		{
 			eGreatPeopleUnit = ((UnitTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(kBuildingInfo.getGreatPeopleUnitClass())));
 
@@ -5605,7 +5654,7 @@ int CvCity::foodConsumption(bool bNoAngry, int iExtra) const
 }
 
 
-int CvCity::foodDifference(bool bBottom) const
+int CvCity::foodDifference(bool bBottom, bool bIgnoreProduction) const
 {
 	int iDifference;
 
@@ -5625,7 +5674,8 @@ int CvCity::foodDifference(bool bBottom) const
 /**	END	                                        												**/
 /*************************************************************************************************/
 
-	if (isFoodProduction())
+	//if (isFoodProduction())
+	if (!bIgnoreProduction && isFoodProduction()) // K-Mod
 	{
 		iDifference = std::min(0, (getYieldRate(YIELD_FOOD) - foodConsumption()));
 	}
@@ -9842,7 +9892,7 @@ void CvCity::setBaseYieldRate(YieldTypes eIndex, int iNewValue)
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex expected to be < NUM_YIELD_TYPES");
 
-	if (getBaseYieldRate(eIndex) != iNewValue)
+	if (getBaseYieldRate(eIndex, false) != iNewValue)
 	{
 		FAssertMsg(iNewValue >= 0, "iNewValue expected to be >= 0");
 		FAssertMsg(((iNewValue * 100) / 100) >= 0, "((iNewValue * 100) / 100) expected to be >= 0");
@@ -9870,7 +9920,8 @@ void CvCity::changeBaseYieldRate(YieldTypes eIndex, int iChange)
 {
 	// Bugfix: Unhappy production should be calculated in getBaseYieldRate to make sure that it is taken into account in all production related calculations.
 	// Since the unhappy production part of getBaseYieldRate is calculated dynamically, it shouldn't be taking into account when it is required to modify it.
-	setBaseYieldRate(eIndex, (getBaseYieldRate(eIndex, false) + iChange));
+	int iBaseYield = getBaseYieldRate(eIndex, false);
+	setBaseYieldRate(eIndex, (iBaseYield + iChange));
 	// Bugfix end
 }
 
@@ -14478,6 +14529,13 @@ void CvCity::doProduction(bool bAllowNoProduction)
 
 			popOrder(0, true, true);
 
+			// Choose production again for AI.
+			// See http://forums.civfanatics.com/showpost.php?p=8808616&postcount=59
+			if (!isHuman())
+			{
+				AI_chooseProduction();
+			}
+
 			//to eliminate pre-build exploits for all Wonders and all Projects
 			if (isProductionWonder() || isProductionProject())
 			{
@@ -17058,7 +17116,7 @@ bool CvCity::canJoinPuppetState(PlayerTypes eOfPlayer) const
 
     return bFound;
 }
-// MNAI End
+// MNAI - End Puppet States
 
 int CvCity::getMusicScriptId() const
 {
@@ -17193,6 +17251,10 @@ void CvCity::applyBuildEffects(CvUnit* pUnit)
 				}
 			}
 		}
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+	/********************************************************************************/
+	/* old
 		if (GC.getCivilizationInfo(getCivilizationType()).getCivTrait() != NO_TRAIT)
 		{
 			for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
@@ -17206,6 +17268,27 @@ void CvCity::applyBuildEffects(CvUnit* pUnit)
 				}
 			}
 		}
+	*/
+		for( int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++ )
+		{
+			CvTraitInfo& kTrait = GC.getTraitInfo((TraitTypes) iTrait);
+			if( GC.getCivilizationInfo(getCivilizationType()).isCivTraits( iTrait ) )
+			{
+				for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); iPromotion++)
+				{
+					if( kTrait.isFreePromotion(iPromotion) )
+					{
+						if( kTrait.isAllUnitsFreePromotion() || ( (pUnit->getUnitCombatType() != NO_UNITCOMBAT) && kTrait.isFreePromotionUnitCombat( pUnit->getUnitCombatType() ) ) )
+						{
+							pUnit->setHasPromotion(((PromotionTypes)iPromotion), true);
+						}
+					}
+				}
+			}
+		}
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                                                     END     */
+	/********************************************************************************/
 	}
 	if (pUnit->isAlive() && !pUnit->isAnimal()) // Tholal AI - Animals shouldnt be assigned a religion
 	{
@@ -17289,29 +17372,25 @@ bool CvCity::isSettlement() const
 
 void CvCity::setSettlement(bool bNewValue)
 {
-    m_bSettlement = bNewValue;
+//>>>>Advanced Rules: Added by Denev 2010/07/13
+	setPlotRadius(1);
+//<<<<Advanced Rules: End Add
+
+	m_bSettlement = bNewValue;
 }
 
 int CvCity::getNumCityPlots() const
 {
-    if (getPlotRadius() == 3)
-    {
-        return 37;
-    }
-
-    else if (getPlotRadius() == 1)
-    {
-		if (isSettlement())
-		{
-			return 1;
-		}
-		else
-		{
-	        return 9;
-		}
-    }
-
-    return 21;
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+/*
+	if (getPlotRadius() == 3)
+	{
+		return 37;
+	}
+	return 21;
+*/
+	return ::calculateNumCityPlots(getPlotRadius());
+//<<<<Unofficial Bug Fix: End Modify
 }
 
 int CvCity::getPlotRadius() const

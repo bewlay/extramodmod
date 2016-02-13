@@ -22,9 +22,19 @@ def doGameUpdate():
 
 	if (bOOS and not bWroteLog):
 		writeLog()
+		# Automatic OOS detection START
+		gc.getGame().setOOSVisible()
+		# Automatic OOS detection END
 		bWroteLog = True
+	# Make sure that OOS will be generated when the game is not restarted after an OOS.
+	if (not bOOS):
+		bWroteLog = False
 
 def writeLog():
+	if not CyGame().isPitbossHost():
+		playername = CvUtil.convertToStr(gc.getPlayer(gc.getGame().getActivePlayer()).getName())
+	else:
+		playername = "PitBoss"
 	playername = CvUtil.convertToStr(gc.getPlayer(gc.getGame().getActivePlayer()).getName())
 	szNewFilename = BugPath.getRootDir() + "\\Logs\\" + "OOSLog - %s - " % (playername) + "Turn %s" % (gc.getGame().getGameTurn()) + ".txt"
 	pFile = open(szNewFilename, "w")
@@ -40,9 +50,9 @@ def writeLog():
 	pFile.write(SEPERATOR)
 	pFile.write(SEPERATOR)
 
-	
 	pFile.write(CvUtil.convertToStr(CyTranslator().getText("TXT_KEY_VERSION", ())))
 	pFile.write("\n\n")
+
 
 	pFile.write("  GLOBALS  \n")
 
@@ -52,6 +62,7 @@ def writeLog():
 
 	pFile.write("Next Map Rand Value: %d\n" % CyGame().getMapRand().get(10000, "OOS Log"))
 	pFile.write("Next Soren Rand Value: %d\n" % CyGame().getSorenRand().get(10000, "OOS Log"))
+	pFile.write("Turn slice: %d\n" % (CyGame().getTurnSlice() % 4))
 
 	pFile.write("Global counter: %d\n" % CyGame().getGlobalCounter() )
 	pFile.write("Total cities: %d\n" % CyGame().getNumCities() )

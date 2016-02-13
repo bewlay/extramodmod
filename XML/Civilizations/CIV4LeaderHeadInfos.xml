@@ -657,6 +657,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_ALIGNMENT</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RANDOM_EVIL</Type>
@@ -1309,6 +1310,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_ALIGNMENT</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RANDOM_NEUTRAL</Type>
@@ -1961,6 +1963,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_ALIGNMENT</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ALEXIS</Type>
@@ -2657,6 +2660,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_AMELANCHIER</Type>
@@ -3345,6 +3349,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ANAGANTIOS_EXTRA</Type>
@@ -4065,6 +4070,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ANAGANTIOS</Type>
@@ -4781,6 +4787,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ARENDEL</Type>
@@ -5477,6 +5484,7 @@
 					<iWeightModifier>50</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ARTURUS</Type>
@@ -6177,6 +6185,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_AURIC</Type>
@@ -6897,6 +6906,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_AVERAX_EXTRA</Type>
@@ -7593,6 +7603,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_AVERAX</Type>
@@ -8285,6 +8296,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_DUIN_EXTRA</Type>
@@ -8366,7 +8378,7 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				 <Trait>
-					<TraitType>TRAIT_CHARISMATIC</TraitType>
+					<TraitType>TRAIT_IMPERIALISTIC</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
@@ -8965,6 +8977,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_DUIN</Type>
@@ -9637,6 +9650,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_BASIUM</Type>
@@ -10325,6 +10339,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_BEERI</Type>
@@ -11021,6 +11036,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_BRAEDEN_EXTRA</Type>
@@ -11102,11 +11118,11 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				 <Trait>
-					<TraitType>TRAIT_BARBARIAN</TraitType>
+					<TraitType>TRAIT_DEFENDER</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
-					<TraitType>TRAIT_INGENUITY</TraitType>
+					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
@@ -11745,6 +11761,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_BRAEDEN</Type>
@@ -12465,6 +12482,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_CAPRIA</Type>
@@ -13153,6 +13171,7 @@
 					<iWeightModifier>50</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_OSTANES_EXTRA</Type>
@@ -13841,6 +13860,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_OSTANES</Type>
@@ -14525,6 +14545,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ULDANOR_EXTRA</Type>
@@ -14606,11 +14627,15 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				 <Trait>
-					<TraitType>TRAIT_CREATIVE</TraitType>
+					<TraitType>TRAIT_BARBARIAN</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
-					<TraitType>TRAIT_IMPERIALISTIC</TraitType>
+					<TraitType>TRAIT_CHARISMATIC</TraitType>
+					<bTrait>1</bTrait>
+				 </Trait>
+				 <Trait>
+					<TraitType>TRAIT_CREATIVE</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 			</Traits>
@@ -15213,6 +15238,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ULDANOR</Type>
@@ -15897,6 +15923,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_CARDITH</Type>
@@ -16613,6 +16640,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_CASSIEL</Type>
@@ -17329,6 +17357,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_CHARADON</Type>
@@ -18009,6 +18038,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_CHERON_EXTRA</Type>
@@ -18724,6 +18754,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_EXTRA</LeaderCategory>
  		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_DAIN</Type>
@@ -19384,6 +19415,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_DECIUS</Type>
@@ -20048,6 +20080,676 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
+		</LeaderHeadInfo>
+		<LeaderHeadInfo>
+			<Type>LEADER_DECIUS_EXTRA</Type>
+			<Description>TXT_KEY_LEADER_DECIUS</Description>
+			<Civilopedia>TXT_KEY_LEADER_DECIUS_PEDIA</Civilopedia>
+			<ArtDefineTag>ART_DEF_LEADER_DECIUS</ArtDefineTag>
+			<iWonderConstructRand>30</iWonderConstructRand>
+			<iBaseAttitude>0</iBaseAttitude>
+			<iBasePeaceWeight>4</iBasePeaceWeight>
+			<iPeaceWeightRand>3</iPeaceWeightRand>
+			<iWarmongerRespect>0</iWarmongerRespect>
+			<iEspionageWeight>0</iEspionageWeight>
+			<iRefuseToTalkWarThreshold>15</iRefuseToTalkWarThreshold>
+			<iNoTechTradeThreshold>5</iNoTechTradeThreshold>
+			<iTechTradeKnownPercent>25</iTechTradeKnownPercent>
+			<iMaxGoldTradePercent>10</iMaxGoldTradePercent>
+			<iMaxGoldPerTurnTradePercent>10</iMaxGoldPerTurnTradePercent>
+			<iMaxWarRand>180</iMaxWarRand>
+			<iMaxWarNearbyPowerRatio>100</iMaxWarNearbyPowerRatio>
+			<iMaxWarDistantPowerRatio>60</iMaxWarDistantPowerRatio>
+			<iMaxWarMinAdjacentLandPercent>2</iMaxWarMinAdjacentLandPercent>
+			<iLimitedWarRand>180</iLimitedWarRand>
+			<iLimitedWarPowerRatio>80</iLimitedWarPowerRatio>
+			<iDogpileWarRand>25</iDogpileWarRand>
+			<iMakePeaceRand>40</iMakePeaceRand>
+			<iDeclareWarTradeRand>20</iDeclareWarTradeRand>
+			<iDemandRebukedSneakProb>5</iDemandRebukedSneakProb>
+			<iDemandRebukedWarProb>5</iDemandRebukedWarProb>
+			<iRazeCityProb>5</iRazeCityProb>
+			<iBuildUnitProb>30</iBuildUnitProb>
+			<iBaseAttackOddsChange>4</iBaseAttackOddsChange>
+			<iAttackOddsChangeRand>8</iAttackOddsChangeRand>
+			<iWorseRankDifferenceAttitudeChange>-1</iWorseRankDifferenceAttitudeChange>
+			<iBetterRankDifferenceAttitudeChange>0</iBetterRankDifferenceAttitudeChange>
+			<iCloseBordersAttitudeChange>-4</iCloseBordersAttitudeChange>
+			<iLostWarAttitudeChange>-1</iLostWarAttitudeChange>
+			<iAtWarAttitudeDivisor>-5</iAtWarAttitudeDivisor>
+			<iAtWarAttitudeChangeLimit>5</iAtWarAttitudeChangeLimit>
+			<iAtPeaceAttitudeDivisor>60</iAtPeaceAttitudeDivisor>
+			<iAtPeaceAttitudeChangeLimit>2</iAtPeaceAttitudeChangeLimit>
+			<iSameReligionAttitudeChange>1</iSameReligionAttitudeChange>
+			<iSameReligionAttitudeDivisor>24</iSameReligionAttitudeDivisor>
+			<iSameReligionAttitudeChangeLimit>3</iSameReligionAttitudeChangeLimit>
+			<iDifferentReligionAttitudeChange>-1</iDifferentReligionAttitudeChange>
+			<iDifferentReligionAttitudeDivisor>-18</iDifferentReligionAttitudeDivisor>
+			<iDifferentReligionAttitudeChangeLimit>-3</iDifferentReligionAttitudeChangeLimit>
+			<iBonusTradeAttitudeDivisor>48</iBonusTradeAttitudeDivisor>
+			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
+			<iOpenBordersAttitudeDivisor>30</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeChangeLimit>1</iOpenBordersAttitudeChangeLimit>
+			<iDefensivePactAttitudeDivisor>48</iDefensivePactAttitudeDivisor>
+			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
+			<iShareWarAttitudeChange>2</iShareWarAttitudeChange>
+			<iShareWarAttitudeDivisor>12</iShareWarAttitudeDivisor>
+			<iShareWarAttitudeChangeLimit>3</iShareWarAttitudeChangeLimit>
+			<iFavoriteCivicAttitudeChange>2</iFavoriteCivicAttitudeChange>
+			<iFavoriteCivicAttitudeDivisor>30</iFavoriteCivicAttitudeDivisor>
+			<iFavoriteCivicAttitudeChangeLimit>2</iFavoriteCivicAttitudeChangeLimit>
+			<DemandTributeAttitudeThreshold>ATTITUDE_CAUTIOUS</DemandTributeAttitudeThreshold>
+			<NoGiveHelpAttitudeThreshold>ATTITUDE_CAUTIOUS</NoGiveHelpAttitudeThreshold>
+			<TechRefuseAttitudeThreshold>ATTITUDE_ANNOYED</TechRefuseAttitudeThreshold>
+			<StrategicBonusRefuseAttitudeThreshold>ATTITUDE_ANNOYED</StrategicBonusRefuseAttitudeThreshold>
+			<HappinessBonusRefuseAttitudeThreshold>NONE</HappinessBonusRefuseAttitudeThreshold>
+			<HealthBonusRefuseAttitudeThreshold>NONE</HealthBonusRefuseAttitudeThreshold>
+			<MapRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</MapRefuseAttitudeThreshold>
+			<DeclareWarRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</DeclareWarRefuseAttitudeThreshold>
+			<DeclareWarThemRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</DeclareWarThemRefuseAttitudeThreshold>
+			<StopTradingRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</StopTradingRefuseAttitudeThreshold>
+			<StopTradingThemRefuseAttitudeThreshold>ATTITUDE_ANNOYED</StopTradingThemRefuseAttitudeThreshold>
+			<AdoptCivicRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</AdoptCivicRefuseAttitudeThreshold>
+			<ConvertReligionRefuseAttitudeThreshold>ATTITUDE_PLEASED</ConvertReligionRefuseAttitudeThreshold>
+			<OpenBordersRefuseAttitudeThreshold>ATTITUDE_ANNOYED</OpenBordersRefuseAttitudeThreshold>
+			<DefensivePactRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</DefensivePactRefuseAttitudeThreshold>
+			<PermanentAllianceRefuseAttitudeThreshold>ATTITUDE_PLEASED</PermanentAllianceRefuseAttitudeThreshold>
+			<VassalRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</VassalRefuseAttitudeThreshold>
+			<iVassalPowerModifier>20</iVassalPowerModifier>
+			<iFreedomAppreciation>0</iFreedomAppreciation>
+			<FavoriteCivic>CIVIC_NATIONHOOD</FavoriteCivic>
+			<FavoriteReligion>NONE</FavoriteReligion>
+			<Traits>
+				 <Trait>
+					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<bTrait>1</bTrait>
+				 </Trait>
+				 <Trait>
+					<TraitType>TRAIT_RAIDERS</TraitType>
+					<bTrait>1</bTrait>
+				 </Trait>
+				 <Trait>
+					<TraitType>TRAIT_TOLERANT</TraitType>
+					<bTrait>1</bTrait>
+				 </Trait>
+			</Traits>
+			<Flavors>
+				 <Flavor>
+					<FlavorType>FLAVOR_GROWTH</FlavorType>
+					<iFlavor>5</iFlavor>
+				 </Flavor>
+				 <Flavor>
+					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<iFlavor>40</iFlavor>
+				 </Flavor>
+				 <Flavor>
+					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+					<iFlavor>5</iFlavor>
+				 </Flavor>
+				 <Flavor>
+					<FlavorType>FLAVOR_SCIENCE</FlavorType>
+					<iFlavor>-5</iFlavor>
+				 </Flavor>
+			</Flavors>
+			<ContactRands>
+				 <ContactRand>
+					<ContactType>CONTACT_RELIGION_PRESSURE</ContactType>
+					<iContactRand>500</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_CIVIC_PRESSURE</ContactType>
+					<iContactRand>500</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_JOIN_WAR</ContactType>
+					<iContactRand>20</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_STOP_TRADING</ContactType>
+					<iContactRand>50</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_GIVE_HELP</ContactType>
+					<iContactRand>250</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_ASK_FOR_HELP</ContactType>
+					<iContactRand>250</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_DEMAND_TRIBUTE</ContactType>
+					<iContactRand>50</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
+					<iContactRand>20</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
+					<iContactRand>80</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
+					<iContactRand>80</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_PEACE_TREATY</ContactType>
+					<iContactRand>20</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_TRADE_TECH</ContactType>
+					<iContactRand>2</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_TRADE_BONUS</ContactType>
+					<iContactRand>2</iContactRand>
+				 </ContactRand>
+				 <ContactRand>
+					<ContactType>CONTACT_TRADE_MAP</ContactType>
+					<iContactRand>20</iContactRand>
+				</ContactRand>
+
+				<ContactRand>
+					<ContactType>CONTACT_PEACE_PRESSURE</ContactType>
+					<iContactRand>100</iContactRand>
+				</ContactRand>
+				<ContactRand>
+					<ContactType>CONTACT_EMBASSY</ContactType>
+					<iContactRand>25</iContactRand>
+				</ContactRand>
+				<ContactRand>
+					<ContactType>CONTACT_TRADE_STOP_TRADING</ContactType>
+					<iContactRand>20</iContactRand>
+				</ContactRand>
+				<ContactRand>
+					<ContactType>CONTACT_TRADE_JOIN_WAR</ContactType>
+					<iContactRand>10</iContactRand>
+				</ContactRand>
+				<ContactRand>
+					<ContactType>CONTACT_TRADE_MILITARY_UNITS</ContactType>
+					<iContactRand>15</iContactRand>
+				</ContactRand>
+
+			</ContactRands>
+			<ContactDelays>
+				 <ContactDelay>
+					<ContactType>CONTACT_RELIGION_PRESSURE</ContactType>
+					<iContactDelay>50</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_CIVIC_PRESSURE</ContactType>
+					<iContactDelay>50</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_JOIN_WAR</ContactType>
+					<iContactDelay>20</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_STOP_TRADING</ContactType>
+					<iContactDelay>50</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_GIVE_HELP</ContactType>
+					<iContactDelay>50</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_ASK_FOR_HELP</ContactType>
+					<iContactDelay>50</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_DEMAND_TRIBUTE</ContactType>
+					<iContactDelay>50</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
+					<iContactDelay>20</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
+					<iContactDelay>20</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
+					<iContactDelay>20</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_PEACE_TREATY</ContactType>
+					<iContactDelay>10</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_TRADE_TECH</ContactType>
+					<iContactDelay>30</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_TRADE_BONUS</ContactType>
+					<iContactDelay>20</iContactDelay>
+				 </ContactDelay>
+				 <ContactDelay>
+					<ContactType>CONTACT_TRADE_MAP</ContactType>
+					<iContactDelay>50</iContactDelay>
+				</ContactDelay>
+
+				<ContactDelay>
+					<ContactType>CONTACT_PEACE_PRESSURE</ContactType>
+					<iContactDelay>100</iContactDelay>
+				</ContactDelay>
+				<ContactDelay>
+					<ContactType>CONTACT_EMBASSY</ContactType>
+					<iContactDelay>25</iContactDelay>
+				</ContactDelay>
+				<ContactDelay>
+					<ContactType>CONTACT_TRADE_STOP_TRADING</ContactType>
+					<iContactDelay>20</iContactDelay>
+				</ContactDelay>
+				<ContactDelay>
+					<ContactType>CONTACT_TRADE_JOIN_WAR</ContactType>
+					<iContactDelay>20</iContactDelay>
+				</ContactDelay>
+				<ContactDelay>
+					<ContactType>CONTACT_TRADE_MILITARY_UNITS</ContactType>
+					<iContactDelay>20</iContactDelay>
+				</ContactDelay>
+
+			</ContactDelays>
+			<MemoryDecays>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_GIVE_HELP</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_REFUSED_HELP</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_ACCEPT_DEMAND</MemoryType>
+					<iMemoryRand>50</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_REJECTED_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_ACCEPTED_RELIGION</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_DENIED_RELIGION</MemoryType>
+					<iMemoryRand>50</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_ACCEPTED_CIVIC</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_DENIED_CIVIC</MemoryType>
+					<iMemoryRand>50</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_ACCEPTED_JOIN_WAR</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_DENIED_JOIN_WAR</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_ACCEPTED_STOP_TRADING</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_DENIED_STOP_TRADING</MemoryType>
+					<iMemoryRand>50</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_STOPPED_TRADING_RECENT</MemoryType>
+					<iMemoryRand>30</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND_RECENT</MemoryType>
+					<iMemoryRand>20</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_CANCELLED_OPEN_BORDERS</MemoryType>
+					<iMemoryRand>10</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_TRADED_TECH_TO_US</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_RECEIVED_TECH_FROM_ANY</MemoryType>
+					<iMemoryRand>20</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_VOTED_AGAINST_US</MemoryType>
+					<iMemoryRand>10</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_VOTED_FOR_US</MemoryType>
+					<iMemoryRand>10</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_EVENT_GOOD_TO_US</MemoryType>
+					<iMemoryRand>50</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_EVENT_BAD_TO_US</MemoryType>
+					<iMemoryRand>50</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_SOMNIUM_POSITIVE</MemoryType>
+					<iMemoryRand>0</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_SOMNIUM_NEGATIVE</MemoryType>
+					<iMemoryRand>0</iMemoryRand>
+				 </MemoryDecay>
+				 <MemoryDecay>
+					<MemoryType>MEMORY_SOMNIUM_DELAY</MemoryType>
+					<iMemoryRand>1</iMemoryRand>
+				 </MemoryDecay>
+			</MemoryDecays>
+			<MemoryAttitudePercents>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryAttitudePercent>-300</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryAttitudePercent>-200</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryAttitudePercent>-100</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryAttitudePercent>-200</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryAttitudePercent>-200</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryAttitudePercent>-250</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryAttitudePercent>-200</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryAttitudePercent>-100</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_GIVE_HELP</MemoryType>
+					<iMemoryAttitudePercent>100</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_ACCEPT_DEMAND</MemoryType>
+					<iMemoryAttitudePercent>100</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_ACCEPTED_RELIGION</MemoryType>
+					<iMemoryAttitudePercent>100</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_ACCEPTED_CIVIC</MemoryType>
+					<iMemoryAttitudePercent>100</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_ACCEPTED_STOP_TRADING</MemoryType>
+					<iMemoryAttitudePercent>50</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_TRADED_TECH_TO_US</MemoryType>
+					<iMemoryAttitudePercent>5</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_VOTED_AGAINST_US</MemoryType>
+					<iMemoryAttitudePercent>-200</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_VOTED_FOR_US</MemoryType>
+					<iMemoryAttitudePercent>200</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_EVENT_GOOD_TO_US</MemoryType>
+					<iMemoryAttitudePercent>100</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_EVENT_BAD_TO_US</MemoryType>
+					<iMemoryAttitudePercent>-100</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryAttitudePercent>150</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_SOMNIUM_POSITIVE</MemoryType>
+					<iMemoryAttitudePercent>100</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_SOMNIUM_NEGATIVE</MemoryType>
+					<iMemoryAttitudePercent>-100</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+				 <MemoryAttitudePercent>
+					<MemoryType>MEMORY_SOMNIUM_DELAY</MemoryType>
+					<iMemoryAttitudePercent>0</iMemoryAttitudePercent>
+				 </MemoryAttitudePercent>
+			</MemoryAttitudePercents>
+			<NoWarAttitudeProbs>
+				 <NoWarAttitudeProb>
+					<AttitudeType>ATTITUDE_ANNOYED</AttitudeType>
+					<iNoWarProb>20</iNoWarProb>
+				 </NoWarAttitudeProb>
+				 <NoWarAttitudeProb>
+					<AttitudeType>ATTITUDE_CAUTIOUS</AttitudeType>
+					<iNoWarProb>70</iNoWarProb>
+				 </NoWarAttitudeProb>
+				 <NoWarAttitudeProb>
+					<AttitudeType>ATTITUDE_PLEASED</AttitudeType>
+					<iNoWarProb>100</iNoWarProb>
+				 </NoWarAttitudeProb>
+				 <NoWarAttitudeProb>
+					<AttitudeType>ATTITUDE_FRIENDLY</AttitudeType>
+					<iNoWarProb>100</iNoWarProb>
+				 </NoWarAttitudeProb>
+			</NoWarAttitudeProbs>
+			<UnitAIWeightModifiers>
+			</UnitAIWeightModifiers>
+			<ImprovementWeightModifiers>
+				 <ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_MANA_CHAOS</ImprovementType>
+					<iWeightModifier>-40</iWeightModifier>
+				 </ImprovementWeightModifier>
+				 <ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_MANA_DEATH</ImprovementType>
+					<iWeightModifier>-40</iWeightModifier>
+				 </ImprovementWeightModifier>
+				 <ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_MANA_ENTROPY</ImprovementType>
+					<iWeightModifier>-40</iWeightModifier>
+				 </ImprovementWeightModifier>
+				 <ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
+					<iWeightModifier>40</iWeightModifier>
+				 </ImprovementWeightModifier>
+				 <ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_MANA_LAW</ImprovementType>
+					<iWeightModifier>20</iWeightModifier>
+				 </ImprovementWeightModifier>
+				 <ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_MANA_SPIRIT</ImprovementType>
+					<iWeightModifier>20</iWeightModifier>
+				 </ImprovementWeightModifier>
+			</ImprovementWeightModifiers>
+			<DiplomacyIntroMusicPeace>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_ANCIENT</EraType>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_CLASSICAL</EraType>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_MEDIEVAL</EraType>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_ORDE</EraType>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_LEAF</EraType>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_VEIL</EraType>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_RUNE</EraType>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_OCTO</EraType>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_COUN</EraType>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_EMPY</EraType>
+				 </DiploMusicPeaceEra>
+			</DiplomacyIntroMusicPeace>
+			<DiplomacyMusicPeace>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_ANCIENT</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_CLASSICAL</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_MEDIEVAL</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_ORDE</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_LEAF</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_VEIL</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_RUNE</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_OCTO</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_COUN</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicPeaceEra>
+				 <DiploMusicPeaceEra>
+					<EraType>ERA_EMPY</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicPeaceEra>
+			</DiplomacyMusicPeace>
+			<DiplomacyIntroMusicWar>
+				 <DiploMusicWarEra>
+					<EraType>ERA_ANCIENT</EraType>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_CLASSICAL</EraType>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_MEDIEVAL</EraType>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_ORDE</EraType>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_LEAF</EraType>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_VEIL</EraType>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_RUNE</EraType>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_OCTO</EraType>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_COUN</EraType>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_EMPY</EraType>
+				 </DiploMusicWarEra>
+			</DiplomacyIntroMusicWar>
+			<DiplomacyMusicWar>
+				 <DiploMusicWarEra>
+					<EraType>ERA_ANCIENT</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_CLASSICAL</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_MEDIEVAL</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_ORDE</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_LEAF</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_VEIL</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_RUNE</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_OCTO</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_COUN</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicWarEra>
+				 <DiploMusicWarEra>
+					<EraType>ERA_EMPY</EraType>
+					<DiploScriptId>AS2D_DIPLO_DECIUS</DiploScriptId>
+				 </DiploMusicWarEra>
+			</DiplomacyMusicWar>
+			<bFemale>0</bFemale>
+			<bGraphicalOnly>0</bGraphicalOnly>
+			<iAttitudeBadBonus>2</iAttitudeBadBonus>
+			<iAttitudeFromFemales>0</iAttitudeFromFemales>
+			<iAttitudeFromMales>0</iAttitudeFromMales>
+			<iAttitudeToFemales>0</iAttitudeToFemales>
+			<iAttitudeToMales>0</iAttitudeToMales>
+			<iSomniumAggressiveness>50</iSomniumAggressiveness>
+			<Alignment>ALIGNMENT_NEUTRAL</Alignment>
+			<FavoriteTech>NONE</FavoriteTech>
+			<FavoriteUnitCombat>NONE</FavoriteUnitCombat>
+			<FavoriteWonder>BUILDING_FORM_OF_THE_TITAN</FavoriteWonder>
+			<PermanentTrait>NONE</PermanentTrait>
+			<ReligionWeightModifiers>
+			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_SALLOS</Type>
@@ -20752,6 +21454,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_DUMANNIOS_EXTRA</Type>
@@ -21472,6 +22175,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_DUMANNIOS</Type>
@@ -22188,6 +22892,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_EINION</Type>
@@ -22908,6 +23613,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_ETHNE</Type>
@@ -23632,6 +24338,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_FAERYL</Type>
@@ -24332,6 +25039,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_FALAMAR</Type>
@@ -25032,6 +25740,7 @@
 					<iWeightModifier>-10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_FLAUROS</Type>
@@ -25732,6 +26441,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_FURIA_EXTRA</Type>
@@ -26432,6 +27142,7 @@
 					<iWeightModifier>-10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_FURIA</Type>
@@ -27128,6 +27839,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_GARRIM</Type>
@@ -27824,6 +28536,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_GOSEA_EXTRA</Type>
@@ -28516,6 +29229,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_GOSEA</Type>
@@ -29208,6 +29922,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_HAFGAN_EXTRA</Type>
@@ -29892,6 +30607,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_HAFGAN</Type>
@@ -30576,6 +31292,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_HANNAH</Type>
@@ -31268,6 +31985,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_HYBOREM</Type>
@@ -31976,6 +32694,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_JONAS</Type>
@@ -32664,6 +33383,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_JUDECCA</Type>
@@ -33368,6 +34088,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_KANDROS</Type>
@@ -34072,6 +34793,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_KANE_EXTRA</Type>
@@ -34788,6 +35510,7 @@
 					<iWeightModifier>30</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_KANE</Type>
@@ -35496,6 +36219,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_KEELYN</Type>
@@ -35578,6 +36302,10 @@
 			<Traits>
 				 <Trait>
 					<TraitType>TRAIT_CREATIVE</TraitType>
+					<bTrait>1</bTrait>
+				 </Trait>
+				 <Trait>
+					<TraitType>TRAIT_INGENUITY</TraitType>
 					<bTrait>1</bTrait>
 				 </Trait>
 				 <Trait>
@@ -36200,6 +36928,7 @@
 					<iWeightModifier>-25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_LETHE</Type>
@@ -36904,6 +37633,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MAHALA</Type>
@@ -37588,6 +38318,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MAHON_EXTRA</Type>
@@ -38284,6 +39015,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MAHON</Type>
@@ -38976,6 +39708,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MALCHAVIC_EXTRA</Type>
@@ -39668,6 +40401,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MALCHAVIC</Type>
@@ -40334,7 +41068,7 @@
 			<iAttitudeToMales>0</iAttitudeToMales>
 			<iSomniumAggressiveness>90</iSomniumAggressiveness>
 			<Alignment>ALIGNMENT_EVIL</Alignment>
-			<FavoriteTech>TECH_BRONZE_WORKING</FavoriteTech>
+			<FavoriteTech>TECH_NECROMANCY</FavoriteTech>
 			<FavoriteUnitCombat>UNITCOMBAT_ADEPT</FavoriteUnitCombat>
 			<FavoriteWonder>BUILDING_PROPHECY_OF_RAGNAROK</FavoriteWonder>
 			<PermanentTrait>NONE</PermanentTrait>
@@ -40356,6 +41090,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MELISANDRE_EXTRA</Type>
@@ -41056,6 +41791,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MELISANDRE</Type>
@@ -41756,6 +42492,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_MERESIN</Type>
@@ -42456,6 +43193,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_KOUN_EXTRA</Type>
@@ -42536,14 +43274,18 @@
 			<FavoriteCivic>CIVIC_NEUTRALITY</FavoriteCivic>
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
-				 <Trait>
+				<Trait>
 					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
-				 </Trait>
-				 <Trait>
+				</Trait>
+				<Trait>
 					<TraitType>TRAIT_SAGE</TraitType>
 					<bTrait>1</bTrait>
-				 </Trait>
+				</Trait>
+				<Trait>
+					<TraitType>TRAIT_TOLERANT</TraitType>
+					<bTrait>1</bTrait>
+				</Trait>
 			</Traits>
 			<Flavors>
 				 <Flavor>
@@ -43168,6 +43910,7 @@
 					<iWeightModifier>0</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_KOUN</Type>
@@ -43876,6 +44619,7 @@
 					<iWeightModifier>0</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_OS-GABELLA</Type>
@@ -44546,7 +45290,7 @@
 			<iAttitudeToMales>-4</iAttitudeToMales>
 			<iSomniumAggressiveness>90</iSomniumAggressiveness>
 			<Alignment>ALIGNMENT_EVIL</Alignment>
-			<FavoriteTech>TECH_BRONZE_WORKING</FavoriteTech>
+			<FavoriteTech>TECH_NECROMANCY</FavoriteTech>
 			<FavoriteUnitCombat>UNITCOMBAT_ADEPT</FavoriteUnitCombat>
 			<FavoriteWonder>BUILDING_PROPHECY_OF_RAGNAROK</FavoriteWonder>
 			<PermanentTrait>NONE</PermanentTrait>
@@ -44568,6 +45312,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_OUZZA</Type>
@@ -45272,6 +46017,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_PERPENTACH</Type>
@@ -45976,6 +46722,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RHOANNA</Type>
@@ -46664,6 +47411,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RIUROS_EXTRA</Type>
@@ -47384,6 +48132,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RIUROS</Type>
@@ -48100,6 +48849,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RIVANNA_EXTRA</Type>
@@ -48800,6 +49550,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_RIVANNA</Type>
@@ -49496,6 +50247,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_SABATHIEL</Type>
@@ -50216,6 +50968,7 @@
 					<iWeightModifier>50</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_SANDALPHON</Type>
@@ -50912,6 +51665,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_SHEELBA</Type>
@@ -51596,6 +52350,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_SHEKINAH_EXTRA</Type>
@@ -52292,6 +53047,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_SHEKINAH</Type>
@@ -52984,6 +53740,7 @@
 					<iWeightModifier>25</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_STATIUS</Type>
@@ -53688,6 +54445,7 @@
 					<iWeightModifier>-100</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_TASUNKE</Type>
@@ -54372,6 +55130,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_TEBRYN</Type>
@@ -55046,7 +55805,7 @@
 			<iAttitudeToMales>0</iAttitudeToMales>
 			<iSomniumAggressiveness>95</iSomniumAggressiveness>
 			<Alignment>ALIGNMENT_EVIL</Alignment>
-			<FavoriteTech>TECH_BRONZE_WORKING</FavoriteTech>
+			<FavoriteTech>TECH_NECROMANCY</FavoriteTech>
 			<FavoriteUnitCombat>UNITCOMBAT_ADEPT</FavoriteUnitCombat>
 			<FavoriteWonder>BUILDING_PROPHECY_OF_RAGNAROK</FavoriteWonder>
 			<PermanentTrait>NONE</PermanentTrait>
@@ -55068,6 +55827,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_TETHIRA_EXTRA</Type>
@@ -55756,6 +56516,7 @@
 					<iWeightModifier>50</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_TETHIRA</Type>
@@ -56444,6 +57205,7 @@
 					<iWeightModifier>50</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_THESSA</Type>
@@ -57152,6 +57914,7 @@
 					<iWeightModifier>-50</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_THESSALONICA_EXTRA</Type>
@@ -57872,6 +58635,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_THESSALONICA</Type>
@@ -58592,6 +59356,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_TYA_EXTRA</Type>
@@ -59252,6 +60017,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_TYA</Type>
@@ -59908,6 +60674,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_VALLEDIA</Type>
@@ -60600,6 +61367,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_VARN</Type>
@@ -61312,6 +62080,7 @@
 					<iWeightModifier>10</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_STANDARD</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_VOLANNA_EXTRA</Type>
@@ -62012,6 +62781,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_VOLANNA</Type>
@@ -62708,6 +63478,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_WEEVIL_EXTRA</Type>
@@ -63412,6 +64183,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENEXTRA</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_WEEVIL</Type>
@@ -64116,6 +64888,7 @@
 					<iWeightModifier>-20</iWeightModifier>
 				 </ReligionWeightModifier>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_SCENARIO</LeaderCategory>
 		</LeaderHeadInfo>
 		<LeaderHeadInfo>
 			<Type>LEADER_BARBARIAN</Type>
@@ -64388,6 +65161,7 @@
 			<PermanentTrait>NONE</PermanentTrait>
 			<ReligionWeightModifiers>
 			</ReligionWeightModifiers>
+			<LeaderCategory>LEADERCATEGORY_BARBARIAN</LeaderCategory>
 		</LeaderHeadInfo>
 	</LeaderHeadInfos>
 </Civ4LeaderHeadInfos>

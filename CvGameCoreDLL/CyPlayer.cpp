@@ -1294,11 +1294,6 @@ bool CyPlayer::isNonStateReligionCommerce() const
     return m_pPlayer ? m_pPlayer->isNonStateReligionCommerce() : false;
 }
 
-bool CyPlayer::isUpgradeAnywhere() const
-{
-    return m_pPlayer ? m_pPlayer->isUpgradeAnywhere() : false;
-}
-
 int CyPlayer::getRevIdxLocal()
 {
 	return m_pPlayer ? m_pPlayer->getRevIdxLocal() : 0;
@@ -1338,12 +1333,11 @@ float CyPlayer::getRevIdxGoodReligionMod()
 {
 	return m_pPlayer ? m_pPlayer->getRevIdxGoodReligionMod() : 0;
 }
-/*
-int CyPlayer::getUnitUpgradePriceModifier()
+
+bool CyPlayer::canInquisition() 
 {
-	return m_pPlayer ? m_pPlayer->getUnitUpgradePriceModifier() : 0;
+	return m_pPlayer->canInquisition();
 }
-*/
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
 /************************************************************************************************/
@@ -2659,7 +2653,11 @@ bool CyPlayer::makePuppet(int /*PlayerTypes*/ eSplitPlayer, CvCity* pVassalCapit
     return false;
 }
 
-bool CyPlayer::canMakePuppet(int /*PlayerTypes*/ eFromPlayer) const
+/********************************************************************************/
+/* MinorPuppetLeaders	03/2015											lfgr	*/
+/********************************************************************************/
+/* old
+bool CyPlayer::canMakePuppet(int eFromPlayer) const
 {
     if (m_pPlayer)
     {
@@ -2668,8 +2666,20 @@ bool CyPlayer::canMakePuppet(int /*PlayerTypes*/ eFromPlayer) const
 
     return false;
 }
+*/
+bool CyPlayer::canMakePuppet( CvCity* pVassalCapital ) const
+{
+    if (m_pPlayer)
+    {
+        return m_pPlayer->canMakePuppet( pVassalCapital );
+    }
 
-// Puppet State functions (added by Tholal)
+    return false;
+}
+/********************************************************************************/
+/* MinorPuppetLeaders	End												lfgr	*/
+/********************************************************************************/
+
 bool CyPlayer::isPuppetState() const
 {
 	return m_pPlayer ? m_pPlayer->isPuppetState() : false;
@@ -2681,7 +2691,7 @@ void CyPlayer::setPuppetState(bool newvalue)
         m_pPlayer->setPuppetState(newvalue);
 }
 
-// End MNAI
+// MNAI - End Puppet States
 
 bool CyPlayer::canHaveTradeRoutesWith(int iPlayer)
 {
@@ -2703,6 +2713,12 @@ bool CyPlayer::canSeeCivic(int iCivic) const
 bool CyPlayer::canSeeReligion(int iReligion) const
 {
     return m_pPlayer ? m_pPlayer->canSeeReligion(iReligion, NULL) : false;
+}
+
+
+int CyPlayer::getSanctuaryTimer() const
+{
+	return m_pPlayer ? m_pPlayer->getSanctuaryTimer() : -1;
 }
 
 void CyPlayer::changeSanctuaryTimer(int iChange)
@@ -2876,6 +2892,31 @@ void CyPlayer::addReminder(int iGameTurn, std::wstring szMessage) const
 }
 // BUG - Reminder Mod - end
 
+// MNAI - new functions
+int CyPlayer::countNumOwnedTerrainTypes(int /*TerrainTypes*/ eTerrain) const
+{
+	return m_pPlayer ? m_pPlayer->countNumOwnedTerrainTypes((TerrainTypes)eTerrain) : -1;
+}
+
+int CyPlayer::getHighestUnitTier(bool bIncludeHeroes, bool bIncludeLimitedUnits) const
+{
+    return m_pPlayer ? m_pPlayer->getHighestUnitTier(bIncludeHeroes, bIncludeLimitedUnits) : -1;
+}
+// End MNAI
+
+// Leader categories START
+int CyPlayer::getLeaderCategory() const
+{
+	return m_pPlayer ? (int) m_pPlayer->getLeaderCategory() : NO_LEADERCATEGORY;
+}
+// Leader categories END
+
+// ExtraModMod technology propagation START
+int CyPlayer::calculateTechPropagationResearchModifier(int /*TechTypes*/ eTech) const
+{
+	return m_pPlayer ? (int) m_pPlayer->calculateTechPropagationResearchModifier((TechTypes)eTech) : 0;
+}
+// ExtraModMod technology propagation END
 /*************************************************************************************************/
 /**	CivCounter			               		10/27/09    						Valkrionn		**/
 /**										Stores Spawn Information								**/

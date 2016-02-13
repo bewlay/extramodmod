@@ -81,9 +81,7 @@ void CyInfoPythonInterface1()
 		.def("isDefensivePactTrading", &CvTechInfo::isDefensivePactTrading, "bool ()")
 		.def("isPermanentAllianceTrading", &CvTechInfo::isPermanentAllianceTrading, "bool ()")
 		.def("isVassalStateTrading", &CvTechInfo::isVassalStateTrading, "bool ()")
-// MNAI - Puppet States
-		.def("isPuppetStateTrading", &CvTechInfo::isPuppetStateTrading, "bool ()")
-// MNAI End
+		.def("isPuppetStateTrading", &CvTechInfo::isPuppetStateTrading, "bool ()") // MNAI - Puppet States
 		.def("isBridgeBuilding", &CvTechInfo::isBridgeBuilding, "bool ()")
 		.def("isIrrigation", &CvTechInfo::isIrrigation, "bool ()")
 		.def("isIgnoreIrrigation", &CvTechInfo::isIgnoreIrrigation, "bool ()")
@@ -491,7 +489,6 @@ void CyInfoPythonInterface1()
 /*                                                                                              */
 /*                                                                                              */
 /************************************************************************************************/
-		.def("isAllowInquisitions", &CvCivicInfo::isAllowInquisitions, "bool ()")
 		.def("isDisallowInquisitions", &CvCivicInfo::isDisallowInquisitions, "bool ()")
 		.def("getRevIdxLocal", &CvCivicInfo::getRevIdxLocal, "int ()")
 		.def("getRevIdxNational", &CvCivicInfo::getRevIdxNational, "int ()")
@@ -651,7 +648,6 @@ void CyInfoPythonInterface1()
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-		.def("getUnitUpgradePriceModifier", &CvBuildingInfo::getUnitUpgradePriceModifier, "int ()")
 		.def("getRevIdxLocal", &CvBuildingInfo::getRevIdxLocal, "int ()")
 		.def("getRevIdxNational", &CvBuildingInfo::getRevIdxNational, "int ()")
 		.def("getRevIdxDistanceModifier", &CvBuildingInfo::getRevIdxDistanceModifier, "int ()")

@@ -7,7 +7,7 @@
 		<French>[SPACE](Doit fortifier pour devenir 1 %s1_ImpName)</French>
 		<German>[SPACE](Muss starken, um zur Modernisierung %s1_ImpName zu werden)</German>
 		<Italian>[SPACE](Deve fortificare per diventare %s1_ImpName)</Italian>
-		<Spanish>[SPACE](Debe fortalecer para convertirse en [NUM1:un:una:unos:unas] %s1:1_ImpName)</Spanish>
+		<Spanish>[SPACE](Debe ser guarnecida para convertirse en [NUM1:un:una:unos:unas] %s1:1_ImpName)</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_PLOT_CULTURE</Tag>
@@ -15,7 +15,7 @@
 		<French>[ICON_BULLET]%D1_Change[ICON_CULTURE] pour le propriétaire dans la parcelle</French>
 		<German>[ICON_BULLET]%D1_Change[ICON_CULTURE] für Besitzer in Plot</German>
 		<Italian>[ICON_BULLET]%D1_Change[ICON_CULTURE] per il proprietario di complotto</Italian>
-		<Spanish>[ICON_BULLET]%D1_Change[ICON_CULTURE] para el propietario de la parcela</Spanish>
+		<Spanish>[ICON_BULLET]%D1_Change[ICON_CULTURE] para el propietario de la casilla</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_CULTURE_RANGE</Tag>
@@ -23,7 +23,7 @@
 		<French>[ICON_BULLET]Influences des parcelles dans un rayon de %d1_Num</French>
 		<German>[ICON_BULLET]Einflüsse Plots innerhalb einer Entfernung von %d1_Num</German>
 		<Italian>[ICON_BULLET]Trame influenze entro una distanza di %d1_Num</Italian>
-		<Spanish>[ICON_BULLET]Influye en las parcelas dentro de una distancia de %d1_Num</Spanish>
+		<Spanish>[ICON_BULLET]Influye en las casillas a una distancia de %d1_Num</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_BOMBARD</Tag>
@@ -39,7 +39,7 @@
 		<French>[ICON_BULLET]Une unité doit renforcer pour mettre à niveau</French>
 		<German>[ICON_BULLET]Eine Unit muss stärken, um ein Upgrade</German>
 		<Italian>[ICON_BULLET]Una unità deve fortificare l'aggiornamento</Italian>
-		<Spanish>[ICON_BULLET]Una unidad debe fortalecer para mejorar</Spanish>
+		<Spanish>[ICON_BULLET]Una unidad debe guarnecerlo para poder mejorarlo</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_VISIBILITY_RANGE</Tag>
@@ -55,7 +55,7 @@
 		<French>[ICON_BULLET]%D1_Change Hauteur Visibilité</French>
 		<German>[ICON_BULLET]%D1_Change Visibility Height</German>
 		<Italian>[ICON_BULLET]%D1_Change visibilità Altezza</Italian>
-		<Spanish>[ICON_BULLET]%D1_Change visibilidad Altura</Spanish>
+		<Spanish>[ICON_BULLET]%D1_Change visibilidad por altura</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_UNIQUE_RANGE</Tag>

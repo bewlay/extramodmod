@@ -141,7 +141,7 @@
             </TechYieldChanges>
             <RouteYieldChanges>
             </RouteYieldChanges>
-            <bGraphicalOnly>0</bGraphicalOnly>
+            <bGraphicalOnly>1</bGraphicalOnly>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -327,7 +327,7 @@
             </TechYieldChanges>
             <RouteYieldChanges>
             </RouteYieldChanges>
-            <bGraphicalOnly>0</bGraphicalOnly>
+            <bGraphicalOnly>1</bGraphicalOnly>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -711,7 +711,7 @@
             </TechYieldChanges>
             <RouteYieldChanges>
             </RouteYieldChanges>
-            <bGraphicalOnly>0</bGraphicalOnly>
+            <bGraphicalOnly>1</bGraphicalOnly>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -897,7 +897,7 @@
             </TechYieldChanges>
             <RouteYieldChanges>
             </RouteYieldChanges>
-            <bGraphicalOnly>0</bGraphicalOnly>
+            <bGraphicalOnly>1</bGraphicalOnly>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -3290,10 +3290,10 @@
 			<bRequiresFeature>0</bRequiresFeature>
 			<bWater>0</bWater>
 			<bGoody>0</bGoody>
-			<bPermanent>1</bPermanent>
-			<bUseLSystem>1</bUseLSystem>
-			<iAdvancedStartCost>40</iAdvancedStartCost>
-			<iAdvancedStartCostIncrease>40</iAdvancedStartCostIncrease>
+			<bPermanent>0</bPermanent>
+            <bUseLSystem>1</bUseLSystem>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<iTilesPerGoody>0</iTilesPerGoody>
 			<iGoodyRange>0</iGoodyRange>
 			<iFeatureGrowth>0</iFeatureGrowth>
@@ -3450,10 +3450,10 @@
 			<bRequiresFeature>0</bRequiresFeature>
 			<bWater>0</bWater>
 			<bGoody>0</bGoody>
-			<bPermanent>1</bPermanent>
-			<bUseLSystem>1</bUseLSystem>
-			<iAdvancedStartCost>40</iAdvancedStartCost>
-			<iAdvancedStartCostIncrease>40</iAdvancedStartCostIncrease>
+			<bPermanent>0</bPermanent>
+            <bUseLSystem>1</bUseLSystem>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<iTilesPerGoody>0</iTilesPerGoody>
 			<iGoodyRange>0</iGoodyRange>
 			<iFeatureGrowth>0</iFeatureGrowth>
@@ -3850,10 +3850,10 @@
 			<bRequiresFeature>0</bRequiresFeature>
 			<bWater>0</bWater>
 			<bGoody>0</bGoody>
-			<bPermanent>1</bPermanent>
-			<bUseLSystem>1</bUseLSystem>
-			<iAdvancedStartCost>40</iAdvancedStartCost>
-			<iAdvancedStartCostIncrease>40</iAdvancedStartCostIncrease>
+			<bPermanent>0</bPermanent>
+            <bUseLSystem>1</bUseLSystem>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<iTilesPerGoody>0</iTilesPerGoody>
 			<iGoodyRange>0</iGoodyRange>
 			<iFeatureGrowth>0</iFeatureGrowth>
@@ -3930,10 +3930,10 @@
 			<bRequiresFeature>0</bRequiresFeature>
 			<bWater>0</bWater>
 			<bGoody>0</bGoody>
-			<bPermanent>1</bPermanent>
-			<bUseLSystem>1</bUseLSystem>
-			<iAdvancedStartCost>40</iAdvancedStartCost>
-			<iAdvancedStartCostIncrease>40</iAdvancedStartCostIncrease>
+			<bPermanent>0</bPermanent>
+            <bUseLSystem>1</bUseLSystem>
+            <iAdvancedStartCost>-1</iAdvancedStartCost>
+            <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<iTilesPerGoody>0</iTilesPerGoody>
 			<iGoodyRange>0</iGoodyRange>
 			<iFeatureGrowth>0</iFeatureGrowth>
@@ -5327,7 +5327,7 @@
 			</TechYieldChanges>
 			<RouteYieldChanges>
 			</RouteYieldChanges>
-			<bGraphicalOnly>0</bGraphicalOnly>
+			<bGraphicalOnly>1</bGraphicalOnly>
 			<bRequiresPeak>0</bRequiresPeak>
 			<bUnique>1</bUnique>
 			<bExploreTarget>0</bExploreTarget>
@@ -6061,7 +6061,7 @@
             </TechYieldChanges>
             <RouteYieldChanges>
             </RouteYieldChanges>
-            <bGraphicalOnly>0</bGraphicalOnly>
+            <bGraphicalOnly>1</bGraphicalOnly>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>1</bUnique>
             <bExploreTarget>0</bExploreTarget>

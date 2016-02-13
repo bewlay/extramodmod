@@ -158,6 +158,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 		self.mapListGenerators = {
 			SevoScreenEnums.PEDIA_TECHS		: self.placeTechs,
 			SevoScreenEnums.PEDIA_UNITS		: self.placeUnits,
+			SevoScreenEnums.PEDIA_ANIMALS		: self.placeAnimals,
 			SevoScreenEnums.PEDIA_UNIT_UPGRADES	: self.placeUnitUpgrades,
 			SevoScreenEnums.PEDIA_UNIT_CATEGORIES	: self.placeUnitCategories,
 			SevoScreenEnums.PEDIA_PROMOTIONS		: self.placePromotions,
@@ -217,6 +218,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 		self.mapScreenFunctions = {
 			SevoScreenEnums.PEDIA_TECHS		: SevoPediaTech.SevoPediaTech(self),
 			SevoScreenEnums.PEDIA_UNITS		: SevoPediaUnit.SevoPediaUnit(self),
+			SevoScreenEnums.PEDIA_ANIMALS		: SevoPediaUnit.SevoPediaUnit(self),
 			SevoScreenEnums.PEDIA_UNIT_CATEGORIES	: SevoPediaUnitChart.SevoPediaUnitChart(self),
 			SevoScreenEnums.PEDIA_PROMOTIONS		: SevoPediaPromotion.SevoPediaPromotion(self),
 			SevoScreenEnums.PEDIA_SPHERES		: self.pediaPromotion,
@@ -328,6 +330,10 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 				iCategory = SevoScreenEnums.PEDIA_GEAR				
 			elif iPromotionType == SevoScreenEnums.TYPE_RACE:
 				iCategory = SevoScreenEnums.PEDIA_RACES
+		elif (iCategory == SevoScreenEnums.PEDIA_UNITS):
+			iUnitType = self.pediaUnit.getUnitType(iItem)
+			if iUnitType == SevoScreenEnums.TYPE_ANIMAL:
+				iCategory = SevoScreenEnums.PEDIA_ANIMALS
 		elif (iCategory == SevoScreenEnums.PEDIA_BONUSES):
 			iBonusType = self.pediaBonus.getBonusType(iItem)
 			if iBonusType == SevoScreenEnums.TYPE_BONUS_MANA:			
@@ -441,6 +447,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 
 		self.szCategoryTechs		= localText.getText("TXT_KEY_PEDIA_CATEGORY_TECH", ())
 		self.szCategoryUnits		= localText.getText("TXT_KEY_PEDIA_CATEGORY_UNIT", ())
+		self.szCategoryAnimals		= localText.getText("TXT_KEY_PEDIA_CATEGORY_ANIMALS", ())
 		self.szCategoryUnitUpgrades	= localText.getText("TXT_KEY_PEDIA_CATEGORY_UNIT_UPGRADES", ())
 		self.szCategoryUnitCategories	= localText.getText("TXT_KEY_PEDIA_CATEGORY_UNIT_COMBAT", ())
 		self.szCategoryPromotions	= localText.getText("TXT_KEY_PEDIA_CATEGORY_PROMOTION", ())
@@ -482,6 +489,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 		self.categoryList = [
 			["TECHS",	self.szCategoryTechs],
 			["UNITS",	self.szCategoryUnits],
+			["UNITS",	self.szCategoryAnimals],
 			["UNITS",	self.szCategoryUnitUpgrades],
 			["UNITS",	self.szCategoryUnitCategories],
 			["PROMOTIONS",	self.szCategoryPromotions],
@@ -575,14 +583,16 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 	def getTechList(self):
 		return self.getSortedList(gc.getNumTechInfos(), gc.getTechInfo)
 
-
 	def placeUnits(self):
-		self.list = self.getUnitList()
+		self.list = self.getUnitList(SevoScreenEnums.TYPE_REGULAR)
 		self.placeItems(WidgetTypes.WIDGET_PEDIA_JUMP_TO_UNIT, gc.getUnitInfo)
-	
-	def getUnitList(self):
-		return self.getSortedList(gc.getNumUnitInfos(), gc.getUnitInfo)
 
+	def placeAnimals(self):
+		self.list = self.getUnitList(SevoScreenEnums.TYPE_ANIMAL)
+		self.placeItems(WidgetTypes.WIDGET_PEDIA_JUMP_TO_UNIT, gc.getUnitInfo)
+
+	def getUnitList(self, iType = None):
+		return self.getSortedList(gc.getNumUnitInfos(), gc.getUnitInfo, iType, self.pediaUnit.getUnitType)
 
 	def placeUnitUpgrades(self):
 		screen = self.getScreen()

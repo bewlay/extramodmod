@@ -1428,6 +1428,9 @@ class CvInfoScreen:
 
 		pPlayer = gc.getPlayer(self.iActivePlayer)
 
+		# One user claimed to get a python error because this variable wasn't assigned.
+		# I don't see how this could have happened, but we are going to initialize it just in case.
+		iEconomy = 0
 		iEconomyGameAverage = 0
 		iIndustryGameAverage = 0
 		iAgricultureGameAverage = 0
@@ -1830,9 +1833,9 @@ class CvInfoScreen:
 				iTurnYear = CyGame().getTurnYear(pCity.getGameTurnFounded())
 
 				if (iTurnYear < 0):
-					szTurnFounded = localText.getText("TXT_KEY_TIME_BC", (-iTurnYear,))#"%d %s" %(-iTurnYear, self.TEXT_BC)
+					szTurnFounded = localText.getText("TXT_KEY_TIME_TURN_STANDALONE", (-iTurnYear,))#"%d %s" %(-iTurnYear, self.TEXT_BC)
 				else:
-					szTurnFounded = localText.getText("TXT_KEY_TIME_AD", (iTurnYear,))#"%d %s" %(iTurnYear, self.TEXT_AD)
+					szTurnFounded = localText.getText("TXT_KEY_TIME_TURN_STANDALONE", (iTurnYear,))#"%d %s" %(iTurnYear, self.TEXT_AD)
 
 				if (pCity.isRevealed(gc.getGame().getActiveTeam()) or gc.getTeam(pPlayer.getTeam()).isHasMet(gc.getGame().getActiveTeam())):
 					self.szCityNames[iRankLoop] = pCity.getName().upper()
@@ -2143,9 +2146,9 @@ class CvInfoScreen:
 
 				if (iTurnYear != -9999):	# -9999 used for wonders in progress
 					if (iTurnYear < 0):
-						szTurnFounded = localText.getText("TXT_KEY_TIME_BC", (-iTurnYear,))
+						szTurnFounded = localText.getText("TXT_KEY_TIME_TURN_STANDALONE", (-iTurnYear,))
 					else:
-						szTurnFounded = localText.getText("TXT_KEY_TIME_AD", (iTurnYear,))
+						szTurnFounded = localText.getText("TXT_KEY_TIME_TURN_STANDALONE", (iTurnYear,))
 
 					szDateBuilt = (", %s" %(szTurnFounded))
 
@@ -2471,7 +2474,7 @@ class CvInfoScreen:
 								if (iTeamLoop == self.iActiveTeam or self.pActiveTeam.isHasMet(iTeamLoop)):
 									self.aaWondersBuilt_BUG.append([-9999,iProjectLoop,True,gc.getPlayer(iPlayerLoop).getCivilizationShortDescription(0),None, iPlayerLoop])
 								else:
-									self.aaWondersBuilt_BUG.append([-9999,iProjectLoop,False,localText.getText("TXT_KEY_UNKNOWN", ()),None, 9999])
+									self.aaWondersBuilt_BUG.append([-9999,iProjectLoop,False,localText.getText("TXT_KEY_UNKNOWN", ()),None, 18])
 								self.iNumWonders += 1
 
 		# Sort wonders in order of date built
@@ -2576,7 +2579,7 @@ class CvInfoScreen:
 			if iTurnYearBuilt == -9999:
 				szTurnYearBuilt = u""
 			else:
-				szTurnYearBuilt = BugUtil.getDisplayYear(iTurnYearBuilt)
+				szTurnYearBuilt = str(iTurnYearBuilt)#BugUtil.getDisplayYear(iTurnYearBuilt)
 
 			# Check to see if active player can see this city
 			if pCity and pCity.isRevealed(gc.getGame().getActiveTeam()):
@@ -2838,39 +2841,44 @@ class CvInfoScreen:
 #BUG: improvements - end
 
 		# Add Units to table
+		iRow = 0
 		for iUnitLoop in range(iNumUnits):
-			iRow = iUnitLoop
-
-			iCol = 0
-			szUnitName = gc.getUnitInfo(iUnitLoop).getDescription()
-			screen.setTableText(szUnitsTable, iCol, iRow, szUnitName, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
-
-			iCol = 1
 			iNumUnitsCurrent = aiUnitsCurrent[iUnitLoop]
-			screen.setTableInt(szUnitsTable, iCol, iRow, str(iNumUnitsCurrent), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
-
-			iCol = 2
 			iNumUnitsBuilt = aiUnitsBuilt[iUnitLoop]
-			screen.setTableInt(szUnitsTable, iCol, iRow, str(iNumUnitsBuilt), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
-
-			iCol = 3
 			iNumUnitsKilled = aiUnitsKilled[iUnitLoop]
-			screen.setTableInt(szUnitsTable, iCol, iRow, str(iNumUnitsKilled), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
-
-			iCol = 4
 			iNumUnitsLost = aiUnitsLost[iUnitLoop]
-			screen.setTableInt(szUnitsTable, iCol, iRow, str(iNumUnitsLost), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+
+			if (iNumUnitsCurrent > 0 or iNumUnitsBuilt > 0 or iNumUnitsKilled > 0 or iNumUnitsLost > 0):
+				iCol = 0
+				szUnitName = gc.getUnitInfo(iUnitLoop).getDescription()
+				screen.setTableText(szUnitsTable, iCol, iRow, szUnitName, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+
+				iCol = 1
+				screen.setTableInt(szUnitsTable, iCol, iRow, str(iNumUnitsCurrent), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+
+				iCol = 2
+				screen.setTableInt(szUnitsTable, iCol, iRow, str(iNumUnitsBuilt), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+
+				iCol = 3
+				screen.setTableInt(szUnitsTable, iCol, iRow, str(iNumUnitsKilled), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+
+				iCol = 4
+				screen.setTableInt(szUnitsTable, iCol, iRow, str(iNumUnitsLost), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+
+				iRow += 1
 
 		# Add Buildings to table
+		iRow = 0
 		for iBuildingLoop in range(iNumBuildings):
-			iRow = iBuildingLoop
-
-			iCol = 0
-			szBuildingName = gc.getBuildingInfo(iBuildingLoop).getDescription()
-			screen.setTableText(szBuildingsTable, iCol, iRow, szBuildingName, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
-			iCol = 1
 			iNumBuildingsBuilt = aiBuildingsBuilt[iBuildingLoop]
-			screen.setTableInt(szBuildingsTable, iCol, iRow, str(iNumBuildingsBuilt), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+			if (iNumBuildingsBuilt > 0):
+
+				iCol = 0
+				szBuildingName = gc.getBuildingInfo(iBuildingLoop).getDescription()
+				screen.setTableText(szBuildingsTable, iCol, iRow, szBuildingName, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+				iCol = 1
+				screen.setTableInt(szBuildingsTable, iCol, iRow, str(iNumBuildingsBuilt), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+				iRow += 1
 
 #BUG: improvements - start
 		if AdvisorOpt.isShowImprovements():
@@ -2906,9 +2914,9 @@ class CvInfoScreen:
 		year = CyGame().getTurnYear(turn)
 
 		if (year < 0):
-			return localText.getText("TXT_KEY_TIME_BC", (-year,))
+			return localText.getText("TXT_KEY_TIME_TURN_STANDALONE", (-year,))
 		else:
-			return localText.getText("TXT_KEY_TIME_AD", (year,))
+			return localText.getText("TXT_KEY_TIME_TURN_STANDALONE", (year,))
 
 	def lineName(self,i):
 		return self.LINE_ID + str(i)

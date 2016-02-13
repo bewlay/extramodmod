@@ -11,7 +11,7 @@
 		<French>Scorpion Clan Archer</French>
 		<German>Scorpion Clan Archer</German>
 		<Italian>Scorpion Clan Archer</Italian>
-		<Spanish>Scorpion Clan Archer</Spanish>
+		<Spanish>Arquero del Clan Escorpión</Spanish>
 		<Finnish>Scorpion Clan Archer</Finnish>
 	</TEXT>
 	<TEXT>
@@ -20,7 +20,7 @@
 		<French>Bandit</French>
 		<German>Bandit</German>
 		<Italian>Bandit</Italian>
-		<Spanish>Bandit</Spanish>
+		<Spanish>Bandido</Spanish>
 		<Finnish>Bandit</Finnish>
 	</TEXT>
 	<TEXT>
@@ -38,7 +38,7 @@
 		<French>Bandits spawn most commonly in deserts, and are strong outside of cities.</French>
 		<German>Bandits spawn most commonly in deserts, and are strong outside of cities.</German>
 		<Italian>Bandits spawn most commonly in deserts, and are strong outside of cities.</Italian>
-		<Spanish>Bandits spawn most commonly in deserts, and are strong outside of cities.</Spanish>
+		<Spanish>Los bandidos son encontrados más frecuentemente en zonas desérticas, y son más fuertes fuera de las ciudades.</Spanish>
 		<Finnish>Bandits spawn most commonly in deserts, and are strong outside of cities.</Finnish>
 	</TEXT>
 	<TEXT>
@@ -47,7 +47,7 @@
 		<French>Bandit Lord</French>
 		<German>Bandit Lord</German>
 		<Italian>Bandit Lord</Italian>
-		<Spanish>Bandit Lord</Spanish>
+		<Spanish>Señor Bandido</Spanish>
 		<Finnish>Bandit Lord</Finnish>
 	</TEXT>
 	<TEXT>
@@ -65,7 +65,7 @@
 		<French>Bandit Lords spawn in outlying lands, mostly in deserts, leading a group of [LINK=UNIT_BANDIT]Bandits[\LINK].</French>
 		<German>Bandit Lords spawn in outlying lands, mostly in deserts, leading a group of [LINK=UNIT_BANDIT]Bandits[\LINK].</German>
 		<Italian>Bandit Lords spawn in outlying lands, mostly in deserts, leading a group of [LINK=UNIT_BANDIT]Bandits[\LINK].</Italian>
-		<Spanish>Bandit Lords spawn in outlying lands, mostly in deserts, leading a group of [LINK=UNIT_BANDIT]Bandits[\LINK].</Spanish>
+		<Spanish>Los Señores Bandidos aparecen en zonas periféricas (principalmente desérticas), y comandan un grupo de [LINK=UNIT_BANDIT]Bandidos[\LINK].</Spanish>
 		<Finnish>Bandit Lords spawn in outlying lands, mostly in deserts, leading a group of [LINK=UNIT_BANDIT]Bandits[\LINK].</Finnish>
 	</TEXT>
 	<TEXT>
@@ -74,7 +74,7 @@
 		<French>Cave Bear</French>
 		<German>Cave Bear</German>
 		<Italian>Cave Bear</Italian>
-		<Spanish>Cave Bear</Spanish>
+		<Spanish>Oso Cavernario</Spanish>
 		<Finnish>Cave Bear</Finnish>
 	</TEXT>
 	<TEXT>
@@ -92,7 +92,7 @@
 		<French>Cave Bears are strong bears spawning in the remote wilderness.</French>
 		<German>Cave Bears are strong bears spawning in the remote wilderness.</German>
 		<Italian>Cave Bears are strong bears spawning in the remote wilderness.</Italian>
-		<Spanish>Cave Bears are strong bears spawning in the remote wilderness.</Spanish>
+		<Spanish>Los Osos Cavernarios son una fuerte subespecie que aparece en las zonas salvajes remotas.</Spanish>
 		<Finnish>Cave Bears are strong bears spawning in the remote wilderness.</Finnish>
 	</TEXT>
 	<TEXT>
@@ -119,7 +119,7 @@
 		<French>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</French>
 		<German>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</German>
 		<Italian>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</Italian>
-		<Spanish>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</Spanish>
+		<Spanish>Los Ghouls aparecen en [LINK=IMPROVEMENT_BARROW]Túmulos[\LINK], en zonas pantanosas y cuando un [LINK=UNIT_WIGHT]Wight[\LINK] derrota a una unidad viva.</Spanish>
 		<Finnish>Ghouls spawn from [LINK=IMPROVEMENT_BARROW]Barrows[\LINK] in Marshes, and when a [LINK=UNIT_WIGHT]Wight[\LINK] defeats a living unit.</Finnish>
 	</TEXT>
 	<TEXT>
@@ -128,7 +128,7 @@
 		<French>Hollow Man</French>
 		<German>Hollow Man</German>
 		<Italian>Hollow Man</Italian>
-		<Spanish>Hollow Man</Spanish>
+		<Spanish>Hombre Hueco</Spanish>
 		<Finnish>Hollow Man</Finnish>
 	</TEXT>
 	<TEXT>
@@ -146,7 +146,7 @@
 		<French>Hollow Man can rarely spawn from the Letum Frigus, if it is isolated enough. They are dangerous due to their invisibility.</French>
 		<German>Hollow Man can rarely spawn from the Letum Frigus, if it is isolated enough. They are dangerous due to their invisibility.</German>
 		<Italian>Hollow Man can rarely spawn from the Letum Frigus, if it is isolated enough. They are dangerous due to their invisibility.</Italian>
-		<Spanish>Hollow Man can rarely spawn from the Letum Frigus, if it is isolated enough. They are dangerous due to their invisibility.</Spanish>
+		<Spanish>Los Hombres Huecos aparecen raras veces cerca de Letum Frigus, si está lo suficientemente aislado. Son peligrosos debido a su invisibilidad.</Spanish>
 		<Finnish>Hollow Man can rarely spawn from the Letum Frigus, if it is isolated enough. They are dangerous due to their invisibility.</Finnish>
 	</TEXT>
 	<TEXT>
@@ -164,7 +164,7 @@
 		<French>Savage</French>
 		<German>Wildling</German>
 		<Italian>Savage</Italian>
-		<Spanish>Savage</Spanish>
+		<Spanish>Salvaje</Spanish>
 		<Finnish>Savage</Finnish>
 	</TEXT>
 	<TEXT>
@@ -182,17 +182,17 @@
 		<French>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</French>
 		<German>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</German>
 		<Italian>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</Italian>
-		<Spanish>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</Spanish>
+		<Spanish>[TAB]Los salvajes aparecen en las zonas salvajes, y pueden ser una amenaza para unidades Cuerpo a Cuerpo a menos que sean forzados a combatir de forma defensiva.</Spanish>
 		<Finnish>[TAB]Savages spawn in the wilderness, and can be a threat to your Melee units, if you don't force them into defensive combat.</Finnish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_WIGHT</Tag>
-		<English>Whight</English>
-		<French>Whight</French>
-		<German>Whight</German>
-		<Italian>Whight</Italian>
-		<Spanish>Whight</Spanish>
-		<Finnish>Whight</Finnish>
+		<English>Wight</English>
+		<French>Wight</French>
+		<German>Wight</German>
+		<Italian>Wight</Italian>
+		<Spanish>Wight</Spanish>
+		<Finnish>Wight</Finnish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_WIGHT_PEDIA</Tag>
@@ -221,7 +221,7 @@
 		<French>Bear Trophy</French>
 		<German>Bear Trophy</German>
 		<Italian>Bear Trophy</Italian>
-		<Spanish>Bear Trophy</Spanish>
+		<Spanish>Trofeo del Oso</Spanish>
 		<Finnish>Bear Trophy</Finnish>
 	</TEXT>
 	<TEXT>
@@ -248,7 +248,7 @@
 		<French>Lion Trophy</French>
 		<German>Lion Trophy</German>
 		<Italian>Lion Trophy</Italian>
-		<Spanish>Lion Trophy</Spanish>
+		<Spanish>Trofeo del León</Spanish>
 		<Finnish>Lion Trophy</Finnish>
 	</TEXT>
 	<TEXT>
@@ -275,7 +275,7 @@
 		<French>Panther Trophy</French>
 		<German>Panther Trophy</German>
 		<Italian>Panther Trophy</Italian>
-		<Spanish>Panther Trophy</Spanish>
+		<Spanish>Trofeo de la Pantera</Spanish>
 		<Finnish>Panther Trophy</Finnish>
 	</TEXT>
 	<TEXT>
@@ -302,7 +302,7 @@
 		<French>Wolf Trophy</French>
 		<German>Wolf Trophy</German>
 		<Italian>Wolf Trophy</Italian>
-		<Spanish>Wolf Trophy</Spanish>
+		<Spanish>Trofeo del Lobo</Spanish>
 		<Finnish>Wolf Trophy</Finnish>
 	</TEXT>
 	<TEXT>
@@ -329,7 +329,7 @@
 		<French>Scorpion Pen</French>
 		<German>Scorpion Pen</German>
 		<Italian>Scorpion Pen</Italian>
-		<Spanish>Scorpion Pen</Spanish>
+		<Spanish>Jaula de Escorpión</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SCORPION_PEN_PEDIA</Tag>

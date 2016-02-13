@@ -122,10 +122,12 @@ public:
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION);							// Exposed to Python
-	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true);
+// lfgr 04/2014 bugfix
+//	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true);
+// lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, CvWString szName = "");
+	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, CvWString szName = "", bool bGift = false);
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -238,7 +240,13 @@ public:
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
+	// MNAI - new functions
 	int countNumOwnedTerrainTypes(TerrainTypes eTerrain) const;
+	int countNumOwnedHills() const;
+	int countNumOwnedRiverSide() const;
+	int countNumAvailablePlotsForImprovement(ImprovementTypes eImprovement) const;
+	int getHighestUnitTier(bool bIncludeHeroes = false, bool bIncludeLimitedUnits = false) const;
+	// End MNAI
 	int countNumCoastalCities() const;																																		// Exposed to Python
 	int countNumCoastalCitiesByArea(CvArea* pArea) const;																									// Exposed to Python
 	int countTotalCulture() const;																																				// Exposed to Python
@@ -249,6 +257,7 @@ public:
 	DllExport int countNumCitiesConnectedToCapital() const;																								// Exposed to Python
 	int countPotentialForeignTradeCities(CvArea* pIgnoreArea = NULL) const;																// Exposed to Python
 	int countPotentialForeignTradeCitiesConnected() const;																								// Exposed to Python
+	bool doesImprovementConnectBonus(ImprovementTypes eImprovement, BonusTypes eBonus) const; // K-Mod
 
 	DllExport bool canContact(PlayerTypes ePlayer) const;																									// Exposed to Python
 	void contact(PlayerTypes ePlayer);																															// Exposed to Python
@@ -529,9 +538,6 @@ public:
 	bool isNonStateReligionCommerce() const;
 	void changeNonStateReligionCommerce(int iNewValue);
 
-	bool isUpgradeAnywhere() const;	
-	void changeUpgradeAnywhere(int iNewValue);
-
 	int getRevIdxLocal() const;																																		// Exposed to Python
 	void changeRevIdxLocal(int iChange);
 
@@ -556,15 +562,8 @@ public:
 	float getRevIdxGoodReligionMod() const;																																		// Exposed to Python
 	void changeRevIdxGoodReligionMod(float fChange);
 
-	//bool isInquisitionConditions() const;																																		// Exposed to Python
-	//void setInquisitionConditions();
-
-	//int getUnitUpgradePriceModifier() const;																																		// Exposed to Python
-	//void changeUnitUpgradePriceModifier(int iChange);
-
-	//bool canFoundReligion() const;																																		// Exposed to Python
-
-	//bool isBuildingClassRequiredToTrain(BuildingClassTypes eBuildingClass, UnitTypes eUnit) const;																			// Exposed to Python
+	bool canInquisition() const;																																		// Exposed to Python
+	void setCanInquisition(bool bNewValue);
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
 /************************************************************************************************/
@@ -1139,18 +1138,27 @@ public:
 	PlayerTypes initNewEmpire(LeaderHeadTypes eNewLeader, CivilizationTypes eNewCiv);
 //<<<<Unofficial Bug Fix: End Add
 
-    /*** PUPPET STATES 04/21/08 by DPII ***/
+    // MNAI - Puppet States
     DllExport bool makePuppet(PlayerTypes eSplitPlayer = NO_PLAYER, CvCity* pVassalCapital = NULL);
+/********************************************************************************/
+/* MinorPuppetLeaders	03/2015											lfgr	*/
+/********************************************************************************/
+/* old
     DllExport bool canMakePuppet(PlayerTypes eFromPlayer) const;
+*/
+    DllExport bool canMakePuppet( CvCity* pVassalCapital ) const;
+/********************************************************************************/
+/* MinorPuppetLeaders	End												lfgr	*/
+/********************************************************************************/
     PlayerTypes getPuppetPlayer() const;
-    bool getPuppetLeaders(CivLeaderArray& aLeaders) const;
+// lfgr MinorPuppetLeaders 03/2015: removed getPuppetLeaders(). Now handled in python.
     DllExport bool annex(PlayerTypes eAnnexPlayer) const;
 
     PlayerTypes findPuppetPlayer(PlayerTypes eParent) const;
 
 	bool isPuppetState() const;
 	void setPuppetState(bool newvalue);
-    /*** PUPPET STATES END ***/
+    // MNAI - End Puppet States
 
 /************************************************************************************************/
 /* REVOLUTION_MOD                         11/15/08                                jdog5000      */
@@ -1324,6 +1332,9 @@ public:
 	void AI_doTowerMastery();
 // End Sephi AI
 
+//>>>>Unofficial Bug Fix: Added by Denev 2010/04/04
+	bool isRegularCityMaxedOut() const;
+	int getNextCityRadius() const;
 //>>>>Unofficial Bug Fix: Added by Denev 2009/09/29
 //*** Assimilated city produces a unit with original civilization artstyle.
 	UnitArtStyleTypes getUnitArtStyleType() const;
@@ -1332,6 +1343,18 @@ public:
 // BUG - Reminder Mod - start
 	void addReminder(int iGameTurn, CvWString szMessage) const;
 // BUG - Reminder Mod - end
+
+// Leader categories START
+	int getLeaderCategory() const; // Exposed to Python
+// Leader categories END
+
+// ExtraModMod technology propagation START
+	int calculateTechPropagationResearchModifier(TechTypes eTech) const; // Exposed to Python
+// ExtraModMod technology propagation END
+
+// Automatic OOS detection START
+	int getNumTriggersFired() const;
+// Automatic OOS detection END
 
 	virtual void AI_init() = 0;
 	virtual void AI_reset(bool bConstructor) = 0;
@@ -1452,7 +1475,6 @@ protected:
 /* Player Functions                                                                             */
 /************************************************************************************************/
 	int m_iNonStateReligionCommerceCount;
-	int m_iUpgradeAnywhereCount;
 	int m_iRevIdxLocal;
 	int m_iRevIdxNational;
 	int m_iRevIdxDistanceModifier;
@@ -1461,8 +1483,7 @@ protected:
 	float m_fRevIdxNationalityMod;
 	float m_fRevIdxBadReligionMod;
 	float m_fRevIdxGoodReligionMod;
-	//bool m_bInquisitionConditions;
-	//int m_iUnitUpgradePriceModifier;
+	bool m_bCanInquisition;
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
 /************************************************************************************************/
@@ -1587,8 +1608,7 @@ protected:
 	PlayerTypes m_eParent;
 	TeamTypes m_eTeamType;
 
-	// Puppet States
-	bool m_bPuppetState;
+	bool m_bPuppetState; // MNAI - Puppet States
 
 /*************************************************************************************************/
 /**	BETTER AI (New Functions Definition) Sephi                                 					**/
@@ -1776,6 +1796,10 @@ protected:
 	void getResourceLayerColors(GlobeLayerResourceOptionTypes eOption, std::vector<NiColorA>& aColors, std::vector<CvPlotIndicatorData>& aIndicators) const;  // used by Globeview resource layer
 	void getReligionLayerColors(ReligionTypes eSelectedReligion, std::vector<NiColorA>& aColors, std::vector<CvPlotIndicatorData>& aIndicators) const;  // used by Globeview religion layer
 	void getCultureLayerColors(std::vector<NiColorA>& aColors, std::vector<CvPlotIndicatorData>& aIndicators) const;  // used by Globeview culture layer
+	// Player traits game options START
+	void addRandomTrait();
+	void setLeaderTraits();
+	// Player traits game options END
 };
 
 #endif

@@ -756,15 +756,15 @@
 				</FeaturePercentWeight>
 				<FeaturePercentWeight>
 					<FeatureType>FEATURE_FOREST_NEW</FeatureType>
-					<iWeight>-50</iWeight>
+					<iWeight>-25</iWeight>
 				</FeaturePercentWeight>
 				<FeaturePercentWeight>
 					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iWeight>-100</iWeight>
+					<iWeight>-75</iWeight>
 				</FeaturePercentWeight>
 				<FeaturePercentWeight>
 					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
-					<iWeight>-100</iWeight>
+					<iWeight>-75</iWeight>
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
 		</TerrainFlavourInfo>
@@ -858,6 +858,10 @@
 					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
 					<iWeight>100</iWeight>
 				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_BURNT</FeatureType>
+					<iWeight>100</iWeight>
+				</FeaturePercentWeight>
 			</FeaturePercentWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_WOLF -->
@@ -871,10 +875,22 @@
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
 					<iWeight>50</iWeight>
 				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>-50</iWeight>
+				</TerrainPercentWeight>
 			</TerrainPercentWeights>
 			<FeaturePercentWeights>
 				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_NEW</FeatureType>
+					<iWeight>25</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
 					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iWeight>50</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FOREST_ANCIENT</FeatureType>
 					<iWeight>50</iWeight>
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>

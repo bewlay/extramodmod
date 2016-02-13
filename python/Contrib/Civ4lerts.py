@@ -393,7 +393,9 @@ class CityPendingGrowth(AbstractCityAlert):
 	
 	def checkCity(self, cityId, city, iPlayer, player):
 		if (Civ4lertsOpt.isShowCityPendingGrowthAlert()):
-			if (CityUtil.willGrowThisTurn(city)):
+			# Bugfix: Do not show alerts for the effect of town growth when growth control is enabled.
+			# if (CityUtil.willGrowThisTurn(city)):
+			if (CityUtil.willGrowThisTurn(city) and not city.AI_stopGrowth()):
 				message = localText.getText(
 						"TXT_KEY_CIV4LERTS_ON_CITY_PENDING_GROWTH",
 						(city.getName(), city.getPopulation() + 1))
@@ -485,7 +487,9 @@ class CityHappiness(AbstractCityTestAlert):
 		return city.angryPopulation(0) > 0
 
 	def _willPassTest(self, city):
-		if (CityUtil.willGrowThisTurn(city)):
+		# Bugfix: Do not show alerts for the effect of town growth when growth control is enabled.
+		# if (CityUtil.willGrowThisTurn(city)):
+		if (CityUtil.willGrowThisTurn(city) and not city.AI_stopGrowth()):
 			iExtra = 1
 		elif (CityUtil.willShrinkThisTurn(city)):
 			iExtra = -1
@@ -547,7 +551,9 @@ class CityHealthiness(AbstractCityTestAlert):
 		return city.healthRate(False, 0) < 0
 
 	def _willPassTest(self, city):
-		if (CityUtil.willGrowThisTurn(city)):
+		# Bugfix: Do not show alerts for the effect of town growth when growth control is enabled.
+		#if (CityUtil.willGrowThisTurn(city)):
+		if (CityUtil.willGrowThisTurn(city) and not city.AI_stopGrowth()):
 			iExtra = 1
 		elif (CityUtil.willShrinkThisTurn(city)):
 			iExtra = -1

@@ -1018,10 +1018,7 @@ m_bOpenBordersTrading(false),
 m_bDefensivePactTrading(false),
 m_bPermanentAllianceTrading(false),
 m_bVassalStateTrading(false),
-// MNAI - Puppet States
-m_bPuppetStateTrading(false),
-// MNAI End
-
+m_bPuppetStateTrading(false), // MNAI - Puppet States
 m_bBridgeBuilding(false),
 m_bIrrigation(false),
 m_bIgnoreIrrigation(false),
@@ -1235,7 +1232,7 @@ bool CvTechInfo::isPuppetStateTrading() const
 {
 	return m_bPuppetStateTrading;
 }
-// MNAI End
+// MNAI - End Puppet States
 
 bool CvTechInfo::isBridgeBuilding() const
 {
@@ -1397,9 +1394,7 @@ void CvTechInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bDefensivePactTrading);
 	stream->Read(&m_bPermanentAllianceTrading);
 	stream->Read(&m_bVassalStateTrading);
-	// MNAI - Puppet States
-	stream->Read(&m_bPuppetStateTrading);
-	// MNAI End
+	stream->Read(&m_bPuppetStateTrading); // MNAI - Puppet States
 	stream->Read(&m_bBridgeBuilding);
 	stream->Read(&m_bIrrigation);
 	stream->Read(&m_bIgnoreIrrigation);
@@ -1490,9 +1485,7 @@ void CvTechInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bDefensivePactTrading);
 	stream->Write(m_bPermanentAllianceTrading);
 	stream->Write(m_bVassalStateTrading);
-	// MNAI - Puppet States
-	stream->Write(m_bPuppetStateTrading);
-	// MNAI End
+	stream->Write(m_bPuppetStateTrading); // MNAI - Puppet States
 	stream->Write(m_bBridgeBuilding);
 	stream->Write(m_bIrrigation);
 	stream->Write(m_bIgnoreIrrigation);
@@ -1574,9 +1567,7 @@ bool CvTechInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bDefensivePactTrading, "bDefensivePactTrading");
 	pXML->GetChildXmlValByName(&m_bPermanentAllianceTrading, "bPermanentAllianceTrading");
 	pXML->GetChildXmlValByName(&m_bVassalStateTrading, "bVassalTrading");
-// MNAI - Puppet States
-	pXML->GetChildXmlValByName(&m_bPuppetStateTrading, "bPuppetTrading");
-// MNAI End
+	pXML->GetChildXmlValByName(&m_bPuppetStateTrading, "bPuppetTrading"); // MNAI - Puppet States
 	pXML->GetChildXmlValByName(&m_bBridgeBuilding, "bBridgeBuilding");
 	pXML->GetChildXmlValByName(&m_bIrrigation, "bIrrigation");
 	pXML->GetChildXmlValByName(&m_bIgnoreIrrigation, "bIgnoreIrrigation");
@@ -1868,7 +1859,10 @@ m_iExplorationResultBonus(0),
 m_bAllowsMoveImpassable(false),
 m_bAllowsMoveLimitedBorders(false),
 m_bCastingBlocked(false),
-m_bUpgradeOutsideBorders(false)
+m_bBlocksUpgrade (false),
+m_bBlocksGifting (false),
+m_bUpgradeOutsideBorders(false),
+m_bAlwaysSpreadReligion(false)
 // End MNAI
 
 {
@@ -2562,9 +2556,24 @@ bool CvPromotionInfo::isCastingBlocked() const
 	return m_bCastingBlocked;
 }
 
+bool CvPromotionInfo::isBlocksUpgrade() const
+{
+	return m_bBlocksUpgrade;
+}
+
+bool CvPromotionInfo::isBlocksGifting() const
+{
+	return m_bBlocksGifting;
+}
+
 bool CvPromotionInfo::isUpgradeOutsideBorders() const
 {
 	return m_bUpgradeOutsideBorders;
+}
+
+bool CvPromotionInfo::isAlwaysSpreadReligion() const
+{
+	return m_bAlwaysSpreadReligion;
 }
 // End MNAI
 
@@ -2792,7 +2801,10 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bAllowsMoveImpassable);
 	stream->Read(&m_bAllowsMoveLimitedBorders);
 	stream->Read(&m_bCastingBlocked);
+	stream->Read(&m_bBlocksUpgrade);
+	stream->Read(&m_bBlocksGifting);
 	stream->Read(&m_bUpgradeOutsideBorders);
+	stream->Read(&m_bAlwaysSpreadReligion);
 	// End MNAI
 
 	// Arrays
@@ -2983,7 +2995,10 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bAllowsMoveImpassable);
 	stream->Write(m_bAllowsMoveLimitedBorders);
 	stream->Write(m_bCastingBlocked);
+	stream->Write(m_bBlocksUpgrade);
+	stream->Write(m_bBlocksGifting);
 	stream->Write(m_bUpgradeOutsideBorders);
+	stream->Write(m_bAlwaysSpreadReligion);
 	// End MNAI
 
 	// Arrays
@@ -3159,8 +3174,10 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bAllowsMoveImpassable, "bAllowsMoveImpassable");
 	pXML->GetChildXmlValByName(&m_bAllowsMoveLimitedBorders, "bAllowsMoveLimitedBorders");
 	pXML->GetChildXmlValByName(&m_bCastingBlocked, "bCastingBlocked");
+	pXML->GetChildXmlValByName(&m_bBlocksUpgrade, "bBlocksUpgrade");
+	pXML->GetChildXmlValByName(&m_bBlocksGifting, "bBlocksGifting");
 	pXML->GetChildXmlValByName(&m_bUpgradeOutsideBorders, "bUpgradeOutsideBorders");
-
+	pXML->GetChildXmlValByName(&m_bAlwaysSpreadReligion, "bAlwaysSpreadReligion");
 	// End MNAI
 
 	return true;
@@ -3310,6 +3327,9 @@ m_bDispel(false),
 m_bPush(false),
 m_bRemoveHasCasted(false),
 m_bSacrificeCaster(false),
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+m_bNoInterruptUnitCycling(false),
+//<<<<Spell Interrupt Unit Cycling: End Add
 m_bRemoveInvalidFeature(false),	// MNAI
 m_iChangePopulation(0),
 m_iCost(0),
@@ -3593,6 +3613,13 @@ bool CvSpellInfo::isSacrificeCaster() const
 	return m_bSacrificeCaster;
 }
 
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+bool CvSpellInfo::isNoInterruptUnitCycling() const
+{
+	return m_bNoInterruptUnitCycling;
+}
+//<<<<Spell Interrupt Unit Cycling: End Add
+
 // MNAI begin
 bool CvSpellInfo::isRemoveInvalidFeature() const
 {
@@ -3875,6 +3902,9 @@ void CvSpellInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bPush);
 	stream->Read(&m_bRemoveHasCasted);
 	stream->Read(&m_bSacrificeCaster);
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	stream->Read(&m_bNoInterruptUnitCycling);
+//<<<<Spell Interrupt Unit Cycling: End Add
 	stream->Read(&m_bRemoveInvalidFeature);	// MNAI
 	stream->Read(&m_iChangePopulation);
 	stream->Read(&m_iCost);
@@ -3995,6 +4025,9 @@ void CvSpellInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bPush);
 	stream->Write(m_bRemoveHasCasted);
 	stream->Write(m_bSacrificeCaster);
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	stream->Write(m_bNoInterruptUnitCycling);
+//<<<<Spell Interrupt Unit Cycling: End Add
 	stream->Write(m_bRemoveInvalidFeature);	// MNAI
 	stream->Write(m_iChangePopulation);
 	stream->Write(m_iCost);
@@ -4143,6 +4176,9 @@ bool CvSpellInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bPush, "bPush");
 	pXML->GetChildXmlValByName(&m_bRemoveHasCasted, "bRemoveHasCasted");
 	pXML->GetChildXmlValByName(&m_bSacrificeCaster, "bSacrificeCaster");
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	pXML->GetChildXmlValByName(&m_bNoInterruptUnitCycling, "bNoInterruptUnitCycling");
+//<<<<Spell Interrupt Unit Cycling: End Add
 	pXML->GetChildXmlValByName(&m_bRemoveInvalidFeature, "bRemoveInvalidFeature");	// MNAI
 	pXML->GetChildXmlValByName(&m_iChangePopulation, "iChangePopulation");
 	pXML->GetChildXmlValByName(&m_iCost, "iCost");
@@ -7948,8 +7984,6 @@ m_iExpInBorderModifier(0),
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-m_bUpgradeAnywhere(false),
-m_bAllowInquisitions(false),
 m_bDisallowInquisitions(false),
 m_iRevIdxLocal(0),
 m_iRevIdxNational(0),
@@ -8228,16 +8262,6 @@ int CvCivicInfo::getExpInBorderModifier() const
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-bool CvCivicInfo::isUpgradeAnywhere() const
-{
-	return m_bUpgradeAnywhere;
-}
-
-bool CvCivicInfo::isAllowInquisitions() const
-{
-	return m_bAllowInquisitions;
-}
-
 bool CvCivicInfo::isDisallowInquisitions() const
 {
 	return m_bDisallowInquisitions;
@@ -8610,8 +8634,6 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	stream->Read(&m_bUpgradeAnywhere);
-	stream->Read(&m_bAllowInquisitions);
 	stream->Read(&m_bDisallowInquisitions);
 	stream->Read(&m_iRevIdxLocal);
 	stream->Read(&m_iRevIdxNational);
@@ -8775,8 +8797,6 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	stream->Write(&m_bUpgradeAnywhere);
-	stream->Write(&m_bAllowInquisitions);
 	stream->Write(&m_bDisallowInquisitions);
 	stream->Write(&m_iRevIdxLocal);
 	stream->Write(&m_iRevIdxNational);
@@ -8916,8 +8936,6 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	pXML->GetChildXmlValByName(&m_bUpgradeAnywhere, "bUpgradeAnywhere");
-	pXML->GetChildXmlValByName(&m_bAllowInquisitions, "bAllowInquisitions");
 	pXML->GetChildXmlValByName(&m_bDisallowInquisitions, "bDisallowInquisitions");
 	pXML->GetChildXmlValByName(&m_iRevIdxLocal, "iRevIdxLocal");
 	pXML->GetChildXmlValByName(&m_iRevIdxNational, "iRevIdxNational");
@@ -9473,7 +9491,6 @@ m_iEspionageDefenseModifier(0),
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-m_iUnitUpgradePriceModifier(0),
 m_iRevIdxLocal(0),
 m_iRevIdxNational(0),
 m_iRevIdxDistanceModifier(0),
@@ -10106,11 +10123,6 @@ int CvBuildingInfo::getEspionageDefenseModifier() const
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-int CvBuildingInfo::getUnitUpgradePriceModifier() const	
-{
-	return m_iUnitUpgradePriceModifier;
-}
-
 int CvBuildingInfo::getRevIdxLocal() const	
 {
 	return m_iRevIdxLocal;
@@ -10916,7 +10928,6 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	stream->Read(&m_iUnitUpgradePriceModifier);
 	stream->Read(&m_iRevIdxLocal);
 	stream->Read(&m_iRevIdxNational);
 	stream->Read(&m_iRevIdxDistanceModifier);
@@ -11291,7 +11302,6 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	stream->Write(m_iUnitUpgradePriceModifier);
 	stream->Write(m_iRevIdxLocal);
 	stream->Write(m_iRevIdxNational);
 	stream->Write(m_iRevIdxDistanceModifier);
@@ -11686,7 +11696,6 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 /**																				*/
 /**		Building Effects														*/
 /********************************************************************************/
-	pXML->GetChildXmlValByName(&m_iUnitUpgradePriceModifier, "iUnitUpgradePriceModifier");
 	pXML->GetChildXmlValByName(&m_iRevIdxLocal, "iRevIdxLocal");
 	pXML->GetChildXmlValByName(&m_iRevIdxNational, "iRevIdxNational");
 	pXML->GetChildXmlValByName(&m_iRevIdxDistanceModifier, "iRevIdxDistanceModifier");
@@ -12568,7 +12577,16 @@ m_pbCivilizationDisableTechs(NULL),
 m_paszCityNames(NULL),
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 m_iCivTrait(NO_TRAIT),
+*/
+m_pbCivTraits(NULL),
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 m_iDefaultRace(NO_PROMOTION),
 m_iHero(NO_UNIT),
 m_pbMaintainFeatures(NULL),
@@ -12763,10 +12781,24 @@ void CvCivilizationInfo::setArtDefineTag(const TCHAR* szVal)
 }
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 int CvCivilizationInfo::getCivTrait() const
 {
 	return m_iCivTrait;
 }
+*/
+bool CvCivilizationInfo::isCivTraits( int i ) const
+{
+	FAssertMsg(i < GC.getNumTraitInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_pbCivTraits ? m_pbCivTraits[i] : false;
+}
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 
 int CvCivilizationInfo::getDefaultRace() const
 {
@@ -12931,7 +12963,18 @@ void CvCivilizationInfo::read(FDataStreamBase* stream)
 	stream->ReadString(m_szAdjectiveKey);
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	stream->Read(&m_iCivTrait);
+*/
+	SAFE_DELETE_ARRAY(m_pbCivTraits);
+	m_pbCivTraits = new bool[GC.getNumTraitInfos()];
+	stream->Read(GC.getNumTraitInfos(), m_pbCivTraits);
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 	stream->Read(&m_iDefaultRace);
 	stream->Read(&m_iHero);
 
@@ -13010,7 +13053,16 @@ void CvCivilizationInfo::write(FDataStreamBase* stream)
 	stream->WriteString(m_szAdjectiveKey);
 
 //FfH: Added by Kael 08/07/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	stream->Write(m_iCivTrait);
+*/
+	stream->Write(GC.getNumTraitInfos(), m_pbCivTraits);
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 	stream->Write(m_iDefaultRace);
 	stream->Write(m_iHero);
 	stream->Write(GC.getNumFeatureInfos(), m_pbMaintainFeatures);
@@ -13316,8 +13368,50 @@ bool CvCivilizationInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "CivilizationSelectionSound");
 
 //FfH: Added by Kael 08/06/2007
+/********************************************************************************/
+/* EXTRA_TRAITS                    08/2013                              lfgr    */
+/********************************************************************************/
+/* old
 	pXML->GetChildXmlValByName(szTextVal, "CivTrait");
 	m_iCivTrait = GC.getInfoTypeForString(szTextVal);
+*/
+	m_pbCivTraits = new bool[GC.getNumTraitInfos()];
+	for (int i = 0; i < GC.getNumTraitInfos(); ++i)
+	{
+		m_pbCivTraits[i] = false;
+	}
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"CivTraits"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					for ( int i = 0; i < iNumSibs; i++)
+					{
+						int iTrait = pXML->FindInInfoClass(szTextVal);
+						if( iTrait > -1 && iTrait < GC.getNumTraitInfos() )
+							m_pbCivTraits[iTrait] = true;
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+/********************************************************************************/
+/* EXTRA_TRAITS                                                         END     */
+/********************************************************************************/
 	pXML->GetChildXmlValByName(szTextVal, "DefaultRace");
 	m_iDefaultRace = GC.getInfoTypeForString(szTextVal);
 	pXML->GetChildXmlValByName(szTextVal, "Hero");
@@ -13364,6 +13458,15 @@ m_bEndScore(false),
 m_bConquest(false),
 m_bDiploVote(false),
 m_bPermanent(false)
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**										Initial Values											**/
+/*************************************************************************************************/
+,m_iLinkedVictory(NO_VICTORY)
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 {
 }
 
@@ -13448,6 +13551,18 @@ const char* CvVictoryInfo::getMovie() const
 	return m_szMovie;
 }
 
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**									Called for Logic Checks										**/
+/*************************************************************************************************/
+int CvVictoryInfo::getLinkedVictory() const
+{
+	return m_iLinkedVictory;
+}
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 
 //
 // read from xml
@@ -13480,6 +13595,28 @@ bool CvVictoryInfo::read(CvXMLLoadUtility* pXML)
 
 	return true;
 }
+
+/*************************************************************************************************/
+/**	New Tag Defs	(VictoryInfos)			01/16/09					Xienwolf, modified		**/
+/**																								**/
+/**					Second Pass to reference information within the same file					**/
+/*************************************************************************************************/
+bool CvVictoryInfo::readPass2(CvXMLLoadUtility* pXML)
+{
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+	CvString szTextVal;
+
+	pXML->GetChildXmlValByName(szTextVal, "LinkedVictory");
+	m_iLinkedVictory = GC.getInfoTypeForString(szTextVal);
+
+	return true;
+}
+/*************************************************************************************************/
+/**	New Tag Defs							END													**/
+/*************************************************************************************************/
 
 //======================================================================================================
 //					CvHurryInfo
@@ -13575,6 +13712,14 @@ m_iNoTechTradeModifier(0),
 m_iTechTradeKnownModifier(0),
 m_iUnownedTilesPerGameAnimal(0),
 m_iUnownedTilesPerBarbarianUnit(0),
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+m_iUnownedWaterTilesPerGameAnimal(0),
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 m_iUnownedWaterTilesPerBarbarianUnit(0),
 m_iUnownedTilesPerBarbarianCity(0),
 m_iBarbarianCreationTurnsElapsed(0),
@@ -13750,6 +13895,18 @@ int CvHandicapInfo::getUnownedTilesPerBarbarianUnit() const
 {
 	return m_iUnownedTilesPerBarbarianUnit;
 }
+
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+int CvHandicapInfo::getUnownedWaterTilesPerGameAnimal() const
+{
+	return m_iUnownedWaterTilesPerGameAnimal;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 int CvHandicapInfo::getUnownedWaterTilesPerBarbarianUnit() const
 {
@@ -13991,6 +14148,14 @@ void CvHandicapInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iTechTradeKnownModifier);
 	stream->Read(&m_iUnownedTilesPerGameAnimal);
 	stream->Read(&m_iUnownedTilesPerBarbarianUnit);
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	stream->Read(&m_iUnownedWaterTilesPerGameAnimal);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	stream->Read(&m_iUnownedWaterTilesPerBarbarianUnit);
 	stream->Read(&m_iUnownedTilesPerBarbarianCity);
 	stream->Read(&m_iBarbarianCreationTurnsElapsed);
@@ -14080,6 +14245,14 @@ void CvHandicapInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iTechTradeKnownModifier);
 	stream->Write(m_iUnownedTilesPerGameAnimal);
 	stream->Write(m_iUnownedTilesPerBarbarianUnit);
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	stream->Write(m_iUnownedWaterTilesPerGameAnimal);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	stream->Write(m_iUnownedWaterTilesPerBarbarianUnit);
 	stream->Write(m_iUnownedTilesPerBarbarianCity);
 	stream->Write(m_iBarbarianCreationTurnsElapsed);
@@ -14162,6 +14335,14 @@ bool CvHandicapInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iTechTradeKnownModifier, "iTechTradeKnownModifier");
 	pXML->GetChildXmlValByName(&m_iUnownedTilesPerGameAnimal, "iUnownedTilesPerGameAnimal");
 	pXML->GetChildXmlValByName(&m_iUnownedTilesPerBarbarianUnit, "iUnownedTilesPerBarbarianUnit");
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iUnownedWaterTilesPerGameAnimal, "iUnownedWaterTilesPerGameAnimal");
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_iUnownedWaterTilesPerBarbarianUnit, "iUnownedWaterTilesPerBarbarianUnit");
 	pXML->GetChildXmlValByName(&m_iUnownedTilesPerBarbarianCity, "iUnownedTilesPerBarbarianCity");
 	pXML->GetChildXmlValByName(&m_iBarbarianCreationTurnsElapsed, "iBarbarianCreationTurnsElapsed");
@@ -17088,6 +17269,11 @@ m_iPrereqStateReligion(NO_RELIGION),
 m_iRequireResist(NO_DAMAGE),
 //FfH: End Add
 
+// Features modified by Armageddon Counter START
+m_iFeatureDown(NO_FEATURE),
+m_iFeatureUp(NO_FEATURE),
+// Features modified by Armageddon Counter END
+
 m_piYieldChange(NULL),
 m_piRiverYieldChange(NULL),
 m_piHillsYieldChange(NULL),
@@ -17288,6 +17474,18 @@ int CvFeatureInfo::getRequireResist() const
 }
 //FfH: End Add
 
+// Features modified by Armageddon Counter START
+int CvFeatureInfo::getFeatureDown() const
+{
+	return m_iFeatureDown;
+}
+
+int CvFeatureInfo::getFeatureUp() const
+{
+	return m_iFeatureUp;
+}
+// Features modified by Armageddon Counter END
+
 // Arrays
 
 int CvFeatureInfo::getYieldChange(int i) const
@@ -17448,6 +17646,12 @@ bool CvFeatureInfo::readPass2(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "FeatureUpgrade");
 	m_iFeatureUpgrade = GC.getInfoTypeForString(szTextVal);
+// Features modified by Armageddon Counter START
+	pXML->GetChildXmlValByName(szTextVal, "FeatureDown");
+	m_iFeatureDown = GC.getInfoTypeForString(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "FeatureUp");
+	m_iFeatureUp = GC.getInfoTypeForString(szTextVal);
+// Features modified by Armageddon Counter END
 
 	return true;
 }
@@ -18282,8 +18486,12 @@ m_iSomniumAggressiveness(0),
 m_iFavoriteTech(NO_TECH),
 m_iFavoriteUnitCombat(NO_UNITCOMBAT),
 m_iFavoriteWonder(NO_BUILDING),
-m_iPermanentTrait(NO_TRAIT)
+m_iPermanentTrait(NO_TRAIT),
 //FfH: End Add
+
+// Leader categories START
+m_iLeaderCategory(NO_LEADERCATEGORY)
+// Leader categories END
 {
 }
 
@@ -18809,6 +19017,14 @@ bool CvLeaderHeadInfo::isFemale() const
     return m_bFemale;
 }
 //FfH: End Add
+
+// Leader categories START
+int CvLeaderHeadInfo::getLeaderCategory() const
+{
+	return m_iLeaderCategory;
+}
+// Leader categories END
+
 // Arrays
 
 bool CvLeaderHeadInfo::hasTrait(int i) const
@@ -19039,6 +19255,10 @@ void CvLeaderHeadInfo::read(FDataStreamBase* stream)
 	stream->Read(GC.getNumReligionInfos(), m_piReligionWeightModifier);
 //FfH: End Add
 
+// Leader categories START
+	stream->Read(&m_iLeaderCategory);
+// Leader categories END
+
 	// Arrays
 
 	SAFE_DELETE_ARRAY(m_pbTraits);
@@ -19206,6 +19426,10 @@ void CvLeaderHeadInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iPermanentTrait);
     stream->Write(GC.getNumReligionInfos(), m_piReligionWeightModifier);
 //FfH: End Add
+
+// Leader categories START
+	stream->Write(m_iLeaderCategory);
+// Leader categories END
 
 	// Arrays
 
@@ -19416,6 +19640,11 @@ bool CvLeaderHeadInfo::read(CvXMLLoadUtility* pXML)
 	m_iPermanentTrait = pXML->FindInInfoClass(szTextVal);
 	pXML->SetVariableListTagPair(&m_piReligionWeightModifier, "ReligionWeightModifiers", sizeof(GC.getReligionInfo((ReligionTypes)0)), GC.getNumReligionInfos());
 //FfH: End Add
+
+// Leader categories START
+	pXML->GetChildXmlValByName(szTextVal, "LeaderCategory");
+	m_iLeaderCategory = pXML->FindInInfoClass(szTextVal);
+// Leader categories END
 
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
@@ -21066,6 +21295,13 @@ m_bIgnoreFood(false),
 m_bInsane(false),
 m_bSelectable(false),
 m_bSprawling(false),
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+m_bAllUnitsFreePromotion(false),
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 m_iFreeXPFromCombat(0),
 m_iMaxCities(-1),
 m_iPillagingGold(0),
@@ -21206,6 +21442,16 @@ bool CvTraitInfo::isSprawling() const
 {
 	return m_bSprawling;
 }
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+bool CvTraitInfo::isAllUnitsFreePromotion() const
+{
+	return m_bAllUnitsFreePromotion;
+}
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 
 int CvTraitInfo::getFreeXPFromCombat() const
 {
@@ -21301,6 +21547,13 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bIgnoreFood, "bIgnoreFood");
 	pXML->GetChildXmlValByName(&m_bInsane, "bInsane");
 	pXML->GetChildXmlValByName(&m_bSelectable, "bSelectable");
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+	pXML->GetChildXmlValByName(&m_bAllUnitsFreePromotion, "bAllUnitsFreePromotion");
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 	pXML->GetChildXmlValByName(&m_bSprawling, "bSprawling");
 	pXML->GetChildXmlValByName(&m_iFreeXPFromCombat, "iFreeXPFromCombat");
 	pXML->GetChildXmlValByName(&m_iMaxCities, "iMaxCities");
@@ -28722,7 +28975,8 @@ CvSpawnInfo::CvSpawnInfo():
 	m_eCreateLair( NO_IMPROVEMENT ),
 	m_eTerrainFlavourType( NO_TERRAIN_FLAVOUR ),
 	m_eUnitArtStyleType( NO_UNIT_ARTSTYLE ),
-	m_eSpawnPrereqType( NO_UNIT_ARTSTYLE ),
+	m_eSpawnPrereqType( NO_SPAWN_PREREQ ),
+	m_eUnitAIType( NO_UNITAI ),
 	m_iWeight( 0 ),
 	m_iValidTerrainWeight( 0 ),
 	m_iMinTier( 0 ),
@@ -28730,19 +28984,25 @@ CvSpawnInfo::CvSpawnInfo():
 	m_iPrereqGlobalCounter( 0 ),
 	m_iMinRandomPromotions( -1 ),
 	m_iMaxRandomPromotions( -1 ),
-	m_iNumRandomIncludedSpawns( -1 ),
+	m_iMinIncludedSpawns( 0 ),
+	m_iMaxIncludedSpawns( 0 ),
 	m_iCreateLairAge(0),
 	m_iCreateLairLevel(0),
 	m_bNeverSpawn( false ),
+	m_bNoWildernessIgnoreSpawnPrereq( false ),
 	m_bExplorationResult( false ),
 	m_bExplorationNoPush( false ),
 	m_bNoDefender( false ),
 	m_bAnimal( false ),
 	m_bWater( false ),
 	m_bNoRace( false ),
+	m_bNoMinWilderness( false ),
 	m_piNumSpawnUnits( NULL ),
 	m_pbUnitPromotions( NULL ),
-	m_pbIncludedSpawns( NULL )
+	m_piIncludedSpawnMin( NULL ),
+	m_piIncludedSpawnMax( NULL ),
+	m_pbIncludedSpawnIgnoreTerrain( NULL ),
+	m_pbIncludedSpawnCountSeparately( NULL )
 {
 }
 
@@ -28750,7 +29010,10 @@ CvSpawnInfo::~CvSpawnInfo()
 {
 	SAFE_DELETE_ARRAY( m_piNumSpawnUnits );
 	SAFE_DELETE_ARRAY( m_pbUnitPromotions );
-	SAFE_DELETE_ARRAY( m_pbIncludedSpawns );
+	SAFE_DELETE_ARRAY( m_piIncludedSpawnMin );
+	SAFE_DELETE_ARRAY( m_piIncludedSpawnMax );
+	SAFE_DELETE_ARRAY( m_pbIncludedSpawnIgnoreTerrain );
+	SAFE_DELETE_ARRAY( m_pbIncludedSpawnCountSeparately );
 }
 
 int CvSpawnInfo::getCreateLair() const
@@ -28771,6 +29034,11 @@ int CvSpawnInfo::getUnitArtStyleType() const
 int CvSpawnInfo::getSpawnPrereqType() const
 {
 	return m_eSpawnPrereqType;
+}
+
+int CvSpawnInfo::getUnitAIType() const
+{
+	return m_eUnitAIType;
 }
 
 int CvSpawnInfo::getWeight() const
@@ -28808,9 +29076,14 @@ int CvSpawnInfo::getMaxRandomPromotions() const
 	return m_iMaxRandomPromotions;
 }
 
-int CvSpawnInfo::getNumRandomIncludedSpawns() const
+int CvSpawnInfo::getMinIncludedSpawns() const
 {
-	return m_iNumRandomIncludedSpawns;
+	return m_iMinIncludedSpawns;
+}
+
+int CvSpawnInfo::getMaxIncludedSpawns() const
+{
+	return m_iMaxIncludedSpawns;
 }
 
 int CvSpawnInfo::getCreateLairAge() const
@@ -28826,6 +29099,11 @@ int CvSpawnInfo::getCreateLairLevel() const
 bool CvSpawnInfo::isNeverSpawn() const
 {
 	return m_bNeverSpawn;
+}
+
+bool CvSpawnInfo::isNoWildernessIgnoreSpawnPrereq() const
+{
+	return m_bNoWildernessIgnoreSpawnPrereq;
 }
 
 bool CvSpawnInfo::isExplorationResult() const
@@ -28858,6 +29136,11 @@ bool CvSpawnInfo::isNoRace() const
 	return m_bNoRace;
 }
 
+bool CvSpawnInfo::isNoMinWilderness() const
+{
+	return m_bNoMinWilderness;
+}
+
 int CvSpawnInfo::getNumSpawnUnits( int i ) const
 {
 	FAssertMsg( i < GC.getNumUnitInfos(), "Index out of bounds" );
@@ -28872,17 +29155,38 @@ bool CvSpawnInfo::getUnitPromotions( int i ) const
 	return m_pbUnitPromotions ? m_pbUnitPromotions[i] : false;
 }
 
-bool CvSpawnInfo::isIncludedSpawns( int i ) const
+int CvSpawnInfo::getIncludedSpawnMin( int eSpawn ) const
 {
-	FAssertMsg( i < GC.getNumSpawnInfos(), "Index out of bounds" );
-	FAssertMsg( i > -1, "Index out of bounds" );
-	return m_pbIncludedSpawns ? m_pbIncludedSpawns[i] : false;
+	FAssertMsg( eSpawn < GC.getNumSpawnInfos(), "Index out of bounds" );
+	FAssertMsg( eSpawn > -1, "Index out of bounds" );
+	return m_piIncludedSpawnMin ? m_piIncludedSpawnMin[eSpawn] : false;
+}
+
+int CvSpawnInfo::getIncludedSpawnMax( int eSpawn ) const
+{
+	FAssertMsg( eSpawn < GC.getNumSpawnInfos(), "Index out of bounds" );
+	FAssertMsg( eSpawn > -1, "Index out of bounds" );
+	return m_piIncludedSpawnMax ? m_piIncludedSpawnMax[eSpawn] : false;
+}
+
+bool CvSpawnInfo::isIncludedSpawnIgnoreTerrain( int eSpawn ) const
+{
+	FAssertMsg( eSpawn < GC.getNumSpawnInfos(), "Index out of bounds" );
+	FAssertMsg( eSpawn > -1, "Index out of bounds" );
+	return m_pbIncludedSpawnIgnoreTerrain ? m_pbIncludedSpawnIgnoreTerrain[eSpawn] : false;
+}
+
+bool CvSpawnInfo::isIncludedSpawnCountSeparately( int eSpawn ) const
+{
+	FAssertMsg( eSpawn < GC.getNumSpawnInfos(), "Index out of bounds" );
+	FAssertMsg( eSpawn > -1, "Index out of bounds" );
+	return m_pbIncludedSpawnCountSeparately ? m_pbIncludedSpawnCountSeparately[eSpawn] : false;
 }
 
 void CvSpawnInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
-	
+	/*
 	stream->Read(&m_eCreateLair);
 	stream->Read(&m_eTerrainFlavourType);
 	stream->Read(&m_eUnitArtStyleType);
@@ -28917,12 +29221,13 @@ void CvSpawnInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_pbIncludedSpawns);
 	m_pbIncludedSpawns = new bool[GC.getNumSpawnInfos()];
 	stream->Read(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
+	*/
 }
 
 void CvSpawnInfo::write(FDataStreamBase* stream)
 {
 	CvInfoBase::write(stream);
-	
+	/*
 	stream->Write(m_eCreateLair);
 	stream->Write(m_eTerrainFlavourType);
 	stream->Write(m_eUnitArtStyleType);
@@ -28950,6 +29255,7 @@ void CvSpawnInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumUnitInfos(), m_piNumSpawnUnits);
 	stream->Write(GC.getNumPromotionInfos(), m_pbUnitPromotions);
 	stream->Write(GC.getNumSpawnInfos(), m_pbIncludedSpawns);
+	*/
 }
 
 bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
@@ -28968,6 +29274,8 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	m_eUnitArtStyleType = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(szTextVal, "SpawnPrereqType");
 	m_eSpawnPrereqType = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "UnitAIType");
+	m_eUnitAIType = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iWeight, "iBaseWeight");
 	pXML->GetChildXmlValByName(&m_iValidTerrainWeight, "iValidTerrainWeight" );
@@ -28976,16 +29284,33 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iPrereqGlobalCounter, "iPrereqGlobalCounter");
 	pXML->GetChildXmlValByName(&m_iMinRandomPromotions, "iMinRandomPromotions", -1);
 	pXML->GetChildXmlValByName(&m_iMaxRandomPromotions, "iMaxRandomPromotions", -1);
-	pXML->GetChildXmlValByName(&m_iNumRandomIncludedSpawns, "iNumRandomIncludedSpawns", -1);
+	pXML->GetChildXmlValByName(&m_iMinIncludedSpawns, "iMinIncludedSpawns", 0);
+	pXML->GetChildXmlValByName(&m_iMaxIncludedSpawns, "iMaxIncludedSpawns", 0);
 	pXML->GetChildXmlValByName(&m_iCreateLairAge, "iCreateLairAge" );
 	pXML->GetChildXmlValByName(&m_iCreateLairLevel, "iCreateLairLevel" );
 	pXML->GetChildXmlValByName(&m_bNeverSpawn, "bNeverSpawn");
+	pXML->GetChildXmlValByName(&m_bNoWildernessIgnoreSpawnPrereq, "bNoWildernessIgnoreSpawnPrereq");
 	pXML->GetChildXmlValByName(&m_bExplorationResult, "bExplorationResult");
 	pXML->GetChildXmlValByName(&m_bExplorationNoPush, "bExplorationNoPush");
 	pXML->GetChildXmlValByName(&m_bNoDefender, "bNoDefender");
 	pXML->GetChildXmlValByName(&m_bAnimal, "bAnimal");
 	pXML->GetChildXmlValByName(&m_bWater, "bWater");
 	pXML->GetChildXmlValByName(&m_bNoRace, "bNoRace");
+	pXML->GetChildXmlValByName(&m_bNoMinWilderness, "bNoMinWilderness");
+	
+	if( m_iMaxRandomPromotions < -1 || m_iMinRandomPromotions < -1 || m_iMaxRandomPromotions < m_iMinRandomPromotions )
+	{
+		char szMessage[1024];
+		sprintf( szMessage, "Invalid <m_iMinRandomPromotions> or <m_iMaxRandomPromotions>.\n Current XML file is: %s\n Current type is: %s", GC.getCurrentXMLFile().GetCString(), getType() );
+		gDLL->MessageBox( szMessage, "XML Error" );
+	}
+	
+	if( m_iMaxIncludedSpawns < 0 || m_iMinIncludedSpawns < 0 || m_iMaxIncludedSpawns < m_iMinIncludedSpawns )
+	{
+		char szMessage[1024];
+		sprintf( szMessage, "Invalid <m_iMinIncludedSpawns> or <m_iMaxIncludedSpawns>.\n Current XML file is: %s\n Current type is: %s", GC.getCurrentXMLFile().GetCString(), getType() );
+		gDLL->MessageBox( szMessage, "XML Error" );
+	}
 	
 	pXML->SetVariableListTagPair( &m_piNumSpawnUnits, "SpawnUnits", sizeof( GC.getUnitInfo( (UnitTypes) 0 ) ), GC.getNumUnitInfos() );
 	
@@ -28997,38 +29322,86 @@ bool CvSpawnInfo::read(CvXMLLoadUtility* pXML)
 bool CvSpawnInfo::readPass2(CvXMLLoadUtility* pXML)
 {
 	CvString szTextVal;
-
-	m_pbIncludedSpawns = new bool[GC.getNumSpawnInfos()];
-	for (int i = 0; i < GC.getNumSpawnInfos(); ++i)
+	
+	m_piIncludedSpawnMin = new int[GC.getNumSpawnInfos()];
+	m_piIncludedSpawnMax = new int[GC.getNumSpawnInfos()];
+	m_pbIncludedSpawnIgnoreTerrain = new bool[GC.getNumSpawnInfos()];
+	m_pbIncludedSpawnCountSeparately = new bool[GC.getNumSpawnInfos()];
+	for( int i = 0; i < GC.getNumSpawnInfos(); ++i )
 	{
-		m_pbIncludedSpawns[i] = false;
+		m_piIncludedSpawnMin[i] = -2; // -2 means not touched
+		m_piIncludedSpawnMax[i] = -2;
+		m_pbIncludedSpawnIgnoreTerrain[i] = false;
+		m_pbIncludedSpawnCountSeparately[i] = false;
 	}
 
-	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"IncludedSpawns"))
+	if(gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(),"IncludedSpawns" ) )
 	{
-		if (pXML->SkipToNextVal())
+		if( pXML->SkipToNextVal() )
 		{
-			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+			// Now were inside <IncludedSpawns>
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren( pXML->GetXML() );
 
-			if (0 < iNumSibs)
+			if( 0 < iNumSibs )
 			{
-				if (pXML->GetChildXmlVal(szTextVal))
+				if( gDLL->getXMLIFace()->SetToChild( pXML->GetXML() ) )
 				{
-					for ( int i = 0; i < iNumSibs; i++)
+					for ( int i = 0; i < iNumSibs; i++ )
 					{
-						int iSpawn = pXML->FindInInfoClass(szTextVal);
-						if( iSpawn > -1 && iSpawn < GC.getNumSpawnInfos() )
-							m_pbIncludedSpawns[iSpawn] = true;
-						if (!pXML->GetNextXmlVal(szTextVal))
+						// Now were inside <IncludedSpawn>
+
+						int eSpawn;
+						pXML->GetChildXmlValByName(szTextVal, "SpawnType");
+						eSpawn = pXML->FindInInfoClass(szTextVal);
+						
+						if( m_piIncludedSpawnMin[eSpawn] != -2 )
+						{
+							char szMessage[1024];
+							sprintf( szMessage, "IncludedSpawns: SpawnType %s referenced in two <IncludedSpawn> structs.\n Current XML file is: %s\n Current type is: %s", szTextVal.GetCString(), GC.getCurrentXMLFile().GetCString(), getType() );
+							gDLL->MessageBox( szMessage, "XML Error" );
+						}
+						
+						pXML->GetChildXmlValByName( &m_piIncludedSpawnMin[eSpawn], "iMin", 0 );
+						pXML->GetChildXmlValByName( &m_piIncludedSpawnMax[eSpawn], "iMax", -1 );
+						pXML->GetChildXmlValByName( &m_pbIncludedSpawnIgnoreTerrain[eSpawn], "bIgnoreTerrain" );
+						pXML->GetChildXmlValByName( &m_pbIncludedSpawnCountSeparately[eSpawn], "bCountSeparately" );
+						
+						if( m_pbIncludedSpawnCountSeparately[eSpawn] && m_piIncludedSpawnMax[eSpawn] == -1 )
+						{
+							char szMessage[1024];
+							sprintf( szMessage, "IncludedSpawns: <bCountSeparately> requires <iMax> (SpawnType %s).\n Current XML file is: %s\n Current type is: %s", szTextVal.GetCString(), GC.getCurrentXMLFile().GetCString(), getType() );
+							gDLL->MessageBox( szMessage, "XML Error" );
+
+							m_piIncludedSpawnMax[eSpawn] = m_piIncludedSpawnMin[eSpawn];
+						}
+
+						if( m_piIncludedSpawnMin[eSpawn] < 0 || m_piIncludedSpawnMax[eSpawn] < -1 || ( m_piIncludedSpawnMax[eSpawn] != -1 && m_piIncludedSpawnMax[eSpawn] < m_piIncludedSpawnMin[eSpawn] ) )
+						{
+							char szMessage[1024];
+							sprintf( szMessage, "IncludedSpawns: Invalid <iMin> or <iMax> for SpawnType %s.\n Current XML file is: %s\n Current type is: %s", szTextVal.GetCString(), GC.getCurrentXMLFile().GetCString(), getType() );
+							gDLL->MessageBox( szMessage, "XML Error" );
+						}
+
+						if( !gDLL->getXMLIFace()->NextSibling( pXML->GetXML() ) )
+						{
 							break;
+						}
 					}
 
-					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+					gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
 				}
 			}
 		}
 
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	for( int i = 0; i < GC.getNumSpawnInfos(); ++i )
+	{
+		if( m_piIncludedSpawnMin[i] == -2 )
+			m_piIncludedSpawnMin[i] = 0;
+		if( m_piIncludedSpawnMax[i] == -2 )
+			m_piIncludedSpawnMax[i] = 0;
 	}
 
 	return true;
@@ -29127,11 +29500,22 @@ bool CvSpawnPrereqInfo::read(CvXMLLoadUtility* pXML)
 
 			if ( (0 < iNumSibs) && (gDLL->getXMLIFace()->SetToChild(pXML->GetXML())) )
 			{
+				// check that iMinWilderness is rising
+				int iLastMinWilderness = -1;
+
 				for( int iTier = 0; iTier < iNumSibs; iTier++ )
 				{
 					int iMinWilderness, iMaxWilderness;
 					pXML->GetChildXmlValByName( &iMinWilderness, "iMinWilderness" );
 					pXML->GetChildXmlValByName( &iMaxWilderness, "iMaxWilderness" );
+
+					if( iMinWilderness < iLastMinWilderness )
+					{
+						CvString szError;
+						szError.Format("iMinWilderness in SpawnPrereqInfo %s must be rising. Current XML file is: %s", getType(), GC.getCurrentXMLFile().GetCString());
+						FAssertMsg( false, szError.c_str());
+						gDLL->logMsg("xml.log", szError);
+					}
 					
 					m_viMinWildernessTiers.push_back( iMinWilderness );
 					m_viMaxWildernessTiers.push_back( iMaxWilderness );

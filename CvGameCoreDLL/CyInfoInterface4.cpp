@@ -25,8 +25,8 @@ void CyInfoPythonInterface4()
 		.def("getPrereqGlobalCounter", &CvSpawnInfo::getPrereqGlobalCounter, "int ()")
 		.def("getMinRandomPromotions", &CvSpawnInfo::getMinRandomPromotions, "int ()")
 		.def("getMaxRandomPromotions", &CvSpawnInfo::getMaxRandomPromotions, "int ()")
-		.def("getNumRandomIncludedSpawns", &CvSpawnInfo::getNumRandomIncludedSpawns, "int ()")
 		.def("isNeverSpawn", &CvSpawnInfo::isNeverSpawn, "bool ()")
+		.def("isNoWildernessIgnoreSpawnPrereq", &CvSpawnInfo::isNoWildernessIgnoreSpawnPrereq, "bool ()")
 		.def("isExplorationResult", &CvSpawnInfo::isExplorationResult, "bool ()")
 		.def("isExplorationNoPush", &CvSpawnInfo::isExplorationNoPush, "bool ()")
 		.def("isNoDefender", &CvSpawnInfo::isNoDefender, "bool ()")
@@ -35,9 +35,19 @@ void CyInfoPythonInterface4()
 		.def("isNoRace", &CvSpawnInfo::isNoRace, "bool ()")
 		.def("getNumSpawnUnits", &CvSpawnInfo::getNumSpawnUnits, "int ( UnitTypes eID )")
 		.def("getUnitPromotions", &CvSpawnInfo::getUnitPromotions, "bool ( PromotionTypes eID )")
-		.def("isIncludedSpawns", &CvSpawnInfo::isIncludedSpawns, "bool ( SpawnTypes eID )")
 		;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+/********************************************************************************/
+	python::class_<CvUnitArtStyleTypeInfo, python::bases<CvInfoBase> >("CvUnitArtStyleTypeInfo")
+		.def("getEarlyArtDefineTag", &CvUnitArtStyleTypeInfo::getEarlyArtDefineTag, "string (int iMesh, int iUnit)")
+		.def("getMiddleArtDefineTag", &CvUnitArtStyleTypeInfo::getMiddleArtDefineTag, "string (int iMesh, int iUnit)")
+		.def("getLateArtDefineTag", &CvUnitArtStyleTypeInfo::getLateArtDefineTag, "string (int iMesh, int iUnit)")
+		;
+/********************************************************************************/
+/* EXTRA_CIV_TRAITS                                                     END     */
+/********************************************************************************/
 }

@@ -227,7 +227,7 @@ public:
 	int getPuppetTradingCount() const;																				// Exposed to Python	
 	bool isPuppetStateTrading() const;																						// Exposed to Python						
 	void changePuppetTradingCount(int iChange);												// Exposed to Python
-// MNAI End
+// MNAI - End Puppet States
 
 	int getBridgeBuildingCount() const;																									// Exposed to Python	
 	bool isBridgeBuilding() const;																						// Exposed to Python						
@@ -398,6 +398,7 @@ public:
 
 	bool isParent(TeamTypes eTeam) const;		// Exposed to Python
 
+	bool doesImprovementConnectBonus(ImprovementTypes eImprovement, BonusTypes eBonus) const; // K-Mod
 	int getEspionagePointsAgainstTeam(TeamTypes eIndex) const;																							// Exposed to Python
 	void setEspionagePointsAgainstTeam(TeamTypes eIndex, int iValue);																							// Exposed to Python
 	void changeEspionagePointsAgainstTeam(TeamTypes eIndex, int iChange);																				// Exposed to Python
@@ -503,9 +504,7 @@ protected:
 	int m_iDefensivePactTradingCount;
 	int m_iPermanentAllianceTradingCount;
 	int m_iVassalTradingCount;
-// MNAI - Puppet States
-	int m_iPuppetTradingCount;
-// MNAI End
+	int m_iPuppetTradingCount; // MNAI - Puppet States
 	int m_iBridgeBuildingCount;
 	int m_iIrrigationCount;
 	int m_iIgnoreIrrigationCount;

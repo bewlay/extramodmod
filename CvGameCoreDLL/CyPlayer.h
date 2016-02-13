@@ -330,7 +330,6 @@ public:
 /* Player Functions                                                                             */
 /************************************************************************************************/
 	bool isNonStateReligionCommerce() const;
-	bool isUpgradeAnywhere() const;
 	int getRevIdxLocal();
 	int getRevIdxNational();
 	int getRevIdxDistanceModifier();
@@ -339,10 +338,7 @@ public:
 	float getRevIdxNationalityMod();
 	float getRevIdxBadReligionMod();
 	float getRevIdxGoodReligionMod();
-	//bool isInquisitionConditions();
-	//int getUnitUpgradePriceModifier();
-	//bool canFoundReligion();
-	//bool isBuildingClassRequiredToTrain(int /*BuildingClassTypes*/ iBuildingClass, int /*UnitTypes*/ iUnit);
+	bool canInquisition();
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
 /************************************************************************************************/
@@ -648,11 +644,20 @@ public:
 
     // MNAI - Puppet States
     bool makePuppet(int /*PlayerTypes*/ eSplitPlayer, CvCity* pVassalCapital) const;
-    bool canMakePuppet(int /*PlayerTypes*/ eFromPlayer) const;
+/********************************************************************************/
+/* MinorPuppetLeaders	03/2015											lfgr	*/
+/********************************************************************************/
+/* old
+    bool canMakePuppet(int eFromPlayer) const;
+*/
+    bool canMakePuppet( CvCity* pVassalCapital ) const;
+/********************************************************************************/
+/* MinorPuppetLeaders	End												lfgr	*/
+/********************************************************************************/
 
 	bool isPuppetState() const;
 	void setPuppetState (bool bNewValue);
-    // End MNAI
+    // MNAI - End Puppet States
 	
 	bool canHaveTradeRoutesWith(int iPlayer);
 
@@ -661,6 +666,7 @@ public:
 //FfH Alignment: Added by Kael 08/09/2007
     bool canSeeCivic(int iCivic) const;
     bool canSeeReligion(int iReligion) const;
+	int getSanctuaryTimer() const;
 	void changeSanctuaryTimer(int iChange);
 	int getAlignment() const;
     void setAlignment(int /*AlignmentTypes*/ iAlignment);
@@ -698,6 +704,19 @@ public:
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
+
+	// MNAI - new functions
+	int countNumOwnedTerrainTypes(int /*TerrainTypes*/ eTerrain) const;
+	int getHighestUnitTier(bool bIncludeHeroes, bool bIncludeLimitedUnits) const;
+	// End MNAI
+
+// Leader categories START
+	int getLeaderCategory() const;
+// Leader categories END
+
+// ExtraModMod technology propagation START
+	int calculateTechPropagationResearchModifier(int /*TechTypes*/ eTech) const;
+// ExtraModMod technology propagation END
 
 // BUG - Reminder Mod - start
 	void addReminder(int iGameTurn, std::wstring szMessage) const;
