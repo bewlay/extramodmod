@@ -18885,6 +18885,13 @@ int CvUnit::chooseSpell()
 
 			if (kSpellInfo.isAllowAI())
 			{
+			// WILDERNESS 02/2016 lfgr // WildernessAI
+				if( kSpellInfo.isAIExploreLair() )
+				{
+					if( !AI_wantsToExplore( plot()->getX_INLINE(), plot()->getY_INLINE() ) )
+						continue;
+				}
+			// WILDERNESS end
 				iRange = kSpellInfo.getRange();
 				if (kSpellInfo.getCreateUnitType() != NO_UNIT)
 				{

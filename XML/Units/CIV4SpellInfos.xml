@@ -1645,12 +1645,13 @@
             <Sound>AS3D_SPELL_ESCAPE</Sound>
             <Button>Art/Interface/Buttons/Spells/Escape.dds</Button>
         </SpellInfo>
-        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added python help -->
             <Type>SPELL_EXPLORE_LAIR_AIFON_ISLE</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <ImprovementPrereq>IMPROVEMENT_AIFON_ISLE</ImprovementPrereq>
             <bAllowAI>1</bAllowAI>
+			<bAIExploreLair>1</bAIExploreLair>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -1663,12 +1664,13 @@
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added python help -->
             <Type>SPELL_EXPLORE_LAIR_BARROW</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <ImprovementPrereq>IMPROVEMENT_BARROW</ImprovementPrereq>
             <bAllowAI>1</bAllowAI>
+			<bAIExploreLair>1</bAIExploreLair>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -1681,12 +1683,13 @@
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added python help -->
             <Type>SPELL_EXPLORE_LAIR_BAIR_OF_LACUNA</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <ImprovementPrereq>IMPROVEMENT_BAIR_OF_LACUNA</ImprovementPrereq>
             <bAllowAI>1</bAllowAI>
+			<bAIExploreLair>1</bAIExploreLair>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -1699,12 +1702,13 @@
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added python help -->
             <Type>SPELL_EXPLORE_LAIR_BRADELINES_WELL</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <ImprovementPrereq>IMPROVEMENT_BRADELINES_WELL</ImprovementPrereq>
             <bAllowAI>1</bAllowAI>
+			<bAIExploreLair>1</bAIExploreLair>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -1723,6 +1727,7 @@
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <ImprovementPrereq>IMPROVEMENT_BROKEN_SEPULCHER</ImprovementPrereq>
             <bAllowAI>1</bAllowAI>
+			<bAIExploreLair>1</bAIExploreLair>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -1735,12 +1740,13 @@
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added python help -->
             <Type>SPELL_EXPLORE_LAIR_DUNGEON</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <ImprovementPrereq>IMPROVEMENT_DUNGEON</ImprovementPrereq>
             <bAllowAI>1</bAllowAI>
+			<bAIExploreLair>1</bAIExploreLair>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -1753,12 +1759,13 @@
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added python help -->
             <Type>SPELL_EXPLORE_LAIR_GOBLIN_FORT</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <ImprovementPrereq>IMPROVEMENT_GOBLIN_FORT</ImprovementPrereq>
             <bAllowAI>1</bAllowAI>
+			<bAIExploreLair>1</bAIExploreLair>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -1771,12 +1778,13 @@
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added python help -->
             <Type>SPELL_EXPLORE_LAIR_PALUS</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <ImprovementPrereq>IMPROVEMENT_PALUS</ImprovementPrereq>
             <bAllowAI>1</bAllowAI>
+			<bAIExploreLair>1</bAIExploreLair>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -1789,12 +1797,13 @@
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added python help -->
             <Type>SPELL_EXPLORE_LAIR_PYRE_OF_THE_SERAPHIC</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <ImprovementPrereq>IMPROVEMENT_PYRE_OF_THE_SERAPHIC</ImprovementPrereq>
             <bAllowAI>1</bAllowAI>
+			<bAIExploreLair>1</bAIExploreLair>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -1807,12 +1816,13 @@
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added python help -->
             <Type>SPELL_EXPLORE_LAIR_RUINS</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <ImprovementPrereq>IMPROVEMENT_RUINS</ImprovementPrereq>
             <bAllowAI>1</bAllowAI>
+			<bAIExploreLair>1</bAIExploreLair>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
@@ -1825,12 +1835,13 @@
             <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Explore Lair.dds</Button>
         </SpellInfo>
-        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added pyhton help -->
+        <SpellInfo> <!-- WILDERNESS 11/2013 lfgr // WildernessMisc: added python help -->
             <Type>SPELL_EXPLORE_LAIR_SHIP_WRECK</Type>
             <Description>TXT_KEY_SPELL_EXPLORE_LAIR</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <ImprovementPrereq>IMPROVEMENT_SHIP_WRECK</ImprovementPrereq>
             <bAllowAI>1</bAllowAI>
+			<bAIExploreLair>1</bAIExploreLair>
             <iAIWeight>300</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>

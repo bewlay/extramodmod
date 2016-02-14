@@ -28,6 +28,9 @@
 	<ElementType name="bAllowAI" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAllowAuto" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAllowAutomateTerrain" content="textOnly" dt:type="boolean"/>
+<!-- WILDERNESS 02/2015 lfgr // WildernessAI -->
+	<ElementType name="bAIExploreLair" content="textOnly" dt:type="boolean"/>
+<!-- WILDERNESS END -->
 	<ElementType name="bAdjacentToWaterOnly" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bCasterMustBeAlive" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bCasterNoDuration" content="textOnly" dt:type="boolean"/>
@@ -128,6 +131,9 @@
 		<element type="bAllowAI" minOccurs="0"/>
 		<element type="bAllowAuto" minOccurs="0"/>
 		<element type="bAllowAutomateTerrain" minOccurs="0"/>
+<!-- WILDERNESS 02/2015 lfgr // WildernessAI -->
+		<element type="bAIExploreLair" minOccurs="0"/>
+<!-- WILDERNESS END -->
 		<element type="bAdjacentToWaterOnly" minOccurs="0"/>
 		<element type="bCasterMustBeAlive" minOccurs="0"/>
 		<element type="bCasterNoDuration" minOccurs="0"/>

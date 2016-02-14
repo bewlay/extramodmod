@@ -59,6 +59,10 @@ public:
     void AI_ConquestMove();
     void AI_PatrolMove();
     void AI_HiddenNationalityMove();
+
+// WILDERNESS 02/2016 lfgr // WildernessAI
+	bool AI_wantsToExplore( int iX, int iY ) const;
+// WILDERNESS end
 	bool AI_exploreLairSea(int iRange = 0); // added by Tholal
 	bool AI_exploreLair(int iRange = 0); // added by Tholal
 	bool AI_pickupEquipment(int iRange = 0); // added by Tholal

@@ -888,6 +888,10 @@ public:
 /**	END	                                        												**/
 /*************************************************************************************************/
     bool isAllowAutomateTerrain() const;
+// WILDERNESS 02/2016 lfgr // WildernessAI
+// Whether this spell should be treated as an "explore lair" spell by the AI
+	bool isAIExploreLair() const;
+// WILDERNESS end
 	bool isAdjacentToWaterOnly() const;
 	bool isCasterMustBeAlive() const;
 	bool isCasterNoDuration() const;
@@ -979,6 +983,9 @@ protected:
 /**	END	                                        												**/
 /*************************************************************************************************/
     bool m_bAllowAutomateTerrain;
+// WILDERNESS 02/2016 lfgr // WildernessAI
+	bool m_bAIExploreLair;
+// WILDERNESS end
     bool m_bAdjacentToWaterOnly;
     bool m_bCasterMustBeAlive;
     bool m_bCasterNoDuration;

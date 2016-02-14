@@ -854,6 +854,11 @@ public:
 	virtual UnitAITypes AI_getUnitAIType() const = 0;																				// Exposed to Python
 	virtual void AI_setUnitAIType(UnitAITypes eNewValue) = 0;
     virtual int AI_sacrificeValue(const CvPlot* pPlot) const = 0;
+	
+// WILDERNESS 02/2016 lfgr // WildernessAI
+// for use in chooseSpell()
+	virtual bool AI_wantsToExplore( int iX, int iY ) const = 0;
+// WILDERNESS end
 
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */

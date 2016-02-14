@@ -27864,6 +27864,30 @@ bool CvUnitAI::AI_exploreLairSea(int iRange)
 	return false;
 }
 
+// WILDERNESS 02/2016 lfgr // WildernessAI
+bool CvUnitAI::AI_wantsToExplore( int iX, int iY ) const
+{
+	if( getDamage() > 0 )
+		return false;
+
+	CvPlot* pPlot = GC.getMapINLINE().plotINLINE( iX, iY );
+	ImprovementTypes eImprovement = pPlot->getImprovementType();
+	if( eImprovement != NO_IMPROVEMENT && GC.getImprovementInfo( eImprovement ).isExplorable() )
+	{
+		if( !canDoExploration( pPlot ) )
+			return false;
+		else if( AI_getUnitAIType() == UNITAI_HERO && pPlot->getLairDanger() + 15 > getExplorationLevel() )
+			return false;
+		else if( pPlot->getLairDanger() > getExplorationLevel() )
+			return false;
+		else
+			return true;
+	}
+	else
+		return false;
+}
+// WILDERNESS end
+
 // look around for lairs to explore
 bool CvUnitAI::AI_exploreLair(int iRange)
 {
@@ -27910,22 +27934,10 @@ bool CvUnitAI::AI_exploreLair(int iRange)
 						{
 							if (!pLoopPlot->isVisibleEnemyDefender(this))
 							{
-							/************************************************************************************************/
-							/* WILDERNESS                             08/2013                                 lfgr          */
-							/* WildernessExploration                                                                        */
-							/************************************************************************************************/
-								if( GC.getImprovementInfo((ImprovementTypes)pLoopPlot->getImprovementType()).isExplorable() )
-								{
-									if( !canDoExploration( pLoopPlot ) )
-										continue;
-									if( AI_getUnitAIType() == UNITAI_HERO && pLoopPlot->getLairDanger() + 15 > getExplorationLevel() )
-										continue;
-									if( pLoopPlot->getLairDanger() > getExplorationLevel() )
-										continue;
-								}
-							/************************************************************************************************/
-							/* WILDERNESS                                                                     END           */
-							/************************************************************************************************/
+							// WILDERNESS 02/2016 lfgr // WildernessAI
+								if( !AI_wantsToExplore( pLoopPlot->getX(), pLoopPlot->getY() ) )
+									continue;
+							// WILDERNESS end
 								if (generatePath(pLoopPlot, 0, true, &iPathTurns))
 								{
 									if (iPathTurns <= iRange)
