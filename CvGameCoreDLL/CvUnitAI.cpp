@@ -16008,10 +16008,11 @@ bool CvUnitAI::AI_patrol()
 						/* WildernessMisc                                                                               */
 						/* Animals stay in appropriate territory if possible and nothing to attack.                     */
 						/************************************************************************************************/
-							if ( AI_getUnitAIType() == UNITAI_ANIMAL && getSpawnType() != NO_SPAWN )
+							if ( AI_getUnitAIType() == UNITAI_ANIMAL )
 							{
-								if( GC.getSpawnInfo( getSpawnType() ).getTerrainFlavourType() != NO_TERRAIN_FLAVOUR
-										&& pAdjacentPlot->getSpawnTerrainWeight( (TerrainFlavourTypes) GC.getSpawnInfo( getSpawnType() ).getTerrainFlavourType() ) > 0 )
+								TerrainFlavourTypes eTerrainFlavour = (TerrainFlavourTypes) GC.getUnitInfo( getUnitTypeINLINE() ).getAnimalTerrainFlavour();
+								if( eTerrainFlavour != NO_TERRAIN_FLAVOUR
+										&& pAdjacentPlot->getSpawnTerrainWeight( (TerrainFlavourTypes) eTerrainFlavour ) > 0 )
 									iValue += 100000;
 							}
 						/************************************************************************************************/

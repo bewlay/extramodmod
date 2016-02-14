@@ -4711,6 +4711,7 @@
 					<iCombat>1</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_SPIDER</AnimalTerrainFlavour>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_BAMBUR -->
 			<Class>UNITCLASS_BAMBUR</Class>
@@ -5017,6 +5018,7 @@
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_ANIMAL</FormationType>
 			<iCombatDefense>5</iCombatDefense>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_BEAR</AnimalTerrainFlavour>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_CAVE_BEAR // WILDERNESS 08/2013 lfgr / NewUnits -->
 			<Class>UNITCLASS_BEAR</Class>
@@ -5082,6 +5084,7 @@
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_ANIMAL</FormationType>
 			<iCombatDefense>8</iCombatDefense>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_BEAR</AnimalTerrainFlavour>
 			<PromotionCaptureApply>PROMOTION_BEAR_TROPHY</PromotionCaptureApply>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_POLAR_BEAR -->
@@ -5154,6 +5157,7 @@
 				</FreePromotion>
 			</FreePromotions>
 			<iCombatDefense>5</iCombatDefense>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_POLAR_BEAR</AnimalTerrainFlavour>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_BEAST_OF_AGARES -->
 			<Class>UNITCLASS_BEAST_OF_AGARES</Class>
@@ -10045,6 +10049,7 @@
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_ANIMAL</FormationType>
 			<iCombatDefense>8</iCombatDefense>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_ELEPHANT</AnimalTerrainFlavour>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_ENGINEER -->
 			<Class>UNITCLASS_ENGINEER</Class>
@@ -11446,6 +11451,7 @@
 					<iCombat>1</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_SPIDER</AnimalTerrainFlavour>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_GIANT_TORTOISE -->
 			<Class>UNITCLASS_GIANT_TORTOISE</Class>
@@ -11692,6 +11698,7 @@
 			<FormationType>FORMATION_TYPE_ANIMAL</FormationType>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>1</iTier>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</AnimalTerrainFlavour>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_GOVANNON -->
 			<Class>UNITCLASS_GOVANNON</Class>
@@ -11987,6 +11994,7 @@
 			</FreePromotions>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>3</iTier>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_GRIFFON</AnimalTerrainFlavour>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_GRIGORI_MEDIC -->
 			<Class>UNITCLASS_GRIGORI_MEDIC</Class>
@@ -13275,6 +13283,7 @@
 			</FreePromotions>
 			<iCombatDefense>7</iCombatDefense>
 			<iTier>2</iTier>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_HILL_GIANT</AnimalTerrainFlavour>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_CAMEL_ARCHER -->
 			<Class>UNITCLASS_HORSE_ARCHER</Class>
@@ -16028,6 +16037,7 @@
 			<iTier>1</iTier>
 			<UnitConvertFromCombat>UNIT_LION_PRIDE</UnitConvertFromCombat>
 			<iUnitConvertFromCombatChance>10</iUnitConvertFromCombatChance>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_LION</AnimalTerrainFlavour>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_LION_PRIDE -->
 			<Class>UNITCLASS_LION_PRIDE</Class>
@@ -16088,6 +16098,7 @@
 			<FormationType>FORMATION_TYPE_ANIMAL</FormationType>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>2</iTier>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_LION</AnimalTerrainFlavour>
 			<PromotionCaptureApply>PROMOTION_LION_TROPHY</PromotionCaptureApply>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_LOKI -->
@@ -19240,6 +19251,7 @@
 			<bNeverObsolete>1</bNeverObsolete>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>1</iTier>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</AnimalTerrainFlavour>
 			<PromotionCaptureApply>PROMOTION_PANTHER_TROPHY</PromotionCaptureApply>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_PARAMANDER -->
@@ -22562,6 +22574,7 @@
 					<iCombat>1</iCombat>
 				</DamageTypeCombat>
 			</DamageTypeCombats>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_SCORPION</AnimalTerrainFlavour>
 			<PromotionCaptureApply>PROMOTION_POISONED_BLADE</PromotionCaptureApply>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_GOBLIN -->
@@ -24406,6 +24419,7 @@
 			<FormationType>FORMATION_TYPE_ANIMAL</FormationType>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>1</iTier>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</AnimalTerrainFlavour>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_TREANT -->
 			<Class>UNITCLASS_TREANT</Class>
@@ -25542,6 +25556,7 @@
 			<iTier>1</iTier>
 			<UnitConvertFromCombat>UNIT_WOLF_PACK</UnitConvertFromCombat>
 			<iUnitConvertFromCombatChance>10</iUnitConvertFromCombatChance>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_WOLF</AnimalTerrainFlavour>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_WOLF_PACK -->
 			<Class>UNITCLASS_WOLF_PACK</Class>
@@ -25600,6 +25615,7 @@
 			<iTier>2</iTier>
 			<UnitCreateFromCombat>UNIT_WOLF</UnitCreateFromCombat>
 			<iUnitCreateFromCombatChance>10</iUnitCreateFromCombatChance>
+			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_WOLF</AnimalTerrainFlavour>
 			<PromotionCaptureApply>PROMOTION_WOLF_TROPHY</PromotionCaptureApply>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_WORKBOAT -->

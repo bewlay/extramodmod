@@ -5094,14 +5094,11 @@ m_iMaxWilderness(MAX_INT),
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
-/************************************************************************************************/
-/* WILDERNESS                             10/2013                                 lfgr          */
-/* PromotionCaptureApply                                                                        */
-/************************************************************************************************/
+// WILDERNESS 10/2013 - 02/2016 lfgr // PromotionCaptureApply, WildernessMisc
+m_iAnimalTerrainFlavour(NO_TERRAIN_FLAVOUR),
 m_iPromotionCaptureApply(NO_PROMOTION),
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
+// WILDERNESS end
+
 m_bAnimal(false),
 m_bFoodProduction(false),
 m_bNoBadGoodies(false),
@@ -6161,17 +6158,16 @@ int CvUnitInfo::getMaxWilderness() const
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
-/************************************************************************************************/
-/* WILDERNESS                             10/2013                                 lfgr          */
-/* PromotionCaptureApply                                                                        */
-/************************************************************************************************/
+// WILDERNESS 10/2013 - 02/2016 lfgr // PromotionCaptureApply, WildernessMisc
+int CvUnitInfo::getAnimalTerrainFlavour() const
+{
+	return m_iAnimalTerrainFlavour;
+}
 int CvUnitInfo::getPromotionCaptureApply() const
 {
 	return m_iPromotionCaptureApply;
 }
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
+// WILDERNESS end
 
 // Arrays
 
@@ -6797,15 +6793,11 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
-
-/************************************************************************************************/
-/* WILDERNESS                             10/2013                                 lfgr          */
-/* PromotionCaptureApply                                                                        */
-/************************************************************************************************/
+	
+// WILDERNESS 10/2013 - 02/2016 lfgr // PromotionCaptureApply, WildernessMisc
+	stream->Read(&m_iAnimalTerrainFlavour);
 	stream->Read(&m_iPromotionCaptureApply);
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
+// WILDERNESS end
 
 	SAFE_DELETE_ARRAY(m_piPrereqAndTechs);
 	m_piPrereqAndTechs = new int[GC.getNUM_UNIT_AND_TECH_PREREQS()];
@@ -7158,15 +7150,11 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
-
-/************************************************************************************************/
-/* WILDERNESS                             10/2013                                 lfgr          */
-/* PromotionCaptureApply                                                                        */
-/************************************************************************************************/
+	
+// WILDERNESS 10/2013 - 02/2016 lfgr // PromotionCaptureApply, WildernessMisc
+	stream->Write(m_iAnimalTerrainFlavour);
 	stream->Write(m_iPromotionCaptureApply);
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
+// WILDERNESS end
 
 	stream->Write(GC.getNUM_UNIT_AND_TECH_PREREQS(), m_piPrereqAndTechs);
 	stream->Write(GC.getNUM_UNIT_PREREQ_OR_BONUSES(), m_piPrereqOrBonuses);
@@ -7616,16 +7604,13 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
-
-/************************************************************************************************/
-/* WILDERNESS                             10/2013                                 lfgr          */
-/* PromotionCaptureApply                                                                        */
-/************************************************************************************************/
+	
+// WILDERNESS 10/2013 - 02/2016 lfgr // PromotionCaptureApply, WildernessMisc
+	pXML->GetChildXmlValByName(szTextVal, "AnimalTerrainFlavour");
+	m_iAnimalTerrainFlavour = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(szTextVal, "PromotionCaptureApply");
 	m_iPromotionCaptureApply = pXML->FindInInfoClass(szTextVal);
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
+// WILDERNESS end
 	
 	updateArtDefineButton();
 	return true;
