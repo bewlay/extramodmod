@@ -953,15 +953,6 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 	LoadGlobalClassInfo(GC.getEntityEventInfo(), "CIV4EntityEventInfos", "Units", "Civ4EntityEventInfos/EntityEventInfos/EntityEventInfo", false);
 	LoadGlobalClassInfo(GC.getBuildInfo(), "CIV4BuildInfos", "Units", "Civ4BuildInfos/BuildInfos/BuildInfo", false);
 
-//FfH Units: Modified by Kael 08/07/2007
-//	LoadGlobalClassInfo(GC.getUnitInfo(), "CIV4UnitInfos", "Units", "Civ4UnitInfos/UnitInfos/UnitInfo", false, &CvDLLUtilityIFaceBase::createUnitInfoCacheObject);
-	LoadGlobalClassInfo(GC.getUnitInfo(), "CIV4UnitInfos", "Units", "Civ4UnitInfos/UnitInfos/UnitInfo", true, &CvDLLUtilityIFaceBase::createUnitInfoCacheObject);
-//FfH: End Add
-
-	for (int i=0; i < GC.getNumUnitClassInfos(); ++i)
-	{
-		GC.getUnitClassInfo((UnitClassTypes)i).readPass3();
-	}
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
 /************************************************************************************************/
@@ -1056,6 +1047,17 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 /************************************************************************************************/
 /* TERRAIN_FLAVOUR                                                                END           */
 /************************************************************************************************/
+
+
+//FfH Units: Modified by Kael 08/07/2007
+//	LoadGlobalClassInfo(GC.getUnitInfo(), "CIV4UnitInfos", "Units", "Civ4UnitInfos/UnitInfos/UnitInfo", false, &CvDLLUtilityIFaceBase::createUnitInfoCacheObject);
+	LoadGlobalClassInfo(GC.getUnitInfo(), "CIV4UnitInfos", "Units", "Civ4UnitInfos/UnitInfos/UnitInfo", true, &CvDLLUtilityIFaceBase::createUnitInfoCacheObject);
+//FfH: End Add
+
+	for (int i=0; i < GC.getNumUnitClassInfos(); ++i)
+	{
+		GC.getUnitClassInfo((UnitClassTypes)i).readPass3();
+	}
 
 	LoadGlobalClassInfo(GC.getUnitArtStyleTypeInfo(), "CIV4UnitArtStyleTypeInfos", "Civilizations", "Civ4UnitArtStyleTypeInfos/UnitArtStyleTypeInfos/UnitArtStyleTypeInfo", false);
 	LoadGlobalClassInfo(GC.getCivilizationInfo(), "CIV4CivilizationInfos", "Civilizations", "Civ4CivilizationInfos/CivilizationInfos/CivilizationInfo", true, &CvDLLUtilityIFaceBase::createCivilizationInfoCacheObject);
