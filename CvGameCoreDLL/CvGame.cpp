@@ -7853,6 +7853,8 @@ void CvGame::createBarbarianUnits()
 			pPlot->bPlotAnimalValid = vbPlotAnimalValid[iPlot];
 			pPlot->bPlotBarbValid = vbPlotBarbValid[iPlot];
 #endif
+			if( pPlot->area()->getNumTiles() < GC.getDefineINT( "BARBARIAN_SPAWNING_MIN_AREA_SIZE" ) )
+				continue;
 			
 			if( bAnimals && vbPlotAnimalValid[iPlot] )
 			{

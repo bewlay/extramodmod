@@ -1178,5 +1178,10 @@
 		<DefineName>BARBARIAN_CITY_SPAWNING_MIN_AREA_SIZE</DefineName>
 		<iDefineIntVal>15</iDefineIntVal>
 	</Define>
+	<Define>
+		<!-- Required number of plots for a continent to spawn barbarians -->
+		<DefineName>BARBARIAN_SPAWNING_MIN_AREA_SIZE</DefineName>
+		<iDefineIntVal>2</iDefineIntVal>
+	</Define>
 <!-- WILDERNESS end -->
 </Civ4Defines>
