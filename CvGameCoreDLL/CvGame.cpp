@@ -7333,6 +7333,9 @@ void CvGame::createBarbarianCities()
 /*                                                                                              */
 /* For BarbarianCiv, allows earlier barb cities                                                 */
 /************************************************************************************************/
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+// Reverting revolutions code: Wtf?
+/* old code
 	if (bRagingBarbs || isOption(GAMEOPTION_NO_SETTLERS))
 	{
 		if( getNumCivCities() <= (countCivPlayersAlive() * 2))
@@ -7347,12 +7350,21 @@ void CvGame::createBarbarianCities()
 			return;
 		}
 	}
+*/
+	if (getNumCivCities() < (countCivPlayersAlive() * 2))
+	{
+		return;
+	}
+// WILDERNESS end
 
 	if (getElapsedGameTurns() < (((GC.getHandicapInfo(getHandicapType()).getBarbarianCityCreationTurnsElapsed() * GC.getGameSpeedInfo(getGameSpeedType()).getBarbPercent()) / 100) / std::max(getStartEra() + 1, 1)))
 	{
 		return;
 	}
 
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+// Reverting revolutions code: LESS cities if there are not enough players + barb cities to fill all default slots?
+/* old code
 	int iRand = getSorenRandNum(100, "Barb City Creation");
 	if (bRagingBarbs)
 	{
@@ -7367,6 +7379,13 @@ void CvGame::createBarbarianCities()
 	{
 		return;
 	}
+*/
+	// lfgr note: BarbarianCityCreationProb is goes from 4 to 8
+	if (getSorenRandNum(100, "Barb City Creation") >= GC.getHandicapInfo(getHandicapType()).getBarbarianCityCreationProb())
+	{
+		return;
+	}
+// WILDERNESS end
 /************************************************************************************************/
 /* REVOLUTION_MOD                          END                                                  */
 /************************************************************************************************/
@@ -7374,8 +7393,12 @@ void CvGame::createBarbarianCities()
 	iBestValue = 0;
 	pBestPlot = NULL;
 
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+/* commenting out
+	// lfgr note: only used directly on very small areas
 	int iTargetCitiesMultiplier = 100;
 	{
+		// lfgr note: goes from 0.2 * cities to 0.4 * cities
 		int iTargetBarbCities = (getNumCivCities() * 5 * GC.getHandicapInfo(getHandicapType()).getBarbarianCityCreationProb()) / 100;
 		int iBarbCities = GET_PLAYER(BARBARIAN_PLAYER).getNumCities();
 		if (iBarbCities < iTargetBarbCities)
@@ -7389,6 +7412,8 @@ void CvGame::createBarbarianCities()
 			iTargetCitiesMultiplier /= 2;
 		}
 	}
+*/
+// WILDERNESS end
 
 /************************************************************************************************/
 /* REVOLUTION_MOD                         04/19/08                                jdog5000      */
@@ -7399,8 +7424,12 @@ void CvGame::createBarbarianCities()
 	// New variable for emphaizing spawning cities on populated continents
 	int iOccupiedAreaMultiplier = 50;
 	int iOwnedPlots = 0;
-
+	
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+/* yeah...
 	if(bRagingBarbs)
+*/
+// WILDERNESS end
 	{
 		for( iI = 0; iI < GC.getMAX_PLAYERS(); iI++ )
 		{
@@ -7408,7 +7437,12 @@ void CvGame::createBarbarianCities()
 		}
 	
 		// When map mostly open, emphasize areas with other civs
+	// WILDERNESS 02/2016 lfgr // fix
+	/*
 		iOccupiedAreaMultiplier += 100 - (iOwnedPlots)/GC.getMapINLINE().getLandPlots();
+	*/
+		iOccupiedAreaMultiplier += 100 - (100*iOwnedPlots)/GC.getMapINLINE().getLandPlots();
+	// WILDERNESS end
 		
 		// If raging barbs is on, emphasize areas with other civs
 		if( bRagingBarbs )
@@ -7430,21 +7464,36 @@ void CvGame::createBarbarianCities()
 			if (!(pLoopPlot->isVisibleToCivTeam()))
 			{
 				iTargetCities = pLoopPlot->area()->getNumUnownedTiles();
-
+				
+				// lfgr note: three times as many cities allowed if no non-barb cities on continent
 				if (pLoopPlot->area()->getNumCities() == pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER))
 				{
 					iTargetCities *= 3;
 				}
-								
-				int iUnownedTilesThreshold = GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerBarbarianCity();
 				
+				// lfgr note: goes from 160 to 45		
+				int iUnownedTilesThreshold = GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerBarbarianCity();
+			
+			// WILDERNESS 02/2016 lfgr // WildernessMisc
+			/* old
+				// lfgr note: apply TargetCitiesMultiplier if area is very small
 				if (pLoopPlot->area()->getNumTiles() < (iUnownedTilesThreshold / 3))
 				{
 					iTargetCities *= iTargetCitiesMultiplier;
 					iTargetCities /= 100;
 				}
-
+				
 				iTargetCities /= std::max(1, iUnownedTilesThreshold);
+			*/
+				iTargetCities /= std::max(1, iUnownedTilesThreshold);
+				
+				// allow also cities on smaller islands (else the minimum on settler difficulty is 53 tiles)
+				if( iTargetCities == 0
+						&& pLoopPlot->area()->getNumUnownedTiles() >= GC.getDefineINT( "BARBARIAN_CITY_SPAWNING_MIN_AREA_SIZE" ) )
+				{
+					iTargetCities = 1;
+				}
+			// WILDERNESS end
 
 				if (pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER) < iTargetCities)
 				{
@@ -7461,9 +7510,12 @@ void CvGame::createBarbarianCities()
 						iValue *= pLoopPlot->area()->getNumOwnedTiles();
 					}
 
+					// lfgr comment: this probably should be a '*' instead of a '+'
 					iValue += (100 + getSorenRandNum(50, "Barb City Found"));
 					iValue /= 100;
 */
+				// WILDERNESS 02/2016 lfgr // WildernessMisc
+				/* old code
 					if (bRagingBarbs)
 					{
 						if( pLoopPlot->area()->getNumCities() == pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER) )
@@ -7473,6 +7525,7 @@ void CvGame::createBarbarianCities()
 							iValue /= 3;
 						}
 	
+						// lfgr note: always true
 						if( iTargetCitiesMultiplier > 100 )		// Either raging barbs is set or fewer barb cities than desired
 						{
 							// Emphasis on placing barb cities in populated areas
@@ -7481,17 +7534,36 @@ void CvGame::createBarbarianCities()
 					}
 					else
 					{
+						// lfgr note: fewer barb cities than desired
 						if (iTargetCitiesMultiplier > 100)
 						{
 							iValue *= pLoopPlot->area()->getNumOwnedTiles();
 						}
 					}
 
+					// lfgr note: no adjacent tile is better
 					if( pLoopPlot->isBestAdjacentFound(BARBARIAN_PLAYER) ) 
 					{
 						iValue *= 120 + getSorenRandNum(30, "Barb City Found");
 						iValue /= 100;
 					}
+				*/
+					if( pLoopPlot->area()->getNumCities() == pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER) )
+					{
+						// Counteracts the AI_foundValue emphasis on empty areas
+						iValue *= 2;
+						iValue /= 3;
+					}
+	
+					// Emphasis on placing barb cities in populated areas
+					iValue += (iOccupiedAreaMultiplier*(pLoopPlot->area()->getNumCities() - pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER)))/getNumCivCities();
+					
+					if( pLoopPlot->isBestAdjacentFound(BARBARIAN_PLAYER) ) // lfgr note: no adjacent tile is better
+						iValue *= (120 + getSorenRandNum(30, "Barb City Found"));
+					else
+						iValue *= (100 + getSorenRandNum(30, "Barb City Found"));
+					iValue /= 100;
+				// WILDERNESS end
 /************************************************************************************************/
 /* REVOLUTION_MOD                          END                                                  */
 /************************************************************************************************/
@@ -7508,6 +7580,19 @@ void CvGame::createBarbarianCities()
 
 	if (pBestPlot != NULL)
 	{
+	// WILDERNESS 02/2016 lfgr // WildernessMisc
+		// Logging barbarian city foundations
+		// TODO: Multibarb
+		int iBarbCities = pBestPlot->area()->getCitiesPerPlayer( (PlayerTypes) GC.getBARBARIAN_PLAYER() );
+		int iPlayerCities = pBestPlot->area()->getNumCities() - iBarbCities;
+
+		logTo( "wilderness - %S.log", "Barbarian city founded in area %d (%d player cities, %d barb cities in area) at turn %d",
+				pBestPlot->area()->getID(),
+				iPlayerCities, iBarbCities,
+				GC.getGameINLINE().getGameTurn() );
+		
+		logTo( "wilderness - %S.log", "iOccupiedAreaMultiplier was %d", iOccupiedAreaMultiplier );
+	// WILDERNESS end
 		GET_PLAYER(BARBARIAN_PLAYER).found(pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
 	}
 }

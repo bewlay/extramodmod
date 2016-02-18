@@ -24,4 +24,9 @@
 
 void logBBAI(char* format, ... );
 
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+// To include player name in the log file, insert '%S'
+void logTo( const char* file, char* format, ... );
+// WILDERNESS end
+
 #endif  //BETTERBTSAI_H
