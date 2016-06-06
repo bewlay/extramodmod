@@ -96,6 +96,78 @@
 		<Finnish>Cave Bears are strong bears spawning in the remote wilderness.</Finnish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_UNIT_BOAR</Tag>
+		<English>Boar</English>
+		<French>Boar</French>
+		<German>Wildschwein</German>
+		<Italian>Boar</Italian>
+		<Spanish>Jabalí</Spanish>
+		<Finnish>Boar</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_BOAR_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_COBRA_GREAT</Tag>
+		<English>Great Cobra</English>
+		<French>Great Cobra</French>
+		<German>Kobra</German>
+		<Italian>Great Cobra</Italian>
+		<Spanish>Great Cobra</Spanish>
+		<Finnish>Great Cobra</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_COBRA_GIANT</Tag>
+		<English>Giant Cobra</English>
+		<French>Giant Cobra</French>
+		<German>Riesenkobra</German>
+		<Italian>Giant Cobra</Italian>
+		<Spanish>Cobra Gigante</Spanish>
+		<Finnish>Giant Cobra</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_COBRA_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CROCODILE</Tag>
+		<English>Crocodile</English>
+		<French>Crocodile</French>
+		<German>Krokodil</German>
+		<Italian>Crocodile</Italian>
+		<Spanish>Cocodrilo</Spanish>
+		<Finnish>Crocodile</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CROCODILE_GIANT</Tag>
+		<English>Giant Cobra</English>
+		<French>Giant Cobra</French>
+		<German>Riesenkobra</German>
+		<Italian>Giant Cobra</Italian>
+		<Spanish>Cocodrilo Gigante</Spanish>
+		<Finnish>Giant Cobra</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CROCODILE_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_UNIT_GHOUL</Tag>
 		<English>Ghoul</English>
 		<French>Ghoul</French>
@@ -148,6 +220,51 @@
 		<Italian>Hollow Man can rarely spawn from the Letum Frigus, if it is isolated enough. They are dangerous due to their invisibility.</Italian>
 		<Spanish>Los Hombres Huecos aparecen raras veces cerca de Letum Frigus, si está lo suficientemente aislado. Son peligrosos debido a su invisibilidad.</Spanish>
 		<Finnish>Hollow Man can rarely spawn from the Letum Frigus, if it is isolated enough. They are dangerous due to their invisibility.</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_HYENA</Tag>
+		<English>Hyena</English>
+		<French>Hyena</French>
+		<German>Hyäne</German>
+		<Italian>Hyena</Italian>
+		<Spanish>Hiena</Spanish>
+		<Finnish>Hyena</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_HYENA_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_LIZARD_GREAT</Tag>
+		<English>Great Lizard</English>
+		<French>Great Lizard</French>
+		<German>Echse</German>
+		<Italian>Great Lizard</Italian>
+		<Spanish>Great Lizard</Spanish>
+		<Finnish>Great Lizard</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_LIZARD_GIANT</Tag>
+		<English>Giant Lizard</English>
+		<French>Giant Lizard</French>
+		<German>Riesenechse</German>
+		<Italian>Giant Lizard</Italian>
+		<Spanish>Giant Lizard</Spanish>
+		<Finnish>Giant Lizard</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_LIZARD_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+		<Finnish>TODO</Finnish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_PANTHER_PEDIA</Tag>

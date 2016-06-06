@@ -673,6 +673,57 @@
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
 		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_BOAR -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_BOAR</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_COBRA -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_COBRA</Type>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_CROCODILE -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_CROCODILE</Type>
+			<PlotPercentWeights>
+				<PlotPercentWeight>
+					<PlotType>PLOT_HILLS</PlotType>
+					<iWeight>-150</iWeight>
+				</PlotPercentWeight>
+			</PlotPercentWeights>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
+			<FeaturePercentWeights>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iWeight>50</iWeight>
+				</FeaturePercentWeight>
+				<FeaturePercentWeight>
+					<FeatureType>FEATURE_FLOOD_PLAINS</FeatureType>
+					<iWeight>100</iWeight>
+				</FeaturePercentWeight>
+			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_ELEPHANT -->
 			<Type>TERRAIN_FLAVOUR_SPAWN_ELEPHANT</Type>
 			<TerrainPercentWeights>
@@ -816,6 +867,25 @@
 					<iWeight>-100</iWeight>
 				</FeaturePercentWeight>
 			</FeaturePercentWeights>
+		</TerrainFlavourInfo>
+		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_LIZARD -->
+			<Type>TERRAIN_FLAVOUR_SPAWN_LIZARD</Type>
+			<PlotPercentWeights>
+				<PlotPercentWeight>
+					<PlotType>PLOT_HILLS</PlotType>
+					<iWeight>-100</iWeight>
+				</PlotPercentWeight>
+			</PlotPercentWeights>
+			<TerrainPercentWeights>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+				<TerrainPercentWeight>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<iWeight>100</iWeight>
+				</TerrainPercentWeight>
+			</TerrainPercentWeights>
 		</TerrainFlavourInfo>
 		<TerrainFlavourInfo><!-- TERRAIN_FLAVOUR_SPAWN_POLAR_BEAR -->
 			<Type>TERRAIN_FLAVOUR_SPAWN_POLAR_BEAR</Type>

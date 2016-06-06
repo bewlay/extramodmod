@@ -16150,5 +16150,220 @@
                 <AudioRunTypeEnd/>
             </AudioRunSounds>
         </UnitArtInfo>
-    </UnitArtInfos>
+		
+		<UnitArtInfo>
+			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
+			<!-- Art from Caveman2Cosmos -->
+			<Type>ART_DEF_UNIT_BOAR</Type>
+			<Button>Art/Interface/Buttons/Units/boar.dds</Button>
+			<fScale>0.38</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<bActAsLand>0</bActAsLand>
+			<bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/Animals/Boar/companion_cavalry.nif</NIF>
+			<KFM>Art/Units/Knight_South_America/Companion_Cavalry.kfm</KFM>
+			<SHADERNIF>Art/Units/Animals/Boar/companion_cavalry.nif</SHADERNIF>
+			<ShadowDef>
+				<ShadowNIF>Art/Units/01_UnitShadows/PantherShadow.nif</ShadowNIF>
+				<ShadowAttachNode>LionBip Spine</ShadowAttachNode>
+				<fShadowScale>1.0</fShadowScale>
+			</ShadowDef>
+			<fBattleDistance>0.35</fBattleDistance>
+			<fRangedDeathTime>0.31</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged>
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+		</UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
+			<!-- Art from Caveman2Cosmos -->
+			<Type>ART_DEF_UNIT_COBRA_GREAT</Type>
+			<Button>Art/Interface/Buttons/Units/cobra_great.dds</Button>
+			<fScale>0.15</fScale>
+			<fInterfaceScale>0.7</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/Animals/Cobra/Cobra.nif</NIF>
+            <KFM>Art/Units/Animals/Cobra/WarElephant.kfm</KFM>
+			<SHADERNIF>Art/Units/Animals/Cobra/Cobra.nif</SHADERNIF>
+			<ShadowDef>
+				<ShadowNIF>Art/Units/01_UnitShadows/HorseShadow.nif</ShadowNIF>
+				<ShadowAttachNode>LionBip Spine1</ShadowAttachNode>
+				<fShadowScale>1.4</fShadowScale>
+			</ShadowDef>
+			<fBattleDistance>0.5</fBattleDistance>
+			<fRangedDeathTime>0.32</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged>
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+			<SelectionSound>AS3D_UN_SEA_SERPENT</SelectionSound><!-- TODO (also other units!) -->
+			<ActionSound>AS3D_UN_SEA_SERPENT</ActionSound>
+		</UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
+			<!-- Art from Caveman2Cosmos -->
+			<Type>ART_DEF_UNIT_COBRA_GIANT</Type>
+			<Button>Art/Interface/Buttons/Units/cobra_giant.dds</Button>
+			<fScale>0.25</fScale>
+			<fInterfaceScale>0.7</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/Animals/Cobra/Cobra.nif</NIF>
+            <KFM>Art/Units/Animals/Cobra/WarElephant.kfm</KFM>
+			<SHADERNIF>Art/Units/Animals/Cobra/Cobra.nif</SHADERNIF>
+			<ShadowDef>
+				<ShadowNIF>Art/Units/01_UnitShadows/HorseShadow.nif</ShadowNIF>
+				<ShadowAttachNode>LionBip Spine1</ShadowAttachNode>
+				<fShadowScale>1.4</fShadowScale>
+			</ShadowDef>
+			<fBattleDistance>0.5</fBattleDistance>
+			<fRangedDeathTime>0.32</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged>
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+			<SelectionSound>AS3D_UN_SEA_SERPENT</SelectionSound>
+			<ActionSound>AS3D_UN_SEA_SERPENT</ActionSound>
+		</UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
+			<!-- Art from Caveman2Cosmos -->
+			<Type>ART_DEF_UNIT_CROCODILE</Type>
+			<Button>Art/Interface/Buttons/Units/crocodile.dds</Button>
+			<fScale>16.0</fScale>
+			<fInterfaceScale>1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/Animals/Crocodile/nilecroc.nif</NIF>
+			<KFM>Art/Units/Panther/Panther.kfm</KFM><!-- TODO -->
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/UnitShadow.nif</ShadowNIF>
+                <ShadowAttachNode>Bip01</ShadowAttachNode>
+                <fShadowScale>0.0625</fShadowScale>
+            </ShadowDef>
+			<fBattleDistance>0.8</fBattleDistance>
+			<fRangedDeathTime>0.35</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged> <!-- TODO -->
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+			<SelectionSound>AS3D_UN_SEA_SERPENT</SelectionSound>
+			<ActionSound>AS3D_UN_SEA_SERPENT</ActionSound>
+		</UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
+			<!-- Art from Caveman2Cosmos -->
+			<Type>ART_DEF_UNIT_CROCODILE_GIANT</Type>
+			<Button>Art/Interface/Buttons/Units/crocodile_giant.dds</Button>
+			<fScale>20.0</fScale>
+			<fInterfaceScale>1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/Animals/Crocodile/nilecroc.nif</NIF>
+			<KFM>Art/Units/Panther/Panther.kfm</KFM><!-- TODO -->
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/UnitShadow.nif</ShadowNIF>
+                <ShadowAttachNode>Bip01</ShadowAttachNode>
+                <fShadowScale>0.05</fShadowScale>
+            </ShadowDef>
+			<fBattleDistance>0.9</fBattleDistance>
+			<fRangedDeathTime>0.35</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged> <!-- TODO -->
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+			<SelectionSound>AS3D_UN_SEA_SERPENT</SelectionSound>
+			<ActionSound>AS3D_UN_SEA_SERPENT</ActionSound>
+		</UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
+			<!-- Art from Caveman2Cosmos -->
+			<Type>ART_DEF_UNIT_HYENA</Type>
+			<Button>Art/Interface/Buttons/Units/hyena.dds</Button>
+			<fScale>0.5</fScale>
+			<fInterfaceScale>1.1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/Animals/Hyena/lion.nif</NIF>
+			<KFM>Art/Units/Lion/Lion.kfm</KFM>
+			<SHADERNIF>Art/Units/Animals/Hyena/lion.nif</SHADERNIF>
+			<ShadowDef>
+				<ShadowNIF>Art/Units/01_UnitShadows/LionShadow.nif</ShadowNIF>
+				<ShadowAttachNode>LionBip Spine1</ShadowAttachNode>
+				<fShadowScale>1.0</fShadowScale>
+			</ShadowDef>
+			<fBattleDistance>0.35</fBattleDistance>
+			<fRangedDeathTime>0.28</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged>
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+		</UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
+			<!-- Art from Caveman2Cosmos -->
+			<Type>ART_DEF_UNIT_LIZARD_GREAT</Type>
+			<Button>Art/Interface/Buttons/Units/lizard_great.dds</Button>
+			<fScale>180.0</fScale>
+			<fInterfaceScale>1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/animals/Lizard/Lizard.nif</NIF>
+			<KFM>Art/Units/Panther/Panther.kfm</KFM>
+			<SHADERNIF>Art/Units/animals/Lizard/Lizard.nif</SHADERNIF>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/UnitShadow.nif</ShadowNIF>
+                <ShadowAttachNode>Bip01</ShadowAttachNode>
+                <fShadowScale>0.0055</fShadowScale>
+            </ShadowDef>
+			<fBattleDistance>0.75</fBattleDistance>
+			<fRangedDeathTime>0.35</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged> <!-- TODO -->
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+		</UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
+			<!-- Art from Caveman2Cosmos -->
+			<Type>ART_DEF_UNIT_LIZARD_GIANT</Type>
+			<Button>Art/Interface/Buttons/Units/lizard_giant.dds</Button>
+			<fScale>240.0</fScale>
+			<fInterfaceScale>1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/animals/Lizard/Lizard.nif</NIF>
+			<KFM>Art/Units/Panther/Panther.kfm</KFM>
+			<SHADERNIF>Art/Units/animals/Lizard/Lizard.nif</SHADERNIF>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/UnitShadow.nif</ShadowNIF>
+                <ShadowAttachNode>Bip01</ShadowAttachNode>
+                <fShadowScale>0.0042</fShadowScale>
+            </ShadowDef>
+			<fBattleDistance>1.1</fBattleDistance>
+			<fRangedDeathTime>0.35</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged> <!-- TODO -->
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+		</UnitArtInfo>
+	</UnitArtInfos>
 </Civ4ArtDefines>
