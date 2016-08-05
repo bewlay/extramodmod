@@ -1668,6 +1668,18 @@
 			<DefaultBuilding>BUILDING_BEAR_TROPHY</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>BUILDINGCLASS_CROCODILE_TROPHY</Type>
+			<Description>TXT_KEY_BUILDING_CROCODILE_TROPHY</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_CROCODILE_TROPHY</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
 		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
 			<Type>BUILDINGCLASS_LION_TROPHY</Type>
 			<Description>TXT_KEY_BUILDING_LION_TROPHY</Description>
@@ -1678,6 +1690,18 @@
 			<bNoLimit>0</bNoLimit>
 			<bMonument>0</bMonument>
 			<DefaultBuilding>BUILDING_LION_TROPHY</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>BUILDINGCLASS_LIZARD_TROPHY</Type>
+			<Description>TXT_KEY_BUILDING_LIZARD_TROPHY</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_LIZARD_TROPHY</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
 		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
@@ -1702,6 +1726,78 @@
 			<bNoLimit>0</bNoLimit>
 			<bMonument>0</bMonument>
 			<DefaultBuilding>BUILDING_WOLF_TROPHY</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>BUILDINGCLASS_BOAR_PEN</Type>
+			<Description>TXT_KEY_BUILDING_BOAR_PEN</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_BOAR_PEN</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>BUILDINGCLASS_COBRA_CHARMER</Type>
+			<Description>TXT_KEY_BUILDING_COBRA_CHARMER</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_COBRA_CHARMER</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>BUILDINGCLASS_CROCODILE_CAGE</Type>
+			<Description>TXT_KEY_BUILDING_CROCODILE_CAGE</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_CROCODILE_CAGE</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>BUILDINGCLASS_GRIFFON_AERIE</Type>
+			<Description>TXT_KEY_BUILDING_GRIFFON_AERIE</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_GRIFFON_AERIE</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>BUILDINGCLASS_HYENA_CAGE</Type>
+			<Description>TXT_KEY_BUILDING_HYENA_CAGE</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_HYENA_CAGE</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>BUILDINGCLASS_PANTHER_CAGE</Type>
+			<Description>TXT_KEY_BUILDING_PANTHER_CAGE</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_PANTHER_CAGE</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
 		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / WildernessMisc -->

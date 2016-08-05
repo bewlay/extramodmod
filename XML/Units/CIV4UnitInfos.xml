@@ -5671,6 +5671,12 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
+			<Buildings>
+				<Building>
+					<BuildingType>BUILDING_BOAR_PEN</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -7854,6 +7860,12 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
+			<Buildings>
+				<Building>
+					<BuildingType>BUILDING_COBRA_CHARMER</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -7912,6 +7924,12 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
+			<Buildings>
+				<Building>
+					<BuildingType>BUILDING_COBRA_CHARMER</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -8190,6 +8208,12 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
+			<Buildings>
+				<Building>
+					<BuildingType>BUILDING_CROCODILE_TROPHY</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -8236,6 +8260,12 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
+			<Buildings>
+				<Building>
+					<BuildingType>BUILDING_CROCODILE_TROPHY</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -12221,6 +12251,12 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
+			<Buildings>
+				<Building>
+					<BuildingType>BUILDING_GRIFFON_AERIE</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -14832,6 +14868,12 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
+			<Buildings>
+				<Building>
+					<BuildingType>BUILDING_HYENA_CAGE</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -16447,6 +16489,12 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
+			<Buildings>
+				<Building>
+					<BuildingType>BUILDING_LIZARD_TROPHY</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -16499,6 +16547,12 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
+			<Buildings>
+				<Building>
+					<BuildingType>BUILDING_LIZARD_TROPHY</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
@@ -19629,6 +19683,10 @@
 				</UnitAI>
 			</UnitAIs>
 			<Buildings>
+				<Building>
+					<BuildingType>BUILDING_PANTHER_CAGE</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
 				<Building>
 					<BuildingType>BUILDING_PANTHER_TROPHY</BuildingType>
 					<bBuilding>1</bBuilding>

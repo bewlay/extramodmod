@@ -359,6 +359,14 @@
 		<Spanish>TODO</Spanish>
 		<Finnish>TODO</Finnish>
 	</TEXT>
+	<TEXT> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+		<Tag>TXT_KEY_BUILDING_CROCODILE_TROPHY</Tag>
+		<English>Crocodile Trophy</English>
+		<French>Crocodile Trophy</French>
+		<German>Crocodile Trophy</German>
+		<Italian>Crocodile Trophy</Italian>
+		<Spanish>Crocodile Trophy</Spanish>
+	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_LION_TROPHY</Tag>
 		<English>Lion Trophy</English>
@@ -385,6 +393,14 @@
 		<Italian>TODO</Italian>
 		<Spanish>TODO</Spanish>
 		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+		<Tag>TXT_KEY_BUILDING_LIZARD_TROPHY</Tag>
+		<English>Lizard Trophy</English>
+		<French>Lizard Trophy</French>
+		<German>Lizard Trophy</German>
+		<Italian>Lizard Trophy</Italian>
+		<Spanish>Lizard Trophy</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_PANTHER_TROPHY</Tag>
@@ -439,6 +455,54 @@
 		<Italian>TODO</Italian>
 		<Spanish>TODO</Spanish>
 		<Finnish>TODO</Finnish>
+	</TEXT>
+	<TEXT> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+		<Tag>TXT_KEY_BUILDING_BOAR_PEN</Tag>
+		<English>Boar Pen</English>
+		<French>Boar Pen</French>
+		<German>Boar Pen</German>
+		<Italian>Boar Pen</Italian>
+		<Spanish>Boar Pen</Spanish>
+	</TEXT>
+	<TEXT> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+		<Tag>TXT_KEY_BUILDING_COBRA_CHARMER</Tag>
+		<English>Cobra Charmer</English>
+		<French>Cobra Charmer</French>
+		<German>Cobra Charmer</German>
+		<Italian>Cobra Charmer</Italian>
+		<Spanish>Cobra Charmer</Spanish>
+	</TEXT>
+	<TEXT> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+		<Tag>TXT_KEY_BUILDING_CROCODILE_CAGE</Tag>
+		<English>Crocodile Cage</English>
+		<French>Crocodile Cage</French>
+		<German>Crocodile Cage</German>
+		<Italian>Crocodile Cage</Italian>
+		<Spanish>Crocodile Cage</Spanish>
+	</TEXT>
+	<TEXT> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+		<Tag>TXT_KEY_BUILDING_GRIFFON_AERIE</Tag>
+		<English>Griffon Aerie</English>
+		<French>Griffon Aerie</French>
+		<German>Griffon Aerie</German>
+		<Italian>Griffon Aerie</Italian>
+		<Spanish>Griffon Aerie</Spanish>
+	</TEXT>
+	<TEXT> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+		<Tag>TXT_KEY_BUILDING_HYENA_CAGE</Tag>
+		<English>Hyena Cage</English>
+		<French>Hyena Cage</French>
+		<German>Hyena Cage</German>
+		<Italian>Hyena Cage</Italian>
+		<Spanish>Hyena Cage</Spanish>
+	</TEXT>
+	<TEXT> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+		<Tag>TXT_KEY_BUILDING_PANTHER_CAGE</Tag>
+		<English>Panther Cage</English>
+		<French>Panther Cage</French>
+		<German>Panther Cage</German>
+		<Italian>Panther Cage</Italian>
+		<Spanish>Panther Cage</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SCORPION_PEN</Tag>

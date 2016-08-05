@@ -3117,6 +3117,16 @@
 			<KFM/>
 			<Button>Art/Interface/Buttons/Units/Cave_Bear.dds</Button>
 		</BuildingArtInfo>
+		<BuildingArtInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>ART_DEF_BUILDING_CROCODILE_TROPHY</Type>
+			<LSystem>LSYSTEM_1x1</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Units/crocodile_giant.dds</Button>
+		</BuildingArtInfo>
 		<BuildingArtInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
 			<Type>ART_DEF_BUILDING_LION_TROPHY</Type>
 			<LSystem>LSYSTEM_1x1</LSystem>
@@ -3126,6 +3136,16 @@
 			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
 			<KFM/>
 			<Button>Art/Interface/Buttons/Units/Lion.dds</Button>
+		</BuildingArtInfo>
+		<BuildingArtInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>ART_DEF_BUILDING_LIZARD_TROPHY</Type>
+			<LSystem>LSYSTEM_1x1</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Units/lizard_giant.dds</Button>
 		</BuildingArtInfo>
 		<BuildingArtInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
 			<Type>ART_DEF_BUILDING_WOLF_TROPHY</Type>
@@ -3146,6 +3166,66 @@
 			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
 			<KFM/>
 			<Button>Art/Interface/Buttons/Units/Panther.dds</Button>
+		</BuildingArtInfo>
+		<BuildingArtInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>ART_DEF_BUILDING_BOAR_PEN</Type>
+			<LSystem>LSYSTEM_1x1</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Units/boar.dds</Button>
+		</BuildingArtInfo>
+		<BuildingArtInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>ART_DEF_BUILDING_COBRA_CHARMER</Type>
+			<LSystem>LSYSTEM_1x1</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Units/cobra_giant.dds</Button>
+		</BuildingArtInfo>
+		<BuildingArtInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>ART_DEF_BUILDING_CROCODILE_CAGE</Type>
+			<LSystem>LSYSTEM_1x1</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Units/crocodile.dds</Button> <!-- TODO -->
+		</BuildingArtInfo>
+		<BuildingArtInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>ART_DEF_BUILDING_GRIFFON_AERIE</Type>
+			<LSystem>LSYSTEM_2x2</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF> <!-- TODO -->
+			<KFM/>
+            <Button>Art/Interface/Buttons/Units/Griffon.dds</Button> <!-- TODO -->
+		</BuildingArtInfo>
+		<BuildingArtInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>ART_DEF_BUILDING_HYENA_CAGE</Type>
+			<LSystem>LSYSTEM_1x1</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Units/hyena.dds</Button> <!-- TODO -->
+		</BuildingArtInfo>
+		<BuildingArtInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
+			<Type>ART_DEF_BUILDING_PANTHER_CAGE</Type>
+			<LSystem>LSYSTEM_1x1</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Cage/Cage.nif</NIF>
+			<KFM/>
+            <Button>Art/Interface/Buttons/Units/Panther.dds</Button> <!-- TODO -->
 		</BuildingArtInfo>
 		<BuildingArtInfo> <!-- WILDERNESS 10/2013 lfgr / WildernessMisc -->
 			<Type>ART_DEF_BUILDING_SCORPION_PEN</Type>
