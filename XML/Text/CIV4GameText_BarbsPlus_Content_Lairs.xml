@@ -136,6 +136,14 @@
 		<Spanish>La valentía de tu unidad es recompensada con una voluntad inquebrantable.</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_EXPLORE_PATRIAN_ARTIFACT</Tag>
+		<English>You find an artifact created in ancient patria.</English>
+		<French>You find an artifact created in ancient patria.</French>
+		<German>You find an artifact created in ancient patria.</German>
+		<Italian>You find an artifact created in ancient patria..</Italian>
+		<Spanish>You find an artifact created in ancient patria.</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_PROPHECY_MARK</Tag>
 		<English>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</English>
 		<French>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</French>
