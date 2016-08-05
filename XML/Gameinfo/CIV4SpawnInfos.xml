@@ -2070,6 +2070,22 @@
 			<iCreateLairAge>40</iCreateLairAge>
 			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_BOAR -->
+			<Type>SPAWN_BOAR</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_BOAR</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>1</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_BOAR</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_CAVE_BEAR -->
 			<Type>SPAWN_CAVE_BEAR</Type>
 			<iBaseWeight>0</iBaseWeight>
@@ -2087,6 +2103,89 @@
 			<CreateLair>IMPROVEMENT_BEAR_DEN</CreateLair>
 			<iCreateLairAge>30</iCreateLairAge>
 			<iCreateLairLevel>4</iCreateLairLevel>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_COBRA_GREAT -->
+			<Type>SPAWN_COBRA_GREAT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_COBRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>1</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_COBRA_GREAT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_COBRA_GREAT_STRONG -->
+			<Type>SPAWN_COBRA_GREAT_STRONG</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_COBRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>2</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_COBRA_GREAT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_STRONG</PromotionType>
+			</UnitPromotions>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_COBRA_GIANT -->
+			<Type>SPAWN_COBRA_GIANT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_COBRA</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_COBRA_GIANT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_CROCODILE -->
+			<Type>SPAWN_CROCODILE</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_CROCODILE</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_CROCODILE</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_CROCODILE_GIANT -->
+			<Type>SPAWN_CROCODILE_GIANT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_CROCODILE</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_CROCODILE_GIANT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_ELEPHANT -->
 			<Type>SPAWN_ELEPHANT</Type>
@@ -2120,24 +2219,6 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_STRONG_GIANT_SPIDER -->
-			<Type>SPAWN_STRONG_GIANT_SPIDER</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SPIDER</TerrainFlavourType>
-			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
-			<iMinSpawnTier>2</iMinSpawnTier>
-			<iMaxSpawnTier>4</iMaxSpawnTier>
-			<bAnimal>1</bAnimal>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_GIANT_SPIDER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_GRIFFON -->
 			<Type>SPAWN_GRIFFON</Type>
 			<iBaseWeight>0</iBaseWeight>
@@ -2170,24 +2251,6 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_STRONG_GORILLA -->
-			<Type>SPAWN_STRONG_GORILLA</Type>
-			<iBaseWeight>-25</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</TerrainFlavourType>
-			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
-			<iMinSpawnTier>2</iMinSpawnTier>
-			<iMaxSpawnTier>4</iMaxSpawnTier>
-			<bAnimal>1</bAnimal>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_GORILLA</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_HILL_GIANT -->
 			<Type>SPAWN_HILL_GIANT</Type>
 			<iBaseWeight>0</iBaseWeight>
@@ -2201,6 +2264,22 @@
 			<SpawnUnits>
 				<SpawnUnit>
 					<Unit>UNIT_HILL_GIANT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_HYENA -->
+			<Type>SPAWN_HYENA</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_LION</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>0</iMinSpawnTier>
+			<iMaxSpawnTier>0</iMaxSpawnTier>
+			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_HYENA</Unit>
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
@@ -2242,6 +2321,36 @@
 			<iCreateLairAge>30</iCreateLairAge>
 			<iCreateLairLevel>4</iCreateLairLevel>
 		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_LIZARD_GREAT -->
+			<Type>SPAWN_LIZARD_GREAT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_LIZARD</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>1</iMinSpawnTier>
+			<iMaxSpawnTier>3</iMaxSpawnTier>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LIZARD_GREAT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
+		<SpawnInfo> <!-- SPAWN_LIZARD_GIANT -->
+			<Type>SPAWN_LIZARD_GIANT</Type>
+			<iBaseWeight>0</iBaseWeight>
+			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_LIZARD</TerrainFlavourType>
+			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
+			<iMinSpawnTier>3</iMinSpawnTier>
+			<iMaxSpawnTier>4</iMaxSpawnTier>
+			<bAnimal>1</bAnimal>
+			<SpawnUnits>
+				<SpawnUnit>
+					<Unit>UNIT_LIZARD_GIANT</Unit>
+					<iNumUnits>1</iNumUnits>
+				</SpawnUnit>
+			</SpawnUnits>
+		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_PANTHER -->
 			<Type>SPAWN_PANTHER</Type>
 			<iBaseWeight>-25</iBaseWeight>
@@ -2256,24 +2365,6 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_STRONG_PANTHER -->
-			<Type>SPAWN_STRONG_PANTHER</Type>
-			<iBaseWeight>-25</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</TerrainFlavourType>
-			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
-			<iMinSpawnTier>2</iMinSpawnTier>
-			<iMaxSpawnTier>4</iMaxSpawnTier>
-			<bAnimal>1</bAnimal>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_PANTHER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_SCORPION -->
 			<Type>SPAWN_SCORPION</Type>
@@ -2291,24 +2382,6 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_STRONG_SCORPION -->
-			<Type>SPAWN_STRONG_SCORPION</Type>
-			<iBaseWeight>-25</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_SCORPION</TerrainFlavourType>
-			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
-			<iMinSpawnTier>2</iMinSpawnTier>
-			<iMaxSpawnTier>4</iMaxSpawnTier>
-			<bAnimal>1</bAnimal>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_SCORPION</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
-		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_TIGER -->
 			<Type>SPAWN_TIGER</Type>
 			<iBaseWeight>-20</iBaseWeight>
@@ -2324,24 +2397,6 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_STRONG_TIGER -->
-			<Type>SPAWN_STRONG_TIGER</Type>
-			<iBaseWeight>-30</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_JUNGLE_DEFAULT</TerrainFlavourType>
-			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
-			<iMinSpawnTier>2</iMinSpawnTier>
-			<iMaxSpawnTier>4</iMaxSpawnTier>
-			<bAnimal>1</bAnimal>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_TIGER</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_STRONG</PromotionType>
-			</UnitPromotions>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_WOLF -->
 			<Type>SPAWN_WOLF</Type>
