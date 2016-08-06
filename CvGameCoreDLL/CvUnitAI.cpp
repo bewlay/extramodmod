@@ -29289,7 +29289,10 @@ bool CvUnitAI::AI_Lokimove()
 								}
 
 								// When targetting cities, Loki should not wander far away from its own territory.
-								int iDistance = plotDistance(pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE(), kPlayer.getCapitalCity()->getX_INLINE(), kPlayer.getCapitalCity()->getY_INLINE());
+								int iDistance = 1;
+								if (kPlayer.getNumCities() > 0) {
+									iDistance = plotDistance(pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE(), kPlayer.getCapitalCity()->getX_INLINE(), kPlayer.getCapitalCity()->getY_INLINE());
+								}
 								iValue /= iDistance;
 
 								if (iValue > iBestValue)
