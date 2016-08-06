@@ -9,6 +9,8 @@ ExtraModMod is a modification of the popular [Fall from Heaven II mod](http://fo
 
 You can find the latest release of ExtraModMod at the [Downloads](https://bitbucket.org/Terkhen/extramodmod/downloads) section. If you don't know which version to use, installing the newest non-beta version is recommended. To install this mod you need to paste the compressed file's contents over a clean installation of Fall from Heaven II. That mod is available [here](http://forums.civfanatics.com/downloads.php?do=file&id=1), and you also need to install patch 0.41o (available in the same link).
 
+Please note that this mod is not compatible with Blue Marble.
+
 If you get a "GFC Error: fails to initialize the primary control theme" on startup, you should follow the instructions described in the following CivFanatics post: http://forums.civfanatics.com/showthread.php?p=6564074#post6564074
 
 
