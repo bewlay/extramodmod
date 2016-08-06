@@ -1533,6 +1533,18 @@ public:
 	const TCHAR* getMiddleArtDefineTag(int i, UnitArtStyleTypes eStyle) const;				// Exposed to Python
 	void setMiddleArtDefineTag(int i, const TCHAR* szVal);
 	const TCHAR* getUnitNames(int i) const;
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+	const TCHAR* getUnitNameArt( int i ) const;
+	const TCHAR* getUnitNameQuote( int i ) const;
+	const int getUnitNamePreferredCiv( int i ) const;
+	const int getUnitNameReligion( int i ) const;
+	const int getUnitNameLeader( int i ) const;
+	const int getUnitNameRace( int i ) const;
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	const TCHAR* getFormationType() const;
 
 	const TCHAR* getButton() const;
@@ -1792,9 +1804,31 @@ protected:
 	CvString* m_paszEarlyArtDefineTags;
 	CvString* m_paszLateArtDefineTags;
 	CvString* m_paszMiddleArtDefineTags;
-	CvString* m_paszUnitNames;
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+//	CvString* m_paszUnitNames;
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	CvString m_szFormationType;
 	CvString m_szArtDefineButton;
+
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+	std::vector<CvString> m_vszUnitNames;
+	std::vector<CvString> m_vszUnitNameArt;
+	std::vector<CvString> m_vszUnitNameQuotes;
+	std::vector<int> m_viUnitNamePreferredCivs;
+	std::vector<int> m_viUnitNameReligions;
+	std::vector<int> m_viUnitNameLeaders;
+	std::vector<int> m_viUnitNameRaces;
+	
+	std::vector<CvString> m_vszUnitNamePreferredCivsForPass3;
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	std::vector<int> m_aiSeeInvisibleTypes;
 };
@@ -7179,6 +7213,13 @@ public:
 
 	int getPercentGamesActive() const;		// Exposed to Python
 	int getProbability() const;				// Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	int getDelay() const; // Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	int getNumUnits() const;					// Exposed to Python
 	int getNumBuildings() const;				// Exposed to Python
 	int getNumUnitsGlobal() const;			// Exposed to Python
@@ -7302,6 +7343,13 @@ public:
 private:
 	int m_iPercentGamesActive;
 	int m_iProbability;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	int m_iDelay;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	int m_iNumUnits;
 	int m_iNumBuildings;
 	int m_iNumUnitsGlobal;
@@ -7426,6 +7474,13 @@ public:
 	bool isGoldenAge() const;					// Exposed to Python
 	bool isDeclareWar() const;				// Exposed to Python
 	bool isDisbandUnit() const;				// Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	bool isNoExpire() const;				// Exposed to Python
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	int getGold() const;						// Exposed to Python
 	int getRandomGold() const;				// Exposed to Python
@@ -7538,6 +7593,13 @@ private:
 	bool m_bGoldenAge;
 	bool m_bDeclareWar;
 	bool m_bDisbandUnit;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	bool m_bNoExpire;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	int m_iGold;
 	int m_iRandomGold;

@@ -96,6 +96,13 @@ CvPlayer::CvPlayer()
 	m_paiHasCorporationCount = NULL;
 	m_paiUpkeepCount = NULL;
 	m_paiSpecialistValidCount = NULL;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	m_paiEventTriggerDelayCounters = NULL;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	m_pabResearchingTech = NULL;
 	m_pabLoyalMember = NULL;
@@ -727,6 +734,13 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiHasCorporationCount);
 	SAFE_DELETE_ARRAY(m_paiUpkeepCount);
 	SAFE_DELETE_ARRAY(m_paiSpecialistValidCount);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	SAFE_DELETE_ARRAY(m_paiEventTriggerDelayCounters);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	SAFE_DELETE_ARRAY(m_pabResearchingTech);
 	SAFE_DELETE_ARRAY(m_pabLoyalMember);
@@ -1194,6 +1208,18 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		{
 			m_paiHasCorporationCount[iI] = 0;
 		}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+		FAssertMsg(m_paiEventTriggerDelayCounters==NULL, "about to leak memory, CvPlayer::m_paiEventTriggerDelayCounters");
+		m_paiEventTriggerDelayCounters = new int[GC.getNumEventTriggerInfos()];
+		for (iI = 0;iI < GC.getNumEventTriggerInfos();iI++)
+		{
+			m_paiEventTriggerDelayCounters[iI] = 0;
+		}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 		FAssertMsg(m_pabResearchingTech==NULL, "about to leak memory, CvPlayer::m_pabResearchingTech");
 		m_pabResearchingTech = new bool[GC.getNumTechInfos()];
@@ -3283,7 +3309,7 @@ bool CvPlayer::isCityNameValid(CvWString& szName, bool bTestDestroyed) const
 
 /************************************************************************************************/
 /* GP_NAMES                                 07/2013                                 lfgr        */
-/* Added parameter szName                                                                       */
+/* Added parameter eName                                                                        */
 /************************************************************************************************/
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
@@ -3293,7 +3319,7 @@ bool CvPlayer::isCityNameValid(CvWString& szName, bool bTestDestroyed) const
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, CvWString szName, bool bGift)
+CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, bool bGift, int eName)
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -3308,7 +3334,7 @@ CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI,
 	{
 /************************************************************************************************/
 /* GP_NAMES                                 07/2013                                 lfgr        */
-/* Added parameter szName                                                                       */
+/* Added parameter eName                                                                        */
 /************************************************************************************************/
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
@@ -3319,7 +3345,7 @@ CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI,
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-		pUnit->init(pUnit->getID(), eUnit, ((eUnitAI == NO_UNITAI) ? (UnitAITypes)GC.getUnitInfo(eUnit).getDefaultUnitAIType() : eUnitAI), getID(), iX, iY, eFacingDirection, bPushOutExistingUnit, szName);
+		pUnit->init(pUnit->getID(), eUnit, ((eUnitAI == NO_UNITAI) ? (UnitAITypes)GC.getUnitInfo(eUnit).getDefaultUnitAIType() : eUnitAI), getID(), iX, iY, eFacingDirection, bPushOutExistingUnit, bGift, eName);
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -7326,12 +7352,8 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 	/*
         pNewUnit = initUnit(eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE());
 	*/
-		CvWString szName;
-		if( GC.getUnitInfo( eUnit ).getNumUnitNames() > 0 )
-			szName = GC.getGameINLINE().getNewGreatPersonBornName( eUnit );
-		else
-			szName = "";
-        pNewUnit = initUnit(eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), NO_UNITAI, NO_DIRECTION, true, szName);
+		int eName = getNewGreatPersonBornName( eUnit );
+        pNewUnit = initUnit(eUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), NO_UNITAI, NO_DIRECTION, true, eName);
 	/************************************************************************************************/
 	/* GP_NAMES                                END                                                  */
 	/************************************************************************************************/
@@ -19969,6 +19991,13 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumCorporationInfos(), m_paiHasCorporationCount);
 	pStream->Read(GC.getNumUpkeepInfos(), m_paiUpkeepCount);
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	pStream->Read( GC.getNumEventTriggerInfos(), m_paiEventTriggerDelayCounters );
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::read");
 	pStream->Read(GC.getNumTechInfos(), m_pabResearchingTech);
@@ -20570,6 +20599,13 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumCorporationInfos(), m_paiHasCorporationCount);
 	pStream->Write(GC.getNumUpkeepInfos(), m_paiUpkeepCount);
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	pStream->Write(GC.getNumEventTriggerInfos(), m_paiEventTriggerDelayCounters);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
 	pStream->Write(GC.getNumTechInfos(), m_pabResearchingTech);
@@ -20857,8 +20893,8 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 	CvUnit* pGreatPeopleUnit = initUnit(eGreatPersonUnit, iX, iY);
 */
 	// If no names left, name is simply ""
-	CvWString name = GC.getGameINLINE().getNewGreatPersonBornName( eGreatPersonUnit );
-	CvUnit* pGreatPeopleUnit = initUnit(eGreatPersonUnit, iX, iY, NO_UNITAI, NO_DIRECTION, true, name);
+	int eName = getNewGreatPersonBornName( eGreatPersonUnit );
+	CvUnit* pGreatPeopleUnit = initUnit( eGreatPersonUnit, iX, iY, NO_UNITAI, NO_DIRECTION, true, false, eName );
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -23060,7 +23096,7 @@ void CvPlayer::doEvents()
 		return;
 	}
 
-	// LFGR_TODO: Figure out what this does
+	// Expire old events (not triggers!) and their triggerdata
 	CvEventMap::iterator it = m_mapEventsOccured.begin();
 	while (it != m_mapEventsOccured.end())
 	{
@@ -23102,6 +23138,7 @@ void CvPlayer::doEvents()
 	}
 
 	// lfgr cmt: get all event weights, trigger all with weight == -1, create triggeredData for all weight > 0
+	//  (the latter only if global event check succeeds.
 
 	std::vector< std::pair<EventTriggeredData*, int> > aePossibleEventTriggerWeights;
 	int iTotalWeight = 0;
@@ -23110,7 +23147,20 @@ void CvPlayer::doEvents()
 		int iWeight = getEventTriggerWeight((EventTriggerTypes)i);
 		if (iWeight == -1)
 		{
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+/* old
 			trigger((EventTriggerTypes)i);
+*/
+			int iDelay = GC.getEventTriggerInfo( (EventTriggerTypes) i ).getDelay();
+			if( iDelay <= m_paiEventTriggerDelayCounters[i] ) // always if iDelay == 0
+				trigger( (EventTriggerTypes) i );
+			else
+				m_paiEventTriggerDelayCounters[i]++;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 		}
 		else if (iWeight > 0 && bNewEventEligible)
 		{
@@ -23243,7 +23293,17 @@ bool CvPlayer::checkExpireEvent(EventTypes eEvent, const EventTriggeredData& kTr
 
 	if (!kEvent.isQuest())
 	{
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/* Non-quest events with bNoExpire = 1 no longer expire automatically after 2 turns             */
+/************************************************************************************************/
+/* old
 		if (GC.getGameINLINE().getGameTurn() - kTriggeredData.m_iTurn > 2)
+*/
+		if( !kEvent.isNoExpire() && GC.getGameINLINE().getGameTurn() - kTriggeredData.m_iTurn > 2 )
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 		{
 			return true;
 		}
@@ -28195,3 +28255,84 @@ int CvPlayer::getNumTriggersFired() const
 	return m_triggersFired.size();
 }
 // Automatic OOS detection END
+
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* From CvUnit::init() (modified)                                                               */
+/************************************************************************************************/
+int CvPlayer::getNewGreatPersonBornName( UnitTypes eUnitType )
+{
+	CvUnitInfo& kUnitInfo = GC.getUnitInfo( eUnitType );
+
+	int iBestScore = 0;
+	std::vector<int> veBestNames;
+
+	for( int eUnitName = 0; eUnitName < kUnitInfo.getNumUnitNames(); eUnitName++ )
+	{
+		CvWString szName = gDLL->getText( kUnitInfo.getUnitNames( eUnitName ) );
+		if( GC.getGameINLINE().isGreatPersonBorn( szName ) )
+			continue;
+
+		int eLeader = kUnitInfo.getUnitNameLeader( eUnitName );
+		if( eLeader != NO_LEADER )
+		{
+			bool bLeaderFound = false;
+			for( int ePlayer = 0; ePlayer < MAX_PLAYERS; ePlayer++ )
+			{
+				if( GET_PLAYER( (PlayerTypes) ePlayer ).isAlive()
+						&& GET_PLAYER( (PlayerTypes) ePlayer ).getLeaderType() == eLeader )
+				{
+					bLeaderFound = true;
+					break;
+				}
+			}
+			if( bLeaderFound )
+				continue;
+		}
+
+		int iScore = 0;
+
+		if( kUnitInfo.getUnitNamePreferredCiv( eUnitName ) == getCivilizationType() )
+			iScore += 4;
+		else
+		{
+			if( kUnitInfo.getUnitNamePreferredCiv( eUnitName ) == NO_CIVILIZATION )
+				iScore += 1;
+			if( kUnitInfo.getUnitNameRace( eUnitName ) == GC.getCivilizationInfo( getCivilizationType() ).getDefaultRace() )
+				iScore += 1;
+		}
+		
+
+		if( kUnitInfo.getUnitNameReligion( eUnitName ) != NO_RELIGION )
+		{
+			if( kUnitInfo.getUnitNameReligion( eUnitName ) == getStateReligion() )
+				iScore += 3;
+		}
+		else // if( kUnitInfo.getUnitNameReligion( eUnitName ) == NO_RELIGION )
+			iScore += 1;
+
+		logBBAI( "Score for %S: %d", szName.c_str(), iScore );
+
+		if( iScore > iBestScore )
+		{
+			iBestScore = iScore;
+			veBestNames.clear();
+			veBestNames.push_back( eUnitName );
+		}
+		else if( iScore == iBestScore )
+			veBestNames.push_back( eUnitName );
+	}
+
+	if( veBestNames.empty() )
+		return -1;
+
+	int iRand = GC.getGameINLINE().getSorenRandNum( veBestNames.size(), "great person name" );
+	int eBestUnitName = veBestNames[iRand];
+
+	GC.getGameINLINE().addGreatPersonBornName( gDLL->getText( kUnitInfo.getUnitNames( eBestUnitName ) ) );
+
+	return eBestUnitName;
+}
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/

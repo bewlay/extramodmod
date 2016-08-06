@@ -73,6 +73,13 @@ private:
 	bool launchFreeColonyPopup(CvPopup* pPopup, CvPopupInfo &info);
 	bool launchLaunchPopup(CvPopup* pPopup, CvPopupInfo &info);
 	bool launchFoundReligionPopup(CvPopup* pPopup, CvPopupInfo &info);
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+	bool launchGreatPersonPopup(CvPopup* pPopup, CvPopupInfo &info);
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 };
 
 #endif

@@ -84,6 +84,14 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 	{
 	case BUTTONPOPUP_TEXT:
 		break;
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+	case BUTTONPOPUP_GREAT_PERSON:
+		break;
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	case BUTTONPOPUP_CONFIRM_MENU:
 		if ( pPopupReturn->getButtonClicked() == 0 )
@@ -1036,6 +1044,15 @@ bool CvDLLButtonPopup::launchButtonPopup(CvPopup* pPopup, CvPopupInfo &info)
 	case BUTTONPOPUP_CONFIRMSETTLEMENT:
 		bLaunched = launchConfirmSettlementPopup(pPopup, info);
 		break;
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+	case BUTTONPOPUP_GREAT_PERSON:
+		bLaunched = launchGreatPersonPopup( pPopup, info );
+		break;
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 //FfH: End Add
 
 	default:
@@ -2915,3 +2932,26 @@ bool CvDLLButtonPopup::launchFoundReligionPopup(CvPopup* pPopup, CvPopupInfo &in
 
 	return true;
 }
+
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+bool CvDLLButtonPopup::launchGreatPersonPopup( CvPopup* pPopup, CvPopupInfo& info )
+{
+	CvUnitInfo& kUnitInfo = GC.getUnitInfo( (UnitTypes) info.getData1() );
+	int eUnitName = info.getData2();
+
+	CvWString szQuote = gDLL->getText( kUnitInfo.getUnitNameQuote( eUnitName ) );
+
+	if( kUnitInfo.getUnitNameArt( eUnitName ) != "" )
+		gDLL->getInterfaceIFace()->popupAddDDS( pPopup, kUnitInfo.getUnitNameArt( eUnitName ) );
+
+	gDLL->getInterfaceIFace()->popupSetBodyString( pPopup, szQuote.c_str() );
+
+	gDLL->getInterfaceIFace()->popupLaunch(pPopup, true, POPUPSTATE_IMMEDIATE);
+
+	return true;
+}
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/

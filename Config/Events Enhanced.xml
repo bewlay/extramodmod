@@ -42,5 +42,4 @@
 	
 	
 	<event type="unitBuilt" function="onUnitBuilt"/>
-	<event type="unitCreated" function="onUnitCreated"/>
 </mod>

@@ -5182,7 +5182,13 @@ m_pbFreePromotions(NULL),
 m_paszEarlyArtDefineTags(NULL),
 m_paszLateArtDefineTags(NULL),
 m_paszMiddleArtDefineTags(NULL),
-m_paszUnitNames(NULL),
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+// m_paszUnitNames(NULL),
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 //FfH Units: Added by Kael 08/04/2007
 m_bAbandon(false),
@@ -5282,7 +5288,13 @@ CvUnitInfo::~CvUnitInfo()
 	SAFE_DELETE_ARRAY(m_paszEarlyArtDefineTags);
 	SAFE_DELETE_ARRAY(m_paszLateArtDefineTags);
 	SAFE_DELETE_ARRAY(m_paszMiddleArtDefineTags);
-	SAFE_DELETE_ARRAY(m_paszUnitNames);
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+//	SAFE_DELETE_ARRAY(m_paszUnitNames);
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 }
 
 int CvUnitInfo::getAIWeight() const
@@ -6522,13 +6534,71 @@ void CvUnitInfo::setMiddleArtDefineTag(int i, const TCHAR* szVal)
 	FAssertMsg(i > -1, "Index out of bounds");
 	m_paszMiddleArtDefineTags[i] = szVal;
 }
-
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+/* old
 const TCHAR* CvUnitInfo::getUnitNames(int i) const
 {
 	FAssertMsg(i < getNumUnitNames(), "Index out of bounds");
 	FAssertMsg(i > -1, "Index out of bounds");
 	return (m_paszUnitNames) ? m_paszUnitNames[i] : NULL;
 }
+*/
+
+const TCHAR* CvUnitInfo::getUnitNames( int i ) const
+{
+	FAssertMsg(i < getNumUnitNames(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_vszUnitNames[i];
+}
+
+const TCHAR* CvUnitInfo::getUnitNameArt( int i ) const
+{
+	FAssertMsg(i < getNumUnitNames(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_vszUnitNameArt[i];
+}
+
+const TCHAR* CvUnitInfo::getUnitNameQuote( int i ) const
+{
+	FAssertMsg(i < getNumUnitNames(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_vszUnitNameQuotes[i];
+}
+
+const int CvUnitInfo::getUnitNamePreferredCiv( int i ) const
+{
+	FAssertMsg(i < getNumUnitNames(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_viUnitNamePreferredCivs[i];
+}
+
+const int CvUnitInfo::getUnitNameReligion( int i ) const
+{
+	FAssertMsg(i < getNumUnitNames(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_viUnitNameReligions[i];
+}
+
+const int CvUnitInfo::getUnitNameLeader( int i ) const
+{
+	FAssertMsg(i < getNumUnitNames(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_viUnitNameLeaders[i];
+}
+
+const int CvUnitInfo::getUnitNameRace( int i ) const
+{
+	FAssertMsg(i < getNumUnitNames(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_viUnitNameRaces[i];
+}
+
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
+
 
 const TCHAR* CvUnitInfo::getFormationType() const
 {
@@ -6965,10 +7035,44 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_paszMiddleArtDefineTags);
 	m_paszMiddleArtDefineTags = new CvString [m_iGroupDefinitions];
 	stream->ReadString(m_iGroupDefinitions, m_paszMiddleArtDefineTags);
-
+	
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+/*
 	SAFE_DELETE_ARRAY(m_paszUnitNames);
 	m_paszUnitNames = new CvString[m_iNumUnitNames];
 	stream->ReadString(m_iNumUnitNames, m_paszUnitNames);
+*/
+	for( int i = 0; i < m_iNumUnitNames; i++ )
+	{
+		CvString buffer;
+		int iValue;
+
+		stream->ReadString( buffer );
+		m_vszUnitNames.push_back( buffer );
+
+		stream->ReadString( buffer );
+		m_vszUnitNameArt.push_back( buffer );
+
+		stream->ReadString( buffer );
+		m_vszUnitNameQuotes.push_back( buffer );
+
+		stream->Read( &iValue );
+		m_viUnitNamePreferredCivs.push_back( iValue );
+
+		stream->Read( &iValue );
+		m_viUnitNameReligions.push_back( iValue );
+
+		stream->Read( &iValue );
+		m_viUnitNameLeaders.push_back( iValue );
+
+		stream->Read( &iValue );
+		m_viUnitNameRaces.push_back( iValue );
+	}
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	stream->ReadString(m_szFormationType);
 
@@ -7211,7 +7315,25 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->WriteString(m_iGroupDefinitions, m_paszEarlyArtDefineTags);
 	stream->WriteString(m_iGroupDefinitions, m_paszLateArtDefineTags);
 	stream->WriteString(m_iGroupDefinitions, m_paszMiddleArtDefineTags);
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+/*
 	stream->WriteString(m_iNumUnitNames, m_paszUnitNames);
+*/
+	for( int i = 0; i < m_iNumUnitNames; i++ )
+	{
+		stream->WriteString( m_vszUnitNames.at( i ) );
+		stream->WriteString( m_vszUnitNameArt.at( i ) );
+		stream->WriteString( m_vszUnitNameQuotes.at( i ) );
+		stream->Write( m_viUnitNamePreferredCivs.at( i ) );
+		stream->Write( m_viUnitNameReligions.at( i ) );
+		stream->Write( m_viUnitNameLeaders.at( i ) );
+		stream->Write( m_viUnitNameRaces.at( i ) );
+	}
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	stream->WriteString(m_szFormationType);
 }
@@ -7543,11 +7665,75 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(m_szFormationType, "FormationType");
 
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+/* old
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"UniqueNames"))
 	{
 		pXML->SetStringList(&m_paszUnitNames, &m_iNumUnitNames);
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
+*/
+	// if we can set the current xml node to it's next sibling
+	if (gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "UniqueNames" ) )
+	{
+		// pXML->Skip any comments and stop at the next value we might want
+		if (pXML->SkipToNextVal())
+		{
+			// get the total number of children the current xml node has
+			iNumSibs = gDLL->getXMLIFace()->GetNumChildren( pXML->GetXML() );
+
+			// if the call to the function that sets the current xml node to it's first non-comment
+			// child and sets the parameter with the new node's value succeeds
+			if ( (0 < iNumSibs) && (gDLL->getXMLIFace()->SetToChild(pXML->GetXML())) )
+			{
+				// loop through all the siblings
+				for( int iSib = 0; iSib < iNumSibs; iSib++ )
+				{
+					pXML->GetChildXmlValByName( szTextVal, "Name" );
+					m_vszUnitNames.push_back( szTextVal );
+					
+					pXML->GetChildXmlValByName( szTextVal, "Art", "" );
+					m_vszUnitNameArt.push_back( szTextVal );
+					
+					pXML->GetChildXmlValByName( szTextVal, "Quote", "" );
+					m_vszUnitNameQuotes.push_back( szTextVal );
+					
+					pXML->GetChildXmlValByName( szTextVal, "Race", "NONE" );
+					m_viUnitNameRaces.push_back( GC.getInfoTypeForString( szTextVal ) );
+					
+					pXML->GetChildXmlValByName( szTextVal, "PreferredCiv", "NONE" );
+					m_vszUnitNamePreferredCivsForPass3.push_back( szTextVal );
+					
+					pXML->GetChildXmlValByName( szTextVal, "Religion", "NONE" );
+					m_viUnitNameReligions.push_back( GC.getInfoTypeForString( szTextVal ) );
+					
+					pXML->GetChildXmlValByName( szTextVal, "Leader", "NONE" );
+					m_viUnitNameLeaders.push_back( GC.getInfoTypeForString( szTextVal ) );
+
+					// if the call to the function that sets the current xml node to it's first non-comment
+					// sibling and sets the parameter with the new node's value does not succeed
+					// we will break out of this for loop
+					if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+					{
+						break;
+					}
+				}
+
+				// set the current xml node to it's parent node
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+			
+			m_iNumUnitNames = m_vszUnitNames.size();
+		}
+
+		// set the current xml node to it's parent node
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	pXML->SetVariableListTagPair(&m_pbFreePromotions, "FreePromotions", sizeof(GC.getPromotionInfo((PromotionTypes)0)), GC.getNumPromotionInfos());
 
@@ -7655,6 +7841,17 @@ bool CvUnitInfo::readPass3()
 	m_aszExtraXMLforPass3.clear();
 	m_iUpgradeCiv = GC.getInfoTypeForString(m_aszExtraXML2forPass3[0]);
 	m_aszExtraXML2forPass3.clear();
+
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+	for( int i = 0; i < m_iNumUnitNames; i++ )
+		m_viUnitNamePreferredCivs.push_back( GC.getInfoTypeForString( m_vszUnitNamePreferredCivsForPass3[i] ) );
+	m_vszUnitNamePreferredCivsForPass3.clear();
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
+
 	return true;
 }
 
@@ -25293,6 +25490,17 @@ int CvEventTriggerInfo::getProbability() const
 	return m_iProbability;
 }
 
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+int CvEventTriggerInfo::getDelay() const
+{
+	return m_iDelay;
+}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
+
 int CvEventTriggerInfo::getUnitRequired(int i) const
 {
 	return m_aiUnitsRequired[i];
@@ -25793,6 +26001,13 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 
 	stream->Read(&m_iPercentGamesActive);
 	stream->Read(&m_iProbability);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	stream->Read(&m_iDelay);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	stream->Read(&m_iNumUnits);
 	stream->Read(&m_iNumBuildings);
 	stream->Read(&m_iNumUnitsGlobal);
@@ -26019,6 +26234,13 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 
 	stream->Write(m_iPercentGamesActive);
 	stream->Write(m_iProbability);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	stream->Write(m_iDelay);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	stream->Write(m_iNumUnits);
 	stream->Write(m_iNumBuildings);
 	stream->Write(m_iNumUnitsGlobal);
@@ -26199,6 +26421,13 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(&m_iPercentGamesActive, "iPercentGamesActive");
 	pXML->GetChildXmlValByName(&m_iProbability, "iWeight");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName( &m_iDelay, "iDelay", 0 );
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	pXML->GetChildXmlValByName(&m_iNumUnits, "iNumUnits");
 	pXML->GetChildXmlValByName(&m_iNumBuildings, "iNumBuildings");
@@ -26772,6 +27001,13 @@ CvEventInfo::CvEventInfo() :
 	m_bGoldenAge(false),
 	m_bDeclareWar(false),
 	m_bDisbandUnit(false),
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	m_bNoExpire(false),
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	m_iGold(0),
 	m_iRandomGold(0),
 	m_iCulture(0),
@@ -26897,6 +27133,17 @@ bool CvEventInfo::isDisbandUnit() const
 {
 	return m_bDisbandUnit;
 }
+
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+bool CvEventInfo::isNoExpire() const
+{
+	return m_bNoExpire;
+}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 int CvEventInfo::getGold() const
 {
@@ -27374,6 +27621,13 @@ void CvEventInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bGoldenAge);
 	stream->Read(&m_bDeclareWar);
 	stream->Read(&m_bDisbandUnit);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	stream->Read(&m_bNoExpire);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	stream->Read(&m_iGold);
 	stream->Read(&m_iRandomGold);
 	stream->Read(&m_iCulture);
@@ -27540,6 +27794,13 @@ void CvEventInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bGoldenAge);
 	stream->Write(m_bDeclareWar);
 	stream->Write(m_bDisbandUnit);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	stream->Write(m_bNoExpire);
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	stream->Write(m_iGold);
 	stream->Write(m_iRandomGold);
 	stream->Write(m_iCulture);
@@ -27659,6 +27920,13 @@ bool CvEventInfo::read(CvXMLLoadUtility* pXML)
 	}
 
 	pXML->GetChildXmlValByName(&m_bQuest, "bQuest");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_bNoExpire, "bNoExpire");
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_bGlobal, "bGlobal");
 	pXML->GetChildXmlValByName(&m_bTeam, "bTeam");
 	pXML->GetChildXmlValByName(&m_bCityEffect, "bPickCity");

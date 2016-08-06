@@ -117,7 +117,7 @@ public:
 	
 /************************************************************************************************/
 /* GP_NAMES                                 07/2013                                 lfgr        */
-/* Added parameter szName                                                                       */
+/* Added parameter eName                                                                        */
 /************************************************************************************************/
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
@@ -127,7 +127,7 @@ public:
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, CvWString szName = "", bool bGift = false);
+	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, bool bGift = false, int eName = -1);
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -1432,6 +1432,15 @@ public:
 /************************************************************************************************/
 /* Afforess	                     END                                                            */
 /************************************************************************************************/
+	
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* From CvUnit::init() (modified)                                                               */
+/************************************************************************************************/
+	int getNewGreatPersonBornName( UnitTypes eUnitType );
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 protected:
 
@@ -1708,6 +1717,13 @@ protected:
 	int* m_paiHasCorporationCount;
 	int* m_paiUpkeepCount;
 	int* m_paiSpecialistValidCount;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	int* m_paiEventTriggerDelayCounters;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	bool* m_pabResearchingTech;
 	bool* m_pabLoyalMember;
