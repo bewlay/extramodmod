@@ -948,6 +948,7 @@
 			<EventArt>Art\EventImages\e_circleofgaelan.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
+			<iDelay>3</iDelay>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_MAGE_GUILD</BuildingClass>
@@ -980,6 +981,7 @@
 			<EventArt>Art\EventImages\e_circleofgaelan.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
+			<iDelay>6</iDelay>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_MAGE_GUILD</BuildingClass>
@@ -2078,6 +2080,7 @@
 			<bRecurring>1</bRecurring>
 			<bShowPlot>1</bShowPlot>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
+			<bRequiresValidEvent>1</bRequiresValidEvent>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- FROSTLING -->
 			<Type>EVENTTRIGGER_FROSTLING</Type>
@@ -8369,7 +8372,6 @@
 			<PythonCanDoCity>canTriggerCityCapital</PythonCanDoCity>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- UNFORTUNATE_ASSASSIN_4_CONT lfgr: added -->
-			<!-- LFGR_TODO: Add minimum turns between events -->
 			<Type>EVENTTRIGGER_UNFORTUNATE_ASSASSIN_4_CONT</Type>
 			<WorldNewsTexts>
 				<Text />
@@ -8382,6 +8384,7 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
+			<iDelay>10</iDelay>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iPlotType>-1</iPlotType>
 			<Events>

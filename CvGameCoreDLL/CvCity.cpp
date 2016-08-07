@@ -442,6 +442,18 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_iFreshWaterBadHealth = 0;
 	m_iFeatureGoodHealth = 0;
 	m_iFeatureBadHealth = 0;
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/	
+	m_iSpecialistGoodHealth = 0;
+	m_iSpecialistBadHealth = 0;
+	m_iSpecialistHappiness = 0;
+	m_iSpecialistUnhappiness = 0;
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 	m_iBuildingGoodHealth = 0;
 	m_iBuildingBadHealth = 0;
 	m_iPowerGoodHealth = 0;
@@ -567,6 +579,14 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_iReinforcementCounter = 0;
 /************************************************************************************************/
 /* REVOLUTION_MOD                          END                                                  */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	m_aiOriginalPopulation.clear();
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 
 	for (iI = 0; iI < NUM_YIELD_TYPES; iI++)
@@ -1189,7 +1209,23 @@ void CvCity::kill(bool bUpdatePlotGroups)
 			pPlot->changeAdjacentSight((TeamTypes)iI, GC.getDefineINT("PLOT_VISIBILITY_RANGE"), false, NULL, false);
 		}
 	}
-
+/************************************************************************************************/
+/* Advanced Diplomacy         Start                                                             */
+/************************************************************************************************/
+	//ls612: Embassy visibility fix (by Damgo)
+	if (bCapital)
+	{
+		for (iI = 0; iI < MAX_TEAMS; iI++)
+		{
+			if (GET_TEAM(GET_PLAYER(eOwner).getTeam()).isHasEmbassy((TeamTypes)iI))
+			{
+				pPlot->changeAdjacentSight((TeamTypes)iI, GC.getDefineINT("PLOT_VISIBILITY_RANGE"), false, NULL, false);
+			}
+		}
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	GET_PLAYER(eOwner).updateMaintenance();
 
 	GC.getMapINLINE().updateWorkingCity();
@@ -4889,6 +4925,31 @@ void CvCity::processSpecialist(SpecialistTypes eSpecialist, int iChange)
 
 	updateExtraSpecialistYield();
 
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	if (GC.getSpecialistInfo(eSpecialist).getHealth() > 0)
+	{
+		changeSpecialistGoodHealth(GC.getSpecialistInfo(eSpecialist).getHealth() * iChange);
+	}
+	else
+	{
+		changeSpecialistBadHealth(GC.getSpecialistInfo(eSpecialist).getHealth() * iChange);
+	}
+	if (GC.getSpecialistInfo(eSpecialist).getHappiness() > 0)
+	{
+		changeSpecialistHappiness(GC.getSpecialistInfo(eSpecialist).getHappiness() * iChange);
+	}
+	else
+	{
+		changeSpecialistUnhappiness(GC.getSpecialistInfo(eSpecialist).getHappiness() * iChange);
+	}
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
+
 	changeSpecialistFreeExperience(GC.getSpecialistInfo(eSpecialist).getExperience() * iChange);
 }
 
@@ -5371,6 +5432,15 @@ int CvCity::unhappyLevel(int iExtra) const
 		iUnhappiness -= std::min(0, getMilitaryHappiness());
 		iUnhappiness -= std::min(0, getCurrentStateReligionHappiness());
 		iUnhappiness -= std::min(0, getBuildingBadHappiness());
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+		iUnhappiness -= std::min(0, getSpecialistUnhappiness());
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 		iUnhappiness -= std::min(0, getExtraBuildingBadHappiness());
 		iUnhappiness -= std::min(0, getFeatureBadHappiness());
 		iUnhappiness -= std::min(0, getBonusBadHappiness());
@@ -5417,6 +5487,15 @@ int CvCity::happyLevel() const
 	iHappiness += std::max(0, (getExtraHappiness() + GET_PLAYER(getOwnerINLINE()).getExtraHappiness()));
 	iHappiness += std::max(0, GC.getHandicapInfo(getHandicapType()).getHappyBonus());
 	iHappiness += std::max(0, getVassalHappiness());
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	iHappiness += std::max(0, getSpecialistHappiness());
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 
 	if (getHappinessTimer() > 0)
 	{
@@ -5530,6 +5609,20 @@ int CvCity::goodHealth() const
 		iTotalHealth += iHealth;
 	}
 
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	iHealth = getSpecialistGoodHealth();
+	if (iHealth > 0)
+	{
+		iTotalHealth += iHealth;
+	}
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
+
 	iHealth = getPowerGoodHealth();
 	if (iHealth > 0)
 	{
@@ -5588,6 +5681,20 @@ int CvCity::badHealth(bool bNoAngry, int iExtra) const
 	{
 		iTotalHealth += iHealth;
 	}
+
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	iHealth = getSpecialistBadHealth();
+	if (iHealth < 0)
+	{
+		iTotalHealth += iHealth;
+	}
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 
 	iHealth = getPowerBadHealth();
 	if (iHealth < 0)
@@ -6214,6 +6321,7 @@ CvArea* CvCity::sharedWaterArea(CvCity* pOtherCity) const
 	return NULL;
 }
 
+// MNAI Note - This function is for AI purposes only
 bool CvCity::isBlockaded() const
 {
 	int iI;
@@ -7430,6 +7538,104 @@ int CvCity::getAdditionalStarvation(int iSpoiledFood, int iFoodAdjust) const
 	return 0;
 }
 // BUG - Actual Effects - start
+
+
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+int CvCity::getSpecialistGoodHealth() const
+{
+	return m_iSpecialistGoodHealth;
+}
+
+
+int CvCity::getSpecialistBadHealth() const
+{
+	return m_iSpecialistBadHealth;
+}
+
+int CvCity::getSpecialistHappiness() const
+{
+	return m_iSpecialistHappiness;
+}
+
+
+int CvCity::getSpecialistUnhappiness() const
+{
+	return m_iSpecialistUnhappiness;
+}
+
+void CvCity::changeSpecialistGoodHealth(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iSpecialistGoodHealth += iChange;
+		FAssert(getSpecialistGoodHealth() >= 0);
+
+		AI_setAssignWorkDirty(true);
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			setInfoDirty(true);
+		}
+	}
+}
+
+
+void CvCity::changeSpecialistBadHealth(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iSpecialistBadHealth += iChange;
+		FAssert(getSpecialistBadHealth() <= 0);
+
+		AI_setAssignWorkDirty(true);
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			setInfoDirty(true);
+		}
+	}
+}
+
+
+void CvCity::changeSpecialistHappiness(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iSpecialistHappiness += iChange;
+		FAssert(getSpecialistHappiness() >= 0);
+
+		AI_setAssignWorkDirty(true);
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			setInfoDirty(true);
+		}
+	}
+}
+
+
+void CvCity::changeSpecialistUnhappiness(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iSpecialistUnhappiness += iChange;
+		FAssert(getSpecialistUnhappiness() <= 0);
+
+		AI_setAssignWorkDirty(true);
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			setInfoDirty(true);
+		}
+	}
+}
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 
 
 int CvCity::getBuildingGoodHealth() const
@@ -11350,6 +11556,45 @@ int CvCity::getNumRevolts(PlayerTypes eIndex) const
 	return m_aiNumRevolts[eIndex];
 }
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+int CvCity::getOriginalPopulation(PlayerTypes eIndex) const
+{
+	FAssertMsg((eIndex >= 0 && eIndex < MAX_PLAYERS), "eIndex is expected to be >= 0");
+
+	if (m_aiOriginalPopulation.size() <= 0)
+	{
+		return 0;
+	}
+
+	return m_aiOriginalPopulation[eIndex];
+}
+
+
+void CvCity::setOriginalPopulation(PlayerTypes eIndex, int iNewValue)
+{
+	FAssertMsg((eIndex >= 0 && eIndex < MAX_PLAYERS), "eIndex is expected to be >= 0");
+
+	if (iNewValue != getOriginalPopulation(eIndex))
+	{
+		if(m_aiOriginalPopulation.size() <= 0)
+		{
+			m_aiOriginalPopulation.clear();
+			for (int i = 0; i < MAX_PLAYERS; ++i)
+			{
+				m_aiOriginalPopulation.push_back(0);
+			}
+		}
+
+		m_aiOriginalPopulation[eIndex] = iNewValue;
+
+		FAssert(getOriginalPopulation(eIndex) >= 0);
+	}
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 void CvCity::changeNumRevolts(PlayerTypes eIndex, int iChange)
 {
@@ -14287,10 +14532,35 @@ void CvCity::doPlotCulture(bool bUpdate, PlayerTypes ePlayer, int iCultureRate)
 
 						if (pLoopPlot != NULL)
 						{
-							if (pLoopPlot->isPotentialCityWorkForArea(area()))
+							// Advanced Diplomacy Start
+							bool bCultureBlocked = false;
+							if (GET_PLAYER(getOwnerINLINE()).isCultureNeedsEmptyRadius())
 							{
-								pLoopPlot->changeCulture(ePlayer, (((eCultureLevel - iCultureRange) * iFreeCultureRate) + iCultureRate + 1), (bUpdate || !(pLoopPlot->isOwned())));
+								if (pLoopPlot->isOwned())
+								{
+									bCultureBlocked = true;
+									if (pLoopPlot->getOwner() == getOwner() || // can always add culture to our own plots
+										pLoopPlot->isBarbarian() && !GET_TEAM(getTeam()).isBarbarianAlly() || // and barbarians if we are not allies
+										!GET_PLAYER(pLoopPlot->getOwner()).isCultureNeedsEmptyRadius()) // and the restriction must be mutual
+									{
+										bCultureBlocked = false;
+									}
+								}
 							}
+							if (!bCultureBlocked)
+							{
+								// Original Code
+								if (pLoopPlot->isPotentialCityWorkForArea(area()))
+								{
+									pLoopPlot->changeCulture(ePlayer, (((eCultureLevel - iCultureRange) * iFreeCultureRate) + iCultureRate + 1), (bUpdate || !(pLoopPlot->isOwned())));
+								}
+								// End Original Code
+							}
+							else
+							{
+								logBBAI("....SKIPPING CULTURE ON PLOT %d, %d Due to Resolution", pLoopPlot->getX(), pLoopPlot->getY());
+							}
+							// End Advanced Diplomacy
 						}
 					}
 				}
@@ -14911,6 +15181,16 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iFreshWaterBadHealth);
 	pStream->Read(&m_iFeatureGoodHealth);
 	pStream->Read(&m_iFeatureBadHealth);
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	pStream->Read(&m_iSpecialistGoodHealth);
+	pStream->Read(&m_iSpecialistBadHealth);
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 	pStream->Read(&m_iBuildingGoodHealth);
 	pStream->Read(&m_iBuildingBadHealth);
 	pStream->Read(&m_iPowerGoodHealth);
@@ -14932,6 +15212,16 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iDefyResolutionAngerTimer);
 	pStream->Read(&m_iHappinessTimer);
 	pStream->Read(&m_iMilitaryHappinessUnits);
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	pStream->Read(&m_iSpecialistHappiness);
+	pStream->Read(&m_iSpecialistUnhappiness);
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 	pStream->Read(&m_iBuildingGoodHappiness);
 	pStream->Read(&m_iBuildingBadHappiness);
 	pStream->Read(&m_iExtraBuildingGoodHappiness);
@@ -15155,6 +15445,24 @@ void CvCity::read(FDataStreamBase* pStream)
 		pStream->Read(&iChange);
 		m_aBuildingHealthChange.push_back(std::make_pair((BuildingClassTypes)iBuildingClass, iChange));
 	}
+
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	{
+		m_aiOriginalPopulation.clear();
+		uint iSize;
+		pStream->Read(&iSize);
+		for (uint i = 0; i < iSize; i++)
+		{
+			int iValue;
+			pStream->Read(&iValue);
+			m_aiOriginalPopulation.push_back(iValue);
+		}
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 }
 
 void CvCity::write(FDataStreamBase* pStream)
@@ -15195,6 +15503,16 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(m_iFreshWaterBadHealth);
 	pStream->Write(m_iFeatureGoodHealth);
 	pStream->Write(m_iFeatureBadHealth);
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	pStream->Write(m_iSpecialistGoodHealth);
+	pStream->Write(m_iSpecialistBadHealth);
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 	pStream->Write(m_iBuildingGoodHealth);
 	pStream->Write(m_iBuildingBadHealth);
 	pStream->Write(m_iPowerGoodHealth);
@@ -15216,6 +15534,16 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(m_iDefyResolutionAngerTimer);
 	pStream->Write(m_iHappinessTimer);
 	pStream->Write(m_iMilitaryHappinessUnits);
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	pStream->Write(m_iSpecialistHappiness);
+	pStream->Write(m_iSpecialistUnhappiness);
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 	pStream->Write(m_iBuildingGoodHappiness);
 	pStream->Write(m_iBuildingBadHappiness);
 	pStream->Write(m_iExtraBuildingGoodHappiness);
@@ -15421,6 +15749,22 @@ void CvCity::write(FDataStreamBase* pStream)
 		pStream->Write((*it).first);
 		pStream->Write((*it).second);
 	}
+	
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	{
+		uint iSize = m_aiOriginalPopulation.size();
+		pStream->Write(iSize);
+		std::vector<int>::iterator it;
+		for (it = m_aiOriginalPopulation.begin(); it != m_aiOriginalPopulation.end(); ++it)
+		{
+			pStream->Write((*it));
+		}
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 }
 
 
@@ -17049,29 +17393,37 @@ bool CvCity::isAutoRaze() const
 {
 	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_CITY_RAZING))
 	{
-		if (getHighestPopulation() == 1)
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+		if (!GET_PLAYER(getOwner()).isNoCityRazing())
+		{
+			if (getHighestPopulation() == 1)
+			{
+				return true;
+			}
+
+			if (GC.getGameINLINE().getMaxCityElimination() > 0)
+			{
+				return true;
+			}
+		}
+		
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ONE_CITY_CHALLENGE) && isHuman())
 		{
 			return true;
 		}
 
-		if (GC.getGameINLINE().getMaxCityElimination() > 0)
+		//FfH: Added by Kael 11/03/2008
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ALWAYS_RAZE))
 		{
-			return true;
+		    return true;
 		}
+		//FfH: End Add
 	}
-
-	if (GC.getGameINLINE().isOption(GAMEOPTION_ONE_CITY_CHALLENGE) && isHuman())
-	{
-		return true;
-	}
-
-//FfH: Added by Kael 11/03/2008
-	if (GC.getGameINLINE().isOption(GAMEOPTION_ALWAYS_RAZE))
-	{
-	    return true;
-	}
-//FfH: End Add
-
 	return false;
 }
 
@@ -17373,7 +17725,11 @@ bool CvCity::isSettlement() const
 void CvCity::setSettlement(bool bNewValue)
 {
 //>>>>Advanced Rules: Added by Denev 2010/07/13
-	setPlotRadius(1);
+// lfgr fix
+//	setPlotRadius(1);
+	if( bNewValue )
+		setPlotRadius(1);
+// lfgr end
 //<<<<Advanced Rules: End Add
 
 	m_bSettlement = bNewValue;
@@ -17406,7 +17762,26 @@ void CvCity::setPlotRadius(int iNewValue)
 		const int iOldPlotRadius = getPlotRadius();
 //<<<<Unofficial Bug Fix: End Add
 
-		m_iPlotRadius = iNewValue;
+	// lfgr bugfix 08/2015: These must be updated on city radius change since Denev's changes:
+	// First unset... (see below)
+		if( plot()->getPlotCity() != NULL ) // only if city already assigned to plot
+		{
+			for( int i = 0; i < ::calculateNumCityPlots(getPlotRadius()); i++ )
+			{
+				CvPlot* pLoopPlot = plotCity( getX_INLINE(), getY_INLINE(), i );
+				
+				if (pLoopPlot != NULL)
+				{
+					pLoopPlot->changeCityRadiusCount( -1 );
+					pLoopPlot->changePlayerCityRadiusCount( getOwnerINLINE(), -1 );
+				}
+			}
+		}
+	// lfgr end
+
+	// lfgr bugfix 06/2015: moved further down, otherwise an assert is triggered in setWorkingPlot
+	//	m_iPlotRadius = iNewValue;
+	// lfgr end
 		CvPlot* pLoopPlot;
 
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/07/13
@@ -17416,7 +17791,10 @@ void CvCity::setPlotRadius(int iNewValue)
 		{
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/07/13
 //			for (int iI=8; iI<NUM_CITY_PLOTS; iI++)
-			for (int iI = 0; iI < iOldPlotRadius; iI++)
+		// lfgr bugfix 06/2015
+		//	for (int iI = 0; iI < iOldPlotRadius; iI++)
+			for (int iI = 0; iI < calculateNumCityPlots( iOldPlotRadius ); iI++)
+		// lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 			{
 				/*That workers in outliing plots are not struck there...*/
@@ -17426,18 +17804,45 @@ void CvCity::setPlotRadius(int iNewValue)
 				}
 			}
 		}
+		
+	// lfgr bugfix 06/2015: see above
+		m_iPlotRadius = iNewValue;
+	// lfgr end
 
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/07/13
 //		for (int iI=8; iI<NUM_CITY_PLOTS; iI++)
-		for (int iI = 0; iI < iOldPlotRadius; iI++)
+	// lfgr bugfix 06/2015
+	//	for (int iI = 0; iI < iOldPlotRadius; iI++)
+		for (int iI = 0; iI < calculateNumCityPlots( iOldPlotRadius ); iI++)
+	// lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 		{
-			pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
+		// lfgr bugfix 06/2015: m_iPlotRadius already set, changed this to a m_iPlotRadius-agnostic method
+		//	pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
+			pLoopPlot = GC.getMapINLINE().plotINLINE((getX_INLINE() + GC.getCityPlotX()[iI]), (getY_INLINE() + GC.getCityPlotY()[iI]));
+		// lfgr end
 			if (pLoopPlot != NULL)
 			{
 				pLoopPlot->updateWorkingCity();
 			}
 		}
+		
+	// lfgr bugfix 08/2015: These must be updated on city radius change since Denev's changes:
+	// ... then set again with new radius (see above)
+		if( plot()->getPlotCity() != NULL ) // only if city already assigned to plot
+		{
+			for( int i = 0; i < ::calculateNumCityPlots(getPlotRadius()); i++ )
+			{
+				CvPlot* pLoopPlot = plotCity( getX_INLINE(), getY_INLINE(), i );
+				
+				if (pLoopPlot != NULL)
+				{
+					pLoopPlot->changeCityRadiusCount( 1 );
+					pLoopPlot->changePlayerCityRadiusCount( getOwnerINLINE(), 1 );
+				}
+			}
+		}
+	// lfgr end
 
 		updateFeatureHealth();
 		updateFeatureHappiness();

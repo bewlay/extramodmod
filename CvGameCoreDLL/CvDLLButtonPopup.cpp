@@ -84,6 +84,14 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 	{
 	case BUTTONPOPUP_TEXT:
 		break;
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+	case BUTTONPOPUP_GREAT_PERSON:
+		break;
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	case BUTTONPOPUP_CONFIRM_MENU:
 		if ( pPopupReturn->getButtonClicked() == 0 )
@@ -193,7 +201,31 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 	case BUTTONPOPUP_DECLAREWARMOVE:
 		if (pPopupReturn->getButtonClicked() == 0)
 		{
-			CvMessageControl::getInstance().sendChangeWar((TeamTypes)info.getData1(), true);
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+			TeamTypes eRivalTeam = (TeamTypes)info.getData1();
+
+			if (!GET_PLAYER(GC.getGameINLINE().getActivePlayer()).isSenateVeto(eRivalTeam, true))
+			{
+				CvMessageControl::getInstance().sendChangeWar(eRivalTeam, true);
+			}
+			else
+			{
+				gDLL->endMPDiplomacy();
+                gDLL->endDiplomacy();
+
+				if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).isHuman())
+				{
+					CvWString szBuffer = gDLL->getText("TXT_KEY_SENATE_CANCEL_WAR", GET_PLAYER(GET_TEAM(eRivalTeam).getLeaderID()).getNameKey(), GET_PLAYER(GET_TEAM(eRivalTeam).getLeaderID()).getCivilizationShortDescriptionKey());
+					gDLL->getInterfaceIFace()->addMessage(GC.getGameINLINE().getActivePlayer(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_THEIRALLIANCE");
+				}
+
+				break;
+			}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 		}
 		if (((pPopupReturn->getButtonClicked() == 0) || info.getOption2()) && info.getFlags() == 0)
 		{
@@ -376,6 +408,22 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 				pCity->chooseProduction();
 				CvEventReporter::getInstance().cityAcquiredAndKept(GC.getGameINLINE().getActivePlayer(), pCity);
 			}
+/************************************************************************************************/
+/* Advanced Diplomacy                   START                                                   */
+/************************************************************************************************/
+			/*** EXTRACONQUEST 04/21/08 by DPII START ***/
+			if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS)) 
+			{
+				if ((PlayerTypes)info.getData2() != NO_PLAYER)
+				{
+					GET_PLAYER((PlayerTypes)info.getData2()).AI_changeMemoryCount(GC.getGameINLINE().getActivePlayer(), MEMORY_KEPT_OUR_CITY, 1);
+				}
+			}
+			/*** EXTRACONQUEST END ***/
+/************************************************************************************************/
+/* Advanced Diplomacy                    END                                                    */
+/************************************************************************************************/
+
 		}
 		// MNAI - Puppet States
 		else if (pPopupReturn->getButtonClicked() == 4)
@@ -1036,6 +1084,15 @@ bool CvDLLButtonPopup::launchButtonPopup(CvPopup* pPopup, CvPopupInfo &info)
 	case BUTTONPOPUP_CONFIRMSETTLEMENT:
 		bLaunched = launchConfirmSettlementPopup(pPopup, info);
 		break;
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+	case BUTTONPOPUP_GREAT_PERSON:
+		bLaunched = launchGreatPersonPopup( pPopup, info );
+		break;
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 //FfH: End Add
 
 	default:
@@ -1866,6 +1923,24 @@ bool CvDLLButtonPopup::launchDeclareWarMovePopup(CvPopup* pPopup, CvPopupInfo &i
 	else
 	{
 		szBuffer = gDLL->getText("TXT_KEY_POPUP_DOES_THIS_MEAN_WAR", GET_TEAM(eRivalTeam).getName().GetCString());
+
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+		for (int iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
+		{
+			if (GC.getGameINLINE().isPacificVoteSource((VoteSourceTypes)iI))
+			{
+				if (GET_TEAM(GC.getGameINLINE().getActiveTeam()).isVotingMember((VoteSourceTypes)iI))
+				{
+					szBuffer += NEWLINE;
+					szBuffer += gDLL->getText("TXT_KEY_POPUP_DOES_THIS_MEAN_WAR_PACIFIC", GC.getVoteSourceInfo((VoteSourceTypes)iI).getDescription());
+				}
+			}
+		}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	}
 	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, szBuffer);
 	gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_DECLARE_WAR_YES").c_str(), NULL, 0);
@@ -2915,3 +2990,26 @@ bool CvDLLButtonPopup::launchFoundReligionPopup(CvPopup* pPopup, CvPopupInfo &in
 
 	return true;
 }
+
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+bool CvDLLButtonPopup::launchGreatPersonPopup( CvPopup* pPopup, CvPopupInfo& info )
+{
+	CvUnitInfo& kUnitInfo = GC.getUnitInfo( (UnitTypes) info.getData1() );
+	int eUnitName = info.getData2();
+
+	CvWString szQuote = gDLL->getText( kUnitInfo.getUnitNameQuote( eUnitName ) );
+
+	if( kUnitInfo.getUnitNameArt( eUnitName ) != "" )
+		gDLL->getInterfaceIFace()->popupAddDDS( pPopup, kUnitInfo.getUnitNameArt( eUnitName ) );
+
+	gDLL->getInterfaceIFace()->popupSetBodyString( pPopup, szQuote.c_str() );
+
+	gDLL->getInterfaceIFace()->popupLaunch(pPopup, true, POPUPSTATE_IMMEDIATE);
+
+	return true;
+}
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/

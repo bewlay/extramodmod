@@ -281,6 +281,21 @@ public:
 /* REVOLUTION_MOD                          END                                                  */
 /************************************************************************************************/
 
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	int getCurrentVoteID() const;
+    void setCurrentVoteID(int iNewValue);
+	void setPreviousRequest(PlayerTypes ePlayer, bool bNewValue);
+	bool isPreviousRequest(PlayerTypes ePlayer) const;
+protected:
+	bool* m_abPreviousRequest;
+public:
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 	DllExport unsigned int getInitialTime();
 	DllExport void setInitialTime(unsigned int uiNewValue);
 
@@ -396,6 +411,17 @@ public:
 	bool isForceCivicOption(CivicOptionTypes eCivicOption) const;								// Exposed to Python
 	void changeForceCivicCount(CivicTypes eIndex, int iChange);
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	//int getCondemnCivicCount(CivicTypes eIndex) const;										// Exposed to Python
+	//bool isCondemnCivic(CivicTypes eIndex) const;
+	//void changeCondemnCivicCount(CivicTypes eIndex, int iChange);		// Exposed to Python
+	//void setCondemnCivicCount(CivicTypes eIndex, int iNewValue);		// Exposed to Python
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
+
 	PlayerVoteTypes getVoteOutcome(VoteTypes eIndex) const;																	// Exposed to Python
 	bool isVotePassed(VoteTypes eIndex) const;																	// Exposed to Python
 	void setVoteOutcome(const VoteTriggeredData& kData, PlayerVoteTypes eNewValue);
@@ -423,6 +449,15 @@ public:
 	bool isReligionSlotTaken(ReligionTypes eReligion) const;											// Exposed to Python
 	void setReligionSlotTaken(ReligionTypes eReligion, bool bTaken);
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	bool isPacificVoteSource(VoteSourceTypes eVoteSource) const;											// Exposed to Python
+	void setPacificVoteSource(VoteSourceTypes eVoteSource, bool bNewValue);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
+
 	CvCity* getHolyCity(ReligionTypes eIndex);																	// Exposed to Python
 	void setHolyCity(ReligionTypes eIndex, CvCity* pNewValue, bool bAnnounce);	// Exposed to Python
 
@@ -449,14 +484,6 @@ public:
 
 	bool isGreatPersonBorn(CvWString& szName) const;
 	void addGreatPersonBornName(const CvWString& szName);
-/************************************************************************************************/
-/* GP_NAMES                                 07/2013                                 lfgr        */
-/* From CvUnit::init()                                                                          */
-/************************************************************************************************/
-	CvWString getNewGreatPersonBornName( UnitTypes iUnitType );
-/************************************************************************************************/
-/* GP_NAMES                                END                                                  */
-/************************************************************************************************/
 
 	DllExport int getIndexAfterLastDeal();																								// Exposed to Python
 	DllExport int getNumDeals();																													// Exposed to Python
@@ -649,6 +676,13 @@ public:
 	bool isReligionDisabled(int iReligion) const;
 //FfH: End Add
 
+	// Advanced Diplomacy
+    bool isCultureNeedsEmptyRadius(VoteSourceTypes eIndex) const;
+    void setCultureNeedsEmptyRadius(VoteSourceTypes eIndex, bool bNewValue);
+    bool isNoCityRazing(VoteSourceTypes eIndex) const;
+    void setNoCityRazing(VoteSourceTypes eIndex, bool bNewValue);
+	// End Advanced Diplomacy
+
 	// Tholal AI
 	int getCurrentPeriod() const;
 	// End Tholal AI
@@ -688,6 +722,15 @@ protected:
 	int m_iForcedAIAutoPlay[MAX_PLAYERS];
 /************************************************************************************************/
 /* REVOLUTION_MOD                          END                                                  */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	int m_iCurrentVoteID;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 
 	unsigned int m_uiInitialTime;
@@ -730,6 +773,11 @@ protected:
 	bool* m_pabSmugglingRing;
 //FfH: End Add
 
+	// Advanced Diplomacy
+	bool* m_pabCultureNeedsEmptyRadius;
+	bool* m_pabNoCityRazing;
+	// End Advanced Diplomacy
+
 	int* m_aiRankPlayer;        // Ordered by rank...
 	int* m_aiPlayerRank;        // Ordered by player ID...
 	int* m_aiPlayerScore;       // Ordered by player ID...
@@ -742,6 +790,13 @@ protected:
 	int* m_paiBuildingClassCreatedCount;
 	int* m_paiProjectCreatedCount;
 	int* m_paiForceCivicCount;
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	//int* m_paiCondemnCivicCount;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
 	PlayerVoteTypes* m_paiVoteOutcome;
 	int* m_paiReligionGameTurnFounded;
 	int* m_paiCorporationGameTurnFounded;
@@ -751,7 +806,14 @@ protected:
 
 	bool* m_pabSpecialUnitValid;
 	bool* m_pabSpecialBuildingValid;
-	bool* m_abReligionSlotTaken;
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	std::vector<bool> m_abPacificVoteSource;/*bool* m_ab5; m_abPacificVoteSource*/
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
+	bool* m_abReligionSlotTaken; 
 
 	IDInfo* m_paHolyCity;
 	IDInfo* m_paHeadquarters;

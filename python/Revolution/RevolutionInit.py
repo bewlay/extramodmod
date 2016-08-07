@@ -159,9 +159,10 @@ class RevolutionInit :
 				RevEvents.init( self.customEM, self.RevOpt )
 				RevInstances.RevolutionInst = Revolution.Revolution(self.customEM, self.RevOpt)
 #		if( not game.isOption(GameOptionTypes.GAMEOPTION_NO_TECH_DIFFUSION) ):#self.config.getboolean("TechDiffusion", "Enable", True) ) :
-		if( game.isOption(GameOptionTypes.GAMEOPTION_TECHNOLOGY_PROPAGATION) ):
-			if( bDoInit ) :
-				RevInstances.TechDiffusionInst = TechDiffusion.TechDiffusion(self.customEM, self.RevOpt)
+		# This component is disabled in ExtraModMod
+		#if( game.isOption(GameOptionTypes.GAMEOPTION_TECHNOLOGY_PROPAGATION) ):
+			#if( bDoInit ) :
+				#RevInstances.TechDiffusionInst = TechDiffusion.TechDiffusion(self.customEM, self.RevOpt)
 #		if( game.isOption(GameOptionTypes.GAMEOPTION_START_AS_MINORS) ):
 #			if( bDoInit ) :
 #				StartAsMinors.init( self.customEM, self.RevOpt )

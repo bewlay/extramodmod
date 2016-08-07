@@ -129,6 +129,13 @@
 	<ElementType name="bForceNoTrade" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bForceWar" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAssignCity" content="textOnly" dt:type="boolean"/>
+	<!-- Advanced Diplomacy START -->
+	<ElementType name="bTradeMap" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bVictimRights" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bNoCityRazing" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bCultureNeedsEmptyRadius" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bPacificRule" content="textOnly" dt:type="boolean"/>
+	<!-- Advanced Diplomacy END -->
 	<ElementType name="CivicType" content="textOnly"/>
 	<ElementType name="bForce" content="textOnly" dt:type="boolean"/>
 	<ElementType name="ForceCivic" content="eltOnly">
@@ -172,18 +179,24 @@
 		<element type="bForceNoTrade"/>
 		<element type="bForceWar"/>
 		<element type="bAssignCity"/>
-		<element type="ForceCivics"/>
-		<element type="DiploVotes"/>
-		<element type="bGamblingRing"/>
-		<element type="bNoOutsideTechTrades"/>
-		<element type="bSlaveTrade"/>
-		<element type="bSmugglingRing"/>
-		<element type="iCost"/>
-		<element type="iCrime"/>
-		<element type="iFreeUnits"/>
-		<element type="FreeUnitClass"/>
-		<element type="NoBonus"/>
-		<element type="PyResult"/>
+		<!-- Advanced Diplomacy START -->
+		<element type="bTradeMap" minOccurs="0"/>
+		<element type="bNoCityRazing" minOccurs="0"/>
+		<element type="bCultureNeedsEmptyRadius" minOccurs="0"/>
+		<element type="bPacificRule" minOccurs="0"/>
+		<!-- Advanced Diplomacy END -->
+		<element type="ForceCivics" minOccurs="0"/>
+		<element type="DiploVotes" minOccurs="0"/>
+		<element type="bGamblingRing" minOccurs="0"/>
+		<element type="bNoOutsideTechTrades" minOccurs="0"/>
+		<element type="bSlaveTrade" minOccurs="0"/>
+		<element type="bSmugglingRing" minOccurs="0"/>
+		<element type="iCost" minOccurs="0"/>
+		<element type="iCrime" minOccurs="0"/>
+		<element type="iFreeUnits" minOccurs="0"/>
+		<element type="FreeUnitClass" minOccurs="0"/>
+		<element type="NoBonus" minOccurs="0"/>
+		<element type="PyResult" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="ProcessInfos" content="eltOnly">
 		<element type="ProcessInfo" maxOccurs="*"/>
@@ -317,6 +330,10 @@
 	<ElementType name="iMapOffset" content="textOnly" dt:type="int"/>
 	<ElementType name="iMapRange" content="textOnly" dt:type="int"/>
 	<ElementType name="iMapProb" content="textOnly" dt:type="int"/>
+<!-- SPECIALIST ENHANCEMENTS				10/09/2009			SUPERCHEESE		-->
+	<ElementType name="iHealth" content="textOnly" dt:type="int"/>
+	<ElementType name="iHappiness" content="textOnly" dt:type="int"/>
+<!-- SPECIALIST ENHANCEMENTS				END							-->	
 	<ElementType name="iExperience" content="textOnly" dt:type="int"/>
 	<ElementType name="iHealing" content="textOnly" dt:type="int"/>
 	<ElementType name="iDamagePrereq" content="textOnly" dt:type="int"/>
@@ -708,6 +725,9 @@
 	<ElementType name="iCivicPercentAnger" content="textOnly" dt:type="int"/>
 	<ElementType name="bStateReligion" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoNonStateReligionSpread" content="textOnly" dt:type="boolean"/>
+	<!-- Advanced Diplomacy START -->
+	<ElementType name="bActiveSenate" content="textOnly" dt:type="boolean"/>
+	<!-- Advanced Diplomacy END -->
 	<ElementType name="iStateReligionHappiness" content="textOnly" dt:type="int"/>
 	<ElementType name="iNonStateReligionHappiness" content="textOnly" dt:type="int"/>
 	<ElementType name="iStateReligionUnitProductionModifier" content="textOnly" dt:type="int"/>
@@ -873,6 +893,9 @@
 		<element type="iCivicPercentAnger"/>
 		<element type="bStateReligion"/>
 		<element type="bNoNonStateReligionSpread"/>
+		<!-- Advanced Diplomacy START -->
+		<element type="bActiveSenate" minOccurs="0"/>
+		<!-- Advanced Diplomacy END -->
 		<element type="iStateReligionHappiness"/>
 		<element type="iNonStateReligionHappiness"/>
 		<element type="iStateReligionUnitProductionModifier"/>
@@ -1083,6 +1106,10 @@
 		<element type="iGreatPeopleRateChange"/>
 		<element type="Yields"/>
 		<element type="Commerces"/>
+<!-- SPECIALIST ENHANCEMENTS				10/09/2009			SUPERCHEESE		-->
+		<element type="iHealth" minOccurs="0"/>
+		<element type="iHappiness" minOccurs="0"/>
+<!-- SPECIALIST ENHANCEMENTS				END							-->		
 		<element type="iExperience"/>
 		<element type="Flavors"/>
 		<element type="HotKey"/>

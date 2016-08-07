@@ -46,20 +46,3 @@ def onUnitBuilt(argsList):
 						sPopupText = CyTranslator().getText('TXT_KEY_MISC_UNKNOWN_CREATED_UNIT',(sUnitName, ))
 					cf.addPopup(sPopupText, str(gc.getUnitInfo(unit.getUnitType()).getImage()))
 #WU POPUP END
-
-def onUnitCreated(argsList):
-	'Unit Completed'
-	pUnit = argsList[0]
-	pPlayer = gc.getPlayer(pUnit.getOwner())
-	
-#GREAT PERSON MOD START
-	# Disable if AIAutoplay is activated. For some reason it's 1 sometimes when not activated.
-	if( game.getAIAutoPlay( game.getActivePlayer() ) <= 1 ) :
-		if( ( options.isGPPopupHuman() and pPlayer.isHuman() ) or ( options.isGPPopupAI() and not pPlayer.isHuman() ) ) :
-			sUnitName = pUnit.getNameNoDesc()
-			# TODO: does not trigger when nameless gp is born due to lack of new names
-			if( sUnitName != "" ) :
-				Message = "TXT_KEY_QUOTE_%s" %(sUnitName,)
-				cf.addPopup(CyTranslator().getText(str(Message),()), 'Art/GreatPeople/Simple/'+str(gc.getUnitInfo(pUnit.getUnitType()).getType())+'/'+str(sUnitName)+'.dds')
-			return
-#GREAT PERSON MOD END

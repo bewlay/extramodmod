@@ -73,17 +73,6 @@ CvTeam::CvTeam()
 /* REVOLUTION_MOD                          END                                                  */
 /************************************************************************************************/
 
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	m_abEmbassy = new bool[MAX_TEAMS];
-	m_abLimitedBorders = new bool[MAX_TEAMS];
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
-
 	m_paiRouteChange = NULL;
 	m_paiProjectCount = NULL;
 	m_paiProjectDefaultArtTypes = NULL;
@@ -102,6 +91,27 @@ CvTeam::CvTeam()
 	m_pabNoTradeTech = NULL;
 
 	m_ppaaiImprovementYieldChange = NULL;
+	
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	m_abLimitedBorders = new bool[MAX_TEAMS];
+	m_abEmbassy = new bool[MAX_TEAMS];
+	m_abFreeTradeAgreement = new bool[MAX_TEAMS];
+	m_aiHiredWarAlly = new int[MAX_TEAMS];
+	m_abHasPrepareWar = new bool[MAX_TEAMS]; //byfra
+	m_abHasNonAggression = new bool[MAX_TEAMS]; 
+	m_abHasPOW = new bool[MAX_TEAMS]; 
+
+	m_aiLimitedBordersCounter = new int[MAX_TEAMS];
+	m_aiEmbassyCounter = new int[MAX_TEAMS];
+	m_aiFreeTradeAgreementCounter = new int[MAX_TEAMS];
+	m_aiNonAggressionCounter = new int[MAX_TEAMS];
+	m_aiPOWCounter = new int[MAX_TEAMS];
+/*************************************************************************************************/
+/** Advanced Diplomacy       END	                                                 			 */
+/*************************************************************************************************/
 
 	reset((TeamTypes)0, true);
 }
@@ -138,14 +148,24 @@ CvTeam::~CvTeam()
 
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
-	SAFE_DELETE_ARRAY(m_abEmbassy);
 	SAFE_DELETE_ARRAY(m_abLimitedBorders);
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
+	SAFE_DELETE_ARRAY(m_abEmbassy);
+	SAFE_DELETE_ARRAY(m_abFreeTradeAgreement);
+	SAFE_DELETE_ARRAY(m_aiHiredWarAlly);
+	SAFE_DELETE_ARRAY(m_abHasPrepareWar); //byFra
+	SAFE_DELETE_ARRAY(m_abHasNonAggression); 
+	SAFE_DELETE_ARRAY(m_abHasPOW); 
+
+	SAFE_DELETE_ARRAY(m_aiLimitedBordersCounter);
+	SAFE_DELETE_ARRAY(m_aiEmbassyCounter);
+	SAFE_DELETE_ARRAY(m_aiFreeTradeAgreementCounter);
+	SAFE_DELETE_ARRAY(m_aiNonAggressionCounter);
+	SAFE_DELETE_ARRAY(m_aiPOWCounter);
+/*************************************************************************************************/
+/** Advanced Diplomacy       END	                                                  			 */
+/*************************************************************************************************/
 }
 
 
@@ -250,6 +270,18 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 	m_iTechTradingCount = 0;
 	m_iGoldTradingCount = 0;
 	m_iOpenBordersTradingCount = 0;
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	m_iLimitedBordersTradingCount = 0;
+	m_iEmbassyTradingCount = 0;
+	m_iFreeTradeAgreementTradingCount = 0;
+	m_iNonAggressionTradingCount = 0;
+	m_iPOWTradingCount = 0;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	m_iDefensivePactTradingCount = 0;
 	m_iPermanentAllianceTradingCount = 0;
 	m_iVassalTradingCount = 0;
@@ -263,16 +295,14 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 	m_iEnemyWarWearinessModifier = 0;
 	m_iRiverTradeCount = 0;
 	m_iEspionagePointsEver = 0;
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	m_iEmbassyTradingCount = 0;
-	m_iLimitedBordersTradingCount = 0;
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+	m_iActiveSenateCount = 0;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                  			 */
+/*************************************************************************************************/
+
 	m_bMapCentering = false;
 	m_bCapitulated = false;
 
@@ -283,6 +313,15 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 
 	m_eID = eID;
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	m_aiWarPretextAgainstCount.clear();
+	m_aVoteSourceCondemnedWarCount.clear();
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 	for (iI = 0; iI < MAX_TEAMS; iI++)
 	{
 		m_aiStolenVisibilityTimer[iI] = 0;
@@ -291,6 +330,13 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 		m_aiEspionagePointsAgainstTeam[iI] = 0;
 		m_aiCounterespionageTurnsLeftAgainstTeam[iI] = 0;
 		m_aiCounterespionageModAgainstTeam[iI] = 0;
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+		m_aiWarPretextAgainstCount.push_back(0);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 		m_abHasMet[iI] = false;
 		m_abAtWar[iI] = false;
 		m_abPermanentWarPeace[iI] = false;
@@ -315,8 +361,13 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 /************************************************************************************************/
 		m_abLimitedBorders[iI] = false;
 		m_abEmbassy[iI] = false;
+		m_abFreeTradeAgreement[iI] = false;
+		m_aiHiredWarAlly[iI] = 0;
+		m_abHasPrepareWar[iI] = false; //byFra
+		m_abHasNonAggression[iI] = false; 
+		m_abHasPOW[iI] = false; 
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 
 		if (!bConstructorCall && getID() != NO_TEAM)
@@ -337,13 +388,18 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 			kLoopTeam.m_abVassal[getID()] = false;
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
-			kLoopTeam.m_abEmbassy[getID()] = false;
 			kLoopTeam.m_abLimitedBorders[getID()] = false;
+			kLoopTeam.m_abEmbassy[getID()] = false;
+			kLoopTeam.m_abFreeTradeAgreement[getID()] = false;
+			kLoopTeam.m_aiHiredWarAlly[getID()] = 0;
+			kLoopTeam.m_abHasPrepareWar[getID()] = false; 
+			kLoopTeam.m_abHasNonAggression[getID()] = false; 
+			kLoopTeam.m_abHasPOW[getID()] = false; 
+			kLoopTeam.m_aiWarPretextAgainstCount[getID()] = 0;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 		}
 	}
@@ -463,6 +519,14 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 		}
 
 		m_aeRevealedBonuses.clear();
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+		m_aVoteSourceCondemnedWarCount.clear();
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 		AI_reset(false);
 	}
 }
@@ -640,6 +704,16 @@ void CvTeam::addTeam(TeamTypes eTeam)
 						  (pNode->m_data.m_eItemType == TRADE_DEFENSIVE_PACT) ||
 						  (pNode->m_data.m_eItemType == TRADE_PEACE_TREATY) ||
 						  (pNode->m_data.m_eItemType == TRADE_VASSAL) ||
+/************************************************************************************************/
+/* Afforess	                  Start		 06/16/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+						  (pNode->m_data.m_eItemType == TRADE_RIGHT_OF_PASSAGE) ||
+						  (pNode->m_data.m_eItemType == TRADE_FREE_TRADE_ZONE) ||
+						  (pNode->m_data.m_eItemType == TRADE_NON_AGGRESSION) ||
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 						  (pNode->m_data.m_eItemType == TRADE_SURRENDER))
 					{
 						bValid = false;
@@ -653,6 +727,16 @@ void CvTeam::addTeam(TeamTypes eTeam)
 				{
 					if ((pNode->m_data.m_eItemType == TRADE_OPEN_BORDERS) ||
 						  (pNode->m_data.m_eItemType == TRADE_DEFENSIVE_PACT) ||
+/************************************************************************************************/
+/* Afforess	                  Start		 06/16/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+						  (pNode->m_data.m_eItemType == TRADE_RIGHT_OF_PASSAGE) ||
+						  (pNode->m_data.m_eItemType == TRADE_FREE_TRADE_ZONE) ||
+						  (pNode->m_data.m_eItemType == TRADE_NON_AGGRESSION) ||
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 						  (pNode->m_data.m_eItemType == TRADE_PEACE_TREATY) ||
 						  (pNode->m_data.m_eItemType == TRADE_VASSAL) ||
 						  (pNode->m_data.m_eItemType == TRADE_SURRENDER))
@@ -745,7 +829,51 @@ void CvTeam::addTeam(TeamTypes eTeam)
 			}
 		}
 	}
-
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	for (iI = 0; iI < MAX_TEAMS; iI++)
+	{
+		if ((iI != getID()) && (iI != eTeam))
+		{
+			if (GET_TEAM((TeamTypes)iI).isAlive())
+			{
+				if (GET_TEAM(eTeam).isLimitedBorders((TeamTypes)iI))
+				{
+					setLimitedBorders(((TeamTypes)iI), true);
+					GET_TEAM((TeamTypes)iI).setLimitedBorders(getID(), true);
+				}
+				else if (isLimitedBorders((TeamTypes)iI))
+				{
+					GET_TEAM(eTeam).setLimitedBorders(((TeamTypes)iI), true);
+					GET_TEAM((TeamTypes)iI).setLimitedBorders(eTeam, true);
+				}
+			}
+		}
+	}
+	for (iI = 0; iI < MAX_TEAMS; iI++)
+	{
+		if ((iI != getID()) && (iI != eTeam))
+		{
+			if (GET_TEAM((TeamTypes)iI).isAlive())
+			{
+				if (GET_TEAM(eTeam).isHasEmbassy((TeamTypes)iI))
+				{
+					setHasEmbassy(((TeamTypes)iI), true);
+					GET_TEAM((TeamTypes)iI).setHasEmbassy(getID(), true);
+				}
+				else if (isDefensivePact((TeamTypes)iI) || isOpenBorders((TeamTypes)iI))
+				{
+					GET_TEAM(eTeam).setHasEmbassy(((TeamTypes)iI), true);
+					GET_TEAM((TeamTypes)iI).setHasEmbassy(eTeam, true);
+				}
+			}
+		}
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	for (iI = 0; iI < MAX_TEAMS; iI++)
 	{
 		if ((iI != getID()) && (iI != eTeam))
@@ -832,6 +960,13 @@ void CvTeam::addTeam(TeamTypes eTeam)
 			GET_PLAYER((PlayerTypes)iI).setTeam(getID());
 		}
 	}
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	updateActiveSenateCount();
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	for (iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
 	{
@@ -886,6 +1021,15 @@ void CvTeam::addTeam(TeamTypes eTeam)
 	}
 
 	AI_updateWorstEnemy();
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	GET_TEAM(eTeam).AI_updateEnemy();
+	GET_TEAM(eTeam).AI_updateClosestAlly();	
+	GET_TEAM(eTeam).AI_updateFriend();	
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	AI_updateAreaStragies();
 
@@ -987,6 +1131,17 @@ void CvTeam::shareCounters(TeamTypes eTeam)
 			{
 				setStolenVisibilityTimer(((TeamTypes)iI), GET_TEAM(eTeam).getStolenVisibilityTimer((TeamTypes)iI));
 			}
+			
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+			if (GET_TEAM(eTeam).getWarPretextAgainstCount((TeamTypes)iI) > getWarPretextAgainstCount((TeamTypes)iI))
+			{
+				setWarPretextAgainstCount(((TeamTypes)iI), GET_TEAM(eTeam).getWarPretextAgainstCount((TeamTypes)iI));
+			}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 			if (GET_TEAM(eTeam).AI_getAtWarCounter((TeamTypes)iI) > AI_getAtWarCounter((TeamTypes)iI))
 			{
@@ -1034,7 +1189,37 @@ void CvTeam::shareCounters(TeamTypes eTeam)
 			}
 
 			GET_TEAM(eTeam).AI_setWarPlan(((TeamTypes)iI), NO_WARPLAN, false);
-	}
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+			if (GET_TEAM(eTeam).AI_getLimitedBordersCounter((TeamTypes)iI) > AI_getLimitedBordersCounter((TeamTypes)iI))
+			{
+				AI_setLimitedBordersCounter(((TeamTypes)iI), GET_TEAM(eTeam).AI_getLimitedBordersCounter((TeamTypes)iI));
+			}
+
+			if (GET_TEAM(eTeam).AI_getEmbassyCounter((TeamTypes)iI) > AI_getEmbassyCounter((TeamTypes)iI))
+			{
+				AI_setEmbassyCounter(((TeamTypes)iI), GET_TEAM(eTeam).AI_getEmbassyCounter((TeamTypes)iI));
+			}
+
+			if (GET_TEAM(eTeam).AI_getFreeTradeAgreementCounter((TeamTypes)iI) > AI_getFreeTradeAgreementCounter((TeamTypes)iI))
+			{
+				AI_setFreeTradeAgreementCounter(((TeamTypes)iI), GET_TEAM(eTeam).AI_getFreeTradeAgreementCounter((TeamTypes)iI));
+			}
+
+			if (GET_TEAM(eTeam).AI_getNonAggressionCounter((TeamTypes)iI) > AI_getNonAggressionCounter((TeamTypes)iI))
+			{
+				AI_setNonAggressionCounter(((TeamTypes)iI), GET_TEAM(eTeam).AI_getNonAggressionCounter((TeamTypes)iI));
+			}
+
+			if (GET_TEAM(eTeam).AI_getPOWCounter((TeamTypes)iI) > AI_getPOWCounter((TeamTypes)iI))
+			{
+				AI_setPOWCounter(((TeamTypes)iI), GET_TEAM(eTeam).AI_getPOWCounter((TeamTypes)iI));
+			}
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                      			 */
+/*************************************************************************************************/
+		}
 	}
 
 	for (iI = 0; iI < GC.getNumProjectInfos(); iI++)
@@ -1233,6 +1418,18 @@ void CvTeam::doTurn()
 			{
 				setCounterespionageModAgainstTeam((TeamTypes) iI, 0);
 			}
+			
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+			if (isWarPretextAgainst((TeamTypes)iI) && !isAtWar((TeamTypes)iI))
+			{
+				setWarPretextAgainstCount((TeamTypes)iI, 0);
+			}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 		}
 	}
 
@@ -1244,7 +1441,34 @@ void CvTeam::doTurn()
 		}
 
 	}
-
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	for (iI = 0; iI < MAX_TEAMS; iI++)
+	{
+		if (GET_TEAM((TeamTypes)iI).isAlive())
+		{
+			if (isHiredWarAlly((TeamTypes)iI))
+			{
+				m_aiHiredWarAlly[iI]--;
+			}
+		}
+	}
+	
+	if (isHuman() && getAtWarCount(false) > 0)
+	{
+		for (iI = 0; iI < MAX_PLAYERS; iI++)
+		{
+			if (GET_PLAYER((PlayerTypes)iI).isAlive() && /*GET_PLAYER(eTeamMember).getTeam() == getID() && */GET_PLAYER((PlayerTypes)iI).isActiveSenate())
+			{
+				GET_PLAYER((PlayerTypes)iI).AI_doPeace();
+			}
+		}
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	doWarWeariness();
 
 	testCircumnavigated();
@@ -1374,6 +1598,34 @@ bool CvTeam::canChangeWarPeace(TeamTypes eTeam, bool bAllowVassal) const
 	return true;
 }
 
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+bool CvTeam::isSenateVeto(TeamTypes eTeam, bool bVerify)
+{
+	if (isAnyActiveSenate() && !isWarPretextAgainst(eTeam))
+	{
+		for (int iI = 0; iI < MAX_PLAYERS; iI++)
+		{
+			if (GET_PLAYER((PlayerTypes)iI).isAlive())
+			{
+				if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
+				{
+					if (GET_PLAYER((PlayerTypes)iI).isSenateVeto(eTeam, bVerify))
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+
+	return false;
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 
 bool CvTeam::canDeclareWar(TeamTypes eTeam) const
 {
@@ -1386,7 +1638,7 @@ bool CvTeam::canDeclareWar(TeamTypes eTeam) const
 	{
 		return false;
 	}
-
+	
 	if (isAtWar(eTeam))
 	{
 		return false;
@@ -1437,8 +1689,131 @@ bool CvTeam::canDeclareWar(TeamTypes eTeam) const
 		}
 	}
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	if (isAnyActiveSenate() && !isWarPretextAgainst(eTeam))
+	{
+		for (int iI = 0; iI < MAX_PLAYERS; iI++)
+        {
+	        if (GET_PLAYER((PlayerTypes)iI).isAlive())
+            {
+                if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
+				{
+                    if (GET_PLAYER((PlayerTypes)iI).isSenateVeto(eTeam, !isHuman()))
+                    {
+                        return false;
+                    }
+              }
+            }
+        }
+	}
+
 	return true;
 }
+
+bool CvTeam::canDeclareWarWithoutSenate(TeamTypes eTeam) const
+{
+	FAssert(eTeam != NO_TEAM);
+
+	if (!GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+	{
+		return true;
+	}
+
+	return true;
+
+//THOLAL NOTE - Figure out how this was meant to be used and decide it it can fit into FFH
+
+	if (eTeam == getID())
+	{
+		return false;
+	}
+
+	if (!(isAlive()) || !(GET_TEAM(eTeam).isAlive()))
+	{
+		return false;
+	}
+
+	if (isAtWar(eTeam))
+	{
+		return false;
+	}
+
+	if (!isHasMet(eTeam))
+	{
+		return false;
+	}
+
+	if (isForcePeace(eTeam))
+	{
+		return false;
+	}
+
+	for (int iI = 0; iI < MAX_TEAMS; ++iI)
+	{
+		if (GET_TEAM((TeamTypes)iI).isAlive())
+		{
+			if (iI != eTeam && iI != getID() && GET_TEAM(eTeam).isVassal((TeamTypes)iI))
+			{
+				if (isForcePeace((TeamTypes)iI))
+				{
+					return false;
+				}
+			}
+		}
+	}
+
+	if (!canChangeWarPeace(eTeam, true))
+	{
+		return false;
+	}
+
+	if (GC.getGameINLINE().isOption(GAMEOPTION_ALWAYS_PEACE))
+	{
+		return false;
+	}
+
+	if (GC.getUSE_CAN_DECLARE_WAR_CALLBACK())
+	{
+		CyArgsList argsList;
+		argsList.add(getID());	// Team ID
+		argsList.add(eTeam);	// pass in city class
+		long lResult=0;
+		gDLL->getPythonIFace()->callFunction(PYGameModule, "canDeclareWar", argsList.makeFunctionArgs(), &lResult);
+
+		if (lResult == 0)
+		{
+			return false;
+		}
+	}
+
+	if (isHuman())
+	{
+		if (isAnyActiveSenate() && !isWarPretextAgainst(eTeam))
+        {
+			for (int iI = 0; iI < MAX_PLAYERS; iI++)
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isAlive())
+				{
+					if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
+					{
+						if (GET_PLAYER((PlayerTypes)iI).isSenateVeto(eTeam, !isHuman()))
+						{
+							return false;
+						}
+					}
+				}
+            }
+        }
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
+	return true;
+}
+
 
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      01/16/10                                jdog5000      */
@@ -1552,10 +1927,33 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 
 		for (iI = 0; iI < MAX_PLAYERS; iI++)
 		{
-			if ((GET_PLAYER((PlayerTypes)iI).getTeam() == getID()) || (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam))
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+			if (((GET_PLAYER((PlayerTypes)iI).getTeam() == getID()) || (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam)) && GET_PLAYER((PlayerTypes)iI).isAlive())
 			{
 				GET_PLAYER((PlayerTypes)iI).updatePlunder(-1, false);
 			}
+
+			if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID() && GET_PLAYER((PlayerTypes)iI).isAlive())
+			{
+				if (GET_PLAYER((PlayerTypes)iI).getPledgedSecretaryGeneralVote() == eTeam)
+				{
+					GET_PLAYER((PlayerTypes)iI).setPledgedSecretaryGeneralVote(NO_TEAM);
+				}
+			}
+
+			if (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam && GET_PLAYER((PlayerTypes)iI).isAlive())
+			{
+				if (GET_PLAYER((PlayerTypes)iI).getPledgedSecretaryGeneralVote() == getID())
+				{
+					GET_PLAYER((PlayerTypes)iI).setPledgedSecretaryGeneralVote(NO_TEAM);
+				}
+			}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 		}
 
 		FAssertMsg(eTeam != getID(), "eTeam is not expected to be equal with getID()");
@@ -1576,8 +1974,15 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 
 		for (iI = 0; iI < MAX_PLAYERS; iI++)
 		{
-			if ((GET_PLAYER((PlayerTypes)iI).getTeam() == getID()) || (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam))
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+			if (((GET_PLAYER((PlayerTypes)iI).getTeam() == getID()) || (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam)) && GET_PLAYER((PlayerTypes)iI).isAlive())
 			{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 				GET_PLAYER((PlayerTypes)iI).updatePlunder(1, false);
 			}
 		}
@@ -1641,7 +2046,15 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 
 		for (iI = 0; iI < MAX_PLAYERS; iI++)
 		{
-			if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+			if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID() && GET_PLAYER((PlayerTypes)iI).isAlive())
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 			{
 				GET_PLAYER((PlayerTypes)iI).verifyUnitStacksValid();
 			}
@@ -2004,6 +2417,20 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 /************************************************************************************************/
 /* REVOLUTION_MOD                          END                                                  */
 /************************************************************************************************/
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+		if (!GET_TEAM(eTeam).isBarbarian() && !GET_TEAM(eTeam).isMinorCiv())
+		{
+			for (iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
+			{
+				changeVoteSourceCondemnedWarCount((VoteSourceTypes)iI, eTeam, 1);
+			}
+		}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 	}
 }
 
@@ -2024,8 +2451,15 @@ void CvTeam::makePeace(TeamTypes eTeam, bool bBumpUnits)
 
 		for (iI = 0; iI < MAX_PLAYERS; iI++)
 		{
-			if ((GET_PLAYER((PlayerTypes)iI).getTeam() == getID()) || (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam))
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+			if (((GET_PLAYER((PlayerTypes)iI).getTeam() == getID()) || (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam)) && GET_PLAYER((PlayerTypes)iI).isAlive())
 			{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 				GET_PLAYER((PlayerTypes)iI).updatePlunder(-1, false);
 			}
 		}
@@ -2048,11 +2482,44 @@ void CvTeam::makePeace(TeamTypes eTeam, bool bBumpUnits)
 
 		for (iI = 0; iI < MAX_PLAYERS; iI++)
 		{
-			if ((GET_PLAYER((PlayerTypes)iI).getTeam() == getID()) || (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam))
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+			if (((GET_PLAYER((PlayerTypes)iI).getTeam() == getID()) || (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam)) && GET_PLAYER((PlayerTypes)iI).isAlive())
 			{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 				GET_PLAYER((PlayerTypes)iI).updatePlunder(1, false);
 			}
 		}
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			for (iI = 0; iI < MAX_PLAYERS; iI++)
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isAlive())
+				{
+					if (isHiredWarAlly(GET_PLAYER((PlayerTypes)iI).getTeam()))
+					{
+						for (int iJ = 0; iJ < MAX_PLAYERS; iJ++)
+						{
+							if (GET_PLAYER((PlayerTypes)iJ).getTeam() == getID() && GET_PLAYER((PlayerTypes)iJ).isAlive())
+							{
+								GET_PLAYER((PlayerTypes)iI).AI_changeMemoryCount((PlayerTypes)iJ, MEMORY_WARMONGER, 1);
+							}
+						}
+					}
+				}
+			}
+		}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 		AI_setAtWarCounter(eTeam, 0);
 		GET_TEAM(eTeam).AI_setAtWarCounter(getID(), 0);
@@ -2273,6 +2740,24 @@ void CvTeam::makePeace(TeamTypes eTeam, bool bBumpUnits)
 				}
 			}
 		}
+
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+		for (int iI = 0; iI < GC.getNumVoteSourceInfos(); ++iI)
+		{
+			if (getVoteSourceCondemnedWarCount((VoteSourceTypes)iI, eTeam) > 0)
+			{
+				setVoteSourceCondemnedWarCount((VoteSourceTypes)iI, eTeam, 0);
+			}
+			if (GET_TEAM(eTeam).getVoteSourceCondemnedWarCount((VoteSourceTypes)iI, getID()) > 0)
+			{
+				GET_TEAM(eTeam).setVoteSourceCondemnedWarCount((VoteSourceTypes)iI, getID(), 0);
+			}
+		}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	}
 }
 
@@ -2385,6 +2870,20 @@ void CvTeam::signDefensivePact(TeamTypes eTeam)
 
 bool CvTeam::canSignDefensivePact(TeamTypes eTeam)
 {
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+	{
+	    if (!isHasEmbassy(eTeam))
+	    {
+	        return false;
+	    }
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	for (int iTeam = 0; iTeam < MAX_CIV_TEAMS; ++iTeam)
 	{
 		if (iTeam != getID() && iTeam != eTeam)
@@ -2428,6 +2927,47 @@ int CvTeam::getAssets() const
 }
 
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                              */
+/************************************************************************************************/
+int CvTeam::getSenateOppositionValue(TeamTypes eAgainstTeam) const
+{
+	int iPowerRatio = ((getPower(false)*100)/std::max(1, GET_TEAM(eAgainstTeam).getPower(false)));
+	return (((((GET_TEAM(getID()).AI_declareWarTradeVal(eAgainstTeam, getID()) + (GET_TEAM(getID()).AI_startWarVal(eAgainstTeam)*2)) / 3))) - GET_TEAM(getID()).AI_makePeaceTradeVal(eAgainstTeam, getID())) / 100;
+}
+
+
+bool CvTeam::isSenateWarOpposition(TeamTypes eAgainstTeam) const
+{
+	if (isWarPretextAgainst(eAgainstTeam))
+	{
+		return false;
+	}
+
+	int iValue = getSenateOppositionValue(eAgainstTeam);
+	iValue /= 100;
+
+	if (iValue < 0)
+	{
+		return true;
+	}
+	else
+	{
+		iValue = range((100 - iValue), 1, 99);
+		if (GC.getGameINLINE().getSorenRandNum(100, "Senate War Opposition") <= iValue)
+		{
+			return true;
+		}
+	}
+
+    return false;
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
+
+
 int CvTeam::getPower(bool bIncludeVassals) const
 {
 	int iCount;
@@ -2443,6 +2983,17 @@ int CvTeam::getPower(bool bIncludeVassals) const
 			if (kLoopPlayer.getTeam() == getID() || (bIncludeVassals && GET_TEAM(kLoopPlayer.getTeam()).isVassal(getID())))
 			{
 				iCount += kLoopPlayer.getPower();
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+				if (GET_TEAM(kLoopPlayer.getTeam()).isVassal(getID()))
+				{
+					iCount -= kLoopPlayer.getTechPower();
+				}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 			}
 		}
 	}
@@ -2492,7 +3043,6 @@ int CvTeam::getEnemyPower() const
 
 	return iCount;
 }
-
 
 int CvTeam::getNumNukeUnits() const
 {
@@ -2567,8 +3117,15 @@ bool CvTeam::isFullMember(VoteSourceTypes eVoteSource) const
 	for (int iI = 0; iI < MAX_PLAYERS; iI++)
 	{
 		CvPlayer& kLoopPlayer = GET_PLAYER((PlayerTypes)iI);
-		if (kLoopPlayer.getTeam() == getID())
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+		if (kLoopPlayer.getTeam() == getID() && kLoopPlayer.isAlive())
 		{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 			if (!kLoopPlayer.isFullMember(eVoteSource))
 			{
 				return false;
@@ -4274,6 +4831,16 @@ void CvTeam::changeIrrigationCount(int iChange)
 	}
 }
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+bool CvTeam::canTradeMap() const
+{
+	return isMapTrading();
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 int CvTeam::getIgnoreIrrigationCount() const
 {
@@ -4515,6 +5082,53 @@ void CvTeam::changeTechShareCount(int iIndex, int iChange)
 }
 
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+int CvTeam::getWarPretextAgainstCount(TeamTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiWarPretextAgainstCount[eIndex];
+}
+
+
+bool CvTeam::isWarPretextAgainst(TeamTypes eIndex) const
+{
+	return (getWarPretextAgainstCount(eIndex) > 0);
+}
+
+
+void CvTeam::setWarPretextAgainstCount(TeamTypes eIndex, int iNewValue)
+{
+	FAssertMsg(eIndex >= 0, "iIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "iIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (!isBarbarian() && !isMinorCiv() && !GET_TEAM(eIndex).isBarbarian() && !GET_TEAM(eIndex).isMinorCiv())
+	{
+		if (iNewValue != getWarPretextAgainstCount(eIndex))
+		{
+			m_aiWarPretextAgainstCount[eIndex] = iNewValue;
+		}
+	}
+}
+
+
+void CvTeam::changeWarPretextAgainstCount(TeamTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "iIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "iIndex is expected to be within maximum bounds (invalid Index)");
+	if (!GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+	{
+		setWarPretextAgainstCount(eIndex, (0));
+	}
+	setWarPretextAgainstCount(eIndex, (getWarPretextAgainstCount(eIndex) + iChange));
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
+
 int CvTeam::getCommerceFlexibleCount(CommerceTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -4572,6 +5186,171 @@ bool CvTeam::isHasMet(TeamTypes eIndex)	const
 	//FAssert((eIndex != getID()) || m_abHasMet[eIndex]);
 	return m_abHasMet[eIndex];
 }
+
+
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+bool CvTeam::isHasNonAggression(TeamTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	//FAssert((eIndex != getID()) || m_abHasEverMet[eIndex]);
+	return m_abHasNonAggression[eIndex];
+}
+
+
+void CvTeam::setHasNonAggression(TeamTypes eIndex, bool bNewValue) 
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	if (m_abHasNonAggression[eIndex] != bNewValue)
+	{
+		m_abHasNonAggression[eIndex] = bNewValue;
+
+		AI_setNonAggressionCounter(eIndex, 0);
+
+		GC.getMapINLINE().verifyUnitValidPlot();
+
+		if ((getID() == GC.getGameINLINE().getActiveTeam()) || (eIndex == GC.getGameINLINE().getActiveTeam()))
+		{
+			gDLL->getInterfaceIFace()->setDirty(Score_DIRTY_BIT, true);
+		}
+		if (bNewValue && !GET_TEAM(eIndex).isHasNonAggression(getID()))
+		{
+			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_NON_AGGRESSION_AGREEMENT", getName().GetCString(), GET_TEAM(eIndex).getName().GetCString());
+			for (int iI = 0; iI < MAX_PLAYERS; iI++)
+			{
+				CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iI);
+				if (kPlayer.isAlive())
+				{
+					if (isHasMet(kPlayer.getTeam()) && GET_TEAM(eIndex).isHasMet(kPlayer.getTeam()))
+					{
+						gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_WELOVEKING", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+					}
+				}
+			}
+		}
+		m_abHasNonAggression[eIndex] = bNewValue;
+	}
+}
+
+
+bool CvTeam::isHasPrepareWar(TeamTypes eIndex)	const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_abHasPrepareWar[eIndex];
+}
+
+
+void CvTeam::setHasPrepareWar(TeamTypes eIndex, bool bNewValue) 
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	if (m_abHasPrepareWar[eIndex] != bNewValue)
+	{
+		if ((getID() == GC.getGameINLINE().getActiveTeam()) || (eIndex == GC.getGameINLINE().getActiveTeam()))
+		{
+			gDLL->getInterfaceIFace()->setDirty(Score_DIRTY_BIT, true);
+		}
+		m_abHasPrepareWar[eIndex] = bNewValue;
+	}
+}
+
+
+bool CvTeam::isHasPOW(TeamTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	//FAssert((eIndex != getID()) || m_abHasEverMet[eIndex]);
+	return m_abHasPOW[eIndex];
+}
+
+
+void CvTeam::setHasPOW(TeamTypes eIndex, bool bNewValue) 
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	if (m_abHasPOW[eIndex] != bNewValue)
+	{
+		m_abHasPOW[eIndex] = bNewValue;
+
+		AI_setPOWCounter(eIndex, 0);
+
+		GC.getMapINLINE().verifyUnitValidPlot();
+
+		if ((getID() == GC.getGameINLINE().getActiveTeam()) || (eIndex == GC.getGameINLINE().getActiveTeam()))
+		{
+			gDLL->getInterfaceIFace()->setDirty(Score_DIRTY_BIT, true);
+		}
+		if (bNewValue && !GET_TEAM(eIndex).isHasPOW(getID()))
+		{
+			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_POW_AGREEMENT", getName().GetCString(), GET_TEAM(eIndex).getName().GetCString());
+			for (int iI = 0; iI < MAX_PLAYERS; iI++)
+			{
+				CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iI);
+				if (kPlayer.isAlive())
+				{
+					if (isHasMet(kPlayer.getTeam()) && GET_TEAM(eIndex).isHasMet(kPlayer.getTeam()))
+					{
+						gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_WELOVEKING", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+					}
+				}
+			}
+		}
+		m_abHasPOW[eIndex] = bNewValue;
+	}
+}
+
+
+bool CvTeam::canSignNonAggression(TeamTypes eTeam) const
+{
+	for (int iTeam = 0; iTeam < MAX_CIV_TEAMS; ++iTeam)
+	{
+		if (iTeam != getID() && iTeam != eTeam)
+		{
+			CvTeam& kLoopTeam = GET_TEAM((TeamTypes)iTeam);
+			if (kLoopTeam.isPermanentWarPeace(eTeam) != kLoopTeam.isPermanentWarPeace(getID()))
+			{
+				return false;
+			}
+
+			if (isPermanentWarPeace((TeamTypes)iTeam) != GET_TEAM(eTeam).isPermanentWarPeace((TeamTypes)iTeam))
+			{
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+
+
+bool CvTeam::canSignPOW(TeamTypes eTeam) const
+{
+	for (int iTeam = 0; iTeam < MAX_CIV_TEAMS; ++iTeam)
+	{
+		if (iTeam != getID() && iTeam != eTeam)
+		{
+			CvTeam& kLoopTeam = GET_TEAM((TeamTypes)iTeam);
+			if (kLoopTeam.isPermanentWarPeace(eTeam) != kLoopTeam.isPermanentWarPeace(getID()))
+			{
+				return false;
+			}
+
+			if (isPermanentWarPeace((TeamTypes)iTeam) != GET_TEAM(eTeam).isPermanentWarPeace((TeamTypes)iTeam))
+			{
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 
 /************************************************************************************************/
 /* REVOLUTION_MOD                         02/01/08                                jdog5000      */
@@ -4680,6 +5459,9 @@ void CvTeam::makeHasMet(TeamTypes eIndex, bool bNewDiplo)
 				}
 			}
 		}
+
+		// report event to Python, along with some other key state
+		CvEventReporter::getInstance().firstContact(getID(), eIndex);
 	}
 }
 
@@ -4729,14 +5511,12 @@ bool CvTeam::isFreeTrade(TeamTypes eIndex) const
 	}
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 	if (isOpenBorders(eIndex))
 	{ 
 		return true;
 	}
-	
 	//If the secretary general voted for open markets
 	if (GC.getGameINLINE().isFreeTrade())
 	{
@@ -4748,12 +5528,16 @@ bool CvTeam::isFreeTrade(TeamTypes eIndex) const
 		return true;
 	}
 	
-	return false;
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
-}
+	if (isFreeTradeAgreement(eIndex))
+	{
+		return true;
+	}
 
+	return false;
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 bool CvTeam::isOpenBorders(TeamTypes eIndex) const
 {
@@ -4852,6 +5636,30 @@ void CvTeam::setDefensivePact(TeamTypes eIndex, bool bNewValue)
 				}
 			}
 		}
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+		// edead: start broken pacts
+		if (!bNewValue && GET_TEAM(eIndex).isDefensivePact(getID()) && isAlive() && GET_TEAM(eIndex).isAlive())
+		{
+			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_PLAYERS_BREAK_DEFENSIVE_PACT", getName().GetCString(), GET_TEAM(eIndex).getName().GetCString());
+			GC.getGameINLINE().addReplayMessage(REPLAY_MESSAGE_MAJOR_EVENT, getLeaderID(), szBuffer, -1, -1, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+			for (int iI = 0; iI < MAX_PLAYERS; iI++)
+			{
+				CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iI);
+				if (kPlayer.isAlive())
+				{
+					if (isHasMet(kPlayer.getTeam()) && GET_TEAM(eIndex).isHasMet(kPlayer.getTeam()))
+					{
+						gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DEAL_CANCELLED", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+					}
+				}
+			}
+		}
+		// edead: end
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                  			 */
+/*************************************************************************************************/
 
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      09/03/09                       poyuzhe & jdog5000     */
@@ -4936,8 +5744,15 @@ void CvTeam::setVassal(TeamTypes eIndex, bool bNewValue, bool bCapitulated)
 	{
 		for (int i = 0; i < MAX_PLAYERS; i++)
 		{
-			if (GET_PLAYER((PlayerTypes)i).getTeam() == getID())
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+			if (GET_PLAYER((PlayerTypes)i).getTeam() == getID() && GET_PLAYER((PlayerTypes)i).isAlive())
 			{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 				GET_PLAYER((PlayerTypes)i).updateCitySight(false, false);
 			}
 		}
@@ -4998,8 +5813,15 @@ void CvTeam::setVassal(TeamTypes eIndex, bool bNewValue, bool bCapitulated)
 
 		for (int i = 0; i < MAX_PLAYERS; i++)
 		{
-			if (GET_PLAYER((PlayerTypes)i).getTeam() == getID())
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+			if (GET_PLAYER((PlayerTypes)i).getTeam() == getID() && GET_PLAYER((PlayerTypes)i).isAlive())
 			{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 				GET_PLAYER((PlayerTypes)i).updateCitySight(true, false);
 			}
 		}
@@ -5062,7 +5884,22 @@ void CvTeam::setVassal(TeamTypes eIndex, bool bNewValue, bool bCapitulated)
 					}
 				}
 			}
-
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/		
+			// edead: defensive pacts have to additionally be broken this way because if set from WB or Python, they do not count as deals
+			for (int i = 0; i < MAX_TEAMS; ++i)
+			{
+				if (isDefensivePact((TeamTypes)i))
+				{
+					setDefensivePact(((TeamTypes)i), false);
+					GET_TEAM((TeamTypes)i).setDefensivePact(getID(), false);
+				}
+			}
+			// edead: end
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                 			 */
+/*************************************************************************************************/
 			setForcePeace(eIndex, false);
 			GET_TEAM(eIndex).setForcePeace(getID(), false);
 
@@ -5209,8 +6046,15 @@ void CvTeam::setVassal(TeamTypes eIndex, bool bNewValue, bool bCapitulated)
 		for (int iPlayer = 0; iPlayer < MAX_PLAYERS; iPlayer++)
 		{
 			CvPlayer& kLoopPlayer = GET_PLAYER((PlayerTypes)iPlayer);
-			if (kLoopPlayer.getTeam() == eIndex)
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+			if (kLoopPlayer.getTeam() == eIndex && kLoopPlayer.isAlive())
 			{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 				kLoopPlayer.updateMaintenance();
 			}
 		}
@@ -5288,8 +6132,15 @@ void CvTeam::assignVassal(TeamTypes eVassal, bool bSurrender) const
 
 			for (int jPlayer = 0; jPlayer < MAX_PLAYERS; jPlayer++)
 			{
-				if (GET_PLAYER((PlayerTypes)jPlayer).getTeam() == getID())
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+				if (GET_PLAYER((PlayerTypes)jPlayer).getTeam() == getID() && GET_PLAYER((PlayerTypes)jPlayer).isAlive())
 				{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 					GC.getGameINLINE().implementDeal(((PlayerTypes)jPlayer), ((PlayerTypes)iPlayer), &ourList, &theirList, true);
 				}
 			}
@@ -6596,6 +7447,48 @@ void CvTeam::setNoTradeTech(TechTypes eIndex, bool bNewValue)
 }
 
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+int CvTeam::getActiveSenateCount() const
+{
+	return m_iActiveSenateCount;
+}
+
+
+bool CvTeam::isAnyActiveSenate() const
+{
+	return (getActiveSenateCount() > 0);
+}
+
+
+void CvTeam::changeActiveSenateCount(int iChange)
+{
+	m_iActiveSenateCount += iChange;
+}
+
+void CvTeam::updateActiveSenateCount()
+{
+	int iCount = 0;
+
+	for (int iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		if (GET_PLAYER((PlayerTypes)iI).isAlive())
+		{
+			if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isActiveSenate())
+				{
+					iCount++;
+				}
+			}
+		}
+	}
+
+	m_iActiveSenateCount = iCount;
+}
+
+
 int CvTeam::getImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2) const
 {
 	FAssertMsg(eIndex1 >= 0, "eIndex1 is expected to be non-negative (invalid Index)");
@@ -6604,6 +7497,125 @@ int CvTeam::getImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eInde
 	FAssertMsg(eIndex2 < NUM_YIELD_TYPES, "eIndex2 is expected to be within maximum bounds (invalid Index)");
 	return m_ppaaiImprovementYieldChange[eIndex1][eIndex2];
 }
+
+
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+bool CvTeam::isVoteSourceCondemned(VoteSourceTypes eIndex) const
+{
+	return isVoteSourceCondemnedWar(eIndex);
+}
+
+
+int CvTeam::getVoteSourceCondemnedWarCount(VoteSourceTypes eVoteSource, TeamTypes eTeam) const
+{
+	FAssertMsg(eVoteSource >= 0, "eVoteSource is expected to be non-negative (invalid Index)");
+	FAssertMsg(eVoteSource < GC.getNumVoteSourceInfos(), "eVoteSource is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(eTeam >= 0, "eTeam is expected to be non-negative (invalid Index)");
+	FAssertMsg(eTeam < MAX_CIV_TEAMS, "eTeam is expected to be within maximum bounds (invalid Index)");
+
+	for (std::vector<VoteSourceCondemnedWar>::const_iterator it = m_aVoteSourceCondemnedWarCount.begin(); it != m_aVoteSourceCondemnedWarCount.end(); ++it)
+	{
+		if ((*it).eVoteSource == eVoteSource && (*it).eWarTeam == eTeam)
+		{
+			return (*it).iCount;
+		}
+	}
+
+	return 0;
+}
+
+
+bool CvTeam::isVoteSourceCondemnedWarValidArray() const
+{
+	return (m_aVoteSourceCondemnedWarCount.size() > 0);
+}
+
+
+bool CvTeam::isVoteSourceCondemnedWar(VoteSourceTypes eVoteSource) const
+{
+	if (!GC.getGameINLINE().isPacificVoteSource(eVoteSource))
+	{
+		return false;
+	}
+
+	for (int iI = 0; iI < MAX_CIV_TEAMS; iI++)
+	{
+		if (getVoteSourceCondemnedWarCount(eVoteSource, (TeamTypes)iI) > 0)
+		{
+			if (isAtWar((TeamTypes)iI))
+			{
+				return true;
+			}
+//			else
+//			{
+//				setVoteSourceCondemnedWarCount(eVoteSource, (TeamTypes)iI, 0);
+//			}
+		}
+	}
+
+	return false;
+}
+
+
+void CvTeam::changeVoteSourceCondemnedWarCount(VoteSourceTypes eVoteSource, TeamTypes eTeam, int iChange)
+{
+	FAssertMsg(eVoteSource >= 0, "eVoteSource is expected to be non-negative (invalid Index)");
+	FAssertMsg(eVoteSource < GC.getNumVoteSourceInfos(), "eVoteSource is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(eTeam >= 0, "eTeam is expected to be non-negative (invalid Index)");
+	FAssertMsg(eTeam < MAX_CIV_TEAMS, "eTeam is expected to be within maximum bounds (invalid Index)");
+
+	setVoteSourceCondemnedWarCount(eVoteSource, eTeam, getVoteSourceCondemnedWarCount(eVoteSource, eTeam)+iChange);
+}
+
+
+void CvTeam::setVoteSourceCondemnedWarCount(VoteSourceTypes eVoteSource, TeamTypes eTeam, int iNewValue)
+{
+	FAssertMsg(eVoteSource >= 0, "eVoteSource is expected to be non-negative (invalid Index)");
+	FAssertMsg(eVoteSource < GC.getNumVoteSourceInfos(), "eVoteSource is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(eTeam >= 0, "eTeam is expected to be non-negative (invalid Index)");
+	FAssertMsg(eTeam < MAX_CIV_TEAMS, "eTeam is expected to be within maximum bounds (invalid Index)");
+
+	if (iNewValue != getVoteSourceCondemnedWarCount(eVoteSource, eTeam))
+	{
+		bool bCreate = true;
+		for (std::vector<VoteSourceCondemnedWar>::iterator it = m_aVoteSourceCondemnedWarCount.begin(); it != m_aVoteSourceCondemnedWarCount.end(); ++it)
+		{
+			if ((*it).eVoteSource == eVoteSource && (*it).eWarTeam == eTeam)
+			{
+				if ((*it).iCount != iNewValue)
+				{
+					if (iNewValue == 0)
+					{
+						m_aVoteSourceCondemnedWarCount.erase(it);
+					}
+					else
+					{
+						(*it).iCount = iNewValue;
+					}
+				}
+
+				bCreate =  false;
+				break;
+			}
+		}
+
+		if (bCreate && 0 != iNewValue)
+		{
+			VoteSourceCondemnedWar kChange;
+			kChange.eVoteSource = eVoteSource;
+			kChange.eWarTeam = eTeam;
+			kChange.iCount = 0;
+			m_aVoteSourceCondemnedWarCount.push_back(kChange);
+		}
+
+		GC.getGameINLINE().updateSecretaryGeneral();
+	}
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 
 void CvTeam::changeImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2, int iChange)
@@ -6873,9 +7885,9 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 	{
 		changeOpenBordersTradingCount(iChange);
 	}
+	
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 	if (kTech.isLimitedBordersTrading())
@@ -6887,9 +7899,25 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 	{
 		changeEmbassyTradingCount(iChange);
 	}
+	
+	if (kTech.isFreeTradeAgreementTrading())
+	{
+		changeFreeTradeAgreementTradingCount(iChange);
+	}
+	
+	if (kTech.isNonAggressionTrading())
+	{
+		changeNonAggressionTradingCount(iChange);
+	}
+
+	if (kTech.isPOWTrading())
+	{
+		changePOWTradingCount(iChange);
+	}
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
+
 	if (kTech.isDefensivePactTrading())
 	{
 		changeDefensivePactTradingCount(iChange);
@@ -7000,6 +8028,15 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 			GET_PLAYER((PlayerTypes)iI).changeAssets(kTech.getAssetValue() * iChange);
 			GET_PLAYER((PlayerTypes)iI).changePower(kTech.getPowerValue() * iChange);
 			GET_PLAYER((PlayerTypes)iI).changeTechScore(getTechScore(eTech) * iChange);
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+			GET_PLAYER((PlayerTypes)iI).changeTechPower(kTech.getPowerValue() * iChange);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 		}
 	}
 
@@ -7397,6 +8434,14 @@ void CvTeam::read(FDataStreamBase* pStream)
 	// Init data before load
 	reset();
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	int iNumElts;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 	uint uiFlag=0;
 	pStream->Read(&uiFlag);	// flags for expansion
 
@@ -7412,6 +8457,17 @@ void CvTeam::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iTechTradingCount);
 	pStream->Read(&m_iGoldTradingCount);
 	pStream->Read(&m_iOpenBordersTradingCount);
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	pStream->Read(&m_iLimitedBordersTradingCount);
+	pStream->Read(&m_iEmbassyTradingCount);
+	pStream->Read(&m_iFreeTradeAgreementTradingCount);
+	pStream->Read(&m_iNonAggressionTradingCount);
+	pStream->Read(&m_iPOWTradingCount);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	pStream->Read(&m_iDefensivePactTradingCount);
 	pStream->Read(&m_iPermanentAllianceTradingCount);
 	pStream->Read(&m_iVassalTradingCount);
@@ -7425,6 +8481,13 @@ void CvTeam::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iEnemyWarWearinessModifier);
 	pStream->Read(&m_iRiverTradeCount);
 	pStream->Read(&m_iEspionagePointsEver);
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	pStream->Read(&m_iActiveSenateCount);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	pStream->Read(&m_bMapCentering);
 	pStream->Read(&m_bCapitulated);
@@ -7440,6 +8503,25 @@ void CvTeam::read(FDataStreamBase* pStream)
 	pStream->Read(MAX_TEAMS, m_aiWarWeariness);
 	pStream->Read(MAX_TEAMS, m_aiTechShareCount);
 	pStream->Read(MAX_TEAMS, m_aiEspionagePointsAgainstTeam);
+
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	{
+		m_aiWarPretextAgainstCount.clear();
+		uint iSize = MAX_TEAMS;
+
+		for (uint i = 0; i < iSize; i++)
+		{
+			int iValue;
+			pStream->Read(&iValue);
+			m_aiWarPretextAgainstCount.push_back(iValue);
+		}
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 	pStream->Read(MAX_TEAMS, m_aiCounterespionageTurnsLeftAgainstTeam);
 	pStream->Read(MAX_TEAMS, m_aiCounterespionageModAgainstTeam);
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCommerceFlexibleCount);
@@ -7450,6 +8532,26 @@ void CvTeam::read(FDataStreamBase* pStream)
 	pStream->Read(MAX_TEAMS, m_abAtWar);
 	pStream->Read(MAX_TEAMS, m_abPermanentWarPeace);
 	pStream->Read(MAX_TEAMS, m_abOpenBorders);
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pStream->Read(MAX_TEAMS, m_abLimitedBorders);
+	pStream->Read(MAX_TEAMS, m_abEmbassy);
+	pStream->Read(MAX_TEAMS, m_abFreeTradeAgreement);
+	pStream->Read(MAX_TEAMS, m_aiHiredWarAlly);
+	pStream->Read(MAX_TEAMS, m_abHasPrepareWar); 
+	pStream->Read(MAX_TEAMS, m_abHasNonAggression); 
+	pStream->Read(MAX_TEAMS, m_abHasPOW); 
+
+	pStream->Read(MAX_TEAMS, m_aiLimitedBordersCounter);
+	pStream->Read(MAX_TEAMS, m_aiEmbassyCounter);
+	pStream->Read(MAX_TEAMS, m_aiFreeTradeAgreementCounter);
+	pStream->Read(MAX_TEAMS, m_aiNonAggressionCounter);
+	pStream->Read(MAX_TEAMS, m_aiPOWCounter);
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                    			 */
+/*************************************************************************************************/
 	pStream->Read(MAX_TEAMS, m_abDefensivePact);
 	pStream->Read(MAX_TEAMS, m_abForcePeace);
 	pStream->Read(MAX_TEAMS, m_abVassal);
@@ -7478,7 +8580,20 @@ void CvTeam::read(FDataStreamBase* pStream)
 			m_pavProjectArtTypes[i].push_back(temp);
 		}
 	}
-
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	pStream->Read(&iNumElts);
+	m_aVoteSourceCondemnedWarCount.clear();
+	for (int i = 0; i < iNumElts; ++i)
+	{
+		VoteSourceCondemnedWar kChange;
+		kChange.read(pStream);
+		m_aVoteSourceCondemnedWarCount.push_back(kChange);
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	pStream->Read(GC.getNumProjectInfos(), m_paiProjectMaking);
 	pStream->Read(GC.getNumUnitClassInfos(), m_paiUnitClassCount);
 	pStream->Read(GC.getNumBuildingClassInfos(), m_paiBuildingClassCount);
@@ -7505,19 +8620,6 @@ void CvTeam::read(FDataStreamBase* pStream)
 		pStream->Read((int*)&eBonus);
 		m_aeRevealedBonuses.push_back(eBonus);
 	}
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	pStream->Read(&m_iEmbassyTradingCount);
-	pStream->Read(&m_iLimitedBordersTradingCount);
-	
-	pStream->Read(MAX_TEAMS, m_abEmbassy);
-	pStream->Read(MAX_TEAMS, m_abLimitedBorders);
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 }
 
 
@@ -7540,6 +8642,17 @@ void CvTeam::write(FDataStreamBase* pStream)
 	pStream->Write(m_iTechTradingCount);
 	pStream->Write(m_iGoldTradingCount);
 	pStream->Write(m_iOpenBordersTradingCount);
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	pStream->Write(m_iLimitedBordersTradingCount);
+	pStream->Write(m_iEmbassyTradingCount);
+	pStream->Write(m_iFreeTradeAgreementTradingCount);
+	pStream->Write(m_iNonAggressionTradingCount);
+	pStream->Write(m_iPOWTradingCount);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	pStream->Write(m_iDefensivePactTradingCount);
 	pStream->Write(m_iPermanentAllianceTradingCount);
 	pStream->Write(m_iVassalTradingCount);
@@ -7553,6 +8666,13 @@ void CvTeam::write(FDataStreamBase* pStream)
 	pStream->Write(m_iEnemyWarWearinessModifier);
 	pStream->Write(m_iRiverTradeCount);
 	pStream->Write(m_iEspionagePointsEver);
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	pStream->Write(m_iActiveSenateCount);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	pStream->Write(m_bMapCentering);
 	pStream->Write(m_bCapitulated);
@@ -7568,6 +8688,20 @@ void CvTeam::write(FDataStreamBase* pStream)
 	pStream->Write(MAX_TEAMS, m_aiWarWeariness);
 	pStream->Write(MAX_TEAMS, m_aiTechShareCount);
 	pStream->Write(MAX_TEAMS, m_aiEspionagePointsAgainstTeam);
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                              */
+/************************************************************************************************/
+	{
+		std::vector<int>::iterator it;
+		for (it = m_aiWarPretextAgainstCount.begin(); it != m_aiWarPretextAgainstCount.end(); ++it)
+		{
+			pStream->Write((*it));
+		}
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 	pStream->Write(MAX_TEAMS, m_aiCounterespionageTurnsLeftAgainstTeam);
 	pStream->Write(MAX_TEAMS, m_aiCounterespionageModAgainstTeam);
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCommerceFlexibleCount);
@@ -7578,6 +8712,26 @@ void CvTeam::write(FDataStreamBase* pStream)
 	pStream->Write(MAX_TEAMS, m_abAtWar);
 	pStream->Write(MAX_TEAMS, m_abPermanentWarPeace);
 	pStream->Write(MAX_TEAMS, m_abOpenBorders);
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pStream->Write(MAX_TEAMS, m_abLimitedBorders);
+	pStream->Write(MAX_TEAMS, m_abEmbassy);
+	pStream->Write(MAX_TEAMS, m_abFreeTradeAgreement);
+	pStream->Write(MAX_TEAMS, m_aiHiredWarAlly);
+	pStream->Write(MAX_TEAMS, m_abHasPrepareWar); 
+	pStream->Write(MAX_TEAMS, m_abHasNonAggression); 
+	pStream->Write(MAX_TEAMS, m_abHasPOW); 
+
+	pStream->Write(MAX_TEAMS, m_aiLimitedBordersCounter);
+	pStream->Write(MAX_TEAMS, m_aiEmbassyCounter);
+	pStream->Write(MAX_TEAMS, m_aiFreeTradeAgreementCounter);
+	pStream->Write(MAX_TEAMS, m_aiNonAggressionCounter);
+	pStream->Write(MAX_TEAMS, m_aiPOWCounter);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	pStream->Write(MAX_TEAMS, m_abDefensivePact);
 	pStream->Write(MAX_TEAMS, m_abForcePeace);
 	pStream->Write(MAX_TEAMS, m_abVassal);
@@ -7602,7 +8756,18 @@ void CvTeam::write(FDataStreamBase* pStream)
 		for(int j=0;j<m_paiProjectCount[i];j++)
 			pStream->Write(m_pavProjectArtTypes[i][j]);
 	}
-
+	
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	pStream->Write(m_aVoteSourceCondemnedWarCount.size());
+	for (std::vector<VoteSourceCondemnedWar>::iterator it = m_aVoteSourceCondemnedWarCount.begin(); it != m_aVoteSourceCondemnedWarCount.end(); ++it)
+	{
+		(*it).write(pStream);
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	pStream->Write(GC.getNumProjectInfos(), m_paiProjectMaking);
 	pStream->Write(GC.getNumUnitClassInfos(), m_paiUnitClassCount);
 	pStream->Write(GC.getNumBuildingClassInfos(), m_paiBuildingClassCount);
@@ -7625,19 +8790,6 @@ void CvTeam::write(FDataStreamBase* pStream)
 	{
 		pStream->Write(*it);
 	}
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	pStream->Write(m_iEmbassyTradingCount);
-	pStream->Write(m_iLimitedBordersTradingCount);
-	
-	pStream->Write(MAX_TEAMS, m_abEmbassy);
-	pStream->Write(MAX_TEAMS, m_abLimitedBorders);
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 }
 
 // CACHE: cache frequently used values
@@ -7726,7 +8878,6 @@ void CvTeam::setNoCivicAnger(bool bNewValue)
 
 /************************************************************************************************/
 /* Afforess	                  Start		 06/16/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 int CvTeam::getLimitedBordersTradingCount() const
@@ -7779,34 +8930,16 @@ bool CvTeam::canSignOpenBorders(TeamTypes eTeam)
 	    {
 	        return false;
 		}
+
+		/*
+	    if (!isLimitedBorders(eTeam))
+	    {
+	        return false;
+		}
+		*/
     }
+
     return true;
-}
-
-void CvTeam::sendAmbassador(TeamTypes eTeam)
-{
-    CLinkList<TradeData> ourList;
-    CLinkList<TradeData> theirList;
-    TradeData item;
-
-    FAssert(eTeam != NO_TEAM);
-    FAssert(eTeam != getID());
-
-    if (!isAtWar(eTeam) && (getID() != eTeam))
-    {
-        setTradeItem(&item, TRADE_EMBASSY);
-
-        if (GET_PLAYER(getLeaderID()).canTradeItem(GET_TEAM(eTeam).getLeaderID(), item) && GET_PLAYER(GET_TEAM(eTeam).getLeaderID()).canTradeItem(getLeaderID(), item))
-        {
-            ourList.clear();
-            theirList.clear();
-
-            ourList.insertAtEnd(item);
-            theirList.insertAtEnd(item);
-
-            GC.getGameINLINE().implementDeal(getLeaderID(), (GET_TEAM(eTeam).getLeaderID()), &ourList, &theirList);
-        }
-    }
 }
 
 
@@ -7855,7 +8988,6 @@ void CvTeam::setLimitedBorders(TeamTypes eIndex, bool bNewValue)
 	}
 }
 
-
 bool CvTeam::isHasEmbassy(TeamTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -7868,8 +9000,48 @@ void CvTeam::setHasEmbassy(TeamTypes eIndex, bool bNewValue)
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
 	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
     if (isHasEmbassy(eIndex) != bNewValue)
-    {
+	{
+		//m_abEmbassy[eIndex] = bNewValue;
+
+		AI_setEmbassyCounter(eIndex, 0);
+
+		GC.getMapINLINE().verifyUnitValidPlot();
+
+		if ((getID() == GC.getGameINLINE().getActiveTeam()) || (eIndex == GC.getGameINLINE().getActiveTeam()))
+		{
+			gDLL->getInterfaceIFace()->setDirty(Score_DIRTY_BIT, true);
+		}
+
+		// set visibility on capital
+		CvCity* pCapital;
+		
+		for (int iI = 0; iI < MAX_PLAYERS; ++iI)
+		{
+			//if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
+			if (GET_PLAYER((PlayerTypes)iI).getTeam() == eIndex)
+			{
+				pCapital = GET_PLAYER((PlayerTypes)iI).getCapitalCity();
+				if (pCapital != NULL)
+				{
+					//pCapital->plot()->updateSight(false, true);
+				}
+			}
+		}
+		
 		m_abEmbassy[eIndex] = bNewValue;
+		for (int iI = 0; iI < MAX_PLAYERS; ++iI)
+		{
+			if (GET_PLAYER((PlayerTypes)iI).getTeam() == eIndex)// || GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
+			{
+				pCapital = GET_PLAYER((PlayerTypes)iI).getCapitalCity();
+				if (pCapital != NULL)
+				{
+					//pCapital->plot()->updateSight(bNewValue, true);
+					pCapital->plot()->setRevealed(getID(), true, false, NO_TEAM, true);
+					pCapital->plot()->updateVisibility();
+				}
+			}
+		}
     }
 }
 
@@ -7891,6 +9063,330 @@ void CvTeam::changeEmbassyTradingCount(int iChange)
     }
 }
 
+bool CvTeam::isHiredWarAlly(TeamTypes eIndex) const
+
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiHiredWarAlly[eIndex] > 0;
+
+}
+
+void CvTeam::setHiredWarAlly(TeamTypes eIndex, bool bNewVal)
+
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	if (bNewVal)
+	{
+		int iMemoryTurns = GC.getDefineINT("REMEMBER_WAR_ALLY_TURNS");
+		iMemoryTurns *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getConstructPercent();
+		iMemoryTurns /= 100;
+		m_aiHiredWarAlly[eIndex] = iMemoryTurns;
+	}
+	else
+	{
+		m_aiHiredWarAlly[eIndex] = 0;
+	}
+}
+
+bool CvTeam::canSignFreeTradeAgreement(TeamTypes eTeam)
+{
+	if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+	{
+	    if (!isHasEmbassy(eTeam))
+	    {
+	        return false;
+		}
+    }
+
+	if (!isOpenBorders(eTeam))
+	{
+		return false;
+	}
+
+    return true;
+}
+
+int CvTeam::getFreeTradeAgreementTradingCount() const
+{
+    return m_iFreeTradeAgreementTradingCount;
+}
+
+bool CvTeam::isFreeTradeAgreementTrading() const
+{
+    return (getFreeTradeAgreementTradingCount() > 0);
+}
+
+void CvTeam::changeFreeTradeAgreementTradingCount(int iChange)
+{
+    if (iChange != 0)
+    {
+        m_iFreeTradeAgreementTradingCount = (m_iFreeTradeAgreementTradingCount + iChange);
+    }
+}
+
+bool CvTeam::isFreeTradeAgreement(TeamTypes eIndex) const
+
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_abFreeTradeAgreement[eIndex];
+}
+
+void CvTeam::setFreeTradeAgreement(TeamTypes eIndex, bool bNewValue)
+{
+	bool bOldFreeTrade;
+	int iI;
+
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (isFreeTradeAgreement(eIndex) != bNewValue)
+	{
+		bOldFreeTrade = isFreeTradeAgreement(eIndex);
+
+		m_abFreeTradeAgreement[eIndex] = bNewValue;
+	
+		AI_setFreeTradeAgreementCounter(eIndex, 0);
+
+		GC.getMapINLINE().verifyUnitValidPlot();
+
+		if ((getID() == GC.getGameINLINE().getActiveTeam()) || (eIndex == GC.getGameINLINE().getActiveTeam()))
+		{
+			gDLL->getInterfaceIFace()->setDirty(Score_DIRTY_BIT, true);
+		}
+
+		if (bOldFreeTrade != isFreeTradeAgreement(eIndex))
+		{
+			for (iI = 0; iI < MAX_PLAYERS; iI++)
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isAlive())
+				{
+					if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
+					{
+						GET_PLAYER((PlayerTypes)iI).updateTradeRoutes();
+					}
+				}
+			}
+		}
+	}
+}
+
+void CvTeam::signFreeTradeAgreement(TeamTypes eTeam)
+{
+	CLinkList<TradeData> ourList;
+	CLinkList<TradeData> theirList;
+	TradeData item;
+
+	FAssert(eTeam != NO_TEAM);
+	FAssert(eTeam != getID());
+
+	if (!isAtWar(eTeam) && (getID() != eTeam) && (!isFreeTradeAgreement(eTeam)))
+	{
+		setTradeItem(&item, TRADE_FREE_TRADE_ZONE);
+
+		if (GET_PLAYER(getLeaderID()).canTradeItem(GET_TEAM(eTeam).getLeaderID(), item) && GET_PLAYER(GET_TEAM(eTeam).getLeaderID()).canTradeItem(getLeaderID(), item))
+		{
+			ourList.clear();
+			theirList.clear();
+
+			ourList.insertAtEnd(item);
+			theirList.insertAtEnd(item);
+
+			GC.getGameINLINE().implementDeal(getLeaderID(), (GET_TEAM(eTeam).getLeaderID()), &ourList, &theirList);
+		}
+	}
+}
+
+int CvTeam::getNonAggressionTradingCount() const
+{
+	return m_iNonAggressionTradingCount;
+}
+
+bool CvTeam::isNonAggressionTrading() const
+{
+	return (getNonAggressionTradingCount() > 0);
+}
+
+void CvTeam::changeNonAggressionTradingCount(int iChange)
+{
+	m_iNonAggressionTradingCount = (m_iNonAggressionTradingCount + iChange);
+	FAssert(getNonAggressionTradingCount() >= 0);
+}
+
+void CvTeam::signNonAggression(TeamTypes eTeam)
+{
+	CLinkList<TradeData> ourList;
+	CLinkList<TradeData> theirList;
+	TradeData item;
+
+	FAssert(eTeam != NO_TEAM);
+	FAssert(eTeam != getID());
+
+	if (!isAtWar(eTeam) && (getID() != eTeam) && (!isNonAggressionTrading()))
+	{
+		setTradeItem(&item, TRADE_NON_AGGRESSION);
+
+		if (GET_PLAYER(getLeaderID()).canTradeItem(GET_TEAM(eTeam).getLeaderID(), item) && GET_PLAYER(GET_TEAM(eTeam).getLeaderID()).canTradeItem(getLeaderID(), item))
+		{
+			ourList.clear();
+			theirList.clear();
+
+			ourList.insertAtEnd(item);
+			theirList.insertAtEnd(item);
+
+			GC.getGameINLINE().implementDeal(getLeaderID(), (GET_TEAM(eTeam).getLeaderID()), &ourList, &theirList);
+		}
+	}
+}
+
+int CvTeam::getPOWTradingCount() const
+{
+	return m_iPOWTradingCount;
+}
+
+bool CvTeam::isPOWTrading() const
+{
+	return (getPOWTradingCount() > 0);
+}
+
+void CvTeam::changePOWTradingCount(int iChange)
+{
+	m_iPOWTradingCount = (m_iPOWTradingCount + iChange);
+	FAssert(getPOWTradingCount() >= 0);
+}
+
+void CvTeam::signPOW(TeamTypes eTeam)
+{
+	CLinkList<TradeData> ourList;
+	CLinkList<TradeData> theirList;
+	TradeData item;
+
+	FAssert(eTeam != NO_TEAM);
+	FAssert(eTeam != getID());
+
+	if (!isAtWar(eTeam) && (getID() != eTeam) && (!isPOWTrading()))
+	{
+		setTradeItem(&item, TRADE_POW);
+
+		if (GET_PLAYER(getLeaderID()).canTradeItem(GET_TEAM(eTeam).getLeaderID(), item) && GET_PLAYER(GET_TEAM(eTeam).getLeaderID()).canTradeItem(getLeaderID(), item))
+		{
+			ourList.clear();
+			theirList.clear();
+
+			ourList.insertAtEnd(item);
+			theirList.insertAtEnd(item);
+
+			GC.getGameINLINE().implementDeal(getLeaderID(), (GET_TEAM(eTeam).getLeaderID()), &ourList, &theirList);
+		}
+	}
+}
+
+int CvTeam::AI_getLimitedBordersCounter(TeamTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiLimitedBordersCounter[eIndex];
+}
+
+
+void CvTeam::AI_setLimitedBordersCounter(TeamTypes eIndex, int iNewValue)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	m_aiLimitedBordersCounter[eIndex] = iNewValue;
+	FAssert(AI_getLimitedBordersCounter(eIndex) >= 0);
+}
+
+void CvTeam::AI_changeLimitedBordersCounter(TeamTypes eIndex, int iChange)
+{
+	AI_setLimitedBordersCounter(eIndex, (AI_getLimitedBordersCounter(eIndex) + iChange));
+}
+
+int CvTeam::AI_getEmbassyCounter(TeamTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiEmbassyCounter[eIndex];
+}
+
+void CvTeam::AI_setEmbassyCounter(TeamTypes eIndex, int iNewValue)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	m_aiEmbassyCounter[eIndex] = iNewValue;
+	FAssert(AI_getEmbassyCounter(eIndex) >= 0);
+}
+
+void CvTeam::AI_changeEmbassyCounter(TeamTypes eIndex, int iChange)
+{
+	AI_setEmbassyCounter(eIndex, (AI_getEmbassyCounter(eIndex) + iChange));
+}
+
+int CvTeam::AI_getFreeTradeAgreementCounter(TeamTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiFreeTradeAgreementCounter[eIndex];
+}
+
+void CvTeam::AI_setFreeTradeAgreementCounter(TeamTypes eIndex, int iNewValue)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	m_aiFreeTradeAgreementCounter[eIndex] = iNewValue;
+	FAssert(AI_getFreeTradeAgreementCounter(eIndex) >= 0);
+}
+
+void CvTeam::AI_changeFreeTradeAgreementCounter(TeamTypes eIndex, int iChange)
+{
+	AI_setFreeTradeAgreementCounter(eIndex, (AI_getFreeTradeAgreementCounter(eIndex) + iChange));
+}
+
+
+int CvTeam::AI_getNonAggressionCounter(TeamTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiNonAggressionCounter[eIndex];
+}
+
+void CvTeam::AI_setNonAggressionCounter(TeamTypes eIndex, int iNewValue)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	m_aiNonAggressionCounter[eIndex] = iNewValue;
+	FAssert(AI_getNonAggressionCounter(eIndex) >= 0);
+}
+
+
+void CvTeam::AI_changeNonAggressionCounter(TeamTypes eIndex, int iChange)
+{
+	AI_setNonAggressionCounter(eIndex, (AI_getNonAggressionCounter(eIndex) + iChange));
+}
+
+
+int CvTeam::AI_getPOWCounter(TeamTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiPOWCounter[eIndex];
+}
+
+void CvTeam::AI_setPOWCounter(TeamTypes eIndex, int iNewValue)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+	m_aiNonAggressionCounter[eIndex] = iNewValue;
+	FAssert(AI_getPOWCounter(eIndex) >= 0);
+}
+
+
+void CvTeam::AI_changePOWCounter(TeamTypes eIndex, int iChange)
+{
+	AI_setPOWCounter(eIndex, (AI_getPOWCounter(eIndex) + iChange));
+}
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy                   END                                                   */
 /************************************************************************************************/

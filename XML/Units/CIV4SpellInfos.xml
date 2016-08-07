@@ -851,7 +851,6 @@
             <bBuffCasterOnly>1</bBuffCasterOnly>
             <bAbility>1</bAbility>
 			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
-            <PyResult>spellDeclareNationality(pCaster)</PyResult>
             <PyRequirement>reqDeclareNationality(pCaster)</PyRequirement>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_HASTE</Sound>

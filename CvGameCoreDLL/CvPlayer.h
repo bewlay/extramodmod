@@ -117,7 +117,7 @@ public:
 	
 /************************************************************************************************/
 /* GP_NAMES                                 07/2013                                 lfgr        */
-/* Added parameter szName                                                                       */
+/* Added parameter eName                                                                        */
 /************************************************************************************************/
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
@@ -127,7 +127,7 @@ public:
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, CvWString szName = "", bool bGift = false);
+	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, bool bGift = false, int eName = -1);
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -175,6 +175,13 @@ public:
 	DllExport const wchar* getStateReligionKey() const;																													// Exposed to Python
 	DllExport const CvWString getBestAttackUnitName(uint uiForm = 0) const;																								// Exposed to Python
 	DllExport const CvWString getWorstEnemyName() const;																																	// Exposed to Python
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/																																	// Exposed to Python
+	DllExport const CvWString getClosestAllyName() const;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/	
 	const wchar* getBestAttackUnitKey() const;																																	// Exposed to Python
 	DllExport ArtStyleTypes getArtStyleType() const;																														// Exposed to Python
 	DllExport const TCHAR* getUnitButton(UnitTypes eUnit) const;																														// Exposed to Python
@@ -739,6 +746,31 @@ public:
 
 	DllExport int getPower() const;																																						// Exposed to Python
 	void changePower(int iChange);
+	
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	int getTechPower() const;																																						// Exposed to Python
+	void changeTechPower(int iChange);
+	
+	bool isSenateWarOpposition(TeamTypes eAgainstTeam) const;
+	
+	int getSenateVeto(TeamTypes eIndex) const;
+	bool isSenateVeto(TeamTypes eIndex, bool bVerify = true);
+	void setSenateVeto(TeamTypes eIndex, int iNewValue);
+		
+	int getActiveSenateCount() const;
+	DllExport bool isActiveSenate() const;																												// Exposed to Python
+	void changeActiveSenateCount(int iChange);
+
+	//MNAI Additions
+	bool isNoCityRazing() const;
+	bool isCultureNeedsEmptyRadius() const;
+	// End MNAI
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	DllExport int getPopScore(bool bCheckVassal = true) const;																																				// Exposed to Python
 	void changePopScore(int iChange);																																		// Exposed to Python
@@ -833,6 +865,17 @@ public:
 	DllExport TeamTypes getTeam() const;																												// Exposed to Python
 	void setTeam(TeamTypes eTeam);
 	void updateTeamType();
+
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+	// RevolutionDCM start - new diplomacy option
+	void setDoNotBotherStatus(PlayerTypes playerID);
+	bool isDoNotBotherStatus(PlayerTypes playerID) const;
+	// RevolutionDCM end																																																							
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	DllExport PlayerColorTypes getPlayerColor() const;																								// Exposed to Python
 	DllExport int getPlayerTextColorR() const;																												// Exposed to Python
@@ -1177,6 +1220,14 @@ public:
 #ifndef USE_OLD_CODE
 	bool hasVotes(ReligionTypes eReligion) const;
 #endif
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	//int calculateVotes(VoteTypes eVote, VoteSourceTypes eVoteSource, bool bTest = false, bool bNoCondemned = false, bool bUpdateVotes = true) const;
+	bool isCivicCondemned() const;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
 	void processVoteSourceBonus(VoteSourceTypes eVoteSource, bool bActive);
 	bool canDoResolution(VoteSourceTypes eVoteSource, const VoteSelectionSubData& kData) const;
 	bool canDefyResolution(VoteSourceTypes eVoteSource, const VoteSelectionSubData& kData) const;
@@ -1201,6 +1252,24 @@ public:
 	int getNewCityProductionValue() const;
 
 	int getGrowthThreshold(int iPopulation) const;
+/************************************************************************************************/
+/* Afforess	                  Start		  		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	TeamTypes getPledgedSecretaryGeneralVote() const;
+	void setPledgedSecretaryGeneralVote(TeamTypes eIndex);
+ 	DenialTypes AI_corporationTrade(CorporationTypes eCorporation, PlayerTypes ePlayer) const;
+	DenialTypes AI_secretaryGeneralTrade(VoteSourceTypes eVoteSource, PlayerTypes ePlayer) const;
+	bool canTradeWarReparations(PlayerTypes ePlayer) const;
+
+	DenialTypes AI_tradeWarReparations(PlayerTypes ePlayer) const;
+protected:
+	TeamTypes m_eSecretaryGeneralVote;
+	TeamTypes m_eDemandWarAgainstTeam;
+public:
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	void verifyUnitStacksValid();
 	UnitTypes getTechFreeUnit(TechTypes eTech) const;
@@ -1419,18 +1488,29 @@ public:
 	virtual void AI_setExtraGoldTarget(int iNewValue) = 0;
 	virtual int AI_maxGoldPerTurnTrade(PlayerTypes ePlayer) const = 0;
 	virtual int AI_maxGoldTrade(PlayerTypes ePlayer) const = 0;
-	
 
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
+	CvCity* getBestHQCity(CorporationTypes eCorporation) const;
+	
  	int getNumTradeImportsByBonus(PlayerTypes ePlayer, BonusTypes eBonus) const;
 	bool isTradingMilitaryBonus(PlayerTypes ePlayer) const;
+	
+    DenialTypes AI_workerTrade(CvUnit* pUnit, PlayerTypes ePlayer) const;
 	DenialTypes AI_militaryUnitTrade(CvUnit* pUnit, PlayerTypes ePlayer) const;
+ /************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+	
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* From CvUnit::init() (modified)                                                               */
+/************************************************************************************************/
+	int getNewGreatPersonBornName( UnitTypes eUnitType );
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
 /************************************************************************************************/
 
 protected:
@@ -1540,6 +1620,14 @@ protected:
 	int m_iWinsVsBarbs;
 	int m_iAssets;
 	int m_iPower;
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	int m_iTechPower;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	int m_iPopulationScore;
 	int m_iLandScore;
 	int m_iTechScore;
@@ -1600,6 +1688,15 @@ protected:
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                        END                                                  */
 /************************************************************************************************/
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  Glider1      */
+/*************************************************************************************************/
+// RevolutionDCM - new diplomacy option
+	int m_bDoNotBotherStatus;
+	int m_iActiveSenateCount;
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 
 	PlayerTypes m_eID;
 	LeaderHeadTypes m_ePersonalityType;
@@ -1681,6 +1778,14 @@ protected:
 	int* m_aiCommerceFlexibleCount;
 	int* m_aiGoldPerTurnByPlayer;
 	int* m_aiEspionageSpendingWeightAgainstTeam;
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+	std::vector<int> m_aiSenateVeto;
+	int getSorenRandNum(int iNum, const char* pszLog);
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 
 	bool* m_abFeatAccomplished;
 	bool* m_abOptions;
@@ -1708,6 +1813,13 @@ protected:
 	int* m_paiHasCorporationCount;
 	int* m_paiUpkeepCount;
 	int* m_paiSpecialistValidCount;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	int* m_paiEventTriggerDelayCounters;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	bool* m_pabResearchingTech;
 	bool* m_pabLoyalMember;

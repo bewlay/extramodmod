@@ -75,7 +75,7 @@ public:
 	void reloadEntity();
 /************************************************************************************************/
 /* GP_NAMES                                 07/2013                                 lfgr        */
-/* Added parameter szName                                                                       */
+/* Added parameter eName                                                                        */
 /************************************************************************************************/
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
@@ -85,7 +85,7 @@ public:
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit = true, CvWString szName = "", bool bGift = false);
+	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit = true, bool bGift = false, int eName = -1);
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -658,6 +658,13 @@ public:
 	void collectBlockadeGold();
 
 	DllExport PlayerTypes getOwner() const;																									// Exposed to Python
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/																					// Exposed to Python
+	void setOriginalOwner(PlayerTypes ePlayer);	
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/																								// Exposed to Python
 #ifdef _USRDLL
 	inline PlayerTypes getOwnerINLINE() const
 	{
@@ -861,8 +868,9 @@ public:
 /************************************************************************************************/
 	bool canTradeUnit(PlayerTypes eReceivingPlayer);
 	void tradeUnit(PlayerTypes eReceivingPlayer);
+	PlayerTypes getOriginalOwner() const;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 
 /************************************************************************************************/
@@ -1068,6 +1076,15 @@ public:
 //FfH: End Add
 
 protected:
+
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	PlayerTypes m_eOriginalOwner;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	int m_iID;
 	int m_iGroupID;

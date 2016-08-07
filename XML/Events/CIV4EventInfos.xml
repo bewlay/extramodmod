@@ -520,6 +520,7 @@
 		<EventInfo><!-- CIRCLE_OF_GAELAN_1_2 -->
 			<Type>EVENT_CIRCLE_OF_GAELAN_1_2</Type>
 			<Description>TXT_KEY_EVENT_CIRCLE_OF_GAELAN_1_2</Description>
+			<bNoExpire>1</bNoExpire>
 			<BuildingExtraCommerces>
 				<BuildingExtraCommerce>
 					<BuildingClass>BUILDINGCLASS_MAGE_GUILD</BuildingClass>
@@ -546,6 +547,7 @@
 		<EventInfo><!-- CIRCLE_OF_GAELAN_2_2 -->
 			<Type>EVENT_CIRCLE_OF_GAELAN_2_2</Type>
 			<Description>TXT_KEY_EVENT_CIRCLE_OF_GAELAN_2_2</Description>
+			<bNoExpire>1</bNoExpire>
 			<bPickCity>1</bPickCity>
 			<BuildingExtraCommerces>
 				<BuildingExtraCommerce>
@@ -6721,6 +6723,7 @@
 		<EventInfo><!-- UNFORTUNATE_ASSASSIN_4 -->
 			<Type>EVENT_UNFORTUNATE_ASSASSIN_4</Type>
 			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4</Description>
+			<bNoExpire>1</bNoExpire>
 			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
