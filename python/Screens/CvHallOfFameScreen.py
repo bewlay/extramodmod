@@ -27,6 +27,8 @@ class CvHallOfFameScreen:
 	"Top scores and more"
 
 	def __init__(self, screenId):
+		# Properly initialize the infoList attribute.
+		self.infoList = []
 		self.screenId = screenId
 		self.SCREEN_NAME = "HallOfFameScreen"
 
