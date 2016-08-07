@@ -23541,8 +23541,8 @@
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCollateralDamage>40</iCollateralDamage>
-			<iCollateralDamageLimit>20</iCollateralDamageLimit>
-			<iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
+			<iCollateralDamageLimit>60</iCollateralDamageLimit>
+			<iCollateralDamageMaxUnits>6</iCollateralDamageMaxUnits>
 			<iConscription>4</iConscription>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iAsset>16</iAsset>
