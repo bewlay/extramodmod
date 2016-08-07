@@ -1695,26 +1695,133 @@
 			<Class>UNITCLASS_ADVENTURER</Class>
 			<Type>UNIT_ADVENTURER</Type>
 			<UniqueNames>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_1</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_2</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_3</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_4</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_5</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_6</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_7</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_8</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_9</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_10</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_11</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_12</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_13</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_14</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_15</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_16</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_17</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_18</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_19</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ADVENTURER_20</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_BAHAMET</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Bahamet the Second.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_BAHAMET</Quote>
+					<PreferredCiv>CIVILIZATION_MALAKIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_BAKABUSHI</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Bakabushi.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_BAKABUSHI</Quote>
+					<PreferredCiv>CIVILIZATION_BALSERAPHS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_BHALIRA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Bhalira.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_BHALIRA</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_LUCHUIRP</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_BRANDING</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Branding.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_BRANDING</Quote>
+					<PreferredCiv>CIVILIZATION_GRIGORI</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_CABAL</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Cabal Tenhare.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_CABAL</Quote>
+					<PreferredCiv>CIVILIZATION_GRIGORI</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_CARROW</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Carrow the Hunted.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_CARROW</Quote>
+					<PreferredCiv>CIVILIZATION_DOVIELLO</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_COMILLO</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Comillo.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_COMILLO</Quote>
+					<PreferredCiv>CIVILIZATION_CALABIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_FATHER</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Father Jeon.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_FATHER</Quote>
+					<PreferredCiv>CIVILIZATION_BANNOR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_GROO</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Groo the Wanderer.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_GROO</Quote>
+					<PreferredCiv>CIVILIZATION_DOVIELLO</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_HAMLYN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Hamlyn Ka.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_HAMLYN</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_GRIGORI</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_KHORD</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Khord Tenhare.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_KHORD</Quote>
+					<PreferredCiv>CIVILIZATION_GRIGORI</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_KIMBLE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Kimble the Quick.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_KIMBLE</Quote>
+					<PreferredCiv>CIVILIZATION_GRIGORI</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_LLANGRU</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Llangru.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_LLANGRU</Quote>
+					<Race>PROMOTION_ORC</Race>
+					<PreferredCiv>CIVILIZATION_GRIGORI</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_MELUSINE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Melusine.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_MELUSINE</Quote>
+					<PreferredCiv>CIVILIZATION_HIPPUS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_NEEDLES</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Needles.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_NEEDLES</Quote>
+					<PreferredCiv>CIVILIZATION_GRIGORI</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_NOSAMONCE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Nosamonce.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_NOSAMONCE</Quote>
+					<PreferredCiv>CIVILIZATION_SHEAIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_PANLUPAN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Panlupan.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_PANLUPAN</Quote>
+					<PreferredCiv>CIVILIZATION_LANUN</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_PINCHETE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Pinchete.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_PINCHETE</Quote>
+					<Race>PROMOTION_ORC</Race>
+					<PreferredCiv>CIVILIZATION_CLAN_OF_EMBERS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_SIDHELLE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Sidhelle.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_SIDHELLE</Quote>
+					<Race>PROMOTION_ELF</Race>
+					<PreferredCiv>CIVILIZATION_LJOSALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ADVENTURER_VOLANNA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ADVENTURER/Volanna.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ADVENTURER_VOLANNA</Quote>
+					<Race>PROMOTION_DARK_ELF</Race>
+					<PreferredCiv>CIVILIZATION_SVARTALFAR</PreferredCiv>
+					<Leader>LEADER_VOLANNA</Leader>
+				</UniqueName>
 			</UniqueNames>
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_HERO</DefaultUnitAI>
@@ -3091,26 +3198,130 @@
 			<Class>UNITCLASS_ARTIST</Class>
 			<Type>UNIT_ARTIST</Type>
 			<UniqueNames>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_1</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_2</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_3</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_4</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_5</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_6</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_7</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_8</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_9</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_10</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_11</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_12</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_13</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_14</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_15</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_16</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_17</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_18</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_19</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ARTIST_20</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_AIRODAUNT</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Airodaunt Balon.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_AIRODAUNT</Quote>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_ARGASE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Argase the Magician.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_ARGASE</Quote>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_CASPIAN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Caspian Loch.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_CASPIAN</Quote>
+					<PreferredCiv>CIVILIZATION_BANNOR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_CLAIRONE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Clairone.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_CLAIRONE</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_KHAZAD</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_CLAUDIUS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Cladius, Chorus of the Damned.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_CLAUDIUS</Quote>
+					<PreferredCiv>CIVILIZATION_BANNOR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_DAIN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Dain the Cytherean.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_DAIN</Quote>
+					<PreferredCiv>CIVILIZATION_SIDAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_DHAUNAE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Dhaunae the Illusionist.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_DHAUNAE</Quote>
+					<PreferredCiv>CIVILIZATION_AMURITES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_DIANCHETE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Dianchete.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_DIANCHETE</Quote>
+					<Race>PROMOTION_DARK_ELF</Race>
+					<PreferredCiv>CIVILIZATION_SVARTALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_FURIA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Furia the Mad.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_FURIA</Quote>
+					<PreferredCiv>CIVILIZATION_BALSERAPHS</PreferredCiv>
+					<Leader>LEADER_FURIA</Leader>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_HODKAMASET</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Hodkamset.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_HODKAMASET</Quote>
+					<PreferredCiv>CIVILIZATION_BANNOR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_KAMEN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Kamen Shandoun.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_KAMEN</Quote>
+					<PreferredCiv>CIVILIZATION_GRIGORI</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_KING_OF_SQUIRRELS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/The King of Squirrels.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_KING_OF_SQUIRRELS</Quote>
+					<Race>PROMOTION_ELF</Race>
+					<PreferredCiv>CIVILIZATION_LJOSALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_MELISANDRE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Melisandre.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_MELISANDRE</Quote>
+					<PreferredCiv>CIVILIZATION_BALSERAPHS</PreferredCiv>
+					<Leader>LEADER_MELISANDRE</Leader>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_OFEOFAE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Ofeofae.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_OFEOFAE</Quote>
+					<PreferredCiv>CIVILIZATION_GRIGORI</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_PELIA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Pelia the Dancer.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_PELIA</Quote>
+					<PreferredCiv>CIVILIZATION_BALSERAPHS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_PERSELLUS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Persellus.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_PERSELLUS</Quote>
+					<PreferredCiv>CIVILIZATION_CALABIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_PRAMAS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Pramas Olds.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_PRAMAS</Quote>
+					<Race>PROMOTION_CENTAUR</Race>
+					<PreferredCiv>CIVILIZATION_KURIOTATES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_SAMAWEN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Samawen the Ghost.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_SAMAWEN</Quote>
+					<PreferredCiv>CIVILIZATION_SHEAIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_TANEATH</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Taneath.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_TANEATH</Quote>
+					<PreferredCiv>CIVILIZATION_SHEAIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ARTIST_VERNADOT</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ARTIST/Vernadot.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ARTIST_VERNADOT</Quote>
+					<PreferredCiv>CIVILIZATION_BALSERAPHS</PreferredCiv>
+				</UniqueName>
 			</UniqueNames>
 			<Special>SPECIALUNIT_PEOPLE</Special>
 			<Domain>DOMAIN_LAND</Domain>
@@ -10050,26 +10261,139 @@
 			<Class>UNITCLASS_ENGINEER</Class>
 			<Type>UNIT_ENGINEER</Type>
 			<UniqueNames>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_1</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_2</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_3</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_4</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_5</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_6</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_7</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_8</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_9</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_10</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_11</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_12</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_13</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_14</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_15</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_16</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_17</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_18</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_19</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_ENGINEER_20</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_AEGEUS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Aegeus Isildur.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_AEGEUS</Quote>
+					<PreferredCiv>CIVILIZATION_KURIOTATES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_ATHOS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Athos Ulthane.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_ATHOS</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_KHAZAD</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_BAREKE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Bareke.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_BAREKE</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_LUCHUIRP</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_ETHEL</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Ethel Agames.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_ETHEL</Quote>
+					<Race>PROMOTION_DARK_ELF</Race>
+					<PreferredCiv>CIVILIZATION_SVARTALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_FABER</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Faber Ozzie.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_FABER</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_BALSERAPHS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_FODGEL</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Fodgel Thor.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_FODGEL</Quote>
+					<PreferredCiv>CIVILIZATION_ELOHIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_GREGAMIR</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Gregamir.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_GREGAMIR</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_KHAZAD</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_HALDAYNE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Haldayne Ozark.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_HALDAYNE</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_LUCHUIRP</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_HOYDEN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Hoyden Drew.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_HOYDEN</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_LUCHUIRP</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_HULIK</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Hulik Darkanus.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_HULIK</Quote>
+					<PreferredCiv>CIVILIZATION_ILLIANS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_KHMER</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Khmer Otterfig.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_KHMER</Quote>
+					<Race>PROMOTION_ORC</Race>
+					<PreferredCiv>CIVILIZATION_CLAN_OF_EMBERS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_MILANA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Milana.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_MILANA</Quote>
+					<PreferredCiv>CIVILIZATION_DOVIELLO</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_PISTIS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Pistis Sophia.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_PISTIS</Quote>
+					<Race>PROMOTION_ANGEL</Race>
+					<PreferredCiv>CIVILIZATION_MERCURIANS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_SCHREWNEIL</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Schrewneil.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_SCHREWNEIL</Quote>
+					<PreferredCiv>CIVILIZATION_BALSERAPHS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_THORION</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Thorion Vo.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_THORION</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_KHAZAD</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_TILONAS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Tilonas Sal.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_TILONAS</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_KHAZAD</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_VALOEL</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Valoel.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_VALOEL</Quote>
+					<PreferredCiv>CIVILIZATION_ELOHIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_VESTA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Vesta Glory.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_VESTA</Quote>
+					<Race>PROMOTION_ELF</Race>
+					<PreferredCiv>CIVILIZATION_LJOSALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_ZEHANPURYUH</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Zehanpuryuh.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_ZEHANPURYUH</Quote>
+					<PreferredCiv>CIVILIZATION_LANUN</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_ENGINEER_ZOOT</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_ENGINEER/Zoot Ghent Gear.dds</Art>
+					<Quote>TXT_KEY_QUOTE_ENGINEER_ZOOT</Quote>
+					<Race>PROMOTION_ORC</Race>
+					<PreferredCiv>CIVILIZATION_BALSERAPHS</PreferredCiv>
+				</UniqueName>
 			</UniqueNames>
 			<Special>SPECIALUNIT_PEOPLE</Special>
 			<Domain>DOMAIN_LAND</Domain>
@@ -17965,26 +18289,128 @@
 			<Class>UNITCLASS_MERCHANT</Class>
 			<Type>UNIT_MERCHANT</Type>
 			<UniqueNames>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_1</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_2</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_3</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_4</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_5</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_6</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_7</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_8</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_9</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_10</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_11</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_12</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_13</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_14</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_15</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_16</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_17</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_18</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_19</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_MERCHANT_20</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_ABDULKANI</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Abdulkani the Mirage.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_ABDULKANI</Quote>
+					<PreferredCiv>CIVILIZATION_AMURITES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_AGRAVAINE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Agravaine.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_AGRAVAINE</Quote>
+					<PreferredCiv>CIVILIZATION_ILLIANS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_BELARCHASS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Belarchass the Slaver.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_BELARCHASS</Quote>
+					<PreferredCiv>CIVILIZATION_CALABIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_ENOS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Enos the Maul.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_ENOS</Quote>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_FLORINA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Florina of Lorinwood.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_FLORINA</Quote>
+					<Race>PROMOTION_ELF</Race>
+					<PreferredCiv>CIVILIZATION_LJOSALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_GEOGI</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Geogi Bandon.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_GEOGI</Quote>
+					<PreferredCiv>CIVILIZATION_ELOHIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_GONAEL</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Gonael.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_GONAEL</Quote>
+					<PreferredCiv>CIVILIZATION_BALSERAPHS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_GOODREAU</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Goodreau.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_GOODREAU</Quote>
+					<PreferredCiv>CIVILIZATION_GRIGORI</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_JENKIN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Jenkin.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_JENKIN</Quote>
+					<PreferredCiv>CIVILIZATION_AMURITES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_JOFFA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Joffa the Barakite.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_JOFFA</Quote>
+					<PreferredCiv>CIVILIZATION_MALAKIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_KERSASUS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Kersasus Actium.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_KERSASUS</Quote>
+					<PreferredCiv>CIVILIZATION_GRIGORI</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_MAAERUN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Maaerun.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_MAAERUN</Quote>
+					<Race>PROMOTION_DARK_ELF</Race>
+					<PreferredCiv>CIVILIZATION_SVARTALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_MAVREEN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Mavreen Mawklistyr.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_MAVREEN</Quote>
+					<PreferredCiv>CIVILIZATION_LANUN</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_NEPHRION</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Nephrion Cathwar.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_NEPHRION</Quote>
+					<PreferredCiv>CIVILIZATION_MALAKIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_OMAR</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Omar of Turin.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_OMAR</Quote>
+					<PreferredCiv>CIVILIZATION_KURIOTATES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_OPARR</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Oparr the Underhand.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_OPARR</Quote>
+					<Race>PROMOTION_ORC</Race>
+					<PreferredCiv>CIVILIZATION_CLAN_OF_EMBERS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_RUSA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Rusa Pariek.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_RUSA</Quote>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_SOPHERIEL_MEHAYYE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Sopheriel Mehayye.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_SOPHERIEL_MEHAYYE</Quote>
+					<PreferredCiv>CIVILIZATION_BANNOR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_SOPHERIEL_MEMETH</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Sopheriel Memeth.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_SOPHERIEL_MEMETH</Quote>
+					<PreferredCiv>CIVILIZATION_BANNOR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_MERCHANT_VOHU</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_MERCHANT/Vohu Manah.dds</Art>
+					<Quote>TXT_KEY_QUOTE_MERCHANT_VOHU</Quote>
+					<Race>PROMOTION_ELF</Race>
+					<PreferredCiv>CIVILIZATION_LJOSALFAR</PreferredCiv>
+				</UniqueName>
 			</UniqueNames>
 			<Special>SPECIALUNIT_PEOPLE</Special>
 			<Domain>DOMAIN_LAND</Domain>
@@ -20631,26 +21057,142 @@
 			<Class>UNITCLASS_PROPHET</Class>
 			<Type>UNIT_PROPHET</Type>
 			<UniqueNames>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_1</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_2</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_3</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_4</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_5</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_6</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_7</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_8</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_9</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_10</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_11</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_12</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_13</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_14</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_15</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_16</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_17</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_18</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_19</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_PROPHET_20</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_ABELLIO</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Abellio.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_ABELLIO</Quote>
+					<Race>PROMOTION_ELF</Race>
+					<PreferredCiv>CIVILIZATION_LJOSALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_ABNOBA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Abnoba.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_ABNOBA</Quote>
+					<PreferredCiv>CIVILIZATION_SHEAIM</PreferredCiv>
+					<Religion>RELIGION_THE_ASHEN_VEIL</Religion>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_AENGUS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Aengus Saone.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_AENGUS</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_KHAZAD</PreferredCiv>
+					<Religion>RELIGION_RUNES_OF_KILMORPH</Religion>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_AES</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Aes Sidhe.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_AES</Quote>
+					<Race>PROMOTION_DARK_ELF</Race>
+					<PreferredCiv>CIVILIZATION_SVARTALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_BELATU</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Belatu Cadros.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_BELATU</Quote>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_CAILLEACH</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Cailleach Beara.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_CAILLEACH</Quote>
+					<PreferredCiv>CIVILIZATION_CALABIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_CALWINNA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Calwinna of Junil.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_CALWINNA</Quote>
+					<PreferredCiv>CIVILIZATION_BANNOR</PreferredCiv>
+					<Religion>RELIGION_THE_ORDER</Religion>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_CENN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Cenn Cruaich.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_CENN</Quote>
+					<PreferredCiv>CIVILIZATION_GRIGORI</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_CINNIA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Cinnia.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_CINNIA</Quote>
+					<PreferredCiv>CIVILIZATION_LANUN</PreferredCiv>
+					<Religion>RELIGION_OCTOPUS_OVERLORDS</Religion>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_ELMIN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Pontif Elmin.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_ELMIN</Quote>
+					<PreferredCiv>CIVILIZATION_BANNOR</PreferredCiv>
+					<Religion>RELIGION_THE_ORDER</Religion>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_FAND</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Fand.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_FAND</Quote>
+					<Race>PROMOTION_DEMON</Race>
+					<PreferredCiv>CIVILIZATION_INFERNAL</PreferredCiv>
+					<Religion>RELIGION_THE_ASHEN_VEIL</Religion>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_GOSEA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Gosea.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_GOSEA</Quote>
+					<PreferredCiv>CIVILIZATION_SHEAIM</PreferredCiv>
+					<Religion>RELIGION_THE_ASHEN_VEIL</Religion>
+					<Leader>LEADER_GOSEA</Leader>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_LANTHIS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Lanthis.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_LANTHIS</Quote>
+					<Race>PROMOTION_DARK_ELF</Race>
+					<PreferredCiv>CIVILIZATION_SVARTALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_LITA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Lita the Witch.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_LITA</Quote>
+					<PreferredCiv>CIVILIZATION_BANNOR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_MAG</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Mag Tuireadh.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_MAG</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_LUCHUIRP</PreferredCiv>
+					<Religion>RELIGION_OCTOPUS_OVERLORDS</Religion>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_NYARLAT</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Nyarlat.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_NYARLAT</Quote>
+					<PreferredCiv>CIVILIZATION_BALSERAPHS</PreferredCiv>
+					<Religion>RELIGION_OCTOPUS_OVERLORDS</Religion>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_TALIA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Talia Gosam.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_TALIA</Quote>
+					<PreferredCiv>CIVILIZATION_MALAKIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_TEUTATES</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Teutates.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_TEUTATES</Quote>
+					<PreferredCiv>CIVILIZATION_KURIOTATES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_TUATHA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Tuatha D&#233; Danann.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_TUATHA</Quote>
+					<PreferredCiv>CIVILIZATION_ELOHIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_PROPHET_VAGHAN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_PROPHET/Vaghan of Lugus.dds</Art>
+					<Quote>TXT_KEY_QUOTE_PROPHET_VAGHAN</Quote>
+					<PreferredCiv>CIVILIZATION_MALAKIM</PreferredCiv>
+					<Religion>RELIGION_THE_EMPYREAN</Religion>
+				</UniqueName>
 			</UniqueNames>
 			<Special>SPECIALUNIT_PEOPLE</Special>
 			<Domain>DOMAIN_LAND</Domain>
@@ -22403,26 +22945,131 @@
 			<Class>UNITCLASS_SCIENTIST</Class>
 			<Type>UNIT_SCIENTIST</Type>
 			<UniqueNames>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_1</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_2</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_3</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_4</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_5</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_6</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_7</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_8</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_9</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_10</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_11</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_12</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_13</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_14</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_15</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_16</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_17</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_18</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_19</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_SCIENTIST_20</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_ABRUEL</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Abruel Azburgah.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_ABRUEL</Quote>
+					<PreferredCiv>CIVILIZATION_SIDAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_ASHER</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Asher the Encephalic.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_ASHER</Quote>
+					<PreferredCiv>CIVILIZATION_KURIOTATES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_BRADELINE</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Bradeline.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_BRADELINE</Quote>
+					<PreferredCiv>CIVILIZATION_BALSERAPHS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_CU</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Cu Roi.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_CU</Quote>
+					<PreferredCiv>CIVILIZATION_ELOHIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_DAMABIAH</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Damabiah.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_DAMABIAH</Quote>
+					<Race>PROMOTION_DARK_ELF</Race>
+					<PreferredCiv>CIVILIZATION_LJOSALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_DELENT</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Delent Payne.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_DELENT</Quote>
+					<PreferredCiv>CIVILIZATION_CALABIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_DENELCOR</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Denelcor Hep.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_DENELCOR</Quote>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_LUCIAQUA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Luciaqua.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_LUCIAQUA</Quote>
+					<PreferredCiv>CIVILIZATION_SHEAIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_MAGISTER</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Magister Cultuum.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_MAGISTER</Quote>
+					<PreferredCiv>CIVILIZATION_AMURITES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_MALCHAVIC</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Malchavic.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_MALCHAVIC</Quote>
+					<PreferredCiv>CIVILIZATION_SHEAIM</PreferredCiv>
+					<Leader>LEADER_MALCHAVIC</Leader>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_MENOLLY</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Menolly NuValle.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_MENOLLY</Quote>
+					<PreferredCiv>CIVILIZATION_CALABIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_MIKEL</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Mikel Dylantyr.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_MIKEL</Quote>
+					<PreferredCiv>CIVILIZATION_AMURITES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_NARSISS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Narsiss.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_NARSISS</Quote>
+					<Race>PROMOTION_DARK_ELF</Race>
+					<PreferredCiv>CIVILIZATION_SVARTALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_OTHMAR</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Othmar the Astrologer.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_OTHMAR</Quote>
+					<PreferredCiv>CIVILIZATION_LANUN</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_OZZIEL</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Ozziel.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_OZZIEL</Quote>
+					<PreferredCiv>CIVILIZATION_BALSERAPHS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_SHOFTIEL</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Shoftiel.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_SHOFTIEL</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_LUCHUIRP</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_TEPHUS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Tephus the Mistwalker.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_TEPHUS</Quote>
+					<PreferredCiv>CIVILIZATION_AMURITES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_THESSALONICA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Thessalonica.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_THESSALONICA</Quote>
+					<PreferredCiv>CIVILIZATION_ELOHIM</PreferredCiv>
+					<Leader>LEADER_THESSALONICA</Leader>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_TYA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Tya Kiri.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_TYA</Quote>
+					<PreferredCiv>CIVILIZATION_AMURITES</PreferredCiv>
+					<Leader>LEADER_TYA</Leader>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_SCIENTIST_WILLIM</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_SCIENTIST/Willim Marlander.dds</Art>
+					<Quote>TXT_KEY_QUOTE_SCIENTIST_WILLIM</Quote>
+					<PreferredCiv>CIVILIZATION_ELOHIM</PreferredCiv>
+				</UniqueName>
 			</UniqueNames>
 			<Special>SPECIALUNIT_PEOPLE</Special>
 			<Domain>DOMAIN_LAND</Domain>
@@ -26241,26 +26888,137 @@
 			<Class>UNITCLASS_GREAT_GENERAL</Class>
 			<Type>UNIT_GREAT_GENERAL</Type>
 			<UniqueNames>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_1</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_2</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_3</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_4</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_5</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_6</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_7</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_8</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_9</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_10</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_11</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_12</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_13</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_14</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_15</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_16</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_17</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_18</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_19</UniqueName>
-				<UniqueName>TXT_KEY_UNIT_COMMANDER_20</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_ANTHONY</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Anthony Callier.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_ANTHONY</Quote>
+					<PreferredCiv>CIVILIZATION_AMURITES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_AVERAX</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Averax the Cambion.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_AVERAX</Quote>
+					<PreferredCiv>CIVILIZATION_SHEAIM</PreferredCiv>
+					<Leader>LEADER_AVERAX</Leader>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_DARSINGER</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Darsinger.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_DARSINGER</Quote>
+					<PreferredCiv>CIVILIZATION_DOVIELLO</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_DUCET</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Ducet the Patient.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_DUCET</Quote>
+					<Race>PROMOTION_ELF</Race>
+					<PreferredCiv>CIVILIZATION_LJOSALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_DUNSTED</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Lord Dunsted Traver.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_DUNSTED</Quote>
+					<PreferredCiv>CIVILIZATION_CALABIM</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_GOROFF</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Goroff Grist.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_GOROFF</Quote>
+					<PreferredCiv>CIVILIZATION_BANNOR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_HAERLOND</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Haerlond Gosam.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_HAERLOND</Quote>
+					<Race>PROMOTION_DARK_ELF</Race>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_HYKSOS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Hyksos.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_HYKSOS</Quote>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_JUSTIN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Justin of Dalath.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_JUSTIN</Quote>
+					<PreferredCiv>CIVILIZATION_BANNOR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_K'THUN</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/K'thun.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_K'THUN</Quote>
+					<Race>PROMOTION_DARK_ELF</Race>
+					<PreferredCiv>CIVILIZATION_SVARTALFAR</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_KERED</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Kered.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_KERED</Quote>
+					<Race>PROMOTION_ORC</Race>
+					<PreferredCiv>CIVILIZATION_CLAN_OF_EMBERS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_MORSUELIS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Morsuelis.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_MORSUELIS</Quote>
+					<Race>PROMOTION_DWARF</Race>
+					<PreferredCiv>CIVILIZATION_KHAZAD</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_NIGEL</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Nigel of the 5th March.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_NIGEL</Quote>
+					<PreferredCiv>CIVILIZATION_HIPPUS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_OSTANES</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Captain Ostanes.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_OSTANES</Quote>
+					<PreferredCiv>CIVILIZATION_HIPPUS</PreferredCiv>
+					<Leader>LEADER_OSTANES</Leader>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_PALPEIOUS</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Palpeious.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_PALPEIOUS</Quote>
+					<Race>PROMOTION_ORC</Race>
+					<PreferredCiv>CIVILIZATION_CLAN_OF_EMBERS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_REBOAHA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Reboaha.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_REBOAHA</Quote>
+					<Race>PROMOTION_ORC</Race>
+					<PreferredCiv>CIVILIZATION_CLAN_OF_EMBERS</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_RIVANNA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Rivanna the Wraith Lord.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_RIVANNA</Quote>
+					<Race>PROMOTION_DARK_ELF</Race>
+					<PreferredCiv>CIVILIZATION_SVARTALFAR</PreferredCiv>
+					<Leader>LEADER_RIVANNA</Leader>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_SIMON</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Simon of Gitta.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_SIMON</Quote>
+					<PreferredCiv>CIVILIZATION_KURIOTATES</PreferredCiv>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_TETHIRA</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Tethira.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_TETHIRA</Quote>
+					<PreferredCiv>CIVILIZATION_BANNOR</PreferredCiv>
+					<Leader>LEADER_TETHIRA</Leader>
+				</UniqueName>
+				<UniqueName>
+					<Name>TXT_KEY_UNIT_COMMANDER_ULDANOR</Name>
+					<Art>Art/GreatPeople/Simple/UNIT_COMMANDER/Captain Uldanor.dds</Art>
+					<Quote>TXT_KEY_QUOTE_COMMANDER_ULDANOR</Quote>
+					<PreferredCiv>CIVILIZATION_HIPPUS</PreferredCiv>
+					<Leader>LEADER_ULDANOR</Leader>
+				</UniqueName>
 			</UniqueNames>
 			<Special>SPECIALUNIT_PEOPLE</Special>
 			<Domain>DOMAIN_LAND</Domain>

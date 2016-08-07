@@ -967,6 +967,8 @@ class StagingPage(wx.wizard.WizardPageSimple):
 				iCurrent = iCurrent + 1
 				self.optionArray.append(checkBox)
 				self.Bind(wx.EVT_CHECKBOX, self.OnOptionChoice, checkBox)
+			else:
+				self.optionArray.append(None);
 
 		self.optionsSizer.Add(checkBoxSizer1, 0, wx.LEFT, 10)
 		self.optionsSizer.Add(checkBoxSizer2, 0, wx.LEFT, 10)

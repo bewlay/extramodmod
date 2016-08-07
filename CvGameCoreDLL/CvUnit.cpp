@@ -119,7 +119,7 @@ void CvUnit::reloadEntity()
 
 /************************************************************************************************/
 /* GP_NAMES                                 07/2013                                 lfgr        */
-/* Added parameter szName                                                                       */
+/* Added parameter eName                                                                        */
 /************************************************************************************************/
 /*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
@@ -129,7 +129,7 @@ void CvUnit::reloadEntity()
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
 */
-void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, CvWString szName, bool bGift)
+void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, bool bGift, int eName)
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -202,7 +202,29 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 		}
 	}
 */
-	setName( szName ); // use parameter
+	if( eName != -1 )
+	{
+		CvUnitInfo& kUnitInfo = GC.getUnitInfo( eUnit );
+
+		setName( gDLL->getText( kUnitInfo.getUnitNames( eName ) ) );
+		setRace( (PromotionTypes) kUnitInfo.getUnitNameRace( eName ) );
+
+		setReligion( kUnitInfo.getUnitNameReligion( eName ) );
+
+		if( GET_PLAYER( eOwner ).isHuman() && getBugOptionBOOL("EventsEnhanced__GPPopupHuman", false )
+			|| !GET_PLAYER( eOwner ).isHuman() &&  getBugOptionBOOL("EventsEnhanced__GPPopupAI", false ) )
+		{
+			// Show Quote popup
+			CvWString szQuote = kUnitInfo.getUnitNameQuote( eName );
+			if( !szQuote.empty() )
+			{
+				CvPopupInfo* pInfo = new CvPopupInfo( BUTTONPOPUP_GREAT_PERSON );
+				pInfo->setData1( eUnit );
+				pInfo->setData2( eName );
+				gDLL->getInterfaceIFace()->addPopup( pInfo, eOwner );
+			}
+		}
+	}
 /************************************************************************************************/
 /* GP_NAMES                                END                                                  */
 /************************************************************************************************/
@@ -565,6 +587,8 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
+
+	m_iAlwaysSpreadReligion = 0;
 
 	if (!bConstructorCall)
 	{
@@ -20376,8 +20400,9 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iUpgradeBlocked);
 	pStream->Read(&m_iGiftingBlocked);
 	pStream->Read(&m_iUpgradeOutsideBorders);
-	pStream->Read(&m_iAlwaysSpreadReligion);
 	// End MNAI
+
+	pStream->Read(&m_iAlwaysSpreadReligion);
 
 	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	pStream->Read(&m_bAvatarOfCivLeader);
@@ -20560,8 +20585,9 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_iUpgradeBlocked);
 	pStream->Write(m_iGiftingBlocked);
 	pStream->Write(m_iUpgradeOutsideBorders);
-	pStream->Write(m_iAlwaysSpreadReligion);
 	// End MNAI
+
+	pStream->Write(m_iAlwaysSpreadReligion);
 
 	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	pStream->Write(m_bAvatarOfCivLeader);

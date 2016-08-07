@@ -127,33 +127,33 @@ void CvGameTextMgr::setYearStr(CvWString& szString, int iGameTurn, bool bSave, C
 	{
 		if (bSave)
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_BC_SAVE", CvWString::format(L"%04d", -iTurnYear).GetCString());
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_SAVE", CvWString::format(L"%04d", -iTurnYear).GetCString());
 		}
 		else
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_BC", -(iTurnYear));
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_DATE", -(iTurnYear));
 		}
 	}
 	else if (iTurnYear > 0)
 	{
 		if (bSave)
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD_SAVE", CvWString::format(L"%04d", iTurnYear).GetCString());
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_SAVE", CvWString::format(L"%04d", iTurnYear).GetCString());
 		}
 		else
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD", iTurnYear);
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_DATE", iTurnYear);
 		}
 	}
 	else
 	{
 		if (bSave)
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD_SAVE", L"0001");
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_SAVE", L"0001");
 		}
 		else
 		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD", 1);
+			szString = gDLL->getText("TXT_KEY_TIME_TURN_DATE", 1);
 		}
 	}
 }
@@ -14791,23 +14791,7 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 				if (iYear != MIN_INT)
 				{
 					// year built
-					CvWString szYear;
-
-					if (iYear < 0)
-					{
-						szYear = gDLL->getText("TXT_KEY_TIME_BC", -iYear);
-					}
-					else if (iYear > 0)
-					{
-						szYear = gDLL->getText("TXT_KEY_TIME_AD", iYear);
-					}
-					else
-					{
-						szYear = gDLL->getText("TXT_KEY_TIME_AD", 1);
-					}
-
 					szBuffer.append(NEWLINE);
-					//szBuffer.append(gDLL->getText("TXT_KEY_BUG_YEAR_BUILT", szYear.GetCString()));
 					szBuffer.append(gDLL->getText("TXT_KEY_BUG_YEAR_BUILT", iYear));
 
 					// double commerce

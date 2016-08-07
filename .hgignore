@@ -5,6 +5,7 @@ dev
 *.lnk
 *.FPK
 .hgignore
+.idea
 Art\Movies
 CvGameCoreDLL.dll
 CvGameCoreDLL/Makefile.settings
