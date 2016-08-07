@@ -122,11 +122,6 @@ void CvDeal::addTrades(CLinkList<TradeData>* pFirstList, CLinkList<TradeData>* p
 	bool bSave;
 	int iValue;
 
-	if( gTeamLogLevel >= 2 )
-	{
-		logBBAI("  BEGIN TRADE DEAL between player %d (%S) and player %d (%S)", getFirstPlayer(), GET_PLAYER(getFirstPlayer()).getCivilizationDescription(0), getSecondPlayer(), GET_PLAYER(getSecondPlayer()).getCivilizationDescription(0) );
-	}
-
 	if (isVassalTrade(pFirstList) && isVassalTrade(pSecondList))
 	{
 		return;
@@ -380,7 +375,40 @@ void CvDeal::verify()
 			bCancelDeal = true;
 		}
 	}
+/************************************************************************************************/
+/* Advanced Diplomacy                   START                                                   */
+/************************************************************************************************/
+	// edead: start auto-cancel of POW exchange agreement after X turns
+	bool bPOW = false;
+	for (CLLNode<TradeData>* pNode = headFirstTradesNode(); (pNode != NULL); pNode = nextFirstTradesNode(pNode))
+	{
+		if (pNode->m_data.m_eItemType == TRADE_POW)
+		{
+			bPOW = true;
+			break;
+		}
+	}
 
+	for (CLLNode<TradeData>* pNode = headSecondTradesNode(); (pNode != NULL); pNode = nextSecondTradesNode(pNode))
+	{
+		if (pNode->m_data.m_eItemType == TRADE_POW)
+		{
+			bPOW = true;
+			break;
+		}
+	}
+
+	if (bPOW)
+	{
+		if (getInitialGameTurn() + GC.getDefineINT("POW_EXCHANGE_LENGTH") <= GC.getGameINLINE().getGameTurn())
+		{
+			kill(true);
+		}
+	}
+	// edead: end
+/************************************************************************************************/
+/* Advanced Diplomacy                        END                                                */
+/************************************************************************************************/
 	if (bCancelDeal)
 	{
 		kill();
@@ -608,7 +636,18 @@ CLLNode<TradeData>* CvDeal::nextFirstTradesNode(CLLNode<TradeData>* pNode) const
 	return m_firstTrades.next(pNode);
 }
 
+/************************************************************************************************/
+/* Afforess	                  Start		 07/17/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
 
+void CvDeal::removeFirstTradeNode(CLLNode<TradeData>* pNode)
+{
+	m_firstTrades.deleteNode(pNode);
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 int CvDeal::getLengthFirstTrades() const
 {
 	return m_firstTrades.getLength();
@@ -644,7 +683,18 @@ CLLNode<TradeData>* CvDeal::nextSecondTradesNode(CLLNode<TradeData>* pNode) cons
 	return m_secondTrades.next(pNode);
 }
 
+/************************************************************************************************/
+/* Afforess	                  Start		 07/17/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
 
+void CvDeal::removeSecondTradeNode(CLLNode<TradeData>* pNode)
+{
+	m_secondTrades.deleteNode(pNode);
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 int CvDeal::getLengthSecondTrades() const
 {
 	return m_secondTrades.getLength();
@@ -702,13 +752,13 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 	CvCity* pCity;
 /************************************************************************************************/
 /* Afforess	                  Start		 07/17/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 	CvUnit* pUnit;
+	CvCity* pNewHQCity;
 	CvWString szBuffer;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 	CvPlot* pLoopPlot;
 	bool bSave;
@@ -716,23 +766,23 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 
 	bSave = false;
 
+	/*
+	if( gTeamLogLevel >= 2 )
+	{
+		logBBAI("  BEGIN TRADE DEAL between player %d (%S) and player %d (%S)", getFirstPlayer(), GET_PLAYER(getFirstPlayer()).getCivilizationDescription(0), getSecondPlayer(), GET_PLAYER(getSecondPlayer()).getCivilizationDescription(0) );
+	}
+	*/
+
 	switch (trade.m_eItemType)
 	{
 	case TRADE_TECHNOLOGIES:
 		GET_TEAM(GET_PLAYER(eToPlayer).getTeam()).setHasTech(((TechTypes)trade.m_iData), true, eToPlayer, true, true);
 		GET_TEAM(GET_PLAYER(eToPlayer).getTeam()).setNoTradeTech(((TechTypes)trade.m_iData), true);
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
-/*                                                                                              */
-/* AI logging                                                                                   */
-/************************************************************************************************/
+
 		if( gTeamLogLevel >= 2 )
 		{
 			logBBAI("      Player %d (%S) trades tech %S due to TRADE_TECHNOLOGIES with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), GC.getTechInfo((TechTypes)trade.m_iData).getDescription(), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
 		}
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
 
 		for (iI = 0; iI < MAX_PLAYERS; iI++)
 		{
@@ -756,18 +806,12 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 	case TRADE_RESOURCES:
 		GET_PLAYER(eFromPlayer).changeBonusExport(((BonusTypes)trade.m_iData), 1);
 		GET_PLAYER(eToPlayer).changeBonusImport(((BonusTypes)trade.m_iData), 1);
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
-/*                                                                                              */
-/* AI logging                                                                                   */
-/************************************************************************************************/
+
 		if( gTeamLogLevel >= 2 )
 		{
 			logBBAI("      Player %d (%S) trades bonus type %S (value: %d) due to TRADE_RESOURCES with %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), GC.getBonusInfo((BonusTypes)trade.m_iData).getDescription(), GET_PLAYER(eFromPlayer).AI_bonusVal((BonusTypes)trade.m_iData), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
 		}
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
+
 		bSave = true;
 		break;
 
@@ -775,27 +819,18 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 		pCity = GET_PLAYER(eFromPlayer).getCity(trade.m_iData);
 		if (pCity != NULL)
 		{
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
-/*                                                                                              */
-/* AI logging                                                                                   */
-/************************************************************************************************/
 			if( gTeamLogLevel >= 2 )
 			{
 				logBBAI("      Player %d (%S) gives a city due to TRADE_CITIES with %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
 			}
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
 			pCity->doTask(TASK_GIFT, eToPlayer);
 		}
 		break;
-
 /************************************************************************************************/
 /* Afforess	                  Start		 07/17/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
+	case TRADE_WORKER:
 	case TRADE_MILITARY_UNIT:
 		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
 		{
@@ -811,26 +846,17 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 		}
         break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
-
 	case TRADE_GOLD:
 		GET_PLAYER(eFromPlayer).changeGold(-(trade.m_iData));
 		GET_PLAYER(eToPlayer).changeGold(trade.m_iData);
 		GET_PLAYER(eFromPlayer).AI_changeGoldTradedTo(eToPlayer, trade.m_iData);
 
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
-/*                                                                                              */
-/* AI logging                                                                                   */
-/************************************************************************************************/
 		if( gTeamLogLevel >= 2 )
 		{
 			logBBAI("      Player %d (%S) trades gold %d due to TRADE_GOLD with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), trade.m_iData, eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
 		}
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
 
 		// Python Event
 		CvEventReporter::getInstance().playerGoldTrade(eFromPlayer, eToPlayer, trade.m_iData);
@@ -841,18 +867,10 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 		GET_PLAYER(eFromPlayer).changeGoldPerTurnByPlayer(eToPlayer, -(trade.m_iData));
 		GET_PLAYER(eToPlayer).changeGoldPerTurnByPlayer(eFromPlayer, trade.m_iData);
 
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
-/*                                                                                              */
-/* AI logging                                                                                   */
-/************************************************************************************************/
 		if( gTeamLogLevel >= 2 )
 		{
 			logBBAI("      Player %d (%S) trades gold per turn %d due to TRADE_GOLD_PER_TURN with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), trade.m_iData, eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
 		}
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
 
 		bSave = true;
 		break;
@@ -878,18 +896,11 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 				}
 			}
 		}
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
-/*                                                                                              */
-/* AI logging                                                                                   */
-/************************************************************************************************/
+
 		if( gTeamLogLevel >= 2 )
 		{
 			logBBAI("      Player %d (%S) trades maps due to TRADE_MAPS with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
 		}
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
 		break;
 
 	case TRADE_SURRENDER:
@@ -898,11 +909,7 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 		{
 			startTeamTrade(trade.m_eItemType, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam(), false);
 			GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setVassal(GET_PLAYER(eToPlayer).getTeam(), true, TRADE_SURRENDER == trade.m_eItemType);
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
-/*                                                                                              */
-/* AI logging                                                                                   */
-/************************************************************************************************/
+
 			if( gTeamLogLevel >= 2 )
 			{
 				if( TRADE_SURRENDER == trade.m_eItemType )
@@ -914,9 +921,6 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 					logBBAI("      Player %d (%S) trades themselves as vassal due to TRADE_VASSAL with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
 				}
 			}
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
 		}
 		else
 		{
@@ -932,7 +936,27 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 			logBBAI("      Team %d (%S) makes peace with team %d due to TRADE_PEACE with %d (%S)", GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eFromPlayer).getCivilizationDescription(0), trade.m_iData, eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
 		}
 
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
 		GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).makePeace((TeamTypes)trade.m_iData);
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			for (iI = 0; iI < MAX_CIV_PLAYERS; iI++)
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isAlive())
+				{
+					if (GET_TEAM(GET_PLAYER((PlayerTypes)iI).getTeam()).isHasMet(GET_PLAYER(eFromPlayer).getTeam()))
+					{
+						GET_PLAYER((PlayerTypes)iI).AI_changeMemoryCount(eFromPlayer, MEMORY_MADE_PEACE, 1);
+					}
+				}
+			}
+		}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 		break;
 
 	case TRADE_WAR:
@@ -942,7 +966,14 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 		}
 
 		GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).declareWar(((TeamTypes)trade.m_iData), true, NO_WARPLAN);
-
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+		GET_TEAM(GET_PLAYER(eToPlayer).getTeam()).setHiredWarAlly(GET_PLAYER(eFromPlayer).getTeam(), true);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 		for (iI = 0; iI < MAX_PLAYERS; iI++)
 		{
 			if (GET_PLAYER((PlayerTypes)iI).isAlive())
@@ -955,14 +986,32 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 /************************************************************************************************/
 					szBuffer = gDLL->getText("TXT_KEY_MISC_HIRED_WAR_ALLY", GET_PLAYER(eToPlayer).getCivilizationAdjectiveKey(), GET_PLAYER(eFromPlayer).getCivilizationAdjectiveKey());
 					gDLL->getInterfaceIFace()->addMessage(GET_PLAYER((PlayerTypes)iI).getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BUILD_BARRACKS", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"));
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 					GET_PLAYER((PlayerTypes)iI).AI_changeMemoryCount(eToPlayer, MEMORY_HIRED_WAR_ALLY, 1);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/						
 				}
 			}
 		}
 		break;
+
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+	//byFra
+	case TRADE_WAR_PREPARE:
+		if( gTeamLogLevel >= 2 )
+		{
+			logBBAI("      Team %d (%S) prepares war on team %d due to TRADE_WAR with %d (%S)", GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eFromPlayer).getCivilizationDescription(0), trade.m_iData, eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
+		}
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).AI_setWarPlan((TeamTypes)trade.m_iData, WARPLAN_PREPARING_LIMITED);
+		}
+		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 
 	case TRADE_EMBARGO:
 		GET_PLAYER(eFromPlayer).stopTradingWithTeam((TeamTypes)trade.m_iData);
@@ -1038,7 +1087,7 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 	            GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setHasEmbassy(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), true);
 				if( gTeamLogLevel >= 2 )
 				{
-					logBBAI("      Player %d (%S) received embassy due to TRADE_EMBASSY with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
+					logBBAI("      Player %d (%S) trades Embassy due to TRADE_EMBASSY with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
 				}
 	        }
 	        else
@@ -1047,27 +1096,98 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 	        }
 		}
         break;
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 
+    case TRADE_CONTACT:
+		if( gTeamLogLevel >= 2 )
+		{
+			logBBAI("      Player %d (%S) trades contact with (todo) due to TRADE_CONTACT with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
+		}
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+       		 GET_TEAM(GET_PLAYER(eToPlayer).getTeam()).meet((TeamTypes)trade.m_iData, false); //Was true...
+		}
+        break;
+
+	case TRADE_WAR_REPARATIONS:
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			GET_PLAYER(eFromPlayer).changeGold(-(trade.m_iData));
+			GET_PLAYER(eToPlayer).changeGold(trade.m_iData);
+
+			GET_PLAYER(eToPlayer).AI_changeMemoryCount(eFromPlayer, MEMORY_DECLARED_WAR , -GET_PLAYER(eToPlayer).AI_getMemoryCount(eFromPlayer, MEMORY_DECLARED_WAR));
+			GET_PLAYER(eToPlayer).AI_changeMemoryCount(eFromPlayer, MEMORY_HIRED_WAR_ALLY, -GET_PLAYER(eToPlayer).AI_getMemoryCount(eFromPlayer, MEMORY_HIRED_WAR_ALLY));
+			GET_PLAYER(eToPlayer).AI_changeMemoryCount(eFromPlayer, MEMORY_NUKED_US, -GET_PLAYER(eToPlayer).AI_getMemoryCount(eFromPlayer, MEMORY_NUKED_US));
+			GET_PLAYER(eToPlayer).AI_changeMemoryCount(eFromPlayer, MEMORY_RAZED_CITY, -GET_PLAYER(eToPlayer).AI_getMemoryCount(eFromPlayer, MEMORY_RAZED_CITY));
+			GET_PLAYER(eToPlayer).AI_changeMemoryCount(eFromPlayer, MEMORY_RAZED_HOLY_CITY, -GET_PLAYER(eToPlayer).AI_getMemoryCount(eFromPlayer, MEMORY_RAZED_HOLY_CITY));
+			GET_PLAYER(eToPlayer).AI_changeMemoryCount(eFromPlayer, MEMORY_BACKSTAB, -GET_PLAYER(eToPlayer).AI_getMemoryCount(eFromPlayer, MEMORY_BACKSTAB));
+			GET_PLAYER(eToPlayer).AI_changeMemoryCount(eFromPlayer, MEMORY_EVENT_GOOD_TO_US, 2);
+		}
+		break;
+    case TRADE_CORPORATION:
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			CvCity* pOldHeadquarters = GC.getGameINLINE().getHeadquarters((CorporationTypes)trade.m_iData);
+			pNewHQCity = GET_PLAYER(eToPlayer).getBestHQCity((CorporationTypes)trade.m_iData);
+			pNewHQCity->setHasCorporation((CorporationTypes)trade.m_iData, true, false, false);
+			GC.getGameINLINE().setHeadquarters((CorporationTypes)trade.m_iData, pNewHQCity, true);
+			//Move the HQ building over to the new city.
+			for (int i = 0; i < GC.getNumBuildingInfos(); i++)
+			{
+				//if (i != NO_BUILDING)
+				{
+					if ((CorporationTypes)GC.getBuildingInfo((BuildingTypes)i).getGlobalCorporationCommerce() == ((CorporationTypes)trade.m_iData))
+					{
+						pNewHQCity->setNumRealBuilding((BuildingTypes)i, 1);
+						pOldHeadquarters->setNumRealBuilding((BuildingTypes)i, 0);
+						break;
+					}
+				}
+			}
+			
+			//The old HQ city still has the corporation, just not the HQ. 
+			if (pOldHeadquarters != NULL)
+				pOldHeadquarters->setHasCorporation((CorporationTypes)trade.m_iData, true, false, false);
+				
+			GET_PLAYER(eToPlayer).updateCorporation();
+			GET_PLAYER(eFromPlayer).updateCorporation();
+			for (int i = 0; i < MAX_PLAYERS; i++)
+			{
+				if (GET_TEAM(GET_PLAYER((PlayerTypes)i).getTeam()).isHasMet(GET_PLAYER(eToPlayer).getTeam()) || GET_TEAM(GET_PLAYER((PlayerTypes)i).getTeam()).isHasMet(GET_PLAYER(eFromPlayer).getTeam()))
+				{
+					szBuffer = gDLL->getText("TXT_KEY_MISC_CORPORATION_TRADE", GC.getCorporationInfo((CorporationTypes)trade.m_iData).getDescription(), GET_PLAYER(eFromPlayer).getCivilizationDescriptionKey(), GET_PLAYER(eToPlayer).getCivilizationDescriptionKey()).GetCString();
+					gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)i), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_GOLDAGESTART", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+				}
+			}
+		}
+		break;
+
+    case TRADE_SECRETARY_GENERAL_VOTE:
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			GET_PLAYER(eFromPlayer).setPledgedSecretaryGeneralVote(GET_PLAYER(eToPlayer).getTeam());
+		}
+		break;
+
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	case TRADE_OPEN_BORDERS:
+		if( gTeamLogLevel >= 2 )
+		{
+			logBBAI("      Player %d (%S) trades Open Borders due to TRADE_OPEN_BORDERS with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
+		}
 		if (trade.m_iData == 0)
 		{
 			startTeamTrade(TRADE_OPEN_BORDERS, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam(), true);
 			GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setOpenBorders(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), true);
-
-			// Start Advanced Tactics - Advanced Diplomacy (Afforess 06/16/10)
-			if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
-			{
-				endTeamTrade(TRADE_RIGHT_OF_PASSAGE, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
-			}
-			// End Advanced Tactics
-
-			if( gTeamLogLevel >= 2 )
-			{
-				logBBAI("      Player %d (%S) signs open borders due to TRADE_OPEN_BORDERS with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
-			}
+/************************************************************************************************/
+/* Afforess	                  Start		 06/16/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+			//endTeamTrade(TRADE_RIGHT_OF_PASSAGE, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 		}
 		else
 		{
@@ -1077,7 +1197,6 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 
 /************************************************************************************************/
 /* Afforess	                  Start		 06/26/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 	case TRADE_RIGHT_OF_PASSAGE:
@@ -1087,11 +1206,30 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 			{
 				startTeamTrade(TRADE_RIGHT_OF_PASSAGE, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam(), true);
 				GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setLimitedBorders(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), true);
+			}
+			else
+			{
+				bSave = true;
+			}
 
-				if( gTeamLogLevel >= 2 )
-				{
-					logBBAI("        Player %d (%S) signs right of passage due to TRADE_RIGHT_OF_PASSAGE with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
-				}
+			if( gTeamLogLevel >= 2 )
+			{
+				logBBAI("      Player %d (%S) trades Right of Passage due to TRADE_RIGHT_OF_PASSAGE with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
+			}
+		}
+		break;
+
+	case TRADE_FREE_TRADE_ZONE:
+		if( gTeamLogLevel >= 2 )
+		{
+			logBBAI("      Player %d (%S) trades Free Trade Zone to player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
+		}
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			if (trade.m_iData == 0)
+			{
+				startTeamTrade(TRADE_FREE_TRADE_ZONE, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam(), true);
+				GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setFreeTradeAgreement(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), true);
 			}
 			else
 			{
@@ -1100,7 +1238,7 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 		}
 		break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 
 	case TRADE_DEFENSIVE_PACT:
@@ -1108,18 +1246,10 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 		{
 			startTeamTrade(TRADE_DEFENSIVE_PACT, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam(), true);
 			GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setDefensivePact(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), true);
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
-/*                                                                                              */
-/* AI logging                                                                                   */
-/************************************************************************************************/
 			if( gTeamLogLevel >= 2 )
 			{
 				logBBAI("      Player %d (%S) signs defensive pact due to TRADE_DEFENSIVE_PACT with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
 			}
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
 		}
 		else
 		{
@@ -1132,21 +1262,91 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 
 	case TRADE_PEACE_TREATY:
 		GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setForcePeace(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), true);
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
-/*                                                                                              */
-/* AI logging                                                                                   */
-/************************************************************************************************/
 		if( gTeamLogLevel >= 2 )
 		{
 			logBBAI("      Player %d (%S) signs peace treaty due to TRADE_PEACE_TREATY with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
 		}
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
 		bSave = true;
 		break;
 
+
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+	case TRADE_NON_AGGRESSION:
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			if (trade.m_iData == 0)
+			{
+				startTeamTrade(TRADE_NON_AGGRESSION, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam(), true);
+				GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setHasNonAggression(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), true);
+				if( gTeamLogLevel >= 2 )
+				{
+					logBBAI("      Player %d (%S) trades Non-agression pact with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
+				}
+			}
+			else
+			{
+				bSave = true;
+			}
+		}
+		break;
+
+	case TRADE_POW:
+		if( gTeamLogLevel >= 2 )
+		{
+			logBBAI("      Player %d (%S) trades TRADE_POW with player %d (%S)", eFromPlayer, GET_PLAYER(eFromPlayer).getCivilizationDescription(0), eToPlayer, GET_PLAYER(eToPlayer).getCivilizationDescription(0) );
+		}
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			if (trade.m_iData == 0)
+			{
+				startTeamTrade(TRADE_POW, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam(), true);
+				GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setHasPOW(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), true);
+	
+				for (iI = 0; iI < MAX_PLAYERS; iI++)
+				{
+					if (GET_PLAYER((PlayerTypes)iI).isAlive())
+					{
+						if (GET_PLAYER((PlayerTypes)iI).getTeam() == GET_PLAYER(eFromPlayer).getTeam())
+						{
+							for (int iJ = 0; iJ < MAX_PLAYERS; iJ++)
+							{
+								if (GET_PLAYER((PlayerTypes)iJ).isAlive())
+								{
+									if (GET_PLAYER((PlayerTypes)iJ).getTeam() == GET_PLAYER(eToPlayer).getTeam())
+									{
+										GET_PLAYER((PlayerTypes)iI).AI_changeMemoryCount(((PlayerTypes)iJ), MEMORY_TRADED_POW, 1);
+									}
+								}
+							}
+						}
+					}
+				}
+
+
+
+				//for (iI = 0; iI < MAX_CIV_PLAYERS; iI++)
+				//{
+					//if (GET_PLAYER((PlayerTypes)iI).isAlive())
+					//
+						//if (GET_PLAYER((PlayerTypes)iI).getTeam() == GET_PLAYER(eToPlayer).getTeam())
+						//{
+						//	GET_PLAYER((PlayerTypes)iI).AI_changeMemoryCount(((PlayerTypes)iI), MEMORY_TRADED_POW, 1);
+						//}
+					//}
+				//}
+			}
+			else
+			{
+				bSave = true;
+			}
+		}
+
+		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 	default:
 		FAssert(false);
 		break;
@@ -1174,12 +1374,16 @@ void CvDeal::endTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eToP
 	case TRADE_CITIES:
 /************************************************************************************************/
 /* Afforess	                  Start		 07/17/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
+	case TRADE_WORKER:
 	case TRADE_MILITARY_UNIT:
+	case TRADE_CONTACT:
+	case TRADE_CORPORATION:
+	case TRADE_SECRETARY_GENERAL_VOTE:
+	case TRADE_WAR_REPARATIONS:
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 	case TRADE_GOLD:
 		FAssert(false);
@@ -1193,6 +1397,13 @@ void CvDeal::endTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eToP
 	case TRADE_MAPS:
 	case TRADE_PEACE:
 	case TRADE_WAR:
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+	case TRADE_WAR_PREPARE:
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 	case TRADE_EMBARGO:
 	case TRADE_CIVIC:
 	case TRADE_RELIGION:
@@ -1214,19 +1425,22 @@ void CvDeal::endTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eToP
 			endTeamTrade(TRADE_SURRENDER, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
 		}
 		break;
+		
 /************************************************************************************************/
 /* Afforess	                  Start		 07/17/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
    case TRADE_EMBASSY:
+	    if (gTeamLogLevel > 3) logBBAI("...cancelling Embassy");
         GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setHasEmbassy(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), false);
         if (bTeam)
         {
             endTeamTrade(TRADE_EMBASSY, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
 			endTeamTrade(TRADE_OPEN_BORDERS, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
 			endTeamTrade(TRADE_DEFENSIVE_PACT, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
-        }
+			endTeamTrade(TRADE_FREE_TRADE_ZONE, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
+        	endTeamTrade(TRADE_NON_AGGRESSION, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
+		}
 
 		for (iI = 0; iI < MAX_PLAYERS; iI++)
 		{
@@ -1249,20 +1463,22 @@ void CvDeal::endTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eToP
 		}
 		break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/	
+
 	case TRADE_OPEN_BORDERS:
 		GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setOpenBorders(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), false);
 		if (bTeam)
 		{
 			endTeamTrade(TRADE_OPEN_BORDERS, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
-
-			// Start Advanced Tactics - Advanced Diplomacy (Afforess 06/16/10)
-			if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
-			{
-				endTeamTrade(TRADE_RIGHT_OF_PASSAGE, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
-			}
-			// End Advanced Tactics
+/************************************************************************************************/
+/* Afforess	                  Start		 06/16/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+			//endTeamTrade(TRADE_RIGHT_OF_PASSAGE, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 		}
 
 		for (iI = 0; iI < MAX_PLAYERS; iI++)
@@ -1288,7 +1504,6 @@ void CvDeal::endTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eToP
 
 /************************************************************************************************/
 /* Afforess	                  Start		 06/26/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 	case TRADE_RIGHT_OF_PASSAGE:
@@ -1318,8 +1533,35 @@ void CvDeal::endTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eToP
 			}
 		}
 		break;
+
+	case TRADE_FREE_TRADE_ZONE:
+		GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setFreeTradeAgreement(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), false);
+		if (bTeam)
+		{
+			endTeamTrade(TRADE_FREE_TRADE_ZONE, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
+		}
+		for (iI = 0; iI < MAX_PLAYERS; iI++)
+		{
+			if (GET_PLAYER((PlayerTypes)iI).isAlive())
+			{
+				if (GET_PLAYER((PlayerTypes)iI).getTeam() == GET_PLAYER(eToPlayer).getTeam())
+				{
+					for (iJ = 0; iJ < MAX_PLAYERS; iJ++)
+					{
+						if (GET_PLAYER((PlayerTypes)iJ).isAlive())
+						{
+							if (GET_PLAYER((PlayerTypes)iJ).getTeam() == GET_PLAYER(eFromPlayer).getTeam())
+							{
+								GET_PLAYER((PlayerTypes)iI).AI_changeMemoryCount(((PlayerTypes)iJ), MEMORY_CANCELLED_FREE_TRADE_AGREEMENT, 1);
+							}
+						}
+					}
+				}
+			}
+		}
+		break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 
 	case TRADE_DEFENSIVE_PACT:
@@ -1337,7 +1579,47 @@ void CvDeal::endTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eToP
 	case TRADE_PEACE_TREATY:
 		GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setForcePeace(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), false);
 		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+	case TRADE_NON_AGGRESSION:
+		GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setHasNonAggression(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), false);
+		if (bTeam)
+		{
+			endTeamTrade(TRADE_NON_AGGRESSION, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
+		}
 
+		for (iI = 0; iI < MAX_PLAYERS; iI++)
+		{
+			if (GET_PLAYER((PlayerTypes)iI).isAlive())
+			{
+				if (GET_PLAYER((PlayerTypes)iI).getTeam() == GET_PLAYER(eToPlayer).getTeam())
+				{
+					for (iJ = 0; iJ < MAX_PLAYERS; iJ++)
+					{
+						if (GET_PLAYER((PlayerTypes)iJ).isAlive())
+						{
+							if (GET_PLAYER((PlayerTypes)iJ).getTeam() == GET_PLAYER(eFromPlayer).getTeam())
+							{
+								GET_PLAYER((PlayerTypes)iI).AI_changeMemoryCount(((PlayerTypes)iJ), MEMORY_CANCELLED_NON_AGGRESSION, 1);
+							}
+						}
+					}
+				}
+			}
+		}
+		break;
+
+	case TRADE_POW:
+		GET_TEAM(GET_PLAYER(eFromPlayer).getTeam()).setHasPOW(((TeamTypes)(GET_PLAYER(eToPlayer).getTeam())), false);
+		if (bTeam)
+		{
+			endTeamTrade(TRADE_POW, GET_PLAYER(eFromPlayer).getTeam(), GET_PLAYER(eToPlayer).getTeam());
+		}
+		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 	default:
 		FAssert(false);
 		break;
@@ -1464,13 +1746,15 @@ bool CvDeal::isAnnual(TradeableItems eItem)
 	case TRADE_PERMANENT_ALLIANCE:
 /************************************************************************************************/
 /* Afforess	                  Start		 06/16/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 	case TRADE_RIGHT_OF_PASSAGE:
+	case TRADE_FREE_TRADE_ZONE:
 	case TRADE_EMBASSY:
+	case TRADE_NON_AGGRESSION:
+	case TRADE_POW:
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 		return true;
 		break;
@@ -1489,13 +1773,15 @@ bool CvDeal::isDual(TradeableItems eItem, bool bExcludePeace)
 	case TRADE_PERMANENT_ALLIANCE:
 /************************************************************************************************/
 /* Afforess	                  Start		 06/16/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 	case TRADE_EMBASSY:
 	case TRADE_RIGHT_OF_PASSAGE:
+	case TRADE_FREE_TRADE_ZONE:
+	case TRADE_NON_AGGRESSION: 
+	case TRADE_POW:
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 		return true;
 	case TRADE_PEACE_TREATY:
@@ -1510,7 +1796,6 @@ bool CvDeal::hasData(TradeableItems eItem)
 {
 /************************************************************************************************/
 /* Afforess	                  Start		 07/17/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 	if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
@@ -1522,10 +1807,13 @@ bool CvDeal::hasData(TradeableItems eItem)
 			eItem != TRADE_DEFENSIVE_PACT &&
 			eItem != TRADE_PERMANENT_ALLIANCE &&
 			eItem != TRADE_PEACE_TREATY &&
-			eItem != TRADE_EMBASSY);
+			eItem != TRADE_EMBASSY &&
+			eItem != TRADE_NON_AGGRESSION && 
+			eItem != TRADE_POW &&
+			eItem != TRADE_RIGHT_OF_PASSAGE);
 	}
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 	return (eItem != TRADE_MAPS &&
 		eItem != TRADE_VASSAL &&
@@ -1575,9 +1863,9 @@ TradeableItems CvDeal::getGoldPerTurnItem()
 {
 	return TRADE_GOLD_PER_TURN;
 }
+
 /************************************************************************************************/
 /* Afforess	                  Start		 07/17/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 bool CvDeal::isEmbassy()
@@ -1603,5 +1891,5 @@ bool CvDeal::isEmbassy()
 	return false;
 }
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/

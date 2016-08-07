@@ -89,11 +89,12 @@ def doArmageddonApocalypse(argsList):
 			iPop = int(iPop / 2)
 			if iPop == 0:
 				iPop = 1
+			CvUtil.pyPrint('ARMAGEDDON! Setting %s to %d population' %(pyCity.getName(), iPop))
 			pCity.setPopulation(iPop)
 	pyPlayer = PyPlayer(iPlayer)
 	apUnitList = pyPlayer.getUnitList()
 	for pUnit in apUnitList:
-		if (CyGame().getSorenRandNum(100, "Apocalypse") <= iPercent):
+		if (CyGame().getSorenRandNum(100, "Apocalypse") < iPercent):
 			if pUnit.isAlive():
 				pUnit.kill(False, PlayerTypes.NO_PLAYER)
 				CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_APOCALYPSE_KILLED", ()),'',1,'Art/Interface/Buttons/Apocalypse.dds',ColorTypes(7),pUnit.getX(),pUnit.getY(),True,True)
@@ -163,7 +164,7 @@ def doArmageddonHellfire(argsList):
 			if not pPlot.isWater():
 				if pPlot.getNumUnits() == 0:
 					if not pPlot.isCity():
-						if pPlot.isFlatlands():
+						if pPlot.isFlatlands() and not pPlot.isImpassable():
 							if pPlot.getBonusType(-1) == -1:
 								if CyGame().getSorenRandNum(10000, "Hellfire") <= iHellfireChance:
 									iImprovement = pPlot.getImprovementType()

@@ -2254,6 +2254,7 @@
 			<bPillage>1</bPillage>
 			<bMechanized>1</bMechanized>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ESCORT_SEA</UnitAIType>
@@ -4884,6 +4885,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -5130,6 +5132,7 @@
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
 			<bMechanized>1</bMechanized>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK_CITY</UnitAIType>
@@ -5178,6 +5181,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -5309,6 +5313,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -6349,6 +6354,7 @@
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
 			<bIgnoreBuildingDefense>1</bIgnoreBuildingDefense>
 			<bMechanized>1</bMechanized>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK_CITY</UnitAIType>
@@ -6411,6 +6417,7 @@
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
 			<bIgnoreBuildingDefense>1</bIgnoreBuildingDefense>
 			<bMechanized>1</bMechanized>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK_CITY</UnitAIType>
@@ -6471,6 +6478,7 @@
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bMechanized>1</bMechanized>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_MISSIONARY_SEA</UnitAIType>
@@ -6532,6 +6540,7 @@
 			<bPillage>1</bPillage>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
 			<bMechanized>1</bMechanized>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitClassUpgrades>
 				<UnitClassUpgrade>
 					<UnitClassUpgradeType>UNITCLASS_CANNON</UnitClassUpgradeType>
@@ -6597,6 +6606,7 @@
 			<bPillage>1</bPillage>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
 			<bMechanized>1</bMechanized>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitClassUpgrades>
 				<UnitClassUpgrade>
 					<UnitClassUpgradeType>UNITCLASS_CANNON</UnitClassUpgradeType>
@@ -10211,6 +10221,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitClassUpgrades>
 				<UnitClassUpgrade>
 					<UnitClassUpgradeType>UNITCLASS_WAR_ELEPHANT</UnitClassUpgradeType>
@@ -11048,6 +11059,7 @@
 			<bPillage>1</bPillage>
 			<bMechanized>1</bMechanized>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitClassUpgrades>
 				<UnitClassUpgrade>
 					<UnitClassUpgradeType>UNITCLASS_MAN_O_WAR</UnitClassUpgradeType>
@@ -11481,6 +11493,7 @@
 			<bPillage>1</bPillage>
 			<bMechanized>1</bMechanized>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitClassUpgrades>
 				<UnitClassUpgrade>
 					<UnitClassUpgradeType>UNITCLASS_QUEEN_OF_THE_LINE</UnitClassUpgradeType>
@@ -11548,6 +11561,7 @@
 			<bPillage>1</bPillage>
 			<bMechanized>1</bMechanized>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitClassUpgrades>
 				<UnitClassUpgrade>
 					<UnitClassUpgradeType>UNITCLASS_CARAVEL</UnitClassUpgradeType>
@@ -11710,6 +11724,7 @@
 			<bAnimal>1</bAnimal>
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -11785,6 +11800,7 @@
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -11973,6 +11989,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -12258,6 +12275,7 @@
 			<bMilitaryHappiness>1</bMilitaryHappiness>
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -16295,6 +16313,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -16367,6 +16386,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -17621,6 +17641,7 @@
 			<bPillage>1</bPillage>
 			<bMechanized>1</bMechanized>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK_SEA</UnitAIType>
@@ -20915,6 +20936,7 @@
 			<bPillage>1</bPillage>
 			<bMechanized>1</bMechanized>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_PIRATE_SEA</UnitAIType>
@@ -20992,6 +21014,7 @@
 			<bPillage>1</bPillage>
 			<bMechanized>1</bMechanized>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_PIRATE_SEA</UnitAIType>
@@ -21426,6 +21449,7 @@
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bMechanized>1</bMechanized>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ASSAULT_SEA</UnitAIType>
@@ -21495,6 +21519,7 @@
 			<bPillage>1</bPillage>
 			<bMechanized>1</bMechanized>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ASSAULT_SEA</UnitAIType>
@@ -23159,6 +23184,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -23438,6 +23464,7 @@
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -24771,6 +24798,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bOnlyDefensive>1</bOnlyDefensive>
 			<bQuickCombat>1</bQuickCombat>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_SCIENTIST</UnitAIType>
@@ -25010,6 +25038,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -25140,6 +25169,7 @@
 			<bPillage>1</bPillage>
 			<bMechanized>1</bMechanized>
 			<bRenderBelowWater>1</bRenderBelowWater>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitClassUpgrades>
 				<UnitClassUpgrade>
 					<UnitClassUpgradeType>UNITCLASS_PRIVATEER</UnitClassUpgradeType>
@@ -25418,6 +25448,7 @@
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bPillage>1</bPillage>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK</UnitAIType>
@@ -26134,6 +26165,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
@@ -26204,6 +26236,7 @@
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
+            <bMilitaryTrade>1</bMilitaryTrade>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ANIMAL</UnitAIType>

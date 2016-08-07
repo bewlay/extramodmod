@@ -2385,6 +2385,26 @@ void CvPlot::updateSight(bool bIncrement, bool bUpdatePlotGroups)
 
 	if (pCity != NULL)
 	{
+		// Embassies
+		/*
+		if (getOwner() != NO_PLAYER)
+		{
+			if (isCity())
+			{
+				if (getPlotCity()->isCapital())
+				{
+					for (iI = 0; iI < MAX_CIV_TEAMS; ++iI)
+					{
+						if (GET_TEAM((TeamTypes)iI).isHasEmbassy(getTeam()))
+						{
+							changeAdjacentSight((TeamTypes)iI, GC.getDefineINT("PLOT_VISIBILITY_RANGE"), bIncrement, NULL, bUpdatePlotGroups);
+						}
+					}
+				}
+			}
+		}
+		*/
+
 		// Religion - Disabled with new Espionage System
 /*		for (iI = 0; iI < GC.getNumReligionInfos(); ++iI)
 		{
@@ -2403,6 +2423,7 @@ void CvPlot::updateSight(bool bIncrement, bool bUpdatePlotGroups)
 		}*/
 
 //FfH: Added by Kael 11/03/2007
+		// Religion
 		for (iI = 0; iI < GC.getNumReligionInfos(); ++iI)
 		{
 			if (pCity->isHasReligion((ReligionTypes)iI))
@@ -4614,6 +4635,20 @@ bool CvPlot::isVisible(TeamTypes eTeam, bool bDebug) const
 		if (eTeam == NO_TEAM)
 		{
 			return false;
+		}
+
+		if (getOwner() != NO_PLAYER)
+		{
+			if (isCity())
+			{
+				if (getPlotCity()->isCapital())
+				{
+					if (GET_TEAM(eTeam).isHasEmbassy(getTeam()))
+					{
+						return true;
+					}
+				}
+			}
 		}
 
 		return ((getVisibilityCount(eTeam) > 0) || (getStolenVisibilityCount(eTeam) > 0));
@@ -7482,7 +7517,11 @@ void CvPlot::updateWorkingCity()
 
 	if (pOldWorkingCity != pBestCity)
 	{
-		if (pOldWorkingCity != NULL)
+	// lfgr bugfix 06/2015
+	// The old city may have a smaller radius by now.
+	//	if (pOldWorkingCity != NULL)
+		if ( pOldWorkingCity != NULL && pOldWorkingCity->getCityPlotIndex( this ) != -1 )
+	// lfgr end
 		{
 			pOldWorkingCity->setWorkingPlot(this, false);
 		}
@@ -7491,6 +7530,9 @@ void CvPlot::updateWorkingCity()
 		{
 			FAssertMsg(isOwned(), "isOwned is expected to be true");
 			FAssertMsg(!isBeingWorked(), "isBeingWorked did not return false as expected");
+			// lfgr assert
+			FAssertMsg( pBestCity->getCityPlotIndex( this ) != -1, "Plot assigned to invalid city" );
+			// lfgr end
 			m_workingCity = pBestCity->getIDInfo();
 		}
 		else
@@ -11630,7 +11672,7 @@ bool CvPlot::canTrigger(EventTriggerTypes eTrigger, PlayerTypes ePlayer) const
 
 		for (int i = 0; i < kTrigger.getNumTerrainsRequired(); ++i)
 		{
-			if (kTrigger.getTerrainRequired(i) == getTerrainType())
+			if (kTrigger.getTerrainRequired(i) == getTerrainType() && !isPeak()) // MNAI - added Peak check (peaks hide terrain)
 			{
 				bFoundValid = true;
 				break;
@@ -11838,6 +11880,8 @@ bool CvPlot::canApplyEvent(EventTypes eEvent) const
 void CvPlot::applyEvent(EventTypes eEvent)
 {
 	CvEventInfo& kEvent = GC.getEventInfo(eEvent);
+
+	logBBAI("Applying Event %S at plot %d, %d", kEvent.getTextKeyWide(), getX(), getY());
 
 	if (kEvent.getFeatureChange() > 0)
 	{

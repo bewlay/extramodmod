@@ -807,6 +807,44 @@ int CvCityAI::AI_specialistValue(SpecialistTypes eSpecialist, bool bAvoidGrowth,
 		iValue += ((getMilitaryProductionModifier() * iExperience * 8) / 100);
 	}
 
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/12/09                                            */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/	
+	int iSpecialistHealth = GC.getSpecialistInfo(eSpecialist).getHealth();
+	int iSpecialistHappiness = GC.getSpecialistInfo(eSpecialist).getHappiness();
+	int iHappinessLevel = happyLevel() - unhappyLevel(1);
+	int iAngryPopulation = range(-iHappinessLevel, 0, (getPopulation() + 1));
+	int iHealthLevel = goodHealth() - badHealth(/*bNoAngry*/ false, std::max(0, (iHappinessLevel + 1) / 2));
+	int iBadHealth = std::max(0, -iHealthLevel);
+
+	int iHappyModifier = (iHappinessLevel >= iHealthLevel && iHappinessLevel <= 6) ? 6 : 3;
+	int iHealthModifier = (iHealthLevel > iHappinessLevel && iHealthLevel <= 4) ? 4 : 2;
+	if (iHappinessLevel >= 10)
+	{
+		iHappyModifier = 1;
+	}
+	if (iHealthModifier >= 8)
+	{
+		iHealthModifier = 0;
+	}
+
+	if (iSpecialistHealth != 0)
+	{
+		iValue += (std::min(iSpecialistHealth, iBadHealth) * 12)
+			+ (std::max(0, iSpecialistHealth - iBadHealth) * iHealthModifier);
+	}
+	
+	if (iSpecialistHappiness != 0)
+	{
+		iValue += (std::min(iSpecialistHappiness, iAngryPopulation) * 10) 
+			+ (std::max(0, iSpecialistHappiness - iAngryPopulation) * iHappyModifier);
+	}
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                        */
+/*************************************************************************************************/
+
 	return (iValue * 100);
 }
 
@@ -1558,7 +1596,7 @@ void CvCityAI::AI_chooseProduction()
 							iEscorts += kPlayer.AI_totalAreaUnitAIs(pWaterArea, UNITAI_ESCORT_SEA);
 
 							// Escorts
-							if ((iEscorts < ((1 + 2 * iTransports) / 3)) && (GC.getGame().getSorenRandNum(2, "AI train escort sea") == 0))
+							if ((iEscorts < ((2 * iTransports))) && (GC.getGame().getSorenRandNum(2, "AI train escort sea") == 0))
 							{
 								if (AI_chooseUnit(UNITAI_ESCORT_SEA))
 								{
@@ -1985,7 +2023,7 @@ void CvCityAI::AI_chooseProduction()
 			{
 				iAttackNeeded++;
 
-				if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST3))
+				if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST3) || kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_DOMINATION3))
 				{
 					iAttackNeeded++;
 				}
@@ -2989,15 +3027,15 @@ void CvCityAI::AI_chooseProduction()
 
 				int iTransportViability = kPlayer.AI_calculateUnitAIViability(UNITAI_ASSAULT_SEA, DOMAIN_SEA);
 
-				int iDesiredEscorts = ((1 + 2 * iTransports) / 3);
+				int iDesiredEscorts = ((1 + 2 * iTransports));// / 3);
 				if( iTransportViability > 95 )
 				{
-					iDesiredEscorts /= 2;
+					//iDesiredEscorts /= 2;
 				}
 				
 				if ((iEscorts < iDesiredEscorts))
 				{
-					if (AI_chooseUnit(UNITAI_ESCORT_SEA, (iEscorts < iDesiredEscorts/3) ? -1 : 50))
+					if (AI_chooseUnit(UNITAI_ESCORT_SEA, (iEscorts < iDesiredEscorts/2) ? -1 : 50))
 					{
 						AI_chooseBuilding(BUILDINGFOCUS_DOMAINSEA, 12);
 						return;
@@ -3148,9 +3186,12 @@ void CvCityAI::AI_chooseProduction()
 	int iMissionarySeaNeeded = 0;
 	if (!kPlayer.isAgnostic() && !bFinancialTrouble && isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
 	{
-		if (kPlayer.getStateReligion() == kPlayer.getFavoriteReligion())
+		if (kPlayer.getFavoriteReligion() != NO_RELIGION)
 		{
-			iMissionarySeaNeeded++;
+			if (kPlayer.getStateReligion() == kPlayer.getFavoriteReligion())
+			{
+				iMissionarySeaNeeded++;
+			}
 		}
 
 		if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_RELIGION1))
@@ -5048,6 +5089,7 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 
 					int iNumBuildings = kOwner.getBuildingClassCountPlusMaking(eBuildingClass);
 
+					bool bFavoriteUnitClass = false;
 					for (int iUnitClass = 0; iUnitClass < GC.getNumUnitClassInfos(); iUnitClass++)
 					{
 						const UnitTypes eLoopUnit = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(iUnitClass);
@@ -5145,6 +5187,7 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 
 									if (GC.getUnitInfo(eLoopUnit).getUnitCombatType() == (UnitCombatTypes)GC.getLeaderHeadInfo(getPersonalityType()).getFavoriteUnitCombat())
 									{
+										bFavoriteUnitClass = true;
 										iUnitTempValue *= 5;
 									}
 
@@ -5164,7 +5207,10 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 						}
 					}
 
-					iTempValue -= iNumBuildings * 2;
+					if (!bFavoriteUnitClass)
+					{
+						iTempValue -= iNumBuildings * 2;
+					}
 
 					// Divide by total number of units from this building to average the score out
 					if (iTotalUnits > 1)

@@ -840,6 +840,16 @@ m_bVisible(false),
 m_piYieldChange(NULL),
 m_piCommerceChange(NULL),
 m_piFlavorValue(NULL),
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                             */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+m_iHealth(0),
+m_iHappiness(0),
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                        */
+/*************************************************************************************************/
 m_iExperience(0)
 {
 }
@@ -858,6 +868,22 @@ CvSpecialistInfo::~CvSpecialistInfo()
 	SAFE_DELETE_ARRAY(m_piFlavorValue);
 }
 
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+int CvSpecialistInfo::getHealth() const
+{
+	return m_iHealth;
+}
+int CvSpecialistInfo::getHappiness() const
+{
+	return m_iHappiness;
+}
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 int CvSpecialistInfo::getGreatPeopleUnitClass() const
 {
 	return m_iGreatPeopleUnitClass;
@@ -967,6 +993,17 @@ bool CvSpecialistInfo::read(CvXMLLoadUtility* pXML)
 		pXML->InitList(&m_piCommerceChange, NUM_COMMERCE_TYPES);
 	}
 
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iHealth, "iHealth");
+	pXML->GetChildXmlValByName(&m_iHappiness, "iHappiness");
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
+
 	pXML->GetChildXmlValByName(&m_iExperience, "iExperience");
 
 	pXML->SetVariableListTagPair(&m_piFlavorValue, "Flavors", GC.getFlavorTypes(), GC.getNumFlavorTypes());
@@ -1015,6 +1052,18 @@ m_bMapTrading(false),
 m_bTechTrading(false),
 m_bGoldTrading(false),
 m_bOpenBordersTrading(false),
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+m_bLimitedBordersTrading(false),
+m_bEmbassyTrading(false),
+m_bFreeTradeAgreementTrading(false),
+m_bNonAggressionTrading(false),
+m_bPOWTrading(false),
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 m_bDefensivePactTrading(false),
 m_bPermanentAllianceTrading(false),
 m_bVassalStateTrading(false),
@@ -1037,16 +1086,6 @@ m_iPreferredAlignment(NO_ALIGNMENT),
 m_iPrereqReligion(NO_RELIGION)
 //FfH: End Add
 
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-,m_bEmbassyTrading(false)
-,m_bLimitedBordersTrading(false)
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 {
 }
 
@@ -1212,6 +1251,37 @@ bool CvTechInfo::isOpenBordersTrading() const
 	return m_bOpenBordersTrading;
 }
 
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+bool CvTechInfo::isLimitedBordersTrading() const
+{
+	return m_bLimitedBordersTrading;
+}
+
+bool CvTechInfo::isEmbassyTrading() const
+{
+	return m_bEmbassyTrading;
+}
+
+bool CvTechInfo::isFreeTradeAgreementTrading() const
+{
+	return m_bFreeTradeAgreementTrading;
+}
+
+bool CvTechInfo::isNonAggressionTrading() const
+{
+	return m_bNonAggressionTrading;
+}
+
+bool CvTechInfo::isPOWTrading() const
+{
+	return m_bPOWTrading;
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 bool CvTechInfo::isDefensivePactTrading() const
 {
 	return m_bDefensivePactTrading;
@@ -1341,22 +1411,7 @@ bool CvTechInfo::isTerrainTrade(int i) const
 {
 	return m_pbTerrainTrade ? m_pbTerrainTrade[i] : false;
 }
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-bool CvTechInfo::isEmbassyTrading() const
-{
-	return m_bEmbassyTrading;
-}
-bool CvTechInfo::isLimitedBordersTrading() const
-{
-	return m_bLimitedBordersTrading;
-}
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
+
 void CvTechInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
@@ -1391,6 +1446,18 @@ void CvTechInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bTechTrading);
 	stream->Read(&m_bGoldTrading);
 	stream->Read(&m_bOpenBordersTrading);
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	stream->Read(&m_bLimitedBordersTrading);
+	stream->Read(&m_bEmbassyTrading);
+	stream->Read(&m_bFreeTradeAgreementTrading);
+	stream->Read(&m_bNonAggressionTrading);
+	stream->Read(&m_bPOWTrading);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	stream->Read(&m_bDefensivePactTrading);
 	stream->Read(&m_bPermanentAllianceTrading);
 	stream->Read(&m_bVassalStateTrading);
@@ -1402,16 +1469,7 @@ void CvTechInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bRiverTrade);
 	stream->Read(&m_iGridX);
 	stream->Read(&m_iGridY);
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	stream->Read(&m_bEmbassyTrading);
-	stream->Read(&m_bLimitedBordersTrading);
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
+
 	SAFE_DELETE_ARRAY(m_piDomainExtraMoves);
 	m_piDomainExtraMoves = new int[NUM_DOMAIN_TYPES];
 	stream->Read(NUM_DOMAIN_TYPES, m_piDomainExtraMoves);
@@ -1482,6 +1540,18 @@ void CvTechInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bTechTrading);
 	stream->Write(m_bGoldTrading);
 	stream->Write(m_bOpenBordersTrading);
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	stream->Write(m_bLimitedBordersTrading);
+	stream->Write(m_bEmbassyTrading);
+	stream->Write(m_bFreeTradeAgreementTrading);
+	stream->Write(m_bNonAggressionTrading);
+	stream->Write(m_bPOWTrading);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	stream->Write(m_bDefensivePactTrading);
 	stream->Write(m_bPermanentAllianceTrading);
 	stream->Write(m_bVassalStateTrading);
@@ -1493,16 +1563,7 @@ void CvTechInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bRiverTrade);
 	stream->Write(m_iGridX);
 	stream->Write(m_iGridY);
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	stream->Write(m_bEmbassyTrading);
-	stream->Write(m_bLimitedBordersTrading);
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
+	
 	stream->Write(NUM_DOMAIN_TYPES, m_piDomainExtraMoves);
 	stream->Write(GC.getNumFlavorTypes(), m_piFlavorValue);
 	stream->Write(GC.getNUM_OR_TECH_PREREQS(), m_piPrereqOrTechs);
@@ -1564,6 +1625,18 @@ bool CvTechInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bTechTrading, "bTechTrading");
 	pXML->GetChildXmlValByName(&m_bGoldTrading, "bGoldTrading");
 	pXML->GetChildXmlValByName(&m_bOpenBordersTrading, "bOpenBordersTrading");
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_bLimitedBordersTrading, "bLimitedBordersTrading");
+	pXML->GetChildXmlValByName(&m_bEmbassyTrading, "bEmbassyTrading");
+	pXML->GetChildXmlValByName(&m_bFreeTradeAgreementTrading, "bFreeTradeAgreementTrading");
+	pXML->GetChildXmlValByName(&m_bNonAggressionTrading, "bNonAggressionTrading");
+	pXML->GetChildXmlValByName(&m_bPOWTrading, "bPOWTrading");
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_bDefensivePactTrading, "bDefensivePactTrading");
 	pXML->GetChildXmlValByName(&m_bPermanentAllianceTrading, "bPermanentAllianceTrading");
 	pXML->GetChildXmlValByName(&m_bVassalStateTrading, "bVassalTrading");
@@ -1606,17 +1679,6 @@ bool CvTechInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "PrereqReligion");
 	m_aszExtraXMLforPass3.push_back(szTextVal);
 //FfH: End Add
-
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	pXML->GetChildXmlValByName(&m_bEmbassyTrading, "bEmbassyTrading");
-	pXML->GetChildXmlValByName(&m_bLimitedBordersTrading, "bLimitedBordersTrading");
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 
 	return true;
 }
@@ -5231,6 +5293,16 @@ m_piBonusAffinity(NULL),
 m_piDamageTypeCombat(NULL),
 m_szImage(NULL)
 //FfH: End Add
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+,m_bWorkerTrade(false)
+,m_bMilitaryTrade(false)
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 {
 }
 
@@ -6675,6 +6747,22 @@ const CvArtInfoUnit* CvUnitInfo::getArtInfo(int i, EraTypes eEra, UnitArtStyleTy
 	}
 }
 
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+bool CvUnitInfo::isWorkerTrade() const
+{
+    return m_bWorkerTrade;
+}
+
+bool CvUnitInfo::isMilitaryTrade() const
+{
+	return m_bMilitaryTrade;
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 void CvUnitInfo::read(FDataStreamBase* stream)
 {
 	CvHotkeyInfo::read(stream);
@@ -7076,6 +7164,15 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 
 	stream->ReadString(m_szFormationType);
 
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	stream->Read(&m_bWorkerTrade);
+	stream->Read(&m_bMilitaryTrade);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	updateArtDefineButton();
 }
 
@@ -7336,6 +7433,15 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 /************************************************************************************************/
 
 	stream->WriteString(m_szFormationType);
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	stream->Write(m_bWorkerTrade);
+	stream->Write(m_bMilitaryTrade);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 }
 
 //
@@ -7793,6 +7899,16 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 //FfH: End Add
 
 /************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_bWorkerTrade, "bWorkerTrade", false);
+	pXML->GetChildXmlValByName(&m_bMilitaryTrade, "bMilitaryTrade", false);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
+/************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* (Deprecated)                                                                                 */
 /* Original by Sephi                                                                            */
@@ -8210,6 +8326,13 @@ m_bNoCorporations(false),
 m_bNoForeignCorporations(false),
 m_bStateReligion(false),
 m_bNoNonStateReligionSpread(false),
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+m_bActiveSenate(false),
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 m_piYieldModifier(NULL),
 m_piCapitalYieldModifier(NULL),
 m_piTradeYieldModifier(NULL),
@@ -8591,7 +8714,18 @@ bool CvCivicInfo::isNoNonStateReligionSpread() const
 	return m_bNoNonStateReligionSpread;
 }
 
-const wchar* CvCivicInfo::getWeLoveTheKing()
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                              */
+/************************************************************************************************/
+bool CvCivicInfo::isActiveSenate() const
+{
+	return m_bActiveSenate;
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
+const wchar* CvCivicInfo::getWeLoveTheKing()		
 {
 	return m_szWeLoveTheKingKey;
 }
@@ -8877,6 +9011,15 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iPrereqReligion);
 //FfH: End Add
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	stream->Read(&m_bActiveSenate);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
+
 	// Arrays
 
 	SAFE_DELETE_ARRAY(m_piYieldModifier);
@@ -9040,6 +9183,14 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iPrereqReligion);
 //FfH: End Add
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	stream->Write(m_bActiveSenate);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                              */
+/************************************************************************************************/
+
 	// Arrays
 
 	stream->Write(NUM_YIELD_TYPES, m_piYieldModifier);
@@ -9121,6 +9272,13 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iCivicPercentAnger, "iCivicPercentAnger");
 	pXML->GetChildXmlValByName(&m_bStateReligion, "bStateReligion");
 	pXML->GetChildXmlValByName(&m_bNoNonStateReligionSpread, "bNoNonStateReligionSpread");
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_bActiveSenate, "bActiveSenate");
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_iStateReligionHappiness, "iStateReligionHappiness");
 	pXML->GetChildXmlValByName(&m_iNonStateReligionHappiness, "iNonStateReligionHappiness");
 	pXML->GetChildXmlValByName(&m_iStateReligionUnitProductionModifier, "iStateReligionUnitProductionModifier");
@@ -18568,6 +18726,20 @@ m_iBonusTradeAttitudeDivisor(0),
 m_iBonusTradeAttitudeChangeLimit(0),
 m_iOpenBordersAttitudeDivisor(0),
 m_iOpenBordersAttitudeChangeLimit(0),
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                              */
+/************************************************************************************************/
+m_iLimitedBordersAttitudeDivisor(0),
+m_iLimitedBordersAttitudeChangeLimit(0),
+m_iEmbassyAttitudeDivisor(0),
+m_iEmbassyAttitudeChangeLimit(0),
+m_iFreeTradeAgreementAttitudeDivisor(0),
+m_iFreeTradeAgreementAttitudeChangeLimit(0),
+m_iNonAggressionAttitudeDivisor(0),
+m_iNonAggressionAttitudeChangeLimit(0),
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 m_iDefensivePactAttitudeDivisor(0),
 m_iDefensivePactAttitudeChangeLimit(0),
 m_iShareWarAttitudeChange(0),
@@ -18590,6 +18762,22 @@ m_iStopTradingThemRefuseAttitudeThreshold(NO_ATTITUDE),
 m_iAdoptCivicRefuseAttitudeThreshold(NO_ATTITUDE),
 m_iConvertReligionRefuseAttitudeThreshold(NO_ATTITUDE),
 m_iOpenBordersRefuseAttitudeThreshold(NO_ATTITUDE),
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+m_iContactRefuseAttitudeThreshold(NO_ATTITUDE),
+m_iMilitaryUnitRefuseAttitudeThreshold(NO_ATTITUDE),
+m_iWorkerRefuseAttitudeThreshold(NO_ATTITUDE),
+m_iCorporationRefuseAttitudeThreshold(NO_ATTITUDE),
+m_iEmbassyRefuseAttitudeThreshold(ATTITUDE_FURIOUS),
+m_iSecretaryGeneralVoteRefuseAttitudeThreshold(NO_ATTITUDE),
+m_iLimitedBordersRefuseAttitudeThreshold(NO_ATTITUDE),
+m_iFreeTradeAgreementRefuseAttitudeThreshold(NO_ATTITUDE),
+m_iNonAggressionRefuseAttitudeThreshold(NO_ATTITUDE),
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 m_iDefensivePactRefuseAttitudeThreshold(NO_ATTITUDE),
 m_iPermanentAllianceRefuseAttitudeThreshold(NO_ATTITUDE),
 m_iVassalRefuseAttitudeThreshold(NO_ATTITUDE),
@@ -18610,17 +18798,6 @@ m_piDiploPeaceIntroMusicScriptIds(NULL),
 m_piDiploPeaceMusicScriptIds(NULL),
 m_piDiploWarIntroMusicScriptIds(NULL),
 m_piDiploWarMusicScriptIds(NULL),
-
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-m_iMilitaryUnitRefuseAttitudeThreshold(ATTITUDE_CAUTIOUS),
-m_iEmbassyRefuseAttitudeThreshold(ATTITUDE_ANNOYED),
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 
 //FfH: Added by Kael 08/07/2007
 m_piReligionWeightModifier(NULL),
@@ -18943,7 +19120,52 @@ int CvLeaderHeadInfo::getOpenBordersAttitudeChangeLimit() const
 {
 	return m_iOpenBordersAttitudeChangeLimit;
 }
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+int CvLeaderHeadInfo::getLimitedBordersAttitudeDivisor() const
+{
+	return m_iLimitedBordersAttitudeDivisor; 
+}
 
+int CvLeaderHeadInfo::getLimitedBordersAttitudeChangeLimit() const
+{
+	return m_iLimitedBordersAttitudeChangeLimit; 
+}
+
+int CvLeaderHeadInfo::getEmbassyAttitudeDivisor() const
+{
+	return m_iEmbassyAttitudeDivisor; 
+}
+
+int CvLeaderHeadInfo::getEmbassyAttitudeChangeLimit() const
+{
+	return m_iEmbassyAttitudeChangeLimit; 
+}
+
+int CvLeaderHeadInfo::getFreeTradeAgreementAttitudeDivisor() const
+{
+	return m_iFreeTradeAgreementAttitudeDivisor; 
+}
+
+int CvLeaderHeadInfo::getFreeTradeAgreementAttitudeChangeLimit() const
+{
+	return m_iFreeTradeAgreementAttitudeChangeLimit; 
+}
+
+int CvLeaderHeadInfo::getNonAggressionAttitudeDivisor() const
+{
+	return m_iNonAggressionAttitudeDivisor; 
+}
+
+int CvLeaderHeadInfo::getNonAggressionAttitudeChangeLimit() const
+{
+	return m_iNonAggressionAttitudeChangeLimit; 
+}
+
+/************************************************************************************************/
+/* Advanced Diplomacy                        END                                                */
+/************************************************************************************************/
 int CvLeaderHeadInfo::getDefensivePactAttitudeDivisor() const
 {
 	return m_iDefensivePactAttitudeDivisor;
@@ -19287,21 +19509,61 @@ const TCHAR* CvLeaderHeadInfo::getLeaderHead() const
 
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
+int CvLeaderHeadInfo::getContactRefuseAttitudeThreshold() const
+{
+	return m_iContactRefuseAttitudeThreshold;
+}
+
 int CvLeaderHeadInfo::getMilitaryUnitRefuseAttitudeThreshold() const
 {
 	return m_iMilitaryUnitRefuseAttitudeThreshold;
+}
+
+int CvLeaderHeadInfo::getWorkerRefuseAttitudeThreshold() const
+{
+	return m_iWorkerRefuseAttitudeThreshold;
+}
+
+int CvLeaderHeadInfo::getCorporationRefuseAttitudeThreshold() const
+{
+	return m_iCorporationRefuseAttitudeThreshold;
+}
+
+int CvLeaderHeadInfo::getSecretaryGeneralVoteRefuseAttitudeThreshold() const
+{
+	return m_iSecretaryGeneralVoteRefuseAttitudeThreshold;
 }
 
 int CvLeaderHeadInfo::getEmbassyRefuseAttitudeThreshold() const
 {
 	return m_iEmbassyRefuseAttitudeThreshold;
 }
+
+int CvLeaderHeadInfo::getLimitedBordersRefuseAttitudeThreshold() const
+{
+	return m_iLimitedBordersRefuseAttitudeThreshold;
+}
+
+int CvLeaderHeadInfo::getFreeTradeAgreementRefuseAttitudeThreshold() const
+{
+	return m_iFreeTradeAgreementRefuseAttitudeThreshold;
+}
+
+int CvLeaderHeadInfo::getNonAggressionRefuseAttitudeThreshold() const
+{
+	return m_iNonAggressionRefuseAttitudeThreshold;
+}
+
+int CvLeaderHeadInfo::getPOWRefuseAttitudeThreshold() const
+{
+	return m_iPOWRefuseAttitudeThreshold;
+}
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
+
 void CvLeaderHeadInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
@@ -19353,6 +19615,20 @@ void CvLeaderHeadInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iBonusTradeAttitudeChangeLimit);
 	stream->Read(&m_iOpenBordersAttitudeDivisor);
 	stream->Read(&m_iOpenBordersAttitudeChangeLimit);
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	stream->Read(&m_iLimitedBordersAttitudeDivisor);
+	stream->Read(&m_iLimitedBordersAttitudeChangeLimit);
+	stream->Read(&m_iEmbassyAttitudeDivisor);
+	stream->Read(&m_iEmbassyAttitudeChangeLimit);
+	stream->Read(&m_iFreeTradeAgreementAttitudeDivisor);
+	stream->Read(&m_iFreeTradeAgreementAttitudeChangeLimit);
+	stream->Read(&m_iNonAggressionAttitudeDivisor);
+	stream->Read(&m_iNonAggressionAttitudeChangeLimit);	
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	stream->Read(&m_iDefensivePactAttitudeDivisor);
 	stream->Read(&m_iDefensivePactAttitudeChangeLimit);
 	stream->Read(&m_iShareWarAttitudeChange);
@@ -19375,6 +19651,22 @@ void CvLeaderHeadInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iAdoptCivicRefuseAttitudeThreshold);
 	stream->Read(&m_iConvertReligionRefuseAttitudeThreshold);
 	stream->Read(&m_iOpenBordersRefuseAttitudeThreshold);
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+	stream->Read(&m_iContactRefuseAttitudeThreshold);
+	stream->Read(&m_iMilitaryUnitRefuseAttitudeThreshold);
+	stream->Read(&m_iWorkerRefuseAttitudeThreshold);
+	stream->Read(&m_iCorporationRefuseAttitudeThreshold);
+	stream->Read(&m_iEmbassyRefuseAttitudeThreshold);
+	stream->Read(&m_iSecretaryGeneralVoteRefuseAttitudeThreshold);
+	stream->Read(&m_iLimitedBordersRefuseAttitudeThreshold);
+	stream->Read(&m_iFreeTradeAgreementRefuseAttitudeThreshold);
+	stream->Read(&m_iNonAggressionRefuseAttitudeThreshold);
+	stream->Read(&m_iPOWRefuseAttitudeThreshold);
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                  			 */
+/*************************************************************************************************/
 	stream->Read(&m_iDefensivePactRefuseAttitudeThreshold);
 	stream->Read(&m_iPermanentAllianceRefuseAttitudeThreshold);
 	stream->Read(&m_iVassalRefuseAttitudeThreshold);
@@ -19465,16 +19757,6 @@ void CvLeaderHeadInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_piDiploWarMusicScriptIds);
 	m_piDiploWarMusicScriptIds = new int[GC.getNumEraInfos()];
 	stream->Read(GC.getNumEraInfos(), m_piDiploWarMusicScriptIds);
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	stream->Read(&m_iMilitaryUnitRefuseAttitudeThreshold);
-	stream->Read(&m_iEmbassyRefuseAttitudeThreshold);
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 }
 
 void CvLeaderHeadInfo::write(FDataStreamBase* stream)
@@ -19528,6 +19810,20 @@ void CvLeaderHeadInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iBonusTradeAttitudeChangeLimit);
 	stream->Write(m_iOpenBordersAttitudeDivisor);
 	stream->Write(m_iOpenBordersAttitudeChangeLimit);
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	stream->Write(m_iLimitedBordersAttitudeDivisor);
+	stream->Write(m_iLimitedBordersAttitudeChangeLimit);
+	stream->Write(m_iEmbassyAttitudeDivisor);
+	stream->Write(m_iEmbassyAttitudeChangeLimit);
+	stream->Write(m_iFreeTradeAgreementAttitudeDivisor);
+	stream->Write(m_iFreeTradeAgreementAttitudeChangeLimit);
+	stream->Write(m_iNonAggressionAttitudeDivisor);
+	stream->Write(m_iNonAggressionAttitudeChangeLimit);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	stream->Write(m_iDefensivePactAttitudeDivisor);
 	stream->Write(m_iDefensivePactAttitudeChangeLimit);
 	stream->Write(m_iShareWarAttitudeChange);
@@ -19550,6 +19846,22 @@ void CvLeaderHeadInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iAdoptCivicRefuseAttitudeThreshold);
 	stream->Write(m_iConvertReligionRefuseAttitudeThreshold);
 	stream->Write(m_iOpenBordersRefuseAttitudeThreshold);
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	stream->Write(m_iContactRefuseAttitudeThreshold);
+	stream->Write(m_iMilitaryUnitRefuseAttitudeThreshold);
+	stream->Write(m_iWorkerRefuseAttitudeThreshold);
+	stream->Write(m_iCorporationRefuseAttitudeThreshold);
+	stream->Write(m_iEmbassyRefuseAttitudeThreshold);
+	stream->Write(m_iSecretaryGeneralVoteRefuseAttitudeThreshold);
+	stream->Write(m_iLimitedBordersRefuseAttitudeThreshold);
+	stream->Write(m_iFreeTradeAgreementRefuseAttitudeThreshold);
+	stream->Write(m_iNonAggressionRefuseAttitudeThreshold);
+	stream->Write(m_iPOWRefuseAttitudeThreshold);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	stream->Write(m_iDefensivePactRefuseAttitudeThreshold);
 	stream->Write(m_iPermanentAllianceRefuseAttitudeThreshold);
 	stream->Write(m_iVassalRefuseAttitudeThreshold);
@@ -19600,16 +19912,6 @@ void CvLeaderHeadInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumEraInfos(), m_piDiploPeaceMusicScriptIds);
 	stream->Write(GC.getNumEraInfos(), m_piDiploWarIntroMusicScriptIds);
 	stream->Write(GC.getNumEraInfos(), m_piDiploWarMusicScriptIds);
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	stream->Write(m_iMilitaryUnitRefuseAttitudeThreshold);
-	stream->Write(m_iEmbassyRefuseAttitudeThreshold);
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 
 }
 
@@ -19686,6 +19988,20 @@ bool CvLeaderHeadInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iBonusTradeAttitudeChangeLimit, "iBonusTradeAttitudeChangeLimit",1);
 	pXML->GetChildXmlValByName(&m_iOpenBordersAttitudeDivisor, "iOpenBordersAttitudeDivisor",30);
 	pXML->GetChildXmlValByName(&m_iOpenBordersAttitudeChangeLimit, "iOpenBordersAttitudeChangeLimit",1);
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iLimitedBordersAttitudeDivisor, "iLimitedBordersAttitudeDivisor",25);
+	pXML->GetChildXmlValByName(&m_iLimitedBordersAttitudeChangeLimit, "iLimitedBordersAttitudeChangeLimit",2);
+	pXML->GetChildXmlValByName(&m_iEmbassyAttitudeDivisor, "iEmbassyAttitudeDivisor",25);
+	pXML->GetChildXmlValByName(&m_iEmbassyAttitudeChangeLimit, "iEmbassyAttitudeChangeLimit",2);
+	pXML->GetChildXmlValByName(&m_iFreeTradeAgreementAttitudeDivisor, "iFreeTradeAgreementAttitudeDivisor",25);
+	pXML->GetChildXmlValByName(&m_iFreeTradeAgreementAttitudeChangeLimit, "iFreeTradeAgreementAttitudeChangeLimit",2);
+	pXML->GetChildXmlValByName(&m_iNonAggressionAttitudeDivisor, "iNonAggressionAttitudeDivisor",25);
+	pXML->GetChildXmlValByName(&m_iNonAggressionAttitudeChangeLimit, "iNonAggressionAttitudeChangeLimit",2);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_iDefensivePactAttitudeDivisor, "iDefensivePactAttitudeDivisor",50);
 	pXML->GetChildXmlValByName(&m_iDefensivePactAttitudeChangeLimit, "iDefensivePactAttitudeChangeLimit",2);
 	pXML->GetChildXmlValByName(&m_iShareWarAttitudeChange, "iShareWarAttitudeChange",2);
@@ -19739,7 +20055,44 @@ bool CvLeaderHeadInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "OpenBordersRefuseAttitudeThreshold","ATTITUDE_ANNOYED");
 	m_iOpenBordersRefuseAttitudeThreshold = pXML->FindInInfoClass( szTextVal);
 
-	pXML->GetChildXmlValByName(szTextVal, "DefensivePactRefuseAttitudeThreshold","ATTITUDE_PLEASED");
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(szTextVal, "ContactRefuseAttitudeThreshold","ATTITUDE_ANNOYED");
+	m_iContactRefuseAttitudeThreshold = pXML->FindInInfoClass(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "MilitaryUnitRefuseAttitudeThreshold","ATTITUDE_ANNOYED");
+	m_iMilitaryUnitRefuseAttitudeThreshold = pXML->FindInInfoClass(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "WorkerRefuseAttitudeThreshold","ATTITUDE_ANNOYED");
+	m_iWorkerRefuseAttitudeThreshold = pXML->FindInInfoClass(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "CorporationRefuseAttitudeThreshold","ATTITUDE_ANNOYED");
+	m_iCorporationRefuseAttitudeThreshold = pXML->FindInInfoClass(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "EmbassyRefuseAttitudeThreshold","ATTITUDE_ANNOYED");
+	m_iEmbassyRefuseAttitudeThreshold = pXML->FindInInfoClass(szTextVal);
+	
+	pXML->GetChildXmlValByName(szTextVal, "SecretaryGeneralVoteRefuseAttitudeThreshold","ATTITUDE_PLEASED");
+	m_iSecretaryGeneralVoteRefuseAttitudeThreshold = pXML->FindInInfoClass(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "LimitedBordersRefuseAttitudeThreshold","ATTITUDE_ANNOYED");
+	m_iLimitedBordersRefuseAttitudeThreshold = pXML->FindInInfoClass(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "FreeTradeAgreementRefuseAttitudeThreshold","ATTITUDE_CAUTIOUS");
+	m_iFreeTradeAgreementRefuseAttitudeThreshold = pXML->FindInInfoClass(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "NonAggressionRefuseAttitudeThreshold","ATTITUDE_CAUTIOUS");
+	m_iNonAggressionRefuseAttitudeThreshold = pXML->FindInInfoClass(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "POWRefuseAttitudeThreshold","ATTITUDE_ANNOYED");
+	m_iPOWRefuseAttitudeThreshold = pXML->FindInInfoClass(szTextVal);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
+	pXML->GetChildXmlValByName(szTextVal, "DefensivePactRefuseAttitudeThreshold");
 	m_iDefensivePactRefuseAttitudeThreshold = pXML->FindInInfoClass( szTextVal);
 
 	pXML->GetChildXmlValByName(szTextVal, "PermanentAllianceRefuseAttitudeThreshold","ATTITUDE_PLEASED");
@@ -19798,20 +20151,6 @@ bool CvLeaderHeadInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "LeaderCategory");
 	m_iLeaderCategory = pXML->FindInInfoClass(szTextVal);
 // Leader categories END
-
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	pXML->GetChildXmlValByName(szTextVal, "MilitaryUnitRefuseAttitudeThreshold");
-	m_iMilitaryUnitRefuseAttitudeThreshold = pXML->FindInInfoClass(szTextVal);
-
-	pXML->GetChildXmlValByName(szTextVal, "EmbassyRefuseAttitudeThreshold");
-	m_iEmbassyRefuseAttitudeThreshold = pXML->FindInInfoClass(szTextVal);
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 
 	return true;
 }
@@ -20221,6 +20560,13 @@ m_iPopulationThreshold(0),
 m_iStateReligionVotePercent(0),
 m_iTradeRoutes(0),
 m_iMinVoters(0),
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+//m_iNumCondemnCivicTypes(0),
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
 m_bSecretaryGeneral(false),
 m_bVictory(false),
 m_bFreeTrade(false),
@@ -20233,6 +20579,16 @@ m_bForcePeace(false),
 m_bForceNoTrade(false),
 m_bForceWar(false),
 m_bAssignCity(false),
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+m_bTradeMap(false),
+m_bNoCityRazing(false),
+m_bCultureNeedsEmptyRadius(false),
+m_bPacificRule(false),
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 m_pbForceCivic(NULL),
 m_abVoteSourceTypes(NULL),
 
@@ -20395,6 +20751,81 @@ const TCHAR *CvVoteInfo::getPyResult() const
 	return m_szPyResult;
 }
 //FfH: End Add
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+bool CvVoteInfo::isTradeMap() const
+{
+	return m_bTradeMap;
+}
+
+bool CvVoteInfo::isNoCityRazing() const
+{
+	return m_bNoCityRazing;
+}
+
+bool CvVoteInfo::isCultureNeedsEmptyRadius() const
+{
+	return m_bCultureNeedsEmptyRadius;
+}
+
+bool CvVoteInfo::isPacificRule() const
+{
+	return m_bPacificRule;
+}
+
+/*
+int CvVoteInfo::getNumCondemnCivicTypes() const
+{
+	return m_iNumCondemnCivicTypes;
+}
+
+int CvVoteInfo::getCondemnCivic(int i) const
+{
+	FAssertMsg(i < getNumCondemnCivicTypes(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piCondemnCivic.size() > 0 ? m_piCondemnCivic[i] : -1;
+}
+
+bool CvVoteInfo::isCondemnCivic(int i) const
+{
+	FAssertMsg(i < GC.getNumCivicInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+
+	for (int iJ = 0; iJ < getNumCondemnCivicTypes(); iJ++)
+	{
+		if (getCondemnCivic(iJ) == i)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool CvVoteInfo::isValidCondemnCivicArray() const
+{
+	return (getNumCondemnCivicTypes() > 0);
+}
+
+void CvVoteInfo::reducesValues()
+{
+	bool bNull;
+
+	if (m_piCondemnCivic.size() > 0)
+	{
+		bNull = getNumCondemnCivicTypes() <= 0;
+
+		if (bNull)
+		{
+			m_piCondemnCivic.clear();
+		}
+	}
+}
+*/
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 bool CvVoteInfo::isForceCivic(int i) const
 {
@@ -20421,7 +20852,6 @@ bool CvVoteInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iStateReligionVotePercent, "iStateReligionVotePercent");
 	pXML->GetChildXmlValByName(&m_iTradeRoutes, "iTradeRoutes");
 	pXML->GetChildXmlValByName(&m_iMinVoters, "iMinVoters");
-
 	pXML->GetChildXmlValByName(&m_bSecretaryGeneral, "bSecretaryGeneral");
 	pXML->GetChildXmlValByName(&m_bVictory, "bVictory");
 	pXML->GetChildXmlValByName(&m_bFreeTrade, "bFreeTrade");
@@ -20434,9 +20864,26 @@ bool CvVoteInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bForceNoTrade, "bForceNoTrade");
 	pXML->GetChildXmlValByName(&m_bForceWar, "bForceWar");
 	pXML->GetChildXmlValByName(&m_bAssignCity, "bAssignCity");
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_bTradeMap, "bTradeMap");
+	pXML->GetChildXmlValByName(&m_bNoCityRazing, "bNoCityRazing");
+	pXML->GetChildXmlValByName(&m_bCultureNeedsEmptyRadius, "bCultureNeedsEmptyRadius");
+	pXML->GetChildXmlValByName(&m_bPacificRule, "bPacificRule");
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	pXML->SetVariableListTagPair(&m_pbForceCivic, "ForceCivics", sizeof(GC.getCivicInfo((CivicTypes)0)), GC.getNumCivicInfos());
 	pXML->SetVariableListTagPair(&m_abVoteSourceTypes, "DiploVotes", sizeof(GC.getVoteSourceInfo((VoteSourceTypes)0)), GC.getNumVoteSourceInfos());
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                            */
+/************************************************************************************************/
+//	reducesValues();
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
 
 //FfH: Added by Kael 11/14/2007
 	CvString szTextVal;

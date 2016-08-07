@@ -68,6 +68,11 @@ CvGame::CvGame()
 	m_pabSmugglingRing = NULL;
 //FfH: End Add
 
+	// Advanced Diplomacy
+	m_pabCultureNeedsEmptyRadius = NULL;
+	m_pabNoCityRazing = NULL;
+	// End Advanced Diplomacy
+
 	m_paiUnitCreatedCount = NULL;
 	m_paiUnitClassCreatedCount = NULL;
 	m_paiBuildingClassCreatedCount = NULL;
@@ -86,7 +91,14 @@ CvGame::CvGame()
 
 	m_paHolyCity = NULL;
 	m_paHeadquarters = NULL;
-
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	m_abPreviousRequest = new bool[MAX_PLAYERS];
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	m_pReplayInfo = NULL;
 
 	m_aiShrineBuilding = NULL;
@@ -106,6 +118,14 @@ CvGame::~CvGame()
 	SAFE_DELETE_ARRAY(m_aiRankTeam);
 	SAFE_DELETE_ARRAY(m_aiTeamRank);
 	SAFE_DELETE_ARRAY(m_aiTeamScore);
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	SAFE_DELETE_ARRAY(m_abPreviousRequest);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 }
 
 void CvGame::init(HandicapTypes eHandicap)
@@ -528,10 +548,12 @@ void CvGame::setInitialItems()
 //FfH: Added by Kael 09/16/2008
     if (isOption(GAMEOPTION_BARBARIAN_WORLD))
     {
+		logBBAI("IS BARBARIAN WORLD");
         for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
         {
             if (GET_PLAYER((PlayerTypes)iI).isAlive())// && iI != BARBARIAN_PLAYER)
             {
+				logBBAI("   Looking for city site %d", iI);
                 foundBarbarianCity();
             }
         }
@@ -694,6 +716,11 @@ void CvGame::uninit()
 	SAFE_DELETE_ARRAY(m_pabSmugglingRing);
 //FfH: End Add
 
+	// Advanced Diplomacy
+	SAFE_DELETE_ARRAY(m_pabCultureNeedsEmptyRadius);
+	SAFE_DELETE_ARRAY(m_pabNoCityRazing);
+	// End Advanced Diplomacy
+
 	SAFE_DELETE_ARRAY(m_aiShrineBuilding);
 	SAFE_DELETE_ARRAY(m_aiShrineReligion);
 	SAFE_DELETE_ARRAY(m_paiUnitCreatedCount);
@@ -766,6 +793,14 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 	m_iInitLand = 0;
 	m_iInitTech = 0;
 	m_iInitWonders = 0;
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	m_iCurrentVoteID = 0;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	m_uiInitialTime = 0;
 
 	m_bScoreDirty = false;
@@ -823,6 +858,17 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 		m_aiTeamRank[iI] = 0;
 		m_aiTeamScore[iI] = 0;
 	}
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	for (iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		m_abPreviousRequest[iI] = false;
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	if (!bConstructorCall)
 	{
@@ -860,6 +906,18 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 		}
 //FfH: End Add
 
+		// Advanced Diplomacy
+		m_pabCultureNeedsEmptyRadius = new bool[GC.getNumVoteSourceInfos()];
+		for (iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
+		{
+			m_pabCultureNeedsEmptyRadius[iI] = false;
+		}
+		m_pabNoCityRazing = new bool[GC.getNumVoteSourceInfos()];
+		for (iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
+		{
+			m_pabNoCityRazing[iI] = false;
+		}
+		// End Advanced Diplomacy
 		FAssertMsg(m_paiUnitCreatedCount==NULL, "about to leak memory, CvGame::m_paiUnitCreatedCount");
 		m_paiUnitCreatedCount = new int[GC.getNumUnitInfos()];
 		for (iI = 0; iI < GC.getNumUnitInfos(); iI++)
@@ -905,11 +963,28 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 
 		FAssertMsg(0 < GC.getNumVoteSourceInfos(), "GC.getNumVoteSourceInfos() is not greater than zero in CvGame::reset");
 		FAssertMsg(m_aiDiploVote==NULL, "about to leak memory, CvGame::m_aiDiploVote");
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+		m_abPacificVoteSource.clear();
 		m_aiDiploVote = new int[GC.getNumVoteSourceInfos()];
 		for (iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
 		{
 			m_aiDiploVote[iI] = 0;
+			m_abPacificVoteSource.push_back(false);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 		}
+
+		/*
+		FAssertMsg(m_paiCondemnCivicCount==NULL, "about to leak memory, CvGame::m_paiCondemnCivicCount");
+		m_paiCondemnCivicCount = new int[GC.getNumCivicInfos()];
+		for (iI = 0; iI < GC.getNumCivicInfos(); iI++)
+		{
+			m_paiCondemnCivicCount[iI] = 0;
+		}
+		*/
 
 		FAssertMsg(m_pabSpecialUnitValid==NULL, "about to leak memory, CvGame::m_pabSpecialUnitValid");
 		m_pabSpecialUnitValid = new bool[GC.getNumSpecialUnitInfos()];
@@ -4449,7 +4524,6 @@ void CvGame::changeSecretaryGeneralTimer(VoteSourceTypes eVoteSource, int iChang
 	setSecretaryGeneralTimer(eVoteSource, getSecretaryGeneralTimer(eVoteSource) + iChange);
 }
 
-
 int CvGame::getVoteTimer(VoteSourceTypes eVoteSource) const
 {
 	FAssert(eVoteSource >= 0);
@@ -5915,6 +5989,18 @@ bool CvGame::isForceCivic(CivicTypes eIndex) const
 	return (getForceCivicCount(eIndex) > 0);
 }
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+/*
+bool CvGame::isCondemnCivic(CivicTypes eIndex) const
+{
+	return (getCondemnCivicCount(eIndex) > 0);
+}
+*/
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
 
 bool CvGame::isForceCivicOption(CivicOptionTypes eCivicOption) const
 {
@@ -5955,6 +6041,90 @@ void CvGame::changeForceCivicCount(CivicTypes eIndex, int iChange)
 		}
 	}
 }
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+/*
+void CvGame::changeCondemnCivicCount(CivicTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumCivicInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	setCondemnCivicCount(eIndex, getCondemnCivicCount(eIndex)+iChange);
+}
+
+
+int CvGame::getCondemnCivicCount(CivicTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumCivicInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	return m_paiCondemnCivicCount[eIndex];
+}
+
+void CvGame::setCondemnCivicCount(CivicTypes eIndex, int iNewValue)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumCivicInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	CvWString szBuffer;
+
+	if (iNewValue != getCondemnCivicCount(eIndex))
+	{
+		bool bOldForceCivic = isCondemnCivic(eIndex);
+	
+		if (NULL == m_paiCondemnCivicCount)
+		{
+			m_paiCondemnCivicCount = NULL;
+		}
+
+		if (NULL == m_paiCondemnCivicCount)
+		{
+			m_paiCondemnCivicCount = new int[GC.getNumCivicInfos()];
+			for (int iI = 0; iI < GC.getNumCivicInfos(); ++iI)
+			{
+				m_paiCondemnCivicCount[iI] = 0;
+			}
+		}
+		m_paiCondemnCivicCount[eIndex] = iNewValue;
+		FAssert(getCondemnCivicCount(eIndex) >= 0);
+
+		if (bOldForceCivic != isCondemnCivic(eIndex))
+		{
+			for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isAlive())
+				{
+					if (isCondemnCivic(eIndex))
+					{
+						if (GET_PLAYER((PlayerTypes)iI).isHuman())
+						{
+							szBuffer = gDLL->getText("TXT_KEY_MISC_CONDEMN_CIVIC", GC.getCivicInfo(eIndex).getDescription());
+							gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)iI), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_NEW_ERA", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+						}
+					}
+					else
+					{
+						if (GET_PLAYER((PlayerTypes)iI).isHuman())
+						{
+							szBuffer = gDLL->getText("TXT_KEY_MISC_CONDEMN_CIVIC_END", GC.getCivicInfo(eIndex).getDescription());
+							gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)iI), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_NEW_ERA", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+						}
+					}
+				}
+
+				if (isCondemnCivic(eIndex))
+				{
+					updateSecretaryGeneral();
+				}
+			}
+		}
+	}
+}
+*/
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
 
 
 PlayerVoteTypes CvGame::getVoteOutcome(VoteTypes eIndex) const
@@ -6052,6 +6222,33 @@ void CvGame::setReligionSlotTaken(ReligionTypes eReligion, bool bTaken)
 	FAssertMsg(eReligion < GC.getNumReligionInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
 	m_abReligionSlotTaken[eReligion] = bTaken;
 }
+
+
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+bool CvGame::isPacificVoteSource(VoteSourceTypes eVoteSource) const
+{
+	FAssertMsg(eVoteSource >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eVoteSource < GC.getNumVoteSourceInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	return m_abPacificVoteSource[eVoteSource];
+}
+
+void CvGame::setPacificVoteSource(VoteSourceTypes eVoteSource, bool bNewValue)
+{
+	FAssertMsg(eVoteSource >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eVoteSource < GC.getNumVoteSourceInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	m_abPacificVoteSource[eVoteSource] = bNewValue;
+
+	if (bNewValue)
+	{
+		updateSecretaryGeneral();
+	}
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 
 int CvGame::getCorporationGameTurnFounded(CorporationTypes eIndex)
@@ -6454,7 +6651,6 @@ void CvGame::castVote(PlayerTypes eOwnerIndex, int iVoteId, PlayerVoteTypes ePla
 				}
 			}
 		}
-
 		setPlayerVote(eOwnerIndex, iVoteId, ePlayerVote);
 	}
 }
@@ -6812,6 +7008,18 @@ void CvGame::doTurn()
     }
 //FfH: End Add
 
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	for (int iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		setPreviousRequest((PlayerTypes)iI, false);
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 	testVictory();
 
 	gDLL->getEngineIFace()->SetDirty(GlobePartialTexture_DIRTY_BIT, true);
@@ -6950,6 +7158,19 @@ void CvGame::doGlobalWarming()
 				if (bChanged)
 				{
 					pPlot->setImprovementType(NO_IMPROVEMENT);
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+					if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+					{
+						if (pPlot->getOwnerINLINE() != NO_PLAYER)
+						{
+							GET_PLAYER((PlayerTypes)iI).AI_changeMemoryCount(pPlot->getOwnerINLINE(), MEMORY_YOU_POLLUTE, 1);
+						}
+					}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 					CvCity* pCity = GC.getMapINLINE().findCity(pPlot->getX_INLINE(), pPlot->getY_INLINE());
 					if (pCity != NULL)
@@ -8566,6 +8787,14 @@ void CvGame::processVote(const VoteTriggeredData& kData, int iChange)
 	changeFreeTradeCount(kVote.isFreeTrade() ? iChange : 0);
 	changeNoNukesCount(kVote.isNoNukes() ? iChange : 0);
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	setPacificVoteSource(kData.eVoteSource, (GC.getVoteInfo(kData.kVoteOption.eVote).isPacificRule() ? (iChange > 0) : isPacificVoteSource(kData.eVoteSource)));
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 	for (int iI = 0; iI < GC.getNumCivicInfos(); iI++)
 	{
 		changeForceCivicCount((CivicTypes)iI, kVote.isForceCivic(iI) ? iChange : 0);
@@ -8621,6 +8850,14 @@ void CvGame::processVote(const VoteTriggeredData& kData, int iChange)
     {
         changeCrime(kVote.getCrime());
     }
+
+	// Advanced Diplomacy
+	if (kVote.isCultureNeedsEmptyRadius())
+    {
+        setCultureNeedsEmptyRadius(kData.eVoteSource, bChange);
+    }
+	// End Advanced Diplomacy
+
 	if (!CvString(kVote.getPyResult()).empty())
     {
         CyArgsList argsList;
@@ -8766,24 +9003,50 @@ void CvGame::processVote(const VoteTriggeredData& kData, int iChange)
 			{
 				if (NO_PLAYER != kData.kVoteOption.eOtherPlayer && kData.kVoteOption.eOtherPlayer != pCity->getOwnerINLINE())
 				{
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
-/*                                                                                              */
-/* AI logging                                                                                   */
-/************************************************************************************************/
-					if( gTeamLogLevel >= 1 )
-					{
-						logBBAI("  Vote for assigning %S to %d (%S) passes", pCity->getName().GetCString(), GET_PLAYER(kData.kVoteOption.eOtherPlayer).getTeam(), GET_PLAYER(kData.kVoteOption.eOtherPlayer).getCivilizationDescription(0) );
-					}
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
 					GET_PLAYER(kData.kVoteOption.eOtherPlayer).acquireCity(pCity, false, true, true);
 				}
 			}
 
 			setVoteOutcome(kData, NO_PLAYER_VOTE);
 		}
+		
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+		else if (GC.getVoteInfo(kData.kVoteOption.eVote).isTradeMap())
+		{
+			for (int iTeam1 = 0; iTeam1 < MAX_CIV_PLAYERS; ++iTeam1)
+			{
+				if (GET_TEAM((TeamTypes)iTeam1).isVotingMember(kData.eVoteSource))
+				{
+					for (int iTeam2 = iTeam1 + 1; iTeam2 < MAX_CIV_PLAYERS; ++iTeam2)
+					{
+						if (GET_TEAM((TeamTypes)iTeam2).isVotingMember(kData.eVoteSource))
+						{
+							int num_plots = GC.getMapINLINE().numPlotsINLINE();
+							CvPlot* pLoopPlot;
+							
+							for (int iPlot = 0; iPlot < num_plots;iPlot++)
+							{
+								pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iPlot);
+
+								if (pLoopPlot->isRevealed((TeamTypes)iTeam1, false))
+								{
+									pLoopPlot->setRevealed((TeamTypes)iTeam2, true, false, (TeamTypes)iTeam1, false);
+								}
+								else if (pLoopPlot->isRevealed((TeamTypes)iTeam2, false))
+								{
+									pLoopPlot->setRevealed((TeamTypes)iTeam1, true, false, (TeamTypes)iTeam2, false);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	}
 }
 
@@ -9329,7 +9592,14 @@ void CvGame::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iInitLand);
 	pStream->Read(&m_iInitTech);
 	pStream->Read(&m_iInitWonders);
-
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pStream->Read(&m_iCurrentVoteID);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	// m_uiInitialTime not saved
 
 	pStream->Read(&m_bScoreDirty);
@@ -9488,7 +9758,23 @@ void CvGame::read(FDataStreamBase* pStream)
 			m_mapVoteSourceReligions[eVoteSource] = eReligion;
 		}
 	}
-
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	{
+		m_abPacificVoteSource.clear();
+		uint iSize = GC.getNumVoteSourceInfos();
+//		pStream->Read(&iSize);
+		for (uint i = 0; i < iSize; i++)
+		{
+			bool bValue;
+			pStream->Read(&bValue);
+			m_abPacificVoteSource.push_back(bValue);
+		}
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	{
 		int iSize;
 		m_aeInactiveTriggers.clear();
@@ -9547,6 +9833,10 @@ void CvGame::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumVoteSourceInfos(), m_pabSmugglingRing);
 //FfH: End Add
 
+	// Advanced Diplomacy
+	pStream->Read(GC.getNumVoteSourceInfos(), m_pabCultureNeedsEmptyRadius);
+	pStream->Read(GC.getNumVoteSourceInfos(), m_pabNoCityRazing);
+	// End Advanced Diplomacy
 }
 
 
@@ -9578,7 +9868,14 @@ void CvGame::write(FDataStreamBase* pStream)
 	pStream->Write(m_iInitLand);
 	pStream->Write(m_iInitTech);
 	pStream->Write(m_iInitWonders);
-
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pStream->Write(m_iCurrentVoteID);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	// m_uiInitialTime not saved
 
 	pStream->Write(m_bScoreDirty);
@@ -9713,6 +10010,22 @@ void CvGame::write(FDataStreamBase* pStream)
 	}
 #endif
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	{
+/*		uint iSize = m_abPacificVoteSource.size();
+		pStream->Write(iSize);*/
+		std::vector<bool>::iterator it;
+		for (it = m_abPacificVoteSource.begin(); it != m_abPacificVoteSource.end(); ++it)
+		{
+			pStream->Write((*it));
+		}
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 	pStream->Write(m_aeInactiveTriggers.size());
 	for (std::vector<EventTriggerTypes>::iterator it = m_aeInactiveTriggers.begin(); it != m_aeInactiveTriggers.end(); ++it)
 	{
@@ -9743,6 +10056,10 @@ void CvGame::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumVoteSourceInfos(), m_pabSmugglingRing);
 //FfH: End Add
 
+	// Advanced Diplomacy
+	pStream->Write(GC.getNumVoteSourceInfos(), m_pabCultureNeedsEmptyRadius);
+	pStream->Write(GC.getNumVoteSourceInfos(), m_pabNoCityRazing);
+	// End Advanced Diplomacy
 }
 
 void CvGame::writeReplay(FDataStreamBase& stream, PlayerTypes ePlayer)
@@ -10531,21 +10848,30 @@ VoteSelectionData* CvGame::addVoteSelection(VoteSourceTypes eVoteSource)
 						for (int iPlayer1 = 0; iPlayer1 < MAX_CIV_PLAYERS; ++iPlayer1)
 						{
 							CvPlayer& kPlayer1 = GET_PLAYER((PlayerTypes)iPlayer1);
-
-							int iLoop;
-							for (CvCity* pLoopCity = kPlayer1.firstCity(&iLoop); NULL != pLoopCity; pLoopCity = kPlayer1.nextCity(&iLoop))
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+							if (kPlayer1.isAlive())
 							{
-								PlayerTypes eNewOwner = pLoopCity->plot()->findHighestCulturePlayer();
-								if (NO_PLAYER != eNewOwner)
+								int iLoop;
+								for (CvCity* pLoopCity = kPlayer1.firstCity(&iLoop); NULL != pLoopCity; pLoopCity = kPlayer1.nextCity(&iLoop))
 								{
-									kData.ePlayer = (PlayerTypes)iPlayer1;
-									kData.iCityId =	pLoopCity->getID();
-									kData.eOtherPlayer = eNewOwner;
-
-									if (isValidVoteSelection(eVoteSource, kData))
+									PlayerTypes eNewOwner = pLoopCity->plot()->findHighestCulturePlayer();
+									if (NO_PLAYER != eNewOwner)
 									{
-										kData.szText = gDLL->getText("TXT_KEY_POPUP_ELECTION_ASSIGN_CITY", kPlayer1.getCivilizationAdjectiveKey(), pLoopCity->getNameKey(), GET_PLAYER(eNewOwner).getNameKey(), getVoteRequired(kData.eVote, eVoteSource), countPossibleVote(kData.eVote, eVoteSource));
-										pData->aVoteOptions.push_back(kData);
+										kData.ePlayer = (PlayerTypes)iPlayer1;
+										kData.iCityId =	pLoopCity->getID();
+										kData.eOtherPlayer = eNewOwner;
+
+										if (isValidVoteSelection(eVoteSource, kData))
+										{
+											kData.szText = gDLL->getText("TXT_KEY_POPUP_ELECTION_ASSIGN_CITY", kPlayer1.getCivilizationAdjectiveKey(), pLoopCity->getNameKey(), GET_PLAYER(eNewOwner).getNameKey(), getVoteRequired(kData.eVote, eVoteSource), countPossibleVote(kData.eVote, eVoteSource));
+											pData->aVoteOptions.push_back(kData);
+										}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 									}
 								}
 							}
@@ -10610,8 +10936,15 @@ VoteTriggeredData* CvGame::addVoteTriggered(VoteSourceTypes eVoteSource, const V
 		for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
 		{
 			CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iI);
-			if (kPlayer.isVotingMember(eVoteSource))
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+			if (kPlayer.isAlive() && kPlayer.isVotingMember(eVoteSource))
 			{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 				if (kPlayer.isHuman())
 				{
 					CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_DIPLOVOTE);
@@ -10663,8 +10996,15 @@ void CvGame::doVoteResults()
 			for (int iPlayer = 0; iPlayer < MAX_CIV_PLAYERS; ++iPlayer)
 			{
 				CvPlayer& kPlayer = GET_PLAYER((PlayerTypes) iPlayer);
-				if (kPlayer.isVotingMember(eVoteSource))
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+				if (kPlayer.isAlive() && kPlayer.isVotingMember(eVoteSource))
 				{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 					CvWString szMessage;
 					szMessage.Format(L"%s: %s", gDLL->getText("TXT_KEY_ELECTION_CANCELLED").GetCString(), GC.getVoteInfo(eVote).getDescription());
 					gDLL->getInterfaceIFace()->addMessage((PlayerTypes)iPlayer, false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_NEW_ERA", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
@@ -10676,9 +11016,16 @@ void CvGame::doVoteResults()
 			bool bAllVoted = true;
 			for (int iJ = 0; iJ < MAX_CIV_PLAYERS; iJ++)
 			{
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
 				PlayerTypes ePlayer = (PlayerTypes) iJ;
-				if (GET_PLAYER(ePlayer).isVotingMember(eVoteSource))
+				if (GET_PLAYER(ePlayer).isAlive() && GET_PLAYER(ePlayer).isVotingMember(eVoteSource))
 				{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 					if (getPlayerVote(ePlayer, pVoteTriggered->getID()) == NO_PLAYER_VOTE)
 					{
 						//give player one more turn to submit vote
@@ -10753,9 +11100,16 @@ void CvGame::doVoteResults()
 				for (int iI = MAX_CIV_TEAMS; iI >= 0; --iI)
 				{
 					for (int iJ = 0; iJ < MAX_CIV_PLAYERS; iJ++)
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
 					{
-						if (GET_PLAYER((PlayerTypes)iJ).isVotingMember(eVoteSource))
+						if (GET_PLAYER((PlayerTypes)iJ).isAlive() && GET_PLAYER((PlayerTypes)iJ).isVotingMember(eVoteSource))
 						{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 							if (getPlayerVote(((PlayerTypes)iJ), pVoteTriggered->getID()) == (PlayerVoteTypes)iI)
 							{
 								szBuffer += NEWLINE + gDLL->getText("TXT_KEY_POPUP_VOTES_FOR", GET_PLAYER((PlayerTypes)iJ).getNameKey(), GET_TEAM((TeamTypes)iI).getName().GetCString(), GET_PLAYER((PlayerTypes)iJ).getVotes(eVote, eVoteSource));
@@ -10765,9 +11119,16 @@ void CvGame::doVoteResults()
 				}
 
 				for (int iJ = 0; iJ < MAX_CIV_PLAYERS; iJ++)
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
 				{
-					if (GET_PLAYER((PlayerTypes)iJ).isVotingMember(eVoteSource))
+					if (GET_PLAYER((PlayerTypes)iJ).isAlive() && GET_PLAYER((PlayerTypes)iJ).isVotingMember(eVoteSource))
 					{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 						if (getPlayerVote(((PlayerTypes)iJ), pVoteTriggered->getID()) == PLAYER_VOTE_ABSTAIN)
 						{
 							szBuffer += NEWLINE + gDLL->getText("TXT_KEY_POPUP_ABSTAINS", GET_PLAYER((PlayerTypes)iJ).getNameKey(), GET_PLAYER((PlayerTypes)iJ).getVotes(eVote, eVoteSource));
@@ -10824,9 +11185,16 @@ void CvGame::doVoteResults()
 				if (bPassed)
 				{
 					for (int iJ = 0; iJ < MAX_CIV_PLAYERS; iJ++)
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
 					{
-						if (GET_PLAYER((PlayerTypes)iJ).isVotingMember(eVoteSource))
+						if (GET_PLAYER((PlayerTypes)iJ).isAlive() && GET_PLAYER((PlayerTypes)iJ).isVotingMember(eVoteSource))
 						{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 							if (getPlayerVote(((PlayerTypes)iJ), pVoteTriggered->getID()) == PLAYER_VOTE_YES)
 							{
 								GET_PLAYER((PlayerTypes)iJ).setEndorsedResolution(eVoteSource, pVoteTriggered->kVoteOption);
@@ -10851,9 +11219,16 @@ void CvGame::doVoteResults()
 				for (int iI = PLAYER_VOTE_NEVER; iI <= PLAYER_VOTE_YES; ++iI)
 				{
 					for (int iJ = 0; iJ < MAX_CIV_PLAYERS; iJ++)
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
 					{
-						if (GET_PLAYER((PlayerTypes)iJ).isVotingMember(eVoteSource))
+						if (GET_PLAYER((PlayerTypes)iJ).isAlive() && GET_PLAYER((PlayerTypes)iJ).isVotingMember(eVoteSource))
 						{
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 							if (getPlayerVote(((PlayerTypes)iJ), pVoteTriggered->getID()) == (PlayerVoteTypes)iI)
 							{
 								switch ((PlayerVoteTypes)iI)
@@ -10968,7 +11343,17 @@ void CvGame::doVoteSelection()
 			}
 			else
 			{
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+/*
 				setVoteTimer(eVoteSource, (GC.getVoteSourceInfo(eVoteSource).getVoteInterval() * GC.getGameSpeedInfo(getGameSpeedType()).getVictoryDelayPercent()) / 100);
+*/
+				setVoteTimer(eVoteSource, (GC.getVoteSourceInfo(eVoteSource).getVoteInterval() * GC.getGameSpeedInfo(getGameSpeedType()).getTrainPercent()) / 100);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 				for (int iTeam1 = 0; iTeam1 < MAX_CIV_TEAMS; ++iTeam1)
 				{
@@ -11356,6 +11741,7 @@ void CvGame::foundBarbarianCity()
         }
         if (bValid)
         {
+			//logBBAI("   ...checking plot %d, %d for nearby players", pLoopPlot->getX(), pLoopPlot->getY());
             for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
             {
                 if (GET_PLAYER((PlayerTypes)iI).isAlive())
@@ -11364,7 +11750,7 @@ void CvGame::foundBarbarianCity()
                     if (pPlotI != NULL)
                     {
                         iDist = GC.getMapINLINE().calculatePathDistance(pPlotI, pLoopPlot);
-						if (iDist < 4)
+						if (iDist < 4 && iDist > -1)
                         {
                             bValid = false;
                         }
@@ -11395,7 +11781,7 @@ void CvGame::foundBarbarianCity()
 		/************************************************************************************************/
             if (bValid)
             {
-                iValue += GET_PLAYER(BARBARIAN_PLAYER).AI_foundValue(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), GC.getDefineINT("MIN_BARBARIAN_CITY_STARTING_DISTANCE"), true);
+                //iValue += GET_PLAYER(BARBARIAN_PLAYER).AI_foundValue(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), GC.getDefineINT("MIN_BARBARIAN_CITY_STARTING_DISTANCE"), true);
                 //iValue += pLoopPlot->area()->getNumOwnedTiles() + 10;
                 iValue += getSorenRandNum(100, "Barb City Found");
                 if (iValue > iBestValue)
@@ -11407,7 +11793,7 @@ void CvGame::foundBarbarianCity()
         }
 	}
 
-	logBBAI("BEST VALUE: %d", iBestValue);
+	logBBAI("    BEST VALUE: %d", iBestValue);
 
 	if (pBestPlot != NULL)
 	{
@@ -11651,4 +12037,61 @@ void CvGame::setOOSVisible()
 {
 	m_bOOSVisible = true;
 }
-// Automatic OOS detection START
+// Automatic OOS detection END
+
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+int CvGame::getCurrentVoteID() const
+{
+    return m_iCurrentVoteID;
+}
+
+void CvGame::setCurrentVoteID(int iNewValue)
+{
+    if (iNewValue != getCurrentVoteID())
+    {
+        m_iCurrentVoteID = iNewValue;
+    }
+}
+
+bool CvGame::isPreviousRequest(PlayerTypes ePlayer) const																	
+{
+	FAssertMsg(ePlayer >= 0, "ePlayer is expected to be non-negative (invalid Index)");
+	FAssertMsg(ePlayer < MAX_PLAYERS, "ePlayer is expected to be within maximum bounds (invalid Index)");
+	return m_abPreviousRequest[ePlayer];
+}
+
+
+void CvGame::setPreviousRequest(PlayerTypes ePlayer, bool bNewValue)		
+{
+	FAssertMsg(ePlayer >= 0, "ePlayer is expected to be non-negative (invalid Index)");
+	FAssertMsg(ePlayer < MAX_PLAYERS, "ePlayer is expected to be within maximum bounds (invalid Index)");
+	m_abPreviousRequest[ePlayer] = bNewValue;
+}
+
+bool CvGame::isCultureNeedsEmptyRadius(VoteSourceTypes eIndex) const
+{
+	return m_pabCultureNeedsEmptyRadius[eIndex];
+}
+
+void CvGame::setCultureNeedsEmptyRadius(VoteSourceTypes eIndex, bool bNewValue)
+{
+	m_pabCultureNeedsEmptyRadius[eIndex] = bNewValue;
+}
+
+bool CvGame::isNoCityRazing(VoteSourceTypes eIndex) const
+{
+	return m_pabNoCityRazing[eIndex];
+}
+
+void CvGame::setNoCityRazing(VoteSourceTypes eIndex, bool bNewValue)
+{
+	m_pabNoCityRazing[eIndex] = bNewValue;
+}
+
+
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/

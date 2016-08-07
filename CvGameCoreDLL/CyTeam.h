@@ -263,17 +263,43 @@ public:
 	// End FFH
 
 /************************************************************************************************/
-/* Afforess	                  Start		 03/10/10                                               */
-/*                                                                                              */
+/* Afforess	                  Start		 		                                                */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 	bool isHasEmbassy(int /*TeamTypes*/ eIndex) const;
-	void setHasEmbassy(int /*TeamTypes*/ eIndex, bool bNewValue) const;
-	bool isLimitedBorders(int /*TeamTypes*/ eIndex) const;
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
+	bool isLimitedBorders(int /*TeamTypes*/ eIndex);
 
+	void signLimitedBorders(int /*TeamTypes*/ eTeam);
+	void setHasEmbassy(int /*TeamTypes*/ eTeam, bool bNewValue);
+
+	int getFreeTradeAgreementTradingCount();
+	bool isFreeTradeAgreementTrading();
+	void changeFreeTradeAgreementTradingCount(int iChange);
+												
+	bool isHasNonAggression(int /*TeamTypes*/ eIndex) const;
+	void setHasNonAggression(int /*TeamTypes*/ eTeam, bool bNewValue);
+	bool isHasPrepareWar(int /*TeamTypes*/ eIndex) const;
+	void setHasPrepareWar(int /*TeamTypes*/ eIndex, bool bNewValue);
+	bool isHasPOW(int /*TeamTypes*/ eIndex) const;
+	
+	bool isLimitedBordersTrading();
+	int getLimitedBordersTradingCount();
+	void changeLimitedBordersTradingCount(int iChange);
+	
+	bool isEmbassyTrading();
+	int getEmbassyTradingCount();
+	void changeEmbassyTradingCount(int iChange);
+	
+	int getPOWTradingCount();
+	bool isPOWTrading();
+	void changePOWTradingCount(int iChange);
+																
+	int getNonAggressionTradingCount();
+	bool isNonAggressionTrading();
+	void changeNonAggressionTradingCount(int iChange);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 protected:
 
 	CvTeam* m_pTeam;
