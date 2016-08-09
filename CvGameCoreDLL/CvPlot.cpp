@@ -551,14 +551,16 @@ void CvPlot::doTurn()
 
 		SpawnTypes eBestSpawn = NO_SPAWN;
 		int iBestValue = 0;
-		bool bSpawnAvailable = false;
+		bool bShouldSpawn = false; // later set to true if the improvement should definitely spawn something
 
 		for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
 		{
 			if( GC.getImprovementInfo( getImprovementType() ).getSpawnTypes( eLoopSpawn ) )
 			{
-				bSpawnAvailable = true;
 				CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
+
+				if( !( kLoopSpawn.isAnimal() && isOwned() && GET_PLAYER( getOwnerINLINE() ).isBarbarian() ) )
+					bShouldSpawn = true;
 
 				int iValue = getSpawnValue( (SpawnTypes) eLoopSpawn );
 
@@ -646,7 +648,7 @@ void CvPlot::doTurn()
         }
 		else
 		{
-			if( bSpawnAvailable && !GC.getImprovementInfo( getImprovementType() ).isUnique() )
+			if( bShouldSpawn && !GC.getImprovementInfo( getImprovementType() ).isUnique() )
 			{
 				logBBAI("WILDERNESS - ImprovementSpawnTypes - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
 						getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( getTerrainType() ).getType() : "NONE",
@@ -13284,7 +13286,7 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon, bo
 	if( !bIgnoreTerrain && area()->isWater() != kSpawn.isWater() )
 		return 0;
 
-	if( !bIgnoreTerrain && isOwned() && kSpawn.isAnimal() )
+	if( !bIgnoreTerrain && kSpawn.isAnimal() && isOwned() && ! GET_PLAYER( getOwnerINLINE() ).isBarbarian() )
 		return 0;
 
 	if( !( GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && kSpawn.isNoWildernessIgnoreSpawnPrereq() ) )
