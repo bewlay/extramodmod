@@ -7524,6 +7524,9 @@ void CvGame::createBarbarianCities()
 /*                                                                                              */
 /* For BarbarianCiv, allows earlier barb cities                                                 */
 /************************************************************************************************/
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+// Reverting revolutions code: Wtf?
+/* old code
 	if (bRagingBarbs || isOption(GAMEOPTION_NO_SETTLERS))
 	{
 		if( getNumCivCities() <= (countCivPlayersAlive() * 2))
@@ -7538,12 +7541,21 @@ void CvGame::createBarbarianCities()
 			return;
 		}
 	}
+*/
+	if (getNumCivCities() < (countCivPlayersAlive() * 2))
+	{
+		return;
+	}
+// WILDERNESS end
 
 	if (getElapsedGameTurns() < (((GC.getHandicapInfo(getHandicapType()).getBarbarianCityCreationTurnsElapsed() * GC.getGameSpeedInfo(getGameSpeedType()).getBarbPercent()) / 100) / std::max(getStartEra() + 1, 1)))
 	{
 		return;
 	}
 
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+// Reverting revolutions code: LESS cities if there are not enough players + barb cities to fill all default slots?
+/* old code
 	int iRand = getSorenRandNum(100, "Barb City Creation");
 	if (bRagingBarbs)
 	{
@@ -7558,6 +7570,13 @@ void CvGame::createBarbarianCities()
 	{
 		return;
 	}
+*/
+	// lfgr note: BarbarianCityCreationProb is goes from 4 to 8
+	if (getSorenRandNum(100, "Barb City Creation") >= GC.getHandicapInfo(getHandicapType()).getBarbarianCityCreationProb())
+	{
+		return;
+	}
+// WILDERNESS end
 /************************************************************************************************/
 /* REVOLUTION_MOD                          END                                                  */
 /************************************************************************************************/
@@ -7565,8 +7584,12 @@ void CvGame::createBarbarianCities()
 	iBestValue = 0;
 	pBestPlot = NULL;
 
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+/* commenting out
+	// lfgr note: only used directly on very small areas
 	int iTargetCitiesMultiplier = 100;
 	{
+		// lfgr note: goes from 0.2 * cities to 0.4 * cities
 		int iTargetBarbCities = (getNumCivCities() * 5 * GC.getHandicapInfo(getHandicapType()).getBarbarianCityCreationProb()) / 100;
 		int iBarbCities = GET_PLAYER(BARBARIAN_PLAYER).getNumCities();
 		if (iBarbCities < iTargetBarbCities)
@@ -7580,6 +7603,8 @@ void CvGame::createBarbarianCities()
 			iTargetCitiesMultiplier /= 2;
 		}
 	}
+*/
+// WILDERNESS end
 
 /************************************************************************************************/
 /* REVOLUTION_MOD                         04/19/08                                jdog5000      */
@@ -7590,8 +7615,12 @@ void CvGame::createBarbarianCities()
 	// New variable for emphaizing spawning cities on populated continents
 	int iOccupiedAreaMultiplier = 50;
 	int iOwnedPlots = 0;
-
+	
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+/* yeah...
 	if(bRagingBarbs)
+*/
+// WILDERNESS end
 	{
 		for( iI = 0; iI < GC.getMAX_PLAYERS(); iI++ )
 		{
@@ -7599,7 +7628,12 @@ void CvGame::createBarbarianCities()
 		}
 	
 		// When map mostly open, emphasize areas with other civs
+	// WILDERNESS 02/2016 lfgr // fix
+	/*
 		iOccupiedAreaMultiplier += 100 - (iOwnedPlots)/GC.getMapINLINE().getLandPlots();
+	*/
+		iOccupiedAreaMultiplier += 100 - (100*iOwnedPlots)/GC.getMapINLINE().getLandPlots();
+	// WILDERNESS end
 		
 		// If raging barbs is on, emphasize areas with other civs
 		if( bRagingBarbs )
@@ -7621,21 +7655,36 @@ void CvGame::createBarbarianCities()
 			if (!(pLoopPlot->isVisibleToCivTeam()))
 			{
 				iTargetCities = pLoopPlot->area()->getNumUnownedTiles();
-
+				
+				// lfgr note: three times as many cities allowed if no non-barb cities on continent
 				if (pLoopPlot->area()->getNumCities() == pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER))
 				{
 					iTargetCities *= 3;
 				}
-								
-				int iUnownedTilesThreshold = GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerBarbarianCity();
 				
+				// lfgr note: goes from 160 to 45		
+				int iUnownedTilesThreshold = GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerBarbarianCity();
+			
+			// WILDERNESS 02/2016 lfgr // WildernessMisc
+			/* old
+				// lfgr note: apply TargetCitiesMultiplier if area is very small
 				if (pLoopPlot->area()->getNumTiles() < (iUnownedTilesThreshold / 3))
 				{
 					iTargetCities *= iTargetCitiesMultiplier;
 					iTargetCities /= 100;
 				}
-
+				
 				iTargetCities /= std::max(1, iUnownedTilesThreshold);
+			*/
+				iTargetCities /= std::max(1, iUnownedTilesThreshold);
+				
+				// allow also cities on smaller islands (else the minimum on settler difficulty is 53 tiles)
+				if( iTargetCities == 0
+						&& pLoopPlot->area()->getNumUnownedTiles() >= GC.getDefineINT( "BARBARIAN_CITY_SPAWNING_MIN_AREA_SIZE" ) )
+				{
+					iTargetCities = 1;
+				}
+			// WILDERNESS end
 
 				if (pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER) < iTargetCities)
 				{
@@ -7652,9 +7701,12 @@ void CvGame::createBarbarianCities()
 						iValue *= pLoopPlot->area()->getNumOwnedTiles();
 					}
 
+					// lfgr comment: this probably should be a '*' instead of a '+'
 					iValue += (100 + getSorenRandNum(50, "Barb City Found"));
 					iValue /= 100;
 */
+				// WILDERNESS 02/2016 lfgr // WildernessMisc
+				/* old code
 					if (bRagingBarbs)
 					{
 						if( pLoopPlot->area()->getNumCities() == pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER) )
@@ -7664,6 +7716,7 @@ void CvGame::createBarbarianCities()
 							iValue /= 3;
 						}
 	
+						// lfgr note: always true
 						if( iTargetCitiesMultiplier > 100 )		// Either raging barbs is set or fewer barb cities than desired
 						{
 							// Emphasis on placing barb cities in populated areas
@@ -7672,17 +7725,36 @@ void CvGame::createBarbarianCities()
 					}
 					else
 					{
+						// lfgr note: fewer barb cities than desired
 						if (iTargetCitiesMultiplier > 100)
 						{
 							iValue *= pLoopPlot->area()->getNumOwnedTiles();
 						}
 					}
 
+					// lfgr note: no adjacent tile is better
 					if( pLoopPlot->isBestAdjacentFound(BARBARIAN_PLAYER) ) 
 					{
 						iValue *= 120 + getSorenRandNum(30, "Barb City Found");
 						iValue /= 100;
 					}
+				*/
+					if( pLoopPlot->area()->getNumCities() == pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER) )
+					{
+						// Counteracts the AI_foundValue emphasis on empty areas
+						iValue *= 2;
+						iValue /= 3;
+					}
+	
+					// Emphasis on placing barb cities in populated areas
+					iValue += (iOccupiedAreaMultiplier*(pLoopPlot->area()->getNumCities() - pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER)))/getNumCivCities();
+					
+					if( pLoopPlot->isBestAdjacentFound(BARBARIAN_PLAYER) ) // lfgr note: no adjacent tile is better
+						iValue *= (120 + getSorenRandNum(30, "Barb City Found"));
+					else
+						iValue *= (100 + getSorenRandNum(30, "Barb City Found"));
+					iValue /= 100;
+				// WILDERNESS end
 /************************************************************************************************/
 /* REVOLUTION_MOD                          END                                                  */
 /************************************************************************************************/
@@ -7699,6 +7771,19 @@ void CvGame::createBarbarianCities()
 
 	if (pBestPlot != NULL)
 	{
+	// WILDERNESS 02/2016 lfgr // WildernessMisc
+		// Logging barbarian city foundations
+		// TODO: Multibarb
+		int iBarbCities = pBestPlot->area()->getCitiesPerPlayer( (PlayerTypes) GC.getBARBARIAN_PLAYER() );
+		int iPlayerCities = pBestPlot->area()->getNumCities() - iBarbCities;
+
+		logTo( "wilderness - %S.log", "Barbarian city founded in area %d (%d player cities, %d barb cities in area) at turn %d",
+				pBestPlot->area()->getID(),
+				iPlayerCities, iBarbCities,
+				GC.getGameINLINE().getGameTurn() );
+		
+		logTo( "wilderness - %S.log", "iOccupiedAreaMultiplier was %d", iOccupiedAreaMultiplier );
+	// WILDERNESS end
 		GET_PLAYER(BARBARIAN_PLAYER).found(pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
 	}
 }
@@ -7753,10 +7838,13 @@ void CvGame::createBarbarianUnits()
 			bAnimals = false;
 		else if (getNumCivCities() < countCivPlayersAlive())
 			bAnimals = false;
+
+		float CITIES_MOD = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_REQUIRED_CITIES_PER_PLAYER", 3.f );
+		float RB_CITIES_MOD = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_REQUIRED_CITIES_PER_PLAYER_RAGING_BARBARIANS", 2.f );
 		
 		if (GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerBarbarianUnit() <= 0)
 			bBarbs = false;
-		else if( getNumCivCities() < countCivPlayersAlive() * ( bRagingBarbs ? 2 : 3 ) )
+		else if( getNumCivCities() < countCivPlayersAlive() * ( bRagingBarbs ? RB_CITIES_MOD : CITIES_MOD ) )
 			bBarbs = false;
 	}
 
@@ -7779,12 +7867,15 @@ void CvGame::createBarbarianUnits()
 		int VALID_TILES_PER_BARB = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerBarbarianUnit();
 		int VALID_TILES_PER_BARB_WATER = GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerBarbarianUnit();
 		int VALID_TILES_PER_ANIMAL = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerGameAnimal();
-		int VALID_TILES_PER_ANIMAL_WATER = VALID_TILES_PER_ANIMAL * VALID_TILES_PER_BARB_WATER / VALID_TILES_PER_BARB; // LFGR_TODO: Extra tag for handicap infos
+		int VALID_TILES_PER_ANIMAL_WATER = GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerGameAnimal();
 		
-		float PLOT_CHANCE_BARB = ( bRagingBarbs ? 2 : 1 ) / (float) VALID_TILES_PER_BARB;
-		float PLOT_CHANCE_BARB_WATER = ( bRagingBarbs ? 2 : 1 ) / (float) VALID_TILES_PER_BARB_WATER;
-		float PLOT_CHANCE_ANIMAL = ( bDoubleAnimals ? 2 : 1 ) / (float) VALID_TILES_PER_ANIMAL;
-		float PLOT_CHANCE_ANIMAL_WATER = ( bDoubleAnimals ? 2 : 1 ) / (float) VALID_TILES_PER_ANIMAL_WATER;
+		float RAGING_BARBS_MOD = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED_MOD_RAGING_BARBARIANS", 2.f );
+		float WILDLANDS_MOD = GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED_MOD_WILDLANDS", 2.f );
+
+		float PLOT_CHANCE_BARB = ( bRagingBarbs ? RAGING_BARBS_MOD : 1 ) / (float) VALID_TILES_PER_BARB;
+		float PLOT_CHANCE_BARB_WATER = ( bRagingBarbs ? RAGING_BARBS_MOD : 1 ) / (float) VALID_TILES_PER_BARB_WATER;
+		float PLOT_CHANCE_ANIMAL = ( bDoubleAnimals ? WILDLANDS_MOD : 1 ) / (float) VALID_TILES_PER_ANIMAL;
+		float PLOT_CHANCE_ANIMAL_WATER = ( bDoubleAnimals ? WILDLANDS_MOD : 1 ) / (float) VALID_TILES_PER_ANIMAL_WATER;
 
 		// Find barbs and animals already there
 		//bool* abPlotAnimalValid = new bool[GC.getMapINLINE().numPlotsINLINE()];
@@ -7953,6 +8044,8 @@ void CvGame::createBarbarianUnits()
 			pPlot->bPlotAnimalValid = vbPlotAnimalValid[iPlot];
 			pPlot->bPlotBarbValid = vbPlotBarbValid[iPlot];
 #endif
+			if( pPlot->area()->getNumTiles() < GC.getDefineINT( "BARBARIAN_SPAWNING_MIN_AREA_SIZE" ) )
+				continue;
 			
 			if( bAnimals && vbPlotAnimalValid[iPlot] )
 			{
@@ -8081,8 +8174,8 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 	bool bVerbose = true;
 
 	logBBAI( "WILDERNESS - Creating Semi-Random %s Spawn", bAnimal ? "animal" : "barb" );
-
-	SpawnTypes eBestSpawn = NO_SPAWN;
+	
+	int* aiValues = new int[GC.getNumSpawnInfos()];
 	int iBestValue = 0;
 
 	for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
@@ -8101,28 +8194,75 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 		{
 			int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn );
 
-			if( bVerbose && iValue > 0 )
+			if( iValue > 0 && bVerbose )
 				logBBAI( "WILDERNESS - SpawnInfo %s: %d", kLoopSpawn.getType(), iValue );
 
-			if( iValue > 0 )
-			{
-				iValue += getSorenRandNum(100, "Barb Unit Selection");
+			if( iValue > iBestValue )
+				iBestValue = iValue;
 
-				if( iValue > iBestValue || ( iValue == iBestValue && getSorenRandNum( 2, "Bob" ) == 1 ) )
-				{
-					eBestSpawn = (SpawnTypes) eLoopSpawn;
-					iBestValue = iValue;
-				}
+			aiValues[eLoopSpawn] = max( iValue, 0 );
+		}
+		else
+			aiValues[eLoopSpawn] = 0;
+	}
+	
+	SpawnTypes eBestSpawn = NO_SPAWN;
+	
+	if( bVerbose )
+		logBBAI( "WILDERNESS - Best Value: %d", iBestValue );
+
+	if( iBestValue > 0 )
+	{
+		int iTotalValue = 0;
+
+		for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+		{
+			if( aiValues[eLoopSpawn] > 0 )
+			{
+				aiValues[eLoopSpawn] += 100 - iBestValue;
+
+				if( aiValues[eLoopSpawn] > 0 ) // still?
+					iTotalValue += aiValues[eLoopSpawn];
+				else
+					aiValues[eLoopSpawn] = 0;
 			}
 		}
+
+		FAssert( iTotalValue >= 0 );
+
+		int iRand = getSorenRandNum( iTotalValue, "Barb Unit Selection" );
+		
+		if( bVerbose )
+			logBBAI( "WILDERNESS - Rand %d out of %d", iRand, iTotalValue );
+
+		int iCurrentValue = 0;
+		for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+		{
+			FAssert( aiValues[eLoopSpawn] >= 0 );
+			iCurrentValue += aiValues[eLoopSpawn];
+			if( iCurrentValue > iRand )
+			{
+				eBestSpawn = (SpawnTypes) eLoopSpawn;
+				break;
+			}
+			
+			if( bVerbose && aiValues[eLoopSpawn] )
+				logBBAI( "WILDERNESS - Not #%d, now %d", eLoopSpawn, iCurrentValue );
+		}
 	}
+
+	SAFE_DELETE_ARRAY( aiValues );
 
 	if ( eBestSpawn != NO_SPAWN )
 	{
 		CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
 		logBBAI("WILDERNESS - SpawnInfo %s chosen!", kBestSpawn.getType() );
 		
-		pPlot->createSpawn( eBestSpawn );
+		// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
+		int iMinWilderness = pPlot->calcMinWilderness( eBestSpawn );
+		// Choose a random number between this plot's wilderness and the required wilderness for the spawn
+		iMinWilderness += GC.getGameINLINE().getSorenRandNum( pPlot->getWilderness() - iMinWilderness, "Spawn Wilderness" );
+		pPlot->createSpawn( eBestSpawn, iMinWilderness );
 	}
 	else
 	{
@@ -11750,37 +11890,43 @@ void CvGame::foundBarbarianCity()
                     if (pPlotI != NULL)
                     {
                         iDist = GC.getMapINLINE().calculatePathDistance(pPlotI, pLoopPlot);
-						if (iDist < 4 && iDist > -1)
+					// WILDERNESS / WildernessMisc / 12/2015 lfgr
+					/* old
+						if (iDist < 4)
+					*/
+						if( iDist != -1 && iDist < 4 )
+					// WILDERNESS END
                         {
                             bValid = false;
                         }
                     }
                 }
             }
-		/************************************************************************************************/
-		/* WILDERNESS                             08/2013                                 lfgr          */
-		/* WildernessMisc                                                                               */
-		/* Place barb cities far away from other barb cities                                            */
-		/************************************************************************************************/
-			int iDivisor = std::max( 5, (int) ( sqrt( (double) GC.getMapINLINE().getGridWidthINLINE() * GC.getMapINLINE().getGridHeightINLINE() ) / 8.0 + 0.5 ) );
 
-			int iMinDistance = MAX_INT;
-
-			int iLoop;
-			for ( CvCity* pLoopCity = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() ).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() ).nextCity(&iLoop))
-			{
-				int iDist = stepDistance( pLoopCity->plot()->getX_INLINE(), pLoopCity->plot()->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE() );
-
-				if( iDist < iMinDistance )
-					iMinDistance = iDist;
-			}
-			if( iMinDistance != MAX_INT )
-				iValue += (int) ( iMinDistance / iDivisor ) * 900;
-		/************************************************************************************************/
-		/* WILDERNESS                                                                     END           */
-		/************************************************************************************************/
             if (bValid)
             {
+			/************************************************************************************************/
+			/* WILDERNESS                             08/2013                                 lfgr          */
+			/* WildernessMisc                                                                               */
+			/* Place barb cities far away from other barb cities                                            */
+			/************************************************************************************************/
+				int iDivisor = std::max( 5, (int) ( sqrt( (double) GC.getMapINLINE().getGridWidthINLINE() * GC.getMapINLINE().getGridHeightINLINE() ) / 8.0 + 0.5 ) );
+
+				int iMinDistance = MAX_INT;
+
+				int iLoop;
+				for ( CvCity* pLoopCity = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() ).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() ).nextCity(&iLoop))
+				{
+					int iDist = stepDistance( pLoopCity->plot()->getX_INLINE(), pLoopCity->plot()->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE() );
+
+					if( iDist < iMinDistance )
+						iMinDistance = iDist;
+				}
+				if( iMinDistance != MAX_INT )
+					iValue += (int) ( iMinDistance / iDivisor ) * 900;
+			/************************************************************************************************/
+			/* WILDERNESS                                                                     END           */
+			/************************************************************************************************/
                 //iValue += GET_PLAYER(BARBARIAN_PLAYER).AI_foundValue(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), GC.getDefineINT("MIN_BARBARIAN_CITY_STARTING_DISTANCE"), true);
                 //iValue += pLoopPlot->area()->getNumOwnedTiles() + 10;
                 iValue += getSorenRandNum(100, "Barb City Found");

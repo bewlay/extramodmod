@@ -1063,22 +1063,28 @@
 		<DefineName>WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT</DefineName>
 		<fDefineFloatVal>6.0</fDefineFloatVal>
 	</Define>
-	<!-- The constants below are used in the wilderness calculation the following way: 
+	<!-- The constants below are used in the uninhabited area wilderness calculation the following way: 
 		max( nearestDist, 0.5 * ( nearestDist * WILDERNESS_NEAREST_DISTANCE_FACTOR + secondNearestDist * WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR ) )
 		Note that secondNearestDist > nearestDist, so if the total factor exceeds 2.0, nearestDist will always be used.
 		-->
 	<Define>
 		<!-- Factor at which the distance to the nearest starting plot is taken into
-		     account by wilderness calculation. Default: 1.0 -->
+		     account by the uninhabited area wilderness calculation. Default: 1.0 -->
 		<DefineName>WILDERNESS_NEAREST_DISTANCE_FACTOR</DefineName>
 		<fDefineFloatVal>1.0</fDefineFloatVal>
 	</Define>
 	<Define>
 		<!-- Factor at which the distance to the second nearest starting plot (or the
-		     nearest if only one available) is taken into account by wilderness calculation.
+		     nearest if only one available) is taken into account by the uninhabited area wilderness calculation.
 			 Default: 0.5 -->
 		<DefineName>WILDERNESS_SEC_NEAREST_DISTANCE_FACTOR</DefineName>
 		<fDefineFloatVal>0.5</fDefineFloatVal>
+	</Define>
+	<Define>
+		<!-- "Movement" cost of impassable terrain in wilderness calculation
+			 Default: 30 -->
+		<DefineName>WILDERNESS_IMPASSABLE_MOVEMENT_COST</DefineName>
+		<iDefineIntVal>30</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>DEBUG_PAINT_WILDERNESS</DefineName>
@@ -1103,6 +1109,16 @@
     <Define>
         <DefineName>ANIMAL_SPAWNING_SPEED</DefineName>
         <fDefineFloatVal>0.23</fDefineFloatVal>
+    </Define>
+    <Define>
+		<!-- Spawning speed factor for non-animal barbs if Raging Barbarians is enabled -->
+        <DefineName>BARBARIAN_SPAWNING_SPEED_MOD_RAGING_BARBARIANS</DefineName>
+        <fDefineFloatVal>2.0</fDefineFloatVal>
+    </Define>
+    <Define>
+		<!-- Spawning speed factor for animals if Wildlands is enabled -->
+        <DefineName>ANIMAL_SPAWNING_SPEED_MOD_WILDLANDS</DefineName>
+        <fDefineFloatVal>2.0</fDefineFloatVal>
     </Define>
     <Define>
         <DefineName>LAIR_SPAWNING_SPEED</DefineName>
@@ -1176,5 +1192,25 @@
         <DefineName>LAIR_GUARDIAN_STARTING_PLOT_MIN_DISTANCE</DefineName>
         <iDefineIntVal>0</iDefineIntVal>
     </Define>
+    <Define>
+		<!-- Required average cities per player for non-animal barb spawning, if Raging Barbarians is NOT activated -->
+        <DefineName>BARBARIAN_SPAWNING_REQUIRED_CITIES_PER_PLAYER</DefineName>
+        <fDefineFloatVal>3.0</fDefineFloatVal>
+    </Define>
+    <Define>
+		<!-- Required average cities per player for non-animal barb spawning, if Raging Barbarians IS activated -->
+        <DefineName>BARBARIAN_SPAWNING_REQUIRED_CITIES_PER_PLAYER_RAGING_BARBARIANS</DefineName>
+        <fDefineFloatVal>2.0</fDefineFloatVal>
+    </Define>
+	<Define>
+		<!-- Required number of plots for a continent to spawn barbarian cities -->
+		<DefineName>BARBARIAN_CITY_SPAWNING_MIN_AREA_SIZE</DefineName>
+		<iDefineIntVal>15</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- Required number of plots for a continent to spawn barbarians -->
+		<DefineName>BARBARIAN_SPAWNING_MIN_AREA_SIZE</DefineName>
+		<iDefineIntVal>2</iDefineIntVal>
+	</Define>
 <!-- WILDERNESS end -->
 </Civ4Defines>

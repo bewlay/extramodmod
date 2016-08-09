@@ -683,9 +683,13 @@ public:
 	void setLairUnitCount(int iNewValue);
 
 	int getSpawnTerrainWeight( TerrainFlavourTypes eTerrainFlavourType ) const;
-	bool isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech, bool bDungeon = false ) const;
+
+	std::pair<int,int> getMinTiers( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech = true, bool bDungeon = false ) const;
+	bool isValidSpawnTier( SpawnPrereqTypes eSpawnPrereqType, int iMinTier, int iMaxTier, bool bCheckTech = true, bool bDungeon = false ) const;
+	int calcMinWilderness( SpawnTypes eSpawnType, bool bCheckTech = true, bool bDungeon = false ) const;
+
 	int getSpawnValue( SpawnTypes eSpawnType, bool bCheckTech = true, bool bDungeon = false, bool bIgnoreTerrain = false ) const; // exposed to python
-	void createSpawn( SpawnTypes eSpawnType, UnitAITypes eUnitAI = NO_UNITAI, int iLairPlot = -1 ); // exposed to python
+	void createSpawn( SpawnTypes eSpawnType, int iMinWilderness, UnitAITypes eUnitAI = NO_UNITAI, int iLairPlot = -1 ); // exposed to python
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/

@@ -746,6 +746,9 @@ public:
 
 	DllExport int getDefineINT( const char * szName ) const;
 	DllExport float getDefineFLOAT( const char * szName ) const;
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+	float getDefineFLOAT( const char * szName, const float fDefault ) const;
+// WILDERNESS end
 	DllExport const char * getDefineSTRING( const char * szName ) const;
 	DllExport void setDefineINT( const char * szName, int iValue );
 	DllExport void setDefineFLOAT( const char * szName, float fValue );

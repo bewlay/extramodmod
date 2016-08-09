@@ -2941,6 +2941,18 @@ int CvGlobals::getDefineINT( const char * szName ) const
 	return iReturn;
 }
 
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+float CvGlobals::getDefineFLOAT( const char * szName, const float fDefault ) const
+{
+	float fReturn = 0;
+
+	if( GC.getDefinesVarSystem()->GetValue( szName, fReturn ) )
+		return fReturn;
+
+	return fDefault;
+}
+// WILDERNESS end
+
 float CvGlobals::getDefineFLOAT( const char * szName ) const
 {
 	float fReturn = 0;

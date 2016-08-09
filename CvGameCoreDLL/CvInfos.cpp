@@ -5156,14 +5156,11 @@ m_iMaxWilderness(MAX_INT),
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
-/************************************************************************************************/
-/* WILDERNESS                             10/2013                                 lfgr          */
-/* PromotionCaptureApply                                                                        */
-/************************************************************************************************/
+// WILDERNESS 10/2013 - 02/2016 lfgr // PromotionCaptureApply, WildernessMisc
+m_iAnimalTerrainFlavour(NO_TERRAIN_FLAVOUR),
 m_iPromotionCaptureApply(NO_PROMOTION),
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
+// WILDERNESS end
+
 m_bAnimal(false),
 m_bFoodProduction(false),
 m_bNoBadGoodies(false),
@@ -6245,17 +6242,16 @@ int CvUnitInfo::getMaxWilderness() const
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
-/************************************************************************************************/
-/* WILDERNESS                             10/2013                                 lfgr          */
-/* PromotionCaptureApply                                                                        */
-/************************************************************************************************/
+// WILDERNESS 10/2013 - 02/2016 lfgr // PromotionCaptureApply, WildernessMisc
+int CvUnitInfo::getAnimalTerrainFlavour() const
+{
+	return m_iAnimalTerrainFlavour;
+}
 int CvUnitInfo::getPromotionCaptureApply() const
 {
 	return m_iPromotionCaptureApply;
 }
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
+// WILDERNESS end
 
 // Arrays
 
@@ -6955,15 +6951,11 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
-
-/************************************************************************************************/
-/* WILDERNESS                             10/2013                                 lfgr          */
-/* PromotionCaptureApply                                                                        */
-/************************************************************************************************/
+	
+// WILDERNESS 10/2013 - 02/2016 lfgr // PromotionCaptureApply, WildernessMisc
+	stream->Read(&m_iAnimalTerrainFlavour);
 	stream->Read(&m_iPromotionCaptureApply);
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
+// WILDERNESS end
 
 	SAFE_DELETE_ARRAY(m_piPrereqAndTechs);
 	m_piPrereqAndTechs = new int[GC.getNUM_UNIT_AND_TECH_PREREQS()];
@@ -7359,15 +7351,11 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
-
-/************************************************************************************************/
-/* WILDERNESS                             10/2013                                 lfgr          */
-/* PromotionCaptureApply                                                                        */
-/************************************************************************************************/
+	
+// WILDERNESS 10/2013 - 02/2016 lfgr // PromotionCaptureApply, WildernessMisc
+	stream->Write(m_iAnimalTerrainFlavour);
 	stream->Write(m_iPromotionCaptureApply);
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
+// WILDERNESS end
 
 	stream->Write(GC.getNUM_UNIT_AND_TECH_PREREQS(), m_piPrereqAndTechs);
 	stream->Write(GC.getNUM_UNIT_PREREQ_OR_BONUSES(), m_piPrereqOrBonuses);
@@ -7918,16 +7906,13 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
-
-/************************************************************************************************/
-/* WILDERNESS                             10/2013                                 lfgr          */
-/* PromotionCaptureApply                                                                        */
-/************************************************************************************************/
+	
+// WILDERNESS 10/2013 - 02/2016 lfgr // PromotionCaptureApply, WildernessMisc
+	pXML->GetChildXmlValByName(szTextVal, "AnimalTerrainFlavour");
+	m_iAnimalTerrainFlavour = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(szTextVal, "PromotionCaptureApply");
 	m_iPromotionCaptureApply = pXML->FindInInfoClass(szTextVal);
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
+// WILDERNESS end
 	
 	updateArtDefineButton();
 	return true;
@@ -14067,6 +14052,14 @@ m_iNoTechTradeModifier(0),
 m_iTechTradeKnownModifier(0),
 m_iUnownedTilesPerGameAnimal(0),
 m_iUnownedTilesPerBarbarianUnit(0),
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+m_iUnownedWaterTilesPerGameAnimal(0),
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 m_iUnownedWaterTilesPerBarbarianUnit(0),
 m_iUnownedTilesPerBarbarianCity(0),
 m_iBarbarianCreationTurnsElapsed(0),
@@ -14242,6 +14235,18 @@ int CvHandicapInfo::getUnownedTilesPerBarbarianUnit() const
 {
 	return m_iUnownedTilesPerBarbarianUnit;
 }
+
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+int CvHandicapInfo::getUnownedWaterTilesPerGameAnimal() const
+{
+	return m_iUnownedWaterTilesPerGameAnimal;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 int CvHandicapInfo::getUnownedWaterTilesPerBarbarianUnit() const
 {
@@ -14483,6 +14488,14 @@ void CvHandicapInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iTechTradeKnownModifier);
 	stream->Read(&m_iUnownedTilesPerGameAnimal);
 	stream->Read(&m_iUnownedTilesPerBarbarianUnit);
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	stream->Read(&m_iUnownedWaterTilesPerGameAnimal);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	stream->Read(&m_iUnownedWaterTilesPerBarbarianUnit);
 	stream->Read(&m_iUnownedTilesPerBarbarianCity);
 	stream->Read(&m_iBarbarianCreationTurnsElapsed);
@@ -14572,6 +14585,14 @@ void CvHandicapInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iTechTradeKnownModifier);
 	stream->Write(m_iUnownedTilesPerGameAnimal);
 	stream->Write(m_iUnownedTilesPerBarbarianUnit);
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	stream->Write(m_iUnownedWaterTilesPerGameAnimal);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	stream->Write(m_iUnownedWaterTilesPerBarbarianUnit);
 	stream->Write(m_iUnownedTilesPerBarbarianCity);
 	stream->Write(m_iBarbarianCreationTurnsElapsed);
@@ -14654,6 +14675,14 @@ bool CvHandicapInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iTechTradeKnownModifier, "iTechTradeKnownModifier");
 	pXML->GetChildXmlValByName(&m_iUnownedTilesPerGameAnimal, "iUnownedTilesPerGameAnimal");
 	pXML->GetChildXmlValByName(&m_iUnownedTilesPerBarbarianUnit, "iUnownedTilesPerBarbarianUnit");
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	pXML->GetChildXmlValByName(&m_iUnownedWaterTilesPerGameAnimal, "iUnownedWaterTilesPerGameAnimal");
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_iUnownedWaterTilesPerBarbarianUnit, "iUnownedWaterTilesPerBarbarianUnit");
 	pXML->GetChildXmlValByName(&m_iUnownedTilesPerBarbarianCity, "iUnownedTilesPerBarbarianCity");
 	pXML->GetChildXmlValByName(&m_iBarbarianCreationTurnsElapsed, "iBarbarianCreationTurnsElapsed");
@@ -30171,11 +30200,22 @@ bool CvSpawnPrereqInfo::read(CvXMLLoadUtility* pXML)
 
 			if ( (0 < iNumSibs) && (gDLL->getXMLIFace()->SetToChild(pXML->GetXML())) )
 			{
+				// check that iMinWilderness is rising
+				int iLastMinWilderness = -1;
+
 				for( int iTier = 0; iTier < iNumSibs; iTier++ )
 				{
 					int iMinWilderness, iMaxWilderness;
 					pXML->GetChildXmlValByName( &iMinWilderness, "iMinWilderness" );
 					pXML->GetChildXmlValByName( &iMaxWilderness, "iMaxWilderness" );
+
+					if( iMinWilderness < iLastMinWilderness )
+					{
+						CvString szError;
+						szError.Format("iMinWilderness in SpawnPrereqInfo %s must be rising. Current XML file is: %s", getType(), GC.getCurrentXMLFile().GetCString());
+						FAssertMsg( false, szError.c_str());
+						gDLL->logMsg("xml.log", szError);
+					}
 					
 					m_viMinWildernessTiers.push_back( iMinWilderness );
 					m_viMaxWildernessTiers.push_back( iMaxWilderness );

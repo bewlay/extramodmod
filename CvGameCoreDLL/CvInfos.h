@@ -1503,14 +1503,10 @@ public:
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
-/************************************************************************************************/
-/* WILDERNESS                             10/2013                                 lfgr          */
-/* PromotionCaptureApply                                                                        */
-/************************************************************************************************/
+// WILDERNESS 10/2015 - 02/2016 lfgr // PromotionCaptureApply, WildernessMisc
+	int getAnimalTerrainFlavour() const;
 	int getPromotionCaptureApply() const;
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
+// WILDERNESS end
 
 	// Arrays
 
@@ -1797,10 +1793,14 @@ protected:
 /* WILDERNESS                             10/2013                                 lfgr          */
 /* PromotionCaptureApply                                                                        */
 /************************************************************************************************/
-	int m_iPromotionCaptureApply;
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
+	
+// WILDERNESS 10/2015 - 02/2016 lfgr // PromotionCaptureApply, WildernessMisc
+	int m_iAnimalTerrainFlavour;
+	int m_iPromotionCaptureApply;
+// WILDERNESS end
 
 	// Arrays
 
@@ -3359,6 +3359,14 @@ public:
 	int getTechTradeKnownModifier() const;				// Exposed to Python
 	int getUnownedTilesPerGameAnimal() const;				// Exposed to Python
 	int getUnownedTilesPerBarbarianUnit() const;				// Exposed to Python
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	int getUnownedWaterTilesPerGameAnimal() const;				// Exposed to Python
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	int getUnownedWaterTilesPerBarbarianUnit() const;				// Exposed to Python
 	int getUnownedTilesPerBarbarianCity() const;				// Exposed to Python
 	int getBarbarianCreationTurnsElapsed() const;				// Exposed to Python
@@ -3438,6 +3446,14 @@ protected:
 	int m_iTechTradeKnownModifier;
 	int m_iUnownedTilesPerGameAnimal;
 	int m_iUnownedTilesPerBarbarianUnit;
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+	int m_iUnownedWaterTilesPerGameAnimal;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 	int m_iUnownedWaterTilesPerBarbarianUnit;
 	int m_iUnownedTilesPerBarbarianCity;
 	int m_iBarbarianCreationTurnsElapsed;
