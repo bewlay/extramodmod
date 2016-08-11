@@ -198,6 +198,11 @@ class CvGameUtils:
 			if iCiv != gc.getInfoTypeForString('CIVILIZATION_LANUN'):
 				return True
 
+		# Infernals cannot research sanitation (EMM)
+		if eTech == gc.getInfoTypeForString('TECH_SANITATION') or eTech == gc.getInfoTypeForString('TECH_MEDICINE'):
+			if iCiv == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
+				return True
+
 		if CyGame().getWBMapScript():
 			bBlock = sf.cannotResearch(ePlayer, eTech, bTrade)
 			if bBlock:

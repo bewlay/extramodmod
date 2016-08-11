@@ -17,7 +17,7 @@ xxx
 Changes
 ===============================================================================
 
-xxx
+Infernals are no longer able to research Sanitation and Medicine.
 
 Fixes
 
