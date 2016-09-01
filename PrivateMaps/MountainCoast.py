@@ -5,7 +5,7 @@
 ## License: Boost Software License -  Version 1.0 (see below, it's a simple "do as you please, but dont blame me" license)
 ##############################################################################
 ##A map script for CIV IV (particularly Fall from Heaven 2)  
-##Heavily inspired by J.R.R.Tolien's Middle Earth as well as  the "Erebus" map script by Rich Marinaccio
+##Heavily inspired by J.R.R.Tolkien's Middle Earth as well as  the "Erebus" map script by Rich Marinaccio
 ##Also a big thanks to Doug McCreary for his Fair_Continent map script
 ##
 ##The main point of this script is to creat credible mountain ranges that are large enough to be strategically important without overly 
