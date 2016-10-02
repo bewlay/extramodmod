@@ -3569,7 +3569,8 @@ class CvMainInterface:
 			screen.show( szTextName )
 
 			screen.setBarPercentage( szBarName, InfoBarTypes.INFOBAR_STORED, float(lCurrentPoints[i]) / float(lThreshold[i]) )
-			if lCurrentRate[i] > 0:
+			# The rate is not displayed if the bar is already at maximum capacity.
+			if lCurrentRate[i] > 0 and lThreshold[i] > lCurrentPoints[i]:
 				screen.setBarPercentage( szBarName, InfoBarTypes.INFOBAR_RATE, float(lCurrentRate[i]) / float(lThreshold[i] - lCurrentPoints[i]) )
 
 			screen.show( szBarName )
