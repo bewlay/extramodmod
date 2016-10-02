@@ -7,11 +7,13 @@ ExtraModMod is based on the contributions of many people who worked on their fre
 
 In this file, only direct contributions to ExtraModMod are listed. You can find the credits for the mods used as a base for ExtraModMod below:
 
-* Fall from Heaven II: https://bitbucket.org/Terkhen/extramodmod/wiki/FFH2
+* Fall from Heaven II: Check Readme 041.rtf.
 
-* More Naval AI: https://bitbucket.org/Terkhen/extramodmod/wiki/MNAI (Full credits can be seen ingame in both ExtraModMod and More Naval AI)
+* More Naval AI: https://bitbucket.org/Tholal/more-naval-ai (Full credits can be seen ingame in both ExtraModMod and More Naval AI)
 
-* Events Enhanced: https://bitbucket.org/Terkhen/extramodmod/wiki/MoreEventsImages
+* BarbsPlus: https://bitbucket.org/lfgr/barbsplus/
+
+* Events Enhanced: https://bitbucket.org/lfgr/some-modcomps-for-civ4-ffh-mnai
 
 All contributors to ExtraModMod are listed in alphabetical order along with their contributions below. Please contact me if there are any omissions or problems.
 

@@ -405,7 +405,7 @@ More Naval AI version: 2.61 plus additional bugfixes and improvements.
 Features
 ===============================================================================
 
-Ozzy's Map of Erebus (see http://forums.civfanatics.com/showthread.php?t=236321). Adapted for ExtraModMod.
+Ozzy's Map of Erebus (see http://forums.civfanatics.com/threads/map-of-erebus-unofficial-ffh2-map.236321/). Adapted for ExtraModMod.
 
 New game mode: Insane leaders. All leaders start with three random traits and the Insane trait.
 

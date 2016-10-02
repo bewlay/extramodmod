@@ -15,11 +15,11 @@ Installation
 ===============================================================================
 
 
-You can find the latest release of ExtraModMod at the Downloads section on the project page (https://bitbucket.org/Terkhen/extramodmod/downloads). If you don't know which version to use, installing the newest non-beta version is recommended. To install this mod you need to paste the compressed file's contents over a clean installation of Fall from Heaven II. That mod is available at civfanatics (http://forums.civfanatics.com/downloads.php?do=file&id=1), and you also need to install patch 0.41o (available in the same link).
+You can find the latest release of ExtraModMod at the Downloads section on the project page (https://bitbucket.org/Terkhen/extramodmod/downloads). If you don't know which version to use, installing the newest non-beta version is recommended. To install this mod you need to paste the compressed file's contents over a clean installation of Fall from Heaven II. This mod is available at Civfanatics (http://forums.civfanatics.com/downloads.php?do=file&id=1), and you also need to install patch 0.41o (available in the same link).
 
 Please note that this mod is not compatible with Blue Marble.
 
-If you get a "GFC Error: fails to initialize the primary control theme" on startup, you should follow the instructions described in the following CivFanatics post: http://forums.civfanatics.com/showthread.php?p=6564074#post6564074
+If you get a "GFC Error: fails to initialize the primary control theme" on startup, you should follow the instructions described in the following CivFanatics post: http://forums.civfanatics.com/threads/help-gfc-error-fails-to-initialize-the-primary-control-theme.265892/#post-6564074
 
 
 Feedback
