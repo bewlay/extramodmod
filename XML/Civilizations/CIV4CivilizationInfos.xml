@@ -2218,6 +2218,22 @@
 			<MaintainFeatures>
 			</MaintainFeatures>
 			<TerrainYieldChanges>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_OCEAN</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
 			</TerrainYieldChanges>
 			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_LANUN</TerrainFlavour>
 		</CivilizationInfo>
