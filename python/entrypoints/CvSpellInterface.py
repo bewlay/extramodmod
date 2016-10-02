@@ -412,7 +412,6 @@ def reqAddToFleshGolem(caster):
 		iChanneling2 = gc.getInfoTypeForString('PROMOTION_CHANNELING2')
 		iChanneling3 = gc.getInfoTypeForString('PROMOTION_CHANNELING3')
 		iDivine = gc.getInfoTypeForString('PROMOTION_DIVINE')
-		iDividedSoul = gc.getInfoTypeForString('PROMOTION_DIVIDED_SOUL')
 		iFleshGolem = gc.getInfoTypeForString('UNITCLASS_FLESH_GOLEM')
 		pFleshGolem = -1
 		for i in range(pPlot.getNumUnits()):
@@ -429,7 +428,7 @@ def reqAddToFleshGolem(caster):
 					if (caster.isHasPromotion(iCount)):
 						if not gc.getPromotionInfo(iCount).getExpireChance() > 0:
 							if not (pFleshGolem.isHasPromotion(iCount)):
-								if (iCount != iChanneling and iCount != iChanneling2 and iCount != iChanneling3 and iCount != iDivine and iCount != iDividedSoul):
+								if (iCount != iChanneling and iCount != iChanneling2 and iCount != iChanneling3 and iCount != iDivine):
 									if not gc.getPromotionInfo(iCount).isRace():
 										if gc.getPromotionInfo(iCount).getBonusPrereq() == -1:
 											if gc.getPromotionInfo(iCount).getPromotionPrereqAnd() != iChanneling2:
