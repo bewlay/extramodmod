@@ -9,21 +9,33 @@ More Naval AI version: 2.x
 
 MapScriptTools version: 1.0x
 
+Erebus in the Balance version: 12.1
+
+
 Features
 ===============================================================================
 
 xxx
 
+
 Changes
 ===============================================================================
 
+The Lanun bonus for getting more food at sea is now tied to the civilization instead of to the palace.
+
 Infernals are no longer able to research Sanitation and Medicine.
+
 
 Fixes
 
 ===============================================================================
 
+Prevent UI errors when one of the customizable progress bars is full.
+
+Fix an error with the add to flesh golem spell.
+
 The Seraph now has the same collateral damage values than the rest of the units with the Berserker unit class.
+
 
 More Naval AI changes
 ===============================================================================
@@ -104,6 +116,7 @@ Fixes related to city radius and settlements.
 
 Fixed a possible CTD caused by missing updateWorkingCity() calls.
 
+
 BarbsPlus changes
 ===============================================================================
 
@@ -179,10 +192,69 @@ New item reward: Hauberk of abjuration.
 
 Bountyhunter, Courage and Morale grant a +5% exploration bonus. Valor grants a +10% bonus.
 
+
 Erebus in the Balance changes
 ===============================================================================
 
-xxx
+Adularia Chamber cost reduced from 180 to 120.
+
+Governor's Manor now requires Mathematics instead of Code of Law.
+
+Pallens Engine cost reduced from 180 to 120.
+
+Planar Gate cost reduced from 200 to 100.
+
+Reliquary gains a priest slot. Reliquary cost reduced from 60 to 45.
+
+Warrens increase maintenance costs by 10%.
+
+Aristocracy now only reduces distance maintenance costs by -20%, instead of by -40%.
+
+Caste System upkeep reduced from medium to low. It now grants +1 gold per specialist instead of +1 research per specialist.
+
+Conquest moves back to Warfare (from Education).
+
+Foreign Trade loses +1 trade route coastal; gains +25% commerce from trade routes.
+
+Military State moves back to Military Strategy (from Warfare).
+
+Forts now require Masonry instead of Construction.
+
+Windmills now require Construction instead of Engineering.
+
+Workshops now grant +2 production instead of +1 production. Guilds technology now grants +1 production instead of +2 production to workshops.
+
+Sidar Palace grants +1 gold for each priest.
+
+Burning Blood now removes the Loyalty promotion.
+
+Loyalty now removes the Burning Blood promotion.
+
+Wane now requires level 5 instead of level 6.
+
+Pact of the Nilhorn cost reduced from 500 to 250.
+
+Creative doubles the production speed of Public Baths.
+
+Abashi now gains the hero promotion.
+
+Airship is no longer a Queen of the Line replacement. The Kuriotates can build both ships now.
+
+Drifa now gains the hero promotion.
+
+Elephant cost set to 60. Although they are still cannot be built, this makes the upgrade to War Elephant cheaper.
+
+Eurabatres now gains the hero promotion.
+
+Monks gain Drill I and Mobility II. Monks lose 2 base moves. Movement decreased from three to one.
+
+Queen of the Line base combat increased from 9 to 16.
+
+Triremes now have +50% combat bonus versus Galleys.
+
+Minimum civic swap time changed from 9 to 8. This allows to change civics twice in a single golden age.
+
+
 
 Events Enhanced changes
 ===============================================================================
@@ -196,6 +268,9 @@ ExtraModMod 0.5.1
 More Naval AI version: 2.62 plus additional bugfixes
 
 MapScriptTools version: 1.04
+
+Erebus in the Balance version: 11
+
 
 Features
 ===============================================================================
@@ -270,6 +345,7 @@ ExtraModMod 0.5.0
 ===============================================================================
 
 More Naval AI version: 2.62 plus additional bugfixes
+
 
 Features
 ===============================================================================
@@ -402,6 +478,7 @@ ExtraModMod 0.5.0-beta2
 
 More Naval AI version: 2.61 plus additional bugfixes and improvements.
 
+
 Features
 ===============================================================================
 
@@ -529,6 +606,7 @@ ExtraModMod 0.5.0-beta1
 ===============================================================================
 
 More Naval AI version: 2.61 plus additional bugfixes and improvements.
+
 
 Features
 ===============================================================================
@@ -790,6 +868,7 @@ ExtraModMod 0.4.2
 
 More Naval AI version: 2.53 with additional fixes and features.
 
+
 Features
 ===============================================================================
 
@@ -823,6 +902,7 @@ ExtraModMod 0.4.1
 ===============================================================================
 
 More Naval AI version: 2.53 with additional fixes and features.
+
 
 Features
 ===============================================================================
@@ -945,6 +1025,7 @@ ExtraModMod 0.4.0
 
 More Naval AI version: 2.52 with additional fixes and features.
 
+
 Fixes
 ===============================================================================
 
@@ -1005,6 +1086,7 @@ ExtraModMod 0.4.0-beta3
 ===============================================================================
 
 More Naval AI version: 2.52 with additional fixes and features.
+
 
 Features
 ===============================================================================
@@ -1078,6 +1160,7 @@ ExtraModMod 0.4.0-beta2
 
 More Naval AI version: 2.52
 
+
 Features
 ===============================================================================
 
@@ -1140,6 +1223,7 @@ ExtraModMod 0.4.0-beta1
 ===============================================================================
 
 More Naval AI version: 2.51 (plus a few additional fixes post-2.51)
+
 
 Features
 ===============================================================================
@@ -1493,6 +1577,7 @@ ExtraModMod 0.3.1
 ===============================================================================
 
 More Naval AI version: 2.5 with additional fixes and improvements
+
 
 Features
 ===============================================================================

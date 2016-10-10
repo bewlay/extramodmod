@@ -251,7 +251,7 @@
 			<Type>BUILD_WINDMILL</Type>
 			<Description>TXT_KEY_BUILD_WINDMILL</Description>
 			<Help/>
-			<PrereqTech>TECH_ENGINEERING</PrereqTech>
+			<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
 			<iTime>500</iTime>
 			<iCost>0</iCost>
 			<bKill>0</bKill>
@@ -600,7 +600,7 @@
 			<Type>BUILD_FORT</Type>
 			<Description>TXT_KEY_BUILD_FORT</Description>
 			<Help/>
-			<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
+			<PrereqTech>TECH_MASONRY</PrereqTech>
 			<iTime>800</iTime>
 			<iCost>0</iCost>
 			<bKill>0</bKill>

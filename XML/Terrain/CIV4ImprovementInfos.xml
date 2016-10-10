@@ -7686,7 +7686,7 @@
             </PrereqNatureYields>
             <YieldChanges>
                 <iYieldChange>-1</iYieldChange>
-                <iYieldChange>1</iYieldChange>
+                <iYieldChange>2</iYieldChange>
                 <iYieldChange>1</iYieldChange>
             </YieldChanges>
             <bActsAsCity>0</bActsAsCity>
@@ -7756,7 +7756,7 @@
                     <PrereqTech>TECH_GUILDS</PrereqTech>
                     <TechYields>
                         <iYield>0</iYield>
-                        <iYield>2</iYield>
+                        <iYield>1</iYield>
                         <iYield>0</iYield>
                     </TechYields>
                 </TechYieldChange>

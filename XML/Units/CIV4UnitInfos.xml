@@ -1077,6 +1077,10 @@
 					<PromotionType>PROMOTION_FEAR</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_HERO</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<iCombatDefense>21</iCombatDefense>
 			<iTier>4</iTier>
@@ -9707,6 +9711,10 @@
 					<PromotionType>PROMOTION_FEAR</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_HERO</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<iCombatDefense>14</iCombatDefense>
 			<iTier>4</iTier>
@@ -10542,7 +10550,7 @@
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
-			<iCost>-1</iCost>
+			<iCost>60</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
@@ -10840,6 +10848,10 @@
 				</FreePromotion>
 				<FreePromotion>
 					<PromotionType>PROMOTION_FEAR</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_HERO</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -19661,7 +19673,7 @@
 			<iCost>120</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
-			<iMoves>2</iMoves>
+			<iMoves>1</iMoves>
 			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
 			<iCombatLimit>100</iCombatLimit>
@@ -19688,6 +19700,14 @@
 				</FreePromotion>
 				<FreePromotion>
 					<PromotionType>PROMOTION_DEMON_SLAYING</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_DRILL1</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_MOBILITY2</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -21941,7 +21961,7 @@
 			<iWithdrawlProbDefensive>10</iWithdrawlProbDefensive>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_AIRSHIP -->
-			<Class>UNITCLASS_QUEEN_OF_THE_LINE</Class>
+			<Class>UNITCLASS_AIRSHIP</Class>
 			<Type>UNIT_AIRSHIP</Type>
 			<Combat>UNITCOMBAT_NAVAL</Combat>
 			<Domain>DOMAIN_LAND</Domain>
@@ -22052,7 +22072,7 @@
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>3</iMoves>
 			<iNukeRange>-1</iNukeRange>
-			<iCombat>9</iCombat>
+			<iCombat>16</iCombat>
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -22072,7 +22092,7 @@
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
-			<iCombatDefense>9</iCombatDefense>
+			<iCombatDefense>16</iCombatDefense>
 			<iTier>4</iTier>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_RADIANT_GUARD -->
@@ -25720,6 +25740,18 @@
 			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
+			<UnitClassAttackMods>
+				<UnitClassAttackMod>
+					<UnitClassType>UNITCLASS_GALLEY</UnitClassType>
+					<iUnitClassMod>50</iUnitClassMod>
+				</UnitClassAttackMod>
+			</UnitClassAttackMods>
+			<UnitClassDefenseMods>
+				<UnitClassDefenseMod>
+					<UnitClassType>UNITCLASS_GALLEY</UnitClassType>
+					<iUnitClassMod>50</iUnitClassMod>
+				</UnitClassDefenseMod>
+			</UnitClassDefenseMods>
 			<iBombardRate>5</iBombardRate>
 			<DomainCargo>DOMAIN_LAND</DomainCargo>
 			<iAsset>5</iAsset>

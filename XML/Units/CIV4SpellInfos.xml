@@ -381,6 +381,7 @@
             <iAIWeight>-1000</iAIWeight>			
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_BURNING_BLOOD</AddPromotionType1>
+            <RemovePromotionType1>PROMOTION_LOYALTY</RemovePromotionType1>
             <bBuffCasterOnly>1</bBuffCasterOnly>
 			<bAbility>1</bAbility>
 			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
@@ -2741,6 +2742,7 @@
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_LOYALTY</AddPromotionType1>
+            <RemovePromotionType1>PROMOTION_BURNING_BLOOD</RemovePromotionType1>
             <bImmuneNeutral>1</bImmuneNeutral>
             <bImmuneEnemy>1</bImmuneEnemy>
             <Effect>EFFECT_CREATION</Effect>
@@ -5511,7 +5513,7 @@
             <bAllowAI>1</bAllowAI>
             <iAIWeight>100</iAIWeight>
             <bCasterMustBeAlive>1</bCasterMustBeAlive>
-            <iCasterMinLevel>6</iCasterMinLevel>
+            <iCasterMinLevel>5</iCasterMinLevel>
             <bHasCasted>1</bHasCasted>
             <ConvertUnitType>UNIT_SHADE</ConvertUnitType>
 			<bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>

@@ -3,13 +3,11 @@ ExtraModMod ###TAG### Features
 
 Besides being based on More Naval AI, ExtraModMod includes many new features. Most of ExtraModMod features have been obtained from other Fall from Heaven II modmods, modcomps or other contributions made for Civilization IV.
 
-All changes in comparison with More Naval AI are listed below. The credits and components of each feature can be found in the credits text file.
+All changes in comparison with the most recently merged More Naval AI version are listed below. The credits and components of each feature can be found in the credits text file.
 
 
 Other
 ===============================================================================
-
-Multiple Production. When city production is enough to finish next queue item, more than one item is finished in the same turn.
 
 Many improvements to barbarians, lairs and wilderness. Check the BarbsPlus features page. Bear in mind that ExtraModMod currently only includes the features of Wilderness and TerrainFlavour.
 
@@ -22,6 +20,8 @@ Buildings
 ===============================================================================
 
 Victory buildings cannot be rushed anymore.
+
+Adularia Chamber cost reduced from 180 to 120.
 
 Alchemy lab cost reduced to 250 from 300. Alchemy Lab bonus to science increased from +10% to +25%.
 
@@ -65,7 +65,7 @@ Dragon's Hoard gives +2 culture, +100% culture, and +8 gold. It also increases t
 
 Form of the Titan no longer generates Great Commander GPP.
 
-Governor's Manor stops being a Courthouse. Cost reduced from 180 to 120. It no longer reduces maintenance costs.
+Governor's Manor stops being a Courthouse. Cost reduced from 180 to 120. It no longer reduces maintenance costs. It now requires Mathematics instead of Code of Law.
 
 Granary cost reduced from 120 to 100.
 
@@ -99,17 +99,19 @@ National Epic does not produce Great Commander GPP anymore.
 
 Nox Noctis gives the Hidden Nationality promotion to new units.
 
-Planar Gate cost reduced from 300 to 200. The spawn probability of Planar Gates is now scaled linearly with the Armageddon Counter. Planar gates increase the Armageddon Counter in 1. The maximum number of spawnable planar gate units has been increased by ten, to be roughly one third of the Armageddon Counter. The increase of the chance of appearance of planar gate units depending on the Armageddon Counter has been multiplied by four.
+Pallens Engine cost reduced from 180 to 120.
+
+Planar Gate cost reduced from 300 to 100. The spawn probability of Planar Gates is now scaled linearly with the Armageddon Counter. Planar gates increase the Armageddon Counter in 1. The maximum number of spawnable planar gate units has been increased by ten, to be roughly one third of the Armageddon Counter. The increase of the chance of appearance of planar gate units depending on the Armageddon Counter has been multiplied by four.
 
 Prophecy of Ragnarok moved to Philosophy.
 
-Reliquaries are now a Monument replacement and are available at Ancient Chants. Their cost has been reduced from 100 to 60. Reliquaries reduce the Armageddon Counter in 1.
+Reliquaries are now a Monument replacement and are available at Ancient Chants. Their cost has been reduced from 100 to 60. Reliquaries reduce the Armageddon Counter in 1. Reliquaries gains a priest slot. Reliquary cost reduced from 60 to 45.
 
 Ride of the Nine Kings no longer requires Horses or Nightmares, but is produced 50% faster with either of them. Cost increased from 600 hammers to 800. Ride of the Nine Kings no longer generates Great Commander GPP.
 
 Shipyards give +1 Hammer from Water tiles.
 
-Shrine of Sirona moved to Righteousness and produces spirit mana (it no longer requires spirit mana).
+Shrine of Sirona moved to Righteousness. It now produces spirit mana and no longer requires spirit mana.
 
 Smokehouse cost reduced from 120 to 100.
 
@@ -137,19 +139,21 @@ The Nexus cost increased from 600 to 900 and it increases the Armageddon Counter
 
 Theatre cost reduced from 250 to 150.
 
+Warrens increase maintenance costs by 10%.
+
 Winter palace cost reduced from 800 to 600.
 
 
 Civics
 ===============================================================================
 
-Aristocracy upkeep increased from low to medium.
+Aristocracy upkeep increased from low to medium. Aristocracy now only reduces distance maintenance costs by -20%, instead of by -40%.
 
-Caste System is now available at Feudalism instead of at Taxation. Caste System now gives +1 Production to workshops.
+Caste System is now available at Feudalism instead of at Taxation. It now gives +1 Production to workshops. Upkeep reduced from medium to low. It now grants +1 gold per specialist instead of +1 research per specialist.
 
 City States now gives a 10% culture boost instead of a penalty. It also gives an additional trade route per city.
 
-Conquest is available at Education instead of at Warfare. Conquest increases Great General Emergence in 25%
+Conquest increases Great General Emergence in 25%
 
 Consumption reduces Great General Emergence in 25%.
 
@@ -157,7 +161,7 @@ Crusade increases Great General Emergence in 50%. It is now a membership civic.
 
 Decentralization now has no upkeep.
 
-Foreign trade upkeep increased from low to medium. It no longer gives -10% to commerce and +20% to culture. It gives +100% improvement growth rate.
+Foreign trade upkeep increased from low to medium. It no longer gives -10% to commerce and +20% to culture. It gives +100% improvement growth rate. Foreign Trade loses +1 trade route coastal; gains +25% commerce from trade routes.
 
 Guilds now gives +1 food to workshops.
 
@@ -207,11 +211,13 @@ Elohim start with Life Mana, Spirit Mana and Water Mana.
 
 Illians have a slightly more clear civilization colour.
 
-Infernals no longer share civilization colour with the barbarians. They now have their spawning units changed to the following: Number of (2 x Manes), Axes, Workers and Settlers is equal to the average number of enemy cities divided by two. Spawned longbowmen now start with iron weapons. As usual, they receive one extra settler with the starting settler promotion. Infernal Cities now start with 6 population instead of 3.
+Infernals no longer share civilization colour with the barbarians. They now have their spawning units changed to the following: Number of (2 x Manes), Axes, Workers and Settlers is equal to the average number of enemy cities divided by two. Spawned longbowmen now start with iron weapons. As usual, they receive one extra settler with the starting settler promotion. Infernal Cities now start with 6 population instead of 3. Infernals cannot research Sanitation and Medicine.
 
 Khazad start with Earth Mana, Enchantment Mana and Law Mana. Khazad Vault thresholds have been halved.
 
 Kuriotates start with Creation Mana, Sun Mana and Water Mana. Kuriotates start with Nationhood instead of Pacifism. Kuriotates now get 1, 2, 3, 4, 5, 6 cities on each map size instead of 2, 2, 3, 3, 4, 5. The Kuriotate Palace now requires two cities to be built instead of four.
+
+Lanun get +1 food in coasts and ocean. The Lanun palace no longer grants +1 food on water tiles.
 
 Ljosalfar can build Alchemy labs.
 
@@ -219,7 +225,7 @@ Malakim get +1 commerce on burning bands. Nomad gives a small amount of fire res
 
 Sheaim start with Death Mana, Dimensional Mana and Entropy Mana.
 
-Sidar start with Dimensional Mana, Shadow Mana and Spirit Mana. Sidar start with Nationhood instead of Pacifism.
+Sidar start with Dimensional Mana, Shadow Mana and Spirit Mana. Sidar start with Nationhood instead of Pacifism. Wane now requires level 5 instead of level 6. Sidar Palace grants +1 gold for each priest.
 
 Svartalfar can build Alchemy labs.
 
@@ -259,7 +265,7 @@ Farms give 10 gold instead of 5 when pillaged.
 
 Fishing boats give 10 gold instead of 5 when pillaged.
 
-Forts give 10 gold instead of 5 when pillaged.
+Forts now require Masonry instead of Construction. Forts give 10 gold instead of 5 when pillaged.
 
 Hamlets give 30 gold instead of 15 when pillaged.
 
@@ -289,11 +295,11 @@ Villages give 40 gold instead of 20 when pillaged.
 
 Whalings boats give 10 gold instead of 5 when pillaged.
 
-Windmills give 10 gold instead of 5 when pillaged.
+Windmills now require Construction instead of Engineering. Windmills give 10 gold instead of 5 when pillaged.
 
 Wineries give 20 gold instead of 10 when pillaged.
 
-Workshops give 10 gold instead of 5 when pillaged.
+Workshops now grant +2 production instead of +1 production. Guilds technology now grants +1 production instead of +2 production to workshops. Workshops give 10 gold instead of 5 when pillaged.
 
 
 Interface
@@ -431,21 +437,7 @@ Known team bonus restored to Beyond the Sword's 30%, from Fall from Heaven's 10%
 
 Number of team member penalty restored to Beyond the Sword's 50% from Fall from Heaven's 0%.
 
-Minimum civic swap time changed to 9.
-
-
-Projects
-===============================================================================
-
-Genesis now affects all the empires in the same team, instead of only the empire which builds it.
-
-Nature's Revolt requires Commune with Nature instead of Animal Handling.
-
-Elegy of the Sheaim requires Philosophy instead of Way of the Wicked. Cost reduced from 600 to 300.
-
-Hallowing of the Elohim requires Philosophy instead of Way of the Wise. Cost reduced from 600 to 300.
-
-Purge the Unfaithful requires Fanaticism instead of Priesthood.
+Minimum civic swap time changed from 10 to 8. This allows to change civics twice in a single golden age.
 
 
 Promotions
@@ -524,6 +516,22 @@ Stone is extracted from quarries, and it increases the building speed of certain
 Sugar gives +1 Food and +2 Commerce with a Plantation instead of only +1 Food and +1 Commerce.
 
 
+Rituals
+===============================================================================
+
+Genesis now affects all the empires in the same team, instead of only the empire which builds it.
+
+Nature's Revolt requires Commune with Nature instead of Animal Handling.
+
+Elegy of the Sheaim requires Philosophy instead of Way of the Wicked. Cost reduced from 600 to 300.
+
+Hallowing of the Elohim requires Philosophy instead of Way of the Wise. Cost reduced from 600 to 300.
+
+Pact of the Nilhorn cost reduced from 500 to 250.
+
+Purge the Unfaithful requires Fanaticism instead of Priesthood.
+
+
 Spells
 ===============================================================================
 
@@ -532,6 +540,8 @@ Bestow Blessing (Creation III) allows the city it has been casted in to build li
 Bless now gives +15 Fire Resistance along with +1 Holy Strength.
 
 Blinding Light only lasts for one turn, and it is easier to resist.
+
+Burning Blood now removes the Loyalty promotion.
 
 Crush tweaked from 50 damage with a cap of 75 to 30 damage with a cap of 50.
 
@@ -570,6 +580,8 @@ Illuminate (Spirit III) increases the GPP production of the city it has been cas
 Create Labyrinth (Dimensional II) creates a labyrinth in a tile. The labyrinth makes movement a lot more difficult, but it has a 40% chance of dissapearing each turn.
 
 Lichdom (Death III) requires Divine Essence.
+
+Loyalty now removes the Burning Blood promotion.
 
 Magic Missile (Force II)  creates a force projectile that can attack the weakest unit on a stack.
 
@@ -695,11 +707,11 @@ Agrarian gives +1 food in tiles with 4 food. It doubles the production speed of 
 
 Adaptive leaders can now also choose the Agrarian, Imperialistic, Sage and Slaver traits. Slaver is not available to Good leaders. Adaptive now triggers every 75 turns (altered by game speed). The number of turns remaining for the next Adaptive trait change is now displayed.
 
-Arcane grants the Mobility 1 and Potency promotions to Arcane units.
+Arcane grants the Mobility I and Potency promotions to Arcane units.
 
 For leaders with the Barbarian trait, the amount of barbarian mistrust is displayed. when it reaches the maximum value, the barbarians will declare war.
 
-Creative now gives an additional 10% boost to culture production and doubles the production speed of Museums, Reliquaries and Theatres.
+Creative now gives an additional 10% boost to culture production and doubles the production speed of Museums, Public Baths, Reliquaries and Theatres.
 
 Industrious allows to build Mud Golems and Workers faster.
 
@@ -715,7 +727,7 @@ Savage grants the Savage promotion to Recon, Mounted, Melee and Beast units. Giv
 
 Slaver gives a +10% to commerce. It also grants the Slaver promotion to Recon, Archery, Mounted, Melee, Arcane, Disciple, Animal and Beast units. Doubles the production speed of Dungeons.
 
-Spiritual grants the Mobility 1 and Favored promotions to Disciple Units.
+Spiritual grants the Mobility I and Favored promotions to Disciple Units.
 
 Summoner now also grants Spell Extension I.
 
@@ -753,6 +765,10 @@ All units can now drop equipment.
 
 Post Combat Explosions are now capped at 90% Damage (Pyre Zombies and Azers can't kill with their death-explosions).
 
+Abashi now gains the hero promotion.
+
+Airship is no longer a Queen of the Line replacement. The Kuriotates can build both ships now.
+
 Arcane Barge cargo reduced from 3 to 1.
 
 Archer and Dwarven Slinger cost reduced from 60 to 45.
@@ -765,9 +781,9 @@ Axeman, Sons of Asena and Swordsman cost reduced from 60 to 45. They no longer c
 
 Avatar of Wrath now gets the Cold resistance promotion.
 
-Bambur strength increased from 5 to 6.
+Bambur base combat increased from 5 to 6.
 
-Barnaxus cost reduced from 180 to 90. It has two moves instead of one.
+Barnaxus cost reduced from 180 to 90. Movement increased from one to two.
 
 Battlemaster cost reduced from 150 to 120.
 
@@ -775,7 +791,7 @@ Beastmaster, Lizardman Beastmaster and Myconids require Hunting Lodge instead of
 
 Beastmen are not obsolete anymore.
 
-Berserker, Brujah, Circle of Urd and Clockwork Golem maximum collateral damage increased to 60 from 20 and they can hit up to 6 units instead of 4.
+Berserker, Brujah, Circle of Urd, Clockwork Golem and Seraph maximum collateral damage increased to 60 from 20 and they can hit up to 6 units instead of 4.
 
 Boar Riders get +40% against Mounted units.
 
@@ -805,9 +821,15 @@ Djinn base combat increased from 0 to 5.
 
 Divided souls are never obsolete.
 
+Drifa now gains the hero promotion.
+
 Duin requires Animal Mastery instead of Feral Bond.
 
 Eidolons are available at Fanaticism. Combat reduced from 11 to 8. They can use weapons from all tiers.
+
+Elephant cost set to 60. Although they are still cannot be built, this makes the upgrade to War Elephant cheaper.
+
+Eurabatres now gains the hero promotion.
 
 Fawn cost reduced from 90 to 75. They get +25% attack in forests and ancient forests.
 
@@ -815,7 +837,7 @@ Firebow defense increased to 5. Attack stays at 5.
 
 Flagbearers are available with Iron Working instead of with Fanaticism.
 
-Gargoyles get 2 movements instead of 1. Attack reduced from 8 to 6. Defense stays at 8. Hammer cost reduced from 180 to 120.
+Gargoyle movement increased from 1 to 2. Attack reduced from 8 to 6. Defense stays at 8. Hammer cost reduced from 180 to 120.
 
 Great Commanders no longer exist. The new Great Generals have the abilities of both Great Commanders and the old Great Generals. Great Generals can now be attached to Beast units. Great Generals can build the Code of Junil.
 
@@ -851,6 +873,8 @@ Mithril Golem cost reduced from 1200 to 400.
 
 Mobius Witch is now buildable. It costs 150 hammers and requires Planar Gate and Mage Guild. They can start with Ice and Metamagic. They appear with 5 XP and level 3. The number maximum number allowed depends on the Armageddon Counter.
 
+Monks gain Drill I and Mobility II. Monks lose 2 base moves. Movement decreased from three to one.
+
 Moroi are never obsolete.
 
 Mud Golem cost reduced from 100 to 75.
@@ -868,6 +892,8 @@ Phalanxes, Stoneskin ogres and Verdandi require Mithril Working instead of Mithr
 Prior gains Pillar of Fire. They also get Inquisition as a free promotion.
 
 Prophecy of Ragnarok will now only trigger its effect once per turn.
+
+Queen of the Line base combat increased from 9 to 16.
 
 Radiant Guard attack reduced from 4 to 3. They get a +25% bonus against recon units.
 
@@ -896,6 +922,8 @@ Stygian Guards now require Malevolent Designs instead of Fanaticism. Cost increa
 Succubus is now buildable. It costs 150 hammers and requires Planar Gate and Public Baths. The number maximum number allowed depends on the Armageddon Counter.
 
 Tar Demon is now buildable. It costs 150 hammers and requires Planar Gate and Temple of the Veil. The number maximum number allowed depends on the Armageddon Counter.
+
+Triremes now have +50% combat bonus versus Galleys.
 
 Vampires require Training Yards. They cannot be conscripted.
 

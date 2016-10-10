@@ -356,7 +356,7 @@
             <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
             <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
             <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
-            <iDistanceMaintenanceModifier>-40</iDistanceMaintenanceModifier>
+            <iDistanceMaintenanceModifier>-20</iDistanceMaintenanceModifier>
             <iNumCitiesMaintenanceModifier>0</iNumCitiesMaintenanceModifier>
             <iCorporationMaintenanceModifier>0</iCorporationMaintenanceModifier>
             <iExtraHealth>0</iExtraHealth>
@@ -2113,7 +2113,7 @@
             <Strategy>TXT_KEY_CIVIC_MILITARY_STATE_STRATEGY</Strategy>
             <Help></Help>
             <Button>Art/Interface/Buttons/Civics/Militarystate.dds</Button>
-            <TechPrereq>TECH_WARFARE</TechPrereq>
+            <TechPrereq>TECH_MILITARY_STRATEGY</TechPrereq>
             <iAnarchyLength>1</iAnarchyLength>
             <Upkeep>UPKEEP_HIGH</Upkeep>
             <iAIWeight>0</iAIWeight>
@@ -2230,7 +2230,7 @@
             <Button>,Art/Interface/Buttons/Civics/Caste_System.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,3,1</Button>
             <TechPrereq>TECH_FEUDALISM</TechPrereq>
             <iAnarchyLength>1</iAnarchyLength>
-            <Upkeep>UPKEEP_MEDIUM</Upkeep>
+            <Upkeep>UPKEEP_LOW</Upkeep>
             <iAIWeight>0</iAIWeight>
             <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
             <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -2282,8 +2282,8 @@
             <CapitalCommerceModifiers>
             </CapitalCommerceModifiers>
             <SpecialistExtraCommerces>
-                <iCommerce>0</iCommerce>
                 <iCommerce>1</iCommerce>
+                <iCommerce>0</iCommerce>
                 <iCommerce>2</iCommerce>
             </SpecialistExtraCommerces>
             <Hurrys>
@@ -2711,7 +2711,7 @@
             <Strategy>TXT_KEY_CIVIC_CONQUEST_STRATEGY</Strategy>
             <Help></Help>
             <Button>Art/Interface/Buttons/Civics/Conquest.dds</Button>
-            <TechPrereq>TECH_EDUCATION</TechPrereq>
+            <TechPrereq>TECH_WARFARE</TechPrereq>
             <iAnarchyLength>1</iAnarchyLength>
             <Upkeep>UPKEEP_MEDIUM</Upkeep>
             <iAIWeight>0</iAIWeight>
@@ -2990,6 +2990,9 @@
             <CapitalYieldModifiers>
             </CapitalYieldModifiers>
             <TradeYieldModifiers>
+                <iCommerce>0</iCommerce>
+                <iCommerce>0</iCommerce>
+                <iCommerce>25</iCommerce>
             </TradeYieldModifiers>
             <CommerceModifiers>
             </CommerceModifiers>
@@ -3034,7 +3037,7 @@
             <bNoDiplomacyWithEnemies>0</bNoDiplomacyWithEnemies>
             <bPrereqWar>0</bPrereqWar>
             <iAttitudeShareMod>0</iAttitudeShareMod>
-            <iCoastalTradeRoutes>1</iCoastalTradeRoutes>
+            <iCoastalTradeRoutes>0</iCoastalTradeRoutes>
             <iEnslavementChance>0</iEnslavementChance>
             <iFoodConsumptionPerPopulation>0</iFoodConsumptionPerPopulation>
             <BlockAlignment>NONE</BlockAlignment>
