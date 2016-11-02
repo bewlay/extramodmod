@@ -17,6 +17,7 @@ def getPuppetCivLeader( args ) :
 	newCivIdx, newLeaderIdx = rcu.chooseNewCivAndLeader( iOldCivType, iCultureOwnerCivType, iSplitType, iReligion, pCity.plot().getX(), pCity.plot().getY() )
 	return newCivIdx * gc.getNumLeaderHeadInfos() + newLeaderIdx
 
+
 def canHavePuppetCivLeader(args):
 	iNewOwner, iOriginalOwner, iNewCityID = args
 	pCity = gc.getPlayer(iNewOwner).getCity(iNewCityID)

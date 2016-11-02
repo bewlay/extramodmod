@@ -40,6 +40,26 @@ The Seraph now has the same collateral damage values than the rest of the units 
 More Naval AI changes
 ===============================================================================
 
+Update text for Revolutions game option to make it clearer that it is incomplete.
+
+Erebus_mst added to the list of mapscripts that have no equator for End of Winter.
+
+MoreCiv4lerts will no longer say that a civilization in crusade is ready to capitulate
+
+The turns required for double culture wonders are now calculated correctly. They are displayed in turns instead of in years.
+
+World break (and city fire events) are no longer allowed to destroy certain structures.
+
+Creating a puppet state will no longer cause an OOS error.
+
+An inquisition interrupted by city raze would cause an exception.
+
+Fixed crash when playing with require complete kills.
+
+Attitude modifier, free promotion and mutation chance for bonuses are now displayed in the bonus help and sevopedia.
+
+Puppet states retain the original civilization.
+
 Added missing text tags.
 
 Added fixed Islands and Archipelago mapscripts.

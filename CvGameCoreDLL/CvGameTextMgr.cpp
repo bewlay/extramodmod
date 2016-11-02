@@ -159,6 +159,7 @@ void CvGameTextMgr::setYearStr(CvWString& szString, int iGameTurn, bool bSave, C
 }
 
 
+
 void CvGameTextMgr::setDateStr(CvWString& szString, int iGameTurn, bool bSave, CalendarTypes eCalendar, int iStartYear, GameSpeedTypes eSpeed)
 {
 	CvWString szYearBuffer;
@@ -5268,8 +5269,8 @@ It is fine for a human player mouse-over (which is what it is used for).
 void createTestFontString(CvWStringBuffer& szString)
 {
 	int iI;
-	szString.assign(L"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[×]^_`abcdefghijklmnopqrstuvwxyz\n");
-	szString.append(L"{}~\\ßÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞŸßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ¿¡«»°ŠŒŽšœž™©®€£¢”‘“…’");
+	szString.assign(L"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[ï¿½]^_`abcdefghijklmnopqrstuvwxyz\n");
+	szString.append(L"{}~\\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÞŸï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 	for (iI=0;iI<NUM_YIELD_TYPES;++iI)
 		szString.append(CvWString::format(L"%c", GC.getYieldInfo((YieldTypes) iI).getChar()));
 
@@ -14851,7 +14852,9 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 
 				if (iYear != MIN_INT)
 				{
+					/*
 					// year built
+					*/
 					szBuffer.append(NEWLINE);
 					szBuffer.append(gDLL->getText("TXT_KEY_BUG_YEAR_BUILT", iYear));
 
@@ -14860,7 +14863,11 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 					{
 						for (iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
 						{
-							int iDoubleTime = kBuilding.getCommerceChangeDoubleTime(iI);
+							// Fix - display times as calculated by the Fix CommerceChangeDoubleTime addon by Sephi
+							int iDoubleTime = kBuilding.getCommerceChangeDoubleTime(iI) * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getConstructPercent();
+							iDoubleTime /= 100;
+							// Fix - End
+
 							int iAge = GC.getGameINLINE().getGameTurnYear() - iYear;
 							
 							if (iAge < iDoubleTime)
@@ -16959,6 +16966,28 @@ void CvGameTextMgr::setBonusTradeHelp(CvWStringBuffer &szBuffer, BonusTypes eBon
         szBuffer.append(NEWLINE);
         szBuffer.append(gDLL->getText("TXT_KEY_BONUS_RESEARCH_MODIFIER", GC.getBonusInfo(eBonus).getResearchModifier()));
 	}
+
+// BonusPedia 08/2016 lfgr
+	if( GC.getBonusInfo( eBonus ).getBadAttitude() < 0 )
+	{
+        szBuffer.append( NEWLINE );
+        szBuffer.append( gDLL->getText( "TXT_KEY_BONUS_BAD_ATTITUDE" ) );
+	}
+
+	if( GC.getBonusInfo( eBonus ).getFreePromotion() != NO_PROMOTION )
+	{
+		CvPromotionInfo& kPromotion = GC.getPromotionInfo( (PromotionTypes) GC.getBonusInfo( eBonus ).getFreePromotion() );
+        szBuffer.append( NEWLINE );
+		szBuffer.append( gDLL->getText( "TXT_KEY_BONUS_FREE_PROMOTION", kPromotion.getDescription() ) );
+	}
+
+	if( GC.getBonusInfo( eBonus ).getMutateChance() != 0 )
+	{
+		szBuffer.append( NEWLINE );
+		szBuffer.append( gDLL->getText( "TXT_KEY_BONUS_MUTATE_CHANCE", GC.getBonusInfo( eBonus ).getMutateChance() ) );
+	}
+// BonusPedia END
+
 	if (GC.getBonusInfo(eBonus).isModifierPerBonus())
 	{
         szBuffer.append(NEWLINE);
