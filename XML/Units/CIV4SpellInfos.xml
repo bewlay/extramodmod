@@ -5318,7 +5318,7 @@
             <ConvertUnitType>UNIT_SONS_OF_ASENA</ConvertUnitType>
             <bAbility>1</bAbility>
             <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
-            <iCost>40</iCost>
+            <iCost>30</iCost>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
@@ -5338,7 +5338,7 @@
             <bAbility>1</bAbility>
             <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <iCost>80</iCost>
-			<PyResult>spellUpgradeLucian(pCaster)</PyResult>
+            <PyResult>spellUpgradeLucian(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
@@ -5358,7 +5358,7 @@
             <ConvertUnitType>UNIT_BATTLEMASTER</ConvertUnitType>
             <bAbility>1</bAbility>
             <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
-            <iCost>120</iCost>
+            <iCost>100</iCost>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
@@ -5378,7 +5378,7 @@
             <ConvertUnitType>UNIT_BATTLEMASTER</ConvertUnitType>
             <bAbility>1</bAbility>
             <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
-            <iCost>80</iCost>
+            <iCost>70</iCost>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_TRAIN</Sound>
             <bGraphicalOnly>1</bGraphicalOnly>
