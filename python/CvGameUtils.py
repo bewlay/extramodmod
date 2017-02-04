@@ -385,7 +385,8 @@ class CvGameUtils:
 ### Start AI restrictions ###
 		if not pPlayer.isHuman():
 			if eBuilding == gc.getInfoTypeForString('BUILDING_PROPHECY_OF_RAGNAROK'):
-				if pPlayer.getAlignment() != gc.getInfoTypeForString('ALIGNMENT_EVIL'):
+				if pPlayer.getCivilizationType() != gc.getInfoTypeForString('CIVILIZATION_SHEAIM') and \
+								pPlayer.getStateReligion() != gc.getInfoTypeForString('RELIGION_THE_ASHEN_VEIL'):
 					return True
 
 			elif eBuilding == gc.getInfoTypeForString('BUILDING_MERCURIAN_GATE'):
