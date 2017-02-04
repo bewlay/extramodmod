@@ -10551,7 +10551,7 @@
 				</UnitAI>
 			</UnitAIs>
 			<PrereqTech>TECH_NEVER</PrereqTech>
-			<iCost>60</iCost>
+			<iCost>90</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
