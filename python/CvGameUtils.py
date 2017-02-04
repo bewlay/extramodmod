@@ -203,6 +203,11 @@ class CvGameUtils:
 			if iCiv == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
 				return True
 
+		# Sheaim do not have any use for researching rage (EMM):
+		if eTech == gc.getInfoTypeForString('TECH_RAGE'):
+			if iCiv == gc.getInfoTypeForString('CIVILIZATION_SHEAIM'):
+				return True
+
 		if CyGame().getWBMapScript():
 			bBlock = sf.cannotResearch(ePlayer, eTech, bTrade)
 			if bBlock:
