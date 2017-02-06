@@ -2468,7 +2468,7 @@ def spellRecruit(caster):
 			iUnit = gc.getInfoTypeForString('UNITCLASS_SCOUT')
 			if eTeam.isHasTech(gc.getInfoTypeForString('TECH_HUNTING')):
 				iUnit = gc.getInfoTypeForString('UNITCLASS_HUNTER')
-			if eTeam.isHasTech(gc.getInfoTypeForString('TECH_ANIMAL_HANDLING')):
+			if eTeam.isHasTech(gc.getInfoTypeForString('TECH_FERAL_BOND')):
 				iUnit = gc.getInfoTypeForString('UNITCLASS_RANGER')
 		elif iRnd < 20:
 			iUnit = gc.getInfoTypeForString('UNITCLASS_SCOUT')
