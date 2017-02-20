@@ -2189,7 +2189,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_ELEPHANT -->
 			<Type>SPAWN_ELEPHANT</Type>
-			<iBaseWeight>0</iBaseWeight>
+			<iBaseWeight>-10</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_ELEPHANT</TerrainFlavourType>
 			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
 			<iMinSpawnTier>2</iMinSpawnTier>
