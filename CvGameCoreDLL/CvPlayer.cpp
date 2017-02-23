@@ -20232,7 +20232,14 @@ void CvPlayer::doWarnings()
 /*************************************************************************************************/
 /**	Tweak									END													**/
 /*************************************************************************************************/
+								
+							// lfgr: ignore when in autoplay
+							/* old code
 								gDLL->getInterfaceIFace()->addMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_ENEMY_TROOPS", MESSAGE_TYPE_INFO, pUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), true, true);
+							*/
+								if( GC.getGameINLINE().getAIAutoPlay( GC.getGameINLINE().getActivePlayer() ) <= 0 )
+									gDLL->getInterfaceIFace()->addMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_ENEMY_TROOPS", MESSAGE_TYPE_INFO, pUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), true, true);
+							// lfgr end
 
 								iMaxCount--;
 							}
