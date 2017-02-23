@@ -7848,16 +7848,16 @@ void CvGame::createBarbarianUnits()
 			bBarbs = false;
 	}
 
-	logBBAI( "WILDERNESS - Spawning at turn %d", GC.getGameINLINE().getGameTurn() );
+	logTo( "wilderness - %S.log", "Spawning at turn %d", GC.getGameINLINE().getGameTurn() );
 
 	if( bAnimals )
-		logBBAI( "WILDERNESS - Spawning Animals" );
+		logTo( "wilderness - %S.log", "Spawning Animals" );
 
 	if( bBarbs )
-		logBBAI( "WILDERNESS - Spawning Barbarians" );
+		logTo( "wilderness - %S.log", "Spawning Barbarians" );
 	
 	if( !bAnimals && !bBarbs )
-		logBBAI( "WILDERNESS - No Spawning" );
+		logTo( "wilderness - %S.log", "No Spawning" );
 	
 	if( bAnimals || bBarbs )
 	{
@@ -8080,7 +8080,7 @@ void CvGame::createBarbarianUnits()
 					float fAnimalRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
 					if( fAnimalChance >= fAnimalRand )
 					{
-						logBBAI( "Creating spawn with chance %f", fAnimalChance );
+						logTo( "wilderness - %S.log", "Create spawn with chance %f", fAnimalChance );
 						createBarbarianSpawn( pPlot, true );
 
 						// Invalidate adjacent plots to prevent simultanous spawning on to adjacent plots.
@@ -8134,7 +8134,7 @@ void CvGame::createBarbarianUnits()
 					float fBarbRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
 					if( fBarbChance >= fBarbRand )
 					{
-						logBBAI( "Creating spawn with chance %f", fBarbChance );
+						logTo( "wilderness - %S.log", "Create spawn with chance %f", fBarbChance );
 						createBarbarianSpawn( pPlot, false );
 
 						// Invalidate adjacent plots to prevent simultanous spawning on to adjacent plots.
@@ -8173,7 +8173,8 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 {
 	bool bVerbose = true;
 
-	logBBAI( "WILDERNESS - Creating Semi-Random %s Spawn", bAnimal ? "animal" : "barb" );
+	logTo( "wilderness - %S.log", "Creating Semi-Random %s Spawn at wilderness %d",
+			bAnimal ? "animal" : "barb", pPlot->getWilderness() );
 	
 	int* aiValues = new int[GC.getNumSpawnInfos()];
 	int iBestValue = 0;
@@ -8195,7 +8196,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 			int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn );
 
 			if( iValue > 0 && bVerbose )
-				logBBAI( "WILDERNESS - SpawnInfo %s: %d", kLoopSpawn.getType(), iValue );
+				logTo( "wilderness - %S.log", "SpawnInfo %s: %d", kLoopSpawn.getType(), iValue );
 
 			if( iValue > iBestValue )
 				iBestValue = iValue;
@@ -8209,7 +8210,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 	SpawnTypes eBestSpawn = NO_SPAWN;
 	
 	if( bVerbose )
-		logBBAI( "WILDERNESS - Best Value: %d", iBestValue );
+		logTo( "wilderness - %S.log", "Best Value: %d", iBestValue );
 
 	if( iBestValue > 0 )
 	{
@@ -8233,7 +8234,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 		int iRand = getSorenRandNum( iTotalValue, "Barb Unit Selection" );
 		
 		if( bVerbose )
-			logBBAI( "WILDERNESS - Rand %d out of %d", iRand, iTotalValue );
+			logTo( "wilderness - %S.log", "Rand %d out of %d", iRand, iTotalValue );
 
 		int iCurrentValue = 0;
 		for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
@@ -8247,7 +8248,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 			}
 			
 			if( bVerbose && aiValues[eLoopSpawn] )
-				logBBAI( "WILDERNESS - Not #%d, now %d", eLoopSpawn, iCurrentValue );
+				logTo( "wilderness - %S.log", "Not #%d, now %d", eLoopSpawn, iCurrentValue );
 		}
 	}
 
@@ -8256,7 +8257,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 	if ( eBestSpawn != NO_SPAWN )
 	{
 		CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
-		logBBAI("WILDERNESS - SpawnInfo %s chosen!", kBestSpawn.getType() );
+		logTo( "wilderness - %S.log", "SpawnInfo %s chosen!", kBestSpawn.getType() );
 		
 		// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
 		int iMinWilderness = pPlot->calcMinWilderness( eBestSpawn );
@@ -8266,7 +8267,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 	}
 	else
 	{
-		logBBAI("WILDERNESS - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s, %s", pPlot->getWilderness(),
+		logTo( "wilderness - %S.log", "NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s, %s", pPlot->getWilderness(),
 				pPlot->getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( pPlot->getTerrainType() ).getType() : "NONE",
 				pPlot->getFeatureType() != NO_TERRAIN ? GC.getFeatureInfo( pPlot->getFeatureType() ).getType() : "NONE",
 				pPlot->getImprovementType() != NO_TERRAIN ? GC.getImprovementInfo( pPlot->getImprovementType() ).getType() : "NONE",

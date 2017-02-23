@@ -22012,7 +22012,7 @@ void CvPlayer::setTriggerFired(const EventTriggeredData& kTriggeredData, bool bO
 EventTriggeredData* CvPlayer::initTriggeredData(EventTriggerTypes eEventTrigger, bool bFire, int iCityId, int iPlotX, int iPlotY, PlayerTypes eOtherPlayer, int iOtherPlayerCityId, ReligionTypes eReligion, CorporationTypes eCorporation, int iUnitId, BuildingTypes eBuilding)
 {
 	// lfgr EVENT_DEBUG
-	logBBAI( "EVENT_DEBUG - initTriggeredData #%d \"%s\"", eEventTrigger, GC.getEventTriggerInfo( eEventTrigger ).getType() );
+//	logBBAI( "EVENT_DEBUG - initTriggeredData #%d \"%s\"", eEventTrigger, GC.getEventTriggerInfo( eEventTrigger ).getType() );
 	// lfgr end
 
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eEventTrigger);
@@ -24376,7 +24376,7 @@ CvUnit* CvPlayer::pickTriggerUnit(EventTriggerTypes eTrigger, CvPlot* pPlot, boo
 int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
 {
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eTrigger);
-	logBBAI( "EVENT_DEBUG - Getting EventTrigger weight \"%s\"", kTrigger.getType() );
+//	logBBAI( "EVENT_DEBUG - Getting EventTrigger weight \"%s\"", kTrigger.getType() );
 	// lfgr cmt: check simple requirements
 
 	if (NO_HANDICAP != kTrigger.getMinDifficulty())

@@ -634,7 +634,7 @@ void CvPlot::doTurn()
 							if( !bDefended && !kBestSpawn.isNoDefender() )
 								eUnitAI = UNITAI_LAIRGUARDIAN;
 							
-							logBBAI("WILDERNESS - Spawning from lair" );
+							logTo( "wilderness - %S.log", "Spawning from lair" );
 							
 							// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
 							int iMinWilderness = calcMinWilderness( eBestSpawn );
@@ -650,7 +650,7 @@ void CvPlot::doTurn()
 		{
 			if( bShouldSpawn && !GC.getImprovementInfo( getImprovementType() ).isUnique() )
 			{
-				logBBAI("WILDERNESS - ImprovementSpawnTypes - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
+				logTo( "wilderness - %S.log", "ImprovementSpawnTypes - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
 						getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( getTerrainType() ).getType() : "NONE",
 						getFeatureType() != NO_FEATURE ? GC.getFeatureInfo( getFeatureType() ).getType() : "NONE",
 						getImprovementType() != NO_IMPROVEMENT ? GC.getImprovementInfo( getImprovementType() ).getType() : "NONE" );
@@ -7135,7 +7135,7 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 				}
 				if( eBestSpawn != NO_SPAWN )
 				{
-					logBBAI("WILDERNESS - Spawning lair defender" );
+					logTo( "wilderness - %S.log", "Spawning lair defender" );
 
 					// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
 					int iMinWilderness = calcMinWilderness( eBestSpawn );
@@ -7148,7 +7148,7 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 				{
 					if( bSpawnAvailable )
 					{
-						logBBAI("WILDERNESS - LairGuardian - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
+						logTo( "wilderness - %S.log", "LairGuardian - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
 								getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( getTerrainType() ).getType() : "NONE",
 								getFeatureType() != NO_FEATURE ? GC.getFeatureInfo( getFeatureType() ).getType() : "NONE",
 								getImprovementType() != NO_IMPROVEMENT ? GC.getImprovementInfo( getImprovementType() ).getType() : "NONE" );
@@ -13321,7 +13321,7 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, int iMinWilderness, UnitAITypes eUn
 
 	CvSpawnInfo& kSpawn = GC.getSpawnInfo( eSpawn );
 	
-	logBBAI( "Creating spawn %s%s", kSpawn.getType(), iLairPlot != -1 ? " from lair" : "" );
+	logTo( "wilderness - %S.log", "Creating spawn %s%s", kSpawn.getType(), iLairPlot != -1 ? " from lair" : "" );
 
 	CvUnit* pHeadUnit = NULL;
 
