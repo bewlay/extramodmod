@@ -17,8 +17,6 @@ def getAnimalValue( eUnitType ) :
 		liAnimalValues[gc.getInfoTypeForString( "UNIT_CAVE_BEAR" )] = 30
 		liAnimalValues[gc.getInfoTypeForString( "UNIT_COBRA_GREAT" )] = 15
 		liAnimalValues[gc.getInfoTypeForString( "UNIT_COBRA_GIANT" )] = 25
-		liAnimalValues[gc.getInfoTypeForString( "UNIT_CROCODILE" )] = 20
-		liAnimalValues[gc.getInfoTypeForString( "UNIT_CROCODILE_GIANT" )] = 30
 		liAnimalValues[gc.getInfoTypeForString( "UNIT_ELEPHANT" )] = 40
 		liAnimalValues[gc.getInfoTypeForString( "UNIT_GIANT_SPIDER" )] = 15
 		liAnimalValues[gc.getInfoTypeForString( "UNIT_GORILLA" )] = 20

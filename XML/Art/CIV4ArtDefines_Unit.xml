@@ -16236,60 +16236,6 @@
 		<UnitArtInfo>
 			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
 			<!-- Art from Caveman2Cosmos -->
-			<Type>ART_DEF_UNIT_CROCODILE</Type>
-			<Button>Art/Interface/Buttons/Units/crocodile.dds</Button>
-			<fScale>16.0</fScale>
-			<fInterfaceScale>1</fInterfaceScale>
-            <bActAsLand>0</bActAsLand>
-            <bActAsAir>0</bActAsAir>
-			<NIF>Art/Units/Animals/Crocodile/nilecroc.nif</NIF>
-			<KFM>Art/Units/Panther/Panther.kfm</KFM><!-- TODO -->
-            <ShadowDef>
-                <ShadowNIF>Art/Units/01_UnitShadows/UnitShadow.nif</ShadowNIF>
-                <ShadowAttachNode>Bip01</ShadowAttachNode>
-                <fShadowScale>0.0625</fShadowScale>
-            </ShadowDef>
-			<fBattleDistance>0.8</fBattleDistance>
-			<fRangedDeathTime>0.35</fRangedDeathTime>
-			<bActAsRanged>0</bActAsRanged> <!-- TODO -->
-			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
-            <AudioRunSounds>
-                <AudioRunTypeLoop/>
-                <AudioRunTypeEnd/>
-            </AudioRunSounds>
-			<SelectionSound>AS3D_UN_SEA_SERPENT</SelectionSound>
-			<ActionSound>AS3D_UN_SEA_SERPENT</ActionSound>
-		</UnitArtInfo>
-		<UnitArtInfo>
-			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
-			<!-- Art from Caveman2Cosmos -->
-			<Type>ART_DEF_UNIT_CROCODILE_GIANT</Type>
-			<Button>Art/Interface/Buttons/Units/crocodile_giant.dds</Button>
-			<fScale>20.0</fScale>
-			<fInterfaceScale>1</fInterfaceScale>
-            <bActAsLand>0</bActAsLand>
-            <bActAsAir>0</bActAsAir>
-			<NIF>Art/Units/Animals/Crocodile/nilecroc.nif</NIF>
-			<KFM>Art/Units/Panther/Panther.kfm</KFM><!-- TODO -->
-            <ShadowDef>
-                <ShadowNIF>Art/Units/01_UnitShadows/UnitShadow.nif</ShadowNIF>
-                <ShadowAttachNode>Bip01</ShadowAttachNode>
-                <fShadowScale>0.05</fShadowScale>
-            </ShadowDef>
-			<fBattleDistance>0.9</fBattleDistance>
-			<fRangedDeathTime>0.35</fRangedDeathTime>
-			<bActAsRanged>0</bActAsRanged> <!-- TODO -->
-			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
-            <AudioRunSounds>
-                <AudioRunTypeLoop/>
-                <AudioRunTypeEnd/>
-            </AudioRunSounds>
-			<SelectionSound>AS3D_UN_SEA_SERPENT</SelectionSound>
-			<ActionSound>AS3D_UN_SEA_SERPENT</ActionSound>
-		</UnitArtInfo>
-		<UnitArtInfo>
-			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
-			<!-- Art from Caveman2Cosmos -->
 			<Type>ART_DEF_UNIT_HYENA</Type>
 			<Button>Art/Interface/Buttons/Units/hyena.dds</Button>
 			<fScale>0.5</fScale>

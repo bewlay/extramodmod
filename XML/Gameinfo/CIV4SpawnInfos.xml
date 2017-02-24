@@ -2155,38 +2155,6 @@
 				</SpawnUnit>
 			</SpawnUnits>
 		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_CROCODILE -->
-			<Type>SPAWN_CROCODILE</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_CROCODILE</TerrainFlavourType>
-			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
-			<iMinSpawnTier>1</iMinSpawnTier>
-			<iMaxSpawnTier>3</iMaxSpawnTier>
-			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
-			<bAnimal>1</bAnimal>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_CROCODILE</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
-		<SpawnInfo> <!-- SPAWN_CROCODILE_GIANT -->
-			<Type>SPAWN_CROCODILE_GIANT</Type>
-			<iBaseWeight>0</iBaseWeight>
-			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_CROCODILE</TerrainFlavourType>
-			<SpawnPrereqType>SPAWN_PREREQ_ANIMAL</SpawnPrereqType>
-			<iMinSpawnTier>3</iMinSpawnTier>
-			<iMaxSpawnTier>4</iMaxSpawnTier>
-			<bNoWildernessIgnoreSpawnPrereq>1</bNoWildernessIgnoreSpawnPrereq>
-			<bAnimal>1</bAnimal>
-			<SpawnUnits>
-				<SpawnUnit>
-					<Unit>UNIT_CROCODILE_GIANT</Unit>
-					<iNumUnits>1</iNumUnits>
-				</SpawnUnit>
-			</SpawnUnits>
-		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_ELEPHANT -->
 			<Type>SPAWN_ELEPHANT</Type>
 			<iBaseWeight>-10</iBaseWeight>

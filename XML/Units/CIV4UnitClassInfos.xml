@@ -2396,24 +2396,6 @@
 			<DefaultUnit>UNIT_COBRA_GIANT</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo> <!-- WILDERNESS 02/2016 lfgr // NewUnits -->
-			<Type>UNITCLASS_CROCODILE</Type>
-			<Description>TXT_KEY_UNIT_CROCODILE</Description>
-			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
-			<iMaxTeamInstances>-1</iMaxTeamInstances>
-			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
-			<iInstanceCostModifier>0</iInstanceCostModifier>
-			<DefaultUnit>UNIT_CROCODILE</DefaultUnit>
-		</UnitClassInfo>
-		<UnitClassInfo> <!-- WILDERNESS 02/2016 lfgr // NewUnits -->
-			<Type>UNITCLASS_CROCODILE_GIANT</Type>
-			<Description>TXT_KEY_UNIT_CROCODILE_GIANT</Description>
-			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
-			<iMaxTeamInstances>-1</iMaxTeamInstances>
-			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
-			<iInstanceCostModifier>0</iInstanceCostModifier>
-			<DefaultUnit>UNIT_CROCODILE_GIANT</DefaultUnit>
-		</UnitClassInfo>
-		<UnitClassInfo> <!-- WILDERNESS 02/2016 lfgr // NewUnits -->
 			<Type>UNITCLASS_HYENA</Type>
 			<Description>TXT_KEY_UNIT_HYENA</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>

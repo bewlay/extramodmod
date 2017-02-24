@@ -8107,26 +8107,6 @@
             <iCombatPercentDefense>15</iCombatPercentDefense>
             <iMinLevel>-1</iMinLevel>
         </PromotionInfo>
-		<PromotionInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits-->
-            <Type>PROMOTION_CROCODILE_TROPHY</Type>
-            <Description>TXT_KEY_BUILDING_CROCODILE_TROPHY</Description>
-            <Sound>AS2D_IF_LEVELUP</Sound>
-            <TechPrereq>TECH_NEVER</TechPrereq>
-            <iCityDefense>20</iCityDefense>
-            <UnitCombats>
-                <UnitCombat>
-                    <UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
-                    <bUnitCombat>1</bUnitCombat>
-                </UnitCombat>
-                <UnitCombat>
-                    <UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
-                    <bUnitCombat>1</bUnitCombat>
-                </UnitCombat>
-            </UnitCombats>
-            <Button>Art/Interface/Buttons/Units/crocodile_giant.dds</Button>
-            <iCombatPercentDefense>15</iCombatPercentDefense>
-            <iMinLevel>-1</iMinLevel>
-        </PromotionInfo>
 		<PromotionInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
             <Type>PROMOTION_LION_TROPHY</Type>
             <Description>TXT_KEY_BUILDING_LION_TROPHY</Description>
