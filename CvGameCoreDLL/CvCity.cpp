@@ -1666,6 +1666,16 @@ void CvCity::doTask(TaskTypes eTask, int iData1, int iData2, bool bOption, bool 
 		setRallyPlot(NULL);
 		break;
 
+	// MNAI - Puppet States (OOS fix)
+	case TASK_MAKE_PUPPET:
+		if (!GET_PLAYER(getOwnerINLINE()).makePuppet(getPreviousOwner(), this))
+		{
+			CvEventReporter::getInstance().cityAcquiredAndKept(getOwnerINLINE(), this);
+			chooseProduction();
+		}
+		break;
+	// End MNAI
+
 	default:
 		FAssertMsg(false, "eTask failed to match a valid option");
 		break;
