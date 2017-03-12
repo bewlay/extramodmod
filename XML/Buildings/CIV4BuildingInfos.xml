@@ -14845,7 +14845,7 @@
 			<Type>BUILDING_GRAND_MENAGERIE</Type>
 			<SpecialBuildingType>NONE</SpecialBuildingType>
 			<Description>TXT_KEY_BUILDING_GRAND_MENAGERIE</Description>
-			<Civilopedia>TXT_KEY_BUILDING_GRAND_MENAGERIE_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_BUILDING_PLACEHOLDER_PEDIA</Civilopedia>
 			<Strategy></Strategy>
 			<Help></Help>
 			<Advisor>ADVISOR_CULTURE</Advisor>
@@ -15032,26 +15032,6 @@
 			<PrereqBuildingClasses>
 			</PrereqBuildingClasses>
 			<BuildingClassNeededs>
-				<BuildingClassNeeded>
-					<BuildingClassType>BUILDINGCLASS_WOLF_PEN</BuildingClassType>
-					<bNeededInCity>1</bNeededInCity>
-				</BuildingClassNeeded>
-				<BuildingClassNeeded>
-					<BuildingClassType>BUILDINGCLASS_DANCING_BEAR</BuildingClassType>
-					<bNeededInCity>1</bNeededInCity>
-				</BuildingClassNeeded>
-				<BuildingClassNeeded>
-					<BuildingClassType>BUILDINGCLASS_TIGER_CAGE</BuildingClassType>
-					<bNeededInCity>1</bNeededInCity>
-				</BuildingClassNeeded>
-				<BuildingClassNeeded>
-					<BuildingClassType>BUILDINGCLASS_GORILLA_CAGE</BuildingClassType>
-					<bNeededInCity>1</bNeededInCity>
-				</BuildingClassNeeded>
-				<BuildingClassNeeded>
-					<BuildingClassType>BUILDINGCLASS_LION_CAGE</BuildingClassType>
-					<bNeededInCity>1</bNeededInCity>
-				</BuildingClassNeeded>
 			</BuildingClassNeededs>
 			<SpecialistYieldChanges>
 			</SpecialistYieldChanges>
@@ -15092,6 +15072,21 @@
 			<RemovePromotion>NONE</RemovePromotion>
 			<SpecialistCommerceChanges>
 			</SpecialistCommerceChanges>
+		<!-- WILDERNESS 03/2017 lfgr // GrandMenagerie -->
+		<!-- Intentionally left out: Boar Pen, Scorpion Pen, Spider Pen -->
+			<iBuildingClassAnyNeededCount>6</iBuildingClassAnyNeededCount>
+			<BuildingClassAnyNeededs>
+				<BuildingClassType>BUILDINGCLASS_COBRA_CHARMER</BuildingClassType>
+				<BuildingClassType>BUILDINGCLASS_DANCING_BEAR</BuildingClassType>
+				<BuildingClassType>BUILDINGCLASS_GORILLA_CAGE</BuildingClassType>
+				<BuildingClassType>BUILDINGCLASS_GRIFFON_AERIE</BuildingClassType>
+				<BuildingClassType>BUILDINGCLASS_HYENA_CAGE</BuildingClassType>
+				<BuildingClassType>BUILDINGCLASS_LION_CAGE</BuildingClassType>
+				<BuildingClassType>BUILDINGCLASS_PANTHER_CAGE</BuildingClassType>
+				<BuildingClassType>BUILDINGCLASS_TIGER_CAGE</BuildingClassType>
+				<BuildingClassType>BUILDINGCLASS_WOLF_PEN</BuildingClassType>
+			</BuildingClassAnyNeededs>
+		<!-- WILDERNESS end -->
 		</BuildingInfo>
 		<BuildingInfo>
 			<BuildingClass>BUILDINGCLASS_GREAT_LIBRARY</BuildingClass>

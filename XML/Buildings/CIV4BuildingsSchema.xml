@@ -403,6 +403,12 @@
 	<ElementType name="SpecialistCommerceChanges" content="eltOnly">
 		<element type="SpecialistCommerceChange" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+<!-- WILDERNESS 03/2017 lfgr // GrandMenagerie -->
+	<ElementType name="iBuildingClassAnyNeededCount" content="textOnly" dt:type="int"/>
+	<ElementType name="BuildingClassAnyNeededs" content="eltOnly">
+		<element type="BuildingClassType" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+<!-- WILDERNESS end -->
 	<ElementType name="iOrderPriority" content="textOnly" dt:type="int"/>
 	<ElementType name="GenericBuildingInfo" content="eltOnly">
 		<element type="Type"/>
@@ -602,7 +608,11 @@
 		<element type="RemovePromotion"/>
 		<element type="SpecialistCommerceChanges"/>
 		<element type="iOrderPriority" minOccurs="0"/>
-		<element type="bVictoryBuilding" minOccurs="0"/>		
+		<element type="bVictoryBuilding" minOccurs="0"/>
+	<!-- WILDERNESS 03/2017 lfgr // GrandMenagerie -->
+		<element type="iBuildingClassAnyNeededCount" minOccurs="0"/>
+		<element type="BuildingClassAnyNeededs" minOccurs="0"/>
+	<!-- WILDERNESS end -->
 	</ElementType>
 	<ElementType name="BuildingInfos" content="eltOnly">
 		<element type="BuildingInfo" maxOccurs="*"/>

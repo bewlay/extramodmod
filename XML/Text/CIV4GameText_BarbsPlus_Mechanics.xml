@@ -219,4 +219,36 @@
 		<Italian>Barbarians spawning further away from your starting point aren't stronger.</Italian>
 		<Spanish>Los bárbaros que aparecen más lejos de los puntos de inicio no son necesariamente más fuertes.</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_REQUIRES_ANY_BUILDING_COUNT</Tag>
+		<English>Requires at least %d1_count of the following buildings:</English>
+		<French>Requires at least %d1_count of the following buildings:</French>
+		<German>Benötigt mindestens %d1_count der folgenden Gebäude:</German>
+		<Italian>Requires at least %d1_count of the following buildings:</Italian>
+		<Spanish>Requires at least %d1_count of the following buildings:</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_REQUIRES_ANY_BUILDING_COUNT_ACTUAL</Tag>
+		<English>Requires at least %d1_count of the following buildings (%d2_actual/%d3_count):</English>
+		<French>Requires at least %d1_count of the following buildings (%d2_actual/%d3_count):</French>
+		<German>Benötigt mindestens %d1_count der folgenden Gebäude (%d2_actual/%d3_count):</German>
+		<Italian>Requires at least %d1_count of the following buildings (%d2_actual/%d3_count):</Italian>
+		<Spanish>Requires at least %d1_count of the following buildings (%d2_actual/%d3_count):</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_REQUIRES_ANY_BUILDING</Tag>
+		<English>[ICON_BULLET][COLOR_WARNING_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</English>
+		<French>[ICON_BULLET][COLOR_WARNING_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</French>
+		<German>[ICON_BULLET][COLOR_WARNING_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET][COLOR_WARNING_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET][COLOR_WARNING_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_REQUIRES_ANY_BUILDING_PRESENT</Tag>
+		<English>[ICON_BULLET][COLOR_POSITIVE_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</English>
+		<French>[ICON_BULLET][COLOR_POSITIVE_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</French>
+		<German>[ICON_BULLET][COLOR_POSITIVE_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET][COLOR_POSITIVE_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET][COLOR_POSITIVE_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</Spanish>
+	</TEXT>
 </Civ4GameText>

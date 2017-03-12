@@ -15197,6 +15197,53 @@ void CvGameTextMgr::buildBuildingRequiresString(CvWStringBuffer& szBuffer, Build
 /*************************************************************************************************/
 		}
 
+// WILDERNESS 03/2017 lfgr // GrandMenagerie
+	if( kBuilding.getBuildingClassAnyNeededInCityCount() > 0 )
+	{
+		int iActualCount = 0;
+
+		CvWStringBuffer szListBuffer;
+
+		for( int eBuildingClass = 0; eBuildingClass < GC.getNumBuildingClassInfos(); eBuildingClass++ )
+		{
+			if( kBuilding.isBuildingClassAnyNeededInCity( eBuildingClass ) )
+			{
+				if (ePlayer != NO_PLAYER)
+					eLoopBuilding = (BuildingTypes) GC.getCivilizationInfo( GET_PLAYER(ePlayer).getCivilizationType() ).getCivilizationBuildings( eBuildingClass );
+				else
+					eLoopBuilding = (BuildingTypes) GC.getBuildingClassInfo( (BuildingClassTypes) eBuildingClass ).getDefaultBuildingIndex();
+			
+				if( eLoopBuilding != NO_BUILDING )
+				{
+					szListBuffer.append(NEWLINE);
+					if( pCity == NULL || pCity->getNumBuilding( eLoopBuilding ) <= 0 )
+						szListBuffer.append( gDLL->getText( "TXT_KEY_BUILDING_REQUIRES_ANY_BUILDING", GC.getBuildingInfo(eLoopBuilding).getTextKeyWide() ) );
+					else
+					{
+						iActualCount++;
+						szListBuffer.append( gDLL->getText( "TXT_KEY_BUILDING_REQUIRES_ANY_BUILDING_PRESENT", GC.getBuildingInfo(eLoopBuilding).getTextKeyWide() ) );
+					}
+				}
+			}
+		}
+
+		if( iActualCount == 0 )
+		{
+			szBuffer.append( NEWLINE );
+			szBuffer.append( gDLL->getText( "TXT_KEY_BUILDING_REQUIRES_ANY_BUILDING_COUNT", kBuilding.getBuildingClassAnyNeededInCityCount() ) );
+			szBuffer.append( szListBuffer );
+		}
+		else if( iActualCount < kBuilding.getBuildingClassAnyNeededInCityCount() )
+		{
+			szBuffer.append( NEWLINE );
+			szBuffer.append( gDLL->getText( "TXT_KEY_BUILDING_REQUIRES_ANY_BUILDING_COUNT_ACTUAL", kBuilding.getBuildingClassAnyNeededInCityCount(),
+					iActualCount, kBuilding.getBuildingClassAnyNeededInCityCount() ) );
+			szBuffer.append( szListBuffer );
+		}
+		// Don't show anything if we have enough buildings
+	}
+// WILDERNESS end
+
 		if (kBuilding.isStateReligion())
 		{
 			if (NULL == pCity || NO_PLAYER == ePlayer || NO_RELIGION == GET_PLAYER(ePlayer).getStateReligion() || !pCity->isHasReligion(GET_PLAYER(ePlayer).getStateReligion()))
