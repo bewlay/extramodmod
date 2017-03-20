@@ -856,7 +856,7 @@
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_EXPLO_BOSS_WEREWOLF -->
 			<Type>SPAWN_EXPLO_BOSS_WEREWOLF</Type>
-			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_WRAITH</Description>
+			<Description>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_WEREWOLF</Description>
 			<iBaseWeight>65</iBaseWeight>
 			<TerrainFlavourType>TERRAIN_FLAVOUR_SPAWN_EXPLO_WEREWOLF_EXTRA</TerrainFlavourType>
 			<SpawnPrereqType>SPAWN_PREREQ_RECON</SpawnPrereqType>
