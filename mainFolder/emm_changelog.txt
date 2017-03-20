@@ -1,0 +1,2539 @@
+ExtraModMod Changelog
+===============================================================================
+
+
+ExtraModMod 0.6.0-beta1
+===============================================================================
+
+More Naval AI version: 2.x
+
+MapScriptTools version: 1.0x
+
+Erebus in the Balance version: 12.1
+
+
+Features
+===============================================================================
+
+xxx
+
+
+Changes
+===============================================================================
+
+The Lanun bonus for getting more food at sea is now tied to the civilization instead of to the palace.
+
+Infernals are no longer able to research Sanitation and Medicine.
+
+
+Fixes
+
+===============================================================================
+
+Prevent UI errors when one of the customizable progress bars is full.
+
+Fix an error with the add to flesh golem spell.
+
+The Seraph now has the same collateral damage values than the rest of the units with the Berserker unit class.
+
+
+More Naval AI changes
+===============================================================================
+
+Update text for Revolutions game option to make it clearer that it is incomplete.
+
+Erebus_mst added to the list of mapscripts that have no equator for End of Winter.
+
+MoreCiv4lerts will no longer say that a civilization in crusade is ready to capitulate
+
+The turns required for double culture wonders are now calculated correctly. They are displayed in turns instead of in years.
+
+World break (and city fire events) are no longer allowed to destroy certain structures.
+
+Creating a puppet state will no longer cause an OOS error.
+
+An inquisition interrupted by city raze would cause an exception.
+
+Fixed crash when playing with require complete kills.
+
+Attitude modifier, free promotion and mutation chance for bonuses are now displayed in the bonus help and sevopedia.
+
+Puppet states retain the original civilization.
+
+Added missing text tags.
+
+Added fixed Islands and Archipelago mapscripts.
+
+Removed the Nuclear Dissuasion player option.
+
+Tweaks to how Hyborem's starting location is chosen.
+
+Immmortal units will no longer be reborn if they die as cargo.
+
+AI should be a little more interested in promotions that grant first strike.
+
+Limited Borders no longer linked to Open Borders agreements.
+
+Fix the capital city visibility issue when trading embassies.
+
+AI should be more interested in Limited Borders trades.
+
+Flagged some units for trade.
+
+Units that can abandon players cannot be traded.
+
+Players will now see a message when a Puppet State is legitimized.
+
+Great Generals will now use civ-specific artwork if it is available.
+
+Tweaks to naval assaults and naval settler transports.
+
+Tweaks to city production code.
+
+AI should be more willing to build Escort Naval units.
+
+AI should not build Missionary Sea units if they don't have a religion.
+
+AI should be more willing to offer Embassy trades and research techs that unlock Embassy
+
+Updated some Council vote text so that they don't mention the U.N.
+
+Fix for units with Blitz and Defensive Strike getting too many defensive strikes when the Quick Combat option is not enabled.
+
+Displaying culture garrison value in unit mouseover info.
+
+Fix for ships being able to get around cargo restrictions with various ship promotion spells.
+
+Setted LimitedBordersRefuseAttitudeThreshold to a proper attitude level.
+
+Fixed issues that were messing with the AI's ability to calculate war values.
+
+Update to Worldbuilder 4.17.
+
+HN units can no longer capture cities (they will auto raze instead).
+
+Barbarian cities created due to the Barbarian World option should be more spread out now.
+
+Events should no longer occur on peaks if they have a required terrain.
+
+Support for allowing specialists to increase or reduce happiness and health.
+
+Advanced Diplomacy 2.8.
+
+Update to the Ai decision on when to cast River of Blood.
+
+Blockades no longer become permanent.
+
+Fix and minor tweaks to the Infernal spawning code.
+
+Puppet States are no longer allowed to cast World Spells.
+
+Fixed spanish translation.
+
+Bulbing techs is no longer possible with random units.
+
+Fixes related to city radius and settlements.
+
+Fixed a possible CTD caused by missing updateWorkingCity() calls.
+
+
+BarbsPlus changes
+===============================================================================
+
+Added Animal Buildings and associated promotions.
+
+Added new animals. Removed strong versions of existing animals.
+
+arbarians and animals no longer spawn on 1-tile islands.
+
+Barbarian cities now also spawn on uninhabited continents regularly.
+
+All barbarian animals now stay in appropriate terrrain, except when they attack.
+
+New item reward: Amulet of the Seas
+
+New item reward: Radiant Amulet
+
+New item reward: Obsidian Spear
+
+New item reward: Wyrmslayer
+
+New item reward: Ancient Bow
+
+New item reward: Patrian Artifact
+
+Council of Esus religion and Steward of Esus promotion as lair outcome.
+
+Bless as lair outcome promotion.
+
+Text for lair outcome promotions that were missing it.
+
+New item reward: Menacing Helm
+
+New item reward: Heart Amulet
+
+New item reward: Compelling Jewel
+
+For the horde no longer steals the last city defender.
+
+Barbarian World now also works if players start on different continents.
+
+Animals no longer spawn on owned plots.
+
+New wilderness calculation algorithm for inhabited areas.
+
+Removing auto-upgrade of scorpion clan goblins and of high-level spectre to wraith.
+
+Added exploration spawn messages.
+
+Added Bandits Spawn.
+
+Forces the Unit AI specified in their spawn information.
+
+Min wilderness for spawns now randomly distributed between spawning plot wilderness and used tier min wilderness.
+
+Reduced water animal spawning.
+
+Graveyard is no longer hidden by trees.
+
+Added Wight exploration boss spawn.
+
+Removed Fear promotion from Wraith boss spawn.
+
+New spawn choice mechanic, updated spawn information.
+
+Aeron's chosen grants +10% better results from lair exploration.
+
+Added spanish translation.
+
+Fixed some text strings.
+
+New item reward: Hauberk of abjuration.
+
+Bountyhunter, Courage and Morale grant a +5% exploration bonus. Valor grants a +10% bonus.
+
+
+Erebus in the Balance changes
+===============================================================================
+
+Adularia Chamber cost reduced from 180 to 120.
+
+Governor's Manor now requires Mathematics instead of Code of Law.
+
+Pallens Engine cost reduced from 180 to 120.
+
+Planar Gate cost reduced from 200 to 100.
+
+Reliquary gains a priest slot. Reliquary cost reduced from 60 to 45.
+
+Warrens increase maintenance costs by 10%.
+
+Aristocracy now only reduces distance maintenance costs by -20%, instead of by -40%.
+
+Caste System upkeep reduced from medium to low. It now grants +1 gold per specialist instead of +1 research per specialist.
+
+Conquest moves back to Warfare (from Education).
+
+Foreign Trade loses +1 trade route coastal; gains +25% commerce from trade routes.
+
+Military State moves back to Military Strategy (from Warfare).
+
+Forts now require Masonry instead of Construction.
+
+Windmills now require Construction instead of Engineering.
+
+Workshops now grant +2 production instead of +1 production. Guilds technology now grants +1 production instead of +2 production to workshops.
+
+Sidar Palace grants +1 gold for each priest.
+
+Burning Blood now removes the Loyalty promotion.
+
+Loyalty now removes the Burning Blood promotion.
+
+Wane now requires level 5 instead of level 6.
+
+Pact of the Nilhorn cost reduced from 500 to 250.
+
+Creative doubles the production speed of Public Baths.
+
+Abashi now gains the hero promotion.
+
+Airship is no longer a Queen of the Line replacement. The Kuriotates can build both ships now.
+
+Drifa now gains the hero promotion.
+
+Elephant cost set to 60. Although they are still cannot be built, this makes the upgrade to War Elephant cheaper.
+
+Eurabatres now gains the hero promotion.
+
+Monks gain Drill I and Mobility II. Monks lose 2 base moves. Movement decreased from three to one.
+
+Queen of the Line base combat increased from 9 to 16.
+
+Triremes now have +50% combat bonus versus Galleys.
+
+Minimum civic swap time changed from 9 to 8. This allows to change civics twice in a single golden age.
+
+
+
+Events Enhanced changes
+===============================================================================
+
+xxx
+
+
+ExtraModMod 0.5.1
+===============================================================================
+
+More Naval AI version: 2.62 plus additional bugfixes
+
+MapScriptTools version: 1.04
+
+Erebus in the Balance version: 11
+
+
+Features
+===============================================================================
+
+Updated French translation.
+
+Changes
+===============================================================================
+
+In the tables of the info screen, only units and buildings that have been used at least once are shown.
+
+Savegames now use turn number instead of the date in AD format.
+
+Fixes
+
+===============================================================================
+
+The Hall of Fame screen will no longer show an exception when opened.
+
+The AIAutoPlay popup for switching civilizations will not appear when all civilizations are eliminated when playing with require complete kills.
+
+The barbarian AI will no longer crash when playing with require complete kills while all civilizations are already eliminated.
+
+Prevented a crash with the Loki AI when require complete kills is activated.
+
+Technology diffusion is no longer enabled along with technology propagation.
+
+The Spanish string for immune to disease was wrong.
+
+The Favored promotion is now kept after upgrades.
+
+Opening Rituals information will no longer show an exception.
+
+Random units will no longer have the property of being able to spread religion without failure.
+
+Nightwatches cannot start with missionary anymore.
+
+Do not show hidden options in the PitBoss server wizard.
+
+Initialize game options for PitBoss server wizard correctly.
+
+Prevent python exceptions when an OOS is triggered for a PitBoss server.
+
+Show correct turn in PBEM emails.
+
+Show message turn in event log instead of a date.
+
+Graph time indicators now use turns.
+
+Top 5 cities screen will now display the turn in which each city was founded.
+
+The turn in which the city was founded is now displayed correctly in the city screen.
+
+
+Events Enhanced changes
+===============================================================================
+
+Unfortunate assassin continuation event only triggers after at least 10 turns.
+
+Subsequent Gaelan events trigger after a few turns.
+
+Non-quest events no longer expire automatically after 2 turns.
+
+Great People translated names cause no issues anymore.
+
+Great People now are chosen based on race, civilization, religion and already present leaders.
+
+"Friendly locals" event only triggers if the unit can gain promotions.
+
+
+ExtraModMod 0.5.0
+===============================================================================
+
+More Naval AI version: 2.62 plus additional bugfixes
+
+
+Features
+===============================================================================
+
+New graphics for the flesh golem.
+
+Koun now gets Tolerant.
+
+AI XP bonuses by difficulty reduced to 6/Deity, 4/Immortal, 3/Emperor, 2/Monarch, 1/Prince.
+
+Many new Civilopedia texts, coming from the Lore Compendium and the Bestiary.
+
+Hide explored unique features from the Civilopedia.
+
+Pitboss wizard now allows to see all game options.
+
+Most spells now interrupt unit cycling.
+
+A message is shown when roads are pillaged.
+
+A message is displayed when Wonders are captured or destroyed.
+
+Allow to declare war even if the AI refuses to talk.
+
+It is no longer possible to enable hidden game options by changing game options in other mods.
+
+Show an animal tab in Civilopedia.
+
+Changes
+===============================================================================
+
+Entering Letum Frigus now grants only a golden age for the Illians.
+
+Dragon no longer causes fear. Abashi, Acheron, Drifa and Eurabrates now get the Fear promotion. Meteor now requires both Dragon and Fear. Roar now requires both Dragon and Fear.
+
+Disrupt now removes an amount of culture equal to 80% of the city production or 3, whichever is bigger. It won't steal cities anymore. The AI should take these changes into account.
+
+Fixes
+
+===============================================================================
+
+Removed a python exception on FracturedWorld when not using RandomMap.
+
+Resolved many pitboss issues.
+
+Prevent a potential OOS error in Hyborem's Whisper.
+
+Prevent a crash on the Hall of Fame screen.
+
+Prevent a crash triggered by human vassals with unmet masters on multiplayer games.
+
+Wilboman no longer can enter burning sands.
+
+It is now possible again to choose Decius alignment.
+
+Do not show city civ4lerts that will trigger after growth when growth control is enabled.
+
+Prevent a divide by zero error with the barbarian bar.
+
+More Naval AI changes
+===============================================================================
+
+Few minor AI tweaks for units.
+
+Increased the number of troops spawned during Revolution events.
+
+Frostling Archers can now have UNITAI_ATTACK.
+
+Tweak to how the AI decides to build Temples of the Hand.
+
+Units will no longer display positive damage messages when damaging themselves.
+
+Update to Worldbuilder 4.13b.
+
+UNITAI_COUNTER units will now be assigned to GROUPFLAG_CONQUEST.
+
+Minor tweaks to how the AI chooses production.
+
+Fix to canMakePuppet.
+
+On the zoomed out Culture map, a player must have at least 20% culture on the plot before their player color will be shown on that plot.
+
+Fix for a potential error in the Hell Terrain code.
+
+Tweaks to Terraformer AI.
+
+Given some AIWeight to the Release from Cage spell.
+
+AI will now include AI_getPuppetAttitude() in its attitude value.
+
+Fix for issues with Goblin Forts and Scorpion Clan Archers.
+
+Fix for Illusionary units messing up the unit created count; Killing an Illusionary World unit should no longer trigger the global death message.
+
+AI should be more willing to found cities (and maybe a little smarter about it), especially during wartime
+
+BarbsPlus changes
+===============================================================================
+
+Orthus now spawns preferably in medium wilderness.
+
+Barbarians can't upgrade units with SpawnInfo (weird promotions/artstyle).
+
+Erebus in the Balance changes
+===============================================================================
+
+Favored promotion is no longer lost when upgrading units.
+
+Events Enhanced changes
+===============================================================================
+
+Centaur Pants event options now enabled.
+
+Clairone event now requires a minimum population instead of a tech and gives only 3 temporary unhappiness.
+
+Patron of Knowledge event has been fixed.
+
+No Aeron's Chosen for world units.
+
+Reworked "Don't kill it" option of the unicorn event.
+
+Fixed and tweaked orphaned goblin event. Can only trigger once per player now.
+
+Joining and splitting commander should now transfer names properly.
+
+
+
+ExtraModMod 0.5.0-beta2
+===============================================================================
+
+More Naval AI version: 2.61 plus additional bugfixes and improvements.
+
+
+Features
+===============================================================================
+
+Ozzy's Map of Erebus (see http://forums.civfanatics.com/threads/map-of-erebus-unofficial-ffh2-map.236321/). Adapted for ExtraModMod.
+
+New game mode: Insane leaders. All leaders start with three random traits and the Insane trait.
+
+New game mode: Random traits. All leaders get two random traits and sometimes a third minor one.
+
+Tolerant civilizations will now use the terrain yield changes of the original civilizations of their conquered cities.
+
+New game option for disabling the Guild of the Nine.
+
+The Mercurian Gate will show its help text in its mouse over description.
+
+Display how close the barbarians are to declare war.
+
+The number of turns remaining for the next Adaptive trait change is now displayed.
+
+Changes
+
+===============================================================================
+
+Savage gets a new icon.
+
+Reworked "Don't kill it" option of the unicorn event.
+
+Puppet States is no longer enabled by Feudalism. It is enabled by both Code of Laws and Deception.
+
+It is no longer possible to build more planar gate summons than the limit set for their spawning.
+
+Minotaurs and Manticores limit is now half of the limit of the other Planar Gate summons.
+
+Game options have been reordered.
+
+BUG Advanced Scoreboard now shows power ratio by default.
+
+Default display name for BUG Advanced Scoreboard is now Leader + Civilization Description.
+
+BUG Civ4lerts threshold for alerting about gold per turn trades is now 100 instead of 50.
+
+BUG Civ4lerts threshold for alerting about gold trades is now 100 instead of 50.
+
+BUG Civ4lerts is now enabled by default.
+
+BUG map finder is now disabled by default (it seems to be broken anyways).
+
+BUG progress tick marks is now enabled by default.
+
+Uldanor is now Barbarian/Charismatic/Creative instead of Creative/Imperialistic.
+
+Duin is now Imperialistic/Magic Resistant/Slaver instead of Charismatic/Magic Resistant/Slaver.
+
+Braeden is now Defensive/Organized/Savage instead of Barbarian/Ingenuity/Savage.
+
+The Savage promotion now grants the same healing effects than March, but it no longer grants heal after combat.
+
+The Savage trait now gives -10% culture, and the Savage promotion no longer applies to Archery units.
+
+Adaptive now triggers every 75 turns (modified by game speed).
+
+Fixes
+
+===============================================================================
+
+Prevent a CtD when Infernals are summoned.
+
+Removed a CtD when determining valid puppet states leaders.
+
+Game options will no longer be resetted at the start of every game.
+
+Planar gate units now have appropiate technology requirements.
+
+Correct the Civilopedia entry for Khazad vaults.
+
+Fixed traits that should have bSelectable for Adaptive.
+
+More Naval AI changes
+===============================================================================
+
+AI players will no longer destroy lairs simply by moving on top of them.
+
+Puppet states trading will now be properly saved.
+
+Blizzards will not move onto plots with temporary features (temporary workaround for a Blizzards bug).
+
+Volcanoes will sometimes erupt from long dormant mountains in Hell terrain.
+
+10% of Forests will turn into Burnt Forest when plots change to Hell terrain.
+
+Allow the AI to cast Bloom.
+
+Fixes and code improvements to the Genesis spells.
+
+Fix for timer display not appearing when Arcane Lacuna is cast.
+
+Fix for Sanctuary timer display never going away.
+
+Heal spell will now work again.
+
+BarbsPlus changes
+===============================================================================
+
+Cleaned up and fixed the improvement spawning system.
+
+Disciples of Acheron start with the Held promotion
+
+Galleys can spawn without crew now.
+
+Slightly reduced spawn rate of Hunters.
+
+Invisible Units are safe from exploration spawns.
+
+Erebus in the Balance changes
+===============================================================================
+
+Summoner now also grants Spell Extension I.
+
+Keelyn now gets the Ingenuity trait.
+
+Decius now gets the Tolerant trait. In scenarios he does not get this trait.
+
+
+ExtraModMod 0.5.0-beta1
+===============================================================================
+
+More Naval AI version: 2.61 plus additional bugfixes and improvements.
+
+
+Features
+===============================================================================
+
+Improved AI for Multiple Production.
+
+New victory condition: Religious (Quick). This condition is disabled by default.
+
+New victory condition: Cultural (Quick). This condition is disabled by default.
+
+New victory condition: Domination (Quick). This condition is disabled by default.
+
+Victory buildings cannot be rushed anymore.
+
+Extort now displays in its help text the amount of gold that will be obtained in its help text.
+
+Cross rift now displays in its help text the number of units that can cross the rift, the number of available spaces after casting (if any) and if the rift will be closed or not.
+
+Fertility will now display the resource that the tile will have after casting in its help text.
+
+Grigori now also get the Diverse trait. This trait just does something which previously was not shown; it gives all units a chance to have a random racial promotion.
+
+Traits can now apply promotions even to units without an UnitCombat (like DefaultRace works).
+
+All traits now have an icon in the Civilopedia.
+
+It is now possible to define multiple civilization traits for each civilization.
+
+New technology propagation system.
+
+Leader categories, and new game options to allow to disable random generation of non canon leaders.
+
+Changes
+===============================================================================
+
+Held units will no longer display warnings.
+
+The Khazad vault information now appears in a bar. It displays the current amount of gold per city, the current vault level, the amount remaining for the next vault level and how the level will be on the next turn.
+
+The Adventurer Counter now appears in a bar. It displays the number of turns remaining for the next adventurer, along with the current amount of points and the amount gotten each turn.
+
+The Grigori Adventurer Counter has been changed to match the vanilla implementation for adventurers more closely.
+
+The maximum number of spawnable planar gate units has been increased by ten, to be roughly one third of the Armageddon Counter. The increase of the chance of appearance of planar gate units depending on the Armageddon Counter has been multiplied by four.
+
+Sheaim start with Death Mana, Dimensional Mana and Entropy Mana.
+
+Nomad and Winterborn are now civilization traits instead of races for the  Malakim, Doviello and Illians. They still grant the promotion to the same units they did before.
+
+Fixes
+===============================================================================
+
+Disciples gotten from religion technologies now have 100% religion spread chance.
+
+BarbsPlus changes
+===============================================================================
+
+Removed fixed minimum distance of guarded lairs to starting points.
+
+Fixed using getCurrentPeriod() instead of getCurrentEra() in barbarian spawning code.
+
+Fixed memory leaks from not deleting arrays.
+
+Animals never spawn on visible tiles.
+
+Added Gameoption "No Wilderness".
+
+Added Naval spawns with crews.
+
+Fixed wrong type and promotions for Scorpion lair exploration spawn.
+
+Units spawning loaded in a ship now get proper UnitAI.
+
+Added and modified tags to allow more flexibility when including spawns.
+
+Bug with multiple included spawns resolved.
+
+Units with minWilderness can be loaded onto a ship again.
+
+Animal terrain flavour updates.
+
+Bandit lords get -25% city strength.
+
+Lower spawning rate in less fertile terrain.
+
+Erebus in the Balance changes
+===============================================================================
+
+Chaos Marauder is now buildable. It costs 45 hammers and requires Planar Gate and Carnival.
+
+Manticore is now buildable. It costs 240 hammers and requires Planar Gate and Grove.
+
+Minotaur is now buildable. It costs 240 hammers and requires Planar Gate and Obsidian Gate.
+
+Mobius Witch is now buildable. It costs 150 hammers and requires Planar Gate and Mage Guild.
+
+Revelers are now buildable. The cost 150 hammers and require Planar Gate and Gambling House.
+
+Succubus is now buildable. It costs 150 hammers and requires Planar Gate and Public Baths.
+
+Tar Demon is now buildable. It costs 150 hammers and requires Planar Gate and Temple of the Veil.
+
+Mobius Witches appear with 5 XP and level 3.
+
+Khazad start with Earth Mana, Enchantment Mana and Law Mana.
+
+Elegy of the Sheaim cost reduced from 600 to 300.
+
+Hallowing of the Elohim cost reduced from 600 to 300.
+
+Fawn cost increased from 60 to 75.
+
+Khazad Vault thresholds have been halved.
+
+Bless now gives +15 Fire Resistance along with +1 Holy Strength.
+
+The Infernal now have their spawning units changed to the following: Number of (2 x Manes), Axes, Workers and Settlers is equal to the average number of enemy cities divided by two. Spawned longbowmen now start with iron weapons. As usual, they receive one extra settler with the starting settler promotion.
+
+Infernal cities now start with 6 population instead of 3.
+
+Chalid is available at Religious Law again. Pillar of Fire available at Righteousness to Chalid.
+
+Tier four priest spells now require the appropriate unit class.
+
+Governor's Manor stops being a Courthouse. Cost reduced from 180 to 120. It no longer reduces maintenance costs.
+
+Commune with Nature cost reduced from 6800 to 4420.
+
+Divine essence cost reduced from 9600 to 9000.
+
+Feral Bond cost reduced from 1200 to 1000.
+
+Malevolent Designs cost reduced from 7400 to 4810.
+
+Medicine cost reduced from 1400 to 1000.
+
+Rage cost reduced from 6800 to 4420.
+
+Righteousness cost reduced from 7400 to 4810.
+
+Theology cost reduced from 7600 to 4940.
+
+Marksman no longer has level requirements.
+
+Chariots and Scorpion Clan Chariots now require Trade instead of Construction.
+
+Camel archers, Centaur chargers, Fyrdwells, Horse archers and Nyxkin got a 40% versus recon units.
+
+Wood Golem hammer cost reduced from 60 to 45. Iron Golem hammer cost reduced from 120 to 180. Clockwork Golem hammer cost reduced from 320 to 240. Gargoyle hammer cost reduced from 180 to 120.
+
+Infirmary hammer cost reduced from 220 to 175.
+
+Kuriotate Palace now requires two cities to be built instead of four.
+
+Overcouncil now requires Medicine intead of Honor. Undercouncil now requires Poisons instead of Deception.
+
+More Naval AI changes
+===============================================================================
+
+Display the number of turns remaining for Elohim Sanctuary.
+
+Fix for infinite promotions when getFreePromotionPicks() is set to a negative number.
+
+AI should be more willing to upgrade their units.
+
+Heal can no longer be cast on Magic Immune units
+
+Reduced the frequency, duration and severity of Blizzards.
+
+Frigates can now carry one Bird unit.
+
+Hawks can now rebase to vassal and allied cities as well as carriers.
+
+Setting iAirUnitCap for Frigates to 0.
+
+Fixed data for UNIT_GOBLIN_SCORPION_CLAN
+
+Fix for Adept units not receiving free death promotions when the owner has multiple sources of death mana.
+
+AI will devalue membership in Overcouncil if mana bans are interfering with building Towers; AI should vote against mana bans that interfere with their Tower building plans.
+
+Sheaim leaders with magic traits now have Necromancy as their Favorite Tech.
+
+New UNITAI Type - UNITAI_SHADE and a corresponding movement function.
+
+Holy City buildings can now be constructed in Settlements.
+
+Fix for improper color reference in some translation text.
+
+Fix for an error when turning the Advanced Scoreboard option on and off in the BUG options interface.
+
+Fix for some improvements not spawning on map generation.
+
+Enhanced End of Winter.
+
+AI less likely to start wars when low in Power.
+
+Tweaks to AI_updateSpecialYieldMultiplier() and AI_experienceWeight().
+
+Fallow civs discouraged from constructing health buildings and buildings that keep food after population growth.
+
+Vassals will no longer refuse Open Border agreements from their Master.
+
+Tweaks to AI_PatrolMove() and AI_TerraformerMove()
+
+Platyping's world builder version 4.10.
+
+Wolves from the Doviello World Spell now start with UNITAI_ATTACK_CITY
+
+Druids now default to UNITAI_HERO
+
+Tweaked AI values of bonus trade modifiers.
+
+Terraformers will now try to Vitalize and Sanctify.
+
+Increased the rebase range to airRange() * 3.
+
+Fix for Stigmata bonuses not displaying in combat odds.
+
+Implemented a minimum threshold value for Workers deciding what Improvements to build.
+
+AI cities more likely to build units if there is danger nearby.
+
+Tweaks to how the AI chooses when to use STRATEGY_PRODUCTION
+
+Tweaks to AI_construct() and AI_prophetMove()
+
+Removed some code that was manually forcing the AI to construct buildings with units.
+
+AI will now check the number of plots available for a certain improvement when valuing techs that allow new improvements; they will also add more value to techs that enable bonuses that they have available.
+
+Tweaks to how the AI decides to end wars.
+
+Keep the AI from building forts on useful city plots.
+
+AI - re-enabling the code for AI_calculateTargetCulturePerTurn()
+
+Made sure that the City AI checks for finalImprovementUpgrade include a civilization type (so that all the AIs don't think they can upgrade to Enclaves)
+
+AI - re-enabled bStartingLoc to AI_foundvalue()
+
+AI now must meet a minimum threshold before starting Warplans.
+
+AI slightly less likely to flag areas as AREAAI_DEFENSIVE.
+
+Changes to how Conquest units decide to group up.
+
+Tweaks to how the AI decides groups.
+
+Tweaks to AI_techUnitValue.
+
+When considering the experience granted to units in a city, the AI will now take into consideration buildings that give free promotions.
+
+Removed some code forcing the AI to continue building Settlers/Workers.
+
+
+ExtraModMod 0.4.2
+===============================================================================
+
+More Naval AI version: 2.53 with additional fixes and features.
+
+
+Features
+===============================================================================
+
+RandomMap is a new mapscript which allows to select randomly between a few other mapscripts, allowing to select certain options that will apply to chosen map.
+
+mst mapscripts will store the chosen options, and will restore them the next time that the map is selected.
+
+Changes
+===============================================================================
+
+Avatar of Wrath now gets the Cold resistance promotion.
+
+Prophecy of Ragnarok will now only trigger its effect once per turn.
+
+Fixes
+===============================================================================
+
+Hyborem's Whisper will no longer cause an OOS.
+
+The Mushroom event can no longer take place in city tiles.
+
+BarbsPlus changes
+===============================================================================
+
+Balance changes to number and strength of barbarians.
+
+Acheron spawns more consistently.
+
+
+ExtraModMod 0.4.1
+===============================================================================
+
+More Naval AI version: 2.53 with additional fixes and features.
+
+
+Features
+===============================================================================
+
+The Khazad vault sign now also indicates the amount of gold per city.
+
+For Kuriotates, the current number of cities and the maximum number of cities is now displayed.
+
+The Warrens are now back to how they worked in vanilla FFH2.
+
+Changes
+===============================================================================
+
+The Kuriotate Palace now only requires 2 cities to be buildable.
+
+The Kuriotates now get 1, 2, 3, 4, 5, 6 cities on each map size instead of 2, 2, 3, 3, 4, 5.
+
+The Labyrinth spell is now called Create Labyrinth.
+
+The Illumination spell is now called Illuminate.
+
+The Blessing spell is now called Bestow Blessing.
+
+The Growth spell is now called Cause Growth.
+
+The Hellfire spell is now called Create Hellfire.
+
+The Hope spell is now called Bring Hope.
+
+Fixes
+===============================================================================
+
+The Khazad vault sign in the main UI will no longer be shown in the same place than the Civilopedia link.
+
+Severed souls summoned outside cultural borders will no longer trigger permanent supply costs.
+
+It is now possible to dispel mana nodes of the new types.
+
+The production should no longer go below zero in cities with unhappy production.
+
+A broken PEDIA entry in the Labyrinth spell has been removed.
+
+Fixed Civilopedia link to Tavern in the Adventurer Concept page.
+
+The Grigori adventurer counter display has been lowered in order to allow to see it in all resolutions.
+
+Joining and splitting great generals should now transfer names properly.
+
+BarbsPlus changes
+===============================================================================
+
+Fixed wrong type and promotions for Scorpion lair exploration spawn.
+
+More Naval AI changes
+===============================================================================
+
+The AI should no longer artifically separate its cities.
+
+The AI should now build build more Temples of the Hand in places with poor terrain.
+
+Gifting units with the FreePromotionPick tag will no longer give the unit extra promotions.
+
+Tech info will now display info about Bonuses that it activates.
+
+Rebels now have an increased chance of capturing buildings when they take cities from the player they are rebelling against.
+
+Fix for players not receiving Disciple units when discovering religions.
+
+Units with the Loyalty promotion will now be killed rather than captured via the Domination spell.
+
+Text messages for Domination spell will now include the unit's name.
+
+City production tweaks.
+
+Tweaks to how the AI chooses to Form and Add to Wolf Packs.
+
+Various tweaks to Unit AI.
+
+Updated Enhanced WorldBuilder.
+
+AI should now sometimes use Slaves to Hurry production.
+
+AI should be better about using summons to attack with; AI summoners should be more interested in promotions that grant their summons extra moves.
+
+AI should no longer build early attack stacks if they have not met any other players and there is no danger to the city; slightly devalued Projects that increase the Armageddon Counter.
+
+AI will no longer try to select techs while in anarchy and should be better about choosing techs when their Science rate is 0%.
+
+AI should have a better understanding about the range on summoned units.
+
+Teams should now be able to build Tower of Mastery even if the prerequisite towers have been built by multiple teammates.
+
+Workboats building Pirate Coves and Svartalfar Kidnapping troops will now try to avoid danger.
+
+Units with a duration limit will no longer give extra votes in the Councils.
+
+Dead civs should no longer count towards the maximum number of possible votes for Council Resolutions.
+
+The AI will give more value to techs that open up units with the Channeling III promotion.
+
+AI will sometimes build units with UNITAI_PILLAGE.
+
+AI should build a few more attack troops.
+
+Events that change experience will no longer be triggered on units if doing so will cause the unit's experience to go below 0.
+
+The AI should give less value to choosing Supplies during the Bareke event.
+
+The Doviello spell to upgrade Workers now refers to Beastmen rather than Warriors
+
+AI should devalue wars when they dont share a border.
+
+Reduced effect that warSuccess has on valuing peace deals
+
+AI will now consider the duration of the war when valuing a peace deal.
+
+
+ExtraModMod 0.4.0
+===============================================================================
+
+More Naval AI version: 2.52 with additional fixes and features.
+
+
+Fixes
+===============================================================================
+
+Version check for multiplayer games.
+
+Sign of Oghma event fix.
+
+Replaced Assert on "no available event" error with informative message.
+
+Memory access violation error when a unit cannot withdraw.
+
+Membership values were showing No State religion in their description.
+
+All mana types now require the Knowledge of the Ether technology to be traded.
+
+Rally and Crusade were not working correctly.
+
+BarbsPlus changes
+===============================================================================
+
+Epic Dungeon spawns are now correctly stronger.
+
+Goblin forts not spawning.
+
+Prevent "NO Spawninfo" assertions.
+
+More Naval AI changes
+===============================================================================
+
+AI should no longer disband units with UNITAI_INQUISITOR.
+
+Inquisitors should no longer double up.
+
+Improved calculation of gold in hand when valuing a spell that has a gold cost.
+
+Tweaks to feasting AI.
+
+It is now possible for the AI to make more than one peace deal per turn.
+
+The AI will now seek non unique lairs to explore.
+
+Unhappy production is now taken into account in all parts of the GUI and by the AI.
+
+AI will no longer value buildings that give bonuses to food when the city is unhealthy.
+
+Units should not receive messages about being affected by spells if they are immune.
+
+Fix for EVENT_ENEMY_CITY_CRIME not working.
+
+Removed UNITAI_CITY_DEFENSE as an allowed UNITAI type for Hyborem.
+
+Wandering Barbarians will no longer try to guard lairs.
+
+Infernals will no longer cause an OOS after capturing a city.
+
+
+ExtraModMod 0.4.0-beta3
+===============================================================================
+
+More Naval AI version: 2.52 with additional fixes and features.
+
+
+Features
+===============================================================================
+
+Ice and Metamagic have been added as spheres for the Mobius Witch.
+
+Improved hints.
+
+Multiple Production. When city production is enough to finish next queue item, more than one item is finished in the same turn.
+
+The AI now takes into account modifiers to living unit production when deciding what to build.
+
+New Kuriotate event for Shrimps.
+
+Changes
+===============================================================================
+
+Hide the Beyond the Sword concepts civilopedia page.
+
+The Warrens no longer duplicates living units produced. It increases the production of living units by 100% instead.
+
+Kuriotates start with Nationhood instead of Religion.
+
+Fixes
+===============================================================================
+
+Force english language for the OOSLogger.
+
+Infernal conquest OOS error.
+
+Most events increasing plot yields now require the plot being in a city BFC.
+
+Breakthrough event only triggers when an event is selectable.
+
+BarbsPlus changes
+===============================================================================
+
+Maximum wilderness increase per plot on inhabited continents.
+
+Better wilderness scaling.
+
+Present capitals (in scenarios) replace starting points for wilderness
+calculation.
+
+Wilderness now takes the continent size divided by the number of players on that continent instead of only continent size into account.
+
+Lair exploration spawns will no longer do nothing.
+
+Certain spawns will not appear if a lair defender is required.
+
+Corrected animal sell values considering the buy animal event.
+
+Added sell values for sea animals.
+
+Scouts are now never obsolete (for Horseman upgrade strategies).
+
+New spawning system.
+
+More Naval AI changes
+===============================================================================
+
+Improved error logging.
+
+Having a human Kuriotate player will no longer produce a random OOS error.
+
+Spell Promotions now have their own category in the Sevopedia and Worldbuilder.
+
+
+ExtraModMod 0.4.0-beta2
+===============================================================================
+
+More Naval AI version: 2.52
+
+
+Features
+===============================================================================
+
+When using the Erebus MapScript, it is now possible to decide between using the Erebus starting point placer and the default one.
+
+Inclusion of MapScriptTools and the MapScripts supported by it.
+
+getInfoTypeForStringNoAsserts method exposed to python. It is intended for allowing MapScripts to test for compatibility without triggering asserts.
+
+Improved strings for the French translation.
+
+Fixes
+===============================================================================
+
+MapScripts will no longer trigger bogus assertions.
+
+Removed an error triggered when opening the Civilopedia from the main menu.
+
+More Naval AI changes
+===============================================================================
+
+Devaluing the Entertain spell for the AI.
+
+Entertain spell message will no longer display as a loss of negative gold to the target player.
+
+Tweaks to how Loki chooses target cities.
+
+Increased AI value for techs that allow promotions that grant increased movement.
+
+Reduced the value the AI was giving to Civics when choosing techs.
+
+Another fix for the AI valuing units that can't be built when choosing techs.
+
+AI heroes should no longer be used as inquisitors.
+
+Minor change to how the AI chooses to take Slaying promotions.
+
+Removed the city limit check for the AI when casting Stasis.
+
+AIs with only a few cities but strong production should be better about creating Wonders and Heroes.
+
+AI should produce fewer naval units if they have few coastal cities.
+
+Fixed an issue that was causing the AI to ignore the UNTIAI settings in UNITINFOS when creating units-
+
+AI will devalue cities that will be razed automatically when choosing a target city.
+
+Angels now default to UNITAI_ATTACK_CITY.
+
+AI less likely to run a dagger strategy when pursuing an Altar or Tower victory.
+
+Tweaks to how the AI groups units intended for conquest and how conquest stacks pick target cities.
+
+Tweaks to how the AI stages Naval Assaults.
+
+Updates to logging and comments.
+
+
+ExtraModMod 0.4.0-beta1
+===============================================================================
+
+More Naval AI version: 2.51 (plus a few additional fixes post-2.51)
+
+
+Features
+===============================================================================
+
+Dragon Hoard gives +2 culture, +100% culture, and +8 gold. It also increases the production of military units in 20%.
+
+Rage is now an additional path to reach Divine Essence.
+
+Bison is a new health resource that only appears in tundras. Bison requires Animal Husbandry. It gives +1 Food. With a Pasture, it gives +2 Food and +1 Production. It gives +1 Health with Smokehouse. Art from Caveman 2 Cosmos.
+
+Urban Planning is a new Economy civic. Requires Engineering. High upkeep. +1 food on Villages, Towns and Enclaves, + 1 to Health in all cities, +1 to Happiness in the largest cities cities. Workers build improvements 50% faster.
+
+Isolationism is a new Membership civic. Requires Sidar. Requires Ancient Chants. No upkeep. Disables foreign trade. +1 Commerce and +1 Culture for each specialist. Increases experience inside borders in 50%. Increases Great General emergence inside borders in 50%.
+
+Neutrality is a new Membership civic. Requires Grigori. Requires Neutral alignment. Requires Education. Low upkeep. +25% to GPP generation, +15% War Weariness, increases Great General emergence in 25%.
+
+Liberty war weariness reduced from 50% to 25%. It now gives +1 happiness in the largest cities.
+
+Tribalism now has no upkeep.
+
+Theocracy now gives a 10% bonus to the production of units if the state religion is present. It also gives a 20% bonus to the production of buildings if the state religion is present.
+
+Sacrifice the Weak reduces Great General Emergence in 25%.
+
+Pacifism reduces Great General Emergence in 25%. Penalty to production of military units reduced from -20% to -10%. Increases culture in 10%.
+
+Military State increases Great General Emergence in 25%.
+
+Mercantilism now gives +1 commerce to workshops.
+
+Guilds now gives +1 food to workshops.
+
+Decentralization now has no upkeep.
+
+Crusade increases Great General Emergence in 50%. It is now a membership civic.
+
+Consumption reduces Great General Emergence in 25%.
+
+Conquest increases Great General Emergence in 25%
+
+City States now gives a 10% culture boost instead of a penalty. It also gives an additional trade route per city.
+
+Caste System now gives +1 Production to workshops.
+
+Sidar start with Nationhood instead of Pacifism.
+
+Kuriotates start with Religion instead of Pacifism.
+
+Reliquaries reduce the Armageddon Counter in 1. Planar gates increase the Armageddon Counter in 1.
+
+The Blinded promotion gets art from Master of Mana.
+
+Auric Ascended gets +10 Ice Affinity. Gets 4 first strikes. Causes collateral damage (60%). Movement increased from 4 to 7. Resurrects in the capital when killed. Ignores city defenses when attacking. Gets March as a free promotion. Can cast Greater Slow. Can cast Animate Frostlings.
+
+The Palus is a new unique feature. It can be explored. It provides Mind mana.
+
+Tarch's Tower is a new unique feature. It provides Air mana.
+
+Seven Pines now provides Force mana.
+
+Remnants of Patria now provides Metamagic Mana.
+
+Pool of Tears now provides Spirit mana.
+
+Odio's Prison now provides Body mana.
+
+Maenalus now provides Water Mana.
+
+Maelstrom now provides Air mana.
+
+Bradeline's Well now provides Entropy mana.
+
+Bair of Lacuna is a new unique feature. It can be explored. It provides Dimensional Mana.
+
+Changes
+===============================================================================
+
+The sixth level of the Altar of the Luonnotar now requires Strength of Will. It no longer can be built by a Great Prophet. It costs 750 hammers instead.
+
+Religious victory now requires a 75% of following instead of 80%.
+
+Domination victory now requires owning 70% of the land instead of 78%.
+
+Events with PrereqCivilizationPleased are now all active in all games and have a weight of 200.
+
+A few events are no longer recurring.
+
+Paladin and Eidolon cost is now back at the original 240 hammers.
+
+Amber gets an improved icon from Caveman 2 Cosmos.
+
+Banana gives +2 Food and +1 Commerce with a Plantation instead of only +2 Food.
+
+Cotton gives +3 Commerce with a Plantation instead of only +2 Commerce.
+
+Razorweed gives +1 Production and +2 Commerce with a Plantation instead of only +2 Commerce.
+
+Sugar gives +1 Food and +2 Commerce with a Plantation instead of only +1 Food and +1 Commerce.
+
+Anagantios favourite civic is now Caste System instead of Foreign Trade.
+
+Captain Ostanes favourite civic is now Slavery instead of Consumption.
+
+Captain Uldanor favourite civic is now Conquest instead of Consumption.
+
+Cheron favourite civic is now Urban Planning instead of Liberty.
+
+Dumannios favourite civic is now Scholarship instead of Foreign Trade.
+
+Furia favourite civic is now Republic instead of Slavery.
+
+Hafgan favourite civic is now Conquest instead of Apprenticeship.
+
+Mahon favourite civic is now Agrarianism instead of Aristocracy.
+
+Malchavic favourite civic is now Scholarship instead of Slavery.
+
+Melisandre favourite civic is now Urban Planning instead of Slavery.
+
+Minister Koun favourite civic is now Neutrality instead of Pacifism.
+
+Riuros favourite civic is now God King instead of Foreign Trade.
+
+Shekinah favourite civic is now Isolationism instead of Caste System.
+
+Tethira favourite civic is now Military State instead of Religion.
+
+Thessalonica favourite civic is now Overcouncil instead of Pacifism.
+
+Tya Kiri favourite civic is now Scholarship instead of Aristocracy.
+
+Penguins give happiness with Carnival instead of Hunting Lodge.
+
+Improved and corrected in game hints.
+
+Shrimp gets a new icon with a black background.
+
+The AI will prioritize building adventurer counter buildings when playing as Grigori.
+
+The AI no longer gets an artificial increase in its adventurer points when playing as Grigori.
+
+The adventurer point values given by buildings have been tweaked.
+
+Axemen, Moroi, Sons of Asena and Swordsmen no longer can use Mithril weapons.
+
+Fixes
+===============================================================================
+
+Pillar of fire was not referencing the right tile when creating fire.
+
+When a unit inside a cage moves outside by crossing a rift, it will no longer be held after teleporting and the cage will be removed if it was the last unit inside of the cage.
+
+When a Sidar unit inside a cage is taken outside by Call Form, it will no longer be held after teleporting and the cage will be removed if it was the last unit inside of the cage.
+
+When a unit uses Escape from inside a cage, it will no longer be held after teleporting and the cage will be removed if it is the last unit inside of the cage.
+
+Units can no longer release themselves from inside a cage.
+
+Prevented an assertion error with events.
+
+Solved the "cut text" issue for most affected events.
+
+Event popups are now shown also if no options are available to track down bugs better.
+
+Corrected typos in events.
+
+Drop Timor Mask text entry missing.
+
+Mana towers were missing the ExtraModMod changes.
+
+BarbsPlus changes
+===============================================================================
+
+New flavour start game option. This game option places civilizations on the map considering nearby terrain.
+
+A Barbarian AI should be aware when it's at war with the barbarians correctly now.
+
+If Raging Barbarians is enabled, the barbarians will declare war also on Barbarian players if they grow too strong.
+
+Acheron now requires a minimum wilderness value, and it cannot be built in captured cities.
+
+Improved city placement when using the Barbarian World game option.
+
+Animals can be sold at the hunting lodge. More gold for griffons, elephants and jungle animals, less for insects.
+
+Stronger animals give promotions to units capturing them and can also create buildings that give the promotion to newly built units.
+
+AI should be partly aware of the dangerousness of more remote wilderness.
+
+Animals don't leave their terrain if possible when randomly moving.
+
+It is possible to apply unit artstyle to spawned units.
+
+Spawned units can get certain promotions or a number of random promotions chosen from a list.
+
+Spawned units cannot enter tiles with a much lower wilderness value than the minimal wilderness of their spawn info.
+
+Spawned units can have technology, minimum and maximum wilderness and Armageddon Counter requirements.
+
+Barbarians get technologies faster. It should also scale with game speed now.
+
+Better evaluation of suitability of a plot for animals and barbarians.
+
+Barbarians now also consider terrain, features and improvements like animals.
+
+Greater variety among barbarians.
+
+Random spawning, lair spawning, lair exploration spawning and lair guardians are now controlled by a XML Info file for much better customization.
+
+Exploration results now depend on plot wilderness and lair level of the unit (displayed in hover text), which is dependent on it's real level and other bonuses. If a unit with inappropriate lair level or combat strength explores a lair in too far wilderness, bad lair results are more likely (very strong enemy units or bad promotions).
+
+Unique features don't vanish after being explored, but are unexplorable for some time instead.
+
+Destroying animal lairs gives 1 experience point.
+
+Lair exploration now has new outcome possibilities.
+
+Lairs can spawn a guardian on creation.
+
+Animals now need a certain age or level to create a den.
+
+Adjusted lair graphics configuration to remove trees.
+
+Features are not erased when placing lairs.
+
+More initial lairs when in higher wilderness.
+
+Unique Features and Goblin forts have a minimum wilderness.
+
+Lairs now spawn only a limited number of units, considering units already spawned from this lair and still alive. Lair spawns don't affect other random spawning.
+
+Barbarians and animals can now spawn on visible tiles, but it is slower and they cannot spawn on tiles adjacent to borders.
+
+Animals and barbarians respawn faster in higher wilderness.
+
+Existing barbarians now only affect spawning chances of nearby plots, not of the whole area.
+
+Barbarians spawn earlier and can enter lower wilderness with Raging Barbarians enabled.
+
+Animals spawn all game by default.
+
+Water spawn number increases at a different pace with different difficulty levels.
+
+Smoother transition for land spawns between Noble and Deity difficulties.
+
+More types of animals and barbarians spawn.
+
+Each tile in the map has a wilderness value assigned. Tiles further away from player starting positions have higher wilderness. Uninhabited continents have much higher wilderness, increasing in their center.
+
+More Naval AI changes
+===============================================================================
+
+Fix for OOS logs not being generated.
+
+Fix for UNITAI_EXPLORE_SEA units getting stuck in a loop.
+
+When the AI is pursuing a Conquest victory, it will delay building Conquest stacks until it has a Warplan in place.
+
+AI should be better about claiming useful resources in areas with bad terrain Units should now receive civ-appropriate art when upgraded.
+
+AI will now cast Sanctuary and March of the Trees based on opponents' power percentage rather than number of wars they are involved in.
+
+AI should no longer build UNITAI_MISSIONARY_SEA units if it has no religion or missionary units.
+
+AI should be better about pursuing victory techs when trying for an Altar victory.
+
+AI more interested in techs that give free Great People.
+
+Casting Declare Nationality will no longer automatically deselect the unit.
+
+Game will no longer crash if a unit with the Boarding ability captures a fort occupied only by naval units.
+
+canMakePuppet() now checks for isPuppetStateTrading rather than isVassalStateTrading.
+
+Index page now displays properly in Sevopedia.
+
+Exposed isPermanentSummon() and setPermanentSummon() to python.
+
+The AI can set permanent summons as permanent defense.
+
+Rebels should be better at spawning tech-appropriate troops.
+
+Rebel units will no longer start the game injured.
+
+Rebels should now be able to spawn civ-specific units.
+
+Tweaks to AI_conquestMove().
+
+Removed some Ruthless AI code that was causing the AI to change their Worst Enemy too frequently.
+
+Updated description for the Citadel of Light.
+
+Reduced Stability penalty for the City States civic.
+
+Tweaks to allowed UNITAI types.
+
+AI will now build Hawks.
+
+Treants were not creating New Forests.
+
+AI should be more focused on building offensive troops rather than defensive.
+
+AI should upgrade Manes if they end up outside of a city.
+
+Players will now receive combat messages when an Illusionary unit attacks and withdraws.
+
+Tweaks to AI_exploreAir() and AI_heal().
+
+The AI should be less likely to start new wars via AI_pickTargetCity() when they are already involved in another war.
+
+City Defense units should no longer leave for other jobs a city they are in if AI_neededDefenders() is greater than the number of City Defense units present.
+
+Fixed an issue that would sometimes cause the AI to inadvertently declare war on a neighbor when pursuing Barbarians.
+
+Fix for Civ4lerts not working.
+
+Patrol groups should be a little better about healing.
+
+Tech diffusion gets a bonus for Rights of Passage and Embassy agreements.
+
+Fix for assert error when mousing over commerce info for Settlements.
+
+Summons shouldn't look for targets that are beyond their range*duration.
+
+Archmages should now always be flagged with UNITAI_HERO.
+
+AI Infernals will now build Demon's Altars.
+
+Added Stability adjustments to a few more buildings.
+
+Rebels will no longer spawn Settlers.
+
+Enabling Tech Diffusion for Advanced Tactics.
+
+When not playing with the Aggressive AI option, the AI will now take into account its current attitude towards the owning player when evaluating AI_targetCityValue()
+
+Goblin Forts will no longer spawn extra units with UNITAI_LAIRGUARDIAN in Scenarios.
+
+Few minor tweaks to how the AI values religions.
+
+AI should be a little less focused on building defensive troops.
+
+AI should be less interested in building culture buildings for initial culture if they have a trait that gives free culture.
+
+AI will no longer upgrade Manes.
+
+AI less likely to pursue Conquest victory based on being near the top of the scoreboard.
+
+
+ExtraModMod 0.3.1
+===============================================================================
+
+More Naval AI version: 2.5 with additional fixes and improvements
+
+
+Features
+===============================================================================
+
+Lightbringers can earn free XP from promotions.
+
+Paramanders are reduced from 6/8 combat strength to 4/6. They can now use Bronze, Iron and Mithril weapons. They start with Iron weapons and with Dwarven.
+
+Soldiers of Kilmorph can only use Bronze and Iron weapons.
+
+
+Changes
+===============================================================================
+
+Many improvements and changes to events from Events Enhanced.
+
+Heal can also cure blindness.
+
+Crush tweaked from 50 damage with a cap of 75 to 30 damage with a cap of 50.
+
+Doviello Beastmen can now be converted directly to Battlemasters.
+
+The Illians now have a slightly more clear culture colour.
+
+The Fervor Worldspell now creates Nightwatches instead of Assassins if the player is following the Council of Esus.
+
+Cassiel now starts as Adaptive, Charismatic and Philosophical.
+
+Capria is back to Industrious and Spiritual.
+
+Einion is now Philosophical and Spiritual.
+
+Thessalonica is now Charismatic and Industrious.
+
+
+Fixes
+===============================================================================
+
+Corrected the prerrequisites for Labyrinth.
+
+Creation II was not working correctly.
+
+Many fixes to events from Events Enhanced.
+
+Blinding light now causes a temporal "Blinded" promotion.
+
+Pillar of Fire and Crush can no longer target hidden plots.
+
+Pillar of Fire and Crush no longer take into account invisible units when deciding what stack to target.
+
+Paramanders no longer get extra metal promotions.
+
+The Draw disables diplomacy with enemies for all members of the Illian team, not only the Illian player.
+
+When the Infernals are vassals, Hyborem's Whisper no longer can be used to steal cities from their master.
+
+Wild Hunt no longer creates wolves from ships or from units that are aboard ships.
+
+Having the Doviello in the game will no longer trigger a popup at the beginning of the game.
+
+Mobius Witches can now appear with knowledge of the three extra spheres.
+
+Fixed a few problems with the new events.
+
+Kandros was not changed to Financial and Organized.
+
+Mistforms are now recon units. They start with Marksman.
+
+Creative increases Reliquaries building speed.
+
+Citizens' Forum builds faster with Organized instead of Philosophical.
+
+Stone gives a bonus to building speed to Citizens' Forum and Reliquaries.
+
+More Naval AI changes
+===============================================================================
+
+AI conquest groups should prioritize attacking cities.
+
+AI less likely to set units with bonuses for attacking cities as city defense.
+
+Auric Ascended Snowfall is now called Greater Snowfall.
+
+Puppet states updated to v1.4.
+
+Attitude icons in the scoreboard are updated after attitude changes from events.
+
+Minor issue when checking state religions in the gifting of units.
+
+Tweaks to how the AI considers which civic to use.
+
+AI will now take into account war weariness when deciding if it should end a war.
+
+AI power calculations are now more precise.
+
+Spells that require a building to be casted will now be castable by teammates.
+
+Diplomatic Victory option.
+
+Fix for crash when boarding units attack cities where the only defenders are naval units.
+
+Summoners will now be re-associated with their Summons after Conversion.
+
+River of Blood now affects size 2 cities.
+
+More Worldbuilder updates.
+
+Fixed a few out-of-date civic strategy texts.
+
+Blur no longer grants immunity to Defensive Strikes.
+
+AI should no longer pursue culture victories (too difficult for the current AI to actually win a culture victory).
+
+AI should be more interested in founding near Mana and researching magic techs when pursuing a Tower victory.
+
+Loosened some artificial restrictions that were forcing the AI to spread cities out more.
+
+Tweaks to how the AI decides whether or not to bombard cities.
+
+AI should no longer try to broker peace when one of the parties is a Vassal.
+
+Player will now receive a message when a unit with hidden nationality kills a Worker or Settler.
+
+Raider units will once again be able to pillage enemy roads.
+
+Baby Spiders now have a 20% chance to grow into a Giant Spider after combat (was 2%).
+
+Mistforms AI set to UNITAI_ANIMAL.
+
+getMinLevel() is now exposed to python.
+
+Selected unit graphic is now moved back to its original position.
+
+changeStolenVisibilityTimer() now properly exposed to python.
+
+A unit flagged with the UpgradeOutsideBorders tag will now be able to upgrade anywhere if the upgrade unit requires a building so long as the owner has one of those buildings (previously it was only checking the closest city).
+
+Liches now set to max 4 per player rather than 3 per team.
+
+BUG Unit Naming option will no longer throw errors when a Beast unit is build.
+
+Fix for a potential assert error.
+
+Updates to the Enhanced World Builder from MC.
+
+When selecting techs, the AI will no longer value units which have a non-matching <PrereqAlignment>.
+
+Enclaves will no longer spawn Demagogs during Crusade.
+
+
+
+ExtraModMod 0.3.0
+===============================================================================
+
+More Naval AI version: 2.5
+
+
+Features
+===============================================================================
+
+Many improvements and tweaks to events.
+
+Popups for world units.
+
+Quotes and pictures for each of the default named Great People.
+
+Erebus Continent Mapscript
+
+
+More Naval AI changes
+===============================================================================
+
+Many AI improvements
+
+Tolerant civilizations are now able to build civilization specific units.
+
+Council votes now require a majority to pass. Tie votes will be decided based on how the Head Councilor voted.
+
+Barbarians will no longer research religious techs or spawn religious units.
+
+Map generator will try to place improvements that spawn units out of sight of the players' starting areas.
+
+In Advanced Tactics units will not be invisible in Super Forts the same as they are for cities.
+
+Revolutions now spawn more units.
+
+Players with no cities will no longer be able to trade Embassies or Right of Passage agreements.
+
+Captured Slaves will no longer receive a racial promotion from the capturing player.
+
+Animal units can be traded when using Advanced Tactics.
+
+Chalid should no longer give an extra vote in the Undercouncil.
+
+
+
+ExtraModMod 0.2.1
+===============================================================================
+
+More Naval AI version: 2.42 plus additional fixes and changes
+
+
+Fixes
+===============================================================================
+
+Ice Mana Nodes were not using the religion specific graphics.
+
+Extort now uses the standard way of scaling with gamespeed.
+
+Grigori Adventurers were never upgraded by the AI.
+
+The Grigori Adventurers took twice the intended time to be generated.
+
+Adventurer production is now affected by Stasis.
+
+Incorrect unit references to Great Generals in scenarios.
+
+Magic missiles were incorrectly described as an exploding unit.
+
+
+More Naval AI changes
+===============================================================================
+
+Units that cannot capture cities no longer can enter in enemy forts.
+
+Revolutions no longer cancels Autoplay.
+
+Fort culture will now dissapear immediately after its owner is defeated.
+
+AI more likely to build explorer units.
+
+AI is more likely to create Puppet States instead of razing.
+
+AI will travel less when placing its first city.
+
+AI now has tighter restrictions when deciding to feast.
+
+With the Wildlands option active, animals are generated for the complete game.
+
+AI less likely to raze its own cities when they are recaptured.
+
+When lead by an AI, the Lanun are no longer forced to create a maritime capital.
+
+AI patrol groups are more likely to merge with nearby Hero units.
+
+Puppet states now start with more units.
+
+The Deepening now only affects 25% of the tiles in the world and also has the length of the terrain change modified properly by gamespeed.
+
+
+Terrain Features
+===============================================================================
+
+Improved volcano graphics.
+
+
+
+ExtraModMod 0.2.0
+===============================================================================
+
+More Naval AI version: 2.42 plus additional fixes and changes
+
+
+Features and changes
+===============================================================================
+
+Alchemy lab cost reduced to 250 from 300. Alchemy Labs now give +25% Research.
+
+Altar of the Luonnotar (Annointed) no longer has any prerrequisite technologies.
+
+Altar of the Luonnotar (Blessed) no longer has any prerrequisite technologies.
+
+Altar of the Luonnotar (Consecrated) no longer has any prerrequisite technologies.
+
+Altar of the Luonnotar (Divine) no longer has any prerrequisite technologies.
+
+Altar of the Luonnotar (Exalted) no longer has any prerrequisite technologies.
+
+Altar of the Luonnotar (Final) cost reduced to 2000 from 4000. It is now available at Divine Essence instead of at Omniscience.
+
+Aqueduct cost reduced to 100 from 180.
+
+Archery Range city defense increased to 25% from 10%.
+
+Asylums now give -2 happiness (instead of -1) and +25% Research (instead of 15%).
+
+Basilica cost reduced to 150 from 200. Basilica no longer generates Great Commander GPP (Great Commanders have been replaced by Great Generals).
+
+Bazaar of Mammon cost reduced from 600 to 500.
+
+Breeding Pits are now enabled with Agriculture.
+
+Cave of Ancestors is now a Pagan Temple Replacement. Cost reduced from 120 to 100.
+
+Command Post no longer generates Great Commander GPP (Great Commanders have been replaced by Great Generals).
+
+The Code of Junil does generate any GPP anymore (Great Commanders have been replaced by Great Generals). Instead of that, it increases Great General emergence in 20%. It can also be built by Great Generals now.
+
+Command Post cost reduced from 180 to 120.
+
+Crown of Akharien cost reduced from 900 to 700.
+
+Form of the Titan no longer generates Great Commander GPP (Great Commanders have been replaced by Great Generals).
+
+Granary cost reduced from 120 to 100.
+
+Great Lighthouse cost reduced from 600 to 500.
+
+Groves are now unlocked at Commune with Nature instead of Feral Bond.
+
+Guild of the Nine no longer generates Great Commander GPP (Great Commanders have been replaced by Great Generals).
+
+Harbors give +1 Commerce from Water.
+
+Heroic Epic no longer generates Great Commander GPP (Great Commanders have been replaced by Great Generals). The Heroic Epic increases Great General emergence in 20%.
+
+Lanun Harbors give +1 Commerce from Water and +1 Happiness from Pearls.
+
+Infernal Grimoire cost increased from 400 to 500.
+
+Infirmary cost reduced from 300 to 225
+
+Inn cost reduced from 250 to 110.
+
+Lighthouse cost reduced from 160 to 120.
+
+Mage Guilds now unlock a sage slot.
+
+Mokka's Cauldron cost reduced from 600 to 400.
+
+The Museum is an expensive Grigori building available with Education. It can be built faster by Creative leaders. It provides +1 culture and gives an additional happiness to the city, which increases to two with Marble.
+
+National Epic does not produce Great Commander GPP anymore (Great Commanders have been replaced by Great Generals).
+
+Nox Noctis gives the Hidden Nationality promotion to new units.
+
+Planar Gate cost reduced from 300 to 200. The spawn probability of Planar Gates is now scaled linearly with the Armageddon Counter.
+
+Prophecy of Ragnarok moved to Philosophy.
+
+Reliquaries are now a Monument replacement and is available at Ancient Chants. Their cost has been reduced from 100 to 60.
+
+Ride of the Nine Kings no longer requires Horses or Nightmares, but is produced 50% faster with either of them, cost increased from 600 to 800. Ride of the Nine Kings no longer generates Great Commander GPP (Great Commanders have been replaced by Great Generals).
+
+Shipyards give +1 Hammer from Water tiles.
+
+Shrine of Sirona moved to Righteousness and produces spirit mana (it no longer requires spirit mana).
+
+Smokehouse cost reduced from 120 to 100.
+
+Stables give +1 trade routes.
+
+Syliven's Perfect Lire cost reduced from 900 to 750.
+
+Tavern cost reduced from 250 to 150. It gives +1 happiness from Ale.
+
+Tower of Alteration requires Force mana to be built. It also gives +2 global health.
+
+Tower of Complacency no longer generates Great Commander GPP (Great Commanders have been replaced by Great Generals).
+
+Tower of Divination requires Creation mana to be built. It increases research in 15%.
+
+Tower of Mastery gives 2 Metamagic Mana and reduces the cost of hurrying production globally in 20%. It also gives +2 global health and happiness, and it reduces the costs of projects in all cities.
+
+Tower of Necromancy requires Dimensional mana to be built.
+
+Tower of the Elements cost increased from 800 to 1000. Owning Ice mana negates this increase in cost.
+
+Tower of Eyes no longer generates Great Commander GPP (Great Commanders have been replaced by Great Generals).
+
+Grigori Tavern cost reduced from 250 to 150. It gives +1 happiness from Ale.
+
+The Nexus cost increased from 600 to 900 and it increases the Armageddon Counter in 5. It can be built faster with Dimensional Mana.
+
+Theatre cost reduced from 250 to 150.
+
+Winter palace cost reduced from 800 to 600.
+
+Aristocracy upkeep increased from low to medium.
+
+Republic no longer gives a happiness penalty to other civilizations. Now it also gives +1 Hammers and +1 Commerce from Enclaves and Towns.
+
+Religion gives +1 happiness with Pagan Temples.
+
+Social Order now requires Orders from Heaven instead of Religious Law.
+
+Slavery is available at Philosophy instead of at Way of the Wicked. Upkeed moved from low to medium.
+
+Caste System is now available at Feudalism instead of at Taxation.
+
+Conquest is available at Education instead of at Warfare.
+
+Mercantilism upkeep increased from low to medium. It gives two free specialists per city. It no longer increases commerce in 20%, but it gives +1 gold per specialist.
+
+Foreign trade upkeep increased from low to medium. It no longer gives -10% to commerce and +20% to culture. It gives +100% improvement growth rate.
+
+Overcouncil upkeep increased from none to low. It reduces maintenance costs from number of cities and from distance in -10%. It enables drafting of units (cumulative with Military State). It increases research in 10%.
+
+Undercouncil upkeep increased from none to low. It increases commerce in 10% and allows hurrying production with gold. It also gives a 25% enslavement chance (cumulative with Slavery).
+
+Doviello get +1 food on tundras and on ice. Doviello get Savage as their civilization trait.
+
+Clan of Embers get +1 food on marshes and shallows.
+
+Grigori adventurers are created with the Adventurer counter mechanic; they are no longer Great People. Grigori start with Enchantment Mana, Force Mana and Spirit Mana. The Grigori are no longer able to build the Mercurian Gate.
+
+Elohim start with Life Mana, Spirit Mana and Water Mana.
+
+Infernals no longer share civilization colour with the barbarians.
+
+Kuriotates start with Creation Mana, Sun Mana and Water Mana.
+
+Ljosalfar can build Alchemy labs.
+
+Malakim get +1 commerce on burning bands. Nomad gives a small amount of fire resistance, allowing them to enter into Burning Sands. This promotion also gives the Malakim double movement on Burning Sands.
+
+Sheaim start with Chaos Mana, Death Mana and Dimensional Mana.
+
+Sidar start with Dimensional Mana, Shadow Mana and Spirit Mana.
+
+Svartalfar can build Alchemy labs.
+
+The Overcouncil can vote to forbid Dimensional mana.
+
+Events are now displayed with an image.
+
+Many additional events.
+
+Barrows give 20 gold instead of 10 when pillaged.
+
+Camps give 10 gold instead of 5 when pillaged.
+
+Castles give 20 gold instead of 10 when pillaged.
+
+Citadels give 30 gold instead of 15 when pillaged.
+
+Cottages give 20 gold instead of 10 when pillaged.
+
+Enclaves give 60 gold instead of 30 when pillaged.
+
+Farms give 10 gold instead of 5 when pillaged.
+
+Fishing boats give 10 gold instead of 5 when pillaged.
+
+Forts give 10 gold instead of 5 when pillaged.
+
+Hamlets give 30 gold instead of 15 when pillaged.
+
+Hellfire gives 20 gold instead of 10 when pillaged.
+
+Lumbermills give 10 gold instead of 5 when pillaged. They can now be built on ancient forests.
+
+Mines give 20 gold instead of 10 when pillaged.
+
+Pastures give 10 gold instead of 5 when pillaged.
+
+Pirate coves give 10 gold instead of 5 when pillaged.
+
+Pirate harbors give 10 gold instead of 5 when pillaged.
+
+Pirate ports give 10 gold instead of 5 when pillaged.
+
+Plantations give 10 gold instead of 5 when pillaged.
+
+Quarries give 10 gold instead of 5 when pillaged.
+
+Snake Pillar production increases with Philosophy instead of with Way of the Wicked.
+
+Towns give 50 gold instead of 25 when pillaged.
+
+Villages give 40 gold instead of 20 when pillaged.
+
+Whalings boats give 10 gold instead of 5 when pillaged.
+
+Windmills give 10 gold instead of 5 when pillaged.
+
+Wineries give 20 gold instead of 10 when pillaged.
+
+Workshops give 10 gold instead of 5 when pillaged.
+
+The Manabar UI has been modified to show the new mana types and to take less space in the screen.
+
+The power ratio no longer requires an embassy to be displayed.
+
+Advanced Tactics is enabled by default.
+
+Puppet States is enabled by default.
+
+Alexis is now Aggressive and Financial instead of Aggressive and Philosophical.
+
+Anagantios is available to the Illians. His traits are Philosophical and Imperialistic.
+
+Arturus is now Aggressive and Industrious instead of Industrious and Organized.
+
+Auric traits are now Arcane and Charismatic instead of Charismatic and Defender.
+
+Averax is available to the Sheaim. His traits are Aggressive, Barbarian and Imperialistic.
+
+Braeden is available to the Illians. His traits are Barbarian, Ingenuity and Savage.
+
+Capria is now Financial and Spiritual instead of Industrious and Spiritual.
+
+Cassiel is now Adaptive, Organized and Philosophical instead of Adaptive, Industrious and Philosophical.
+
+Charadon traits are now Aggressive, Barbarian, and Charismatic.
+
+Cheron is available to the Kuriotates. His traits are Agrarian, Defender and Imperialistic.
+
+Duin is available to the Doviello. His traits are Charismatic, Slaver and Magic Resistant.
+
+Dumannios is available to the Illians. His traits are Arcane and Sage.
+
+Einion is now Charismatic and Philosophical instead of Defender and Philosophical.
+
+Ethne is now Creative and Organized instead of Creative and Defender.
+
+Flauros is now Philosophical and Organized instead of Financial and Organized.
+
+Furia is available to the Balseraphs. Her traits are Financial and Sage.
+
+Garrim is now Arcane and Financial instead of Defender and Financial.
+
+Gosea is available to the Sheaim. Her traits are Philosophical and Slaver.
+
+Hafgan is available to the Clan of Ember. His traits are Charismatic and Raiders
+
+Hyborem is now Aggressive, Barbarian and Summoner instead of Barbarian, Spiritual and Summoner.
+
+Kane is now available to the Malakim. His traits are Agrarian, Barbarian and Financial.
+
+Kandros is now Financial and Organized instead of Aggressive and Financial.
+
+Koun is available to the Grigori. His traits are Organized and Sage.
+
+Mahala traits are now Expansive, Ingenuity and Raiders.
+
+Mahon is available to the Calabim. His traits are Agrarian and Savage.
+
+Malchavic is available to the Sheaim. His traits are Expansive and Sage.
+
+Melisandre is available to the Balseraphs. Her traits are Industrious and Expansive.
+
+Os-Gabella traits are now Spiritual and Summoner instead of Industrious and Summoner.
+
+Ostanes is available to the Hippus. His traits are Organized and Slaver.
+
+Riuros is available to the Illians. His traits are Financial and Spiritual.
+
+Rivanna is available to the Svartalfar. Her traits are Organized and Summoner.
+
+Sandalphon is now Industrious and Philosophical instead of Defender and Industrious.
+
+Shekinah is available to the Sidar. Her traits are Arcane and Creative.
+
+Thessalonica is available to the Elohim. Her traits are Industrious and Spiritual.
+
+Tethira is available to the Bannor, with the Aggressive and Expansive traits.
+
+Tya is available to the Amurites. Her traits are Sage and Spiritual.
+
+Uldanor is available to the Hippus. His traits are Creative and Imperialistic.
+
+Valledia traits are now Arcane, Ingenuity and Organized.
+
+Volanna is available to the Svartalfar. Her traits are Aggressive and Spiritual.
+
+Weevil, Pickle and Hyde are available as a leader to the Balseraphs. Their traits are Barbarian, Charismatic and Slaver.
+
+Creation mana is available with Divination. Creation mana counts as a health resource.
+
+Dimensional mana is available with Necromancy. Dimensional mana penalizes diplomatic relations with most civilizations. It is associated with unholy damage.
+
+Force mana is available with Alteration. It reduces maintenance in 5%. It is associated with force damage.
+
+Ice Nodes can be built by Priests of Winter and High Priests of Winter. They cannot be built by any other units.
+
+Raw mana is slightly more frequent in new maps.
+
+Great people teammate threshold increase restored to Beyond the Sword's 50% from Fall from Heaven's 100%.
+
+Known team bonus restored to Beyond the Sword's 30%, from Fall from Heaven's 10%
+
+Number of team member penalty restored to Beyond the Sword's 50% from Fall from Heaven's 0%.
+
+Minimum civic swap time changed to 9.
+
+The Genesis ritual now affects all the empires in the same team, instead of only the empire which builds it.
+
+Nature's Revolt requires Commune with Nature instead of Animal Handling.
+
+Elegy of the Sheaim requires Philosophy instead of Way of the Wicked.
+
+Hallowing of the Elohim requires Philosophy instead of Way of the Wise.
+
+Purge the Unfaithful requires Fanaticism instead of Priesthood.
+
+Command I requires Fanaticism.
+
+Demon Slaying requires Priesthood.
+
+Favored promotion added. It works like Potency, but it is meant for Divine units.
+
+Hero allows to upgrade hero units for free.
+
+Inquisitor requires Fanaticism.
+
+Mobility I is available to Siege units.
+
+Potency gives 30 passive experience points instead of 20.
+
+Savage promotion added. It makes the unit immune to fear, and the unit is cured a 10% after combat. With Combat V, Savage lets the unit take the Fear promotion. This promotion can only be obtained by units of a leader with the Savage trait.
+
+Scourge requires Priesthood instead of Way of the Wicked.
+
+Slaver promotion added. It gives the unit a 15% chance of capturing defeated living units as slaves. This promotion can only be obtained by units of a leader with the Slaver trait.
+
+Steward of Esus promotion added. It allows to use Esus specific spells that can be cast by expending gold. This promotion is granted to a few Esus specific units.
+
+Undead Slaying now requires Priesthood instead of Way of the Wise.
+
+Marksman now allows to choose between attacking the strongest or the weakest unit in the stack.
+
+Withered reduces defense in 1.
+
+Hidden Nationality Strips Racial Promotions. The promotion is restored when Hidden Nationality is removed.
+
+The Council of Esus Holy City gives +2 Gold instead of +4 Culture.
+
+Cities with Council of Esus give 1 Gold instead of 1 Culture.
+
+Tablets of Bambur can be built by a Great Merchant.
+
+Code of Junil can be built by a Great General.
+
+Amber is a happiness resource that requires a mine.
+
+Mushrooms are a rare health resource that must be mined to be extracted.
+
+Penguins are a very rare happiness resource that appears only in tundras and ice.
+
+Salt is a health resource that requires a quarry.
+
+Shrimps are a new maritime health resource.
+
+Stone is extracted from quarries, and it increases the building speed of certain buildings.
+
+Blessing (Creation III) allows the city it has been casted in to build living units 20% faster. All living units created in the city start with the Strong promotion.
+
+Blinding Light only lasts for one turn, and it is easier to resist.
+
+Domination will not target units with Loyalty.
+
+Escape (Dimensional I) teleports the caster to its capital.
+
+Esus Blur allows a unit with the Steward of Esus promotion to cast Blur by paying 12 gold. This spell can only be used if the player has Council of Esus as the state religion.
+
+Esus Haste allows Shadows with the Steward of Esus promotion to cast Haste by paying 60 gold. This spell can only be used if the player has Council of Esus as the state religion.
+
+Esus Hide allows Assassins that follow the Council of Esus to cast Hide by paying 30 gold. This spell can only be used if the player has Council of Esus as the state religion.
+
+Esus Poisoned Blade allows Nightwatchs with the Steward of Esus promotion to cast Poisoned Blade by paying 90 gold. This spell can only be used if the player has Council of Esus as the state religion.
+
+Esus Regeneration allows Shadowriders with the Steward of Esus promotion to cast Regeneration by paying 120 gold. This spell can only be used if the player has Council of Esus as the state religion.
+
+Esus Shadowwalk allows a unit with the Steward of Esus promotion to cast Shadowwalk by paying 60 gold.
+
+Extort allows units with the Steward of Esus promotion to obtain money at one of the player's cities at the cost of losing population and causing unhappiness. This spell can only be used if the player has Council of Esus as the state religion.
+
+Fertility (Creation II) allows to switch between different health resources of the same type. The different groups are "Wheat, Rice and Corn", "Cow, Sheep and Pig", "Banana, Sugar and Cotton", "Deer and Fur" and "Clam, Crab, Fish and Shrimp".
+
+For the Horde is blocked by Loyalty.
+
+Growth (Creation I) adds 2 food, 1 culture and 1 health to a city. It keeps 10% of the food storage after a population increase.
+
+Illumination (Spirit III) increases the GPP production of the city it has been casted in by 50%. It also cures units with the enraged promotion.
+
+Labyrinth (Dimensional II) creates a labyrinth in a tile. The labyrinth makes movement a lot more difficult, but it has a 40% chance of dissapearing each turn.
+
+Lichdom (Death III) requires Divine Essence.
+
+Magic Missile (Force II) creates a force projectile that can attack the weakest unit on a stack.
+
+Recruit Nightwatch allows the player to adquire a Nightwatch unit. This spell requires the Bowyers technology. This spell can only be used if the player has Council of Esus as the state religion.
+
+Sever Soul is now available to all Sidar recon units. Severed souls now last three turns. The caster cannot cast Sever soul if it already has a Severed soul summoned. Severed souls cannot capture but they can move through enemy territory and explore enemy cities. They cannot fly but they can move two squares and pass through impassable terrain. Severed souls get the movement, perception and immunity promotions of the unit that created it.
+
+Snowfall damage cap reduced to 70% from 80%
+
+Spread council of Esus costs 100 gold instead of 25 gold.
+
+Treetop Tactics (Nature I) replaces Treetop Defense. It gives all units in the caster's stack a temporal promotion which gives them a 10% withdrawal chance and increased combat strength in Forests and Ancient Forests.
+
+Tsunami is now range 1 instead of 2.
+
+Pillar of Fire tweaked from 50 damage with a cap of 75 to 30 damage with a cap of 50.
+
+Rift (Dimensional III): Creates a rift. The rift can be moved and opened to allow instant transportation of a certain number of units between the caster and the rift or viceversa.
+
+Summon Runewyn (Force III) summons a powerful angel immune to magic.
+
+Stasis base length reduced to 10 from 20. It now gives a Golden Age (for the same length) in addition to the freezing.
+
+Temperance (Force I) adds the Temperance promotion to all units in the caster's stack. This permanent promotion adds resistance to both Holy and Unholy damage.
+
+Water Walking (Water II) is no longer a spell, but a passive ability earned automatically with the Water II promotion.
+
+Animal Handling cost reduced from 1800 to 600.
+
+Animal Mastery requires Feral Bond and Military Strategy instead of Feral Bond and Iron Working.
+
+Astronomy cost reduced from 3000 to 1500.
+
+Bowyers cost reduced from 2400 to 1400.
+
+Code of Laws allows Puppet States and Vassal States.
+
+Commune with Nature requires Priesthood and either Hidden paths, Arete or Fanaticism.
+
+Corruption of Spirit cost increased from 800 to 1500. It requires Knowledge of the Ether and Philosophy instead of Knowledge of the Ether and Way of the Wicked.
+
+Deception cost increased from 700 to 980. It requires Trade and Philosophy instead of Trade and Way of the Wicked.
+
+Divine Essence requires Commune with Nature, Theology, Righteousness or Malevolent Designs instead of Mithril Working and Theology.
+
+Feral Bond cost reduced from 2200 to 1200
+
+Guilds gives an additional trade route.
+
+Honor cost increased from 700 to 980. Honor requires Trade and Philosophy instead of Trade and Way of the Wise.
+
+Horseback Riding cost increased from 360 to 400.
+
+Hunting cost reduced from 460 to 300.
+
+Infernal Pact increased from 1200 to 1500.
+
+Iron Working cost reduced from 2600 to 1800. Iron Working now requires Warfare in addition to Smelting.
+
+Machinery cost reduced from 6600 to 3300.
+
+Malevolent Designs now requires Infernal Pact or Mind Stapling instead of Fanaticism and Way of the Wicked.
+
+Military Strategy allows Defensive Pacts. Military Strategy now gives a Great General instead of a Great Commander (Great Commanders have been replaced by Great Generals).
+
+Mithril Weapons cost reduced from 9800 to 7000.
+
+Mithril Working cost reduced from 7400 to 2400. It now requires Military Strategy in addition to Engineering and Iron Working.
+
+Omniscience now requires Divine Essence in addition to with Strength of Will and Pass through the Ether. It no longer requires Commune with Nature.
+
+Orders from Heaven cost increased from 800 to 1080. It now requires Code of Laws and Philosophy instead of Code of Laws and Way of the Wise.
+
+Poisons cost decreased from 1600 to 1000.
+
+Precision cost decreased from 7800 to 2000. Precision now gives a Great General.
+
+Rage no longer requires Iron Working. It only requires Fanaticism.
+
+Righteousness now requires Orders from Heaven or Honor instead of Fanaticism and Way of the Wise.
+
+Sailing reveals Pearls. This means that Pearls are available to all civilizations.
+
+Seafaring increases the commerce created by fishing boats placed on Pearls.
+
+Smelting cost reduced from 1600 to 800.
+
+Sorcery is now a higher priority for Great Scientists than Alteration, Divination, Elementalism and Necromancy.
+
+Stirrups cost increased from 800 to 1000. It now requires Horseback Riding and either Animal Handling or Archery instead of Horseback Riding and Archery.
+
+Strength of Will is now a higher priority for Great Sages than Pass through the Ether.
+
+Warfare now requires only Education; it no longer requires Bronze Working. Warfare cost reduced from 7400 to 2000.
+
+Warhorses now requires Stirrups or Military Strategy and Feudalism instead of Horseback Riding and Iron Working.
+
+Way of the Wicked and Way of the Wise have been removed.
+
+
+Terrain Features
+===============================================================================
+
+Improved volcano graphics.
+
+
+Traits
+===============================================================================
+
+Agrarian gives +1 food in tiles with 4 food. It doubles the production speed of Granaries and Smokehouses.
+
+Adaptive leaders can now choose the Agrarian, Imperialistic, Sage and Slaver traits. Slaver is not available to Good leaders. The base cycle for triggering the Adaptive trait changes has been reduced from 100 to 75.
+
+Arcane grants the Mobility 1 and Potency promotions to Arcane units.
+
+Creative now gives an additional 10% boost to culture production and doubles the production speed of Theatres.
+
+Industrious allows to build Mud Golems and Workers faster.
+
+Imperialistic increases Great General emergence in +100%. It also doubles the production of Settlers, Courthouses and Tax Offices.
+
+Insane leaders can also acquire the Agrarian, Imperialistic, Sage, Savage and Slaver traits when their traits change randomly.
+
+Financial no longer gives extra commerce in tiles with 2 commerce. Instead, it gives +25% Gold in Cities.
+
+Sage gives a +20% to science. Increases Great People point rate in +25%. Doubles the production speed of Alchemy Labs and Libraries.
+
+Savage gives the Savage promotion to Recon, Archery, Mounted, Melee and Beast units.
+
+Slaver gives a +10% to commerce. It also grants the Slaver promotion to Recon, Archery, Mounted, Melee, Arcane, Disciple, Animal and Beast units. Doubles the production speed of Dungeons.
+
+Spiritual grants the Mobility 1 and Favored promotions to Disciple Units.
+
+All units can now drop equipment.
+
+Arcane Barge cargo reduced from 3 to 1.
+
+Archer and Dwarven Slinger cost reduced from 60 to 45.
+
+Dwarven Slinger cost reduced from 60 to 45.
+
+Arthendain starts with Medic III.
+
+Devouts start with Channeling II.
+
+Axeman, Sons of Asena and Swordsman cost reduced from 60 to 45.
+
+Bambur strength increased from 5 to 6.
+
+Barnaxus cost reduced from 180 to 90. It has two moves instead of one.
+
+Battlemaster cost reduced from 150 to 120.
+
+Beastmaster, Lizardman Beastmaster and Myconids require Hunting Lodge instead of Grove.
+
+Beastmen are not obsolete anymore.
+
+Berserker, Brujah, Circle of Urd and Clockwork Golem maximum collateral damage increased to 60 from 20 and they can hit up to 6 units instead of 4.
+
+Boar Riders get +40% against Mounted units.
+
+Boarding parties get the Amphibious promotion.
+
+Brujah cannot be conscripted.
+
+Cannons and Dwarven Cannons get a withdraw rate of 60 (from 25) and they can affect 10 units (from 7). They do double bombard damage to Cities.
+
+Chalid is available with Righteousness instead of with Religious Law.
+
+Chariot, Centaur charger, and Scorpion clan chariot require Horseback Riding instead of Trade.
+
+Crusader available at Orders from Heaven. Crusaders can spread Order with twice the success rate of Acolytes. Cost reduced from 120 to 80. Combat reduced from 6 to 4. They can use weapons from all tiers.
+
+Demagogs require Smelting instead of Iron Working.
+
+Djinn base combat increased from 0 to 5.
+
+Divided souls are never obsolete.
+
+Duin requires Animal Mastery instead of Feral Bond.
+
+Eidolons are available at Fanaticism. Cost reduced from 240 to 160. Combat reduced from 11 to 8. They can use weapons from all tiers.
+
+Fawn cost reduced from 90 to 60. They get +25% attack in forests and ancient forests.
+
+Firebow defense increased to 5. Attack stays at 5.
+
+Flagbearers are available with Iron Working instead of with Fanaticism.
+
+Gargoyles get 2 movements instead of 1. Attack reduced from 8 to 6. Defense stays at 8.
+
+Great Commanders no longer exist. The new Great Generals have the abilities of both Great Commanders and the old Great Generals. Great Generals can now be attached to Beast units. Great Generals can build the Code of Junil.
+
+Great Merchants can build the Tablets of Bambur.
+
+Gibbon Goethia requires Sorcery instead of Deception.
+
+Hawks are available with Animal Handling instead of with Hunting.
+
+Javelin Thrower cost reduced from 90 to 45.
+
+Kithra is available with Hidden Paths instead of with Feral Bond.
+
+Liches now have a per player limit instead of a per team limit.
+
+Lightbringers get better results from tribal villages.
+
+Longbowman defense increased from 6 to 7. Attack stays at 5.
+
+Lucian is a now a normal warrior with the Strong promotion, and he can be upgraded to Son of Asena (and other units) normally. When possible, Lucian keeps his original artwork after being upgraded.
+
+Marksman can now use weapons from all tiers.
+
+Mithril Golem cost reduced from 1200 to 400.
+
+Moroi are not obsolete anymore.
+
+Nightwatch now requires Deception in addition to Bowyers. Combat increased from 3 to 4. They receive the Steward of Esus promotion.
+
+Nullstone Golems require Mithril Working instead of Mithril Weapons.
+
+Paladins require Fanaticism instead of Righteousness. Cost reduced from 240 to 160. Combat reduced from 11 to 8. They can use weapons from all tiers.
+
+Paramanders require Arete instead of Fanaticism. Their defense and attack are now 6/8 instead of 7/7. Paramanders now use the Soldier of Kilmorph art.
+
+Phalanxes, Stoneskin ogres and Verdandi require Mithril Working instead of Mithril Weapons. They also get a +40% bonus against mounted units.
+
+Prior gains Pillar of Fire. They also get Inquisition as a free promotion.
+
+Radiant Guard attack reduced from 4 to 3. They get a +25% bonus against Recon units.
+
+Ranger, Harlequin and Lizardman Ranger require Feral Bond instead of Animal Handling.
+
+Ratha requires Trade and Construction instead of Honor and Construction.
+
+Royal Guard requires Stirrups instead of Feudalism.
+
+Satyrs now require Hidden Paths instead of Animal Handling.
+
+Scorpions can give the Poisoned Blade promotion.
+
+Shadows, Courtesans and Dwarven Shadows now require Council of Esus as state religion and start with the Steward of Esus promotion.
+
+Shadowriders receive the Steward of Esus promotion.
+
+Soldiers of Kilmorph now use the Paramander art.
+
+Spectres require level 6 instead of 5 to update to Wraiths. Spectres do not receive the Fear promotion.
+
+Stygian Guards now require Malevolent Designs instead of Fanaticism. Cost increased from 120 to 200. Combat increased from 5 to 6. Unholy damage increases from +2 to +4.
+
+Vampires require Training Yards. They cannot be conscripted.
+
+War Elephant requires Animal Handling instead of Horseback Riding.
+
+Mud Golem cost reduced from 100 to 75.
+
+Post Combat Explosions are now capped at 90% Damage (Pyre Zombies and Azers can't kill with their death-explosions).
+
+Wood Golem cost reduced from 90 to 60.

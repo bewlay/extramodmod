@@ -1,0 +1,67 @@
+ExtraModMod ###TAG### Credits
+================================================================================
+
+Online version: https://bitbucket.org/Terkhen/extramodmod/wiki/Credits
+
+ExtraModMod is based on the contributions of many people who worked on their free time to create amazing stuff for Civilization IV mods. Keeping track of their contributions so that they get full credit for what they created, contributed or helped to make is the aim of this file. Given the sheer amount of contributions I apologize in advance for any omissions or mistakes. Please drop me a line if you notice any errors!
+
+In this file, only direct contributions to ExtraModMod are listed. You can find the credits for the mods used as a base for ExtraModMod below:
+
+* Fall from Heaven II: Check Readme 041.rtf.
+
+* More Naval AI: https://bitbucket.org/Tholal/more-naval-ai (Full credits can be seen ingame in both ExtraModMod and More Naval AI)
+
+* BarbsPlus: https://bitbucket.org/lfgr/barbsplus/
+
+* Events Enhanced: https://bitbucket.org/lfgr/some-modcomps-for-civ4-ffh-mnai
+
+All contributors to ExtraModMod are listed in alphabetical order along with their contributions below. Please contact me if there are any omissions or problems.
+
+* Ahwaric: Features are not erased when placing lairs.
+* Apeiron: Reliquaries reduce the Armageddon Counter in 1. Planar gates increase the Armageddon Counter in 1.
+* Asaf: Makefile.
+* Bobchillingworth: Extra leaders suggestions.
+* Calavente: French translation, feedback, suggestions.
+* Caveman 2 Cosmos team: Shrimp icon, Amber resource art, Bison resource art.
+* cephalo: Erebus MapScript, ErebusContinent MapScript, PerfectWorld2 MapScript.
+* Danny Daemonic: Makefile.
+* DarkLunaPhantom: Bugfixes and improvements.
+* Denev: Multiple Production.
+* Doug McCreary: SmartMap MapScript.
+* Exmorphis: Testing, feedback.
+* flitz: Loki AI crash when require complete kills is activated.
+* Jean Elcard: Civilization specific modifications to terrain yields.
+* jkp1187: Earth3 MapScript.
+* Karadoc: A lot of bugfixes and UI improvements.
+* Keldath: SmartMap MapScript.
+* KuBaTRiZeS: Testing, feedback, Labyrinth spell, Magic Missile spell, Treetop Tactics spell.
+* LDiCesare: Tectonics MapScript.
+* lfgr: BarbsPlus, Events Enhanced, review of proposals of new features, suggestions, feedback and fixes.
+* lonkero173: MountainCoast MapScript.
+* MagisterCultuum: Penguins resource, Temperance spell, Summon Runewyn spell, Mana bar changes, Water walking spell changes, Marksman promotion changes, Planar gate spawning changes, Sever soul spell changes, Maelstrom changes, Maenalus changes, Odio's Prison changes, Pool of Tears changes, Remnants of Patria changes, Seven Pines changes, Tarch's Tower, The Palus.
+* Maniac: Planetfall MapScript.
+* Master of Mana team: Amber resource, Volcano feature graphics, Blinded promotion art, Neutrality civic art.
+* Mrgenie: SmartMap MapScript.
+* Nightinggale: Makefile.
+* OzzyKP: Ozzy's Map of Erebus.
+* Pazyryk: Unique features don't vanish after being explored, but are unexplorable for some time instead.
+* platyping: Creative trait changes. Hidden XML game option stabilizer.
+* Qgqqqqq/Queue Beyond: Erebus in the Balance (included nearly completely in ExtraModMod)
+* Realism Invictus team: Makefile, Agrarian trait.
+* Refar: Planetfall MapScript.
+* Rise from Erebus team: Mushrooms resource, Nightmare font icon, Salt resource, Shrimp resource, Stone resource, CivCounter, Grigori Adventurer Counter, Slaver trait, Cheron leader, Growth spell, Fertility spell, Grigori Museum building, Civilization specific modifications to terrain yields, Bair of Lacuna, Bradeline's Well changes.
+* Ruff_Hi: Ringworld MapScript.
+* Rystic: Great Generals can build the Code of Junil, Nomad allows to cross Burning Sands, +1 food on Marsh and Shallows for the Clan.
+* Sareln: Erebus in the Balance (included nearly completely in ExtraModMod), traits for most leaders.
+* scutarii: City States civic changes, Decentralization civic changes, Theocracy civic changes, Tribalism civic changes, Liberty civic changes.
+* Seven05: ErebusContinent MapScript.
+* Sirian: Earth3 MapScript, InlandSea MapScript, Medium_and_Small MapScript, SeaHighlands MapScript.
+* TAfirehawk: SmartMap MapScript.
+* TaSSeRD: Testing, feedback, spanish translation, Blessing spell.
+* Tasunke: Feedback, suggestions, review of proposals of new features, Caste System civic changes, Guilds civic changes, Mercantilism civic changes, Neutrality civic, Isolationism civic, Urban Planning civic, Divine Essence changes, Dragon Hoard changes.
+* Temudjin: MapScriptTools, Earth3 MapScript, Erebus MapScript, FracturedWorld MapScript, InlandSea MapScript, Medium_and_Small MapScript, PerfectWorld2 MapScript, Planetfall MapScript, Ringworld3 MapScript, SeaHighlands MapScript, SmartMap MapScript, Tectonics MapScript.
+* Terkhen: Lead Developer, most of the features and changes not included in this list, Spanish translation, and tweaks to the following MapScripts: Discworld MapScript, Earth3 MapScript, Erebus MapScript, FracturedWorld MapScript, InlandSea MapScript, Medium_and_Small MapScript, PerfectWorld2 MapScript, Planetfall MapScript, RandomMap MapScript, Ringworld3 MapScript, SeaHighlands MapScript and Tectonics MapScript.
+* The_J: Show a message when roads are pillaged, display messages when Wonders are captured or destroyed.
+* [to_xp]Gekko: Feedback, suggestions, Alexis traits, Arturus traits, Flauros traits, Kandros traits, Lightbringers tribal village results change, Calabim Moroi and Sidar Divided Souls are never obsolete, Doviello Beastmen can be converted to Battlemasters, Blinding light spell changes, Kuriotates starting civics, Sidar starting civics.
+* xienwolf: Civilization specific modifications to terrain yields.
+* vbraun: SeaHighlands MapScript.

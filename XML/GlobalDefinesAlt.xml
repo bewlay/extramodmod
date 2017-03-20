@@ -79,7 +79,7 @@
     </Define>
     <Define>
         <DefineName>MIN_REVOLUTION_TURNS</DefineName>
-        <iDefineIntVal>9</iDefineIntVal>
+	    <iDefineIntVal>8</iDefineIntVal>
     </Define>
     <Define>
         <DefineName>MAX_EXPERIENCE_PER_COMBAT</DefineName>
