@@ -42,7 +42,7 @@ More Naval AI changes
 
 Update text for Revolutions game option to make it clearer that it is incomplete.
 
-Erebus_mst added to the list of mapscripts that have no equator for End of Winter.
+Erebus_mst added to the list of MapScripts that have no equator for End of Winter.
 
 MoreCiv4lerts will no longer say that a civilization in crusade is ready to capitulate
 
@@ -62,7 +62,7 @@ Puppet states retain the original civilization.
 
 Added missing text tags.
 
-Added fixed Islands and Archipelago mapscripts.
+Added fixed Islands and Archipelago MapScripts.
 
 Removed the Nuclear Dissuasion player option.
 
@@ -280,6 +280,30 @@ Events Enhanced changes
 ===============================================================================
 
 xxx
+
+
+ExtraModMod 0.5.2
+===============================================================================
+
+More Naval AI version: 2.62 plus additional bugfixes
+
+MapScriptTools version: 1.06
+
+Erebus in the Balance version: 11
+
+
+Features
+===============================================================================
+
+Discworld MapScript
+
+
+More Naval AI changes
+===============================================================================
+
+Added fixed Islands and Archipelago MapScripts.
+
+Creating a puppet state will no longer cause an OOS error.
 
 
 ExtraModMod 0.5.1
@@ -892,9 +916,9 @@ More Naval AI version: 2.53 with additional fixes and features.
 Features
 ===============================================================================
 
-RandomMap is a new mapscript which allows to select randomly between a few other mapscripts, allowing to select certain options that will apply to chosen map.
+RandomMap is a new MapScript which allows to select randomly between a few other MapScripts, allowing to select certain options that will apply to chosen map.
 
-mst mapscripts will store the chosen options, and will restore them the next time that the map is selected.
+MapScriptTools MapScripts will store the chosen options, and will restore them the next time that the map is selected.
 
 Changes
 ===============================================================================
@@ -1764,7 +1788,7 @@ Popups for world units.
 
 Quotes and pictures for each of the default named Great People.
 
-Erebus Continent Mapscript
+Erebus Continent MapScript
 
 
 More Naval AI changes
