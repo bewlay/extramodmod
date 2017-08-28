@@ -23018,7 +23018,11 @@ void CvPlayer::doEvents()
 	}
 }
 
-
+/**
+ * Executes all necessary stuff when an event expires, without removing it from the event map.
+ * 
+ * 
+ */
 void CvPlayer::expireEvent(EventTypes eEvent, const EventTriggeredData& kTriggeredData, bool bFail)
 {
 	FAssert(getEventOccured(eEvent) == &kTriggeredData);
@@ -23047,6 +23051,15 @@ void CvPlayer::expireEvent(EventTypes eEvent, const EventTriggeredData& kTrigger
 	}
 }
 
+/**
+ * Checks whether the given event should expire this turn.
+ * 
+ * Mostly useful for quests.
+ * Non-quest events expire automatically after 2 turns.
+ * (*EVENT_NEW_TAGS*) Events with bNoExpire = 1 don't expire automatically.
+ * 
+ * The python callback CvEventInfo::getPythonExpireCheck can be used to ovverride default behaviour.
+ */
 bool CvPlayer::checkExpireEvent(EventTypes eEvent, const EventTriggeredData& kTriggeredData) const
 {
 	CvEventInfo& kEvent = GC.getEventInfo(eEvent);
