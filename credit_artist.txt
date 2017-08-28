@@ -1,12 +1,13 @@
 All FfH artists (http://forums.civfanatics.com/showthread.php?t=304415)
 Event art
-	e_affluent.dds
-	e_alchemist.dds
-	e_amuritetrial.dds
-	e_ancientburial.dds
-	e_ancientcity.dds
-	e_ancienttexts.dds
-	e_ancienttowerlore.dds
+	e_aeronschosen.dds - James Paick
+	e_affluent.dds - Darrell K. Sweet
+	e_alchemist.dds - ???
+	e_amuritetrial.dds - Brom
+	e_ancientburial.dds - Christopher Moeller
+	e_ancientcity.dds - ArenaNet
+	e_ancienttexts.dds - ???
+	e_ancienttowerlore.dds - Pierpont Morgan Library
 	e_angelicprocession.dds
 	e_angelofmercy.dds
 	e_antelope.dds
