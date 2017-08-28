@@ -160,6 +160,15 @@ CvPlayer::CvPlayer()
 /* UNOFFICIAL_PATCH                        END                                                  */
 /************************************************************************************************/
 
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  Glider1      */
+/*************************************************************************************************/
+	// RevolutionDCM start - new diplomacy option
+	setDoNotBotherStatus(NO_PLAYER);
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
+
 	reset(NO_PLAYER, true);
 }
 
@@ -378,6 +387,15 @@ void CvPlayer::init(PlayerTypes eID)
 			}
 		}
 	}
+
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+	// RevolutionDCM start - new diplomacy option
+	setDoNotBotherStatus(NO_PLAYER);
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 
 	AI_init();
 }
@@ -867,6 +885,13 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iConversionTimer = 0;
 	m_iStateReligionCount = 0;
 	m_iNoNonStateReligionSpreadCount = 0;
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+	m_iActiveSenateCount = 0;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                  			 */
+/*************************************************************************************************/
 	m_iStateReligionHappiness = 0;
 	m_iNonStateReligionHappiness = 0;
 	m_iStateReligionUnitProductionModifier = 0;
@@ -877,6 +902,14 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iWinsVsBarbs = 0;
 	m_iAssets = 0;
 	m_iPower = 0;
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	m_iTechPower = 0;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	m_iPopulationScore = 0;
 	m_iLandScore = 0;
 	m_iTechScore = 0;
@@ -997,6 +1030,16 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_eCurrentEra = ((EraTypes)0);  //??? Is this repeated data???
 	m_eLastStateReligion = NO_RELIGION;
 	m_eParent = NO_PLAYER;
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	m_eSecretaryGeneralVote = NO_TEAM;
+	m_eDemandWarAgainstTeam = NO_TEAM;
+	m_aiSenateVeto.clear();
+/************************************************************************************************/
+/* Advanced Diplomacy          END                                                            */
+/************************************************************************************************/
 
 	for (iI = 0; iI < NUM_YIELD_TYPES; iI++)
 	{
@@ -1264,6 +1307,16 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	{
 		AI_reset(false);
 	}
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  Glider1      */
+/*************************************************************************************************/
+	// RevolutionDCM start - new diplomacy option
+	setDoNotBotherStatus(NO_PLAYER);
+	// RevolutionDCM end
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
+
 }
 
 /************************************************************************************************/
@@ -2483,6 +2536,13 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	CvWString szTempBuffer; // MNAI - Puppet States
 	bool abEverOwned[MAX_PLAYERS];
 	int aiCulture[MAX_PLAYERS];
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+	int aiOriginalPopulation[MAX_PLAYERS];
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                  			 */
+/*************************************************************************************************/
 	PlayerTypes eOldOwner;
 	PlayerTypes eOriginalOwner;
 	PlayerTypes eHighestCulturePlayer;
@@ -2606,6 +2666,17 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 						szBuffer = gDLL->getText("TXT_KEY_MISC_CITY_CAPTURED_BY", szName.GetCString(), getCivilizationDescriptionKey());
 						gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_CITYCAPTURED", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("WORLDBUILDER_CITY_EDIT")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pOldCity->getX_INLINE(), pOldCity->getY_INLINE(), true, true);
 					}
+				/************************************************************************************************/
+				/* Advanced Diplomacy	                  Start		 12/9/09                                                */
+				/************************************************************************************************/
+					else if (GET_TEAM(GET_PLAYER((PlayerTypes)iI).getTeam()).isHasEmbassy(getTeam()))
+					{
+						szBuffer = gDLL->getText("TXT_KEY_MISC_CITY_CAPTURED_BY", szName.GetCString(), getCivilizationDescriptionKey());
+						gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_CITYCAPTURED", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"));
+					}
+				/************************************************************************************************/
+				/* Advanced Diplomacy	                     END                                                            */
+				/************************************************************************************************/
 				}
 			}
 		}
@@ -2691,6 +2762,13 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	{
 		abEverOwned[iI] = pOldCity->isEverOwned((PlayerTypes)iI);
 		aiCulture[iI] = pOldCity->getCultureTimes100((PlayerTypes)iI);
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+		aiOriginalPopulation[iI] = pOldCity->getOriginalPopulation((PlayerTypes)iI);
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                  			 */
+/*************************************************************************************************/
 	}
 
 	abEverOwned[getID()] = true;
@@ -2788,6 +2866,16 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 
 	FAssertMsg(pNewCity != NULL, "NewCity is not assigned a valid value");
 
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+	if (!bRecapture)
+	{
+		pNewCity->setOriginalPopulation(eOldOwner, iPopulation);
+	}
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                 			 */
+/*************************************************************************************************/
 	pNewCity->setPreviousOwner(eOldOwner);
 	pNewCity->setOriginalOwner(eOriginalOwner);
 	pNewCity->setGameTurnFounded(iGameTurnFounded);
@@ -3656,7 +3744,10 @@ CvSelectionGroup* CvPlayer::cycleSelectionGroups(CvUnit* pUnit, bool bForward, b
 
 bool CvPlayer::hasTrait(TraitTypes eTrait) const
 {
-	FAssertMsg((getLeaderType() >= 0), "getLeaderType() is less than zero");
+// lfgr bugfix 08/2015
+// Assert no longer valid. A leader type isn't needed to determine traits
+//	FAssertMsg((getLeaderType() >= 0), "getLeaderType() is less than zero");
+// lfgr end
 	FAssertMsg((eTrait >= 0), "eTrait is less than zero");
 
 //FfH: Scriptable Leader Traits: Modified by Kael 08/08/2007
@@ -4243,6 +4334,26 @@ const CvWString CvPlayer::getWorstEnemyName() const
 	return "";
 }
 
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+const CvWString CvPlayer::getClosestAllyName() const
+{
+	TeamTypes eClosestAlly;
+
+	eClosestAlly = GET_TEAM(getTeam()).AI_getClosestAlly();
+
+	if (eClosestAlly != NO_TEAM)
+	{
+		return GET_TEAM(eClosestAlly).getName();
+	}
+
+	return "";
+}
+/*************************************************************************************************/
+/** Advanced Diplomacy       EBD                                                 			 */
+/*************************************************************************************************/
+
 const wchar* CvPlayer::getBestAttackUnitKey() const
 {
 	CvCity* pCapitalCity;
@@ -4345,6 +4456,22 @@ void CvPlayer::doTurn()
 		{
 			setPuppetState(false);
 			findNewCapital();
+
+			CvWString szBuffer;
+			szBuffer = gDLL->getText("TXT_KEY_MISC_PUPPET_STATE_LEGITIMIZED", getCivilizationDescriptionKey());
+			GC.getGameINLINE().addReplayMessage(REPLAY_MESSAGE_MAJOR_EVENT, getID(), szBuffer, getCapitalCity()->getX(), getCapitalCity()->getY(), (ColorTypes)GC.getInfoTypeForString("COLOR_BUILDING_TEXT"));
+
+			for (iI = 0; iI < MAX_PLAYERS; iI++)
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isAlive())
+				{
+					if (GET_TEAM(getTeam()).isHasMet(GET_PLAYER((PlayerTypes)iI).getTeam()) || (getTeam() == GET_PLAYER((PlayerTypes)iI).getTeam()))
+					{
+						szBuffer = gDLL->getText("TXT_KEY_MISC_PUPPET_STATE_LEGITIMIZED", getCivilizationDescriptionKey());
+						gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_WONDER_BUILDING_BUILD", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_PLAYER_LIGHT_ORANGE_TEXT"), getCapitalCity()->getX(), getCapitalCity()->getY(), true, true);
+					}
+				}
+			}
 		}
 	}
 	// MNAI - End Puppet States
@@ -4382,6 +4509,23 @@ void CvPlayer::doTurn()
 	{
 		setCommercePercent(COMMERCE_ESPIONAGE, 0);
 	}
+
+/************************************************************************************************/
+/* Advanced Diplomacy          END                                                            */
+/************************************************************************************************/
+	if (isActiveSenate())
+	{
+		for (int i = 0; i < MAX_TEAMS; i++)
+		{
+			if (getSenateVeto((TeamTypes)i) != -1)
+			{
+				setSenateVeto((TeamTypes)i, -1);
+			}
+		}
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy          END                                                            */
+/************************************************************************************************/
 
 	verifyGoldCommercePercent();
 
@@ -4597,6 +4741,83 @@ void CvPlayer::doTurnUnits()
 	AI_doTurnUnitsPost();
 }
 
+/************************************************************************************************/
+/* Advanced Diplomacy          START                                                           */
+/************************************************************************************************/
+int CvPlayer::getSenateVeto(TeamTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (m_aiSenateVeto.size() <= 0)
+	{
+		return 0;
+	}
+
+	return m_aiSenateVeto[eIndex];
+}
+
+bool CvPlayer::isSenateVeto(TeamTypes eIndex, bool bVerify)
+{
+	if (!isActiveSenate())
+	{
+		return false;
+	}
+
+	if (GET_TEAM(getTeam()).isWarPretextAgainst(eIndex))
+	{
+		return false;
+	}
+
+	if (bVerify && getSenateVeto(eIndex) == -1)
+	{
+		setSenateVeto(eIndex, isSenateWarOpposition(eIndex) ? 1 : 0);
+	}
+
+	return (getSenateVeto(eIndex) > 0);
+}
+
+void CvPlayer::setSenateVeto(TeamTypes eIndex, int iNewValue)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iNewValue != getSenateVeto(eIndex))
+	{
+		if (m_aiSenateVeto.size() <= 0)
+		{
+			m_aiSenateVeto.clear();
+			for (int iI = 0; iI < MAX_TEAMS; iI++)
+			{
+				m_aiSenateVeto.push_back(0);
+			}
+		}
+
+		m_aiSenateVeto[eIndex] = iNewValue;
+
+		// keep the array ?
+		bool bErase = getSenateVeto(eIndex) == 0;
+		if (bErase)
+		{
+			for (int i = 0; i < MAX_TEAMS; ++i)
+			{
+				if (getSenateVeto((TeamTypes)i) != 0)
+				{
+					bErase = false;
+					break;
+				}
+			}
+
+			if (bErase)
+			{
+				m_aiSenateVeto.clear();
+			}
+		}
+	}
+}
+/************************************************************************************************/
+/* Advanced Diplomacy          END                                                            */
+/************************************************************************************************/
 
 void CvPlayer::verifyCivics()
 {
@@ -5341,56 +5562,37 @@ int CvPlayer::countOwnedBonuses(BonusTypes eBonus, bool bCheckBlockingFeatures) 
 }
 
 
+// K-Mod. I've rearranged some stuff in this function to fix a couple of minor bugs; and to make the code neater and less error prone.
 int CvPlayer::countUnimprovedBonuses(CvArea* pArea, CvPlot* pFromPlot) const
 {
 	PROFILE_FUNC();
 
-	CvPlot* pLoopPlot;
-	ImprovementTypes eImprovement;
-	BuildTypes eBuild;
-	BonusTypes eNonObsoleteBonus;
-	int iCount;
-	int iI, iJ;
-
 	gDLL->getFAStarIFace()->ForceReset(&GC.getBorderFinder());
 
-	iCount = 0;
+	int iCount = 0;
 
-	for (iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
 	{
-		pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+		CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
 
-		if (pLoopPlot->area() == pArea)
+		if (pLoopPlot->getOwnerINLINE() == getID() && pLoopPlot->area() == pArea && !pLoopPlot->isCity())
 		{
-			if (pLoopPlot->getOwnerINLINE() == getID())
+			BonusTypes eNonObsoleteBonus = pLoopPlot->getNonObsoleteBonusType(getTeam());
+
+			if (eNonObsoleteBonus != NO_BONUS)
 			{
-				if (!(pLoopPlot->isCity()))
+				if (!doesImprovementConnectBonus(pLoopPlot->getImprovementType(), eNonObsoleteBonus))
 				{
-					eNonObsoleteBonus = pLoopPlot->getNonObsoleteBonusType(getTeam());
-
-					if (eNonObsoleteBonus != NO_BONUS)
+					if ((pFromPlot == NULL) || gDLL->getFAStarIFace()->GeneratePath(&GC.getBorderFinder(), pFromPlot->getX_INLINE(), pFromPlot->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), false, getID(), true))
 					{
-						eImprovement = pLoopPlot->getImprovementType();
-
-						if ((eImprovement == NO_IMPROVEMENT) || !(GC.getImprovementInfo(eImprovement).isImprovementBonusTrade(eNonObsoleteBonus)))
+						for (int iJ = 0; iJ < GC.getNumBuildInfos(); iJ++)
 						{
-							if ((pFromPlot == NULL) || gDLL->getFAStarIFace()->GeneratePath(&GC.getBorderFinder(), pFromPlot->getX_INLINE(), pFromPlot->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), false, getID(), true))
-							{
-								for (iJ = 0; iJ < GC.getNumBuildInfos(); iJ++)
-								{
-									eBuild = ((BuildTypes)iJ);
+							BuildTypes eBuild = ((BuildTypes)iJ);
 
-									if (GC.getBuildInfo(eBuild).getImprovement() != NO_IMPROVEMENT)
-									{
-										if (GC.getImprovementInfo((ImprovementTypes)(GC.getBuildInfo(eBuild).getImprovement())).isImprovementBonusTrade(eNonObsoleteBonus))
-										{
-											if (canBuild(pLoopPlot, eBuild))
-											{
-												iCount++;
-											}
-										}
-									}
-								}
+							if (doesImprovementConnectBonus((ImprovementTypes)GC.getBuildInfo(eBuild).getImprovement(), eNonObsoleteBonus) && canBuild(pLoopPlot, eBuild))
+							{
+								iCount++;
+								break; // K-Mod!
 							}
 						}
 					}
@@ -5417,9 +5619,10 @@ int CvPlayer::countCityFeatures(FeatureTypes eFeature) const
 
 	for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 	{
-		// ALN FhfBugFix NextLine...
-		// for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
-		for (iI = 0; iI < pLoopCity->getNumCityPlots(); iI++)
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/04
+//		for (iI = 0; iI < NUM_CITY_PLOTS; iI++)
+		for (iI = 0; iI < ::calculateNumCityPlots(getNextCityRadius()); iI++)
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			pLoopPlot = plotCity(pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE(), iI);
 
@@ -5478,6 +5681,12 @@ int CvPlayer::countNumCitiesConnectedToCapital() const
 	return iCount;
 }
 
+// K-Mod
+bool CvPlayer::doesImprovementConnectBonus(ImprovementTypes eImprovement, BonusTypes eBonus) const
+{
+	return GET_TEAM(getTeam()).doesImprovementConnectBonus(eImprovement, eBonus);
+}
+// K-Mod end
 
 int CvPlayer::countPotentialForeignTradeCities(CvArea* pIgnoreArea) const
 {
@@ -5677,6 +5886,16 @@ void CvPlayer::handleDiploEvent(DiploEventTypes eDiploEvent, PlayerTypes ePlayer
 	CvCity* pCity;
 	int iI;
 
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  Glider1      */
+/*************************************************************************************************/
+	// RevolutionDCM start - new diplomacy option
+	//FAssertMsg(ePlayer != getID(), "shouldn't call this function on ourselves");
+	// RevolutionDCM end
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
+
 	FAssertMsg(ePlayer != getID(), "shouldn't call this function on ourselves");
 
 	switch (eDiploEvent)
@@ -5798,6 +6017,30 @@ void CvPlayer::handleDiploEvent(DiploEventTypes eDiploEvent, PlayerTypes ePlayer
 
 	case DIPLOEVENT_NO_JOIN_WAR:
 		AI_changeMemoryCount(ePlayer, MEMORY_DENIED_JOIN_WAR, 1);
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/		
+		if (m_eDemandWarAgainstTeam != NO_TEAM)
+		{
+			for (iI = 0; iI < MAX_PLAYERS; iI++)
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isAlive())
+				{
+					if (GET_PLAYER((PlayerTypes)iI).getTeam() == m_eDemandWarAgainstTeam)
+					{
+						if (GET_PLAYER((PlayerTypes)iI).AI_getMemoryCount(ePlayer, MEMORY_EVENT_GOOD_TO_US) < 3)
+						{
+							GET_PLAYER((PlayerTypes)iI).AI_changeMemoryCount(ePlayer, MEMORY_EVENT_GOOD_TO_US, 1);
+						}
+					}
+				}
+			}
+			m_eDemandWarAgainstTeam = NO_TEAM;
+		}					
+/************************************************************************************************/
+/* Advanced Diplomacy          END																*/
+/************************************************************************************************/
 		break;
 
 	case DIPLOEVENT_STOP_TRADING:
@@ -5848,7 +6091,6 @@ void CvPlayer::handleDiploEvent(DiploEventTypes eDiploEvent, PlayerTypes ePlayer
 		break;
 /************************************************************************************************/
 /* Afforess	                  Start		 08/01/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
    case DIPLOEVENT_MAKE_PEACE_WITH:
@@ -5870,8 +6112,17 @@ void CvPlayer::handleDiploEvent(DiploEventTypes eDiploEvent, PlayerTypes ePlayer
 			}
 		}
         break;
+	// RevolutionDCM start - new diplomacy option
+	case DIPLOEVENT_DO_NOT_BOTHER:
+		if (!isHuman())	setDoNotBotherStatus((PlayerTypes)iData1);
+		break;
+
+	case DIPLOEVENT_RESUME_BOTHER:
+		setDoNotBotherStatus(NO_PLAYER);
+		break;
+	// RevolutionDCM end
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 	default:
 		FAssert(false);
@@ -5884,6 +6135,11 @@ bool CvPlayer::canTradeWith(PlayerTypes eWhoTo) const
 {
 	CvTeam& kOurTeam = GET_TEAM(getTeam());
 	CvTeam& kTheirTeam = GET_TEAM(GET_PLAYER(eWhoTo).getTeam());
+
+	if (!canContact(eWhoTo))
+	{
+		return false;
+	}
 
 	if (kTheirTeam.getNumCities() == 0)
 	{
@@ -5938,6 +6194,38 @@ bool CvPlayer::canTradeWith(PlayerTypes eWhoTo) const
 		return true;
 	}
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	
+	if (GET_TEAM(getTeam()).isLimitedBordersTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isLimitedBordersTrading())
+	{
+		return true;
+	}
+
+	if (GET_TEAM(getTeam()).isEmbassyTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isEmbassyTrading())
+	{
+		return true;
+	}
+	
+	if (GET_TEAM(getTeam()).isFreeTradeAgreementTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isFreeTradeAgreementTrading())
+	{
+		return true;
+	}
+
+	if (GET_TEAM(getTeam()).isNonAggressionTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isNonAggressionTrading())
+	{
+		return true;
+	}
+	
+	if (GET_TEAM(getTeam()).isPOWTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isPOWTrading())
+	{
+		return true;
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 // MNAI - Puppet States
 	if (GET_TEAM(getTeam()).isPuppetStateTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isPuppetStateTrading())
 	{
@@ -5960,17 +6248,27 @@ bool CvPlayer::canReceiveTradeCity() const
 
 bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial) const
 {
+	// Bugfix: Cannot trade items with enemies while in crusade.
+	if(isNoDiplomacyWithEnemies() && GET_TEAM(getTeam()).isAtWar(GET_PLAYER(eWhoTo).getTeam()))
+	{
+		return false;
+	}
+
 	CvCity *pOurCapitalCity;
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
     CvCity* pTheirCapitalCity;
     CvCity* pTradingCity;
     CvUnit* pUnitTraded;
+	//int iI;
+
+	//	KOSHLING - do denial check at the end because it's expensive and 95% of the time we detrmien the trade is
+	//	not possible before having to make the denail check that way
+	bool bResult = false;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 
 	if (bTestDenial)
@@ -6023,8 +6321,15 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 
 								if (GET_PLAYER(eWhoTo).canResearch(((TechTypes)item.m_iData), true))
 								{
-									return true;
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+									bResult = true;
 								}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 							}
 						}
 					}
@@ -6071,10 +6376,16 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 
 			if (NULL != pCityTraded && pCityTraded->getLiberationPlayer(false) == eWhoTo)
 			{
-				return true;
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+				bResult = true;
 			}
-
-			if (GET_PLAYER(eWhoTo).canReceiveTradeCity())
+			else if (GET_PLAYER(eWhoTo).canReceiveTradeCity())
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 			{
 				if (0 == GC.getGameINLINE().getMaxCityElimination())
 				{
@@ -6100,9 +6411,36 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 		break;
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
+    case TRADE_WORKER:
+        {
+            pUnitTraded = getUnit(item.m_iData);
+            pTheirCapitalCity = GET_PLAYER(eWhoTo).getCapitalCity();
+			if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+			{
+				if (GC.getDefineINT("CAN_TRADE_WORKERS") > 0)
+				{
+					if (GET_TEAM(getTeam()).isHasEmbassy(GET_PLAYER(eWhoTo).getTeam()))
+					{
+						if (pUnitTraded != NULL)
+						{
+							if (GC.getUnitInfo(pUnitTraded->getUnitType()).isWorkerTrade() && pUnitTraded->canMove()/* && (pTradingCity != NULL) */&& (pTheirCapitalCity != NULL))
+							{
+								if (!GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isUnitClassMaxedOut(pUnitTraded->getUnitClassType(), GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).getUnitClassMaking(pUnitTraded->getUnitClassType())))
+								{
+									if (!GET_PLAYER(eWhoTo).isUnitClassMaxedOut(pUnitTraded->getUnitClassType(), GET_PLAYER(eWhoTo).getUnitClassMaking(pUnitTraded->getUnitClassType())))
+									{
+										return true;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+        break;
 
     case TRADE_MILITARY_UNIT:
         {
@@ -6116,10 +6454,11 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 					if (pUnitTraded != NULL)
 					{
 						UnitTypes eUnit = (UnitTypes)GC.getCivilizationInfo(GET_PLAYER(eWhoTo).getCivilizationType()).getCivilizationUnits(pUnitTraded->getUnitClassType());
+						if ( NO_UNIT != eUnit )
 				//		if (GET_PLAYER(eWhoTo).canTrain(eUnit))
-				//		{
+						{
 							pTradingCity = pUnitTraded->plot()->getPlotCity();
-							if (pUnitTraded->canMove() && pUnitTraded->canTradeUnit(eWhoTo) && (pTradingCity != NULL) && (pTheirCapitalCity != NULL))
+							if (GC.getUnitInfo(pUnitTraded->getUnitType()).isMilitaryTrade() && pUnitTraded->canMove() && (pTradingCity != NULL) && (pTheirCapitalCity != NULL))
 							{
 								if (pTradingCity->getOwnerINLINE() == getID())
 								{
@@ -6138,14 +6477,14 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 									}
 								}
 							}
-						//}
+						}
 					}
 				}
 			}
 		}
         break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 	case TRADE_GOLD:
 		if (GET_TEAM(getTeam()).isGoldTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isGoldTrading())
@@ -6187,22 +6526,21 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 				{
 					if ((kMasterTeam.isAtWar(getTeam()) || item.m_iData == 1) && item.m_eItemType == TRADE_SURRENDER)
 					{
-						return true;
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+						bResult = true;
 					}
-
-					if (!kMasterTeam.isAtWar(getTeam()) && item.m_eItemType == TRADE_VASSAL)
+					else if (!kMasterTeam.isAtWar(getTeam()) && item.m_eItemType == TRADE_VASSAL)
 					{
-						return true;
+						bResult = true;
 					}
 				}
 			}
 		}
 		break;
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
+
     case TRADE_EMBASSY:
 		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
 		{
@@ -6230,8 +6568,52 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 		}
 		break;
 
+    case TRADE_CONTACT:
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			if (!GET_TEAM((TeamTypes)item.m_iData).isMinorCiv())
+			{
+				if (!GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isHasMet((TeamTypes)(item.m_iData)) && GET_TEAM(getTeam()).isHasMet((TeamTypes)(item.m_iData)))
+				{
+					return true;
+				}
+			}
+		}
+        break;
+
+	case TRADE_WAR_REPARATIONS:
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS) && GC.getDefineINT("CAN_TRADE_WAR_REPARATIONS") > 0)
+		{
+			if (!GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isAtWar(getTeam()))
+			{
+				if (GET_PLAYER(eWhoTo).canTradeWarReparations((PlayerTypes)getID()))
+				{
+					bResult = true;
+				}
+			}
+		}
+        break;
+
+    case TRADE_CORPORATION:
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			if (hasHeadquarters((CorporationTypes)(item.m_iData)))
+			{
+				if (GET_PLAYER(eWhoTo).getBestHQCity((CorporationTypes)(item.m_iData)) != NULL)
+				{
+					if (GET_PLAYER(eWhoTo).isActiveCorporation((CorporationTypes)(item.m_iData)))
+					{
+						return true;
+					}
+				}
+			}
+		}
+		break;
+
+	case TRADE_SECRETARY_GENERAL_VOTE:
+		break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 	case TRADE_PEACE:
 		if (!(GET_TEAM(getTeam()).isHuman()))
@@ -6258,8 +6640,14 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 				{
 					if (GET_TEAM(getTeam()).isHasMet((TeamTypes)(item.m_iData)) && GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isHasMet((TeamTypes)(item.m_iData)))
 					{
-						if (GET_TEAM(getTeam()).canDeclareWar((TeamTypes)(item.m_iData)))
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+						if (GET_TEAM(getTeam()).canDeclareWarWithoutSenate((TeamTypes)(item.m_iData)))
 						{
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 							return true;
 						}
 					}
@@ -6267,7 +6655,33 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 			}
 		}
 		break;
-
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+	case TRADE_WAR_PREPARE: // byFra
+		if (!(GET_TEAM(getTeam()).isHuman()))
+		{
+			if (!(GET_TEAM(getTeam()).isAVassal()))
+			{
+				if (!GET_TEAM((TeamTypes)item.m_iData).isAVassal())
+				{
+					if (GET_TEAM(getTeam()).isHasMet((TeamTypes)(item.m_iData)) && GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isHasMet((TeamTypes)(item.m_iData)))
+					{
+						if (GET_TEAM(getTeam()).canDeclareWar((TeamTypes)(item.m_iData)))
+						{
+							if (!GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isHasPrepareWar((TeamTypes)(item.m_iData)))
+							{
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 	case TRADE_EMBARGO:
 		if (!(GET_TEAM(getTeam()).isHuman()))
 		{
@@ -6343,7 +6757,6 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 					{
 /************************************************************************************************/
 /* Afforess	                  Start		 06/16/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 						if (GET_TEAM(getTeam()).canSignOpenBorders(GET_PLAYER(eWhoTo).getTeam()))
@@ -6372,6 +6785,26 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 					{
 						if (GET_TEAM(getTeam()).isLimitedBordersTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isLimitedBordersTrading())
 						{
+							return true;
+						}
+					}
+				}
+			}
+		}
+		break;
+
+	case TRADE_FREE_TRADE_ZONE:
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			if (getTeam() != GET_PLAYER(eWhoTo).getTeam())
+			{
+				if (!atWar(getTeam(), GET_PLAYER(eWhoTo).getTeam()))
+				{
+					if (GET_TEAM(getTeam()).canSignFreeTradeAgreement(GET_PLAYER(eWhoTo).getTeam()))
+					{
+						if (GET_TEAM(getTeam()).isFreeTradeAgreementTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isFreeTradeAgreementTrading())
+						{
+							if (!GET_TEAM(getTeam()).isFreeTradeAgreement(GET_PLAYER(eWhoTo).getTeam()))
 							{
 								return true;
 							}
@@ -6382,7 +6815,7 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 		}
 		break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */	
 /************************************************************************************************/
 
 	case TRADE_DEFENSIVE_PACT:
@@ -6428,15 +6861,92 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 			}
 		}
 		break;
-
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
 	case TRADE_PEACE_TREATY:
-		return true;
+		bResult = true;
+		break;
+
+	case TRADE_NON_AGGRESSION:
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			for (int iI = 0; iI < MAX_PLAYERS; iI++)
+			{
+				if (getTeam() != GET_PLAYER(eWhoTo).getTeam())
+				{
+					if (GET_TEAM(getTeam()).isHasEmbassy(GET_PLAYER(eWhoTo).getTeam()))
+					{
+						if (!atWar(getTeam(), GET_PLAYER(eWhoTo).getTeam()))
+						{	
+							if (!(GET_TEAM(getTeam()).isHasNonAggression(GET_PLAYER(eWhoTo).getTeam())))
+							{
+								if (GET_TEAM(getTeam()).canSignNonAggression(GET_PLAYER(eWhoTo).getTeam()))
+								{
+									if (GET_TEAM(getTeam()).isNonAggressionTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isNonAggressionTrading())
+									{
+										if (getCapitalCity() != NULL && GET_PLAYER(eWhoTo).getCapitalCity() != NULL)
+										{
+											return true;								
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		break;
+	
+	case TRADE_POW:
+		for (int iI = 0; iI < MAX_PLAYERS; iI++)
+		{
+			if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+			{
+				if (getTeam() != GET_PLAYER(eWhoTo).getTeam())
+				{
+					if (!atWar(getTeam(), GET_PLAYER(eWhoTo).getTeam()))
+					{	
+						if (!(GET_TEAM(getTeam()).isHasPOW(GET_PLAYER(eWhoTo).getTeam())))
+						{
+							if (GET_TEAM(getTeam()).canSignPOW(GET_PLAYER(eWhoTo).getTeam()))
+							{							
+								if (GET_TEAM(getTeam()).isPOWTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isPOWTrading())
+								{
+									if (GET_TEAM(getTeam()).AI_getMemoryCount(GET_PLAYER(eWhoTo).getTeam(), MEMORY_DECLARED_WAR) > 0 || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).AI_getMemoryCount(getTeam(), MEMORY_DECLARED_WAR) > 0)
+									{
+										if (!(GET_TEAM(getTeam()).AI_getMemoryCount(GET_PLAYER(eWhoTo).getTeam(), MEMORY_TRADED_POW) > 0))
+										{	
+											if (!(GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).AI_getMemoryCount(getTeam(), MEMORY_TRADED_POW) > 0))
+											{
+												if (getCapitalCity() != NULL && GET_PLAYER(eWhoTo).getCapitalCity() != NULL)
+												{
+													return true;								
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 		break;
 	}
+	if (bTestDenial && bResult)
+	{
+		bResult &= (getTradeDenial(eWhoTo, item) == NO_DENIAL);
+	}
 
-	return false;
+	return bResult;
 }
-
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 DenialTypes CvPlayer::getTradeDenial(PlayerTypes eWhoTo, TradeData item) const
 {
@@ -6485,6 +6995,16 @@ DenialTypes CvPlayer::getTradeDenial(PlayerTypes eWhoTo, TradeData item) const
 	case TRADE_WAR:
 		return kOurTeam.AI_declareWarTrade(((TeamTypes)(item.m_iData)), GET_PLAYER(eWhoTo).getTeam());
 		break;
+		
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+	case TRADE_WAR_PREPARE:
+		return GET_TEAM(getTeam()).AI_declareWarTrade(((TeamTypes)(item.m_iData)), GET_PLAYER(eWhoTo).getTeam());
+		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 
 	case TRADE_EMBARGO:
 		return AI_stopTradingTrade(((TeamTypes)(item.m_iData)), eWhoTo);
@@ -6512,14 +7032,36 @@ DenialTypes CvPlayer::getTradeDenial(PlayerTypes eWhoTo, TradeData item) const
 
 	case TRADE_PEACE_TREATY:
 		break;
-/************************************************************************************************/
-/* Afforess	                  Start		 06/16/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
+		
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+	case TRADE_NON_AGGRESSION:
+		return GET_TEAM(getTeam()).AI_NonAggressionTrade(GET_PLAYER(eWhoTo).getTeam());
+		break;
+
+	case TRADE_POW:
+		return GET_TEAM(getTeam()).AI_POWTrade(GET_PLAYER(eWhoTo).getTeam());
+		break;
+
 	case TRADE_RIGHT_OF_PASSAGE:
 		return GET_TEAM(getTeam()).AI_LimitedBordersTrade(GET_PLAYER(eWhoTo).getTeam());
 		break;
+
+	case TRADE_FREE_TRADE_ZONE:
+		return GET_TEAM(getTeam()).AI_FreeTradeAgreement(GET_PLAYER(eWhoTo).getTeam());
+		break;
+
+	case TRADE_WORKER:
+		{
+			CvUnit* pUnit = getUnit(item.m_iData);
+			if (pUnit != NULL)
+			{
+				return AI_workerTrade(pUnit, eWhoTo);
+			}
+		}
+		break;
+
 	case TRADE_MILITARY_UNIT:
 		{
 			CvUnit* pUnit = getUnit(item.m_iData);
@@ -6529,13 +7071,27 @@ DenialTypes CvPlayer::getTradeDenial(PlayerTypes eWhoTo, TradeData item) const
 			}
 		}
 		break;
+
 	case TRADE_EMBASSY:
 		return GET_TEAM(getTeam()).AI_embassyTrade(GET_PLAYER(eWhoTo).getTeam());
 		break;
-/************************************************************************************************/
-/* Afforess		                 END                                                            */
-/************************************************************************************************/
 
+	case TRADE_CONTACT:
+		return GET_TEAM(getTeam()).AI_contactTrade(((TeamTypes)item.m_iData), GET_PLAYER(eWhoTo).getTeam());
+		break;
+	case TRADE_WAR_REPARATIONS:
+		return AI_tradeWarReparations((PlayerTypes)eWhoTo);
+		break;
+	case TRADE_CORPORATION:
+		return AI_corporationTrade(((CorporationTypes)(item.m_iData)), eWhoTo);
+		break;
+
+	case TRADE_SECRETARY_GENERAL_VOTE:
+		return AI_secretaryGeneralTrade(((VoteSourceTypes)(item.m_iData)), eWhoTo);
+		break;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	}
 
 	return NO_DENIAL;
@@ -9710,6 +10266,23 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
 {
 	PROFILE_FUNC();
 
+
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	/*
+	if (GC.getGameINLINE().isNetworkMultiPlayer())
+	{
+		if (GC.getGameINLINE().isCondemnCivic(eCivic))
+		{
+			return false;
+		}
+	}
+	*/
+/************************************************************************************************/
+/* Advanced Diplomacy         END																*/
+/************************************************************************************************/
+
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                       02/16/10                                jdog5000      */
 /*                                                                                              */
@@ -12356,6 +12929,35 @@ void CvPlayer::changeNoNonStateReligionSpreadCount(int iChange)
 	FAssert(getNoNonStateReligionSpreadCount() >= 0);
 }
 
+/************************************************************************************************/
+/* Advanced Diplomacy          START                                                          */
+/************************************************************************************************/
+int CvPlayer::getActiveSenateCount() const
+{
+	return m_iActiveSenateCount;
+}
+
+
+bool CvPlayer::isActiveSenate() const
+{
+	return (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS) && getActiveSenateCount() > 0);
+}
+
+
+void CvPlayer::changeActiveSenateCount(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iActiveSenateCount += iChange;
+		FAssert(getActiveSenateCount() >= 0);
+
+		GET_TEAM(getTeam()).changeActiveSenateCount(GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS) ? iChange : 0);
+	}
+}
+/************************************************************************************************/
+/* Advanced Diplomacy          END                                                            */
+/************************************************************************************************/
+
 
 int CvPlayer::getStateReligionHappiness() const
 {
@@ -12480,6 +13082,36 @@ void CvPlayer::setCapitalCity(CvCity* pNewCapitalCity)
 		{
 			m_iCapitalCityID = FFreeList::INVALID_INDEX;
 		}
+		
+/************************************************************************************************/
+/* Advanced Diplomacy         Start                                                             */
+/************************************************************************************************/		
+		//ls612: Embassy Visibility Fix (by Damgo)
+		if (pOldCapitalCity != NULL)
+		{
+			for (int iI = 0; iI < MAX_TEAMS; iI++)
+			{
+				if (GET_TEAM(getTeam()).isHasEmbassy((TeamTypes)iI))
+				{
+					pOldCapitalCity->plot()->changeAdjacentSight((TeamTypes)iI, GC.getDefineINT("PLOT_VISIBILITY_RANGE"), false, NULL, bUpdatePlotGroups);
+				}
+			}
+		}
+		
+		if (pNewCapitalCity != NULL)
+		{
+			for (int iI = 0; iI < MAX_TEAMS; iI++)
+			{
+				if (GET_TEAM(getTeam()).isHasEmbassy((TeamTypes)iI))
+				{
+					pNewCapitalCity->plot()->changeAdjacentSight((TeamTypes)iI, GC.getDefineINT("PLOT_VISIBILITY_RANGE"), true, NULL, bUpdatePlotGroups);
+				}
+			}
+		}
+		//ls612: End Embassy Visibility Fix (by Damgo)
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 		if (bUpdatePlotGroups)
 		{
@@ -12550,10 +13182,36 @@ void CvPlayer::changeAssets(int iChange)
 }
 
 
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
 int CvPlayer::getPower() const
 {
-	return m_iPower;
+	return m_iPower + m_iTechPower;
 }
+
+
+int CvPlayer::getTechPower() const
+{
+	return m_iTechPower;
+}
+
+
+bool CvPlayer::isSenateWarOpposition(TeamTypes eAgainstTeam) const
+{
+	return GET_TEAM(getTeam()).isSenateWarOpposition(eAgainstTeam);
+}
+
+
+void CvPlayer::changeTechPower(int iChange)
+{
+	m_iTechPower = (m_iTechPower + iChange);
+	FAssert(getTechPower() >= 0);
+}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 
 void CvPlayer::changePower(int iChange)
@@ -12718,6 +13376,19 @@ void CvPlayer::setCombatExperience(int iExperience)
 
 				if (pBestCity)
 				{
+// edead: start unit class fix for Great Generals
+					int iI;
+					for (iI = 0; iI < GC.getNumUnitInfos(); iI++)
+					{
+						if (GC.getUnitInfo((UnitTypes)iI).getLeaderExperience() > 0 || GC.getUnitInfo((UnitTypes)iI).getLeaderPromotion() != NO_PROMOTION)
+						{
+							break;
+						}
+					}
+					UnitTypes eGreatGeneralType = ((UnitTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits((UnitClassTypes)(GC.getUnitInfo((UnitTypes)iI).getUnitClassType()))));
+					pBestCity->createGreatPeople(eGreatGeneralType, false, true);
+					setCombatExperience(getCombatExperience() - iExperienceThreshold);
+					/* Leoreth: original code, replaced by edead's adjustment to achieve unique GGs
 					int iRandOffset = GC.getGameINLINE().getSorenRandNum(GC.getNumUnitInfos(), "Warlord Unit Generation");
 					for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
 					{
@@ -12728,7 +13399,7 @@ void CvPlayer::setCombatExperience(int iExperience)
 							setCombatExperience(getCombatExperience() - iExperienceThreshold);
 							break;
 						}
-					}
+					}*/
 				}
 			}
 		}
@@ -13900,6 +14571,30 @@ void CvPlayer::setTeam(TeamTypes eTeam)
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
 }
+
+
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  Glider1      */
+/*************************************************************************************************/
+// RevolutionDCM start - new diplomacy option
+void CvPlayer::setDoNotBotherStatus(PlayerTypes playerID)
+{
+	m_bDoNotBotherStatus = playerID;
+}
+
+
+bool CvPlayer::isDoNotBotherStatus(PlayerTypes playerID) const
+{
+	if (m_bDoNotBotherStatus != NO_PLAYER && m_bDoNotBotherStatus == playerID)
+	{
+		return true;
+	}
+	return false;
+}
+// RevolutionDCM end
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 
 
 PlayerColorTypes CvPlayer::getPlayerColor() const
@@ -17226,9 +17921,9 @@ int CvPlayer::getEspionageMissionCostModifier(EspionageMissionTypes eMission, Pl
 		iModifier *= kTargetTeam.getCounterespionageModAgainstTeam(getTeam());
 		iModifier /= 100;
 	}
+	
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
     if (pCity != NULL)
@@ -17238,10 +17933,17 @@ int CvPlayer::getEspionageMissionCostModifier(EspionageMissionTypes eMission, Pl
 			iModifier *= 100 - GC.getDefineINT("EMBASSY_ESPIONAGE_MISSION_COST_MODIFIER");
 			iModifier /= 100;
 		}
+		
+		if (GET_TEAM(getTeam()).isFreeTradeAgreement(GET_PLAYER(eTargetPlayer).getTeam()))
+		{
+			iModifier *= 100 - GC.getDefineINT("FREE_TRADE_AGREEMENT_ESPIONAGE_MISSION_COST_MODIFIER");
+			iModifier /= 100;
+		}
 	}
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
+
 	return iModifier;
 }
 
@@ -18934,7 +19636,10 @@ int CvPlayer::getAdvancedStartImprovementCost(ImprovementTypes eImprovement, boo
 		if (bAdd)
 		{
 			// Valid Plot
-			if (!pPlot->canHaveImprovement(eImprovement, getTeam(), false))
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+//			if (!pPlot->canHaveImprovement(eImprovement, getTeam(), false))
+			if (!pPlot->canHaveImprovement(eImprovement, getID(), false))
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				return -1;
 			}
@@ -19406,6 +20111,14 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 	changeStateReligionBuildingProductionModifier(kCivic.getStateReligionBuildingProductionModifier() * iChange);
 	changeStateReligionFreeExperience(kCivic.getStateReligionFreeExperience() * iChange);
 	changeExpInBorderModifier(kCivic.getExpInBorderModifier() * iChange);
+
+/*************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/*************************************************************************************************/
+	changeActiveSenateCount((GC.getCivicInfo(eCivic).isActiveSenate()) ? iChange : 0);
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/**
 	
 /************************************************************************************************/
 /* REVDCM                                 09/02/10                                phungus420    */
@@ -19633,6 +20346,13 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iConversionTimer);
 	pStream->Read(&m_iStateReligionCount);
 	pStream->Read(&m_iNoNonStateReligionSpreadCount);
+/*************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/*************************************************************************************************/
+	pStream->Read(&m_iActiveSenateCount);
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 	pStream->Read(&m_iStateReligionHappiness);
 	pStream->Read(&m_iNonStateReligionHappiness);
 	pStream->Read(&m_iStateReligionUnitProductionModifier);
@@ -19643,6 +20363,14 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iWinsVsBarbs);
 	pStream->Read(&m_iAssets);
 	pStream->Read(&m_iPower);
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pStream->Read(&m_iTechPower);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	pStream->Read(&m_iPopulationScore);
 	pStream->Read(&m_iLandScore);
 	pStream->Read(&m_iWondersScore);
@@ -19767,6 +20495,24 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_PLAYEROPTION_TYPES, m_abOptions);
 
 	pStream->ReadString(m_szScriptData);
+	
+/*************************************************************************************************/
+/* Advanced Diplomacy         START                                                              */
+/*************************************************************************************************/
+	{
+		m_aiSenateVeto.clear();
+		uint iSize;
+		pStream->Read(&iSize);
+		for (uint i = 0; i < iSize; i++)
+		{
+			int iValue;
+			pStream->Read(&iValue);
+			m_aiSenateVeto.push_back(iValue);
+		}
+	}
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 
 	FAssertMsg((0 < GC.getNumBonusInfos()), "GC.getNumBonusInfos() is not greater than zero but it is expected to be in CvPlayer::read");
 	pStream->Read(GC.getNumBonusInfos(), m_paiBonusExport);
@@ -19794,6 +20540,15 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read( GC.getNumEventTriggerInfos(), m_paiEventTriggerDelayCounters );
 /************************************************************************************************/
 /* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pStream->Read((int*)&m_eSecretaryGeneralVote);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::read");
@@ -20231,6 +20986,13 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iConversionTimer);
 	pStream->Write(m_iStateReligionCount);
 	pStream->Write(m_iNoNonStateReligionSpreadCount);
+/*************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/*************************************************************************************************/
+	pStream->Write(m_iActiveSenateCount);
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 	pStream->Write(m_iStateReligionHappiness);
 	pStream->Write(m_iNonStateReligionHappiness);
 	pStream->Write(m_iStateReligionUnitProductionModifier);
@@ -20241,6 +21003,14 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iWinsVsBarbs);
 	pStream->Write(m_iAssets);
 	pStream->Write(m_iPower);
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pStream->Write(m_iTechPower);//Aforesss
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	pStream->Write(m_iPopulationScore);
 	pStream->Write(m_iLandScore);
 	pStream->Write(m_iWondersScore);
@@ -20365,6 +21135,22 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_PLAYEROPTION_TYPES, m_abOptions);
 
 	pStream->WriteString(m_szScriptData);
+	
+/*************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/*************************************************************************************************/
+	{
+		uint iSize = m_aiSenateVeto.size();
+		pStream->Write(iSize);
+		std::vector<int>::iterator it;
+		for (it = m_aiSenateVeto.begin(); it != m_aiSenateVeto.end(); ++it)
+		{
+			pStream->Write((*it));
+		}
+	}
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 
 	FAssertMsg((0 < GC.getNumBonusInfos()), "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvPlayer::write");
 	pStream->Write(GC.getNumBonusInfos(), m_paiBonusExport);
@@ -20392,6 +21178,15 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumEventTriggerInfos(), m_paiEventTriggerDelayCounters);
 /************************************************************************************************/
 /* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* Afforess	                  Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pStream->Write(m_eSecretaryGeneralVote);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
@@ -20921,31 +21716,31 @@ void CvPlayer::setTriggerFired(const EventTriggeredData& kTriggeredData, bool bO
 				}
 			}
 		}
+		//}
+
+	//FfH: Modified by Kael 09/25/2008
+	//	if (!isEmpty(kTrigger.getPythonCallback()))
+	//	{
+	//		long lResult;
+	//		CyArgsList argsList;
+	//		argsList.add(gDLL->getPythonIFace()->makePythonObject(&kTriggeredData));
+	//		gDLL->getPythonIFace()->callFunction(PYRandomEventModule, kTrigger.getPythonCallback(), argsList.makeFunctionArgs(), &lResult);
+	//	}
+		if (isAlive())
+		{
+			if (!CvString(kTrigger.getPythonCallback()).empty())
+			{
+				long lResult;
+
+				CyArgsList argsList;
+				argsList.add(gDLL->getPythonIFace()->makePythonObject(&kTriggeredData));
+				argsList.add(getID());	// Player ID
+				gDLL->getPythonIFace()->callFunction(PYRandomEventModule, kTrigger.getPythonCallback(), argsList.makeFunctionArgs(), &lResult);
+			}
+		}
+		GC.getGameINLINE().setEventTriggered((EventTriggerTypes)kTriggeredData.m_eTrigger, true);
+	//FfH: End Modify
 	}
-
-//FfH: Modified by Kael 09/25/2008
-//	if (!isEmpty(kTrigger.getPythonCallback()))
-//	{
-//		long lResult;
-//		CyArgsList argsList;
-//		argsList.add(gDLL->getPythonIFace()->makePythonObject(&kTriggeredData));
-//		gDLL->getPythonIFace()->callFunction(PYRandomEventModule, kTrigger.getPythonCallback(), argsList.makeFunctionArgs(), &lResult);
-//	}
-    if (isAlive())
-    {
-		if (!CvString(kTrigger.getPythonCallback()).empty())
-        {
-            long lResult;
-
-            CyArgsList argsList;
-            argsList.add(gDLL->getPythonIFace()->makePythonObject(&kTriggeredData));
-            argsList.add(getID());	// Player ID
-            gDLL->getPythonIFace()->callFunction(PYRandomEventModule, kTrigger.getPythonCallback(), argsList.makeFunctionArgs(), &lResult);
-        }
-    }
-    GC.getGameINLINE().setEventTriggered((EventTriggerTypes)kTriggeredData.m_eTrigger, true);
-//FfH: End Modify
-
 	if (bAnnounce)
 	{
 		CvPlot* pPlot = GC.getMapINLINE().plot(kTriggeredData.m_iPlotX, kTriggeredData.m_iPlotY);
@@ -24201,8 +24996,20 @@ PlayerTypes CvPlayer::getPuppetPlayer() const
     return eNewPlayer;
 }
 
+/********************************************************************************/
+/* MinorPuppetLeaders	03/2015											lfgr	*/
+/********************************************************************************/
+/* old
 bool CvPlayer::canMakePuppet(PlayerTypes eFromPlayer) const
 {
+*/
+bool CvPlayer::canMakePuppet( CvCity* pVassalCapital ) const
+{
+	//PlayerTypes eFromPlayer = pVassalCapital->getOwnerINLINE();
+	PlayerTypes eFromPlayer = pVassalCapital->getPreviousOwner();
+/********************************************************************************/
+/* MinorPuppetLeaders	End												lfgr	*/
+/********************************************************************************/
 	// Puppet States are a type of Vassal
     if (GC.getGameINLINE().isOption(GAMEOPTION_NO_VASSAL_STATES))
     {
@@ -24245,12 +25052,32 @@ bool CvPlayer::canMakePuppet(PlayerTypes eFromPlayer) const
     {
         return false;
     }
-
+	
+/********************************************************************************/
+/* MinorPuppetLeaders	03/2015											lfgr	*/
+/********************************************************************************/
+/* old
     CivLeaderArray aLeaders;
     if (!getPuppetLeaders(aLeaders))
     {
         return false;
     }
+*/
+
+	CyArgsList argsList;
+	argsList.add( this->getID() );
+	argsList.add( pVassalCapital->getOriginalOwner() );
+	argsList.add( pVassalCapital->getID() );
+	long lResult = 0;
+	// Use canHavePuppetCivLeader, which does not perform random number calls.
+	gDLL->getPythonIFace()->callFunction( PYRevModule, "canHavePuppetCivLeader", argsList.makeFunctionArgs(), &lResult );
+
+	if (lResult == 0)
+		return false;
+
+/********************************************************************************/
+/* MinorPuppetLeaders	End												lfgr	*/
+/********************************************************************************/
 
     if (findPuppetPlayer(eFromPlayer) != NO_PLAYER)
     {
@@ -24287,70 +25114,7 @@ bool CvPlayer::canMakePuppet(PlayerTypes eFromPlayer) const
     return true;
 }
 
-bool CvPlayer::getPuppetLeaders(CivLeaderArray& aLeaders) const
-{
-	aLeaders.clear();
-
-	for (int i = 0; i < GC.getNumCivilizationInfos(); ++i)
-	{
-		bool bValid = true;
-
-		if (getCivilizationType() == i)
-		{
-			bValid = false;
-		}
-
-		if (bValid)
-		{
-			if (!GC.getCivilizationInfo((CivilizationTypes)i).isPlayable() || !GC.getCivilizationInfo((CivilizationTypes)i).isAIPlayable())
-			{
-				bValid = false;
-			}
-		}
-
-		if (bValid)
-		{
-			for (int j = 0; j < MAX_CIV_PLAYERS; ++j)
-			{
-				if (getID() != j && GET_PLAYER((PlayerTypes)j).isEverAlive() && GET_PLAYER((PlayerTypes)j).getCivilizationType() == i)
-				{
-					bValid = false;
-					break;
-				}
-			}
-		}
-
-		if (bValid)
-		{
-			for (int j = 0; j < GC.getNumLeaderHeadInfos(); ++j)
-			{
-				bool bLeaderValid = true;
-				if (!GC.getCivilizationInfo((CivilizationTypes)i).isLeaders(j) && !GC.getGameINLINE().isOption(GAMEOPTION_LEAD_ANY_CIV))
-				{
-					bLeaderValid = false;
-				}
-
-				if (bLeaderValid)
-				{
-					for (int k = 0; k < MAX_CIV_PLAYERS; ++k)
-					{
-						if (GET_PLAYER((PlayerTypes)k).isEverAlive() && GET_PLAYER((PlayerTypes)k).getPersonalityType() == j)
-						{
-							bLeaderValid = false;
-						}
-					}
-				}
-
-				if (bLeaderValid)
-				{
-					aLeaders.push_back(std::make_pair((CivilizationTypes)i, (LeaderHeadTypes)j));
-				}
-			}
-		}
-	}
-
-	return (aLeaders.size() > 0);
-}
+// lfgr MinorPuppetLeaders 03/2015: removed getPuppetLeaders(). Now handled in python.
 
 bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
 {
@@ -24358,7 +25122,7 @@ bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
 
     int iI;
 
-    if (!canMakePuppet(eSplitPlayer))
+    if ( !canMakePuppet( pVassalCapital ) )
     {
         return false;
     }
@@ -24381,36 +25145,6 @@ bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
         LeaderHeadTypes eBestLeader = NO_LEADER;
         CivilizationTypes eBestCiv = NO_CIVILIZATION;
 
-/********************************************************************************/
-/* MinorPuppetLeaders	02/27/12										lfgr	*/
-/********************************************************************************/
-		/* OLD
-		eBestCiv = GET_PLAYER(pVassalCapital->getOriginalOwner()).getCivilizationType();
-
-
-        for (int iLeader = 0; iLeader < GC.getNumLeaderHeadInfos(); iLeader++)
-        {
-            if (GC.getCivilizationInfo(eBestCiv).isLeaders(iLeader))
-            {
-                iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Leader");
-                for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
-                {
-                    if (GC.getInitCore().getLeader((PlayerTypes)iI) == iLeader)
-                    {
-                        iValue -= 2000;
-                    }
-				}
-				if (iValue > iBestValue)
-                {
-                    iBestLeader = iLeader;
-                    iBestValue = iValue;
-                }
-			}
-		}
-		
-		eBestLeader = (LeaderHeadTypes)iBestLeader;
-		*/
-
 		CyArgsList argsList;
 		argsList.add( this->getID() );
 		argsList.add( pVassalCapital->getOriginalOwner() );
@@ -24420,34 +25154,6 @@ bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
 
 		eBestLeader = (LeaderHeadTypes) (lResult % GC.getNumLeaderHeadInfos());
 		eBestCiv = (CivilizationTypes) (lResult / GC.getNumLeaderHeadInfos());
-		
-/********************************************************************************/
-/* MinorPuppetLeaders	End												lfgr	*/
-/********************************************************************************/
-
-		/*
-        CivLeaderArray aLeaders;
-        if (getPuppetLeaders(aLeaders))
-        {
-            CivLeaderArray::iterator it;
-            for (it = aLeaders.begin(); it != aLeaders.end(); ++it)
-            {
-                int iValue = (1 + GC.getGameINLINE().getSorenRandNum(100, "Choosing Split Personality"));
-
-                if (GC.getCivilizationInfo(GET_PLAYER(eSplitPlayer).getCivilizationType()).getDerivativeCiv() == it->first)
-                {
-                    iValue += 1000;
-                }
-
-                if (iValue > iBestValue)
-                {
-					iBestValue = iValue;
-					eBestLeader = it->second;
-					eBestCiv = it->first;
-				}
-			}
-		}
-		*/
 
 		if (eBestLeader == NO_LEADER || eBestCiv == NO_CIVILIZATION)
 		{
@@ -24544,7 +25250,7 @@ bool CvPlayer::makePuppet(PlayerTypes eSplitPlayer, CvCity* pVassalCapital)
             	pCity->setOccupationTimer(0);
 		        pCity->setCultureTimes100(eNewPlayer, iCulture, true, true);
 
-	            for (int i = 0; i < (GC.getDefineINT("COLONY_NUM_FREE_DEFENDERS") * 2); ++i)
+	            for (int i = 0; i < (GC.getDefineINT("COLONY_NUM_FREE_DEFENDERS") * 4); ++i)
 	            {
 	                pCity->initConscriptedUnit();
 	            }
@@ -25267,6 +25973,31 @@ int CvPlayer::getVotes(VoteTypes eVote, VoteSourceTypes eVoteSource) const
 
 	return iVotes;
 }
+
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+/*
+bool CvPlayer::isCivicCondemned() const
+{
+	//if (GC.getGameINLINE().isCondemnCivicCountArrayValid()) 
+	{
+		int numCivicOptionInfos = GC.getNumCivicOptionInfos();
+		for (int iI = 0; iI < numCivicOptionInfos; iI++)
+		{   
+			if (GC.getGameINLINE().isCondemnCivic(getCivics((CivicOptionTypes)iI)))
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+*/
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
 
 bool CvPlayer::canDoResolution(VoteSourceTypes eVoteSource, const VoteSelectionSubData& kData) const
 {
@@ -26003,25 +26734,51 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
 	}
 /************************************************************************************************/
 /* Afforess	                  Start		 06/16/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
-     //Embassy
-    setTradeItem(&item, TRADE_EMBASSY, 0);
+  	//Right of Passage
+	setTradeItem(&item, TRADE_RIGHT_OF_PASSAGE);
+	if (canTradeItem(eOtherPlayer, item))
+	{
+		ourList.insertAtEnd(item);
+	}  
+	
+	//Embassy
+    setTradeItem(&item, TRADE_EMBASSY);
     if (canTradeItem(eOtherPlayer, item))
     {
         ourList.insertAtEnd(item);
     }
 	
-	//Right of Passage
-	setTradeItem(&item, TRADE_RIGHT_OF_PASSAGE);
+	//Free Trade
+	setTradeItem(&item, TRADE_FREE_TRADE_ZONE);
+    if (canTradeItem(eOtherPlayer, item))
+    {
+        ourList.insertAtEnd(item);
+    }
+
+	// NonAggression
+	setTradeItem(&item, TRADE_NON_AGGRESSION);
 	if (canTradeItem(eOtherPlayer, item))
 	{
 		ourList.insertAtEnd(item);
 	}
 
+	// POW
+	setTradeItem(&item, TRADE_POW);
+	if (canTradeItem(eOtherPlayer, item))
+	{
+		ourList.insertAtEnd(item);
+	}
+	
+	//War Reparations
+	setTradeItem(&item, TRADE_WAR_REPARATIONS);
+	if (canTradeItem(eOtherPlayer, item))
+	{
+		ourList.insertAtEnd(item);
+	}
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 
 	//	Open Borders
@@ -26145,7 +26902,33 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
 				}
 			}
 			break;
-
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+		case TRADE_WAR_PREPARE:
+			if (!isHuman())
+			{
+				for (int j = 0; j < MAX_CIV_TEAMS; j++)
+				{
+					if (GET_TEAM((TeamTypes)j).isAlive())
+					{
+						if (j != getTeam() && j != GET_PLAYER(eOtherPlayer).getTeam())
+						{
+							//setTradeItem(&item, TRADE_WAR, j); //byFra
+							setTradeItem(&item, (TradeableItems)i, j);   //byFra
+							if (canTradeItem(eOtherPlayer, item))
+							{
+								ourList.insertAtEnd(item);
+								bFoundItemUs = true;
+							}
+						}
+					}
+				}
+			}
+			break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 		case TRADE_EMBARGO:
 			if (!isHuman())
 			{
@@ -26192,9 +26975,43 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
 			break;
 /************************************************************************************************/
 /* Afforess	                  Start		 06/16/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
+        case TRADE_CORPORATION:
+            for (int j = 0; j < GC.getNumCorporationInfos(); j++)
+            {
+                setTradeItem(&item, TRADE_CORPORATION, j);
+                if (canTradeItem(eOtherPlayer, item))
+                {
+                    bFoundItemUs = true;
+                    ourList.insertAtEnd(item);
+                }
+            }
+            break;
+		case TRADE_SECRETARY_GENERAL_VOTE:
+			for (int j = 0; j < GC.getNumVoteSourceInfos(); j++)
+			{
+				setTradeItem(&item, TRADE_SECRETARY_GENERAL_VOTE, j);
+				if (canTradeItem(eOtherPlayer, item))
+				{
+					bFoundItemUs = true;
+					ourList.insertAtEnd(item);
+				}
+			}
+			break;
+			
+		case TRADE_WORKER:
+            for (CvUnit* pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
+            {
+                setTradeItem(&item, TRADE_WORKER, pLoopUnit->getID());
+                if (canTradeItem(eOtherPlayer, item))
+                {
+                    bFoundItemUs = true;
+                    ourList.insertAtEnd(item);
+                }
+            }
+            break;
+
         case TRADE_MILITARY_UNIT:
             for (CvUnit* pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
             {
@@ -26206,10 +27023,26 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
                 }
             }
             break;
+        case TRADE_CONTACT:
+            for (int j = 0; j < MAX_CIV_TEAMS; j++)
+            {
+                if (GET_TEAM((TeamTypes)j).isAlive())
+                {
+                    if (j != getTeam() && j != GET_PLAYER(eOtherPlayer).getTeam())
+                    {
+                        setTradeItem(&item, TRADE_CONTACT, j);
+                        if (canTradeItem(eOtherPlayer, item))
+                        {
+                            ourList.insertAtEnd(item);
+                            bFoundItemUs = true;
+                        }
+                    }
+                }
+            }
+            break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
-
 		}
 	}
 }
@@ -26231,17 +27064,26 @@ bool CvPlayer::getHeadingTradeString(PlayerTypes eOtherPlayer, TradeableItems eI
 	case TRADE_CITIES:
 		szString = gDLL->getText("TXT_KEY_TRADE_CITIES");
 		break;
+
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
+    case TRADE_WORKER:
+        szString = gDLL->getText("TXT_KEY_TRADE_WORKERS");
+        break;
+
     case TRADE_MILITARY_UNIT:
         szString = gDLL->getText("TXT_KEY_TRADE_MILITARY_UNIT");
         break;
+		
+    case TRADE_CONTACT:
+        szString = gDLL->getText("TXT_KEY_TRADE_MAKE_CONTACT_WITH");
+        break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */	
 /************************************************************************************************/
+
 	case TRADE_PEACE:
 		szString = gDLL->getText("TXT_KEY_TRADE_MAKE_PEACE_WITH");
 		break;
@@ -26249,6 +27091,17 @@ bool CvPlayer::getHeadingTradeString(PlayerTypes eOtherPlayer, TradeableItems eI
 	case TRADE_WAR:
 		szString = gDLL->getText("TXT_KEY_TRADE_DECLARE_WAR_ON");
 		break;
+
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+	// byFra
+	case TRADE_WAR_PREPARE:
+		szString = gDLL->getText("TXT_KEY_TRADE_PREPARE_WAR_ON");
+		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 
 	case TRADE_EMBARGO:
 		szString = gDLL->getText("TXT_KEY_TRADE_STOP_TRADING_WITH");
@@ -26261,16 +27114,20 @@ bool CvPlayer::getHeadingTradeString(PlayerTypes eOtherPlayer, TradeableItems eI
 	case TRADE_RELIGION:
 		szString = gDLL->getText("TXT_KEY_TRADE_CONVERT");
 		break;
+
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
-	case TRADE_EMBASSY:
-		szString = gDLL->getText("TXT_KEY_TRADE_EMBASSY_STRING");
+    case TRADE_CORPORATION:
+        szString = gDLL->getText("TXT_KEY_TRADE_BUY_CORPORATION");
+        break;
+		
+	case TRADE_SECRETARY_GENERAL_VOTE:
+		szString = gDLL->getText("TXT_KEY_TRADE_SECRETARY_GENERAL_VOTE");
 		break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */	
 /************************************************************************************************/
 	default:
 		szString.clear();
@@ -26323,6 +27180,18 @@ bool CvPlayer::getItemTradeString(PlayerTypes eOtherPlayer, bool bOffer, bool bS
 	case TRADE_DEFENSIVE_PACT:
 		szString = gDLL->getText("TXT_KEY_TRADE_DEFENSIVE_PACT_STRING");
 		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+	case TRADE_NON_AGGRESSION:
+		szString = gDLL->getText("TXT_KEY_TRADE_NON_AGGRESSION_STRING");
+		break;
+	case TRADE_POW:
+		szString = gDLL->getText("TXT_KEY_TRADE_POW_STRING");
+		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END	                                                  			 */
+/*************************************************************************************************/
 	case TRADE_PERMANENT_ALLIANCE:
 		szString = gDLL->getText("TXT_KEY_TRADE_PERMANENT_ALLIANCE_STRING");
 		break;
@@ -26396,6 +27265,26 @@ bool CvPlayer::getItemTradeString(PlayerTypes eOtherPlayer, bool bOffer, bool bS
 			szString = GET_TEAM((TeamTypes)zTradeData.m_iData).getName();
 		}
 		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+	// byFra
+	case TRADE_WAR_PREPARE:
+		if (bOffer)
+		{
+			szString = gDLL->getText("TXT_KEY_TRADE_PREPARE_WAR_WITH");
+			szString += gDLL->getText(" ");
+			szString += GET_TEAM((TeamTypes)zTradeData.m_iData).getName();
+		}
+		else
+		{
+			szString = gDLL->getText(" ");
+			szString = GET_TEAM((TeamTypes)zTradeData.m_iData).getName();
+		}
+		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 	case TRADE_EMBARGO:
 		if (bOffer)
 		{
@@ -26432,10 +27321,27 @@ bool CvPlayer::getItemTradeString(PlayerTypes eOtherPlayer, bool bOffer, bool bS
 		szIcon = GC.getReligionInfo((ReligionTypes)zTradeData.m_iData).getButton();
 		break;
 /************************************************************************************************/
-/* Afforess	                  Start		 06/16/10                                               */
-/*                                                                                              */
+/* Afforess	                  Start		 		                                                */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
+    case TRADE_WORKER:
+        {
+            CvUnit* pUnit = NULL;
+            if (bOffer)
+            {
+                pUnit = GET_PLAYER(eOtherPlayer).getUnit(zTradeData.m_iData);
+            }
+            else
+            {
+                pUnit = getUnit(zTradeData.m_iData);
+            }
+            if (pUnit != NULL)
+            {
+                szString.Format(L"%s", pUnit->getName().GetCString());
+				szIcon = GC.getUnitInfo((UnitTypes)pUnit->getUnitType()).getButton();
+            }
+        }
+        break;
     case TRADE_MILITARY_UNIT:
         {
             CvUnit* pUnit = NULL;
@@ -26457,16 +27363,58 @@ bool CvPlayer::getItemTradeString(PlayerTypes eOtherPlayer, bool bOffer, bool bS
             }
         }
         break;
+    case TRADE_CONTACT:
+        if (bOffer)
+        {
+            szString = gDLL->getText("TXT_KEY_TRADE_CONTACT_WITH");
+			szString += gDLL->getText(" ");
+            szString += GET_TEAM((TeamTypes)zTradeData.m_iData).getName();
+        }
+        else
+        {
+			szString = gDLL->getText(" ");
+            szString += GET_TEAM((TeamTypes)zTradeData.m_iData).getName();
+        }
+        break;
+	case TRADE_CORPORATION:
+        if (bOffer)
+        {
+            szString = gDLL->getText("TXT_KEY_TRADE_BUY");
+			szString += gDLL->getText(" ");
+            szString += GC.getCorporationInfo((CorporationTypes)zTradeData.m_iData).getDescription();
+        }
+        else
+        {
+			szString = gDLL->getText(" ");
+            szString += GC.getCorporationInfo((CorporationTypes)zTradeData.m_iData).getDescription();
+        }
+        szIcon = GC.getCorporationInfo((CorporationTypes)zTradeData.m_iData).getButton();
+        break;
+	case TRADE_SECRETARY_GENERAL_VOTE:
+		if (bOffer)
+		{
+			szString = gDLL->getText("TXT_KEY_TRADE_SEC_GEN_VOTE", GET_PLAYER(eOtherPlayer).getNameKey(), GC.getVoteSourceInfo((VoteSourceTypes)zTradeData.m_iData).getDescription());
+		}
+		else
+		{
+			szString = GC.getVoteSourceInfo((VoteSourceTypes)zTradeData.m_iData).getDescription();
+		}
+		break;
 	case TRADE_RIGHT_OF_PASSAGE:
 		szString = gDLL->getText("TXT_KEY_TRADE_LIMITED_BORDERS_STRING");
+		break;
+	case TRADE_FREE_TRADE_ZONE:
+		szString = gDLL->getText("TXT_KEY_MISC_FREE_TRADE_ZONE");
 		break;
 	case TRADE_EMBASSY:
         szString = gDLL->getText("TXT_KEY_TRADE_EMBASSY_STRING");
         break;
+	case TRADE_WAR_REPARATIONS:
+		szString = gDLL->getText("TXT_KEY_TRADE_WAR_REPARATIONS_STRING");
+		break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
-
 	default:
 		szString.clear();
 		return false;
@@ -26485,6 +27433,14 @@ void CvPlayer::updateTradeList(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
 		if (!::atWar(getTeam(), GET_PLAYER(eOtherPlayer).getTeam()))
 		{
 			if (pNode->m_data.m_eItemType == TRADE_PEACE_TREATY || pNode->m_data.m_eItemType == TRADE_SURRENDER)
+			{
+				pNode->m_data.m_bHidden = true;
+			}
+		}
+		// Afforess: Don't show war reparations when at war
+		else
+		{
+			if (pNode->m_data.m_eItemType == TRADE_WAR_REPARATIONS)
 			{
 				pNode->m_data.m_bHidden = true;
 			}
@@ -26541,8 +27497,12 @@ void CvPlayer::updateTradeList(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
 			break;
 		}
 	}
-
-	if (!isHuman() || !GET_PLAYER(eOtherPlayer).isHuman())  // everything allowed in human-human trades
+	/************************************************************************************************/
+	/* Afforess	                  Start		5/29/11                                                 */
+	/*                                                                                              */
+	/* Allow city trades for other items                                                            */
+	/************************************************************************************************/
+	/*if (!isHuman() || !GET_PLAYER(eOtherPlayer).isHuman())  // everything allowed in human-human trades
 	{
 		CLLNode<TradeData>* pFirstOffer = ourOffer.head();
 		if (pFirstOffer == NULL)
@@ -26567,7 +27527,10 @@ void CvPlayer::updateTradeList(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
 				}
 			}
 		}
-	}
+	}*/
+	/************************************************************************************************/
+	/* Afforess	                     END                                                            */
+	/************************************************************************************************/
 }
 
 int CvPlayer::getIntroMusicScriptId(PlayerTypes eForPlayer) const
@@ -27004,15 +27967,21 @@ void CvPlayer::getCultureLayerColors(std::vector<NiColorA>& aColors, std::vector
 
 		// how many people own this plot?
 		std::vector < std::pair<int,int> > plot_owners;
-		int iNumNonzeroOwners = 0;
+		//int iNumNonzeroOwners = 0;
+		// K-Mod
+		int iTotalCulture = pLoopPlot->countTotalCulture();
+		if (iTotalCulture == 0)
+			continue;
+		// K-Mod end
 		for (int iPlayer = 0; iPlayer < MAX_CIV_PLAYERS; iPlayer++)
 		{
 			if (GET_PLAYER((PlayerTypes)iPlayer).isAlive())
 			{
 				int iCurCultureAmount = pLoopPlot->getCulture((PlayerTypes)iPlayer);
-				if (iCurCultureAmount != 0)
+				//if (iCurCultureAmount != 0)
+				if (iCurCultureAmount * 100 / iTotalCulture >= 20) // K-Mod (to reduce visual spam from small amounts of culture)
 				{
-					iNumNonzeroOwners ++;
+					//iNumNonzeroOwners ++;
 					plot_owners.push_back(std::pair<int,int>(iCurCultureAmount, iPlayer));
 				}
 			}
@@ -27744,10 +28713,8 @@ void CvPlayer::addReminder(int iGameTurn, CvWString szMessage) const
 
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
-
 bool CvPlayer::isTradingMilitaryBonus(PlayerTypes ePlayer) const
 {
 	for (int iI = 0; iI < GC.getNumBonusInfos(); iI++)
@@ -27771,7 +28738,6 @@ int CvPlayer::getNumTradeImportsByBonus(PlayerTypes ePlayer, BonusTypes eBonus) 
 	int iLoop;
 
 	FAssert(ePlayer != getID());
-
 	iCount = 0;
 
 	for(pLoopDeal = GC.getGameINLINE().firstDeal(&iLoop); pLoopDeal != NULL; pLoopDeal = GC.getGameINLINE().nextDeal(&iLoop))
@@ -27808,6 +28774,288 @@ int CvPlayer::getNumTradeImportsByBonus(PlayerTypes ePlayer, BonusTypes eBonus) 
 	return iCount;
 }
 
+CvCity* CvPlayer::getBestHQCity(CorporationTypes eCorporation) const
+{
+    CvCity* pCurrentHQ = GC.getGameINLINE().getHeadquarters(eCorporation);
+	CvCity* pLoopCity;
+	CvCity* pBestCity = NULL;
+	int iValue;
+	int iBestValue = 0;
+
+	int iLoop;
+	for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+	{
+	    iValue = 0;
+		//If we find no best city, the capital will do.
+		if (pLoopCity->isCapital())
+			pBestCity = pLoopCity;
+	    if (!pLoopCity->isHasCorporation(eCorporation))
+	    {
+            if (pLoopCity->isConnectedTo(pCurrentHQ))
+            {
+                for (int iCorporation = 0; iCorporation < GC.getNumCorporationInfos(); ++iCorporation)
+                {
+                    if (pLoopCity->isHeadquarters((CorporationTypes)iCorporation))
+                    {
+                        if (GC.getGameINLINE().isCompetingCorporation((CorporationTypes)iCorporation, eCorporation))
+                        {
+                            continue;
+                        }
+                        iValue -= 25;
+                    }
+                }
+
+                bool bFoundBonus = false;
+                for (int i = 0; i < GC.getNUM_CORPORATION_PREREQ_BONUSES(); ++i)
+                {
+                    BonusTypes eBonus = (BonusTypes)GC.getCorporationInfo(eCorporation).getPrereqBonus(i);
+                    if (NO_BONUS != eBonus)
+                    {
+                        if (pLoopCity->hasBonus(eBonus))
+                        {
+                            bFoundBonus = true;
+                            iValue += 50;
+                        }
+                    }
+                }
+
+                if (!bFoundBonus)
+                {
+                    continue;
+                }
+
+                iValue += 100;
+            }
+	    }
+	    else
+	    {
+	        iValue = 300;
+
+	        if (pLoopCity->isConnectedTo(pCurrentHQ))
+	        {
+	            iValue += 100;
+	        }
+
+            for (int i = 0; i < GC.getNUM_CORPORATION_PREREQ_BONUSES(); ++i)
+            {
+                BonusTypes eBonus = (BonusTypes)GC.getCorporationInfo(eCorporation).getPrereqBonus(i);
+                if (NO_BONUS != eBonus)
+                {
+                    if (pLoopCity->hasBonus(eBonus))
+                    {
+                        iValue += 50;
+                    }
+                }
+            }
+
+            for (int iCorporation = 0; iCorporation < GC.getNumCorporationInfos(); ++iCorporation)
+            {
+                if (pLoopCity->isHeadquarters((CorporationTypes)iCorporation))
+                {
+                    iValue -= 25;
+                }
+            }
+	    }
+
+	    if (iValue > iBestValue)
+	    {
+	        iBestValue = iValue;
+	        pBestCity = pLoopCity;
+	    }
+	}
+
+	return pBestCity;
+}
+
+
+TeamTypes CvPlayer::getPledgedSecretaryGeneralVote() const
+{
+	return (TeamTypes)m_eSecretaryGeneralVote;
+}
+
+void CvPlayer::setPledgedSecretaryGeneralVote(TeamTypes eIndex)
+{
+	m_eSecretaryGeneralVote = eIndex;
+}
+
+DenialTypes CvPlayer::AI_corporationTrade(CorporationTypes eCorporation, PlayerTypes ePlayer) const
+{
+
+	if (isNoCorporations())
+	{
+		return DENIAL_NO_GAIN;
+	}
+	
+	CvCity* pLoopCity;
+	int iLoop;
+	bool bValid = false;
+	bool bRequiresBonus = false;
+
+	for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+	{
+		//If we don't have the corporation
+		if (!(pLoopCity->isHasCorporation(eCorporation)))
+		{
+			for (int i = 0; i < GC.getNUM_CORPORATION_PREREQ_BONUSES(); ++i)
+			{
+				BonusTypes eBonus = (BonusTypes)GC.getCorporationInfo(eCorporation).getPrereqBonus(i);
+				if (NO_BONUS != eBonus)
+				{
+					bRequiresBonus = true;
+					//if the city can have the corporation
+					if (pLoopCity->hasBonus(eBonus))
+					{
+						bValid = true;
+					}
+				}
+			}
+		}
+	}
+	
+	if (!bValid && bRequiresBonus)
+	{
+		return DENIAL_NO_GAIN;
+	}
+
+	if (GET_PLAYER(ePlayer).getTeam() == getTeam())
+	{
+		return NO_DENIAL;
+	}
+	
+	if (GET_TEAM(GET_PLAYER(ePlayer).getTeam()).isAtWar(getTeam()))
+	{
+		return NO_DENIAL;
+	}
+	
+	if (GET_TEAM(getTeam()).isVassal(GET_PLAYER(ePlayer).getTeam()))
+	{
+		return NO_DENIAL;
+	}
+	
+	if (isHuman())
+	{
+		return NO_DENIAL;
+	}
+	
+	if (GET_TEAM(getTeam()).AI_getWorstEnemy() == GET_PLAYER(ePlayer).getTeam())
+	{
+		return DENIAL_WORST_ENEMY;
+	}
+
+	if ((getHasCorporationCount(eCorporation) * 2) > getNumCities())
+	{
+		return DENIAL_NO_GAIN;
+	}
+	
+	if (GET_PLAYER(ePlayer).isNoCorporations())
+	{
+		return DENIAL_NO_GAIN;
+	}
+	
+	AttitudeTypes eAttitude = GET_PLAYER(getID()).AI_getAttitude(ePlayer);
+
+	if (eAttitude <= GC.getLeaderHeadInfo(getPersonalityType()).getCorporationRefuseAttitudeThreshold())
+	{
+		return DENIAL_ATTITUDE;
+	}
+	
+    return NO_DENIAL;
+}
+
+DenialTypes CvPlayer::AI_secretaryGeneralTrade(VoteSourceTypes eVoteSource, PlayerTypes ePlayer) const
+{
+
+	if (GET_PLAYER(ePlayer).getTeam() == getTeam())
+	{
+		return NO_DENIAL;
+	}
+	
+	if (GET_TEAM(getTeam()).isVassal(GET_PLAYER(ePlayer).getTeam()))
+	{
+		return NO_DENIAL;
+	}
+	
+	if (GET_TEAM(GET_PLAYER(ePlayer).getTeam()).isAtWar(getTeam()))
+	{
+		return NO_DENIAL;
+	}
+	
+	if (GET_TEAM(getTeam()).AI_getWorstEnemy() == GET_PLAYER(ePlayer).getTeam())
+	{
+		return DENIAL_WORST_ENEMY;
+	}
+
+	if (GC.getGameINLINE().isTeamVoteEligible(getTeam(), eVoteSource))
+	{
+		return DENIAL_JOKING;
+	}
+
+	AttitudeTypes eAttitude = GET_PLAYER(getID()).AI_getAttitude(ePlayer);
+
+	if (eAttitude <= GC.getLeaderHeadInfo(getPersonalityType()).getSecretaryGeneralVoteRefuseAttitudeThreshold())
+	{
+		return DENIAL_ATTITUDE;
+	}
+
+	return NO_DENIAL;
+}
+
+DenialTypes CvPlayer::AI_workerTrade(CvUnit* pUnit, PlayerTypes ePlayer) const
+{
+
+	if (isHuman())
+	{
+		return NO_DENIAL;
+	}
+	
+	if (GET_TEAM(GET_PLAYER(ePlayer).getTeam()).isAtWar(getTeam()))
+	{
+		return NO_DENIAL;
+	}
+	
+	if (GET_TEAM(getTeam()).isVassal(GET_PLAYER(ePlayer).getTeam()))
+	{
+		return NO_DENIAL;
+	}
+	
+	if (GET_PLAYER(ePlayer).getTeam() == getTeam())
+	{
+		return NO_DENIAL;
+	}
+	
+	if (GET_PLAYER(pUnit->getOriginalOwner()).getID() == GET_PLAYER(ePlayer).getID())
+	{
+		return DENIAL_JOKING;
+	}
+	
+	if (GET_TEAM(getTeam()).AI_getWorstEnemy() == GET_PLAYER(ePlayer).getTeam())
+	{
+		return DENIAL_WORST_ENEMY;
+	}
+
+	if (GET_TEAM(getTeam()).AI_isSneakAttackPreparing(GET_PLAYER(ePlayer).getTeam()))
+	{
+		return DENIAL_NO_GAIN;
+	}
+
+	if (GET_PLAYER(ePlayer).AI_totalUnitAIs(UNITAI_WORKER) > GET_PLAYER(ePlayer).getNumCities())
+	{
+		if (GET_PLAYER(ePlayer).calculateUnitCost() > 0)
+		{
+			return DENIAL_NO_GAIN;
+		}
+	}
+
+	AttitudeTypes eAttitude = AI_getAttitude(ePlayer);
+
+	if (eAttitude <= GC.getLeaderHeadInfo(getPersonalityType()).getWorkerRefuseAttitudeThreshold())
+	{
+		return DENIAL_ATTITUDE;
+	}
+
+	return NO_DENIAL;
+}
+
 DenialTypes CvPlayer::AI_militaryUnitTrade(CvUnit* pUnit, PlayerTypes ePlayer) const
 {
 	
@@ -27836,6 +29084,11 @@ DenialTypes CvPlayer::AI_militaryUnitTrade(CvUnit* pUnit, PlayerTypes ePlayer) c
 		return DENIAL_NO_GAIN;
 	}
 
+	if (GET_PLAYER(pUnit->getOriginalOwner()).getID() == GET_PLAYER(ePlayer).getID())
+	{
+		return DENIAL_JOKING;
+	}
+	
 	if (GET_TEAM(getTeam()).getAnyWarPlanCount(true) > 0 && !GET_TEAM(getTeam()).AI_shareWar(GET_PLAYER(ePlayer).getTeam()))
 	{
 		return DENIAL_NO_GAIN;
@@ -27864,8 +29117,55 @@ DenialTypes CvPlayer::AI_militaryUnitTrade(CvUnit* pUnit, PlayerTypes ePlayer) c
 	return NO_DENIAL;
 }
 
+bool CvPlayer::canTradeWarReparations(PlayerTypes ePlayer) const
+{
+	return AI_getMemoryCount(ePlayer, MEMORY_DECLARED_WAR) > 0 || AI_getMemoryCount(ePlayer, MEMORY_HIRED_WAR_ALLY) > 0 ||
+		AI_getMemoryCount(ePlayer, MEMORY_NUKED_US) > 0 || AI_getMemoryCount(ePlayer, MEMORY_RAZED_CITY) > 0 ||
+		AI_getMemoryCount(ePlayer, MEMORY_RAZED_HOLY_CITY) > 0 || AI_getMemoryCount(ePlayer, MEMORY_BACKSTAB) > 0;
+}
+
+DenialTypes CvPlayer::AI_tradeWarReparations(PlayerTypes ePlayer) const
+{
+	if (isHuman())
+	{
+		return NO_DENIAL;
+	}
+
+	return DENIAL_JOKING;
+}
+
+// Advanced Diplomacy - added by MNAI
+bool CvPlayer::isNoCityRazing() const
+{
+   	for (int iI = 0; iI < GC.getNumVoteSourceInfos(); ++iI)
+	{
+	    if (isFullMember((VoteSourceTypes)iI))
+	    {
+	        if (GC.getGameINLINE().isNoCityRazing((VoteSourceTypes)iI))
+	        {
+	            return true;
+	        }
+	    }
+	}
+    return false;
+}
+
+bool CvPlayer::isCultureNeedsEmptyRadius() const
+{
+   	for (int iI = 0; iI < GC.getNumVoteSourceInfos(); ++iI)
+	{
+	    if (isFullMember((VoteSourceTypes)iI))
+	    {
+	        if (GC.getGameINLINE().isCultureNeedsEmptyRadius((VoteSourceTypes)iI))
+	        {
+	            return true;
+	        }
+	    }
+	}
+    return false;
+}
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 
 // MNAI - new functions
@@ -27951,7 +29251,7 @@ int CvPlayer::countNumAvailablePlotsForImprovement(ImprovementTypes eImprovement
 
 		if (pLoopPlot->getOwnerINLINE() == getID())
 		{
-			if (pLoopPlot->canHaveImprovement(eImprovement, getTeam()))
+			if (pLoopPlot->canHaveImprovement(eImprovement, getID()))
 			{
 				iCount++;
 			}

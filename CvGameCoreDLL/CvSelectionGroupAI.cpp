@@ -184,7 +184,7 @@ bool CvSelectionGroupAI::AI_update()
 /*                                                                                              */
 /* Unit AI                                                                                      */
 /************************************************************************************************/
-	if( !(isHuman()) && !(getHeadUnit()->isCargo()) && getActivityType() == ACTIVITY_SLEEP )
+	if( !(isHuman()) && !(getHeadUnit()->isCargo()) && getActivityType() == ACTIVITY_SLEEP ) // Note: Sleep includes fortification
 	{
 		setForceUpdate(true);
 	}
@@ -214,8 +214,8 @@ bool CvSelectionGroupAI::AI_update()
 		iTempHack++;
 		if (iTempHack > 100)
 		{
-			FAssert(false);
 			CvUnit* pHeadUnit = getHeadUnit();
+			CvPlot* pPlot = pHeadUnit->plot();
 			if (NULL != pHeadUnit)
 			{
 				if( gUnitLogLevel >= 1 )
@@ -225,7 +225,7 @@ bool CvSelectionGroupAI::AI_update()
 					logBBAI("Unit stuck in loop: %S(%S)[%d, %d] (%S - %d)\n", pHeadUnit->getName().GetCString(), GET_PLAYER(pHeadUnit->getOwnerINLINE()).getName(),
 						pHeadUnit->getX_INLINE(), pHeadUnit->getY_INLINE(), szTempString.GetCString(), pHeadUnit->getID());
 				}
-
+				FAssert(false);
 				pHeadUnit->finishMoves();
 			}
 			break;
@@ -673,12 +673,11 @@ int CvSelectionGroupAI::AI_sumStrength(const CvPlot* pAttackedPlot, DomainTypes 
 					}
 
 					// Tholal Note: note - some units 'explode' but dont deal damage (do this properly with XML tags)
-					/* - setting this up for future use when new tags implemented
-					if (GC.getUnitInfo(pLoopUnit->getUnitType()).isExplodeInCombat())
+					// Pyre Zombie hack
+					if (pLoopUnit->getUnitInfo().isExplodeInCombat() && !(pLoopUnit->getDuration() > 0))
 					{
-						strSum += (pAttackedPlot->getNumDefenders(pAttackedPlot->getOwner()) * 20);
+						strSum += (pAttackedPlot->getNumVisibleEnemyDefenders(pLoopUnit) * 20);
 					}
-					*/
 				}
 				// K-Mod end
 			}

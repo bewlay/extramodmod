@@ -128,6 +128,9 @@ public:
 	bool isProductionBuilding() const;																						// Exposed to Python
 	bool isProductionProject() const;																							// Exposed to Python
 	bool isProductionProcess() const;																		// Exposed to Python
+//Multiple Production: Added by Denev 07/01/2009
+	bool isProductionWonder() const;
+//Multiple Production: End Add
 
 	bool canContinueProduction(OrderData order);														// Exposed to Python
 	int getProductionExperience(UnitTypes eUnit = NO_UNIT);									// Exposed to Python
@@ -167,10 +170,17 @@ public:
 	int getProductionModifier(BuildingTypes eBuilding) const;											// Exposed to Python
 	int getProductionModifier(ProjectTypes eProject) const;												// Exposed to Python
 
-	int getOverflowProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, int iDiff, int iModifiedProduction) const;
-	int getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow) const;
+//Multiple Production: Modified by Denev 07/01/2009
+//	int getOverflowProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, int iDiff, int iModifiedProduction) const;
+//	int getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow) const;
+	int getOverflowProductionDifference() const;
+	int getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow, bool bYield = true) const;
+//Multiple Production: End Modify
 	int getCurrentProductionDifference(bool bIgnoreFood, bool bOverflow) const;				// Exposed to Python
 	int getExtraProductionDifference(int iExtra) const;																					// Exposed to Python
+//Multiple Production: Added by Denev 07/01/2009
+	void clearLostProduction();
+//Multiple Production: End Add
 
 	bool canHurry(HurryTypes eHurry, bool bTestVisible = false) const;		// Exposed to Python
 	void hurry(HurryTypes eHurry);																						// Exposed to Python
@@ -257,7 +267,7 @@ public:
 	int badHealth(bool bNoAngry = false, int iExtra = 0) const;		// Exposed to Python
 	int healthRate(bool bNoAngry = false, int iExtra = 0) const;	// Exposed to Python
 	int foodConsumption(bool bNoAngry = false, int iExtra = 0) const;				// Exposed to Python
-	int foodDifference(bool bBottom = true) const;								// Exposed to Python
+	int foodDifference(bool bBottom = true, bool bIgnoreProduction = false) const; // Exposed to Python, K-Mod added bIgnoreProduction
 	int growthThreshold() const;																	// Exposed to Python
 
 	int productionLeft() const;																							// Exposed to Python
@@ -438,6 +448,24 @@ public:
 	int getFeatureGoodHealth() const;																			// Exposed to Python
 	int getFeatureBadHealth() const;														// Exposed to Python
 	void updateFeatureHealth();
+
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	int getSpecialistGoodHealth() const;																			// Exposed to Python
+	int getSpecialistBadHealth() const;														// Exposed to Python
+	int getSpecialistHappiness() const;																			// Exposed to Python
+	int getSpecialistUnhappiness() const;														// Exposed to Python
+	void changeSpecialistGoodHealth(int iChange);
+	void changeSpecialistBadHealth(int iChange);
+	void changeSpecialistHappiness(int iChange);
+	void changeSpecialistUnhappiness(int iChange);
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
+
 // BUG - Feature Health - start
 	void calculateFeatureHealthPercent(int& iGood, int& iBad) const;
 	void calculateFeatureHealthPercentChange(int& iGood, int& iBad, CvPlot* pIgnorePlot = NULL) const;
@@ -706,6 +734,11 @@ public:
 	bool isPlundered() const;																		// Exposed to Python
 	void setPlundered(bool bNewValue);																// Exposed to Python
 
+//Multiple Production: Added by Denev 07/10/2009
+	bool isBuiltFoodProducedUnit() const;
+	void setBuiltFoodProducedUnit(bool bNewValue);
+//Multiple Production: End Add
+
 	DllExport PlayerTypes getOwner() const;																// Exposed to Python
 #ifdef _USRDLL
 	inline PlayerTypes getOwnerINLINE() const
@@ -857,6 +890,15 @@ public:
 	void changeNumRevolts(PlayerTypes eIndex, int iChange);
 	int getRevoltTestProbability() const;
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	int getOriginalPopulation(PlayerTypes eIndex) const;
+	void setOriginalPopulation(PlayerTypes eIndex, int iNewValue);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+	
 	bool isTradeRoute(PlayerTypes eIndex) const;																	// Exposed to Python
 	void setTradeRoute(PlayerTypes eIndex, bool bNewValue);
 
@@ -1134,24 +1176,18 @@ public:
 	virtual void AI_setAssignWorkDirty(bool bNewValue) = 0;
 	virtual bool AI_isChooseProductionDirty() = 0;
 	virtual void AI_setChooseProductionDirty(bool bNewValue) = 0;
-	virtual bool AI_isEmphasize(EmphasizeTypes eIndex) = 0;											// Exposed to Python
+	virtual bool AI_isEmphasize(EmphasizeTypes eIndex) const = 0;											// Exposed to Python
 	virtual void AI_setEmphasize(EmphasizeTypes eIndex, bool bNewValue) = 0;
 	virtual int AI_getBestBuildValue(int iIndex) = 0;
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      06/25/09                                jdog5000      */
-/*                                                                                              */
-/* Debug                                                                                        */
-/************************************************************************************************/
-	virtual int AI_getTargetSize() = 0;
-	virtual int AI_getGoodTileCount() = 0;
-	virtual int AI_getImprovementValue( CvPlot* pPlot, ImprovementTypes eImprovement, int iFoodPriority, int iProductionPriority, int iCommercePriority, int iFoodChange, bool bOriginal = false ) = 0;
-	virtual void AI_getYieldMultipliers( int &iFoodMultiplier, int &iProductionMultiplier, int &iCommerceMultiplier, int &iDesiredFoodChange ) = 0;
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
+	// K-Mod
+	virtual int AI_getTargetPopulation() const = 0;
+	virtual int AI_countGoodPlots() const = 0;
+	virtual void AI_getYieldMultipliers( int &iFoodMultiplier, int &iProductionMultiplier, int &iCommerceMultiplier, int &iDesiredFoodChange ) const = 0;
+	virtual int AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovement, int iFoodPriority, int iProductionPriority, int iCommercePriority, int iDesiredFoodChange, int iClearFeatureValue = 0, bool bEmphasizeIrrigation = false, BuildTypes* peBestBuild = 0) const = 0;
+	// K-Mod end
 	virtual int AI_totalBestBuildValue(CvArea* pArea) = 0;
-	virtual int AI_countBestBuilds(CvArea* pArea) = 0;													// Exposed to Python
-	virtual BuildTypes AI_getBestBuild(int iIndex) = 0;
+	virtual int AI_countBestBuilds(CvArea* pArea) const = 0;													// Exposed to Python
+	virtual BuildTypes AI_getBestBuild(int iIndex) const = 0;
 	virtual void AI_updateBestBuild() = 0;
 	virtual int AI_cityValue() const = 0;
 	virtual int AI_clearFeatureValue(int iIndex) = 0;
@@ -1159,7 +1195,7 @@ public:
 	virtual int AI_calculateCulturePressure(bool bGreatWork = false) = 0;
 	virtual int AI_calculateWaterWorldPercent() = 0;
 	virtual int AI_countNumBonuses(BonusTypes eBonus, bool bIncludeOurs, bool bIncludeNeutral, int iOtherCultureThreshold, bool bLand = true, bool bWater = true) = 0;
-	virtual int AI_yieldMultiplier(YieldTypes eYield) = 0;
+	virtual int AI_yieldMultiplier(YieldTypes eYield) const = 0;
 	virtual int AI_playerCloseness(PlayerTypes eIndex, int iMaxDistance = 7) = 0;
 	virtual int AI_cityThreat(bool bDangerPercent = false) = 0;
 	virtual BuildingTypes AI_bestAdvancedStartBuilding(int iPass) = 0;
@@ -1238,6 +1274,18 @@ protected:
 	int m_iFreshWaterBadHealth;
 	int m_iFeatureGoodHealth;
 	int m_iFeatureBadHealth;
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	int m_iSpecialistGoodHealth;
+	int m_iSpecialistBadHealth;
+	int m_iSpecialistHappiness;
+	int m_iSpecialistUnhappiness;
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 	int m_iBuildingGoodHealth;
 	int m_iBuildingBadHealth;
 	int m_iPowerGoodHealth;
@@ -1281,6 +1329,11 @@ protected:
 	int m_iMaxFoodKeptPercent;
 	int m_iOverflowProduction;
 	int m_iFeatureProduction;
+//Multiple Production: Added by Denev 07/01/2009
+	int m_iLostProductionBase;
+	int m_iLostProductionModified;
+	int m_iGoldFromLostProduction;
+//Multiple Production: End Add
 	int m_iMilitaryProductionModifier;
 	int m_iSpaceProductionModifier;
 	int m_iExtraTradeRoutes;
@@ -1316,6 +1369,9 @@ protected:
 	bool m_bInfoDirty;
 	bool m_bLayoutDirty;
 	bool m_bPlundered;
+//Multiple Production: Added by Denev 07/10/2009
+	bool m_bBuiltFoodProducedUnit;
+//Multiple Production: End Add
 
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                       12/07/09                         denev & jdog5000     */
@@ -1381,6 +1437,13 @@ protected:
 	bool* m_abTradeRoute;
 	bool* m_abRevealed;
 	bool* m_abEspionageVisibility;
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	std::vector<int> m_aiOriginalPopulation;/*int* m_aiAD; m_aiOriginalPopulation*/
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	CvWString m_szName;
 	CvString m_szScriptData;

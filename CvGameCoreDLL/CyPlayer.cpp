@@ -110,6 +110,23 @@ void CyPlayer::updateStabilityIndexAverage( )
 /************************************************************************************************/
 /* REVOLUTION_MOD                          END                                                  */
 /************************************************************************************************/
+
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  Glider1      */
+/*************************************************************************************************/
+// RevolutionDCM start - new diplomacy option
+bool CyPlayer::isDoNotBotherStatus(int /*PlayerTypes*/ playerID)
+{
+	if( m_pPlayer )
+		return m_pPlayer->isDoNotBotherStatus((PlayerTypes)playerID);
+	else
+		return false;
+}
+// RevolutionDCM end
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                    Glider1      */
+/*************************************************************************************************/
+
 int CyPlayer::startingPlotRange()
 {
 	return m_pPlayer ? m_pPlayer->startingPlotRange() : -1;
@@ -2653,7 +2670,11 @@ bool CyPlayer::makePuppet(int /*PlayerTypes*/ eSplitPlayer, CvCity* pVassalCapit
     return false;
 }
 
-bool CyPlayer::canMakePuppet(int /*PlayerTypes*/ eFromPlayer) const
+/********************************************************************************/
+/* MinorPuppetLeaders	03/2015											lfgr	*/
+/********************************************************************************/
+/* old
+bool CyPlayer::canMakePuppet(int eFromPlayer) const
 {
     if (m_pPlayer)
     {
@@ -2662,6 +2683,19 @@ bool CyPlayer::canMakePuppet(int /*PlayerTypes*/ eFromPlayer) const
 
     return false;
 }
+*/
+bool CyPlayer::canMakePuppet( CvCity* pVassalCapital ) const
+{
+    if (m_pPlayer)
+    {
+        return m_pPlayer->canMakePuppet( pVassalCapital );
+    }
+
+    return false;
+}
+/********************************************************************************/
+/* MinorPuppetLeaders	End												lfgr	*/
+/********************************************************************************/
 
 bool CyPlayer::isPuppetState() const
 {

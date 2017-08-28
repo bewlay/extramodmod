@@ -32,6 +32,9 @@
 /* General AI                                                                                   */
 /************************************************************************************************/
 #include "FAStarNode.h"
+
+// AI Logging
+#include "BetterBTSAI.h"
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
@@ -567,6 +570,7 @@ void CvPlot::doTurn()
                         {
                             if (!isVisibleOtherUnit(BARBARIAN_PLAYER))
                             {
+								logBBAI("%S spawning %S at plot %d, %d", GC.getImprovementInfo(eImprovement).getDescription(), GC.getUnitInfo((UnitTypes)iUnit).getDescription(), getX_INLINE(), getY_INLINE());
                                 CvUnit* pUnit;
                                 pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit((UnitTypes)iUnit, getX_INLINE(), getY_INLINE(), UNITAI_ATTACK);
 
@@ -1766,7 +1770,10 @@ bool CvPlot::canHavePotentialIrrigation() const
 	{
 		if (GC.getImprovementInfo((ImprovementTypes)iI).isCarriesIrrigation())
 		{
-			if (canHaveImprovement(((ImprovementTypes)iI), NO_TEAM, true))
+//>>>>Unofficial Bug Fix: Added by Denev 2010/05/04
+//			if (canHaveImprovement(((ImprovementTypes)iI), NO_TEAM, true))
+			if (canHaveImprovement(((ImprovementTypes)iI), NO_PLAYER, true))
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				return true;
 			}
@@ -2323,6 +2330,26 @@ void CvPlot::updateSight(bool bIncrement, bool bUpdatePlotGroups)
 
 	if (pCity != NULL)
 	{
+		// Embassies
+		/*
+		if (getOwner() != NO_PLAYER)
+		{
+			if (isCity())
+			{
+				if (getPlotCity()->isCapital())
+				{
+					for (iI = 0; iI < MAX_CIV_TEAMS; ++iI)
+					{
+						if (GET_TEAM((TeamTypes)iI).isHasEmbassy(getTeam()))
+						{
+							changeAdjacentSight((TeamTypes)iI, GC.getDefineINT("PLOT_VISIBILITY_RANGE"), bIncrement, NULL, bUpdatePlotGroups);
+						}
+					}
+				}
+			}
+		}
+		*/
+
 		// Religion - Disabled with new Espionage System
 /*		for (iI = 0; iI < GC.getNumReligionInfos(); ++iI)
 		{
@@ -2341,6 +2368,7 @@ void CvPlot::updateSight(bool bIncrement, bool bUpdatePlotGroups)
 		}*/
 
 //FfH: Added by Kael 11/03/2007
+		// Religion
 		for (iI = 0; iI < GC.getNumReligionInfos(); ++iI)
 		{
 			if (pCity->isHasReligion((ReligionTypes)iI))
@@ -2548,8 +2576,15 @@ bool CvPlot::canHaveBonus(BonusTypes eBonus, bool bIgnoreLatitude) const
 }
 
 
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+/*
 bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, bool bPotential) const
 {
+*/
+bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, PlayerTypes ePlayer, bool bPotential) const
+{
+	TeamTypes eTeam = (ePlayer != NO_PLAYER) ? GET_PLAYER(ePlayer).getTeam() : NO_TEAM;
+//<<<<Unofficial Bug Fix: End Modify
 	CvPlot* pLoopPlot;
 	bool bValid;
 	int iI;
@@ -2714,7 +2749,10 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 
 	for (iI = 0; iI < NUM_YIELD_TYPES; ++iI)
 	{
-		if (calculateNatureYield(((YieldTypes)iI), eTeam) < kImprovement.getPrereqNatureYield(iI))
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+//		if (calculateNatureYield(((YieldTypes)iI), eTeam) < GC.getImprovementInfo(eImprovement).getPrereqNatureYield(iI))
+		if (calculateNatureYield(((YieldTypes)iI), ePlayer) < GC.getImprovementInfo(eImprovement).getPrereqNatureYield(iI))
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			return false;
 		}
@@ -2777,7 +2815,10 @@ bool CvPlot::canBuild(BuildTypes eBuild, PlayerTypes ePlayer, bool bTestVisible)
 
 	if (eImprovement != NO_IMPROVEMENT)
 	{
-		if (!canHaveImprovement(eImprovement, GET_PLAYER(ePlayer).getTeam(), bTestVisible))
+//>>>>Unofficial Bug Fix: Added by Denev 2010/05/04
+//		if (!canHaveImprovement(eImprovement, GET_PLAYER(ePlayer).getTeam(), bTestVisible))
+		if (!canHaveImprovement(eImprovement, ePlayer, bTestVisible))
+//<<<<Unofficial Bug Fix: End Modify
 		{
 			return false;
 		}
@@ -3071,10 +3112,46 @@ int CvPlot::getFeatureProduction(BuildTypes eBuild, TeamTypes eTeam, CvCity** pp
 
 	*ppCity = getWorkingCity();
 
-	if (*ppCity == NULL)
+	// Bugfix: Do not send production from chopping to settlements
+	//if (*ppCity == NULL)
+	//{
+	//	*ppCity = GC.getMapINLINE().findCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, eTeam, false);
+	//}
+
+	if (*ppCity == NULL || (*ppCity)->isSettlement())
 	{
-		*ppCity = GC.getMapINLINE().findCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, eTeam, false);
+		// Search for the closest city.
+		CvCity* pLoopCity;
+		CvCity* pBestCity;
+		int iValue;
+		int iBestValue = MAX_INT;
+		int iLoop;
+		int iX = getX_INLINE();
+		int iY = getY_INLINE();
+		for (int iI = 0; iI < MAX_PLAYERS; iI++)
+		{
+			CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iI);
+			if (kPlayer.isAlive() && kPlayer.getTeam() == eTeam)
+			{
+				for (pLoopCity = kPlayer.firstCity(&iLoop); pLoopCity != NULL; pLoopCity = kPlayer.nextCity(&iLoop))
+				{
+					if (!pLoopCity->isSettlement())
+					{
+						iValue = plotDistance(iX, iY, pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE());
+
+						if (iValue < iBestValue)
+						{
+							iBestValue = iValue;
+							pBestCity = pLoopCity;
+						}
+					}
+				}
+			}
+		}
+		*ppCity = pBestCity;
 	}
+
+	// Bugfix end
 
 	if (*ppCity == NULL)
 	{
@@ -4499,6 +4576,20 @@ bool CvPlot::isVisible(TeamTypes eTeam, bool bDebug) const
 		if (eTeam == NO_TEAM)
 		{
 			return false;
+		}
+
+		if (getOwner() != NO_PLAYER)
+		{
+			if (isCity())
+			{
+				if (getPlotCity()->isCapital())
+				{
+					if (GET_TEAM(eTeam).isHasEmbassy(getTeam()))
+					{
+						return true;
+					}
+				}
+			}
 		}
 
 		return ((getVisibilityCount(eTeam) > 0) || (getStolenVisibilityCount(eTeam) > 0));
@@ -7284,7 +7375,11 @@ void CvPlot::updateWorkingCity()
 
 	if (pOldWorkingCity != pBestCity)
 	{
-		if (pOldWorkingCity != NULL)
+	// lfgr bugfix 06/2015
+	// The old city may have a smaller radius by now.
+	//	if (pOldWorkingCity != NULL)
+		if ( pOldWorkingCity != NULL && pOldWorkingCity->getCityPlotIndex( this ) != -1 )
+	// lfgr end
 		{
 			pOldWorkingCity->setWorkingPlot(this, false);
 		}
@@ -7293,6 +7388,9 @@ void CvPlot::updateWorkingCity()
 		{
 			FAssertMsg(isOwned(), "isOwned is expected to be true");
 			FAssertMsg(!isBeingWorked(), "isBeingWorked did not return false as expected");
+			// lfgr assert
+			FAssertMsg( pBestCity->getCityPlotIndex( this ) != -1, "Plot assigned to invalid city" );
+			// lfgr end
 			m_workingCity = pBestCity->getIDInfo();
 		}
 		else
@@ -7417,8 +7515,19 @@ int CvPlot::getYield(YieldTypes eIndex) const
 }
 
 
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/25
+/*
 int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnoreFeature) const
 {
+*/
+int CvPlot::calculateNatureYield(YieldTypes eYield, PlayerTypes ePlayer, bool bIgnoreFeature, bool bIgnoreBonus) const
+{
+	TeamTypes eTeam = NO_TEAM;
+	if (ePlayer != NO_PLAYER)
+	{
+		eTeam = GET_PLAYER(ePlayer).getTeam();
+	}
+//<<<<Unofficial Bug Fix: End Modify
 	BonusTypes eBonus;
 	int iYield;
 
@@ -7446,15 +7555,22 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 		iYield += GC.getYieldInfo(eYield).getLakeChange();
 	}
 
-	if (eTeam != NO_TEAM)
+//>>>>Better AI: Added by Denev 2010/04/29
+	if (!bIgnoreBonus)
 	{
-		eBonus = getBonusType(eTeam);
-
-		if (eBonus != NO_BONUS)
+//<<<<Better AI: End Add
+		if (eTeam != NO_TEAM)
 		{
-			iYield += GC.getBonusInfo(eBonus).getYieldChange(eYield);
+			eBonus = getBonusType(eTeam);
+
+			if (eBonus != NO_BONUS)
+			{
+				iYield += GC.getBonusInfo(eBonus).getYieldChange(eYield);
+			}
 		}
+//>>>>Better AI: Added by Denev 2010/04/29
 	}
+//<<<<Better AI: End Add
 
 	if (isRiver())
 	{
@@ -7477,13 +7593,24 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 	// Take into account civilization specific changes to terrain yields.
 	if (isOwned())
 	{
-		iYield += GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getTerrainYieldChanges(getTerrainType(), eYield, isRiver());
+		CivilizationTypes eOwnerType = GET_PLAYER(getOwnerINLINE()).getCivilizationType();
+		CvCity* pWorkingCity = getWorkingCity();
+
+		// For tolerant civilizations, the terrain yield changes of the civilization of the city is used instead.
+		if (pWorkingCity != NULL && pWorkingCity->getCivilizationType() != NO_CIVILIZATION)
+		{
+			eOwnerType = pWorkingCity->getCivilizationType();
+		}
+
+		iYield += GC.getCivilizationInfo(eOwnerType).getTerrainYieldChanges(getTerrainType(), eYield, isRiver());
 	}
 
 	return std::max(0, iYield);
 }
 
 
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/04/25
+/*
 int CvPlot::calculateBestNatureYield(YieldTypes eIndex, TeamTypes eTeam) const
 {
 	return std::max(calculateNatureYield(eIndex, eTeam, false), calculateNatureYield(eIndex, eTeam, true));
@@ -7494,6 +7621,26 @@ int CvPlot::calculateTotalBestNatureYield(TeamTypes eTeam) const
 {
 	return (calculateBestNatureYield(YIELD_FOOD, eTeam) + calculateBestNatureYield(YIELD_PRODUCTION, eTeam) + calculateBestNatureYield(YIELD_COMMERCE, eTeam));
 }
+*/
+int CvPlot::calculateBestNatureYield(YieldTypes eIndex, PlayerTypes ePlayer) const
+{
+	return std::max(calculateNatureYield(eIndex, ePlayer, false), calculateNatureYield(eIndex, ePlayer, true));
+}
+
+
+int CvPlot::calculateTotalBestNatureYield(PlayerTypes ePlayer) const
+{
+	int iYieldWithFeature = 0;
+	int iYieldWithoutFeature = 0;
+	for (int iYieldType = 0; iYieldType < NUM_YIELD_TYPES; iYieldType++)
+	{
+		iYieldWithFeature		+= calculateNatureYield((YieldTypes)iYieldType, ePlayer, false);
+		iYieldWithoutFeature	+= calculateNatureYield((YieldTypes)iYieldType, ePlayer, true);
+	}
+
+	return std::max(iYieldWithFeature, iYieldWithoutFeature);
+}
+//<<<<Unofficial Bug Fix: End Modify
 
 
 /************************************************************************************************/
@@ -7590,7 +7737,10 @@ int CvPlot::calculateImprovementYieldChange(ImprovementTypes eImprovement, Yield
 	return iYield;
 */
 	// Improvement cannot actually produce negative yield
-	int iCurrYield = calculateNatureYield(eYield, (ePlayer == NO_PLAYER) ? NO_TEAM : GET_PLAYER(ePlayer).getTeam(), bOptimal);
+//>>>>Better AI: Modified by Denev 2010/07/08
+//	int iCurrYield = calculateNatureYield(eYield, (ePlayer == NO_PLAYER) ? NO_TEAM : GET_PLAYER(ePlayer).getTeam(), bOptimal);
+	int iCurrYield = calculateNatureYield(eYield, ePlayer, bOptimal);
+//<<<<Unofficial Bug Fix: End Modify
 
 	return std::max( -iCurrYield, iYield );
 /*************************************************************************************************/
@@ -7659,7 +7809,10 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 		eRoute = getRouteType();
 	}
 
-	iYield = calculateNatureYield(eYield, ((ePlayer != NO_PLAYER) ? GET_PLAYER(ePlayer).getTeam() : NO_TEAM));
+//>>>>Better AI: Modified by Denev 2010/05/04
+//	iYield = calculateNatureYield(eYield, ((ePlayer != NO_PLAYER) ? GET_PLAYER(ePlayer).getTeam() : NO_TEAM));
+	iYield = calculateNatureYield(eYield, ePlayer);
+//<<<<Unofficial Bug Fix: End Modify
 
 	if (eImprovement != NO_IMPROVEMENT)
 	{
@@ -8028,7 +8181,7 @@ bool CvPlot::isBestAdjacentFound(PlayerTypes eIndex)
 
 	int iPlotValue = GET_PLAYER(eIndex).AI_foundValue(getX_INLINE(), getY_INLINE());
 
-	if (iPlotValue == 0)
+	if (iPlotValue <= 0)
 	{
 		return false;
 	}
@@ -10209,7 +10362,8 @@ void CvPlot::doCulture()
 
 		if (eCulturalOwner != NO_PLAYER)
 		{
-			if (GET_PLAYER(eCulturalOwner).getTeam() != getTeam())
+			if (GET_PLAYER(eCulturalOwner).getTeam() != getTeam() &&
+				!(pCity->isBarbarian() && (pCity->getCulture(pCity->getOwner()) > 0))) // dont culture flip Acheron's city
 			{
 				if (!(pCity->isOccupation()))
 				{
@@ -11171,7 +11325,10 @@ int CvPlot::calculateMaxYield(YieldTypes eYield) const
 		return 0;
 	}
 
-	int iMaxYield = calculateNatureYield(eYield, NO_TEAM);
+//>>>>Better AI: Modified by Denev 2010/05/04
+//	int iMaxYield = calculateNatureYield(eYield, NO_TEAM);
+	int iMaxYield = calculateNatureYield(eYield, NO_PLAYER);
+//<<<<Unofficial Bug Fix: End Modify
 
 	int iImprovementYield = 0;
 	for (int iImprovement = 0; iImprovement < GC.getNumImprovementInfos(); iImprovement++)
@@ -11252,7 +11409,10 @@ int CvPlot::getYieldWithBuild(BuildTypes eBuild, YieldTypes eYield, bool bWithUp
 //<<<<Unofficial Bug Fix: End Delete
 	}
 
-	iYield += calculateNatureYield(eYield, getTeam(), bIgnoreFeature);
+//>>>>Better AI: Modified by Denev 2010/05/04
+//	iYield += calculateNatureYield(eYield, getTeam(), bIgnoreFeature);
+	iYield += calculateNatureYield(eYield, getOwnerINLINE(), bIgnoreFeature);
+//<<<<Unofficial Bug Fix: End Modify
 
 	ImprovementTypes eImprovement = (ImprovementTypes)GC.getBuildInfo(eBuild).getImprovement();
 
@@ -11350,7 +11510,7 @@ bool CvPlot::canTrigger(EventTriggerTypes eTrigger, PlayerTypes ePlayer) const
 
 		for (int i = 0; i < kTrigger.getNumTerrainsRequired(); ++i)
 		{
-			if (kTrigger.getTerrainRequired(i) == getTerrainType())
+			if (kTrigger.getTerrainRequired(i) == getTerrainType() && !isPeak()) // MNAI - added Peak check (peaks hide terrain)
 			{
 				bFoundValid = true;
 				break;
@@ -11502,7 +11662,10 @@ bool CvPlot::canApplyEvent(EventTypes eEvent) const
 	{
 		if (NO_IMPROVEMENT != kEvent.getImprovement())
 		{
-			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getTeam()))
+//>>>>Unofficial Bug Fix: Added by Denev 2010/05/04
+//			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getTeam()))
+			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getOwnerINLINE()))
+//<<<<Unofficial Bug Fix: End Modify
 			{
 				return false;
 			}
@@ -11555,6 +11718,8 @@ bool CvPlot::canApplyEvent(EventTypes eEvent) const
 void CvPlot::applyEvent(EventTypes eEvent)
 {
 	CvEventInfo& kEvent = GC.getEventInfo(eEvent);
+
+	logBBAI("Applying Event %S at plot %d, %d", kEvent.getTextKeyWide(), getX(), getY());
 
 	if (kEvent.getFeatureChange() > 0)
 	{
@@ -12702,3 +12867,5 @@ void CvPlot::changeTempRouteTimer(int iChange)
 	}
 }
 // End Temporary Map Items
+
+//void CvPlot::countNumUnitAIType(UnitAITypes eUnitAI, PlayerTypes ePlayer)

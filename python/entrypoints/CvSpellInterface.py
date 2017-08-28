@@ -887,6 +887,9 @@ def reqCrewBuccaneers(caster):
 	pPlot = caster.plot()
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_BUCCANEERS')):
 		return False
+	## Make sure we dont end up with more cargo than cargo space
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_SKELETON_CREW')) and caster.isFull():
+		return False
 	if caster.maxMoves() <= 1:
 		return False
 	if caster.baseCombatStr() < 1:
@@ -903,8 +906,13 @@ def reqCrewLongshoremen(caster):
 	pPlot = caster.plot()
 	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_LONGSHOREMEN')):
 		return False
-	if caster.cargoSpaceAvailable(-1, gc.getInfoTypeForString('DOMAIN_LAND')) == 0:
-		return False
+	## Make sure we dont end up with more cargo than cargo space		
+	req_cargo = 1
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_SKELETON_CREW')):
+		req_cargo = req_cargo + 1
+	if caster.cargoSpaceAvailable(-1, gc.getInfoTypeForString('DOMAIN_LAND')) < req_cargo:
+		return False		
+
 	if caster.baseCombatStr() < 1:
 		return False
 	pPlayer = gc.getPlayer(caster.getOwner())
@@ -922,6 +930,9 @@ def reqCrewLongshoremen(caster):
 def reqCrewNormalCrew(caster):
 	pPlot = caster.plot()
 	if (caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_BUCCANEERS')) == False and caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_SKELETON_CREW')) == False and caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_LONGSHOREMEN')) == False):
+		return False
+	## Make sure we dont end up with more cargo than cargo space
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_SKELETON_CREW')) and caster.isFull():
 		return False
 	pPlayer = gc.getPlayer(caster.getOwner())
 	if pPlayer.isHuman() == False:
@@ -1010,8 +1021,8 @@ def reqDeclareNationality(caster):
 			return False
 	return True
 
-def spellDeclareNationality(caster):
-	caster.setBlockading(false)
+#def spellDeclareNationality(caster):
+#	caster.setBlockading(false)
 
 def reqDestroyUndead(caster):
 	iX = caster.getX()
@@ -1750,6 +1761,10 @@ def reqInquisition(caster):
 
 def spellInquisition(caster):
 	pPlot = caster.plot()
+	# The city may have been razed while the spell is being cast.
+	if not pPlot.isCity():
+		return
+
 	pCity = pPlot.getPlotCity()
 	pPlayer = gc.getPlayer(caster.getOwner())
 	StateBelief = gc.getPlayer(pCity.getOwner()).getStateReligion()
@@ -2475,6 +2490,11 @@ def spellRecruitMercenary(caster):
 	if caster.getUnitType() == gc.getInfoTypeForString('UNIT_MAGNADINE'):
 		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_LOYALTY'), True)
 
+def reqReleaseFromCage(caster):
+	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')):
+			return False;
+	return True;
+	
 def spellReleaseFromCage(caster):
 	pPlot = caster.plot()
 	pPlot.setImprovementType(-1)
@@ -2633,31 +2653,6 @@ def spellRevelry(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	pPlayer.changeGoldenAgeTurns(CyGame().goldenAgeLength() * 2)
 
-def reqRevelation(caster):
-	pPlayer = gc.getPlayer(caster.getOwner())
-	iTeam = pPlayer.getTeam()
-	iX = caster.getX()
-	iY = caster.getY()
-	iHidden = gc.getInfoTypeForString('PROMOTION_HIDDEN')
-	iHiddenNationality = gc.getInfoTypeForString('PROMOTION_HIDDEN_NATIONALITY')
-	iIllusion = gc.getInfoTypeForString('PROMOTION_ILLUSION')
-	iInvisible = gc.getInfoTypeForString('PROMOTION_INVISIBLE')
-	for iiX in range(iX-3, iX+4, 1):
-		for iiY in range(iY-3, iY+4, 1):
-			pPlot = CyMap().plot(iiX,iiY)
-			for iUnit in range(pPlot.getNumUnits()):
-				pUnit = pPlot.getUnit(iUnit)
-				if pUnit.getTeam() != iTeam:
-					if pUnit.isHasPromotion(iHidden):
-						return True
-					if pUnit.isHasPromotion(iHiddenNationality):
-						return True
-					if pUnit.isHasPromotion(iInvisible):
-						return True
-					if pUnit.isHasPromotion(iIllusion):
-						return True
-	return False
-
 def spellRevelation(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
 	iTeam = pPlayer.getTeam()
@@ -2700,18 +2695,29 @@ def spellRingofFlames(caster):
 
 def reqRiverOfBlood(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())
-	if pPlayer.getNumCities() == 0:
+	num_cities = pPlayer.getNumCities()
+	if num_cities == 0:
 		return False
-	if pPlayer.isHuman() == False:
-		map = gc.getMap()
-		if pPlayer.getNumCities() == 1:
-			pCasterCapital = pPlayer.getCapitalCity()
-			if not pCasterCapital.isNone():
-				if pCasterCapital.getPopulation() > 2:
-					if ((pCasterCapital.happyLevel() - pCasterCapital.unhappyLevel(0)) > 1):
-						return True
-		if pPlayer.getNumCities() < gc.getWorldInfo(map.getWorldSize()).getTargetNumCities():
+	if pPlayer.isHuman() == False:		
+		# the idea here is to a) cast it when it makes sense to do so and b) to be properly unpredictable about it
+		sum_benefit_x100 = 0
+		max_pop = 0
+		zturn = gc.getGame().getGameTurn() * 100 // gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()
+		zturn_mod = zturn
+		for pyCity in PyPlayer(caster.getOwner()).getCityList() :
+			pCity = pyCity.GetCy()
+			this_pop = pCity.getPopulation()
+			if this_pop > max_pop:
+				max_pop = this_pop
+			happies = pCity.happyLevel() - pCity.unhappyLevel(0)
+			sum_benefit_x100 = sum_benefit_x100 + min(max(happies * 100, 0), 250)
+			zturn_mod = zturn_mod + pCity.getY() * 19 + pCity.getX()
+		avg_benefit_x100 = sum_benefit_x100 // num_cities
+		quality = min(350, max_pop * 100) + avg_benefit_x100 + max(75, num_cities * 50) + max(zturn, 50) + (zturn_mod % 151) * 4
+#		print "q = %(grr)d, max_pop = %(aa)d, avg_benefit_x100 = %(bb)d, num_cities = %(cc)d, zturn = %(dd)d, zturn_mod = %(gg)d _ %(hh)d" % {"grr":quality,"aa":max_pop,"bb":avg_benefit_x100,"cc":num_cities,"dd":zturn,"gg":zturn_mod,"hh":zturn_mod % 151}
+		if quality < 500 + 650 + 25:
 			return False
+#		print "q = %(grr)d CAST_RIVER_OF_BLOOD_NOW at turn %(trn)d" % {"grr":quality,"trn":gc.getGame().getGameTurn()}
 	return True
 
 def spellRiverOfBlood(caster):
@@ -2727,7 +2733,7 @@ def spellRiverOfBlood(caster):
 						if pCity.getPopulation() == 2:
 							iChange = -1
 						pCity.changePopulation(iChange)
-						CyInterface().addMessage(pCity.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_RIVER_OF_BLOOD", ()),'',1,'Art/Interface/Buttons/Spells/River of Blood.dds',ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
+						CyInterface().addMessage(pCity.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_RIVER_OF_BLOOD", (pCity.getName(),-iChange)),'',1,'Art/Interface/Buttons/Spells/River of Blood.dds',ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
 			if iPlayer == iOwner:
 				for pyCity in PyPlayer(iPlayer).getCityList() :
 					pCity = pyCity.GetCy()
@@ -2783,20 +2789,11 @@ def spellRobGrave(caster):
 	pPlot = caster.plot()
 	pPlot.setImprovementType(-1)
 	pPlayer = gc.getPlayer(caster.getOwner())
-	lList = ['LOW_GOLD', 'HIGH_GOLD', 'SPAWN_SKELETONS', 'SPAWN_SPECTRE']
+	lList = ['GOODY_GRAVE_LOW_GOLD', 'GOODY_GRAVE_HIGH_GOLD', 'GOODY_GRAVE_SKELETONS', 'GOODY_GRAVE_SPECTRE']
 	if pPlayer.canReceiveGoody(pPlot, gc.getInfoTypeForString('GOODY_GRAVE_TECH'), caster):
-		lList = lList + ['TECH']
-	sGoody = lList[CyGame().getSorenRandNum(len(lList), "Pick Goody")-1]
-	if sGoody == 'LOW_GOLD':
-		pPlayer.receiveGoody(pPlot, gc.getInfoTypeForString('GOODY_GRAVE_LOW_GOLD'), caster)
-	if sGoody == 'HIGH_GOLD':
-		pPlayer.receiveGoody(pPlot, gc.getInfoTypeForString('GOODY_GRAVE_HIGH_GOLD'), caster)
-	if sGoody == 'TECH':
-		pPlayer.receiveGoody(pPlot, gc.getInfoTypeForString('GOODY_GRAVE_TECH'), caster)
-	if sGoody == 'SPAWN_SKELETONS':
-		pPlayer.receiveGoody(pPlot, gc.getInfoTypeForString('GOODY_GRAVE_SKELETONS'), caster)
-	if sGoody == 'SPAWN_SPECTRE':
-		pPlayer.receiveGoody(pPlot, gc.getInfoTypeForString('GOODY_GRAVE_SPECTRE'), caster)
+		lList = lList + ['GOODY_GRAVE_TECH']
+	sGoody = lList[CyGame().getSorenRandNum(len(lList), "Pick Goody")]
+	pPlayer.receiveGoody(pPlot, gc.getInfoTypeForString(sGoody), caster)
 
 def spellSacrificeAltar(caster):
 	pPlayer = gc.getPlayer(caster.getOwner())

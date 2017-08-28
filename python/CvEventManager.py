@@ -447,7 +447,9 @@ class CvEventManager:
 							if iTerrain == iDesert:
 								pPlot.setTempTerrainType(iPlains, CyGame().getSorenRandNum(90, "Bob") + 10)
 			'''
-			FLAT_WORLDS = ["ErebusWrap", "Erebus"]			# map scripts with wrapping but no equator
+			FLAT_WORLDS = [ # map scripts with wrapping but no equator
+				"ErebusWrap", "Erebus", "Erebus_mst",
+			]
 			MAX_EOW_PERCENTAGE = 0.25 						# percentage of EoW on total game turns 
 			THAW_DELAY_PERCENTAGE = 0.05 					# don't start thawing for x percent of EoW
 
@@ -577,7 +579,8 @@ class CvEventManager:
 			for i in range (CyMap().numPlots()):
 				pPlot = CyMap().plotByIndex(i)
 				if pPlot.getImprovementType() == iGoblinFort:
-					bPlayer.initUnit(gc.getInfoTypeForString('UNIT_ARCHER_SCORPION_CLAN'), pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_LAIRGUARDIAN, DirectionTypes.DIRECTION_SOUTH)
+					newDefenseUnit1 = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_ARCHER_SCORPION_CLAN'), pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_LAIRGUARDIAN, DirectionTypes.DIRECTION_SOUTH)
+					newDefenseUnit1.setUnitAIType(gc.getInfoTypeForString('UNITAI_LAIRGUARDIAN'))
 
 		if (gc.getGame().getGameTurnYear() == gc.getDefineINT("START_YEAR") and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_START)):
 			if not CyGame().getWBMapScript():
@@ -1820,18 +1823,20 @@ class CvEventManager:
 						pTeam = gc.getTeam(pInfernalPlayer.getTeam())
 
 						pBestPlot = -1
-						iBestPlot = -1
+						iBestPlotValue = -1
 						for iLoop in range (CyMap().numPlots()):
 							pPlot = CyMap().plotByIndex(iLoop)
 							iX = pPlot.getX()
 							iY = pPlot.getY()
-							iPlot = -1
+							iPlotValue = -1
 							if pInfernalPlayer.canFound(iX, iY):
 								if pPlot.getNumUnits() == 0:
-									iPlot = CyGame().getSorenRandNum(50, "Place Hyborem")
-									iPlot += 50
-									iPlot += pPlot.area().getNumTiles() * 2
-									iPlot += pPlot.area().getNumUnownedTiles() * 10
+									iPlotValue = CyGame().getSorenRandNum(50, "Place Hyborem")
+									iPlotValue += 50
+									iPlotValue += pPlot.area().getNumTiles() * 2
+									iPlotValue += pPlot.area().getNumUnownedTiles() * 10
+									if pPlot.isAdjacentOwned():
+										iPlotValue -= 150;
 
 									## Check Big Fat Cross for other players, resources and terrain
 									for iCityPlotX in range(iX-1, iX+2, 1):
@@ -1845,23 +1850,24 @@ class CvEventManager:
 												lPlayer = gc.getPlayer(jPlayer)
 												if lPlayer.isAlive():
 													if pCityPlot.getCulture(jPlayer) > 100:
-														iPlot -= 250
-											if pPlot.isAdjacentOwned():
-												iPlot -= 25
-											else:
-												iPlot += 15
+														iPlotValue -= 150
+#											if pCityPlot.isOwned():
+#												iPlotValue -= 25
+#											else:
+											iPlotValue += 15
 											if (iCityTerrain == gc.getInfoTypeForString('TERRAIN_SNOW')) or (iCityTerrain == gc.getInfoTypeForString("TERRAIN_DESERT")):
-												iPlot -= 25
+												iPlotValue -= 25
 											elif (iCityTerrain == gc.getInfoTypeForString('TERRAIN_TUNDRA')):
-												iPlot -= 10
-											if (pCityPlot.isWater()):
-												iPlot -= 25
-											elif not iCityBonus == BonusTypes.NO_BONUS:
-												iPlot += gc.getBonusInfo(iCityBonus).getYieldChange(YieldTypes.YIELD_PRODUCTION) * 25
-												iPlot += gc.getBonusInfo(iCityBonus).getYieldChange(YieldTypes.YIELD_COMMERCE) * 15
+												iPlotValue -= 10
+#											if (pCityPlot.isWater()):
+#												iPlotValue -= 25
+#											if not iCityBonus == BonusTypes.NO_BONUS:
+#												iPlotValue += gc.getBonusInfo(iCityBonus).getYieldChange(YieldTypes.YIELD_PRODUCTION) * 25
+#												iPlotValue += gc.getBonusInfo(iCityBonus).getYieldChange(YieldTypes.YIELD_COMMERCE) * 15
+#												iPlotValue += gc.getBonusInfo(iCityBonus).getAIObjective() * 25
 
-							if iPlot > iBestPlot:
-								iBestPlot = iPlot
+							if iPlotValue > iBestPlotValue:
+								iBestPlotValue = iPlotValue
 								pBestPlot = pPlot
 
 						if pBestPlot != -1:
@@ -2291,6 +2297,30 @@ class CvEventManager:
 		city, iPlayer = argsList
 		iOwner = city.findHighestCulture()
 
+#### messages - wonder destroyed start by The_J (modified by Terkhen) ####
+		if city.getNumWorldWonders() > 0:
+			for i in range(gc.getNumBuildingInfos()):
+				if city.getNumBuilding(i) > 0:
+					pThisBuilding = gc.getBuildingInfo(i)
+					if gc.getBuildingClassInfo(pThisBuilding.getBuildingClassType()).getMaxGlobalInstances() == 1:
+						pConquerPlayer = gc.getPlayer(city.getOwner())
+						iConquerTeam = pConquerPlayer.getTeam()
+						sConquerName = pConquerPlayer.getName()
+						sWonderName = pThisBuilding.getDescription()
+						iX = city.getX()
+						iY = city.getY()
+
+						for iLoopPlayer in range (gc.getMAX_CIV_PLAYERS()):
+							iLoopTeam = gc.getPlayer(iLoopPlayer).getTeam()
+							if iLoopTeam == iConquerTeam or gc.getTeam(iLoopTeam).isHasMet(iConquerTeam):
+
+								if iLoopPlayer == city.getOwner():
+									sText = "TXT_KEY_YOU_DESTROYED_WONDER"
+								else:
+									sText = "TXT_KEY_DESTROYED_WONDER"
+								CyInterface().addMessage(iLoopPlayer, False, 15, CyTranslator().getText(sText, (sConquerName,sWonderName)), '', 0,'Art/Interface/Buttons/General/warning_popup.dds', ColorTypes(gc.getInfoTypeForString("COLOR_RED")), iX, iY, True, True)
+#### messages - wonder destroyed end ####
+
 		# Partisans!
 #		if city.getPopulation > 1 and iOwner != -1 and iPlayer != -1:
 #			owner = gc.getPlayer(iOwner)
@@ -2368,6 +2398,36 @@ class CvEventManager:
 		iOwner,pCity = argsList
 
 		#Functions added here tend to cause OOS issues
+
+#### messages - wonder captured start by The_J (modified by Terkhen) ####
+		#UI only stuff should be okay, though.
+		if pCity.getNumWorldWonders() > 0:
+			for i in range(gc.getNumBuildingInfos()):
+				if pCity.getNumBuilding(i) > 0:
+					pThisBuilding = gc.getBuildingInfo(i)
+					if gc.getBuildingClassInfo(pThisBuilding.getBuildingClassType()).getMaxGlobalInstances() == 1:
+						pConquerPlayer = gc.getPlayer(pCity.getOwner())
+						iConquerTeam = pConquerPlayer.getTeam()
+						sConquerName = pConquerPlayer.getName()
+						sWonderName = pThisBuilding.getDescription()
+						iX = pCity.getX()
+						iY = pCity.getY()
+
+						for iLoopPlayer in range (gc.getMAX_CIV_PLAYERS()):
+							iLoopTeam = gc.getPlayer(iLoopPlayer).getTeam()
+							if iLoopTeam == iConquerTeam or gc.getTeam(iLoopTeam).isHasMet(iConquerTeam):
+
+								if iLoopPlayer == pCity.getOwner():
+									sText = "TXT_KEY_YOU_CAPTURED_WONDER"
+								else:
+									sText = "TXT_KEY_CAPTURED_WONDER"
+
+								if iLoopTeam == iConquerTeam:
+									sColor = "COLOR_GREEN"
+								else:
+									sColor = "COLOR_RED"
+								CyInterface().addMessage(iLoopPlayer, False, 15, CyTranslator().getText(sText, (sConquerName,sWonderName)), '', 0,'Art/Interface/Buttons/General/warning_popup.dds', ColorTypes(gc.getInfoTypeForString(sColor)), iX, iY, True, True)
+#### messages - wonder captured end ####
 
 		CvUtil.pyPrint('City Acquired and Kept Event: %s' %(pCity.getName()))
 

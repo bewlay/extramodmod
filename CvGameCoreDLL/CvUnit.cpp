@@ -500,6 +500,14 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_iBaseCombat = (NO_UNIT != m_eUnitType) ? m_pUnitInfo->getCombat() : 0;
 	m_eLeaderUnitType = NO_UNIT;
 	m_iCargoCapacity = (NO_UNIT != m_eUnitType) ? m_pUnitInfo->getCargoSpace() : 0;
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	m_eOriginalOwner = eOwner;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 //FfH Spell System: Added by Kael 07/23/2007
 	m_bFleeWithdrawl = false;
@@ -782,6 +790,15 @@ void CvUnit::convert(CvUnit* pUnit)
     }
 //FfH: End Modify
 
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	m_eOriginalOwner = pUnit->getOriginalOwner();
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 	setGameTurnCreated(pUnit->getGameTurnCreated());
 	setDamage(pUnit->getDamage());
 	setMoves(pUnit->getMoves());
@@ -1002,7 +1019,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 	}
 
 //FfH: Added by Kael 07/23/2008
-    if (isImmortal() && !bIllusion)
+    if (isImmortal() && !bIllusion && !isCargo())
     {
 		if (GET_PLAYER(getOwnerINLINE()).getCapitalCity() != NULL)
 		{
@@ -1013,6 +1030,12 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
     }
 
     GC.getGameINLINE().changeGlobalCounter(-1 * m_pUnitInfo->getModifyGlobalCounter());
+
+	if (bIllusion) // Make sure that we properly adjust the stats when an Illusionary unit is removed from the game
+	{
+		GC.getGameINLINE().decrementUnitCreatedCount(getUnitType());
+		GC.getGameINLINE().decrementUnitClassCreatedCount((UnitClassTypes)(m_pUnitInfo->getUnitClassType()));
+	}
 
 	for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
 	{
@@ -1034,7 +1057,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 	    }
 	}
 	if (isWorldUnitClass((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) && GC.getGameINLINE().getUnitClassCreatedCount((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) == 1
-		&& !m_pUnitInfo->isObject())
+		&& !m_pUnitInfo->isObject() && !bIllusion)
 	{
 		for (int iI = 0; iI < MAX_PLAYERS; iI++)
 		{
@@ -2133,31 +2156,6 @@ void CvUnit::updateCombat(bool bQuick)
 
 	//FAssertMsg((pPlot == pDefender->plot()), "There is not expected to be a defender or the defender's plot is expected to be pPlot (the attack plot)");
 
-//FfH: Added by Kael 07/30/2007
-    if (!isImmuneToDefensiveStrike())
-    {
-        pDefender->doDefensiveStrike(this);
-    }
-    if (pDefender->isFear())
-    {
-        if (!isImmuneToFear())
-        {
-            int iChance = baseCombatStr() + 20 + getLevel() - pDefender->baseCombatStr() - pDefender->getLevel();
-            if (iChance < 4)
-            {
-                iChance = 4;
-            }
-            if (GC.getGameINLINE().getSorenRandNum(40, "Im afeared!") > iChance)
-            {
-                setMadeAttack(true);
-                changeMoves(std::max(GC.getMOVE_DENOMINATOR(), pPlot->movementCost(this, plot())));
-                szBuffer = gDLL->getText("TXT_KEY_MESSAGE_IM_AFEARED", getNameKey());
-                gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)getOwner()), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, "Art/Interface/Buttons/Promotions/Fear.dds", (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
-                bFinish = true;
-            }
-        }
-    }
-//FfH: End Add
 
 	//if not finished and not fighting yet, set up combat damage and mission
 	if (!bFinish)
@@ -2187,6 +2185,34 @@ void CvUnit::updateCombat(bool bQuick)
 
 			setCombatUnit(pDefender, true);
 			pDefender->setCombatUnit(this, false);
+
+		//FfH: Added by Kael 07/30/2007
+		    if (!isImmuneToDefensiveStrike())
+		    {
+				logBBAI("    %S (%d)checking for defensive strike against %S (%d)!", pDefender->getName().GetCString(), pDefender->getID(), getName().GetCString(), getID());
+		        pDefender->doDefensiveStrike(this);
+		    }
+		    if (pDefender->isFear())
+		    {
+		        if (!isImmuneToFear())
+		        {
+		            int iChance = baseCombatStr() + 20 + getLevel() - pDefender->baseCombatStr() - pDefender->getLevel();
+		            if (iChance < 4)
+		            {
+		                iChance = 4;
+		            }
+		            if (GC.getGameINLINE().getSorenRandNum(40, "Im afeared!") > iChance)
+		            {
+		                setMadeAttack(true);
+		                changeMoves(std::max(GC.getMOVE_DENOMINATOR(), pPlot->movementCost(this, plot())));
+		                szBuffer = gDLL->getText("TXT_KEY_MESSAGE_IM_AFEARED", getNameKey());
+		                gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)getOwner()), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MAJOR_EVENT, "Art/Interface/Buttons/Promotions/Fear.dds", (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
+		                bFinish = true;
+		            }
+		        }
+		    }
+		//FfH: End Add
+
 
 			pDefender->getGroup()->clearMissionQueue();
 
@@ -3261,7 +3287,6 @@ bool CvUnit::canEnterTerritory(TeamTypes eTeam, bool bIgnoreRightOfPassage) cons
 		}
 /************************************************************************************************/
 /* Afforess	                  Start		 08/01/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 		if (GET_TEAM(getTeam()).isLimitedBorders(eTeam))
@@ -3587,7 +3612,7 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 	{
 		if (!bAttack)
 		{
-			if (pPlot->isEnemyCity(*this))
+			if (pPlot->isEnemyCity(*this) && !isHiddenNationality())
 			{
 				return false;
 			}
@@ -5064,6 +5089,7 @@ int CvUnit::healRate(const CvPlot* pPlot) const
 	iTotalHeal += iBestHeal;
 	// XXX
 
+
 //FfH: Added by Kael 10/29/2007
     if (pPlot->getImprovementType() != NO_IMPROVEMENT)
     {
@@ -5373,6 +5399,16 @@ bool CvUnit::nuke(int iX, int iY)
 	{
 		if (abTeamsAffected[iI])
 		{
+/*************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/*************************************************************************************************/
+			if ((TeamTypes)iI != getTeam() && !GET_TEAM(getTeam()).isAtWar((TeamTypes)iI))
+			{
+				GET_TEAM((TeamTypes)iI).changeWarPretextAgainstCount(getTeam(), 1);
+			}
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 			if (!isEnemy((TeamTypes)iI))
 			{
 				GET_TEAM(getTeam()).declareWar(((TeamTypes)iI), false, WARPLAN_LIMITED);
@@ -5798,6 +5834,17 @@ bool CvUnit::airBomb(int iX, int iY)
 	}
 
 	pPlot = GC.getMapINLINE().plotINLINE(iX, iY);
+	
+/*************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/*************************************************************************************************/
+	if (pPlot->isOwned() && pPlot->getTeam() != getTeam() && !GET_TEAM(getTeam()).isAtWar(pPlot->getTeam()))
+	{
+		GET_TEAM(pPlot->getTeam()).changeWarPretextAgainstCount(getTeam(), 1);
+	}
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 
 	if (!isEnemy(pPlot->getTeam()))
 	{
@@ -6010,6 +6057,17 @@ bool CvUnit::bombard()
 		pTargetPlot = bombardImprovementTarget(pPlot);
 	}
 	// Super Forts end
+	
+/*************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/*************************************************************************************************/
+	if (pTargetPlot->isOwned() && pTargetPlot->getTeam() != getTeam() && !GET_TEAM(getTeam()).isAtWar(pTargetPlot->getTeam()))
+	{
+		GET_TEAM(pTargetPlot->getTeam()).changeWarPretextAgainstCount(getTeam(), 1);
+	}
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 
 	if (!isEnemy(pTargetPlot->getTeam()))
 	{
@@ -6329,6 +6387,11 @@ bool CvUnit::pillage()
 	{
 		eTempRoute = pPlot->getRouteType();
 		pPlot->setRouteType(NO_ROUTE, true); // XXX downgrade rail???
+
+		// Show messages when roads are pillaged. Based on code by The_J.
+		szBuffer = gDLL->getText("TXT_KEY_MISC_IMP_DESTROYED", GC.getRouteInfo(eTempRoute).getTextKeyWide(), getNameKey(), getVisualCivAdjective(pPlot->getTeam()));
+		gDLL->getInterfaceIFace()->addMessage(pPlot->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE(), true, true);
+		// Show messages when roads are pillaged END
 	}
 
 	changeMoves(GC.getMOVE_DENOMINATOR());
@@ -6418,6 +6481,17 @@ bool CvUnit::plunder()
 	setBlockading(true);
 
 	finishMoves();
+	
+/*************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/*************************************************************************************************/
+	if (pPlot->isOwned() && pPlot->getTeam() != getTeam() && !GET_TEAM(getTeam()).isAtWar(pPlot->getTeam()))
+	{
+		GET_TEAM(pPlot->getTeam()).changeWarPretextAgainstCount(getTeam(), 1);
+	}
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 
 	return true;
 }
@@ -7535,17 +7609,6 @@ TechTypes CvUnit::getDiscoveryTech() const
 
 int CvUnit::getDiscoverResearch(TechTypes eTech) const
 {
-	int iResearch;
-
-	iResearch = (m_pUnitInfo->getBaseDiscover() + (m_pUnitInfo->getDiscoverMultiplier() * GET_TEAM(getTeam()).getTotalPopulation()));
-
-	iResearch *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitDiscoverPercent();
-	iResearch /= 100;
-
-    if (eTech != NO_TECH)
-    {
-        iResearch = std::min(GET_TEAM(getTeam()).getResearchLeft(eTech), iResearch);
-    }
 
 //FfH: Added by Kael 08/18/2008
     if (isHasCasted())
@@ -7554,22 +7617,36 @@ int CvUnit::getDiscoverResearch(TechTypes eTech) const
     }
 //FfH: End Add
 
-	return std::max(0, iResearch);
+	int iResearch = (m_pUnitInfo->getBaseDiscover() + (m_pUnitInfo->getDiscoverMultiplier() * GET_TEAM(getTeam()).getTotalPopulation()));
+	if (iResearch > 0) {
+		iResearch *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitDiscoverPercent();
+		iResearch /= 100;
+		if (eTech != NO_TECH)
+		{
+			iResearch = std::min(GET_TEAM(getTeam()).getResearchLeft(eTech), iResearch);
+		}
+	} else if (iResearch < 0) {
+		iResearch = 0;
+	}
+
+	return iResearch;
 }
 
 
 bool CvUnit::canDiscover(const CvPlot* pPlot) const
 {
+	// The TechTypes parameter is only used for checking the maximum value that the discover research can take.
+	// In this case we only want to check if the unit can make any research at all, so the parameter is not needed.
+	if (getDiscoverResearch(NO_TECH) == 0)
+	{
+		return false;
+	}
+
 	TechTypes eTech;
 
 	eTech = getDiscoveryTech();
 
 	if (eTech == NO_TECH)
-	{
-		return false;
-	}
-
-	if (getDiscoverResearch(eTech) == 0)
 	{
 		return false;
 	}
@@ -7736,6 +7813,28 @@ int CvUnit::getTradeGold(const CvPlot* pPlot) const
 
 	iGold *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitTradePercent();
 	iGold /= 100;
+	
+/************************************************************************************************/
+/* Stolenrays	              Start		 		                                                */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	//More Gold From Free Trade Agreement Trade Missions
+	PlayerTypes eTargetPlayer = pPlot->getOwnerINLINE();
+
+	if (GET_TEAM(getTeam()).isFreeTradeAgreement(GET_PLAYER(eTargetPlayer).getTeam()))
+	{
+		iGold *= 100 + GC.getDefineINT("FREE_TRADE_AGREEMENT_TRADE_MODIFIER");
+		iGold /= 100;
+	}
+	
+	//Gold Sound 
+	if (plot()->isActiveVisible(false))
+	{
+		gDLL->getInterfaceIFace()->playGeneralSound("AS2D_COINS");
+	}	
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/	
 
 //FfH: Added by Kael 08/18/2008
     if (isHasCasted())
@@ -8155,6 +8254,18 @@ bool CvUnit::testSpyIntercepted(PlayerTypes eTargetPlayer, int iModifier)
 	}
 
 	kill(true);
+	
+/*************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/*************************************************************************************************/
+
+	if (GET_PLAYER(eTargetPlayer).getTeam() != getTeam() && !GET_TEAM(getTeam()).isAtWar(GET_PLAYER(eTargetPlayer).getTeam()))
+	{
+		GET_TEAM(GET_PLAYER(eTargetPlayer).getTeam()).changeWarPretextAgainstCount(getTeam(), 1);
+	}
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 
 	return true;
 }
@@ -8334,6 +8445,22 @@ bool CvUnit::build(BuildTypes eBuild)
 		{
 			kill(true);
 		}
+
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                              */
+/************************************************************************************************/
+		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+		{
+			int iI = 0;
+		
+			if (plot()->getOwnerINLINE() != NO_PLAYER && plot()->getOwnerINLINE() != getOwnerINLINE())
+			{
+				GET_PLAYER((PlayerTypes)iI).AI_changeMemoryCount(getOwnerINLINE(), MEMORY_WORKED_PLOT, 1);
+			}
+		}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	}
 
 	// Python Event
@@ -8423,6 +8550,7 @@ void CvUnit::promote(PromotionTypes ePromotion, int iLeaderUnitId)
 			}
 
 			//update graphics models
+			// Set civ-specific art here
 			m_eLeaderUnitType = pWarlord->getUnitType();
 			reloadEntity();
 		}
@@ -8488,8 +8616,7 @@ bool CvUnit::lead(int iUnitId)
 	else
 	{
 		CvUnit* pUnit = GET_PLAYER(getOwnerINLINE()).getUnit(iUnitId);
-
-		if (!pUnit || !pUnit->canPromote(eLeaderPromotion, getID()))
+		if (!pUnit || !pUnit->canPromote(eLeaderPromotion, getID()))	
 		{
 			return false;
 		}
@@ -9330,7 +9457,6 @@ bool CvUnit::isHuman() const
 {
 	return GET_PLAYER(getOwnerINLINE()).isHuman();
 }
-
 
 int CvUnit::visibilityRange() const
 {
@@ -12087,28 +12213,38 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 		{
 			if (isEnemy(pNewCity->getTeam()) && !canCoexistWithEnemyUnit(pNewCity->getTeam()) && canFight())
 			{
-				GET_TEAM(getTeam()).changeWarWeariness(pNewCity->getTeam(), *pNewPlot, GC.getDefineINT("WW_CAPTURED_CITY"));
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      06/14/09                                jdog5000      */
-/*                                                                                              */
-/* General AI                                                                                   */
-/************************************************************************************************/
-/* original bts code
-				GET_TEAM(getTeam()).AI_changeWarSuccess(pNewCity->getTeam(), GC.getDefineINT("WAR_SUCCESS_CITY_CAPTURING"));
-*/
-				// Double war success if capturing capital city, always a significant blow to enemy
-				// pNewCity still points to old city here, hasn't been acquired yet
-				GET_TEAM(getTeam()).AI_changeWarSuccess(pNewCity->getTeam(), (pNewCity->isCapital() ? 2 : 1)*GC.getWAR_SUCCESS_CITY_CAPTURING());
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
-
-				PlayerTypes eNewOwner = GET_PLAYER(getOwnerINLINE()).pickConqueredCityOwner(*pNewCity);
-
-				if (NO_PLAYER != eNewOwner)
+				if (isHiddenNationality())
 				{
-					GET_PLAYER(eNewOwner).acquireCity(pNewCity, true, false, true); // will delete the pointer
-					pNewCity = NULL;
+					//pNewCity->kill(true);
+					//gDLL->getInterfaceIFace()->addMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_CITYRAZE", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("WORLDBUILDER_CITY_EDIT")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pNewCity->getX_INLINE(), pNewCity->getY_INLINE(), true, true);
+					pNewCity->doTask(TASK_RAZE);
+				}
+				else
+				{
+					GET_TEAM(getTeam()).changeWarWeariness(pNewCity->getTeam(), *pNewPlot, GC.getDefineINT("WW_CAPTURED_CITY"));
+	/************************************************************************************************/
+	/* BETTER_BTS_AI_MOD                      06/14/09                                jdog5000      */
+	/*                                                                                              */
+	/* General AI                                                                                   */
+	/************************************************************************************************/
+	/* original bts code
+					GET_TEAM(getTeam()).AI_changeWarSuccess(pNewCity->getTeam(), GC.getDefineINT("WAR_SUCCESS_CITY_CAPTURING"));
+	*/
+					// Double war success if capturing capital city, always a significant blow to enemy
+					// pNewCity still points to old city here, hasn't been acquired yet
+					//GET_TEAM(getTeam()).AI_changeWarSuccess(pNewCity->getTeam(), (pNewCity->isCapital() ? 2 : 1)*GC.getWAR_SUCCESS_CITY_CAPTURING());
+					GET_TEAM(getTeam()).AI_changeWarSuccess(pNewCity->getTeam(), (pNewCity->getPopulation() * 2) + (pNewCity->getNumActiveWorldWonders() * 5));
+	/************************************************************************************************/
+	/* BETTER_BTS_AI_MOD                       END                                                  */
+	/************************************************************************************************/
+
+					PlayerTypes eNewOwner = GET_PLAYER(getOwnerINLINE()).pickConqueredCityOwner(*pNewCity);
+
+					if (NO_PLAYER != eNewOwner)
+					{
+						GET_PLAYER(eNewOwner).acquireCity(pNewCity, true, false, true); // will delete the pointer
+						pNewCity = NULL;
+					}
 				}
 			}
 		}
@@ -13715,6 +13851,22 @@ PlayerTypes CvUnit::getCombatOwner(TeamTypes eForTeam, const CvPlot* pPlot) cons
 	return getOwnerINLINE();
 }
 
+
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                              */
+/************************************************************************************************/
+/*void CvUnit::setOriginalOwner(PlayerTypes ePlayer)
+{
+	if (ePlayer != m_eOriginalOwner)
+	{
+		m_eOriginalOwner = ePlayer;
+	}
+}
+/************************************************************************************************/
+/* Advanced Diplomacy        END                                                             */
+/************************************************************************************************/
+
+
 TeamTypes CvUnit::getTeam() const
 {
 	return GET_PLAYER(getOwnerINLINE()).getTeam();
@@ -15218,6 +15370,16 @@ bool CvUnit::rangeStrike(int iX, int iY)
 /* UNOFFICIAL_PATCH                        END                                                  */
 /************************************************************************************************/
 	}
+/*************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/*************************************************************************************************/
+	if (pDefender->getTeam() != getTeam() && pDefender->getTeam() != NO_TEAM && !GET_TEAM(getTeam()).isAtWar(pDefender->getTeam()))
+	{
+		GET_TEAM(pDefender->getTeam()).changeWarPretextAgainstCount(getTeam(), 1);
+	}
+/*************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/*************************************************************************************************/
 
 	return true;
 }
@@ -16059,8 +16221,15 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
             return false;
         }
 		
-		// MNAI: Revolutions - Rebels cant cast World spells
+		// MNAI
+		// Revolutions - Rebels cant cast World spells
 		if (GET_PLAYER(getOwnerINLINE()).isRebel())
+		{
+			return false;
+		}
+
+		// Puppet States - Puppet States cant cast World spells
+		if (GET_PLAYER(getOwnerINLINE()).isPuppetState())
 		{
 			return false;
 		}
@@ -17018,7 +17187,7 @@ void CvUnit::cast(int spell)
 
 	if( gUnitLogLevel > 2 )
 	{
-		logBBAI("     %S casting %S (plot %d, %d)\n",  getName().GetCString(), kSpellInfo.getDescription(), getX(), getY());
+		logBBAI("     %S (%d) casting %S (plot %d, %d)\n",  getName().GetCString(), getID(), kSpellInfo.getDescription(), getX(), getY());
 	}
 
     if (kSpellInfo.isHasCasted())
@@ -17199,11 +17368,22 @@ void CvUnit::cast(int spell)
         gDLL->getPythonIFace()->callFunction(PYSpellModule, "cast", argsList.makeFunctionArgs()); //, &lResult
         delete pyUnit; // python fxn must not hold on to this pointer
     }
-    gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
-    if (kSpellInfo.isSacrificeCaster())
-    {
-        kill(false);
-    }
+
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+/*	Casting spell triggers unit cycling	*/
+	if (isInGroup() && !getGroup()->readyToSelect(true) && !getGroup()->isBusy())
+	{
+//		gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
+//		gDLL->getInterfaceIFace()->changeCycleSelectionCounter((GET_PLAYER(getOwnerINLINE()).isOption(PLAYEROPTION_QUICK_MOVES)) ? 1 : 2);
+		GC.getGameINLINE().updateSelectionList();
+	}
+//<<<<Spell Interrupt Unit Cycling: End Add
+
+	gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
+	if (kSpellInfo.isSacrificeCaster())
+	{
+		kill(false);
+	}
 }
 
 void CvUnit::castAddPromotion(int spell)
@@ -18134,14 +18314,14 @@ void CvUnit::changeHiddenNationality(int iNewValue)
     {
         if (m_iHiddenNationality + iNewValue == 0)
         {
-            updatePlunder(-1, false);
+            //updatePlunder(-1, false);
 			setBlockading(false);
             m_iHiddenNationality += iNewValue;
 			if (getGroup()->getNumUnits() > 1)
 			{
 	            joinGroup(NULL, true);
 			}
-            updatePlunder(1, false);
+            //updatePlunder(1, false);
         }
         else
         {
@@ -18872,13 +19052,15 @@ int CvUnit::chooseSpell()
 				}
 				if (kSpellInfo.getRemovePromotionType2() != NO_PROMOTION)
 				{
-					if (isImmuneTeamSpell)
+					if (isImmuneTeamSpell) // affects enemies
 					{
-						iValue += AI_promotionValue((PromotionTypes)kSpellInfo.getRemovePromotionType2());
+						//ToDo - actually check for the promotions in nearby enemies
+						iValue += AI_promotionValue((PromotionTypes)kSpellInfo.getRemovePromotionType2()) * iAdjacentEnemyCount;
 					}
 					else
 					{
-						iValue -= AI_promotionValue((PromotionTypes)kSpellInfo.getRemovePromotionType2()) * iAdjacentEnemyCount;
+						//ToDo - actually check for the promotions in nearby friends
+						iValue -= AI_promotionValue((PromotionTypes)kSpellInfo.getRemovePromotionType2()) * plot()->getNumDefenders(getOwner());
 					}
 				}
 				if (kSpellInfo.getRemovePromotionType3() != NO_PROMOTION)
@@ -18933,7 +19115,11 @@ int CvUnit::chooseSpell()
 
 				if (kSpellInfo.getSpreadReligion() != NO_RELIGION)
 				{
-					if (kSpellInfo.getSpreadReligion() == GET_PLAYER(getOwner()).getStateReligion())
+					if (!GC.getGameINLINE().isReligionFounded(ReligionTypes(kSpellInfo.getSpreadReligion())))
+					{
+						iValue += 500;
+					}
+					else if (kSpellInfo.getSpreadReligion() == GET_PLAYER(getOwner()).getStateReligion())
 					{
 						iValue += 100;
 					}
@@ -18941,9 +19127,9 @@ int CvUnit::chooseSpell()
 
 				if (kSpellInfo.getChangePopulation() != 0)
 				{
-					// ToDo - make this actually look at the city and see if it needs population
+					// ToDo - make this actually look at the city and see if it needs population (check health, happy)
 					// also need to make sure we dont break spells that reduce pop
-					iValue += 500 * kSpellInfo.getChangePopulation();
+					iValue += (500 * kSpellInfo.getChangePopulation() - (plot()->getPlotCity()->getPopulation() * 5));
 				}
 
 				if (kSpellInfo.getCost() != 0)
@@ -19051,7 +19237,7 @@ void CvUnit::doDamage(int iDmg, int iDmgLimit, CvUnit* pAttacker, int iDmgType, 
 				szMessage = gDLL->getText("TXT_KEY_MESSAGE_DAMAGED_BY", m_pUnitInfo->getDescription(), iDmg, GC.getDamageTypeInfo((DamageTypes)iDmgType).getDescription());
 			}
 			gDLL->getInterfaceIFace()->addMessage((getOwnerINLINE()), true, GC.getEVENT_MESSAGE_TIME(), szMessage, "", MESSAGE_TYPE_MAJOR_EVENT, GC.getDamageTypeInfo((DamageTypes)iDmgType).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
-			if (pAttacker != NULL)
+			if (pAttacker != NULL && pAttacker != this)
 			{
 				gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)pAttacker->getOwner()), true, GC.getEVENT_MESSAGE_TIME(), szMessage, "", MESSAGE_TYPE_MAJOR_EVENT, GC.getDamageTypeInfo((DamageTypes)iDmgType).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
 				changeDamage(iDmg, pAttacker->getOwner());
@@ -19153,6 +19339,7 @@ void CvUnit::doDefensiveStrike(CvUnit* pAttacker)
         }
 	    if (iDmg > 0)
 	    {
+			if (gUnitLogLevel >= 4) logBBAI("    %S (%d) takes %d damage from a defensive strike from %S (Unit %d)", pAttacker->getName().GetCString(), pAttacker->getID(), iDmg, pBestUnit->getName().GetCString(), pBestUnit->getID());
             pAttacker->changeDamage(iDmg, pBestUnit->getOwner());
             CvWString szMessage = gDLL->getText("TXT_KEY_MESSAGE_DEFENSIVE_STRIKE_BY", GC.getUnitInfo((UnitTypes)pAttacker->getUnitType()).getDescription(), iDmg, GC.getUnitInfo((UnitTypes)pBestUnit->getUnitType()).getDescription());
             gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)pAttacker->getOwner()), true, GC.getDefineINT("EVENT_MESSAGE_TIME"), szMessage, "", MESSAGE_TYPE_MAJOR_EVENT, GC.getUnitInfo((UnitTypes)pBestUnit->getUnitType()).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pAttacker->getX(), pAttacker->getY(), true, true);
@@ -19804,38 +19991,7 @@ void CvUnit::updateTerraformer()
 
 bool CvUnit::isTerraformer() const
 {
-    bool bTerraformer = false;
-    for (int iSpell = 0; iSpell < GC.getNumSpellInfos(); iSpell++)
-    {
-        if (GC.getSpellInfo((SpellTypes)iSpell).isAllowAutomateTerrain())
-        {
-			//if (canCast(iSpell, false))
-			bTerraformer = true;
-
-			if (GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq1() != NO_PROMOTION)
-			{
-				if (!isHasPromotion((PromotionTypes)GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq1()))
-				{
-					bTerraformer = false;
-				}
-            }
-
-			if (GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq2() != NO_PROMOTION)
-			{
-				if (!isHasPromotion((PromotionTypes)GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq2()))
-				{
-					bTerraformer = false;
-				}
-            }
-
-			if (bTerraformer)
-			{
-				break;
-			}
-        }
-    }
-
-	return bTerraformer;
+	return m_bTerraformer;
 }
 
 bool CvUnit::withdrawlToNearestValidPlot(bool bKillUnit)
@@ -20042,7 +20198,14 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iBaseCombat);
 	pStream->Read((int*)&m_eFacingDirection);
 	pStream->Read(&m_iImmobileTimer);
-
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pStream->Read((int*)&m_eOriginalOwner);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	pStream->Read(&m_bMadeAttack);
 	pStream->Read(&m_bMadeInterception);
 	pStream->Read(&m_bPromotionReady);
@@ -20216,7 +20379,14 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_iBaseCombat);
 	pStream->Write(m_eFacingDirection);
 	pStream->Write(m_iImmobileTimer);
-
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	pStream->Write(m_eOriginalOwner);
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	pStream->Write(m_bMadeAttack);
 	pStream->Write(m_bMadeInterception);
 	pStream->Write(m_bPromotionReady);
@@ -20406,6 +20576,41 @@ void CvUnit::setAvatarOfCivLeader(bool bNewValue)
 }
 //<<<<Unofficial Bug Fix: End Add
 
+ // MNAI - True Power calculations
+int CvUnit::getTruePower() const
+{
+	//Tholal note: units start at level 1
+	return (m_pUnitInfo->getPowerValue() + (getLevel() - 1));
+}
+
+ // MNAI - Identify Units with Ranged Collateral Damage ability
+bool CvUnit::isRangedCollateral()
+{
+    for (int iSpell = 0; iSpell < GC.getNumSpellInfos(); iSpell++)
+    {
+        if (canCast(iSpell, false))
+        {
+			CvSpellInfo kSpell = GC.getSpellInfo((SpellTypes)iSpell);
+			{
+				if (kSpell.getDamage() > 0 && kSpell.getRange() > 0)
+				{
+					return true;
+				}
+
+				if (kSpell.getCreateUnitType() != NO_UNIT)
+				{
+					if (GC.getUnitInfo((UnitTypes)kSpell.getCreateUnitType()).getCollateralDamage() > 0)
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
+// MNAI End
+
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
 /*                                                                                              */
@@ -20425,12 +20630,17 @@ bool CvUnit::canTradeUnit(PlayerTypes eReceivingPlayer)
 	{
 		return false;
 	}
-	
-	if (!isMechUnit() && !isAnimal())
+
+	if (!(m_pUnitInfo->isMilitaryTrade() || m_pUnitInfo->isWorkerTrade()))
 	{
 		return false;
 	}
 	
+	if (m_pUnitInfo->isAbandon())
+	{
+		return false;
+	}
+
 	if (getDuration() > 0 || isPermanentSummon())
 	{
 		return false;
@@ -20505,41 +20715,11 @@ void CvUnit::tradeUnit(PlayerTypes eReceivingPlayer)
 	 }
 }
 
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
-
- // MNAI - True Power calculations
-int CvUnit::getTruePower() const
+PlayerTypes CvUnit::getOriginalOwner() const
 {
-	//Tholal note: units start at level 1
-	return (m_pUnitInfo->getPowerValue() + (getLevel() - 1));
+	return m_eOriginalOwner;
 }
 
- // MNAI - Identify Units with Ranged Collateral Damage ability
-bool CvUnit::isRangedCollateral()
-{
-    for (int iSpell = 0; iSpell < GC.getNumSpellInfos(); iSpell++)
-    {
-        if (canCast(iSpell, false))
-        {
-			CvSpellInfo kSpell = GC.getSpellInfo((SpellTypes)iSpell);
-			{
-				if (kSpell.getDamage() > 0 && kSpell.getRange() > 0)
-				{
-					return true;
-				}
-
-				if (kSpell.getCreateUnitType() != NO_UNIT)
-				{
-					if (GC.getUnitInfo((UnitTypes)kSpell.getCreateUnitType()).getCollateralDamage() > 0)
-					{
-						return true;
-					}
-				}
-			}
-		}
-	}
-	return false;
-}
-// MNAI End
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/

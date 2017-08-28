@@ -648,6 +648,32 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 		parseCommerceModHelp(widgetDataStruct, szBuffer);
 		break;
 
+/************************************************************************************************/
+/* Advanced Diplomacy                   START                                                   */
+/************************************************************************************************/
+	case WIDGET_HELP_RIGHT_PASSAGE:
+		parseLimitedBordersHelp(widgetDataStruct, szBuffer);
+		break;
+		
+	case WIDGET_HELP_EMBASSY:
+		parseEmbassyHelp(widgetDataStruct, szBuffer);
+		break;
+
+	case WIDGET_HELP_FREE_TRADE_AGREEMENT:
+		parseFreeTradeAgreementHelp(widgetDataStruct, szBuffer);
+		break;
+
+	case WIDGET_HELP_NON_AGGRESSION:
+		parseNonAggressionHelp(widgetDataStruct, szBuffer);
+		break;
+
+	case WIDGET_HELP_POW:
+		parsePOWHelp(widgetDataStruct, szBuffer);
+		break;
+/************************************************************************************************/
+/* Advanced Diplomacy                      END                                                  */
+/************************************************************************************************/
+
 // BUG - Trade Hover - start
 	case WIDGET_TRADE_ROUTES:
 		parseTradeRoutes(widgetDataStruct, szBuffer);
@@ -1502,6 +1528,25 @@ void CvDLLWidgetData::doContactCiv(CvWidgetDataStruct &widgetDataStruct)
 
 	if (gDLL->altKey())
 	{
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+		if (GET_TEAM(GC.getGameINLINE().getActiveTeam()).canDeclareWar(GET_PLAYER((PlayerTypes)widgetDataStruct.m_iData1).getTeam()))
+		{
+			if (!GET_TEAM(GC.getGameINLINE().getActiveTeam()).isSenateVeto(GET_PLAYER((PlayerTypes)widgetDataStruct.m_iData1).getTeam(), true))
+			{
+				CvMessageControl::getInstance().sendChangeWar(GET_PLAYER((PlayerTypes)widgetDataStruct.m_iData1).getTeam(), true);
+			}
+			else
+			{
+				CvWString szBuffer = gDLL->getText("TXT_KEY_SENATE_CANCEL_WAR", GET_PLAYER((PlayerTypes)widgetDataStruct.m_iData1).getNameKey(), GET_PLAYER((PlayerTypes)widgetDataStruct.m_iData1).getCivilizationShortDescriptionKey());
+				gDLL->getInterfaceIFace()->addMessage(GC.getGameINLINE().getActivePlayer(), false, 5, szBuffer, "AS2D_THEIRALLIANCE");
+			}
+		}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 		if( gDLL->shiftKey() )
 		{
 			// Warning: use of this is not multiplayer compatible
@@ -3247,7 +3292,30 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 //FfH: Added by Kael 07/23/2007
 			else if (GC.getActionInfo(widgetDataStruct.m_iData1).getCommandType() == COMMAND_CAST)
 			{
+			/********************************************************************************/
+			/* SpellPyHelp                        11/2013                           lfgr    */
+			/********************************************************************************/
+			/* old
 				GAMETEXT.parseSpellHelp(szBuffer, ((SpellTypes)(GC.getActionInfo(widgetDataStruct.m_iData1).getCommandData())));
+			*/
+				int iSpell = GC.getActionInfo(widgetDataStruct.m_iData1).getCommandData();
+				std::vector<CvUnit*> vpUnits;
+
+				pSelectedUnitNode = gDLL->getInterfaceIFace()->headSelectionListNode();
+
+				while( pSelectedUnitNode != NULL )
+				{
+					pSelectedUnit = ::getUnit( pSelectedUnitNode->m_data );
+
+					vpUnits.push_back( pSelectedUnit );
+
+					pSelectedUnitNode = gDLL->getInterfaceIFace()->nextSelectionListNode( pSelectedUnitNode );
+				}
+				
+				GAMETEXT.parseSpellHelp(szBuffer, (SpellTypes) iSpell, NEWLINE, &vpUnits );
+			/********************************************************************************/
+			/* SpellPyHelp                                                          END     */
+			/********************************************************************************/
 			}
 
 //FfH: End Add
@@ -3594,6 +3662,21 @@ void CvDLLWidgetData::parseSetPercentHelp(CvWidgetDataStruct &widgetDataStruct, 
 
 void CvDLLWidgetData::parseContactCivHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
 {
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).isActiveSenate())
+	{
+		if (GET_TEAM(GC.getGameINLINE().getActiveTeam()).isWarPretextAgainst(GET_PLAYER((PlayerTypes)widgetDataStruct.m_iData1).getTeam()))
+		{
+			szBuffer.append(CvWString::format(L"%c %s", gDLL->getSymbolID(OCCUPATION_CHAR), gDLL->getText("TXT_KEY_MISC_HELP_CURRENT_PRETEXT").c_str()));
+			szBuffer.append(NEWLINE);
+		}
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      04/03/09                                jdog5000      */
 /*                                                                                              */
@@ -3959,9 +4042,15 @@ void CvDLLWidgetData::parseContactCivHelp(CvWidgetDataStruct &widgetDataStruct, 
 		szBuffer.append(NEWLINE);
 		szBuffer.append(CvWString::format(L"Great General Points: %d", kPlayer.getCombatExperience()));
 		szBuffer.append(NEWLINE);
+		szBuffer.append(CvWString::format(L"Magic Affinity: %d", kPlayer.AI_getMagicAffinity()));
+		szBuffer.append(NEWLINE);
 		szBuffer.append(CvWString::format(L"Mojo Factor: %d", kPlayer.AI_getMojoFactor()));
 		szBuffer.append(NEWLINE);
+		szBuffer.append(CvWString::format(L"Golden Age Value: %d", kPlayer.AI_calculateGoldenAgeValue()));
+		szBuffer.append(NEWLINE);
 		szBuffer.append(CvWString::format(L"Highest Unit Tier: %d", kPlayer.getHighestUnitTier(false, true)));
+		szBuffer.append(NEWLINE);
+		szBuffer.append(CvWString::format(L"Minimum Found Value: %d", kPlayer.AI_getMinFoundValue()));
 		szBuffer.append(NEWLINE);
 		szBuffer.append(NEWLINE);
 		
@@ -4921,12 +5010,11 @@ void CvDLLWidgetData::parseTradeItem(CvWidgetDataStruct &widgetDataStruct, CvWSt
 	PlayerTypes eWhoDenies;
 /************************************************************************************************/
 /* Afforess	                  Start		 06/16/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 	CvUnit* pUnit = NULL;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 	szBuffer.clear();
 
@@ -4980,6 +5068,16 @@ void CvDLLWidgetData::parseTradeItem(CvWidgetDataStruct &widgetDataStruct, CvWSt
 		case TRADE_WAR:
 			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_MAKE_WAR", GET_TEAM(GET_PLAYER(eWhoFrom).getTeam()).getName().GetCString(), GET_TEAM((TeamTypes)widgetDataStruct.m_iData2).getName().GetCString()));
 			break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+		// byFra
+		case TRADE_WAR_PREPARE:
+			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_MAKE_PREPARE_WAR", GET_TEAM(GET_PLAYER(eWhoFrom).getTeam()).getName().GetCString(), GET_TEAM((TeamTypes)widgetDataStruct.m_iData2).getName().GetCString()));
+			break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 		case TRADE_EMBARGO:
 			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_STOP_TRADING", GET_TEAM(GET_PLAYER(eWhoFrom).getTeam()).getName().GetCString(), GET_TEAM((TeamTypes)widgetDataStruct.m_iData2).getName().GetCString()));
 			break;
@@ -5020,6 +5118,18 @@ void CvDLLWidgetData::parseTradeItem(CvWidgetDataStruct &widgetDataStruct, CvWSt
 		case TRADE_DEFENSIVE_PACT:
 			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_DEFENSIVE_PACT"));
 			break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+		case TRADE_NON_AGGRESSION:
+			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_NON_AGGRESSION"));
+			break;
+		case TRADE_POW:
+			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_POW"));
+			break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                  			 */
+/*************************************************************************************************/
 		case TRADE_PERMANENT_ALLIANCE:
 			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_PERMANENT_ALLIANCE"));
 			break;
@@ -5028,11 +5138,17 @@ void CvDLLWidgetData::parseTradeItem(CvWidgetDataStruct &widgetDataStruct, CvWSt
 			break;
 /************************************************************************************************/
 /* Afforess	                  Start		 06/16/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 		case TRADE_RIGHT_OF_PASSAGE:
 			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_LIMITED_BORDERS"));
+			break;
+		case TRADE_FREE_TRADE_ZONE:
+			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_FREE_TRADE_ZONE"));
+			break;
+		case TRADE_WORKER:
+			szBuffer.assign(gDLL->getText("TXT_KEY_TRADE_WORKER"));
+			eWhoDenies = (widgetDataStruct.m_bOption ? eWhoFrom : eWhoTo);
 			break;
 		case TRADE_MILITARY_UNIT:
 			pUnit = GET_PLAYER(eWhoFrom).getUnit(widgetDataStruct.m_iData2);
@@ -5042,8 +5158,21 @@ void CvDLLWidgetData::parseTradeItem(CvWidgetDataStruct &widgetDataStruct, CvWSt
 		case TRADE_EMBASSY:
 			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_EMBASSY", -25));
 			break;
+		case TRADE_CONTACT:
+			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_CONTACT", GET_TEAM(GET_PLAYER(eWhoFrom).getTeam()).getName().GetCString(), GET_TEAM((TeamTypes)widgetDataStruct.m_iData2).getName().GetCString()));
+			break;
+		case TRADE_CORPORATION:
+			GAMETEXT.setCorporationHelp(szBuffer, ((CorporationTypes)widgetDataStruct.m_iData2));
+			eWhoDenies = (widgetDataStruct.m_bOption ? eWhoFrom : eWhoTo);
+			break;
+		case TRADE_SECRETARY_GENERAL_VOTE:
+			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_SECRETARY_GENERAL", GET_PLAYER(eWhoFrom).getNameKey(), GET_PLAYER(eWhoTo).getNameKey(), GC.getVoteSourceInfo((VoteSourceTypes)widgetDataStruct.m_iData2).getDescription()));
+			break;
+		case TRADE_WAR_REPARATIONS:
+			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_WAR_REPARATIONS"));
+			break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 		}
 
@@ -5116,12 +5245,8 @@ void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStr
 {
 	CvWString szTempBuffer;
 
-
-
 // More Naval AI version number
-	// Add string showing version number
-	szTempBuffer.Format(L"%S", "More Naval AI v2.61");
-	szBuffer.append(szTempBuffer);
+	szBuffer.append(gDLL->getText("TXT_KEY_VERSION"));
 	szBuffer.append(NEWLINE);
 // End More Naval AI
 
@@ -5692,6 +5817,37 @@ void CvDLLWidgetData::parseVassalStateHelp(CvWidgetDataStruct &widgetDataStruct,
 {
 	GAMETEXT.buildVassalStateString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
 }
+
+/************************************************************************************************/
+/* Advanced Diplomacy                   START                                                   */
+/************************************************************************************************/
+void CvDLLWidgetData::parseLimitedBordersHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
+{
+	GAMETEXT.buildLimitedBordersString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
+}
+
+void CvDLLWidgetData::parseEmbassyHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
+{
+	GAMETEXT.buildEmbassyString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
+}
+
+void CvDLLWidgetData::parseFreeTradeAgreementHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
+{
+	GAMETEXT.buildFreeTradeAgreementString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
+}
+
+void CvDLLWidgetData::parseNonAggressionHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
+{
+	GAMETEXT.buildNonAggressionString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
+}
+void CvDLLWidgetData::parsePOWHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
+{
+	GAMETEXT.buildPOWString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
+}
+
+/************************************************************************************************/
+/* Advanced Diplomacy                   END                                                   */
+/************************************************************************************************/
 
 // MNAI - Puppet States
 void CvDLLWidgetData::parsePuppetStateHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)

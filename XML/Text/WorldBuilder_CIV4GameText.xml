@@ -2,6 +2,78 @@
 <!-- Game Text - New -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
+		<Tag>TXT_KEY_WB_TARGET_PLOT</Tag>
+		<English>Target Plot</English>
+		<French>Target Plot</French>
+		<German>Target Plot</German>
+		<Italian>Target Plot</Italian>
+		<Spanish>Target Plot</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_PUSH_MISSION</Tag>
+		<English>Push Mission</English>
+		<French>Push Mission</French>
+		<German>Push Mission</German>
+		<Italian>Push Mission</Italian>
+		<Spanish>Push Mission</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_ACTIVITY</Tag>
+		<English>Activity</English>
+		<French>Activity</French>
+		<German>Activity</German>
+		<Italian>Activity</Italian>
+		<Spanish>Activity</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_FORTIFY</Tag>
+		<English>Fortifying</English>
+		<French>Fortifying</French>
+		<German>Fortifying</German>
+		<Italian>Fortifying</Italian>
+		<Spanish>Fortifying</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_DONE</Tag>
+		<English>Done</English>
+		<French>Done</French>
+		<German>Done</German>
+		<Italian>Done</Italian>
+		<Spanish>Done</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_WAIT</Tag>
+		<English>Waiting</English>
+		<French>Waiting</French>
+		<German>Waiting</German>
+		<Italian>Waiting</Italian>
+		<Spanish>Waiting</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_DUPLICATE_CITY</Tag>
+		<English>Duplicate City</English>
+		<French>Duplicate City</French>
+		<German>Duplicate City</German>
+		<Italian>Duplicate City</Italian>
+		<Spanish>Duplicate City</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_MOVE_CITY</Tag>
+		<English>Move City</English>
+		<French>Move City</French>
+		<German>Move City</German>
+		<Italian>Move City</Italian>
+		<Spanish>Move City</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_RAZE_CITY</Tag>
+		<English>Raze City</English>
+		<French>Raze City</French>
+		<German>Raze City</German>
+		<Italian>Raze City</Italian>
+		<Spanish>Raze City</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_WB_SENSIBILITY</Tag>
 		<English>Checks Prerequisites for Multiple Tiles Mode</English>
 		<French>Checks Prerequisites for Multiple Tiles Mode</French>
@@ -729,6 +801,71 @@
 		<Italian>Memory</Italian>
 		<Spanish>Memory</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_KILL</Tag>
+		<English>Kill</English>
+		<French>Tuer</French>
+		<German>Löschen</German>
+		<Italian>Kill</Italian>
+		<Spanish>Matar</Spanish>
+	</TEXT>
+
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_HIDE_INACTIVE</Tag>
+		<English>Hide Inactive</English>
+		<French>Hide Inactive</French>
+		<German>Hide Inactive</German>
+		<Italian>Hide Inactive</Italian>
+		<Spanish>Hide Inactive</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_CATEGORY_ROUTE</Tag>
+		<English>Routes</English>
+		<French>Routes</French>
+		<German>Routes</German>
+		<Italian>Routes</Italian>
+		<Spanish>Routes</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_DOMAIN</Tag>
+		<English>Domain</English>
+		<French>Domain</French>
+		<German>Domain</German>
+		<Italian>Domain</Italian>
+		<Spanish>Domain</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_PEDIA_NATIONAL_STUFF</Tag>
+		<English>National %s1</English>
+		<French>National %s1</French>
+		<German>National %s1</German>
+		<Italian>National %s1</Italian>
+		<Spanish>National %s1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_PEDIA_TEAM_STUFF</Tag>
+		<English>Team %s1</English>
+		<French>Team %s1</French>
+		<German>Team %s1</German>
+		<Italian>Team %s1</Italian>
+		<Spanish>Team %s1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_PEDIA_WORLD_STUFF</Tag>
+		<English>World %s1</English>
+		<French>World %s1</French>
+		<German>World %s1</German>
+		<Italian>World %s1</Italian>
+		<Spanish>World %s1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_PEDIA_NON_COMBAT</Tag>
+		<English>Non-Combat Units</English>
+		<French>Unit&#233;s sans type de combat</French>
+		<German>Zivile Einheiten</German>
+		<Italian>Unit?non da combattimento</Italian>
+		<Spanish>Unidades sin tipo de combate</Spanish>
+	</TEXT>
 
 <!-- FFH2 Specific-->
 	<TEXT>
@@ -1029,7 +1166,7 @@
 		<Spanish>No Religion</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>INTERFACE_PANE_STRENGTH_DEFENSE</Tag>
+		<Tag>TXT_WB_STRENGTH_DEFENSE</Tag>
 		<English>Defensive Strength</English>
 		<French>Defensive Puissance</French>
 		<German>Defensive Strength</German>
@@ -1189,14 +1326,6 @@
 		<Spanish>All</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_WB_KILL</Tag>
-		<English>Kill</English>
-		<French>Tuer</French>
-		<German>Löschen</German>
-		<Italian>Kill</Italian>
-		<Spanish>Matar</Spanish>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_WB_FEATS</Tag>
 		<English>Feats</English>
 		<French>Feats</French>
@@ -1212,5 +1341,68 @@
 		<Italian>Shrines</Italian>
 		<Spanish>Shrines</Spanish>
 	</TEXT>
-
+	<TEXT>
+		<Tag>TXT_KEY_SANCTUARY_TIMER</Tag>
+		<English>Sanctuary Timer: %d1</English>
+		<French>Sanctuary Timer: %d1</French>
+		<German>Sanctuary Timer: %d1</German>
+		<Italian>Sanctuary Timer: %d1</Italian>
+		<Spanish>Sanctuary Timer: %d1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_TEMP_TIMER</Tag>
+		<English>Temporary Timer: %d1</English>
+		<French>Temporary Timer: %d1</French>
+		<German>Temporary Timer: %d1</German>
+		<Italian>Temporary Timer: %d1</Italian>
+		<Spanish>Temporary Timer: %d1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_REAL</Tag>
+		<English>Shows timers for temporary map items and allows the selection of the real types to which they revert when the timers expire</English>
+		<French>Shows timers for temporary map items and allows the selection of the real types to which they revert when the timers expire</French>
+		<German>Shows timers for temporary map items and allows the selection of the real types to which they revert when the timers expire</German>
+		<Italian>Shows timers for temporary map items and allows the selection of the real types to which they revert when the timers expire</Italian>
+		<Spanish>Shows timers for temporary map items and allows the selection of the real types to which they revert when the timers expire</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_FORTIFY_TURNS</Tag>
+		<English>Fortify Turns</English>
+		<French>Fortify Turns</French>
+		<German>Fortify Turns</German>
+		<Italian>Fortify Turns</Italian>
+		<Spanish>Fortify Turns</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_TOGGLE</Tag>
+		<English>Toggle[SPACE]</English>
+		<French>Toggle[SPACE]</French>
+		<German>Toggle[SPACE]</German>
+		<Italian>Toggle[SPACE]</Italian>
+		<Spanish>Toggle[SPACE]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_UNIT_CLASS</Tag>
+		<English>Unit Class Type</English>
+		<French>Unit Class Type</French>
+		<German>Unit Class Type</German>
+		<Italian>Unit Class Type</Italian>
+		<Spanish>Unit Class Type</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_WB_CAN_CAST</Tag>
+		<English>Can Cast</English>
+		<French>Can Cast</French>
+		<German>Can Cast</German>
+		<Italian>Can Cast</Italian>
+		<Spanish>Can Cast</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_WAR_PLAN</Tag>
+		<English>Planning War</English>
+		<French>Planning War</French>
+		<German>Planning War</German>
+		<Italian>Planning War</Italian>
+		<Spanish>Planning War</Spanish>
+	</TEXT>
 </Civ4GameText>

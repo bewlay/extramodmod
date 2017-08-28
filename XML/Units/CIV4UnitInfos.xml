@@ -5354,6 +5354,10 @@
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
                 <FreePromotion>
+                    <PromotionType>PROMOTION_IMMUNE_DISEASE</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
                     <PromotionType>PROMOTION_DRAGON</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
@@ -5574,6 +5578,10 @@
             <FreePromotions>
                 <FreePromotion>
                     <PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_IMMUNE_DISEASE</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
                 <FreePromotion>
@@ -7903,6 +7911,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -8324,7 +8333,7 @@
             <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
-            <Description>TXT_KEY_UNIT_ARCHER</Description>
+            <Description>TXT_KEY_UNIT_ARCHER_SCORPION_CLAN</Description>
             <Civilopedia>TXT_KEY_UNIT_ARCHER_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_ARCHER_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
@@ -8385,6 +8394,10 @@
                 </UnitAI>
                 <UnitAI>
                     <UnitAIType>UNITAI_COUNTER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_ATTACK</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
             </UnitAIs>
@@ -14160,7 +14173,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_AZER</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_AZER_PEDIA</Civilopedia>
             <Strategy></Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -14430,6 +14443,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -15306,6 +15320,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -15511,6 +15526,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -15731,6 +15747,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -15970,6 +15987,14 @@
             <UnitAIs>
                 <UnitAI>
                     <UnitAIType>UNITAI_ATTACK_CITY</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_ATTACK</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_COUNTER</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
             </UnitAIs>
@@ -17259,7 +17284,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_BERSERKER</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_BERSERKER_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_BERSERKER_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -19073,6 +19098,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -19282,6 +19308,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -19492,6 +19519,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -19705,6 +19733,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
                 <UnitClassUpgrade>
                     <UnitClassUpgradeType>UNITCLASS_CANNON</UnitClassUpgradeType>
@@ -19918,6 +19947,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
                 <UnitClassUpgrade>
                     <UnitClassUpgradeType>UNITCLASS_CANNON</UnitClassUpgradeType>
@@ -21857,7 +21887,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_OGRE</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_OGRE_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_OGRE_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -22569,7 +22599,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_CENTAUR_CHARGER</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_CENTAUR_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_CENTAUR_CHARGER_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -25305,7 +25335,7 @@
                     <iFlavor>4</iFlavor>
                 </Flavor>
             </Flavors>
-            <iAIWeight>-20</iAIWeight>
+            <iAIWeight>0</iAIWeight>
             <iCost>60</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
@@ -25540,7 +25570,7 @@
                     <iFlavor>4</iFlavor>
                 </Flavor>
             </Flavors>
-            <iAIWeight>-20</iAIWeight>
+            <iAIWeight>0</iAIWeight>
             <iCost>60</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
@@ -26012,7 +26042,7 @@
                     <iFlavor>4</iFlavor>
                 </Flavor>
             </Flavors>
-            <iAIWeight>-20</iAIWeight>
+            <iAIWeight>0</iAIWeight>
             <iCost>60</iCost>
             <iHurryCostModifier>0</iHurryCostModifier>
             <iAdvancedStartCost>100</iAdvancedStartCost>
@@ -27569,6 +27599,10 @@
             <FreePromotions>
                 <FreePromotion>
                     <PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_IMMUNE_DISEASE</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
                 <FreePromotion>
@@ -29259,7 +29293,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_EARTH_ELEMENTAL</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_EARTH_ELEMENTAL_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_EARTH_ELEMENTAL_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -29960,6 +29994,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
                 <UnitClassUpgrade>
                     <UnitClassUpgradeType>UNITCLASS_WAR_ELEPHANT</UnitClassUpgradeType>
@@ -30680,6 +30715,10 @@
             <FreePromotions>
                 <FreePromotion>
                     <PromotionType>PROMOTION_MAGIC_IMMUNE</PromotionType>
+                    <bFreePromotion>1</bFreePromotion>
+                </FreePromotion>
+                <FreePromotion>
+                    <PromotionType>PROMOTION_IMMUNE_DISEASE</PromotionType>
                     <bFreePromotion>1</bFreePromotion>
                 </FreePromotion>
                 <FreePromotion>
@@ -32320,6 +32359,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
                 <UnitClassUpgrade>
                     <UnitClassUpgradeType>UNITCLASS_MAN_O_WAR</UnitClassUpgradeType>
@@ -32773,6 +32813,10 @@
                 </UnitAI>
                 <UnitAI>
                     <UnitAIType>UNITAI_CITY_COUNTER</UnitAIType>
+                    <bUnitAI>1</bUnitAI>
+                </UnitAI>
+                <UnitAI>
+                    <UnitAIType>UNITAI_ATTACK</UnitAIType>
                     <bUnitAI>1</bUnitAI>
                 </UnitAI>
             </UnitAIs>
@@ -33497,6 +33541,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             		<UnitClassUpgrade>
                 		<UnitClassUpgradeType>UNITCLASS_QUEEN_OF_THE_LINE</UnitClassUpgradeType>
@@ -33715,6 +33760,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
                 <UnitClassUpgrade>
                     <UnitClassUpgradeType>UNITCLASS_CARAVEL</UnitClassUpgradeType>
@@ -33956,6 +34002,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -34186,6 +34233,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -34840,6 +34888,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -35539,7 +35588,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_GRIFFON</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_GRIFFON_PEDIA</Civilopedia>
             <Strategy></Strategy>
             <Advisor>NONE</Advisor>
             <bAnimal>1</bAnimal>
@@ -35576,6 +35625,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -39715,7 +39765,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_CENTAUR_ARCHER</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_CENTAUR_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_CENTAUR_ARCHER_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -40413,7 +40463,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_NYXKIN</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_NYXKIN_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_HORSE_ARCHER_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -40873,7 +40923,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_CENTAUR</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_CENTAUR_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_CENTAUR_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -44344,7 +44394,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_IRA</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_IRA_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_IRA_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -44993,7 +45043,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_CENTAUR_LANCER</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_CENTAUR_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_CENTAUR_LANCER_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -47326,6 +47376,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -47553,6 +47604,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -50508,6 +50560,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -50924,7 +50977,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_MANTICORE</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_MANTICORE_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_MANTICORE_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -53513,7 +53566,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_MINOTAUR</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_MINOTAUR_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_MINOTAUR_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -54174,7 +54227,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_MOBIUS_WITCH</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_MOBIUS_WITCH_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_MOBIUS_WITCH_STRATEGY</Strategy>
             <Advisor>ADVISOR_SCIENCE</Advisor>
             <bAnimal>0</bAnimal>
@@ -56778,7 +56831,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_STONESKIN_OGRE</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_OGRE_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_STONESKIN_OGRE_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -57216,7 +57269,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_PIT_BEAST</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_PIT_BEAST_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_PIT_BEAST_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -59303,6 +59356,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -59528,6 +59582,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -60587,6 +60642,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -60806,6 +60862,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -65178,6 +65235,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -66062,6 +66120,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -68046,7 +68105,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_SKELETON</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_SKELETON_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_SKELETON_STRATEGY</Strategy>
             <Advisor>NONE</Advisor>
             <bAnimal>0</bAnimal>
@@ -68775,7 +68834,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_SPECTRE</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_SPECTRE_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_SPECTRE_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -69502,7 +69561,7 @@
             <Invisible>NONE</Invisible>
             <SeeInvisible>NONE</SeeInvisible>
             <Description>TXT_KEY_UNIT_STYGIAN_GUARD</Description>
-            <Civilopedia>TXT_KEY_UNIT_PLACEHOLDER_PEDIA</Civilopedia>
+            <Civilopedia>TXT_KEY_UNIT_STYGIAN_GUARD_PEDIA</Civilopedia>
             <Strategy>TXT_KEY_UNIT_STYGIAN_GUARD_STRATEGY</Strategy>
             <Advisor>ADVISOR_MILITARY</Advisor>
             <bAnimal>0</bAnimal>
@@ -70000,6 +70059,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -70702,6 +70762,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -71146,6 +71207,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
                 <UnitClassUpgrade>
                     <UnitClassUpgradeType>UNITCLASS_PRIVATEER</UnitClassUpgradeType>
@@ -72036,6 +72098,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -73827,6 +73890,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -74050,6 +74114,7 @@
             <bSuicide>0</bSuicide>
             <bHiddenNationality>0</bHiddenNationality>
             <bAlwaysHostile>0</bAlwaysHostile>
+            <bMilitaryTrade>1</bMilitaryTrade>
             <UnitClassUpgrades>
             </UnitClassUpgrades>
             <UnitClassTargets>
@@ -74236,7 +74301,7 @@
             <bRivalTerritory>0</bRivalTerritory>
             <bMilitaryHappiness>0</bMilitaryHappiness>
             <bMilitarySupport>1</bMilitarySupport>
-            <bMilitaryProduction>1</bMilitaryProduction>
+            <bMilitaryProduction>0</bMilitaryProduction>
             <bPillage>0</bPillage>
             <bSpy>0</bSpy>
             <bSabotage>0</bSabotage>

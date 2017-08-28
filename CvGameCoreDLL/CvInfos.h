@@ -247,6 +247,16 @@ public:
 	int getGreatPeopleRateChange() const;		// Exposed to Python
 	int getMissionType() const;							// Exposed to Python
 	void setMissionType(int iNewType);
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	int getHealth() const;							// Exposed to Python
+	int getHappiness() const;							// Exposed to Python
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 	int getExperience() const;				// Exposed to Python
 
 	bool isVisible() const;				// Exposed to Python
@@ -270,6 +280,16 @@ protected:
 	int m_iGreatPeopleUnitClass;		// Exposed to Python
 	int m_iGreatPeopleRateChange;		// Exposed to Python
 	int m_iMissionType;
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+	int m_iHealth;
+	int m_iHappiness;
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/ 
 	int m_iExperience;
 
 	bool m_bVisible;				// Exposed to Python
@@ -333,6 +353,18 @@ public:
 	bool isTechTrading() const;						// Exposed to Python
 	bool isGoldTrading() const;						// Exposed to Python
 	bool isOpenBordersTrading() const;		// Exposed to Python
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	bool isLimitedBordersTrading() const;
+	bool isEmbassyTrading() const;
+	bool isFreeTradeAgreementTrading() const;
+	bool isNonAggressionTrading() const;
+	bool isPOWTrading() const;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	bool isDefensivePactTrading() const;	// Exposed to Python
 	bool isPermanentAllianceTrading() const;	// Exposed to Python
 	bool isVassalStateTrading() const;	// Exposed to Python
@@ -374,16 +406,7 @@ public:
 
 	bool read(CvXMLLoadUtility* pXML);
 	bool readPass2(CvXMLLoadUtility* pXML);
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	bool isEmbassyTrading() const;
-	bool isLimitedBordersTrading() const;
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
+
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
 
 protected:
@@ -419,6 +442,18 @@ protected:
 	bool m_bTechTrading;
 	bool m_bGoldTrading;
 	bool m_bOpenBordersTrading;
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	bool m_bLimitedBordersTrading;
+	bool m_bEmbassyTrading;
+	bool m_bFreeTradeAgreementTrading;
+	bool m_bNonAggressionTrading;
+	bool m_bPOWTrading;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	bool m_bDefensivePactTrading;
 	bool m_bPermanentAllianceTrading;
 	bool m_bVassalStateTrading;
@@ -430,16 +465,7 @@ protected:
 	bool m_bIgnoreIrrigation;
 	bool m_bWaterWork;
 	bool m_bRiverTrade;
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	bool m_bEmbassyTrading;
-	bool m_bLimitedBordersTrading;
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
+
 	CvString m_szQuoteKey;
 	CvString m_szSound;
 	CvString m_szSoundMP;
@@ -891,6 +917,9 @@ public:
 	bool isRemoveHasCasted() const;
 	bool isResistable() const;
 	bool isSacrificeCaster() const;
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	bool isNoInterruptUnitCycling() const;
+//<<<<Spell Interrupt Unit Cycling: End Add
 	bool isRemoveInvalidFeature() const;	// MNAI
 
 	const TCHAR* getSound() const;
@@ -898,6 +927,15 @@ public:
 	const TCHAR* getPyResult() const;
 	const TCHAR* getPyRequirement() const;
 	const TCHAR* getPyAlternateReq() const;	// MNAI
+	
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+	const TCHAR* getPyHelp() const;
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
+
 	int getCommandType() const;
 	void setCommandType(int iNewType);
 	// MNAI begin
@@ -991,6 +1029,9 @@ protected:
     bool m_bPush;
     bool m_bRemoveHasCasted;
     bool m_bSacrificeCaster;
+//>>>>Spell Interrupt Unit Cycling: Added by Denev 2009/10/17
+	bool m_bNoInterruptUnitCycling;
+//<<<<Spell Interrupt Unit Cycling: End Add
 	bool m_bRemoveInvalidFeature;	// MNAI
     int m_iChangePopulation;
     int m_iCost;
@@ -1002,6 +1043,15 @@ protected:
 	CvString m_szPyResult;
 	CvString m_szPyRequirement;
 	CvString m_szPyAlternateReq;	// MNAI
+	
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+	CvString m_szPyHelp;
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
+
 	CvString m_szSound;
 	// MNAI begin
 	/*
@@ -1500,6 +1550,19 @@ public:
 	void write(FDataStreamBase* );
 
 	bool read(CvXMLLoadUtility* pXML);
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	bool isWorkerTrade() const;
+	bool isMilitaryTrade() const;
+protected:
+	bool m_bWorkerTrade;
+	bool m_bMilitaryTrade;
+public:
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
 
@@ -1956,6 +2019,13 @@ public:
 	bool isNoForeignCorporations() const;				// Exposed to Python
 	bool isStateReligion() const;				// Exposed to Python
 	bool isNoNonStateReligionSpread() const;				// Exposed to Python
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	bool isActiveSenate() const;				// Exposed to Python
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	std::wstring pyGetWeLoveTheKing() { return getWeLoveTheKing(); }			// Exposed to Python
 	const wchar* getWeLoveTheKing();
@@ -2079,6 +2149,13 @@ protected:
 	bool m_bNoForeignCorporations;
 	bool m_bStateReligion;
 	bool m_bNoNonStateReligionSpread;
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	bool m_bActiveSenate;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	CvWString m_szWeLoveTheKingKey;
 
@@ -4454,6 +4531,20 @@ public:
 	int getBonusTradeAttitudeChangeLimit() const;				// Exposed to Python
 	int getOpenBordersAttitudeDivisor() const;				// Exposed to Python
 	int getOpenBordersAttitudeChangeLimit() const;				// Exposed to Python
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+	int getEmbassyAttitudeDivisor() const;				// Exposed to Python
+	int getEmbassyAttitudeChangeLimit() const;				// Exposed to Python
+	int getLimitedBordersAttitudeDivisor() const;				// Exposed to Python
+	int getLimitedBordersAttitudeChangeLimit() const;				// Exposed to Python
+	int getFreeTradeAgreementAttitudeDivisor() const;				// Exposed to Python
+	int getFreeTradeAgreementAttitudeChangeLimit() const;				// Exposed to Python
+	int getNonAggressionAttitudeDivisor() const;				// Exposed to Python
+	int getNonAggressionAttitudeChangeLimit() const;				// Exposed to Python
+/************************************************************************************************/
+/* Advanced Diplomacy                        END                                                */
+/************************************************************************************************/
 	int getDefensivePactAttitudeDivisor() const;				// Exposed to Python
 	int getDefensivePactAttitudeChangeLimit() const;				// Exposed to Python
 	int getShareWarAttitudeChange() const;				// Exposed to Python
@@ -4476,6 +4567,23 @@ public:
 	int getAdoptCivicRefuseAttitudeThreshold() const;						// Exposed to Python
 	int getConvertReligionRefuseAttitudeThreshold() const;			// Exposed to Python
 	int getOpenBordersRefuseAttitudeThreshold() const;					// Exposed to Python
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	int getContactRefuseAttitudeThreshold() const;
+	int getWorkerRefuseAttitudeThreshold() const;
+	int getMilitaryUnitRefuseAttitudeThreshold() const;
+	int getCorporationRefuseAttitudeThreshold() const;
+	int getEmbassyRefuseAttitudeThreshold() const;
+	int getSecretaryGeneralVoteRefuseAttitudeThreshold() const;
+	int getLimitedBordersRefuseAttitudeThreshold() const;
+	int getFreeTradeAgreementRefuseAttitudeThreshold() const;
+	int getNonAggressionRefuseAttitudeThreshold() const;
+	int getPOWRefuseAttitudeThreshold() const;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	int getDefensivePactRefuseAttitudeThreshold() const;				// Exposed to Python
 	int getPermanentAllianceRefuseAttitudeThreshold() const;		// Exposed to Python
 	int getVassalRefuseAttitudeThreshold() const;				// Exposed to Python
@@ -4506,20 +4614,6 @@ public:
 
 	// Other
 
-/************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-	int getMilitaryUnitRefuseAttitudeThreshold() const;
-	int getEmbassyRefuseAttitudeThreshold() const;
-protected:
-	int m_iMilitaryUnitRefuseAttitudeThreshold;
-	int m_iEmbassyRefuseAttitudeThreshold;
-public:
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 	DllExport const CvArtInfoLeaderhead* getArtInfo() const;
 	const TCHAR* getLeaderHead() const;
 	const TCHAR* getButton() const;
@@ -4608,6 +4702,20 @@ protected:
 	int m_iBonusTradeAttitudeChangeLimit;
 	int m_iOpenBordersAttitudeDivisor;
 	int m_iOpenBordersAttitudeChangeLimit;
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+	int m_iLimitedBordersAttitudeDivisor;
+	int m_iLimitedBordersAttitudeChangeLimit;
+	int m_iEmbassyAttitudeDivisor;
+	int m_iEmbassyAttitudeChangeLimit;
+	int m_iFreeTradeAgreementAttitudeDivisor;
+	int m_iFreeTradeAgreementAttitudeChangeLimit;
+	int m_iNonAggressionAttitudeDivisor;
+	int m_iNonAggressionAttitudeChangeLimit;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	int m_iDefensivePactAttitudeDivisor;
 	int m_iDefensivePactAttitudeChangeLimit;
 	int m_iShareWarAttitudeChange;
@@ -4630,6 +4738,23 @@ protected:
 	int m_iAdoptCivicRefuseAttitudeThreshold;
 	int m_iConvertReligionRefuseAttitudeThreshold;
 	int m_iOpenBordersRefuseAttitudeThreshold;
+/************************************************************************************************/
+/* Afforess	                  Start		 07/29/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	int m_iContactRefuseAttitudeThreshold;
+	int m_iMilitaryUnitRefuseAttitudeThreshold;
+	int m_iWorkerRefuseAttitudeThreshold;
+	int m_iCorporationRefuseAttitudeThreshold;
+	int m_iEmbassyRefuseAttitudeThreshold;
+	int m_iSecretaryGeneralVoteRefuseAttitudeThreshold;
+	int m_iLimitedBordersRefuseAttitudeThreshold;
+	int m_iFreeTradeAgreementRefuseAttitudeThreshold;
+	int m_iNonAggressionRefuseAttitudeThreshold;
+	int m_iPOWRefuseAttitudeThreshold;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	int m_iDefensivePactRefuseAttitudeThreshold;
 	int m_iPermanentAllianceRefuseAttitudeThreshold;
 	int m_iVassalRefuseAttitudeThreshold;
@@ -4866,6 +4991,13 @@ public:
 	int getStateReligionVotePercent() const;	// Exposed to Python
 	int getTradeRoutes() const;					// Exposed to Python
 	int getMinVoters() const;					// Exposed to Python
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+	//int getNumCondemnCivicTypes() const;						// Exposed to Python
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
 
 	bool isSecretaryGeneral() const;		// Exposed to Python
 	bool isVictory() const;							// Exposed to Python
@@ -4893,6 +5025,21 @@ public:
 	const TCHAR* getPyResult() const;
 //FfH: End Add
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	bool isTradeMap() const;							// Exposed to Python
+	bool isNoCityRazing() const;						// Exposed to Python
+	bool isCultureNeedsEmptyRadius() const;						// Exposed to Python
+	bool isPacificRule() const;						// Exposed to Python
+//	int getCondemnCivic(int i) const;			// Exposed to Python
+//	bool isCondemnCivic(int i) const;			// Exposed to Python
+//	bool isValidCondemnCivicArray() const;			// Exposed to Python
+//	void reducesValues();
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                              */
+/************************************************************************************************/
+
 	// Arrays
 
 	bool isForceCivic(int i) const;			// Exposed to Python
@@ -4906,6 +5053,13 @@ protected:
 	int m_iStateReligionVotePercent;
 	int m_iTradeRoutes;
 	int m_iMinVoters;
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/
+//	int m_iNumCondemnCivicTypes;;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
 
 	bool m_bSecretaryGeneral;
 	bool m_bVictory;
@@ -4932,6 +5086,18 @@ protected:
     int m_iNoBonus;
 	CvString m_szPyResult;
 //FfH: End Add
+
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	bool m_bTradeMap;
+	bool m_bNoCityRazing;
+	bool m_bCultureNeedsEmptyRadius;
+	bool m_bPacificRule;
+	//std::vector<int> m_piCondemnCivic;
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	// Arrays
 
@@ -4984,6 +5150,10 @@ public:
 	int getPrereqGlobalCounter() const;
 //FfH: End Add
 
+// Hidden announcement projects: Added by Terkhen 09/10/2016
+	bool isHiddenAnnouncement() const;
+// Hidden announcement projects: End
+
 	// Arrays
 
 	int getBonusProductionModifier(int i) const;	// Exposed to Python
@@ -5026,6 +5196,10 @@ protected:
 	int m_iPrereqCivilization;
 	int m_iPrereqGlobalCounter;
 //FfH: End Add
+
+// Hidden announcement projects: Added by Terkhen 09/10/2016
+	bool m_bHiddenAnnouncement;
+// Hidden announcement projects: End
 
 	// Arrays
 

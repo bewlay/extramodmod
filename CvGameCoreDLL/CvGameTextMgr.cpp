@@ -123,38 +123,13 @@ void CvGameTextMgr::setYearStr(CvWString& szString, int iGameTurn, bool bSave, C
 {
 	int iTurnYear = getTurnYearForGame(iGameTurn, iStartYear, eCalendar, eSpeed);
 
-	if (iTurnYear < 0)
+	if (bSave)
 	{
-		if (bSave)
-		{
-			szString = gDLL->getText("TXT_KEY_TIME_BC_SAVE", CvWString::format(L"%04d", -iTurnYear).GetCString());
-		}
-		else
-		{
-			szString = gDLL->getText("TXT_KEY_TIME_BC", -(iTurnYear));
-		}
-	}
-	else if (iTurnYear > 0)
-	{
-		if (bSave)
-		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD_SAVE", CvWString::format(L"%04d", iTurnYear).GetCString());
-		}
-		else
-		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD", iTurnYear);
-		}
+		szString = gDLL->getText("TXT_KEY_TIME_TURN_SAVE", CvWString::format(L"%04d", iTurnYear).GetCString());
 	}
 	else
 	{
-		if (bSave)
-		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD_SAVE", L"0001");
-		}
-		else
-		{
-			szString = gDLL->getText("TXT_KEY_TIME_AD", 1);
-		}
+		szString = gDLL->getText("TXT_KEY_TIME_TURN_STANDALONE", iTurnYear);
 	}
 }
 
@@ -789,7 +764,8 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			szTempBuffer.Format(L"<img=%S size=16></img>", GC.getPromotionInfo((PromotionTypes)iI).getButton());
 			szString.append(szTempBuffer);
 		}
-	}
+	}	
+
     if (bAlt && (gDLL->getChtLvl() > 0))
     {
 		CvSelectionGroup* eGroup = pUnit->getGroup();
@@ -1267,6 +1243,12 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				}
 			}
 //BUGFfH: End Add
+
+			if (pUnit->getUnitInfo().getCultureGarrisonValue() > 0)
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_CULTURE_GARRISON_VALUE", pUnit->getUnitInfo().getCultureGarrisonValue()));
+			}
 
 //BUGFfH: Moved from below(*3) by Denev 2009/09/06
 			if (pUnit->isEnemyRoute())
@@ -5163,8 +5145,8 @@ It is fine for a human player mouse-over (which is what it is used for).
 void createTestFontString(CvWStringBuffer& szString)
 {
 	int iI;
-	szString.assign(L"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[×]^_`abcdefghijklmnopqrstuvwxyz\n");
-	szString.append(L"{}~\\ßÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞŸßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ¿¡«»°ŠŒŽšœž™©®€£¢”‘“…’");
+	szString.assign(L"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[ï¿½]^_`abcdefghijklmnopqrstuvwxyz\n");
+	szString.append(L"{}~\\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÞŸï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 	for (iI=0;iI<NUM_YIELD_TYPES;++iI)
 		szString.append(CvWString::format(L"%c", GC.getYieldInfo((YieldTypes) iI).getChar()));
 
@@ -5819,6 +5801,8 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		int iCalcFoundValue = GET_PLAYER(eActivePlayer).AI_foundValue(pPlot->getX_INLINE(), pPlot->getY_INLINE(), -1, false);
 		int iStartingFoundValue = GET_PLAYER(eActivePlayer).AI_foundValue(pPlot->getX_INLINE(), pPlot->getY_INLINE(), -1, true);
 
+		
+		//szString.append(CvWString::format(L"\nCity Radius Count: %d", pPlot->getCityRadiusCount()));
 		szTempBuffer.Format(L"\nFound Value: %d, (%d, %d)", iActualFoundValue, iCalcFoundValue, iStartingFoundValue);
 		szString.append(szTempBuffer);
 
@@ -5829,14 +5813,82 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
             int iBuildValue = pWorkingCity->AI_getBestBuildValue(iPlotIndex);
             BuildTypes eBestBuild = pWorkingCity->AI_getBestBuild(iPlotIndex);
 
+/************************************************************************************************/
+/* BETTER_BTS_AI_MOD                      06/25/09                                jdog5000      */
+/*                                                                                              */
+/* Debug                                                                                        */
+/************************************************************************************************/
+			szString.append(NEWLINE);
+
+			int iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange;
+			pWorkingCity->AI_getYieldMultipliers( iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange );
+
+			szTempBuffer.Format(L"\n%s yield multipliers: ", pWorkingCity->getName().c_str() );
+			szString.append(szTempBuffer);
+			szTempBuffer.Format(L"\n   Food %d, Prod %d, Com %d, DesFoodChange %d", iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange );
+			szString.append(szTempBuffer);
+			szTempBuffer.Format(L"\nTarget pop: %d, (%d good tiles)", pWorkingCity->AI_getTargetPopulation(), pWorkingCity->AI_countGoodPlots() );
+			szString.append(szTempBuffer);
+
+			ImprovementTypes eImprovement = pPlot->getImprovementType();
+
             if (NO_BUILD != eBestBuild)
             {
-                szTempBuffer.Format(L"\nBest Build: %s (%d)", GC.getBuildInfo(eBestBuild).getDescription(), iBuildValue);
+				
+				if( GC.getBuildInfo(eBestBuild).getImprovement() != NO_IMPROVEMENT && eImprovement != NO_IMPROVEMENT && eImprovement != GC.getBuildInfo(eBestBuild).getImprovement() )
+				{
+					szTempBuffer.Format(SETCOLR L"\nBest Build: %s (%d) replacing %s" ENDCOLR, TEXT_COLOR("COLOR_RED"), GC.getBuildInfo(eBestBuild).getDescription(), iBuildValue, GC.getImprovementInfo(eImprovement).getDescription());
+				}
+				else
+				{
+					szTempBuffer.Format(SETCOLR L"\nBest Build: %s (%d)" ENDCOLR, TEXT_COLOR("COLOR_HIGHLIGHT_TEXT"), GC.getBuildInfo(eBestBuild).getDescription(), iBuildValue);
+				}
+				
                 szString.append(szTempBuffer);
-            }
+			}
+
+			szTempBuffer.Format(L"\nBuild Values: ");
+			szString.append(szTempBuffer);
+
+			for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
+			{
+				if( pPlot->canHaveImprovement((ImprovementTypes)iI, pWorkingCity->getOwnerINLINE()) )
+				{
+					int iBuildValue = pWorkingCity->AI_getImprovementValue( pPlot, (ImprovementTypes)iI, iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange);
+					//int iOldValue = pWorkingCity->AI_getImprovementValue( pPlot, (ImprovementTypes)iI, iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange);
+
+					//szTempBuffer.Format(L"\n   %s : %d  (old %d)", GC.getImprovementInfo((ImprovementTypes)iI).getDescription(), iOtherBuildValue, iOldValue );
+					if (iBuildValue != 0)
+					{
+						szTempBuffer.Format(L"\n   %s : %d", GC.getImprovementInfo((ImprovementTypes)iI).getDescription(), iBuildValue );
+						szString.append(szTempBuffer);
+					}
+				}
+			}
+
+			/*
+			szTempBuffer.Format(L"\nStandard Build Values: ");
+			szString.append(szTempBuffer);
+
+			for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
+			{
+				int iOtherBuildValue = pWorkingCity->AI_getImprovementValue( pPlot, (ImprovementTypes)iI, 100, 100, 100, 0);
+				if( iOtherBuildValue > 0 )
+				{
+					szTempBuffer.Format(L"\n   %s : %d", GC.getImprovementInfo((ImprovementTypes)iI).getDescription(), iOtherBuildValue);
+					szString.append(szTempBuffer);
+				}
+			}
+			*/
+
+			szString.append(NEWLINE);
+/************************************************************************************************/
+/* BETTER_BTS_AI_MOD                       END                                                  */
+/************************************************************************************************/		
+
 		}
 
-		{
+		/*{
 			szTempBuffer.Format(L"\nStack Str: land=%d(%d), sea=%d(%d), air=%d(%d)",
 				pPlot->AI_sumStrength(NO_PLAYER, NO_PLAYER, DOMAIN_LAND, false, false, false),
 				pPlot->AI_sumStrength(NO_PLAYER, NO_PLAYER, DOMAIN_LAND, true, false, false),
@@ -5845,14 +5897,14 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 				pPlot->AI_sumStrength(NO_PLAYER, NO_PLAYER, DOMAIN_AIR, false, false, false),
 				pPlot->AI_sumStrength(NO_PLAYER, NO_PLAYER, DOMAIN_AIR, true, false, false));
 			szString.append(szTempBuffer);
-		}
+		}*/
 
 		if (pPlot->getPlotCity() != NULL)
 		{
 			PlayerTypes ePlayer = pPlot->getOwnerINLINE();
 			CvPlayerAI& kPlayer = GET_PLAYER(ePlayer);
 
-			szString.append(CvWString::format(L"\n\nI spy with my little eye..."));
+			szString.append(CvWString::format(L"\n\nAI unit class weights ..."));
 			for (iI = 0; iI < GC.getNumUnitClassInfos(); ++iI)
 			{
 				if (kPlayer.AI_getUnitClassWeight((UnitClassTypes)iI) != 0)
@@ -5860,7 +5912,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 					szString.append(CvWString::format(L"\n%s = %d", GC.getUnitClassInfo((UnitClassTypes)iI).getDescription(), kPlayer.AI_getUnitClassWeight((UnitClassTypes)iI)));
 				}
 			}
-			szString.append(CvWString::format(L"\n\nalso unit combat types..."));
+			szString.append(CvWString::format(L"\n\nalso unit combat type weights..."));
 			for (iI = 0; iI < GC.getNumUnitCombatInfos(); ++iI)
 			{
 				if (kPlayer.AI_getUnitCombatWeight((UnitCombatTypes)iI) != 0)
@@ -6596,7 +6648,10 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 							CvImprovementInfo& kImprovementInfo = GC.getImprovementInfo((ImprovementTypes) GC.getBuildInfo((BuildTypes) iI).getImprovement());
 							if (kImprovementInfo.isImprovementBonusTrade(eBonus))
 							{
-								if (pPlot->canHaveImprovement(((ImprovementTypes)(GC.getBuildInfo((BuildTypes) iI).getImprovement())), GC.getGameINLINE().getActiveTeam(), true))
+//>>>>Unofficial Bug Fix: Modified by Denev 2010/05/04
+//								if (pPlot->canHaveImprovement(((ImprovementTypes)(GC.getBuildInfo((BuildTypes) iI).getImprovement())), GC.getGameINLINE().getActiveTeam(), true))
+								if (pPlot->canHaveImprovement(((ImprovementTypes)(GC.getBuildInfo((BuildTypes) iI).getImprovement())), GC.getGameINLINE().getActivePlayer(), true))
+//<<<<Unofficial Bug Fix: End Modify
 								{
 									if (GET_TEAM(GC.getGameINLINE().getActiveTeam()).isHasTech((TechTypes)GC.getBuildInfo((BuildTypes) iI).getTechPrereq()))
 									{
@@ -6697,7 +6752,9 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 //				}
                 if (GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getPrereqCivilization() == NO_CIVILIZATION ||
                  GC.getGameINLINE().getActivePlayer() == NO_PLAYER ||
-                 GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCivilizationType() == GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getPrereqCivilization())
+				 //GC.getGameINLINE().isDebugMode() ||
+                 //GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCivilizationType() == GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getPrereqCivilization())
+				 GET_PLAYER(pPlot->getOwner()).getCivilizationType() == GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getPrereqCivilization())
                 {
                     // Super Forts begin *text* *upgrade*
 					if ((pPlot->getUpgradeProgress() > 0) || (pPlot->isBeingWorked() && !GC.getImprovementInfo(eImprovement).isUpgradeRequiresFortify()))
@@ -8776,6 +8833,35 @@ void CvGameTextMgr::parseSpecialistHelpActual(CvWStringBuffer &szHelpString, Spe
 		}
 // BUG - Specialist Actual Effects - end
 
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+		if (GC.getSpecialistInfo(eSpecialist).getHealth() > 0)
+		{
+			szHelpString.append(NEWLINE);
+			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_HEALTHY", GC.getSpecialistInfo(eSpecialist).getHealth()));
+		}
+		if (GC.getSpecialistInfo(eSpecialist).getHealth() < 0)
+		{
+			szHelpString.append(NEWLINE);
+			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_UNHEALTHY", -(GC.getSpecialistInfo(eSpecialist).getHealth())));
+		}
+		if (GC.getSpecialistInfo(eSpecialist).getHappiness() > 0)
+		{
+			szHelpString.append(NEWLINE);
+			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_HAPPY", GC.getSpecialistInfo(eSpecialist).getHappiness()));
+		}
+		if (GC.getSpecialistInfo(eSpecialist).getHappiness() < 0)
+		{
+			szHelpString.append(NEWLINE);
+			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_UNHAPPY", -(GC.getSpecialistInfo(eSpecialist).getHappiness())));
+		}
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
+
 		if (!CvWString(GC.getSpecialistInfo(eSpecialist).getHelp()).empty() && !bCivilopediaText)
 		{
 			szHelpString.append(NEWLINE);
@@ -9643,7 +9729,16 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 }
 
 //FfH: Added by Kael 07/23/2007
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+/* old
 void CvGameTextMgr::parseSpellHelp(CvWStringBuffer &szBuffer, SpellTypes eSpell, const wchar* pcNewline)
+*/
+void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell, const wchar* pcNewline, std::vector<CvUnit*>* pvpUnits )
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
 {
 	PROFILE_FUNC();
 
@@ -10022,6 +10117,40 @@ void CvGameTextMgr::parseSpellHelp(CvWStringBuffer &szBuffer, SpellTypes eSpell,
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_IMMOBILE_TURNS", kSpellInfo.getImmobileTurns()));
     }
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+	if( pvpUnits != NULL && !CvString( GC.getSpellInfo( eSpell ).getPyHelp() ).empty() )
+	{
+		// Get owner of the units
+		int iOwner = -1;
+		int* aiUnitIDs = new int[pvpUnits->size()];
+		for( uint i = 0; i < pvpUnits->size(); i++ )
+		{
+			if( iOwner == -1 )
+				iOwner = pvpUnits->at( i )->getOwnerINLINE();
+			else
+				FAssertMsg( pvpUnits->at( i )->getOwnerINLINE() == iOwner, "Units with different onwers selected!" );
+			aiUnitIDs[i] = pvpUnits->at( i )->getID();
+		}
+
+		if( iOwner != -1 )
+		{
+			CyArgsList argsList;
+			argsList.add( (int) eSpell );
+			argsList.add( (int) iOwner );
+			argsList.add( aiUnitIDs, pvpUnits->size() );
+		
+			CvWString szHelp;
+			gDLL->getPythonIFace()->callFunction(PYSpellModule, "getSpellHelp", argsList.makeFunctionArgs(), &szHelp);
+		
+			szBuffer.append( pcNewline );
+			szBuffer.append( szHelp );
+		}
+	}
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
     if (kSpellInfo.isSacrificeCaster())
     {
         szBuffer.append(pcNewline);
@@ -10914,6 +11043,18 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 		szHelpText.append(NEWLINE);
 		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_MILITARY_SUPPORT_COSTS", (kCivic.getGoldPerMilitaryUnit() > 0), GC.getCommerceInfo(COMMERCE_GOLD).getChar()));
 	}
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	//Active Senate
+	if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS) && GC.getCivicInfo(eCivic).isActiveSenate())
+	{
+		szHelpText.append(NEWLINE);
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_ACTIVE_SENATE"));
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	if (!CvWString(kCivic.getHelp()).empty())
 	{
@@ -11090,18 +11231,27 @@ void CvGameTextMgr::setTechTradeHelp(CvWStringBuffer &szBuffer, TechTypes eTech,
 	//	Enables permanent alliances...
 	buildPermanentAllianceString(szBuffer, eTech, true, bPlayerContext);
 /************************************************************************************************/
-/* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
+/* Afforess	                  Start		 		                                                */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 	//   Enables Embassies...
 	buildEmbassyString(szBuffer, eTech, true, bPlayerContext);
-	
+
 	//   Enables Limited Borders...
 	buildLimitedBordersString(szBuffer, eTech, true, bPlayerContext);
+
+	//   Enables Free Trade...
+	buildFreeTradeAgreementString(szBuffer, eTech, true, bPlayerContext);
+
+	//   Enables Non Aggression Pact...
+	buildNonAggressionString(szBuffer, eTech, true, bPlayerContext);
+
+	//   Enables POW Exchange...
+	buildPOWString(szBuffer, eTech, true, bPlayerContext);
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
+
 	//	Enables bridge building...
 	buildBridgeString(szBuffer, eTech, true, bPlayerContext);
 
@@ -11757,22 +11907,22 @@ void CvGameTextMgr::setBasicUnitHelpWithCity(CvWStringBuffer &szBuffer, UnitType
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_ALWAYS_HOSTILE"));
 	}
+	
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
-	if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS) && bCivilopediaText)
+	if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS) || bCivilopediaText)
 	{
-		if (kUnitInfo.isMechUnit())
+		if (kUnitInfo.isMilitaryTrade() || kUnitInfo.isWorkerTrade())
 		{
 			szBuffer.append(NEWLINE);
 			szBuffer.append(gDLL->getText("TXT_KEY_TRADABLE_UNIT"));
 		}
 	}
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/	
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 
 	if (kUnitInfo.isOnlyDefensive())
 	{
@@ -14396,6 +14546,7 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 
 				if (iYear != MIN_INT)
 				{
+					/*
 					// year built
 					CvWString szYear;
 
@@ -14411,6 +14562,7 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 					{
 						szYear = gDLL->getText("TXT_KEY_TIME_AD", 1);
 					}
+					*/
 
 					szBuffer.append(NEWLINE);
 					//szBuffer.append(gDLL->getText("TXT_KEY_BUG_YEAR_BUILT", szYear.GetCString()));
@@ -14421,7 +14573,11 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 					{
 						for (iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
 						{
-							int iDoubleTime = kBuilding.getCommerceChangeDoubleTime(iI);
+							// Fix - display times as calculated by the Fix CommerceChangeDoubleTime addon by Sephi
+							int iDoubleTime = kBuilding.getCommerceChangeDoubleTime(iI) * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getConstructPercent();
+							iDoubleTime /= 100;
+							// Fix - End
+
 							int iAge = GC.getGameINLINE().getGameTurnYear() - iYear;
 							
 							if (iAge < iDoubleTime)
@@ -15367,6 +15523,20 @@ void CvGameTextMgr::setBadHealthHelp(CvWStringBuffer &szBuffer, CvCity& city)
 			szBuffer.append(NEWLINE);
 		}
 
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+		iHealth = -(city.getSpecialistBadHealth());
+		if (iHealth > 0)
+		{
+			szBuffer.append(gDLL->getText("TXT_KEY_BAD_HEALTH_FROM_SPECIALISTS", iHealth));
+			szBuffer.append(NEWLINE);
+		}
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 		iHealth = city.getEspionageHealthCounter();
 		if (iHealth > 0)
 		{
@@ -15479,6 +15649,20 @@ void CvGameTextMgr::setGoodHealthHelp(CvWStringBuffer &szBuffer, CvCity& city)
 			szBuffer.append(NEWLINE);
 		}
 
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+		iHealth = city.getSpecialistGoodHealth();
+		if (iHealth > 0)
+		{
+			szBuffer.append(gDLL->getText("TXT_KEY_GOOD_HEALTH_FROM_SPECIALISTS", iHealth));
+			szBuffer.append(NEWLINE);
+		}
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 		iHealth = city.getPowerGoodHealth();
 		if (iHealth > 0)
 		{
@@ -15794,6 +15978,23 @@ void CvGameTextMgr::setAngerHelp(CvWStringBuffer &szBuffer, CvCity& city)
 		}
 		iOldAnger = iNewAnger;
 
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+		iNewAnger -= std::min(0, city.getSpecialistUnhappiness());
+		iAnger = ((iNewAnger - iOldAnger) + std::min(0, iOldAnger));
+		if (iAnger > 0)
+		{
+			szBuffer.append(gDLL->getText("TXT_KEY_UNHAPPY_SPECIALISTS", iAnger));
+			szBuffer.append(NEWLINE);
+		}
+		iOldAnger = iNewAnger;
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
+
 		iNewAnger -= std::min(0, city.getReligionBadHappiness());
 		iAnger = ((iNewAnger - iOldAnger) + std::min(0, iOldAnger));
 		if (iAnger > 0)
@@ -15938,6 +16139,22 @@ void CvGameTextMgr::setHappyHelp(CvWStringBuffer &szBuffer, CvCity& city)
 			szBuffer.append(gDLL->getText("TXT_KEY_HAPPY_BONUS", iHappy));
 			szBuffer.append(NEWLINE);
 		}
+
+/*************************************************************************************************/
+/** Specialists Enhancements, by Supercheese 10/9/09                                                   */
+/**                                                                                              */
+/**                                                                                              */
+/*************************************************************************************************/
+		iHappy = city.getSpecialistHappiness();
+		if (iHappy > 0)
+		{
+			iTotalHappy += iHappy;
+			szBuffer.append(gDLL->getText("TXT_KEY_HAPPY_SPECIALISTS", iHappy));
+			szBuffer.append(NEWLINE);
+		}
+/*************************************************************************************************/
+/** Specialists Enhancements                          END                                              */
+/*************************************************************************************************/
 
 		iHappy = city.getReligionGoodHappiness();
 		if (iHappy > 0)
@@ -16382,7 +16599,7 @@ void CvGameTextMgr::setBonusTradeHelp(CvWStringBuffer &szBuffer, BonusTypes eBon
 			break;
 		}
 	}
-
+	
 	if (GC.getBonusInfo(eBonus).getHealth() != 0)
 	{
 		if (GC.getBonusInfo(eBonus).getHealth() > 0)
@@ -16459,6 +16676,28 @@ void CvGameTextMgr::setBonusTradeHelp(CvWStringBuffer &szBuffer, BonusTypes eBon
         szBuffer.append(NEWLINE);
         szBuffer.append(gDLL->getText("TXT_KEY_BONUS_RESEARCH_MODIFIER", GC.getBonusInfo(eBonus).getResearchModifier()));
 	}
+
+// BonusPedia 08/2016 lfgr
+	if( GC.getBonusInfo( eBonus ).getBadAttitude() < 0 )
+	{
+        szBuffer.append( NEWLINE );
+        szBuffer.append( gDLL->getText( "TXT_KEY_BONUS_BAD_ATTITUDE" ) );
+	}
+
+	if( GC.getBonusInfo( eBonus ).getFreePromotion() != NO_PROMOTION )
+	{
+		CvPromotionInfo& kPromotion = GC.getPromotionInfo( (PromotionTypes) GC.getBonusInfo( eBonus ).getFreePromotion() );
+        szBuffer.append( NEWLINE );
+		szBuffer.append( gDLL->getText( "TXT_KEY_BONUS_FREE_PROMOTION", kPromotion.getDescription() ) );
+	}
+
+	if( GC.getBonusInfo( eBonus ).getMutateChance() != 0 )
+	{
+		szBuffer.append( NEWLINE );
+		szBuffer.append( gDLL->getText( "TXT_KEY_BONUS_MUTATE_CHANCE", GC.getBonusInfo( eBonus ).getMutateChance() ) );
+	}
+// BonusPedia END
+
 	if (GC.getBonusInfo(eBonus).isModifierPerBonus())
 	{
         szBuffer.append(NEWLINE);
@@ -18523,35 +18762,38 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 		}
 
 /************************************************************************************************/
-/* Afforess	                  Start		 07/30/10                                               */
-/*                                                                                              */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-		if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+/* Advanced Diplomacy         START                                                             */
+/************************************************************************************************/	
+		/*
+		for (iI = 0; iI < GC.getNumCivicInfos(); iI++)
 		{
-			// dont call this function on teammates - it throws asserts
-			if (GET_PLAYER(ePlayer).getTeam() != GET_PLAYER(eTargetPlayer).getTeam())
+			iAttitudeChange = GET_PLAYER(ePlayer).AI_getCondemnCivicAttitude(eTargetPlayer, (CivicTypes)iI);
+			if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
 			{
-				iAttitudeChange = GET_PLAYER(ePlayer).AI_getEmbassyAttitude(eTargetPlayer);
-				if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
-				{
-					if (iAttitudeChange > 0)
-					{
-						szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_EMBASSY_DIPLOMACY_BONUS", iAttitudeChange).GetCString());
-						szBuffer.append(NEWLINE);
-						szBuffer.append(szTempBuffer);
-					}
-					else if (iAttitudeChange < 0)
-					{
-						szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_EMBASSY_DIPLOMACY_MALUS", iAttitudeChange).GetCString());
-						szBuffer.append(NEWLINE);
-						szBuffer.append(szTempBuffer);
-					}
-				}
+				szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_MISC_ATTITUDE_CONDEMNED_CIVIC", iAttitudeChange, GC.getCivicInfo((CivicTypes)iI).getDescription()).GetCString());
+				szBuffer.append(NEWLINE);
+				szBuffer.append(szTempBuffer);
 			}
 		}
+		*/
+		
+		iAttitudeChange = GET_PLAYER(ePlayer).AI_getSharedEnemyAttitude(eTargetPlayer);
+		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
+		{
+			szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_MISC_ATTITUDE_SHARED_ENEMY", iAttitudeChange).GetCString());
+			szBuffer.append(NEWLINE);
+			szBuffer.append(szTempBuffer);
+		}
+		
+		iAttitudeChange = GET_PLAYER(ePlayer).AI_getSharedFriendAttitude(eTargetPlayer);
+		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
+		{
+			szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_MISC_ATTITUDE_SHARED_FRIEND", iAttitudeChange).GetCString());
+			szBuffer.append(NEWLINE);
+			szBuffer.append(szTempBuffer);
+		}				
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                             */
 /************************************************************************************************/
 
 //FfH: Added by Kael 08/15/2007
@@ -18575,6 +18817,23 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
                 }
             }
         }
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                             */
+/************************************************************************************************/
+		/*
+		for (iI = 0; iI < NUM_MEMORY_TYPES; ++iI)
+		{
+			iAttitudeChange = kPlayer.AI_getMemoryAttitude(eTargetPlayer, ((MemoryTypes)iI));
+			if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
+			{
+				szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_MISC_ATTITUDE_MEMORY", iAttitudeChange, GC.getMemoryInfo((MemoryTypes)iI).getDescription()).GetCString());
+				szBuffer.append(NEWLINE);
+				szBuffer.append(szTempBuffer);
+			}
+		}
+		*/
+		
+// FFH Start
 		iAttitudeChange = GET_PLAYER(ePlayer).AI_getFavoriteWonderAttitude(eTargetPlayer);
 		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
 		{
@@ -18615,6 +18874,46 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 		}
 		// MNAI - End Puppet States
 
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+		// start bonus to Diplomacy from Limited Borders
+		iAttitudeChange = kPlayer.AI_getLimitedBordersAttitude(eTargetPlayer);
+		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
+		{
+			szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_MISC_ATTITUDE_RIGHT_PASSAGE", iAttitudeChange).GetCString());
+			szBuffer.append(NEWLINE);
+			szBuffer.append(szTempBuffer);
+		}
+		
+		// start bonus to Diplomacy from Embassy
+		iAttitudeChange = kPlayer.AI_getEmbassyAttitude(eTargetPlayer);
+		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
+		{
+			szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_MISC_ATTITUDE_EMBASSY", iAttitudeChange).GetCString());
+			szBuffer.append(NEWLINE);
+			szBuffer.append(szTempBuffer);
+		}
+
+		// start bonus to Diplomacy from Free Trade Agreement
+		iAttitudeChange = kPlayer.AI_getFreeTradeAgreementAttitude(eTargetPlayer);
+		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
+		{
+			szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_MISC_ATTITUDE_FREE_TRADE_AGREEMENT", iAttitudeChange).GetCString());
+			szBuffer.append(NEWLINE);
+			szBuffer.append(szTempBuffer);
+		}
+		
+		// start bonus to Diplomacy from NonAggression Pact
+		iAttitudeChange = kPlayer.AI_getNonAggressionAttitude(eTargetPlayer);
+		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
+		{
+			szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_MISC_ATTITUDE_NON_AGGRESSION", iAttitudeChange).GetCString());
+			szBuffer.append(NEWLINE);
+			szBuffer.append(szTempBuffer);
+		}
+// END Advanced Diplomacy
+
 		for (iI = 0; iI < NUM_MEMORY_TYPES; ++iI)
 		{
 			iAttitudeChange = kPlayer.AI_getMemoryAttitude(eTargetPlayer, ((MemoryTypes)iI));
@@ -18647,6 +18946,9 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 			}
 		}
 	}
+/*************************************************************************************************/
+/** Advanced Diplomacy       END                                                  				 */
+/*************************************************************************************************/
 
 	if (NO_PLAYER != eTargetPlayer)
 	{
@@ -18717,6 +19019,18 @@ void CvGameTextMgr::getTradeString(CvWStringBuffer& szBuffer, const TradeData& t
 	case TRADE_DEFENSIVE_PACT:
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_DEFENSIVE_PACT"));
 		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       START                                                  			 */
+/*************************************************************************************************/
+	case TRADE_NON_AGGRESSION:
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_NON_AGGRESSION"));
+		break;
+	case TRADE_POW:
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_POW"));
+		break;
+/*************************************************************************************************/
+/** Advanced Diplomacy       END	                                                  			 */
+/*************************************************************************************************/
 	case TRADE_PERMANENT_ALLIANCE:
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PERMANENT_ALLIANCE"));
 		break;
@@ -18734,6 +19048,17 @@ void CvGameTextMgr::getTradeString(CvWStringBuffer& szBuffer, const TradeData& t
 		break;
 	case TRADE_PEACE:
 	case TRADE_WAR:
+/************************************************************************************************/
+/* Afforess	                  Start		 06/16/10                                               */
+/* Advanced Diplomacy                                                                           */
+/************************************************************************************************/
+	case TRADE_WAR_PREPARE:
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PREPARE_WAR"));
+		break;
+	case TRADE_CONTACT:
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
 	case TRADE_EMBARGO:
 		szBuffer.assign(CvWString::format(L"%s", GET_TEAM((TeamTypes)tradeData.m_iData).getName().GetCString()));
 		break;
@@ -18745,20 +19070,32 @@ void CvGameTextMgr::getTradeString(CvWStringBuffer& szBuffer, const TradeData& t
 		break;
 /************************************************************************************************/
 /* Afforess	                  Start		 06/16/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
+	case TRADE_WORKER:
 	case TRADE_MILITARY_UNIT:
 		szBuffer.assign(CvWString::format(L"%s", GET_PLAYER(ePlayer1).getUnit(tradeData.m_iData)->getName().GetCString()));
 		break;
 	case TRADE_EMBASSY:
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_EMBASSY"));
 		break;
+	case TRADE_CORPORATION:
+		szBuffer.assign(CvWString::format(L"%s", GC.getCorporationInfo((CorporationTypes)tradeData.m_iData).getDescription()));
+		break;
+	case TRADE_SECRETARY_GENERAL_VOTE:
+		szBuffer.assign(CvWString::format(L"%s", GC.getVoteSourceInfo((VoteSourceTypes)tradeData.m_iData).getDescription()));
+		break;
 	case TRADE_RIGHT_OF_PASSAGE:
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_LIMITED_BORDERS"));
 		break;
+	case TRADE_FREE_TRADE_ZONE:
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_FREE_TRADE_ZONE"));
+		break;
+	case TRADE_WAR_REPARATIONS:
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_WAR_REPARATIONS"));
+		break;
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 	default:
 		FAssert(false);
@@ -19777,6 +20114,19 @@ void CvGameTextMgr::parseLeaderHeadHelp(CvWStringBuffer &szBuffer, PlayerTypes e
 		return;
 	}
 
+/************************************************************************************************/
+/* Advanced Diplomacy         START                                                               */
+/************************************************************************************************/
+	//Active Senate
+	if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).isActiveSenate() && GET_TEAM(GC.getGameINLINE().getActiveTeam()).isWarPretextAgainst(GET_PLAYER(eThisPlayer).getTeam()))
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(CvWString::format(L"%c %s", gDLL->getSymbolID(OCCUPATION_CHAR), gDLL->getText("TXT_KEY_MISC_HELP_CURRENT_PRETEXT").c_str()));
+	}
+/************************************************************************************************/
+/* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
 	szBuffer.append(CvWString::format(L"%s", GET_PLAYER(eThisPlayer).getName()));
 
 	parsePlayerTraits(szBuffer, eThisPlayer);
@@ -19887,6 +20237,48 @@ void CvGameTextMgr::parseLeaderLineHelp(CvWStringBuffer &szBuffer, PlayerTypes e
 			szBuffer.append(gDLL->getText("TXT_KEY_MISC_DEFENSIVE_PACT"));
 			szBuffer.append(NEWLINE);
 		}
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/
+		if (thisTeam.isLimitedBorders(otherTeam.getID()) || otherTeam.isLimitedBorders(thisTeam.getID()))
+		{
+			szBuffer.append(gDLL->getText("TXT_KEY_MISC_RIGHT_PASSAGE"));
+			szBuffer.append(NEWLINE);
+		}
+
+		if (thisTeam.isHasEmbassy(otherTeam.getID()) || otherTeam.isHasEmbassy(thisTeam.getID()))
+		{
+			szBuffer.append(gDLL->getText("TXT_KEY_MISC_EMBASSY"));
+			szBuffer.append(NEWLINE);
+		}
+
+		if (thisTeam.isHasNonAggression(otherTeam.getID()) || otherTeam.isHasNonAggression(thisTeam.getID()))
+		{
+			szBuffer.append(gDLL->getText("TXT_KEY_MISC_NON_AGGRESSION"));
+			szBuffer.append(NEWLINE);
+		}
+		
+		if (thisTeam.isFreeTradeAgreement(otherTeam.getID()) || otherTeam.isFreeTradeAgreement(thisTeam.getID()))
+		{
+			szBuffer.append(gDLL->getText("TXT_KEY_MISC_FREE_TRADE"));
+			szBuffer.append(NEWLINE);
+		}
+		
+		if (thisTeam.isHasNonAggression(otherTeam.getID()) || otherTeam.isHasNonAggression(thisTeam.getID()))
+		{
+			szBuffer.append(gDLL->getText("TXT_KEY_MISC_NON_AGGRESSION"));
+			szBuffer.append(NEWLINE);
+		}
+
+		if (thisTeam.isHasPOW(otherTeam.getID()) || otherTeam.isHasPOW(thisTeam.getID()))
+		{
+			szBuffer.append(gDLL->getText("TXT_KEY_MISC_POW"));
+			szBuffer.append(NEWLINE);
+		}
+		
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 		if (thisTeam.isOpenBorders(otherTeam.getID()))
 		{
 			szBuffer.append(gDLL->getText("TXT_KEY_MISC_OPEN_BORDERS"));
@@ -20019,6 +20411,8 @@ void CvGameTextMgr::getOtherRelationsString(CvWStringBuffer& szString, TeamTypes
 		return;
 	}
 
+	//CvPlayer& kThisPlayer = GET_PLAYER(eThisPlayer);
+	//CvPlayer& kOtherPlayer = GET_PLAYER(eOtherPlayer);
 	CvTeamAI& kThisTeam = GET_TEAM(eThisTeam);
 	CvWString szWar, szPeace, szEnemy, szPact, szWarPlanTotal, szWarPlanLimited;
 	bool bFirstWar = true, bFirstPeace = true, bFirstEnemy = true, bFirstPact = true, bFirstWarPlanTotal = true, bFirstWarPlanLimited = true;
@@ -20067,6 +20461,17 @@ void CvGameTextMgr::getOtherRelationsString(CvWStringBuffer& szString, TeamTypes
 						bFirstWarPlanLimited = false;
 					}
 				}
+/*************************************************************************************************/
+/** Advanced Diplomacy       START															     */
+/*************************************************************************************************/			
+				if (!kTeam.isHuman() && kTeam.AI_getClosestAlly() == eThisTeam)
+				{
+					szString.append(NEWLINE);
+					szString.append(gDLL->getText(L"TXT_KEY_CLOSEST_ALLY_OF", kTeam.getName().GetCString()));
+				}
+/*************************************************************************************************/
+/** Advanced Diplomacy       END															     */
+/*************************************************************************************************/
 
 			}
 		}
@@ -20113,6 +20518,7 @@ void CvGameTextMgr::getOtherRelationsString(CvWStringBuffer& szString, TeamTypes
 	}
 }
 // BUG - Leaderhead Relations - end
+
 
 void CvGameTextMgr::buildHintsList(CvWStringBuffer& szBuffer)
 {
@@ -20290,31 +20696,13 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 			if (city.hasBonus((BonusTypes)i))
 			{
 				CvBonusInfo& bonus = GC.getBonusInfo((BonusTypes)i);
-				int iBonusMod = bonus.getResearchModifier();
+				int iBonusMod = bonus.getResearchModifier() * (bonus.isModifierPerBonus() ? city.getNumBonuses((BonusTypes)i) : 1);
 				if (0 != iBonusMod)
 				{
-					int iTotalBonusMod = iBonusMod;
-					if (bonus.isModifierPerBonus())
-					{
-						iTotalBonusMod = iBonusMod * city.getNumBonuses((BonusTypes)i);
-					}
 
-					int iFinalResearchBonusValue = ((iTotalBonusMod * city.getCommerceRateTimes100(COMMERCE_RESEARCH)) / 100);
-
-					if (iFinalResearchBonusValue < 0)
-					{
-						iFinalResearchBonusValue *= -1;
-						CvWString szMaint = CvWString::format(L"-%d.%02d", iFinalResearchBonusValue/100, iFinalResearchBonusValue%100);
-						szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_BONUS_RESEARCH", szMaint.GetCString(), bonus.getTextKeyWide()));
+						szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_BONUS_RESEARCH", iBonusMod, bonus.getTextKeyWide()));
 						szBuffer.append(NEWLINE);
-					}
-					else
-					{
-						CvWString szMaint = CvWString::format(L"+%d.%02d", iFinalResearchBonusValue/100, iFinalResearchBonusValue%100);
-						szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_BONUS_RESEARCH", szMaint.GetCString(), bonus.getTextKeyWide()));
-						szBuffer.append(NEWLINE);
-					}
-					iModifier += iTotalBonusMod;
+						iModifier += iBonusMod;
 				}
 			}
 		}
@@ -22718,7 +23106,6 @@ void CvGameTextMgr::setEspionageCostHelp(CvWStringBuffer &szBuffer, EspionageMis
 		}
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
 		if (pCity != NULL)
@@ -22728,12 +23115,22 @@ void CvGameTextMgr::setEspionageCostHelp(CvWStringBuffer &szBuffer, EspionageMis
 				szBuffer.append(SEPARATOR);
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_ESPIONAGE_EMBASSY_MOD", -GC.getDefineINT("EMBASSY_ESPIONAGE_MISSION_COST_MODIFIER")));
+
 				iModifier *= 100 - GC.getDefineINT("EMBASSY_ESPIONAGE_MISSION_COST_MODIFIER");
+				iModifier /= 100;
+			}
+			if (kTargetTeam.isFreeTradeAgreement(kPlayer.getTeam()))
+			{
+				szBuffer.append(SEPARATOR);
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_FREE_TRADE_AGREEMENT_MOD", -GC.getDefineINT("FREE_TRADE_AGREEMENT_ESPIONAGE_MISSION_COST_MODIFIER")));
+
+				iModifier *= 100 - GC.getDefineINT("FREE_TRADE_AGREEMENT_ESPIONAGE_MISSION_COST_MODIFIER");
 				iModifier /= 100;
 			}
 		}
 /************************************************************************************************/
-/* Afforess	                         END                                                        */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
 		FAssert(iModifier == kPlayer.getEspionageMissionCostModifier(eMission, eTargetPlayer, pPlot, iExtraData, pSpyUnit));
 
@@ -23931,12 +24328,25 @@ bool CvGameTextMgr::setBuildingAdditionalBombardDefenseHelp(CvWStringBuffer &szB
 	return bStarted;
 }
 // BUG - Building Additional Bombard Defense - end
-
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
-/*                                                                                              */
 /* Advanced Diplomacy                                                                           */
 /************************************************************************************************/
+void CvGameTextMgr::buildLimitedBordersString(CvWStringBuffer &szBuffer, TechTypes eTech, bool bList, bool bPlayerContext)
+{
+	if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+	{
+		if (GC.getTechInfo(eTech).isLimitedBordersTrading() && (!bPlayerContext || !(GET_TEAM(GC.getGameINLINE().getActiveTeam()).isLimitedBordersTrading())))
+		{
+			if (bList)
+			{
+				szBuffer.append(NEWLINE);
+			}
+			szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_LIMITED_BORDERS"));
+		}
+	}
+}
+
 void CvGameTextMgr::buildEmbassyString(CvWStringBuffer &szBuffer, TechTypes eTech, bool bList, bool bPlayerContext)
 {
 	if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
@@ -23952,20 +24362,67 @@ void CvGameTextMgr::buildEmbassyString(CvWStringBuffer &szBuffer, TechTypes eTec
 	}
 }
 
-void CvGameTextMgr::buildLimitedBordersString(CvWStringBuffer &szBuffer, TechTypes eTech, bool bList, bool bPlayerContext)
+void CvGameTextMgr::buildFreeTradeAgreementString(CvWStringBuffer &szBuffer, TechTypes eTech, bool bList, bool bPlayerContext)
 {
 	if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
 	{
-		if (GC.getTechInfo(eTech).isLimitedBordersTrading() && (!bPlayerContext || !(GET_TEAM(GC.getGameINLINE().getActiveTeam()).isLimitedBordersTrading())))
+		if (GC.getTechInfo(eTech).isFreeTradeAgreementTrading() && (!bPlayerContext || !(GET_TEAM(GC.getGameINLINE().getActiveTeam()).isFreeTradeAgreementTrading())))
 		{
 			if (bList)
 			{
 				szBuffer.append(NEWLINE);
 			}
-			szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_LIMITED_BORDERS"));
+			szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_FREE_TRADE_AGREEMENT"));
 		}
 	}
 }
+
+void CvGameTextMgr::buildNonAggressionString(CvWStringBuffer &szBuffer, TechTypes eTech, bool bList, bool bPlayerContext)
+{
+	if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+	{
+		if (GC.getTechInfo(eTech).isNonAggressionTrading() && (!bPlayerContext || !(GET_TEAM(GC.getGameINLINE().getActiveTeam()).isNonAggressionTrading())))
+		{
+			if (bList)
+			{
+				szBuffer.append(NEWLINE);
+			}
+			szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_NON_AGGRESSION"));
+		}
+	}
+}
+
+void CvGameTextMgr::buildPOWString(CvWStringBuffer &szBuffer, TechTypes eTech, bool bList, bool bPlayerContext)
+{
+	if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
+	{
+		if (GC.getTechInfo(eTech).isPOWTrading() && (!bPlayerContext || !(GET_TEAM(GC.getGameINLINE().getActiveTeam()).isPOWTrading())))
+		{
+			if (bList)
+			{
+				szBuffer.append(NEWLINE);
+			}
+			szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_POW_EXCHANGE"));
+		}
+	}
+}
+
+/*
+void CvGameTextMgr::setCondemnCivicHelp(CvWStringBuffer& szBuffer, PlayerTypes ePlayer, CivicTypes eCivic)
+{
+	CvWString szTempBuffer;
+
+	if (GC.getGameINLINE().isCondemnCivic(eCivic))
+	{
+		szTempBuffer.clear();
+		szTempBuffer = gDLL->getText("TXT_KEY_MISC_CIVIC_IS_COND_BY_ONU");
+	}
+	{
+		szBuffer.assign(NEWLINE);
+		szBuffer.append(szTempBuffer);
+	}
+}
+*/
 /************************************************************************************************/
-/* Afforess	                     END                                                            */
+/* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
