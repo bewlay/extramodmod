@@ -8144,33 +8144,6 @@
 			</Events>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- THAT_KIND_OF_DAY -->
-			<Type>EVENTTRIGGER_THAT_KIND_OF_DAY</Type>
-			<WorldNewsTexts>
-				<Text />
-			</WorldNewsTexts>
-			<TriggerTexts>
-				<TriggerText>
-					<Text>TXT_KEY_EVENT_THAT_KIND_OF_DAY</Text>
-					<Era>NONE</Era>
-				</TriggerText>
-			</TriggerTexts>
-			<EventArt>Art\EventImages\e_thatkindofday.dds</EventArt>
-			<bSinglePlayer>1</bSinglePlayer>
-			<iPercentGamesActive>100</iPercentGamesActive>
-			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
-			<Events>
-				<Event>EVENT_THAT_KIND_OF_DAY_1</Event>
-				<Event>EVENT_THAT_KIND_OF_DAY_2</Event>
-				<Event>EVENT_THAT_KIND_OF_DAY_3</Event>
-				<Event>EVENT_THAT_KIND_OF_DAY_4</Event>
-				<Event>EVENT_THAT_KIND_OF_DAY_5</Event>
-			</Events>
-			<bPickCity>1</bPickCity>
-			<PythonCanDo>CanTriggerThatKindOfDay</PythonCanDo>
-		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PRINCESS_RULE -->
 			<Type>EVENTTRIGGER_PRINCESS_RULE</Type>
 			<WorldNewsTexts>
