@@ -16,6 +16,11 @@
 #pragma warning( disable: 4251 )		// needs to have dll-interface to be used by clients of class
 #pragma warning( disable: 4127 )
 
+// UNIVERSAL_PREREQS 08/2017 lfgr
+template<class T>
+class CvPrereq;
+// UNIVERSAL_PREREQS end
+
 class CvXMLLoadUtility;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -7279,6 +7284,11 @@ public:
 	int getPrereqTrait() const;
 //FfH: End Add
 
+// UNIVERSAL_PREREQS 08/2017 lfgr 
+	CvPrereq<CvUnit>* getUnitPrereq() const;
+	CvPrereq<CvPlot>* getPlotPrereq() const;
+// UNIVERSAL_PREREQS end
+
 	void read(FDataStreamBase* );
 	void write(FDataStreamBase* );
 
@@ -7392,6 +7402,11 @@ private:
 	int m_iPrereqLeader;
 	int m_iPrereqTrait;
 //FfH: End Add
+
+// UNIVERSAL_PREREQS 08/2017 lfgr 
+	CvPrereq<CvUnit>* m_pUnitPrereq;
+	CvPrereq<CvPlot>* m_pPlotPrereq;
+// UNIVERSAL_PREREQS end
 
 };
 

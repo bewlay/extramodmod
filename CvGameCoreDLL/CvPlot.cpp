@@ -25,6 +25,9 @@
 #include "CyArgsList.h"
 #include "CvDLLPythonIFaceBase.h"
 #include "CvEventReporter.h"
+// UNIVERSAL_PREREQS 08/2017 lfgr
+#include "CvUniversalPrereqs.h"
+// UNIVERSAL_PREREQS end
 
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      11/30/08                                jdog5000      */
@@ -11631,7 +11634,11 @@ bool CvPlot::canTrigger(EventTriggerTypes eTrigger, PlayerTypes ePlayer) const
 			return false;
 		}
 	}
-
+	
+// UNIVERSAL_PREREQS 08/2017 lfgr
+	if( kTrigger.getPlotPrereq() != NULL && ! kTrigger.getPlotPrereq()->isValid( this ) )
+		return false;
+// UNIVERSAL_PREREQS end
 
 	return true;
 }

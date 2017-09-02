@@ -41,6 +41,11 @@
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
 
+// UNIVERSAL_PREREQS 08/2017 lfgr
+#include "CvUniversalPrereqs.h"
+// UNIVERSAL_PREREQS end
+
+
 // Public Functions...
 
 
@@ -15806,6 +15811,11 @@ int CvUnit::getTriggerValue(EventTriggerTypes eTrigger, const CvPlot* pPlot, boo
 /************************************************************************************************/
 /* EVENT_NEW_TAGS                          END                                                  */
 /************************************************************************************************/
+
+// UNIVERSAL_PREREQS 08/2017 lfgr
+	if( kTrigger.getUnitPrereq() != NULL && ! kTrigger.getUnitPrereq()->isValid( this ) )
+		return MIN_INT;
+// UNIVERSAL_PREREQS end
 
 	int iValue = 0;
 

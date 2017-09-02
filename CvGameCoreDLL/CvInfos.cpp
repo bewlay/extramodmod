@@ -17,6 +17,9 @@
 #include "CvDLLXMLIFaceBase.h"
 #include "CvGameTextMgr.h"
 #include "CvGameCoreUtils.h"
+// UNIVERSAL_PREREQS 08/2017 lfgr
+#include "CvUniversalPrereqs.h"
+// UNIVERSAL_PREREQS end
 
 //------------------------------------------------------------------------------------------------------
 //
@@ -25184,8 +25187,12 @@ CvEventTriggerInfo::CvEventTriggerInfo() :
 	m_iPrereqAlignment(NO_ALIGNMENT),
 	m_iPrereqCivilizationPleased(NO_CIVILIZATION),
 	m_iPrereqLeader(NO_LEADER),
-	m_iPrereqTrait(NO_TRAIT)
+	m_iPrereqTrait(NO_TRAIT),
 //FfH: End Add
+// UNIVERSAL_PREREQS 08/2017 lfgr 
+	m_pUnitPrereq( NULL ),
+	m_pPlotPrereq( NULL )
+// UNIVERSAL_PREREQS end
 
 {
 }
@@ -25702,6 +25709,18 @@ int CvEventTriggerInfo::getPrereqTrait() const
 }
 //FfH: End Add
 
+// UNIVERSAL_PREREQS 08/2017 lfgr 
+CvPrereq<CvUnit>* CvEventTriggerInfo::getUnitPrereq() const
+{
+	return m_pUnitPrereq;
+}
+
+CvPrereq<CvPlot>* CvEventTriggerInfo::getPlotPrereq() const
+{
+	return m_pPlotPrereq;
+}
+// UNIVERSAL_PREREQS end
+
 void CvEventTriggerInfo::read(FDataStreamBase* stream)
 {
 	int iNumElements;
@@ -25937,6 +25956,11 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iPrereqTrait);
 //FfH: End Add
 
+// UNIVERSAL_PREREQS 08/2017 lfgr
+	gDLL->MessageBox( "Reading CvUniversalPrereqs is not implemented, sorry. Do you have caching enabled?", "XML Error" );
+//	m_pUnitPrereq = CvPrereq<CvUnit>::read( stream );
+//	m_pPlotPrereq = CvPrereq<CvPlot>::read( stream );
+// UNIVERSAL_PREREQS end
 }
 
 void CvEventTriggerInfo::write(FDataStreamBase* stream)
@@ -26122,6 +26146,11 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iPrereqTrait);
 //FfH: End Add
 
+// UNIVERSAL_PREREQS 08/2017 lfgr
+	gDLL->MessageBox( "Writing CvUniversalPrereqs is not implemented, sorry. Do you have caching enabled?", "XML Error" );
+//	m_pUnitPrereq->write( stream );
+//	m_pPlotPrereq->write( stream );
+// UNIVERSAL_PREREQS end
 }
 
 bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
@@ -26695,6 +26724,30 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "PrereqTrait");
 	m_iPrereqTrait = pXML->FindInInfoClass(szTextVal);
 //FfH: End Add
+
+// UNIVERSAL_PREREQS 08/2017 lfgr
+	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "UnitPrereq" ) )
+	{
+		if( pXML->SkipToNextVal() )
+		{
+			m_pUnitPrereq = CvAndPrereq<CvUnit>::read( pXML );
+			FAssertMsg( m_pUnitPrereq != NULL, "Failed to read unit prereq" );
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "PlotPrereq" ) )
+	{
+		if( pXML->SkipToNextVal() )
+		{
+			m_pPlotPrereq = CvAndPrereq<CvPlot>::read( pXML );
+			FAssertMsg( m_pUnitPrereq != NULL, "Failed to read unit prereq" );
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+// UNIVERSAL_PREREQS end
 
 	return true;
 }
