@@ -4522,7 +4522,8 @@
 			<Type>EVENT_WITCH_1</Type>
 			<Description>TXT_KEY_EVENT_WITCH_1</Description>
 			<bPickCity>1</bPickCity>
-			<iHappyTurns>10</iHappyTurns>
+			<iHappy>1</iHappy>
+			<iHealth>-3</iHealth>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -4534,6 +4535,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<iGlobalCounter>-1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- LUNATIC_1 -->
 			<Type>EVENT_LUNATIC_1</Type>

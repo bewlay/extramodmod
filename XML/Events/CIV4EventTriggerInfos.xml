@@ -6529,7 +6529,7 @@
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDo>canTriggerWhaleOfAThing</PythonCanDo>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- WITCH -->
+		<EventTriggerInfo><!-- WITCH lfgr:tweaked -->
 			<Type>EVENTTRIGGER_WITCH</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_WITCH</Text>
@@ -6550,7 +6550,6 @@
 				<Event>EVENT_WITCH_1</Event>
 				<Event>EVENT_WITCH_2</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
