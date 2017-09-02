@@ -2056,7 +2056,7 @@
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- FRIENDLY_LOCALS -->
+		<EventTriggerInfo><!-- FRIENDLY_LOCALS lfgr:tweaked -->
 			<Type>EVENTTRIGGER_FRIENDLY_LOCALS</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_FRIENDLY_LOCALS_1</Text>
@@ -2081,6 +2081,11 @@
 			<bShowPlot>1</bShowPlot>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
 			<bRequiresValidEvent>1</bRequiresValidEvent>
+			<UnitPrereq>
+				<UnitPlotPrereq>
+					<bOwned>0</bOwned>
+				</UnitPlotPrereq>
+			</UnitPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- FROSTLING -->
 			<Type>EVENTTRIGGER_FROSTLING</Type>
