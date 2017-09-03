@@ -34,7 +34,7 @@
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDo>canTriggerAeronsChosen</PythonCanDo>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- AFFLUENT_DUKE -->
+		<EventTriggerInfo><!-- AFFLUENT_DUKE lfgr: tweaked -->
 			<Type>EVENTTRIGGER_AFFLUENT_DUKE</Type>
 			<WorldNewsTexts>
 				<Text />
@@ -48,6 +48,7 @@
 			<EventArt>Art\EventImages\e_affluent.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
+			<Civic>CIVIC_ARISTOCRACY</Civic>
 			<iMinPopulation>3</iMinPopulation>
 			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iPlotType>-1</iPlotType>
