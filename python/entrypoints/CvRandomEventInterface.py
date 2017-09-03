@@ -146,6 +146,10 @@ def doArmageddonBuboes(argsList):
 		cf.addUnit(iUnit)
 
 def doArmageddonHellfire(argsList):
+	"""
+		Randomly spawns Hellfires on eligible plots
+		Spawns Barbarian or Infernal (if Infernals exist) Champions on the Hellfires
+	"""
 	kTriggeredData = argsList[0]
 	iPlayer = argsList[1]
 	if iPlayer == 0:
@@ -225,6 +229,9 @@ def doArmageddonYersinia(argsList):
 		cf.addUnit(iUnit)
 
 def doAzer(argsList):
+	"""
+	Spawns a barbarian Azer
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	if not pPlot.isNone():
@@ -234,6 +241,9 @@ def doAzer(argsList):
 ######## BANDIT_NIETZ (lfgr: moved to XML)
 
 def doBanditNietz3(argsList):
+	"""
+	Create a Horseman with Hero, Mobility I, Bounty Hunter and Commando named "Nietz the Bandit Lord"
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -542,6 +552,9 @@ def doFlareWaterNode(argsList):
 					pPlot.setImprovementType(-1)
 
 def canTriggerPlotEmpty(argsList):
+	"""
+	The chosen plot must not contain units or a city
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	if pPlot.isNone():
@@ -2708,6 +2721,10 @@ def getHelpWeddingFeud3(argsList):
 ######## BABY BOOM ###########
 
 def canTriggerBabyBoom(argsList):
+	"""
+	Player must not be at war with anyone
+	Player must have been at peace for at least one and at most three turns with some team
+	"""
 	kTriggeredData = argsList[0]
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	team = gc.getTeam(player.getTeam())
@@ -3100,6 +3117,11 @@ def getHelpChampion(argsList):
 ######## ANTELOPE ###########
 
 def canTriggerAntelope(argsList):
+	"""
+		Player has at most 5 happiness ressources
+		Player has no deer ressource
+		Plot can have Deer ressource
+	"""
 
 	kTriggeredData = argsList[0]
 	player = gc.getPlayer(kTriggeredData.ePlayer)
@@ -3118,6 +3140,7 @@ def canTriggerAntelope(argsList):
 			if i == iDeer:
 				return False	
 
+	# TODO: necessary?
 	plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	if not plot.canHaveBonus(iDeer, False):
 		return False
@@ -3125,6 +3148,9 @@ def canTriggerAntelope(argsList):
 	return True
 
 def doAntelope2(argsList):
+	"""
+		A camp is built
+	"""
 #	Need this because camps are not normally allowed unless there is already deer.
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -3175,6 +3201,9 @@ def canTriggerWhaleOfAThing(argsList):
 ######## ANCIENT OLYMPICS ###########
 
 def doAncientOlympics2(argsList):
+	"""
+		+1 Attitude from all players that share border at >= 1 land plot
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 
