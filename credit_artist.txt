@@ -8,26 +8,26 @@ Event art
 	e_ancientcity.dds - ArenaNet
 	e_ancienttexts.dds - ???
 	e_ancienttowerlore.dds - Pierpont Morgan Library
-	e_angelicprocession.dds
-	e_angelofmercy.dds
-	e_antelope.dds
-	e_armageddonars.dds
-	e_armageddonblight.dds
-	e_armageddonbuboes.dds
-	e_armageddonhellfire.dds
-	e_armageddonpestilence.dds
-	e_armageddonstephanos.dds
-	e_armageddonwrath.dds
-	e_armageddonyersinia.dds
-	e_ashcough.dds
-	e_atthesword.dds
-	e_azer.dds
-	e_babyboom.dds
-	e_balseraphperformers.dds
-	e_banditnietz.dds
-	e_bardstale.dds
-	e_bareke.dds
-	e_boardgame.dds
+	e_angelicprocession.dds - Gilbert Williams - http://fantasygallery.net/
+	e_angelofmercy.dds - Gilbert Williams? - http://fantasygallery.net/
+	e_antelope.dds - Michael Leadingham ? - http://fantasygallery.net/
+	e_armageddonars.dds - Fall from Heaven
+	e_armageddonblight.dds - not found with tineye.com
+	e_armageddonbuboes.dds - Fall from Heaven
+	e_armageddonhellfire.dds - ???
+	e_armageddonpestilence.dds - not found with tineye.com
+	e_armageddonstephanos.dds - Fall from Heaven
+	e_armageddonwrath.dds - ???
+	e_armageddonyersinia.dds - Brom?
+	e_ashcough.dds - Jim Nelson, MTG (Wizards of the Coast)
+	e_atthesword.dds - ???, D&D (Wizards of the Coast)
+	e_azer.dds - Rob Alexander
+	e_babyboom.dds - Larry MacDougall, MTG (Wizards of the Coast)
+	e_balseraphperformers.dds - ??? Unknown Book Cover
+	e_banditnietz.dds - Ken Kelly (http://www.kenkellyfantasyart.com)
+	e_bardstale.dds - ???
+	e_bareke.dds - not found with tineye.com (original?)
+	e_boardgame.dds - Fall from Heaven, Jason Engle
 	e_bowyer.dds
 	e_bread.dds
 	e_breakthrough.dds
