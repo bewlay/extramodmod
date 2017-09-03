@@ -20,6 +20,11 @@
 // UTIL
 //------
 
+#define TRY_READ_RETURN_PREREQ(sTagName, cls) {\
+	if( sTagName == cls::TAG )\
+		return cls::read( pXml );\
+}
+
 const std::string getCurrentTagName( FXml* xml )
 {
 	// This seems... dangerous. I found no better way with civ's xml interface, though.
@@ -46,6 +51,12 @@ CvPrereq<CvPlot>* CvPrereq<CvPlot>::readPrereq( CvXMLLoadUtility* pXml );
 
 template<class T>
 const std::string CvAndPrereq<T>::TAG = "And";
+
+template<class T>
+const std::string CvOrPrereq<T>::TAG = "Or";
+
+template<class T>
+const std::string CvNotPrereq<T>::TAG = "Not";
 
 
 //--------------
@@ -96,12 +107,12 @@ CvPrereq<CvUnit>* CvPrereq<CvUnit>::readPrereq( CvXMLLoadUtility* pXml )
 
 	//std::cout << "Trying to read unit prereq " << sTagName << std::endl;
 
-	if( sTagName == CvAndPrereq<CvUnit>::TAG )
-		return CvAndPrereq<CvUnit>::read( pXml );
-	else if( sTagName == CvUnitPlotPrereq::TAG )
-		return CvUnitPlotPrereq::read( pXml );
-	else
-		return NULL;
+	TRY_READ_RETURN_PREREQ( sTagName, CvAndPrereq<CvUnit> )
+	TRY_READ_RETURN_PREREQ( sTagName, CvOrPrereq<CvUnit> )
+	TRY_READ_RETURN_PREREQ( sTagName, CvNotPrereq<CvUnit> )
+	TRY_READ_RETURN_PREREQ( sTagName, CvUnitPlotPrereq )
+
+	return NULL;
 }
 
 
@@ -128,7 +139,7 @@ bool CvPlotOwnedPrereq::isValid( const CvPlot* pPlot ) const
 CvPlotOwnedPrereq* CvPlotOwnedPrereq::read( CvXMLLoadUtility* pXml )
 {
 	bool bOwned;
-	pXml->GetXmlVal( &bOwned ); // TODO: check and return NULL
+	pXml->GetXmlVal( &bOwned ); // TODO: check and maybe return NULL
 
 	return new CvPlotOwnedPrereq( bOwned );
 }
@@ -140,10 +151,10 @@ CvPrereq<CvPlot>* CvPrereq<CvPlot>::readPrereq( CvXMLLoadUtility* pXml )
 
 	//std::cout << "Trying to read plot prereq " << sTagName << std::endl;
 
-	if( sTagName == CvAndPrereq<CvPlot>::TAG )
-		return CvAndPrereq<CvPlot>::read( pXml );
-	else if( sTagName == CvPlotOwnedPrereq::TAG )
-		return CvPlotOwnedPrereq::read( pXml );
-	else
-		return NULL;
+	TRY_READ_RETURN_PREREQ( sTagName, CvAndPrereq<CvPlot> )
+	TRY_READ_RETURN_PREREQ( sTagName, CvOrPrereq<CvPlot> )
+	TRY_READ_RETURN_PREREQ( sTagName, CvNotPrereq<CvPlot> )
+	TRY_READ_RETURN_PREREQ( sTagName, CvPlotOwnedPrereq )
+
+	return NULL;
 }
