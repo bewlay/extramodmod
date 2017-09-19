@@ -23972,7 +23972,8 @@ void CvPlayer::trigger(EventTriggerTypes eTrigger)
 void CvPlayer::trigger(const EventTriggeredData& kData)
 {
 	// lfgr EVENT_DEBUG
-	logBBAI( "EVENT_DEBUG - Triggered EventTrigger \"%s\"", GC.getEventTriggerInfo( kData.m_eTrigger ).getType() );
+	logBBAI( "EVENT_DEBUG - Triggered EventTrigger \"%s\" for Player #%d, \"%S\"",
+			GC.getEventTriggerInfo( kData.m_eTrigger ).getType(), getID(), getName() );
 	// lfgr end
 
 	if (isHuman())

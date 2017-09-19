@@ -506,6 +506,9 @@ bool CvGame::canRegenerateMap() const
 
 void CvGame::regenerateMap()
 {
+	// lfgr EVENT_DEBUG
+	logBBAI( "Generating map" );
+	// lfgr end
 	int iI;
 
 	if (GC.getInitCore().getWBMapScript())
