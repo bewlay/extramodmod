@@ -28,6 +28,7 @@ CvPrereq<CvPlayer>* CvPrereq<CvPlayer>::readPrereq( CvXMLLoadUtility* pXml )
 	TRY_READ_RETURN_PREREQ( sTagName, CvOrPrereq<CvPlayer> )
 	TRY_READ_RETURN_PREREQ( sTagName, CvNotPrereq<CvPlayer> )
 	TRY_READ_RETURN_PREREQ( sTagName, CvPlayerCivilizationPrereq )
+	TRY_READ_RETURN_PREREQ( sTagName, CvPlayerCivicPrereq )
 
 	return NULL;
 }
@@ -61,4 +62,35 @@ CvPlayerCivilizationPrereq* CvPlayerCivilizationPrereq::read( CvXMLLoadUtility* 
 
 	int iCiv = pXml->FindInInfoClass( sCiv.c_str() );
 	return new CvPlayerCivilizationPrereq( (CivilizationTypes) iCiv );
+}
+
+
+//--------------------
+// CvPlayerCivicPrereq
+//--------------------
+
+const std::string CvPlayerCivicPrereq::TAG = "CivicType";
+
+CvPlayerCivicPrereq::CvPlayerCivicPrereq( CivicTypes eCivic ) :
+		m_eCivic( eCivic )
+{
+}
+
+CvPlayerCivicPrereq::~CvPlayerCivicPrereq()
+{
+}
+
+bool CvPlayerCivicPrereq::isValid( const CvPlayer* pPlayer ) const
+{
+	return pPlayer->isCivic( m_eCivic );
+}
+
+CvPlayerCivicPrereq* CvPlayerCivicPrereq::read( CvXMLLoadUtility* pXml )
+{
+	std::string sCivic;
+	if( ! pXml->GetXmlVal( sCivic ) )
+		return NULL;
+
+	int eCivic = pXml->FindInInfoClass( sCivic.c_str() );
+	return new CvPlayerCivicPrereq( (CivicTypes) eCivic );
 }

@@ -15,6 +15,25 @@
 class CvPlayer;
 
 
+class CvPlayerCivicPrereq : public CvPrereq<CvPlayer>
+{
+public :
+	CvPlayerCivicPrereq( CivicTypes eCiv );
+
+	virtual ~CvPlayerCivicPrereq();
+
+	bool isValid( const CvPlayer* pPlayer ) const;
+
+
+	static const std::string TAG;
+
+	static CvPlayerCivicPrereq* read( CvXMLLoadUtility* pXml );
+
+private :
+	CivicTypes m_eCivic;
+};
+
+
 class CvPlayerCivilizationPrereq : public CvPrereq<CvPlayer>
 {
 public :
