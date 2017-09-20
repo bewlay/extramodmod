@@ -8,9 +8,25 @@
 #define CVUNIVERSALPREREQS_H_
 
 
-#include "CvPlot.h"
-#include "CvUnit.h"
+#include "CvDLLXMLIFaceBase.h"
+#include "CvEnums.h"
+#include "CvGlobals.h"
+#include "CvXMLLoadUtility.h"
 
+class CvPlot;
+class CvUnit;
+
+
+//------
+// UTIL
+//------
+
+#define TRY_READ_RETURN_PREREQ(sTagName, cls) {\
+	if( sTagName == cls::TAG )\
+		return cls::read( pXml );\
+}
+
+const std::string getCurrentTagName( FXml* xml );
 
 //--------------
 // GENERIC
@@ -92,6 +108,9 @@ private :
 	const std::vector<CvPrereq<T>*> m_vpPrereqs;
 };
 
+template<class T>
+const std::string CvAndPrereq<T>::TAG = "And";
+
 
 template<class T>
 class CvOrPrereq : public CvPrereq<T>
@@ -132,6 +151,10 @@ public :
 private :
 	const std::vector<CvPrereq<T>*> m_vpPrereqs;
 };
+
+template<class T>
+const std::string CvOrPrereq<T>::TAG = "Or";
+
 
 template<class T>
 class CvNotPrereq : public CvPrereq<T>
@@ -181,49 +204,8 @@ private :
 	const CvPrereq<T>* m_pPrereq;
 };
 
-//--------------
-// UNIT PREREQ
-//--------------
-
-class CvUnitPlotPrereq : public CvPrereq<CvUnit>
-{
-public :
-	CvUnitPlotPrereq( CvPrereq<CvPlot>* pPlotPrereq );
-	virtual ~CvUnitPlotPrereq();
-
-	virtual bool isValid( const CvUnit* pUnit ) const;
-
-
-	static const std::string TAG;
-
-	static CvUnitPlotPrereq* read( CvXMLLoadUtility* pXml );
-
-private :
-	CvPrereq<CvPlot>* m_pPlotPrereq;
-};
-
-
-//--------------
-// PLOT PREREQ
-//--------------
-
-class CvPlotOwnedPrereq : public CvPrereq<CvPlot>
-{
-public :
-	CvPlotOwnedPrereq( bool bOwned );
-	virtual ~CvPlotOwnedPrereq();
-
-
-	static const std::string TAG;
-
-	bool isValid( const CvPlot* pPlot ) const;
-
-	static CvPlotOwnedPrereq* read( CvXMLLoadUtility* pXml );
-
-private :
-	const bool m_bOwned;
-};
-
+template<class T>
+const std::string CvNotPrereq<T>::TAG = "Not";
 
 
 #endif /* CVUNIVERSALPREREQS_H_ */
