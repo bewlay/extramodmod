@@ -134,6 +134,11 @@
 			<Civilopedia>TXT_KEY_CONCEPT_WHAT_IS_FALL_FROM_HEAVEN_PEDIA</Civilopedia>
 		</ConceptInfo>
 		<ConceptInfo>
+			<Type>CONCEPT_WILDERNESS</Type>
+			<Description>TXT_KEY_CONCEPT_WILDERNESS</Description>
+			<Civilopedia>TXT_KEY_CONCEPT_WILDERNESS_PEDIA</Civilopedia>
+		</ConceptInfo>
+		<ConceptInfo>
 			<Type>CONCEPT_WORLD_SPELLS</Type>
 			<Description>TXT_KEY_CONCEPT_WORLD_SPELLS</Description>
 			<Civilopedia>TXT_KEY_CONCEPT_WORLD_SPELLS_PEDIA</Civilopedia>
