@@ -16187,7 +16187,7 @@
             <bActAsLand>0</bActAsLand>
             <bActAsAir>0</bActAsAir>
 			<NIF>Art/Units/Animals/Cobra/Cobra.nif</NIF>
-            <KFM>Art/Units/Animals/Cobra/WarElephant.kfm</KFM>
+            <KFM>Art/Units/WarElephant/WarElephant.kfm</KFM>
 			<SHADERNIF>Art/Units/Animals/Cobra/Cobra.nif</SHADERNIF>
 			<ShadowDef>
 				<ShadowNIF>Art/Units/01_UnitShadows/HorseShadow.nif</ShadowNIF>
@@ -16215,7 +16215,7 @@
             <bActAsLand>0</bActAsLand>
             <bActAsAir>0</bActAsAir>
 			<NIF>Art/Units/Animals/Cobra/Cobra.nif</NIF>
-            <KFM>Art/Units/Animals/Cobra/WarElephant.kfm</KFM>
+            <KFM>Art/Units/WarElephant/WarElephant.kfm</KFM>
 			<SHADERNIF>Art/Units/Animals/Cobra/Cobra.nif</SHADERNIF>
 			<ShadowDef>
 				<ShadowNIF>Art/Units/01_UnitShadows/HorseShadow.nif</ShadowNIF>
