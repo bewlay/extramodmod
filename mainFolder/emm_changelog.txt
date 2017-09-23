@@ -5,7 +5,7 @@ ExtraModMod Changelog
 ExtraModMod 0.6.0-beta1
 ===============================================================================
 
-More Naval AI version: 2.x
+More Naval AI version: 2.7
 
 MapScriptTools version: 1.0x
 
@@ -30,15 +30,79 @@ Fixes
 
 ===============================================================================
 
+Recruit (Great generals) is now an ability, not a spell.
+
 Prevent UI errors when one of the customizable progress bars is full.
 
-Fix an error with the add to flesh golem spell.
+Fixedx an error with the add to flesh golem spell.
 
 The Seraph now has the same collateral damage values than the rest of the units with the Berserker unit class.
 
 
 More Naval AI changes
 ===============================================================================
+
+Unhealthiness in city and global unhealthiness was swapped in Event description
+
+Scenarios can now be used again.
+
+Barbarian cities with culture can no longer be culture flipped.
+
+Improvements to how the AI attacks cities.
+
+AI will use commerceWeight values when valuing buildings that add commerce.
+
+AI will build more troops when at war.
+
+AI will place more value on feature clearing techs when they have blocked resources.
+
+AI should place a little more value on techs that allow commerce improvements and little less on religions.
+
+Improved AI evaluation of Pyre zombies.
+
+Tweaks to how the AI values pursuing Tower and Altar victories.
+
+Improved evaluation of resources by the AI.
+
+Slightly increased situational awareness when AI is valuing spells that add or remove promotions.
+
+AI patrol groups more likely to explore lairs and deal with nearby danger.
+
+Workboats no longer flagged as MilitaryProduction.
+
+Dragons are now Disease Immune.
+
+Research bonuses from resources are now displayed as a percentage increase in the research mouseover in the city screen.
+
+Mithril is more valued by the AI.
+
+AI be less crazy about offering deals when Advanced Tactics is on.
+
+AI gives some value to Canal and Choke points.
+
+AI is now less interested in water tiles until it can work them.
+
+Puppet States now get a few more initial defenders on creation.
+
+Players are no longer able to make multiple Puppets from a civilization.
+
+Puppet States created by Infernals will no longer retain Demonic Citizens.
+
+River of Blood message will now include the name of the affected city as well as the real amount of population lost.
+
+Deals will no longer auto cancel.
+
+Vicar ability can now be cast for its dispel effects even if there's no invisible/hidden nationality units around.
+
+Infernals will no longer create the Glory Everlasting project.
+
+FreePromotionPick buildings were giving extra experience to units built in the city.
+
+Updated Worldbuilder.
+
+Production from chopping is no longer set to settlements.
+
+The game will no longer announce which civilization has built the Pact of the Nilhorn.
 
 Update text for Revolutions game option to make it clearer that it is incomplete.
 
@@ -108,8 +172,6 @@ Setted LimitedBordersRefuseAttitudeThreshold to a proper attitude level.
 
 Fixed issues that were messing with the AI's ability to calculate war values.
 
-Update to Worldbuilder 4.17.
-
 HN units can no longer capture cities (they will auto raze instead).
 
 Barbarian cities created due to the Barbarian World option should be more spread out now.
@@ -128,7 +190,7 @@ Fix and minor tweaks to the Infernal spawning code.
 
 Puppet States are no longer allowed to cast World Spells.
 
-Fixed spanish translation.
+Fixed Spanish translation.
 
 Bulbing techs is no longer possible with random units.
 
@@ -140,11 +202,23 @@ Fixed a possible CTD caused by missing updateWorkingCity() calls.
 BarbsPlus changes
 ===============================================================================
 
+Concept page for wilderness.
+
+Grand Menagerie now requires 6 out of 8 specific animal buildings.
+
+Lair Exploration is less likely to spawn a unit.
+
+Exploration odds are now displayed correctly.
+
+Slightly reduced elephant spawning chance.
+
+Animals can now spawn on tiles owned by barbarians.
+
 Added Animal Buildings and associated promotions.
 
 Added new animals. Removed strong versions of existing animals.
 
-arbarians and animals no longer spawn on 1-tile islands.
+Barbarians and animals no longer spawn on 1-tile islands.
 
 Barbarian cities now also spawn on uninhabited continents regularly.
 
@@ -275,11 +349,19 @@ Triremes now have +50% combat bonus versus Galleys.
 Minimum civic swap time changed from 9 to 8. This allows to change civics twice in a single golden age.
 
 
-
 Events Enhanced changes
 ===============================================================================
 
-xxx
+Removed event "That Kind of Day".
+
+"Friendly Locals" event now only triggers on unowned plots.
+
+Witch event tweaks.
+
+Event options no longer erroneously swap unhealthiness in one city versus all cities.
+
+Added some artist credit.
+
 
 
 ExtraModMod 0.5.2
