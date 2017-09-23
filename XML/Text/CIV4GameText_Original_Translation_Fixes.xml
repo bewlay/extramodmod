@@ -208,4 +208,92 @@
 		<Italian>Promozioni</Italian>
 		<Spanish>Promociones</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_HAPPY</Tag>
+		<English>Happy: %D1</English>
+		<French>Heureux : %D1</French>
+		<German>Gl&#252;cklich: %D1</German>
+		<Italian>Felici: %D1</Italian>
+		<Spanish>Felicidad: %D1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_UNHAPPY</Tag>
+		<English>Unhappy: %D1</English>
+		<French>Malheureux : %D1</French>
+		<German>Unzufrieden: %D1</German>
+		<Italian>Infelici: %D1</Italian>
+		<Spanish>Infelicidad: %D1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_HEALTHY</Tag>
+		<English>Healthy: %D1</English>
+		<French>En bonne sant&#233; : %D1</French>
+		<German>Gesund: %D1</German>
+		<Italian>Sani: %D1</Italian>
+		<Spanish>Salud: %D1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_UNHEALTHY</Tag>
+		<English>Unhealthy: %D1</English>
+		<French>Malades : %D1</French>
+		<German>Krank: %D1</German>
+		<Italian>Malati: %D1</Italian>
+		<Spanish>Insalubridad: %D1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_CATEGORY_PROMOTION</Tag>
+		<English>Promotions</English>
+		<French>
+			<Text>Promotions</Text>
+			<Gender>Female</Gender>
+			<Plural>1</Plural>
+		</French>
+		<German>
+			<Text>Bef&#246;rderungen</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</German>
+		<Italian>
+			<Text>Promozioni</Text>
+			<Gender>Female</Gender>
+			<Plural>1</Plural>
+		</Italian>
+		<Spanish>
+			<Text>Promociones</Text>
+			<Gender>Male</Gender>
+			<Plural>1</Plural>
+		</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_CONTACT_LEADER</Tag>
+		<English>Contact %s1_PlyrName of %s2_CivName</English>
+		<French>Contacter %s1_PlyrName des %s2_CivName</French>
+		<German>%s1_PlyrName von der Zivilisation %s2_CivName kontaktieren</German>
+		<Italian>Contatta il giocatore %s1_PlyrName della civilt&#224; %s2:2_CivName</Italian>
+		<Spanish>Contactar con %s1_PlyrName de los %s2_CivName</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TIME_TURN_SAVE</Tag>
+		<English>TURN-%s1_Date</English>
+		<French>TURN-%s1_Date</French>
+		<German>TURN-%s1_Date</German>
+		<Italian>TURN-%s1_Date</Italian>
+		<Spanish>TURN-%s1_Date</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TIME_TURN_STANDALONE</Tag>
+		<English>turn %d1_TurnNum</English>
+		<French>tour %d1_TurnNum</French>
+		<German>runde %d1_TurnNum</German>
+		<Italian>turno %d1_TurnNum</Italian>
+		<Spanish>turno %d1_TurnNum</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TIME_TURN_DATE</Tag>
+		<English>Turn %d1_TurnNum</English>
+		<French>Tour %d1_TurnNum</French>
+		<German>Runde %d1_TurnNum</German>
+		<Italian>Turno %d1_TurnNum</Italian>
+		<Spanish>Turno %d1_TurnNum</Spanish>
+	</TEXT>
 </Civ4GameText>

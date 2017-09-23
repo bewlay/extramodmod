@@ -84,7 +84,16 @@ void CyInfoPythonInterface2()
 		.def("getUnitArtStyleType", &CvCivilizationInfo::getUnitArtStyleType, "int ()")
 		.def("getDefaultRace", &CvCivilizationInfo::getDefaultRace, "int ()")
 		.def("isMaintainFeatures", &CvCivilizationInfo::isMaintainFeatures, "bool (int i)")
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+	/********************************************************************************/
+	/* old
 		.def("getCivTrait", &CvCivilizationInfo::getCivTrait, "int ()")
+	*/
+		.def("isCivTraits", &CvCivilizationInfo::isCivTraits, "bool (int i)")
+	/********************************************************************************/
+	/* EXTRA_CIV_TRAITS                                                     END     */
+	/********************************************************************************/
 //FfH: End Add
 
 /*************************************************************************************************/
@@ -96,6 +105,14 @@ void CyInfoPythonInterface2()
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+		.def("getTerrainFlavour", &CvCivilizationInfo::getTerrainFlavour, "TerrainFlavourTypes ()")
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 		;
 
 	python::class_<CvVictoryInfo, python::bases<CvInfoBase> >("CvVictoryInfo")
@@ -147,6 +164,14 @@ void CyInfoPythonInterface2()
 		.def("getTechTradeKnownModifier", &CvHandicapInfo::getTechTradeKnownModifier, "int ()")
 		.def("getUnownedTilesPerGameAnimal", &CvHandicapInfo::getUnownedTilesPerGameAnimal, "int ()")
 		.def("getUnownedTilesPerBarbarianUnit", &CvHandicapInfo::getUnownedTilesPerBarbarianUnit, "int ()")
+/************************************************************************************************/
+/* WILDERNESS                             04/2015                                 lfgr          */
+/* WildernessMisc                                                                               */
+/************************************************************************************************/
+		.def("getUnownedWaterTilesPerGameAnimal", &CvHandicapInfo::getUnownedWaterTilesPerGameAnimal, "int ()")
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 		.def("getUnownedWaterTilesPerBarbarianUnit", &CvHandicapInfo::getUnownedWaterTilesPerBarbarianUnit, "int ()")
 		.def("getUnownedTilesPerBarbarianCity", &CvHandicapInfo::getUnownedTilesPerBarbarianCity, "int ()")
 		.def("getBarbarianCreationTurnsElapsed", &CvHandicapInfo::getBarbarianCreationTurnsElapsed, "int ()")
@@ -342,8 +367,18 @@ void CyInfoPythonInterface2()
 		.def("getPrereqCivilization", &CvImprovementInfo::getPrereqCivilization, "bool ()")
 		.def("getPythonAtRange", &CvImprovementInfo::getPythonAtRange, "string ()")
 		.def("getPythonOnMove", &CvImprovementInfo::getPythonOnMove, "string ()")
+	/************************************************************************************************/
+	/* WILDERNESS                             08/2013                                 lfgr          */
+	/* ImprovementSpawnTypes                                                                        */
+	/* Functions removed. Use CyPlot.isLair().                                                      */
+	/************************************************************************************************/
+	/*
 		.def("getSpawnUnitType", &CvImprovementInfo::getSpawnUnitType, "string ()")
 		.def("getFreeSpawnPromotion", &CvImprovementInfo::getFreeSpawnPromotion, "string ()")
+	*/
+	/************************************************************************************************/
+	/* WILDERNESS                                                                     END           */
+	/************************************************************************************************/
 //FfH: End Add
 
 		// Arrays

@@ -158,6 +158,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 		self.mapListGenerators = {
 			SevoScreenEnums.PEDIA_TECHS		: self.placeTechs,
 			SevoScreenEnums.PEDIA_UNITS		: self.placeUnits,
+			SevoScreenEnums.PEDIA_ANIMALS		: self.placeAnimals,
 			SevoScreenEnums.PEDIA_UNIT_UPGRADES	: self.placeUnitUpgrades,
 			SevoScreenEnums.PEDIA_UNIT_CATEGORIES	: self.placeUnitCategories,
 			SevoScreenEnums.PEDIA_PROMOTIONS		: self.placePromotions,
@@ -193,7 +194,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 			SevoScreenEnums.PEDIA_ABILITIES		: self.placeAbilities,
 ##--------	BUGFfH: End Add
 			SevoScreenEnums.PEDIA_CONCEPTS		: self.placeConcepts,
-			SevoScreenEnums.PEDIA_BTS_CONCEPTS	: self.placeBTSConcepts,
+#			SevoScreenEnums.PEDIA_BTS_CONCEPTS	: self.placeBTSConcepts,
 			SevoScreenEnums.PEDIA_HINTS		: self.placeHints,
 			SevoScreenEnums.PEDIA_SHORTCUTS  	: self.placeShortcuts,
 			SevoScreenEnums.PEDIA_STRATEGY  	: self.placeStrategy,
@@ -217,6 +218,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 		self.mapScreenFunctions = {
 			SevoScreenEnums.PEDIA_TECHS		: SevoPediaTech.SevoPediaTech(self),
 			SevoScreenEnums.PEDIA_UNITS		: SevoPediaUnit.SevoPediaUnit(self),
+			SevoScreenEnums.PEDIA_ANIMALS		: SevoPediaUnit.SevoPediaUnit(self),
 			SevoScreenEnums.PEDIA_UNIT_CATEGORIES	: SevoPediaUnitChart.SevoPediaUnitChart(self),
 			SevoScreenEnums.PEDIA_PROMOTIONS		: SevoPediaPromotion.SevoPediaPromotion(self),
 			SevoScreenEnums.PEDIA_SPHERES		: self.pediaPromotion,
@@ -250,7 +252,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 			SevoScreenEnums.PEDIA_ABILITIES		: SevoPediaSpell.SevoPediaSpell(self),
 ##--------	BUGFfH: End Add
 			SevoScreenEnums.PEDIA_CONCEPTS		: SevoPediaHistory.SevoPediaHistory(self),
-			SevoScreenEnums.PEDIA_BTS_CONCEPTS	: SevoPediaHistory.SevoPediaHistory(self),
+#			SevoScreenEnums.PEDIA_BTS_CONCEPTS	: SevoPediaHistory.SevoPediaHistory(self),
 			SevoScreenEnums.PEDIA_SHORTCUTS  	: SevoPediaHistory.SevoPediaHistory(self),
 			SevoScreenEnums.PEDIA_STRATEGY  	: SevoPediaHistory.SevoPediaHistory(self),
 			}
@@ -328,6 +330,10 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 				iCategory = SevoScreenEnums.PEDIA_GEAR				
 			elif iPromotionType == SevoScreenEnums.TYPE_RACE:
 				iCategory = SevoScreenEnums.PEDIA_RACES
+		elif (iCategory == SevoScreenEnums.PEDIA_UNITS):
+			iUnitType = self.pediaUnit.getUnitType(iItem)
+			if iUnitType == SevoScreenEnums.TYPE_ANIMAL:
+				iCategory = SevoScreenEnums.PEDIA_ANIMALS
 		elif (iCategory == SevoScreenEnums.PEDIA_BONUSES):
 			iBonusType = self.pediaBonus.getBonusType(iItem)
 			if iBonusType == SevoScreenEnums.TYPE_BONUS_MANA:			
@@ -350,9 +356,9 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 				BugUtil.debug("MINOR Leader!")	
 				iCategory = SevoScreenEnums.PEDIA_MINOR_LEADERS	
 	# MINOR_LEADERS_PEDIA end
-		elif (iCategory == SevoScreenEnums.PEDIA_BTS_CONCEPTS):
-			iCategory = self.determineNewConceptSubCategory(iItem)
-			BugUtil.debug("Switching to category %d" % iCategory)
+#		elif (iCategory == SevoScreenEnums.PEDIA_BTS_CONCEPTS):
+#			iCategory = self.determineNewConceptSubCategory(iItem)
+#			BugUtil.debug("Switching to category %d" % iCategory)
 		self.showContents(bIsLink, iCategory)
 		screen.setSelectedListBoxStringGFC(self.CATEGORY_LIST_ID, iCategory - (SevoScreenEnums.PEDIA_MAIN + 1))
 		if (iCategory not in (SevoScreenEnums.PEDIA_UNIT_UPGRADES, SevoScreenEnums.PEDIA_PROMOTION_TREE, SevoScreenEnums.PEDIA_HINTS)):
@@ -387,9 +393,9 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 ##--------	BUGFfH: End Delete
 		if (self.isStrategyInfo(info)):
 			return SevoScreenEnums.PEDIA_STRATEGY
-		if (self.isShortcutInfo(info)):
-			return SevoScreenEnums.PEDIA_SHORTCUTS
-		return SevoScreenEnums.PEDIA_BTS_CONCEPTS
+#		if (self.isShortcutInfo(info)):
+		return SevoScreenEnums.PEDIA_SHORTCUTS
+#		return SevoScreenEnums.PEDIA_BTS_CONCEPTS
 
 	def isContentsShowing(self):
 		return self.tab == self.TAB_TOC
@@ -441,6 +447,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 
 		self.szCategoryTechs		= localText.getText("TXT_KEY_PEDIA_CATEGORY_TECH", ())
 		self.szCategoryUnits		= localText.getText("TXT_KEY_PEDIA_CATEGORY_UNIT", ())
+		self.szCategoryAnimals		= localText.getText("TXT_KEY_PEDIA_CATEGORY_ANIMALS", ())
 		self.szCategoryUnitUpgrades	= localText.getText("TXT_KEY_PEDIA_CATEGORY_UNIT_UPGRADES", ())
 		self.szCategoryUnitCategories	= localText.getText("TXT_KEY_PEDIA_CATEGORY_UNIT_COMBAT", ())
 		self.szCategoryPromotions	= localText.getText("TXT_KEY_PEDIA_CATEGORY_PROMOTION", ())
@@ -467,7 +474,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 		self.szCategorySpells = localText.getText("TXT_KEY_PEDIA_CATEGORY_SPELLS", ())
 		self.szCategoryAbilities	= localText.getText("TXT_KEY_PEDIA_CATEGORY_ABILITY", ())	
 		self.szCategoryConcepts		= localText.getText("TXT_KEY_PEDIA_CATEGORY_CONCEPT", ())
-		self.szCategoryConceptsNew	= localText.getText("TXT_KEY_PEDIA_CATEGORY_CONCEPT_NEW", ())
+#		self.szCategoryConceptsNew	= localText.getText("TXT_KEY_PEDIA_CATEGORY_CONCEPT_NEW", ())
 		self.szCategoryHints		= localText.getText("TXT_KEY_PEDIA_CATEGORY_HINTS", ())
 		self.szCategoryShortcuts	= localText.getText("TXT_KEY_PEDIA_CATEGORY_SHORTCUTS", ())
 ##--------	BUGFfH: Deleted by Denev 2009/08/12
@@ -482,6 +489,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 		self.categoryList = [
 			["TECHS",	self.szCategoryTechs],
 			["UNITS",	self.szCategoryUnits],
+			["UNITS",	self.szCategoryAnimals],
 			["UNITS",	self.szCategoryUnitUpgrades],
 			["UNITS",	self.szCategoryUnitCategories],
 			["PROMOTIONS",	self.szCategoryPromotions],
@@ -517,7 +525,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 			["SPELLS",  self.szCategorySpells],
 			["SPELLS",	self.szCategoryAbilities],
 			["HINTS",	self.szCategoryConcepts],
-			["HINTS",	self.szCategoryConceptsNew],
+#			["HINTS",	self.szCategoryConceptsNew],
 			["HINTS",	self.szCategoryHints],
 			["HINTS",	self.szCategoryShortcuts],
 ##--------	BUGFfH: Deleted by Denev 2009/08/12
@@ -575,14 +583,16 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 	def getTechList(self):
 		return self.getSortedList(gc.getNumTechInfos(), gc.getTechInfo)
 
-
 	def placeUnits(self):
-		self.list = self.getUnitList()
+		self.list = self.getUnitList(SevoScreenEnums.TYPE_REGULAR)
 		self.placeItems(WidgetTypes.WIDGET_PEDIA_JUMP_TO_UNIT, gc.getUnitInfo)
-	
-	def getUnitList(self):
-		return self.getSortedList(gc.getNumUnitInfos(), gc.getUnitInfo)
 
+	def placeAnimals(self):
+		self.list = self.getUnitList(SevoScreenEnums.TYPE_ANIMAL)
+		self.placeItems(WidgetTypes.WIDGET_PEDIA_JUMP_TO_UNIT, gc.getUnitInfo)
+
+	def getUnitList(self, iType = None):
+		return self.getSortedList(gc.getNumUnitInfos(), gc.getUnitInfo, iType, self.pediaUnit.getUnitType)
 
 	def placeUnitUpgrades(self):
 		screen = self.getScreen()
@@ -1162,9 +1172,9 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 		for i in range(gc.getNumConceptInfos()):
 			if (gc.getConceptInfo(i).isMatchForLink(szLink, False)):
 				return self.pediaJump(SevoScreenEnums.PEDIA_CONCEPTS, i, True, True)
-		for i in range(gc.getNumNewConceptInfos()):
-			if (gc.getNewConceptInfo(i).isMatchForLink(szLink, False)):
-				return self.pediaJump(SevoScreenEnums.PEDIA_BTS_CONCEPTS, i, True, True)
+#		for i in range(gc.getNumNewConceptInfos()):
+#			if (gc.getNewConceptInfo(i).isMatchForLink(szLink, False)):
+#				return self.pediaJump(SevoScreenEnums.PEDIA_BTS_CONCEPTS, i, True, True)
 
 
 

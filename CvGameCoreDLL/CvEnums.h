@@ -641,6 +641,14 @@ enum ButtonPopupTypes			// Exposed to Python
 	BUTTONPOPUP_CONFIRMSETTLEMENT,
 //FfH: End Add
 
+/************************************************************************************************/
+/* GP_NAMES                                 12/2015                                 lfgr        */
+/************************************************************************************************/
+	BUTTONPOPUP_GREAT_PERSON,
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
+
 #ifdef _USRDLL
 	NUM_BUTTONPOPUP_TYPES
 #endif
@@ -768,76 +776,83 @@ enum EmphasizeTypes					// Exposed to Python
 enum GameOptionTypes				// Exposed to Python
 {
 	NO_GAMEOPTION = -1,
-
+	// Visible game options.
 	GAMEOPTION_ADVANCED_START,
-
-//FfH: Modified by Kael 05/30/2009
-//	GAMEOPTION_NO_CITY_RAZING,
-//	GAMEOPTION_NO_CITY_FLIPPING,
-//	GAMEOPTION_FLIPPING_AFTER_CONQUEST,
-//	GAMEOPTION_NO_BARBARIANS,
-//	GAMEOPTION_RAGING_BARBARIANS,
-//	GAMEOPTION_AGGRESSIVE_AI,
-//	GAMEOPTION_LEAD_ANY_CIV,
-//	GAMEOPTION_RANDOM_PERSONALITIES,
-//	GAMEOPTION_PICK_RELIGION,
-//	GAMEOPTION_NO_TECH_TRADING,
-//	GAMEOPTION_NO_TECH_BROKERING,
-//	GAMEOPTION_PERMANENT_ALLIANCES,
-//	GAMEOPTION_ALWAYS_WAR,
-//	GAMEOPTION_ALWAYS_PEACE,
-//	GAMEOPTION_ONE_CITY_CHALLENGE,
-//	GAMEOPTION_NO_CHANGING_WAR_PEACE,
-//	GAMEOPTION_NEW_RANDOM_SEED,
-//	GAMEOPTION_LOCK_MODS,
-//	GAMEOPTION_COMPLETE_KILLS,
-//	GAMEOPTION_NO_VASSAL_STATES,
-//	GAMEOPTION_NO_GOODY_HUTS,
-//	GAMEOPTION_NO_EVENTS,
-//	GAMEOPTION_NO_ESPIONAGE,
+	GAMEOPTION_BARBARIANS_ANIMALS_CLASSIFIER,
 	GAMEOPTION_RAGING_BARBARIANS,
-	GAMEOPTION_AGGRESSIVE_AI,
-	GAMEOPTION_ONE_CITY_CHALLENGE,
 	GAMEOPTION_BARBARIAN_WORLD,
-	GAMEOPTION_NO_SETTLERS,
-	GAMEOPTION_SLOWER_XP,
-	GAMEOPTION_LEAD_ANY_CIV,
-	GAMEOPTION_THAW,
-	GAMEOPTION_CHALLENGE_CUT_LOSERS,
-	GAMEOPTION_CHALLENGE_HIGH_TO_LOW,
-	GAMEOPTION_CHALLENGE_INCREASING_DIFFICULTY,
+	GAMEOPTION_DOUBLE_ANIMALS,
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* NoWilderness                                                                                 */
+/************************************************************************************************/
+	GAMEOPTION_NO_WILDERNESS,
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+	GAMEOPTION_NO_BARBARIANS,
+	GAMEOPTION_NO_GOODY_HUTS,
+	GAMEOPTION_NO_LAIRS,
+	GAMEOPTION_NO_ACHERON,
+	GAMEOPTION_NO_ORTHUS,
+	GAMEOPTION_AI_CLASSIFIER,
+	GAMEOPTION_AGGRESSIVE_AI,
 	GAMEOPTION_AI_NO_BUILDING_PREREQS,
 	GAMEOPTION_AI_NO_MINIMUM_LEVEL,
-	GAMEOPTION_NO_CITY_RAZING,
-	GAMEOPTION_NO_CITY_FLIPPING,
-	GAMEOPTION_FLIPPING_AFTER_CONQUEST,
-	GAMEOPTION_NO_BARBARIANS,
-	GAMEOPTION_RANDOM_PERSONALITIES,
-	GAMEOPTION_PICK_RELIGION,
-	GAMEOPTION_NO_TECH_TRADING,
-	GAMEOPTION_NO_TECH_BROKERING,
+	GAMEOPTION_WORLD_CLASSIFIER,
+	GAMEOPTION_DOUBLE_BONUSES,
+	GAMEOPTION_DOUBLE_EVENTS,
+	GAMEOPTION_ALL_UNIQUE_IMPROVEMENTS,
+	GAMEOPTION_NO_UNIQUE_IMPROVEMENTS,
+	GAMEOPTION_THAW,
+	GAMEOPTION_NO_DUIN,
+	GAMEOPTION_NO_GUILD_OF_THE_NINE,
+	GAMEOPTION_DIFFICULTY_CLASSIFIER,
+	GAMEOPTION_CHALLENGE_HIGH_TO_LOW,
+	GAMEOPTION_CHALLENGE_INCREASING_DIFFICULTY,
+	GAMEOPTION_FLEXIBLE_DIFFICULTY,
+	GAMEOPTION_SLOWER_XP,
+	GAMEOPTION_CHALLENGE_CUT_LOSERS,
+	GAMEOPTION_AC_CLASSIFIER,
+	GAMEOPTION_DOUBLE_GLOBAL_COUNTER,
+	GAMEOPTION_NO_GLOBAL_COUNTER,
+	GAMEOPTION_NO_HYBOREM_OR_BASIUM,
+	GAMEOPTION_NO_PLOT_COUNTER,
+	GAMEOPTION_WAR_PEACE_CLASSIFIER,
 	GAMEOPTION_PERMANENT_ALLIANCES,
 	GAMEOPTION_ALWAYS_WAR,
 	GAMEOPTION_ALWAYS_PEACE,
 	GAMEOPTION_NO_CHANGING_WAR_PEACE,
-	GAMEOPTION_NEW_RANDOM_SEED,
-	GAMEOPTION_LOCK_MODS,
-	GAMEOPTION_COMPLETE_KILLS,
 	GAMEOPTION_NO_VASSAL_STATES,
-	GAMEOPTION_NO_GOODY_HUTS,
-	GAMEOPTION_NO_EVENTS,
-	GAMEOPTION_NO_ESPIONAGE,
-	GAMEOPTION_DOUBLE_ANIMALS,
-	GAMEOPTION_DOUBLE_BONUSES,
-	GAMEOPTION_DOUBLE_EVENTS,
-	GAMEOPTION_DOUBLE_GLOBAL_COUNTER,
-	GAMEOPTION_NO_GLOBAL_COUNTER,
-	GAMEOPTION_NO_HYBOREM_OR_BASIUM,
-	GAMEOPTION_NO_LAIRS,
-	GAMEOPTION_NO_PLOT_COUNTER,
-	GAMEOPTION_FLEXIBLE_DIFFICULTY,
-	GAMEOPTION_ALL_UNIQUE_IMPROVEMENTS,
-	GAMEOPTION_NO_UNIQUE_IMPROVEMENTS,
+	GAMEOPTION_PUPPET_STATES,
+	GAMEOPTION_REVOLUTIONS,
+	GAMEOPTION_COMPLETE_KILLS,
+	GAMEOPTION_CITIES_CLASSIFIER,
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+	GAMEOPTION_FLAVOUR_START, // exposed to python
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/	GAMEOPTION_ONE_CITY_CHALLENGE,
+	GAMEOPTION_NO_SETTLERS,
+	GAMEOPTION_NO_CITY_RAZING,
+	GAMEOPTION_NO_CITY_FLIPPING,
+	GAMEOPTION_FLIPPING_AFTER_CONQUEST,
+	GAMEOPTION_LEADERS_CLASSIFIER,
+	GAMEOPTION_LEAD_ANY_CIV,
+	GAMEOPTION_LEADER_SCENEXTRA,
+	GAMEOPTION_LEADER_EXTRA,
+	GAMEOPTION_RANDOM_PERSONALITIES,
+	// Player traits game options START
+	GAMEOPTION_RANDOM_TRAITS,
+	GAMEOPTION_INSANE_LEADERS,
+	// Player traits game options END
+	GAMEOPTION_TECHNOLOGY_CLASSIFIER,
+	GAMEOPTION_TECHNOLOGY_PROPAGATION,
+	GAMEOPTION_NO_TECH_TRADING,
+	GAMEOPTION_NO_TECH_BROKERING,
+	GAMEOPTION_RELIGION_CLASSIFIER,
 	GAMEOPTION_NO_RELIGION_0,
 	GAMEOPTION_NO_RELIGION_1,
 	GAMEOPTION_NO_RELIGION_2,
@@ -845,10 +860,24 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_NO_RELIGION_4,
 	GAMEOPTION_NO_RELIGION_5,
 	GAMEOPTION_NO_RELIGION_6,
+	GAMEOPTION_ADVANCED_OPTIONS_CLASSIFIER,
 	GAMEOPTION_NO_WORLD_SPELLS,
-	GAMEOPTION_NO_ACHERON,
-	GAMEOPTION_NO_DUIN,
-	GAMEOPTION_NO_ORTHUS,
+	GAMEOPTION_NEW_RANDOM_SEED,
+	GAMEOPTION_LOCK_MODS,
+	GAMEOPTION_NO_EVENTS,
+	GAMEOPTION_ADVANCED_TACTICS,
+	// Game options that must be kept at certain values, and invisible.
+	GAMEOPTION_PICK_RELIGION,
+	GAMEOPTION_NO_ESPIONAGE,
+	GAMEOPTION_ADVENTURE_MODE,
+	GAMEOPTION_NO_PROJECTS,
+	GAMEOPTION_NO_HEALING_FOR_HUMANS,
+	GAMEOPTION_NO_INFLATION,
+	GAMEOPTION_NO_MAINTENANCE,
+	GAMEOPTION_NO_WAR_WEARINESS,
+	GAMEOPTION_ALWAYS_OPEN_BORDERS,
+	GAMEOPTION_ALWAYS_RAZE,
+	// Scenario game options.
 	GAMEOPTION_WB_AGAINST_THE_GREY,
 	GAMEOPTION_WB_AGAINST_THE_WALL,
 	GAMEOPTION_WB_BARBARIAN_ASSAULT,
@@ -869,20 +898,6 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_WB_WAGES_OF_SIN,
 	GAMEOPTION_WB_EXTRA,
 	GAMEOPTION_WB_LOAD_SCREEN,
-	GAMEOPTION_ADVENTURE_MODE,
-	GAMEOPTION_NO_PROJECTS,
-	GAMEOPTION_NO_HEALING_FOR_HUMANS,
-	GAMEOPTION_NO_INFLATION,
-	GAMEOPTION_NO_MAINTENANCE,
-	GAMEOPTION_NO_WAR_WEARINESS,
-	GAMEOPTION_ALWAYS_OPEN_BORDERS,
-	GAMEOPTION_ALWAYS_RAZE,
-//FfH: End Modify
-// MNAI - New Game Options
-	GAMEOPTION_PUPPET_STATES,
-	GAMEOPTION_REVOLUTIONS,
-	GAMEOPTION_ADVANCED_TACTICS,
-// MNAI End
 /************************************************************************************************/
 /* Afforess	                  Start		 07/29/10                                               */
 /* Advanced Diplomacy                                                                           */
@@ -896,7 +911,6 @@ enum GameOptionTypes				// Exposed to Python
 //Multiple Production: Added by Denev 07/10/2009
 			GAMEOPTION_MULTIPLE_PRODUCTION,
 //Multiple Production: End Add
-
 #ifdef _USRDLL
 	NUM_GAMEOPTION_TYPES
 #endif
@@ -1134,6 +1148,23 @@ enum LeaderHeadTypes			// Exposed to Python
 {
 	NO_LEADER = -1,
 };
+
+// Leader categories START
+enum LeaderHeadCategories
+{
+	NO_LEADERCATEGORY = -1,
+	LEADERCATEGORY_STANDARD,	// Leader playable in vanilla FFH2.
+	LEADERCATEGORY_SCENARIO,	// Scenario leader in vanilla FFH2.
+	LEADERCATEGORY_SCENEXTRA,	// Scenario leader modified in ExtraModMod to have a comparable power level.
+	LEADERCATEGORY_EXTRA,		// Leader not present in vanilla FFH2.
+	LEADERCATEGORY_ALIGNMENT,	// Fake leader used for the "play as alignment" selection.
+	LEADERCATEGORY_BARBARIAN,    // Barbarian leader.
+#ifdef _USRDLL
+	NUM_LEADERCATEGORIES
+#endif
+
+};
+// Leader categories END
 
 // Used for managing Art Differences based on nationality
 enum ArtStyleTypes				// Exposed to Python
@@ -3165,5 +3196,36 @@ enum CivilopediaWidgetShowTypes
 	CIVILOPEDIA_WIDGET_SHOW_LAND,
 	CIVILOPEDIA_WIDGET_SHOW_WATER,
 };
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+
+// LFGR_TODO: expose to python?
+
+enum TerrainFlavourTypes
+{
+	NO_TERRAIN_FLAVOUR = -1,
+};
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+enum SpawnTypes
+{
+	NO_SPAWN = -1
+};
+
+enum SpawnPrereqTypes
+{
+	NO_SPAWN_PREREQ = -1
+};
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 #endif	// CVENUMS_h

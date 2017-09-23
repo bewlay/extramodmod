@@ -1428,6 +1428,9 @@ class CvInfoScreen:
 
 		pPlayer = gc.getPlayer(self.iActivePlayer)
 
+		# One user claimed to get a python error because this variable wasn't assigned.
+		# I don't see how this could have happened, but we are going to initialize it just in case.
+		iEconomy = 0
 		iEconomyGameAverage = 0
 		iIndustryGameAverage = 0
 		iAgricultureGameAverage = 0
@@ -2465,7 +2468,7 @@ class CvInfoScreen:
 								if (iTeamLoop == self.iActiveTeam or self.pActiveTeam.isHasMet(iTeamLoop)):
 									self.aaWondersBuilt_BUG.append([-9999,iProjectLoop,True,gc.getPlayer(iPlayerLoop).getCivilizationShortDescription(0),None, iPlayerLoop])
 								else:
-									self.aaWondersBuilt_BUG.append([-9999,iProjectLoop,False,localText.getText("TXT_KEY_UNKNOWN", ()),None, 9999])
+									self.aaWondersBuilt_BUG.append([-9999,iProjectLoop,False,localText.getText("TXT_KEY_UNKNOWN", ()),None, 18])
 								self.iNumWonders += 1
 
 		# Sort wonders in order of date built

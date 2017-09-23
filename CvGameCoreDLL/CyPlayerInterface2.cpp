@@ -87,6 +87,20 @@ void CyPlayerPythonInterface2(python::class_<CyPlayer>& x)
 		.def("canHaveTradeRoutesWith", &CyPlayer::canHaveTradeRoutesWith, "bool (int)")
 		.def("forcePeace", &CyPlayer::forcePeace, "void (int)")
 
+/*************************************************************************************************/
+/**	CivCounter			               		10/27/09    						Valkrionn		**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+        .def("getCivCounter", &CyPlayer::getCivCounter, "int ()")
+        .def("changeCivCounter", &CyPlayer::changeCivCounter, "void (int iChange)")
+		.def("setCivCounter", &CyPlayer::setCivCounter, "void (int iNewValue)")
+        .def("getCivCounterMod", &CyPlayer::getCivCounterMod, "int ()")
+        .def("changeCivCounterMod", &CyPlayer::changeCivCounterMod, "void (int iChange)")
+		.def("setCivCounterMod", &CyPlayer::setCivCounterMod, "void (int iNewValue)")
+/*************************************************************************************************/
+/**	CivCounter								END													**/
+/*************************************************************************************************/
+
 // BUG - Reminder Mod - start
 		.def("addReminder", &CyPlayer::addReminder, "void (int iGameTurn, string szMessage)")
 // BUG - Reminder Mod - end
@@ -163,5 +177,9 @@ void CyPlayerPythonInterface2(python::class_<CyPlayer>& x)
 		.def("countNumOwnedTerrainTypes",&CyPlayer::countNumOwnedTerrainTypes, "int (TerrainTypes eTerrain)")
 		.def("getHighestUnitTier",&CyPlayer::getHighestUnitTier, "int (bool bIncludeHeroes, bool bIncludeLimitedUnits)")
 		// End MNAI
+
+		// Leader categories START
+		.def("getLeaderCategory", &CyPlayer::getLeaderCategory, "int ()")
+		// Leader categories END
 		;
 }

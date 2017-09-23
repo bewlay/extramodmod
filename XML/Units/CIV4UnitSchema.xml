@@ -92,7 +92,21 @@
 		<element type="UnitClassInfo" maxOccurs="*"/>
 	</ElementType>
 	<ElementType name="Class" content="textOnly"/>
-	<ElementType name="UniqueName" content="textOnly"/>
+	<ElementType name="Art" content="textOnly"/>
+	<ElementType name="Quote" content="textOnly"/>
+	<ElementType name="Race" content="textOnly"/>
+	<ElementType name="PreferredCiv" content="textOnly"/>
+	<ElementType name="Religion" content="textOnly"/>
+	<ElementType name="Leader" content="textOnly"/>
+	<ElementType name="UniqueName" content="eltOnly">
+		<element type="Name"/>
+		<element type="Art" minOccurs="0"/>
+		<element type="Quote" minOccurs="0"/>
+		<element type="Race" minOccurs="0"/>
+		<element type="PreferredCiv" minOccurs="0"/>
+		<element type="Religion" minOccurs="0"/>
+		<element type="Leader" minOccurs="0"/>
+	</ElementType>
 	<ElementType name="UniqueNames" content="eltOnly">
 		<element type="UniqueName" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
@@ -571,6 +585,13 @@
 	<ElementType name="BonusAffinities" content="eltOnly">
 		<element type="BonusAffinity" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+<!-- WILDERNESS 08/2013 - 02/2016 Sephi/lfgr // PromotionExplResultBonus, PromotionCaptureApply, WildernessMisc -->
+	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
+	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
+	<ElementType name="iExplorationResultBonus" content="textOnly" dt:type="int"/>
+	<ElementType name="AnimalTerrainFlavour" content="textOnly"/>
+	<ElementType name="PromotionCaptureApply" content="textOnly"/>
+<!-- WILDERNESS end -->
 	<ElementType name="UnitInfo" content="eltOnly">
 		<element type="Class"/>
 		<element type="Type"/>
@@ -774,6 +795,12 @@
 		<element type="DamageTypeCombats" minOccurs="0"/>
 		<element type="BonusAffinities" minOccurs="0"/>
 		<element type="iOrderPriority" minOccurs="0"/>
+		<!-- WILDERNESS 10/2013 - 02/2016 Sephi/lfgr // PromotionCaptureApply, WildernessMisc -->
+		<element type="iMinWilderness" minOccurs="0"/>
+		<element type="iMaxWilderness" minOccurs="0"/>
+		<element type="AnimalTerrainFlavour" minOccurs="0"/>
+		<element type="PromotionCaptureApply" minOccurs="0"/>
+		<!-- WILDERNESS end -->
 	</ElementType>
 	<ElementType name="UnitInfos" content="eltOnly">
 		<element type="UnitInfo" maxOccurs="*"/>
@@ -1008,6 +1035,7 @@
 	<ElementType name="bBlocksUpgrade" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bBlocksGifting" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bUpgradeOutsideBorders" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bAlwaysSpreadReligion" content="textOnly" dt:type="boolean"/>
 	<ElementType name="PromotionInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -1153,7 +1181,12 @@
 		<element type="bBlocksUpgrade" minOccurs="0"/>
 		<element type="bBlocksGifting" minOccurs="0"/>
 		<element type="bUpgradeOutsideBorders" minOccurs="0"/>
+		<element type="bAlwaysSpreadReligion" minOccurs="0"/>
 		<element type="iOrderPriority" minOccurs="0"/>
+		<element type="iEnslavementChance" minOccurs="0"/>
+	<!-- WILDERNESS 08/2013 lfgr / PromotionExplResultBonus -->
+		<element type="iExplorationResultBonus" minOccurs="0"/>
+	<!-- WILDERNESS end -->
 	</ElementType>
 	<ElementType name="PromotionInfos" content="eltOnly">
 		<element type="PromotionInfo" maxOccurs="*"/>

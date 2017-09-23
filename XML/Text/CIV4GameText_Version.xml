@@ -2,6 +2,14 @@
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
 		<Tag>TXT_KEY_VERSION</Tag>
+		<English>[COLOR_ALT_HIGHLIGHT_TEXT]ExtraModMod ###TAG###[COLOR_REVERT]</English>
+		<French>[COLOR_ALT_HIGHLIGHT_TEXT]ExtraModMod ###TAG###[COLOR_REVERT]</French>
+		<German>[COLOR_ALT_HIGHLIGHT_TEXT]ExtraModMod ###TAG###[COLOR_REVERT]</German>
+		<Italian>[COLOR_ALT_HIGHLIGHT_TEXT]ExtraModMod ###TAG###[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_ALT_HIGHLIGHT_TEXT]ExtraModMod ###TAG###[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_VERSION_MNAI</Tag>
 		<English>[COLOR_ALT_HIGHLIGHT_TEXT]More Naval AI v2.7[COLOR_REVERT]</English>
 		<French>[COLOR_ALT_HIGHLIGHT_TEXT]More Naval AI v2.7[COLOR_REVERT]</French>
 		<German>[COLOR_ALT_HIGHLIGHT_TEXT]More Naval AI v2.7[COLOR_REVERT]</German>

@@ -14,3 +14,17 @@ void logBBAI(char* format, ... )
 	gDLL->logMsg(szFileName, buf, false, false);
 #endif
 }
+
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+void logTo( const char* file, char* format, ... )
+{
+#ifdef LOG_AI // TODO: own flag?
+	static char buf[2048];
+	_vsnprintf( buf, 2048-4, format, (char*)(&format+1) );
+
+	TCHAR szFileName[1024];
+	sprintf(szFileName, file, GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getName());
+	gDLL->logMsg(szFileName, buf, false, false);
+#endif
+}
+// WILDERNESS end

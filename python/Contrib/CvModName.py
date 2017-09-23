@@ -2,8 +2,8 @@
 
 from CvPythonExtensions import *
 
-modName = "FFH - More Naval AI"
-displayName = "FFH - More Naval AI"
+modName = "Fall from Heaven 2 - ExtraModMod"
+displayName = "Fall from Heaven 2 - ExtraModMod"
 
 civName = "BtS"
 civVersion = "3.19"

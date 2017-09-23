@@ -4,6 +4,8 @@
 <!-- Copyright Firaxis Games 2005 -->
 <!-- -->
 <!-- Civilization Infos -->
+
+<!-- EXTRA_CIV_TRAITS 08/2013 lfgr: edited -->
 <Civ4CivilizationInfos xmlns="x-schema:CIV4CivilizationsSchema.xml">
 	<CivilizationInfos>
 		<CivilizationInfo>
@@ -65,7 +67,6 @@
 			<CivilizationSelectionSound/>
 			<CivilizationActionSound/>
 			<bGraphicalOnly>1</bGraphicalOnly>
-			<CivTrait>NONE</CivTrait>
 			<DefaultRace>NONE</DefaultRace>
 			<Help/>
 			<Hero>NONE</Hero>
@@ -108,13 +109,13 @@
 			</Cities>
 			<Buildings>
 				<Building>
+					<BuildingClassType>BUILDINGCLASS_PAGAN_TEMPLE</BuildingClassType>
+					<BuildingType>BUILDING_CAVE_OF_ANCESTORS</BuildingType>
+				</Building>
+				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_AMURITES</BuildingType>
 				</Building>
-		                <Building>
-		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
-		                    <BuildingType>BUILDING_CAVE_OF_ANCESTORS</BuildingType>
-		                </Building>
 			</Buildings>
 			<Units>
 				<Unit>
@@ -185,12 +186,15 @@
 					<LeaderName>LEADER_DAIN</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_TYA_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_GREECE_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_GREECE_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>NONE</CivTrait>
 			<DefaultRace>NONE</DefaultRace>
 			<Help/>
 			<Hero>UNIT_GOVANNON</Hero>
@@ -198,6 +202,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_AMURITES</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_BALSERAPHS</Type>
@@ -324,12 +329,23 @@
 					<LeaderName>LEADER_KEELYN</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_FURIA_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_MELISANDRE_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_WEEVIL_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_FRANCE_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_FRANCE_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>NONE</CivTrait>
 			<DefaultRace>NONE</DefaultRace>
 			<Help>TXT_KEY_CIV_BALSERAPHS_HELP</Help>
 			<Hero>UNIT_LOKI</Hero>
@@ -337,6 +353,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_BALSERAPHS</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_BANNOR</Type>
@@ -433,7 +450,11 @@
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 				<Leader>
-					<LeaderName>LEADER_DECIUS</LeaderName>
+					<LeaderName>LEADER_DECIUS_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_TETHIRA_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>
@@ -441,7 +462,9 @@
 			<CivilizationSelectionSound>AS3D_ROME_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_ROME_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>TRAIT_GUARDSMAN</CivTrait>
+			<CivTraits>
+				<TraitType>TRAIT_GUARDSMAN</TraitType>
+			</CivTraits>
 			<DefaultRace>NONE</DefaultRace>
 			<Help>TXT_KEY_CIV_BANNOR_HELP</Help>
 			<Hero>UNIT_DONAL</Hero>
@@ -449,6 +472,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_BANNOR</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_CALABIM</Type>
@@ -486,10 +510,6 @@
 					<BuildingType>NONE</BuildingType>
 				</Building>
 				<Building>
-					<BuildingClassType>BUILDINGCLASS_COURTHOUSE</BuildingClassType>
-					<BuildingType>BUILDING_GOVERNORS_MANOR</BuildingType>
-				</Building>
-				<Building>
 					<BuildingClassType>BUILDINGCLASS_ELDER_COUNCIL</BuildingClassType>
 					<BuildingType>NONE</BuildingType>
 				</Building>
@@ -497,10 +517,14 @@
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_CALABIM</BuildingType>
 				</Building>
-		                <Building>
-		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
-		                    <BuildingType>BUILDING_BREEDING_PIT</BuildingType>
-		                </Building>
+				<Building>
+					<BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
+					<BuildingType>BUILDING_BREEDING_PIT</BuildingType>
+				</Building>
+                <Building>
+                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING2</BuildingClassType>
+                    <BuildingType>BUILDING_GOVERNORS_MANOR</BuildingType>
+                </Building>
 			</Buildings>
 			<Units>
 				<Unit>
@@ -584,7 +608,11 @@
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 				<Leader>
-					<LeaderName>LEADER_DECIUS</LeaderName>
+					<LeaderName>LEADER_DECIUS_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_MAHON_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>
@@ -592,7 +620,6 @@
 			<CivilizationSelectionSound>AS3D_ARABIA_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_ARABIA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>NONE</CivTrait>
 			<DefaultRace>NONE</DefaultRace>
 			<Help/>
 			<Hero>UNIT_LOSHA</Hero>
@@ -600,6 +627,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_CALABIM</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_CLAN_OF_EMBERS</Type>
@@ -776,19 +804,42 @@
 					<LeaderName>LEADER_SHEELBA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_HAFGAN_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_ARABIA_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_ARABIA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>TRAIT_BARBARIAN</CivTrait>
+			<CivTraits>
+				<TraitType>TRAIT_BARBARIAN</TraitType>
+			</CivTraits>
 			<DefaultRace>PROMOTION_ORC</DefaultRace>
 			<Help/>
 			<Hero>UNIT_RANTINE</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
 			<TerrainYieldChanges>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_MARSH</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_SHALLOWS</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_CLAN_OF_EMBERS</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_DOVIELLO</Type>
@@ -948,19 +999,43 @@
 					<LeaderName>LEADER_MAHALA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_DUIN_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_RUSSIA_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_RUSSIA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>NONE</CivTrait>
-			<DefaultRace>PROMOTION_WINTERBORN</DefaultRace>
+			<CivTraits>
+				<TraitType>TRAIT_SAVAGE</TraitType>
+				<TraitType>TRAIT_WINTERBORN</TraitType>
+			</CivTraits>
+			<DefaultRace>NONE</DefaultRace>
 			<Help/>
 			<Hero>UNIT_WAR_MACHINE</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
 			<TerrainYieldChanges>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_SNOW</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_DOVIELLO</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_ELOHIM</Type>
@@ -998,16 +1073,16 @@
 			</Cities>
 			<Buildings>
 				<Building>
+                    <BuildingClassType>BUILDINGCLASS_MONUMENT</BuildingClassType>
+                    <BuildingType>BUILDING_RELIQUARY</BuildingType>
+                </Building>
+				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_ELOHIM</BuildingType>
 				</Building>
 		                <Building>
 		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
 		                    <BuildingType>BUILDING_CHANCEL_OF_GUARDIANS</BuildingType>
-		                </Building>
-		                <Building>
-		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING2</BuildingClassType>
-		                    <BuildingType>BUILDING_RELIQUARY</BuildingType>
 		                </Building>
 			</Buildings>
 			<Units>
@@ -1067,12 +1142,18 @@
 					<LeaderName>LEADER_EINION</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_THESSALONICA_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_EGYPT_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_EGYPT_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>TRAIT_TOLERANT</CivTrait>
+			<CivTraits>
+				<TraitType>TRAIT_TOLERANT</TraitType>
+			</CivTraits>
 			<DefaultRace>NONE</DefaultRace>
 			<Help>TXT_KEY_CIV_ELOHIM_HELP</Help>
 			<Hero>UNIT_CORLINDALE</Hero>
@@ -1080,6 +1161,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_ELOHIM</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_GRIGORI</Type>
@@ -1127,6 +1209,10 @@
 					<BuildingType>NONE</BuildingType>
 				</Building>
 				<Building>
+					<BuildingClassType>BUILDINGCLASS_MERCURIAN_GATE</BuildingClassType>
+					<BuildingType>NONE</BuildingType>
+				</Building>
+				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_GRIGORI</BuildingType>
 				</Building>
@@ -1158,10 +1244,18 @@
 					<BuildingClassType>BUILDINGCLASS_TEMPLE_OF_THE_VEIL</BuildingClassType>
 					<BuildingType>NONE</BuildingType>
 				</Building>
-		                <Building>
-		                    <BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
-		                    <BuildingType>BUILDING_ADVENTURERS_GUILD</BuildingType>
-		                </Building>
+				<Building>
+					<BuildingClassType>BUILDINGCLASS_CIV_BUILDING1</BuildingClassType>
+					<BuildingType>BUILDING_ADVENTURERS_GUILD</BuildingType>
+				</Building>
+				<Building>
+					<BuildingClassType>BUILDINGCLASS_COURTHOUSE</BuildingClassType>
+					<BuildingType>BUILDING_FORUM</BuildingType>
+				</Building>
+				<Building>
+					<BuildingClassType>BUILDINGCLASS_MUSEUM</BuildingClassType>
+					<BuildingType>BUILDING_MUSEUM</BuildingType>
+				</Building>
 			</Buildings>
 			<Units>
 				<Unit>
@@ -1220,12 +1314,19 @@
 					<LeaderName>LEADER_CASSIEL</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_KOUN_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_INCA_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_INCA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>TRAIT_AGNOSTIC</CivTrait>
+			<CivTraits>
+				<TraitType>TRAIT_AGNOSTIC</TraitType>
+				<TraitType>TRAIT_DIVERSE</TraitType>
+			</CivTraits>
 			<DefaultRace>NONE</DefaultRace>
 			<Help/>
 			<Hero>NONE</Hero>
@@ -1233,6 +1334,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_GRIGORI</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_HIPPUS</Type>
@@ -1346,12 +1448,22 @@
 					<LeaderName>LEADER_RHOANNA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_OSTANES_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_ULDANOR_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_MONGOL_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_MONGOL_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>TRAIT_HORSELORD</CivTrait>
+			<CivTraits>
+				<TraitType>TRAIT_HORSELORD</TraitType>
+			</CivTraits>
 			<DefaultRace>NONE</DefaultRace>
 			<Help/>
 			<Hero>UNIT_MAGNADINE</Hero>
@@ -1359,6 +1471,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_HIPPUS</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_ILLIANS</Type>
@@ -1457,13 +1570,32 @@
 					<LeaderName>LEADER_AURIC</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_ANAGANTIOS_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_BRAEDEN_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_DUMANNIOS_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_RIUROS_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_MALI_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_MALI_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>TRAIT_AGNOSTIC</CivTrait>
-			<DefaultRace>PROMOTION_WINTERBORN</DefaultRace>
+			<CivTraits>
+				<TraitType>TRAIT_AGNOSTIC</TraitType>
+				<TraitType>TRAIT_WINTERBORN</TraitType>
+			</CivTraits>
+			<DefaultRace>NONE</DefaultRace>
 			<Help>TXT_KEY_CIV_ILLIANS_HELP</Help>
 			<Hero>UNIT_WILBOMAN</Hero>
 			<MaintainFeatures>
@@ -1483,6 +1615,7 @@
 					</TerrainRiverYields>
 				</TerrainYieldChange>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_ILLIANS</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_INFERNAL</Type>
@@ -1636,7 +1769,9 @@
 			<CivilizationSelectionSound>AS3D_ARABIA_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_ARABIA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>TRAIT_FALLOW</CivTrait>
+			<CivTraits>
+				<TraitType>TRAIT_FALLOW</TraitType>
+			</CivTraits>
 			<DefaultRace>PROMOTION_DEMON</DefaultRace>
 			<Help>TXT_KEY_CIV_INFERNAL_HELP</Help>
 			<Hero>UNIT_HYBOREM</Hero>
@@ -1802,7 +1937,9 @@
 			<CivilizationSelectionSound>AS3D_GERMANY_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_GERMANY_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>TRAIT_INGENUITY</CivTrait>
+			<CivTraits>
+				<TraitType>TRAIT_INGENUITY</TraitType>
+			</CivTraits>
 			<DefaultRace>PROMOTION_DWARF</DefaultRace>
 			<Help>TXT_KEY_CIV_KHAZAD_HELP</Help>
 			<Hero>UNIT_MAROS</Hero>
@@ -1810,6 +1947,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_KHAZAD</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_KURIOTATES</Type>
@@ -1922,14 +2060,14 @@
 			</DisableTechs>
 			<InitialCivics>
 					<CivicType>CIVIC_DESPOTISM</CivicType>
-					<CivicType>CIVIC_PACIFISM</CivicType>
+					<CivicType>CIVIC_NATIONHOOD</CivicType>
 					<CivicType>CIVIC_TRIBALISM</CivicType>
 					<CivicType>CIVIC_DECENTRALIZATION</CivicType>
 					<CivicType>CIVIC_NO_MEMBERSHIP</CivicType>
 			</InitialCivics>
 			<AnarchyCivics>
 					<CivicType>CIVIC_DESPOTISM</CivicType>
-					<CivicType>CIVIC_PACIFISM</CivicType>
+					<CivicType>CIVIC_NATIONHOOD</CivicType>
 					<CivicType>CIVIC_TRIBALISM</CivicType>
 					<CivicType>CIVIC_DECENTRALIZATION</CivicType>
 					<CivicType>CIVIC_NO_MEMBERSHIP</CivicType>
@@ -1939,12 +2077,18 @@
 					<LeaderName>LEADER_CARDITH</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_CHERON_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_PERSIA_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_PERSIA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>TRAIT_SPRAWLING</CivTrait>
+			<CivTraits>
+				<TraitType>TRAIT_SPRAWLING</TraitType>
+			</CivTraits>
 			<DefaultRace>NONE</DefaultRace>
 			<Help>TXT_KEY_CIV_KURIOTATES_HELP</Help>
 			<Hero>UNIT_EURABATRES</Hero>
@@ -1952,6 +2096,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_KURIOTATES</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_LANUN</Type>
@@ -2067,14 +2212,30 @@
 			<CivilizationSelectionSound>AS3D_SPAIN_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_SPAIN_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>NONE</CivTrait>
 			<DefaultRace>NONE</DefaultRace>
 			<Help/>
 			<Hero>UNIT_GUYBRUSH</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
 			<TerrainYieldChanges>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_OCEAN</TerrainType>
+					<TerrainYields>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_LANUN</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_LJOSALFAR</Type>
@@ -2114,10 +2275,6 @@
 				<City>TXT_KEY_CITY_LJOSALFAR_23</City>
 			</Cities>
 			<Buildings>
-				<Building>
-					<BuildingClassType>BUILDINGCLASS_ALCHEMY_LAB</BuildingClassType>
-					<BuildingType>NONE</BuildingType>
-				</Building>
 				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_LJOSALFAR</BuildingType>
@@ -2217,7 +2374,9 @@
 			<CivilizationSelectionSound>AS3D_ARABIA_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_ARABIA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>TRAIT_DEXTEROUS</CivTrait>
+			<CivTraits>
+				<TraitType>TRAIT_DEXTEROUS</TraitType>
+			</CivTraits>
 			<DefaultRace>PROMOTION_ELF</DefaultRace>
 			<Help>TXT_KEY_CIV_LJOSALFAR_HELP</Help>
 			<Hero>UNIT_GILDEN</Hero>
@@ -2237,6 +2396,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_LJOSALFAR</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_LUCHUIRP</Type>
@@ -2415,7 +2575,6 @@
 			<CivilizationSelectionSound>AS3D_GERMANY_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_GERMANY_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>NONE</CivTrait>
 			<DefaultRace>PROMOTION_DWARF</DefaultRace>
 			<Help/>
 			<Hero>UNIT_BARNAXUS</Hero>
@@ -2423,6 +2582,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_LUCHUIRP</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_MALAKIM</Type>
@@ -2526,7 +2686,11 @@
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 				<Leader>
-					<LeaderName>LEADER_DECIUS</LeaderName>
+					<LeaderName>LEADER_DECIUS_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_KANE_EXTRA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>
@@ -2534,8 +2698,10 @@
 			<CivilizationSelectionSound>AS3D_AZTEC_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_AZTEC_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>NONE</CivTrait>
-			<DefaultRace>PROMOTION_NOMAD</DefaultRace>
+			<CivTraits>
+				<TraitType>TRAIT_NOMAD</TraitType>
+			</CivTraits>
+			<DefaultRace>NONE</DefaultRace>
 			<Help/>
 			<Hero>UNIT_TEUTORIX</Hero>
 			<MaintainFeatures>
@@ -2549,7 +2715,16 @@
 						<iYield>1</iYield>
 					</TerrainYields>
 				</TerrainYieldChange>
+				<TerrainYieldChange>
+					<TerrainType>TERRAIN_BURNING_SANDS</TerrainType>
+					<TerrainYields>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</TerrainYields>
+				</TerrainYieldChange>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_MALAKIM</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_MERCURIANS</Type>
@@ -2674,7 +2849,6 @@
 			<CivilizationSelectionSound>AS3D_ARABIA_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_ARABIA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>NONE</CivTrait>
 			<DefaultRace>NONE</DefaultRace>
 			<Help/>
 			<Hero>UNIT_BASIUM</Hero>
@@ -2808,12 +2982,26 @@
 					<LeaderName>LEADER_OS-GABELLA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_AVERAX_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_GOSEA_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_MALCHAVIC_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_INDIA_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_INDIA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>TRAIT_SUNDERED</CivTrait>
+			<CivTraits>
+				<TraitType>TRAIT_SUNDERED</TraitType>
+			</CivTraits>
 			<DefaultRace>NONE</DefaultRace>
 			<Help/>
 			<Hero>UNIT_ABASHI</Hero>
@@ -2821,6 +3009,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_SHEAIM</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_SIDAR</Type>
@@ -2902,14 +3091,14 @@
 			</DisableTechs>
 			<InitialCivics>
 					<CivicType>CIVIC_DESPOTISM</CivicType>
-					<CivicType>CIVIC_PACIFISM</CivicType>
+					<CivicType>CIVIC_NATIONHOOD</CivicType>
 					<CivicType>CIVIC_TRIBALISM</CivicType>
 					<CivicType>CIVIC_DECENTRALIZATION</CivicType>
 					<CivicType>CIVIC_NO_MEMBERSHIP</CivicType>
 			</InitialCivics>
 			<AnarchyCivics>
 					<CivicType>CIVIC_DESPOTISM</CivicType>
-					<CivicType>CIVIC_PACIFISM</CivicType>
+					<CivicType>CIVIC_NATIONHOOD</CivicType>
 					<CivicType>CIVIC_TRIBALISM</CivicType>
 					<CivicType>CIVIC_DECENTRALIZATION</CivicType>
 					<CivicType>CIVIC_NO_MEMBERSHIP</CivicType>
@@ -2919,12 +3108,15 @@
 					<LeaderName>LEADER_SANDALPHON</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_SHEKINAH_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_ARABIA_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_ARABIA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>NONE</CivTrait>
 			<DefaultRace>NONE</DefaultRace>
 			<Help>TXT_KEY_CIV_SIDAR_HELP</Help>
 			<Hero>UNIT_RATHUS</Hero>
@@ -2932,6 +3124,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_SIDAR</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_SVARTALFAR</Type>
@@ -2973,10 +3166,6 @@
 				<City>TXT_KEY_CITY_SVARTALFAR_25</City>
 			</Cities>
 			<Buildings>
-				<Building>
-					<BuildingClassType>BUILDINGCLASS_ALCHEMY_LAB</BuildingClassType>
-					<BuildingType>NONE</BuildingType>
-				</Building>
 				<Building>
 					<BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
 					<BuildingType>BUILDING_PALACE_SVARTALFAR</BuildingType>
@@ -3067,12 +3256,22 @@
 					<LeaderName>LEADER_FAERYL</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
+				<Leader>
+					<LeaderName>LEADER_RIVANNA_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_VOLANNA_EXTRA</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
 			</Leaders>
 			<DerivativeCiv>NONE</DerivativeCiv>
 			<CivilizationSelectionSound>AS3D_ARABIA_SELECT</CivilizationSelectionSound>
 			<CivilizationActionSound>AS3D_ARABIA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
-			<CivTrait>TRAIT_SINISTER</CivTrait>
+			<CivTraits>
+				<TraitType>TRAIT_SINISTER</TraitType>
+			</CivTraits>
 			<DefaultRace>PROMOTION_DARK_ELF</DefaultRace>
 			<Help>TXT_KEY_CIV_SVARTALFAR_HELP</Help>
 			<Hero>UNIT_ALAZKAN</Hero>
@@ -3092,6 +3291,7 @@
 			</MaintainFeatures>
 			<TerrainYieldChanges>
 			</TerrainYieldChanges>
+			<TerrainFlavour>TERRAIN_FLAVOUR_CIV_SVARTALFAR</TerrainFlavour>
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_MINOR</Type>
@@ -3411,7 +3611,6 @@
 			<CivilizationSelectionSound/>
 			<CivilizationActionSound/>
 			<bGraphicalOnly>1</bGraphicalOnly>
-			<CivTrait>NONE</CivTrait>
 			<DefaultRace>PROMOTION_ORC</DefaultRace>
 			<Help/>
 			<Hero>UNIT_ORTHUS</Hero>

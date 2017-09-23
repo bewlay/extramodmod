@@ -63,7 +63,7 @@
 
 			<!-- Progress Bar Tick Marks -->
 			<option id="ProgressBarsTickMarks" key="Tick Marks" 
-					type="boolean" default="False" 
+					type="boolean" default="True" 
 					get="isShowpBarTickMarks" dirtyBit="GameData"/>
 
 			<!-- Field of View -->

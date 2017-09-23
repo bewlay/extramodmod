@@ -4305,7 +4305,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=23,y=15
-	ImprovementType=IMPROVEMENT_MUSHROOMS
+	BonusType=BONUS_MUSHROOMS
 	TerrainType=TERRAIN_GRASS
 	PlotType=2
 EndPlot

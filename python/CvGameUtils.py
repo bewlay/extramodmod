@@ -198,6 +198,16 @@ class CvGameUtils:
 			if iCiv != gc.getInfoTypeForString('CIVILIZATION_LANUN'):
 				return True
 
+		# Infernals cannot research sanitation (EMM)
+		if eTech == gc.getInfoTypeForString('TECH_SANITATION') or eTech == gc.getInfoTypeForString('TECH_MEDICINE'):
+			if iCiv == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
+				return True
+
+		# Sheaim do not have any use for researching rage (EMM):
+		if eTech == gc.getInfoTypeForString('TECH_RAGE'):
+			if iCiv == gc.getInfoTypeForString('CIVILIZATION_SHEAIM'):
+				return True
+
 		if CyGame().getWBMapScript():
 			bBlock = sf.cannotResearch(ePlayer, eTech, bTrade)
 			if bBlock:
@@ -236,7 +246,7 @@ class CvGameUtils:
 ##		eUnitClass = gc.getUnitInfo(eUnit).getUnitClassType()
 ##		eTeam = gc.getTeam(pPlayer.getTeam())
 
-		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
+		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_MEMBERSHIP')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
 			if eUnit in [gc.getInfoTypeForString('UNIT_WORKER'), gc.getInfoTypeForString('UNIT_SETTLER'), gc.getInfoTypeForString('UNIT_WORKBOAT')]:
 				return True
 
@@ -245,18 +255,45 @@ class CvGameUtils:
 				return True
 
 
-		elif eUnit == gc.getInfoTypeForString('UNIT_ACHERON'):
-			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_ACHERON):
-				return True
+
+	# WILDERNESS 09/2013 lfgr / SpawnAcheron
+	#	if eUnit == gc.getInfoTypeForString('UNIT_ACHERON'):
+	#		if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_ACHERON):
+	#			return True
+	# WILDERNESS end
 
 		elif eUnit == gc.getInfoTypeForString('UNIT_DUIN'):
 			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_DUIN):
+				return True
+
+		iMax = 1 + 0.333 * CyGame().getGlobalCounter() * pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_PLANAR_GATE'))
+
+		if iMax > 1:
+			iUnitClass = UnitClassTypes.NO_UNITCLASS
+			if eUnit == gc.getInfoTypeForString('UNIT_REVELERS'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_REVELERS')
+			if eUnit == gc.getInfoTypeForString('UNIT_MOBIUS_WITCH'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_MOBIUS_WITCH')
+			if eUnit == gc.getInfoTypeForString('UNIT_CHAOS_MARAUDER'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_CHAOS_MARAUDER')
+			if eUnit == gc.getInfoTypeForString('UNIT_MANTICORE'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_MANTICORE')
+				iMax /= 2
+			if eUnit == gc.getInfoTypeForString('UNIT_SUCCUBUS'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_SUCCUBUS')
+			if eUnit == gc.getInfoTypeForString('UNIT_MINOTAUR'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_MINOTAUR')
+				iMax /= 2
+			if eUnit == gc.getInfoTypeForString('UNIT_TAR_DEMON'):
+				iUnitClass = gc.getInfoTypeForString('UNITCLASS_TAR_DEMON')
+			if iUnitClass != UnitClassTypes.NO_UNITCLASS and pPlayer.getUnitClassCount(iUnitClass) >= iMax:
 				return True
 
 		if CyGame().getWBMapScript():
 			bBlock = sf.cannotTrain(pCity, eUnit, bContinue, bTestVisible, bIgnoreCost, bIgnoreUpgrades)
 			if bBlock:
 				return True
+
 
 		return False
 
@@ -288,7 +325,7 @@ class CvGameUtils:
 							]:
 				return True
 
-		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_CULTURAL_VALUES')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
+		if pPlayer.getCivics(gc.getInfoTypeForString('CIVICOPTION_MEMBERSHIP')) == gc.getInfoTypeForString('CIVIC_CRUSADE'):
 			if eBuilding in [	gc.getInfoTypeForString('BUILDING_ELDER_COUNCIL'),
 						gc.getInfoTypeForString('BUILDING_MARKET'),
 						gc.getInfoTypeForString('BUILDING_MONUMENT'),
@@ -333,6 +370,9 @@ class CvGameUtils:
 			if pCity.isCapital():
 				return True
 
+		if eBuilding == gc.getInfoTypeForString('BUILDING_GUILD_OF_THE_NINE'):
+			if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_GUILD_OF_THE_NINE):
+				return True
 		elif eBuilding == gc.getInfoTypeForString('BUILDING_SHRINE_OF_THE_CHAMPION'):
 			iHero = cf.getHero(pPlayer)
 			if iHero == -1:
@@ -350,7 +390,8 @@ class CvGameUtils:
 ### Start AI restrictions ###
 		if not pPlayer.isHuman():
 			if eBuilding == gc.getInfoTypeForString('BUILDING_PROPHECY_OF_RAGNAROK'):
-				if pPlayer.getAlignment() != gc.getInfoTypeForString('ALIGNMENT_EVIL'):
+				if pPlayer.getCivilizationType() != gc.getInfoTypeForString('CIVILIZATION_SHEAIM') and \
+								pPlayer.getStateReligion() != gc.getInfoTypeForString('RELIGION_THE_ASHEN_VEIL'):
 					return True
 
 			elif eBuilding == gc.getInfoTypeForString('BUILDING_MERCURIAN_GATE'):
@@ -446,14 +487,18 @@ class CvGameUtils:
 				iCivType = pCity.getCivilizationType()
 
 			## Barbarians
-			if pPlayer.isBarbarian():
-				if pCity.canTrain(gc.getInfoTypeForString('UNIT_ACHERON'), True, False):
-					pCity.pushOrder(OrderTypes.ORDER_TRAIN, gc.getInfoTypeForString('UNIT_ACHERON'), -1, False, False, False, False)
-					return 1
+
+			# Acheron cannot be built anymore START
+			# Old code
+			#if pPlayer.isBarbarian():
+			#	if pCity.canTrain(gc.getInfoTypeForString('UNIT_ACHERON'), True, False):
+			#		pCity.pushOrder(OrderTypes.ORDER_TRAIN, gc.getInfoTypeForString('UNIT_ACHERON'), -1, False, False, False, False)
+			#		return 1
 
 			## Illians - make sure we build our best projects
 			if iCivType == gc.getInfoTypeForString('CIVILIZATION_ILLIANS'):
 				if pCity.getPopulation() > 3:
+			# END
 					if pCity.canConstruct(gc.getInfoTypeForString('BUILDING_TEMPLE_OF_THE_HAND'), True, False, False):
 						iBadTileCount = 0
 						for iiX in range(pCity.getX()-1, pCity.getX()+2, 1):
@@ -1112,6 +1157,14 @@ class CvGameUtils:
 					if CyGame().getSorenRandNum(100, "Asylum") < 10:
 						pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CRAZED'), True)
 						pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ENRAGED'), True)
+
+		if pUnit.getUnitClassType() == gc.getInfoTypeForString('UNITCLASS_MOBIUS_WITCH'):
+			promotions = [ 'PROMOTION_AIR1','PROMOTION_BODY1','PROMOTION_CHAOS1','PROMOTION_CREATION1','PROMOTION_DEATH1','PROMOTION_DIMENSIONAL1','PROMOTION_EARTH1','PROMOTION_ENCHANTMENT1','PROMOTION_ENTROPY1','PROMOTION_FORCE1','PROMOTION_FIRE1','PROMOTION_ICE1','PROMOTION_LAW1','PROMOTION_LIFE1','PROMOTION_METAMAGIC1','PROMOTION_MIND1','PROMOTION_NATURE1','PROMOTION_SHADOW1','PROMOTION_SPIRIT1','PROMOTION_SUN1','PROMOTION_WATER1' ]
+			pUnit.setLevel(2)
+			pUnit.setExperience(5, -1)
+			for i in promotions:
+				if CyGame().getSorenRandNum(10, "Timon") == 1:
+					pUnit.setHasPromotion(gc.getInfoTypeForString(i), True)
 
 		if pUnit.getRace() == gc.getInfoTypeForString('PROMOTION_GOLEM'):
 			if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_BLASTING_WORKSHOP')) > 0:

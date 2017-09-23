@@ -627,8 +627,8 @@
 			<iMinBarbarians>0</iMinBarbarians>
 		</GoodyInfo>
 		<GoodyInfo>
-			<Type>GOODY_EXPLORE_LAIR_PRISONER_COMMANDER</Type>
-			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_PRISONER_COMMANDER</Description>
+			<Type>GOODY_EXPLORE_LAIR_PRISONER_GENERAL</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_PRISONER_GENERAL</Description>
 			<Sound/>
 			<iGold>0</iGold>
 			<iGoldRand1>0</iGoldRand1>
@@ -641,7 +641,7 @@
 			<iDamagePrereq>0</iDamagePrereq>
 			<bTech>0</bTech>
 			<bBad>0</bBad>
-			<UnitClass>UNITCLASS_COMMANDER</UnitClass>
+			<UnitClass>UNITCLASS_GREAT_GENERAL</UnitClass>
 			<BarbarianClass>NONE</BarbarianClass>
 			<iBarbarianUnitProb>0</iBarbarianUnitProb>
 			<iMinBarbarians>0</iMinBarbarians>
@@ -1082,6 +1082,186 @@
 			<bTech>0</bTech>
 			<bBad>0</bBad>
 			<UnitClass>UNITCLASS_SUPPLIES</UnitClass>
+			<BarbarianClass>NONE</BarbarianClass>
+			<iBarbarianUnitProb>0</iBarbarianUnitProb>
+			<iMinBarbarians>0</iMinBarbarians>
+		</GoodyInfo>
+		<GoodyInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+			<Type>GOODY_EXPLORE_LAIR_ITEM_AMULET_SEAS</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_AMULET_SEAS</Description>
+			<Sound>AS2D_GOODY_GOLD</Sound>
+			<iGold>0</iGold>
+			<iGoldRand1>0</iGoldRand1>
+			<iGoldRand2>0</iGoldRand2>
+			<iMapOffset>0</iMapOffset>
+			<iMapRange>0</iMapRange>
+			<iMapProb>0</iMapProb>
+			<iExperience>0</iExperience>
+			<iHealing>0</iHealing>
+			<iDamagePrereq>0</iDamagePrereq>
+			<bTech>0</bTech>
+			<bBad>0</bBad>
+			<UnitClass>EQUIPMENTCLASS_AMULET_SEAS</UnitClass>
+			<BarbarianClass>NONE</BarbarianClass>
+			<iBarbarianUnitProb>0</iBarbarianUnitProb>
+			<iMinBarbarians>0</iMinBarbarians>
+		</GoodyInfo>
+		<GoodyInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+			<Type>GOODY_EXPLORE_LAIR_ITEM_ANCIENT_BOW</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_ANCIENT_BOW</Description>
+			<Sound>AS2D_GOODY_GOLD</Sound>
+			<iGold>0</iGold>
+			<iGoldRand1>0</iGoldRand1>
+			<iGoldRand2>0</iGoldRand2>
+			<iMapOffset>0</iMapOffset>
+			<iMapRange>0</iMapRange>
+			<iMapProb>0</iMapProb>
+			<iExperience>0</iExperience>
+			<iHealing>0</iHealing>
+			<iDamagePrereq>0</iDamagePrereq>
+			<bTech>0</bTech>
+			<bBad>0</bBad>
+			<UnitClass>EQUIPMENTCLASS_ANCIENT_BOW</UnitClass>
+			<BarbarianClass>NONE</BarbarianClass>
+			<iBarbarianUnitProb>0</iBarbarianUnitProb>
+			<iMinBarbarians>0</iMinBarbarians>
+		</GoodyInfo>
+		<GoodyInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+			<Type>GOODY_EXPLORE_LAIR_ITEM_COMPELLING_JEWEL</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_COMPELLING_JEWEL</Description>
+			<Sound>AS2D_GOODY_GOLD</Sound>
+			<iGold>0</iGold>
+			<iGoldRand1>0</iGoldRand1>
+			<iGoldRand2>0</iGoldRand2>
+			<iMapOffset>0</iMapOffset>
+			<iMapRange>0</iMapRange>
+			<iMapProb>0</iMapProb>
+			<iExperience>0</iExperience>
+			<iHealing>0</iHealing>
+			<iDamagePrereq>0</iDamagePrereq>
+			<bTech>0</bTech>
+			<bBad>0</bBad>
+			<UnitClass>EQUIPMENTCLASS_COMPELLING_JEWEL</UnitClass>
+			<BarbarianClass>NONE</BarbarianClass>
+			<iBarbarianUnitProb>0</iBarbarianUnitProb>
+			<iMinBarbarians>0</iMinBarbarians>
+		</GoodyInfo>
+		<GoodyInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
+			<Type>GOODY_EXPLORE_LAIR_ITEM_HEART_AMULET</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_HEART_AMULET</Description>
+			<Sound>AS2D_GOODY_GOLD</Sound>
+			<iGold>0</iGold>
+			<iGoldRand1>0</iGoldRand1>
+			<iGoldRand2>0</iGoldRand2>
+			<iMapOffset>0</iMapOffset>
+			<iMapRange>0</iMapRange>
+			<iMapProb>0</iMapProb>
+			<iExperience>0</iExperience>
+			<iHealing>0</iHealing>
+			<iDamagePrereq>0</iDamagePrereq>
+			<bTech>0</bTech>
+			<bBad>0</bBad>
+			<UnitClass>EQUIPMENTCLASS_HEART_AMULET</UnitClass>
+			<BarbarianClass>NONE</BarbarianClass>
+			<iBarbarianUnitProb>0</iBarbarianUnitProb>
+			<iMinBarbarians>0</iMinBarbarians>
+		</GoodyInfo>
+		<GoodyInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+			<Type>GOODY_EXPLORE_LAIR_ITEM_MENACING_HELM</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_MENACING_HELM</Description>
+			<Sound>AS2D_GOODY_GOLD</Sound>
+			<iGold>0</iGold>
+			<iGoldRand1>0</iGoldRand1>
+			<iGoldRand2>0</iGoldRand2>
+			<iMapOffset>0</iMapOffset>
+			<iMapRange>0</iMapRange>
+			<iMapProb>0</iMapProb>
+			<iExperience>0</iExperience>
+			<iHealing>0</iHealing>
+			<iDamagePrereq>0</iDamagePrereq>
+			<bTech>0</bTech>
+			<bBad>0</bBad>
+			<UnitClass>EQUIPMENTCLASS_MENACING_HELM</UnitClass>
+			<BarbarianClass>NONE</BarbarianClass>
+			<iBarbarianUnitProb>0</iBarbarianUnitProb>
+			<iMinBarbarians>0</iMinBarbarians>
+		</GoodyInfo>
+		<GoodyInfo> <!-- WILDERNESS 03/2015 Terkhen // New Equipment -->
+			<Type>GOODY_EXPLORE_LAIR_ITEM_HAUBERK_OF_ABJURATION</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_HAUBERK_OF_ABJURATION</Description>
+			<Sound>AS2D_GOODY_GOLD</Sound>
+			<iGold>0</iGold>
+			<iGoldRand1>0</iGoldRand1>
+			<iGoldRand2>0</iGoldRand2>
+			<iMapOffset>0</iMapOffset>
+			<iMapRange>0</iMapRange>
+			<iMapProb>0</iMapProb>
+			<iExperience>0</iExperience>
+			<iHealing>0</iHealing>
+			<iDamagePrereq>0</iDamagePrereq>
+			<bTech>0</bTech>
+			<bBad>0</bBad>
+			<UnitClass>EQUIPMENTCLASS_HAUBERK_OF_ABJURATION</UnitClass>
+			<BarbarianClass>NONE</BarbarianClass>
+			<iBarbarianUnitProb>0</iBarbarianUnitProb>
+			<iMinBarbarians>0</iMinBarbarians>
+		</GoodyInfo>
+		<GoodyInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+			<Type>GOODY_EXPLORE_LAIR_ITEM_OBSIDIAN_SPEAR</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_OBSIDIAN_SPEAR</Description>
+			<Sound>AS2D_GOODY_GOLD</Sound>
+			<iGold>0</iGold>
+			<iGoldRand1>0</iGoldRand1>
+			<iGoldRand2>0</iGoldRand2>
+			<iMapOffset>0</iMapOffset>
+			<iMapRange>0</iMapRange>
+			<iMapProb>0</iMapProb>
+			<iExperience>0</iExperience>
+			<iHealing>0</iHealing>
+			<iDamagePrereq>0</iDamagePrereq>
+			<bTech>0</bTech>
+			<bBad>0</bBad>
+			<UnitClass>EQUIPMENTCLASS_OBSIDIAN_SPEAR</UnitClass>
+			<BarbarianClass>NONE</BarbarianClass>
+			<iBarbarianUnitProb>0</iBarbarianUnitProb>
+			<iMinBarbarians>0</iMinBarbarians>
+		</GoodyInfo>
+		<GoodyInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+			<Type>GOODY_EXPLORE_LAIR_ITEM_RADIANT_AMULET</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_RADIANT_AMULET</Description>
+			<Sound>AS2D_GOODY_GOLD</Sound>
+			<iGold>0</iGold>
+			<iGoldRand1>0</iGoldRand1>
+			<iGoldRand2>0</iGoldRand2>
+			<iMapOffset>0</iMapOffset>
+			<iMapRange>0</iMapRange>
+			<iMapProb>0</iMapProb>
+			<iExperience>0</iExperience>
+			<iHealing>0</iHealing>
+			<iDamagePrereq>0</iDamagePrereq>
+			<bTech>0</bTech>
+			<bBad>0</bBad>
+			<UnitClass>EQUIPMENTCLASS_RADIANT_AMULET</UnitClass>
+			<BarbarianClass>NONE</BarbarianClass>
+			<iBarbarianUnitProb>0</iBarbarianUnitProb>
+			<iMinBarbarians>0</iMinBarbarians>
+		</GoodyInfo>
+		<GoodyInfo> <!-- WILDERNESS 04/2015 Terkhen // New Equipment -->
+			<Type>GOODY_EXPLORE_LAIR_ITEM_WYRMSLAYER</Type>
+			<Description>TXT_KEY_GOODY_EXPLORE_LAIR_ITEM_WYRMSLAYER</Description>
+			<Sound>AS2D_GOODY_GOLD</Sound>
+			<iGold>0</iGold>
+			<iGoldRand1>0</iGoldRand1>
+			<iGoldRand2>0</iGoldRand2>
+			<iMapOffset>0</iMapOffset>
+			<iMapRange>0</iMapRange>
+			<iMapProb>0</iMapProb>
+			<iExperience>0</iExperience>
+			<iHealing>0</iHealing>
+			<iDamagePrereq>0</iDamagePrereq>
+			<bTech>0</bTech>
+			<bBad>0</bBad>
+			<UnitClass>EQUIPMENTCLASS_WYRMSLAYER</UnitClass>
 			<BarbarianClass>NONE</BarbarianClass>
 			<iBarbarianUnitProb>0</iBarbarianUnitProb>
 			<iMinBarbarians>0</iMinBarbarians>

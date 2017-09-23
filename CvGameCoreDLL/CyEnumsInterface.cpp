@@ -591,7 +591,12 @@ void CyEnumsPythonInterface()
 		.value("GAMEOPTION_FLIPPING_AFTER_CONQUEST", GAMEOPTION_FLIPPING_AFTER_CONQUEST)
 		.value("GAMEOPTION_NO_BARBARIANS", GAMEOPTION_NO_BARBARIANS)
 		.value("GAMEOPTION_RANDOM_PERSONALITIES", GAMEOPTION_RANDOM_PERSONALITIES)
+		// Player traits game options START
+		.value("GAMEOPTION_RANDOM_TRAITS", GAMEOPTION_RANDOM_TRAITS)
+		.value("GAMEOPTION_INSANE_LEADERS", GAMEOPTION_INSANE_LEADERS)
+		// Player traits game options END
 		.value("GAMEOPTION_PICK_RELIGION", GAMEOPTION_PICK_RELIGION)
+		.value("GAMEOPTION_TECHNOLOGY_PROPAGATION", GAMEOPTION_TECHNOLOGY_PROPAGATION)
 		.value("GAMEOPTION_NO_TECH_TRADING", GAMEOPTION_NO_TECH_TRADING)
 		.value("GAMEOPTION_NO_TECH_BROKERING", GAMEOPTION_NO_TECH_BROKERING)
 		.value("GAMEOPTION_PERMANENT_ALLIANCES", GAMEOPTION_PERMANENT_ALLIANCES)
@@ -660,8 +665,28 @@ void CyEnumsPythonInterface()
 		.value("GAMEOPTION_REVOLUTIONS", GAMEOPTION_REVOLUTIONS) // added by Tholal
 		.value("GAMEOPTION_ADVANCED_TACTICS", GAMEOPTION_ADVANCED_TACTICS) // added by Tholal
 //Multiple Production: Added by Denev 07/10/2009
-		.value("GAMEOPTION_MULTIPLE_PRODUCTION", GAMEOPTION_MULTIPLE_PRODUCTION)
-//Multiple Production: End Add
+// Leader categories START
+		.value("GAMEOPTION_LEADER_SCENEXTRA", GAMEOPTION_LEADER_SCENEXTRA)
+		.value("GAMEOPTION_LEADER_EXTRA", GAMEOPTION_LEADER_EXTRA)
+// Leader categories END
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+		.value("GAMEOPTION_FLAVOUR_START", GAMEOPTION_FLAVOUR_START)
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+/************************************************************************************************/
+/* WILDERNESS                             03/2015                                 lfgr          */
+/* NoWilderness                                                                                 */
+/************************************************************************************************/
+		.value("GAMEOPTION_NO_WILDERNESS", GAMEOPTION_NO_WILDERNESS)
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+		.value("GAMEOPTION_NO_GUILD_OF_THE_NINE", GAMEOPTION_NO_GUILD_OF_THE_NINE)
+
 		.value("NUM_GAMEOPTION_TYPES", NUM_GAMEOPTION_TYPES)
 		;
 
@@ -2223,4 +2248,30 @@ void CyEnumsPythonInterface()
 		.value("ADVANCEDSTARTACTION_VISIBILITY", ADVANCEDSTARTACTION_VISIBILITY)
 		.value("ADVANCEDSTARTACTION_AUTOMATE", ADVANCEDSTARTACTION_AUTOMATE)
 		;
+
+// Leader categories START
+	python::enum_<LeaderHeadCategories>("LeaderHeadCategories")
+		.value("NO_LEADERCATEGORY", NO_LEADERCATEGORY)               
+		.value("LEADERCATEGORY_STANDARD", LEADERCATEGORY_STANDARD)   // Leader playable in vanilla FFH2.
+		.value("LEADERCATEGORY_SCENARIO", LEADERCATEGORY_SCENARIO)   // Scenario leader in vanilla FFH2.
+		.value("LEADERCATEGORY_SCENEXTRA", LEADERCATEGORY_SCENEXTRA) // Scenario leader modified in ExtraModMod to have a comparable power level.
+		.value("LEADERCATEGORY_EXTRA", LEADERCATEGORY_EXTRA)         // Leader not present in vanilla FFH2.
+		.value("LEADERCATEGORY_ALIGNMENT", LEADERCATEGORY_ALIGNMENT) // Fake leader used for the "play as alignment" selection.
+		.value("LEADERCATEGORY_BARBARIAN", LEADERCATEGORY_BARBARIAN) // Barbarian leader.
+		;
+// Leader categories END
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+	python::enum_<SpawnTypes>("SpawnTypes")
+		.value("NO_SPAWN", NO_SPAWN)
+		;
+	python::enum_<SpawnPrereqTypes>("SpawnPrereqTypes")
+		.value("NO_SPAWN_PREREQ", NO_SPAWN_PREREQ)
+		;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 }

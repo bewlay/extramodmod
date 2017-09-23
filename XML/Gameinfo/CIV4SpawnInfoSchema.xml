@@ -1,0 +1,145 @@
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Alex Mantzaris (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- -->
+<!-- Spawn Info Schema -->
+<!-- WILDERNESS / SpawnInfo, SpawnPrereqInfo -->
+<Schema xmlns="urn:schemas-microsoft-com:xml-data" xmlns:dt="urn:schemas-microsoft-com:datatypes">
+	<ElementType name="Type" content="textOnly"/>
+	<ElementType name="Description" content="textOnly"/>
+	<ElementType name="iBaseWeight" content="textOnly" dt:type="int"/>
+	<ElementType name="TerrainFlavourType" content="textOnly"/>
+	<ElementType name="iValidTerrainWeight" content="textOnly" dt:type="int"/>
+	<ElementType name="SpawnPrereqType" content="textOnly"/>
+	<ElementType name="iMinSpawnTier" content="textOnly" dt:type="int"/>
+	<ElementType name="iMaxSpawnTier" content="textOnly" dt:type="int"/>
+	<ElementType name="iPrereqGlobalCounter" content="textOnly" dt:type="int"/>
+	<ElementType name="iMinRandomPromotions" content="textOnly" dt:type="int"/>
+	<ElementType name="iMaxRandomPromotions" content="textOnly" dt:type="int"/>
+	<ElementType name="iMinIncludedSpawns" content="textOnly" dt:type="int"/>
+	<ElementType name="iMaxIncludedSpawns" content="textOnly" dt:type="int"/>
+	<ElementType name="bNeverSpawn" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bNoWildernessIgnoreSpawnPrereq" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bExplorationResult" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bExplorationNoPush" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bNoDefender" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bAnimal" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bWater" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bNoRace" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bNoMinWilderness" content="textOnly" dt:type="boolean"/>
+	<ElementType name="UnitArtStyleType" content="textOnly"/>
+	<ElementType name="UnitAIType" content="textOnly"/>
+	<ElementType name="CreateLair" content="textOnly"/>
+	<ElementType name="iCreateLairAge" content="textOnly" dt:type="int"/>
+	<ElementType name="iCreateLairLevel" content="textOnly" dt:type="int"/>
+	
+	<ElementType name="Unit" content="textOnly"/>
+	<ElementType name="iNumUnits" content="textOnly" dt:type="int"/>
+	<ElementType name="SpawnUnit" content="eltOnly">
+		<element type="Unit"/>
+		<element type="iNumUnits"/>
+	</ElementType>
+	<ElementType name="SpawnUnits" content="eltOnly">
+		<element type="SpawnUnit" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	
+	<ElementType name="PromotionType" content="textOnly"/>
+	<ElementType name="UnitPromotions" content="eltOnly">
+		<element type="PromotionType" maxOccurs="*"/>
+	</ElementType>
+	
+	<ElementType name="SpawnType" content="textOnly"/>
+	<ElementType name="iMin" content="textOnly" dt:type="int"/>
+	<ElementType name="iMax" content="textOnly" dt:type="int"/>
+	<ElementType name="bIgnoreTerrain" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bCountSeparately" content="textOnly" dt:type="boolean"/>
+	<ElementType name="IncludedSpawn" content="eltOnly">
+		<element type="SpawnType"/>
+		<element type="iMin" minOccurs="0"/>
+		<element type="iMax" minOccurs="0"/>
+		<element type="bIgnoreTerrain" minOccurs="0"/>
+		<element type="bCountSeparately" minOccurs="0"/>
+	</ElementType>
+	<ElementType name="IncludedSpawns" content="eltOnly">
+		<element type="IncludedSpawn" maxOccurs="*"/>
+	</ElementType>
+	
+	<ElementType name="SpawnInfo" content="eltOnly">
+		<element type="Type"/>
+		<element type="Description" minOccurs="0"/>
+		<element type="iBaseWeight"/>
+		<element type="TerrainFlavourType" minOccurs="0"/>
+		<element type="iValidTerrainWeight" minOccurs="0"/>
+		<element type="SpawnPrereqType"/>
+		<element type="iMinSpawnTier"/>
+		<element type="iMaxSpawnTier"/>
+		<element type="bNoWildernessIgnoreSpawnPrereq" minOccurs="0"/>
+		<element type="iPrereqGlobalCounter" minOccurs="0"/>
+		<element type="bNeverSpawn" minOccurs="0"/>
+		<element type="bExplorationResult" minOccurs="0"/>
+		<element type="bExplorationNoPush" minOccurs="0"/>
+		<element type="bNoDefender" minOccurs="0"/>
+		<element type="bAnimal" minOccurs="0"/>
+		<element type="bWater" minOccurs="0"/>
+		<element type="bNoRace" minOccurs="0"/>
+		<element type="bNoMinWilderness" minOccurs="0"/>
+		<element type="UnitArtStyleType" minOccurs="0"/>
+		<element type="UnitAIType" minOccurs="0"/>
+		<element type="SpawnUnits"/>
+		<element type="iMinRandomPromotions" minOccurs="0"/>
+		<element type="iMaxRandomPromotions" minOccurs="0"/>
+		<element type="UnitPromotions" minOccurs="0"/>
+		<element type="iMinIncludedSpawns" minOccurs="0"/>
+		<element type="iMaxIncludedSpawns" minOccurs="0"/>
+		<element type="IncludedSpawns" minOccurs="0"/>
+		<element type="PrereqTechs" minOccurs="0"/>
+		<element type="ObsoleteTechs" minOccurs="0"/>
+		<element type="CreateLair" minOccurs="0"/>
+		<element type="iCreateLairAge" minOccurs="0"/>
+		<element type="iCreateLairLevel" minOccurs="0"/>
+	</ElementType>
+	<ElementType name="SpawnInfos" content="eltOnly">
+		<element type="SpawnInfo" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="Civ4SpawnInfos" content="eltOnly">
+		<element type="SpawnInfos"/>
+	</ElementType>
+	
+	<ElementType name="iMinWilderness" content="textOnly" dt:type="int"/>
+	<ElementType name="iMaxWilderness" content="textOnly" dt:type="int"/>
+	
+	<ElementType name="WildernessTier" content="eltOnly">
+		<element type="iMinWilderness"/>
+		<element type="iMaxWilderness"/>
+	</ElementType>
+	<ElementType name="WildernessTiers" content="eltOnly">
+		<element type="WildernessTier" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	
+	<ElementType name="Tech" content="textOnly"/>
+	<ElementType name="PrereqTechs" content="eltOnly">
+		<element type="Tech" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="ObsoleteTechs" content="eltOnly">
+		<element type="Tech" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="TechTier" content="eltOnly">
+		<element type="PrereqTechs" minOccurs="0"/>
+		<element type="ObsoleteTechs" minOccurs="0"/>
+	</ElementType>
+	<ElementType name="TechTiers" content="eltOnly">
+		<element type="TechTier" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	
+	<ElementType name="SpawnPrereqInfo" content="eltOnly">
+		<element type="Type"/>
+		<element type="WildernessTiers" minOccurs="0"/>
+		<element type="TechTiers" minOccurs="0"/>
+	</ElementType>
+	<ElementType name="SpawnPrereqInfos" content="eltOnly">
+		<element type="SpawnPrereqInfo" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="Civ4SpawnPrereqInfos" content="eltOnly">
+		<element type="SpawnPrereqInfos"/>
+	</ElementType>
+</Schema>

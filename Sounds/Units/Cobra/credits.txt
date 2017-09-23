@@ -1,0 +1,3 @@
+Attack-000.wav, Attack-001.wav, Fidget.wav: Original sound by Kjell Persson, "Boa Constrictor", section and fading by lfgr, https://creativecommons.org/licenses/by/3.0/legalcode
+
+Thanks to frekk at civfanatics.com for his Animation action sounds tutorial (https://forums.civfanatics.com/threads/adding-action-sounds-to-unit-animations.325606/)

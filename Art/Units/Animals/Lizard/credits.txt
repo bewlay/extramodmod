@@ -1,0 +1,3 @@
+Wolf Skeleton and animations from Civ4
+Lizard model and texture from Master of Mana
+Fade animation fix by lfgr

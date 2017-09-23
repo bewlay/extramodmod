@@ -114,14 +114,23 @@ public:
 	CvWString getNewCityName() const;																																								// Exposed to Python
 	void getCivilizationCityName(CvWString& szBuffer, CivilizationTypes eCivilization) const;
 	bool isCityNameValid(CvWString& szName, bool bTestDestroyed = true) const;
-
+	
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Added parameter eName                                                                        */
+/************************************************************************************************/
+/*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION);							// Exposed to Python
 // lfgr 04/2014 bugfix
 //	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true);
-	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, bool bGift = false);
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
+*/
+	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, bool bPushOutExistingUnit = true, bool bGift = false, int eName = -1);
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	void disbandUnit(bool bAnnounce);																																					// Exposed to Python
 	void killUnits();																																													// Exposed to Python
 
@@ -1305,6 +1314,19 @@ public:
     int getNumSettlements() const;
 	bool isNoDiplomacyWithEnemies() const;
 	void changeNoDiplomacyWithEnemies(int iChange);
+/*************************************************************************************************/
+/**	CivCounter			               		10/27/09    						Valkrionn		**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+    int getCivCounter() const;
+    void changeCivCounter(int iChange);
+	void setCivCounter(int iNewValue);
+    int getCivCounterMod() const;
+    void changeCivCounterMod(int iChange);
+	void setCivCounterMod(int iNewValue);
+/*************************************************************************************************/
+/**	CivCounter								END													**/
+/*************************************************************************************************/
 	bool isHideUnits() const;
 	void setHideUnits(bool bNewValue);
 	bool isSeeInvisible() const;
@@ -1391,6 +1413,18 @@ public:
 	void addReminder(int iGameTurn, CvWString szMessage) const;
 // BUG - Reminder Mod - end
 
+// Leader categories START
+	int getLeaderCategory() const; // Exposed to Python
+// Leader categories END
+
+// ExtraModMod technology propagation START
+	int calculateTechPropagationResearchModifier(TechTypes eTech) const; // Exposed to Python
+// ExtraModMod technology propagation END
+
+// Automatic OOS detection START
+	int getNumTriggersFired() const;
+// Automatic OOS detection END
+
 	virtual void AI_init() = 0;
 	virtual void AI_reset(bool bConstructor) = 0;
 	virtual void AI_doTurnPre() = 0;
@@ -1468,6 +1502,15 @@ public:
 	DenialTypes AI_militaryUnitTrade(CvUnit* pUnit, PlayerTypes ePlayer) const;
  /************************************************************************************************/
 /* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+	
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* From CvUnit::init() (modified)                                                               */
+/************************************************************************************************/
+	int getNewGreatPersonBornName( UnitTypes eUnitType );
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
 /************************************************************************************************/
 
 protected:
@@ -1680,6 +1723,15 @@ protected:
     bool m_bAssimilation;
     bool m_bDeclaringWar;
 	//bool m_bDisableHuman;				// Set to true to disable isHuman() check
+/*************************************************************************************************/
+/**	CivCounter			               		10/27/09    						Valkrionn		**/
+/**										Stores Spawn Information								**/
+/*************************************************************************************************/
+    int m_iCivCounter;
+    int m_iCivCounterMod;
+/*************************************************************************************************/
+/**	CivCounter								END													**/
+/*************************************************************************************************/
     bool m_bHideUnits;
     bool m_bIgnoreFood;
     bool m_bInsane;
@@ -1761,6 +1813,13 @@ protected:
 	int* m_paiHasCorporationCount;
 	int* m_paiUpkeepCount;
 	int* m_paiSpecialistValidCount;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           12/2015                                 lfgr        */
+/************************************************************************************************/
+	int* m_paiEventTriggerDelayCounters;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	bool* m_pabResearchingTech;
 	bool* m_pabLoyalMember;
@@ -1849,6 +1908,10 @@ protected:
 	void getResourceLayerColors(GlobeLayerResourceOptionTypes eOption, std::vector<NiColorA>& aColors, std::vector<CvPlotIndicatorData>& aIndicators) const;  // used by Globeview resource layer
 	void getReligionLayerColors(ReligionTypes eSelectedReligion, std::vector<NiColorA>& aColors, std::vector<CvPlotIndicatorData>& aIndicators) const;  // used by Globeview religion layer
 	void getCultureLayerColors(std::vector<NiColorA>& aColors, std::vector<CvPlotIndicatorData>& aIndicators) const;  // used by Globeview culture layer
+	// Player traits game options START
+	void addRandomTrait();
+	void setLeaderTraits();
+	// Player traits game options END
 };
 
 #endif

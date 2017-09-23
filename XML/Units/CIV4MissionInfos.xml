@@ -654,7 +654,7 @@
 			<bCtrlDownAlt>0</bCtrlDownAlt>
 			<iHotKeyPriorityAlt>0</iHotKeyPriorityAlt>
 			<bVisible>1</bVisible>
-			<Button>,Art/Interface/Buttons/TechTree/Nationalism.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,5,10</Button>
+			<Button>Art/Interface/Buttons/Units/Commander.dds</Button>
 		</MissionInfo>
 		<MissionInfo>
 			<Type>MISSION_ESPIONAGE</Type>

@@ -11456,6 +11456,7 @@ BeginPlot
 		Damage=0
 		Level=1, Experience=0
 		PromotionType=PROMOTION_DRAGON
+		PromotionType=PROMOTION_FEAR
 		PromotionType=PROMOTION_HELD
 		PromotionType=PROMOTION_HOMELAND
 		PromotionType=PROMOTION_IMMUNE_COLD

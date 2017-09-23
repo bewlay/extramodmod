@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_LEADER_SCENEXTRA</Tag>
+		<English>Allow Scenario Leaders</English>
+		<French>Allow Scenario Leaders</French>
+		<German>Allow Scenario Leaders</German>
+		<Italian>Allow Scenario Leaders</Italian>
+		<Spanish>Permitir líderes de escenarios</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_LEADER_SCENEXTRA_HELP</Tag>
+		<English>Allows the random selection of scenario leaders.</English>
+		<French>Allows the random selection of scenario leaders.</French>
+		<German>Allows the random selection of scenario leaders.</German>
+		<Italian>Allows the random selection of scenario leaders.</Italian>
+		<Spanish>Permite la selección aleatoria de líderes de escenario.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_LEADER_EXTRA</Tag>
+		<English>Allow Extra Leaders</English>
+		<French>Allow Extra Leaders</French>
+		<German>Allow Extra Leaders</German>
+		<Italian>Allow Extra Leaders</Italian>
+		<Spanish>Permitir líderes extra</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_LEADER_EXTRA_HELP</Tag>
+		<English>Allows the random selection of extra leaders.</English>
+		<French>Allows the random random selection of extra leaders.</French>
+		<German>Allows the selection of extra leaders.</German>
+		<Italian>Allows the random selection of extra leaders.</Italian>
+		<Spanish>Permite la selección aleatoria de líderes extra.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADERCATEGORY</Tag>
+		<English>Category: %s1</English>
+		<French>Category: %s1</French>
+		<German>Category: %s1</German>
+		<Italian>Category: %s1</Italian>
+		<Spanish>Categoría: %s1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADERCATEGORY_STANDARD</Tag>
+		<English>Standard</English>
+		<French>Standard</French>
+		<German>Standard</German>
+		<Italian>Standard</Italian>
+		<Spanish>Estándar</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADERCATEGORY_SCENARIO</Tag>
+		<English>Scenario</English>
+		<French>Scenario</French>
+		<German>Scenario</German>
+		<Italian>Scenario</Italian>
+		<Spanish>Escenario</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADERCATEGORY_SCENEXTRA</Tag>
+		<English>Scenario (Extra)</English>
+		<French>Scenario (Extra)</French>
+		<German>Scenario (Extra)</German>
+		<Italian>Scenario (Extra)</Italian>
+		<Spanish>Escenario (Extra)</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADERCATEGORY_EXTRA</Tag>
+		<English>Extra</English>
+		<French>Extra</French>
+		<German>Extra</German>
+		<Italian>Extra</Italian>
+		<Spanish>Extra</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADERCATEGORY_ALIGNMENT</Tag>
+		<English>Alignment</English>
+		<French>Alignment</French>
+		<German>Alignment</German>
+		<Italian>Alignment</Italian>
+		<Spanish>Alineamiento</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADERCATEGORY_BARBARIAN</Tag>
+		<English>Barbarian</English>
+		<French>Barbarian</French>
+		<German>Barbarian</German>
+		<Italian>Barbarian</Italian>
+		<Spanish>Bárbaro</Spanish>
+	</TEXT>
+</Civ4GameText>

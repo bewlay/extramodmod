@@ -247,6 +247,17 @@ public:
 	// allocate and initialize a list from a tag pair in the xml
 	void SetVariableListTagPair(CvString **ppszList, const TCHAR* szRootTagName,
 		CvString* m_paszTagList, int iTagListLength, CvString szDefaultListVal = "");
+	
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* WildernessMisc                                                                               */
+/* Loads a list of type strings into a bool array.                                              */
+/************************************************************************************************/
+	void CvXMLLoadUtility::SetVariableList( bool **ppbList, const TCHAR* szRootagName,
+		int iInfoBaseLength, bool bDefaultListVal = false );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// create a hot key from a description
 	CvWString CreateHotKeyFromDescription(const TCHAR* pszHotKey, bool bShift = false, bool bAlt = false, bool bCtrl = false);

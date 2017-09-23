@@ -681,6 +681,14 @@ void CyInfoPythonInterface3()
 /* SpellPyHelp                                                          END     */
 /********************************************************************************/
 
+/********************************************************************************/
+/* SpellPyHelp                        11/2013                           lfgr    */
+/********************************************************************************/
+		.def("getPyHelp", &CvSpellInfo::getPyHelp, "string ()")
+/********************************************************************************/
+/* SpellPyHelp                                                          END     */
+/********************************************************************************/
+
 		;
 //FfH: End Add
 
@@ -710,6 +718,13 @@ void CyInfoPythonInterface3()
 		.def("getUnitDamagedWeight", &CvEventTriggerInfo::getUnitDamagedWeight, "int ()")
 		.def("getUnitDistanceWeight", &CvEventTriggerInfo::getUnitDistanceWeight, "int ()")
 		.def("getUnitExperienceWeight", &CvEventTriggerInfo::getUnitExperienceWeight, "int ()")
+	/************************************************************************************************/
+	/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+	/************************************************************************************************/
+		.def("getUnitMinLevel", &CvEventTriggerInfo::getUnitMinLevel, "int ()")
+	/************************************************************************************************/
+	/* EVENT_NEW_TAGS                          END                                                  */
+	/************************************************************************************************/
 		.def("getMinTreasury", &CvEventTriggerInfo::getMinTreasury, "int ()")
 
 		.def("getUnitRequired", &CvEventTriggerInfo::getUnitRequired, "int (int)")
@@ -758,6 +773,13 @@ void CyInfoPythonInterface3()
 		.def("isProbabilityUnitMultiply", &CvEventTriggerInfo::isProbabilityUnitMultiply, "bool ()")
 		.def("isProbabilityBuildingMultiply", &CvEventTriggerInfo::isProbabilityBuildingMultiply, "bool ()")
 		.def("isPrereqEventCity", &CvEventTriggerInfo::isPrereqEventCity, "bool ()")
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          01/2014                                  lfgr        */
+/************************************************************************************************/
+		.def("isRequiresValidEvent", &CvEventTriggerInfo::isRequiresValidEvent, "bool ()")
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 		;
 
 	python::class_<CvEventInfo, python::bases<CvInfoBase> >("CvEventInfo")

@@ -447,6 +447,21 @@ void CvArea::changeNumStartingPlots(int iChange)
 	FAssert(getNumStartingPlots() >= 0);
 }
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/************************************************************************************************/
+int CvArea::getTotalUnownedPlotWilderness() const
+{
+	return m_iTotalUnownedPlotWilderness;
+}
+void CvArea::changeTotalUnownedPlotWilderness( int iChange )
+{
+	m_iTotalUnownedPlotWilderness = m_iTotalUnownedPlotWilderness + iChange;
+	FAssert(getTotalUnownedPlotWilderness() >= 0);
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 bool CvArea::isWater() const							
 {

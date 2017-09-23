@@ -134,6 +134,24 @@ class CvUnitArtStyleTypeInfo;
 class CvVoteSourceInfo;
 class CvMainMenuInfo;
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+class CvTerrainFlavourInfo;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+class CvSpawnInfo;
+class CvSpawnPrereqInfo;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 
 class CvGlobals
 {
@@ -304,6 +322,21 @@ public:
 	DllExport int getNumUnitFormationInfos();
 	std::vector<CvUnitFormationInfo*>& getUnitFormationInfo();
 	DllExport CvUnitFormationInfo& getUnitFormationInfo(int i);
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+	int getNumSpawnInfos();
+	std::vector<CvSpawnInfo*>& getSpawnInfo();
+	CvSpawnInfo& getSpawnInfo(SpawnTypes eSpawnNum);
+
+	int getNumSpawnPrereqInfos();
+	std::vector<CvSpawnPrereqInfo*>& getSpawnPrereqInfo();
+	CvSpawnPrereqInfo& getSpawnPrereqInfo(SpawnPrereqTypes eSpawnPrereqNum);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	int getNumGameTextXML();
 	std::vector<CvGameText*>& getGameTextXML();
@@ -694,6 +727,11 @@ public:
 	CvString& getCurrentXMLFile();
 	void setCurrentXMLFile(const TCHAR* szFileName);
 
+// Leader categories START
+	std::vector<CvInfoBase*>& getLeaderCategoryInfo();
+	CvInfoBase& getLeaderCategoryInfo(LeaderHeadCategories eLeaderCategoryNum);
+// Leader categories END
+
 	//
 	///////////////// BEGIN global defines
 	// THESE ARE READ-ONLY
@@ -708,6 +746,9 @@ public:
 
 	DllExport int getDefineINT( const char * szName ) const;
 	DllExport float getDefineFLOAT( const char * szName ) const;
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+	float getDefineFLOAT( const char * szName, const float fDefault ) const;
+// WILDERNESS end
 	DllExport const char * getDefineSTRING( const char * szName ) const;
 	DllExport void setDefineINT( const char * szName, int iValue );
 	DllExport void setDefineFLOAT( const char * szName, float fValue );
@@ -796,6 +837,16 @@ public:
 	int getUSE_COMBAT_RESULT_CALLBACK();
 //FfH: End Add
 
+	int getTECH_PROPAGATION_TEAMS_MAX();
+	int getTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE();
+	int getTECH_PROPAGATION_TEAMS_MASTER();
+	int getTECH_PROPAGATION_TEAMS_OPEN_BORDERS();
+	int getTECH_PROPAGATION_TEAMS_VASSAL();
+	int getTECH_PROPAGATION_TEAMS_EMBASSY();
+	int getTECH_PROPAGATION_TEAMS_ALIGMENT();
+	int getTECH_PROPAGATION_TEAMS_RELIGION();
+	int getTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT();
+
 	DllExport int getMAX_CIV_PLAYERS();
 	DllExport int getMAX_PLAYERS();
 	DllExport int getMAX_CIV_TEAMS();
@@ -867,6 +918,29 @@ public:
 
 	DllExport bool readEventTriggerInfoArray(FDataStreamBase* pStream);
 	DllExport void writeEventTriggerInfoArray(FDataStreamBase* pStream);
+	
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        02/17/13                                lfgr          */
+/************************************************************************************************/
+	int getNumTerrainFlavourInfos();
+	std::vector<CvTerrainFlavourInfo*>& getTerrainFlavourInfo();
+	CvTerrainFlavourInfo& getTerrainFlavourInfo( TerrainFlavourTypes eTerrainFlavourNum );
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+	bool readSpawnInfoArray(FDataStreamBase* pStream);
+	void writeSpawnInfoArray(FDataStreamBase* pStream);
+	
+	bool readSpawnPrereqInfoArray(FDataStreamBase* pStream);
+	void writeSpawnPrereqInfoArray(FDataStreamBase* pStream);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	//
 	// additional accessors for initting globals
@@ -1124,6 +1198,28 @@ protected:
 	std::vector<CvEspionageMissionInfo*> m_paEspionageMissionInfo;
     std::vector<CvUnitArtStyleTypeInfo*> m_paUnitArtStyleTypeInfo;
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	std::vector<CvTerrainFlavourInfo*> m_paTerrainFlavourInfo;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo, SpawnPrereqInfo                                                                   */
+/************************************************************************************************/
+    std::vector<CvSpawnInfo*> m_paSpawnInfo;
+    std::vector<CvSpawnPrereqInfo*> m_paSpawnPrereqInfo;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
+// Leader categories START
+	std::vector<CvInfoBase*> m_paLeaderCategoryInfos;
+// Leader categories END
+
 	// Game Text
 	std::vector<CvGameText*> m_paGameTextXML;
 
@@ -1261,6 +1357,16 @@ protected:
 	int m_iUSE_COMBAT_RESULT_CALLBACK;
 //FfH: End Add
 
+	int m_iTECH_PROPAGATION_TEAMS_MAX;
+	int m_iTECH_PROPAGATION_TEAMS_RIGHT_OF_PASSAGE;
+	int m_iTECH_PROPAGATION_TEAMS_MASTER;
+	int m_iTECH_PROPAGATION_TEAMS_OPEN_BORDERS;
+	int m_iTECH_PROPAGATION_TEAMS_VASSAL;
+	int m_iTECH_PROPAGATION_TEAMS_EMBASSY;
+	int m_iTECH_PROPAGATION_TEAMS_ALIGMENT;
+	int m_iTECH_PROPAGATION_TEAMS_RELIGION;
+	int m_iTECH_PROPAGATION_TEAMS_DEFENSIVE_PACT;
+	
 	// DLL interface
 	CvDLLUtilityIFaceBase* m_pDLL;
 

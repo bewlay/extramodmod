@@ -5,12 +5,19 @@
 <!-- Event Schema -->
 <Schema xmlns="urn:schemas-microsoft-com:xml-data" xmlns:dt="urn:schemas-microsoft-com:datatypes">
 	<ElementType name="Type" content="textOnly"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+	<ElementType name="Help" content="textOnly"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 	<ElementType name="Description" content="textOnly"/>
 	<ElementType name="OtherPlayerPopup" content="textOnly"/>
 	<ElementType name="LocalInfoText" content="textOnly"/>
 	<ElementType name="QuestFailText" content="textOnly"/>
 	<ElementType name="Button" content="textOnly"/>
 	<ElementType name="bQuest" content="textOnly" dt:type="boolean"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+	<ElementType name="bNoExpire" content="textOnly" dt:type="boolean"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
+	<ElementType name="EventArt" content="textOnly"/>
 	<ElementType name="bSinglePlayer" content="textOnly" dt:type="boolean"/>
 	<ElementType name="iMinTreasury" content="textOnly" dt:type="int"/>
 	<ElementType name="iGold" content="textOnly" dt:type="int"/>
@@ -47,9 +54,17 @@
 	<ElementType name="iUnitDamagedWeight" content="textOnly" dt:type="int"/>
 	<ElementType name="iUnitDistanceWeight" content="textOnly" dt:type="int"/>
 	<ElementType name="iUnitExperienceWeight" content="textOnly" dt:type="int"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+	<ElementType name="iUnitMinLevel" content="textOnly" dt:type="int"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 	<ElementType name="iUnitExperience" content="textOnly" dt:type="int"/>
 	<ElementType name="iUnitImmobileTurns" content="textOnly" dt:type="int"/>
 	<ElementType name="UnitPromotion" content="textOnly"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+	<ElementType name="UnitPromotions" content="eltOnly">
+		<element type="UnitPromotion" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 	<ElementType name="UnitCombat" content="textOnly"/>
 	<ElementType name="UnitCombatPromotion" content="eltOnly">
 		<element type="UnitCombat"/>
@@ -131,6 +146,9 @@
 	<ElementType name="iPercentGamesActive" content="textOnly" dt:type="int"/>
 	<ElementType name="bProbabilityUnitMultiply" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bProbabilityBuildingMultiply" content="textOnly" dt:type="boolean"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+	<ElementType name="iDelay" content="textOnly" dt:type="int"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 	<ElementType name="iConvertOwnCities" content="textOnly" dt:type="int"/>
 	<ElementType name="iConvertOtherCities" content="textOnly" dt:type="int"/>
 	<ElementType name="iOurAttitudeModifier" content="textOnly" dt:type="int"/>
@@ -275,15 +293,22 @@
 	<ElementType name="PrereqCivilizationPleased" content="textOnly"/>
 	<ElementType name="PrereqLeader" content="textOnly"/>
 	<ElementType name="PrereqTrait" content="textOnly"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+	<ElementType name="bRequiresValidEvent" content="textOnly"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 	<ElementType name="EventTriggerInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="WorldNewsTexts" minOccurs="0"/>
 		<element type="TriggerTexts" minOccurs="0"/>
+		<element type="EventArt" minOccurs="0"/>
 		<element type="bSinglePlayer" minOccurs="0"/>
 		<element type="iPercentGamesActive" minOccurs="0"/>
 		<element type="iWeight" minOccurs="0"/>
 		<element type="bProbabilityUnitMultiply" minOccurs="0"/>
 		<element type="bProbabilityBuildingMultiply" minOccurs="0"/>
+	<!-- lfgr: EVENT_NEW_TAGS start -->
+		<element type="iDelay" minOccurs="0"/>
+	<!-- lfgr: EVENT_NEW_TAGS end -->
 		<element type="Civic" minOccurs="0"/>
 		<element type="iMinTreasury" minOccurs="0"/>
 		<element type="iMinPopulation" minOccurs="0"/>
@@ -300,6 +325,9 @@
 		<element type="iUnitDamagedWeight" minOccurs="0"/>
 		<element type="iUnitDistanceWeight" minOccurs="0"/>
 		<element type="iUnitExperienceWeight" minOccurs="0"/>
+	<!-- lfgr: EVENT_NEW_TAGS start -->
+		<element type="iUnitMinLevel" minOccurs="0"/>
+	<!-- lfgr: EVENT_NEW_TAGS end -->
 		<element type="bUnitsOnPlot" minOccurs="0"/>
 		<element type="BuildingsRequired" minOccurs="0"/>
 		<element type="iNumBuildings" minOccurs="0"/>
@@ -351,6 +379,9 @@
 		<element type="PrereqCivilizationPleased" minOccurs="0"/>
 		<element type="PrereqLeader" minOccurs="0"/>
 		<element type="PrereqTrait" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+		<element type="bRequiresValidEvent" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 	</ElementType>
 	<ElementType name="EventTriggerInfos" content="eltOnly">
 		<element type="EventTriggerInfo" minOccurs="0" maxOccurs="*"/>
@@ -366,12 +397,18 @@
 	<ElementType name="PrereqStateReligion" content="textOnly"/>
 	<ElementType name="EventInfo" content="eltOnly">
 		<element type="Type"/>
+	<!-- lfgr: EVENT_NEW_TAGS start -->
+		<element type="Help" minOccurs="0"/>
+	<!-- lfgr: EVENT_NEW_TAGS end -->
 		<element type="Description" minOccurs="0"/>
 		<element type="LocalInfoText" minOccurs="0"/>
 		<element type="WorldNewsTexts" minOccurs="0"/>
 		<element type="OtherPlayerPopup" minOccurs="0"/>
 		<element type="QuestFailText" minOccurs="0"/>
 		<element type="bQuest" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+		<element type="bNoExpire" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 		<element type="bGlobal" minOccurs="0"/>
 		<element type="bTeam" minOccurs="0"/>
 		<element type="bPickCity" minOccurs="0"/>

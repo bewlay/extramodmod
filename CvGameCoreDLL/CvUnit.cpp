@@ -117,16 +117,34 @@ void CvUnit::reloadEntity()
 }
 
 
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Added parameter eName                                                                        */
+/************************************************************************************************/
+/*
 //>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
 //void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection)
 // lfgr 04/2014 bugfix
 //void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit)
-void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, bool bGift)
 // lfgr end
 //<<<<Unofficial Bug Fix: End Modify
+*/
+void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, bool bPushOutExistingUnit, bool bGift, int eName)
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 {
 	CvWString szBuffer;
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Moved to CvGame::getNewGreatPersonBornName() (Used in CvPlayer::createGreatPeople())         */
+/************************************************************************************************/
+/*
 	int iUnitName;
+*/
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 	int iI, iJ;
 
 	FAssert(NO_UNIT != eUnit);
@@ -160,6 +178,11 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 
 	plot()->setFlagDirty(true);
 
+/************************************************************************************************/
+/* GP_NAMES                                 07/2013                                 lfgr        */
+/* Moved to CvGame::getNewGreatPersonBornName() (Used in CvPlayer::createGreatPeople())         */
+/************************************************************************************************/
+/*
 	iUnitName = GC.getGameINLINE().getUnitCreatedCount(getUnitType());
 	int iNumNames = m_pUnitInfo->getNumUnitNames();
 	if (iUnitName < iNumNames)
@@ -178,6 +201,33 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 			}
 		}
 	}
+*/
+	if( eName != -1 )
+	{
+		CvUnitInfo& kUnitInfo = GC.getUnitInfo( eUnit );
+
+		setName( gDLL->getText( kUnitInfo.getUnitNames( eName ) ) );
+		setRace( (PromotionTypes) kUnitInfo.getUnitNameRace( eName ) );
+
+		setReligion( kUnitInfo.getUnitNameReligion( eName ) );
+
+		if( GET_PLAYER( eOwner ).isHuman() && getBugOptionBOOL("EventsEnhanced__GPPopupHuman", false )
+			|| !GET_PLAYER( eOwner ).isHuman() &&  getBugOptionBOOL("EventsEnhanced__GPPopupAI", false ) )
+		{
+			// Show Quote popup
+			CvWString szQuote = kUnitInfo.getUnitNameQuote( eName );
+			if( !szQuote.empty() )
+			{
+				CvPopupInfo* pInfo = new CvPopupInfo( BUTTONPOPUP_GREAT_PERSON );
+				pInfo->setData1( eUnit );
+				pInfo->setData2( eName );
+				gDLL->getInterfaceIFace()->addPopup( pInfo, eOwner );
+			}
+		}
+	}
+/************************************************************************************************/
+/* GP_NAMES                                END                                                  */
+/************************************************************************************************/
 
 	setGameTurnCreated(GC.getGameINLINE().getGameTurn());
 
@@ -231,7 +281,17 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 			{
 				if (GC.getTraitInfo((TraitTypes) iI).isFreePromotion(iJ))
 				{
+				/********************************************************************************/
+				/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+				/********************************************************************************/
+				/* old
 					if ((getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iI).isFreePromotionUnitCombat(getUnitCombatType()))
+				*/
+					if ( GC.getTraitInfo((TraitTypes) iI).isAllUnitsFreePromotion() ||
+						((getUnitCombatType() != NO_UNITCOMBAT) && GC.getTraitInfo((TraitTypes) iI).isFreePromotionUnitCombat(getUnitCombatType())))
+				/********************************************************************************/
+				/* EXTRA_CIV_TRAITS                                                     END     */
+				/********************************************************************************/
 					{
 						setHasPromotion(((PromotionTypes)iJ), true);
 					}
@@ -522,6 +582,21 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 //>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	m_bAvatarOfCivLeader = false;
 //<<<<Unofficial Bug Fix: End Add
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* Control min wilderness to enter                                                              */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
+/************************************************************************************************/
+	m_iMinWilderness = 0;
+	m_iLairPlot = -1;
+	m_eSpawnType = NO_SPAWN;
+	m_iExplorationResultBonus = 0;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
+	m_iAlwaysSpreadReligion = 0;
 
 	if (!bConstructorCall)
 	{
@@ -797,7 +872,10 @@ void CvUnit::convert(CvUnit* pUnit)
 	setLeaderUnitType(pUnit->getLeaderUnitType());
 
 //FfH: Added by Kael 10/03/2008
-	if (!isWorldUnitClass((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) && isWorldUnitClass((UnitClassTypes)(pUnit->getUnitClassType())))
+	if (!pUnit->m_szName.empty()) {
+		setName(pUnit->m_szName);
+	}
+	else if (!isWorldUnitClass((UnitClassTypes)(m_pUnitInfo->getUnitClassType())) && isWorldUnitClass((UnitClassTypes)(pUnit->getUnitClassType())))
 	{
 	    setName(pUnit->getName());
 	}
@@ -827,6 +905,17 @@ void CvUnit::convert(CvUnit* pUnit)
 
 	reloadEntity();
 	// lfgr end
+
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* LairUnitCounter                                                                              */
+/* Consider upgraded units                                                                      */
+/************************************************************************************************/
+	if( getOwnerINLINE() == pUnit->getOwnerINLINE() && pUnit->getLairPlot() != -1 )
+		setLairPlot( pUnit->getLairPlot() );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	// Avatars
 	if (pUnit->isAvatarOfCivLeader())
@@ -894,6 +983,16 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 
 	pPlot = plot();
 	FAssertMsg(pPlot != NULL, "Plot is not assigned a valid value");
+	
+/************************************************************************************************/
+/* WILDERNESS                             09/2013                                 lfgr          */
+/* LairUnitCounter                                                                              */
+/************************************************************************************************/
+	if( getLairPlot() != -1 )
+		setLairPlot( -1 ); // To decrease plot lair unit counter.
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	static std::vector<IDInfo> oldUnits;
 	oldUnits.clear();
@@ -1126,6 +1225,10 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 		if (!bConvert)
 		{
 			CvLeaderHeadInfo& kLeaderHeadInfo = GC.getLeaderHeadInfo(GET_PLAYER(getOwnerINLINE()).getLeaderType());
+		/********************************************************************************/
+		/* EXTRA_CIV_TRAITS                08/2013                              lfgr    */
+		/********************************************************************************/
+		/* old
 			const TraitTypes eCivTrait = (TraitTypes)GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getCivTrait();
 
 			for (int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++)
@@ -1133,6 +1236,15 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 				if (kLeaderHeadInfo.hasTrait(iTrait))
 				{
 					if (iTrait != eCivTrait)
+		*/
+			for (int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++)
+			{
+				if (kLeaderHeadInfo.hasTrait(iTrait))
+				{
+					if ( !GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).isCivTraits( iTrait ) )
+		/********************************************************************************/
+		/* EXTRA_CIV_TRAITS                                                     END     */
+		/********************************************************************************/
 					{
 						GET_PLAYER(getOwnerINLINE()).setHasTrait((TraitTypes)iTrait, false);
 					}
@@ -1510,7 +1622,61 @@ void CvUnit::doTurn()
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* CreateLair, LairGuardian, SpawnInfo                                                          */
+/************************************************************************************************/
+	if( getSpawnType() != NO_SPAWN )
+	{
+		CvSpawnInfo& kSpawnInfo = GC.getSpawnInfo( getSpawnType() );
+		if( isBarbarian() && kSpawnInfo.getCreateLair() != NO_IMPROVEMENT )
+		{
+			if( getDamage() == 0 && !plot()->isOwned() && plot()->getImprovementType() == NO_IMPROVEMENT && plot()->canHaveImprovement( (ImprovementTypes) kSpawnInfo.getCreateLair() ) )
+			{
+				int iAge = ( GC.getGameINLINE().getGameTurn() - getGameTurnCreated() ) * 100 / GC.getGameSpeedInfo( GC.getGameINLINE().getGameSpeedType() ).getGrowthPercent();
 
+				if( iAge >= kSpawnInfo.getCreateLairAge() || getLevel() >= kSpawnInfo.getCreateLairLevel() )
+				{
+					bool bValid = true;
+
+					int iRadius = GC.getDefineINT( "AV_LAIR_DISTANCE", 5 );
+					if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
+						iRadius = std::max( 1, (int) ( iRadius * ( 1.4 - 0.8 * plot()->getWilderness() / 100 ) + 0.5 ) );
+					for( int iChangeX = -iRadius; bValid && iChangeX <= iRadius; iChangeX++ )
+					{
+						for( int iChangeY = -iRadius; bValid && iChangeY <= iRadius; iChangeY++ )
+						{
+							CvPlot* pLoopPlot = GC.getMapINLINE().plotINLINE( plot()->getX_INLINE() + iChangeX, plot()->getY_INLINE() + iChangeY );
+							// LFGR_TODO: Move that to canHaveImprovement?
+							if( pLoopPlot != NULL )
+							{
+								if( pLoopPlot->isLair() && GC.getImprovementInfo( pLoopPlot->getImprovementType() ).isPermanent() == GC.getImprovementInfo( (ImprovementTypes) kSpawnInfo.getCreateLair() ).isPermanent() )
+									bValid = false;
+								else if( std::max( abs( iChangeX ), abs( iChangeY ) ) == 1 )
+									for( int iUnit = 0; iUnit < pPlot->getNumUnits(); iUnit++ )
+										if( !GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).isBarbarian() )
+											bValid = false;
+							}
+						}
+					}
+
+					if( bValid )
+					{
+						plot()->setImprovementType( (ImprovementTypes) kSpawnInfo.getCreateLair() );
+						if( plot()->plotCount(PUF_isUnitAIType, UNITAI_LAIRGUARDIAN, -1, (PlayerTypes)BARBARIAN_PLAYER) == 0
+								&& ( getSpawnType() == NO_SPAWN || !GC.getSpawnInfo( getSpawnType() ).isNoDefender() ) )
+						{
+							AI_setUnitAIType( UNITAI_LAIRGUARDIAN );
+						}
+					}
+				}
+			}
+		}
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 }
 
 
@@ -3751,6 +3917,28 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
         }
     }
 //FfH: End Add
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* UnitMinWilderness                                                                            */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	if( isBarbarian() && !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
+	{
+		int iMinWilderness = getMinWilderness() - GC.getDefineINT( "UNIT_MOVE_MIN_WILDERNESS_RANGE", 5 );
+
+		if( !isAnimal() )
+			iMinWilderness -= GC.getDefineINT( "UNIT_MOVE_MIN_WILDERNESS_RANGE_NO_ANIMAL_EXTRA", 5 );
+
+		if( GC.getGameINLINE().isOption( GAMEOPTION_RAGING_BARBARIANS ) )
+			iMinWilderness -= GC.getDefineINT( "UNIT_MOVE_MIN_WILDERNESS_RANGE_RAGING_BARBARIANS_EXTRA", 10 );
+
+		if( iMinWilderness > pPlot->getWilderness() )
+			return false;
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	if (GC.getUSE_UNIT_CANNOT_MOVE_INTO_CALLBACK())
 	{
@@ -4370,7 +4558,7 @@ void CvUnit::gift(bool bTestTransport)
 	FAssertMsg(plot()->getOwnerINLINE() != NO_PLAYER, "plot()->getOwnerINLINE() is not expected to be equal with NO_PLAYER");
 // lfgr 04/2014 bugfix
 //	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType());
-	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType(), NO_DIRECTION, true, true);
+	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType(), NO_DIRECTION, true, "", true);
 // lfgr end
 
 	FAssertMsg(pGiftUnit != NULL, "GiftUnit is not assigned a valid value");
@@ -6175,7 +6363,17 @@ bool CvUnit::canPillage(const CvPlot* pPlot) const
     {
         if (pPlot->getImprovementType() != NO_IMPROVEMENT)
         {
+		/************************************************************************************************/
+		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* ImprovementSpawnTypes                                                                        */
+		/************************************************************************************************/
+		/*
             if (GC.getImprovementInfo(pPlot->getImprovementType()).getSpawnUnitType() != NO_UNIT)
+		*/
+			if ( pPlot->isLair() )
+		/************************************************************************************************/
+		/* WILDERNESS                                                                     END           */
+		/************************************************************************************************/
             {
                 return false;
             }
@@ -8820,6 +9018,17 @@ bool CvUnit::canUpgrade(UnitTypes eUnit, bool bTestVisible) const
 			return false;
 		}
 	}
+
+/************************************************************************************************/
+/* WILDERNESS                             03/2015                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/* Barbarians can't upgrade units with SpawnInfo (weird promotions/artstyle)                    */
+/************************************************************************************************/
+	if( getSpawnType() != NO_SPAWN && isBarbarian() )
+		return false;
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	CvUnitInfo& kUnitInfo = GC.getUnitInfo(eUnit);
 
@@ -12407,9 +12616,14 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
         if (iImprovement != NO_IMPROVEMENT)
         {
 			CvImprovementInfo& kImprovementInfo = GC.getImprovementInfo((ImprovementTypes)iImprovement);
-
-            if (kImprovementInfo.getSpawnUnitType() != NO_UNIT)
-            {
+		/************************************************************************************************/
+		/* WILDERNESS                             08/2013                                 lfgr          */
+		/* ImprovementSpawnTypes                                                                        */
+		/* Raze all non-permanent lairs. BarbAllies only raze animal lairs                              */
+		/************************************************************************************************/
+		/*
+			if (kImprovementInfo.getSpawnUnitType() != NO_UNIT)
+			{
 				bool bAnimalLair = false;
 
 				if (GC.getUnitInfo((UnitTypes)kImprovementInfo.getSpawnUnitType()).isAnimal())
@@ -12418,17 +12632,34 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 				}
 
                 if (kImprovementInfo.isPermanent() == false)
-                {
-                    if (atWar(getTeam(), GET_PLAYER(BARBARIAN_PLAYER).getTeam()) || (bAnimalLair && !isBarbarian()))
-                    {
-                        if (isHuman())
-                        {
-                            gDLL->getInterfaceIFace()->addMessage(getOwner(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), gDLL->getText("TXT_KEY_MESSAGE_LAIR_DESTROYED"), "AS2D_CITYRAZE", MESSAGE_TYPE_MAJOR_EVENT, GC.getImprovementInfo((ImprovementTypes)iImprovement).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pNewPlot->getX(), pNewPlot->getY(), true, true);
-                        }
-                        pNewPlot->setImprovementType(NO_IMPROVEMENT);
-                    }
-                }
-            }
+				{
+					if (atWar(getTeam(), GET_PLAYER(BARBARIAN_PLAYER).getTeam()) || (bAnimalLair && !isBarbarian()))
+					{
+						if (isHuman())
+						{
+							gDLL->getInterfaceIFace()->addMessage(getOwner(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), gDLL->getText("TXT_KEY_MESSAGE_LAIR_DESTROYED"), "AS2D_CITYRAZE", MESSAGE_TYPE_MAJOR_EVENT, GC.getImprovementInfo((ImprovementTypes)iImprovement).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pNewPlot->getX(), pNewPlot->getY(), true, true);
+						}
+						pNewPlot->setImprovementType(NO_IMPROVEMENT);
+					}
+				}
+			}
+		*/
+			if( pNewPlot->isLair() && !kImprovementInfo.isPermanent() )
+			{
+				if ( !isBarbarian() && ( pNewPlot->isLair( false, true ) || GET_TEAM( GET_PLAYER( getOwnerINLINE() ).getTeam() ).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) ) )
+				{
+					if (isHuman())
+					{
+						gDLL->getInterfaceIFace()->addMessage(getOwner(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), gDLL->getText("TXT_KEY_MESSAGE_LAIR_DESTROYED"), "AS2D_CITYRAZE", MESSAGE_TYPE_MAJOR_EVENT, GC.getImprovementInfo((ImprovementTypes)iImprovement).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pNewPlot->getX(), pNewPlot->getY(), true, true);
+					}
+					// Give a bit XP
+					changeExperience( 1 );
+					pNewPlot->setImprovementType(NO_IMPROVEMENT);
+				}
+			}
+		/************************************************************************************************/
+		/* WILDERNESS                                                                     END           */
+		/************************************************************************************************/
         }
         iImprovement = pNewPlot->getImprovementType(); // rechecking because the previous function may have deleted the improvement
         if (iImprovement != NO_IMPROVEMENT)
@@ -12810,9 +13041,11 @@ void CvUnit::changeExperience(int iChange, int iMax, bool bFromCombat, bool bInB
 			iUnitExperience += (iChange * kPlayer.getExpInBorderModifier()) / 100;
 		}
 
+		/** ExtraModMod: Great Generals are available unconditionally.
 		// Great General experience - limit this to the Advanced Tactics option
 		if (bUpdateGlobal && GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_TACTICS))
-		//if (bUpdateGlobal)
+		*/
+		if (bUpdateGlobal)
 		{
 			kPlayer.changeCombatExperience((iChange * iCombatExperienceMod) / 100);
 		}
@@ -13896,11 +14129,14 @@ void CvUnit::setCombatUnit(CvUnit* pCombatUnit, bool bAttacking)
 						pCombatUnit->getOwnerINLINE(), pCombatUnit->getID(), GET_PLAYER(pCombatUnit->getOwnerINLINE()).getNameKey(), pCombatUnit->getName().GetCString(), pCombatUnit->currCombatStr(pCombatUnit->plot(), this));
 			}
 
+			/* Original BtS code. Moved by K-Mod in order to fix an OOS in pitboss games.
 			if (getDomainType() == DOMAIN_LAND
 				&& !m_pUnitInfo->isIgnoreBuildingDefense()
 				&& pCombatUnit->plot()->getPlotCity()
 				&& pCombatUnit->plot()->getPlotCity()->getBuildingDefense() > 0
 				&& cityAttackModifier() >= GC.getDefineINT("MIN_CITY_ATTACK_MODIFIER_FOR_SIEGE_TOWER"))
+				*/
+			if (showSiegeTower(pCombatUnit)) // K-Mod
 			{
 				CvDLLEntity::SetSiegeTower(true);
 			}
@@ -13945,6 +14181,17 @@ void CvUnit::setCombatUnit(CvUnit* pCombatUnit, bool bAttacking)
 	}
 }
 
+// K-Mod. Return true if the combat animation should include a seige tower
+// (code copied from setCombatUnit, above)
+bool CvUnit::showSiegeTower(CvUnit* pDefender) const
+{
+	return getDomainType() == DOMAIN_LAND
+		&& !m_pUnitInfo->isIgnoreBuildingDefense()
+		&& pDefender->plot()->getPlotCity()
+		&& pDefender->plot()->getPlotCity()->getBuildingDefense() > 0
+		&& cityAttackModifier() >= GC.getDefineINT("MIN_CITY_ATTACK_MODIFIER_FOR_SIEGE_TOWER");
+}
+// K-Mod end
 
 CvUnit* CvUnit::getTransportUnit() const
 {
@@ -14589,6 +14836,14 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 		changeTwincast((kPromotionInfo.isTwincast()) ? iChange : 0);
 		changeWaterWalking((kPromotionInfo.isWaterWalking()) ? iChange : 0);
 		changeWorkRateModify(kPromotionInfo.getWorkRateModify() * iChange);
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* WildernessExploration                                                                        */
+/************************************************************************************************/
+		changeExplorationResultBonus( kPromotionInfo.getExplorationResultBonus() * iChange );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
         GC.getGameINLINE().changeGlobalCounter(kPromotionInfo.getModifyGlobalCounter() * iChange);
         if (kPromotionInfo.getCombatLimit() != 0)
         {
@@ -14629,6 +14884,7 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 		changeUpgradeBlocked((kPromotionInfo.isBlocksUpgrade()) ? iChange : 0);
 		changeGiftingBlocked((kPromotionInfo.isBlocksGifting()) ? iChange : 0);
 		changeUpgradeOutsideBorders((kPromotionInfo.isUpgradeOutsideBorders()) ? iChange : 0);
+		changeAlwaysSpreadReligion((kPromotionInfo.isAlwaysSpreadReligion()) ? iChange : 0);
 		// End MNAI
 
 		for (iI = 0; iI < GC.getNumTerrainInfos(); iI++)
@@ -15498,8 +15754,13 @@ int CvUnit::planBattle( CvBattleDefinition & kBattleDefinition ) const
 	int extraTime = 0;
 	if((attackerLeader && attackerDie) || (defenderLeader && defenderDie))
 		extraTime = BATTLE_TURNS_MELEE;
-	if(gDLL->getEntityIFace()->GetSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_ATTACKER)->getUnitEntity()) || gDLL->getEntityIFace()->GetSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_DEFENDER)->getUnitEntity()))
+	// K-Mod code for fixing an OOS error in pitboss games.
+	//if(gDLL->getEntityIFace()->GetSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_ATTACKER)->getUnitEntity()) || gDLL->getEntityIFace()->GetSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_DEFENDER)->getUnitEntity()))
+		//extraTime = BATTLE_TURNS_MELEE;
+	if (kBattleDefinition.getUnit(BATTLE_UNIT_ATTACKER)->showSiegeTower(kBattleDefinition.getUnit(BATTLE_UNIT_DEFENDER)))
+	{
 		extraTime = BATTLE_TURNS_MELEE;
+	}
 
 	return BATTLE_TURNS_SETUP + BATTLE_TURNS_ENDING + kBattleDefinition.getNumMeleeRounds() * BATTLE_TURNS_MELEE + kBattleDefinition.getNumRangedRounds() * BATTLE_TURNS_MELEE + extraTime;
 }
@@ -15687,6 +15948,7 @@ void CvUnit::getDefenderCombatValues(CvUnit& kDefender, const CvPlot* pPlot, int
 	iTheirDamage = std::max(1, ((GC.getDefineINT("COMBAT_DAMAGE") * (iOurFirepower + iStrengthFactor)) / (iTheirFirepower + iStrengthFactor)));
 }
 
+// bCheckPlot is always true or CvGameCoreUtils::isPlotEventTrigger(eTrigger), except the call from CvPlot::canTrigger() itself
 int CvUnit::getTriggerValue(EventTriggerTypes eTrigger, const CvPlot* pPlot, bool bCheckPlot) const
 {
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eTrigger);
@@ -15745,6 +16007,15 @@ int CvUnit::getTriggerValue(EventTriggerTypes eTrigger, const CvPlot* pPlot, boo
 			}
 		}
 	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+	if( kTrigger.getUnitMinLevel() != 0 )
+		if( getLevel() < kTrigger.getUnitMinLevel() )
+			return MIN_INT;
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	int iValue = 0;
 
@@ -15797,6 +16068,20 @@ bool CvUnit::canApplyEvent(EventTypes eEvent) const
         }
 //FfH: End Modify
 
+		
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
+/************************************************************************************************/
+		for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+			if( kEvent.isUnitPromotion( i ) )
+			{
+				if( isHasPromotion( (PromotionTypes)i ) )
+					return false;
+			}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
+
 	}
 
 	if (kEvent.getUnitImmobileTurns() > 0)
@@ -15837,6 +16122,17 @@ void CvUnit::applyEvent(EventTypes eEvent)
 //FfH: End Modify
 
 	}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                           01/22/13                                lfgr        */
+/************************************************************************************************/
+	for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
+		if( kEvent.isUnitPromotion( i ) )
+		{
+			setHasPromotion((PromotionTypes)i, true);
+		}
+/************************************************************************************************/
+/* EVENT_NEW_TAGS                          END                                                  */
+/************************************************************************************************/
 
 	if (kEvent.getUnitImmobileTurns() > 0)
 	{
@@ -16107,6 +16403,7 @@ int CvUnit::getSelectionSoundScript() const
 //FfH Spell System: Added by Kael 07/23/2007
 bool CvUnit::canCast(int spell, bool bTestVisible)
 {
+	PROFILE_FUNC();
     SpellTypes eSpell = (SpellTypes)spell;
 	CvSpellInfo& kSpell = GC.getSpellInfo(eSpell);
     CvPlot* pPlot = plot();
@@ -17298,6 +17595,7 @@ void CvUnit::cast(int spell)
 	{
 		kill(false);
 	}
+
 }
 
 void CvUnit::castAddPromotion(int spell)
@@ -17850,7 +18148,7 @@ void CvUnit::castCreateUnit(int spell)
 	    {
             if (GC.getSpellInfo((SpellTypes)spell).isCopyCastersPromotions())
             {
-                if (!GC.getPromotionInfo((PromotionTypes)iI).isEquipment() && !GC.getPromotionInfo((PromotionTypes)iI).isRace() && iI != GC.getDefineINT("GREAT_COMMANDER_PROMOTION"))
+                if (!GC.getPromotionInfo((PromotionTypes)iI).isEquipment() && !GC.getPromotionInfo((PromotionTypes)iI).isRace() && iI != GC.getDefineINT("GREAT_GENERAL_PROMOTION"))
                 {
                     pUnit->setHasPromotion((PromotionTypes)iI, true);
                 }
@@ -18062,17 +18360,17 @@ int CvUnit::getDuration() const
 void CvUnit::setDuration(int iNewValue)
 {
 	/*
-	* Bugfix: If a unit is made temporary or permanent in a place in which units must pay supply costs,
-	* the NumOutsideUnits variable must be updated accordingly.
-	*/
+	 * Bugfix: If a unit is made temporary or permanent in a place in which units must pay supply costs,
+	 * the NumOutsideUnits variable must be updated accordingly.
+	 */
 	if (m_iDuration != iNewValue && plot()->getTeam() != getTeam() && (plot()->getTeam() == NO_TEAM || !GET_TEAM(plot()->getTeam()).isVassal(getTeam()))) {
-		   if (m_iDuration == 0) {
-				   // The unit is now temporary.
-				   GET_PLAYER(getOwnerINLINE()).changeNumOutsideUnits(-1);
-		   } else if (iNewValue == 0) {
-				   // The unit is now permanent.
-				   GET_PLAYER(getOwnerINLINE()).changeNumOutsideUnits(1);
-		   }
+		if (m_iDuration == 0) {
+			// The unit is now temporary.
+			GET_PLAYER(getOwnerINLINE()).changeNumOutsideUnits(-1);
+		} else if (iNewValue == 0) {
+			// The unit is now permanent.
+			GET_PLAYER(getOwnerINLINE()).changeNumOutsideUnits(1);
+		}
 	}
 
 	m_iDuration = iNewValue;
@@ -19312,6 +19610,21 @@ void CvUnit::doImmortalRebirth()
 	// Sephi AI End
 }
 
+int CvUnit::getEnslavementChance() const
+{
+	int enslavementChance = m_pUnitInfo->getEnslavementChance();
+
+	for (int iPromotion = 0; iPromotion < GC.getNumPromotionInfos(); iPromotion++)
+	{
+		if (isHasPromotion((PromotionTypes)iPromotion))
+		{
+			enslavementChance += GC.getPromotionInfo((PromotionTypes)iPromotion).getEnslavementChance();
+		}
+	}
+
+	return enslavementChance;
+}
+
 void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 {
 	PromotionTypes ePromotion;
@@ -19474,12 +19787,14 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 	}
 	if (!bUnitAutoCapture) // Tholal Bugfix - we dont also get slaves from units we capture
 	{
-		if ((m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()) > 0)
+		int iEnslavementChance = this->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance();
+
+		if (iEnslavementChance > 0)
 		{
 			// Summons, non-Alive units, Animals and World class units cannot become slaves
 			if (getDuration() == 0 && pLoser->isAlive() && !pLoser->isAnimal() && iUnit == NO_UNIT && !isWorldUnitClass((UnitClassTypes)pLoser->getUnitClassType()))
 			{
-				if (GC.getGameINLINE().getSorenRandNum(100, "Enslavement") < (m_pUnitInfo->getEnslavementChance() + GET_PLAYER(getOwnerINLINE()).getEnslavementChance()))
+				if (GC.getGameINLINE().getSorenRandNum(100, "Enslavement") < iEnslavementChance)
 				{
 					iUnit = GC.getDefineINT("SLAVE_UNIT");
 				}
@@ -19621,7 +19936,21 @@ void CvUnit::combatWon(CvUnit* pLoser, bool bAttacking)
 
 			szBuffer = gDLL->getText("TXT_KEY_MISC_YOUR_UNIT_CAPTURED", pUnit->getNameKey());
 			gDLL->getInterfaceIFace()->addMessage(pLoser->getOwner(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pUnit->getX_INLINE(), pUnit->getY_INLINE());
-
+			
+			/************************************************************************************************/
+			/* WILDERNESS                             10/2013                                 lfgr          */
+			/* PromotionCaptureApply                                                                        */
+			/************************************************************************************************/
+				if( pLoser->getUnitInfo().getPromotionCaptureApply() != NO_PROMOTION && !isHasPromotion( (PromotionTypes) pLoser->getUnitInfo().getPromotionCaptureApply() ) )
+				{
+					szBuffer = gDLL->getText("TXT_KEY_MESSAGE_PROMOTION_CAPTURE_APPLY", getNameKey(), GC.getPromotionInfo( (PromotionTypes) pLoser->getUnitInfo().getPromotionCaptureApply() ).getDescription() );
+					gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pUnit->getX_INLINE(), pUnit->getY_INLINE());
+					
+					setHasPromotion( (PromotionTypes) pLoser->getUnitInfo().getPromotionCaptureApply(), true );
+				}
+			/************************************************************************************************/
+			/* WILDERNESS                                                                     END           */
+			/************************************************************************************************/
 		}
 	}
 	else if (bUnitAutoCapture) // text message for captured workers
@@ -20040,6 +20369,19 @@ void CvUnit::changeUpgradeOutsideBorders(int iNewValue)
         m_iUpgradeOutsideBorders += iNewValue;
     }
 }
+
+bool CvUnit::isAlwaysSpreadReligion() const
+{
+	return m_iAlwaysSpreadReligion == 0 ? false : true;
+}
+
+void CvUnit::changeAlwaysSpreadReligion(int iNewValue)
+{
+    if (iNewValue != 0)
+    {
+        m_iAlwaysSpreadReligion += iNewValue;
+    }
+}
 // End MNAI
 
 void CvUnit::read(FDataStreamBase* pStream)
@@ -20198,9 +20540,23 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iUpgradeOutsideBorders);
 	// End MNAI
 
+	pStream->Read(&m_iAlwaysSpreadReligion);
+
 	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	pStream->Read(&m_bAvatarOfCivLeader);
 	//<<<<Unofficial Bug Fix: End Add
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
+/************************************************************************************************/
+	pStream->Read(&m_iMinWilderness);
+	pStream->Read(&m_iLairPlot);
+	pStream->Read((int*)&m_eSpawnType);
+	pStream->Read(&m_iExplorationResultBonus);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	pStream->Read((int*)&m_eOwner);
 	pStream->Read((int*)&m_eCapturingPlayer);
@@ -20376,9 +20732,22 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_iUpgradeOutsideBorders);
 	// End MNAI
 
+	pStream->Write(m_iAlwaysSpreadReligion);
+
 	//>>>>Unofficial Bug Fix: Added by Denev 2010/02/22
 	pStream->Write(m_bAvatarOfCivLeader);
 	//<<<<Unofficial Bug Fix: End Add
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
+/************************************************************************************************/
+	pStream->Write(m_iMinWilderness);
+	pStream->Write(m_iLairPlot);
+	pStream->Write(m_eSpawnType);
+	pStream->Write(m_iExplorationResultBonus);
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 	pStream->Write(m_eOwner);
 	pStream->Write(m_eCapturingPlayer);
@@ -20636,4 +21005,115 @@ PlayerTypes CvUnit::getOriginalOwner() const
 
 /************************************************************************************************/
 /* Advanced Diplomacy         END                                                               */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* UnitMinWilderness, LairUnitCounter, UnitSpawnType, WildernessExploration                     */
+/************************************************************************************************/
+int CvUnit::getMinWilderness() const
+{
+	return m_iMinWilderness;
+}
+
+void CvUnit::setMinWilderness( int iNewValue )
+{
+	m_iMinWilderness = iNewValue;
+}
+
+int CvUnit::getLairPlot() const
+{
+	return m_iLairPlot;
+}
+
+void CvUnit::setLairPlot( int iPlot )
+{
+	if( iPlot != m_iLairPlot )
+	{
+		if( m_iLairPlot != -1 ) // Decrease old Plot
+			GC.getMapINLINE().plotByIndexINLINE( m_iLairPlot )->setLairUnitCount( GC.getMapINLINE().plotByIndexINLINE( m_iLairPlot )->getLairUnitCount() - 1 );
+		if( iPlot != -1 ) // Increase new Plot
+			GC.getMapINLINE().plotByIndexINLINE( iPlot )->setLairUnitCount( GC.getMapINLINE().plotByIndexINLINE( iPlot )->getLairUnitCount() + 1 );
+		m_iLairPlot = iPlot;
+	}
+}
+
+SpawnTypes CvUnit::getSpawnType() const
+{
+	return m_eSpawnType;
+}
+
+void CvUnit::setSpawnType( SpawnTypes eNewValue )
+{
+	m_eSpawnType = eNewValue;
+}
+
+int CvUnit::getExplorationResultBonus() const
+{
+	return m_iExplorationResultBonus;
+}
+void CvUnit::changeExplorationResultBonus( int iChange )
+{
+	m_iExplorationResultBonus += iChange;
+}
+
+// see https://bitbucket.org/lfgr/barbsplus/issue/78/unit-level-equation-for-more-accurate-unit#comment-6438987
+int CvUnit::getExplorationLevel() const
+{
+	float fExplLevel;
+
+	if( getLevel() <= 2 )
+		fExplLevel = 0;
+	else if( getLevel() == 3 )
+		fExplLevel = 5;
+	else if( getLevel() == 4 )
+		fExplLevel = 15;
+	else
+		fExplLevel = 100 - 1750.0f / (getLevel()*getLevel());
+
+	fExplLevel += getExplorationResultBonus();
+
+	fExplLevel = std::min( 100.0f, fExplLevel );
+
+	return (int) ( fExplLevel + 0.5 ); // rounding
+}
+
+bool CvUnit::canDoExploration( CvPlot* pPlot ) const
+{
+	if( isOnlyDefensive() )
+		return false;
+	if( getUnitCombatType() == GC.getInfoTypeForString( "UNITCOMBAT_SIEGE" ) )
+		return false;
+	if( isBarbarian() )
+		return false;
+	if( getDuration() > 0 )
+		return false;
+	if( getSpecialUnitType() == GC.getInfoTypeForString( "SPECIALUNIT_SPELL" ) )
+		return false;
+	if( getSpecialUnitType() == GC.getInfoTypeForString( "SPECIALUNIT_BIRD" ) )
+		return false;
+
+	if( !GET_TEAM( getTeam() ).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) )
+		return false;
+
+	if( pPlot != NULL )
+	{
+		if( pPlot->getImprovementType() == NO_IMPROVEMENT )
+			return false;
+
+		if( !GC.getImprovementInfo( pPlot->getImprovementType() ).isExplorable() )
+			return false;
+
+		if( pPlot->isOwned() )
+		{
+			TeamTypes ePlotOwnerTeam = GET_PLAYER( pPlot->getOwnerINLINE() ).getTeam();
+			if( getTeam() != ePlotOwnerTeam && !GET_TEAM(getTeam()).isAtWar( ePlotOwnerTeam ) )
+				return false;
+		}
+	}
+
+	return true;
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
 /************************************************************************************************/

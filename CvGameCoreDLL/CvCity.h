@@ -621,6 +621,16 @@ public:
 	int getMilitaryProductionModifier() const;														// Exposed to Python
 	void changeMilitaryProductionModifier(int iChange);
 
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	int getLivingProductionModifier() const;														// MISSING EXPOSITION TO PYTHON
+	void changeLivingProductionModifier(int iChange);                                               // MISSING EXPOSITION TO PYTHON
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
+
 	int getSpaceProductionModifier() const;																// Exposed to Python
 	void changeSpaceProductionModifier(int iChange);
 
@@ -1114,7 +1124,7 @@ public:
     bool isSettlement() const;							// Exposed to Python
     void setSettlement(bool bNewValue);					// Exposed to Python
     int getNumCityPlots() const;
-    int getPlotRadius() const;
+    int getPlotRadius() const;							// Exposed to Python
     void setPlotRadius(int iNewValue);					// Exposed to Python
 	bool isUnhappyProduction() const;					// lfgr: Exposed to python
 	void changeUnhappyProduction(int iChange);
@@ -1335,6 +1345,14 @@ protected:
 	int m_iGoldFromLostProduction;
 //Multiple Production: End Add
 	int m_iMilitaryProductionModifier;
+/*************************************************************************************************/
+/**	iLivingProductionModifier               12/20/12                                 Terkhen    **/
+/**         New tag that allows buildings to increase the production rate of living units.      **/
+/*************************************************************************************************/
+	int m_iLivingProductionModifier;
+/*************************************************************************************************/
+/**	iLivingProductionModifier                 END                                               **/
+/*************************************************************************************************/
 	int m_iSpaceProductionModifier;
 	int m_iExtraTradeRoutes;
 	int m_iTradeRouteModifier;

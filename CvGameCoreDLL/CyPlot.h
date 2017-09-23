@@ -342,6 +342,28 @@ public:
 	bool isHasTempRoute();
 	// End Temporary Map Items
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	float calcTerrainFlavourWeight( /*TerrainFlavourTypes*/ int eTerrainFlavour, int iMaxPlotDistance );
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, PlotWilderness, SpawnInfo                                             */
+/************************************************************************************************/
+	bool isLair( bool bIgnoreIsAnimal, bool bAnimal ) const;
+	int getWilderness() const;
+	int getLairDanger() const;
+
+	int getSpawnValue( int /*SpawnTypes*/ eSpawnType, bool bDungeon ) const;
+	void createSpawn( int /*SpawnTypes*/ eSpawnType, int /*UnitAITypes*/ eUnitAI );
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 private:
 	CvPlot* m_pPlot;
 };

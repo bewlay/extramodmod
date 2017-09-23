@@ -104,7 +104,7 @@ class CvGameDesc:
 		self.iStartYear = -4000
 		self.szDescription = ""
 		self.szModPath = ""
-##		self.szModPath = "Mods\Magister Modmod for FfH2"#Magister
+##		self.szModPath = "Mods\Fall from Heaven 2"#Magister
 		self.iRandom = 0
 #Magister Start
 		self.iGlobalCounter = 0
@@ -1741,7 +1741,10 @@ class CvCityDesc:
 					pLoopPlot = CyMap().plot(iiX,iiY)
 					if not pLoopPlot.isNone():
 						if pLoopPlot.getImprovementType() != -1:
-							if gc.getImprovementInfo(pLoopPlot.getImprovementType()).getSpawnUnitType() != -1 or gc.getImprovementInfo(pLoopPlot.getImprovementType()).isGoody():
+						# WILDERNESS 08/2013 lfgr / ImprovementSpawnTypes
+						#	if gc.getImprovementInfo(pLoopPlot.getImprovementType()).getSpawnUnitType() != -1 or gc.getImprovementInfo(pLoopPlot.getImprovementType()).isGoody():
+							if pLoopPlot.isLair( True, False ) or gc.getImprovementInfo(pLoopPlot.getImprovementType()).isGoody():
+						# WILDERNESS end
 								pLoopPlot.setImprovementType(-1)
 #FfH: End Add
 

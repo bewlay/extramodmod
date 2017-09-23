@@ -39,6 +39,15 @@
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
+
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+#include "iPrimal-Custom.h"
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
 // Public Functions...
 
 CvGame::CvGame()
@@ -121,6 +130,12 @@ CvGame::~CvGame()
 
 void CvGame::init(HandicapTypes eHandicap)
 {
+#ifdef FP_PROFILE_ENABLE
+// Profiling
+	GC.enableDLLProfiler(true);
+	startProfilingDLL();
+// Profiling end
+#endif
 	bool bValid;
 	int iStartTurn;
 	int iEstimateEndTurn;
@@ -203,11 +218,12 @@ void CvGame::init(HandicapTypes eHandicap)
 		}
 	}
 
-//FfH: Added by Kael 05/28/2008
     int iRndCiv = GC.getInfoTypeForString("CIVILIZATION_RANDOM");
     int iRndGoodLeader = GC.getInfoTypeForString("LEADER_RANDOM_GOOD");
     int iRndNeutralLeader = GC.getInfoTypeForString("LEADER_RANDOM_NEUTRAL");
     int iRndEvilLeader = GC.getInfoTypeForString("LEADER_RANDOM_EVIL");
+
+	// Customized random civilization and leader selection code.
     if (iRndCiv != NO_CIVILIZATION && iRndGoodLeader != NO_LEADER && iRndNeutralLeader != NO_LEADER && iRndEvilLeader != NO_LEADER)
     {
 		// Determine the civilization and leader to use for each player slot.
@@ -221,12 +237,25 @@ void CvGame::init(HandicapTypes eHandicap)
 				int iSelectedLeader = GC.getInitCore().getLeader((PlayerTypes)iPlayer);
 				int iSelectedAlignment = NO_ALIGNMENT;
 
+				// If a random alignment leader has been selected for this slot,
+				// initialize random leader selection by alignment.
 				if (iSelectedLeader == iRndGoodLeader || iSelectedLeader == iRndNeutralLeader || iSelectedLeader == iRndEvilLeader)
 				{
 					iSelectedAlignment = GC.getLeaderHeadInfo((LeaderHeadTypes)iSelectedLeader).getAlignment();
 					iSelectedLeader = NO_LEADER;
 				}
 
+// Leader categories START
+				// If somehow the player chose a leader of a category not allowed for this game, substitute it
+				// with a random leader.
+				if (iSelectedLeader != NO_LEADER) {
+					if (((GC.getLeaderHeadInfo((LeaderHeadTypes)iSelectedLeader).getLeaderCategory() == LEADERCATEGORY_SCENEXTRA) && !isOption(GAMEOPTION_LEADER_SCENEXTRA)) || ((GC.getLeaderHeadInfo((LeaderHeadTypes)iSelectedLeader).getLeaderCategory() == LEADERCATEGORY_EXTRA) && !isOption(GAMEOPTION_LEADER_EXTRA))) {
+						iSelectedLeader = NO_LEADER;
+					}
+				}
+// Leader categories END
+
+				// The player chose both random civilization and random leader.
 				if ((iSelectedCiv == NO_CIVILIZATION || iSelectedCiv == iRndCiv) && iSelectedLeader == NO_LEADER)
 				{
 					// A random civilization and leader were chosen for this slot.
@@ -235,19 +264,32 @@ void CvGame::init(HandicapTypes eHandicap)
                     for (int iCiv = 0; iCiv < GC.getNumCivilizationInfos(); iCiv++)
                     {
 						// Graphical only civs are not allowed.
-						// Civilizations that are not playable by the AI must be ignored if this slot is for an AI.
-						// Civilizations that are not playable should be ignored always too.
 						if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isGraphicalOnly() ||
+							// Civilizations that are not playable by the AI must be ignored if this slot is for an AI.
 							(!GC.getCivilizationInfo((CivilizationTypes)iCiv).isAIPlayable()) && playerType == SS_COMPUTER ||
+							// Civilizations that are not playable should be ignored always too.
 							!GC.getCivilizationInfo((CivilizationTypes)iCiv).isPlayable())
 						{
 							continue;
 						}
 						for (int iLeader = 0; iLeader < GC.getNumLeaderHeadInfos(); iLeader++)
 						{
+// Leader categories START
+							if ((GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getLeaderCategory() == LEADERCATEGORY_SCENEXTRA) && !isOption(GAMEOPTION_LEADER_SCENEXTRA)) {
+								// If extra scenario leaders have not been selected, avoid using them.
+								continue;
+							}
+							if ((GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getLeaderCategory() == LEADERCATEGORY_EXTRA) && !isOption(GAMEOPTION_LEADER_EXTRA)) {
+								// If extra leaders have not been selected, avoid using them.
+								continue;
+							}
+// Leader categories END
+							// Only allow leaders of the chosen civilization.
+							// If unrestricted leaders is enabled, allow any leader that is not marked as graphical only.
 							if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isLeaders(iLeader) ||
 								(isOption(GAMEOPTION_LEAD_ANY_CIV) && !GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).isGraphicalOnly()) )
 							{
+								// Take into acount alignment when required.
 								if (iSelectedAlignment == NO_ALIGNMENT || iSelectedAlignment == GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getAlignment())
 								{
 									int iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Leader");
@@ -255,10 +297,12 @@ void CvGame::init(HandicapTypes eHandicap)
 									{
 										if (GC.getInitCore().getLeader((PlayerTypes)iI) == iLeader)
 										{
+											// When possible, avoid to select the same leader twice.
 											iValue -= 2000;
 										}
 										if (GC.getInitCore().getCiv((PlayerTypes)iI) == iCiv)
 										{
+											// When possible, avoid to select the same civilization twice.
 											iValue -= 1000;
 										}
 									}
@@ -274,6 +318,7 @@ void CvGame::init(HandicapTypes eHandicap)
 						}
 					}
 				}
+				// The player chose random civilization and a specific leader.
 				else if (iSelectedCiv == NO_CIVILIZATION || iSelectedCiv == iRndCiv)
 				{
 					// A random civilization was selected for this slot.
@@ -282,21 +327,22 @@ void CvGame::init(HandicapTypes eHandicap)
                     for (int iCiv = 0; iCiv < GC.getNumCivilizationInfos(); iCiv++)
                     {
 						// Graphical only civs are not allowed.
-						// Civilizations that are not playable by the AI must be ignored if this slot is for an AI.
-						// Civilizations that are not playable should be ignored always too.
 						if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isGraphicalOnly() ||
+							// Civilizations that are not playable by the AI must be ignored if this slot is for an AI.
 							(!GC.getCivilizationInfo((CivilizationTypes)iCiv).isAIPlayable()) && playerType == SS_COMPUTER ||
+							// Civilizations that are not playable should be ignored always too.
 							!GC.getCivilizationInfo((CivilizationTypes)iCiv).isPlayable())
 						{
 							continue;
 						}
 						if (GC.getCivilizationInfo((CivilizationTypes)iCiv).isLeaders(iSelectedLeader) || isOption(GAMEOPTION_LEAD_ANY_CIV))
 						{
-							int iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Leader");
+							int iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Civilization");
 							for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
 							{
 								if (GC.getInitCore().getCiv((PlayerTypes)iI) == iCiv)
 								{
+									// When possible, avoid to select the same civilization twice.
 									iValue -= 1000;
 								}
 							}
@@ -316,9 +362,23 @@ void CvGame::init(HandicapTypes eHandicap)
 
 					for (int iLeader = 0; iLeader < GC.getNumLeaderHeadInfos(); iLeader++)
 					{
+// Leader categories START
+						if ((GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getLeaderCategory() == LEADERCATEGORY_SCENEXTRA) && !isOption(GAMEOPTION_LEADER_SCENEXTRA)) {
+							// If extra scenario leaders have not been selected, avoid using them.
+							continue;
+						}
+						if ((GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getLeaderCategory() == LEADERCATEGORY_EXTRA) && !isOption(GAMEOPTION_LEADER_EXTRA)) {
+							// If extra leaders have not been selected, avoid using them.
+							continue;
+						}
+// Leader categories END
+
+						// Only allow leaders of the chosen civilization.
+						// If unrestricted leaders is enabled, allow any leader that is not marked as graphical only.
 						if (GC.getCivilizationInfo((CivilizationTypes)iSelectedCiv).isLeaders(iLeader) ||
 							(isOption(GAMEOPTION_LEAD_ANY_CIV) && !GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).isGraphicalOnly()) )
 						{
+								// Take into acount alignment when required.
 							if (iSelectedAlignment == NO_ALIGNMENT || iSelectedAlignment == GC.getLeaderHeadInfo((LeaderHeadTypes)iLeader).getAlignment())
 							{
 								int iValue = 40000 + GC.getGameINLINE().getSorenRandNum(1000, "Random Leader");
@@ -326,6 +386,7 @@ void CvGame::init(HandicapTypes eHandicap)
 								{
 									if (GC.getInitCore().getLeader((PlayerTypes)iI) == iLeader)
 									{
+										// When possible, avoid to select the same leader twice.
 										iValue -= 2000;
 									}
 								}
@@ -345,7 +406,6 @@ void CvGame::init(HandicapTypes eHandicap)
             }
 		}
 	}
-//FfH: End Add
 
 	if (isOption(GAMEOPTION_LOCK_MODS))
 	{
@@ -454,7 +514,36 @@ void CvGame::setInitialItems()
 
 	initFreeState();
 	assignStartingPlots();
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
+/************************************************************************************************/
+	if( isOption( GAMEOPTION_FLAVOUR_START ) )
+		reassignStartingPlots();
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
 	normalizeStartingPlots();
+	
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness, ImprovementWilderness                                                        */
+/* Original by Sephi                                                                            */
+/************************************************************************************************/
+	GC.getMapINLINE().calculateWilderness();
+	// Moved from CvMapGenerator::addGameElements(), to have it after Wilderness generation
+//FfH: Added by Kael 10/04/2008
+    if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_IMPROVEMENTS))
+    {
+       CvMapGenerator::GetInstance().addUniqueImprovements();
+    }
+    if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_LAIRS))
+    {
+        CvMapGenerator::GetInstance().addImprovements();
+    }
+//FfH: End Add
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 //FfH: Added by Kael 09/16/2008
     if (isOption(GAMEOPTION_BARBARIAN_WORLD))
@@ -472,6 +561,24 @@ void CvGame::setInitialItems()
 //FfH: End Add
 
 	initFreeUnits();
+
+// Automatic OOS detection START
+#ifdef AUTOMATIC_OOS_DETECTION
+	logBBAI("---- AUTOMATIC OOS DETECTION ----");
+	logBBAI("Proceeding to force human players to play automatically.");
+	// All human players are forced to play automated...
+	for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)
+	{
+		CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iPlayer);
+		if (kPlayer.isAlive() && kPlayer.isHuman())
+		{
+			logBBAI("  Automating human player number %i.", iPlayer);
+			// ... for a number of turns that allows enough testing.
+			setForcedAIAutoPlay((PlayerTypes)iPlayer, 600, true);
+		}
+	}
+#endif //AUTOMATIC_OOS_DETECTION
+// Automatic OOS detection END
 
 	for (int i = 0; i < MAX_PLAYERS; ++i)
 	{
@@ -953,6 +1060,9 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 	{
 		AI_reset();
 	}
+// Automatic OOS detection START
+	m_bOOSVisible = false;
+// Automatic OOS detection END
 }
 
 
@@ -2593,11 +2703,35 @@ void CvGame::update()
 		pyArgs.add(getTurnSlice());
 		CvEventReporter::getInstance().genericEvent("gameUpdate", pyArgs.makeFunctionArgs());
 
+// Automatic OOS detection START
+#ifdef AUTOMATIC_OOS_DETECTION
+		// At this point, the OOS log is already written. Automation should stop if an OOS is reached.
+		if (m_bOOSVisible)
+		{
+			logBBAI("---- AUTOMATIC OOS DETECTION ----");
+			logBBAI("OOS error detected. Stopping automation.");
+			for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)
+			{
+				if (isForcedAIAutoPlay((PlayerTypes)iPlayer) || getAIAutoPlay((PlayerTypes)iPlayer) > 0)
+				{
+					logBBAI("  Removing automation for human player number %i.", iPlayer);
+					setForcedAIAutoPlay((PlayerTypes)iPlayer, 0, true);
+				}
+			}
+			// Each player creates its own savegame.
+			// gDLL->getEngineIFace()->SaveGame(CvString::format("OOSSave - %s", GET_PLAYER(getActivePlayer()).getName()), SAVEGAME_NORMAL);
+			// Set the variable to its previous value.
+			m_bOOSVisible = false;
+		}
+#endif //AUTOMATIC_OOS_DETECTION
+// Autosaves are disabled under automatic OOS detection.
+#ifndef AUTOMATIC_OOS_DETECTION
 		if (getTurnSlice() == 0)
 		{
 			gDLL->getEngineIFace()->AutoSave(true);
 		}
-
+#endif //AUTOMATIC_OOS_DETECTION
+// Automatic OOS detection END
 		if (getNumGameTurnActive() == 0)
 		{
 			if (!isPbem() || !getPbemTurnSent())
@@ -5267,7 +5401,8 @@ void CvGame::setActivePlayer(PlayerTypes eNewValue, bool bForceHotSeat)
 		int iActiveNetId = ((NO_PLAYER != eOldActivePlayer) ? GET_PLAYER(eOldActivePlayer).getNetID() : -1);
 		GC.getInitCore().setActivePlayer(eNewValue);
 
-		if (GET_PLAYER(eNewValue).isHuman() && (isHotSeat() || isPbem() || bForceHotSeat))
+		//if (GET_PLAYER(eNewValue).isHuman() && (isHotSeat() || isPbem() || bForceHotSeat))
+		if (eNewValue != NO_PLAYER && GET_PLAYER(eNewValue).isHuman() && (isHotSeat() || isPbem() || bForceHotSeat)) // K-Mod pitboss fixes
 		{
 			gDLL->getPassword(eNewValue);
 			setHotPbemBetweenTurns(false);
@@ -6894,7 +7029,29 @@ void CvGame::doTurn()
 
 	stopProfilingDLL();
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* PlotWilderness                                                                               */
+/************************************************************************************************/
+	//LordShaggynator: workaround for wilderness values in scenario
+	if(getElapsedGameTurns() == 1)
+	{
+		if(GC.getInitCore().getType() == GAME_SP_SCENARIO || GC.getInitCore().getType() == GAME_MP_SCENARIO 
+			|| GC.getInitCore().getType() == GAME_HOTSEAT_SCENARIO || GC.getInitCore().getType() == GAME_PBEM_SCENARIO)
+		{
+			GC.getMapINLINE().calculateWilderness();
+		}
+	}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
+// Automatic OOS detection START
+// Autosaves are disabled under automatic OOS detection.
+#ifndef AUTOMATIC_OOS_DETECTION
 	gDLL->getEngineIFace()->AutoSave();
+#endif //AUTOMATIC_OOS_DETECTION
+// Automatic OOS detection END
 }
 
 
@@ -7367,6 +7524,9 @@ void CvGame::createBarbarianCities()
 /*                                                                                              */
 /* For BarbarianCiv, allows earlier barb cities                                                 */
 /************************************************************************************************/
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+// Reverting revolutions code: Wtf?
+/* old code
 	if (bRagingBarbs || isOption(GAMEOPTION_NO_SETTLERS))
 	{
 		if( getNumCivCities() <= (countCivPlayersAlive() * 2))
@@ -7381,12 +7541,21 @@ void CvGame::createBarbarianCities()
 			return;
 		}
 	}
+*/
+	if (getNumCivCities() < (countCivPlayersAlive() * 2))
+	{
+		return;
+	}
+// WILDERNESS end
 
 	if (getElapsedGameTurns() < (((GC.getHandicapInfo(getHandicapType()).getBarbarianCityCreationTurnsElapsed() * GC.getGameSpeedInfo(getGameSpeedType()).getBarbPercent()) / 100) / std::max(getStartEra() + 1, 1)))
 	{
 		return;
 	}
 
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+// Reverting revolutions code: LESS cities if there are not enough players + barb cities to fill all default slots?
+/* old code
 	int iRand = getSorenRandNum(100, "Barb City Creation");
 	if (bRagingBarbs)
 	{
@@ -7401,6 +7570,13 @@ void CvGame::createBarbarianCities()
 	{
 		return;
 	}
+*/
+	// lfgr note: BarbarianCityCreationProb is goes from 4 to 8
+	if (getSorenRandNum(100, "Barb City Creation") >= GC.getHandicapInfo(getHandicapType()).getBarbarianCityCreationProb())
+	{
+		return;
+	}
+// WILDERNESS end
 /************************************************************************************************/
 /* REVOLUTION_MOD                          END                                                  */
 /************************************************************************************************/
@@ -7408,8 +7584,12 @@ void CvGame::createBarbarianCities()
 	iBestValue = 0;
 	pBestPlot = NULL;
 
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+/* commenting out
+	// lfgr note: only used directly on very small areas
 	int iTargetCitiesMultiplier = 100;
 	{
+		// lfgr note: goes from 0.2 * cities to 0.4 * cities
 		int iTargetBarbCities = (getNumCivCities() * 5 * GC.getHandicapInfo(getHandicapType()).getBarbarianCityCreationProb()) / 100;
 		int iBarbCities = GET_PLAYER(BARBARIAN_PLAYER).getNumCities();
 		if (iBarbCities < iTargetBarbCities)
@@ -7423,6 +7603,8 @@ void CvGame::createBarbarianCities()
 			iTargetCitiesMultiplier /= 2;
 		}
 	}
+*/
+// WILDERNESS end
 
 /************************************************************************************************/
 /* REVOLUTION_MOD                         04/19/08                                jdog5000      */
@@ -7433,8 +7615,12 @@ void CvGame::createBarbarianCities()
 	// New variable for emphaizing spawning cities on populated continents
 	int iOccupiedAreaMultiplier = 50;
 	int iOwnedPlots = 0;
-
+	
+// WILDERNESS 02/2016 lfgr // WildernessMisc
+/* yeah...
 	if(bRagingBarbs)
+*/
+// WILDERNESS end
 	{
 		for( iI = 0; iI < GC.getMAX_PLAYERS(); iI++ )
 		{
@@ -7442,7 +7628,12 @@ void CvGame::createBarbarianCities()
 		}
 	
 		// When map mostly open, emphasize areas with other civs
+	// WILDERNESS 02/2016 lfgr // fix
+	/*
 		iOccupiedAreaMultiplier += 100 - (iOwnedPlots)/GC.getMapINLINE().getLandPlots();
+	*/
+		iOccupiedAreaMultiplier += 100 - (100*iOwnedPlots)/GC.getMapINLINE().getLandPlots();
+	// WILDERNESS end
 		
 		// If raging barbs is on, emphasize areas with other civs
 		if( bRagingBarbs )
@@ -7464,21 +7655,36 @@ void CvGame::createBarbarianCities()
 			if (!(pLoopPlot->isVisibleToCivTeam()))
 			{
 				iTargetCities = pLoopPlot->area()->getNumUnownedTiles();
-
+				
+				// lfgr note: three times as many cities allowed if no non-barb cities on continent
 				if (pLoopPlot->area()->getNumCities() == pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER))
 				{
 					iTargetCities *= 3;
 				}
-								
-				int iUnownedTilesThreshold = GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerBarbarianCity();
 				
+				// lfgr note: goes from 160 to 45		
+				int iUnownedTilesThreshold = GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerBarbarianCity();
+			
+			// WILDERNESS 02/2016 lfgr // WildernessMisc
+			/* old
+				// lfgr note: apply TargetCitiesMultiplier if area is very small
 				if (pLoopPlot->area()->getNumTiles() < (iUnownedTilesThreshold / 3))
 				{
 					iTargetCities *= iTargetCitiesMultiplier;
 					iTargetCities /= 100;
 				}
-
+				
 				iTargetCities /= std::max(1, iUnownedTilesThreshold);
+			*/
+				iTargetCities /= std::max(1, iUnownedTilesThreshold);
+				
+				// allow also cities on smaller islands (else the minimum on settler difficulty is 53 tiles)
+				if( iTargetCities == 0
+						&& pLoopPlot->area()->getNumUnownedTiles() >= GC.getDefineINT( "BARBARIAN_CITY_SPAWNING_MIN_AREA_SIZE" ) )
+				{
+					iTargetCities = 1;
+				}
+			// WILDERNESS end
 
 				if (pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER) < iTargetCities)
 				{
@@ -7495,9 +7701,12 @@ void CvGame::createBarbarianCities()
 						iValue *= pLoopPlot->area()->getNumOwnedTiles();
 					}
 
+					// lfgr comment: this probably should be a '*' instead of a '+'
 					iValue += (100 + getSorenRandNum(50, "Barb City Found"));
 					iValue /= 100;
 */
+				// WILDERNESS 02/2016 lfgr // WildernessMisc
+				/* old code
 					if (bRagingBarbs)
 					{
 						if( pLoopPlot->area()->getNumCities() == pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER) )
@@ -7507,6 +7716,7 @@ void CvGame::createBarbarianCities()
 							iValue /= 3;
 						}
 	
+						// lfgr note: always true
 						if( iTargetCitiesMultiplier > 100 )		// Either raging barbs is set or fewer barb cities than desired
 						{
 							// Emphasis on placing barb cities in populated areas
@@ -7515,17 +7725,36 @@ void CvGame::createBarbarianCities()
 					}
 					else
 					{
+						// lfgr note: fewer barb cities than desired
 						if (iTargetCitiesMultiplier > 100)
 						{
 							iValue *= pLoopPlot->area()->getNumOwnedTiles();
 						}
 					}
 
+					// lfgr note: no adjacent tile is better
 					if( pLoopPlot->isBestAdjacentFound(BARBARIAN_PLAYER) ) 
 					{
 						iValue *= 120 + getSorenRandNum(30, "Barb City Found");
 						iValue /= 100;
 					}
+				*/
+					if( pLoopPlot->area()->getNumCities() == pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER) )
+					{
+						// Counteracts the AI_foundValue emphasis on empty areas
+						iValue *= 2;
+						iValue /= 3;
+					}
+	
+					// Emphasis on placing barb cities in populated areas
+					iValue += (iOccupiedAreaMultiplier*(pLoopPlot->area()->getNumCities() - pLoopPlot->area()->getCitiesPerPlayer(BARBARIAN_PLAYER)))/getNumCivCities();
+					
+					if( pLoopPlot->isBestAdjacentFound(BARBARIAN_PLAYER) ) // lfgr note: no adjacent tile is better
+						iValue *= (120 + getSorenRandNum(30, "Barb City Found"));
+					else
+						iValue *= (100 + getSorenRandNum(30, "Barb City Found"));
+					iValue /= 100;
+				// WILDERNESS end
 /************************************************************************************************/
 /* REVOLUTION_MOD                          END                                                  */
 /************************************************************************************************/
@@ -7542,37 +7771,39 @@ void CvGame::createBarbarianCities()
 
 	if (pBestPlot != NULL)
 	{
+	// WILDERNESS 02/2016 lfgr // WildernessMisc
+		// Logging barbarian city foundations
+		// TODO: Multibarb
+		int iBarbCities = pBestPlot->area()->getCitiesPerPlayer( (PlayerTypes) GC.getBARBARIAN_PLAYER() );
+		int iPlayerCities = pBestPlot->area()->getNumCities() - iBarbCities;
+
+		logTo( "wilderness - %S.log", "Barbarian city founded in area %d (%d player cities, %d barb cities in area) at turn %d",
+				pBestPlot->area()->getID(),
+				iPlayerCities, iBarbCities,
+				GC.getGameINLINE().getGameTurn() );
+		
+		logTo( "wilderness - %S.log", "iOccupiedAreaMultiplier was %d", iOccupiedAreaMultiplier );
+	// WILDERNESS end
 		GET_PLAYER(BARBARIAN_PLAYER).found(pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
 		logBBAI("Barbarian city created at plot %d, %d", pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
 	}
 }
 
 
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/* Changed much, completely removed old code.                                                   */
+/************************************************************************************************/
 void CvGame::createBarbarianUnits()
 {
-
-//FfH: Modified by Kael 08/02/2007
-//	CvUnit* pLoopUnit;
-//FfH: End Modify
-
-	CvArea* pLoopArea;
-	CvPlot* pPlot;
-	UnitAITypes eBarbUnitAI;
-	UnitTypes eBestUnit;
-	UnitTypes eLoopUnit;
-	bool bAnimals;
-	long lResult;
-	int iNeededBarbs;
-	int iDivisor;
-	int iValue;
-	int iBestValue;
-	int iLoop;
-	int iI, iJ;
+	PROFILE_FUNC();
 
 	if (isOption(GAMEOPTION_NO_BARBARIANS))
-	{
 		return;
-	}
+
+	bool bRagingBarbs = isOption( GAMEOPTION_RAGING_BARBARIANS );
+	bool bDoubleAnimals = isOption( GAMEOPTION_DOUBLE_ANIMALS );
 
 /*************************************************************************************************/
 /**	SPEEDTWEAK (Block Python) Sephi                                               	            **/
@@ -7581,7 +7812,7 @@ void CvGame::createBarbarianUnits()
 /*************************************************************************************************/
 	if(GC.getDefineINT("USE_CREATEBARBARIANUNITS_CALLBACK")==1)
 	{
-        lResult = 0;
+        long lResult = 0;
         gDLL->getPythonIFace()->callFunction(PYGameModule, "createBarbarianUnits", NULL, &lResult);
         if (lResult == 1)
         {
@@ -7591,390 +7822,462 @@ void CvGame::createBarbarianUnits()
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
+	
+	bool bAnimals = true;
+	bool bBarbs = true;
 
-	bAnimals = false;
-
-	if (GC.getEraInfo(getCurrentEra()).isNoBarbUnits())
+	if (getElapsedGameTurns() < 5)
 	{
-		bAnimals = true;
+		bAnimals = false;
+		bBarbs = false;
 	}
-
-	if (getNumCivCities() < ((countCivPlayersAlive() * 3) / 2) && !isOption(GAMEOPTION_ONE_CITY_CHALLENGE))
-	{
-		bAnimals = true;
-	}
-
-//FfH: Added by Kael 11/27/2007
-//    if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS) && getNumCivCities() < countCivPlayersAlive() * 3)
-	if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS))
-    {
-        bAnimals = true;
-    }
-//FfH: End Add
-
-	if (getElapsedGameTurns() < ((GC.getHandicapInfo(getHandicapType()).getBarbarianCreationTurnsElapsed() * GC.getGameSpeedInfo(getGameSpeedType()).getBarbPercent()) / 100))
-	{
-		bAnimals = true;
-	}
-
-/********************************************************************************/
-/* Improved Wildlands	03/2013											lfgr	*/
-/********************************************************************************/
-// barbs keep spawning
-	bool bBarbs = !bAnimals;
-
-	if( !bBarbs && getNumCivCities() >= countCivPlayersAlive() * 3 )
-		bBarbs = true;
-/********************************************************************************/
-/* Improved Wildlands													END		*/
-/********************************************************************************/
-
-	if (bAnimals)
-	{
-		createAnimals();
-	}
-/********************************************************************************/
-/* Improved Wildlands	03/2013											lfgr	*/
-/********************************************************************************/
-// barbs keep spawning
-/* old
 	else
-*/
-	if( bBarbs )
-/********************************************************************************/
-/* Improved Wildlands													END		*/
-/********************************************************************************/
 	{
-		for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
+		if (GC.getEraInfo((EraTypes)getCurrentPeriod()).isNoAnimals())
+			bAnimals = false;
+		else if (GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal() <= 0)
+			bAnimals = false;
+		else if (getNumCivCities() < countCivPlayersAlive())
+			bAnimals = false;
+
+		float CITIES_MOD = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_REQUIRED_CITIES_PER_PLAYER", 3.f );
+		float RB_CITIES_MOD = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_REQUIRED_CITIES_PER_PLAYER_RAGING_BARBARIANS", 2.f );
+		
+		if (GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerBarbarianUnit() <= 0)
+			bBarbs = false;
+		else if( getNumCivCities() < countCivPlayersAlive() * ( bRagingBarbs ? RB_CITIES_MOD : CITIES_MOD ) )
+			bBarbs = false;
+	}
+
+	logTo( "wilderness - %S.log", "Spawning at turn %d", GC.getGameINLINE().getGameTurn() );
+
+	if( bAnimals )
+		logTo( "wilderness - %S.log", "Spawning Animals" );
+
+	if( bBarbs )
+		logTo( "wilderness - %S.log", "Spawning Barbarians" );
+	
+	if( !bAnimals && !bBarbs )
+		logTo( "wilderness - %S.log", "No Spawning" );
+	
+	if( bAnimals || bBarbs )
+	{
+		int MAX_BARB_BLOCK_RADIUS = GC.getDefineINT( "MAX_BARB_BLOCK_RADIUS" );
+
+		// LFGR_TODO Multibarb: Have an array/value for each barbarian civ / "spawning group"?
+		int VALID_TILES_PER_BARB = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerBarbarianUnit();
+		int VALID_TILES_PER_BARB_WATER = GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerBarbarianUnit();
+		int VALID_TILES_PER_ANIMAL = GC.getHandicapInfo( getHandicapType() ).getUnownedTilesPerGameAnimal();
+		int VALID_TILES_PER_ANIMAL_WATER = GC.getHandicapInfo( getHandicapType() ).getUnownedWaterTilesPerGameAnimal();
+		
+		float RAGING_BARBS_MOD = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED_MOD_RAGING_BARBARIANS", 2.f );
+		float WILDLANDS_MOD = GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED_MOD_WILDLANDS", 2.f );
+
+		float PLOT_CHANCE_BARB = ( bRagingBarbs ? RAGING_BARBS_MOD : 1 ) / (float) VALID_TILES_PER_BARB;
+		float PLOT_CHANCE_BARB_WATER = ( bRagingBarbs ? RAGING_BARBS_MOD : 1 ) / (float) VALID_TILES_PER_BARB_WATER;
+		float PLOT_CHANCE_ANIMAL = ( bDoubleAnimals ? WILDLANDS_MOD : 1 ) / (float) VALID_TILES_PER_ANIMAL;
+		float PLOT_CHANCE_ANIMAL_WATER = ( bDoubleAnimals ? WILDLANDS_MOD : 1 ) / (float) VALID_TILES_PER_ANIMAL_WATER;
+
+		// Find barbs and animals already there
+		//bool* abPlotAnimalValid = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		//bool* abPlotBarbValid = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		//bool* abPlotVisible = new bool[GC.getMapINLINE().numPlotsINLINE()];
+		std::vector<bool> vbPlotAnimalValid;
+		std::vector<bool> vbPlotBarbValid;
+		std::vector<bool> vbPlotVisible;
+		
+		// Find general valid plots
+		for( int iPlot = 0; iPlot < GC.getMapINLINE().numPlotsINLINE(); iPlot++ )
 		{
-			if (pLoopArea->isWater())
-			{
-				eBarbUnitAI = UNITAI_ATTACK_SEA;
-				iDivisor = GC.getHandicapInfo(getHandicapType()).getUnownedWaterTilesPerBarbarianUnit();
-			}
-			else
-			{
-				eBarbUnitAI = UNITAI_ATTACK;
-				iDivisor = GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerBarbarianUnit();
-			}
+			vbPlotAnimalValid.push_back( false );
+			vbPlotBarbValid.push_back( false );
+			vbPlotVisible.push_back( false );
 
-			if (isOption(GAMEOPTION_RAGING_BARBARIANS))
-			{
-				iDivisor = std::max(1, (iDivisor / 2));
-			}
+			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
 
-			if (iDivisor > 0)
-			{
+			bool bValid = true;
 
-//FfH: Modified by Kael 08/27/2007 (so that animals arent considered for barb spawn rates, and barbs spawn a little slower)
-//				iNeededBarbs = ((pLoopArea->getNumUnownedTiles() / iDivisor) - pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER)); // XXX eventually need to measure how many barbs of eBarbUnitAI we have in this area...
-//				if (iNeededBarbs > 0)
-//				{
-//					iNeededBarbs = ((iNeededBarbs / 4) + 1);
-				iNeededBarbs = ((pLoopArea->getNumUnownedTiles() / iDivisor) - (pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) - pLoopArea->getAnimalsPerPlayer(BARBARIAN_PLAYER)));
-				if (iNeededBarbs > 0)
+			if( pPlot->isOwned() || pPlot->isAdjacentOwned() || pPlot->isImpassable() || ( pPlot->isWater() && !pPlot->isAdjacentToLand() ) )
+				bValid = false;
+
+			if( bValid )
+				if( pPlot->isLair() )
+					bValid = false;
+
+			if( bValid )
+				if( pPlot->isLake() && GC.getDefineINT( "LAKE_SPAWNING_ENABLED" ) == 0 )
+					bValid = false;
+
+			if( bValid )
+				vbPlotVisible[iPlot] = pPlot->isVisibleToCivTeam();
+			
+			if( bValid )
+			{
+				// Check for non-barbarian units on the plot
+				// LFGR_TODO: only units at war with barbs, reqs at least separation barbs/animals
+				for( int iUnit = 0; iUnit < pPlot->getNumUnits(); iUnit++ )
 				{
-					iNeededBarbs = ((iNeededBarbs / 6) + 1);
-//FfH: End Modify
-
-					for (iI = 0; iI < iNeededBarbs; iI++)
+					if( !GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).isBarbarian() )
 					{
-						pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_VISIBLE_TO_CIV | RANDPLOT_ADJACENT_LAND | RANDPLOT_PASSIBLE), pLoopArea->getID(), GC.getDefineINT("MIN_BARBARIAN_STARTING_DISTANCE"));
+						bValid = false;
+						break;
+					}
+				}
+			}
+			
+			vbPlotAnimalValid[iPlot] = bValid && !vbPlotVisible[iPlot];
+			vbPlotBarbValid[iPlot] = bValid;
 
-						if (pPlot != NULL)
+#ifdef _DEBUG
+			pPlot->bPlotAnimalEverValid = vbPlotAnimalValid[iPlot];
+			pPlot->bPlotBarbEverValid = vbPlotBarbValid[iPlot];
+#endif
+		}
+		
+		// Find existing units and make plots based on number of units invalid
+		for( int iPlot = 0; iPlot < GC.getMapINLINE().numPlotsINLINE(); iPlot++ )
+		{
+			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
+
+			int iNumAnimals = 0;
+			int iNumBarbs = 0;
+
+			// Barb units on the plot
+			for( int iUnit = 0; iUnit < pPlot->getNumUnits(); iUnit++ )
+			{
+				if( pPlot->getUnitByIndex( iUnit )->canDefend() && pPlot->getUnitByIndex( iUnit )->getLairPlot() == -1
+						&& GET_PLAYER( pPlot->getUnitByIndex( iUnit )->getOwnerINLINE() ).isBarbarian() )
+				{
+					if( bAnimals && pPlot->getUnitByIndex( iUnit )->isAnimal() )
+						iNumAnimals++;
+					if( bBarbs && !pPlot->getUnitByIndex( iUnit )->isAnimal() )
+						iNumBarbs++;
+				}
+			}
+			
+			iNumAnimals *= ( pPlot->isWater() ? VALID_TILES_PER_ANIMAL_WATER : VALID_TILES_PER_ANIMAL );
+			iNumBarbs *= ( pPlot->isWater() ? VALID_TILES_PER_BARB_WATER : VALID_TILES_PER_BARB );
+			
+			if( vbPlotAnimalValid[iPlot] && iNumAnimals > 0 )
+			{
+				iNumAnimals--;
+				vbPlotAnimalValid[iPlot] = false;
+			}
+
+			if( vbPlotBarbValid[iPlot] && iNumBarbs > 0 )
+			{
+				iNumBarbs--;
+				vbPlotBarbValid[iPlot] = false;
+			}
+			
+			if( iNumAnimals > 0 )
+				logBBAI( "Animals to spread at %d|%d: %d", pPlot->getX_INLINE(), pPlot->getY_INLINE(), iNumAnimals );
+			if( iNumBarbs > 0 )
+				logBBAI( "Barbs to spread at %d|%d: %d", pPlot->getX_INLINE(), pPlot->getY_INLINE(), iNumBarbs );
+
+			// Spread barbarians
+			for( int iRadius = 1; ( MAX_BARB_BLOCK_RADIUS == -1 || iRadius < MAX_BARB_BLOCK_RADIUS ) && ( iNumAnimals > 0 || iNumBarbs > 0 ); iRadius++ )
+			{
+				bool bFoundPotentialValidPlot = false;
+				std::vector<int> viAnimalValidRingPlots;
+				std::vector<int> viBarbValidRingPlots;
+
+				for( int iChangeX = -iRadius; iChangeX <= iRadius; iChangeX++ )
+				{
+					for( int iChangeY = -iRadius; iChangeY <= iRadius; iChangeY++ )
+					{
+						if( std::max( abs( iChangeX ), abs( iChangeY ) ) == iRadius )
 						{
-							eBestUnit = NO_UNIT;
-							iBestValue = 0;
-
-							for (iJ = 0; iJ < GC.getNumUnitClassInfos(); iJ++)
+							CvPlot* pRingPlot = GC.getMapINLINE().plotINLINE( pPlot->getX_INLINE() + iChangeX, pPlot->getY_INLINE() + iChangeY );
+							if( pRingPlot != NULL && pRingPlot->getArea() == pPlot->getArea() )
 							{
-								bool bValid = false;
-								eLoopUnit = ((UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(BARBARIAN_PLAYER).getCivilizationType()).getCivilizationUnits(iJ)));
+								// Use CvPlot::getX for wrapped worlds
+								int iRingPlot = GC.getMapINLINE().plotNumINLINE( pRingPlot->getX_INLINE(), pRingPlot->getY_INLINE() );
+								bFoundPotentialValidPlot = true;
+								if( vbPlotAnimalValid[iRingPlot] )
+									viAnimalValidRingPlots.push_back( iRingPlot );
+								if( vbPlotBarbValid[iRingPlot] )
+									viBarbValidRingPlots.push_back( iRingPlot );
+							}
+						}
+					}
+				}
 
-								if (eLoopUnit != NO_UNIT)
+				if( !bFoundPotentialValidPlot )
+				{
+					logBBAI( "We seem to already have too much units for this area." );
+					break;
+				}
+
+				while( iNumAnimals > 0 && viAnimalValidRingPlots.size() > 0 )
+				{
+					int iVRingPlot = GC.getGameINLINE().getSorenRandNum( viAnimalValidRingPlots.size(), "Choose ring plot" );
+					int iRingPlot = viAnimalValidRingPlots[iVRingPlot];
+
+					FAssertMsg( vbPlotAnimalValid[iRingPlot], "Trying to invalidate already invalid plot!" );
+
+					vbPlotAnimalValid[iRingPlot] = false;
+
+					viAnimalValidRingPlots.erase( viAnimalValidRingPlots.begin() + iVRingPlot );
+					iNumAnimals--;
+				}
+				
+				while( iNumBarbs > 0 && viBarbValidRingPlots.size() > 0 )
+				{
+					int iVRingPlot = GC.getGameINLINE().getSorenRandNum( viBarbValidRingPlots.size(), "Choose ring plot" );
+					int iRingPlot = viBarbValidRingPlots[iVRingPlot];
+
+					FAssertMsg( vbPlotBarbValid[iRingPlot], "Trying to invalidate already invalid plot!" );
+
+					vbPlotBarbValid[iRingPlot] = false;
+
+					viBarbValidRingPlots.erase( viBarbValidRingPlots.begin() + iVRingPlot );
+					iNumBarbs--;
+				}
+			}
+		}
+		
+		for( int iPlot = 0; iPlot < GC.getMapINLINE().numPlotsINLINE(); iPlot++ )
+		{
+			CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE( iPlot );
+			
+#ifdef _DEBUG
+			pPlot->bPlotAnimalValid = vbPlotAnimalValid[iPlot];
+			pPlot->bPlotBarbValid = vbPlotBarbValid[iPlot];
+#endif
+			if( pPlot->area()->getNumTiles() < GC.getDefineINT( "BARBARIAN_SPAWNING_MIN_AREA_SIZE" ) )
+				continue;
+			
+			if( bAnimals && vbPlotAnimalValid[iPlot] )
+			{
+				float fAnimalChance = ( pPlot->isWater() ? PLOT_CHANCE_ANIMAL_WATER : PLOT_CHANCE_ANIMAL );
+				
+				// Faster respawning in higher wilderness
+				float fSpeedMod = GC.getDefineFLOAT( "ANIMAL_SPAWNING_SPEED" );
+				if( !isOption( GAMEOPTION_NO_WILDERNESS ) )
+					 fSpeedMod *= ( 1 + pPlot->getWilderness() / 100.0f );
+				// Slower Respawning on visible tiles
+				if( vbPlotVisible[iPlot] )
+					fSpeedMod *= GC.getDefineFLOAT( "VISIBLE_TILE_SPAWNING_SPEED_MOD" );
+
+				// Terrain affects spawning speed
+				float fTerrainSpeedMod = GC.getDefineFLOAT( "TERRAIN_SPAWNING_SPEED_MOD_BASE" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_COMMERCE ), GC.getDefineINT( "TSSM_COMMERCE_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_COMMERCE_EXTRA_SPEED" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_FOOD ), GC.getDefineINT( "TSSM_FOOD_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_FOOD_EXTRA_SPEED" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_PRODUCTION ), GC.getDefineINT( "TSSM_PRODUCTION_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_PRODUCTION_EXTRA_SPEED" );
+				fSpeedMod *= fTerrainSpeedMod;
+
+				fAnimalChance *= std::min( 1.0f, fSpeedMod );
+
+				if( fAnimalChance > 0 )
+				{
+					// This will not work correctly if we have spawning chances < 1 / MAX_UNSIGNED_SHORT. In this case, exactly one animals will spawn to less.
+					// Another random method should maybe used. Not sure if it even matters with the accuracy of float.
+					FAssert( fAnimalChance >= 1.0 / MAX_UNSIGNED_SHORT )
+
+					float fAnimalRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
+					if( fAnimalChance >= fAnimalRand )
+					{
+						logTo( "wilderness - %S.log", "Create spawn with chance %f", fAnimalChance );
+						createBarbarianSpawn( pPlot, true );
+
+						// Invalidate adjacent plots to prevent simultanous spawning on to adjacent plots.
+						for( int iChangeX = -1; iChangeX <= 1; iChangeX++ )
+						{
+							for( int iChangeY = -1; iChangeY <= 1; iChangeY++ )
+							{
+								CvPlot* pRingPlot = GC.getMapINLINE().plotINLINE( pPlot->getX_INLINE() + iChangeX, pPlot->getY_INLINE() + iChangeY );
+								if( pRingPlot != NULL && pRingPlot->getArea() == pPlot->getArea() )
 								{
-									CvUnitInfo& kUnit = GC.getUnitInfo(eLoopUnit);
-
-									bValid = (kUnit.getCombat() > 0 && !kUnit.isOnlyDefensive());
-
-//FfH: Added by Kael 08/14/2007
-                                    if (GC.getUnitClassInfo((UnitClassTypes)iJ).getMaxGlobalInstances() == 1)
-                                    {
-                                        bValid = false;
-                                    }
-//FfH: End Add
-
-									if (bValid)
-									{
-										if (pLoopArea->isWater() && kUnit.getDomainType() != DOMAIN_SEA)
-										{
-											bValid = false;
-										}
-										else if (!pLoopArea->isWater() && kUnit.getDomainType() != DOMAIN_LAND)
-										{
-											bValid = false;
-										}
-									}
-
-									if (bValid)
-									{
-										if (!GET_PLAYER(BARBARIAN_PLAYER).canTrain(eLoopUnit))
-										{
-											bValid = false;
-										}
-									}
-
-									if (bValid)
-									{
-										if (NO_BONUS != kUnit.getPrereqAndBonus())
-										{
-											if (!GET_TEAM(BARBARIAN_TEAM).isHasTech((TechTypes)GC.getBonusInfo((BonusTypes)kUnit.getPrereqAndBonus()).getTechCityTrade()))
-											{
-												bValid = false;
-											}
-										}
-									}
-
-									if (bValid)
-									{
-										bool bFound = false;
-										bool bRequires = false;
-										for (int i = 0; i < GC.getNUM_UNIT_PREREQ_OR_BONUSES(); ++i)
-										{
-											if (NO_BONUS != kUnit.getPrereqOrBonuses(i))
-											{
-												TechTypes eTech = (TechTypes)GC.getBonusInfo((BonusTypes)kUnit.getPrereqOrBonuses(i)).getTechCityTrade();
-												if (NO_TECH != eTech)
-												{
-													bRequires = true;
-
-													if (GET_TEAM(BARBARIAN_TEAM).isHasTech(eTech))
-													{
-														bFound = true;
-														break;
-													}
-												}
-											}
-										}
-
-										if (bRequires && !bFound)
-										{
-											bValid = false;
-										}
-									}
-
-									if (bValid)
-									{
-										iValue = (1 + getSorenRandNum(1000, "Barb Unit Selection"));
-
-										if (kUnit.getUnitAIType(eBarbUnitAI))
-										{
-											iValue += 200;
-										}
-
-										if (iValue > iBestValue)
-										{
-											eBestUnit = eLoopUnit;
-											iBestValue = iValue;
-										}
-									}
+									// Use CvPlot::getX for wrapped worlds
+									int iRingPlot = GC.getMapINLINE().plotNumINLINE( pRingPlot->getX_INLINE(), pRingPlot->getY_INLINE() );
+									vbPlotAnimalValid[iRingPlot] = false;
+									vbPlotBarbValid[iRingPlot] = false;
 								}
 							}
-							if (eBestUnit != NO_UNIT)
+						}
+					}
+				}
+			}
+			
+			if( bBarbs && vbPlotBarbValid[iPlot] )
+			{
+				float fBarbChance = ( pPlot->isWater() ? PLOT_CHANCE_BARB_WATER : PLOT_CHANCE_BARB );
+				
+				// Faster respawning in higher wilderness
+				float fSpeedMod = GC.getDefineFLOAT( "BARBARIAN_SPAWNING_SPEED" );
+				if( !isOption( GAMEOPTION_NO_WILDERNESS ) )
+					 fSpeedMod *= ( 1 + pPlot->getWilderness() / 100.0f );
+				// Slower Respawning on visible tiles
+				if( vbPlotVisible[iPlot] )
+					fSpeedMod *= GC.getDefineFLOAT( "VISIBLE_TILE_SPAWNING_SPEED_MOD" );
+				
+				// Terrain affects spawning speed
+				float fTerrainSpeedMod = GC.getDefineFLOAT( "TERRAIN_SPAWNING_SPEED_MOD_BASE" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_COMMERCE ), GC.getDefineINT( "TSSM_COMMERCE_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_COMMERCE_EXTRA_SPEED" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_FOOD ), GC.getDefineINT( "TSSM_FOOD_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_FOOD_EXTRA_SPEED" );
+				fTerrainSpeedMod += std::min( pPlot->getYield( YIELD_PRODUCTION ), GC.getDefineINT( "TSSM_PRODUCTION_MAX" ) )
+					* GC.getDefineFLOAT( "TSSM_PRODUCTION_EXTRA_SPEED" );
+				fSpeedMod *= fTerrainSpeedMod;
+
+				fBarbChance *= std::min( 1.0f, fSpeedMod );
+
+				if( fBarbChance > 0 )
+				{
+					// See above
+					FAssert( fBarbChance >= 1.0 / MAX_UNSIGNED_SHORT )
+
+					float fBarbRand = (float) GC.getGameINLINE().getSorenRand().getFloat();
+					if( fBarbChance >= fBarbRand )
+					{
+						logTo( "wilderness - %S.log", "Create spawn with chance %f", fBarbChance );
+						createBarbarianSpawn( pPlot, false );
+
+						// Invalidate adjacent plots to prevent simultanous spawning on to adjacent plots.
+						for( int iChangeX = -1; iChangeX <= 1; iChangeX++ )
+						{
+							for( int iChangeY = -1; iChangeY <= 1; iChangeY++ )
 							{
-								logBBAI("Spawning Barbarian Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eBestUnit).getDescription(), pPlot->getX(), pPlot->getY());
-								GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), eBarbUnitAI);
+								CvPlot* pRingPlot = GC.getMapINLINE().plotINLINE( pPlot->getX_INLINE() + iChangeX, pPlot->getY_INLINE() + iChangeY );
+								if( pRingPlot != NULL && pRingPlot->getArea() == pPlot->getArea() )
+								{
+									// Use CvPlot::getX for wrapped worlds
+									int iRingPlot = GC.getMapINLINE().plotNumINLINE( pRingPlot->getX_INLINE(), pRingPlot->getY_INLINE() );
+									vbPlotAnimalValid[iRingPlot] = false;
+									vbPlotBarbValid[iRingPlot] = false;
+								}
 							}
 						}
 					}
 				}
 			}
 		}
-
-//FfH: Modified by Kael 08/02/2007 (so animals are never deleted)
-//		for (pLoopUnit = GET_PLAYER(BARBARIAN_PLAYER).firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = GET_PLAYER(BARBARIAN_PLAYER).nextUnit(&iLoop))
-//		{
-//			if (pLoopUnit->isAnimal())
-//			{
-//				pLoopUnit->kill(false);
-//				break;
-//			}
-//		}
-//FfH: End Add
-
+		//SAFE_DELETE_ARRAY( abPlotAnimalValid );
+		//SAFE_DELETE_ARRAY( abPlotBarbValid );
+		//SAFE_DELETE_ARRAY( abPlotVisible );
 	}
 }
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
-
-void CvGame::createAnimals()
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* SpawnInfo                                                                                    */
+/************************************************************************************************/
+void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 {
-	CvArea* pLoopArea;
-	CvPlot* pPlot;
-	UnitTypes eBestUnit;
-	UnitTypes eLoopUnit;
-	int iNeededAnimals;
-	int iValue;
-	int iBestValue;
-	int iLoop;
-	int iI, iJ;
+	bool bVerbose = true;
 
-	if (GC.getEraInfo(getCurrentEra()).isNoAnimals())
+	logTo( "wilderness - %S.log", "Creating Semi-Random %s Spawn at wilderness %d",
+			bAnimal ? "animal" : "barb", pPlot->getWilderness() );
+	
+	int* aiValues = new int[GC.getNumSpawnInfos()];
+	int iBestValue = 0;
+
+	for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
 	{
-		return;
+		CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
+
+		bool bValid = true;
+		
+		if( bAnimal != kLoopSpawn.isAnimal() )
+			bValid = false;
+
+		if( kLoopSpawn.isNeverSpawn() )
+			bValid = false;
+
+		if( bValid )
+		{
+			int iValue = pPlot->getSpawnValue( (SpawnTypes) eLoopSpawn );
+
+			if( iValue > 0 && bVerbose )
+				logTo( "wilderness - %S.log", "SpawnInfo %s: %d", kLoopSpawn.getType(), iValue );
+
+			if( iValue > iBestValue )
+				iBestValue = iValue;
+
+			aiValues[eLoopSpawn] = max( iValue, 0 );
+		}
+		else
+			aiValues[eLoopSpawn] = 0;
+	}
+	
+	SpawnTypes eBestSpawn = NO_SPAWN;
+	
+	if( bVerbose )
+		logTo( "wilderness - %S.log", "Best Value: %d", iBestValue );
+
+	if( iBestValue > 0 )
+	{
+		int iTotalValue = 0;
+
+		for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+		{
+			if( aiValues[eLoopSpawn] > 0 )
+			{
+				aiValues[eLoopSpawn] += 100 - iBestValue;
+
+				if( aiValues[eLoopSpawn] > 0 ) // still?
+					iTotalValue += aiValues[eLoopSpawn];
+				else
+					aiValues[eLoopSpawn] = 0;
+			}
+		}
+
+		FAssert( iTotalValue >= 0 );
+
+		int iRand = getSorenRandNum( iTotalValue, "Barb Unit Selection" );
+		
+		if( bVerbose )
+			logTo( "wilderness - %S.log", "Rand %d out of %d", iRand, iTotalValue );
+
+		int iCurrentValue = 0;
+		for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
+		{
+			FAssert( aiValues[eLoopSpawn] >= 0 );
+			iCurrentValue += aiValues[eLoopSpawn];
+			if( iCurrentValue > iRand )
+			{
+				eBestSpawn = (SpawnTypes) eLoopSpawn;
+				break;
+			}
+			
+			if( bVerbose && aiValues[eLoopSpawn] )
+				logTo( "wilderness - %S.log", "Not #%d, now %d", eLoopSpawn, iCurrentValue );
+		}
 	}
 
-	if (GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal() <= 0)
+	SAFE_DELETE_ARRAY( aiValues );
+
+	if ( eBestSpawn != NO_SPAWN )
 	{
-		return;
+		CvSpawnInfo& kBestSpawn = GC.getSpawnInfo( eBestSpawn );
+		logTo( "wilderness - %S.log", "SpawnInfo %s chosen!", kBestSpawn.getType() );
+		
+		// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
+		int iMinWilderness = pPlot->calcMinWilderness( eBestSpawn );
+		// Choose a random number between this plot's wilderness and the required wilderness for the spawn
+		iMinWilderness += GC.getGameINLINE().getSorenRandNum( pPlot->getWilderness() - iMinWilderness, "Spawn Wilderness" );
+		pPlot->createSpawn( eBestSpawn, iMinWilderness );
 	}
-
-	if (getNumCivCities() < countCivPlayersAlive())
+	else
 	{
-		return;
-	}
-
-	if (getElapsedGameTurns() < 5)
-	{
-		return;
-	}
-
-//FfH: Modified by Kael 08/27/2007 (So that water animals spawn)
-//	for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
-//	{
-//		if (!(pLoopArea->isWater()))
-//		{
-//			iNeededAnimals = ((pLoopArea->getNumUnownedTiles() / GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal()) - pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER));
-//			if (iNeededAnimals > 0)
-//			{
-//				iNeededAnimals = ((iNeededAnimals / 5) + 1);
-//				for (iI = 0; iI < iNeededAnimals; iI++)
-//				{
-//					pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_VISIBLE_TO_CIV | RANDPLOT_PASSIBLE), pLoopArea->getID(), GC.getDefineINT("MIN_ANIMAL_STARTING_DISTANCE"));
-//					if (pPlot != NULL)
-//					{
-//						eBestUnit = NO_UNIT;
-//						iBestValue = 0;
-//						for (iJ = 0; iJ < GC.getNumUnitClassInfos(); iJ++)
-//						{
-//							eLoopUnit = ((UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(BARBARIAN_PLAYER).getCivilizationType()).getCivilizationUnits(iJ)));
-//							if (eLoopUnit != NO_UNIT)
-//							{
-//								if (GC.getUnitInfo(eLoopUnit).getUnitAIType(UNITAI_ANIMAL))
-//								{
-//									if ((pPlot->getFeatureType() != NO_FEATURE) ? GC.getUnitInfo(eLoopUnit).getFeatureNative(pPlot->getFeatureType()) : GC.getUnitInfo(eLoopUnit).getTerrainNative(pPlot->getTerrainType()))
-//									{
-//										iValue = (1 + getSorenRandNum(1000, "Animal Unit Selection"));
-//										if (iValue > iBestValue)
-//										{
-//											eBestUnit = eLoopUnit;
-//											iBestValue = iValue;
-//										}
-//									}
-//								}
-//							}
-//						}
-//						if (eBestUnit != NO_UNIT)
-//						{
-//							GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), UNITAI_ANIMAL);
-//						}
-//					}
-//				}
-//			}
-//		}
-	for(pLoopArea = GC.getMapINLINE().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMapINLINE().nextArea(&iLoop))
-	{
-/********************************************************************************/
-/* Improved Wildlands	03/2013											lfgr	*/
-/* Count animals independently from other barbs: subtract existing animals		*/
-/* later. Note: maybe need to increase <iUnownedTilesPerGameAnimal> in			*/
-/* CIV4HandicapInfo.xml															*/
-/********************************************************************************/
-	/* old
-        iNeededAnimals = ((pLoopArea->getNumUnownedTiles() / GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal()) - pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER));
-	*/
-		iNeededAnimals = pLoopArea->getNumUnownedTiles() / GC.getHandicapInfo(getHandicapType()).getUnownedTilesPerGameAnimal();
-/********************************************************************************/
-/* Improved Wildlands													END		*/
-/********************************************************************************/
-        if (pLoopArea->isWater())
-        {
-            iNeededAnimals = iNeededAnimals / 5;
-            if (pLoopArea->getNumUnownedTiles() < 20)
-            {
-                iNeededAnimals = 0;
-            }
-/********************************************************************************/
-/* Improved Wildlands	03/2013											lfgr	*/
-/* Count animals independently from other barbs.								*/
-/********************************************************************************/
-	/* old
-        	if (pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) > 3)
-	*/
-			if ( pLoopArea->getAnimalsPerPlayer( BARBARIAN_PLAYER ) > 3 )
-/********************************************************************************/
-/* Improved Wildlands													END		*/
-/********************************************************************************/
-            {
-                iNeededAnimals = 0;
-            }
-        }
-        if (iNeededAnimals > 0)
-        {
-            iNeededAnimals = ((iNeededAnimals / 5) + 1);
-            if (GC.getGameINLINE().isOption(GAMEOPTION_DOUBLE_ANIMALS))
-            {
-                iNeededAnimals *= 2;
-            }
-/********************************************************************************/
-/* Improved Wildlands	03/2013											lfgr	*/
-/* Count animals independently from other barbs: now subtract existing animals,	*/
-/* so get really doubled animals.												*/
-/********************************************************************************/
-		iNeededAnimals -= pLoopArea->getAnimalsPerPlayer( BARBARIAN_PLAYER );
-/********************************************************************************/
-/* Improved Wildlands													END		*/
-/********************************************************************************/
-            for (iI = 0; iI < iNeededAnimals; iI++)
-            {
-                pPlot = GC.getMapINLINE().syncRandPlot((RANDPLOT_NOT_VISIBLE_TO_CIV | RANDPLOT_PASSIBLE), pLoopArea->getID(), GC.getDefineINT("MIN_ANIMAL_STARTING_DISTANCE"));
-				if (pPlot != NULL)
-				{
-					eBestUnit = NO_UNIT;
-					iBestValue = 0;
-					for (iJ = 0; iJ < GC.getNumUnitClassInfos(); iJ++)
-					{
-						eLoopUnit = ((UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(BARBARIAN_PLAYER).getCivilizationType()).getCivilizationUnits(iJ)));
-						if (eLoopUnit != NO_UNIT)
-						{
-							if (GC.getUnitInfo(eLoopUnit).getUnitAIType(UNITAI_ANIMAL))
-							{
-								if ((pPlot->getFeatureType() != NO_FEATURE) ? GC.getUnitInfo(eLoopUnit).getFeatureNative(pPlot->getFeatureType()) : GC.getUnitInfo(eLoopUnit).getTerrainNative(pPlot->getTerrainType()))
-								{
-									iValue = (1 + getSorenRandNum(1000, "Animal Unit Selection"));
-									if (iValue > iBestValue)
-									{
-										eBestUnit = eLoopUnit;
-										iBestValue = iValue;
-									}
-								}
-							}
-						}
-					}
-					if (eBestUnit != NO_UNIT)
-					{
-						logBBAI("Spawning Animal Unit %S at plot %d, %d", GC.getUnitInfo((UnitTypes)eBestUnit).getDescription(), pPlot->getX(), pPlot->getY());
-
-                        CvUnit* pUnit;
-                        pUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit(eBestUnit, pPlot->getX_INLINE(), pPlot->getY_INLINE(), UNITAI_ANIMAL);
-                        pUnit->setHasPromotion((PromotionTypes)GC.getDefineINT("HIDDEN_NATIONALITY_PROMOTION"), true);
-                    }
-                }
-            }
-        }
-//FfH: End Modify
-
+		logTo( "wilderness - %S.log", "NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s, %s", pPlot->getWilderness(),
+				pPlot->getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( pPlot->getTerrainType() ).getType() : "NONE",
+				pPlot->getFeatureType() != NO_TERRAIN ? GC.getFeatureInfo( pPlot->getFeatureType() ).getType() : "NONE",
+				pPlot->getImprovementType() != NO_TERRAIN ? GC.getImprovementInfo( pPlot->getImprovementType() ).getType() : "NONE",
+				bAnimal ? "Animal" : "Non-Animal" );
 	}
 }
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
 
 
 void CvGame::updateWar()
@@ -8967,7 +9270,168 @@ int CvGame::getSorenRandNum(int iNum, const char* pszLog)
 	return m_sorenRand.get(iNum, pszLog);
 }
 
+// Automatic OOS detection START
+#ifdef AUTOMATIC_OOS_DETECTION
+#include "PrimeNumberGen.h"
+/*
+ * Strict checksum. It requires a LOT OF TIME for being calculated so it SHOULD NOT be used in normal games.
+ *
+ * All values are calculated on every turn, instead of just in specific turn slices.
+ *
+ * Added additional values to the checksum.
+ *
+ * Uses always different prime numbers for each subcalculation (but always in the same sequence).
+ * With the original implementation, minor changes such as one player losing one yield and another one
+ * getting it may not appear as a difference because in the normal code they are multiplied by the same value.
+ *
+ * With this implementation, it should be possible to calculate the exact point at which something went wrong if we have the final value
+ * from other computers. In order to prevent overflows, it could switch the problematic values (version and seeds) to the end of the
+ * calculation and reduce prime digits by 1.
+ *
+ * IsOOSVisible should be replaced by direct calls to CvGameTextMgr::setOOSSeeds. If something is different, we have an OOS.
+ */
+int CvGame::calculateSyncChecksum()
+{
+	int iLoop;
+	int iI, iJ;
 
+	CvWStringBuffer szBuffer;
+	szBuffer.append(gDLL->getText("TXT_KEY_VERSION"));
+
+	// The initial values could be a source of collision, but I'm going to try to not get very paranoid.
+	int iValue = szBuffer.getShortHash();
+	iValue += getMapRand().getSeed();
+	iValue += getSorenRand().getSeed();
+
+	// Make sure that we always use primes in the same order.
+	restartPrimes();
+
+	iValue += getGlobalCounter() * getNextPrime();
+	iValue += getNumCities() * getNextPrime();
+	iValue += getTotalPopulation() * getNextPrime();
+	iValue += getNumDeals() * getNextPrime();
+
+	iValue += GC.getMapINLINE().getOwnedPlots() * getNextPrime();
+	iValue += GC.getMapINLINE().getNumAreas() * getNextPrime();
+
+	for (iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		CvPlayerAI& kPlayer = GET_PLAYER((PlayerTypes)iI);
+		if (kPlayer.isEverAlive())
+		{
+			iValue += getPlayerScore((PlayerTypes)iI) * getNextPrime();
+			// Slice 0
+			iValue += kPlayer.getTotalPopulation() * getNextPrime();
+			iValue += kPlayer.getTotalLand() * getNextPrime();
+			iValue += kPlayer.getGold() * getNextPrime();
+			iValue += kPlayer.getAssets() * getNextPrime();
+			iValue += kPlayer.getPower() * getNextPrime();
+			iValue += kPlayer.getNumCities() * getNextPrime();
+			iValue += kPlayer.getNumUnits() * getNextPrime();
+			iValue += kPlayer.getNumSelectionGroups() * getNextPrime();
+
+			// Slice 1
+			for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
+			{
+				iValue += kPlayer.calculateTotalYield((YieldTypes)iJ) * getNextPrime();
+			}
+
+			for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
+			{
+				iValue += kPlayer.getCommerceRate((CommerceTypes)iJ) * getNextPrime();
+			}
+
+			// Slice 2
+			for (iJ = 0; iJ < GC.getNumBonusInfos(); iJ++)
+			{
+				iValue += kPlayer.getNumAvailableBonuses((BonusTypes)iJ) * getNextPrime();
+				iValue += kPlayer.getBonusImport((BonusTypes)iJ) * getNextPrime();
+				iValue += kPlayer.getBonusExport((BonusTypes)iJ) * getNextPrime();
+			}
+
+			for (iJ = 0; iJ < GC.getNumImprovementInfos(); iJ++)
+			{
+				iValue += kPlayer.getImprovementCount((ImprovementTypes)iJ) * getNextPrime();
+			}
+
+			for (iJ = 0; iJ < GC.getNumBuildingClassInfos(); iJ++)
+			{
+				iValue += kPlayer.getBuildingClassCountPlusMaking((BuildingClassTypes)iJ) * getNextPrime();
+			}
+
+			for (iJ = 0; iJ < GC.getNumUnitClassInfos(); iJ++)
+			{
+				iValue += kPlayer.getUnitClassCountPlusMaking((UnitClassTypes)iJ) * getNextPrime();
+			}
+
+			for (iJ = 0; iJ < NUM_UNITAI_TYPES; iJ++)
+			{
+				iValue += kPlayer.AI_totalUnitAIs((UnitAITypes)iJ) * getNextPrime();
+			}
+
+			// Slice 3
+			for (CvUnit* pLoopUnit = GET_PLAYER((PlayerTypes)iI).firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = GET_PLAYER((PlayerTypes)iI).nextUnit(&iLoop))
+			{
+				iValue += (pLoopUnit->getX_INLINE() * getNextPrime());
+				iValue += (pLoopUnit->getY_INLINE() * getNextPrime());
+				iValue += (pLoopUnit->getDamage() * getNextPrime());
+				iValue += (pLoopUnit->getExperience() * getNextPrime());
+				iValue += (pLoopUnit->getLevel() * getNextPrime());
+			}
+
+			// Extra values.
+
+			// These values are not in OOSLogger, but their differences will show up in BBAILog.
+			iValue += kPlayer.getNumEventsTriggered() * getNextPrime();
+			iValue += kPlayer.getNumTriggersFired() * getNextPrime();
+
+			for (CvCity* pLoopCity = kPlayer.firstCity(&iLoop); NULL != pLoopCity; pLoopCity = kPlayer.nextCity(&iLoop))
+			{
+				// City values are in OOSLogger.
+				iValue += pLoopCity->getX() * getNextPrime();
+				iValue += pLoopCity->getY() * getNextPrime();
+				iValue += pLoopCity->getGameTurnFounded() * getNextPrime();
+				iValue += pLoopCity->getPopulation() * getNextPrime();
+				iValue += pLoopCity->getNumBuildings() * getNextPrime();
+				iValue += pLoopCity->countNumImprovedPlots() * getNextPrime();
+				iValue += pLoopCity->getProductionTurnsLeft() * getNextPrime();
+				iValue += pLoopCity->happyLevel() * getNextPrime();
+				iValue += pLoopCity->unhappyLevel(0) * getNextPrime();
+				iValue += pLoopCity->goodHealth() * getNextPrime();
+				iValue += pLoopCity->badHealth(false) * getNextPrime();
+				iValue += pLoopCity->getWorkingPopulation() * getNextPrime();
+				iValue += pLoopCity->getSpecialistPopulation() * getNextPrime();
+				iValue += pLoopCity->getNumGreatPeople() * getNextPrime();
+
+				// K-Mod - new checks.
+				// These new values are not shown in OOSLogger.
+				for (iJ = 0; iJ < GC.getNumReligionInfos(); iJ++)
+				{
+					iValue += pLoopCity->isHasReligion((ReligionTypes) iJ) * (iJ + 1) * getNextPrime();
+				}
+				for (iJ = 0; iJ < GC.getNumEventInfos(); iJ++)
+				{
+					iValue += pLoopCity->isEventOccured((EventTypes) iJ) * (iJ + 1) * getNextPrime();
+				}
+				// K-Mod end
+			}
+
+			// K-Mod - new checks.
+			// AI Attitude cache. Not shown in OOSLogger.
+			for (iJ = 0; iJ < MAX_PLAYERS; iJ++)
+			{
+				if (iJ != kPlayer.getID() && GET_PLAYER((PlayerTypes)iJ).isAlive()) {
+					iValue += kPlayer.AI_getAttitudeVal((PlayerTypes)iJ, false) * getNextPrime();
+				}
+			}
+			// K-Mod end
+		}
+	}
+
+	logBBAI("AUTOMATIC OOS DETECTION: Checksum at turn %i is %i", getGameTurn(), iValue);
+	return iValue;
+}
+#else
 int CvGame::calculateSyncChecksum()
 {
 	PROFILE_FUNC();
@@ -9077,7 +9541,8 @@ int CvGame::calculateSyncChecksum()
 
 	return iValue;
 }
-
+#endif //AUTOMATIC_OOS_DETECTION
+// Automatic OOS detection END
 
 int CvGame::calculateOptionsChecksum()
 {
@@ -9242,6 +9707,12 @@ uint CvGame::getNumReplayMessages() const
 
 void CvGame::read(FDataStreamBase* pStream)
 {
+#ifdef FP_PROFILE_ENABLE
+// Profiling
+	GC.enableDLLProfiler(true);
+	startProfilingDLL();
+// Profiling end
+#endif
 	int iI;
 
 	reset(NO_HANDICAP);
@@ -11440,8 +11911,31 @@ void CvGame::foundBarbarianCity()
                     }
                 }
             }
+
             if (bValid)
             {
+			/************************************************************************************************/
+			/* WILDERNESS                             08/2013                                 lfgr          */
+			/* WildernessMisc                                                                               */
+			/* Place barb cities far away from other barb cities                                            */
+			/************************************************************************************************/
+				int iDivisor = std::max( 5, (int) ( sqrt( (double) GC.getMapINLINE().getGridWidthINLINE() * GC.getMapINLINE().getGridHeightINLINE() ) / 8.0 + 0.5 ) );
+
+				int iMinDistance = MAX_INT;
+
+				int iLoop;
+				for ( CvCity* pLoopCity = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() ).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER( (PlayerTypes) GC.getBARBARIAN_PLAYER() ).nextCity(&iLoop))
+				{
+					int iDist = stepDistance( pLoopCity->plot()->getX_INLINE(), pLoopCity->plot()->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE() );
+
+					if( iDist < iMinDistance )
+						iMinDistance = iDist;
+				}
+				if( iMinDistance != MAX_INT )
+					iValue += (int) ( iMinDistance / iDivisor ) * 900;
+			/************************************************************************************************/
+			/* WILDERNESS                                                                     END           */
+			/************************************************************************************************/
                 //iValue += GET_PLAYER(BARBARIAN_PLAYER).AI_foundValue(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), GC.getDefineINT("MIN_BARBARIAN_CITY_STARTING_DISTANCE"), true);
                 //iValue += pLoopPlot->area()->getNumOwnedTiles() + 10;
                 iValue += getSorenRandNum(100, "Barb City Found");
@@ -11692,6 +12186,13 @@ int CvGame::getWarningStatus() const
 }
 #endif
 // BUFFY - Security Checks - end
+
+// Automatic OOS detection START
+void CvGame::setOOSVisible()
+{
+	m_bOOSVisible = true;
+}
+// Automatic OOS detection END
 
 /************************************************************************************************/
 /* Afforess	                  Start		 		                                                */

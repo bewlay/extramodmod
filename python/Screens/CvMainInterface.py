@@ -8,6 +8,7 @@ import CvEventInterface
 #RevolutionDCM - used by the revwatch advisor code
 import CvScreensInterface
 import time
+import CustomFunctions
 
 # BUG - DLL - start
 import BugDll
@@ -85,8 +86,9 @@ import GGUtil
 
 #FfH: Added by Kael 10/29/2007
 bshowManaBar = 1
-manaTypes1 = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_DEATH','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_ICE' ]
-manaTypes2 = [ 'BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER' ]
+manaTypes1 = [ 'BONUS_MANA_AIR','BONUS_MANA_BODY','BONUS_MANA_CHAOS','BONUS_MANA_CREATION','BONUS_MANA_DEATH','BONUS_MANA_DIMENSIONAL','BONUS_MANA_EARTH','BONUS_MANA_ENCHANTMENT','BONUS_MANA_ENTROPY','BONUS_MANA_FIRE','BONUS_MANA_FORCE','BONUS_MANA_ICE','BONUS_MANA_LAW','BONUS_MANA_LIFE','BONUS_MANA_METAMAGIC','BONUS_MANA_MIND','BONUS_MANA_NATURE','BONUS_MANA_SHADOW','BONUS_MANA_SPIRIT','BONUS_MANA_SUN','BONUS_MANA_WATER' ]
+MANA_X_POS = 0
+MANA_Y_POS = 103
 #FfH: End Add
 # BUG - Great Person Bar - start
 import GPUtil
@@ -226,6 +228,15 @@ g_pSelectedUnit = 0
 #FfH: Added by Kael 07/17/2008
 iHelpX = 120
 #FfH: End Add
+
+#CustomizableBars Start
+# This value depends on the x resolution of the screen. It is obtained from the code that places the domestic advisor button and the rest.
+xCoordCustomizableBars = 253
+yCoordCustomizableBars = 57
+widthCustomizableBars = 228
+iSeparationCustomizableBars = 8
+iMaxCustomizableBars = 4
+#CustomizableBars End
 
 # BUG - start
 g_mainInterface = None
@@ -563,13 +574,13 @@ class CvMainInterface:
 		screen.hide( "InterfaceTopRight" )
 
 		# FFH Mana - Mana Button
-		screen.setImageButton("RawManaButton1", "Art/Interface/Screens/RawManaButton.dds", 5, 298, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+		screen.setImageButton("RawManaButton1", "Art/Interface/Screens/RawManaButton.dds", MANA_X_POS + 12, MANA_Y_POS + 407, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 		screen.hide( "RawManaButton1" )
-		screen.addPanel( "ManaToggleHelpTextPanel", u"", u"", True, True, 60, 298, 170, 30, PanelStyles.PANEL_STYLE_HUD_HELP )
+		screen.addPanel( "ManaToggleHelpTextPanel", u"", u"", True, True, MANA_X_POS + 55, MANA_Y_POS + 407, 170, 30, PanelStyles.PANEL_STYLE_HUD_HELP )
 		screen.hide( "ManaToggleHelpTextPanel" )
 #		szText = "<font=2>" + localText.getText("[COLOR_HIGHLIGHT_TEXT]Toggle Manabar Display[COLOR_REVERT]", ()) + "</font=2>"
 		szText = "<font=2>" + localText.getText("TXT_KEY_MANA_TOGGLE_HELP", ()) + "</font=2>"
-		screen.addMultilineText( "ManaToggleHelpText", szText, 62, 303, 167, 27, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+		screen.addMultilineText( "ManaToggleHelpText", szText, MANA_X_POS + 57, MANA_Y_POS + 411, 167, 27, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
 		screen.hide( "ManaToggleHelpText" )
 		# End FFH
 
@@ -1168,6 +1179,18 @@ class CvMainInterface:
 		
 		screen.registerHideList( szHideList, len(szHideList), 0 )
 
+#CustomizableBars Start
+		for i in range (iMaxCustomizableBars):
+			szBarName = "CustomizableBar" + str(i)
+			yCoord = yCoordCustomizableBars + (iSeparationCustomizableBars + iStackBarHeight) * i
+			screen.addStackedBarGFC( szBarName, self.xResolution - xCoordCustomizableBars, yCoord, widthCustomizableBars, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+			screen.setStackedBarColors( szBarName, InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_STORED") )
+			screen.setStackedBarColors( szBarName, InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_RATE") )
+			screen.setStackedBarColors( szBarName, InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
+			screen.setStackedBarColors( szBarName, InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
+			screen.hide( szBarName )
+#CustomizableBars End
+
 		return 0
 
 	# Will update the screen (every 250 MS)
@@ -1276,6 +1299,24 @@ class CvMainInterface:
 				ACstr = u"<font=2i><color=%d,%d,%d,%d>%s</color></font>" %(pPlayer.getPlayerTextColorR(),pPlayer.getPlayerTextColorG(),pPlayer.getPlayerTextColorB(),pPlayer.getPlayerTextColorA(),str(CyGame().getGlobalCounter()) + str(" "))
 				screen.setText( "ACText", "Background", ACstr, CvUtil.FONT_CENTER_JUSTIFY, xResolution - iEndOfTurnPosX, yResolution - 157, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 				screen.setHitTest( "ACText", HitTestTypes.HITTEST_NOHIT )
+
+			if (not CyInterface().isCityScreenUp() and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START and CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_SHOW):	
+
+				iHorizontalPosition = 270
+				iVerticalPosition = 50
+
+				if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KURIOTATES') and pPlayer.getNumCities() > 0 and pPlayer.getMaxCities() != -1:
+					iNumCities = pPlayer.getNumCities();
+					iMaxCities = pPlayer.getMaxCities()
+
+					if iNumCities > 0 and iMaxCities > 0:
+						SRstr = u"<font=2i>%s</font>" %(str(" ") + str(iNumCities) + str(" / ") + str(iMaxCities) + str(" "))
+						screen.setImageButton("KuriotateCities", "Art/Interface/Buttons/Spells/Promote Settlement.dds", iHorizontalPosition, iVerticalPosition, 16, 16, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setText( "KurioText", "Background", SRstr, CvUtil.FONT_LEFT_JUSTIFY, iHorizontalPosition + 12, iVerticalPosition + 2, 0.5, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+						screen.setHitTest( "KurioText", HitTestTypes.HITTEST_NOHIT )
+					else:
+						screen.hide( "KuriotateCities" )
+						screen.hide( "KurioText" )
 
 		self.updateEndTurnButton()
 
@@ -1522,7 +1563,7 @@ class CvMainInterface:
 		else:
 			screen.hideEndTurn( "EndTurnButton" )
 
-		return 0
+		# return 0
 
 	# Update the miscellaneous buttons
 	def updateMiscButtons( self ):
@@ -1530,6 +1571,10 @@ class CvMainInterface:
 		screen = CyGInterfaceScreen( "MainInterface", CvScreenEnums.MAIN_INTERFACE )
 		
 		xResolution = screen.getXResolution()
+#CustomizableBars Start
+		if ( CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY  and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START):
+			self.updateCustomizableBars(screen)
+#CustomizableBars End
 
 # BUG - Great Person Bar - start
 		if ( CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY  and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START):
@@ -3149,6 +3194,13 @@ class CvMainInterface:
 		self.pBarResearchBar_w.hide(screen)
 # BUG - Progress Bar - Tick Marks - end
 
+#CustomizableBars Start
+		for i in range (iMaxCustomizableBars):
+			screen.hide( "CustomizableBar" + str(i) )
+			screen.hide( "CustomizableBarText" + str(i) )
+#CustomizableBars Start
+
+
 		bShift = CyInterface().shiftKey()
 		
 		xResolution = screen.getXResolution()
@@ -3184,7 +3236,15 @@ class CvMainInterface:
 						screen.show( szString )
 
 						if not CyInterface().isCityScreenUp():
-							szOutText = u"<font=2>" + localText.getText("TXT_KEY_MISC_POS_GOLD_PER_TURN", (gc.getPlayer(ePlayer).getCommerceRate(CommerceTypes(eCommerce)), )) + u"</font>"
+							# ExtraModMod technology propagation START
+							#if eCommerce == CommerceTypes.COMMERCE_RESEARCH:
+								#iCommerceRate = gc.getPlayer(ePlayer).calculateBaseNetResearch()
+							#else:
+								#iCommerceRate = gc.getPlayer(ePlayer).getCommerceRate(CommerceTypes(eCommerce))
+							# Technology propagation not shown because of http://forums.civfanatics.com/showthread.php?p=13578251#post13578251
+							iCommerceRate = gc.getPlayer(ePlayer).getCommerceRate(CommerceTypes(eCommerce))
+							# ExtraModMod technology propagation END
+							szOutText = u"<font=2>" + localText.getText("TXT_KEY_MISC_POS_GOLD_PER_TURN", (iCommerceRate, )) + u"</font>"
 							szString = "RateText" + str(iI)
 # BUG - Min/Max Sliders - start
 							if MainOpt.isShowMinMaxCommerceButtons():
@@ -3233,23 +3293,6 @@ class CvMainInterface:
 				else:
 					szText = CyGameTextMgr().getGoldStr(ePlayer)
 # BUG - Gold Rate Warning - end
-
-#FfH: Added by Kael 12/08/2007
-				if (gc.getPlayer(ePlayer).getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD') and gc.getPlayer(ePlayer).getNumCities() > 0):
-					iGold = gc.getPlayer(ePlayer).getGold() / gc.getPlayer(ePlayer).getNumCities()
-					if iGold <= 49:
-						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_EMPTY", ())
-					if (iGold >= 50 and iGold <= 99):
-						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_LOW", ())
-					if (iGold >= 150 and iGold <= 199):
-						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_STOCKED", ())
-					if (iGold >= 200 and iGold <= 299):
-						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_ABUNDANT", ())
-					if (iGold >= 300 and iGold <= 499):
-						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_FULL", ())
-					if iGold >= 500:
-						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_OVERFLOWING", ())
-#FfH: End Add
 				#MOVED AMOUNT OF GOLD TEXT							   2/03/08					 JOHNY SMITH	  
 				screen.setLabel( "GoldText", "Background", szText, CvUtil.FONT_LEFT_JUSTIFY, 80, 6, -0.3, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 				#END													 2/03/08					 JOHNY SMITH
@@ -3257,7 +3300,6 @@ class CvMainInterface:
 				
 				if (((gc.getPlayer(ePlayer).calculateGoldRate() != 0) and not (gc.getPlayer(ePlayer).isAnarchy())) or (gc.getPlayer(ePlayer).getGold() != 0)):
 					screen.show( "GoldText" )
-
 # Commented out by Tholal - Eras not used in same way in FFH
 # BUG - NJAGC - start
 #				if (ClockOpt.isEnabled()
@@ -3334,10 +3376,17 @@ class CvMainInterface:
 # BUG - Great Person Bar - end
 
 # BUG - Great General Bar - start
-				if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS): ## Suppress display of Great General bar
-					self.updateGreatGeneralBar(screen)
+				## ExtraModMod: Great Generals are available unconditionally.
+				#if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS): ## Suppress display of Great General bar
+					#self.updateGreatGeneralBar(screen)
+				self.updateGreatGeneralBar(screen)
+				## ExtraModMod end
 # BUG - Great General Bar - end
-					
+
+#CustomizableBars Start
+				self.updateCustomizableBars(screen)
+#CustomizableBars End
+
 		return 0
 		
 # BUG - Great Person Bar - start
@@ -3414,7 +3463,119 @@ class CvMainInterface:
 			screen.setBarPercentage( szGreatGeneralBar, InfoBarTypes.INFOBAR_STORED, fProgress )
 			screen.show( szGreatGeneralBar )
 # BUG - Great General Bar - end
-					
+
+#CustomizableBars Start
+	def updateCustomizableBars(self, screen):
+		if (CyInterface().isCityScreenUp()):
+			return
+
+		pPlayer = gc.getPlayer(gc.getGame().getActivePlayer())
+		iCurrentRate = 0
+		iCurrentPoints = 0
+		iThreshold = 0
+		szText = ""
+		lCurrentRate = []
+		lCurrentPoints = []
+		lThreshold = []
+		lszText = []
+
+#CustomizableBars: Define any conditions that use one of the bars here.
+
+#AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
+		if (pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_GRIGORI') and pPlayer.getNumCities() > 0):
+			iCurrentPoints	= pPlayer.getCivCounter()
+			iThreshold		= CustomFunctions.CustomFunctions().getAdventurerThreshold(gc.getGame().getActivePlayer())
+			iCurrentRate	= CustomFunctions.CustomFunctions().getAdventurerPointRate(gc.getGame().getActivePlayer())
+
+			lCurrentRate.append(iCurrentRate)
+			lCurrentPoints.append(iCurrentPoints)
+			lThreshold.append(iThreshold)
+
+			if iCurrentRate == 0:
+				lszText.append(BugUtil.getText("TXT_KEY_INTERFACE_ADVENTURER_COUNTER_NONE"))
+			else:
+				iAdventurerTurns = (iThreshold - iCurrentPoints + iCurrentRate - 1) / iCurrentRate
+				lszText.append(BugUtil.getText("TXT_KEY_INTERFACE_ADVENTURER_COUNTER_TURNS", (iAdventurerTurns,))) 
+#AdventurerCounter End
+
+#Khazad vault display Start
+		if (pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD') and pPlayer.getNumCities() > 0 and (((pPlayer.calculateGoldRate() != 0) and not (pPlayer.isAnarchy())) or (pPlayer.getGold() != 0))):
+			iCurrentPoints = pPlayer.getGold() / pPlayer.getNumCities()
+			iCurrentRate = pPlayer.calculateGoldRate()
+			if iCurrentPoints <= 24:
+				iThreshold = 25
+				vaultText = BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_EMPTY")
+			if (iCurrentPoints >= 25 and iCurrentPoints <= 49):
+				iThreshold = 50
+				vaultText = BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_LOW")
+			if (iCurrentPoints >= 50 and iCurrentPoints <= 74):
+				iThreshold = 75
+				vaultText = BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_NORMAL")
+			if (iCurrentPoints >= 75 and iCurrentPoints <= 99):
+				iThreshold = 100
+				vaultText = BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_STOCKED")
+			if (iCurrentPoints >= 100 and iCurrentPoints <= 149):
+				iThreshold = 150
+				vaultText = BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_ABUNDANT")
+			if (iCurrentPoints >= 150 and iCurrentPoints <= 249):
+				iThreshold = 250
+				vaultText = BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_FULL")
+			if iCurrentPoints >= 250:
+				iThreshold = 250
+				vaultText = BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_OVERFLOWING")
+
+			lCurrentRate.append(iCurrentRate)
+			lCurrentPoints.append(iCurrentPoints)
+			lThreshold.append(iThreshold)
+			lszText.append(BugUtil.getText("TXT_KEY_DISPLAY_DWARVEN_VAULT_GENERAL", (vaultText,iCurrentPoints)))
+#Khazad vault display End
+
+#Adaptive tweaks START
+		if pPlayer.hasTrait(gc.getInfoTypeForString('TRAIT_ADAPTIVE')):
+			iBaseCycle = 75
+			iCycle = (iBaseCycle * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getVictoryDelayPercent()) / 100
+			iProgress = gc.getGame().getGameTurn() % iCycle
+
+			lCurrentRate.append(1)
+			lCurrentPoints.append(iProgress)
+			lThreshold.append(iCycle)
+			lszText.append(BugUtil.getText("TXT_KEY_DISPLAY_TRAIT_ADAPTIVE", (iCycle - iProgress,)))
+#Adaptive tweaks END
+
+#Barbarian bar START
+		eTeam = gc.getTeam(gc.getPlayer(gc.getBARBARIAN_PLAYER()).getTeam())
+		iTeam = pPlayer.getTeam()
+		if eTeam.isAtWar(iTeam) == False:
+			iCurrentPoints = 2 * CyGame().getPlayerScore(gc.getGame().getActivePlayer())
+			iThreshold = max(1, 3 * CyGame().getPlayerScore(CyGame().getRankPlayer(1)))
+			lCurrentRate.append(0)
+			lCurrentPoints.append(iCurrentPoints)
+			lThreshold.append(iThreshold)
+			iPercentage = int(100 * float(min(iThreshold, iCurrentPoints)) / float(iThreshold))
+			lszText.append(BugUtil.getText("TXT_KEY_DISPLAY_TRAIT_BARBARIAN", (iPercentage,)))
+#Barbarian bar END
+
+		xCoordText = self.xResolution - xCoordCustomizableBars + widthCustomizableBars / 2
+		yCoordText = yCoordCustomizableBars + 4
+
+		for i in range (min(len(lCurrentRate), iMaxCustomizableBars)):
+			szText = u"<font=2>%s</font>" % lszText[i]
+			szBarName = "CustomizableBar" + str(i)
+			szTextName = "CustomizableBarText" + str(i)
+
+			yCoord = yCoordText + (iSeparationCustomizableBars + iStackBarHeight) * i
+			screen.setText( szTextName, "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoordText, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+			screen.setHitTest( szTextName, HitTestTypes.HITTEST_NOHIT )
+			screen.show( szTextName )
+
+			screen.setBarPercentage( szBarName, InfoBarTypes.INFOBAR_STORED, float(lCurrentPoints[i]) / float(lThreshold[i]) )
+			# The rate is not displayed if the bar is already at maximum capacity.
+			if lCurrentRate[i] > 0 and lThreshold[i] > lCurrentPoints[i]:
+				screen.setBarPercentage( szBarName, InfoBarTypes.INFOBAR_RATE, float(lCurrentRate[i]) / float(lThreshold[i] - lCurrentPoints[i]) )
+
+			screen.show( szBarName )
+#CustomizableBars End
+
 	def updateTimeText( self ):
 		
 		global g_szTimeText
@@ -3471,17 +3632,19 @@ class CvMainInterface:
 						g_szTimeText += u" "
 				g_szTimeText += u"%2.2f%%" %( 100 *(float(gc.getGame().getElapsedGameTurns()) / float(gc.getGame().getMaxTurns())) )
 			
-			if (bShowDateGA):
+			if (bShowDateGA and gc.getPlayer(ePlayer).isGoldenAge()):
+				## FFH fix: Show only golden age, not date.
 				if (bFirst):
 					bFirst = False
 				else:
 					g_szTimeText += u" - "
-				szDateGA = unicode(CyGameTextMgr().getInterfaceTimeStr(ePlayer))
-				if(ClockOpt.isUseEraColor()):
-					iEraColor = ClockOpt.getEraColor(gc.getEraInfo(gc.getPlayer(ePlayer).getCurrentEra()).getType())
-					if (iEraColor >= 0):
-						szDateGA = localText.changeTextColor(szDateGA, iEraColor)
-				g_szTimeText += szDateGA
+				g_szTimeText += u"%c(%d)" % (CyGame().getSymbolID(FontSymbols.GOLDEN_AGE_CHAR), gc.getPlayer(ePlayer).getGoldenAgeTurns())
+				#szDateGA = unicode(CyGameTextMgr().getInterfaceTimeStr(ePlayer))
+				#if(ClockOpt.isUseEraColor()):
+					#iEraColor = ClockOpt.getEraColor(gc.getEraInfo(gc.getPlayer(ePlayer).getCurrentEra()).getType())
+					#if (iEraColor >= 0):
+						#szDateGA = localText.changeTextColor(szDateGA, iEraColor)
+				#g_szTimeText += szDateGA
 		else:
 			"""
 			Original Clock
@@ -3523,6 +3686,10 @@ class CvMainInterface:
 		screen.hide( "CultureBar" )
 		screen.hide( "MaintenanceText" )
 		screen.hide( "MaintenanceAmountText" )
+
+		screen.hide( "KhazadText" )
+		screen.hide( "KuriotateCities" )
+		screen.hide( "KurioText" )
 
 # BUG - Progress Bar - Tick Marks - start
 		self.pBarPopulationBar.hide(screen)
@@ -4976,9 +5143,10 @@ class CvMainInterface:
 
 # BUG - Power Rating - start
 ## Advanced Tactics: Advanced Diplomacy - Embassy required to see power ratios
-#				bShowPower = ScoreOpt.isShowPower()
+### ExtraModMod: Allow to see the power ratios inconditionally.
+				bShowPower = ScoreOpt.isShowPower()
 #				bShowPower = gc.getGame().isDebugMode() and ScoreOpt.isShowPower()
-				bShowPower = gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS) and ScoreOpt.isShowPower()
+#				bShowPower = gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_TACTICS) and ScoreOpt.isShowPower()
 				if (bShowPower):
 					iPlayerPower = gc.getActivePlayer().getPower()
 					iPowerColor = ScoreOpt.getPowerColor()
@@ -5243,11 +5411,13 @@ class CvMainInterface:
 # BUG - Power Rating - start
 												# if on, show according to espionage "see demographics" mission
 												# Advanced Tactics - only display power rating for civs we have an embassy with
+												### ExtraModMod: Allow to see the power ratios inconditionally.
 												pPlayer = gc.getActivePlayer()
 												if (bShowPower 
 													and (gc.getGame().getActivePlayer() != ePlayer
 														 and (not bEspionage or gc.getActivePlayer().canDoEspionageMission(iDemographicsMission, ePlayer, None, -1)))):
-													if ( gc.getTeam(pPlayer.getTeam()).isHasEmbassy(ePlayer)):
+#													if ( gc.getTeam(pPlayer.getTeam()).isHasEmbassy(ePlayer)):
+													if ( True ):
 														iPower = gc.getPlayer(ePlayer).getPower()
 														if (iPower > 0): # avoid divide by zero
 															fPowerRatio = float(iPlayerPower) / float(iPower)
@@ -5473,7 +5643,7 @@ class CvMainInterface:
 					
 					screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, xResolution - 12, 100+(iCountSpecial*iBtnHeight), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 					screen.show( szName )
-					
+
 				if pPlayer.getSanctuaryTimer() > 0:
 					iCountSpecial += 1
 					szBuffer = u"<font=2>"
@@ -5511,15 +5681,14 @@ class CvMainInterface:
 		for szBonus in manaTypes1:
 			szName = "ManaText" + szBonus
 			screen.hide( szName )
-		for szBonus in manaTypes2:
-			szName = "ManaText" + szBonus
-			screen.hide( szName )
+#		for szBonus in manaTypes2:
+#			szName = "ManaText" + szBonus
+#			screen.hide( szName )
 
 		iWidth = 0
 		iCount = 0
 		iBtnHeight = 18
 
-		yCoord = 103
 		if (CyInterface().isScoresVisible() and not CyInterface().isCityScreenUp() and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY and CyEngine().isGlobeviewUp() == false and bshowManaBar == 1):
 			for szBonus in manaTypes1:
 				iBonus = gc.getInfoTypeForString(szBonus)
@@ -5530,23 +5699,23 @@ class CvMainInterface:
 				if ( CyInterface().determineWidth( szBuffer ) > iWidth ):
 					iWidth = CyInterface().determineWidth( szBuffer )
 				szName = "ManaText" + szBonus
-				screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, 40, yCoord + (iCount * iBtnHeight) + 24, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1 )
+				screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, MANA_X_POS + 40, MANA_Y_POS + (iCount * iBtnHeight) + 24, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1 )
 				screen.show( szName )
 				iCount = iCount + 1
 			iCount = 0
-			for szBonus in manaTypes2:
-				iBonus = gc.getInfoTypeForString(szBonus)
-				szBuffer = u"<font=2>"
-				szTempBuffer = u"%c: %d" %(gc.getBonusInfo(iBonus).getChar(), pPlayer.getNumAvailableBonuses(iBonus))
-				szBuffer = szBuffer + szTempBuffer
-				szBuffer = szBuffer + "</font>"
-				if ( CyInterface().determineWidth( szBuffer ) > iWidth ):
-					iWidth = CyInterface().determineWidth( szBuffer )
-				szName = "ManaText" + szBonus
-				screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, 80, yCoord + (iCount * iBtnHeight) + 24, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1 )
-				screen.show( szName )
-				iCount = iCount + 1
-			screen.setPanelSize( "ManaBackground", 6, yCoord + 18, (iWidth * 2) + 12, (iBtnHeight * 9) + 12 )
+#			for szBonus in manaTypes2:
+#				iBonus = gc.getInfoTypeForString(szBonus)
+#				szBuffer = u"<font=2>"
+#				szTempBuffer = u"%c: %d" %(gc.getBonusInfo(iBonus).getChar(), pPlayer.getNumAvailableBonuses(iBonus))
+#				szBuffer = szBuffer + szTempBuffer
+#				szBuffer = szBuffer + "</font>"
+#				if ( CyInterface().determineWidth( szBuffer ) > iWidth ):
+#					iWidth = CyInterface().determineWidth( szBuffer )
+#				szName = "ManaText" + szBonus
+#				screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, 80, MANA_Y_POS + (iCount * iBtnHeight) + 24, -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1 )
+#				screen.show( szName )
+#				iCount = iCount + 1
+			screen.setPanelSize( "ManaBackground", MANA_X_POS, MANA_Y_POS + 18, iWidth + 12, (iBtnHeight * 21) + 12 )
 			screen.show( "ManaBackground" )
 #FfH: End Add
 

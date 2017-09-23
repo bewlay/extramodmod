@@ -21,6 +21,7 @@ game = CyGame()
 localText = CyTranslator()
 RevOpt = BugCore.game.Revolution
 
+# This component is disabled in ExtraModMod
 class TechDiffusion :
 
 	def __init__(self, customEM, RevOpt ) :

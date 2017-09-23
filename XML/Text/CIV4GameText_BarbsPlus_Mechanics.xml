@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+	WILDERNESS 09/2013 lfgr / PromotionExplResultBonus, WildernessExploration, ImprovementSpawnTypes, NewLairs
+-->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_EXPLORATION_RESULT_BONUS</Tag>
+		<English>[ICON_BULLET]%D1%% better results from lair exploration</English>
+		<French>[ICON_BULLET]%D1%% better results from lair exploration</French>
+		<German>[ICON_BULLET]%D1%% better results from lair exploration</German>
+		<Italian>[ICON_BULLET]%D1%% better results from lair exploration</Italian>
+		<Spanish>[ICON_BULLET]%D1%% mejor resultado al explorar guaridas</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS</Tag>
+		<English>[ICON_BULLET]Exploration Skills: %s1</English>
+		<French>[ICON_BULLET]Exploration Skills: %s1</French>
+		<German>[ICON_BULLET]Exploration Skills: %s1</German>
+		<Italian>[ICON_BULLET]Exploration Skills: %s1</Italian>
+		<Spanish>[ICON_BULLET]Habilidad de exploración: %s1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_1</Tag>
+		<English>Novice</English>
+		<French>Novice</French>
+		<German>Novice</German>
+		<Italian>Novice</Italian>
+		<Spanish>Novato</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_2</Tag>
+		<English>Moderate</English>
+		<French>Moderate</French>
+		<German>Moderate</German>
+		<Italian>Moderate</Italian>
+		<Spanish>Moderado</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_3</Tag>
+		<English>Advanced</English>
+		<French>Advanced</French>
+		<German>Advanced</German>
+		<Italian>Advanced</Italian>
+		<Spanish>Avanzado</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_4</Tag>
+		<English>Expert</English>
+		<French>Expert</French>
+		<German>Expert</German>
+		<Italian>Expert</Italian>
+		<Spanish>Experto</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORATION_SKILLS_5</Tag>
+		<English>Master</English>
+		<French>Master</French>
+		<German>Master</German>
+		<Italian>Master</Italian>
+		<Spanish>Maestro</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL</Tag>
+		<English>[ICON_BULLET]Risk and Reward: %s1</English>
+		<French>[ICON_BULLET]Risk and Reward: %s1</French>
+		<German>[ICON_BULLET]Risk and Reward: %s1</German>
+		<Italian>[ICON_BULLET]Risk and Reward: %s1</Italian>
+		<Spanish>[ICON_BULLET]Riesgo y Recompensa: %s1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_1</Tag>
+		<English>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</English>
+		<French>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</French>
+		<German>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</German>
+		<Italian>[COLOR_POSITIVE_TEXT]Low[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_POSITIVE_TEXT]Bajo[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_2</Tag>
+		<English>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</English>
+		<French>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</French>
+		<German>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</German>
+		<Italian>[COLOR_PLAYER_YELLOW_TEXT]Medium[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_PLAYER_YELLOW_TEXT]Medio[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_3</Tag>
+		<English>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</English>
+		<French>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</French>
+		<German>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</German>
+		<Italian>[COLOR_PLAYER_ORANGE_TEXT]High[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_PLAYER_ORANGE_TEXT]Alto[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_4</Tag>
+		<English>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</English>
+		<French>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</French>
+		<German>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</German>
+		<Italian>[COLOR_NEGATIVE_TEXT]Very High[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_NEGATIVE_TEXT]Muy Alto[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_LEVEL_5</Tag>
+		<English>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</English>
+		<French>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</French>
+		<German>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</German>
+		<Italian>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendary[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_PLAYER_DARK_PURPLE_TEXT]Legendario[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_LOW</Tag>
+		<English>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</English>
+		<French>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</French>
+		<German>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET]Exploration Odds: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET]Posibilidades de Exploración: [COLOR_NEGATIVE_TEXT]%d1%%[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_MEDIUM</Tag>
+		<English>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</English>
+		<French>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</French>
+		<German>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET]Exploration Odds: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET]Posibilidades de Exploración: [COLOR_PLAYER_YELLOW_TEXT]%d1%%[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EXPLORE_LAIR_EXPLORATION_ODDS_HIGH</Tag>
+		<English>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</English>
+		<French>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</French>
+		<German>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET]Exploration Odds: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET]Posibilidades de Exploración: [COLOR_POSITIVE_TEXT]%d1%%[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_LAIR_EXPLORED</Tag>
+		<English>There seems not to be anything left to explore in the lair.</English>
+		<French>There seems not to be anything left to explore in the lair.</French>
+		<German>There seems not to be anything left to explore in the lair.</German>
+		<Italian>There seems not to be anything left to explore in the lair.</Italian>
+		<Spanish>No parece quedar nada por explorar en la guarida.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IMPROVEMENT_SPAWN_UNITS</Tag>
+		<English>[ICON_BULLET]Spawns barbarian units until eliminated</English>
+		<French>[ICON_BULLET]Spawns barbarian units until eliminated</French>
+		<German>[ICON_BULLET]Erzeugt Barbaren-Einheiten bis es zerstört wird</German>
+		<Italian>[ICON_BULLET]Spawns barbarian units until eliminated</Italian>
+		<Spanish>[ICON_BULLET]Genera unidades bárbaras hasta que es eliminado.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_PROMOTION_CAPTURE_APPLY</Tag>
+		<English>Your %s1_UnitName gained the %s2_PromotionName promotion</English>
+		<French>Your %s1_UnitName gained the %s2_PromotionName promotion</French>
+		<German>Your %s1_UnitName gained the %s2_PromotionName promotion</German>
+		<Italian>Your %s1_UnitName gained the %s2_PromotionName promotion</Italian>
+		<Spanish>Tu %s1_UnitName ha adquirido la promoción %s2_PromotionName</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_PROMOTION_CAPTURE_APPLY</Tag>
+		<English>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</English>
+		<French>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</French>
+		<German>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</German>
+		<Italian>[ICON_BULLET]Grants the [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] promotion when captured</Italian>
+		<Spanish>[ICON_BULLET]Otorga la promoción [LINK=%s2_PromotionType]%s1_PromotionName[\LINK] al ser capturado</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_SELL_ANIMAL</Tag>
+		<English>Sell Animal</English>
+		<French>Sell Animal</French>
+		<German>Sell Animal</German>
+		<Italian>Sell Animal</Italian>
+		<Spanish>Vender Animal</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_SELL_ANIMAL_PEDIA</Tag>
+		<English>TODO</English>
+		<French>TODO</French>
+		<German>TODO</German>
+		<Italian>TODO</Italian>
+		<Spanish>TODO</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MESSAGE_SPELL_SELL_ANIMAL</Tag>
+		<English>You sold an animal for %d1_gold [ICON_GOLD]</English>
+		<French>You sold an animal for %d1_gold [ICON_GOLD]</French>
+		<German>You sold an animal for %d1_gold [ICON_GOLD]</German>
+		<Italian>You sold an animal for %d1_gold [ICON_GOLD]</Italian>
+		<Spanish>Vendiste un animal por %d1_gold [ICON_GOLD]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_SELL_ANIMAL_HELP</Tag>
+		<English>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</English>
+		<French>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</French>
+		<German>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</German>
+		<Italian>[ICON_BULLET]Sell %d1_numAnimals animals for %d2_minGold-%d3_maxGold [ICON_GOLD] (depending on rarity and level)</Italian>
+		<Spanish>[ICON_BULLET]Vender %d1_numAnimals animales por %d2_minGold-%d3_maxGold [ICON_GOLD] (dependiendo de su rareza y nivel)</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPELL_SELL_ONE_ANIMAL_HELP</Tag>
+		<English>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</English>
+		<French>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</French>
+		<German>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</German>
+		<Italian>[ICON_BULLET]Sell animal for %d1_minGold-%d2_maxGold [ICON_GOLD] (depending on rarity and level)</Italian>
+		<Spanish>[ICON_BULLET]Vender animal por %d1_minGold-%d2_maxGold [ICON_GOLD] (dependiendo de su rareza y nivel)</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_WILDERNESS</Tag>
+		<English>No Wilderness</English>
+		<French>No Wilderness</French>
+		<German>Keine Wildnis</German>
+		<Italian>No Wilderness</Italian>
+		<Spanish>Sin zonas salvajes</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_WILDERNESS_HELP</Tag>
+		<English>Barbarians spawning further away from your starting point aren't stronger.</English>
+		<French>Barbarians spawning further away from your starting point aren't stronger.</French>
+		<German>Barbarians spawning further away from your starting point aren't stronger.</German>
+		<Italian>Barbarians spawning further away from your starting point aren't stronger.</Italian>
+		<Spanish>Los bárbaros que aparecen más lejos de los puntos de inicio no son necesariamente más fuertes.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_REQUIRES_ANY_BUILDING_COUNT</Tag>
+		<English>Requires at least %d1_count of the following buildings:</English>
+		<French>Requires at least %d1_count of the following buildings:</French>
+		<German>Benötigt mindestens %d1_count der folgenden Gebäude:</German>
+		<Italian>Requires at least %d1_count of the following buildings:</Italian>
+		<Spanish>Requires at least %d1_count of the following buildings:</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_REQUIRES_ANY_BUILDING_COUNT_ACTUAL</Tag>
+		<English>Requires at least %d1_count of the following buildings (%d2_actual/%d3_count):</English>
+		<French>Requires at least %d1_count of the following buildings (%d2_actual/%d3_count):</French>
+		<German>Benötigt mindestens %d1_count der folgenden Gebäude (%d2_actual/%d3_count):</German>
+		<Italian>Requires at least %d1_count of the following buildings (%d2_actual/%d3_count):</Italian>
+		<Spanish>Requires at least %d1_count of the following buildings (%d2_actual/%d3_count):</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_REQUIRES_ANY_BUILDING</Tag>
+		<English>[ICON_BULLET][COLOR_WARNING_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</English>
+		<French>[ICON_BULLET][COLOR_WARNING_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</French>
+		<German>[ICON_BULLET][COLOR_WARNING_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET][COLOR_WARNING_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET][COLOR_WARNING_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_REQUIRES_ANY_BUILDING_PRESENT</Tag>
+		<English>[ICON_BULLET][COLOR_POSITIVE_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</English>
+		<French>[ICON_BULLET][COLOR_POSITIVE_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</French>
+		<German>[ICON_BULLET][COLOR_POSITIVE_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET][COLOR_POSITIVE_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET][COLOR_POSITIVE_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CONCEPT_WILDERNESS</Tag>
+		<English>Wilderness</English>
+		<French>Wilderness</French>
+		<German>Wildnis</German>
+		<Italian>Wilderness</Italian>
+		<Spanish>Zonas salvajes</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CONCEPT_WILDERNESS_PEDIA</Tag>
+		<English>[H1]Wilderness[\H1][PARAGRAPH:1]The Wilderness component aims at making exploring the lands beyond the borders of civilization more fun and, to a smaller extent, strategically important. It changes several aspects of the game, mostly related to animals, barbarian spawning and lairs/dungeons.[NEWLINE]The strength of barbarians and animals now depends on the minimum distance to any player's starting point (called "wilderness value"). These stronger units can't enter more civilized lands. The strength of barbarians also increases with technological advance (like in vanilla FfH, but at a faster rate).[NEWLINE]The original concept of a wilderness value was conceived by Sephi and used in his Master of Mana mod.[NEWLINE][NEWLINE]General minor changes:[NEWLINE]As the whole barbarian spawning system has been revamped, the number (and, of course, strength) of barbarians can vary from what you might be used to in Fall from Heaven 2.[NEWLINE]Non-animal barbarians may now also spawn on visible tiles, but slower and not on tiles adjacent to borders.[NEWLINE][NEWLINE][H2]Animals[\H2][NEWLINE]Firstly, the following animals have been added to have at least one animal for each environment: [LINK=UNIT_BOAR]Boar[\LINK], [LINK=UNIT_COBRA_GREAT]Great Cobra[\LINK], [LINK=UNIT_COBRA_GIANT]Giant Cobra[\LINK], [LINK=UNIT_HYENA]Hyena[\LINK], [LINK=UNIT_LIZARD_GREAT]Great Lizard[\LINK] and [LINK=UNIT_LIZARD_GIANT]Giant Lizard[\LINK].[NEWLINE][NEWLINE]Capturing animals is now more worthwhile:[NEWLINE]Animals can be sold for gold at a [LINK=BUILDING_HUNTING_LODGE]hunting lodge[\LINK]. More exotic or experienced animals give more gold.[NEWLINE]Most animals can build a civil building in cities. Some of those require another building or a technology.[NEWLINE]Some animals, mostly stronger versions like the [LINK=UNIT_LION_PRIDE]Lion Pride[\LINK], may additionally build a "Trophy" building that grants a special promotion to newly build units of specific classes (generally recon). When a unit captures these units, it also gains the respective promotion.[NEWLINE][NEWLINE]Other changes to animals:[NEWLINE][TAB][ICON_BULLET] Animals now spawn all game (not just until other barbarians spawn)[NEWLINE][TAB][ICON_BULLET] Animals stay in appropriate terrain, except when attacking[NEWLINE][NEWLINE][H2]Barbarians[\H2][NEWLINE]The probably most notable change is the increased variety among barbarians. There are now mainly four groups of Barbarians: Orcs, Nomads, Winterborns and Outlaws.[NEWLINE][NEWLINE][BOLD]Orcs[\BOLD] dwell nearly everywhere, though they are most common in Jungles. They retain the units barbarians have in the original Fall from Heaven 2 mod.[NEWLINE][NEWLINE][BOLD]Nomads[\BOLD] are humans living in the deserts. As the Malakim, they all have the [LINK=PROMOTION_NOMAD]Nomad[\LINK] promotion, providing them with double movement in desert. Watch out for their warriors coming out of nowhere! Nomad melee and archery units are less advanced than other barbarians to compensate that bonus.[NEWLINE][NEWLINE][BOLD]Winterborns[\BOLD] are found in cold regions, and start with the [LINK=PROMOTION_WINTERBORN]Winterborn[\LINK] promotion.[NEWLINE][NEWLINE][BOLD]Outlaws[\BOLD] consist of only three new units so far; [LINK=UNIT_SAVAGE]Savages[\LINK], [LINK=UNIT_BANDIT]Bandits[\LINK] and [LINK=UNIT_BANDIT_LORD]Bandit Lords[\LINK]. They mostly occur in woodlands. (TODO?, TODO: Bandit, Bandit lord strategy)[NEWLINE][NEWLINE]There are also two minor groups that require special conditions to occur:[NEWLINE][TAB][ICON_BULLET] [LINK=CONCEPT_HELL_TERRAIN]Hell terrain[\LINK] spawns barbarian demons.[NEWLINE][TAB][ICON_BULLET] [LINK=FEATURE_FOREST_ANCIENT]Ancient Forests[\LINK] may spawn [LINK=UNIT_FAWN]Fawns[\LINK] and [LINK=UNIT_SATYR]Satyrs[\LINK].[NEWLINE][NEWLINE][H2]Lairs[\H2][NEWLINE]The Wilderness component changes some aspects of lair spawning. Here, for the sake of, a full overview over the concept is given.[NEWLINE][NEWLINE]Lairs are randomly distributed when a map is created. The lair types are[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_BARROW]Barrow[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_GOBLIN_FORT]Goblin Fort[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_RUINS]Ruins[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_GRAVEYARD]Graveyard[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_DUNGEON]Dungeon[\LINK] and[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_SHIP_WRECK]Ship Wreck[\LINK].[NEWLINE][NEWLINE]Barrows, Goblin Forts and Ruins spawn barbarian creatures until they are destroyed. These units are scaled by wilderness value and technology, just as normal barbarian spawns. [NEWLINE]Lairs can only be destroyed by exploring them, which may awake barbarian units in the lair, depending on the environment and wilderness value (that then spawn on the lair's tile and attack you) or provide positive or negative "special" results (which may destroy the lair). The kind of results is determined by the following two parameters:[NEWLINE][NEWLINE][BOLD]Risk\Reward[\BOLD], which is solely determined by the wilderness value and changes the graveness of the outcomes, i.e. units are stronger (but might give more experience), bad special results are worse, good special results are better.[NEWLINE][NEWLINE][BOLD]Exploration chance[\BOLD], which is essentially the difference of the wilderness value and your unit's exploration capabilities, which depend on level and are raised by some promotions (as listed on the individual promotion's civilopedia pages). Exploration chance changes the quality of special results, but doesn't affect unit results or the chance of unit results.[NEWLINE][NEWLINE]Both parameters are shown when hovering over the "explore lair" button.[NEWLINE]Other changes from vanilla FfH:[NEWLINE][TAB][ICON_BULLET] Lairs now spawn only a limited number of units while old ones are still alive.[NEWLINE][TAB][ICON_BULLET] Unique Features and Goblin forts have a minimum wilderness.[NEWLINE][TAB][ICON_BULLET] Some lairs spawn a guardian on creation.[NEWLINE][TAB][ICON_BULLET] There are some new exploration results.[NEWLINE][NEWLINE][H2]Unique lairs[\H2][NEWLINE]In addition, some unique features can be explored, which doesn't destroy them, but makes them unable to be explored for 100 turns. The Risk\Reward is raised for unique lairs.[NEWLINE][NEWLINE][H2]Animal Lairs[\H2][NEWLINE]In addition to the lairs mentioned above, animals may create another type of lair when left alone for some time. Animals with higher experience are more likely to create a lair. These lairs spawn animals, but can't be explored; rather, they are destroyed by entering the tile with a unit, granting the unit experience in the process.[NEWLINE]</English>
+		<French>[H1]Wilderness[\H1][PARAGRAPH:1]The Wilderness component aims at making exploring the lands beyond the borders of civilization more fun and, to a smaller extent, strategically important. It changes several aspects of the game, mostly related to animals, barbarian spawning and lairs/dungeons.[NEWLINE]The strength of barbarians and animals now depends on the minimum distance to any player's starting point (called "wilderness value"). These stronger units can't enter more civilized lands. The strength of barbarians also increases with technological advance (like in vanilla FfH, but at a faster rate).[NEWLINE]The original concept of a wilderness value was conceived by Sephi and used in his Master of Mana mod.[NEWLINE][NEWLINE]General minor changes:[NEWLINE]As the whole barbarian spawning system has been revamped, the number (and, of course, strength) of barbarians can vary from what you might be used to in Fall from Heaven 2.[NEWLINE]Non-animal barbarians may now also spawn on visible tiles, but slower and not on tiles adjacent to borders.[NEWLINE][NEWLINE][H2]Animals[\H2][NEWLINE]Firstly, the following animals have been added to have at least one animal for each environment: [LINK=UNIT_BOAR]Boar[\LINK], [LINK=UNIT_COBRA_GREAT]Great Cobra[\LINK], [LINK=UNIT_COBRA_GIANT]Giant Cobra[\LINK], [LINK=UNIT_HYENA]Hyena[\LINK], [LINK=UNIT_LIZARD_GREAT]Great Lizard[\LINK] and [LINK=UNIT_LIZARD_GIANT]Giant Lizard[\LINK].[NEWLINE][NEWLINE]Capturing animals is now more worthwhile:[NEWLINE]Animals can be sold for gold at a [LINK=BUILDING_HUNTING_LODGE]hunting lodge[\LINK]. More exotic or experienced animals give more gold.[NEWLINE]Most animals can build a civil building in cities. Some of those require another building or a technology.[NEWLINE]Some animals, mostly stronger versions like the [LINK=UNIT_LION_PRIDE]Lion Pride[\LINK], may additionally build a "Trophy" building that grants a special promotion to newly build units of specific classes (generally recon). When a unit captures these units, it also gains the respective promotion.[NEWLINE][NEWLINE]Other changes to animals:[NEWLINE][TAB][ICON_BULLET] Animals now spawn all game (not just until other barbarians spawn)[NEWLINE][TAB][ICON_BULLET] Animals stay in appropriate terrain, except when attacking[NEWLINE][NEWLINE][H2]Barbarians[\H2][NEWLINE]The probably most notable change is the increased variety among barbarians. There are now mainly four groups of Barbarians: Orcs, Nomads, Winterborns and Outlaws.[NEWLINE][NEWLINE][BOLD]Orcs[\BOLD] dwell nearly everywhere, though they are most common in Jungles. They retain the units barbarians have in the original Fall from Heaven 2 mod.[NEWLINE][NEWLINE][BOLD]Nomads[\BOLD] are humans living in the deserts. As the Malakim, they all have the [LINK=PROMOTION_NOMAD]Nomad[\LINK] promotion, providing them with double movement in desert. Watch out for their warriors coming out of nowhere! Nomad melee and archery units are less advanced than other barbarians to compensate that bonus.[NEWLINE][NEWLINE][BOLD]Winterborns[\BOLD] are found in cold regions, and start with the [LINK=PROMOTION_WINTERBORN]Winterborn[\LINK] promotion.[NEWLINE][NEWLINE][BOLD]Outlaws[\BOLD] consist of only three new units so far; [LINK=UNIT_SAVAGE]Savages[\LINK], [LINK=UNIT_BANDIT]Bandits[\LINK] and [LINK=UNIT_BANDIT_LORD]Bandit Lords[\LINK]. They mostly occur in woodlands. (TODO?, TODO: Bandit, Bandit lord strategy)[NEWLINE][NEWLINE]There are also two minor groups that require special conditions to occur:[NEWLINE][TAB][ICON_BULLET] [LINK=CONCEPT_HELL_TERRAIN]Hell terrain[\LINK] spawns barbarian demons.[NEWLINE][TAB][ICON_BULLET] [LINK=FEATURE_FOREST_ANCIENT]Ancient Forests[\LINK] may spawn [LINK=UNIT_FAWN]Fawns[\LINK] and [LINK=UNIT_SATYR]Satyrs[\LINK].[NEWLINE][NEWLINE][H2]Lairs[\H2][NEWLINE]The Wilderness component changes some aspects of lair spawning. Here, for the sake of, a full overview over the concept is given.[NEWLINE][NEWLINE]Lairs are randomly distributed when a map is created. The lair types are[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_BARROW]Barrow[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_GOBLIN_FORT]Goblin Fort[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_RUINS]Ruins[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_GRAVEYARD]Graveyard[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_DUNGEON]Dungeon[\LINK] and[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_SHIP_WRECK]Ship Wreck[\LINK].[NEWLINE][NEWLINE]Barrows, Goblin Forts and Ruins spawn barbarian creatures until they are destroyed. These units are scaled by wilderness value and technology, just as normal barbarian spawns. [NEWLINE]Lairs can only be destroyed by exploring them, which may awake barbarian units in the lair, depending on the environment and wilderness value (that then spawn on the lair's tile and attack you) or provide positive or negative "special" results (which may destroy the lair). The kind of results is determined by the following two parameters:[NEWLINE][NEWLINE][BOLD]Risk\Reward[\BOLD], which is solely determined by the wilderness value and changes the graveness of the outcomes, i.e. units are stronger (but might give more experience), bad special results are worse, good special results are better.[NEWLINE][NEWLINE][BOLD]Exploration chance[\BOLD], which is essentially the difference of the wilderness value and your unit's exploration capabilities, which depend on level and are raised by some promotions (as listed on the individual promotion's civilopedia pages). Exploration chance changes the quality of special results, but doesn't affect unit results or the chance of unit results.[NEWLINE][NEWLINE]Both parameters are shown when hovering over the "explore lair" button.[NEWLINE]Other changes from vanilla FfH:[NEWLINE][TAB][ICON_BULLET] Lairs now spawn only a limited number of units while old ones are still alive.[NEWLINE][TAB][ICON_BULLET] Unique Features and Goblin forts have a minimum wilderness.[NEWLINE][TAB][ICON_BULLET] Some lairs spawn a guardian on creation.[NEWLINE][TAB][ICON_BULLET] There are some new exploration results.[NEWLINE][NEWLINE][H2]Unique lairs[\H2][NEWLINE]In addition, some unique features can be explored, which doesn't destroy them, but makes them unable to be explored for 100 turns. The Risk\Reward is raised for unique lairs.[NEWLINE][NEWLINE][H2]Animal Lairs[\H2][NEWLINE]In addition to the lairs mentioned above, animals may create another type of lair when left alone for some time. Animals with higher experience are more likely to create a lair. These lairs spawn animals, but can't be explored; rather, they are destroyed by entering the tile with a unit, granting the unit experience in the process.[NEWLINE]</French>
+		<German>[H1]Wilderness[\H1][PARAGRAPH:1]The Wilderness component aims at making exploring the lands beyond the borders of civilization more fun and, to a smaller extent, strategically important. It changes several aspects of the game, mostly related to animals, barbarian spawning and lairs/dungeons.[NEWLINE]The strength of barbarians and animals now depends on the minimum distance to any player's starting point (called "wilderness value"). These stronger units can't enter more civilized lands. The strength of barbarians also increases with technological advance (like in vanilla FfH, but at a faster rate).[NEWLINE]The original concept of a wilderness value was conceived by Sephi and used in his Master of Mana mod.[NEWLINE][NEWLINE]General minor changes:[NEWLINE]As the whole barbarian spawning system has been revamped, the number (and, of course, strength) of barbarians can vary from what you might be used to in Fall from Heaven 2.[NEWLINE]Non-animal barbarians may now also spawn on visible tiles, but slower and not on tiles adjacent to borders.[NEWLINE][NEWLINE][H2]Animals[\H2][NEWLINE]Firstly, the following animals have been added to have at least one animal for each environment: [LINK=UNIT_BOAR]Boar[\LINK], [LINK=UNIT_COBRA_GREAT]Great Cobra[\LINK], [LINK=UNIT_COBRA_GIANT]Giant Cobra[\LINK], [LINK=UNIT_HYENA]Hyena[\LINK], [LINK=UNIT_LIZARD_GREAT]Great Lizard[\LINK] and [LINK=UNIT_LIZARD_GIANT]Giant Lizard[\LINK].[NEWLINE][NEWLINE]Capturing animals is now more worthwhile:[NEWLINE]Animals can be sold for gold at a [LINK=BUILDING_HUNTING_LODGE]hunting lodge[\LINK]. More exotic or experienced animals give more gold.[NEWLINE]Most animals can build a civil building in cities. Some of those require another building or a technology.[NEWLINE]Some animals, mostly stronger versions like the [LINK=UNIT_LION_PRIDE]Lion Pride[\LINK], may additionally build a "Trophy" building that grants a special promotion to newly build units of specific classes (generally recon). When a unit captures these units, it also gains the respective promotion.[NEWLINE][NEWLINE]Other changes to animals:[NEWLINE][TAB][ICON_BULLET] Animals now spawn all game (not just until other barbarians spawn)[NEWLINE][TAB][ICON_BULLET] Animals stay in appropriate terrain, except when attacking[NEWLINE][NEWLINE][H2]Barbarians[\H2][NEWLINE]The probably most notable change is the increased variety among barbarians. There are now mainly four groups of Barbarians: Orcs, Nomads, Winterborns and Outlaws.[NEWLINE][NEWLINE][BOLD]Orcs[\BOLD] dwell nearly everywhere, though they are most common in Jungles. They retain the units barbarians have in the original Fall from Heaven 2 mod.[NEWLINE][NEWLINE][BOLD]Nomads[\BOLD] are humans living in the deserts. As the Malakim, they all have the [LINK=PROMOTION_NOMAD]Nomad[\LINK] promotion, providing them with double movement in desert. Watch out for their warriors coming out of nowhere! Nomad melee and archery units are less advanced than other barbarians to compensate that bonus.[NEWLINE][NEWLINE][BOLD]Winterborns[\BOLD] are found in cold regions, and start with the [LINK=PROMOTION_WINTERBORN]Winterborn[\LINK] promotion.[NEWLINE][NEWLINE][BOLD]Outlaws[\BOLD] consist of only three new units so far; [LINK=UNIT_SAVAGE]Savages[\LINK], [LINK=UNIT_BANDIT]Bandits[\LINK] and [LINK=UNIT_BANDIT_LORD]Bandit Lords[\LINK]. They mostly occur in woodlands. (TODO?, TODO: Bandit, Bandit lord strategy)[NEWLINE][NEWLINE]There are also two minor groups that require special conditions to occur:[NEWLINE][TAB][ICON_BULLET] [LINK=CONCEPT_HELL_TERRAIN]Hell terrain[\LINK] spawns barbarian demons.[NEWLINE][TAB][ICON_BULLET] [LINK=FEATURE_FOREST_ANCIENT]Ancient Forests[\LINK] may spawn [LINK=UNIT_FAWN]Fawns[\LINK] and [LINK=UNIT_SATYR]Satyrs[\LINK].[NEWLINE][NEWLINE][H2]Lairs[\H2][NEWLINE]The Wilderness component changes some aspects of lair spawning. Here, for the sake of, a full overview over the concept is given.[NEWLINE][NEWLINE]Lairs are randomly distributed when a map is created. The lair types are[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_BARROW]Barrow[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_GOBLIN_FORT]Goblin Fort[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_RUINS]Ruins[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_GRAVEYARD]Graveyard[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_DUNGEON]Dungeon[\LINK] and[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_SHIP_WRECK]Ship Wreck[\LINK].[NEWLINE][NEWLINE]Barrows, Goblin Forts and Ruins spawn barbarian creatures until they are destroyed. These units are scaled by wilderness value and technology, just as normal barbarian spawns. [NEWLINE]Lairs can only be destroyed by exploring them, which may awake barbarian units in the lair, depending on the environment and wilderness value (that then spawn on the lair's tile and attack you) or provide positive or negative "special" results (which may destroy the lair). The kind of results is determined by the following two parameters:[NEWLINE][NEWLINE][BOLD]Risk\Reward[\BOLD], which is solely determined by the wilderness value and changes the graveness of the outcomes, i.e. units are stronger (but might give more experience), bad special results are worse, good special results are better.[NEWLINE][NEWLINE][BOLD]Exploration chance[\BOLD], which is essentially the difference of the wilderness value and your unit's exploration capabilities, which depend on level and are raised by some promotions (as listed on the individual promotion's civilopedia pages). Exploration chance changes the quality of special results, but doesn't affect unit results or the chance of unit results.[NEWLINE][NEWLINE]Both parameters are shown when hovering over the "explore lair" button.[NEWLINE]Other changes from vanilla FfH:[NEWLINE][TAB][ICON_BULLET] Lairs now spawn only a limited number of units while old ones are still alive.[NEWLINE][TAB][ICON_BULLET] Unique Features and Goblin forts have a minimum wilderness.[NEWLINE][TAB][ICON_BULLET] Some lairs spawn a guardian on creation.[NEWLINE][TAB][ICON_BULLET] There are some new exploration results.[NEWLINE][NEWLINE][H2]Unique lairs[\H2][NEWLINE]In addition, some unique features can be explored, which doesn't destroy them, but makes them unable to be explored for 100 turns. The Risk\Reward is raised for unique lairs.[NEWLINE][NEWLINE][H2]Animal Lairs[\H2][NEWLINE]In addition to the lairs mentioned above, animals may create another type of lair when left alone for some time. Animals with higher experience are more likely to create a lair. These lairs spawn animals, but can't be explored; rather, they are destroyed by entering the tile with a unit, granting the unit experience in the process.[NEWLINE]</German>
+		<Italian>[H1]Wilderness[\H1][PARAGRAPH:1]The Wilderness component aims at making exploring the lands beyond the borders of civilization more fun and, to a smaller extent, strategically important. It changes several aspects of the game, mostly related to animals, barbarian spawning and lairs/dungeons.[NEWLINE]The strength of barbarians and animals now depends on the minimum distance to any player's starting point (called "wilderness value"). These stronger units can't enter more civilized lands. The strength of barbarians also increases with technological advance (like in vanilla FfH, but at a faster rate).[NEWLINE]The original concept of a wilderness value was conceived by Sephi and used in his Master of Mana mod.[NEWLINE][NEWLINE]General minor changes:[NEWLINE]As the whole barbarian spawning system has been revamped, the number (and, of course, strength) of barbarians can vary from what you might be used to in Fall from Heaven 2.[NEWLINE]Non-animal barbarians may now also spawn on visible tiles, but slower and not on tiles adjacent to borders.[NEWLINE][NEWLINE][H2]Animals[\H2][NEWLINE]Firstly, the following animals have been added to have at least one animal for each environment: [LINK=UNIT_BOAR]Boar[\LINK], [LINK=UNIT_COBRA_GREAT]Great Cobra[\LINK], [LINK=UNIT_COBRA_GIANT]Giant Cobra[\LINK], [LINK=UNIT_HYENA]Hyena[\LINK], [LINK=UNIT_LIZARD_GREAT]Great Lizard[\LINK] and [LINK=UNIT_LIZARD_GIANT]Giant Lizard[\LINK].[NEWLINE][NEWLINE]Capturing animals is now more worthwhile:[NEWLINE]Animals can be sold for gold at a [LINK=BUILDING_HUNTING_LODGE]hunting lodge[\LINK]. More exotic or experienced animals give more gold.[NEWLINE]Most animals can build a civil building in cities. Some of those require another building or a technology.[NEWLINE]Some animals, mostly stronger versions like the [LINK=UNIT_LION_PRIDE]Lion Pride[\LINK], may additionally build a "Trophy" building that grants a special promotion to newly build units of specific classes (generally recon). When a unit captures these units, it also gains the respective promotion.[NEWLINE][NEWLINE]Other changes to animals:[NEWLINE][TAB][ICON_BULLET] Animals now spawn all game (not just until other barbarians spawn)[NEWLINE][TAB][ICON_BULLET] Animals stay in appropriate terrain, except when attacking[NEWLINE][NEWLINE][H2]Barbarians[\H2][NEWLINE]The probably most notable change is the increased variety among barbarians. There are now mainly four groups of Barbarians: Orcs, Nomads, Winterborns and Outlaws.[NEWLINE][NEWLINE][BOLD]Orcs[\BOLD] dwell nearly everywhere, though they are most common in Jungles. They retain the units barbarians have in the original Fall from Heaven 2 mod.[NEWLINE][NEWLINE][BOLD]Nomads[\BOLD] are humans living in the deserts. As the Malakim, they all have the [LINK=PROMOTION_NOMAD]Nomad[\LINK] promotion, providing them with double movement in desert. Watch out for their warriors coming out of nowhere! Nomad melee and archery units are less advanced than other barbarians to compensate that bonus.[NEWLINE][NEWLINE][BOLD]Winterborns[\BOLD] are found in cold regions, and start with the [LINK=PROMOTION_WINTERBORN]Winterborn[\LINK] promotion.[NEWLINE][NEWLINE][BOLD]Outlaws[\BOLD] consist of only three new units so far; [LINK=UNIT_SAVAGE]Savages[\LINK], [LINK=UNIT_BANDIT]Bandits[\LINK] and [LINK=UNIT_BANDIT_LORD]Bandit Lords[\LINK]. They mostly occur in woodlands. (TODO?, TODO: Bandit, Bandit lord strategy)[NEWLINE][NEWLINE]There are also two minor groups that require special conditions to occur:[NEWLINE][TAB][ICON_BULLET] [LINK=CONCEPT_HELL_TERRAIN]Hell terrain[\LINK] spawns barbarian demons.[NEWLINE][TAB][ICON_BULLET] [LINK=FEATURE_FOREST_ANCIENT]Ancient Forests[\LINK] may spawn [LINK=UNIT_FAWN]Fawns[\LINK] and [LINK=UNIT_SATYR]Satyrs[\LINK].[NEWLINE][NEWLINE][H2]Lairs[\H2][NEWLINE]The Wilderness component changes some aspects of lair spawning. Here, for the sake of, a full overview over the concept is given.[NEWLINE][NEWLINE]Lairs are randomly distributed when a map is created. The lair types are[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_BARROW]Barrow[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_GOBLIN_FORT]Goblin Fort[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_RUINS]Ruins[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_GRAVEYARD]Graveyard[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_DUNGEON]Dungeon[\LINK] and[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_SHIP_WRECK]Ship Wreck[\LINK].[NEWLINE][NEWLINE]Barrows, Goblin Forts and Ruins spawn barbarian creatures until they are destroyed. These units are scaled by wilderness value and technology, just as normal barbarian spawns. [NEWLINE]Lairs can only be destroyed by exploring them, which may awake barbarian units in the lair, depending on the environment and wilderness value (that then spawn on the lair's tile and attack you) or provide positive or negative "special" results (which may destroy the lair). The kind of results is determined by the following two parameters:[NEWLINE][NEWLINE][BOLD]Risk\Reward[\BOLD], which is solely determined by the wilderness value and changes the graveness of the outcomes, i.e. units are stronger (but might give more experience), bad special results are worse, good special results are better.[NEWLINE][NEWLINE][BOLD]Exploration chance[\BOLD], which is essentially the difference of the wilderness value and your unit's exploration capabilities, which depend on level and are raised by some promotions (as listed on the individual promotion's civilopedia pages). Exploration chance changes the quality of special results, but doesn't affect unit results or the chance of unit results.[NEWLINE][NEWLINE]Both parameters are shown when hovering over the "explore lair" button.[NEWLINE]Other changes from vanilla FfH:[NEWLINE][TAB][ICON_BULLET] Lairs now spawn only a limited number of units while old ones are still alive.[NEWLINE][TAB][ICON_BULLET] Unique Features and Goblin forts have a minimum wilderness.[NEWLINE][TAB][ICON_BULLET] Some lairs spawn a guardian on creation.[NEWLINE][TAB][ICON_BULLET] There are some new exploration results.[NEWLINE][NEWLINE][H2]Unique lairs[\H2][NEWLINE]In addition, some unique features can be explored, which doesn't destroy them, but makes them unable to be explored for 100 turns. The Risk\Reward is raised for unique lairs.[NEWLINE][NEWLINE][H2]Animal Lairs[\H2][NEWLINE]In addition to the lairs mentioned above, animals may create another type of lair when left alone for some time. Animals with higher experience are more likely to create a lair. These lairs spawn animals, but can't be explored; rather, they are destroyed by entering the tile with a unit, granting the unit experience in the process.[NEWLINE]</Italian>
+		<Spanish>[H1]Wilderness[\H1][PARAGRAPH:1]The Wilderness component aims at making exploring the lands beyond the borders of civilization more fun and, to a smaller extent, strategically important. It changes several aspects of the game, mostly related to animals, barbarian spawning and lairs/dungeons.[NEWLINE]The strength of barbarians and animals now depends on the minimum distance to any player's starting point (called "wilderness value"). These stronger units can't enter more civilized lands. The strength of barbarians also increases with technological advance (like in vanilla FfH, but at a faster rate).[NEWLINE]The original concept of a wilderness value was conceived by Sephi and used in his Master of Mana mod.[NEWLINE][NEWLINE]General minor changes:[NEWLINE]As the whole barbarian spawning system has been revamped, the number (and, of course, strength) of barbarians can vary from what you might be used to in Fall from Heaven 2.[NEWLINE]Non-animal barbarians may now also spawn on visible tiles, but slower and not on tiles adjacent to borders.[NEWLINE][NEWLINE][H2]Animals[\H2][NEWLINE]Firstly, the following animals have been added to have at least one animal for each environment: [LINK=UNIT_BOAR]Boar[\LINK], [LINK=UNIT_COBRA_GREAT]Great Cobra[\LINK], [LINK=UNIT_COBRA_GIANT]Giant Cobra[\LINK], [LINK=UNIT_HYENA]Hyena[\LINK], [LINK=UNIT_LIZARD_GREAT]Great Lizard[\LINK] and [LINK=UNIT_LIZARD_GIANT]Giant Lizard[\LINK].[NEWLINE][NEWLINE]Capturing animals is now more worthwhile:[NEWLINE]Animals can be sold for gold at a [LINK=BUILDING_HUNTING_LODGE]hunting lodge[\LINK]. More exotic or experienced animals give more gold.[NEWLINE]Most animals can build a civil building in cities. Some of those require another building or a technology.[NEWLINE]Some animals, mostly stronger versions like the [LINK=UNIT_LION_PRIDE]Lion Pride[\LINK], may additionally build a "Trophy" building that grants a special promotion to newly build units of specific classes (generally recon). When a unit captures these units, it also gains the respective promotion.[NEWLINE][NEWLINE]Other changes to animals:[NEWLINE][TAB][ICON_BULLET] Animals now spawn all game (not just until other barbarians spawn)[NEWLINE][TAB][ICON_BULLET] Animals stay in appropriate terrain, except when attacking[NEWLINE][NEWLINE][H2]Barbarians[\H2][NEWLINE]The probably most notable change is the increased variety among barbarians. There are now mainly four groups of Barbarians: Orcs, Nomads, Winterborns and Outlaws.[NEWLINE][NEWLINE][BOLD]Orcs[\BOLD] dwell nearly everywhere, though they are most common in Jungles. They retain the units barbarians have in the original Fall from Heaven 2 mod.[NEWLINE][NEWLINE][BOLD]Nomads[\BOLD] are humans living in the deserts. As the Malakim, they all have the [LINK=PROMOTION_NOMAD]Nomad[\LINK] promotion, providing them with double movement in desert. Watch out for their warriors coming out of nowhere! Nomad melee and archery units are less advanced than other barbarians to compensate that bonus.[NEWLINE][NEWLINE][BOLD]Winterborns[\BOLD] are found in cold regions, and start with the [LINK=PROMOTION_WINTERBORN]Winterborn[\LINK] promotion.[NEWLINE][NEWLINE][BOLD]Outlaws[\BOLD] consist of only three new units so far; [LINK=UNIT_SAVAGE]Savages[\LINK], [LINK=UNIT_BANDIT]Bandits[\LINK] and [LINK=UNIT_BANDIT_LORD]Bandit Lords[\LINK]. They mostly occur in woodlands. (TODO?, TODO: Bandit, Bandit lord strategy)[NEWLINE][NEWLINE]There are also two minor groups that require special conditions to occur:[NEWLINE][TAB][ICON_BULLET] [LINK=CONCEPT_HELL_TERRAIN]Hell terrain[\LINK] spawns barbarian demons.[NEWLINE][TAB][ICON_BULLET] [LINK=FEATURE_FOREST_ANCIENT]Ancient Forests[\LINK] may spawn [LINK=UNIT_FAWN]Fawns[\LINK] and [LINK=UNIT_SATYR]Satyrs[\LINK].[NEWLINE][NEWLINE][H2]Lairs[\H2][NEWLINE]The Wilderness component changes some aspects of lair spawning. Here, for the sake of, a full overview over the concept is given.[NEWLINE][NEWLINE]Lairs are randomly distributed when a map is created. The lair types are[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_BARROW]Barrow[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_GOBLIN_FORT]Goblin Fort[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_RUINS]Ruins[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_GRAVEYARD]Graveyard[\LINK],[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_DUNGEON]Dungeon[\LINK] and[NEWLINE][TAB][ICON_BULLET] [LINK=IMPROVEMENT_SHIP_WRECK]Ship Wreck[\LINK].[NEWLINE][NEWLINE]Barrows, Goblin Forts and Ruins spawn barbarian creatures until they are destroyed. These units are scaled by wilderness value and technology, just as normal barbarian spawns. [NEWLINE]Lairs can only be destroyed by exploring them, which may awake barbarian units in the lair, depending on the environment and wilderness value (that then spawn on the lair's tile and attack you) or provide positive or negative "special" results (which may destroy the lair). The kind of results is determined by the following two parameters:[NEWLINE][NEWLINE][BOLD]Risk\Reward[\BOLD], which is solely determined by the wilderness value and changes the graveness of the outcomes, i.e. units are stronger (but might give more experience), bad special results are worse, good special results are better.[NEWLINE][NEWLINE][BOLD]Exploration chance[\BOLD], which is essentially the difference of the wilderness value and your unit's exploration capabilities, which depend on level and are raised by some promotions (as listed on the individual promotion's civilopedia pages). Exploration chance changes the quality of special results, but doesn't affect unit results or the chance of unit results.[NEWLINE][NEWLINE]Both parameters are shown when hovering over the "explore lair" button.[NEWLINE]Other changes from vanilla FfH:[NEWLINE][TAB][ICON_BULLET] Lairs now spawn only a limited number of units while old ones are still alive.[NEWLINE][TAB][ICON_BULLET] Unique Features and Goblin forts have a minimum wilderness.[NEWLINE][TAB][ICON_BULLET] Some lairs spawn a guardian on creation.[NEWLINE][TAB][ICON_BULLET] There are some new exploration results.[NEWLINE][NEWLINE][H2]Unique lairs[\H2][NEWLINE]In addition, some unique features can be explored, which doesn't destroy them, but makes them unable to be explored for 100 turns. The Risk\Reward is raised for unique lairs.[NEWLINE][NEWLINE][H2]Animal Lairs[\H2][NEWLINE]In addition to the lairs mentioned above, animals may create another type of lair when left alone for some time. Animals with higher experience are more likely to create a lair. These lairs spawn animals, but can't be explored; rather, they are destroyed by entering the tile with a unit, granting the unit experience in the process.[NEWLINE]</Spanish>
+	</TEXT>
+</Civ4GameText>

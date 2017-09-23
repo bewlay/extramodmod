@@ -4053,6 +4053,27 @@
 		<Height>4</Height>
 		<Attribute Class="Scalar">bNotBFS:1</Attribute>
 		<Attribute Class="RegionTest">0NW</Attribute>
+		<!-- Barrow // WILDERNESS 09/2013 lfgr / WildernessMisc  -->
+		<ArtRef Name="goal:IMPROVEMENT_BARROW">
+			<Attribute Class="Improvement">IMPROVEMENT_BARROW</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_COUN,ERA_ORDE,ERA_EMPY,ERA_RUNE,ERA_LEAF,ERA_OCTO,ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bCutTrees:1</Attribute>
+			<Attribute Class="Scalar">fCenterCut:30</Attribute>
+		</ArtRef>
+		<!-- Dungeon // WILDERNESS 09/2013 lfgr / WildernessMisc  -->
+		<ArtRef Name="goal:IMPROVEMENT_DUNGEON">
+			<Attribute Class="Improvement">IMPROVEMENT_DUNGEON</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_COUN,ERA_ORDE,ERA_EMPY,ERA_RUNE,ERA_LEAF,ERA_OCTO,ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bCutTrees:1</Attribute>
+			<Attribute Class="Scalar">fCenterCut:40</Attribute>
+		</ArtRef>
+		<!-- Graveyard // WILDERNESS 04/2015 lfgr / WildernessMisc  -->
+		<ArtRef Name="goal:IMPROVEMENT_GRAVEYARD">
+			<Attribute Class="Improvement">IMPROVEMENT_GRAVEYARD</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_COUN,ERA_ORDE,ERA_EMPY,ERA_RUNE,ERA_LEAF,ERA_OCTO,ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bCutTrees:1</Attribute>
+			<Attribute Class="Scalar">fCenterCut:30</Attribute>
+		</ArtRef>
 		<!-- mine -->
 		<ArtRef Name="goal:IMPROVEMENT_MINE">
 			<Attribute Class="Improvement">IMPROVEMENT_MINE</Attribute>
@@ -4144,6 +4165,22 @@
 			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_an.nif</Attribute>
 			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
 		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_CREATION">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_CREATION</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_an.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_FORCE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_FORCE</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_an.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_EARTH">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_EARTH</Attribute>
 			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL</Attribute>
@@ -4170,6 +4207,14 @@
 		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_FIRE">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_FIRE</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_an.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_ICE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_ICE</Attribute>
 			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL</Attribute>
 			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
 			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
@@ -4289,6 +4334,22 @@
 			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_ren.nif</Attribute>
 			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
 		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_CREATION">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_CREATION</Attribute>
+			<Attribute Class="Era">ERA_MEDIEVAL,ERA_COUN,ERA_ORDE</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_ren.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_FORCE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_FORCE</Attribute>
+			<Attribute Class="Era">ERA_MEDIEVAL,ERA_COUN,ERA_ORDE</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_ren.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_EARTH">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_EARTH</Attribute>
 			<Attribute Class="Era">ERA_MEDIEVAL,ERA_COUN,ERA_ORDE</Attribute>
@@ -4315,6 +4376,14 @@
 		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_FIRE">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_FIRE</Attribute>
+			<Attribute Class="Era">ERA_MEDIEVAL,ERA_COUN,ERA_ORDE</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_ren.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_ICE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_ICE</Attribute>
 			<Attribute Class="Era">ERA_MEDIEVAL,ERA_COUN,ERA_ORDE</Attribute>
 			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
 			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
@@ -4434,6 +4503,22 @@
 			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_ord.nif</Attribute>
 			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
 		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_CREATION">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_CREATION</Attribute>
+			<Attribute Class="Era">ERA_EMPY</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_ord.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_FORCE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_FORCE</Attribute>
+			<Attribute Class="Era">ERA_EMPY</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_ord.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_EARTH">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_EARTH</Attribute>
 			<Attribute Class="Era">ERA_EMPY</Attribute>
@@ -4460,6 +4545,14 @@
 		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_FIRE">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_FIRE</Attribute>
+			<Attribute Class="Era">ERA_EMPY</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_ord.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_ICE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_ICE</Attribute>
 			<Attribute Class="Era">ERA_EMPY</Attribute>
 			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
 			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
@@ -4584,6 +4677,24 @@
 			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
 			<Scale>0.8</Scale>
 		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_CREATION">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_CREATION</Attribute>
+			<Attribute Class="Era">ERA_RUNE</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_run.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+			<Scale>0.8</Scale>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_FORCE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_FORCE</Attribute>
+			<Attribute Class="Era">ERA_RUNE</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_run.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+			<Scale>0.8</Scale>
+		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_EARTH">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_EARTH</Attribute>
 			<Attribute Class="Era">ERA_RUNE</Attribute>
@@ -4613,6 +4724,15 @@
 		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_FIRE">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_FIRE</Attribute>
+			<Attribute Class="Era">ERA_RUNE</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_run.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+			<Scale>0.8</Scale>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_ICE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_ICE</Attribute>
 			<Attribute Class="Era">ERA_RUNE</Attribute>
 			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
 			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
@@ -4742,6 +4862,22 @@
 			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_lea.nif</Attribute>
 			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
 		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_CREATION">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_CREATION</Attribute>
+			<Attribute Class="Era">ERA_LEAF</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_lea.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_FORCE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_FORCE</Attribute>
+			<Attribute Class="Era">ERA_LEAF</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_lea.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_EARTH">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_EARTH</Attribute>
 			<Attribute Class="Era">ERA_LEAF</Attribute>
@@ -4768,6 +4904,14 @@
 		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_FIRE">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_FIRE</Attribute>
+			<Attribute Class="Era">ERA_LEAF</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_lea.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_ICE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_ICE</Attribute>
 			<Attribute Class="Era">ERA_LEAF</Attribute>
 			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
 			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
@@ -4892,6 +5036,24 @@
 			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
 			<Scale>0.85</Scale>
 		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_CREATION">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_CREATION</Attribute>
+			<Attribute Class="Era">ERA_OCTO</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_oct.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+			<Scale>0.85</Scale>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_FORCE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_FORCE</Attribute>
+			<Attribute Class="Era">ERA_OCTO</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_oct.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+			<Scale>0.85</Scale>
+		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_EARTH">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_EARTH</Attribute>
 			<Attribute Class="Era">ERA_OCTO</Attribute>
@@ -4921,6 +5083,15 @@
 		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_FIRE">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_FIRE</Attribute>
+			<Attribute Class="Era">ERA_OCTO</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_oct.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+			<Scale>0.85</Scale>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_ICE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_ICE</Attribute>
 			<Attribute Class="Era">ERA_OCTO</Attribute>
 			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
 			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
@@ -5055,6 +5226,24 @@
 			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
 			<Scale>1.5</Scale>
 		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_CREATION">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_CREATION</Attribute>
+			<Attribute Class="Era">ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_vei.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+			<Scale>1.5</Scale>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_FORCE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_FORCE</Attribute>
+			<Attribute Class="Era">ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_vei.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+			<Scale>1.5</Scale>
+		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_EARTH">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_EARTH</Attribute>
 			<Attribute Class="Era">ERA_VEIL</Attribute>
@@ -5085,6 +5274,15 @@
 		</ArtRef>
 		<ArtRef Name="goal:IMPROVEMENT_MANA_FIRE">
 			<Attribute Class="Improvement">IMPROVEMENT_MANA_FIRE</Attribute>
+			<Attribute Class="Era">ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
+			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
+			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/node/node_vei.nif</Attribute>
+			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/node/mine.kfm</Attribute>
+			<Scale>1.5</Scale>
+		</ArtRef>
+		<ArtRef Name="goal:IMPROVEMENT_MANA_ICE">
+			<Attribute Class="Improvement">IMPROVEMENT_MANA_ICE</Attribute>
 			<Attribute Class="Era">ERA_VEIL</Attribute>
 			<Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
 			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
@@ -5198,6 +5396,13 @@
 			<Attribute Class="Scalar">bZMode_Ground:1</Attribute>
 			<Attribute Class="Scalar">szForceContourGeometry:shadow</Attribute>
 		</ArtRef>
+		<!-- Goblin Fort // WILDERNESS 09/2013 lfgr / WildernessMisc  -->
+		<ArtRef Name="goal:IMPROVEMENT_GOBLIN_FORT">
+			<Attribute Class="Improvement">IMPROVEMENT_GOBLIN_FORT</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_COUN,ERA_ORDE,ERA_EMPY,ERA_RUNE,ERA_LEAF,ERA_OCTO,ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bCutTrees:1</Attribute>
+			<Attribute Class="Scalar">fCenterCut:50</Attribute>
+		</ArtRef>
 		<!-- Pasture -->
 		<ArtRef Name="goal:IMPROVEMENT_PASTURE">
 			<Attribute Class="Improvement">IMPROVEMENT_PASTURE</Attribute>
@@ -5213,6 +5418,13 @@
 			<Attribute Class="Scalar">bApplyRotation:1</Attribute>
 			<Attribute Class="Scalar">NIF:Art/Structures/Improvements/Quarry/Quarry.nif</Attribute>
 			<Attribute Class="Scalar">KFM:Art/Structures/Improvements/Quarry/Quarry.kfm</Attribute>
+		</ArtRef>
+		<!-- Ruins // WILDERNESS 09/2013 lfgr / WildernessMisc  -->
+		<ArtRef Name="goal:IMPROVEMENT_RUINS">
+			<Attribute Class="Improvement">IMPROVEMENT_RUINS</Attribute>
+			<Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_COUN,ERA_ORDE,ERA_EMPY,ERA_RUNE,ERA_LEAF,ERA_OCTO,ERA_VEIL</Attribute>
+			<Attribute Class="Scalar">bCutTrees:1</Attribute>
+			<Attribute Class="Scalar">fCenterCut:30</Attribute>
 		</ArtRef>
 		<!-- Windmill -->
 		<ArtRef Name="goal:IMPROVEMENT_WINDMILL">
@@ -5279,7 +5491,7 @@
 	<!-- *************************************************************************** -->
 	<!-- *************************************************************************** -->
 	<LProduction From="PLOT_ROOT">
-		<Attribute Class="Improvement">NO_IMPROVEMENT,IMPROVEMENT_ALL,!IMPROVEMENT_MANA_AIR,!IMPROVEMENT_MANA_BODY,!IMPROVEMENT_MANA_CHAOS,!IMPROVEMENT_MANA_DEATH,!IMPROVEMENT_MANA_DIMENSIONAL,!IMPROVEMENT_MANA_EARTH,!IMPROVEMENT_MANA_ENCHANTMENT,!IMPROVEMENT_MANA_ENTROPY,!IMPROVEMENT_MANA_FIRE,!IMPROVEMENT_MANA_LAW,!IMPROVEMENT_MANA_LIFE,!IMPROVEMENT_MANA_METAMAGIC,!IMPROVEMENT_MANA_MIND,!IMPROVEMENT_MANA_NATURE,!IMPROVEMENT_MANA_SHADOW,!IMPROVEMENT_MANA_SPIRIT,!IMPROVEMENT_MANA_SUN,!IMPROVEMENT_MANA_WATER,!IMPROVEMENT_WATER_WORKED,!IMPROVEMENT_MINE,!IMPROVEMENT_PASTURE,!IMPROVEMENT_QUARRY,!IMPROVEMENT_WHALING_BOATS,!IMPROVEMENT_WINDMILL,!IMPROVEMENT_FORT</Attribute>
+		<Attribute Class="Improvement">NO_IMPROVEMENT,IMPROVEMENT_ALL,!IMPROVEMENT_MANA_AIR,!IMPROVEMENT_MANA_BODY,!IMPROVEMENT_MANA_CHAOS,!IMPROVEMENT_MANA_CREATION,!IMPROVEMENT_MANA_DEATH,!IMPROVEMENT_MANA_DIMENSIONAL,!IMPROVEMENT_MANA_EARTH,!IMPROVEMENT_MANA_ENCHANTMENT,!IMPROVEMENT_MANA_ENTROPY,!IMPROVEMENT_MANA_FIRE,!IMPROVEMENT_MANA_FORCE,!IMPROVEMENT_MANA_ICE,!IMPROVEMENT_MANA_LAW,!IMPROVEMENT_MANA_LIFE,!IMPROVEMENT_MANA_METAMAGIC,!IMPROVEMENT_MANA_MIND,!IMPROVEMENT_MANA_NATURE,!IMPROVEMENT_MANA_SHADOW,!IMPROVEMENT_MANA_SPIRIT,!IMPROVEMENT_MANA_SUN,!IMPROVEMENT_MANA_WATER,!IMPROVEMENT_WATER_WORKED,!IMPROVEMENT_MINE,!IMPROVEMENT_PASTURE,!IMPROVEMENT_QUARRY,!IMPROVEMENT_WHALING_BOATS,!IMPROVEMENT_WINDMILL,!IMPROVEMENT_FORT</Attribute>
 		<To Name="Node_12x12"/>
 	</LProduction>
 	<LProduction From="PLOT_ROOT">
@@ -5290,7 +5502,7 @@
 	</LProduction>
 	<!-- *************************************************************************** -->
 	<LProduction From="PLOT_ROOT" Name="LandImprovementProd">
-		<Attribute Class="Improvement">IMPROVEMENT_MANA_AIR,IMPROVEMENT_MANA_BODY,IMPROVEMENT_MANA_CHAOS,IMPROVEMENT_MANA_DEATH,IMPROVEMENT_MANA_DIMENSIONAL,IMPROVEMENT_MANA_EARTH,IMPROVEMENT_MANA_ENCHANTMENT,IMPROVEMENT_MANA_ENTROPY,IMPROVEMENT_MANA_FIRE,IMPROVEMENT_MANA_LAW,IMPROVEMENT_MANA_LIFE,IMPROVEMENT_MANA_METAMAGIC,IMPROVEMENT_MANA_MIND,IMPROVEMENT_MANA_NATURE,IMPROVEMENT_MANA_SHADOW,IMPROVEMENT_MANA_SPIRIT,IMPROVEMENT_MANA_SUN,IMPROVEMENT_MANA_WATER</Attribute>
+		<Attribute Class="Improvement">IMPROVEMENT_MANA_AIR,IMPROVEMENT_MANA_BODY,IMPROVEMENT_MANA_CHAOS,IMPROVEMENT_MANA_CREATION,IMPROVEMENT_MANA_DEATH,IMPROVEMENT_MANA_DIMENSIONAL,IMPROVEMENT_MANA_EARTH,IMPROVEMENT_MANA_ENCHANTMENT,IMPROVEMENT_MANA_ENTROPY,IMPROVEMENT_MANA_FIRE,IMPROVEMENT_MANA_FORCE,IMPROVEMENT_MANA_ICE,IMPROVEMENT_MANA_LAW,IMPROVEMENT_MANA_LIFE,IMPROVEMENT_MANA_METAMAGIC,IMPROVEMENT_MANA_MIND,IMPROVEMENT_MANA_NATURE,IMPROVEMENT_MANA_SHADOW,IMPROVEMENT_MANA_SPIRIT,IMPROVEMENT_MANA_SUN,IMPROVEMENT_MANA_WATER</Attribute>
 		<Attribute Class="Bonus">BONUS_ALL</Attribute>
 		<Attribute Class="Scalar">bNotBFS:1</Attribute>
 		<To Name="Leaf_LandImprovement_4x4"/>

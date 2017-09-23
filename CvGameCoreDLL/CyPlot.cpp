@@ -1206,6 +1206,58 @@ void CyPlot::calculateChokeValue()
 }
 // Super Forts end
 
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+float CyPlot::calcTerrainFlavourWeight( /*TerrainFlavourTypes*/ int eTerrainFlavour, int iMaxPlotDistance )
+{
+	CvTerrainAmountCache kTerrainAmounts = m_pPlot->getTerrainAmounts( iMaxPlotDistance );
+	return m_pPlot ? m_pPlot->calcTerrainFlavourWeight( (TerrainFlavourTypes) eTerrainFlavour, &kTerrainAmounts ) : 0;
+}
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* WILDERNESS                             08/2013                                 lfgr          */
+/* ImprovementSpawnTypes, PlotWilderness, SpawnInfo                                             */
+/************************************************************************************************/
+
+int CyPlot::getLairDanger() const
+{
+	return m_pPlot ? m_pPlot->getLairDanger() : -1;
+}
+
+bool CyPlot::isLair( bool bIgnoreIsAnimal, bool bAnimal ) const
+{
+	return m_pPlot ? m_pPlot->isLair( bIgnoreIsAnimal, bAnimal ) : false;
+}
+
+int CyPlot::getWilderness() const
+{
+	return m_pPlot ? m_pPlot->getWilderness() : -1;
+}
+
+int CyPlot::getSpawnValue( int /*SpawnTypes*/ eSpawnType, bool bDungeon ) const
+{
+	return m_pPlot ? m_pPlot->getSpawnValue( (SpawnTypes) eSpawnType, true, bDungeon ) : -1;
+}
+
+void CyPlot::createSpawn( int /*SpawnTypes*/ eSpawnType, int /*UnitAITypes*/ eUnitAI )
+{
+	if( m_pPlot )
+	{
+		// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
+		int iMinWilderness = m_pPlot->calcMinWilderness( (SpawnTypes) eSpawnType );
+		// Choose a random number between this plot's wilderness and the required wilderness for the spawn
+		iMinWilderness += GC.getGameINLINE().getSorenRandNum( m_pPlot->getWilderness() - iMinWilderness, "Spawn Wilderness" );
+		m_pPlot->createSpawn( (SpawnTypes) eSpawnType,iMinWilderness, (UnitAITypes) eUnitAI );
+	}
+}
+/************************************************************************************************/
+/* WILDERNESS                                                                     END           */
+/************************************************************************************************/
+
 // Temporary Map Items (original code from FFH2 (Kael) and FlavorMod (Jean Elcard) - expanded on for MNAI)
 TerrainTypes CyPlot::getRealTerrainType() const
 {
