@@ -2056,7 +2056,7 @@
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- FRIENDLY_LOCALS -->
+		<EventTriggerInfo><!-- FRIENDLY_LOCALS lfgr:tweaked -->
 			<Type>EVENTTRIGGER_FRIENDLY_LOCALS</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_FRIENDLY_LOCALS_1</Text>
@@ -2081,6 +2081,11 @@
 			<bShowPlot>1</bShowPlot>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
 			<bRequiresValidEvent>1</bRequiresValidEvent>
+			<UnitPrereq>
+				<UnitPlotPrereq>
+					<bOwned>0</bOwned>
+				</UnitPlotPrereq>
+			</UnitPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- FROSTLING -->
 			<Type>EVENTTRIGGER_FROSTLING</Type>
@@ -6533,7 +6538,7 @@
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDo>canTriggerWhaleOfAThing</PythonCanDo>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- WITCH -->
+		<EventTriggerInfo><!-- WITCH lfgr:tweaked -->
 			<Type>EVENTTRIGGER_WITCH</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_WITCH</Text>
@@ -6554,7 +6559,6 @@
 				<Event>EVENT_WITCH_1</Event>
 				<Event>EVENT_WITCH_2</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
@@ -8143,33 +8147,6 @@
 				<Event>EVENT_ORPHANED_GOBLIN_4</Event>
 			</Events>
 			<bShowPlot>1</bShowPlot>
-		</EventTriggerInfo>
-		<EventTriggerInfo><!-- THAT_KIND_OF_DAY -->
-			<Type>EVENTTRIGGER_THAT_KIND_OF_DAY</Type>
-			<WorldNewsTexts>
-				<Text />
-			</WorldNewsTexts>
-			<TriggerTexts>
-				<TriggerText>
-					<Text>TXT_KEY_EVENT_THAT_KIND_OF_DAY</Text>
-					<Era>NONE</Era>
-				</TriggerText>
-			</TriggerTexts>
-			<EventArt>Art\EventImages\e_thatkindofday.dds</EventArt>
-			<bSinglePlayer>1</bSinglePlayer>
-			<iPercentGamesActive>100</iPercentGamesActive>
-			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
-			<Events>
-				<Event>EVENT_THAT_KIND_OF_DAY_1</Event>
-				<Event>EVENT_THAT_KIND_OF_DAY_2</Event>
-				<Event>EVENT_THAT_KIND_OF_DAY_3</Event>
-				<Event>EVENT_THAT_KIND_OF_DAY_4</Event>
-				<Event>EVENT_THAT_KIND_OF_DAY_5</Event>
-			</Events>
-			<bPickCity>1</bPickCity>
-			<PythonCanDo>CanTriggerThatKindOfDay</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PRINCESS_RULE -->
 			<Type>EVENTTRIGGER_PRINCESS_RULE</Type>

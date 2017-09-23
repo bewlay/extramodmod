@@ -4577,7 +4577,8 @@
 			<Type>EVENT_WITCH_1</Type>
 			<Description>TXT_KEY_EVENT_WITCH_1</Description>
 			<bPickCity>1</bPickCity>
-			<iHappyTurns>10</iHappyTurns>
+			<iHappy>1</iHappy>
+			<iHealth>-3</iHealth>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -4589,6 +4590,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<iGlobalCounter>-1</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- LUNATIC_1 -->
 			<Type>EVENT_LUNATIC_1</Type>
@@ -6368,55 +6370,6 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
-		</EventInfo>
-		<EventInfo><!-- THAT_KIND_OF_DAY_1 -->
-			<Type>EVENT_THAT_KIND_OF_DAY_1</Type>
-			<Description>TXT_KEY_EVENT_THAT_KIND_OF_DAY_1</Description>
-			<bPickCity>1</bPickCity>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doThatKindOfDay1</PythonCallback>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-		</EventInfo>
-		<EventInfo><!-- THAT_KIND_OF_DAY_2 -->
-			<Type>EVENT_THAT_KIND_OF_DAY_2</Type>
-			<Description>TXT_KEY_EVENT_THAT_KIND_OF_DAY_2</Description>
-			<bPickCity>1</bPickCity>
-			<iFoodPercent>-100</iFoodPercent>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doThatKindOfDay2</PythonCallback>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-		</EventInfo>
-		<EventInfo><!-- THAT_KIND_OF_DAY_3 -->
-			<Type>EVENT_THAT_KIND_OF_DAY_3</Type>
-			<Description>TXT_KEY_EVENT_THAT_KIND_OF_DAY_3</Description>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doThatKindOfDay3</PythonCallback>
-			<PythonCanDo>canDoThatKindOfDay3</PythonCanDo>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
-		</EventInfo>
-		<EventInfo><!-- THAT_KIND_OF_DAY_4 -->
-			<Type>EVENT_THAT_KIND_OF_DAY_4</Type>
-			<Description>TXT_KEY_EVENT_THAT_KIND_OF_DAY_4</Description>
-			<bPickCity>1</bPickCity>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doThatKindOfDay4</PythonCallback>
-			<PythonCanDo>canDoThatKindOfDay4</PythonCanDo>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-		</EventInfo>
-		<EventInfo><!-- THAT_KIND_OF_DAY_5 -->
-			<Type>EVENT_THAT_KIND_OF_DAY_5</Type>
-			<Description>TXT_KEY_EVENT_THAT_KIND_OF_DAY_5</Description>
-			<bPickCity>1</bPickCity>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doThatKindOfDay5</PythonCallback>
-			<PythonCanDo>canDoThatKindOfDay5</PythonCanDo>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- PRINCESS_RULE_1 -->
 			<Type>EVENT_PRINCESS_RULE_1</Type>
