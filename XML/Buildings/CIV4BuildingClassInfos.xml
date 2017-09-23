@@ -1668,18 +1668,6 @@
 			<DefaultBuilding>BUILDING_BEAR_TROPHY</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
-		<BuildingClassInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
-			<Type>BUILDINGCLASS_CROCODILE_TROPHY</Type>
-			<Description>TXT_KEY_BUILDING_CROCODILE_TROPHY</Description>
-			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
-			<iMaxTeamInstances>-1</iMaxTeamInstances>
-			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
-			<iExtraPlayerInstances>0</iExtraPlayerInstances>
-			<bNoLimit>0</bNoLimit>
-			<bMonument>0</bMonument>
-			<DefaultBuilding>BUILDING_CROCODILE_TROPHY</DefaultBuilding>
-			<VictoryThresholds/>
-		</BuildingClassInfo>
 		<BuildingClassInfo> <!-- WILDERNESS 09/2013 lfgr / NewUnits -->
 			<Type>BUILDINGCLASS_LION_TROPHY</Type>
 			<Description>TXT_KEY_BUILDING_LION_TROPHY</Description>
@@ -1750,18 +1738,6 @@
 			<bNoLimit>0</bNoLimit>
 			<bMonument>0</bMonument>
 			<DefaultBuilding>BUILDING_COBRA_CHARMER</DefaultBuilding>
-			<VictoryThresholds/>
-		</BuildingClassInfo>
-		<BuildingClassInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
-			<Type>BUILDINGCLASS_CROCODILE_CAGE</Type>
-			<Description>TXT_KEY_BUILDING_CROCODILE_CAGE</Description>
-			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
-			<iMaxTeamInstances>-1</iMaxTeamInstances>
-			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
-			<iExtraPlayerInstances>0</iExtraPlayerInstances>
-			<bNoLimit>0</bNoLimit>
-			<bMonument>0</bMonument>
-			<DefaultBuilding>BUILDING_CROCODILE_CAGE</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
 		<BuildingClassInfo> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->

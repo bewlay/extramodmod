@@ -2597,6 +2597,13 @@ public:
 	int getBonusYieldModifier(int i, int j) const;				// Exposed to Python
 	int* getBonusYieldModifierArray(int i) const;
 
+// WILDERNESS 03/2017 lfgr // GrandMenagerie
+// To build this building, a city needs getBuildingClassAnyNeededInCityCount() buildings from
+// the ones speficied with isBuildingClassAnyNeededInCity().
+	int getBuildingClassAnyNeededInCityCount() const;
+	bool isBuildingClassAnyNeededInCity( int i ) const;
+// WILDERNESS end
+
 	// Other
 
 	const CvArtInfoBuilding* getArtInfo() const;
@@ -2825,6 +2832,11 @@ protected:
 
 	int** m_ppaiSpecialistYieldChange;
 	int** m_ppaiBonusYieldModifier;
+
+// WILDERNESS 03/2017 lfgr // GrandMenagerie
+	int m_iBuildingClassAnyNeededInCityCount;
+	bool* m_pbBuildingClassAnyNeededInCity;
+// WILDERNESS end
 
 };
 

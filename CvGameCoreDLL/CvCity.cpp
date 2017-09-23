@@ -2673,6 +2673,25 @@ bool CvCity::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestVis
 				}
 			}
 		}
+
+	// WILDERNESS 03/2017 lfgr // GrandMenagerie
+		if( kBuilding.getBuildingClassAnyNeededInCityCount() > 0 )
+		{
+			int iCount = 0;
+			for( int eBuildingClass = 0; eBuildingClass < GC.getNumBuildingClassInfos(); eBuildingClass++ )
+			{
+				if( kBuilding.isBuildingClassAnyNeededInCity( eBuildingClass ) )
+				{
+					ePrereqBuilding = (BuildingTypes)( kCivilization.getCivilizationBuildings( eBuildingClass ) );
+					if( ePrereqBuilding != NO_BUILDING && getNumBuilding( ePrereqBuilding ) > 0 )
+						iCount++;
+				}
+			}
+
+			if( iCount < kBuilding.getBuildingClassAnyNeededInCityCount() )
+				return false;
+		}
+	// WILDERNESS end
 	}
 
 //FfH: Added by Kael 08/04/2007

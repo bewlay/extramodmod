@@ -141,33 +141,6 @@
 		<Finnish>TODO</Finnish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_UNIT_CROCODILE</Tag>
-		<English>Crocodile</English>
-		<French>Crocodile</French>
-		<German>Krokodil</German>
-		<Italian>Crocodile</Italian>
-		<Spanish>Cocodrilo</Spanish>
-		<Finnish>Crocodile</Finnish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_UNIT_CROCODILE_GIANT</Tag>
-		<English>Giant Cobra</English>
-		<French>Giant Cobra</French>
-		<German>Riesenkobra</German>
-		<Italian>Giant Cobra</Italian>
-		<Spanish>Cocodrilo Gigante</Spanish>
-		<Finnish>Giant Cobra</Finnish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_UNIT_CROCODILE_PEDIA</Tag>
-		<English>TODO</English>
-		<French>TODO</French>
-		<German>TODO</German>
-		<Italian>TODO</Italian>
-		<Spanish>TODO</Spanish>
-		<Finnish>TODO</Finnish>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_UNIT_GHOUL</Tag>
 		<English>Ghoul</English>
 		<French>Ghoul</French>
@@ -359,14 +332,6 @@
 		<Spanish>TODO</Spanish>
 		<Finnish>TODO</Finnish>
 	</TEXT>
-	<TEXT> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
-		<Tag>TXT_KEY_BUILDING_CROCODILE_TROPHY</Tag>
-		<English>Crocodile Trophy</English>
-		<French>Crocodile Trophy</French>
-		<German>Crocodile Trophy</German>
-		<Italian>Crocodile Trophy</Italian>
-		<Spanish>Crocodile Trophy</Spanish>
-	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_LION_TROPHY</Tag>
 		<English>Lion Trophy</English>
@@ -471,14 +436,6 @@
 		<German>Cobra Charmer</German>
 		<Italian>Cobra Charmer</Italian>
 		<Spanish>Cobra Charmer</Spanish>
-	</TEXT>
-	<TEXT> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
-		<Tag>TXT_KEY_BUILDING_CROCODILE_CAGE</Tag>
-		<English>Crocodile Cage</English>
-		<French>Crocodile Cage</French>
-		<German>Crocodile Cage</German>
-		<Italian>Crocodile Cage</Italian>
-		<Spanish>Crocodile Cage</Spanish>
 	</TEXT>
 	<TEXT> <!-- WILDERNESS 08/2016 lfgr / NewUnits -->
 		<Tag>TXT_KEY_BUILDING_GRIFFON_AERIE</Tag>

@@ -13,6 +13,25 @@ void CyInfoPythonInterface4()
 	OutputDebugString("Python Extension Module - CyInfoPythonInterface4\n");
 	
 /************************************************************************************************/
+/* TERRAIN_FLAVOUR                        03/2013                                 lfgr          */
+/************************************************************************************************/
+	python::class_<CvTerrainFlavourInfo, python::bases<CvInfoBase> >("CvTerrainFlavourInfo")
+		.def("getBaseWeight", &CvTerrainFlavourInfo::getBaseWeight, "int ()")
+		.def("getIsolationPercentWeight", &CvTerrainFlavourInfo::getIsolationPercentWeight, "int ()")
+		.def("getCoastalWeight", &CvTerrainFlavourInfo::getCoastalWeight, "int ()")
+		
+		.def("getPlotPercentWeight", &CvTerrainFlavourInfo::getPlotPercentWeight, "int (PlotTypes ePlot)")
+		.def("getTerrainPercentWeight", &CvTerrainFlavourInfo::getTerrainPercentWeight, "int (TerrainTypes eTerrain)")
+		.def("getFeaturePercentWeight", &CvTerrainFlavourInfo::getFeaturePercentWeight, "int (FeatureTypes eFeature)")
+		.def("getImprovementCountWeight", &CvTerrainFlavourInfo::getImprovementCountWeight, "int (ImprovementTypes eImprovement)")
+		.def("getBonusCountWeight", &CvTerrainFlavourInfo::getBonusCountWeight, "int (BonusTypes eBonus)")
+		.def("getYieldOnPlotPercentWeight", &CvTerrainFlavourInfo::getYieldOnPlotPercentWeight, "int (YieldTypes eYield)")
+		;
+/************************************************************************************************/
+/* TERRAIN_FLAVOUR                                                                END           */
+/************************************************************************************************/
+	
+/************************************************************************************************/
 /* WILDERNESS                             08/2013                                 lfgr          */
 /* SpawnInfo                                                                                    */
 /************************************************************************************************/

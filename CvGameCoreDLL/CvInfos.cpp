@@ -9926,10 +9926,14 @@ m_ppaiSpecialistCommerceChange(NULL),
 /*************************************************************************************************/
 /**	BETTER AI (New Definitions) Sephi                                           				**/
 /*************************************************************************************************/
-m_bVictoryBuilding(false)
+m_bVictoryBuilding(false),
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
+// WILDERNESS 03/2017 lfgr // GrandMenagerie
+m_iBuildingClassAnyNeededInCityCount( 0 ),
+m_pbBuildingClassAnyNeededInCity( NULL )
+// WILDERNESS end
 
 {
 }
@@ -9979,6 +9983,9 @@ CvBuildingInfo::~CvBuildingInfo()
 	SAFE_DELETE_ARRAY(m_pbCommerceFlexible);
 	SAFE_DELETE_ARRAY(m_pbCommerceChangeOriginalOwner);
 	SAFE_DELETE_ARRAY(m_pbBuildingClassNeededInCity);
+// WILDERNESS 03/2017 lfgr // GrandMenagerie
+	SAFE_DELETE_ARRAY( m_pbBuildingClassAnyNeededInCity );
+// WILDERNESS end
 
 	if (m_ppaiSpecialistYieldChange != NULL)
 	{
@@ -11111,6 +11118,20 @@ int* CvBuildingInfo::getBonusYieldModifierArray(int i) const
 	return m_ppaiBonusYieldModifier[i];
 }
 
+// WILDERNESS 03/2017 lfgr // GrandMenagerie
+int CvBuildingInfo::getBuildingClassAnyNeededInCityCount() const
+{
+	return m_iBuildingClassAnyNeededInCityCount;
+}
+
+bool CvBuildingInfo::isBuildingClassAnyNeededInCity( int  i) const
+{
+	FAssertMsg( i < GC.getNumBuildingClassInfos(), "Index out of bounds" );
+	FAssertMsg( i > -1, "Index out of bounds" );
+	return m_pbBuildingClassAnyNeededInCity ? m_pbBuildingClassAnyNeededInCity[i] : false;
+}
+// WILDERNESS end
+
 const TCHAR* CvBuildingInfo::getButton() const
 {
 	const CvArtInfoBuilding * pBuildingArtInfo;
@@ -11480,6 +11501,14 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_pbBuildingClassNeededInCity);
 	m_pbBuildingClassNeededInCity = new bool[GC.getNumBuildingClassInfos()];
 	stream->Read(GC.getNumBuildingClassInfos(), m_pbBuildingClassNeededInCity);
+	
+// WILDERNESS 03/2017 lfgr // GrandMenagerie
+	stream->Read( &m_iBuildingClassAnyNeededInCityCount );
+
+	SAFE_DELETE_ARRAY( m_pbBuildingClassAnyNeededInCity );
+	m_pbBuildingClassAnyNeededInCity = new bool[GC.getNumBuildingClassInfos()];
+	stream->Read( GC.getNumBuildingClassInfos(), m_pbBuildingClassAnyNeededInCity );
+// WILDERNESS end
 
 	int i;
 	if (m_ppaiSpecialistYieldChange != NULL)
@@ -11747,6 +11776,11 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(NUM_COMMERCE_TYPES, m_pbCommerceFlexible);
 	stream->Write(NUM_COMMERCE_TYPES, m_pbCommerceChangeOriginalOwner);
 	stream->Write(GC.getNumBuildingClassInfos(), m_pbBuildingClassNeededInCity);
+
+// WILDERNESS 03/2017 lfgr // GrandMenagerie
+	stream->Write( m_iBuildingClassAnyNeededInCityCount );
+	stream->Write( GC.getNumBuildingClassInfos(), m_pbBuildingClassAnyNeededInCity );
+// WILDERNESS end
 
 	int i;
 	for(i=0;i<GC.getNumSpecialistInfos();i++)
@@ -12298,6 +12332,11 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->SetVariableListTagPair(&m_piPrereqNumOfBuildingClass, "PrereqBuildingClasses", sizeof(GC.getBuildingClassInfo((BuildingClassTypes)0)), GC.getNumBuildingClassInfos());
 	pXML->SetVariableListTagPair(&m_pbBuildingClassNeededInCity, "BuildingClassNeededs", sizeof(GC.getBuildingClassInfo((BuildingClassTypes)0)), GC.getNumBuildingClassInfos());
+
+// WILDERNESS 03/2017 lfgr // GrandMenagerie
+	pXML->GetChildXmlValByName( &m_iBuildingClassAnyNeededInCityCount, "iBuildingClassAnyNeededCount", 0 );
+	pXML->SetVariableList( &m_pbBuildingClassAnyNeededInCity, "BuildingClassAnyNeededs", GC.getNumBuildingClassInfos(), false );
+// WILDERNESS end
 
 	pXML->Init2DIntList(&m_ppaiSpecialistYieldChange, GC.getNumSpecialistInfos(), NUM_YIELD_TYPES);
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"SpecialistYieldChanges"))

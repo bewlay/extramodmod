@@ -551,14 +551,16 @@ void CvPlot::doTurn()
 
 		SpawnTypes eBestSpawn = NO_SPAWN;
 		int iBestValue = 0;
-		bool bSpawnAvailable = false;
+		bool bShouldSpawn = false; // later set to true if the improvement should definitely spawn something
 
 		for( int eLoopSpawn = 0; eLoopSpawn < GC.getNumSpawnInfos(); eLoopSpawn++ )
 		{
 			if( GC.getImprovementInfo( getImprovementType() ).getSpawnTypes( eLoopSpawn ) )
 			{
-				bSpawnAvailable = true;
 				CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
+
+				if( !( kLoopSpawn.isAnimal() && isOwned() && GET_PLAYER( getOwnerINLINE() ).isBarbarian() ) )
+					bShouldSpawn = true;
 
 				int iValue = getSpawnValue( (SpawnTypes) eLoopSpawn );
 
@@ -632,7 +634,7 @@ void CvPlot::doTurn()
 							if( !bDefended && !kBestSpawn.isNoDefender() )
 								eUnitAI = UNITAI_LAIRGUARDIAN;
 							
-							logBBAI("WILDERNESS - Spawning from lair" );
+							logTo( "wilderness - %S.log", "Spawning from lair" );
 							
 							// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
 							int iMinWilderness = calcMinWilderness( eBestSpawn );
@@ -646,9 +648,9 @@ void CvPlot::doTurn()
         }
 		else
 		{
-			if( bSpawnAvailable && !GC.getImprovementInfo( getImprovementType() ).isUnique() )
+			if( bShouldSpawn && !GC.getImprovementInfo( getImprovementType() ).isUnique() )
 			{
-				logBBAI("WILDERNESS - ImprovementSpawnTypes - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
+				logTo( "wilderness - %S.log", "ImprovementSpawnTypes - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
 						getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( getTerrainType() ).getType() : "NONE",
 						getFeatureType() != NO_FEATURE ? GC.getFeatureInfo( getFeatureType() ).getType() : "NONE",
 						getImprovementType() != NO_IMPROVEMENT ? GC.getImprovementInfo( getImprovementType() ).getType() : "NONE" );
@@ -7133,7 +7135,7 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 				}
 				if( eBestSpawn != NO_SPAWN )
 				{
-					logBBAI("WILDERNESS - Spawning lair defender" );
+					logTo( "wilderness - %S.log", "Spawning lair defender" );
 
 					// Performance: This invokes the SpawnPrereq calculation again, but I think doing this only once won't affect performance much.
 					int iMinWilderness = calcMinWilderness( eBestSpawn );
@@ -7146,7 +7148,7 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 				{
 					if( bSpawnAvailable )
 					{
-						logBBAI("WILDERNESS - LairGuardian - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
+						logTo( "wilderness - %S.log", "LairGuardian - NO SpawnInfo chosen! Wilderness: %d, Terrain: %s, Feature: %s, Improvement: %s", getWilderness(),
 								getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( getTerrainType() ).getType() : "NONE",
 								getFeatureType() != NO_FEATURE ? GC.getFeatureInfo( getFeatureType() ).getType() : "NONE",
 								getImprovementType() != NO_IMPROVEMENT ? GC.getImprovementInfo( getImprovementType() ).getType() : "NONE" );
@@ -13284,7 +13286,7 @@ int CvPlot::getSpawnValue( SpawnTypes eSpawn, bool bCheckTech, bool bDungeon, bo
 	if( !bIgnoreTerrain && area()->isWater() != kSpawn.isWater() )
 		return 0;
 
-	if( !bIgnoreTerrain && isOwned() && kSpawn.isAnimal() )
+	if( !bIgnoreTerrain && kSpawn.isAnimal() && isOwned() && ! GET_PLAYER( getOwnerINLINE() ).isBarbarian() )
 		return 0;
 
 	if( !( GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) && kSpawn.isNoWildernessIgnoreSpawnPrereq() ) )
@@ -13319,7 +13321,7 @@ void CvPlot::createSpawn( SpawnTypes eSpawn, int iMinWilderness, UnitAITypes eUn
 
 	CvSpawnInfo& kSpawn = GC.getSpawnInfo( eSpawn );
 	
-	logBBAI( "Creating spawn %s%s", kSpawn.getType(), iLairPlot != -1 ? " from lair" : "" );
+	logTo( "wilderness - %S.log", "Creating spawn %s%s", kSpawn.getType(), iLairPlot != -1 ? " from lair" : "" );
 
 	CvUnit* pHeadUnit = NULL;
 

@@ -189,9 +189,11 @@ class CustomFunctions:
 		if( eSpawn == None ) :
 			iDestroyLair = self.doNonSpawnOutcome( pUnit, tOutcome )
 		else :
-			if( CyGame().getSorenRandNum( 100, "Explore Lair" ) < 50 ) :
+			if( CyGame().getSorenRandNum( 100, "Explore Lair" ) < 30 ) :
+				CvUtil.pyPrint( "Explore Lair: spawning unit" )
 				iDestroyLair = self.doSpawn( pUnit, eSpawn )
 			else :
+				CvUtil.pyPrint( "Explore Lair: non-spawn outcome" )
 				iDestroyLair = self.doNonSpawnOutcome( pUnit, tOutcome )
 		
 		if iDestroyLair > CyGame().getSorenRandNum( 100, "Explore Lair" ):

@@ -4773,7 +4773,7 @@ def helpExploreLair( lpUnits, bEpic ) :
 	elif( iChallenge >= 35 ) :
 		sChallenge = CyTranslator().getText( 'TXT_KEY_EXPLORE_LAIR_LEVEL_2', () )
 	
-	iOdds = ( 2 * iChallengeHandling + 50 ) # 100 * ( iChallengeHandling / 50.0 + 1/2.0 )
+	iOdds = ( iChallengeHandling / 2 + 50 )
 	iOdds = min( 100, max( 0, iOdds ) )
 	
 	sHelp = CyTranslator().getText( 'TXT_KEY_UNIT_EXPLORATION_SKILLS', ( sExploLevel, ) )
