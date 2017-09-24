@@ -12,6 +12,9 @@
 class CvPlot;
 
 
+/**
+ * Requires the given plot to be owned by any player.
+ */
 class CvPlotOwnedPrereq : public CvPrereq<CvPlot>
 {
 public :

@@ -15,6 +15,9 @@
 class CvPlayer;
 
 
+/**
+ * Requires the player to have the specified civic.
+ */
 class CvPlayerCivicPrereq : public CvPrereq<CvPlayer>
 {
 public :
@@ -34,6 +37,9 @@ private :
 };
 
 
+/**
+ * Requires the player to be of the specified civilization.
+ */
 class CvPlayerCivilizationPrereq : public CvPrereq<CvPlayer>
 {
 public :

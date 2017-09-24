@@ -466,6 +466,9 @@ def applyExploreLairPortal1(argsList):
 		CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_EXPLORE_LAIR_PORTAL",()),'',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pBestPlot.getX(),pBestPlot.getY(),True,True)
 
 def doFlareEntropyNode(argsList):
+	"""
+	Changes adjacent plots to hell terrain
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = CyMap().plot(kTriggeredData.iPlotX,kTriggeredData.iPlotY)
 	point = pPlot.getPoint()
@@ -479,6 +482,9 @@ def doFlareEntropyNode(argsList):
 	CyGame().changeGlobalCounter(2)
 
 def doFlareFireNode(argsList):
+	"""
+	Starts fire in all adjacent forests or jungles
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = CyMap().plot(kTriggeredData.iPlotX,kTriggeredData.iPlotY)
 	point = pPlot.getPoint()
@@ -497,6 +503,9 @@ def doFlareFireNode(argsList):
 						CyInterface().addMessage(pPlot.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_FLAMES", ()),'',1,'Art/Interface/Buttons/Fire.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
 
 def doFlareLifeNode(argsList):
+	"""
+	Sanctifies adjacent plots
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = CyMap().plot(kTriggeredData.iPlotX,kTriggeredData.iPlotY)
 	point = pPlot.getPoint()
@@ -510,6 +519,9 @@ def doFlareLifeNode(argsList):
 	CyGame().changeGlobalCounter(-2)
 
 def doFlareNatureNode(argsList):
+	"""
+	Creates "new forests" on all adjacent plots
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = CyMap().plot(kTriggeredData.iPlotX,kTriggeredData.iPlotY)
 	point = pPlot.getPoint()
@@ -531,6 +543,9 @@ def doFlareNatureNode(argsList):
 							pPlot.setFeatureType(iForestNew, 0)
 
 def doFlareWaterNode(argsList):
+	"""
+	Changes desert to plains and puts out fires on adjacent nodes
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = CyMap().plot(kTriggeredData.iPlotX,kTriggeredData.iPlotY)
 	point = pPlot.getPoint()
@@ -3414,6 +3429,9 @@ def canTriggerLiteracy(argsList):
 ######## ESTEEMEED_PLAYWRIGHT ###########
 
 def canTriggerEsteemedPlaywright(argsList):
+	"""
+	Player doesn't run Slavery Civic
+	"""
 	kTriggeredData = argsList[0]
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	

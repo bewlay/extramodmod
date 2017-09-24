@@ -32,6 +32,9 @@ const std::string getCurrentTagName( FXml* xml );
 // GENERIC
 //--------------
 
+/**
+ * Superclass to check requirements on any given object.
+ */
 template<class T>
 class CvPrereq
 {
@@ -68,6 +71,9 @@ void readChildPrereqs( CvXMLLoadUtility* pXml, std::vector<CvPrereq<T>*>& vpDest
 }
 
 
+/**
+ * Requires the given object to fulfill all of the specified requirements.
+ */
 template<class T>
 class CvAndPrereq : public CvPrereq<T>
 {
@@ -112,6 +118,9 @@ template<class T>
 const std::string CvAndPrereq<T>::TAG = "And";
 
 
+/**
+ * Requires the given object to fulfill any of the specified requirements.
+ */
 template<class T>
 class CvOrPrereq : public CvPrereq<T>
 {
@@ -156,6 +165,9 @@ template<class T>
 const std::string CvOrPrereq<T>::TAG = "Or";
 
 
+/**
+ * Requires the given object to not fulfill the specified requirement.
+ */
 template<class T>
 class CvNotPrereq : public CvPrereq<T>
 {

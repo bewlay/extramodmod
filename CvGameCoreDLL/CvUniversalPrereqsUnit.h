@@ -15,6 +15,9 @@
 class CvUnit;
 
 
+/**
+ * Requires the plot of the given unit to fulfill the specified requirement.
+ */
 class CvUnitPlotPrereq : public CvPrereq<CvUnit>
 {
 public :
@@ -32,6 +35,10 @@ private :
 	CvPrereq<CvPlot>* m_pPlotPrereq;
 };
 
+
+/**
+ * Requires the given unit to be alive.
+ */
 class CvUnitAlivePrereq : public CvPrereq<CvUnit>
 {
 public :
@@ -49,6 +56,10 @@ private :
 	bool m_bAlive;
 };
 
+
+/**
+ * Requires the given unit to have the specified promotion.
+ */
 class CvUnitHasPromotionPrereq : public CvPrereq<CvUnit>
 {
 public :
@@ -65,7 +76,6 @@ public :
 private :
 	PromotionTypes m_ePromotion;
 };
-
 
 
 #endif /* CVUNIVERSALPREREQSUNIT_H_ */
