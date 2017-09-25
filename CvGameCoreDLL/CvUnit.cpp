@@ -4562,7 +4562,7 @@ void CvUnit::gift(bool bTestTransport)
 	FAssertMsg(plot()->getOwnerINLINE() != NO_PLAYER, "plot()->getOwnerINLINE() is not expected to be equal with NO_PLAYER");
 // lfgr 04/2014 bugfix
 //	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType());
-	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType(), NO_DIRECTION, true, "", true);
+	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType(), NO_DIRECTION, true, true);
 // lfgr end
 
 	FAssertMsg(pGiftUnit != NULL, "GiftUnit is not assigned a valid value");
