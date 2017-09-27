@@ -5731,7 +5731,10 @@ void CvGame::setForceControl(ForceControlTypes eIndex, bool bEnabled)
 }
 
 
-int CvGame::getUnitCreatedCount(UnitTypes eIndex)
+// UNIVERSAL_PREREQS 09/2017 lfgr
+//int CvGame::getUnitCreatedCount(UnitTypes eIndex)
+int CvGame::getUnitCreatedCount(UnitTypes eIndex) const
+// UNIVERSAL_PREREQS end
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
 	FAssertMsg(eIndex < GC.getNumUnitInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
