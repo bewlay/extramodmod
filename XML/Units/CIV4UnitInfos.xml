@@ -21940,6 +21940,7 @@
 			</FreePromotions>
 			<iCombatDefense>9</iCombatDefense>
 			<iTier>4</iTier>
+			<PrereqCiv>CIVILIZATION_KURIOTATES</PrereqCiv>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_QUEEN_OF_THE_LINE -->
 			<Class>UNITCLASS_QUEEN_OF_THE_LINE</Class>
