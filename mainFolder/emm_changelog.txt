@@ -34,7 +34,7 @@ Recruit (Great generals) is now an ability, not a spell.
 
 Prevent UI errors when one of the customizable progress bars is full.
 
-Fixedx an error with the add to flesh golem spell.
+Fixed an error with the add to flesh golem spell.
 
 The Seraph now has the same collateral damage values than the rest of the units with the Berserker unit class.
 
@@ -278,7 +278,7 @@ New spawn choice mechanic, updated spawn information.
 
 Aeron's chosen grants +10% better results from lair exploration.
 
-Added spanish translation.
+Added Spanish translation.
 
 Fixed some text strings.
 
@@ -1239,7 +1239,7 @@ Kuriotates start with Nationhood instead of Religion.
 Fixes
 ===============================================================================
 
-Force english language for the OOSLogger.
+Force English language for the OOSLogger.
 
 Infernal conquest OOS error.
 
