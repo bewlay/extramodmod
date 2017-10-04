@@ -28,24 +28,24 @@ Event art
 	e_bardstale.dds - ???
 	e_bareke.dds - not found with tineye.com (original?)
 	e_boardgame.dds - Fall from Heaven, Jason Engle
-	e_bowyer.dds
-	e_bread.dds
-	e_breakthrough.dds
-	e_brothersinneed.dds
-	e_calabimsanctuary.dds
-	e_carelessapprentice.dds
-	e_carnivalstar.dds
-	e_centaurpants.dds
-	e_centaurtribe.dds
-	e_champion.dds
-	e_circleofgaelan.dds
-	e_cityfeudarson.dds
-	e_cityfeudmerc.dds
-	e_cityfeudstart.dds
-	e_cityruins.dds
-	e_clairone.dds
-	e_controversialphilosopher.dds
-	e_cookbook.dds
+	e_bowyer.dds - ???
+	e_bread.dds - ??? (http://boribab.tistory.com/2636)
+	e_breakthrough.dds - Justin Sweet (http://www.justinsweet.com/GALLERY/HTMLS/048_MADSLGHT.html)
+	e_brothersinneed.dds - ??? (Dungeons & Dragons?)
+	e_calabimsanctuary.dds - ???
+	e_carelessapprentice.dds - ??? (dreamworlds.ru?)
+	e_carnivalstar.dds - TARGETE (targete.deviantart.com)
+	e_centaurpants.dds - ???
+	e_centaurtribe.dds - ??? (World of Warcraft)
+	e_champion.dds - Ralph Horsley, Pathfinder (https://www.deviantart.com/art/Taldor-Echoes-of-Glory-120037313)
+	e_circleofgaelan.dds - ???
+	e_cityfeudarson.dds - ???
+	e_cityfeudmerc.dds - ???
+	e_cityfeudstart.dds - Clyde Caldwell
+	e_cityruins.dds - Rob Alexander, Wizards
+	e_clairone.dds - ???
+	e_controversialphilosopher.dds - Alan Pollack
+	e_cookbook.dds - Donato Giancola, Wizards of the Coast
 	e_corruptjudge.dds
 	e_corruptmerchant.dds
 	e_councilgift.dds
