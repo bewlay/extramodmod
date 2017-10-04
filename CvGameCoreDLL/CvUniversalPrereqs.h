@@ -59,7 +59,9 @@ void readChildPrereqs( CvXMLLoadUtility* pXml, std::vector<CvPrereq<T>*>& vpDest
 		while( pXml->SkipToNextVal() )
 		{
 			CvPrereq<T>* pChildPrereq = CvPrereq<T>::readPrereq( pXml );
-			FAssertMsg( pChildPrereq != NULL, "Error: Couldn't read child Prereq" );
+			FAssertMsg( pChildPrereq != NULL, CvString::format(
+					"Couldn't read child prereq <%s>",
+					getCurrentTagName( pXml->GetXML() ).c_str() ) );
 			vpDest.push_back( pChildPrereq );
 
 			if( ! gDLL->getXMLIFace()->NextSibling( pXml->GetXML() ) )
