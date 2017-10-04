@@ -7285,8 +7285,10 @@ public:
 //FfH: End Add
 
 // UNIVERSAL_PREREQS 08/2017 lfgr 
-	CvPrereq<CvUnit>* getUnitPrereq() const;
+	CvPrereq<CvGame>* getGamePrereq() const;
+	CvPrereq<CvPlayer>* getPlayerPrereq() const;
 	CvPrereq<CvPlot>* getPlotPrereq() const;
+	CvPrereq<CvUnit>* getUnitPrereq() const;
 // UNIVERSAL_PREREQS end
 
 	void read(FDataStreamBase* );
@@ -7404,8 +7406,10 @@ private:
 //FfH: End Add
 
 // UNIVERSAL_PREREQS 08/2017 lfgr 
-	CvPrereq<CvUnit>* m_pUnitPrereq;
+	CvPrereq<CvGame>* m_pGamePrereq;
+	CvPrereq<CvPlayer>* m_pPlayerPrereq;
 	CvPrereq<CvPlot>* m_pPlotPrereq;
+	CvPrereq<CvUnit>* m_pUnitPrereq;
 // UNIVERSAL_PREREQS end
 
 };

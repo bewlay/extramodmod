@@ -53,6 +53,10 @@
 #include "CvBugOptions.h"
 // BUG - Ignore Harmless Barbarians - end
 
+// UNIVERSAL_PREREQS 08/2017 lfgr
+#include "CvUniversalPrereqs.h"
+// UNIVERSAL_PREREQS end
+
 
 // Public Functions...
 
@@ -24392,6 +24396,15 @@ int CvPlayer::getEventTriggerWeight(EventTriggerTypes eTrigger) const
 			return 0;
 		}
 	}
+
+// UNIVERSAL_PREREQS 09/2017 lfgr
+	if( kTrigger.getGamePrereq() != NULL 
+			&& ! kTrigger.getGamePrereq()->isValid( &( GC.getGameINLINE() ) ) )
+		return 0;
+	if( kTrigger.getPlayerPrereq() != NULL 
+			&& ! kTrigger.getPlayerPrereq()->isValid( this ) )
+		return 0;
+// UNIVERSAL_PREREQS end
 
 	// lfgr cmt: calc weight (probability)
 
