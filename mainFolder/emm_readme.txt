@@ -41,7 +41,7 @@ To Kael and the rest of the Fall from Heaven II team, for all of their work in m
 
 Tholal, for his great work with the AI, bugfixing and new features in More Naval AI.
 
-Sareln, for coordinating the playtesting discussions about Erebus in the Balance and implementing the changes from which ExtraModMod borrows a lot.
+Sareln and Qgqqqqq, for coordinating the playtesting discussions about Erebus in the Balance and implementing the changes from which ExtraModMod borrows a lot.
 
 To the people at the #erebus IRC channel, for helping me with my modding questions.
 

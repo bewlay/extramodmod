@@ -9,9 +9,9 @@ All changes in comparison with the most recently merged More Naval AI version ar
 Other
 ===============================================================================
 
-Multiple Production. When city production is enough to finish next queue item, more than one item is finished in the same turn.
+Animals, barbarians and lairs have been extensively improved and modified. The strength of barbarians and animals now depend on the minimum distance of their spawning tile to any player's starting point (called wilderness value). There are more variety, and better rewards. To know more details, check the Wilderness concept page in the game.
 
-Many improvements to barbarians, lairs and wilderness. Check the BarbsPlus features page. Bear in mind that ExtraModMod currently only includes the features of Wilderness and TerrainFlavour.
+Multiple Production. When city production is enough to finish next queue item, more than one item is finished in the same turn.
 
 Leader categories, and new game options to allow to disable random generation of non canon leaders.
 
