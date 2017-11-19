@@ -5,9 +5,9 @@ ExtraModMod Changelog
 ExtraModMod 0.6.0-beta1
 ===============================================================================
 
-More Naval AI version: 2.7
+More Naval AI version: 2.71 with additional bugfixes.
 
-MapScriptTools version: 1.0x
+MapScriptTools version: 1.06 with additional bugfixes.
 
 Erebus in the Balance version: 12.1
 
@@ -15,13 +15,17 @@ Erebus in the Balance version: 12.1
 Features
 ===============================================================================
 
-xxx
+The map size of all mst MapScripts is now proportional to the actual Fall from Heaven 2 map sizes instead of being hardcoded.
+
+Archipelago_mst MapScript with all of MapScriptTools extra features.
+
+Pangaea_mst MapScript with all of MapScriptTools extra features.
 
 
 Changes
 ===============================================================================
 
-The Lanun bonus for getting more food at sea is now tied to the civilization instead of to the palace.
+The Lanun bonus for getting more food at sea is now tied to the civilization instead of to the palace. Tolerant leaders that conquer a Lanun city will get this bonus immediately in it, but they will no longer be able to build a Lanun Palace to get the bonus in all of their cities.
 
 Infernals are no longer able to research Sanitation and Medicine.
 
@@ -41,6 +45,8 @@ The Seraph now has the same collateral damage values than the rest of the units 
 
 More Naval AI changes
 ===============================================================================
+
+When Hyborem or Basium are resurrected, the civilization will get its leader traits back.
 
 Unhealthiness in city and global unhealthiness was swapped in Event description
 
@@ -202,7 +208,7 @@ Fixed a possible CTD caused by missing updateWorkingCity() calls.
 BarbsPlus changes
 ===============================================================================
 
-Concept page for wilderness.
+Concept page for Wilderness.
 
 Grand Menagerie now requires 6 out of 8 specific animal buildings.
 
@@ -260,7 +266,7 @@ Removing auto-upgrade of scorpion clan goblins and of high-level spectre to wrai
 
 Added exploration spawn messages.
 
-Added Bandits Spawn.
+Added Bandits spawn.
 
 Forces the Unit AI specified in their spawn information.
 
