@@ -400,6 +400,13 @@ def postCombatWolfRider(pCaster, pOpponent):
 		newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_WOLF_RIDER'), pCaster.getX(), pCaster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 		newUnit.convert(pCaster)
 
+def postCombatScorpionClan(pCaster, pOpponent):
+	if (pOpponent.getUnitType() == gc.getInfoTypeForString('UNIT_WOLF') or pOpponent.getUnitType() == gc.getInfoTypeForString('UNIT_WOLF_PACK')):
+		CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_WOLF_RIDER", ()),'',1,'Art/Interface/Buttons/Units/Wolf Rider.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
+		pPlayer = gc.getPlayer(pCaster.getOwner())
+		newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_WOLF_RIDER_SCORPION_CLAN'), pCaster.getX(), pCaster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+		newUnit.convert(pCaster)
+
 def reqAddToFleshGolem(caster):
 	if caster.isImmortal():
 		return False
@@ -2698,6 +2705,13 @@ def spellRessurection(caster):
 		if newUnit.isHasPromotion(iProm):
 			if gc.getPromotionInfo(iProm).isEquipment():
 				newUnit.setHasPromotion(iProm, False)
+	# Bugfix: When a unit that is the avatar of the civilization leader is resurrected, restore lost traits START
+	if iUnit in (gc.getInfoTypeForString('UNIT_BASIUM'), gc.getInfoTypeForString('UNIT_HYBOREM')):
+		kLeaderInfo = gc.getLeaderHeadInfo(pPlayer.getLeaderType())
+		for iTrait in range(gc.getNumTraitInfos()):
+			if kLeaderInfo.hasTrait(iTrait):
+				pPlayer.setHasTrait(iTrait, True)
+	# Bugfix: When a unit that is the avatar of the civilization leader is resurrected, restore lost traits END
 	CyInterface().addMessage(caster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_HERO_RESSURECTED", ()),'AS2D_CHARM_PERSON',1,'Art/Interface/Buttons/Spells/Ressurection.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
 
 def spellRessurectionGraveyard(caster):
