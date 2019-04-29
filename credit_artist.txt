@@ -46,24 +46,24 @@ Event art
 	e_clairone.dds - ???
 	e_controversialphilosopher.dds - Alan Pollack
 	e_cookbook.dds - Donato Giancola, Wizards of the Coast
-	e_corruptjudge.dds
-	e_corruptmerchant.dds
-	e_councilgift.dds
-	e_counterfeit.dds
-	e_crabcakes.dds
-	e_crimedecrease.dds
-	e_crimeincrease.dds
-	e_cyclone.dds
-	e_deadangel.dds
-	e_dealsallos.dds
-	e_dedicatemonument.dds
-	e_demonictome.dds
-	e_demonictower.dds
+	e_corruptjudge.dds - Metallica
+	e_corruptmerchant.dds - Ron Spears, Wizards of the Coast
+	e_councilgift.dds - Martina Pilcerova, Wizards of the Coast
+	e_counterfeit.dds - ???, not found with Tineye
+	e_crabcakes.dds - ???
+	e_crimedecrease.dds - Frank Frazetta
+	e_crimeincrease.dds - ??? (peterrustoen.deviantart.com?, D&D?)
+	e_cyclone.dds - ???
+	e_deadangel.dds - John Avon, Wizards of the Coast
+	e_dealsallos.dds - Daarken, Wizards of the Coast
+	e_dedicatemonument.dds - Francis Tsai, Wizards of the Coast
+	e_demonictome.dds - Heather Hudson, Wizards of the Coast
+	e_demonictower.dds - TARGETE (targete.deviantart.com)
 	e_depressedtoymaker.dds
-	e_devastatingplague.dds
-	e_dissent.dds
-	e_dreamsofdeath.dds
-	e_dungeon.dds
+	e_devastatingplague.dds - ???, not found with Tineye
+	e_dissent.dds - ?, Pathfinder
+	e_dreamsofdeath.dds - ?, D&D, Wizards of the Coast
+	e_dungeon.dds - ?, D&D, Wizards of the Coast
 	e_dustbowl.dds
 	e_dwarfvslizardman.dds
 	e_elderconflict.dds

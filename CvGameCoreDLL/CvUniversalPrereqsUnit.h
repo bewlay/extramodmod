@@ -37,7 +37,7 @@ private :
 
 
 /**
- * Requires the given unit to be alive.
+ * Requires the given unit to be alive (not e.g. a zombie).
  */
 class CvUnitAlivePrereq : public CvPrereq<CvUnit>
 {

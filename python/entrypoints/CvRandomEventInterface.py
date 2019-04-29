@@ -583,6 +583,9 @@ def canTriggerPlotEmpty(argsList):
 	return True
 
 def canTriggerFoodSicknessUnit(argsList):
+	"""
+	Unit must be alive
+	"""
 	eTrigger = argsList[0]
 	ePlayer = argsList[1]
 	iUnit = argsList[2]
@@ -593,13 +596,15 @@ def canTriggerFoodSicknessUnit(argsList):
 	return True
 
 def doFoodSickness(argsList):
+	"""
+	Damages the unit by 20% (up to 99%)
+	Unit is immobile for 2 turns
+	"""
 	kTriggeredData = argsList[0]
 	iPlayer = kTriggeredData.ePlayer
 	pPlayer = gc.getPlayer(iPlayer)
 	pUnit = pPlayer.getUnit(kTriggeredData.iUnitId)
-	iDmg = pUnit.getDamage() + 20
-	if iDmg > 99:
-		iDmg = 99
+	iDmg = min( pUnit.getDamage() + 20, 99 )
 	pUnit.setDamage(iDmg, PlayerTypes.NO_PLAYER)
 	pUnit.changeImmobileTimer(2)
 
@@ -786,6 +791,9 @@ def helpHyboremsWhisper3(argsList):
 	return szHelp
 
 def applyIronOrb3(argsList):
+	"""
+		Player gets a free tech (?)
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	iPlayer = kTriggeredData.ePlayer
@@ -1060,6 +1068,11 @@ def canTriggerOvercouncil(argsList):
 ######## (lfgr: not reviewed)
 
 def canTriggerParith(argsList):
+	"""
+		Player is human
+		Player must have requested the unit in the Splintered Court scenario (?)
+		Must not be playing the Splintered Court scenario
+	"""
 	kTriggeredData = argsList[0]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	if not pPlayer.isHuman():
@@ -1071,6 +1084,9 @@ def canTriggerParith(argsList):
 	return True
 
 def applyParithYes(argsList):
+	"""
+		Marks the unit to reappear in the Splintered Court scenario
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	player = gc.getPlayer(kTriggeredData.ePlayer)
@@ -1583,6 +1599,9 @@ def doSailorsDirgeDefeated(argsList):
 	cf.placeTreasure(iPlayer, gc.getInfoTypeForString('EQUIPMENT_TREASURE'))
 
 def applyShrineCamulos2(argsList):
+	"""
+	10% chance to spawn a pit beast near the city
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	iPlayer = kTriggeredData.ePlayer
@@ -3733,6 +3752,9 @@ def CanDoGela7(argsList):
 ######## HELL_REFUGEES (lfgr: tweaked, moved to XML)
 
 def CanDoHellRefugees(argsList):
+	"""
+	An infernal player must exist
+	"""
 	for iPlayer2 in range(gc.getMAX_PLAYERS()):
 		pPlayer2 = gc.getPlayer(iPlayer2)
 		if (pPlayer2.isAlive()):
@@ -3741,6 +3763,9 @@ def CanDoHellRefugees(argsList):
 	return False
 
 def doHellRefugees5(argsList):
+	"""
+	Ceasefire with each player that is at war, isn't barbarian and follows the Ashen Veil
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -3758,12 +3783,18 @@ def doHellRefugees5(argsList):
 ######## SCHOLARS (lfgr: tweaked)
 
 def CanDoScholars2(argsList):
+	"""
+	Cities has library
+	"""
 	return cityHasBuilding( argsList, 'BUILDING_LIBRARY' )
 
 def helpScholars2(argsList):
 	return cityReqBuildingHelp( argsList, 'BUILDING_LIBRARY' )
 			
 def CanDoScholars4(argsList):
+	"""
+	Player has the barbarian trait
+	"""
 	return playerHasTrait( argsList, 'TRAIT_BARBARIAN' )
 
 def helpScholars4( argsList ):
@@ -3960,6 +3991,9 @@ def doAshCough4 (argsList):
 		pCity.changeHurryAngerTimer(10)
 
 def CanDoDeadAngel2 (argsList):
+	"""
+	Requires the player not to be evil
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -3985,6 +4019,10 @@ def doDeadAngel5 (argsList):
 	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PLAGUE_CARRIER'), True)
 	
 def doDevastatingPlague1 (argsList):
+	"""
+	Halves the city's population
+	All units in the cities gain the plagued promotion
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -4000,6 +4038,10 @@ def doDevastatingPlague1 (argsList):
 		pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PLAGUED'), True)
 	
 def doDevastatingPlague4 (argsList):
+	"""
+	Halves the city's population
+	Gain a number of diseased corpse units equal to half the city's population
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -4010,6 +4052,7 @@ def doDevastatingPlague4 (argsList):
 	if iPop == 0:
 		iPop = 1
 	pCity.setPopulation(iPop)
+	# TODO: make it exactly the number of lost citizens
 	iPop = int(iPop / 2)
 	if iPop == 0:
 		iPop = 1
@@ -4026,6 +4069,9 @@ def doMassiveSuicide5 (argsList):
 	newUnit2 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_MANES'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 		
 def CanDoNecroCannibalism2 (argsList):
+	"""
+	Player must not be good
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -4035,6 +4081,10 @@ def CanDoNecroCannibalism2 (argsList):
 	return True
 	
 def doNecroCannibalism2(argsList):
+	"""
+	Halves the city population
+	Gain a number of warriors with cannibalize equal to the remaining population
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -4050,6 +4100,9 @@ def doNecroCannibalism2(argsList):
 		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CANNIBALIZE'), True)
 	
 def	doNecroCannibalism4(argsList):
+	"""
+	Gain two diseased corpse units
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -4527,6 +4580,9 @@ def canTriggerSkilledJeweler(argsList):
 ######## MORE EVENTS MOD EXPANDED STARTS ########
 
 def canTriggerInfernalFilter(argsList):
+	"""
+	Player must not be infernal
+	"""
 	kTriggeredData = argsList[0]
 	iPlayer = kTriggeredData.ePlayer
 	pPlayer = gc.getPlayer(iPlayer)

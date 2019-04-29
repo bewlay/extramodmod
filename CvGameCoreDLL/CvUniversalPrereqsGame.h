@@ -16,7 +16,7 @@ class CvGame;
 
 
 /**
- * Requires that the specified unit wasn't ever created
+ * Requires that the specified unit wasn't ever created.
  */
 class CvGameUnitNotCreatedPrereq : public CvPrereq<CvGame>
 {

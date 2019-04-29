@@ -341,7 +341,7 @@
 	<ElementType name="UnitPrereq" content="eltOnly" model="open" />
 	
 <!-- UNIVERSAL_PREREQS end -->
-	<ElementType name="EventTriggerInfo" content="eltOnly">
+	<ElementType name="EventTriggerInfo" content="eltOnly" model="closed">
 		<element type="Type"/>
 		<element type="WorldNewsTexts" minOccurs="0"/>
 		<element type="TriggerTexts" minOccurs="0"/>
@@ -448,10 +448,10 @@
 	<ElementType name="PrereqStateReligion" content="textOnly"/>
 	<ElementType name="EventInfo" content="eltOnly">
 		<element type="Type"/>
+		<element type="Description" minOccurs="0"/>
 	<!-- lfgr: EVENT_NEW_TAGS start -->
 		<element type="Help" minOccurs="0"/>
 	<!-- lfgr: EVENT_NEW_TAGS end -->
-		<element type="Description" minOccurs="0"/>
 		<element type="LocalInfoText" minOccurs="0"/>
 		<element type="WorldNewsTexts" minOccurs="0"/>
 		<element type="OtherPlayerPopup" minOccurs="0"/>
@@ -486,6 +486,9 @@
 		<element type="iUnitExperience" minOccurs="0"/>
 		<element type="iUnitImmobileTurns" minOccurs="0"/>
 		<element type="UnitPromotion" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+		<element type="UnitPromotions" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 		<element type="UnitName" minOccurs="0"/>
 		<element type="UnitCombatPromotions" minOccurs="0"/>
 		<element type="UnitClassPromotions" minOccurs="0"/>
