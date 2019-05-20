@@ -2474,7 +2474,6 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_guildmerc1.dds</EventArt>
-			<EventArt />
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
@@ -2508,7 +2507,6 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_guildmerc1.dds</EventArt>
-			<EventArt />
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
@@ -4103,8 +4101,8 @@
 				<Event>EVENT_OVERCOUNCIL_GIFT_2</Event>
 				<Event>EVENT_OVERCOUNCIL_GIFT_3</Event>
 			</Events>
-			<PythonCanDo>canTriggerOvercouncil</PythonCanDo>
 			<bRecurring>1</bRecurring>
+			<PythonCanDo>canTriggerOvercouncil</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PARROTS -->
 			<Type>EVENTTRIGGER_PARROTS</Type>
@@ -6260,8 +6258,8 @@
 				<Event>EVENT_UNDERCOUNCIL_GIFT_2</Event>
 				<Event>EVENT_UNDERCOUNCIL_GIFT_3</Event>
 			</Events>
-			<PythonCanDo>canTriggerUndercouncil</PythonCanDo>
 			<bRecurring>1</bRecurring>
+			<PythonCanDo>canTriggerUndercouncil</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- VEIL_VS_ORDER_TEMPLE -->
 			<Type>EVENTTRIGGER_VEIL_VS_ORDER_TEMPLE</Type>
@@ -7867,8 +7865,8 @@
 			</Events>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
 			<PythonCanDo>CanTriggerDemonSign</PythonCanDo>
+			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- HANGING_SISTERS -->
 			<Type>EVENTTRIGGER_HANGING_SISTERS</Type>
