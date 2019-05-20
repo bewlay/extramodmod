@@ -12957,7 +12957,7 @@ void CvUnit::getCargoUnits(std::vector<CvUnit*>& aUnits) const
 		}
 	}
 
-	FAssert(getCargo() == aUnits.size());
+	FAssertMsg(getCargo() == aUnits.size(), "(May occur erroneously when moving a ship containing some unit that can see some invisible type)");
 }
 
 CvPlot* CvUnit::getAttackPlot() const
@@ -19166,7 +19166,7 @@ int CvUnit::chooseSpell()
 
 				if (kSpellInfo.isResistable())
 				{
-					iValue /= 2 + (kSpellInfo.getResistModify() / 10);
+					iValue /= 2 + std::max( 0, kSpellInfo.getResistModify() / 10 );
 				}
 
 				iValue += kSpellInfo.getAIWeight();

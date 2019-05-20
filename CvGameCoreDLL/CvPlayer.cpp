@@ -15419,7 +15419,8 @@ bool CvPlayer::isUnitClassMaxedOut(UnitClassTypes eIndex, int iExtra) const
 		return false;
 	}
 
-	FAssertMsg(getUnitClassCount(eIndex) <= GC.getUnitClassInfo(eIndex).getMaxPlayerInstances(), "getUnitClassCount is expected to be less than maximum bound of MaxPlayerInstances (invalid index)");
+	// lfgr fix: In FfH, MaxPlayerInstances aren't that strict, but only apply when trying to build new units.
+	//FAssertMsg(getUnitClassCount(eIndex) <= GC.getUnitClassInfo(eIndex).getMaxPlayerInstances(), "getUnitClassCount is expected to be less than maximum bound of MaxPlayerInstances (invalid index)");
 
 	return ((getUnitClassCount(eIndex) + iExtra) >= GC.getUnitClassInfo(eIndex).getMaxPlayerInstances());
 }
@@ -27592,7 +27593,25 @@ void CvPlayer::getGlobeLayerColors(GlobeLayerTypes eGlobeLayerType, int iOption,
 		getResourceLayerColors((GlobeLayerResourceOptionTypes) iOption, aColors, aIndicators);
 		break;
 	case GLOBE_LAYER_RELIGION:
-		getReligionLayerColors((ReligionTypes) iOption, aColors, aIndicators);
+		// Hide Council of Esus in the Religion globe layer START
+		// getReligionLayerColors((ReligionTypes) iOption, aColors, aIndicators);
+		{
+			int realNumber = 0;
+			int optionNumber = 0;
+			while (realNumber < GC.getNumReligionInfos())
+			{
+                if (canSeeReligion((ReligionTypes) realNumber, NULL))
+				{
+					if (optionNumber == iOption) {
+						break;
+					}
+					optionNumber++;
+				}
+				realNumber++;
+			}
+			getReligionLayerColors((ReligionTypes) realNumber, aColors, aIndicators);
+		}
+		// Hide Council of Esus in the Religion globe layer END
 		break;
 	case GLOBE_LAYER_CULTURE:
 		getCultureLayerColors(aColors, aIndicators);
