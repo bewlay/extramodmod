@@ -26192,7 +26192,7 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iNumBuildingsGlobal, "iNumBuildingsGlobal");
 
 	pXML->GetChildXmlValByName(&m_iNumPlotsRequired, "iNumPlotsRequired");
-	pXML->GetChildXmlValByName(&m_iPlotType, "iPlotType");
+	pXML->GetChildXmlValByName(&m_iPlotType, "iPlotType", -1); // lfgr EVENTS_ENHANCED 2019: better default value
 
 	pXML->GetChildXmlValByName(&m_iNumReligions, "iNumReligions");
 	pXML->GetChildXmlValByName(&m_iNumCorporations, "iNumCorporations");
@@ -26204,7 +26204,7 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(&m_iMinMapLandmass, "iMinMapLandmass");
 	pXML->GetChildXmlValByName(&m_iMinOurLandmass, "iMinOurLandmass");
-	pXML->GetChildXmlValByName(&m_iMaxOurLandmass, "iMaxOurLandmass");
+	pXML->GetChildXmlValByName(&m_iMaxOurLandmass, "iMaxOurLandmass", -1); // lfgr EVENTS_ENHANCED 2019: Better default value
 	pXML->GetChildXmlValByName(szTextVal, "MinDifficulty");
 	m_iMinDifficulty = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(&m_iAngry, "iAngry");
