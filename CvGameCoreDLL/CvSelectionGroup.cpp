@@ -1043,6 +1043,7 @@ bool CvSelectionGroup::canStartMission(int iMission, int iData1, int iData2, CvP
 		case MISSION_END_COMBAT:
 		case MISSION_AIRSTRIKE:
 		case MISSION_SURRENDER:
+		case MISSION_CAPTURED:
 		case MISSION_IDLE:
 		case MISSION_DIE:
 		case MISSION_DAMAGE:

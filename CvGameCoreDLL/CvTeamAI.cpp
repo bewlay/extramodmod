@@ -3927,10 +3927,12 @@ int CvTeamAI::AI_openBordersTradeVal(TeamTypes eTeam) const
 		}
 	}
 
-	if (AI_isAnyMemberDoVictoryStrategy(AI_VICTORY_RELIGION1))
+	if (AI_isAnyMemberDoVictoryStrategy(AI_VICTORY_RELIGION4))
 	{
 		iValue *= 2;
 	}
+	// TODO: Also add something for AI_VICTORY_RELIGION3?
+	// TODO: What if all our cities are already converted?
 
 	return iValue;
 /************************************************************************************************/
@@ -6760,7 +6762,12 @@ int CvTeamAI::AI_embassyTradeVal(TeamTypes eTeam) const
 	int iValue = 0;
 
 	iValue = (getNumCities() + GET_TEAM(eTeam).getNumCities());
-	iValue += AI_openBordersTradeVal(eTeam);
+
+	// lfgr: Commented out. This leads to AI players canceling embassy if they feel open borders is more
+	//   advantageous for the other player than to them, which is obviously bad: they should just not do
+	//   or cancel open borders.
+	//iValue += AI_openBordersTradeVal(eTeam);
+	// TODO: This means AI always takes embassy deals.
 
 	iValue *= 7;
 	iValue /= 5;

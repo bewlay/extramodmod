@@ -3229,7 +3229,7 @@ int CvPlot::getFeatureProduction(BuildTypes eBuild, TeamTypes eTeam, CvCity** pp
 	{
 		// Search for the closest city.
 		CvCity* pLoopCity;
-		CvCity* pBestCity;
+		CvCity* pBestCity = NULL;
 		int iValue;
 		int iBestValue = MAX_INT;
 		int iLoop;
