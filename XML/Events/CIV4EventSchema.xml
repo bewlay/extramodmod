@@ -297,13 +297,51 @@
 	<ElementType name="bRequiresValidEvent" content="textOnly"/>
 <!-- lfgr: EVENT_NEW_TAGS end -->
 <!-- UNIVERSAL_PREREQS 08/2017 lfgr -->
-	<ElementType name="And" content="eltOnly" model="open"/>
-	<ElementType name="UnitPlotPrereq" content="eltOnly" model="open"/>
-	<ElementType name="bOwned" content="textOnly" dt:type="boolean" model="closed"/>
-	<ElementType name="PlotPrereq" content="eltOnly" model="open"/>
-	<ElementType name="UnitPrereq" content="eltOnly" model="open"/>
+	<!-- Generic -->
+	<ElementType name="And" content="eltOnly" model="open">
+		<description>Requires the given object to fulfill all of the specified child requirements.</description>
+	</ElementType>
+	<ElementType name="Or" content="eltOnly" model="open">
+		<description>Requires the given object to fulfill any of the specified child requirements.</description>
+	</ElementType>
+	<ElementType name="Not" content="eltOnly" model="open">
+		<description>Requires the given object to not fulfill the specified child requirement.</description>
+	</ElementType>
+	
+	<!-- GamePrereq -->
+	<ElementType name="UnitNotCreated" content="textOnly" model="closed">
+		<description>Requires that the specified unit wasn't ever created</description>
+	</ElementType>
+	<ElementType name="GamePrereq" content="eltOnly" model="open" />
+	
+	<!-- PlayerPrereq -->
+	<ElementType name="CivilizationType" content="textOnly" model="closed">
+		<description>Requires the player to be of the specified civilization.</description>
+	</ElementType>
+	<ElementType name="CivicType" content="textOnly" model="closed">
+		<description>Requires the player to have the specified civic.</description>
+	</ElementType>
+	<ElementType name="PlayerPrereq" content="eltOnly" model="open" />
+	
+	<!-- PlotPrereq -->
+	<ElementType name="bOwned" content="textOnly" dt:type="boolean" model="closed">
+		<description>Requires the given plot to be owned by any player.</description>
+	</ElementType>
+	
+	<ElementType name="PlotPrereq" content="eltOnly" model="open" />
+	
+	<!-- UnitPrereq -->
+	<ElementType name="UnitPlotPrereq" content="eltOnly" model="open">
+		<description>Requires the plot of the given unit to fulfill the specified requirement.</description>
+	</ElementType>
+	<ElementType name="bAlive" content="textOnly" dt:type="boolean" model="closed">
+		<description>Requires the given unit to be alive (not e.g. a zombie).</description>
+	</ElementType>
+	
+	<ElementType name="UnitPrereq" content="eltOnly" model="open" />
+	
 <!-- UNIVERSAL_PREREQS end -->
-	<ElementType name="EventTriggerInfo" content="eltOnly">
+	<ElementType name="EventTriggerInfo" content="eltOnly" model="closed">
 		<element type="Type"/>
 		<element type="WorldNewsTexts" minOccurs="0"/>
 		<element type="TriggerTexts" minOccurs="0"/>
@@ -390,8 +428,10 @@
 		<element type="bRequiresValidEvent" minOccurs="0"/>
 <!-- lfgr: EVENT_NEW_TAGS end -->
 	<!-- UNIVERSAL_PREREQS 08/2017 lfgr -->
+		<element type="PlayerPrereq" minOccurs="0"/>
 		<element type="PlotPrereq" minOccurs="0"/>
 		<element type="UnitPrereq" minOccurs="0"/>
+		<element type="GamePrereq" minOccurs="0"/>
 	<!-- UNIVERSAL_PREREQS end -->
 	</ElementType>
 	<ElementType name="EventTriggerInfos" content="eltOnly">
@@ -408,10 +448,10 @@
 	<ElementType name="PrereqStateReligion" content="textOnly"/>
 	<ElementType name="EventInfo" content="eltOnly">
 		<element type="Type"/>
+		<element type="Description" minOccurs="0"/>
 	<!-- lfgr: EVENT_NEW_TAGS start -->
 		<element type="Help" minOccurs="0"/>
 	<!-- lfgr: EVENT_NEW_TAGS end -->
-		<element type="Description" minOccurs="0"/>
 		<element type="LocalInfoText" minOccurs="0"/>
 		<element type="WorldNewsTexts" minOccurs="0"/>
 		<element type="OtherPlayerPopup" minOccurs="0"/>
@@ -446,6 +486,9 @@
 		<element type="iUnitExperience" minOccurs="0"/>
 		<element type="iUnitImmobileTurns" minOccurs="0"/>
 		<element type="UnitPromotion" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS start -->
+		<element type="UnitPromotions" minOccurs="0"/>
+<!-- lfgr: EVENT_NEW_TAGS end -->
 		<element type="UnitName" minOccurs="0"/>
 		<element type="UnitCombatPromotions" minOccurs="0"/>
 		<element type="UnitClassPromotions" minOccurs="0"/>

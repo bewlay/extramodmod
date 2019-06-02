@@ -26005,8 +26005,10 @@ CvEventTriggerInfo::CvEventTriggerInfo() :
 	m_iPrereqTrait(NO_TRAIT),
 //FfH: End Add
 // UNIVERSAL_PREREQS 08/2017 lfgr
-	m_pUnitPrereq( NULL ),
-	m_pPlotPrereq( NULL )
+	m_pGamePrereq( NULL ),
+	m_pPlayerPrereq( NULL ),
+	m_pPlotPrereq( NULL ),
+	m_pUnitPrereq( NULL )
 // UNIVERSAL_PREREQS end
 //FfH: End Add
 
@@ -26015,6 +26017,12 @@ CvEventTriggerInfo::CvEventTriggerInfo() :
 
 CvEventTriggerInfo::~CvEventTriggerInfo()
 {
+// UNIVERSAL_PREREQS 08/2017 lfgr 
+	SAFE_DELETE( m_pGamePrereq )
+	SAFE_DELETE( m_pPlayerPrereq )
+	SAFE_DELETE( m_pPlotPrereq )
+	SAFE_DELETE( m_pUnitPrereq )
+// UNIVERSAL_PREREQS end
 }
 
 int CvEventTriggerInfo::getPercentGamesActive() const
@@ -26526,14 +26534,24 @@ int CvEventTriggerInfo::getPrereqTrait() const
 //FfH: End Add
 
 // UNIVERSAL_PREREQS 08/2017 lfgr
-CvPrereq<CvUnit>* CvEventTriggerInfo::getUnitPrereq() const
+CvPrereq<CvGame>* CvEventTriggerInfo::getGamePrereq() const
 {
-	return m_pUnitPrereq;
+	return m_pGamePrereq;
+}
+
+CvPrereq<CvPlayer>* CvEventTriggerInfo::getPlayerPrereq() const
+{
+	return m_pPlayerPrereq;
 }
 
 CvPrereq<CvPlot>* CvEventTriggerInfo::getPlotPrereq() const
 {
 	return m_pPlotPrereq;
+}
+
+CvPrereq<CvUnit>* CvEventTriggerInfo::getUnitPrereq() const
+{
+	return m_pUnitPrereq;
 }
 // UNIVERSAL_PREREQS end
 
@@ -26773,8 +26791,6 @@ void CvEventTriggerInfo::read(FDataStreamBase* stream)
 //FfH: End Add
 // UNIVERSAL_PREREQS 08/2017 lfgr
 	gDLL->MessageBox( "Reading CvUniversalPrereqs is not implemented, sorry. Do you have caching enabled?", "XML Error" );
-//	m_pUnitPrereq = CvPrereq<CvUnit>::read( stream );
-//	m_pPlotPrereq = CvPrereq<CvPlot>::read( stream );
 // UNIVERSAL_PREREQS end
 }
 
@@ -26963,8 +26979,6 @@ void CvEventTriggerInfo::write(FDataStreamBase* stream)
 
 // UNIVERSAL_PREREQS 08/2017 lfgr
 	gDLL->MessageBox( "Writing CvUniversalPrereqs is not implemented, sorry. Do you have caching enabled?", "XML Error" );
-//	m_pUnitPrereq->write( stream );
-//	m_pPlotPrereq->write( stream );
 // UNIVERSAL_PREREQS end
 }
 
@@ -26993,7 +27007,7 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iNumBuildingsGlobal, "iNumBuildingsGlobal");
 
 	pXML->GetChildXmlValByName(&m_iNumPlotsRequired, "iNumPlotsRequired");
-	pXML->GetChildXmlValByName(&m_iPlotType, "iPlotType");
+	pXML->GetChildXmlValByName(&m_iPlotType, "iPlotType", -1); // lfgr EVENTS_ENHANCED 2019: better default value
 
 	pXML->GetChildXmlValByName(&m_iNumReligions, "iNumReligions");
 	pXML->GetChildXmlValByName(&m_iNumCorporations, "iNumCorporations");
@@ -27005,7 +27019,7 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(&m_iMinMapLandmass, "iMinMapLandmass");
 	pXML->GetChildXmlValByName(&m_iMinOurLandmass, "iMinOurLandmass");
-	pXML->GetChildXmlValByName(&m_iMaxOurLandmass, "iMaxOurLandmass");
+	pXML->GetChildXmlValByName(&m_iMaxOurLandmass, "iMaxOurLandmass", -1); // lfgr EVENTS_ENHANCED 2019: Better default value
 	pXML->GetChildXmlValByName(szTextVal, "MinDifficulty");
 	m_iMinDifficulty = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(&m_iAngry, "iAngry");
@@ -27541,12 +27555,23 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 //FfH: End Add
 
 // UNIVERSAL_PREREQS 08/2017 lfgr
-	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "UnitPrereq" ) )
+	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "GamePrereq" ) )
 	{
 		if( pXML->SkipToNextVal() )
 		{
-			m_pUnitPrereq = CvAndPrereq<CvUnit>::read( pXML );
-			FAssertMsg( m_pUnitPrereq != NULL, "Failed to read unit prereq" );
+			m_pGamePrereq = CvAndPrereq<CvGame>::read( pXML );
+			FAssertMsg( m_pGamePrereq != NULL, "Failed to read game prereq" );
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "PlayerPrereq" ) )
+	{
+		if( pXML->SkipToNextVal() )
+		{
+			m_pPlayerPrereq = CvAndPrereq<CvPlayer>::read( pXML );
+			FAssertMsg( m_pPlayerPrereq != NULL, "Failed to read player prereq" );
 		}
 
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
@@ -27557,6 +27582,17 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 		if( pXML->SkipToNextVal() )
 		{
 			m_pPlotPrereq = CvAndPrereq<CvPlot>::read( pXML );
+			FAssertMsg( m_pPlotPrereq != NULL, "Failed to read plot prereq" );
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "UnitPrereq" ) )
+	{
+		if( pXML->SkipToNextVal() )
+		{
+			m_pUnitPrereq = CvAndPrereq<CvUnit>::read( pXML );
 			FAssertMsg( m_pUnitPrereq != NULL, "Failed to read unit prereq" );
 		}
 

@@ -146,6 +146,10 @@ def doArmageddonBuboes(argsList):
 		cf.addUnit(iUnit)
 
 def doArmageddonHellfire(argsList):
+	"""
+		Randomly spawns Hellfires on eligible plots
+		Spawns Barbarian or Infernal (if Infernals exist) Champions on the Hellfires
+	"""
 	kTriggeredData = argsList[0]
 	iPlayer = argsList[1]
 	if iPlayer == 0:
@@ -225,6 +229,9 @@ def doArmageddonYersinia(argsList):
 		cf.addUnit(iUnit)
 
 def doAzer(argsList):
+	"""
+	Spawns a barbarian Azer
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	if not pPlot.isNone():
@@ -234,6 +241,9 @@ def doAzer(argsList):
 ######## BANDIT_NIETZ (lfgr: moved to XML)
 
 def doBanditNietz3(argsList):
+	"""
+	Create a Horseman with Hero, Mobility I, Bounty Hunter and Commando named "Nietz the Bandit Lord"
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -458,6 +468,9 @@ def applyExploreLairPortal1(argsList):
 		CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_EXPLORE_LAIR_PORTAL",()),'',1,'Art/Interface/Buttons/Spells/Explore Lair.dds',ColorTypes(8),pBestPlot.getX(),pBestPlot.getY(),True,True)
 
 def doFlareEntropyNode(argsList):
+	"""
+	Changes adjacent plots to hell terrain
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = CyMap().plot(kTriggeredData.iPlotX,kTriggeredData.iPlotY)
 	point = pPlot.getPoint()
@@ -471,6 +484,9 @@ def doFlareEntropyNode(argsList):
 	CyGame().changeGlobalCounter(2)
 
 def doFlareFireNode(argsList):
+	"""
+	Starts fire in all adjacent forests or jungles
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = CyMap().plot(kTriggeredData.iPlotX,kTriggeredData.iPlotY)
 	point = pPlot.getPoint()
@@ -489,6 +505,9 @@ def doFlareFireNode(argsList):
 						CyInterface().addMessage(pPlot.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_FLAMES", ()),'',1,'Art/Interface/Buttons/Fire.dds',ColorTypes(8),pPlot.getX(),pPlot.getY(),True,True)
 
 def doFlareLifeNode(argsList):
+	"""
+	Sanctifies adjacent plots
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = CyMap().plot(kTriggeredData.iPlotX,kTriggeredData.iPlotY)
 	point = pPlot.getPoint()
@@ -502,6 +521,9 @@ def doFlareLifeNode(argsList):
 	CyGame().changeGlobalCounter(-2)
 
 def doFlareNatureNode(argsList):
+	"""
+	Creates "new forests" on all adjacent plots
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = CyMap().plot(kTriggeredData.iPlotX,kTriggeredData.iPlotY)
 	point = pPlot.getPoint()
@@ -523,6 +545,9 @@ def doFlareNatureNode(argsList):
 							pPlot.setFeatureType(iForestNew, 0)
 
 def doFlareWaterNode(argsList):
+	"""
+	Changes desert to plains and puts out fires on adjacent nodes
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = CyMap().plot(kTriggeredData.iPlotX,kTriggeredData.iPlotY)
 	point = pPlot.getPoint()
@@ -544,6 +569,9 @@ def doFlareWaterNode(argsList):
 					pPlot.setImprovementType(-1)
 
 def canTriggerPlotEmpty(argsList):
+	"""
+	The chosen plot must not contain units or a city
+	"""
 	kTriggeredData = argsList[0]
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	if pPlot.isNone():
@@ -557,6 +585,9 @@ def canTriggerPlotEmpty(argsList):
 	return True
 
 def canTriggerFoodSicknessUnit(argsList):
+	"""
+	Unit must be alive
+	"""
 	eTrigger = argsList[0]
 	ePlayer = argsList[1]
 	iUnit = argsList[2]
@@ -567,13 +598,15 @@ def canTriggerFoodSicknessUnit(argsList):
 	return True
 
 def doFoodSickness(argsList):
+	"""
+	Damages the unit by 20% (up to 99%)
+	Unit is immobile for 2 turns
+	"""
 	kTriggeredData = argsList[0]
 	iPlayer = kTriggeredData.ePlayer
 	pPlayer = gc.getPlayer(iPlayer)
 	pUnit = pPlayer.getUnit(kTriggeredData.iUnitId)
-	iDmg = pUnit.getDamage() + 20
-	if iDmg > 99:
-		iDmg = 99
+	iDmg = min( pUnit.getDamage() + 20, 99 )
 	pUnit.setDamage(iDmg, PlayerTypes.NO_PLAYER)
 	pUnit.changeImmobileTimer(2)
 
@@ -760,6 +793,9 @@ def helpHyboremsWhisper3(argsList):
 	return szHelp
 
 def applyIronOrb3(argsList):
+	"""
+		Player gets a free tech (?)
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	iPlayer = kTriggeredData.ePlayer
@@ -1030,6 +1066,11 @@ def canTriggerOvercouncil(argsList):
 ######## (lfgr: not reviewed)
 
 def canTriggerParith(argsList):
+	"""
+		Player is human
+		Player must have requested the unit in the Splintered Court scenario (?)
+		Must not be playing the Splintered Court scenario
+	"""
 	kTriggeredData = argsList[0]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	if not pPlayer.isHuman():
@@ -1041,6 +1082,9 @@ def canTriggerParith(argsList):
 	return True
 
 def applyParithYes(argsList):
+	"""
+		Marks the unit to reappear in the Splintered Court scenario
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	player = gc.getPlayer(kTriggeredData.ePlayer)
@@ -1547,6 +1591,9 @@ def doSailorsDirgeDefeated(argsList):
 	cf.placeTreasure(iPlayer, gc.getInfoTypeForString('EQUIPMENT_TREASURE'))
 
 def applyShrineCamulos2(argsList):
+	"""
+	10% chance to spawn a pit beast near the city
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	iPlayer = kTriggeredData.ePlayer
@@ -2805,6 +2852,10 @@ def getHelpWeddingFeud3(argsList):
 ######## BABY BOOM ###########
 
 def canTriggerBabyBoom(argsList):
+	"""
+	Player must not be at war with anyone
+	Player must have been at peace for at least one and at most three turns with some team
+	"""
 	kTriggeredData = argsList[0]
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	team = gc.getTeam(player.getTeam())
@@ -3197,6 +3248,11 @@ def getHelpChampion(argsList):
 ######## ANTELOPE ###########
 
 def canTriggerAntelope(argsList):
+	"""
+		Player has at most 5 happiness ressources
+		Player has no deer ressource
+		Plot can have Deer ressource
+	"""
 
 	kTriggeredData = argsList[0]
 	player = gc.getPlayer(kTriggeredData.ePlayer)
@@ -3215,6 +3271,7 @@ def canTriggerAntelope(argsList):
 			if i == iDeer:
 				return False	
 
+	# TODO: necessary?
 	plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	if not plot.canHaveBonus(iDeer, False):
 		return False
@@ -3222,6 +3279,9 @@ def canTriggerAntelope(argsList):
 	return True
 
 def doAntelope2(argsList):
+	"""
+		A camp is built
+	"""
 #	Need this because camps are not normally allowed unless there is already deer.
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
@@ -3272,6 +3332,9 @@ def canTriggerWhaleOfAThing(argsList):
 ######## ANCIENT OLYMPICS ###########
 
 def doAncientOlympics2(argsList):
+	"""
+		+1 Attitude from all players that share border at >= 1 land plot
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 
@@ -3482,6 +3545,9 @@ def canTriggerLiteracy(argsList):
 ######## ESTEEMEED_PLAYWRIGHT ###########
 
 def canTriggerEsteemedPlaywright(argsList):
+	"""
+	Player doesn't run Slavery Civic
+	"""
 	kTriggeredData = argsList[0]
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
@@ -3783,6 +3849,9 @@ def CanDoGela7(argsList):
 ######## HELL_REFUGEES (lfgr: tweaked, moved to XML)
 
 def CanDoHellRefugees(argsList):
+	"""
+	An infernal player must exist
+	"""
 	for iPlayer2 in range(gc.getMAX_PLAYERS()):
 		pPlayer2 = gc.getPlayer(iPlayer2)
 		if (pPlayer2.isAlive()):
@@ -3791,6 +3860,9 @@ def CanDoHellRefugees(argsList):
 	return False
 
 def doHellRefugees5(argsList):
+	"""
+	Ceasefire with each player that is at war, isn't barbarian and follows the Ashen Veil
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -3808,12 +3880,18 @@ def doHellRefugees5(argsList):
 ######## SCHOLARS (lfgr: tweaked)
 
 def CanDoScholars2(argsList):
+	"""
+	Cities has library
+	"""
 	return cityHasBuilding( argsList, 'BUILDING_LIBRARY' )
 
 def helpScholars2(argsList):
 	return cityReqBuildingHelp( argsList, 'BUILDING_LIBRARY' )
 			
 def CanDoScholars4(argsList):
+	"""
+	Player has the barbarian trait
+	"""
 	return playerHasTrait( argsList, 'TRAIT_BARBARIAN' )
 
 def helpScholars4( argsList ):
@@ -4010,6 +4088,9 @@ def doAshCough4 (argsList):
 		pCity.changeHurryAngerTimer(10)
 
 def CanDoDeadAngel2 (argsList):
+	"""
+	Requires the player not to be evil
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -4035,6 +4116,10 @@ def doDeadAngel5 (argsList):
 	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PLAGUE_CARRIER'), True)
 	
 def doDevastatingPlague1 (argsList):
+	"""
+	Halves the city's population
+	All units in the cities gain the plagued promotion
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -4050,6 +4135,10 @@ def doDevastatingPlague1 (argsList):
 		pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PLAGUED'), True)
 	
 def doDevastatingPlague4 (argsList):
+	"""
+	Halves the city's population
+	Gain a number of diseased corpse units equal to half the city's population
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -4060,6 +4149,7 @@ def doDevastatingPlague4 (argsList):
 	if iPop == 0:
 		iPop = 1
 	pCity.setPopulation(iPop)
+	# TODO: make it exactly the number of lost citizens
 	iPop = int(iPop / 2)
 	if iPop == 0:
 		iPop = 1
@@ -4076,6 +4166,9 @@ def doMassiveSuicide5 (argsList):
 	newUnit2 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_MANES'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 		
 def CanDoNecroCannibalism2 (argsList):
+	"""
+	Player must not be good
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -4085,6 +4178,10 @@ def CanDoNecroCannibalism2 (argsList):
 	return True
 	
 def doNecroCannibalism2(argsList):
+	"""
+	Halves the city population
+	Gain a number of warriors with cannibalize equal to the remaining population
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -4100,6 +4197,9 @@ def doNecroCannibalism2(argsList):
 		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CANNIBALIZE'), True)
 	
 def	doNecroCannibalism4(argsList):
+	"""
+	Gain two diseased corpse units
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -4577,6 +4677,9 @@ def canTriggerSkilledJeweler(argsList):
 ######## MORE EVENTS MOD EXPANDED STARTS ########
 
 def canTriggerInfernalFilter(argsList):
+	"""
+	Player must not be infernal
+	"""
 	kTriggeredData = argsList[0]
 	iPlayer = kTriggeredData.ePlayer
 	pPlayer = gc.getPlayer(iPlayer)

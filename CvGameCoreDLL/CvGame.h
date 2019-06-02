@@ -390,8 +390,11 @@ public:
 
 	DllExport bool isForcedControl(ForceControlTypes eIndex) const;												// Exposed to Python
 	DllExport void setForceControl(ForceControlTypes eIndex, bool bEnabled);
-
-	int getUnitCreatedCount(UnitTypes eIndex);																	// Exposed to Python
+	
+// UNIVERSAL_PREREQS 09/2017 lfgr
+//	int getUnitCreatedCount(UnitTypes eIndex);																	// Exposed to Python
+	int getUnitCreatedCount(UnitTypes eIndex) const;																	// Exposed to Python
+// UNIVERSAL_PREREQS end
 	void incrementUnitCreatedCount(UnitTypes eIndex);
 
 	int getUnitClassCreatedCount(UnitClassTypes eIndex);												// Exposed to Python

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!-- Default EventTriggerInfo for Reference-->
 <EventTriggerInfo>
 	<bSinglePlayer>0</bSinglePlayer>
@@ -10,7 +9,7 @@
 	<iMaxPopulation>0</iMaxPopulation>
 	<iMinMapLandmass>0</iMinMapLandmass>
 	<iMinOurLandmass>0</iMinOurLandmass>
-	<iMaxOurLandmass>-1</iMaxOurLandmass>
+	<iMaxOurLandmass>0</iMaxOurLandmass>
 	<MinDifficulty>NONE</MinDifficulty>
 	<iAngry>0</iAngry>
 	<iUnhealthy>0</iUnhealthy>
@@ -28,7 +27,7 @@
 	<iNumBuildingsGlobal>0</iNumBuildingsGlobal>
 	<iNumPlotsRequired>0</iNumPlotsRequired>
 	<bOwnPlot>0</bOwnPlot>
-	<iPlotType>-1</iPlotType>
+	<iPlotType>0</iPlotType>
 	<FeaturesRequired>
 	</FeaturesRequired>
 	<TerrainsRequired>

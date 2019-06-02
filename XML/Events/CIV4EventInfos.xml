@@ -405,9 +405,9 @@
 			<Description>TXT_KEY_EVENT_CALABIM_SANCTUARY_1</Description>
 			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<iPopulationChange>1</iPopulationChange>
 			<iOurAttitudeModifier>-4</iOurAttitudeModifier>
 			<iAttitudeModifier>-4</iAttitudeModifier>
+			<iPopulationChange>1</iPopulationChange>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -1286,31 +1286,31 @@
 			<Type>EVENT_ELOHIM_HALLOWING_1</Type>
 			<Description>TXT_KEY_EVENT_ELOHIM_HALLOWING_1</Description>
 			<iMaxNumReligions>-1</iMaxNumReligions>
+			<iOurAttitudeModifier>1</iOurAttitudeModifier>
+			<iAttitudeModifier>1</iAttitudeModifier>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iGlobalCounter>-3</iGlobalCounter>
-			<iOurAttitudeModifier>1</iOurAttitudeModifier>
-			<iAttitudeModifier>1</iAttitudeModifier>
 		</EventInfo>
 		<EventInfo><!-- ELOHIM_HALLOWING_2 -->
 			<Type>EVENT_ELOHIM_HALLOWING_2</Type>
 			<Description>TXT_KEY_EVENT_ELOHIM_HALLOWING_2</Description>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
 			<iOurAttitudeModifier>-1</iOurAttitudeModifier>
 			<iAttitudeModifier>-1</iAttitudeModifier>
+			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
+			<iAIValue>1000</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- ELOHIM_HALLOWING_3 -->
 			<Type>EVENT_ELOHIM_HALLOWING_3</Type>
 			<Description>TXT_KEY_EVENT_ELOHIM_HALLOWING_3</Description>
 			<iGold>-10</iGold>
 			<iMaxNumReligions>-1</iMaxNumReligions>
+			<iOurAttitudeModifier>-4</iOurAttitudeModifier>
+			<iAttitudeModifier>-4</iAttitudeModifier>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iGlobalCounter>3</iGlobalCounter>
-			<iOurAttitudeModifier>-4</iOurAttitudeModifier>
-			<iAttitudeModifier>-4</iAttitudeModifier>
 			<PrereqStateReligion>RELIGION_THE_ASHEN_VEIL</PrereqStateReligion>
 		</EventInfo>
 		<EventInfo><!-- ENCHANTER_1 -->
@@ -5665,11 +5665,11 @@
 			<bPickCity>1</bPickCity>
 			<iGold>-30</iGold>
 			<UnitClass>UNITCLASS_ADEPT</UnitClass>
+			<iNumFreeUnits>1</iNumFreeUnits>
 			<UnitPromotions>
 				<UnitPromotion>PROMOTION_ENTROPY1</UnitPromotion>
 				<UnitPromotion>PROMOTION_DEATH1</UnitPromotion>
 			</UnitPromotions>
-			<iNumFreeUnits>1</iNumFreeUnits>
 			<iHurryAnger>2</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doStrangeAdept</PythonCallback>
@@ -5686,8 +5686,8 @@
 			<PythonCallback>doStrangeAdept</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
-			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
 			<iGlobalCounter>1</iGlobalCounter>
+			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
 		</EventInfo>
 		<EventInfo><!-- STRANGE_ADEPT_4 -->
 			<Type>EVENT_STRANGE_ADEPT_4</Type>
@@ -5697,8 +5697,8 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
-			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
 			<iGlobalCounter>-1</iGlobalCounter>
+			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
 		</EventInfo>
 		<EventInfo><!-- HELL_REFUGEES_1 -->
 			<Type>EVENT_HELL_REFUGEES_1</Type>
@@ -5724,13 +5724,13 @@
 			<Description>TXT_KEY_EVENT_HELL_REFUGEES_3</Description>
 			<bPickCity>1</bPickCity>
 			<iGold>-100</iGold>
+			<PrereqTech>TECH_SMELTING</PrereqTech>
 			<UnitClass>UNITCLASS_CHAMPION</UnitClass>
+			<iNumFreeUnits>2</iNumFreeUnits>
 			<UnitPromotions>
 				<UnitPromotion>PROMOTION_BLESSED</UnitPromotion>
 				<UnitPromotion>PROMOTION_DEMON_SLAYING</UnitPromotion>
 			</UnitPromotions>
-			<iNumFreeUnits>2</iNumFreeUnits>
-			<PrereqTech>TECH_SMELTING</PrereqTech>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doHellRefugees3</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
@@ -5742,9 +5742,9 @@
 			<bPickCity>1</bPickCity>
 			<iGold>-100</iGold>
 			<UnitClass>UNITCLASS_PRIEST_OF_THE_ORDER</UnitClass>
+			<iNumFreeUnits>1</iNumFreeUnits>
 			<iUnitExperience>5</iUnitExperience>
 			<UnitPromotion>PROMOTION_DEMON_SLAYING</UnitPromotion>
-			<iNumFreeUnits>1</iNumFreeUnits>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1500</iAIValue>
@@ -5752,8 +5752,8 @@
 		</EventInfo>
 		<EventInfo><!-- HELL_REFUGEES_5 -->
 			<Type>EVENT_HELL_REFUGEES_5</Type>
-			<Help>TXT_KEY_EVENT_HELL_REFUGEES_5_HELP</Help>
 			<Description>TXT_KEY_EVENT_HELL_REFUGEES_5</Description>
+			<Help>TXT_KEY_EVENT_HELL_REFUGEES_5_HELP</Help>
 			<iGold>150</iGold>
 			<iHappy>-1</iHappy>
 			<iMaxNumReligions>-1</iMaxNumReligions>
@@ -5816,15 +5816,15 @@
 		</EventInfo>
 		<EventInfo><!-- TRAPPED_FROSTLINGS_2 -->
 			<Type>EVENT_TRAPPED_FROSTLINGS_2</Type>
-			<Help>TXT_KEY_EVENT_TRAPPED_FROSTLINGS_2_HELP</Help>
 			<Description>TXT_KEY_EVENT_TRAPPED_FROSTLINGS_2</Description>
+			<Help>TXT_KEY_EVENT_TRAPPED_FROSTLINGS_2_HELP</Help>
 			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>DoTrappedFrostlings2</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>100</iAIValue>
-			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
 			<iGlobalCounter>-1</iGlobalCounter>
+			<PrereqAlignment>ALIGNMENT_GOOD</PrereqAlignment>
 		</EventInfo>
 		<EventInfo><!-- TRAPPED_FROSTLINGS_3 -->
 			<Type>EVENT_TRAPPED_FROSTLINGS_3</Type>
@@ -5859,8 +5859,8 @@
 			<Description>TXT_KEY_EVENT_TRAPPED_FROSTLINGS_5</Description>
 			<bPickCity>1</bPickCity>
 			<UnitClass>UNITCLASS_FROSTLING</UnitClass>
-			<UnitPromotion>PROMOTION_STRONG</UnitPromotion>
 			<iNumFreeUnits>1</iNumFreeUnits>
+			<UnitPromotion>PROMOTION_STRONG</UnitPromotion>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -5950,8 +5950,8 @@
 			<bPickCity>1</bPickCity>
 			<iGold>-50</iGold>
 			<UnitClass>UNITCLASS_PRIEST_OF_THE_VEIL</UnitClass>
-			<UnitPromotion>PROMOTION_PROPHECY_MARK</UnitPromotion>
 			<iNumFreeUnits>1</iNumFreeUnits>
+			<UnitPromotion>PROMOTION_PROPHECY_MARK</UnitPromotion>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -6334,11 +6334,11 @@
 		<EventInfo><!-- ORPHANED_GOBLIN_1 -->
 			<Type>EVENT_ORPHANED_GOBLIN_1</Type>
 			<Description>TXT_KEY_EVENT_ORPHANED_GOBLIN_1</Description>
-			<iMaxNumReligions>-1</iMaxNumReligions>
 			<UnitPromotions>
 				<UnitPromotion>PROMOTION_ORC_SLAYING</UnitPromotion>
 				<UnitPromotion>PROMOTION_CRAZED</UnitPromotion>
 			</UnitPromotions>
+			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
@@ -6346,8 +6346,8 @@
 		<EventInfo><!-- ORPHANED_GOBLIN_2 -->
 			<Type>EVENT_ORPHANED_GOBLIN_2</Type>
 			<Description>TXT_KEY_EVENT_ORPHANED_GOBLIN_2</Description>
-			<iMaxNumReligions>-1</iMaxNumReligions>
 			<UnitPromotion>PROMOTION_ORC</UnitPromotion>
+			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -6699,12 +6699,12 @@
 			<Description>TXT_KEY_EVENT_UNFORTUNATE_ASSASSIN_4_CONT_1</Description>
 			<bPickCity>1</bPickCity>
 			<UnitClass>UNITCLASS_ASSASSIN</UnitClass><!-- that means Devout -->
+			<iNumFreeUnits>1</iNumFreeUnits>
 			<UnitPromotions>
 				<UnitPromotion>PROMOTION_DEMON_SLAYING</UnitPromotion>
 				<UnitPromotion>PROMOTION_HEROIC_DEFENSE</UnitPromotion>
 				<UnitPromotion>PROMOTION_HEROIC_DEFENSE2</UnitPromotion>
 			</UnitPromotions>
-			<iNumFreeUnits>1</iNumFreeUnits>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>

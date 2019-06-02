@@ -20,13 +20,11 @@
 			<EventArt>Art\EventImages\e_aeronschosen.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
 			<iUnitMinLevel>5</iUnitMinLevel>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_AERONS_CHOSEN_1</Event>
 			</Events>
@@ -34,7 +32,7 @@
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDo>canTriggerAeronsChosen</PythonCanDo>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- AFFLUENT_DUKE -->
+		<EventTriggerInfo><!-- AFFLUENT_DUKE lfgr: tweaked -->
 			<Type>EVENTTRIGGER_AFFLUENT_DUKE</Type>
 			<WorldNewsTexts>
 				<Text />
@@ -48,9 +46,8 @@
 			<EventArt>Art\EventImages\e_affluent.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
+			<Civic>CIVIC_ARISTOCRACY</Civic>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_AFFLUENT_DUKE_1</Event>
 				<Event>EVENT_AFFLUENT_DUKE_2</Event>
@@ -73,12 +70,10 @@
 			<EventArt>Art\EventImages\e_alchemist.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitDamagedWeight>1</iUnitDamagedWeight>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_ALCHEMIST_1</Event>
 				<Event>EVENT_ALCHEMIST_2</Event>
@@ -101,7 +96,6 @@
 			<EventArt>Art\EventImages\e_amuritetrial.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_ADEPT</UnitClass>
 				<UnitClass>UNITCLASS_MAGE</UnitClass>
@@ -109,7 +103,6 @@
 			</UnitsRequired>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_AMURITE_TRIAL_1</Event>
 				<Event>EVENT_AMURITE_TRIAL_2</Event>
@@ -136,7 +129,6 @@
 			<EventArt>Art\EventImages\e_ancienttexts.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>1</iPlotType>
@@ -173,8 +165,6 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_ANCIENTOLYMPICS_1</Event>
 				<Event>EVENT_ANCIENTOLYMPICS_2</Event>
@@ -202,12 +192,10 @@
 			<EventArt>Art\EventImages\e_angelofmercy.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_INFIRMARY</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<bPickReligion>1</bPickReligion>
 			<bStateReligion>1</bStateReligion>
 			<Events>
@@ -231,10 +219,8 @@
 			<EventArt>Art\EventImages\e_angelicprocession.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_GRASS</TerrainType>
 				<TerrainType>TERRAIN_PLAINS</TerrainType>
@@ -261,10 +247,8 @@
 			<EventArt>Art\EventImages\e_antelope.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<FeaturesRequired>
 				<FeatureType>FEATURE_FOREST</FeatureType>
 			</FeaturesRequired>
@@ -298,8 +282,6 @@
 			<EventArt>Art\EventImages\e_hyboremswhisper.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -319,8 +301,6 @@
 			<EventArt />
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -342,8 +322,6 @@
 			<EventArt>Art\EventImages\e_armageddonars.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -364,8 +342,6 @@
 			<EventArt>Art\EventImages\e_armageddonblight.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -386,8 +362,6 @@
 			<EventArt>Art\EventImages\e_armageddonbuboes.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -408,8 +382,6 @@
 			<EventArt>Art\EventImages\e_armageddonhellfire.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -431,8 +403,6 @@
 			<EventArt>Art\EventImages\e_armageddonpestilence.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -454,8 +424,6 @@
 			<EventArt>Art\EventImages\e_armageddonstephanos.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -476,8 +444,6 @@
 			<EventArt>Art\EventImages\e_armageddonwrath.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -499,8 +465,6 @@
 			<EventArt>Art\EventImages\e_armageddonyersinia.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -521,8 +485,6 @@
 			<EventArt>Art\EventImages\e_dealsallos.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<ReligionsRequired>
 				<ReligionType>RELIGION_THE_ASHEN_VEIL</ReligionType>
 			</ReligionsRequired>
@@ -549,13 +511,11 @@
 			<EventArt>Art\EventImages\e_atthesword.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_AXEMAN</UnitClass>
 			</UnitsRequired>
 			<iNumUnits>1</iNumUnits>
 			<iUnitDamagedWeight>1</iUnitDamagedWeight>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_AT_THE_SWORD_1</Event>
 			</Events>
@@ -575,10 +535,8 @@
 			<EventArt>Art\EventImages\e_azer.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_DESERT</TerrainType>
 				<TerrainType>TERRAIN_PLAINS</TerrainType>
@@ -608,9 +566,7 @@
 			<EventArt>Art\EventImages\e_babyboom.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_BABY_BOOM_1</Event>
 			</Events>
@@ -632,8 +588,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_BALSERAPH_PERFORMERS_1</Event>
 				<Event>EVENT_BALSERAPH_PERFORMERS_2</Event>
@@ -660,8 +614,6 @@
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_BANDIT_NIETZ_1</Event>
 				<Event>EVENT_BANDIT_NIETZ_2</Event>
@@ -688,9 +640,7 @@
 			<EventArt>Art\EventImages\e_bardstale.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_BARDS_TALE_1</Event>
 				<Event>EVENT_BARDS_TALE_2</Event>
@@ -715,12 +665,10 @@
 			<EventArt>Art\EventImages\e_bowyer.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_ARCHERY_RANGE</BuildingClass>
 			</BuildingsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_BOWYER_1</Event>
 			</Events>
@@ -742,9 +690,7 @@
 			<EventArt>Art\EventImages\e_breakthrough.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_BREAKTHROUGH_1</Event>
 			</Events>
@@ -764,9 +710,7 @@
 			<EventArt>Art\EventImages\e_brothersinneed.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<bPickReligion>1</bPickReligion>
 			<bStateReligion>1</bStateReligion>
 			<Events>
@@ -796,8 +740,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CALABIM_SANCTUARY_1</Event>
 				<Event>EVENT_CALABIM_SANCTUARY_2</Event>
@@ -831,13 +773,11 @@
 			<EventArt>Art\EventImages\e_carelessapprentice.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_FORGE</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CARELESS_APPRENTICE_1</Event>
 				<Event>EVENT_CARELESS_APPRENTICE_2</Event>
@@ -860,12 +800,10 @@
 			<EventArt>Art\EventImages\e_carnivalstar.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_CARNIVAL</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CARNIVAL_STAR_1</Event>
 				<Event>EVENT_CARNIVAL_STAR_2</Event>
@@ -889,11 +827,9 @@
 			<EventArt>Art\EventImages\e_champion.dds</EventArt>
 			<iPercentGamesActive>10</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
 			<iUnitMinLevel>3</iUnitMinLevel>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CHAMPION_1</Event>
 			</Events>
@@ -916,13 +852,11 @@
 			<EventArt>Art\EventImages\e_circleofgaelan.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_MAGE_GUILD</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CIRCLE_OF_GAELAN_1_1</Event>
 				<Event>EVENT_CIRCLE_OF_GAELAN_1_2</Event>
@@ -949,13 +883,11 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
 			<iDelay>3</iDelay>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_MAGE_GUILD</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CIRCLE_OF_GAELAN_2_1</Event>
 				<Event>EVENT_CIRCLE_OF_GAELAN_2_2</Event>
@@ -982,13 +914,11 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
 			<iDelay>6</iDelay>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_MAGE_GUILD</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CIRCLE_OF_GAELAN_3_1</Event>
 				<Event>EVENT_CIRCLE_OF_GAELAN_3_2</Event>
@@ -1015,10 +945,8 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
 			<iMinPopulation>5</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CITY_FEUD_ARSON_1</Event>
 				<Event>EVENT_CITY_FEUD_ARSON_2</Event>
@@ -1048,10 +976,8 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
 			<iMinPopulation>5</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CITY_FEUD_MERC_1</Event>
 				<Event>EVENT_CITY_FEUD_MERC_2</Event>
@@ -1080,10 +1006,8 @@
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMinPopulation>5</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CITY_FEUD_START_1</Event>
 				<Event>EVENT_CITY_FEUD_START_2</Event>
@@ -1110,10 +1034,8 @@
 			<EventArt>Art\EventImages\e_cityruins.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_CITY_RUINS</ImprovementType>
 			</ImprovementsRequired>
@@ -1139,8 +1061,6 @@
 			<iPercentGamesActive>10</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>5</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CITY_SPLIT_1</Event>
 				<Event>EVENT_CITY_SPLIT_2</Event>
@@ -1166,8 +1086,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTROVERSIAL_PHILOSOPHER_1</Event>
 				<Event>EVENT_CONTROVERSIAL_PHILOSOPHER_2</Event>
@@ -1195,10 +1113,8 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CORRUPT_MERCHANT_1</Event>
 				<Event>EVENT_CORRUPT_MERCHANT_2</Event>
@@ -1225,14 +1141,12 @@
 			<EventArt>Art\EventImages\e_crabcakes.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_HARBOR</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_FISHING_BOATS</ImprovementType>
 			</ImprovementsRequired>
@@ -1259,9 +1173,7 @@
 			<EventArt>Art\EventImages\e_crimedecrease.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CRIME_DECREASE_1</Event>
 			</Events>
@@ -1284,9 +1196,7 @@
 			<EventArt>Art\EventImages\e_crimeincrease.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CRIME_INCREASE_1</Event>
 			</Events>
@@ -1308,9 +1218,7 @@
 			<EventArt>Art\EventImages\e_cyclone.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CYCLONE_1</Event>
 				<Event>EVENT_CYCLONE_2</Event>
@@ -1334,12 +1242,10 @@
 			<EventArt>Art\EventImages\e_dedicatemonument.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_MONUMENT</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_DEDICATE_MONUMENT_1</Event>
 				<Event>EVENT_DEDICATE_MONUMENT_2</Event>
@@ -1365,8 +1271,6 @@
 			<EventArt>Art\EventImages\e_demonictome.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_DEMONIC_TOME_1</Event>
 				<Event>EVENT_DEMONIC_TOME_2</Event>
@@ -1391,10 +1295,8 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_DISSENT_1</Event>
 				<Event>EVENT_DISSENT_2</Event>
@@ -1426,8 +1328,6 @@
 			<iWeight>200</iWeight>
 			<iMinTreasury>25</iMinTreasury>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_DREAMS_OF_DEATH_1</Event>
 				<Event>EVENT_DREAMS_OF_DEATH_2</Event>
@@ -1451,10 +1351,8 @@
 			<EventArt>Art\EventImages\e_dustbowl.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>4</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_PLAINS</TerrainType>
 			</TerrainsRequired>
@@ -1483,10 +1381,8 @@
 			<EventArt>Art\EventImages\e_dustbowl.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_DUSTBOWL_1</Event>
 				<Event>EVENT_DUSTBOWL_2</Event>
@@ -1514,12 +1410,10 @@
 			<EventArt>Art\EventImages\e_elderconflict.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_ELDER_COUNCIL</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_ELDER_CONFLICT_1</Event>
 				<Event>EVENT_ELDER_CONFLICT_2</Event>
@@ -1542,8 +1436,6 @@
 			<EventArt>Art\EventImages\e_hallowingoftheelohim.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_ELOHIM_HALLOWING_1</Event>
 				<Event>EVENT_ELOHIM_HALLOWING_2</Event>
@@ -1568,7 +1460,6 @@
 			<EventArt>Art\EventImages\e_enchanter.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_AXEMAN</UnitClass>
 				<UnitClass>UNITCLASS_CHAMPION</UnitClass>
@@ -1577,7 +1468,6 @@
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_ENCHANTER_1</Event>
 				<Event>EVENT_ENCHANTER_2</Event>
@@ -1600,12 +1490,10 @@
 			<EventArt>Art\EventImages\e_esteemedplaywright.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_THEATRE</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_ESTEEMED_PLAYWRIGHT_1</Event>
 				<Event>EVENT_ESTEEMED_PLAYWRIGHT_2</Event>
@@ -1629,7 +1517,6 @@
 			<EventArt>Art\EventImages\e_experiencedcaptain.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_GALLEY</UnitClass>
 				<UnitClass>UNITCLASS_MAN_O_WAR</UnitClass>
@@ -1643,7 +1530,6 @@
 				<BuildingClass>BUILDINGCLASS_SHIPYARD</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_EXPERIENCED_CAPTAIN_1</Event>
 				<Event>EVENT_EXPERIENCED_CAPTAIN_2</Event>
@@ -1675,9 +1561,7 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_FAMINE_1</Event>
 				<Event>EVENT_FAMINE_2</Event>
@@ -1714,12 +1598,10 @@
 			<EventArt>Art\EventImages\e_farmbandits.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitDistanceWeight>-1</iUnitDistanceWeight>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
 			</ImprovementsRequired>
@@ -1760,12 +1642,10 @@
 			<EventArt>Art\EventImages\e_farmbandits.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitDistanceWeight>-1</iUnitDistanceWeight>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
 			</ImprovementsRequired>
@@ -1806,14 +1686,12 @@
 			<EventArt>Art\EventImages\e_farmplows.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_FORGE</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_MINE</ImprovementType>
 			</ImprovementsRequired>
@@ -1845,9 +1723,7 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_FAUX_PAS_1</Event>
 			</Events>
@@ -1868,12 +1744,10 @@
 			<EventArt>Art\EventImages\e_favoriteson.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_CARNIVAL</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_FAVORITE_SON_1</Event>
 				<Event>EVENT_FAVORITE_SON_2</Event>
@@ -1896,10 +1770,8 @@
 			<EventArt>Art\EventImages\e_flareentropy.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_MANA_ENTROPY</ImprovementType>
 			</ImprovementsRequired>
@@ -1924,10 +1796,8 @@
 			<EventArt>Art\EventImages\e_flarefire.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_MANA_FIRE</ImprovementType>
 			</ImprovementsRequired>
@@ -1952,10 +1822,8 @@
 			<EventArt>Art\EventImages\e_flarelife.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_MANA_LIFE</ImprovementType>
 			</ImprovementsRequired>
@@ -1980,10 +1848,8 @@
 			<EventArt>Art\EventImages\e_flarenature.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_MANA_NATURE</ImprovementType>
 			</ImprovementsRequired>
@@ -2008,10 +1874,8 @@
 			<EventArt>Art\EventImages\e_flarewater.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_MANA_WATER</ImprovementType>
 			</ImprovementsRequired>
@@ -2036,10 +1900,8 @@
 			<EventArt>Art\EventImages\e_fortythieves.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_TUNDRA</TerrainType>
 				<TerrainType>TERRAIN_PLAINS</TerrainType>
@@ -2070,10 +1932,8 @@
 			<EventArt>Art\EventImages\e_friendlylocals.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitDamagedWeight>1</iUnitDamagedWeight>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_FRIENDLY_LOCALS_1</Event>
 			</Events>
@@ -2101,10 +1961,8 @@
 			<EventArt>Art\EventImages\e_frostling.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_SNOW</TerrainType>
 				<TerrainType>TERRAIN_TUNDRA</TerrainType>
@@ -2136,9 +1994,7 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_FUGITIVE_1</Event>
 				<Event>EVENT_FUGITIVE_2</Event>
@@ -2164,7 +2020,6 @@
 			<EventArt>Art\EventImages\e_girlsbestfriend.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_FORGE</BuildingClass>
 			</BuildingsRequired>
@@ -2172,7 +2027,6 @@
 			<iNumBuildingsGlobal>1</iNumBuildingsGlobal>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_MINE</ImprovementType>
 			</ImprovementsRequired>
@@ -2203,10 +2057,8 @@
 			<EventArt>Art\EventImages\e_goblinwaste.dds</EventArt>
 			<iPercentGamesActive>33</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_GRASS</TerrainType>
 				<TerrainType>TERRAIN_PLAINS</TerrainType>
@@ -2242,8 +2094,6 @@
 			<EventArt>Art\EventImages\e_governorassassination.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_GOVERNOR_ASSASSINATION_1</Event>
 				<Event>EVENT_GOVERNOR_ASSASSINATION_2</Event>
@@ -2269,7 +2119,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>1</iPlotType>
@@ -2311,10 +2160,8 @@
 			<EventArt />
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_CAMP</ImprovementType>
 			</ImprovementsRequired>
@@ -2342,8 +2189,6 @@
 			<EventArt>Art\EventImages\e_greatbestgurid.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -2367,8 +2212,6 @@
 			<EventArt>Art\EventImages\e_greatbeastleviathan.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -2392,8 +2235,6 @@
 			<EventArt>Art\EventImages\e_greatbeastmargalard.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -2418,8 +2259,6 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_GREAT_MEDIATOR_1</Event>
 				<Event>EVENT_GREAT_MEDIATOR_2</Event>
@@ -2443,7 +2282,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
 			</BuildingsRequired>
@@ -2473,11 +2311,9 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_guildmerc1.dds</EventArt>
-			<EventArt />
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
 			</BuildingsRequired>
@@ -2507,11 +2343,9 @@
 				</TriggerText>
 			</TriggerTexts>
 			<EventArt>Art\EventImages\e_guildmerc1.dds</EventArt>
-			<EventArt />
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
 			</BuildingsRequired>
@@ -2544,7 +2378,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
 			</BuildingsRequired>
@@ -2575,7 +2408,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
 			</BuildingsRequired>
@@ -2606,7 +2438,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
 			</BuildingsRequired>
@@ -2636,7 +2467,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
 			</BuildingsRequired>
@@ -2666,7 +2496,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
 			</BuildingsRequired>
@@ -2696,7 +2525,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClass>
 			</BuildingsRequired>
@@ -2733,10 +2561,8 @@
 			<EventArt>Art\EventImages\e_happyhunting.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>500</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<FeaturesRequired>
 				<FeatureType>FEATURE_FOREST</FeatureType>
 			</FeaturesRequired>
@@ -2766,8 +2592,6 @@
 			<EventArt>Art\EventImages\e_healingplant.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_HEALING_PLANT_1</Event>
 				<Event>EVENT_HEALING_PLANT_2</Event>
@@ -2792,8 +2616,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<Civic>CIVIC_THEOCRACY</Civic>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<bPickReligion>1</bPickReligion>
 			<bStateReligion>1</bStateReligion>
 			<Events>
@@ -2820,8 +2642,6 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>350</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_HEROIC_GESTURE_1</Event>
 				<Event>EVENT_HEROIC_GESTURE_2</Event>
@@ -2845,8 +2665,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_HOLY_CHILD_1</Event>
 				<Event>EVENT_HOLY_CHILD_2</Event>
@@ -2871,10 +2689,8 @@
 			<EventArt>Art\EventImages\e_horseshoe.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>50</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_PASTURE</ImprovementType>
 			</ImprovementsRequired>
@@ -2911,10 +2727,8 @@
 			<EventArt>Art\EventImages\e_horticulture.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<FeaturesRequired>
 				<FeatureType>FEATURE_FOREST</FeatureType>
 				<FeatureType>FEATURE_JUNGLE</FeatureType>
@@ -2944,12 +2758,10 @@
 			<EventArt>Art\EventImages\e_hunter.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_CARNIVAL</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_HUNTER_1</Event>
 				<Event>EVENT_HUNTER_2</Event>
@@ -2976,9 +2788,7 @@
 			<EventArt>Art\EventImages\e_hurricane.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_HURRICANE_1</Event>
 				<Event>EVENT_HURRICANE_2</Event>
@@ -3003,8 +2813,6 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_HYBOREMS_WHISPER_1</Event>
 				<Event>EVENT_HYBOREMS_WHISPER_2</Event>
@@ -3026,7 +2834,6 @@
 			<EventArt>Art\EventImages\e_icesculpture.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>2</iPlotType>
@@ -3057,9 +2864,7 @@
 			<EventArt>Art\EventImages\e_immigrants.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_IMMIGRANTS_1</Event>
 				<Event>EVENT_IMMIGRANTS_2</Event>
@@ -3087,13 +2892,11 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iUnhealthy>1</iUnhealthy>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_INN</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_INN_TO_HOUSING_1</Event>
 				<Event>EVENT_INN_TO_HOUSING_2</Event>
@@ -3115,9 +2918,7 @@
 			<EventArt>Art\EventImages\e_inspiredmission.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<iNumReligions>2</iNumReligions>
 			<bPickReligion>1</bPickReligion>
 			<bStateReligion>1</bStateReligion>
@@ -3145,12 +2946,10 @@
 			<EventArt>Art\EventImages\e_jackpot.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_GAMBLING_HOUSE</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_JACKPOT_1</Event>
 				<Event>EVENT_JACKPOT_2</Event>
@@ -3174,10 +2973,8 @@
 			<EventArt>Art\EventImages\e_jade.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_MINE</ImprovementType>
 			</ImprovementsRequired>
@@ -3212,9 +3009,7 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<bPickReligion>1</bPickReligion>
 			<bStateReligion>1</bStateReligion>
 			<Events>
@@ -3241,8 +3036,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_KHAZAD_FORGE_1</Event>
 				<Event>EVENT_KHAZAD_FORGE_2</Event>
@@ -3268,9 +3061,7 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_LEFT_AT_ALTAR_1</Event>
 			</Events>
@@ -3291,9 +3082,7 @@
 			<EventArt>Art\EventImages\e_letumfrigus.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_LETUM_FRIGUS_1</Event>
 				<Event>EVENT_LETUM_FRIGUS_2</Event>
@@ -3316,13 +3105,11 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_LIBRARY</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_LIBRARY_FIRE_1</Event>
 				<Event>EVENT_LIBRARY_FIRE_2</Event>
@@ -3344,8 +3131,6 @@
 			<EventArt>Art\EventImages\e_literacy.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_LITERACY_1</Event>
 			</Events>
@@ -3371,10 +3156,8 @@
 			<EventArt>Art\EventImages\e_looters.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iAngry>1</iAngry>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_LOOTERS_1</Event>
 				<Event>EVENT_LOOTERS_2</Event>
@@ -3401,8 +3184,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MACHINE_PARTS_1</Event>
 				<Event>EVENT_MACHINE_PARTS_2</Event>
@@ -3429,7 +3210,6 @@
 			<EventArt>Art\EventImages\e_malakimpilgramage.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_PRIEST_OF_KILMORPH</UnitClass>
 				<UnitClass>UNITCLASS_PRIEST_OF_LEAVES</UnitClass>
@@ -3440,7 +3220,6 @@
 			</UnitsRequired>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MALAKIM_PILGRIMAGE_1</Event>
 				<Event>EVENT_MALAKIM_PILGRIMAGE_2</Event>
@@ -3467,9 +3246,7 @@
 			<EventArt>Art\EventImages\e_marathon.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>800</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MARATHON_1</Event>
 			</Events>
@@ -3492,10 +3269,8 @@
 			<EventArt>Art\EventImages\e_marblestatues.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_QUARRY</ImprovementType>
 			</ImprovementsRequired>
@@ -3529,12 +3304,10 @@
 			<EventArt>Art\EventImages\e_markettheft.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_MARKET</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MARKET_THEFT_1</Event>
 				<Event>EVENT_MARKET_THEFT_2</Event>
@@ -3559,14 +3332,12 @@
 			<EventArt>Art\EventImages\e_mary.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_ALCHEMY_LAB</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MARY_1</Event>
 				<Event>EVENT_MARY_2</Event>
@@ -3589,13 +3360,11 @@
 			<EventArt>Art\EventImages\e_mastersmith.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_FORGE</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MASTER_SMITH_1</Event>
 			</Events>
@@ -3617,13 +3386,11 @@
 			<EventArt>Art\EventImages\e_mercpayment.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_MERCENARY</UnitClass>
 			</UnitsRequired>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MERC_PAYMENT_1</Event>
 				<Event>EVENT_MERC_PAYMENT_2</Event>
@@ -3647,10 +3414,8 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MERCENARY_1</Event>
 				<Event>EVENT_DEAL_REFUSE</Event>
@@ -3677,8 +3442,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MERCHANT_KEEP_1</Event>
 				<Event>EVENT_MERCHANT_KEEP_2</Event>
@@ -3703,9 +3466,7 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinTreasury>50</iMinTreasury>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_METEOR_1</Event>
 				<Event>EVENT_METEOR_2</Event>
@@ -3728,12 +3489,10 @@
 			<EventArt>Art\EventImages\e_miracle.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_WALLS</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<bPickReligion>1</bPickReligion>
 			<bStateReligion>1</bStateReligion>
 			<Events>
@@ -3757,10 +3516,8 @@
 			<EventArt>Art\EventImages\e_mistforms.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_SMOKE</ImprovementType>
 			</ImprovementsRequired>
@@ -3786,13 +3543,11 @@
 			<EventArt>Art\EventImages\e_moneychangers.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_MARKET</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MONEY_CHANGERS_1</Event>
 			</Events>
@@ -3814,9 +3569,7 @@
 			<EventArt>Art\EventImages\e_monsoon.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MONSOON_1</Event>
 				<Event>EVENT_MONSOON_2</Event>
@@ -3840,10 +3593,8 @@
 			<EventArt>Art\EventImages\e_motherlode.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_MINE</ImprovementType>
 			</ImprovementsRequired>
@@ -3873,8 +3624,6 @@
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MURDERED_WIFE_1</Event>
 				<Event>EVENT_MURDERED_WIFE_2</Event>
@@ -3898,7 +3647,6 @@
 			<EventArt>Art\EventImages\e_mushrooms.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>1</iPlotType>
@@ -3934,12 +3682,10 @@
 			<EventArt>Art\EventImages\e_mutate.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MUTATE_1</Event>
 				<Event>EVENT_MUTATE_2</Event>
@@ -3962,10 +3708,8 @@
 			<EventArt>Art\EventImages\e_mystictree.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<FeaturesRequired>
 				<FeatureType>FEATURE_FOREST</FeatureType>
 			</FeaturesRequired>
@@ -3994,10 +3738,8 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ReligionsRequired>
 				<ReligionType>RELIGION_THE_ORDER</ReligionType>
 				<ReligionType>RELIGION_THE_ASHEN_VEIL</ReligionType>
@@ -4029,14 +3771,12 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_TEMPLE_OF_THE_VEIL</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ReligionsRequired>
 				<ReligionType>RELIGION_THE_ORDER</ReligionType>
 				<ReligionType>RELIGION_THE_ASHEN_VEIL</ReligionType>
@@ -4067,8 +3807,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_ORPHANAGE_FIRE_1</Event>
 				<Event>EVENT_ORPHANAGE_FIRE_2</Event>
@@ -4096,15 +3834,13 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
 			<Civic>CIVIC_OVERCOUNCIL</Civic>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_OVERCOUNCIL_GIFT_1</Event>
 				<Event>EVENT_OVERCOUNCIL_GIFT_2</Event>
 				<Event>EVENT_OVERCOUNCIL_GIFT_3</Event>
 			</Events>
-			<PythonCanDo>canTriggerOvercouncil</PythonCanDo>
 			<bRecurring>1</bRecurring>
+			<PythonCanDo>canTriggerOvercouncil</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PARROTS -->
 			<Type>EVENTTRIGGER_PARROTS</Type>
@@ -4120,10 +3856,8 @@
 			<EventArt>Art\EventImages\e_parrots.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<FeaturesRequired>
 				<FeatureType>FEATURE_JUNGLE</FeatureType>
 			</FeaturesRequired>
@@ -4151,10 +3885,8 @@
 			<EventArt>Art\EventImages\e_pasturebuilt.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>NONE</ImprovementType>
 			</ImprovementsRequired>
@@ -4195,13 +3927,11 @@
 			<EventArt>Art\EventImages\e_patronofknowledge.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_LIBRARY</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PATRON_OF_KNOWLEDGE_1</Event>
 				<Event>EVENT_PATRON_OF_KNOWLEDGE_2</Event>
@@ -4225,7 +3955,6 @@
 			<EventArt>Art\EventImages\e_penguins.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>1</iPlotType>
@@ -4265,10 +3994,8 @@
 			<EventArt>Art\EventImages\e_pestilence.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_PASTURE</ImprovementType>
 			</ImprovementsRequired>
@@ -4301,10 +4028,8 @@
 			<EventArt>Art\EventImages\e_pestilence.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_PLANTATION</ImprovementType>
 			</ImprovementsRequired>
@@ -4328,8 +4053,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PICK_ALIGNMENT_1</Event>
 				<Event>EVENT_PICK_ALIGNMENT_2</Event>
@@ -4351,7 +4074,6 @@
 			<EventArt>Art\EventImages\e_prairiedogs.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>2</iPlotType>
@@ -4385,8 +4107,6 @@
 			<EventArt>Art\EventImages\e_pronalexis.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRON_ALEXIS</Event>
 				<Event>EVENT_PRON_REFUSE</Event>
@@ -4409,8 +4129,6 @@
 			<EventArt>Art\EventImages\e_pronarendel.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRON_ARENDEL</Event>
 				<Event>EVENT_PRON_REFUSE</Event>
@@ -4433,8 +4151,6 @@
 			<EventArt>Art\EventImages\e_proncapria.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRON_CAPRIA</Event>
 				<Event>EVENT_PRON_REFUSE</Event>
@@ -4457,8 +4173,6 @@
 			<EventArt>Art\EventImages\e_pronethne.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRON_ETHNE</Event>
 				<Event>EVENT_PRON_REFUSE</Event>
@@ -4481,8 +4195,6 @@
 			<EventArt>Art\EventImages\e_pronfaeryl.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRON_FAERYL</Event>
 				<Event>EVENT_PRON_REFUSE</Event>
@@ -4505,8 +4217,6 @@
 			<EventArt>Art\EventImages\e_pronhannah.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRON_HANNAH</Event>
 				<Event>EVENT_PRON_REFUSE</Event>
@@ -4529,8 +4239,6 @@
 			<EventArt>Art\EventImages\e_pronkeelyn.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRON_KEELYN</Event>
 				<Event>EVENT_PRON_REFUSE</Event>
@@ -4553,8 +4261,6 @@
 			<EventArt>Art\EventImages\e_pronmahala.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRON_MAHALA</Event>
 				<Event>EVENT_PRON_REFUSE</Event>
@@ -4577,8 +4283,6 @@
 			<EventArt>Art\EventImages\e_pronrhoanna.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRON_RHOANNA</Event>
 				<Event>EVENT_PRON_REFUSE</Event>
@@ -4601,8 +4305,6 @@
 			<EventArt>Art\EventImages\e_pronsheelba.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRON_SHEELBA</Event>
 				<Event>EVENT_PRON_REFUSE</Event>
@@ -4625,8 +4327,6 @@
 			<EventArt>Art\EventImages\e_pronthessa.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRON_THESSA</Event>
 				<Event>EVENT_PRON_REFUSE</Event>
@@ -4649,8 +4349,6 @@
 			<EventArt>Art\EventImages\e_pronvalledia.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRON_VALLEDIA</Event>
 				<Event>EVENT_PRON_REFUSE</Event>
@@ -4673,8 +4371,6 @@
 			<EventArt>Art\EventImages\e_uniqueaifonisle.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -4694,8 +4390,6 @@
 			<EventArt>Art\EventImages\e_uniquebradelineswell.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -4715,8 +4409,6 @@
 			<EventArt>Art\EventImages\e_uniquebrokensepulcher.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -4736,8 +4428,6 @@
 			<EventArt>Art\EventImages\e_uniqueguardian.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -4757,8 +4447,6 @@
 			<EventArt>Art\EventImages\e_letumfrigus.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -4778,8 +4466,6 @@
 			<EventArt>Art\EventImages\e_letumfrigus.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -4800,8 +4486,6 @@
 			<EventArt>Art\EventImages\e_uniquepyre.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -4821,13 +4505,11 @@
 			<EventArt>Art\EventImages\e_rabbit.dds</EventArt>
 			<iPercentGamesActive>10</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_SCOUT</UnitClass>
 				<UnitClass>UNITCLASS_HUNTER</UnitClass>
 			</UnitsRequired>
 			<iNumUnits>1</iNumUnits>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_RABBIT_1</Event>
 				<Event>EVENT_RABBIT_2</Event>
@@ -4851,8 +4533,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_RANSOM_1</Event>
 				<Event>EVENT_RANSOM_2</Event>
@@ -4876,10 +4556,8 @@
 			<EventArt>Art\EventImages\e_runningbulls.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_PASTURE</ImprovementType>
 			</ImprovementsRequired>
@@ -4913,13 +4591,11 @@
 			<EventArt>Art\EventImages\e_ruralfarmers.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_GRANARY</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_RURAL_FARMERS_1</Event>
 			</Events>
@@ -4942,8 +4618,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SAGE_KEEP_1</Event>
 				<Event>EVENT_SAGE_KEEP_2</Event>
@@ -4967,8 +4641,6 @@
 			<EventArt>Art\EventImages\e_sailorsdirge.dds</EventArt>
 			<iPercentGamesActive>60</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -4993,8 +4665,6 @@
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SAUNDRA_1</Event>
 				<Event>EVENT_SAUNDRA_2</Event>
@@ -5021,10 +4691,8 @@
 			<EventArt>Art\EventImages\e_seaturtles.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_COAST</TerrainType>
 			</TerrainsRequired>
@@ -5052,9 +4720,7 @@
 			<EventArt>Art\EventImages\e_setback.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>30</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SETBACK_1</Event>
 			</Events>
@@ -5073,8 +4739,6 @@
 			<EventArt>Art\EventImages\e_sheaimelegy.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SHEAIM_ELEGY_1</Event>
 				<Event>EVENT_SHEAIM_ELEGY_2</Event>
@@ -5099,9 +4763,7 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SICKNESS_1</Event>
 				<Event>EVENT_SICKNESS_2</Event>
@@ -5128,8 +4790,6 @@
 			<EventArt>Art\EventImages\e_signaeron.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 				<Event>EVENT_SIGN_AERON_1</Event>
@@ -5151,8 +4811,6 @@
 			<EventArt>Art\EventImages\e_signagares.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SIGN_AGARES_1</Event>
 				<Event>EVENT_SIGN_2</Event>
@@ -5173,8 +4831,6 @@
 			<EventArt>Art\EventImages\e_signamathaon.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SIGN_AMATHAON_1</Event>
 				<Event>EVENT_SIGN_AMATHAON_2</Event>
@@ -5196,8 +4852,6 @@
 			<EventArt>Art\EventImages\e_signarawn.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 				<Event>EVENT_SIGN_ARAWN_1</Event>
@@ -5219,8 +4873,6 @@
 			<EventArt>Art\EventImages\e_signbhall.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 				<Event>EVENT_SIGN_BHALL_1</Event>
@@ -5242,8 +4894,6 @@
 			<EventArt>Art\EventImages\e_signcamulos.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -5264,8 +4914,6 @@
 			<EventArt>Art\EventImages\e_signceridwen.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SIGN_CERIDWEN_1</Event>
 				<Event>EVENT_SIGN_CERIDWEN_2</Event>
@@ -5287,8 +4935,6 @@
 			<EventArt>Art\EventImages\e_signcernunnos.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SIGN_CERNUNNOS_1</Event>
 				<Event>EVENT_SIGN_2</Event>
@@ -5309,8 +4955,6 @@
 			<EventArt>Art\EventImages\e_signdagda.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -5331,8 +4975,6 @@
 			<EventArt>Art\EventImages\e_signdanalin.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SIGN_DANALIN_1</Event>
 				<Event>EVENT_SIGN_2</Event>
@@ -5353,8 +4995,6 @@
 			<EventArt>Art\EventImages\e_signesus.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SIGN_ESUS_1</Event>
 				<Event>EVENT_SIGN_2</Event>
@@ -5376,8 +5016,6 @@
 			<EventArt>Art\EventImages\e_signjunil.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SIGN_JUNIL_1</Event>
 				<Event>EVENT_SIGN_2</Event>
@@ -5398,8 +5036,6 @@
 			<EventArt>Art\EventImages\e_signkilmorph.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SIGN_KILMORPH_1</Event>
 				<Event>EVENT_SIGN_2</Event>
@@ -5420,8 +5056,6 @@
 			<EventArt>Art\EventImages\e_signlugus.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SIGN_LUGUS_1</Event>
 				<Event>EVENT_SIGN_2</Event>
@@ -5443,8 +5077,6 @@
 			<EventArt>Art\EventImages\e_signmammon.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SIGN_MAMMON_1</Event>
 			</Events>
@@ -5464,8 +5096,6 @@
 			<EventArt>Art\EventImages\e_signmulcarn.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SIGN_MULCARN_1</Event>
 				<Event>EVENT_SIGN_2</Event>
@@ -5487,8 +5117,6 @@
 			<EventArt>Art\EventImages\e_signnantosuelta.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -5508,8 +5136,6 @@
 			<EventArt>Art\EventImages\e_signoghma.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SIGN_OGHMA_1</Event>
 			</Events>
@@ -5530,8 +5156,6 @@
 			<EventArt>Art\EventImages\e_signsirona.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -5552,8 +5176,6 @@
 			<EventArt>Art\EventImages\e_signsucellus.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -5574,8 +5196,6 @@
 			<EventArt>Art\EventImages\e_signtali.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -5596,14 +5216,12 @@
 			<EventArt>Art\EventImages\e_slaveescape.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_SLAVE</UnitClass>
 			</UnitsRequired>
 			<iNumUnits>1</iNumUnits>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -5625,14 +5243,12 @@
 			<EventArt>Art\EventImages\e_slaverevolt.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_SLAVE</UnitClass>
 			</UnitsRequired>
 			<iNumUnits>1</iNumUnits>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -5655,8 +5271,6 @@
 			<EventArt>Art\EventImages\e_slavering.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SLAVE_RING_END_1</Event>
 				<Event>EVENT_SLAVE_RING_END_2</Event>
@@ -5681,8 +5295,6 @@
 			<EventArt>Art\EventImages\e_slavering.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SLAVE_RING_START_1</Event>
 				<Event>EVENT_SLAVE_RING_START_2</Event>
@@ -5706,8 +5318,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SMUGGLERS_1</Event>
 				<Event>EVENT_SMUGGLERS_2</Event>
@@ -5733,9 +5343,7 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SOBS_1</Event>
 				<Event>EVENT_SOBS_2</Event>
@@ -5761,8 +5369,6 @@
 			<iPercentGamesActive>10</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>5</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SOVERIGN_CITY_1</Event>
 				<Event>EVENT_CITY_SPLIT_2</Event>
@@ -5787,10 +5393,8 @@
 			<EventArt>Art\EventImages\e_spidermine.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_MINE</ImprovementType>
 			</ImprovementsRequired>
@@ -5815,12 +5419,10 @@
 			<EventArt>Art\EventImages\e_spoiledgrain.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_GRANARY</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SPOILED_GRAIN_1</Event>
 				<Event>EVENT_SPOILED_GRAIN_2</Event>
@@ -5843,8 +5445,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_STRANGE_ADVISOR_1</Event>
 				<Event>EVENT_STRANGE_ADVISOR_2</Event>
@@ -5868,8 +5468,6 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>800</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SWITCH_CIVS_1</Event>
 				<Event>EVENT_SWITCH_CIVS_2</Event>
@@ -5892,7 +5490,6 @@
 			<EventArt>Art\EventImages\e_thoroughbred.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_STABLE</BuildingClass>
 			</BuildingsRequired>
@@ -5900,7 +5497,6 @@
 			<iNumBuildingsGlobal>1</iNumBuildingsGlobal>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_PASTURE</ImprovementType>
 			</ImprovementsRequired>
@@ -5931,7 +5527,6 @@
 			<EventArt>Art\EventImages\e_tin.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>1</iPlotType>
@@ -5966,8 +5561,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
 			<Civic>CIVIC_LIBERTY</Civic>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_TOO_CLOSE_TO_CALL_1</Event>
 				<Event>EVENT_TOO_CLOSE_TO_CALL_2</Event>
@@ -5989,7 +5582,6 @@
 			<EventArt>Art\EventImages\e_tornado.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>2</iPlotType>
@@ -6023,8 +5615,6 @@
 			<EventArt>Art\EventImages\e_towershield.dds</EventArt>
 			<iPercentGamesActive>20</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_TOWER_SHIELD_1</Event>
 			</Events>
@@ -6047,8 +5637,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_TRAIT_AGGRESSIVE</Event>
 				<Event>EVENT_TRAIT_AGRARIAN</Event>
@@ -6082,8 +5670,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_TRAIT_INSANE</Event>
 			</Events>
@@ -6105,10 +5691,8 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_TRAITOR_1</Event>
 				<Event>EVENT_TRAITOR_2</Event>
@@ -6136,10 +5720,8 @@
 			<EventArt>Art\EventImages\e_transmutation.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<BonusesRequired>
 				<BonusType>BONUS_GOLD</BonusType>
 			</BonusesRequired>
@@ -6167,10 +5749,8 @@
 			<EventArt>Art\EventImages\e_transmutation.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<BonusesRequired>
 				<BonusType>BONUS_COPPER</BonusType>
 			</BonusesRequired>
@@ -6198,10 +5778,8 @@
 			<EventArt>Art\EventImages\e_truffles.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_GRASS</TerrainType>
 			</TerrainsRequired>
@@ -6226,10 +5804,8 @@
 			<EventArt>Art\EventImages\e_twoheadedcow.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<BonusesRequired>
 				<BonusType>BONUS_COW</BonusType>
 			</BonusesRequired>
@@ -6256,15 +5832,13 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<Civic>CIVIC_UNDERCOUNCIL</Civic>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_UNDERCOUNCIL_GIFT_1</Event>
 				<Event>EVENT_UNDERCOUNCIL_GIFT_2</Event>
 				<Event>EVENT_UNDERCOUNCIL_GIFT_3</Event>
 			</Events>
-			<PythonCanDo>canTriggerUndercouncil</PythonCanDo>
 			<bRecurring>1</bRecurring>
+			<PythonCanDo>canTriggerUndercouncil</PythonCanDo>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- VEIL_VS_ORDER_TEMPLE -->
 			<Type>EVENTTRIGGER_VEIL_VS_ORDER_TEMPLE</Type>
@@ -6281,14 +5855,12 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_TEMPLE_OF_THE_ORDER</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ReligionsRequired>
 				<ReligionType>RELIGION_THE_ORDER</ReligionType>
 				<ReligionType>RELIGION_THE_ASHEN_VEIL</ReligionType>
@@ -6318,7 +5890,6 @@
 			<EventArt>Art\EventImages\e_volcano.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<FeaturesRequired>
@@ -6345,7 +5916,6 @@
 			<EventArt>Art\EventImages\e_volcano.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<ImprovementsRequired>
@@ -6372,12 +5942,10 @@
 			<EventArt>Art\EventImages\e_wargames.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WAR_GAMES_1</Event>
 				<Event>EVENT_WAR_GAMES_2</Event>
@@ -6402,10 +5970,8 @@
 			<EventArt>Art\EventImages\e_washedout.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<RoutesRequired>
 				<RouteType>ROUTE_ROAD</RouteType>
 			</RoutesRequired>
@@ -6431,10 +5997,8 @@
 			<EventArt>Art\EventImages\e_watersoflife.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<FeaturesRequired>
 				<FeatureType>FEATURE_OASIS</FeatureType>
 			</FeaturesRequired>
@@ -6463,9 +6027,7 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<bPickReligion>1</bPickReligion>
 			<bStateReligion>1</bStateReligion>
 			<Events>
@@ -6491,8 +6053,6 @@
 			<EventArt>Art\EventImages\e_werewolf.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WEREWOLF_1</Event>
 				<Event>EVENT_WEREWOLF_2</Event>
@@ -6518,10 +6078,8 @@
 			<EventArt>Art\EventImages\e_whaleofathing.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_OCEAN</TerrainType>
 			</TerrainsRequired>
@@ -6553,8 +6111,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WITCH_1</Event>
 				<Event>EVENT_WITCH_2</Event>
@@ -6576,8 +6132,6 @@
 			<EventArt>Art\EventImages\e_lunatic.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_LUNATIC_1</Event>
 				<Event>EVENT_LUNATIC_2</Event>
@@ -6608,8 +6162,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WILDERNESS_MAN_1</Event>
 				<Event>EVENT_WILDERNESS_MAN_2</Event>
@@ -6635,10 +6187,8 @@
 			<EventArt>Art\EventImages\e_farmer.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
 			</ImprovementsRequired>
@@ -6667,10 +6217,8 @@
 			<EventArt>Art\EventImages\e_piggiant.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<BonusesRequired>
 				<BonusType>BONUS_PIG</BonusType>
 			</BonusesRequired>
@@ -6700,8 +6248,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PSYCHOPATH_1</Event>
 				<Event>EVENT_PSYCHOPATH_2</Event>
@@ -6725,8 +6271,6 @@
 			<EventArt>Art\EventImages\e_psychopathlost.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PSYCHOPATH_LOST_1</Event>
 			</Events>
@@ -6750,8 +6294,6 @@
 			<EventArt>Art\EventImages\e_psychopath.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PSYCHOPATH_CAUGHT_1</Event>
 				<Event>EVENT_PSYCHOPATH_CAUGHT_2</Event>
@@ -6778,9 +6320,7 @@
 			<EventArt>Art\EventImages\e_lairportal.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_EXPLORE_LAIR_PORTAL_1</Event>
 				<Event>EVENT_EXPLORE_LAIR_PORTAL_2</Event>
@@ -6801,8 +6341,6 @@
 			<EventArt>Art\EventImages\e_lairdepths.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_EXPLORE_LAIR_DEPTHS_1</Event>
 				<Event>EVENT_EXPLORE_LAIR_DEPTHS_2</Event>
@@ -6823,8 +6361,6 @@
 			<EventArt>Art\EventImages\e_dwarfvslizardman.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_EXPLORE_LAIR_DWARF_VS_LIZARDMEN_1</Event>
 				<Event>EVENT_EXPLORE_LAIR_DWARF_VS_LIZARDMEN_2</Event>
@@ -6846,7 +6382,6 @@
 			<EventArt>Art\EventImages\e_dungeon.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>1</iPlotType>
@@ -6886,8 +6421,6 @@
 			<EventArt>Art\EventImages\e_treasure.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_TREASURE_1</Event>
 				<Event>EVENT_TREASURE_2</Event>
@@ -6911,8 +6444,6 @@
 			<EventArt>Art\EventImages\e_godslayer.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -6933,8 +6464,6 @@
 			<EventArt>Art\EventImages\e_sailorsdirgedef.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -6955,8 +6484,6 @@
 			<EventArt>Art\EventImages\e_enemycitycrime.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_ENEMY_CITY_CRIME_1</Event>
 				<Event>EVENT_ENEMY_CITY_CRIME_2</Event>
@@ -6982,8 +6509,6 @@
 			<EventArt />
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_SPLINTERED_COURT_DEFEATED_AMELANCHIER_1</Event>
 				<Event>EVENT_WB_SPLINTERED_COURT_DEFEATED_AMELANCHIER_2</Event>
@@ -7003,8 +6528,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_SPLINTERED_COURT_DEFEATED_THESSA_1</Event>
 				<Event>EVENT_WB_SPLINTERED_COURT_DEFEATED_THESSA_2</Event>
@@ -7024,8 +6547,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_SPLINTERED_COURT_DEFEATED_RIVANNA_1</Event>
 				<Event>EVENT_WB_SPLINTERED_COURT_DEFEATED_RIVANNA_2</Event>
@@ -7045,8 +6566,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_SPLINTERED_COURT_DEFEATED_VOLANNA_1</Event>
 				<Event>EVENT_WB_SPLINTERED_COURT_DEFEATED_VOLANNA_2</Event>
@@ -7066,8 +6585,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_SPLINTERED_COURT_PARITH_YES</Event>
 				<Event>EVENT_WB_SPLINTERED_COURT_PARITH_NO</Event>
@@ -7087,8 +6604,6 @@
 			<EventArt>Art\EventImages\e_magnadine.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MAGNADINE_HIRE_UNITS_AXEMAN</Event>
 				<Event>EVENT_MAGNADINE_HIRE_UNITS_CHAMPION</Event>
@@ -7114,8 +6629,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_THE_BLACK_TOWER_PICK_CIV_BANNOR</Event>
 				<Event>EVENT_WB_THE_BLACK_TOWER_PICK_CIV_HIPPUS</Event>
@@ -7139,8 +6652,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_THE_MOMUS_BEERIS_OFFER_YES</Event>
 				<Event>EVENT_WB_THE_MOMUS_BEERIS_OFFER_NO</Event>
@@ -7160,8 +6671,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_GIFT_OF_KYLORIN_SECRET_DOOR_YES</Event>
 				<Event>EVENT_WB_GIFT_OF_KYLORIN_SECRET_DOOR_NO</Event>
@@ -7180,8 +6689,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_GIFT_OF_KYLORIN_MESHABBER_GOLEM</Event>
 				<Event>EVENT_WB_GIFT_OF_KYLORIN_MESHABBER_HARPY</Event>
@@ -7203,8 +6710,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_THE_RADIANT_GUARD_CHOOSE_SIDES_BASIUM</Event>
 				<Event>EVENT_WB_THE_RADIANT_GUARD_CHOOSE_SIDES_HYBOREM</Event>
@@ -7223,8 +6728,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_JUDECCA_YES</Event>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_NO</Event>
@@ -7245,8 +6748,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_SALLOS_YES</Event>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_NO</Event>
@@ -7266,8 +6767,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_SALLOS_YES</Event>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_NO</Event>
@@ -7287,8 +6786,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_OUZZA_YES</Event>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_NO</Event>
@@ -7308,8 +6805,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_MERESIN_YES</Event>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_NO</Event>
@@ -7329,8 +6824,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_STATIUS_YES</Event>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_NO</Event>
@@ -7352,9 +6845,7 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_LETHE_YES</Event>
 				<Event>EVENT_WB_LORD_OF_THE_BALORS_TEMPT_NO</Event>
@@ -7375,8 +6866,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_FALL_OF_CUANTINE_ROSIER_1</Event>
 				<Event>EVENT_WB_FALL_OF_CUANTINE_ROSIER_2</Event>
@@ -7395,8 +6884,6 @@
 			</TriggerTexts>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WB_FALL_OF_CUANTINE_FLEE_MALAKIM</Event>
 				<Event>EVENT_WB_FALL_OF_CUANTINE_FLEE_CALABIM</Event>
@@ -7417,11 +6904,9 @@
 			<iPercentGamesActive>10</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>3</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_TRAINING_YARD</BuildingClass>
 			</BuildingsRequired>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SHRINE_CAMULOS_1</Event>
 				<Event>EVENT_SHRINE_CAMULOS_2</Event>
@@ -7444,8 +6929,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinTreasury>500</iMinTreasury>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_COUNTERFEIT_1</Event>
 				<Event>EVENT_COUNTERFEIT_2</Event>
@@ -7466,10 +6949,8 @@
 			<EventArt>Art\EventImages\e_foodsickness.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
 			<iUnitDistanceWeight>1</iUnitDistanceWeight>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -7492,8 +6973,6 @@
 			<EventArt>Art\EventImages\e_werewolfmorality.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WEREWOLF_MORALITY_GOOD_1</Event>
 				<Event>EVENT_WEREWOLF_MORALITY_GOOD_2</Event>
@@ -7513,8 +6992,6 @@
 			<EventArt>Art\EventImages\e_werewolfmorality.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_WEREWOLF_MORALITY_BAD_1</Event>
 				<Event>EVENT_WEREWOLF_MORALITY_BAD_2</Event>
@@ -7535,12 +7012,10 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinTreasury>75</iMinTreasury>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_LIBRARY</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_IRON_ORB_1</Event>
 				<Event>EVENT_IRON_ORB_2</Event>
@@ -7563,8 +7038,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>5</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_ANCIENT_CITY_1</Event>
 				<Event>EVENT_ANCIENT_CITY_2</Event>
@@ -7586,8 +7059,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>5</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_BAREKE_1</Event>
 				<Event>EVENT_BAREKE_2</Event>
@@ -7610,8 +7081,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinPopulation>8</iMinPopulation>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CLAIRONE_1</Event>
 				<Event>EVENT_CLAIRONE_2</Event>
@@ -7632,8 +7101,6 @@
 			<EventArt>Art\EventImages\e_centaurpants.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CENTAUR_PANTS_1</Event>
 				<Event>EVENT_CENTAUR_PANTS_2</Event>
@@ -7658,13 +7125,11 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>200</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_CHAMPION</UnitClass>
 			</UnitsRequired>
 			<iNumUnits>1</iNumUnits>
 			<iUnitExperienceWeight>1</iUnitExperienceWeight>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PARITH_NO</Event>
 				<Event>EVENT_PARITH_YES</Event>
@@ -7686,8 +7151,6 @@
 			<EventArt>Art\EventImages\e_gela.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_GELA1</Event>
 				<Event>EVENT_GELA2</Event>
@@ -7713,12 +7176,10 @@
 			<EventArt>Art\EventImages\e_strangeadept.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_MAGE_GUILD</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_STRANGE_ADEPT_1</Event>
 				<Event>EVENT_STRANGE_ADEPT_2</Event>
@@ -7743,8 +7204,6 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_HELL_REFUGEES_1</Event>
 				<Event>EVENT_HELL_REFUGEES_2</Event>
@@ -7772,8 +7231,6 @@
 			<EventArt>Art\EventImages\e_scholars.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SCHOLARS_1</Event>
 				<Event>EVENT_SCHOLARS_2</Event>
@@ -7801,8 +7258,6 @@
 			<EventArt>Art\EventImages\e_frostling.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_TRAPPED_FROSTLINGS_1</Event>
 				<Event>EVENT_TRAPPED_FROSTLINGS_2</Event>
@@ -7829,8 +7284,6 @@
 			<EventArt>Art\EventImages\e_pacifistdemonstration.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PACIFIST_DEMONSTRATION_1</Event>
 				<Event>EVENT_PACIFIST_DEMONSTRATION_2</Event>
@@ -7858,8 +7311,6 @@
 			<EventArt>Art\EventImages\e_signagares.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_DEMON_SIGN_1</Event>
 				<Event>EVENT_DEMON_SIGN_2</Event>
@@ -7870,8 +7321,8 @@
 			</Events>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
 			<PythonCanDo>CanTriggerDemonSign</PythonCanDo>
+			<iPrereqGlobalCounter>30</iPrereqGlobalCounter>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- HANGING_SISTERS -->
 			<Type>EVENTTRIGGER_HANGING_SISTERS</Type>
@@ -7887,12 +7338,10 @@
 			<EventArt>Art\EventImages\e_hangingsisters.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_CARNIVAL</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_HANGING_SISTERS_1</Event>
 				<Event>EVENT_HANGING_SISTERS_2</Event>
@@ -7916,8 +7365,6 @@
 			<EventArt>Art\EventImages\e_ashcough.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_ASH_COUGH_1</Event>
 				<Event>EVENT_ASH_COUGH_2</Event>
@@ -7943,10 +7390,8 @@
 			<EventArt>Art\EventImages\e_deadangel.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_GRASS</TerrainType>
 				<TerrainType>TERRAIN_PLAINS</TerrainType>
@@ -7975,8 +7420,6 @@
 			<EventArt>Art\EventImages\e_depressedtoymaker.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_DEPRESSED_TOYMAKER_1</Event>
 				<Event>EVENT_DEPRESSED_TOYMAKER_2</Event>
@@ -8002,8 +7445,6 @@
 			<EventArt>Art\EventImages\e_devastatingplague.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_DEVASTATING_PLAGUE_1</Event>
 				<Event>EVENT_DEVASTATING_PLAGUE_2</Event>
@@ -8030,8 +7471,6 @@
 			<EventArt>Art\EventImages\e_massivesuicide.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MASSIVE_SUICIDE_1</Event>
 				<Event>EVENT_MASSIVE_SUICIDE_2</Event>
@@ -8058,8 +7497,6 @@
 			<EventArt>Art\EventImages\e_necrocannibalism.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_NECRO_CANNIBALISM_1</Event>
 				<Event>EVENT_NECRO_CANNIBALISM_2</Event>
@@ -8085,8 +7522,6 @@
 			<EventArt>Art\EventImages\e_hellportal.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
@@ -8111,12 +7546,10 @@
 			<EventArt>Art\EventImages\e_ghostship.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_HARBOR</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_GHOST_SHIP_1</Event>
 				<Event>EVENT_GHOST_SHIP_2</Event>
@@ -8138,8 +7571,6 @@
 			<EventArt>Art\EventImages\e_orphanedgoblin.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>0</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_ORPHANED_GOBLIN_1</Event>
 				<Event>EVENT_ORPHANED_GOBLIN_2</Event>
@@ -8162,8 +7593,6 @@
 			<EventArt>Art\EventImages\e_princessrule.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_PRINCESS_RULE_1</Event>
 				<Event>EVENT_PRINCESS_RULE_2</Event>
@@ -8186,12 +7615,10 @@
 			<EventArt>Art\EventImages\e_corruptjudge.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_COURTHOUSE</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_CORRUPT_JUDGE_1</Event>
 				<Event>EVENT_CORRUPT_JUDGE_2</Event>
@@ -8215,10 +7642,8 @@
 			<EventArt>Art\EventImages\e_waywardelves.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<FeaturesRequired>
 				<FeatureType>FEATURE_FOREST</FeatureType>
 			</FeaturesRequired>
@@ -8249,12 +7674,10 @@
 			<EventArt>Art\EventImages\e_renownedmarket.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_MARKET</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_RENOWNED_MARKET_1</Event>
 				<Event>EVENT_RENOWNED_MARKET_2</Event>
@@ -8278,8 +7701,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinTreasury>100</iMinTreasury>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_BOARD_GAME_1</Event>
 				<Event>EVENT_BOARD_GAME_2</Event>
@@ -8307,8 +7728,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
 			<iMinTreasury>50</iMinTreasury>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_TRAVELLER_1</Event>
 				<Event>EVENT_TRAVELLER_2</Event>
@@ -8332,8 +7751,6 @@
 			<EventArt>Art\EventImages\e_unfortunatespy.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_UNFORTUNATE_ASSASSIN_1</Event>
 				<Event>EVENT_UNFORTUNATE_ASSASSIN_2</Event>
@@ -8362,8 +7779,6 @@
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
 			<iDelay>10</iDelay>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_UNFORTUNATE_ASSASSIN_4_CONT_1</Event>
 			</Events>
@@ -8392,12 +7807,10 @@
 			<EventArt>Art\EventImages\e_overcrowdeddungeon.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_DUNGEON</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_OVERCROWDED_DUNGEON_1</Event>
 				<Event>EVENT_OVERCROWDED_DUNGEON_2</Event>
@@ -8423,7 +7836,6 @@
 			<EventArt>Art\EventImages\e_ancientburial.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>1</iPlotType>
@@ -8451,9 +7863,7 @@
 			<EventArt>Art\EventImages\e_madgolemicist.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumUnits>1</iNumUnits>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_MAD_GOLEMICIST_1</Event>
 				<Event>EVENT_MAD_GOLEMICIST_2</Event>
@@ -8479,12 +7889,10 @@
 			<EventArt>Art\EventImages\e_youngercouncil.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_ELDER_COUNCIL</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_YOUNGER_COUNCIL_1</Event>
 				<Event>EVENT_YOUNGER_COUNCIL_2</Event>
@@ -8512,12 +7920,10 @@
 			<EventArt>Art\EventImages\e_cookbook.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_LIBRARY</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_COOKBOOK_1</Event>
 				<Event>EVENT_COOKBOOK_2</Event>
@@ -8540,12 +7946,10 @@
 			<EventArt>Art\EventImages\e_elderdeath.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_ELDER_COUNCIL</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_ELDER_DEATH_1</Event>
 				<Event>EVENT_ELDER_DEATH_2</Event>
@@ -8570,12 +7974,10 @@
 			<EventArt>Art\EventImages\e_skilledjeweler.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_FORGE</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_SKILLED_JEWELER_1</Event>
 				<Event>EVENT_SKILLED_JEWELER_2</Event>
@@ -8598,12 +8000,10 @@
 			<EventArt>Art\EventImages\e_greatspeaker.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_COURTHOUSE</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_GREAT_SPEAKER_1</Event>
 			</Events>
@@ -8624,12 +8024,10 @@
 			<EventArt>Art\EventImages\e_redecoration.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_PALACE</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_REDECORATION_1</Event>
 				<Event>EVENT_REDECORATION_2</Event>
@@ -8660,10 +8058,8 @@
 			<EventArt>Art\EventImages\e_uranium.dds</EventArt>
 			<iPercentGamesActive>50</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_MINE</ImprovementType>
 			</ImprovementsRequired>
@@ -8694,10 +8090,8 @@
 			<EventArt>Art\EventImages\e_oil.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<FeaturesRequired>
 				<FeatureType>FEATURE_FLOOD_PLAINS</FeatureType>
 			</FeaturesRequired>
@@ -8727,10 +8121,8 @@
 			<EventArt>Art\EventImages\e_windsfromhell.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
 			</ImprovementsRequired>
@@ -8760,10 +8152,8 @@
 			<EventArt>Art\EventImages\e_treantrage.dds</EventArt>
 			<iPercentGamesActive>50</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_LUMBERMILL</ImprovementType>
 			</ImprovementsRequired>
@@ -8793,7 +8183,6 @@
 			<EventArt>Art\EventImages\e_perfectstorm.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>3</iPlotType>
@@ -8825,10 +8214,8 @@
 			<EventArt>Art\EventImages\e_peat.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_MARSH</TerrainType>
 				<TerrainType>TERRAIN_SHALLOWS</TerrainType>
@@ -8853,10 +8240,8 @@
 			<EventArt>Art\EventImages\e_bread.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
 			</ImprovementsRequired>
@@ -8881,10 +8266,8 @@
 			<EventArt>Art\EventImages\e_suttersmill.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_WORKSHOP</ImprovementType>
 			</ImprovementsRequired>
@@ -8908,7 +8291,6 @@
 			<EventArt>Art\EventImages\e_froglegs.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>2</iPlotType>
@@ -8938,8 +8320,6 @@
 			<EventArt>Art\EventImages\e_threadnecromancy.dds</EventArt>
 			<iPercentGamesActive>50</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_THREAD_NECROMANCY_1</Event>
 				<Event>EVENT_THREAD_NECROMANCY_2</Event>
@@ -8968,13 +8348,11 @@
 			<EventArt>Art\EventImages\e_poisonedwater.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<BuildingsRequired>
 				<BuildingClass>BUILDINGCLASS_AQUEDUCT</BuildingClass>
 			</BuildingsRequired>
 			<iNumBuildings>1</iNumBuildings>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_POISONED_WATER_1</Event>
 				<Event>EVENT_POISONED_WATER_2</Event>
@@ -9002,10 +8380,8 @@
 			<EventArt>Art\EventImages\e_poisonedwater.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumBuildings>1</iNumBuildings>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_POISONED_WATER_CONT_5</Event>
 			</Events>
@@ -9030,10 +8406,8 @@
 			<EventArt>Art\EventImages\e_poisonedwater.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumBuildings>1</iNumBuildings>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_POISONED_WATER_CONT_6</Event>
 			</Events>
@@ -9059,8 +8433,6 @@
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_FRAMED_1</Event>
 				<Event>EVENT_FRAMED_2</Event>
@@ -9087,10 +8459,8 @@
 			<EventArt>Art\EventImages\e_demonictower.dds</EventArt>
 			<iPercentGamesActive>50</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_TOWER</ImprovementType>
 			</ImprovementsRequired>
@@ -9118,10 +8488,8 @@
 			<EventArt>Art\EventImages\e_ancienttowerlore.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<bUnitsOnPlot>1</bUnitsOnPlot>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_TOWER</ImprovementType>
 			</ImprovementsRequired>
@@ -9146,7 +8514,6 @@
 			<EventArt>Art\EventImages\e_stormyseas.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_GALLEY</UnitClass>
 				<UnitClass>UNITCLASS_TRIREME</UnitClass>
@@ -9162,7 +8529,6 @@
 			<iNumUnits>1</iNumUnits>
 			<bUnitsOnPlot>1</bUnitsOnPlot>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<iPlotType>-1</iPlotType>
 			<TerrainsRequired>
 				<TerrainType>TERRAIN_OCEAN</TerrainType>
 				<TerrainType>TERRAIN_COAST</TerrainType>
@@ -9186,10 +8552,8 @@
 			<EventArt>Art\EventImages\e_ralphandsam.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<BonusesRequired>
 				<BonusType>BONUS_SHEEP</BonusType>
 			</BonusesRequired>
@@ -9220,8 +8584,6 @@
 			<EventArt>Art\EventImages\e_lanunpirates.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>225</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
-			<iPlotType>-1</iPlotType>
 			<Events>
 				<Event>EVENT_LANUN_PIRATES_1</Event>
 			</Events>
@@ -9245,10 +8607,8 @@
 			<EventArt>Art\EventImages\e_centaurtribe.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>NONE</ImprovementType>
 			</ImprovementsRequired>
@@ -9281,7 +8641,6 @@
 			<EventArt>Art\EventImages\e_seaserpent.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
 			<iPlotType>3</iPlotType>
@@ -9314,10 +8673,8 @@
 			<EventArt>Art\EventImages\e_monkeysee.dds</EventArt>
 			<iPercentGamesActive>50</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<BonusesRequired>
 				<BonusType>BONUS_BANANA</BonusType>
 			</BonusesRequired>
@@ -9342,7 +8699,6 @@
 			<EventArt>Art\EventImages\e_kuriotatesworkboat.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_GALLEY</UnitClass>
 				<UnitClass>UNITCLASS_TRIREME</UnitClass>
@@ -9387,7 +8743,6 @@
 			<EventArt>Art\EventImages\e_kuriotatesworkboat.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_GALLEY</UnitClass>
 				<UnitClass>UNITCLASS_TRIREME</UnitClass>
@@ -9432,7 +8787,6 @@
 			<EventArt>Art\EventImages\e_kuriotatesworkboat.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>-1</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<UnitsRequired>
 				<UnitClass>UNITCLASS_GALLEY</UnitClass>
 				<UnitClass>UNITCLASS_TRIREME</UnitClass>
@@ -9524,10 +8878,8 @@
 			<EventArt>Art\EventImages\e_hauntedcastle.dds</EventArt>
 			<iPercentGamesActive>75</iPercentGamesActive>
 			<iWeight>100</iWeight>
-			<iMaxOurLandmass>-1</iMaxOurLandmass>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
-			<iPlotType>-1</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>IMPROVEMENT_FORT</ImprovementType>
 				<ImprovementType>IMPROVEMENT_CASTLE</ImprovementType>
