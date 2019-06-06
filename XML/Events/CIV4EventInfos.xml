@@ -6088,48 +6088,45 @@
 			<Type>EVENT_NECRO_CANNIBALISM_1</Type>
 			<Description>TXT_KEY_EVENT_NECRO_CANNIBALISM_1</Description>
 			<bPickCity>1</bPickCity>
-			<iHealth>-2</iHealth>
-			<PlotExtraYields>
-				<PlotExtraYield>
-					<YieldType>YIELD_FOOD</YieldType>
-					<iExtraYield>2</iExtraYield>
-				</PlotExtraYield>
-			</PlotExtraYields>
+			<iHurryAnger>2</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
-			<iGlobalCounter>3</iGlobalCounter>
 		</EventInfo>
 		<EventInfo><!-- NECRO_CANNIBALISM_2 -->
 			<Type>EVENT_NECRO_CANNIBALISM_2</Type>
 			<Description>TXT_KEY_EVENT_NECRO_CANNIBALISM_2</Description>
 			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>doNecroCannibalism2</PythonCallback>
-			<PythonCanDo>CanDoNecroCannibalism2</PythonCanDo>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
-			<iGlobalCounter>5</iGlobalCounter>
+			<iGlobalCounter>3</iGlobalCounter>
+			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
 		</EventInfo>
 		<EventInfo><!-- NECRO_CANNIBALISM_3 -->
 			<Type>EVENT_NECRO_CANNIBALISM_3</Type>
 			<Description>TXT_KEY_EVENT_NECRO_CANNIBALISM_3</Description>
-			<bPickCity>1</bPickCity>
-			<iHurryAnger>2</iHurryAnger>
-			<iRevoltTurns>2</iRevoltTurns>
+			<UnitClass>UNITCLASS_WARRIOR</UnitClass>
+			<UnitPromotion>PROMOTION_CANNIBALIZE</UnitPromotion>
+			<iNumFreeUnits>1</iNumFreeUnits>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<iGlobalCounter>3</iGlobalCounter>
+			<PrereqCivilization>CIVILIZATION_DOVIELLO</PrereqCivilization>
 		</EventInfo>
 		<EventInfo><!-- NECRO_CANNIBALISM_4 -->
 			<Type>EVENT_NECRO_CANNIBALISM_4</Type>
 			<Description>TXT_KEY_EVENT_NECRO_CANNIBALISM_4</Description>
+			<UnitClass>UNITCLASS_DISEASED_CORPSE</UnitClass>
+			<iNumFreeUnits>2</iNumFreeUnits>
 			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<iPopulationChange>-2</iPopulationChange>
-			<PythonCallback>doNecroCannibalism4</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<iGlobalCounter>3</iGlobalCounter>
+			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
 			<PrereqBonus>BONUS_MANA_DEATH</PrereqBonus>
 		</EventInfo>
 		<EventInfo><!-- GHOST_SHIP_1 -->

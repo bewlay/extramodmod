@@ -4079,48 +4079,6 @@ def doDevastatingPlague4 (argsList):
 	for i in range(0,iPop,1): 
 		newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_DISEASED_CORPSE'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
-def CanDoNecroCannibalism2 (argsList):
-	"""
-	Player must not be good
-	"""
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
-	if pPlayer.getAlignment() == gc.getInfoTypeForString('ALIGNMENT_GOOD'):
-		return False
-	return True
-	
-def doNecroCannibalism2(argsList):
-	"""
-	Halves the city population
-	Gain a number of warriors with cannibalize equal to the remaining population
-	"""
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	
-	iPop = pCity.getPopulation()
-	iPop = int(iPop / 2)
-	if iPop == 0:
-		iPop = 1
-	pCity.setPopulation(iPop)
-	for i in range(0,iPop,1): 
-		newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_WARRIOR'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_CANNIBALIZE'), True)
-	
-def	doNecroCannibalism4(argsList):
-	"""
-	Gain two diseased corpse units
-	"""
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_DISEASED_CORPSE'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-	newUnit1 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_DISEASED_CORPSE'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-
 def canTriggerHellPortalCity(argsList):
 	"""
 	Player must have the Ashen veil religion (TODO: xmlify)

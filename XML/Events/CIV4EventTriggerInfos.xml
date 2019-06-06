@@ -7369,13 +7369,13 @@
 			<EventArt>Art\EventImages\e_necrocannibalism.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
+			<iMinPopulation>5</iMinPopulation>
 			<Events>
 				<Event>EVENT_NECRO_CANNIBALISM_1</Event>
 				<Event>EVENT_NECRO_CANNIBALISM_2</Event>
 				<Event>EVENT_NECRO_CANNIBALISM_3</Event>
 				<Event>EVENT_NECRO_CANNIBALISM_4</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<iPrereqGlobalCounter>65</iPrereqGlobalCounter>

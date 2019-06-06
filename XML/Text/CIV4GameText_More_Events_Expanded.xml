@@ -741,43 +741,43 @@
 	</TEXT>
 	<TEXT><!-- EVENT_NECRO_CANNIBALISM -->
 		<Tag>TXT_KEY_EVENT_NECRO_CANNIBALISM</Tag>
-		<English>People in %s2_city are eating their dead.</English>
-		<French>People in %s2_city are eating their dead.</French>
-		<German>People in %s2_city are eating their dead.</German>
-		<Italian>People in %s2_city are eating their dead.</Italian>
-		<Spanish>People in %s2_city are eating their dead.</Spanish>
+		<English>A community in %s2_city has been found to regularily eat their dead!</English>
+		<French>A community in %s2_city has been found to regularily eat their dead!</French>
+		<German>A community in %s2_city has been found to regularily eat their dead!</German>
+		<Italian>A community in %s2_city has been found to regularily eat their dead!</Italian>
+		<Spanish>A community in %s2_city has been found to regularily eat their dead!</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_NECRO_CANNIBALISM_1 -->
 		<Tag>TXT_KEY_EVENT_NECRO_CANNIBALISM_1</Tag>
-		<English>If they really want to do it...</English>
-		<French>If they really want to do it...</French>
-		<German>If they really want to do it...</German>
-		<Italian>If they really want to do it...</Italian>
-		<Spanish>If they really want to do it...</Spanish>
+		<English>Put a stop to this!</English>
+		<French>Put a stop to this!</French>
+		<German>Put a stop to this!</German>
+		<Italian>Put a stop to this!</Italian>
+		<Spanish>Put a stop to this!</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_NECRO_CANNIBALISM_2 -->
 		<Tag>TXT_KEY_EVENT_NECRO_CANNIBALISM_2</Tag>
-		<English>Conscript as many as you can.</English>
-		<French>Conscript as many as you can.</French>
-		<German>Conscript as many as you can.</German>
-		<Italian>Conscript as many as you can.</Italian>
-		<Spanish>Conscript as many as you can.</Spanish>
+		<English>So what?</English>
+		<French>So what?</French>
+		<German>So what?</German>
+		<Italian>So what?</Italian>
+		<Spanish>So what?</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_NECRO_CANNIBALISM_3 -->
 		<Tag>TXT_KEY_EVENT_NECRO_CANNIBALISM_3</Tag>
-		<English>Put a stop to this.</English>
-		<French>Put a stop to this.</French>
-		<German>Put a stop to this.</German>
-		<Italian>Put a stop to this.</Italian>
-		<Spanish>Put a stop to this.</Spanish>
+		<English>That's the spirit, waste not. Press these resourceful people into military service.</English>
+		<French>That's the spirit, waste not. Press these resourceful people into military service.</French>
+		<German>That's the spirit, waste not. Press these resourceful people into military service.</German>
+		<Italian>That's the spirit, waste not. Press these resourceful people into military service.</Italian>
+		<Spanish>That's the spirit, waste not. Press these resourceful people into military service.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_NECRO_CANNIBALISM_4 -->
 		<Tag>TXT_KEY_EVENT_NECRO_CANNIBALISM_4</Tag>
-		<English>Have the dead fight back.</English>
-		<French>Have the dead fight back.</French>
-		<German>Have the dead fight back.</German>
-		<Italian>Have the dead fight back.</Italian>
-		<Spanish>Have the dead fight back.</Spanish>
+		<English>Have the dead fight back. This shall be entertaining.</English>
+		<French>Have the dead fight back. This shall be entertaining.</French>
+		<German>Have the dead fight back. This shall be entertaining.</German>
+		<Italian>Have the dead fight back. This shall be entertaining.</Italian>
+		<Spanish>Have the dead fight back. This shall be entertaining.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_HELL_PORTAL -->
 		<Tag>TXT_KEY_EVENT_HELL_PORTAL</Tag>
