@@ -4078,16 +4078,7 @@ def doDevastatingPlague4 (argsList):
 		iPop = 1
 	for i in range(0,iPop,1): 
 		newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_DISEASED_CORPSE'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-		
-def doMassiveSuicide5 (argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_MANES'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-	newUnit1 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_MANES'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-	newUnit2 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_MANES'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-		
+
 def CanDoNecroCannibalism2 (argsList):
 	"""
 	Player must not be good
