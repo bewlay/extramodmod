@@ -1601,35 +1601,6 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
-		<EventInfo><!-- GOBLIN_WASTE_1 -->
-			<Type>EVENT_GOBLIN_WASTE_1</Type>
-			<Description>TXT_KEY_EVENT_GOBLIN_WASTE_1</Description>
-			<PlotExtraYields>
-				<PlotExtraYield>
-					<YieldType>YIELD_FOOD</YieldType>
-					<iExtraYield>-1</iExtraYield>
-				</PlotExtraYield>
-				<PlotExtraYield>
-					<YieldType>YIELD_PRODUCTION</YieldType>
-					<iExtraYield>0</iExtraYield>
-				</PlotExtraYield>
-				<PlotExtraYield>
-					<YieldType>YIELD_COMMERCE</YieldType>
-					<iExtraYield>0</iExtraYield>
-				</PlotExtraYield>
-			</PlotExtraYields>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-		</EventInfo>
-		<EventInfo><!-- GOBLIN_WASTE_2 -->
-			<Type>EVENT_GOBLIN_WASTE_2</Type>
-			<Description>TXT_KEY_EVENT_GOBLIN_WASTE_2</Description>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-			<PrereqBonus>BONUS_MANA_NATURE</PrereqBonus>
-		</EventInfo>
 		<EventInfo><!-- GOVERNOR_ASSASSINATION_1 -->
 			<Type>EVENT_GOVERNOR_ASSASSINATION_1</Type>
 			<Description>TXT_KEY_EVENT_GOVERNOR_ASSASSINATION_1</Description>
@@ -5370,34 +5341,6 @@
 			<iAIValue>1000</iAIValue>
 			<PrereqStateReligion>RELIGION_RUNES_OF_KILMORPH</PrereqStateReligion>
 		</EventInfo>
-		<EventInfo><!-- WEREWOLF_MORALITY_GOOD_1 -->
-			<Type>EVENT_WEREWOLF_MORALITY_GOOD_1</Type>
-			<Description>TXT_KEY_EVENT_WEREWOLF_MORALITY_GOOD_1</Description>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-		</EventInfo>
-		<EventInfo><!-- WEREWOLF_MORALITY_GOOD_2 -->
-			<Type>EVENT_WEREWOLF_MORALITY_GOOD_2</Type>
-			<Description>TXT_KEY_EVENT_WEREWOLF_MORALITY_GOOD_2</Description>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-		</EventInfo>
-		<EventInfo><!-- WEREWOLF_MORALITY_BAD_1 -->
-			<Type>EVENT_WEREWOLF_MORALITY_BAD_1</Type>
-			<Description>TXT_KEY_EVENT_WEREWOLF_MORALITY_BAD_1</Description>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-		</EventInfo>
-		<EventInfo><!-- WEREWOLF_MORALITY_BAD_2 -->
-			<Type>EVENT_WEREWOLF_MORALITY_BAD_2</Type>
-			<Description>TXT_KEY_EVENT_WEREWOLF_MORALITY_BAD_2</Description>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-		</EventInfo>
 		<EventInfo><!-- IRON_ORB_1 -->
 			<Type>EVENT_IRON_ORB_1</Type>
 			<Description>TXT_KEY_EVENT_IRON_ORB_1</Description>
@@ -5497,20 +5440,6 @@
 			<UnitClass>UNITCLASS_ARTIST</UnitClass>
 			<iNumFreeUnits>1</iNumFreeUnits>
 			<iHurryAnger>3</iHurryAnger>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-		</EventInfo>
-		<EventInfo><!-- CENTAUR_PANTS_1 -->
-			<Type>EVENT_CENTAUR_PANTS_1</Type>
-			<Description>TXT_KEY_EVENT_CENTAUR_PANTS_1</Description>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-		</EventInfo>
-		<EventInfo><!-- CENTAUR_PANTS_2 -->
-			<Type>EVENT_CENTAUR_PANTS_2</Type>
-			<Description>TXT_KEY_EVENT_CENTAUR_PANTS_2</Description>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
@@ -6154,62 +6083,6 @@
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqStateReligion>RELIGION_THE_ASHEN_VEIL</PrereqStateReligion>
-		</EventInfo>
-		<EventInfo><!-- MASSIVE_SUICIDE_1 -->
-			<Type>EVENT_MASSIVE_SUICIDE_1</Type>
-			<Description>TXT_KEY_EVENT_MASSIVE_SUICIDE_1</Description>
-			<bPickCity>1</bPickCity>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<iPopulationChange>-1</iPopulationChange>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-			<iGlobalCounter>-3</iGlobalCounter>
-			<PrereqBonus>BONUS_MANA_SPIRIT</PrereqBonus>
-		</EventInfo>
-		<EventInfo><!-- MASSIVE_SUICIDE_2 -->
-			<Type>EVENT_MASSIVE_SUICIDE_2</Type>
-			<Description>TXT_KEY_EVENT_MASSIVE_SUICIDE_2</Description>
-			<bPickCity>1</bPickCity>
-			<iHappyTurns>10</iHappyTurns>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<iPopulationChange>-1</iPopulationChange>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-			<iGlobalCounter>-3</iGlobalCounter>
-			<PrereqStateReligion>RELIGION_THE_EMPYREAN</PrereqStateReligion>
-		</EventInfo>
-		<EventInfo><!-- MASSIVE_SUICIDE_3 -->
-			<Type>EVENT_MASSIVE_SUICIDE_3</Type>
-			<Description>TXT_KEY_EVENT_MASSIVE_SUICIDE_3</Description>
-			<bPickCity>1</bPickCity>
-			<iHurryAnger>2</iHurryAnger>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<iPopulationChange>-2</iPopulationChange>
-			<PythonCanDo>CanDoDeadAngel2</PythonCanDo>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-		</EventInfo>
-		<EventInfo><!-- MASSIVE_SUICIDE_4 -->
-			<Type>EVENT_MASSIVE_SUICIDE_4</Type>
-			<Description>TXT_KEY_EVENT_MASSIVE_SUICIDE_4</Description>
-			<bPickCity>1</bPickCity>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<iPopulationChange>-3</iPopulationChange>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-			<iGlobalCounter>3</iGlobalCounter>
-			<PrereqAlignment>ALIGNMENT_EVIL</PrereqAlignment>
-		</EventInfo>
-		<EventInfo><!-- MASSIVE_SUICIDE_5 -->
-			<Type>EVENT_MASSIVE_SUICIDE_5</Type>
-			<Description>TXT_KEY_EVENT_MASSIVE_SUICIDE_5</Description>
-			<bPickCity>1</bPickCity>
-			<iMaxNumReligions>-1</iMaxNumReligions>
-			<iPopulationChange>-3</iPopulationChange>
-			<PythonCallback>doMassiveSuicide5</PythonCallback>
-			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>1000</iAIValue>
-			<PrereqCivilization>CIVILIZATION_INFERNAL</PrereqCivilization>
 		</EventInfo>
 		<EventInfo><!-- NECRO_CANNIBALISM_1 -->
 			<Type>EVENT_NECRO_CANNIBALISM_1</Type>
