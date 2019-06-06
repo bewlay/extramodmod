@@ -934,6 +934,9 @@ def canTriggerMutateUnit(argsList):
 	return True
 
 def canApplyNoOrder(argsList):
+	"""
+	Player may not have state religion The Order (TODO: XMLify)
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -999,6 +1002,9 @@ def doOrderVsVeil3(argsList):
 		pCity.changePopulation(-1)
 
 def canApplyOrderVsVeil4(argsList):
+	"""
+	Requires a dungeon in the city (TODO: XMLify)
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -2244,6 +2250,10 @@ def doVolcanoCreation(argsList):
 # FlavourMod: End Pilferage
 
 def canTriggerWarGamesUnit(argsList):
+	"""
+	Unit must be alive (TODO: XMLify)
+	Unit must be able to attack
+	"""
 	eTrigger = argsList[0]
 	ePlayer = argsList[1]
 	iUnit = argsList[2]
@@ -3959,6 +3969,9 @@ def	doDemonSign5(argsList):
 ######## (lfgr: not reviewed)
 
 def CanDoAshCough2 (argsList):
+	"""
+	Player must be Sheaim or Kuriotates. (TODO: XMLify)
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -3970,6 +3983,9 @@ def CanDoAshCough2 (argsList):
 	return False
 
 def CanDoAshCough4 (argsList):
+	"""
+	City must have Mage's Guild (TODO: XMLify)
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -3979,6 +3995,10 @@ def CanDoAshCough4 (argsList):
 	return True
 
 def doAshCough4 (argsList):
+	"""
+	50% chance of receiving an adept with Fire1, Entropy1
+	50% chance of +10 Turns of temporary unhappiness (HurryAnger)
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
@@ -4111,6 +4131,10 @@ def	doNecroCannibalism4(argsList):
 	newUnit1 = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_DISEASED_CORPSE'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
 def canTriggerHellPortalCity(argsList):
+	"""
+	Player must have the Ashen veil religion (TODO: xmlify)
+	City must not have Demonic Citizens building (TODO: xmlify)
+	"""
 	# TODO: This should cause an error...
 	eTrigger = argsList[0]
 	ePlayer = argsList[1]
@@ -4124,6 +4148,9 @@ def canTriggerHellPortalCity(argsList):
 	return False
 
 def doHellPortal(argsList):
+	"""
+	Creates the Demonic Citizens building
+	"""
 	kTriggeredData = argsList[0]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pCity = pPlayer.getCity(kTriggeredData.iCityId)
@@ -4228,6 +4255,9 @@ def doPrincessRule4( argsList ) :
 	CyInterface().addMessage(kTriggeredData.ePlayer,True,25,CyTranslator().getText("TXT_KEY_EVENT_PRINCESS_RULE_4_MESSAGE",()),'',1,'Art/Interface/Buttons/General/unhealthy_person.dds',ColorTypes(7),kTriggeredData.iPlotX,kTriggeredData.iPlotY,True,True)
 
 def CanDoCorruptJudge4 (argsList):
+	"""
+	Needs civic Undercouncil (TODO: XMLify)
+	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)

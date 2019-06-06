@@ -4540,7 +4540,7 @@
 			<bGlobal>1</bGlobal>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- RURAL_FARMERS -->
+		<EventTriggerInfo><!-- RURAL_FARMERS // lfgr TODO: really boring -->
 			<Type>EVENTTRIGGER_RURAL_FARMERS</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_RURAL_FARMERS_1</Text>
