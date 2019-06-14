@@ -2043,43 +2043,6 @@
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- GOBLIN_WASTE -->
-			<Type>EVENTTRIGGER_GOBLIN_WASTE</Type>
-			<WorldNewsTexts>
-				<Text />
-			</WorldNewsTexts>
-			<TriggerTexts>
-				<TriggerText>
-					<Text>TXT_KEY_EVENT_GOBLIN_WASTE</Text>
-					<Era>NONE</Era>
-				</TriggerText>
-			</TriggerTexts>
-			<EventArt>Art\EventImages\e_goblinwaste.dds</EventArt>
-			<iPercentGamesActive>33</iPercentGamesActive>
-			<iWeight>400</iWeight>
-			<iNumPlotsRequired>1</iNumPlotsRequired>
-			<bOwnPlot>1</bOwnPlot>
-			<TerrainsRequired>
-				<TerrainType>TERRAIN_GRASS</TerrainType>
-				<TerrainType>TERRAIN_PLAINS</TerrainType>
-				<TerrainType>TERRAIN_TUNDRA</TerrainType>
-			</TerrainsRequired>
-			<ImprovementsRequired>
-				<ImprovementType>NONE</ImprovementType>
-			</ImprovementsRequired>
-			<BonusesRequired>
-				<BonusType>NONE</BonusType>
-			</BonusesRequired>
-			<RoutesRequired>
-				<RouteType>NONE</RouteType>
-			</RoutesRequired>
-			<Events>
-				<Event>EVENT_GOBLIN_WASTE_1</Event>
-				<Event>EVENT_GOBLIN_WASTE_2</Event>
-			</Events>
-			<bPickCity>1</bPickCity>
-			<bShowPlot>1</bShowPlot>
-		</EventTriggerInfo>
 		<EventTriggerInfo><!-- GOVERNOR_ASSASSINATION -->
 			<Type>EVENTTRIGGER_GOVERNOR_ASSASSINATION</Type>
 			<WorldNewsTexts>
@@ -4577,7 +4540,7 @@
 			<bGlobal>1</bGlobal>
 			<bShowPlot>1</bShowPlot>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- RURAL_FARMERS -->
+		<EventTriggerInfo><!-- RURAL_FARMERS // lfgr TODO: really boring -->
 			<Type>EVENTTRIGGER_RURAL_FARMERS</Type>
 			<WorldNewsTexts>
 				<Text>TXT_KEY_EVENTTRIGGER_RURAL_FARMERS_1</Text>
@@ -6959,44 +6922,6 @@
 			<PythonCanDoUnit>canTriggerFoodSicknessUnit</PythonCanDoUnit>
 			<PythonCallback>doFoodSickness</PythonCallback>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- WEREWOLF_MORALITY_GOOD -->
-			<Type>EVENTTRIGGER_WEREWOLF_MORALITY_GOOD</Type>
-			<WorldNewsTexts>
-				<Text />
-			</WorldNewsTexts>
-			<TriggerTexts>
-				<TriggerText>
-					<Text>TXT_KEY_EVENT_WEREWOLF_MORALITY_GOOD</Text>
-					<Era>NONE</Era>
-				</TriggerText>
-			</TriggerTexts>
-			<EventArt>Art\EventImages\e_werewolfmorality.dds</EventArt>
-			<iPercentGamesActive>100</iPercentGamesActive>
-			<iWeight>100</iWeight>
-			<Events>
-				<Event>EVENT_WEREWOLF_MORALITY_GOOD_1</Event>
-				<Event>EVENT_WEREWOLF_MORALITY_GOOD_2</Event>
-			</Events>
-		</EventTriggerInfo>
-		<EventTriggerInfo><!-- WEREWOLF_MORALITY_BAD -->
-			<Type>EVENTTRIGGER_WEREWOLF_MORALITY_BAD</Type>
-			<WorldNewsTexts>
-				<Text />
-			</WorldNewsTexts>
-			<TriggerTexts>
-				<TriggerText>
-					<Text>TXT_KEY_EVENT_WEREWOLF_MORALITY_BAD</Text>
-					<Era>NONE</Era>
-				</TriggerText>
-			</TriggerTexts>
-			<EventArt>Art\EventImages\e_werewolfmorality.dds</EventArt>
-			<iPercentGamesActive>100</iPercentGamesActive>
-			<iWeight>100</iWeight>
-			<Events>
-				<Event>EVENT_WEREWOLF_MORALITY_BAD_1</Event>
-				<Event>EVENT_WEREWOLF_MORALITY_BAD_2</Event>
-			</Events>
-		</EventTriggerInfo>
 		<EventTriggerInfo><!-- IRON_ORB -->
 			<Type>EVENTTRIGGER_IRON_ORB</Type>
 			<WorldNewsTexts>
@@ -7086,29 +7011,6 @@
 				<Event>EVENT_CLAIRONE_2</Event>
 			</Events>
 			<bPickCity>1</bPickCity>
-		</EventTriggerInfo>
-		<EventTriggerInfo><!-- CENTAUR_PANTS -->
-			<Type>EVENTTRIGGER_CENTAUR_PANTS</Type>
-			<WorldNewsTexts>
-				<Text />
-			</WorldNewsTexts>
-			<TriggerTexts>
-				<TriggerText>
-					<Text>TXT_KEY_EVENT_CENTAUR_PANTS</Text>
-					<Era>NONE</Era>
-				</TriggerText>
-			</TriggerTexts>
-			<EventArt>Art\EventImages\e_centaurpants.dds</EventArt>
-			<iPercentGamesActive>100</iPercentGamesActive>
-			<iWeight>400</iWeight>
-			<Events>
-				<Event>EVENT_CENTAUR_PANTS_1</Event>
-				<Event>EVENT_CENTAUR_PANTS_2</Event>
-			</Events>
-			<OrPreReqs>
-				<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
-			</OrPreReqs>
-			<PrereqLeader>LEADER_CARDITH</PrereqLeader>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PARITH -->
 			<Type>EVENTTRIGGER_PARITH</Type>
@@ -7457,32 +7359,6 @@
 			<PythonCanDo>canTriggerInfernalFilter</PythonCanDo>
 			<iPrereqGlobalCounter>55</iPrereqGlobalCounter>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- MASSIVE_SUICIDE -->
-			<Type>EVENTTRIGGER_MASSIVE_SUICIDE</Type>
-			<WorldNewsTexts>
-				<Text />
-			</WorldNewsTexts>
-			<TriggerTexts>
-				<TriggerText>
-					<Text>TXT_KEY_EVENT_MASSIVE_SUICIDE</Text>
-					<Era>NONE</Era>
-				</TriggerText>
-			</TriggerTexts>
-			<EventArt>Art\EventImages\e_massivesuicide.dds</EventArt>
-			<iPercentGamesActive>100</iPercentGamesActive>
-			<iWeight>400</iWeight>
-			<Events>
-				<Event>EVENT_MASSIVE_SUICIDE_1</Event>
-				<Event>EVENT_MASSIVE_SUICIDE_2</Event>
-				<Event>EVENT_MASSIVE_SUICIDE_3</Event>
-				<Event>EVENT_MASSIVE_SUICIDE_4</Event>
-				<Event>EVENT_MASSIVE_SUICIDE_5</Event>
-			</Events>
-			<bRecurring>1</bRecurring>
-			<bPickCity>1</bPickCity>
-			<bShowPlot>1</bShowPlot>
-			<iPrereqGlobalCounter>55</iPrereqGlobalCounter>
-		</EventTriggerInfo>
 		<EventTriggerInfo><!-- NECRO_CANNIBALISM -->
 			<Type>EVENTTRIGGER_NECRO_CANNIBALISM</Type>
 			<WorldNewsTexts>
@@ -7497,13 +7373,13 @@
 			<EventArt>Art\EventImages\e_necrocannibalism.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
+			<iMinPopulation>5</iMinPopulation>
 			<Events>
 				<Event>EVENT_NECRO_CANNIBALISM_1</Event>
 				<Event>EVENT_NECRO_CANNIBALISM_2</Event>
 				<Event>EVENT_NECRO_CANNIBALISM_3</Event>
 				<Event>EVENT_NECRO_CANNIBALISM_4</Event>
 			</Events>
-			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
 			<iPrereqGlobalCounter>65</iPrereqGlobalCounter>

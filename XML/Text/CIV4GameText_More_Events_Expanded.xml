@@ -739,93 +739,45 @@
 		<Italian>Bring the corpses here, we'll put them to good use.</Italian>
 		<Spanish>Bring the corpses here, we'll put them to good use.</Spanish>
 	</TEXT>
-	<TEXT><!-- EVENT_MASSIVE_SUICIDE -->
-		<Tag>TXT_KEY_EVENT_MASSIVE_SUICIDE</Tag>
-		<English>People are committing suicide in droves in %s2_city.</English>
-		<French>People are committing suicide in droves in %s2_city.</French>
-		<German>People are committing suicide in droves in %s2_city.</German>
-		<Italian>People are committing suicide in droves in %s2_city.</Italian>
-		<Spanish>People are committing suicide in droves in %s2_city.</Spanish>
-	</TEXT>
-	<TEXT><!-- EVENT_MASSIVE_SUICIDE_1 -->
-		<Tag>TXT_KEY_EVENT_MASSIVE_SUICIDE_1</Tag>
-		<English>Tell our Spirit adepts to do whatever they can to calm them.</English>
-		<French>Tell our Spirit adepts to do whatever they can to calm them.</French>
-		<German>Tell our Spirit adepts to do whatever they can to calm them.</German>
-		<Italian>Tell our Spirit adepts to do whatever they can to calm them.</Italian>
-		<Spanish>Tell our Spirit adepts to do whatever they can to calm them.</Spanish>
-	</TEXT>
-	<TEXT><!-- EVENT_MASSIVE_SUICIDE_2 -->
-		<Tag>TXT_KEY_EVENT_MASSIVE_SUICIDE_2</Tag>
-		<English>Send in councilors to talk to the people. Find out what troubles them and put an end to it.</English>
-		<French>Send in councilors to talk to the people. Find out what troubles them and put an end to it.</French>
-		<German>Send in councilors to talk to the people. Find out what troubles them and put an end to it.</German>
-		<Italian>Send in councilors to talk to the people. Find out what troubles them and put an end to it.</Italian>
-		<Spanish>Send in councilors to talk to the people. Find out what troubles them and put an end to it.</Spanish>
-	</TEXT>
-	<TEXT><!-- EVENT_MASSIVE_SUICIDE_3 -->
-		<Tag>TXT_KEY_EVENT_MASSIVE_SUICIDE_3</Tag>
-		<English>There is little we can do. Strengthen the local guard and do whatever we can to stop the suicides.</English>
-		<French>There is little we can do. Strengthen the local guard and do whatever we can to stop the suicides.</French>
-		<German>There is little we can do. Strengthen the local guard and do whatever we can to stop the suicides.</German>
-		<Italian>There is little we can do. Strengthen the local guard and do whatever we can to stop the suicides.</Italian>
-		<Spanish>There is little we can do. Strengthen the local guard and do whatever we can to stop the suicides.</Spanish>
-	</TEXT>
-	<TEXT><!-- EVENT_MASSIVE_SUICIDE_4 -->
-		<Tag>TXT_KEY_EVENT_MASSIVE_SUICIDE_4</Tag>
-		<English>Let them die if they wish to. Free Will, right?</English>
-		<French>Let them die if they wish to. Free Will, right?</French>
-		<German>Let them die if they wish to. Free Will, right?</German>
-		<Italian>Let them die if they wish to. Free Will, right?</Italian>
-		<Spanish>Let them die if they wish to. Free Will, right?</Spanish>
-	</TEXT>
-	<TEXT><!-- EVENT_MASSIVE_SUICIDE_5 -->
-		<Tag>TXT_KEY_EVENT_MASSIVE_SUICIDE_5</Tag>
-		<English>Where do they think they will go?</English>
-		<French>Where do they think they will go?</French>
-		<German>Where do they think they will go?</German>
-		<Italian>Where do they think they will go?</Italian>
-		<Spanish>Where do they think they will go?</Spanish>
-	</TEXT>
 	<TEXT><!-- EVENT_NECRO_CANNIBALISM -->
 		<Tag>TXT_KEY_EVENT_NECRO_CANNIBALISM</Tag>
-		<English>People in %s2_city are eating their dead.</English>
-		<French>People in %s2_city are eating their dead.</French>
-		<German>People in %s2_city are eating their dead.</German>
-		<Italian>People in %s2_city are eating their dead.</Italian>
-		<Spanish>People in %s2_city are eating their dead.</Spanish>
+		<English>A community in %s2_city has been found to regularily eat their dead!</English>
+		<French>A community in %s2_city has been found to regularily eat their dead!</French>
+		<German>A community in %s2_city has been found to regularily eat their dead!</German>
+		<Italian>A community in %s2_city has been found to regularily eat their dead!</Italian>
+		<Spanish>A community in %s2_city has been found to regularily eat their dead!</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_NECRO_CANNIBALISM_1 -->
 		<Tag>TXT_KEY_EVENT_NECRO_CANNIBALISM_1</Tag>
-		<English>If they really want to do it...</English>
-		<French>If they really want to do it...</French>
-		<German>If they really want to do it...</German>
-		<Italian>If they really want to do it...</Italian>
-		<Spanish>If they really want to do it...</Spanish>
+		<English>Put a stop to this!</English>
+		<French>Put a stop to this!</French>
+		<German>Put a stop to this!</German>
+		<Italian>Put a stop to this!</Italian>
+		<Spanish>Put a stop to this!</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_NECRO_CANNIBALISM_2 -->
 		<Tag>TXT_KEY_EVENT_NECRO_CANNIBALISM_2</Tag>
-		<English>Conscript as many as you can.</English>
-		<French>Conscript as many as you can.</French>
-		<German>Conscript as many as you can.</German>
-		<Italian>Conscript as many as you can.</Italian>
-		<Spanish>Conscript as many as you can.</Spanish>
+		<English>So what?</English>
+		<French>So what?</French>
+		<German>So what?</German>
+		<Italian>So what?</Italian>
+		<Spanish>So what?</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_NECRO_CANNIBALISM_3 -->
 		<Tag>TXT_KEY_EVENT_NECRO_CANNIBALISM_3</Tag>
-		<English>Put a stop to this.</English>
-		<French>Put a stop to this.</French>
-		<German>Put a stop to this.</German>
-		<Italian>Put a stop to this.</Italian>
-		<Spanish>Put a stop to this.</Spanish>
+		<English>That's the spirit, waste not. Press these resourceful people into military service.</English>
+		<French>That's the spirit, waste not. Press these resourceful people into military service.</French>
+		<German>That's the spirit, waste not. Press these resourceful people into military service.</German>
+		<Italian>That's the spirit, waste not. Press these resourceful people into military service.</Italian>
+		<Spanish>That's the spirit, waste not. Press these resourceful people into military service.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_NECRO_CANNIBALISM_4 -->
 		<Tag>TXT_KEY_EVENT_NECRO_CANNIBALISM_4</Tag>
-		<English>Have the dead fight back.</English>
-		<French>Have the dead fight back.</French>
-		<German>Have the dead fight back.</German>
-		<Italian>Have the dead fight back.</Italian>
-		<Spanish>Have the dead fight back.</Spanish>
+		<English>Have the dead fight back. This shall be entertaining.</English>
+		<French>Have the dead fight back. This shall be entertaining.</French>
+		<German>Have the dead fight back. This shall be entertaining.</German>
+		<Italian>Have the dead fight back. This shall be entertaining.</Italian>
+		<Spanish>Have the dead fight back. This shall be entertaining.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_HELL_PORTAL -->
 		<Tag>TXT_KEY_EVENT_HELL_PORTAL</Tag>
