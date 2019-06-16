@@ -1150,6 +1150,13 @@
             <RouteYieldChanges>
             </RouteYieldChanges>
             <bGraphicalOnly>0</bGraphicalOnly>
+			<iCulture>2</iCulture>
+			<iCultureRange>1</iCultureRange>
+			<iSeeFrom>1</iSeeFrom>
+			<iUnique>2</iUnique>
+			<bSuperFort>1</bSuperFort>
+			<bBombardable>1</bBombardable>
+			<bUpgradeRequiresFortify>1</bUpgradeRequiresFortify>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -1163,13 +1170,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-			<iCulture>2</iCulture>
-			<iCultureRange>1</iCultureRange>
-			<iSeeFrom>1</iSeeFrom>
-			<iUnique>2</iUnique>
-			<bSuperFort>1</bSuperFort>
-			<bBombardable>1</bBombardable>
-			<bUpgradeRequiresFortify>1</bUpgradeRequiresFortify>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_CITADEL</Type>
@@ -1253,6 +1253,12 @@
             <RouteYieldChanges>
             </RouteYieldChanges>
             <bGraphicalOnly>0</bGraphicalOnly>
+			<iCulture>3</iCulture>
+			<iCultureRange>1</iCultureRange>
+			<iSeeFrom>1</iSeeFrom>
+			<iUnique>2</iUnique>
+			<bSuperFort>1</bSuperFort>
+			<bBombardable>1</bBombardable>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -1266,12 +1272,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-			<iCulture>3</iCulture>
-			<iCultureRange>1</iCultureRange>
-			<iSeeFrom>1</iSeeFrom>
-			<iUnique>2</iUnique>
-			<bSuperFort>1</bSuperFort>
-			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_CITY_RUINS</Type>
@@ -2049,6 +2049,12 @@
             <RouteYieldChanges>
             </RouteYieldChanges>
             <bGraphicalOnly>0</bGraphicalOnly>
+			<iCulture>1</iCulture>
+			<iCultureRange>0</iCultureRange>
+			<iUnique>2</iUnique>
+			<bSuperFort>1</bSuperFort>
+			<bBombardable>1</bBombardable>
+			<bUpgradeRequiresFortify>1</bUpgradeRequiresFortify>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -2062,12 +2068,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-			<iCulture>1</iCulture>
-			<iCultureRange>0</iCultureRange>
-			<iUnique>2</iUnique>
-			<bSuperFort>1</bSuperFort>
-			<bBombardable>1</bBombardable>
-			<bUpgradeRequiresFortify>1</bUpgradeRequiresFortify>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_GOBLIN_FORT</Type>
@@ -2139,6 +2139,7 @@
             <RouteYieldChanges>
             </RouteYieldChanges>
             <bGraphicalOnly>0</bGraphicalOnly>
+			<bBombardable>1</bBombardable>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>1</bExploreTarget>
@@ -2170,7 +2171,6 @@
 				<SpawnType>SPAWN_GOBLIN_FORT_GUARDIAN_ARCHER_SCORPION_CLAN</SpawnType>
 			</GuardianSpawnTypes>
 		<!-- WILDERNESS end -->
-			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_GOODY_HUT</Type>
@@ -5527,6 +5527,7 @@
             <RouteYieldChanges>
             </RouteYieldChanges>
             <bGraphicalOnly>0</bGraphicalOnly>
+			<bBombardable>1</bBombardable>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -5540,7 +5541,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_PIRATE_HARBOR</Type>
@@ -5593,6 +5593,7 @@
             <RouteYieldChanges>
             </RouteYieldChanges>
             <bGraphicalOnly>0</bGraphicalOnly>
+			<bBombardable>1</bBombardable>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -5606,7 +5607,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_PIRATE_PORT</Type>
@@ -5659,6 +5659,7 @@
             <RouteYieldChanges>
             </RouteYieldChanges>
             <bGraphicalOnly>0</bGraphicalOnly>
+			<bBombardable>1</bBombardable>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -5672,7 +5673,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_PLANTATION</Type>
@@ -7128,6 +7128,8 @@
             <RouteYieldChanges>
             </RouteYieldChanges>
             <bGraphicalOnly>0</bGraphicalOnly>
+			<iSeeFrom>1</iSeeFrom>
+			<bBombardable>1</bBombardable>
             <bRequiresPeak>0</bRequiresPeak>
             <bUnique>0</bUnique>
             <bExploreTarget>0</bExploreTarget>
@@ -7141,8 +7143,6 @@
             <PrereqCivilization>NONE</PrereqCivilization>
             <PythonAtRange></PythonAtRange>
             <PythonOnMove></PythonOnMove>
-			<iSeeFrom>1</iSeeFrom>
-			<bBombardable>1</bBombardable>
         </ImprovementInfo>
         <ImprovementInfo>
             <Type>IMPROVEMENT_TOWN</Type>

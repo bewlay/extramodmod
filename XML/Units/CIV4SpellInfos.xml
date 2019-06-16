@@ -32,9 +32,9 @@
             <Help>TXT_KEY_SPELL_ADD_TO_FLESH_GOLEM_HELP</Help>
             <UnitInStackPrereq>UNIT_FLESH_GOLEM</UnitInStackPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>300</iAIWeight>
             <bCasterMustBeAlive>1</bCasterMustBeAlive>
             <bCasterNoDuration>1</bCasterNoDuration>
+            <iAIWeight>300</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bIgnoreHasCasted>1</bIgnoreHasCasted>
 			<bAbility>1</bAbility>			
@@ -245,8 +245,8 @@
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_ARENA_BATTLE_HELP</Help>
             <BuildingPrereq>BUILDING_ARENA</BuildingPrereq>
-            <bInCityOnly>1</bInCityOnly>
             <bAllowAI>1</bAllowAI>
+            <bInCityOnly>1</bInCityOnly>
             <iAIWeight>10</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
@@ -268,8 +268,8 @@
             <iAIWeight>10</iAIWeight>			
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <PyRequirement>reqBlaze(pCaster)</PyRequirement>
             <CreateImprovementType>IMPROVEMENT_SMOKE</CreateImprovementType>
+            <PyRequirement>reqBlaze(pCaster)</PyRequirement>
             <Effect>EFFECT_SCORCH</Effect>
             <Sound>AS3D_SPELL_DEFILE</Sound>
             <Button>Art/Interface/Buttons/Spells/Blaze.dds</Button>
@@ -487,8 +487,8 @@
             <bHasCasted>1</bHasCasted>
             <bIgnoreHasCasted>1</bIgnoreHasCasted>
             <bRemoveHasCasted>1</bRemoveHasCasted>
-            <iChangePopulation>-1</iChangePopulation>
             <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
+            <iChangePopulation>-1</iChangePopulation>
             <Effect>EFFECT_WITHER</Effect>
             <Sound>AS3D_SPELL_CONSUME_SOUL</Sound>
             <Button>Art/Interface/Buttons/Spells/Consumesoul.dds</Button>
@@ -627,8 +627,8 @@
             <Help>TXT_KEY_SPELL_CREW_BUCCANEERS_HELP</Help>
             <UnitCombatPrereq>UNITCOMBAT_NAVAL</UnitCombatPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>300</iAIWeight>
             <bInCityOnly>1</bInCityOnly>
+            <iAIWeight>300</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_BUCCANEERS</AddPromotionType1>
             <RemovePromotionType1>PROMOTION_LONGSHOREMEN</RemovePromotionType1>
@@ -649,8 +649,8 @@
             <Help>TXT_KEY_SPELL_CREW_LONGSHOREMEN_HELP</Help>
             <UnitCombatPrereq>UNITCOMBAT_NAVAL</UnitCombatPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>300</iAIWeight>
             <bInCityOnly>1</bInCityOnly>
+            <iAIWeight>300</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_LONGSHOREMEN</AddPromotionType1>
             <RemovePromotionType1>PROMOTION_BUCCANEERS</RemovePromotionType1>
@@ -690,8 +690,8 @@
             <Help>TXT_KEY_SPELL_CREW_SKELETON_CREW_HELP</Help>
             <UnitCombatPrereq>UNITCOMBAT_NAVAL</UnitCombatPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>300</iAIWeight>
             <bInCityOnly>1</bInCityOnly>
+            <iAIWeight>300</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <AddPromotionType1>PROMOTION_SKELETON_CREW</AddPromotionType1>
             <RemovePromotionType1>PROMOTION_BUCCANEERS</RemovePromotionType1>
@@ -2925,8 +2925,8 @@
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <bSacrificeCaster>1</bSacrificeCaster>
+            <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <PyResult>spellPeace(pCaster)</PyResult>
             <PyRequirement>reqPeace(pCaster)</PyRequirement>
             <Effect>EFFECT_CREATION</Effect>
@@ -2997,8 +2997,8 @@
             <bHasCasted>1</bHasCasted>
             <CreateImprovementType>IMPROVEMENT_PIRATE_COVE</CreateImprovementType>
             <bAbility>1</bAbility>
-            <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <bSacrificeCaster>1</bSacrificeCaster>
+            <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
 			<PyResult>spellPirateCove(pCaster)</PyResult>
             <PyRequirement>reqPirateCove(pCaster)</PyRequirement>
             <Effect>EFFECT_CREATION</Effect>
@@ -3161,8 +3161,8 @@
             <Help>TXT_KEY_SPELL_REBUILD_BARNAXUS_HELP</Help>
             <PromotionPrereq1>PROMOTION_PIECES_OF_BARNAXUS</PromotionPrereq1>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>30</iAIWeight>
             <bInCityOnly>1</bInCityOnly>
+            <iAIWeight>30</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <RemovePromotionType1>PROMOTION_PIECES_OF_BARNAXUS</RemovePromotionType1>
@@ -3181,8 +3181,8 @@
             <Help>TXT_KEY_SPELL_RECRUIT_HELP</Help>
             <PromotionPrereq1>PROMOTION_RECRUITER</PromotionPrereq1>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>200</iAIWeight>
             <bInCityOnly>1</bInCityOnly>
+            <iAIWeight>200</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
@@ -3199,9 +3199,9 @@
             <Help>TXT_KEY_SPELL_RECRUIT_MERCENARY_HELP</Help>
             <BuildingClassOwnedPrereq>BUILDINGCLASS_GUILD_OF_THE_NINE</BuildingClassOwnedPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>100</iAIWeight>
             <bInBordersOnly>1</bInBordersOnly>
             <bInCityOnly>1</bInCityOnly>
+            <iAIWeight>100</iAIWeight>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
             <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
@@ -3607,9 +3607,9 @@
             <PromotionPrereq1>PROMOTION_SUN1</PromotionPrereq1>
             <PromotionPrereq2>PROMOTION_CHANNELING1</PromotionPrereq2>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>10</iAIWeight>
             <bAllowAutomateTerrain>1</bAllowAutomateTerrain>
             <bCausesWar>1</bCausesWar>
+            <iAIWeight>10</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <PyResult>spellScorch(pCaster)</PyResult>
@@ -3627,9 +3627,9 @@
             <bAllowAI>1</bAllowAI>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
-            <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
 			<PyResult>spellSeverSoul(pCaster)</PyResult>
 			<PyRequirement>reqSeverSoul(pCaster)</PyRequirement>
+            <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
             <Effect>EFFECT_ENTROPY_SUMMON</Effect>
             <Sound>AS3D_SPELL_DEFILE</Sound>
             <Button>Art/Interface/Buttons/Units/Severed Soul.dds</Button>
@@ -3700,8 +3700,8 @@
             <bPrereqSlaveTrade>1</bPrereqSlaveTrade>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
-            <iCost>30</iCost>
             <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
+            <iCost>30</iCost>
             <PyResult>spellSlaveTradeBuy(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
@@ -3861,8 +3861,8 @@
             <PromotionPrereq1>PROMOTION_WATER1</PromotionPrereq1>
             <PromotionPrereq2>PROMOTION_CHANNELING1</PromotionPrereq2>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>10</iAIWeight>
             <bAllowAutomateTerrain>1</bAllowAutomateTerrain>
+            <iAIWeight>10</iAIWeight>
             <bDisplayWhenDisabled>1</bDisplayWhenDisabled>
             <bHasCasted>1</bHasCasted>
             <PyResult>spellSpring(pCaster)</PyResult>
@@ -5511,8 +5511,8 @@
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <CivilizationPrereq>CIVILIZATION_SIDAR</CivilizationPrereq>
             <bAllowAI>1</bAllowAI>
-            <iAIWeight>100</iAIWeight>
             <bCasterMustBeAlive>1</bCasterMustBeAlive>
+            <iAIWeight>100</iAIWeight>
             <iCasterMinLevel>5</iCasterMinLevel>
             <bHasCasted>1</bHasCasted>
             <ConvertUnitType>UNIT_SHADE</ConvertUnitType>

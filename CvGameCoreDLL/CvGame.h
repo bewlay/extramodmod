@@ -427,7 +427,7 @@ public:
 
 	PlayerVoteTypes getVoteOutcome(VoteTypes eIndex) const;																	// Exposed to Python
 	bool isVotePassed(VoteTypes eIndex) const;																	// Exposed to Python
-	void setVoteOutcome(const VoteTriggeredData& kData, PlayerVoteTypes eNewValue);
+	void setVoteOutcome(const VoteTriggeredData& kData, PlayerVoteTypes eNewValue); // lfgr 06/2019: exposed to python
 
 	bool isVictoryValid(VictoryTypes eIndex) const;															// Exposed to Python
 	void setVictoryValid(VictoryTypes eIndex, bool bValid);
@@ -473,8 +473,13 @@ public:
 
 	PlayerVoteTypes getPlayerVote(PlayerTypes eOwnerIndex, int iVoteId) const;			// Exposed to Python
 	void setPlayerVote(PlayerTypes eOwnerIndex, int iVoteId, PlayerVoteTypes eNewValue);
-	DllExport void castVote(PlayerTypes eOwnerIndex, int iVoteId, PlayerVoteTypes ePlayerVote);
-
+	
+	/**
+	 * Let the specified player vote for/against/abstain/defy the specified vote.
+	 * iVoteId must be a vote ID returned by addVoteTriggered()
+	 */
+	DllExport void castVote(PlayerTypes eOwnerIndex, int iVoteId, PlayerVoteTypes ePlayerVote); // lfgr 06/2019: exposed to python
+	
 	DllExport const CvWString & getName();
 	DllExport void setName(const TCHAR* szName);
 
@@ -503,7 +508,11 @@ public:
 
 	VoteTriggeredData* getVoteTriggered(int iID) const;
 	VoteTriggeredData* addVoteTriggered(const VoteSelectionData& kData, int iChoice);
-	VoteTriggeredData* addVoteTriggered(VoteSourceTypes eVoteSource, const VoteSelectionSubData& kOptionData);
+	
+	/**
+	 * Adds a Vote that the players can then accept or reject.
+	 */
+	VoteTriggeredData* addVoteTriggered(VoteSourceTypes eVoteSource, const VoteSelectionSubData& kOptionData); // lfgr 06/2019: exposed to python
 	void deleteVoteTriggered(int iID);
 
 	CvRandom& getMapRand();																											// Exposed to Python
