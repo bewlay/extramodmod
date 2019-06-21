@@ -25,7 +25,7 @@
 	CvPlayer, CivilizationTypes, &CvPlayer::getCivilizationType>
 
 template<>
-const std::string CvPlayerCivilizationPrereq::TAG = "CivilizationType";
+const std::string CvPlayerCivilizationPrereq::TAG = "IsCivilization";
 
 
 //--------------------
@@ -39,7 +39,21 @@ const std::string CvPlayerCivilizationPrereq::TAG = "CivilizationType";
 	CvPlayer, CivicTypes, &CvPlayer::isCivic>
 
 template<>
-const std::string CvPlayerCivicPrereq::TAG = "CivicType";
+const std::string CvPlayerCivicPrereq::TAG = "HasCivic";
+
+
+//--------------------
+// CvPlayerTraitPrereq
+//--------------------
+
+/**
+ * Requires the given player to have the specified trait.
+ */
+#define CvPlayerTraitPrereq CvInfoTypeSetPropertyContainsPrereq<\
+	CvPlayer, TraitTypes, &CvPlayer::hasTrait>
+
+template<>
+const std::string CvPlayerTraitPrereq::TAG = "HasTrait";
 
 
 
@@ -57,6 +71,7 @@ CvPrereq<CvPlayer>* CvPrereq<CvPlayer>::readPrereq( CvXMLLoadUtility* pXml )
 	TRY_READ_RETURN_PREREQ( sTagName, CvNotPrereq<CvPlayer> )
 	TRY_READ_RETURN_PREREQ( sTagName, CvPlayerCivilizationPrereq )
 	TRY_READ_RETURN_PREREQ( sTagName, CvPlayerCivicPrereq )
+	TRY_READ_RETURN_PREREQ( sTagName, CvPlayerTraitPrereq )
 
 	return NULL;
 }

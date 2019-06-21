@@ -529,11 +529,14 @@
 	</ElementType>
 	
 	<!-- PlayerPrereq -->
-	<ElementType name="CivilizationType" content="textOnly" model="closed">
+	<ElementType name="IsCivilization" content="textOnly" model="closed">
 		<description>Requires the given player to be of the specified civilization.</description>
 	</ElementType>
-	<ElementType name="CivicType" content="textOnly" model="closed">
+	<ElementType name="HasCivic" content="textOnly" model="closed">
 		<description>Requires the given player to have the specified civic.</description>
+	</ElementType>
+	<ElementType name="HasTrait" content="textOnly" model="closed">
+		<description>Requires the given player to have the specified trait.</description>
 	</ElementType>
 	
 	<!-- PlotPrereq -->
