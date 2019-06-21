@@ -1475,6 +1475,9 @@
 			</Events>
 			<bRecurring>1</bRecurring>
 			<bShowPlot>1</bShowPlot>
+			<UnitPrereq>
+				<bAlive>1</bAlive>
+			</UnitPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- ESTEEMED_PLAYWRIGHT -->
 			<Type>EVENTTRIGGER_ESTEEMED_PLAYWRIGHT</Type>
