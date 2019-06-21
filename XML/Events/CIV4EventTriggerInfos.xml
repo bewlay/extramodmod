@@ -6989,6 +6989,11 @@
 				<Event>EVENT_BAREKE_3</Event>
 			</Events>
 			<bPickCity>1</bPickCity>
+			<PlayerPrereq>
+				<Not>
+					<HasTrait>TRAIT_FALLOW</HasTrait>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- CLAIRONE -->
 			<Type>EVENTTRIGGER_CLAIRONE</Type>
@@ -7010,6 +7015,11 @@
 				<Event>EVENT_CLAIRONE_2</Event>
 			</Events>
 			<bPickCity>1</bPickCity>
+			<PlayerPrereq>
+				<Not>
+					<HasTrait>TRAIT_FALLOW</HasTrait>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PARITH -->
 			<Type>EVENTTRIGGER_PARITH</Type>
