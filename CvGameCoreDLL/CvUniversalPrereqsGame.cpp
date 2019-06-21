@@ -13,6 +13,7 @@
 #include "CvUniversalPrereqsGame.h"
 
 
+#include <sstream>
 
 #include "CvGame.h"
 
@@ -32,11 +33,6 @@ CvPrereq<CvGame>* CvPrereq<CvGame>::readPrereq( CvXMLLoadUtility* pXml )
 
 	return NULL;
 }
-
-
-//---------------------------
-// CvGameUnitNotCreatedPrereq
-//---------------------------
 
 const std::string CvGameUnitNotCreatedPrereq::TAG = "UnitNotCreated";
 

@@ -7,12 +7,40 @@
 // Obligatory include for precompiled headers (?)
 #include "CvGameCoreDLL.h"
 
-// implemented header
-#include "CvUniversalPrereqsPlayer.h"
-
-
 
 #include "CvPlayer.h"
+
+#include "CvUniversalPrereqs.h"
+
+
+//---------------------------
+// CvPlayerCivilizationPrereq
+//---------------------------
+
+
+/**
+ * Requires the given player to be of the specified civilization.
+ */
+#define CvPlayerCivilizationPrereq CvInfoTypePropertyEqualPrereq<\
+	CvPlayer, CivilizationTypes, &CvPlayer::getCivilizationType>
+
+template<>
+const std::string CvPlayerCivilizationPrereq::TAG = "CivilizationType";
+
+
+//--------------------
+// CvPlayerCivicPrereq
+//--------------------
+
+/**
+ * Requires the given player to have the specified civic.
+ */
+#define CvPlayerCivicPrereq CvInfoTypeSetPropertyContainsPrereq<\
+	CvPlayer, CivicTypes, &CvPlayer::isCivic>
+
+template<>
+const std::string CvPlayerCivicPrereq::TAG = "CivicType";
+
 
 
 //-------------------
@@ -31,66 +59,4 @@ CvPrereq<CvPlayer>* CvPrereq<CvPlayer>::readPrereq( CvXMLLoadUtility* pXml )
 	TRY_READ_RETURN_PREREQ( sTagName, CvPlayerCivicPrereq )
 
 	return NULL;
-}
-
-
-//---------------------------
-// CvPlayerCivilizationPrereq
-//---------------------------
-
-const std::string CvPlayerCivilizationPrereq::TAG = "CivilizationType";
-
-CvPlayerCivilizationPrereq::CvPlayerCivilizationPrereq( CivilizationTypes eCiv ) :
-		m_eCiv( eCiv )
-{
-}
-
-CvPlayerCivilizationPrereq::~CvPlayerCivilizationPrereq()
-{
-}
-
-bool CvPlayerCivilizationPrereq::isValid( const CvPlayer* pPlayer ) const
-{
-	return pPlayer->getCivilizationType() == m_eCiv;
-}
-
-CvPlayerCivilizationPrereq* CvPlayerCivilizationPrereq::read( CvXMLLoadUtility* pXml )
-{
-	std::string sCiv;
-	if( ! pXml->GetXmlVal( sCiv ) )
-		return NULL;
-
-	int iCiv = pXml->FindInInfoClass( sCiv.c_str() );
-	return new CvPlayerCivilizationPrereq( (CivilizationTypes) iCiv );
-}
-
-
-//--------------------
-// CvPlayerCivicPrereq
-//--------------------
-
-const std::string CvPlayerCivicPrereq::TAG = "CivicType";
-
-CvPlayerCivicPrereq::CvPlayerCivicPrereq( CivicTypes eCivic ) :
-		m_eCivic( eCivic )
-{
-}
-
-CvPlayerCivicPrereq::~CvPlayerCivicPrereq()
-{
-}
-
-bool CvPlayerCivicPrereq::isValid( const CvPlayer* pPlayer ) const
-{
-	return pPlayer->isCivic( m_eCivic );
-}
-
-CvPlayerCivicPrereq* CvPlayerCivicPrereq::read( CvXMLLoadUtility* pXml )
-{
-	std::string sCivic;
-	if( ! pXml->GetXmlVal( sCivic ) )
-		return NULL;
-
-	int eCivic = pXml->FindInInfoClass( sCivic.c_str() );
-	return new CvPlayerCivicPrereq( (CivicTypes) eCivic );
 }
