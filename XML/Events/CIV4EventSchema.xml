@@ -296,50 +296,11 @@
 <!-- lfgr: EVENT_NEW_TAGS start -->
 	<ElementType name="bRequiresValidEvent" content="textOnly"/>
 <!-- lfgr: EVENT_NEW_TAGS end -->
-<!-- UNIVERSAL_PREREQS 08/2017 lfgr -->
-	<!-- Generic -->
-	<ElementType name="And" content="eltOnly" model="open">
-		<description>Requires the given object to fulfill all of the specified child requirements.</description>
-	</ElementType>
-	<ElementType name="Or" content="eltOnly" model="open">
-		<description>Requires the given object to fulfill any of the specified child requirements.</description>
-	</ElementType>
-	<ElementType name="Not" content="eltOnly" model="open">
-		<description>Requires the given object to not fulfill the specified child requirement.</description>
-	</ElementType>
-	
-	<!-- GamePrereq -->
-	<ElementType name="UnitNotCreated" content="textOnly" model="closed">
-		<description>Requires that the specified unit wasn't ever created</description>
-	</ElementType>
+<!-- UNIVERSAL_PREREQS 08/2017 - 06/2019 lfgr -->
 	<ElementType name="GamePrereq" content="eltOnly" model="open" />
-	
-	<!-- PlayerPrereq -->
-	<ElementType name="CivilizationType" content="textOnly" model="closed">
-		<description>Requires the player to be of the specified civilization.</description>
-	</ElementType>
-	<ElementType name="CivicType" content="textOnly" model="closed">
-		<description>Requires the player to have the specified civic.</description>
-	</ElementType>
 	<ElementType name="PlayerPrereq" content="eltOnly" model="open" />
-	
-	<!-- PlotPrereq -->
-	<ElementType name="bOwned" content="textOnly" dt:type="boolean" model="closed">
-		<description>Requires the given plot to be owned by any player.</description>
-	</ElementType>
-	
 	<ElementType name="PlotPrereq" content="eltOnly" model="open" />
-	
-	<!-- UnitPrereq -->
-	<ElementType name="UnitPlotPrereq" content="eltOnly" model="open">
-		<description>Requires the plot of the given unit to fulfill the specified requirement.</description>
-	</ElementType>
-	<ElementType name="bAlive" content="textOnly" dt:type="boolean" model="closed">
-		<description>Requires the given unit to be alive (not e.g. a zombie).</description>
-	</ElementType>
-	
 	<ElementType name="UnitPrereq" content="eltOnly" model="open" />
-	
 <!-- UNIVERSAL_PREREQS end -->
 	<ElementType name="EventTriggerInfo" content="eltOnly" model="closed">
 		<element type="Type"/>
@@ -549,4 +510,49 @@
 	<ElementType name="Civ4EventInfos" content="eltOnly">
 		<element type="EventInfos" minOccurs="1" maxOccurs="1"/>
 	</ElementType>
+	
+<!-- UNIVERSAL_PREREQS 06/2019 lfgr -->
+	<!-- Generic -->
+	<ElementType name="And" content="eltOnly" model="open">
+		<description>Requires the given object to fulfill all of the specified child requirements.</description>
+	</ElementType>
+	<ElementType name="Or" content="eltOnly" model="open">
+		<description>Requires the given object to fulfill any of the specified child requirements.</description>
+	</ElementType>
+	<ElementType name="Not" content="eltOnly" model="open">
+		<description>Requires the given object to not fulfill the specified child requirement.</description>
+	</ElementType>
+	
+	<!-- GamePrereq -->
+	<ElementType name="UnitNotCreated" content="textOnly" model="closed">
+		<description>Requires that the specified unit wasn't ever created</description>
+	</ElementType>
+	
+	<!-- PlayerPrereq -->
+	<ElementType name="IsCivilization" content="textOnly" model="closed">
+		<description>Requires the given player to be of the specified civilization.</description>
+	</ElementType>
+	<ElementType name="HasCivic" content="textOnly" model="closed">
+		<description>Requires the given player to have the specified civic.</description>
+	</ElementType>
+	<ElementType name="HasTrait" content="textOnly" model="closed">
+		<description>Requires the given player to have the specified trait.</description>
+	</ElementType>
+	
+	<!-- PlotPrereq -->
+	<ElementType name="bOwned" content="textOnly" dt:type="boolean" model="closed">
+		<description>Requires the given plot to be owned by any player.</description>
+	</ElementType>
+	
+	<!-- UnitPrereq -->
+	<ElementType name="bAlive" content="textOnly" dt:type="boolean" model="closed">
+		<description>Requires the given unit to be alive (not e.g. a zombie).</description>
+	</ElementType>
+	<ElementType name="HasPromotion" content="textOnly" model="closed">
+		<description>Requires the given unit to have the specified promotion.</description>
+	</ElementType>
+	<ElementType name="UnitPlotPrereq" content="eltOnly" model="open">
+		<description>Requires the plot of the given unit to fulfill the specified requirement.</description>
+	</ElementType>
+<!-- UNIVERSAL_PREREQS end -->
 </Schema>

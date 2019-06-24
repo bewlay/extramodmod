@@ -7,19 +7,19 @@
 #ifndef CVUNIVERSALPREREQS_H_
 #define CVUNIVERSALPREREQS_H_
 
+#include <string>
 
 #include "CvDLLXMLIFaceBase.h"
 #include "CvEnums.h"
 #include "CvGlobals.h"
 #include "CvXMLLoadUtility.h"
 
-class CvPlot;
-class CvUnit;
-
 
 //------
 // UTIL
 //------
+
+//#define INDENT "  "
 
 #define TRY_READ_RETURN_PREREQ(sTagName, cls) {\
 	if( sTagName == cls::TAG )\
@@ -43,6 +43,9 @@ public :
 	{
 	}
 
+	/**
+	 * Whether the given object fulfills the requirements of this.
+	 */
 	virtual bool isValid( const T* pObj ) const = 0;
 
 
@@ -121,7 +124,7 @@ const std::string CvAndPrereq<T>::TAG = "And";
 
 
 /**
- * Requires the given object to fulfill any of the specified requirements.
+ * Requires the given object to fulfill at least one of the specified requirements.
  */
 template<class T>
 class CvOrPrereq : public CvPrereq<T>
@@ -220,6 +223,144 @@ private :
 
 template<class T>
 const std::string CvNotPrereq<T>::TAG = "Not";
+
+
+//----------------
+// GENERIC HELPERS
+//----------------
+
+// TODO: doc
+// Must be subclassed (doesn't define TAG)
+template<class T, class R, R (T::*Getter)() const>
+class CvPropertyEqualPrereq : public CvPrereq<T>
+{
+public :
+	CvPropertyEqualPrereq( R expectedReturnValue )
+		: m_expectedReturnValue( expectedReturnValue )
+	{
+	}
+
+	bool isValid( const T* obj ) const
+	{
+		return (obj->*Getter)() == m_expectedReturnValue;
+	}
+
+
+	static CvPropertyEqualPrereq<T, R, Getter>* read( CvXMLLoadUtility* pXml );
+
+private :
+	R m_expectedReturnValue;
+};
+
+
+template<class T, class R, R (T::*Getter)() const>
+class CvInfoTypePropertyEqualPrereq : public CvPropertyEqualPrereq<T, R, Getter>
+{
+public :
+	CvInfoTypePropertyEqualPrereq( R expectedReturnValue )
+			: CvPropertyEqualPrereq<T, R, Getter>( expectedReturnValue )
+	{
+	}
+
+
+	static const std::string TAG;
+
+	static CvInfoTypePropertyEqualPrereq<T, R, Getter>* read(
+			CvXMLLoadUtility* pXml )
+	{
+		std::string sInfoType;
+		if( ! pXml->GetXmlVal( sInfoType ) )
+			return NULL;
+
+		int iInfoType = pXml->FindInInfoClass( sInfoType.c_str() );
+		return new CvInfoTypePropertyEqualPrereq<T, R, Getter>(
+				(R) iInfoType );
+	}
+};
+
+
+/**
+ * Template for CvPrereqs that check whether a bool property is true.
+ */
+template<class T, bool (T::*Getter)() const>
+class CvBoolPropertyEqualPrereq : public CvPropertyEqualPrereq<T, bool, Getter>
+{
+public :
+	CvBoolPropertyEqualPrereq( bool bExpectedReturnValue )
+			: CvPropertyEqualPrereq<T, bool, Getter>( bExpectedReturnValue )
+	{
+	}
+
+
+	static const std::string TAG;
+
+	static CvBoolPropertyEqualPrereq<T, Getter>* read(
+			CvXMLLoadUtility* pXml )
+	{
+		bool bVal;
+		pXml->GetXmlVal( &bVal ); // TODO: check and maybe return NULL
+
+		return new CvBoolPropertyEqualPrereq<T, Getter>( bVal );
+	}
+};
+
+/**
+ * Template for CvPrereqs that check whether a "set array" property contains the
+ * specified element. A "set array" is defined by a getter of the form
+ *   bool CLASS:GETTER( E index )
+ * where E the element type, usually an int or an enum type like UnitTypes.
+ */
+template<class T, class E, bool (T::*Getter)(E) const>
+class CvSetPropertyContainsPrereq : public CvPrereq<T>
+{
+public :
+	CvSetPropertyContainsPrereq( E element )
+			: m_element( element )
+	{
+	}
+
+	bool isValid( const T* obj ) const
+	{
+		return (obj->*Getter)( m_element );
+	}
+
+	static CvSetPropertyContainsPrereq<T, E, Getter>*
+		read( CvXMLLoadUtility* pXml );
+
+private :
+	E m_element;
+};
+
+template<class T, class E, bool (T::*Getter)(E) const>
+class CvInfoTypeSetPropertyContainsPrereq :
+		public CvSetPropertyContainsPrereq<T, E, Getter>
+{
+public :
+	CvInfoTypeSetPropertyContainsPrereq( E element )
+			: CvSetPropertyContainsPrereq<T, E, Getter>( element )
+	{
+	}
+
+
+	static const std::string TAG;
+
+	static CvInfoTypeSetPropertyContainsPrereq<T, E, Getter>*
+		read( CvXMLLoadUtility* pXml )
+	{
+		std::string sInfoType;
+		if( ! pXml->GetXmlVal( sInfoType ) )
+			return NULL;
+
+		int iInfoType = pXml->FindInInfoClass( sInfoType.c_str() );
+		return new CvInfoTypeSetPropertyContainsPrereq<T, E, Getter>(
+				(E) iInfoType );
+	}
+
+private :
+	E m_element;
+};
+
+
 
 
 #endif /* CVUNIVERSALPREREQS_H_ */

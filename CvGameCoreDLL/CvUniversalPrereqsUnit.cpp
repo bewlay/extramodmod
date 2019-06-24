@@ -11,39 +11,48 @@
 #include "CvUniversalPrereqsUnit.h"
 
 
-
 #include "CvUnit.h"
 
 
+// Forward declarations
+class CvPlot;
 
-//----------------
-// pre-definitions
-//----------------
 
+//-------------------
+// Extern definitions
+//-------------------
+
+// For CvUnitPlotPrereq;
 template<>
 CvPrereq<CvPlot>* CvPrereq<CvPlot>::readPrereq( CvXMLLoadUtility* pXml );
 
 
-//-----------------
-// CvPrereq<CvUnit>
-//-----------------
+//------------------
+// CvUnitAlivePrereq
+//------------------
+
+/**
+ * Requires the given unit to be alive (not e.g. a zombie).
+ */
+#define CvUnitAlivePrereq CvBoolPropertyEqualPrereq<CvUnit, &CvUnit::isAlive>
 
 template<>
-CvPrereq<CvUnit>* CvPrereq<CvUnit>::readPrereq( CvXMLLoadUtility* pXml )
-{
-	const std::string sTagName = getCurrentTagName( pXml->GetXML() );
+const std::string CvUnitAlivePrereq::TAG = "bAlive";
 
-	//std::cout << "Trying to read unit prereq " << sTagName << std::endl;
 
-	TRY_READ_RETURN_PREREQ( sTagName, CvAndPrereq<CvUnit> )
-	TRY_READ_RETURN_PREREQ( sTagName, CvOrPrereq<CvUnit> )
-	TRY_READ_RETURN_PREREQ( sTagName, CvNotPrereq<CvUnit> )
-	TRY_READ_RETURN_PREREQ( sTagName, CvUnitPlotPrereq )
-	TRY_READ_RETURN_PREREQ( sTagName, CvUnitAlivePrereq )
-	TRY_READ_RETURN_PREREQ( sTagName, CvUnitHasPromotionPrereq )
+//-------------------------
+// CvUnitHasPromotionPrereq
+//-------------------------
 
-	return NULL;
-}
+/**
+ * Requires the given unit to have the specified promotion.
+ */
+#define CvUnitHasPromotionPrereq CvInfoTypeSetPropertyContainsPrereq\
+		<CvUnit, PromotionTypes, &CvUnit::isHasPromotion>
+
+template<>
+const std::string CvUnitHasPromotionPrereq::TAG = "HasPromotion";
+
 
 //-----------------
 // CvUnitPlotPrereq
@@ -87,61 +96,23 @@ CvUnitPlotPrereq* CvUnitPlotPrereq::read( CvXMLLoadUtility* pXml )
 }
 
 
-//------------------
-// CvUnitAlivePrereq
-//------------------
+//-----------------
+// CvPrereq<CvUnit>
+//-----------------
 
-const std::string CvUnitAlivePrereq::TAG = "bAlive";
-
-CvUnitAlivePrereq::CvUnitAlivePrereq( bool bAlive ) :
-	m_bAlive( bAlive )
+template<>
+CvPrereq<CvUnit>* CvPrereq<CvUnit>::readPrereq( CvXMLLoadUtility* pXml )
 {
-}
+	const std::string sTagName = getCurrentTagName( pXml->GetXML() );
 
-CvUnitAlivePrereq::~CvUnitAlivePrereq()
-{
-}
+	//std::cout << "Trying to read unit prereq " << sTagName << std::endl;
 
-bool CvUnitAlivePrereq::isValid( const CvUnit* pUnit ) const
-{
-	return pUnit->isAlive() == m_bAlive;
-}
+	TRY_READ_RETURN_PREREQ( sTagName, CvAndPrereq<CvUnit> )
+	TRY_READ_RETURN_PREREQ( sTagName, CvOrPrereq<CvUnit> )
+	TRY_READ_RETURN_PREREQ( sTagName, CvNotPrereq<CvUnit> )
+	TRY_READ_RETURN_PREREQ( sTagName, CvUnitPlotPrereq )
+	TRY_READ_RETURN_PREREQ( sTagName, CvUnitAlivePrereq )
+	TRY_READ_RETURN_PREREQ( sTagName, CvUnitHasPromotionPrereq )
 
-CvUnitAlivePrereq* CvUnitAlivePrereq::read( CvXMLLoadUtility* pXml )
-{
-	bool bAlive;
-	pXml->GetXmlVal( &bAlive ); // TODO: check and maybe return NULL
-
-	return new CvUnitAlivePrereq( bAlive );
-}
-
-
-//-------------------------
-// CvUnitHasPromotionPrereq
-//-------------------------
-
-const std::string CvUnitHasPromotionPrereq::TAG = "HasPromotion";
-
-CvUnitHasPromotionPrereq::CvUnitHasPromotionPrereq( PromotionTypes ePromotion ) :
-		m_ePromotion( ePromotion )
-{
-}
-
-CvUnitHasPromotionPrereq::~CvUnitHasPromotionPrereq()
-{
-}
-
-bool CvUnitHasPromotionPrereq::isValid( const CvUnit* pUnit ) const
-{
-	return pUnit->isHasPromotion( m_ePromotion );
-}
-
-CvUnitHasPromotionPrereq* CvUnitHasPromotionPrereq::read( CvXMLLoadUtility* pXml )
-{
-	std::string sPromotion;
-	if( ! pXml->GetXmlVal( sPromotion ) )
-		return NULL;
-
-	int iPromotion = pXml->FindInInfoClass( sPromotion.c_str() );
-	return new CvUnitHasPromotionPrereq( (PromotionTypes) iPromotion );
+	return NULL;
 }

@@ -1475,6 +1475,9 @@
 			</Events>
 			<bRecurring>1</bRecurring>
 			<bShowPlot>1</bShowPlot>
+			<UnitPrereq>
+				<bAlive>1</bAlive>
+			</UnitPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- ESTEEMED_PLAYWRIGHT -->
 			<Type>EVENTTRIGGER_ESTEEMED_PLAYWRIGHT</Type>
@@ -5881,6 +5884,7 @@
 			<iWeight>400</iWeight>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
+			<iPlotType>0</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>NONE</ImprovementType>
 			</ImprovementsRequired>
@@ -6990,6 +6994,11 @@
 				<Event>EVENT_BAREKE_3</Event>
 			</Events>
 			<bPickCity>1</bPickCity>
+			<PlayerPrereq>
+				<Not>
+					<HasTrait>TRAIT_FALLOW</HasTrait>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- CLAIRONE -->
 			<Type>EVENTTRIGGER_CLAIRONE</Type>
@@ -7011,6 +7020,11 @@
 				<Event>EVENT_CLAIRONE_2</Event>
 			</Events>
 			<bPickCity>1</bPickCity>
+			<PlayerPrereq>
+				<Not>
+					<HasTrait>TRAIT_FALLOW</HasTrait>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- PARITH -->
 			<Type>EVENTTRIGGER_PARITH</Type>
