@@ -5880,6 +5880,7 @@
 			<iWeight>400</iWeight>
 			<iNumPlotsRequired>1</iNumPlotsRequired>
 			<bOwnPlot>1</bOwnPlot>
+			<iPlotType>0</iPlotType>
 			<ImprovementsRequired>
 				<ImprovementType>NONE</ImprovementType>
 			</ImprovementsRequired>
