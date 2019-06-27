@@ -409,10 +409,17 @@ public:
 	bool isProjectMaxedOut(ProjectTypes eIndex, int iExtra = 0);								// Exposed to Python
 	void incrementProjectCreatedCount(ProjectTypes eIndex, int iExtra = 1);
 
-	int getForceCivicCount(CivicTypes eIndex) const;														// Exposed to Python
-	bool isForceCivic(CivicTypes eIndex) const;																	// Exposed to Python
-	bool isForceCivicOption(CivicOptionTypes eCivicOption) const;								// Exposed to Python
-	void changeForceCivicCount(CivicTypes eIndex, int iChange);
+// lfgr 06/2019: ForceCivic applies only to the respective VoteSource
+	int getForceCivicCount(VoteSourceTypes eVoteSource, CivicTypes eIndex) const; // Exposed to Python
+
+	// Indicates whether the specified civic is forced by the specified vote source
+	bool isForceCivic(VoteSourceTypes eVoteSource, CivicTypes eIndex) const; // Exposed to Python
+
+	// Indicates whether the specified civic option has a civic that is forced by the specified vote source
+	bool isForceCivicOption(VoteSourceTypes eVoteSource, CivicOptionTypes eCivicOption) const; // Exposed to Python
+
+	void changeForceCivicCount(VoteSourceTypes eVoteSource, CivicTypes eIndex, int iChange);
+// lfgr end
 
 /************************************************************************************************/
 /* Advanced Diplomacy         START                                                             */
@@ -668,10 +675,18 @@ public:
     void foundBarbarianCity();
     bool isEventTriggered(EventTriggerTypes eTrigger) const;
     void setEventTriggered(EventTriggerTypes eTrigger, bool bNewValue);
+
     bool isGamblingRing(VoteSourceTypes eIndex) const;
     void setGamblingRing(VoteSourceTypes eIndex, bool bNewValue);
-    bool isNoBonus(BonusTypes eIndex) const;
-    void setNoBonus(BonusTypes eIndex, bool bNewValue);
+	
+	// lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
+	/**
+	  * Indicates whether the specified bonus is forbidden by the specified vote source.
+	  */
+    bool isNoBonus(VoteSourceTypes eVoteSource, BonusTypes eBonus) const;
+	// lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
+    void setNoBonus(VoteSourceTypes eVoteSource, BonusTypes eBonus, bool bNewValue);
+
     bool isNoOutsideTechTrades(VoteSourceTypes eIndex) const;
     void setNoOutsideTechTrades(VoteSourceTypes eIndex, bool bNewValue);
     bool isSlaveTrade(VoteSourceTypes eIndex) const;
@@ -779,10 +794,13 @@ protected:
 	int m_iScenarioCounter;
 	bool* m_pabEventTriggered;
 	bool* m_pabGamblingRing;
-	bool* m_pabNoBonus;
 	bool* m_pabNoOutsideTechTrades;
 	bool* m_pabSlaveTrade;
 	bool* m_pabSmugglingRing;
+
+	// lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
+	// Stores a 2-dimensional array in a simple array. For access, see CvGame::isNoBonus().
+	bool* m_ppbNoBonusByVoteSource;
 //FfH: End Add
 
 	// Advanced Diplomacy
@@ -801,6 +819,9 @@ protected:
 	int* m_paiUnitClassCreatedCount;
 	int* m_paiBuildingClassCreatedCount;
 	int* m_paiProjectCreatedCount;
+	
+	// lfgr 06/2019: Fix ForceCivic to apply to correct VoteSource
+	// Stores a 2-dimensional array in a simple array. For access, see CvGame::isForceCivic().
 	int* m_paiForceCivicCount;
 /************************************************************************************************/
 /* Advanced Diplomacy         START                                                             */

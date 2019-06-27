@@ -82,8 +82,8 @@ class TechDiffusion :
 
 		currentMaxEra = 0
 		for i in range(0,gc.getMAX_CIV_PLAYERS()) :
-			if( gc.getPlayer(i).getCurrentEra() > currentMaxEra ) :
-				currentMaxEra = gc.getPlayer(i).getCurrentEra()
+			if( gc.getPlayer(i).getCurrentRealEra() > currentMaxEra ) :
+				currentMaxEra = gc.getPlayer(i).getCurrentRealEra()
 
 		curMaxTechCount = 0
 		numTechsByTeam = dict()
@@ -114,7 +114,7 @@ class TechDiffusion :
 
 		team = gc.getTeam( iTeamID )
 		teamLeader = gc.getPlayer( team.getLeaderID() )
-		teamEra = teamLeader.getCurrentEra()
+		teamEra = teamLeader.getCurrentRealEra()
 
 		if( self.LOG_DEBUG ) :
 			CvUtil.pyPrint( " " )
@@ -146,7 +146,7 @@ class TechDiffusion :
 					if( self.LOG_DEBUG ) : CvUtil.pyPrint( " TD : Not diffusing %s to %s, already well along in research"%(tech.getDescription(),teamLeader.getCivilizationDescription(0)))
 					continue
 
-				if( tech.getEra() == gc.getNumEraInfos() ) :
+				if( tech.getEra() == gc.getNumRealEras() ) :
 					# Don't diffuse future tech
 					continue
 
@@ -198,7 +198,7 @@ class TechDiffusion :
 						else :
 							diffPower += 1
 
-						if( teamEra < gc.getNumEraInfos() - 1 ) :
+						if( teamEra < gc.getNumRealEras() - 1 ) :
 							# Long distance diffusion limited in early eras
 							# Perhaps handled sufficiently by contact, general era mod?
 							pass

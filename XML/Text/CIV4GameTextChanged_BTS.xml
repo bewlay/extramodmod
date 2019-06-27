@@ -50,14 +50,6 @@
 		<Spanish>Todas las unidades militares construidas en una ciudad con el edificio de [COLOR_BUILDING_TEXT]West Point[COLOR_REVERT] empezar&#225;n con cuatro puntos de experiencia m&#225;s. Adem&#225;s, ser&#225; m&#225;s probable que dicha ciudad genere un [COLOR_UNIT_TEXT]Gran esp&#237;a[COLOR_REVERT].</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_CIVIC_MERCANTILISM_STRATEGY</Tag>
-		<English>Free specialist in each city but no foreign trade routes; foreign corporations have no effect</English>
-		<French>Un sp&#233;cialiste gratuit dans chaque ville, mais aucune route commerciale avec l'&#233;tranger. Les soci&#233;t&#233;s commerciales &#233;trang&#232;res n'ont aucun effet.</French>
-		<German>Bonus-Spezialist in allen St&#228;dten, aber keine Handelswege; fremde Kapitalgesellschaften ohne Auswirkung</German>
-		<Italian>Specialisti extra in ogni citt&#224;, ma nessuna rotta commerciale straniera; le corporazioni straniere non hanno effetto.</Italian>
-		<Spanish>Un especialista gratis en cada ciudad, pero no hay rutas comerciales con el extranjero; las corporaciones extranjeras no tienen efecto</Spanish>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_CIVIC_POLICE_STATE_STRATEGY</Tag>
 		<English>Faster military unit production; less war anger; increased espionage output</English>
 		<French>Acc&#233;l&#232;re la production des unit&#233;s militaires. R&#233;duit le m&#233;contentement d&#251; &#224; la guerre. Augmente la production de l'espionnage.</French>
@@ -112,14 +104,6 @@
 		<German>%s1_PlyrName hat bewiesen, dass die Erde rund ist!</German>
 		<Italian>%s1_PlyrName ha provato che il mondo &#232; tondo!</Italian>
 		<Spanish>&#161;%s1_PlyrName ha demostrado que el mundo es redondo!</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_UNIT_CANNOT_CAPTURE</Tag>
-		<English>[ICON_BULLET]Cannot Capture Enemy Cities or Units</English>
-		<French>[ICON_BULLET]Ne peut pas capturer de villes ou d'unit&#233;s ennemies.</French>
-		<German>[ICON_BULLET]Kann keine feindlichen St&#228;dte oder Einheiten erobern</German>
-		<Italian>[ICON_BULLET]Non pu&#242; conquistare citt&#224; o unit&#224; nemiche</Italian>
-		<Spanish>[ICON_BULLET]No es posible capturar ciudades o unidades enemigas</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_PILLAGE_YIELDS</Tag>

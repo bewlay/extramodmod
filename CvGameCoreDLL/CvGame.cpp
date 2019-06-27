@@ -62,7 +62,7 @@ CvGame::CvGame()
 //FfH: Added by Kael 11/14/2007
 	m_pabEventTriggered = NULL;
 	m_pabGamblingRing = NULL;
-	m_pabNoBonus = NULL;
+	m_ppbNoBonusByVoteSource = NULL; // lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
 	m_pabNoOutsideTechTrades = NULL;
 	m_pabSlaveTrade = NULL;
 	m_pabSmugglingRing = NULL;
@@ -713,7 +713,7 @@ void CvGame::uninit()
 //FfH: Added by Kael 11/14/2007
 	SAFE_DELETE_ARRAY(m_pabEventTriggered);
 	SAFE_DELETE_ARRAY(m_pabGamblingRing);
-	SAFE_DELETE_ARRAY(m_pabNoBonus);
+	SAFE_DELETE_ARRAY(m_ppbNoBonusByVoteSource); // lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
 	SAFE_DELETE_ARRAY(m_pabNoOutsideTechTrades);
 	SAFE_DELETE_ARRAY(m_pabSlaveTrade);
 	SAFE_DELETE_ARRAY(m_pabSmugglingRing);
@@ -887,11 +887,14 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 		{
 			m_pabGamblingRing[iI] = false;
 		}
-		m_pabNoBonus = new bool[GC.getNumBonusInfos()];
-		for (iI = 0; iI < GC.getNumBonusInfos(); iI++)
+
+		// lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
+		m_ppbNoBonusByVoteSource = new bool[GC.getNumVoteSourceInfos() * GC.getNumBonusInfos()];
+		for( int i = 0; i < GC.getNumVoteSourceInfos() * GC.getNumBonusInfos(); i++)
 		{
-			m_pabNoBonus[iI] = false;
+			m_ppbNoBonusByVoteSource[i] = false;
 		}
+
 		m_pabNoOutsideTechTrades = new bool[GC.getNumVoteSourceInfos()];
 		for (iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
 		{
@@ -950,8 +953,10 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 		}
 
 		FAssertMsg(m_paiForceCivicCount==NULL, "about to leak memory, CvGame::m_paiForceCivicCount");
-		m_paiForceCivicCount = new int[GC.getNumCivicInfos()];
-		for (iI = 0; iI < GC.getNumCivicInfos(); iI++)
+	// lfgr 06/2019: ForceCivic applies only to the respective VoteSource
+		m_paiForceCivicCount = new int[GC.getNumVoteSourceInfos() * GC.getNumCivicInfos()];
+		for (iI = 0; iI < GC.getNumVoteSourceInfos() * GC.getNumCivicInfos(); iI++)
+	// lfgr end
 		{
 			m_paiForceCivicCount[iI] = 0;
 		}
@@ -3904,7 +3909,7 @@ EraTypes CvGame::getHighestEra() const
 	{
 		if (GET_PLAYER((PlayerTypes)iI).isAlive())
 		{
-			iLoopEra = GET_PLAYER((PlayerTypes)iI).getCurrentEra();
+			iLoopEra = GET_PLAYER((PlayerTypes)iI).getCurrentRealEra();
 
 			if(iLoopEra > iHighestEra)
 			{
@@ -3953,7 +3958,7 @@ EraTypes CvGame::getCurrentEra() const
 	{
 		if (GET_PLAYER((PlayerTypes)iI).isAlive())
 		{
-			iEra += GET_PLAYER((PlayerTypes)iI).getCurrentEra();
+			iEra += GET_PLAYER((PlayerTypes)iI).getCurrentRealEra();
 			iCount++;
 		}
 	}
@@ -5982,17 +5987,21 @@ void CvGame::incrementProjectCreatedCount(ProjectTypes eIndex, int iExtra)
 }
 
 
-int CvGame::getForceCivicCount(CivicTypes eIndex) const
+// lfgr 06/2019: ForceCivic applies only to the respective VoteSource
+int CvGame::getForceCivicCount(VoteSourceTypes eVoteSource, CivicTypes eIndex) const
 {
+	FAssertMsg(eVoteSource >= 0, "eVoteSource is expected to be non-negative (invalid Index)");
+	FAssertMsg(eVoteSource < GC.getNumVoteSourceInfos(), "eVoteSource is expected to be within maximum bounds (invalid Index)");
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
 	FAssertMsg(eIndex < GC.getNumCivicInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
-	return m_paiForceCivicCount[eIndex];
+	return m_paiForceCivicCount[eVoteSource * GC.getNumCivicInfos() + eIndex];
 }
 
 
-bool CvGame::isForceCivic(CivicTypes eIndex) const
+// lfgr 06/2019: ForceCivic applies only to the respective VoteSource
+bool CvGame::isForceCivic(VoteSourceTypes eVoteSource, CivicTypes eIndex) const
 {
-	return (getForceCivicCount(eIndex) > 0);
+	return (getForceCivicCount(eVoteSource, eIndex) > 0);
 }
 
 /************************************************************************************************/
@@ -6008,7 +6017,8 @@ bool CvGame::isCondemnCivic(CivicTypes eIndex) const
 /* Advanced Diplomacy         END                                                             */
 /************************************************************************************************/
 
-bool CvGame::isForceCivicOption(CivicOptionTypes eCivicOption) const
+// lfgr 06/2019: ForceCivic applies only to the respective VoteSource
+bool CvGame::isForceCivicOption(VoteSourceTypes eVoteSource, CivicOptionTypes eCivicOption) const
 {
 	int iI;
 
@@ -6016,7 +6026,7 @@ bool CvGame::isForceCivicOption(CivicOptionTypes eCivicOption) const
 	{
 		if (GC.getCivicInfo((CivicTypes)iI).getCivicOptionType() == eCivicOption)
 		{
-			if (isForceCivic((CivicTypes)iI))
+			if (isForceCivic(eVoteSource, (CivicTypes)iI))
 			{
 				return true;
 			}
@@ -6027,7 +6037,8 @@ bool CvGame::isForceCivicOption(CivicOptionTypes eCivicOption) const
 }
 
 
-void CvGame::changeForceCivicCount(CivicTypes eIndex, int iChange)
+// lfgr 06/2019: ForceCivic applies only to the respective VoteSource
+void CvGame::changeForceCivicCount(VoteSourceTypes eVoteSource, CivicTypes eIndex, int iChange)
 {
 	bool bOldForceCivic;
 
@@ -6036,12 +6047,12 @@ void CvGame::changeForceCivicCount(CivicTypes eIndex, int iChange)
 
 	if (iChange != 0)
 	{
-		bOldForceCivic = isForceCivic(eIndex);
+		bOldForceCivic = isForceCivic(eVoteSource, eIndex);
 
-		m_paiForceCivicCount[eIndex] += iChange;
-		FAssert(getForceCivicCount(eIndex) >= 0);
+		m_paiForceCivicCount[eVoteSource * GC.getNumCivicInfos() + eIndex] += iChange;
+		FAssert(getForceCivicCount(eVoteSource, eIndex) >= 0);
 
-		if (bOldForceCivic != isForceCivic(eIndex))
+		if (bOldForceCivic != isForceCivic(eVoteSource, eIndex))
 		{
 			verifyCivics();
 		}
@@ -8945,7 +8956,8 @@ void CvGame::processVote(const VoteTriggeredData& kData, int iChange)
 
 	for (int iI = 0; iI < GC.getNumCivicInfos(); iI++)
 	{
-		changeForceCivicCount((CivicTypes)iI, kVote.isForceCivic(iI) ? iChange : 0);
+		// lfgr 06/2019: ForceCivic applies only to the respective VoteSource
+		changeForceCivicCount(kData.eVoteSource, (CivicTypes)iI, kVote.isForceCivic(iI) ? iChange : 0);
 	}
 
 //FfH: Added by Kael 11/14/2007
@@ -8954,9 +8966,12 @@ void CvGame::processVote(const VoteTriggeredData& kData, int iChange)
     {
         bChange = true;
     }
+
     if (kVote.getNoBonus() != NO_BONUS)
     {
-        setNoBonus((BonusTypes)kVote.getNoBonus(), bChange);
+	// lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
+		setNoBonus(kData.eVoteSource, (BonusTypes)kVote.getNoBonus(), bChange);
+	// lfgr end
     }
     if (kVote.isGamblingRing())
     {
@@ -9807,7 +9822,9 @@ void CvGame::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumUnitClassInfos(), m_paiUnitClassCreatedCount);
 	pStream->Read(GC.getNumBuildingClassInfos(), m_paiBuildingClassCreatedCount);
 	pStream->Read(GC.getNumProjectInfos(), m_paiProjectCreatedCount);
-	pStream->Read(GC.getNumCivicInfos(), m_paiForceCivicCount);
+// lfgr 06/2019: ForceCivic applies only to the respective VoteSource
+	pStream->Read(GC.getNumVoteSourceInfos() * GC.getNumCivicInfos(), m_paiForceCivicCount);
+// lfgr end
 	pStream->Read(GC.getNumVoteInfos(), (int*)m_paiVoteOutcome);
 	pStream->Read(GC.getNumReligionInfos(), m_paiReligionGameTurnFounded);
 	pStream->Read(GC.getNumCorporationInfos(), m_paiCorporationGameTurnFounded);
@@ -9987,7 +10004,9 @@ void CvGame::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iScenarioCounter);
 	pStream->Read(GC.getNumEventTriggerInfos(), m_pabEventTriggered);
 	pStream->Read(GC.getNumVoteSourceInfos(), m_pabGamblingRing);
-	pStream->Read(GC.getNumBonusInfos(), m_pabNoBonus);
+// lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
+	pStream->Read( GC.getNumVoteSourceInfos() * GC.getNumBonusInfos(), m_ppbNoBonusByVoteSource );
+// lfgr end
 	pStream->Read(GC.getNumVoteSourceInfos(), m_pabNoOutsideTechTrades);
 	pStream->Read(GC.getNumVoteSourceInfos(), m_pabSlaveTrade);
 	pStream->Read(GC.getNumVoteSourceInfos(), m_pabSmugglingRing);
@@ -10078,7 +10097,9 @@ void CvGame::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumUnitClassInfos(), m_paiUnitClassCreatedCount);
 	pStream->Write(GC.getNumBuildingClassInfos(), m_paiBuildingClassCreatedCount);
 	pStream->Write(GC.getNumProjectInfos(), m_paiProjectCreatedCount);
-	pStream->Write(GC.getNumCivicInfos(), m_paiForceCivicCount);
+// lfgr 06/2019: ForceCivic applies only to the respective VoteSource
+	pStream->Write(GC.getNumVoteSourceInfos() * GC.getNumCivicInfos(), m_paiForceCivicCount);
+// lfgr end
 	pStream->Write(GC.getNumVoteInfos(), (int*)m_paiVoteOutcome);
 	pStream->Write(GC.getNumReligionInfos(), m_paiReligionGameTurnFounded);
 	pStream->Write(GC.getNumCorporationInfos(), m_paiCorporationGameTurnFounded);
@@ -10210,7 +10231,9 @@ void CvGame::write(FDataStreamBase* pStream)
 	pStream->Write(m_iScenarioCounter);
 	pStream->Write(GC.getNumEventTriggerInfos(), m_pabEventTriggered);
 	pStream->Write(GC.getNumVoteSourceInfos(), m_pabGamblingRing);
-	pStream->Write(GC.getNumBonusInfos(), m_pabNoBonus);
+// lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
+	pStream->Write( GC.getNumVoteSourceInfos() * GC.getNumBonusInfos(), m_ppbNoBonusByVoteSource );
+// lfgr end
 	pStream->Write(GC.getNumVoteSourceInfos(), m_pabNoOutsideTechTrades);
 	pStream->Write(GC.getNumVoteSourceInfos(), m_pabSlaveTrade);
 	pStream->Write(GC.getNumVoteSourceInfos(), m_pabSmugglingRing);
@@ -11074,6 +11097,7 @@ VoteTriggeredData* CvGame::getVoteTriggered(int iID) const
 	return ((VoteTriggeredData*)(m_votesTriggered.getAt(iID)));
 }
 
+// lfgr: seems to be unused, remove?
 VoteTriggeredData* CvGame::addVoteTriggered(const VoteSelectionData& kData, int iChoice)
 {
 	if (-1 == iChoice || iChoice >= (int)kData.aVoteOptions.size())
@@ -11982,14 +12006,16 @@ void CvGame::setGamblingRing(VoteSourceTypes eIndex, bool bNewValue)
 	m_pabGamblingRing[eIndex] = bNewValue;
 }
 
-bool CvGame::isNoBonus(BonusTypes eIndex) const
+// lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
+bool CvGame::isNoBonus(VoteSourceTypes eVoteSource, BonusTypes eBonus) const
 {
-	return m_pabNoBonus[eIndex];
+	return m_ppbNoBonusByVoteSource[eVoteSource * GC.getNumBonusInfos() + eBonus];
 }
 
-void CvGame::setNoBonus(BonusTypes eIndex, bool bNewValue)
+// lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
+void CvGame::setNoBonus(VoteSourceTypes eVoteSource, BonusTypes eBonus, bool bNewValue)
 {
-	m_pabNoBonus[eIndex] = bNewValue;
+	m_ppbNoBonusByVoteSource[eVoteSource * GC.getNumBonusInfos() + eBonus] = bNewValue;
 }
 
 bool CvGame::isNoOutsideTechTrades(VoteSourceTypes eIndex) const
