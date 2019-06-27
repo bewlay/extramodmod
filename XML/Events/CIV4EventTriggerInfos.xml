@@ -2897,6 +2897,7 @@
 			<bPickPlayer>1</bPickPlayer>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
+			<bRequiresValidEvent>1</bRequiresValidEvent>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- JACKPOT -->
 			<Type>EVENTTRIGGER_JACKPOT</Type>

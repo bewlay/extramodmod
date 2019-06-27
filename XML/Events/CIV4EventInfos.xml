@@ -2298,7 +2298,7 @@
 			<Type>EVENT_INSPIRED_MISSION_1</Type>
 			<Description>TXT_KEY_EVENT_INSPIRED_MISSION_1</Description>
 			<iConvertOwnCities>4</iConvertOwnCities>
-			<iMaxNumReligions>1</iMaxNumReligions>
+			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -2308,7 +2308,7 @@
 			<iGold>-10</iGold>
 			<iConvertOwnCities>4</iConvertOwnCities>
 			<iConvertOtherCities>1</iConvertOtherCities>
-			<iMaxNumReligions>1</iMaxNumReligions>
+			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -2318,7 +2318,7 @@
 			<iGold>-25</iGold>
 			<iConvertOwnCities>4</iConvertOwnCities>
 			<iConvertOtherCities>4</iConvertOtherCities>
-			<iMaxNumReligions>1</iMaxNumReligions>
+			<iMaxNumReligions>-1</iMaxNumReligions>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
