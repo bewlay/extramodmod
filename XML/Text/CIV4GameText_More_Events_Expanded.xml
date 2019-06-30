@@ -917,11 +917,11 @@
 	</TEXT>
 	<TEXT><!-- EVENT_ORPHANED_GOBLIN_4_HELP -->
 		<Tag>TXT_KEY_EVENT_ORPHANED_GOBLIN_4_HELP</Tag>
-		<English>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit looses 1 XP.</English>
-		<French>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit looses 1 XP.</French>
-		<German>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit looses 1 XP.</German>
-		<Italian>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit looses 1 XP.</Italian>
-		<Spanish>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit looses 1 XP.</Spanish>
+		<English>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit loses 1 XP.</English>
+		<French>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit loses 1 XP.</French>
+		<German>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit loses 1 XP.</German>
+		<Italian>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit loses 1 XP.</Italian>
+		<Spanish>[ICON_BULLET]Receive a Goblin in your capital[NEWLINE][ICON_BULLET]Your unit loses 1 XP.</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_THAT_KIND_OF_DAY -->
 		<Tag>TXT_KEY_EVENT_THAT_KIND_OF_DAY</Tag>
