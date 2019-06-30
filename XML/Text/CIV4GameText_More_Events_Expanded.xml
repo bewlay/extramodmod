@@ -931,46 +931,6 @@
 		<Italian>The barbarian hordes are at our gates! Our armies have failed us! We are doomed!</Italian>
 		<Spanish>The barbarian hordes are at our gates! Our armies have failed us! We are doomed!</Spanish>
 	</TEXT>
-	<TEXT><!-- EVENT_THAT_KIND_OF_DAY_1 -->
-		<Tag>TXT_KEY_EVENT_THAT_KIND_OF_DAY_1</Tag>
-		<English>Conscript the populace. Even if there are massive casualties, our empire must survive.</English>
-		<French>Conscript the populace. Even if there are massive casualties, our empire must survive.</French>
-		<German>Conscript the populace. Even if there are massive casualties, our empire must survive.</German>
-		<Italian>Conscript the populace. Even if there are massive casualties, our empire must survive.</Italian>
-		<Spanish>Conscript the populace. Even if there are massive casualties, our empire must survive.</Spanish>
-	</TEXT>
-	<TEXT><!-- EVENT_THAT_KIND_OF_DAY_2 -->
-		<Tag>TXT_KEY_EVENT_THAT_KIND_OF_DAY_2</Tag>
-		<English>Announce our surrender, give them whatever they want.</English>
-		<French>Announce our surrender, give them whatever they want.</French>
-		<German>Announce our surrender, give them whatever they want.</German>
-		<Italian>Announce our surrender, give them whatever they want.</Italian>
-		<Spanish>Announce our surrender, give them whatever they want.</Spanish>
-	</TEXT>
-	<TEXT><!-- EVENT_THAT_KIND_OF_DAY_3 -->
-		<Tag>TXT_KEY_EVENT_THAT_KIND_OF_DAY_3</Tag>
-		<English>Sir? Where are you Sir? Our leader has abandoned us in our time of need! We are undone!</English>
-		<French>Sir? Where are you Sir? Our leader has abandoned us in our time of need! We are undone!</French>
-		<German>Sir? Where are you Sir? Our leader has abandoned us in our time of need! We are undone!</German>
-		<Italian>Sir? Where are you Sir? Our leader has abandoned us in our time of need! We are undone!</Italian>
-		<Spanish>Sir? Where are you Sir? Our leader has abandoned us in our time of need! We are undone!</Spanish>
-	</TEXT>
-	<TEXT><!-- EVENT_THAT_KIND_OF_DAY_4 -->
-		<Tag>TXT_KEY_EVENT_THAT_KIND_OF_DAY_4</Tag>
-		<English>Get me my sword, I will challenge their leader to single combat.</English>
-		<French>Get me my sword, I will challenge their leader to single combat.</French>
-		<German>Get me my sword, I will challenge their leader to single combat.</German>
-		<Italian>Get me my sword, I will challenge their leader to single combat.</Italian>
-		<Spanish>Get me my sword, I will challenge their leader to single combat.</Spanish>
-	</TEXT>
-	<TEXT><!-- EVENT_THAT_KIND_OF_DAY_5 -->
-		<Tag>TXT_KEY_EVENT_THAT_KIND_OF_DAY_5</Tag>
-		<English>Send emissaries to regale them with tales of our glorious empire, and offer them citizenship.</English>
-		<French>Send emissaries to regale them with tales of our glorious empire, and offer them citizenship.</French>
-		<German>Send emissaries to regale them with tales of our glorious empire, and offer them citizenship.</German>
-		<Italian>Send emissaries to regale them with tales of our glorious empire, and offer them citizenship.</Italian>
-		<Spanish>Send emissaries to regale them with tales of our glorious empire, and offer them citizenship.</Spanish>
-	</TEXT>
 	<TEXT><!-- EVENT_PRINCESS_RULE -->
 		<Tag>TXT_KEY_EVENT_PRINCESS_RULE</Tag>
 		<English>Your units have spotted a unicorn outside of %s2_city.</English>
