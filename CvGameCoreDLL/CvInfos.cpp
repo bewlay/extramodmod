@@ -3350,6 +3350,9 @@ m_bAllowAuto(false),
 /**	END	                                        												**/
 /*************************************************************************************************/
 m_bAllowAutomateTerrain(false),
+// WILDERNESS 02/2016 lfgr // WildernessAI
+m_bAIExploreLair( false ),
+// WILDERNESS end
 m_bAdjacentToWaterOnly(false),
 m_bCasterMustBeAlive(false),
 m_bCasterNoDuration(false),
@@ -3556,6 +3559,13 @@ bool CvSpellInfo::isAllowAutomateTerrain() const
 {
     return m_bAllowAutomateTerrain;
 }
+
+// WILDERNESS 02/2016 lfgr // WildernessAI
+bool CvSpellInfo::isAIExploreLair() const
+{
+	return m_bAIExploreLair;
+}
+// WILDERNESS end
 
 bool CvSpellInfo::isAdjacentToWaterOnly() const
 {
@@ -3923,8 +3933,10 @@ void CvSpellInfo::read(FDataStreamBase* stream)
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
-
 	stream->Read(&m_bAllowAutomateTerrain);
+// WILDERNESS 02/2016 lfgr // WildernessAI
+	stream->Read(&m_bAIExploreLair);
+// WILDERNESS end
 	stream->Read(&m_bAdjacentToWaterOnly);
 	stream->Read(&m_bCasterMustBeAlive);
 	stream->Read(&m_bCasterNoDuration);
@@ -4046,8 +4058,10 @@ void CvSpellInfo::write(FDataStreamBase* stream)
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
-
 	stream->Write(m_bAllowAutomateTerrain);
+// WILDERNESS 02/2016 lfgr // WildernessAI
+	stream->Write(m_bAIExploreLair);
+// WILDERNESS end
 	stream->Write(m_bAdjacentToWaterOnly);
 	stream->Write(m_bCasterMustBeAlive);
 	stream->Write(m_bCasterNoDuration);
@@ -4179,8 +4193,10 @@ bool CvSpellInfo::read(CvXMLLoadUtility* pXML)
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
-
     pXML->GetChildXmlValByName(&m_bAllowAutomateTerrain, "bAllowAutomateTerrain");
+// WILDERNESS 02/2016 lfgr // WildernessAI
+    pXML->GetChildXmlValByName(&m_bAIExploreLair, "bAIExploreLair");
+// WILDERNESS end
 	pXML->GetChildXmlValByName(&m_bAdjacentToWaterOnly, "bAdjacentToWaterOnly");
 	pXML->GetChildXmlValByName(&m_bCasterMustBeAlive, "bCasterMustBeAlive");
 	pXML->GetChildXmlValByName(&m_bCasterNoDuration, "bCasterNoDuration");
