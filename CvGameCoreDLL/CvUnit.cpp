@@ -4130,6 +4130,7 @@ void CvUnit::move(CvPlot* pPlot, bool bShow)
 	FeatureTypes featureType = pPlot->getFeatureType();
 	if(featureType != NO_FEATURE)
 	{
+		// lfgr_todo: read to int in pass2
 		CvString featureString(GC.getFeatureInfo(featureType).getOnUnitChangeTo());
 		if(!featureString.IsEmpty())
 		{
@@ -13082,6 +13083,10 @@ void CvUnit::setLevel(int iNewValue)
 {
 	if (getLevel() != iNewValue)
 	{
+		// MORE_ASSERTS 07/2019 lfgr: Check that level is positive
+		FAssertMsg(iNewValue > 0, "New level must be greater than zero");
+		// MORE_ASSERTS end
+
 		// MNAI - True Power calculations
 		int iNetPowerChange = iNewValue - getLevel();
 		GET_PLAYER(getOwnerINLINE()).changePower(iNetPowerChange);

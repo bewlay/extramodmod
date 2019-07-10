@@ -1317,6 +1317,12 @@ bool CvXMLLoadUtility::LoadPostMenuGlobals()
 	LoadGlobalClassInfo(GC.getEspionageMissionInfo(), "CIV4EspionageMissionInfo", "GameInfo", "Civ4EspionageMissionInfo/EspionageMissionInfos/EspionageMissionInfo", false);
 
 	DestroyFXml();
+
+	// lfgr 06/2019: Make asserts no longer refer to CIV4EspionageMissionInfo.xml
+	//   in later GC.getInfoTypeForString() asserts
+	GC.setCurrentXMLFile( "(None)" );
+	// lfgr end
+
 	return true;
 }
 
@@ -1963,6 +1969,7 @@ void CvXMLLoadUtility::LoadGlobalClassInfo(std::vector<T*>& aInfos, const char* 
 	CvCacheObject* pCache = NULL;
 	GC.addToInfosVectors(&aInfos);
 
+	// lfgr_todo: disable cache completely
 	if (NULL != pArgFunction)
 	{
 		pCache = (gDLL->*pArgFunction)(CvString::format("%s.dat", szFileRoot));	// cache file name
@@ -2033,6 +2040,10 @@ void CvXMLLoadUtility::LoadGlobalClassInfo(std::vector<T*>& aInfos, const char* 
 	{
 		gDLL->destroyCache(pCache);
 	}
+
+	// BETTER_ASSERTS 07/2019 lfgr: Reset current InfoType
+	GC.setCurrentXMLInfoType( "(None/unknown)" );
+	// BETTER_ASSERTS end
 }
 
 

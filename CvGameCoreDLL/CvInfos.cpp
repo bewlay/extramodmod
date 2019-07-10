@@ -46,6 +46,10 @@ CvInfoBase::~CvInfoBase()
 
 void CvInfoBase::read(FDataStreamBase* pStream)
 {
+	// lfgr 07/2019: safeguard
+	FAssertMsg( false, "Cached XML not supported" );
+	// lfgr end
+
 	reset();
 
 	pStream->Read(&m_bGraphicalOnly);
@@ -203,6 +207,10 @@ bool CvInfoBase::read(CvXMLLoadUtility* pXML)
 
 	// TYPE
 	pXML->GetChildXmlValByName(m_szType, "Type");
+	
+	// BETTER_ASSERTS 07/2019 lfgr: Store InfoType
+	GC.setCurrentXMLInfoType( m_szType );
+	// BETTER_ASSERTS end
 
 	// DESCRIPTION
 	pXML->GetChildXmlValByName(m_szTextKey, "Description");
@@ -7674,14 +7682,14 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iAIWeight, "iAIWeight");
 	pXML->GetChildXmlValByName(&m_iProductionCost, "iCost");
 	pXML->GetChildXmlValByName(&m_iHurryCostModifier, "iHurryCostModifier");
-	pXML->GetChildXmlValByName(&m_iAdvancedStartCost, "iAdvancedStartCost");
+	pXML->GetChildXmlValByName(&m_iAdvancedStartCost, "iAdvancedStartCost", 100); // lfgr 07/2019: Default 100
 	pXML->GetChildXmlValByName(&m_iAdvancedStartCostIncrease, "iAdvancedStartCostIncrease");
-	pXML->GetChildXmlValByName(&m_iMinAreaSize, "iMinAreaSize");
+	pXML->GetChildXmlValByName(&m_iMinAreaSize, "iMinAreaSize", -1); // lfgr 06/2019: Default -1
 	pXML->GetChildXmlValByName(&m_iMoves, "iMoves");
 	pXML->GetChildXmlValByName(&m_iAirRange, "iAirRange");
 	pXML->GetChildXmlValByName(&m_iAirUnitCap, "iAirUnitCap");
 	pXML->GetChildXmlValByName(&m_iDropRange, "iDropRange");
-	pXML->GetChildXmlValByName(&m_iNukeRange, "iNukeRange");
+	pXML->GetChildXmlValByName(&m_iNukeRange, "iNukeRange", -1); // lfgr 06/2019: Default -1
 	pXML->GetChildXmlValByName(&m_iWorkRate, "iWorkRate");
 	pXML->GetChildXmlValByName(&m_iBaseDiscover, "iBaseDiscover");
 	pXML->GetChildXmlValByName(&m_iDiscoverMultiplier, "iDiscoverMultiplier");
@@ -7696,7 +7704,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_pbFeatureImpassable, "FeatureImpassables", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos(), false);
 
 	pXML->GetChildXmlValByName(&m_iCombat, "iCombat");
-	pXML->GetChildXmlValByName(&m_iCombatLimit, "iCombatLimit");
+	pXML->GetChildXmlValByName(&m_iCombatLimit, "iCombatLimit", 100); // lfgr 06/2019: Default 100
 	pXML->GetChildXmlValByName(&m_iAirCombat, "iAirCombat");
 	pXML->GetChildXmlValByName(&m_iAirCombatLimit, "iAirCombatLimit");
 	pXML->GetChildXmlValByName(&m_iXPValueAttack, "iXPValueAttack");

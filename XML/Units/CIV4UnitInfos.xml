@@ -25,10 +25,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -64,10 +61,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -109,10 +103,7 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -148,10 +139,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -193,10 +181,7 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -232,10 +217,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -271,10 +253,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -311,10 +290,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -350,10 +326,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -389,10 +362,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -428,10 +398,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -473,10 +440,7 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -512,10 +476,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -551,10 +512,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -590,10 +548,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -629,10 +584,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -668,10 +620,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -707,10 +656,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -746,10 +692,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -785,10 +728,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -824,10 +764,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -869,10 +806,7 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -908,10 +842,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -947,10 +878,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -991,10 +919,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -1037,11 +962,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>360</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>21</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -1118,11 +1040,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>19</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -1315,13 +1234,9 @@
 				</Flavor>
 			</Flavors>
 			<iCost>90</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>300</iWorkRate>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -1484,13 +1399,9 @@
 				</Flavor>
 			</Flavors>
 			<iCost>90</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>300</iWorkRate>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -1668,13 +1579,9 @@
 				</Flavor>
 			</Flavors>
 			<iCost>90</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>300</iWorkRate>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -1871,11 +1778,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -1926,11 +1830,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -2003,12 +1904,8 @@
 			<bFirstStrikeImmune>1</bFirstStrikeImmune>
 			<PrereqTech>TECH_POISONS</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -2126,11 +2023,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>6</iAsset>
@@ -2198,11 +2092,8 @@
 			<PrereqTech>TECH_GUILDS</PrereqTech>
 			<iCost>0</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -2285,12 +2176,9 @@
 				<BonusType>BONUS_MANA_FIRE</BonusType>
 			</PrereqBonuses>
 			<iCost>250</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<DomainCargo>DOMAIN_LAND</DomainCargo>
@@ -2370,12 +2258,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_ARCHERY</PrereqTech>
 			<iCost>45</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -2445,12 +2329,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_ARCHERY</PrereqTech>
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -2526,12 +2406,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_ARCHERY</PrereqTech>
 			<iCost>45</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -2617,12 +2493,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_ARCHERY</PrereqTech>
 			<iCost>45</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -2761,13 +2633,9 @@
 			</Flavors>
 			<iAIWeight>300</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>400</iWorkRate>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -2927,13 +2795,9 @@
 			</Flavors>
 			<iAIWeight>300</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>400</iWorkRate>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -3003,12 +2867,8 @@
 			<PrereqTech>TECH_BLASTING_POWDER</PrereqTech>
 			<BonusType>BONUS_GUNPOWDER</BonusType>
 			<iCost>180</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>10</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iConscription>4</iConscription>
@@ -3057,11 +2917,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>13</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -3143,11 +3000,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>9</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -3382,14 +3236,11 @@
 			</Flavors>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iBaseDiscover>1000</iBaseDiscover>
 			<iDiscoverMultiplier>2</iDiscoverMultiplier>
 			<iGreatWorkCulture>4000</iGreatWorkCulture>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -3451,12 +3302,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_POISONS</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -3539,12 +3386,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_POISONS</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -3643,12 +3486,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_POISONS</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-50</iCityAttack>
@@ -3732,12 +3571,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_POISONS</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -3824,12 +3659,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_POISONS</PrereqTech>
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -3923,12 +3754,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_POISONS</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -4014,12 +3841,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_POISONS</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-50</iCityAttack>
@@ -4081,11 +3904,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -4139,11 +3959,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -4181,11 +3998,8 @@
 			<bIgnoreBuildingDefense>1</bIgnoreBuildingDefense>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>6</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>30</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>80</iXPValueAttack>
 			<iXPValueDefense>40</iXPValueDefense>
 			<iFirstStrikes>4</iFirstStrikes>
@@ -4296,12 +4110,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
 			<iCost>45</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>10</iCityAttack>
@@ -4370,12 +4180,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -4456,12 +4262,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>10</iCityAttack>
@@ -4524,12 +4326,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>10</iCityAttack>
@@ -4618,12 +4416,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
 			<iCost>45</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>10</iCityAttack>
@@ -4704,12 +4498,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
 			<iCost>45</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>10</iCityAttack>
@@ -4772,12 +4562,8 @@
 			<PrereqBuilding>BUILDING_SCULPTORS_STUDIO</PrereqBuilding>
 			<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
 			<iCost>45</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -4838,11 +4624,8 @@
 			</Flavors>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iCultureGarrison>3</iCultureGarrison>
 			<iAsset>4</iAsset>
 			<iPower>8</iPower>
@@ -4906,11 +4689,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -4958,11 +4738,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -5024,11 +4801,8 @@
 			<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
 			<iCost>90</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -5077,11 +4851,8 @@
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -5154,11 +4925,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>1</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iBombardRate>25</iBombardRate>
@@ -5209,11 +4977,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -5279,11 +5044,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -5343,11 +5105,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -5421,12 +5180,8 @@
 			<PrereqBuilding>BUILDING_TEMPLE_OF_THE_VEIL</PrereqBuilding>
 			<PrereqTech>TECH_MALEVOLENT_DESIGNS</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitClassAttackMods>
@@ -5498,13 +5253,9 @@
 			<PrereqBuilding>BUILDING_HUNTING_LODGE</PrereqBuilding>
 			<PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>100</iWorkRate>
 			<iCombat>14</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -5573,13 +5324,9 @@
 			<PrereqBuilding>BUILDING_HUNTING_LODGE</PrereqBuilding>
 			<PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>100</iWorkRate>
 			<iCombat>14</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -5654,12 +5401,8 @@
 			<PrereqBuilding>BUILDING_HUNTING_LODGE</PrereqBuilding>
 			<PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>14</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -5711,12 +5454,9 @@
 			<PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>100</iWorkRate>
 			<iCombat>12</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -5775,12 +5515,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_RAGE</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iConscription>4</iConscription>
@@ -5855,12 +5591,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_RAGE</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCollateralDamage>40</iCollateralDamage>
@@ -5915,11 +5647,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -5979,12 +5708,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_RAGE</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCollateralDamage>40</iCollateralDamage>
@@ -6063,12 +5788,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_RAGE</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCollateralDamage>40</iCollateralDamage>
@@ -6123,12 +5844,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_MACHINERY</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>15</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCollateralDamage>40</iCollateralDamage>
@@ -6189,9 +5906,7 @@
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>4</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>10</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>20</iWithdrawalProb>
@@ -6241,11 +5956,8 @@
 			<bPillage>1</bPillage>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -6312,10 +6024,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -6363,11 +6072,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>25</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -6455,12 +6161,8 @@
 			<PrereqTech>TECH_BLASTING_POWDER</PrereqTech>
 			<BonusType>BONUS_GUNPOWDER</BonusType>
 			<iCost>180</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>60</iWithdrawalProb>
@@ -6518,12 +6220,8 @@
 			<PrereqTech>TECH_BLASTING_POWDER</PrereqTech>
 			<BonusType>BONUS_GUNPOWDER</BonusType>
 			<iCost>180</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>10</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>60</iWithdrawalProb>
@@ -6577,12 +6275,9 @@
 			</UnitAIs>
 			<PrereqTech>TECH_OPTICS</PrereqTech>
 			<iCost>100</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>5</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<DomainCargo>DOMAIN_LAND</DomainCargo>
@@ -6646,10 +6341,7 @@
 			<PrereqBuilding>BUILDING_SIEGE_WORKSHOP</PrereqBuilding>
 			<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
 			<iCost>90</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
 			<iCombatLimit>75</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
@@ -6712,10 +6404,7 @@
 			<PrereqBuilding>BUILDING_SIEGE_WORKSHOP</PrereqBuilding>
 			<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
 			<iCost>90</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
 			<iCombatLimit>75</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
@@ -6763,11 +6452,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>300</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -6895,12 +6581,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<iCost>150</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -6996,12 +6678,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<TerrainAttacks>
@@ -7102,12 +6780,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitCombatMods>
@@ -7219,12 +6893,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitCombatMods>
@@ -7319,12 +6989,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitCombatMods>
@@ -7417,12 +7083,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>10</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -7516,12 +7178,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iConscription>3</iConscription>
@@ -7599,12 +7257,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<iCost>180</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iConscription>3</iConscription>
@@ -7690,12 +7344,8 @@
 			<PrereqBuilding>BUILDING_GOVERNORS_MANOR</PrereqBuilding>
 			<PrereqTech>TECH_FEUDALISM</PrereqTech>
 			<iCost>180</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -7769,12 +7419,8 @@
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
 			<PrereqTech>TECH_FESTIVALS</PrereqTech>
 			<iCost>45</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -7839,12 +7485,8 @@
 				<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
 			</TechTypes>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -7918,12 +7560,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -7994,12 +7632,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -8060,11 +7694,8 @@
 			</Flavors>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -8109,11 +7740,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>1</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -8173,11 +7801,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -8225,11 +7850,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>300</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -8319,12 +7941,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_MACHINERY</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>9</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -8391,12 +8009,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_MACHINERY</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>12</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -8491,11 +8105,8 @@
 			</PrereqBonuses>
 			<iCost>80</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -8571,11 +8182,8 @@
 			<PrereqTech>TECH_SMELTING</PrereqTech>
 			<iCost>60</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitCombatMods>
@@ -8657,13 +8265,9 @@
 				</Flavor>
 			</Flavors>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iGreatWorkCulture>20</iGreatWorkCulture>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -8747,13 +8351,9 @@
 			</Flavors>
             <iAIWeight>0</iAIWeight>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iGreatWorkCulture>20</iGreatWorkCulture>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -8837,13 +8437,9 @@
 			</Flavors>
             <iAIWeight>0</iAIWeight>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iGreatWorkCulture>20</iGreatWorkCulture>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -8897,12 +8493,8 @@
 				</UnitAI>
 			</UnitAIs>
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -9008,13 +8600,9 @@
 			</Flavors>
             <iAIWeight>0</iAIWeight>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iGreatWorkCulture>20</iGreatWorkCulture>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -9101,13 +8689,9 @@
 				</Flavor>
 			</Flavors>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iBaseDiscover>15</iBaseDiscover>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -9190,13 +8774,9 @@
 				</Flavor>
 			</Flavors>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iGreatWorkCulture>20</iGreatWorkCulture>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -9262,12 +8842,8 @@
 			<PrereqReligion>RELIGION_THE_ASHEN_VEIL</PrereqReligion>
 			<PrereqTech>TECH_CORRUPTION_OF_SPIRIT</PrereqTech>
 			<iCost>90</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -9337,11 +8913,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -9471,11 +9044,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>300</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -9545,11 +9115,8 @@
 			</Flavors>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>14</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -9672,10 +9239,7 @@
 			<PrereqReligion>RELIGION_OCTOPUS_OVERLORDS</PrereqReligion>
 			<PrereqTech>TECH_MESSAGE_FROM_THE_DEEP</PrereqTech>
 			<iCost>90</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<TerrainImpassables>
 				<TerrainImpassable>
 					<TerrainType>TERRAIN_OCEAN</TerrainType>
@@ -9683,7 +9247,6 @@
 				</TerrainImpassable>
 			</TerrainImpassables>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -9758,13 +9321,9 @@
 			<PrereqTech>TECH_COMMUNE_WITH_NATURE</PrereqTech>
 			<iAIWeight>16</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>100</iWorkRate>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -9852,13 +9411,9 @@
 			<PrereqTech>TECH_COMMUNE_WITH_NATURE</PrereqTech>
 			<iAIWeight>16</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>100</iWorkRate>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -9950,13 +9505,9 @@
 			<PrereqTech>TECH_COMMUNE_WITH_NATURE</PrereqTech>
 			<iAIWeight>16</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>100</iWorkRate>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -10045,13 +9596,9 @@
 			<PrereqTech>TECH_STRENGTH_OF_WILL</PrereqTech>
 			<iAIWeight>16</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>100</iWorkRate>
 			<iCombat>10</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitCombatMods>
@@ -10118,11 +9665,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>500</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -10195,14 +9739,10 @@
 			<PrereqReligion>RELIGION_RUNES_OF_KILMORPH</PrereqReligion>
 			<PrereqTech>TECH_WAY_OF_THE_EARTHMOTHER</PrereqTech>
 			<iCost>90</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>200</iWorkRate>
 			<iBaseHurry>45</iBaseHurry>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>5</iCultureGarrison>
@@ -10255,11 +9795,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -10321,12 +9858,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>5</iCultureGarrison>
@@ -10390,11 +9923,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -10459,11 +9989,8 @@
 			<PrereqTech>TECH_NEVER</PrereqTech>
 			<iCost>90</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -10666,15 +10193,12 @@
 			</Flavors>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iBaseDiscover>1000</iBaseDiscover>
 			<iDiscoverMultiplier>2</iDiscoverMultiplier>
 			<iBaseHurry>500</iBaseHurry>
 			<iHurryMultiplier>20</iHurryMultiplier>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -10717,11 +10241,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>360</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>23</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -10791,13 +10312,10 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iAirRange>4</iAirRange>
 			<iAirUnitCap>4</iAirUnitCap>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -10848,12 +10366,8 @@
 			<PrereqReligion>RELIGION_FELLOWSHIP_OF_LEAVES</PrereqReligion>
 			<PrereqTech>TECH_WAY_OF_THE_FORESTS</PrereqTech>
 			<iCost>75</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<FeatureAttacks>
@@ -10914,9 +10428,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<TerrainImpassables>
 				<TerrainImpassable>
 					<TerrainType>TERRAIN_SNOW</TerrainType>
@@ -10924,7 +10436,6 @@
 				</TerrainImpassable>
 			</TerrainImpassables>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCollateralDamage>50</iCollateralDamage>
@@ -11004,11 +10515,8 @@
 			</Flavors>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iCollateralDamage>50</iCollateralDamage>
 			<iCollateralDamageLimit>30</iCollateralDamageLimit>
 			<iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -11090,11 +10598,8 @@
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<iCost>120</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -11149,11 +10654,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -11240,12 +10742,8 @@
 			<PrereqTech>TECH_FESTIVALS</PrereqTech>
 			<iAIWeight>100</iAIWeight>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iConscription>2</iConscription>
@@ -11321,13 +10819,10 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>150</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>4</iMoves>
             <iAirUnitCap>0</iAirUnitCap>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>10</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iBombardRate>10</iBombardRate>
@@ -11376,12 +10871,8 @@
 				</UnitAI>
 			</UnitAIs>
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>1</iAsset>
@@ -11435,12 +10926,8 @@
                 </UnitAI>
 			</UnitAIs>
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -11499,12 +10986,8 @@
 				</UnitAI>
 			</UnitAIs>
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>10</iWithdrawalProb>
@@ -11662,13 +11145,9 @@
 				</Flavor>
 			</Flavors>
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>300</iWorkRate>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -11751,12 +11230,9 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>150</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>4</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iBombardRate>10</iBombardRate>
@@ -11828,10 +11304,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_SAILING</PrereqTech>
 			<iCost>50</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<TerrainImpassables>
 				<TerrainImpassable>
 					<TerrainType>TERRAIN_OCEAN</TerrainType>
@@ -11845,7 +11319,6 @@
 				</TerrainPassableTech>
 			</TerrainPassableTechs>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<DomainCargo>DOMAIN_LAND</DomainCargo>
@@ -11903,11 +11376,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -11971,11 +11441,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -12042,11 +11509,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<TerrainNatives>
@@ -12096,11 +11560,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -12163,11 +11624,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>120</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -12237,11 +11695,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -12379,12 +11834,9 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>480</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>400</iWorkRate>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -12463,11 +11915,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -12524,11 +11973,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<TerrainNatives>
@@ -12604,12 +12050,8 @@
 			<PrereqBuilding>BUILDING_INFIRMARY</PrereqBuilding>
 			<PrereqTech>TECH_MEDICINE</PrereqTech>
 			<iCost>180</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -12675,10 +12117,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>9</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -12723,11 +12162,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>22</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -12776,11 +12212,8 @@
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<iCost>360</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -12835,13 +12268,10 @@
 			<PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
 			<iCost>20</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
 			<iAirRange>3</iAirRange>
 			<iAirUnitCap>1</iAirUnitCap>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -12979,12 +12409,9 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>200</iWorkRate>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -13058,12 +12485,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_ANIMAL_MASTERY</PrereqTech>
 			<iCost>0</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>14</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -13112,12 +12535,8 @@
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
 			<PrereqTech>TECH_WARHORSES</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -13182,12 +12601,8 @@
 			</Flavors>
 			<iAIWeight>16</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -13270,12 +12685,8 @@
 			</Flavors>
 			<iAIWeight>16</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -13352,12 +12763,8 @@
 			</Flavors>
 			<iAIWeight>16</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -13444,12 +12851,8 @@
 			</Flavors>
 			<iAIWeight>16</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -13532,12 +12935,8 @@
 			</Flavors>
 			<iAIWeight>16</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -13620,12 +13019,8 @@
 			</Flavors>
 			<iAIWeight>16</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -13710,13 +13105,9 @@
 			</Flavors>
 			<iAIWeight>16</iAIWeight>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>200</iWorkRate>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -13823,11 +13214,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<TerrainNatives>
@@ -13905,12 +13293,8 @@
 				<PrereqTech>TECH_ARCHERY</PrereqTech>
 			</TechTypes>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -13991,12 +13375,8 @@
 				<PrereqTech>TECH_ARCHERY</PrereqTech>
 			</TechTypes>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -14081,12 +13461,8 @@
 			</TechTypes>
 			<BonusType>BONUS_DEER</BonusType>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -14177,12 +13553,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -14264,12 +13636,8 @@
 				<PrereqTech>TECH_ARCHERY</PrereqTech>
 			</TechTypes>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -14350,12 +13718,8 @@
 			<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
 			<BonusType>BONUS_PIG</BonusType>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -14446,12 +13810,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -14539,12 +13899,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -14615,12 +13971,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>10</iWithdrawalProb>
@@ -14681,12 +14033,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_HORSEBACK_RIDING</PrereqTech>
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>10</iWithdrawalProb>
@@ -14767,13 +14115,9 @@
 			</UnitAIs>
 			<PrereqTech>TECH_HUNTING</PrereqTech>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>200</iWorkRate>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -14845,13 +14189,9 @@
 			</UnitAIs>
 			<PrereqTech>TECH_HUNTING</PrereqTech>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>200</iWorkRate>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -14924,13 +14264,9 @@
 			</UnitAIs>
 			<PrereqTech>TECH_HUNTING</PrereqTech>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>200</iWorkRate>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -15001,13 +14337,9 @@
 			</UnitAIs>
 			<PrereqTech>TECH_HUNTING</PrereqTech>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>200</iWorkRate>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -15055,11 +14387,8 @@
 			</UnitAIs>
 			<iCost>100</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -15141,11 +14470,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -15195,9 +14521,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<TerrainImpassables>
 				<TerrainImpassable>
 					<TerrainType>TERRAIN_DESERT</TerrainType>
@@ -15209,7 +14533,6 @@
 				</TerrainImpassable>
 			</TerrainImpassables>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<TerrainAttacks>
@@ -15310,12 +14633,8 @@
 			<PrereqTech>TECH_DIVINE_ESSENCE</PrereqTech>
 			<BonusType>BONUS_IVORY</BonusType>
 			<iCost>360</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>13</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -15383,12 +14702,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_DIVINE_ESSENCE</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>9</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -15447,12 +14762,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_DIVINE_ESSENCE</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -15518,12 +14829,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_DIVINE_ESSENCE</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>9</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -15581,12 +14888,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_DIVINE_ESSENCE</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>9</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -15664,11 +14967,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -15733,12 +15033,9 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>40</iWorkRate>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -15804,12 +15101,8 @@
 			<PrereqBuilding>BUILDING_STABLE</PrereqBuilding>
 			<PrereqTech>TECH_WARHORSES</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>12</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>35</iWithdrawalProb>
@@ -15862,12 +15155,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_WARHORSES</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>35</iWithdrawalProb>
@@ -15936,12 +15225,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>35</iWithdrawalProb>
@@ -16024,12 +15309,8 @@
 			<PrereqBuilding>BUILDING_STABLE</PrereqBuilding>
 			<PrereqTech>TECH_WARHORSES</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>12</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>35</iWithdrawalProb>
@@ -16097,12 +15378,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>35</iWithdrawalProb>
@@ -16157,12 +15434,8 @@
 			<PrereqBuilding>BUILDING_SIEGE_WORKSHOP</PrereqBuilding>
 			<PrereqTech>TECH_WARHORSES</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitCombatMods>
@@ -16219,9 +15492,7 @@
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>4</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>17</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>26</iAsset>
@@ -16270,9 +15541,7 @@
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>4</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>22</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iPower>30</iPower>
@@ -16407,12 +15676,9 @@
 			<iAIWeight>220</iAIWeight>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>400</iWorkRate>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -16503,12 +15769,8 @@
 				</Flavor>
 			</Flavors>
 			<iCost>60</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -16558,11 +15820,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iPower>3</iPower>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
@@ -16628,11 +15887,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -16706,11 +15962,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -16764,11 +16017,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -16822,11 +16072,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -16874,11 +16121,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -16980,12 +16224,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_BOWYERS</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -17051,12 +16291,8 @@
 			<PrereqBuilding>BUILDING_SCULPTORS_STUDIO</PrereqBuilding>
 			<PrereqTech>TECH_ENGINEERING</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityDefense>25</iCityDefense>
@@ -17136,12 +16372,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_BOWYERS</PrereqTech>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -17188,11 +16420,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>300</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -17258,11 +16487,8 @@
 			<PrereqTech>TECH_NEVER</PrereqTech>
 			<iCost>60</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCityAttack>10</iCityAttack>
@@ -17331,12 +16557,8 @@
 			<PrereqBuilding>BUILDING_ASYLUM</PrereqBuilding>
 			<PrereqTech>TECH_MIND_STAPLING</PrereqTech>
 			<iCost>90</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCollateralDamage>20</iCollateralDamage>
@@ -17501,13 +16723,9 @@
 				</Flavor>
 			</Flavors>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>300</iWorkRate>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -17680,13 +16898,9 @@
 				</Flavor>
 			</Flavors>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>300</iWorkRate>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -17855,13 +17069,9 @@
 				</Flavor>
 			</Flavors>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>300</iWorkRate>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -17934,11 +17144,8 @@
 			</PrereqBonuses>
 			<iCost>360</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>4</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>50</iWithdrawalProb>
@@ -18006,11 +17213,8 @@
 			</Flavors>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iCultureGarrison>3</iCultureGarrison>
 			<iPower>6</iPower>
 			<UnitMeshGroups>
@@ -18085,12 +17289,9 @@
 			</TechTypes>
 			<BonusType>BONUS_GUNPOWDER</BonusType>
 			<iCost>225</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>5</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>13</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iBombardRate>20</iBombardRate>
@@ -18160,12 +17361,9 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iBaseHurry>25</iBaseHurry>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>1</iAsset>
@@ -18233,12 +17431,8 @@
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
 			<PrereqTech>TECH_COMMUNE_WITH_NATURE</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>12</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitCombatMods>
@@ -18302,11 +17496,8 @@
 			<PrereqTech>TECH_MALEVOLENT_DESIGNS</PrereqTech>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>10</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<UnitCombatMods>
@@ -18400,11 +17591,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>22</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -18462,12 +17650,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_PRECISION</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>11</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -18516,11 +17700,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCityDefense>50</iCityDefense>
@@ -18569,11 +17750,8 @@
 			<bMilitaryProduction>1</bMilitaryProduction>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>50</iWithdrawalProb>
@@ -18639,11 +17817,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>10</iWithdrawalProb>
@@ -18701,11 +17876,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>20</iWithdrawalProb>
@@ -18903,15 +18075,12 @@
 			</Flavors>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iBaseDiscover>1000</iBaseDiscover>
 			<iDiscoverMultiplier>2</iDiscoverMultiplier>
 			<iBaseTrade>500</iBaseTrade>
 			<iTradeMultiplier>200</iTradeMultiplier>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -18947,11 +18116,8 @@
 			<PrereqTech>TECH_INFERNAL_PACT</PrereqTech>
 			<iCost>1200</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>19</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -19040,11 +18206,8 @@
 			</Flavors>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iCollateralDamage>100</iCollateralDamage>
 			<iCollateralDamageLimit>60</iCollateralDamageLimit>
 			<iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -19115,12 +18278,8 @@
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
 			<PrereqTech>TECH_PASS_THROUGH_THE_ETHER</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityDefense>25</iCityDefense>
@@ -19174,11 +18333,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -19243,11 +18399,8 @@
 			<BonusType>BONUS_MITHRIL</BonusType>
 			<iCost>400</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>25</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCityAttack>60</iCityAttack>
@@ -19422,13 +18575,9 @@
 			<PrereqTech>TECH_KNOWLEDGE_OF_THE_ETHER</PrereqTech>
 			<iAIWeight>150</iAIWeight>
 			<iCost>150</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>300</iWorkRate>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -19482,12 +18631,8 @@
 				</UnitAI>
 			</UnitAIs>
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -19582,12 +18727,8 @@
 				</Flavor>
 			</Flavors>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>9</iAsset>
@@ -19655,9 +18796,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<TerrainImpassables>
 				<TerrainImpassable>
 					<TerrainType>TERRAIN_OCEAN</TerrainType>
@@ -19665,7 +18804,6 @@
 				</TerrainImpassable>
 			</TerrainImpassables>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -19754,12 +18892,8 @@
 				<PrereqTech>TECH_BOWYERS</PrereqTech>
 			</TechTypes>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -19840,12 +18974,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>0</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>9</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -19907,11 +19037,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCityDefense>25</iCityDefense>
@@ -19984,12 +19111,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>5</iCultureGarrison>
@@ -20079,12 +19202,8 @@
 			<PrereqTech />
 			<BonusType />
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -20176,12 +19295,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -20247,12 +19362,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>13</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<BonusProductionModifiers>
@@ -20321,12 +19432,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>12</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>25</iCityAttack>
@@ -20387,12 +19494,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>14</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>25</iCityAttack>
@@ -20464,12 +19567,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_MITHRIL_WORKING</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>12</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>25</iCityAttack>
@@ -20523,11 +19622,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<TerrainNatives>
@@ -20602,11 +19698,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -20706,12 +19799,8 @@
 			</Flavors>
 			<iAIWeight>25</iAIWeight>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>7</iAsset>
@@ -20817,12 +19906,8 @@
 			</Flavors>
 			<iAIWeight>25</iAIWeight>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>7</iAsset>
@@ -20928,12 +20013,8 @@
 			</Flavors>
 			<iAIWeight>25</iAIWeight>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>6</iAsset>
@@ -21045,12 +20126,8 @@
 			</Flavors>
 			<iAIWeight>25</iAIWeight>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>6</iAsset>
@@ -21170,12 +20247,8 @@
 			</Flavors>
 			<iAIWeight>25</iAIWeight>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>7</iAsset>
@@ -21285,12 +20358,8 @@
 			</Flavors>
 			<iAIWeight>25</iAIWeight>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>6</iAsset>
@@ -21366,13 +20435,9 @@
 				</Build>
 			</Builds>
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>200</iWorkRate>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -21478,12 +20543,9 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>100</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>4</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>20</iWithdrawalProb>
@@ -21556,12 +20618,9 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>100</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>4</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>20</iWithdrawalProb>
@@ -21817,13 +20876,10 @@
 			</Flavors>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iBaseDiscover>1000</iBaseDiscover>
 			<iDiscoverMultiplier>2</iDiscoverMultiplier>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -21867,11 +20923,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -21916,11 +20969,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -21986,12 +21036,9 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>300</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<DomainCargo>DOMAIN_LAND</DomainCargo>
@@ -22058,12 +21105,9 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>225</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>16</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<DomainCargo>DOMAIN_LAND</DomainCargo>
@@ -22133,12 +21177,8 @@
 			<PrereqReligion>RELIGION_THE_EMPYREAN</PrereqReligion>
 			<PrereqTech>TECH_HONOR</PrereqTech>
 			<iCost>90</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>10</iCityAttack>
@@ -22200,12 +21240,9 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>12</iMoves>
 			<bNoRevealMap>1</bNoRevealMap>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>1</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iAsset>2</iAsset>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
@@ -22270,13 +21307,9 @@
 			<PrereqBuilding>BUILDING_CARNIVAL</PrereqBuilding>
 			<PrereqTech>TECH_FERAL_BOND</PrereqTech>
 			<iCost>150</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>200</iWorkRate>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -22337,13 +21370,9 @@
 			</UnitAIs>
 			<PrereqTech>TECH_FERAL_BOND</PrereqTech>
 			<iCost>150</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>200</iWorkRate>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -22417,13 +21446,9 @@
 			</UnitAIs>
 			<PrereqTech>TECH_FERAL_BOND</PrereqTech>
 			<iCost>150</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>200</iWorkRate>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-20</iCityAttack>
@@ -22471,11 +21496,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<UnitCombatMods>
@@ -22566,12 +21588,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>180</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -22625,11 +21643,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<UnitCombatMods>
@@ -22710,11 +21725,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -22775,12 +21787,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_WARHORSES</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>12</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -22850,12 +21858,8 @@
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
 			<PrereqTech>TECH_MATHEMATICS</PrereqTech>
 			<iCost>150</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>35</iWithdrawalProb>
@@ -22905,11 +21909,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -22971,11 +21972,8 @@
 			<bNoDefensiveBonus>1</bNoDefensiveBonus>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -23056,11 +22054,8 @@
 			</PrereqBonuses>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -23138,11 +22133,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -23229,9 +22221,7 @@
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iWithdrawalProb>20</iWithdrawalProb>
@@ -23289,11 +22279,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<TerrainAttacks>
@@ -23378,12 +22365,8 @@
 			<PrereqReligion>RELIGION_FELLOWSHIP_OF_LEAVES</PrereqReligion>
 			<PrereqTech>TECH_HIDDEN_PATHS</PrereqTech>
 			<iCost>150</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>9</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -23431,11 +22414,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<UnitCombatMods>
@@ -23663,13 +22643,10 @@
 			</Flavors>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iBaseDiscover>1500</iBaseDiscover>
 			<iDiscoverMultiplier>3</iDiscoverMultiplier>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -23714,11 +22691,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -23791,12 +22765,8 @@
 				</UnitAI>
 			</NotUnitAIs>
 			<iCost>15</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAnimalCombat>50</iAnimalCombat>
@@ -23855,12 +22825,8 @@
 				</UnitAI>
 			</NotUnitAIs>
 			<iCost>-1</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAnimalCombat>50</iAnimalCombat>
@@ -23938,12 +22904,8 @@
 				</UnitAI>
 			</NotUnitAIs>
 			<iCost>25</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAnimalCombat>50</iAnimalCombat>
@@ -23989,11 +22951,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<TerrainNatives>
@@ -24048,12 +23007,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_RAGE</PrereqTech>
 			<iCost>0</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCollateralDamage>40</iCollateralDamage>
@@ -24139,13 +23094,9 @@
 				</ProductionTrait>
 			</ProductionTraits>
 			<iCost>120</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>50</iAdvancedStartCostIncrease>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -24194,11 +23145,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>1</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>2</iAsset>
@@ -24255,11 +23203,8 @@
 			</GreatPeoples>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>4</iAsset>
@@ -24314,12 +23259,8 @@
 			<PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
 			<PrereqTech>TECH_GUILDS</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -24400,12 +23341,8 @@
 			<PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
 			<PrereqTech>TECH_GUILDS</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -24492,12 +23429,8 @@
 			<PrereqReligion>RELIGION_COUNCIL_OF_ESUS</PrereqReligion>
 			<PrereqTech>TECH_GUILDS</PrereqTech>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iFirstStrikes>1</iFirstStrikes>
@@ -24583,12 +23516,8 @@
 				<BonusType>NONE</BonusType>
 			</PrereqBonuses>
 			<iCost>240</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>9</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>35</iWithdrawalProb>
@@ -24658,11 +23587,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iAsset>1</iAsset>
@@ -24782,13 +23708,10 @@
 			<PrereqTech>TECH_NEVER</PrereqTech>
 			<iCost>60</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>50</iWorkRate>
 			<iBaseHurry>10</iBaseHurry>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -24825,11 +23748,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>5</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -24913,11 +23833,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -24969,11 +23886,8 @@
 			<PrereqTech>TECH_RIGHTEOUSNESS</PrereqTech>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>12</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -25074,11 +23988,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>19</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -25182,12 +24093,8 @@
 			<PrereqBuilding>BUILDING_TEMPLE_OF_THE_OVERLORDS</PrereqBuilding>
 			<PrereqTech>TECH_MALEVOLENT_DESIGNS</PrereqTech>
 			<iCost>200</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -25258,12 +24165,8 @@
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
 			<PrereqTech>TECH_SANITATION</PrereqTech>
 			<iCost>150</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>5</iCultureGarrison>
@@ -25385,11 +24288,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iCultureGarrison>5</iCultureGarrison>
 			<iAsset>6</iAsset>
 			<UnitMeshGroups>
@@ -25432,12 +24332,8 @@
 			<PrereqBuilding>BUILDING_PLANAR_GATE</PrereqBuilding>
 			<PrereqTech>TECH_CORRUPTION_OF_SPIRIT</PrereqTech>
 			<iCost>150</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>3</iCultureGarrison>
@@ -25487,12 +24383,8 @@
 			<bIgnoreBuildingDefense>1</bIgnoreBuildingDefense>
 			<PrereqTech>TECH_BLASTING_POWDER</PrereqTech>
 			<iCost>180</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>12</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<TerrainAttacks>
@@ -25569,11 +24461,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>4</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -25626,11 +24515,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>10</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iConscription>3</iConscription>
@@ -25716,10 +24602,8 @@
 				<PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
 			</TechTypes>
 			<iCost>75</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iMinAreaSize>20</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<TerrainImpassables>
 				<TerrainImpassable>
 					<TerrainType>TERRAIN_OCEAN</TerrainType>
@@ -25727,7 +24611,6 @@
 				</TerrainImpassable>
 			</TerrainImpassables>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitClassAttackMods>
@@ -25777,12 +24660,8 @@
 			<bPillage>1</bPillage>
 			<PrereqTech>TECH_TRADE</PrereqTech>
 			<iCost>150</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>12</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitCombatMods>
@@ -25845,11 +24724,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>180</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -25920,12 +24796,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_DIVINE_ESSENCE</PrereqTech>
 			<iCost>10</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -25994,12 +24866,8 @@
 			</UnitAIs>
 			<PrereqTech>TECH_ANIMAL_HANDLING</PrereqTech>
 			<iCost>90</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -26047,11 +24915,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>19</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iWithdrawalProb>25</iWithdrawalProb>
@@ -26123,12 +24988,8 @@
 				</UnitAI>
 			</UnitAIs>
 			<iCost>25</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>20</iCityAttack>
@@ -26193,12 +25054,8 @@
 				</UnitAI>
 			</UnitAIs>
 			<iCost>25</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityDefense>25</iCityDefense>
@@ -26262,12 +25119,8 @@
 				</UnitAI>
 			</UnitAIs>
 			<iCost>25</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityDefense>25</iCityDefense>
@@ -26339,12 +25192,8 @@
 				</UnitAI>
 			</UnitAIs>
 			<iCost>25</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>2</iXPValueDefense>
 			<UnitCombatMods>
@@ -26405,11 +25254,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -26480,11 +25326,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>8</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>4</iCultureGarrison>
@@ -26545,11 +25388,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -26605,9 +25445,7 @@
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<iCost>360</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>1</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<TerrainImpassables>
 				<TerrainImpassable>
 					<TerrainType>TERRAIN_DESERT</TerrainType>
@@ -26619,7 +25457,6 @@
 				</TerrainImpassable>
 			</TerrainImpassables>
 			<iCombat>7</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<TerrainAttacks>
@@ -26709,11 +25546,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>2</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -26785,11 +25619,8 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>3</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCityAttack>-25</iCityAttack>
@@ -26845,10 +25676,7 @@
 			</Builds>
 			<PrereqTech>TECH_FISHING</PrereqTech>
 			<iCost>30</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>100</iWorkRate>
 			<TerrainImpassables>
 				<TerrainImpassable>
@@ -26857,7 +25685,6 @@
 				</TerrainImpassable>
 			</TerrainImpassables>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -26958,13 +25785,9 @@
 				</ProductionTrait>
 			</ProductionTraits>
 			<iCost>75</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>150</iWorkRate>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -27076,13 +25899,9 @@
 				</ProductionTrait>
 			</ProductionTraits>
 			<iCost>75</iCost>
-			<iAdvancedStartCost>100</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>100</iWorkRate>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -27120,11 +25939,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>6</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
@@ -27195,11 +26011,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>33</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -27258,11 +26071,8 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>3</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>15</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iCultureGarrison>16</iCultureGarrison>
@@ -27347,11 +26157,8 @@
 			<iAIWeight>200</iAIWeight>
 			<iCost>240</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>9</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>32</iXPValueAttack>
 			<iXPValueDefense>16</iXPValueDefense>
 			<iAnimalCombat>50</iAnimalCombat>
@@ -27626,11 +26433,8 @@
 			</Flavors>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
 			<iMoves>2</iMoves>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<iXPValueAttack>8</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
 			<UnitMeshGroups>
@@ -27673,10 +26477,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -27712,10 +26513,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -27751,10 +26549,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -27790,10 +26585,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -27829,10 +26621,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -27868,10 +26657,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -27907,10 +26693,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -27946,10 +26729,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -27985,10 +26765,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -28025,10 +26802,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -28070,10 +26844,7 @@
 			</Buildings>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -28109,10 +26880,7 @@
 			</UnitAIs>
 			<iCost>-1</iCost>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
-			<iMinAreaSize>-1</iMinAreaSize>
-			<iNukeRange>-1</iNukeRange>
 			<iCombat>0</iCombat>
-			<iCombatLimit>100</iCombatLimit>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
