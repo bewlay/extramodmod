@@ -31,6 +31,9 @@
 			<bGlobal>1</bGlobal>
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDo>canTriggerAeronsChosen</PythonCanDo>
+			<UnitPrereq>
+				<HasPromotion>PROMOTION_MARKSMAN</HasPromotion>
+			</UnitPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- AFFLUENT_DUKE lfgr: tweaked -->
 			<Type>EVENTTRIGGER_AFFLUENT_DUKE</Type>
