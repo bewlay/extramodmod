@@ -16311,5 +16311,33 @@
                 <AudioRunTypeEnd/>
             </AudioRunSounds>
 		</UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 09/2017 lfgr // NewUnits -->
+			<!-- Art by Terkhen -->
+            <Type>ART_DEF_UNIT_PHOENIX</Type>
+            <Button>Art/Interface/Buttons/Units/Hawk.dds</Button>
+            <fScale>0.75</fScale>
+            <fInterfaceScale>1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/Animals/Phoenix/bird.nif</NIF>
+            <KFM>Art/Units/Animals/Phoenix/bird.kfm</KFM>
+			<SHADERNIF>Art/Units/Animals/Phoenix/bird.nif</SHADERNIF>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/FighterShadow.nif</ShadowNIF>
+                <ShadowAttachNode>BIP Pelvis</ShadowAttachNode>
+                <fShadowScale>0.75</fShadowScale>
+            </ShadowDef>
+			<fBattleDistance>0.15</fBattleDistance>
+			<fRangedDeathTime>0.31</fRangedDeathTime>
+			<bSmoothMove>1</bSmoothMove>
+			<bActAsRanged>0</bActAsRanged>
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+            <PatrolSound>AS3D_UN_HAWK_PATROL</PatrolSound>
+        </UnitArtInfo>
 	</UnitArtInfos>
 </Civ4ArtDefines>

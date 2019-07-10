@@ -20499,6 +20499,84 @@
 			<iTier>4</iTier>
 			<iWeaponTier>3</iWeaponTier>
 		</UnitInfo>
+		<UnitInfo> <!-- UNIT_PHOENIX -->
+			<Class>UNITCLASS_PHOENIX</Class>
+			<Type>UNIT_PHOENIX</Type>
+			<Combat>UNITCOMBAT_ANIMAL</Combat>
+			<Domain>DOMAIN_LAND</Domain>
+			<DefaultUnitAI>UNITAI_ANIMAL</DefaultUnitAI>
+			<Description>TXT_KEY_UNIT_PHOENIX</Description>
+			<Civilopedia>TXT_KEY_UNIT_PHOENIX_PEDIA</Civilopedia>
+			<Advisor>NONE</Advisor>
+			<bAnimal>1</bAnimal>
+			<bMilitaryHappiness>1</bMilitaryHappiness>
+			<bMilitarySupport>1</bMilitarySupport>
+			<bMilitaryProduction>1</bMilitaryProduction>
+            <bMilitaryTrade>1</bMilitaryTrade>
+			<UnitAIs>
+				<UnitAI>
+					<UnitAIType>UNITAI_ANIMAL</UnitAIType>
+					<bUnitAI>1</bUnitAI>
+				</UnitAI>
+			</UnitAIs>
+			<Buildings>
+			</Buildings>
+			<iCost>-1</iCost>
+			<iAdvancedStartCost>-1</iAdvancedStartCost>
+			<iMinAreaSize>-1</iMinAreaSize>
+			<iMoves>2</iMoves>
+			<iNukeRange>-1</iNukeRange>
+			<iCombat>7</iCombat>
+			<iCombatLimit>100</iCombatLimit>
+			<iXPValueAttack>8</iXPValueAttack>
+			<iXPValueDefense>4</iXPValueDefense>
+			<TerrainNatives>
+			</TerrainNatives>
+			<UnitCombatMods>
+			</UnitCombatMods>
+			<iAsset>6</iAsset>
+			<iPower>6</iPower>
+			<UnitMeshGroups>
+				<iGroupSize>1</iGroupSize>
+				<fMaxSpeed>1.75</fMaxSpeed>
+				<fPadTime>1</fPadTime>
+				<iMeleeWaveSize>1</iMeleeWaveSize>
+				<iRangedWaveSize>0</iRangedWaveSize>
+				<UnitMeshGroup>
+					<iRequired>1</iRequired>
+					<EarlyArtDefineTag>ART_DEF_UNIT_PHOENIX</EarlyArtDefineTag>
+				</UnitMeshGroup>
+			</UnitMeshGroups>
+			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+			<FreePromotions>
+				<FreePromotion>
+					<PromotionType>PROMOTION_FLYING</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_ELEMENTAL</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_MEDIC3</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+			</FreePromotions>
+			<iCombatDefense>7</iCombatDefense>
+			<iTier>4</iTier>
+			<DamageTypeCombats>
+				<DamageTypeCombat>
+					<DamageType>DAMAGE_HOLY</DamageType>
+					<iCombat>5</iCombat>
+				</DamageTypeCombat>
+			</DamageTypeCombats>
+			<BonusAffinities>
+				<BonusAffinity>
+					<BonusType>BONUS_MANA_LIFE</BonusType>
+					<iAffinity>1</iAffinity>
+				</BonusAffinity>
+			</BonusAffinities>
+		</UnitInfo>
 		<UnitInfo> <!-- UNIT_PIT_BEAST -->
 			<Class>UNITCLASS_PIT_BEAST</Class>
 			<Type>UNIT_PIT_BEAST</Type>

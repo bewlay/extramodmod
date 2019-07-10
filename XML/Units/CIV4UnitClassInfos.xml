@@ -2431,6 +2431,15 @@
 			<iInstanceCostModifier>0</iInstanceCostModifier>
 			<DefaultUnit>UNIT_LIZARD_GIANT</DefaultUnit>
 		</UnitClassInfo>
+		<UnitClassInfo>
+			<Type>UNITCLASS_PHOENIX</Type>
+			<Description>TXT_KEY_UNIT_PHOENIX</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>4</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_PHOENIX</DefaultUnit>
+		</UnitClassInfo>
 <!-- MORE EVENTS MOD STARTS -->		
 		<UnitClassInfo>
 			<Type>EQUIPMENTCLASS_PIKE_OF_TEARS</Type>
