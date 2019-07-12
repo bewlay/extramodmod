@@ -2025,10 +2025,6 @@
 					<UnitClassType>UNITCLASS_KNIGHT</UnitClassType>
 					<UnitType>UNIT_CENTAUR_LANCER</UnitType>
 				</Unit>
-				<Unit>
-					<UnitClassType>UNITCLASS_QUEEN_OF_THE_LINE</UnitClassType>
-					<UnitType>UNIT_AIRSHIP</UnitType>
-				</Unit>
 			</Units>
 			<FreeUnitClasses>
 				<FreeUnitClass>
