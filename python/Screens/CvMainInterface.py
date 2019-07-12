@@ -1306,7 +1306,7 @@ class CvMainInterface:
 				iVerticalPosition = 50
 
 				if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KURIOTATES') and pPlayer.getNumCities() > 0 and pPlayer.getMaxCities() != -1:
-					iNumCities = pPlayer.getNumCities();
+					iNumCities = pPlayer.getNumCities() - pPlayer.getNumSettlements()
 					iMaxCities = pPlayer.getMaxCities()
 
 					if iNumCities > 0 and iMaxCities > 0:
