@@ -647,6 +647,7 @@
 		<EventInfo><!-- CITY_FEUD_MERC_3 -->
 			<Type>EVENT_CITY_FEUD_MERC_3</Type>
 			<Description>TXT_KEY_EVENT_CITY_FEUD_MERC_3</Description>
+			<Help>TXT_KEY_EVENT_CITY_FEUD_START_3_HELP</Help>
 			<bPickCity>1</bPickCity>
 			<iHurryAnger>5</iHurryAnger>
 			<PlotExtraYields>
@@ -665,7 +666,6 @@
 			</PlotExtraYields>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doCityFeudStart3</PythonCallback>
-			<PythonHelp>helpCityFeudStart3</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -4370,7 +4370,6 @@
 			<iHurryAnger>3</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doVeilVsOrderTemple1</PythonCallback>
-			<PythonHelp>helpVeilVsOrderTemple1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>200</iAIValue>
 		</EventInfo>
@@ -7627,7 +7626,6 @@
 			<ImprovementType />
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doSeaSerpent1</PythonCallback>
-			<PythonHelp>helpSeaSerpent1</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>

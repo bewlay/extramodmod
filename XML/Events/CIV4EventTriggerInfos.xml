@@ -7422,7 +7422,7 @@
 			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDoCity>CanTriggerHellPortalCity</PythonCanDoCity>
+			<PythonCanDoCity>canTriggerHellPortalCity</PythonCanDoCity>
 			<PythonCallback>doHellPortal</PythonCallback>
 			<iPrereqGlobalCounter>75</iPrereqGlobalCounter>
 		</EventTriggerInfo>

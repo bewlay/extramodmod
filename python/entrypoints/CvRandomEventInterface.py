@@ -4609,23 +4609,6 @@ def doMadGolemicist3 (argsList):
 			pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_EMPOWER3'), True)
 			pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_EMPOWER4'), True)		
 			pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_EMPOWER5'), True)	
-			
-def doMonkPilgrimage2 (argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	iPlayer = kTriggeredData.ePlayer
-	pPlayer = gc.getPlayer(iPlayer)
-	pUnit = pPlayer.getUnit(kTriggeredData.iUnitId)
-	pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_FIRST_PILGRIMAGE'), True)
-	
-def CanDoMonkPilgrimage2 (argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	iPlayer = kTriggeredData.ePlayer
-	pPlayer = gc.getPlayer(iPlayer)
-	if pPlayer.isHuman():
-		return True
-	return False
 	
 def doElderDeath3 (argsList): 
 	iEvent = argsList[0]
@@ -4660,14 +4643,6 @@ def canTriggerInfernalFilter(argsList):
 	return True
 
 				# More Events Mod Ends #		
-
-def canTriggerAshenVeilFilter(argsList):
-	kTriggeredData = argsList[0]
-	iPlayer = kTriggeredData.ePlayer
-	pPlayer = gc.getPlayer(iPlayer)
-	if pPlayer.getStateReligion() == gc.getInfoTypeForString('RELIGION_THE_ASHEN_VEIL'):
-		return False
-	return True
 
 def CanDoOil3(argsList):
 	iEvent = argsList[0]
