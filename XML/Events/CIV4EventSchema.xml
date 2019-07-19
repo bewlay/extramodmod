@@ -503,6 +503,12 @@
 		<element type="PrereqCivilization" minOccurs="0"/>
 		<element type="PrereqReligion" minOccurs="0"/>
 		<element type="PrereqStateReligion" minOccurs="0"/>
+	<!-- UNIVERSAL_PREREQS 07/2019 lfgr -->
+		<element type="PlayerPrereq" minOccurs="0"/>
+		<element type="PlotPrereq" minOccurs="0"/>
+		<element type="UnitPrereq" minOccurs="0"/>
+		<element type="GamePrereq" minOccurs="0"/>
+	<!-- UNIVERSAL_PREREQS end -->
 	</ElementType>
 	<ElementType name="EventInfos" content="eltOnly">
 		<element type="EventInfo" minOccurs="0" maxOccurs="*"/>

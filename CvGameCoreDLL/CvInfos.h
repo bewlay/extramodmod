@@ -7792,6 +7792,13 @@ public:
 	const wchar* getOtherPlayerPopup() const;
 	const wchar* getLocalInfoTextKey() const;
 
+// UNIVERSAL_PREREQS 07/2019 lfgr
+	CvPrereq<CvGame>* getGamePrereq() const;
+	CvPrereq<CvPlayer>* getPlayerPrereq() const;
+	CvPrereq<CvPlot>* getPlotPrereq() const;
+	CvPrereq<CvUnit>* getUnitPrereq() const;
+// UNIVERSAL_PREREQS end
+
 	void read(FDataStreamBase* );
 	void write(FDataStreamBase* );
 
@@ -7905,6 +7912,13 @@ private:
 	CvWString m_szQuestFailText;
 	CvWString m_szLocalInfoText;
 	std::vector<CvWString> m_aszWorldNews;
+	
+// UNIVERSAL_PREREQS 08/2017 lfgr
+	CvPrereq<CvGame>* m_pGamePrereq;
+	CvPrereq<CvPlayer>* m_pPlayerPrereq;
+	CvPrereq<CvPlot>* m_pPlotPrereq;
+	CvPrereq<CvUnit>* m_pUnitPrereq;
+// UNIVERSAL_PREREQS end
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -22750,6 +22750,20 @@ bool CvPlayer::canDoEvent(EventTypes eEvent, const EventTriggeredData& kTriggere
 		}
 	}
 
+// UNIVERSAL_PREREQS 07/2019 lfgr
+	if( kEvent.getGamePrereq() != NULL ) {
+		if( ! kEvent.getGamePrereq()->isValid( &( GC.getGameINLINE() ) ) ) {
+			return false;
+		}
+	}
+
+	if( kEvent.getPlayerPrereq() != NULL ) {
+		if( ! kEvent.getPlayerPrereq()->isValid( this ) ) {
+			return false;
+		}
+	}
+// UNIVERSAL_PREREQS end
+
 	if (kEvent.isCityEffect())
 	{
 		CvCity* pCity =	getCity(kTriggeredData.m_iCityId);

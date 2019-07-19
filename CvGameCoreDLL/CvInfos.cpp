@@ -27759,7 +27759,14 @@ CvEventInfo::CvEventInfo() :
 	m_piAdditionalEventTime(NULL),
 	m_piClearEventChance(NULL),
 	m_piUnitCombatPromotions(NULL),
-	m_piUnitClassPromotions(NULL)
+	m_piUnitClassPromotions(NULL),
+
+// UNIVERSAL_PREREQS 07/2019 lfgr
+	m_pGamePrereq( NULL ),
+	m_pPlayerPrereq( NULL ),
+	m_pPlotPrereq( NULL ),
+	m_pUnitPrereq( NULL )
+// UNIVERSAL_PREREQS end
 {
 }
 
@@ -27773,6 +27780,13 @@ CvEventInfo::~CvEventInfo()
 	SAFE_DELETE_ARRAY(m_piClearEventChance);
 	SAFE_DELETE_ARRAY(m_piUnitCombatPromotions);
 	SAFE_DELETE_ARRAY(m_piUnitClassPromotions);
+
+// UNIVERSAL_PREREQS 07/2019 lfgr
+	SAFE_DELETE( m_pGamePrereq )
+	SAFE_DELETE( m_pPlayerPrereq )
+	SAFE_DELETE( m_pPlotPrereq )
+	SAFE_DELETE( m_pUnitPrereq )
+// UNIVERSAL_PREREQS end
 }
 
 bool CvEventInfo::isGlobal() const
@@ -28290,6 +28304,28 @@ const wchar* CvEventInfo::getOtherPlayerPopup() const
 {
 	return m_szOtherPlayerPopup;
 }
+
+// UNIVERSAL_PREREQS 08/2017 lfgr
+CvPrereq<CvGame>* CvEventInfo::getGamePrereq() const
+{
+	return m_pGamePrereq;
+}
+
+CvPrereq<CvPlayer>* CvEventInfo::getPlayerPrereq() const
+{
+	return m_pPlayerPrereq;
+}
+
+CvPrereq<CvPlot>* CvEventInfo::getPlotPrereq() const
+{
+	return m_pPlotPrereq;
+}
+
+CvPrereq<CvUnit>* CvEventInfo::getUnitPrereq() const
+{
+	return m_pUnitPrereq;
+}
+// UNIVERSAL_PREREQS end
 
 void CvEventInfo::read(FDataStreamBase* stream)
 {
@@ -28965,6 +29001,53 @@ bool CvEventInfo::read(CvXMLLoadUtility* pXML)
 
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
+
+	
+// UNIVERSAL_PREREQS 08/2017 lfgr
+	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "GamePrereq" ) )
+	{
+		if( pXML->SkipToNextVal() )
+		{
+			m_pGamePrereq = CvAndPrereq<CvGame>::read( pXML );
+			FAssertMsg( m_pGamePrereq != NULL, "Failed to read game prereq" );
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "PlayerPrereq" ) )
+	{
+		if( pXML->SkipToNextVal() )
+		{
+			m_pPlayerPrereq = CvAndPrereq<CvPlayer>::read( pXML );
+			FAssertMsg( m_pPlayerPrereq != NULL, "Failed to read player prereq" );
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "PlotPrereq" ) )
+	{
+		if( pXML->SkipToNextVal() )
+		{
+			m_pPlotPrereq = CvAndPrereq<CvPlot>::read( pXML );
+			FAssertMsg( m_pPlotPrereq != NULL, "Failed to read plot prereq" );
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "UnitPrereq" ) )
+	{
+		if( pXML->SkipToNextVal() )
+		{
+			m_pUnitPrereq = CvAndPrereq<CvUnit>::read( pXML );
+			FAssertMsg( m_pUnitPrereq != NULL, "Failed to read unit prereq" );
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+// UNIVERSAL_PREREQS en
 
 	return true;
 }

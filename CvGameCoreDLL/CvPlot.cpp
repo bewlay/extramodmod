@@ -11950,6 +11950,14 @@ bool CvPlot::canApplyEvent(EventTypes eEvent) const
 			return false;
 		}
 	}
+	
+// UNIVERSAL_PREREQS 07/2019 lfgr
+	if( kEvent.getPlotPrereq() != NULL ) {
+		if( ! kEvent.getPlotPrereq()->isValid( this ) ) {
+			return false;
+		}
+	}
+// UNIVERSAL_PREREQS end
 
 	return true;
 }

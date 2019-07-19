@@ -16088,7 +16088,7 @@ bool CvUnit::canApplyEvent(EventTypes eEvent) const
 //		{
 //			return false;
 //		}
-        if (isHasPromotion((PromotionTypes)kEvent.getUnitPromotion()))
+        if (isHasPromotion((PromotionTypes)kEvent.getUnitPromotion())) // LFGR_TODO: Merge with isUnitPromotion()
         {
             return false;
         }
@@ -16098,6 +16098,7 @@ bool CvUnit::canApplyEvent(EventTypes eEvent) const
 /************************************************************************************************/
 /* EVENT_NEW_TAGS                           01/21/13                                lfgr        */
 /************************************************************************************************/
+		// LFGR_TODO: inefficient, move out of loop?
 		for( int i = 0; i < GC.getNumPromotionInfos(); i++ )
 			if( kEvent.isUnitPromotion( i ) )
 			{
@@ -16109,6 +16110,14 @@ bool CvUnit::canApplyEvent(EventTypes eEvent) const
 /************************************************************************************************/
 
 	}
+		
+// UNIVERSAL_PREREQS 07/2019 lfgr
+	if( kEvent.getUnitPrereq() != NULL ) {
+		if( ! kEvent.getUnitPrereq()->isValid( this ) ) {
+			return false;
+		}
+	}
+// UNIVERSAL_PREREQS end
 
 	if (kEvent.getUnitImmobileTurns() > 0)
 	{
