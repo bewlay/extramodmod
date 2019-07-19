@@ -253,8 +253,6 @@ public:
 	void CvXMLLoadUtility::SetVariableList( bool **ppbList, const TCHAR* szRootagName,
 		int iInfoBaseLength, bool bDefaultListVal = false );
 // XML_LISTS end
-
-		int iInfoBaseLength, bool bDefaultListVal = false );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
