@@ -40,14 +40,6 @@
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
 
-/************************************************************************************************/
-/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
-/************************************************************************************************/
-#include "iPrimal-Custom.h"
-/************************************************************************************************/
-/* TERRAIN_FLAVOUR                                                                END           */
-/************************************************************************************************/
-
 // Public Functions...
 
 CvGame::CvGame()
@@ -504,6 +496,84 @@ void CvGame::init(HandicapTypes eHandicap)
 
 	doUpdateCacheOnTurn();
 }
+
+// TERRAIN_FLAVOUR 07/2019 lfgr: Rreassign starting plots based on terrain flavour
+
+// Helper function to get some player's starting plot flavour on some plot
+double startingPlotFlavour( const CvPlayer* pPlayer, CvPlot* pPlot ) {
+	// LFGR_TODO: Cache TerrainAmounts, that should be easy.
+	CvTerrainAmountCache kTerrainAmounts = pPlot->getTerrainAmounts();
+	return pPlot->calcTerrainFlavourWeight(
+		(TerrainFlavourTypes) GC.getCivilizationInfo( pPlayer->getCivilizationType() )
+				.getTerrainFlavour(),
+		&kTerrainAmounts );
+}
+
+void reassignStartingPlots()
+{
+	startProfilingDLL();
+	PROFILE_BEGIN( "reassignStartingPlots" );
+	/*
+	 * The algorithm is very simple: The overall highest terrain flavour for any
+	 * player/startingplot combination is found. That player picks that starting
+	 * plot, and we continue until every player got a starting plot.
+	 *
+	 * TODO: Alternatives: use Hungarian Method to maximize sum of starting
+	 * plot flavour.
+	 */
+
+	// Find available starting plots
+	std::vector<CvPlot*> vpAvailableStartingPlots;
+	std::vector<CvPlayer*> vpPlayersWithoutStartingPlot;
+	for( int i = 0; i < GC.getMAX_PLAYERS(); i++ ) {
+		CvPlayer& kPlayer = GET_PLAYER( (PlayerTypes) i );
+		if( kPlayer.isAlive() && !kPlayer.isBarbarian() ) {
+			vpPlayersWithoutStartingPlot.push_back( &kPlayer );
+			vpAvailableStartingPlots.push_back( kPlayer.getStartingPlot() );
+		}
+	}
+
+	while( !vpPlayersWithoutStartingPlot.empty() ) {
+		FAssert( vpPlayersWithoutStartingPlot.size() == vpAvailableStartingPlots.size() );
+		// Find best player/plot pair.
+		// This could maybe be made more efficiently (if calcTerrainFlavourWeight
+		// is costly), but the cost should be negligible in any case.
+		int iBestPlayerIdx = -1;
+		int iBestStartingPlotIdx = -1;
+		double dBestStartingPlotValue = -HUGE_VAL;
+		for( size_t i = 0; i < vpPlayersWithoutStartingPlot.size(); i++ ) {
+			for( size_t j = 0; j < vpAvailableStartingPlots.size(); j++ ) {
+				double dValue = startingPlotFlavour( vpPlayersWithoutStartingPlot[i],
+						vpAvailableStartingPlots[j] );
+				if( dValue > dBestStartingPlotValue ) {
+					iBestPlayerIdx = i;
+					iBestStartingPlotIdx = j;
+					dBestStartingPlotValue = dValue;
+				}
+			}
+		}
+		
+		FAssert( iBestPlayerIdx != -1 );
+
+		// Assign stating plot
+		logBBAI( "Pushing '%S' from starting plot %d|%d to %d|%d",
+				vpPlayersWithoutStartingPlot[iBestPlayerIdx]->getName(),
+				vpPlayersWithoutStartingPlot[iBestPlayerIdx]->getStartingPlot()->getX_INLINE(),
+				vpPlayersWithoutStartingPlot[iBestPlayerIdx]->getStartingPlot()->getY_INLINE(),
+				vpAvailableStartingPlots[iBestStartingPlotIdx]->getX_INLINE(),
+				vpAvailableStartingPlots[iBestStartingPlotIdx]->getY_INLINE() );
+
+		vpPlayersWithoutStartingPlot[iBestPlayerIdx]->setStartingPlot(
+			vpAvailableStartingPlots[iBestStartingPlotIdx], true );
+
+		// Remove plot and player
+		vpPlayersWithoutStartingPlot.erase( vpPlayersWithoutStartingPlot.begin() + iBestPlayerIdx );
+		vpAvailableStartingPlots.erase( vpAvailableStartingPlots.begin() + iBestStartingPlotIdx );
+	}
+	PROFILE_END();
+	stopProfilingDLL();
+}
+// TERRAIN_FLAVOUR end
 
 //
 // Set initial items (units, techs, etc...)
@@ -8219,7 +8289,7 @@ void CvGame::createBarbarianSpawn( CvPlot* pPlot, bool bAnimal )
 			if( iValue > iBestValue )
 				iBestValue = iValue;
 
-			aiValues[eLoopSpawn] = max( iValue, 0 );
+			aiValues[eLoopSpawn] = std::max( iValue, 0 );
 		}
 		else
 			aiValues[eLoopSpawn] = 0;
