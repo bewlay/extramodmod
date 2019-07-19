@@ -69,6 +69,8 @@ CvUnit::CvUnit()
 	m_paiExtraFeatureDefensePercent = NULL;
 	m_paiExtraUnitCombatModifier = NULL;
 
+	m_paiPromotionImmune = NULL; // XML_LISTS 07/2019 lfgr: cache CvPromotionInfo::isPromotionImmune
+
 	CvDLLEntity::createUnitEntity(this);		// create and attach entity to unit
 
 	reset(0, NO_UNIT, NO_PLAYER, true);
@@ -428,6 +430,8 @@ void CvUnit::uninit()
 	SAFE_DELETE_ARRAY(m_paiExtraFeatureAttackPercent);
 	SAFE_DELETE_ARRAY(m_paiExtraFeatureDefensePercent);
 	SAFE_DELETE_ARRAY(m_paiExtraUnitCombatModifier);
+
+	SAFE_DELETE_ARRAY(m_paiPromotionImmune);// XML_LISTS 07/2019 lfgr: cache CvPromotionInfo::isPromotionImmune
 }
 
 
@@ -620,6 +624,14 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
             m_paiBonusAffinity[iI] = 0;
             m_paiBonusAffinityAmount[iI] = 0;
         }
+		
+		// XML_LISTS 07/2019 lfgr: cache CvPromotionInfo::isPromotionImmune
+		m_paiPromotionImmune = new int[GC.getNumPromotionInfos()];
+        for (iI = 0; iI < GC.getNumPromotionInfos(); iI++)
+        {
+            m_paiPromotionImmune[iI] = 0;
+        }
+		// XML_LISTS end
 	}
 //FfH: End Add
 	m_combatUnit.reset();
@@ -1094,7 +1106,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 	    if (isHasPromotion((PromotionTypes)iI))
 	    {
             GC.getGameINLINE().changeGlobalCounter(-1 * GC.getPromotionInfo((PromotionTypes)iI).getModifyGlobalCounter());
-            if (GC.getPromotionInfo((PromotionTypes)iI).isEquipment() && !bIllusion)
+            if (GC.getPromotionInfo((PromotionTypes)iI).isEquipment() && !bIllusion) // LFGR_TODO: Move bIllusion check up
             {
                 for (int iJ = 0; iJ < GC.getNumUnitInfos(); iJ++)
                 {
@@ -12201,6 +12213,23 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 					{
 						if (!pLoopUnit->canCoexistWithEnemyUnit(getTeam()))
 						{
+							// lfgr fix 07/2019
+							// If the unit is in the process of dieing (delayed death), finish that
+							int iLoopID = pLoopUnit->getID(); // Just for logging
+							CvWString szLoopName = pLoopUnit->getName(); // Just for logging
+							if( pLoopUnit->doDelayedDeath() ) {
+								// Unit was killed
+								logBBAI( "Delayed death unit %d (%S) killed off when an enemy unit moved on its plot",
+										iLoopID, szLoopName.c_str() );
+								continue;
+							}
+
+							// Now the unit should not be delayed death
+							FAssertMsg( ! pLoopUnit->isDelayedDeath(),
+									"Unsuccessfully tried to kill of delayed death unit before another units moved on its plot. "
+									"Could it still be fighting?" );
+							// lfgr end
+
 							if (NO_UNITCLASS == pLoopUnit->getUnitInfo().getUnitCaptureClassType() && pLoopUnit->canDefend(pNewPlot))
 							{
 
@@ -14606,24 +14635,13 @@ bool CvUnit::canAcquirePromotion(PromotionTypes ePromotion) const
 	        return false;
 	    }
 	}
-    for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
-    {
-        if (isHasPromotion((PromotionTypes)iI))
-        {
-            if (GC.getPromotionInfo((PromotionTypes)iI).getPromotionImmune1() == ePromotion)
-            {
-                return false;
-            }
-            if (GC.getPromotionInfo((PromotionTypes)iI).getPromotionImmune2() == ePromotion)
-            {
-                return false;
-            }
-            if (GC.getPromotionInfo((PromotionTypes)iI).getPromotionImmune3() == ePromotion)
-            {
-                return false;
-            }
-        }
-    }
+
+	// XML_LISTS 07/2019 lfgr
+	if( isPromotionImmune( ePromotion ) ) {
+		return false;
+	}
+	// XML_LISTS end
+
 	if (kPromotion.isPrereqAlive())
 	{
 	    if (!isAlive())
@@ -14739,24 +14757,12 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 //FfH: Added by Kael 07/28/2008
     if (bNewValue)
     {
-        for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
-        {
-            if (isHasPromotion((PromotionTypes)iI))
-            {
-                if (GC.getPromotionInfo((PromotionTypes)iI).getPromotionImmune1() == eIndex)
-                {
-                    return;
-                }
-                if (GC.getPromotionInfo((PromotionTypes)iI).getPromotionImmune2() == eIndex)
-                {
-                    return;
-                }
-                if (GC.getPromotionInfo((PromotionTypes)iI).getPromotionImmune3() == eIndex)
-                {
-                    return;
-                }
-            }
-        }
+		// XML_LISTS 07/2019 lfgr
+		// lfgr_todo: Maybe remove this
+		if( isPromotionImmune( eIndex ) ) {
+			return;
+		}
+		// XML_LISTS end
     }
 //FfH: End Add
 
@@ -14895,6 +14901,12 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 		changeUpgradeOutsideBorders((kPromotionInfo.isUpgradeOutsideBorders()) ? iChange : 0);
 		changeAlwaysSpreadReligion((kPromotionInfo.isAlwaysSpreadReligion()) ? iChange : 0);
 		// End MNAI
+		
+		// XML_LISTS 07/2019 lfgr: cache CvPromotionInfo::isPromotionImmune
+		for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ ) {
+			changePromotionImmune( (PromotionTypes) ePromotion, kPromotionInfo.isPromotionImmune( ePromotion ) ? iChange : 0);
+		}
+		// XML_LISTS end
 
 		for (iI = 0; iI < GC.getNumTerrainInfos(); iI++)
 		{
@@ -16488,7 +16500,7 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
 
 	// Illusions cannot pickup or take equipment; they also cannot Add to Flesh Golem or Wolf Pack
 	if (isIllusionary())
-	{
+	{ // LFGR_TODO: This should not be "hardcoded"
 		if (kSpell.getUnitInStackPrereq() != NO_UNIT)
 		{
 			return false;
@@ -17015,21 +17027,21 @@ bool CvUnit::canAddPromotion(int spell)
     {
         if (ePromotion1 != NO_PROMOTION)
         {
-            if (!isHasPromotion(ePromotion1))
+			if (!isHasPromotion(ePromotion1) && !isPromotionImmune(ePromotion1))
             {
                 return true;
             }
         }
         if (ePromotion2 != NO_PROMOTION)
         {
-            if (!isHasPromotion(ePromotion2))
+            if (!isHasPromotion(ePromotion2) && !isPromotionImmune(ePromotion2))
             {
                 return true;
             }
         }
         if (ePromotion3 != NO_PROMOTION)
         {
-            if (!isHasPromotion(ePromotion3))
+            if (!isHasPromotion(ePromotion3) && !isPromotionImmune(ePromotion3))
             {
                 return true;
             }
@@ -17059,7 +17071,8 @@ bool CvUnit::canAddPromotion(int spell)
                             {
                                 if (GC.getPromotionInfo(ePromotion1).getUnitCombat(pLoopUnit->getUnitCombatType()))
                                 {
-                                    if (!pLoopUnit->isHasPromotion(ePromotion1))
+                                    if (!pLoopUnit->isHasPromotion(ePromotion1)
+											&& !pLoopUnit->isPromotionImmune(ePromotion1))
                                     {
                                         return true;
                                     }
@@ -17072,7 +17085,8 @@ bool CvUnit::canAddPromotion(int spell)
                             {
                                 if (GC.getPromotionInfo(ePromotion2).getUnitCombat(pLoopUnit->getUnitCombatType()))
                                 {
-                                    if (!pLoopUnit->isHasPromotion(ePromotion2))
+                                    if (!pLoopUnit->isHasPromotion(ePromotion2)
+											&& !pLoopUnit->isPromotionImmune(ePromotion2))
                                     {
                                         return true;
                                     }
@@ -17085,7 +17099,8 @@ bool CvUnit::canAddPromotion(int spell)
                             {
                                 if (GC.getPromotionInfo(ePromotion3).getUnitCombat(pLoopUnit->getUnitCombatType()))
                                 {
-                                    if (!pLoopUnit->isHasPromotion(ePromotion3))
+                                    if (!pLoopUnit->isHasPromotion(ePromotion3)
+											&& !pLoopUnit->isPromotionImmune(ePromotion3))
                                     {
                                         return true;
                                     }
@@ -20405,6 +20420,22 @@ void CvUnit::changeAlwaysSpreadReligion(int iNewValue)
 }
 // End MNAI
 
+// XML_LISTS 07/2019 lfgr: cache CvPromotionInfo::isPromotionImmune
+bool CvUnit::isPromotionImmune( PromotionTypes ePromotion ) const
+{
+    FAssertMsg(ePromotion >= 0, "Index out of bounds");
+    FAssertMsg(ePromotion < GC.getNumPromotionInfos(), "Index out of bounds");
+	return m_paiPromotionImmune[ePromotion] > 0;
+}
+
+void CvUnit::changePromotionImmune( PromotionTypes ePromotion, int iChange )
+{
+    FAssertMsg(ePromotion >= 0, "Index out of bounds");
+    FAssertMsg(ePromotion < GC.getNumPromotionInfos(), "Index out of bounds");
+	m_paiPromotionImmune[ePromotion] += iChange;
+}
+// XML_LISTS end
+
 void CvUnit::read(FDataStreamBase* pStream)
 {
 	// Init data before load
@@ -20605,6 +20636,8 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumFeatureInfos(), m_paiExtraFeatureAttackPercent);
 	pStream->Read(GC.getNumFeatureInfos(), m_paiExtraFeatureDefensePercent);
 	pStream->Read(GC.getNumUnitCombatInfos(), m_paiExtraUnitCombatModifier);
+	
+	pStream->Read(GC.getNumPromotionInfos(), m_paiPromotionImmune); // XML_LISTS 07/2019 lfgr: cache CvPromotionInfo::isPromotionImmune
 }
 
 
@@ -20794,6 +20827,8 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumFeatureInfos(), m_paiExtraFeatureAttackPercent);
 	pStream->Write(GC.getNumFeatureInfos(), m_paiExtraFeatureDefensePercent);
 	pStream->Write(GC.getNumUnitCombatInfos(), m_paiExtraUnitCombatModifier);
+
+	pStream->Write(GC.getNumPromotionInfos(), m_paiPromotionImmune); // XML_LISTS 07/2019 lfgr: cache CvPromotionInfo::isPromotionImmune
 }
 
 // Protected Functions...

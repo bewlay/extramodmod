@@ -635,9 +635,6 @@ public:
 	int getWorkRateModify() const;
 	int getCaptureUnitCombat() const;
 	int getPromotionCombatApply() const;
-	int getPromotionImmune1() const;
-	int getPromotionImmune2() const;
-	int getPromotionImmune3() const;
 	int getPromotionRandomApply() const;
 	int getPromotionSummonPerk() const;
 	int getBonusPrereq() const;
@@ -672,6 +669,8 @@ public:
 	bool isUpgradeOutsideBorders() const;
 	bool isAlwaysSpreadReligion() const;
 	// End MNAI
+	
+	bool isPromotionImmune( int /*PromotionTypes*/ ePromotion ); // XML_LISTS 07/2019 lfgr
 
 	bool readPass3();
 //FfH: End Add
@@ -794,9 +793,6 @@ protected:
 	int m_iWorkRateModify;
 	int m_iCaptureUnitCombat;
 	int m_iPromotionCombatApply;
-	int m_iPromotionImmune1;
-	int m_iPromotionImmune2;
-	int m_iPromotionImmune3;
 	int m_iPromotionRandomApply;
 	int m_iPromotionSummonPerk;
 	int m_iBonusPrereq;
@@ -845,7 +841,7 @@ protected:
 	bool* m_pbTerrainDoubleMove;
 	bool* m_pbFeatureDoubleMove;
 	bool* m_pbUnitCombat;
-
+	bool* m_pbPromotionImmune; // XML_LISTS 07/2019 lfgr
 };
 
 //FfH Spell System: Added by Kael 07/23/2007

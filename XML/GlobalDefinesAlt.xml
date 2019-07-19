@@ -961,6 +961,23 @@
 		<DefineName>SUPER_FORTS_DURATION_BEFORE_REVOLT</DefineName>
 		<iDefineIntVal>5</iDefineIntVal>
 	</Define>
+	<!-- Cap on the choke/canal value considered for city founding by AI -->
+	<Define>
+		<DefineName>SUPER_FORTS_AI_MAX_CONSIDERED_CHOKE_CANAL_VALUE_FOR_FOUNDING</DefineName>
+		<iDefineIntVal>100</iDefineIntVal>
+	</Define>
+	<!-- Additional weight an AI assignes to choke and canal points when choosing city
+		sites. Set to 0 to stop AIs considering choke/canal points when choosing where to
+		found a city.  -->
+	<Define>
+		<DefineName>SUPER_FORTS_AI_CHOKE_CANAL_FOUND_VALUE</DefineName>
+		<iDefineIntVal>5</iDefineIntVal>
+	</Define>
+	<!-- As SUPER_FORTS_AI_CHOKE_CANAL_FOUND_VALUE, but for AIs playing defensively -->
+	<Define>
+		<DefineName>SUPER_FORTS_AI_CHOKE_CANAE_FOUND_VALUE_DEFENSIVE</DefineName>
+		<iDefineIntVal>7</iDefineIntVal>
+	</Define>
 <!-- Super Forts end -->
 	<Define>
 		<DefineName>COLONY_NUM_FREE_DEFENDERS</DefineName>
@@ -999,7 +1016,14 @@
 		<DefineName>CAN_TRADE_WAR_REPARATIONS</DefineName>
 		<iDefineIntVal>1</iDefineIntVal>
 	</Define>
-<!--  Advanced Diplomacy -->
+<!--  Advanced Diplomacy end -->
+	<!-- Enables the custom profiler even if profiling wasn't enabled via the in-game
+		debug menu (Ctrl-D). Only works if the DLL was compiled with /DCUSTOM_PROFILER.
+		See doc/custom_profiler.md for more information. -->
+	<Define>
+		<DefineName>FORCE_ENABLE_CUSTOM_PROFILER</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
 <!-- TERRAIN_FLAVOUR 09/2013 lfgr -->
 	<Define>
 		<DefineName>TERRAIN_FLAVOUR_RADIUS</DefineName>

@@ -247,13 +247,13 @@ public:
 	// allocate and initialize a list from a tag pair in the xml
 	void SetVariableListTagPair(CvString **ppszList, const TCHAR* szRootTagName,
 		CvString* m_paszTagList, int iTagListLength, CvString szDefaultListVal = "");
-	
-/************************************************************************************************/
-/* WILDERNESS                             09/2013                                 lfgr          */
-/* WildernessMisc                                                                               */
-/* Loads a list of type strings into a bool array.                                              */
-/************************************************************************************************/
+		
+// XML_LISTS 07/2019 lfgr
+// Loads a list of type strings into a bool array.
 	void CvXMLLoadUtility::SetVariableList( bool **ppbList, const TCHAR* szRootagName,
+		int iInfoBaseLength, bool bDefaultListVal = false );
+// XML_LISTS end
+
 		int iInfoBaseLength, bool bDefaultListVal = false );
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */

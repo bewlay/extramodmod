@@ -1467,7 +1467,6 @@
 					<iEventChance>100</iEventChance>
 				</EventChance>
 			</ClearEvents>
-			<PythonHelp>getHelpFarmBandit2</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>200</iAIValue>
 		</EventInfo>
@@ -1934,7 +1933,6 @@
 			</TechFlavors>
 			<iTechPercent>15</iTechPercent>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>applyHeresy2</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -4011,7 +4009,6 @@
 				</UnitClassPromotion>
 			</UnitClassPromotions>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>applyTowerShield</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -4956,7 +4953,7 @@
 			<Type>EVENT_WB_SPLINTERED_COURT_DEFEATED_THESSA_3</Type>
 			<Description>TXT_KEY_EVENT_WB_SPLINTERED_COURT_DEFEATED_THESSA_3</Description>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCallback>applyWBSplinteredCourtDefeatedAmelanchier3</PythonCallback>
+			<PythonCallback>applyWBSplinteredCourtDefeatedThessa3</PythonCallback><PythonCallback>applyWBSplinteredCourtDefeatedThessa3</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>
@@ -5710,6 +5707,7 @@
 			</BuildingExtraCommerces>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCanDo>CanDoScholars2</PythonCanDo>
+			<PythonHelp>helpScholars2</PythonHelp>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 		</EventInfo>

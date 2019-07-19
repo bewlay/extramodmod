@@ -653,7 +653,7 @@ public:
 	DllExport bool isInfoBarDirty() const;
 	DllExport void setInfoBarDirty(bool bNewValue);
 
-	bool isBlockading() const;
+	bool isBlockading() const; // Exposed to Python 07/2019 lfgr
 	void setBlockading(bool bNewValue);        //Exposed to Python
 	void collectBlockadeGold();
 
@@ -1075,6 +1075,11 @@ public:
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+	// XML_LISTS 07/2019 lfgr: cache CvPromotionInfo::isPromotionImmune
+	bool isPromotionImmune( PromotionTypes ePromotion ) const;
+	void changePromotionImmune( PromotionTypes ePromotion, int iChange );
+	// XML_LISTS end
+
 	virtual int AI_promotionValue(PromotionTypes ePromotion) = 0;
 
 	int getEnslavementChance() const;
@@ -1267,6 +1272,8 @@ protected:
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
+
+	int* m_paiPromotionImmune; // XML_LISTS 07/2019 lfgr: cache CvPromotionInfo::isPromotionImmune
 
 	bool canAdvance(const CvPlot* pPlot, int iThreshold) const;
 	void collateralCombat(const CvPlot* pPlot, CvUnit* pSkipUnit = NULL);

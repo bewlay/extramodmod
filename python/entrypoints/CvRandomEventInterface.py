@@ -3628,13 +3628,9 @@ def canTriggerCityCapital(argsList):
 
 def semiRandomTurnTrigger( iTurns, fChance ) :
 	game = CyGame()
-	print "iTurns: %d" % iTurns
 	iTurns *= gc.getGameSpeedInfo( game.getGameSpeedType() ).getGrowthPercent() / 100.0
-	print "iTurns after gamespeed: %d" % iTurns
 	iTurns = round( iTurns )
-	print "iTurns after rounding: %d" % iTurns
 	if( iTurns == 0 or game.getGameTurn() % iTurns == 0 ) :
-		print "Trigger!"
 		return game.getSorenRandNum ( 1000, "Random Event Trigger" ) <= fChance * 1000
 	else :
 		return False
@@ -4708,8 +4704,8 @@ def doDemonicTower1(argsList):
 	if pPlot.getNumUnits() == 0:
 		bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
 		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_BALOR'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-      	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
-      	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PLAGUED'), True)
+		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
+		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PLAGUED'), True)
 
 ######## RALPH_AND_SAM (lfgr: moved to XML)
 
@@ -4733,7 +4729,7 @@ def doRalphAndSam1(argsList):
 	if pPlot.getNumUnits() == 0:
 		bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
 		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_WOLF_PACK'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-      	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
+		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
 	
 ######## CENTAUR_TRIBE (lfgr: moved to XML)
 	
@@ -4744,7 +4740,7 @@ def doCentaurTribe1(argsList):
 	if pPlot.getNumUnits() == 0:
 		bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
 		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_CENTAUR_ARCHER'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-      	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
+		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
 
 ######## SEASERPENT (lfgr: moved to XML)
 
@@ -4755,7 +4751,7 @@ def doSeaSerpent1(argsList):
 	if pPlot.getNumUnits() == 0:
 		bPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
 		newUnit = bPlayer.initUnit(gc.getInfoTypeForString('UNIT_SEA_SERPENT'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-      	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
+		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), True)
 
 ######## MONKEY_SEE (lfgr: moved to XML)
 
