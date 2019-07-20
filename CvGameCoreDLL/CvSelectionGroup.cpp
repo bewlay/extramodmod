@@ -4137,7 +4137,11 @@ bool CvSelectionGroup::groupBuild(BuildTypes eBuild)
 
 	FeatureTypes eFeature = pPlot->getFeatureType();
 	CvBuildInfo& kBuildInfo = GC.getBuildInfo(eBuild);
-	if (eFeature != NO_FEATURE && isHuman() && kBuildInfo.isFeatureRemove(eFeature) && kBuildInfo.getFeatureProduction(eFeature) != 0)
+// FIX 07/2019 lfgr, Denev
+// Use CvPlot::isFeatureRemove() to also consider MaintainFeatures
+//	if (eFeature != NO_FEATURE && isHuman() && kBuildInfo.isFeatureRemove(eFeature) && kBuildInfo.getFeatureProduction(eFeature) != 0)
+	if (eFeature != NO_FEATURE && isHuman() && pPlot->isFeatureRemove( eBuild ) && kBuildInfo.getFeatureProduction(eFeature) != 0)
+// FIX end
 	{
 		if (kBuildInfo.getImprovement() == NO_IMPROVEMENT)
 		{
@@ -4179,7 +4183,6 @@ bool CvSelectionGroup::groupBuild(BuildTypes eBuild)
 // BUG - Pre-Chop - start
 			if (bCheckChop && pPlot->getBuildTurnsLeft(eBuild, getOwnerINLINE()) == 1)
 			{
-				// TODO: stop other worker groups
 				CvCity* pCity;
 				int iProduction = plot()->getFeatureProduction(eBuild, getTeam(), &pCity);
 

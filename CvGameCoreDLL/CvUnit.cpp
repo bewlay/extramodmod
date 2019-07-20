@@ -1279,6 +1279,10 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 	
 	setXY(INVALID_PLOT_COORD, INVALID_PLOT_COORD, true);
 
+	// lfgr fix 07/2019: retain name of captured unit: store name before deleting
+	CvWString szName = m_szName;
+	// lfgr end
+
 	GET_PLAYER(getOwnerINLINE()).deleteUnit(getID());
 
 //FfH: Modified by Kael 01/19/2008
@@ -1291,8 +1295,8 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 		{
 			CvUnit* pkCapturedUnit = GET_PLAYER(eCapturingPlayer).initUnit(eCaptureUnitType, pPlot->getX_INLINE(), pPlot->getY_INLINE());
 
-//FfH: Added by Kael 08/18/2008
-            if (pkCapturedUnit->getRace() != NO_PROMOTION)
+//FfH: Added by Kael 08/18/2008; LFGR_TODO: move into pkCaptureUnit != NULL ?
+            if (pkCapturedUnit->getRace() != NO_PROMOTION) // LFGR_TODO: Unnecessary?
             {
                 pkCapturedUnit->setHasPromotion((PromotionTypes)pkCapturedUnit->getRace(), false);
             }
@@ -1310,6 +1314,10 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer, bool bConvert)
 
 				szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_CAPTURED_UNIT", GC.getUnitInfo(eCaptureUnitType).getTextKeyWide());
 				gDLL->getInterfaceIFace()->addMessage(eCapturingPlayer, true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pkCapturedUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+
+				// lfgr fix 07/2019: retain name of captured unit
+				pkCapturedUnit->setName( szName );
+				// lfgr end
 
 				// Add a captured mission
 				CvMissionDefinition kMission;
