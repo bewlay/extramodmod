@@ -566,8 +566,10 @@ void CvPlot::doTurn()
 			{
 				CvSpawnInfo& kLoopSpawn = GC.getSpawnInfo( (SpawnTypes) eLoopSpawn );
 
-				if( !( kLoopSpawn.isAnimal() && isOwned() && GET_PLAYER( getOwnerINLINE() ).isBarbarian() ) )
+				if( !( kLoopSpawn.isAnimal() && isOwned() && ! GET_PLAYER( getOwnerINLINE() ).isBarbarian() ) ) {
+					// Animals cannot spawn on non-barb-owned plots, everything else can.
 					bShouldSpawn = true;
+				}
 
 				int iValue = getSpawnValue( (SpawnTypes) eLoopSpawn );
 
@@ -661,7 +663,7 @@ void CvPlot::doTurn()
 						getTerrainType() != NO_TERRAIN ? GC.getTerrainInfo( getTerrainType() ).getType() : "NONE",
 						getFeatureType() != NO_FEATURE ? GC.getFeatureInfo( getFeatureType() ).getType() : "NONE",
 						getImprovementType() != NO_IMPROVEMENT ? GC.getImprovementInfo( getImprovementType() ).getType() : "NONE" );
-				FAssertMsg( false, "See BBAI.log" );
+				FAssertMsg( false, "See wilderness log" );
 			}
 		}
 	/************************************************************************************************/
