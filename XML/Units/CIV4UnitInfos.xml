@@ -5664,10 +5664,10 @@
 			</UnitCombatMods>
 			<iPower>2</iPower><!-- TODO -->
 			<UnitMeshGroups>
-				<iGroupSize>1</iGroupSize>
+				<iGroupSize>3</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
 				<fPadTime>1</fPadTime>
-				<iMeleeWaveSize>1</iMeleeWaveSize>
+				<iMeleeWaveSize>3</iMeleeWaveSize>
 				<iRangedWaveSize>0</iRangedWaveSize>
 				<UnitMeshGroup>
 					<iRequired>1</iRequired>
@@ -14477,13 +14477,13 @@
 			<iCityAttack>-25</iCityAttack>
 			<iPower>2</iPower><!-- TODO -->
 			<UnitMeshGroups>
-				<iGroupSize>1</iGroupSize>
+				<iGroupSize>3</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
 				<fPadTime>1</fPadTime>
-				<iMeleeWaveSize>1</iMeleeWaveSize>
+				<iMeleeWaveSize>3</iMeleeWaveSize>
 				<iRangedWaveSize>0</iRangedWaveSize>
 				<UnitMeshGroup>
-					<iRequired>1</iRequired>
+					<iRequired>3</iRequired>
 					<EarlyArtDefineTag>ART_DEF_UNIT_HYENA</EarlyArtDefineTag>
 				</UnitMeshGroup>
 			</UnitMeshGroups>
