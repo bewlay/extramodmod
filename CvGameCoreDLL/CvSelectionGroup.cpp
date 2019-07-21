@@ -1018,14 +1018,10 @@ bool CvSelectionGroup::canStartMission(int iMission, int iData1, int iData2, CvP
 			break;
 
 		case MISSION_LEAD:
-			/** ExtraModMod: Great Generals are available unconditionally.
 			if (pLoopUnit->canLead(pPlot, iData1))
 			{
 				return true;
 			}
-			break;
-			*/
-			return true;
 			break;
 
 		case MISSION_ESPIONAGE:
