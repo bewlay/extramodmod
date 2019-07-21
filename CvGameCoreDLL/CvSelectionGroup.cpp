@@ -1025,7 +1025,7 @@ bool CvSelectionGroup::canStartMission(int iMission, int iData1, int iData2, CvP
 			}
 			break;
 			*/
-			return false;
+			return true;
 			break;
 
 		case MISSION_ESPIONAGE:
@@ -1107,6 +1107,7 @@ void CvSelectionGroup::startMission()
 
 	if (!canStartMission(headMissionQueueNode()->m_data.eMissionType, headMissionQueueNode()->m_data.iData1, headMissionQueueNode()->m_data.iData2, plot()))
 	{
+		logBBAI( "Cannot start mission of type %d", headMissionQueueNode()->m_data.eMissionType );
 		bDelete = true;
 	}
 	else
