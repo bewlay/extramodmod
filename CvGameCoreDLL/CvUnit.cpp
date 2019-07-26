@@ -8069,6 +8069,12 @@ bool CvUnit::trade()
 		NotifyEntity(MISSION_TRADE);
 	}
 
+	// lfgr 07/2019: transport units unload cargo when they trade
+	if (getCargo() > 0)
+	{
+		unloadAll();
+	}
+
 	kill(true);
 
 	return true;
