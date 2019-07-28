@@ -165,8 +165,8 @@ LDFLAGS = $(Debug_LDFLAGS)
 LIBS    = $(LIBS) msvcprt.lib
 !ENDIF
 !IF "$(TARGET)" == "Release"
-CFLAGS  = $(Release_CFLAGS)
-LDFLAGS = $(Release_LDFLAGS)
+CFLAGS  = $(Release_CFLAGS) /GL
+LDFLAGS = $(Release_LDFLAGS) /LTCG # TODO: ignores /INCREMENTAL!
 !ENDIF
 !IF "$(TARGET)" == "Assert"
 CFLAGS  = $(Release_CFLAGS) /DFASSERT_ENABLE
