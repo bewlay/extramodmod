@@ -27,6 +27,8 @@ public :
 
 	bool isValid( const CvGame* pGame ) const;
 
+	CvPrereqStruct* makeStruct() const;
+
 
 	static const std::string TAG;
 

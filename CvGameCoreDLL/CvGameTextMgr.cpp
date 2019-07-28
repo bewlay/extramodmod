@@ -34,6 +34,11 @@
 // BUG - start
 #include "CvBugOptions.h"
 // BUG - end
+
+// UNIVERSAL_PREREQS 07/2019 lfgr
+#include "CvUniversalPrereqs.h"
+// UNIVERSAL_PREREQS end
+
 int shortenID(int iId)
 {
 	return iId;
@@ -111,6 +116,114 @@ void CvGameTextMgr::Reset()
 	CvXMLLoadUtility pXML;
 	pXML.LoadGlobalText();
 }
+
+
+// UNIVERSAL_PREREQS 07/2019 lfgr
+// Calls the given python function to obtain a help string for the given prereq
+
+void setUniversalPrereqHelp( CvWString& szBuffer, const char* helpFunc, const CvPrereq<CvGame>* pPrereq,
+		const CvGame* pGame )
+{
+	CvPrereqStruct* pPrereqStruct = pPrereq->makeStruct( pGame );
+	if( pPrereqStruct == NULL )
+	{
+		return;
+	}
+
+	CyArgsList argsList;
+	argsList.add(gDLL->getPythonIFace()->makePythonObject( pPrereqStruct ));
+	gDLL->getPythonIFace()->callFunction(PYUniversalPrereqsModule, helpFunc, argsList.makeFunctionArgs(), &szBuffer);
+	
+	// makeStruct() allocates memory, but callFunction somehow calls the destructor
+}
+
+void setUniversalPrereqHelp( CvWString& szBuffer, const char* helpFunc, const CvPrereq<CvPlayer>* pPrereq,
+		const CvPlayer* pPlayer )
+{
+	CvPrereqStruct* pPrereqStruct = pPrereq->makeStruct( pPlayer );
+	if( pPrereqStruct == NULL )
+	{
+		return;
+	}
+
+	int ePlayer = -1;
+	if( pPlayer != NULL ) {
+		ePlayer = pPlayer->getIDINLINE();
+	}
+
+	CyArgsList argsList;
+	argsList.add(gDLL->getPythonIFace()->makePythonObject( pPrereqStruct ));
+	argsList.add( ePlayer );
+	gDLL->getPythonIFace()->callFunction(PYUniversalPrereqsModule, helpFunc, argsList.makeFunctionArgs(), &szBuffer);
+	
+	// makeStruct() allocates memory, but callFunction somehow calls the destructor
+}
+
+void setUniversalPrereqHelp( CvWString& szBuffer, const char* helpFunc, const CvPrereq<CvPlot>* pPrereq,
+		const CvPlot* pPlot )
+{
+	CvPrereqStruct* pPrereqStruct = pPrereq->makeStruct( pPlot );
+	if( pPrereqStruct == NULL )
+	{
+		return;
+	}
+
+	int iX = INVALID_PLOT_COORD;
+	int iY = INVALID_PLOT_COORD;
+	if( pPlot != NULL ) {
+		iX = pPlot->getX_INLINE();
+		iY = pPlot->getY_INLINE();
+	}
+
+	CyArgsList argsList;
+	argsList.add(gDLL->getPythonIFace()->makePythonObject( pPrereqStruct ));
+	argsList.add( iX );
+	argsList.add( iY );
+	gDLL->getPythonIFace()->callFunction(PYUniversalPrereqsModule, helpFunc, argsList.makeFunctionArgs(), &szBuffer);
+	
+	// makeStruct() allocates memory, but callFunction somehow calls the destructor
+}
+
+void setUniversalPrereqHelp( CvWString& szBuffer, const char* helpFunc, const CvPrereq<CvUnit>* pPrereq,
+		const CvUnit* pUnit )
+{
+	CvPrereqStruct* pPrereqStruct = pPrereq->makeStruct( pUnit );
+	if( pPrereqStruct == NULL )
+	{
+		return;
+	}
+
+	int ePlayer = -1;
+	int iUnitIdx = -1;
+	if( pUnit != NULL ) {
+		ePlayer = (int) pUnit->getOwnerINLINE();
+		iUnitIdx = pUnit->getID();
+	}
+
+	CyArgsList argsList;
+	argsList.add(gDLL->getPythonIFace()->makePythonObject( pPrereqStruct ));
+	argsList.add( ePlayer );
+	argsList.add( iUnitIdx );
+	gDLL->getPythonIFace()->callFunction(PYUniversalPrereqsModule, helpFunc, argsList.makeFunctionArgs(), &szBuffer);
+	
+	// makeStruct() allocates memory, but callFunction somehow calls the destructor
+}
+
+template<class T>
+void appendUniversalPrereqHelp( CvWStringBuffer& szBuffer, const char* helpFunc, const CvPrereq<T>* pPrereq, const T* object )
+{
+	if( pPrereq != NULL ) {
+		CvWString szHelp;
+		setUniversalPrereqHelp( szHelp, helpFunc, pPrereq, object );
+		if( !szHelp.empty() )
+		{
+			szBuffer.append( NEWLINE );
+			szBuffer.append( szHelp );
+		}
+	}
+		
+}
+// UNIVERSAL_PREREQS end
 
 
 // Returns the current language
@@ -22873,6 +22986,17 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
         }
     }
 //FfH: End Add
+
+	// EVENT_NEW_TAGS 07/2019 lfgr: Add CvUniversalPrereq Help
+	appendUniversalPrereqHelp( szBuffer, "eventGameHelp", kEvent.getGamePrereq(),
+			(CvGame*) &GC.getGameINLINE() );
+	appendUniversalPrereqHelp( szBuffer, "eventPlayerHelp", kEvent.getPlayerPrereq(),
+			(CvPlayer*) &GET_PLAYER( pTriggeredData->m_ePlayer ) );
+	appendUniversalPrereqHelp( szBuffer, "eventPlotHelp", kEvent.getPlotPrereq(),
+			GC.getMapINLINE().plotINLINE( pTriggeredData->m_iPlotX, pTriggeredData->m_iPlotY ) );
+	appendUniversalPrereqHelp( szBuffer, "eventUnitHelp", kEvent.getUnitPrereq(),
+			kActivePlayer.getUnit( pTriggeredData->m_iUnitId ) );
+	// EVENT_NEW_TAGS end
 
 	bool done = false;
 	while(!done)

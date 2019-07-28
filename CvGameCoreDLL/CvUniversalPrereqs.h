@@ -19,14 +19,46 @@
 // UTIL
 //------
 
-//#define INDENT "  "
-
 #define TRY_READ_RETURN_PREREQ(sTagName, cls) {\
 	if( sTagName == cls::TAG )\
 		return cls::read( pXml );\
 }
 
 const std::string getCurrentTagName( FXml* xml );
+
+
+//--------------
+// DYNAMIC STRUCTS
+// for python and AI
+//--------------
+
+struct CvPrereqStruct
+{
+	CvPrereqStruct() {} // Necessary default constructor
+	CvPrereqStruct( const std::string& szName );
+	CvPrereqStruct( const std::string& szName, int iValue );
+	CvPrereqStruct( const std::string& szName, const std::string& szValue );
+	virtual ~CvPrereqStruct();
+
+	int getIntValue() const;
+	const char* getStringValue() const;
+
+	// For python
+	std::string getName() const;
+	int getNumChildren() const;
+	const CvPrereqStruct* getChild( int index ) const;
+
+	// Prereq name, usually just the tag
+	std::string m_szName;
+
+	// Int/String value, if applicable. Usually only one is used.
+	int m_iValue;
+	std::string m_szValue;
+
+	// Child structs, if applicable
+	std::vector<CvPrereqStruct*> m_vpChildren;
+};
+
 
 //--------------
 // GENERIC
@@ -47,6 +79,33 @@ public :
 	 * Whether the given object fulfills the requirements of this.
 	 */
 	virtual bool isValid( const T* pObj ) const = 0;
+
+	/**
+	 * Create a CvPrereqStruct from this.
+	 *
+	 * Allocates memory for it, so make sure to destroy it afterwards.
+	 */
+	virtual CvPrereqStruct* makeStruct() const = 0;
+
+	/**
+	 * Create a CvPrereqStruct from this, containing all requirements that are *not* satisfied.
+	 * Returns NULL if requirment is satisfied. Otherwise, allocates memory for it, so make sure
+	 * to destroy it afterwards.
+	 * 
+	 * pObj might be NULL. In this case, this behaves like makeStruct().
+	 */
+	virtual CvPrereqStruct* makeStruct( const T* pObj ) const
+	{
+		// Default implementation
+		if( pObj == NULL || ! isValid( pObj ) )
+		{
+			return makeStruct();
+		}
+		else
+		{
+			return NULL;
+		}
+	}
 
 
 	static CvPrereq<T>* readPrereq( CvXMLLoadUtility* pXml );
@@ -90,6 +149,10 @@ public :
 
 	virtual ~CvAndPrereq()
 	{
+		for( size_t i = 0; i < m_vpPrereqs.size(); i++ )
+		{
+			delete m_vpPrereqs.at( i );
+		}
 	}
 
 	bool isValid( const T* pObj ) const
@@ -101,6 +164,36 @@ public :
 		}
 
 		return true;
+	}
+
+	// And is a special case, as it may return a partial child list.
+	CvPrereqStruct* makeStruct() const
+	{
+		return makeStruct( NULL );
+	}
+	
+	CvPrereqStruct* makeStruct( const T* pObj ) const
+	{
+		CvPrereqStruct* result = new CvPrereqStruct( TAG );
+
+		for( size_t i = 0; i < m_vpPrereqs.size(); i++ )
+		{
+			CvPrereqStruct* child = m_vpPrereqs.at( i )->makeStruct( pObj );
+			if( child != NULL )
+			{
+				result->m_vpChildren.push_back( child );
+			}
+		}
+
+		if( result->m_vpChildren.empty() )
+		{
+			delete result;
+			return NULL;
+		}
+		else
+		{
+			return result;
+		}
 	}
 
 
@@ -135,8 +228,13 @@ public :
 	{
 	}
 
+	// TODO: Duplicate code
 	virtual ~CvOrPrereq()
 	{
+		for( size_t i = 0; i < m_vpPrereqs.size(); i++ )
+		{
+			delete m_vpPrereqs.at( i );
+		}
 	}
 
 	bool isValid( const T* pObj ) const
@@ -148,6 +246,20 @@ public :
 		}
 
 		return false;
+	}
+	
+	// Or is *not* a special case like And, as Or always has a complete
+	//  list of unsatisfied children, or none.
+	CvPrereqStruct* makeStruct() const
+	{
+		CvPrereqStruct* result = new CvPrereqStruct( TAG );
+
+		for( size_t i = 0; i < m_vpPrereqs.size(); i++ )
+		{
+			result->m_vpChildren.push_back( m_vpPrereqs.at( i )->makeStruct() );
+		}
+
+		return result;
 	}
 
 
@@ -184,11 +296,21 @@ public :
 
 	virtual ~CvNotPrereq()
 	{
+		SAFE_DELETE_ARRAY( m_pPrereq );
 	}
 
 	bool isValid( const T* pObj ) const
 	{
 		return !m_pPrereq->isValid( pObj );
+	}
+
+	CvPrereqStruct* makeStruct() const
+	{
+		CvPrereqStruct* result = new CvPrereqStruct( TAG );
+
+		result->m_vpChildren.push_back( m_pPrereq->makeStruct() );
+
+		return result;
 	}
 
 
@@ -223,144 +345,6 @@ private :
 
 template<class T>
 const std::string CvNotPrereq<T>::TAG = "Not";
-
-
-//----------------
-// GENERIC HELPERS
-//----------------
-
-// TODO: doc
-// Must be subclassed (doesn't define TAG)
-template<class T, class R, R (T::*Getter)() const>
-class CvPropertyEqualPrereq : public CvPrereq<T>
-{
-public :
-	CvPropertyEqualPrereq( R expectedReturnValue )
-		: m_expectedReturnValue( expectedReturnValue )
-	{
-	}
-
-	bool isValid( const T* obj ) const
-	{
-		return (obj->*Getter)() == m_expectedReturnValue;
-	}
-
-
-	static CvPropertyEqualPrereq<T, R, Getter>* read( CvXMLLoadUtility* pXml );
-
-private :
-	R m_expectedReturnValue;
-};
-
-
-template<class T, class R, R (T::*Getter)() const>
-class CvInfoTypePropertyEqualPrereq : public CvPropertyEqualPrereq<T, R, Getter>
-{
-public :
-	CvInfoTypePropertyEqualPrereq( R expectedReturnValue )
-			: CvPropertyEqualPrereq<T, R, Getter>( expectedReturnValue )
-	{
-	}
-
-
-	static const std::string TAG;
-
-	static CvInfoTypePropertyEqualPrereq<T, R, Getter>* read(
-			CvXMLLoadUtility* pXml )
-	{
-		std::string sInfoType;
-		if( ! pXml->GetXmlVal( sInfoType ) )
-			return NULL;
-
-		int iInfoType = pXml->FindInInfoClass( sInfoType.c_str() );
-		return new CvInfoTypePropertyEqualPrereq<T, R, Getter>(
-				(R) iInfoType );
-	}
-};
-
-
-/**
- * Template for CvPrereqs that check whether a bool property is true.
- */
-template<class T, bool (T::*Getter)() const>
-class CvBoolPropertyEqualPrereq : public CvPropertyEqualPrereq<T, bool, Getter>
-{
-public :
-	CvBoolPropertyEqualPrereq( bool bExpectedReturnValue )
-			: CvPropertyEqualPrereq<T, bool, Getter>( bExpectedReturnValue )
-	{
-	}
-
-
-	static const std::string TAG;
-
-	static CvBoolPropertyEqualPrereq<T, Getter>* read(
-			CvXMLLoadUtility* pXml )
-	{
-		bool bVal;
-		pXml->GetXmlVal( &bVal ); // TODO: check and maybe return NULL
-
-		return new CvBoolPropertyEqualPrereq<T, Getter>( bVal );
-	}
-};
-
-/**
- * Template for CvPrereqs that check whether a "set array" property contains the
- * specified element. A "set array" is defined by a getter of the form
- *   bool CLASS:GETTER( E index )
- * where E the element type, usually an int or an enum type like UnitTypes.
- */
-template<class T, class E, bool (T::*Getter)(E) const>
-class CvSetPropertyContainsPrereq : public CvPrereq<T>
-{
-public :
-	CvSetPropertyContainsPrereq( E element )
-			: m_element( element )
-	{
-	}
-
-	bool isValid( const T* obj ) const
-	{
-		return (obj->*Getter)( m_element );
-	}
-
-	static CvSetPropertyContainsPrereq<T, E, Getter>*
-		read( CvXMLLoadUtility* pXml );
-
-private :
-	E m_element;
-};
-
-template<class T, class E, bool (T::*Getter)(E) const>
-class CvInfoTypeSetPropertyContainsPrereq :
-		public CvSetPropertyContainsPrereq<T, E, Getter>
-{
-public :
-	CvInfoTypeSetPropertyContainsPrereq( E element )
-			: CvSetPropertyContainsPrereq<T, E, Getter>( element )
-	{
-	}
-
-
-	static const std::string TAG;
-
-	static CvInfoTypeSetPropertyContainsPrereq<T, E, Getter>*
-		read( CvXMLLoadUtility* pXml )
-	{
-		std::string sInfoType;
-		if( ! pXml->GetXmlVal( sInfoType ) )
-			return NULL;
-
-		int iInfoType = pXml->FindInInfoClass( sInfoType.c_str() );
-		return new CvInfoTypeSetPropertyContainsPrereq<T, E, Getter>(
-				(E) iInfoType );
-	}
-
-private :
-	E m_element;
-};
-
-
 
 
 #endif /* CVUNIVERSALPREREQS_H_ */

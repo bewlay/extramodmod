@@ -45,6 +45,11 @@ CvGameUnitNotCreatedPrereq::~CvGameUnitNotCreatedPrereq()
 {
 }
 
+CvPrereqStruct* CvGameUnitNotCreatedPrereq::makeStruct() const
+{
+	return new CvPrereqStruct( TAG, m_eUnit );
+}
+
 bool CvGameUnitNotCreatedPrereq::isValid( const CvGame* pGame ) const
 {
 	return pGame->getUnitCreatedCount( m_eUnit ) == 0;

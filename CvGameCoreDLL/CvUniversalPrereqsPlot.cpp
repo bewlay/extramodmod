@@ -11,6 +11,7 @@
 #include "CvPlot.h"
 
 #include "CvUniversalPrereqs.h"
+#include "CvUniversalPrereqsHelpers.h"
 
 
 

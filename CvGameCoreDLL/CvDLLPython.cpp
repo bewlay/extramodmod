@@ -7,6 +7,7 @@
 #include "CyGlobalContext.h"
 #include "CyCity.h"
 
+
 void CyCityPythonInterface1(python::class_<CyCity>& x);
 /************************************************************************************************/
 /* REVOLUTION_MOD                         10/23/08                                jdog5000      */
@@ -50,6 +51,10 @@ void CyGameTextMgrInterface();
 void CyHallOfFameInterface();
 void CyGameCoreUtilsPythonInterface();
 void CyMessageControlInterface();
+
+// UNIVERSAL_PREREQS 07/2019 lfgr
+void CyUniveralPrereqsPythonInterface();
+// UNIVERSAL_PREREQS end
 
 //
 //
@@ -112,4 +117,8 @@ DllExport void DLLPublishToPython()
 	CyGlobalContextPythonInterface2(gc);					// publish it's methods
 	CyGlobalContextPythonInterface3(gc);					// publish it's methods
 	CyGlobalContextPythonInterface4(gc);					// publish it's methods 
+	
+	// UNIVERSAL_PREREQS 07/2019 lfgr
+	CyUniveralPrereqsPythonInterface();
+	// UNIVERSAL_PREREQS end
 }

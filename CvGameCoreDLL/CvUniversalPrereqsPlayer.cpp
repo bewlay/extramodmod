@@ -11,6 +11,7 @@
 #include "CvPlayer.h"
 
 #include "CvUniversalPrereqs.h"
+#include "CvUniversalPrereqsHelpers.h"
 
 
 //---------------------------

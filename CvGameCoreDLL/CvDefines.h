@@ -181,6 +181,10 @@
 #define PYDataStorageModule					"CvDataStorageInterface"
 //FfH: End Add
 
+// UNIVERSAL_PREREQS 07/2019 lfgr
+#define PYUniversalPrereqsModule "CvUniversalPrereqsInterface"
+// UNIVERSAL_PREREQS end
+
 /********************************************************************************/
 /* MinorPuppetLeaders	02/27/12										lfgr	*/
 /********************************************************************************/

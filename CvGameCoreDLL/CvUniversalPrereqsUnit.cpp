@@ -13,6 +13,8 @@
 
 #include "CvUnit.h"
 
+#include "CvUniversalPrereqsHelpers.h"
+
 
 // Forward declarations
 class CvPlot;
@@ -72,6 +74,15 @@ CvUnitPlotPrereq::~CvUnitPlotPrereq()
 bool CvUnitPlotPrereq::isValid( const CvUnit* pUnit ) const
 {
 	return m_pPlotPrereq->isValid( pUnit->plot() );
+}
+
+CvPrereqStruct* CvUnitPlotPrereq::makeStruct() const
+{
+	CvPrereqStruct* result = new CvPrereqStruct( TAG );
+
+	result->m_vpChildren.push_back( m_pPlotPrereq->makeStruct() );
+
+	return result;
 }
 
 CvUnitPlotPrereq* CvUnitPlotPrereq::read( CvXMLLoadUtility* pXml )

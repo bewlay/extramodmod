@@ -19,13 +19,15 @@ class CvUnit;
 /**
  * Requires the plot of the given unit to fulfill the specified requirement.
  */
-class CvUnitPlotPrereq : public CvPrereq<CvUnit>
+class CvUnitPlotPrereq : public CvPrereq<CvUnit> // TODO: make generic "delegate" class
 {
 public :
 	CvUnitPlotPrereq( CvPrereq<CvPlot>* pPlotPrereq );
 	virtual ~CvUnitPlotPrereq();
 
 	virtual bool isValid( const CvUnit* pUnit ) const;
+
+	CvPrereqStruct* makeStruct() const;
 
 
 	static const std::string TAG;
