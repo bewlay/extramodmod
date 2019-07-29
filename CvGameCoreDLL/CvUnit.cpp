@@ -7850,6 +7850,12 @@ bool CvUnit::discover()
 	{
 		NotifyEntity(MISSION_DISCOVER);
 	}
+	
+	// lfgr 07/2019: transport units unload cargo when they discover a technology
+	if (getCargo() > 0)
+	{
+		unloadAll();
+	}
 
 	kill(true);
 
@@ -7959,6 +7965,12 @@ bool CvUnit::hurry()
 	if (plot()->isActiveVisible(false))
 	{
 		NotifyEntity(MISSION_HURRY);
+	}
+
+	// lfgr 07/2019: transport units unload cargo when they hurry production
+	if (getCargo() > 0)
+	{
+		unloadAll();
 	}
 
 	kill(true);
@@ -8165,6 +8177,12 @@ bool CvUnit::greatWork()
 	if (plot()->isActiveVisible(false))
 	{
 		NotifyEntity(MISSION_GREAT_WORK);
+	}
+
+	// lfgr 07/2019: transport units unload cargo when they create a great work
+	if (getCargo() > 0)
+	{
+		unloadAll();
 	}
 
 	kill(true);
@@ -8537,6 +8555,12 @@ bool CvUnit::goldenAge()
 	if (plot()->isActiveVisible(false))
 	{
 		NotifyEntity(MISSION_GOLDEN_AGE);
+	}
+
+	// lfgr 07/2019: transport units unload cargo when they start a golden age
+	if (getCargo() > 0)
+	{
+		unloadAll();
 	}
 
 	kill(true);

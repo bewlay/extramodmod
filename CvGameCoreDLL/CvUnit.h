@@ -1076,7 +1076,7 @@ public:
 /************************************************************************************************/
 
 	// XML_LISTS 07/2019 lfgr: cache CvPromotionInfo::isPromotionImmune
-	bool isPromotionImmune( PromotionTypes ePromotion ) const;
+	bool isPromotionImmune( PromotionTypes ePromotion ) const; // Exposed to python
 	void changePromotionImmune( PromotionTypes ePromotion, int iChange );
 	// XML_LISTS end
 
