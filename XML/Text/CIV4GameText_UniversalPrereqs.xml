@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+	Text for CvUniversalPrereqs
+-->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<!-- REQUIRES/MUST -->
+	
+	<!-- General -->
+	<TEXT>
+		<Tag>TXT_KEY_UP_REQUIRES</Tag>
+		<English>[ICON_BULLET][COLOR_RED]Reqs %s1[COLOR_REVERT]</English>
+		<French>[ICON_BULLET][COLOR_RED]Req. %s1[COLOR_REVERT]</French>
+		<German>[ICON_BULLET][COLOR_RED]Erfordert %s1[COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET][COLOR_RED]Richiede %s1[COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET][COLOR_RED]Requiere %s1[COLOR_REVERT]</Spanish>
+		<Finnish>[ICON_BULLET][COLOR_RED]Reqs %s1[COLOR_REVERT]</Finnish>
+	</TEXT>
+	
+	<!-- Player -->
+	<TEXT>
+		<Tag>TXT_KEY_UP_NOT_CIVILIZATION</Tag>
+		<English>[ICON_BULLET][COLOR_RED]Must not be %s1[COLOR_REVERT]</English>
+		<French>[ICON_BULLET][COLOR_RED]Must not be %s1[COLOR_REVERT]</French>
+		<German>[ICON_BULLET][COLOR_RED]Darf nicht %s1 sein[COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET][COLOR_RED]Must not be %s1[COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET][COLOR_RED]No se debe ser %s1[COLOR_REVERT]</Spanish>
+		<Finnish>[ICON_BULLET][COLOR_RED]Reqs %s1[COLOR_REVERT]</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UP_NOT_CIVIC</Tag>
+		<English>[ICON_BULLET][COLOR_RED]Must not use %s1[COLOR_REVERT]</English>
+		<French>[ICON_BULLET][COLOR_RED]Must not use %s1[COLOR_REVERT]</French>
+		<German>[ICON_BULLET][COLOR_RED]Darf nicht %s1 benutzen[COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET][COLOR_RED]Must not use %s1[COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET][COLOR_RED]No se debe usar %s1[COLOR_REVERT]</Spanish>
+		<Finnish>[ICON_BULLET][COLOR_RED]Must not use %s1[COLOR_REVERT]</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UP_NOT_TRAIT</Tag>
+		<English>[ICON_BULLET][COLOR_RED]Must not be %s1[COLOR_REVERT]</English>
+		<French>[ICON_BULLET][COLOR_RED]Must not be %s1[COLOR_REVERT]</French>
+		<German>[ICON_BULLET][COLOR_RED]Darf nicht %s1 sein[COLOR_REVERT]</German>
+		<Italian>[ICON_BULLET][COLOR_RED]Must not be %s1[COLOR_REVERT]</Italian>
+		<Spanish>[ICON_BULLET][COLOR_RED]No se debe ser %s1[COLOR_REVERT]</Spanish>
+		<Finnish>[ICON_BULLET][COLOR_RED]Must not be %s1[COLOR_REVERT]</Finnish>
+	</TEXT>
+</Civ4GameText>
