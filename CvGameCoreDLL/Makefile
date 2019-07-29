@@ -176,7 +176,7 @@ LDFLAGS = $(Release_LDFLAGS)
 !IFNDEF _NMAKE_VER
 !ERROR Jom can't be used on profile builds
 !ENDIF
-CFLAGS  = $(Release_CFLAGS) /Zi
+CFLAGS  = $(Release_CFLAGS) /Zi /DFP_PROFILE_ENABLE /DCUSTOM_PROFILER
 LDFLAGS = $(Debug_LDFLAGS)
 !ENDIF
 !IF "$(TARGET)" == "OOS"
