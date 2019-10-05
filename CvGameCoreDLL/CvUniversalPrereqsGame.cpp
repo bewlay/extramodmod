@@ -36,8 +36,8 @@ CvPrereq<CvGame>* CvPrereq<CvGame>::readPrereq( CvXMLLoadUtility* pXml )
 
 const std::string CvGameUnitCreatedPrereq::TAG = "UnitCreated";
 
-CvGameUnitCreatedPrereq::CvGameUnitCreatedPrereq( UnitTypes eUnit ) :
-		m_eUnit( eUnit )
+CvGameUnitCreatedPrereq::CvGameUnitCreatedPrereq( const char* szUnit ) :
+		m_zUnit( szUnit )
 {
 }
 
@@ -47,12 +47,16 @@ CvGameUnitCreatedPrereq::~CvGameUnitCreatedPrereq()
 
 CvPrereqStruct* CvGameUnitCreatedPrereq::makeStruct() const
 {
-	return new CvPrereqStruct( TAG, m_eUnit );
+	return new CvPrereqStruct( TAG, m_zUnit.getInfoType() );
 }
 
 bool CvGameUnitCreatedPrereq::isValid( const CvGame* pGame ) const
 {
-	return pGame->getUnitCreatedCount( m_eUnit ) > 0;
+	return pGame->getUnitCreatedCount( m_zUnit.getInfoType() ) > 0;
+}
+
+void CvGameUnitCreatedPrereq::readPass3() {
+	m_zUnit.readPass3();
 }
 
 CvGameUnitCreatedPrereq* CvGameUnitCreatedPrereq::read( CvXMLLoadUtility* pXml )
@@ -60,9 +64,7 @@ CvGameUnitCreatedPrereq* CvGameUnitCreatedPrereq::read( CvXMLLoadUtility* pXml )
 	std::string sUnit;
 	if( ! pXml->GetXmlVal( sUnit ) )
 		return NULL;
-
-	int iUnit = pXml->FindInInfoClass( sUnit.c_str() );
-	return new CvGameUnitCreatedPrereq( (UnitTypes) iUnit );
+	return new CvGameUnitCreatedPrereq( sUnit.c_str() );
 }
 
 

@@ -1191,6 +1191,16 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 //<<<<Unofficial Bug Fix: End Add
 
 //FfH: End Add
+	
+	// UNIVERSAL_PREREQS 10/2019 lfgr
+	for (int i=0; i < GC.getNumEventTriggerInfos(); ++i) {
+		GC.getEventTriggerInfo((EventTriggerTypes)i).readPass3();
+	}
+	
+	for (int i=0; i < GC.getNumEventInfos(); ++i) {
+		GC.getEventInfo((EventTypes)i).readPass3();
+	}
+	// UNIVERSAL_PREREQS end
 
 	// add types to global var system
 	for (int i = 0; i < GC.getNumCursorInfos(); ++i)

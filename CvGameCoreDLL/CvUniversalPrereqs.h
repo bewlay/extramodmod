@@ -89,7 +89,7 @@ public :
 
 	/**
 	 * Create a CvPrereqStruct from this, containing all requirements that are *not* satisfied.
-	 * Returns NULL if requirment is satisfied. Otherwise, allocates memory for it, so make sure
+	 * Returns NULL if requirement is satisfied. Otherwise, allocates memory for it, so make sure
 	 * to destroy it afterwards.
 	 * 
 	 * pObj might be NULL. In this case, this behaves like makeStruct().
@@ -107,7 +107,18 @@ public :
 		}
 	}
 
+	/**
+	 * Called after all XML files have been read.
+	 */
+	virtual void readPass3()
+	{
+		// Does nothing by default
+	}
 
+
+	/**
+	 * Static function to read a CvPrereq from XML.
+	 */
 	static CvPrereq<T>* readPrereq( CvXMLLoadUtility* pXml );
 };
 
@@ -134,20 +145,20 @@ void readChildPrereqs( CvXMLLoadUtility* pXml, std::vector<CvPrereq<T>*>& vpDest
 	}
 }
 
-
 /**
- * Requires the given object to fulfill all of the specified requirements.
+ * Abstract superclass for CvPrereqs containing other CvPrereqs.
  */
-template<class T>
-class CvAndPrereq : public CvPrereq<T>
+
+template <class T>
+class CvParentPrereq : public CvPrereq<T>
 {
 public :
-	CvAndPrereq( const std::vector<CvPrereq<T>*>& vpPrereqs ) :
+	CvParentPrereq( const std::vector<CvPrereq<T>*>& vpPrereqs ) :
 			m_vpPrereqs( vpPrereqs )
 	{
 	}
 
-	virtual ~CvAndPrereq()
+	virtual ~CvParentPrereq()
 	{
 		for( size_t i = 0; i < m_vpPrereqs.size(); i++ )
 		{
@@ -155,11 +166,35 @@ public :
 		}
 	}
 
-	bool isValid( const T* pObj ) const
-	{
+	void readPass3() {
 		for( size_t i = 0; i < m_vpPrereqs.size(); i++ )
 		{
-			if( ! m_vpPrereqs[i]->isValid( pObj ) )
+			m_vpPrereqs[i]->readPass3();
+		}
+	}
+
+protected :
+	const std::vector<CvPrereq<T>*> m_vpPrereqs;
+};
+
+
+/**
+ * Requires the given object to fulfill all of the specified requirements.
+ */
+template<class T>
+class CvAndPrereq : public CvParentPrereq<T>
+{
+public :
+	CvAndPrereq( const std::vector<CvPrereq<T>*>& vpPrereqs )
+			: CvParentPrereq<T>( vpPrereqs ) {}
+
+	virtual ~CvAndPrereq() {}
+
+	bool isValid( const T* pObj ) const
+	{
+		for( size_t i = 0; i < this->m_vpPrereqs.size(); i++ )
+		{
+			if( ! this->m_vpPrereqs[i]->isValid( pObj ) )
 				return false;
 		}
 
@@ -176,9 +211,9 @@ public :
 	{
 		CvPrereqStruct* result = new CvPrereqStruct( TAG );
 
-		for( size_t i = 0; i < m_vpPrereqs.size(); i++ )
+		for( size_t i = 0; i < this->m_vpPrereqs.size(); i++ )
 		{
-			CvPrereqStruct* child = m_vpPrereqs.at( i )->makeStruct( pObj );
+			CvPrereqStruct* child = this->m_vpPrereqs.at( i )->makeStruct( pObj );
 			if( child != NULL )
 			{
 				result->m_vpChildren.push_back( child );
@@ -196,20 +231,14 @@ public :
 		}
 	}
 
-
 	static const std::string TAG;
 
 	static CvAndPrereq<T>* read( CvXMLLoadUtility* pXml )
 	{
 		std::vector<CvPrereq<T>*> vpPrereqs;
-
 		readChildPrereqs( pXml, vpPrereqs );
-
 		return new CvAndPrereq<T>( vpPrereqs );
 	}
-
-private :
-	const std::vector<CvPrereq<T>*> m_vpPrereqs;
 };
 
 template<class T>
@@ -220,28 +249,19 @@ const std::string CvAndPrereq<T>::TAG = "And";
  * Requires the given object to fulfill at least one of the specified requirements.
  */
 template<class T>
-class CvOrPrereq : public CvPrereq<T>
+class CvOrPrereq : public CvParentPrereq<T>
 {
 public :
-	CvOrPrereq( const std::vector<CvPrereq<T>*>& vpPrereqs ) :
-			m_vpPrereqs( vpPrereqs )
-	{
-	}
+	CvOrPrereq( const std::vector<CvPrereq<T>*>& vpPrereqs )
+			: CvParentPrereq<T>( vpPrereqs ) {}
 
-	// TODO: Duplicate code
-	virtual ~CvOrPrereq()
-	{
-		for( size_t i = 0; i < m_vpPrereqs.size(); i++ )
-		{
-			delete m_vpPrereqs.at( i );
-		}
-	}
+	virtual ~CvOrPrereq() {}
 
 	bool isValid( const T* pObj ) const
 	{
-		for( size_t i = 0; i < m_vpPrereqs.size(); i++ )
+		for( size_t i = 0; i < this->m_vpPrereqs.size(); i++ )
 		{
-			if( m_vpPrereqs[i]->isValid( pObj ) )
+			if( this->m_vpPrereqs[i]->isValid( pObj ) )
 				return true;
 		}
 
@@ -254,9 +274,9 @@ public :
 	{
 		CvPrereqStruct* result = new CvPrereqStruct( TAG );
 
-		for( size_t i = 0; i < m_vpPrereqs.size(); i++ )
+		for( size_t i = 0; i < this->m_vpPrereqs.size(); i++ )
 		{
-			result->m_vpChildren.push_back( m_vpPrereqs.at( i )->makeStruct() );
+			result->m_vpChildren.push_back( this->m_vpPrereqs.at( i )->makeStruct() );
 		}
 
 		return result;
@@ -273,9 +293,6 @@ public :
 
 		return new CvOrPrereq<T>( vpPrereqs );
 	}
-
-private :
-	const std::vector<CvPrereq<T>*> m_vpPrereqs;
 };
 
 template<class T>
@@ -313,6 +330,10 @@ public :
 		return result;
 	}
 
+	void readPass3() {
+		m_pPrereq->readPass3();
+	}
+
 
 	static const std::string TAG;
 
@@ -340,7 +361,7 @@ public :
 	}
 
 private :
-	const CvPrereq<T>* m_pPrereq;
+	CvPrereq<T>* m_pPrereq;
 };
 
 template<class T>

@@ -27671,6 +27671,26 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 	return true;
 }
 
+// UNIVERSAL_PREREQS 10/2019 lfgr
+bool CvEventTriggerInfo::readPass3()
+{
+	if( m_pGamePrereq != NULL ) {
+		m_pGamePrereq->readPass3();
+	}
+	if( m_pPlayerPrereq != NULL ) {
+		m_pPlayerPrereq->readPass3();
+	}
+	if( m_pPlotPrereq != NULL ) {
+		m_pPlotPrereq->readPass3();
+	}
+	if( m_pUnitPrereq != NULL ) {
+		m_pUnitPrereq->readPass3();
+	}
+
+	return true;
+}
+// UNIVERSAL_PREREQS end
+
 //////////////////////////////////////////////////////////////////////////
 //
 //	CvEventInfo
@@ -29047,7 +29067,7 @@ bool CvEventInfo::read(CvXMLLoadUtility* pXML)
 
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
-// UNIVERSAL_PREREQS en
+// UNIVERSAL_PREREQS end
 
 	return true;
 }
@@ -29060,6 +29080,26 @@ bool CvEventInfo::readPass2(CvXMLLoadUtility* pXML)
 
 	return true;
 }
+
+// UNIVERSAL_PREREQS 10/2019 lfgr
+bool CvEventInfo::readPass3()
+{
+	if( m_pGamePrereq != NULL ) {
+		m_pGamePrereq->readPass3();
+	}
+	if( m_pPlayerPrereq != NULL ) {
+		m_pPlayerPrereq->readPass3();
+	}
+	if( m_pPlotPrereq != NULL ) {
+		m_pPlotPrereq->readPass3();
+	}
+	if( m_pUnitPrereq != NULL ) {
+		m_pUnitPrereq->readPass3();
+	}
+
+	return true;
+}
+// UNIVERSAL_PREREQS end
 
 //======================================================================================================
 //					CvEspionageMissionInfo

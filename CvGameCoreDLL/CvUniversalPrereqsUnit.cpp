@@ -36,7 +36,7 @@ CvPrereq<CvPlot>* CvPrereq<CvPlot>::readPrereq( CvXMLLoadUtility* pXml );
 /**
  * Requires the given unit to be alive (not e.g. a zombie).
  */
-#define CvUnitAlivePrereq CvBoolPropertyEqualPrereq<CvUnit, &CvUnit::isAlive>
+#define CvUnitAlivePrereq CvPropertyEqualPrereq<CvUnit, bool, &CvUnit::isAlive>
 
 template<>
 const std::string CvUnitAlivePrereq::TAG = "bAlive";

@@ -19,8 +19,7 @@
 // CvPlotOwnedPrereq
 //------------------
 
-#define CvPlotOwnedPrereq CvBoolPropertyEqualPrereq<\
-		CvPlot, &CvPlot::isOwned>
+#define CvPlotOwnedPrereq CvPropertyEqualPrereq<CvPlot, bool, &CvPlot::isOwned>
 
 template<>
 const std::string CvPlotOwnedPrereq::TAG = "bOwned";

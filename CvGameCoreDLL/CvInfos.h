@@ -7549,6 +7549,7 @@ public:
 	void write(FDataStreamBase* );
 
 	bool read(CvXMLLoadUtility* pXML);
+	bool readPass3(); // UNIVERSAL_PREREQS 10/2019 lfgr
 
 private:
 	int m_iPercentGamesActive;
@@ -7804,6 +7805,7 @@ public:
 
 	bool read(CvXMLLoadUtility* pXML);
 	bool readPass2(CvXMLLoadUtility* pXML);
+	bool readPass3(); // UNIVERSAL_PREREQS 10/2019 lfgr
 
 private:
 	bool m_bQuest;

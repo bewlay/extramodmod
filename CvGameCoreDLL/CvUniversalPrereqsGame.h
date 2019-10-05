@@ -12,6 +12,8 @@
 
 #include "CvUniversalPrereqs.h"
 
+#include "CvInfoUtils.h"
+
 class CvGame;
 
 
@@ -21,7 +23,7 @@ class CvGame;
 class CvGameUnitCreatedPrereq : public CvPrereq<CvGame>
 {
 public :
-	CvGameUnitCreatedPrereq( UnitTypes eUnit );
+	CvGameUnitCreatedPrereq( const char* szUnit );
 
 	virtual ~CvGameUnitCreatedPrereq();
 
@@ -29,13 +31,15 @@ public :
 
 	CvPrereqStruct* makeStruct() const;
 
+	void readPass3();
+
 
 	static const std::string TAG;
 
 	static CvGameUnitCreatedPrereq* read( CvXMLLoadUtility* pXml );
 
 private :
-	UnitTypes m_eUnit;
+	LazyInfoTypeStore<UnitTypes> m_zUnit;
 };
 
 
