@@ -14,29 +14,19 @@
     <options id="EventsEnhanced" file="Events Enhanced.ini">
         <section id="Events">
 			<option id="HideUnavailableOptions" type="boolean" default="False"
-				get="isHideUnavailableOptions" set="setHideUnavailableOptions"
-				label="Hide Unavailable Event Options" 
-				help="When checked, unavailable event options that are hidden."/>
+				get="isHideUnavailableOptions" set="setHideUnavailableOptions" />
         </section>
         <section id="WorldUnitPopups">
 			<option id="WUPopupHuman" type="boolean" default="True"
-				get="isWUPopupHuman" set="setWUPopupHuman"
-				label="Enable Human's WU Popups" 
-				help="When checked, a popup is displayed every time a human player builds a world unit."/>
+				get="isWUPopupHuman" set="setWUPopupHuman" />
 			<option id="WUPopupAI" type="boolean" default="True"
-				get="isWUPopupAI" set="setWUPopupAI"
-				label="Enable AI's WU Popups" 
-				help="When checked, a popup is displayed every time an AI player builds a world unit."/>
+				get="isWUPopupAI" set="setWUPopupAI" />
         </section>
         <section id="GreatPersonMod">
 			<option id="GPPopupHuman" type="boolean" default="True"
-				get="isGPPopupHuman" set="setGPPopupHuman"
-				label="Enable Human's GP Popups" 
-				help="When checked, a popup is displayed every time a human player creates a great person."/>
+				get="isGPPopupHuman" set="setGPPopupHuman" />
 			<option id="GPPopupAI" type="boolean" default="False"
-				get="isGPPopupAI" set="setGPPopupAI"
-				label="Enable AI's GP Popups" 
-				help="When checked, a popup is displayed every time an AI player creates a great person."/>
+				get="isGPPopupAI" set="setGPPopupAI" />
         </section>
     </options>
 	

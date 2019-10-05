@@ -29,6 +29,89 @@
 		<Italian>[NEWLINE]</Italian>
 		<Spanish>[NEWLINE]</Spanish>
 	</TEXT>
+	
+	<!-- BUG Options for events enhanced -->
+	<TEXT>
+		<Tag>TXT_KEY_BUG_OPT_EVENTSENHANCED__HIDEUNAVAILABLEOPTIONS_TEXT</Tag>
+		<English>Hide Unavailable Event Options</English>
+		<French>Hide Unavailable Event Options</French>
+		<German>Nicht wählbare Ereignisoptionen verbergen</German>
+		<Italian>Hide Unavailable Event Options</Italian>
+		<Spanish>Oculta opciones de eventos no disponible</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUG_OPT_EVENTSENHANCED__HIDEUNAVAILABLEOPTIONS_HOVER</Tag>
+		<English>When checked, unavailable event options are hidden.</English>
+		<French>When checked, unavailable event options are hidden.</French>
+		<German>When checked, unavailable event options are hidden.</German>
+		<Italian>When checked, unavailable event options are hidden.</Italian>
+		<Spanish>Cuando se activa, oculta opciones de eventos que no se puede seleccionar.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUG_OPT_EVENTSENHANCED__WUPOPUPHUMAN_TEXT</Tag>
+		<English>Enable Human's WU Popups</English>
+		<French>Enable Human's WU Popups</French>
+		<German>Enable Human's WU Popups</German>
+		<Italian>Enable Human's WU Popups</Italian>
+		<Spanish>Enable Human's WU Popups</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUG_OPT_EVENTSENHANCED__WUPOPUPHUMAN_HOVER</Tag>
+		<English>When checked, a popup is displayed every time a human player builds a world unit.</English>
+		<French>When checked, a popup is displayed every time a human player builds a world unit.</French>
+		<German>When checked, a popup is displayed every time a human player builds a world unit.</German>
+		<Italian>When checked, a popup is displayed every time a human player builds a world unit.</Italian>
+		<Spanish>When checked, a popup is displayed every time a human player builds a world unit.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUG_OPT_EVENTSENHANCED__WUPOPUPAI_TEXT</Tag>
+		<English>Enable AI's WU Popups</English>
+		<French>Enable AI's WU Popups</French>
+		<German>Enable AI's WU Popups</German>
+		<Italian>Enable AI's WU Popups</Italian>
+		<Spanish>Enable AI's WU Popups</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUG_OPT_EVENTSENHANCED__WUPOPUPAI_HOVER</Tag>
+		<English>When checked, a popup is displayed every time an AI player builds a world unit.</English>
+		<French>When checked, a popup is displayed every time an AI player builds a world unit.</French>
+		<German>When checked, a popup is displayed every time an AI player builds a world unit.</German>
+		<Italian>When checked, a popup is displayed every time an AI player builds a world unit.</Italian>
+		<Spanish>When checked, a popup is displayed every time an AI player builds a world unit.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUG_OPT_EVENTSENHANCED__GPPOPUPHUMAN_TEXT</Tag>
+		<English>Enable Human's GP Popups</English>
+		<French>Enable Human's GP Popups</French>
+		<German>Enable Human's GP Popups</German>
+		<Italian>Enable Human's GP Popups</Italian>
+		<Spanish>Enable Human's GP Popups</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUG_OPT_EVENTSENHANCED__GPPOPUPHUMAN_HOVER</Tag>
+		<English>When checked, a popup is displayed every time a human player creates a great person.</English>
+		<French>When checked, a popup is displayed every time a human player creates a great person.</French>
+		<German>When checked, a popup is displayed every time a human player creates a great person.</German>
+		<Italian>When checked, a popup is displayed every time a human player creates a great person.</Italian>
+		<Spanish>When checked, a popup is displayed every time a human player creates a great person.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUG_OPT_EVENTSENHANCED__GPPOPUPAI_TEXT</Tag>
+		<English>Enable AI's GP Popups</English>
+		<French>Enable AI's GP Popups</French>
+		<German>Enable AI's GP Popups</German>
+		<Italian>Enable AI's GP Popups</Italian>
+		<Spanish>Enable AI's GP Popups</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUG_OPT_EVENTSENHANCED__GPPOPUPAI_HOVER</Tag>
+		<English>When checked, a popup is displayed every time an AI player creates a great person.</English>
+		<French>When checked, a popup is displayed every time an AI player creates a great person.</French>
+		<German>When checked, a popup is displayed every time an AI player creates a great person.</German>
+		<Italian>When checked, a popup is displayed every time an AI player creates a great person.</Italian>
+		<Spanish>When checked, a popup is displayed every time an AI player creates a great person.</Spanish>
+	</TEXT>
+	
 	<!-- GELA -->
 	<TEXT><!-- EVENT_GELA -->
 		<Tag>TXT_KEY_EVENT_GELA</Tag>
