@@ -18,12 +18,12 @@ class CvGame;
 /**
  * Requires that the specified unit wasn't ever created.
  */
-class CvGameUnitNotCreatedPrereq : public CvPrereq<CvGame>
+class CvGameUnitCreatedPrereq : public CvPrereq<CvGame>
 {
 public :
-	CvGameUnitNotCreatedPrereq( UnitTypes eUnit );
+	CvGameUnitCreatedPrereq( UnitTypes eUnit );
 
-	virtual ~CvGameUnitNotCreatedPrereq();
+	virtual ~CvGameUnitCreatedPrereq();
 
 	bool isValid( const CvGame* pGame ) const;
 
@@ -32,7 +32,7 @@ public :
 
 	static const std::string TAG;
 
-	static CvGameUnitNotCreatedPrereq* read( CvXMLLoadUtility* pXml );
+	static CvGameUnitCreatedPrereq* read( CvXMLLoadUtility* pXml );
 
 private :
 	UnitTypes m_eUnit;
