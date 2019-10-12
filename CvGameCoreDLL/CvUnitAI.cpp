@@ -28453,6 +28453,8 @@ void CvUnitAI::AI_ConquestMove()
 	{
 		if (getGroup()->isStranded() && (getLevel() < 3) && bFinancialTrouble)
 		{
+			logBBAI("    Killing %S (delayed) -- disbanded because stranded and financial trouble (Unit %d - plot: %d, %d)",
+					getName().GetCString(), getID(), getX(), getY());
 			kill(true);
 			return;
 		}

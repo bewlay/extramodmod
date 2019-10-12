@@ -646,6 +646,7 @@ public:
 	int getUnitArtStyleType() const;
 	int getPromotionCombatType() const;
 	int getPromotionCombatMod() const;
+	int getMiscastChance() const; // MiscastPromotions 10/2019 lfgr
 	int getBonusAffinity(int i) const;
 	int getDamageTypeCombat(int i) const;
 	int getDamageTypeResist(int i) const;
@@ -804,6 +805,7 @@ protected:
 	int m_iUnitArtStyleType;
 	int m_iPromotionCombatType;
 	int m_iPromotionCombatMod;
+	int m_iMiscastChance; // MiscastPromotions 10/2019 lfgr
 	int* m_piBonusAffinity;
 	int* m_piDamageTypeCombat;
 	int* m_piDamageTypeResist;
@@ -875,7 +877,6 @@ public:
 	int getPromotionInStackPrereq() const;
 	int getReligionPrereq() const;
 	int getStateReligionPrereq() const;
-	int getUnitReligionPrereq() const; // MNAI
 	int getTechPrereq() const;
 	int getRange() const;
     int getEffect() const;
@@ -1474,6 +1475,7 @@ public:
 	int getPromotionFromCombat() const;
 	const TCHAR* getPyPostCombatLost() const;
 	const TCHAR* getPyPostCombatWon() const;
+	const TCHAR* getPyInfoHelp() const; // lfgr 10/2019: UnitPyInfoHelp
 	int getUnitConvertFromCombat() const;
 	int getUnitConvertFromCombatChance() const;
 	int getUnitCreateFromCombat() const;
@@ -1782,6 +1784,7 @@ protected:
 	int* m_piDamageTypeCombat;
 	CvString m_szPyPostCombatLost;
 	CvString m_szPyPostCombatWon;
+	CvString m_szPyInfoHelp; // lfgr 10/2019: UnitPyInfoHelp
 	CvString m_szImage;
 	std::vector<CvString> m_aszExtraXML2forPass3;
 //FfH: End Add

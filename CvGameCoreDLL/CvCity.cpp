@@ -9943,6 +9943,21 @@ int CvCity::getAdditionalBaseYieldRateByBuilding(YieldTypes eIndex, BuildingType
 				iExtraRate += getAdditionalBaseYieldRateBySpecialist(eIndex, (SpecialistTypes)iI, kBuilding.getFreeSpecialistCount((SpecialistTypes)iI));
 			}
 		}
+
+		// lfgr 09/2019: UnhappyProduction
+		if( eIndex == YIELD_PRODUCTION ) {
+			if( !isUnhappyProduction() && kBuilding.isUnhappyProduction() ) {
+				// Adding unhappy production
+				iExtraRate += unhappyLevel();
+			}
+			if( isUnhappyProduction() || kBuilding.isUnhappyProduction() ) {
+				// Adding unhappiness when city has or will have unhappy production
+				int iGood = 0;
+				int iBad = 0;
+				getAdditionalHappinessByBuilding(eBuilding, iGood, iBad);
+				iExtraRate += iBad;
+			}
+		}
 	}
 
 	return iExtraRate;
@@ -12131,20 +12146,24 @@ bool CvCity::isBuildingProductionDecay(BuildingTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < GC.getNumBuildingInfos(), "eIndex expected to be < GC.getNumBuildingInfos()");
-	return isHuman() && getProductionBuilding() != eIndex && getBuildingProduction(eIndex) > 0 
+	return GET_PLAYER( getOwnerINLINE() ).getDisableProduction() == 0 // lfgr 09/2019: No decay while stasis
+			&& isHuman() && getProductionBuilding() != eIndex && getBuildingProduction(eIndex) > 0 
 			&& 100 * getBuildingProductionTime(eIndex) >= GC.getDefineINT("BUILDING_PRODUCTION_DECAY_TIME") * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getConstructPercent();
 }
 
 /*
  * Returns the amount by which the given building will decay once it reaches the limit.
  * Ignores whether or not the building will actually decay this turn.
+ * 
+ * lfgr 09/2019: Fixed formula
  */
 int CvCity::getBuildingProductionDecay(BuildingTypes eIndex) const																			 
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < GC.getNumBuildingInfos(), "eIndex expected to be < GC.getNumBuildingInfos()");
 	int iProduction = getBuildingProduction(eIndex);
-	return iProduction - ((iProduction * GC.getDefineINT("BUILDING_PRODUCTION_DECAY_PERCENT")) / 100);
+	int iGameSpeedPercent = GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getConstructPercent();
+	return (iProduction * (100 - GC.getDefineINT("BUILDING_PRODUCTION_DECAY_PERCENT")) + iGameSpeedPercent - 1) / iGameSpeedPercent;
 }
 
 /*
@@ -12282,20 +12301,24 @@ bool CvCity::isUnitProductionDecay(UnitTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < GC.getNumUnitInfos(), "eIndex expected to be < GC.getNumUnitInfos()");
-	return isHuman() && getProductionUnit() != eIndex && getUnitProduction(eIndex) > 0 
+	return GET_PLAYER( getOwnerINLINE() ).getDisableProduction() == 0 // lfgr 09/2019: No decay while stasis
+			&& isHuman() && getProductionUnit() != eIndex && getUnitProduction(eIndex) > 0 
 			&& 100 * getUnitProductionTime(eIndex) >= GC.getDefineINT("UNIT_PRODUCTION_DECAY_TIME") * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
 }
 
 /*
  * Returns the amount by which the given unit will decay once it reaches the limit.
  * Ignores whether or not the unit will actually decay this turn.
+ *
+ * lfgr 09/2019: Fixed formula
  */
 int CvCity::getUnitProductionDecay(UnitTypes eIndex) const																			 
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < GC.getNumUnitInfos(), "eIndex expected to be < GC.getNumUnitInfos()");
+	int iGameSpeedPercent = GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getConstructPercent();
 	int iProduction = getUnitProduction(eIndex);
-	return iProduction - ((iProduction * GC.getDefineINT("UNIT_PRODUCTION_DECAY_PERCENT")) / 100);
+	return (iProduction * (100 - GC.getDefineINT("UNIT_PRODUCTION_DECAY_PERCENT")) + iGameSpeedPercent - 1) / iGameSpeedPercent;
 }
 
 /*
@@ -14876,6 +14899,11 @@ void CvCity::doProduction(bool bAllowNoProduction)
 
 void CvCity::doDecay()
 {
+	// lfgr: Don't update counters if production is disabled
+	if( GET_PLAYER( getOwnerINLINE() ).getDisableProduction() != 0 ) {
+		return;
+	}
+
 	int iI;
 
 	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
@@ -14887,14 +14915,11 @@ void CvCity::doDecay()
 			{
 				changeBuildingProductionTime(eBuilding, 1);
 
-				if (isHuman())
-				{
-					int iGameSpeedPercent = GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getConstructPercent();
-					if (100 * getBuildingProductionTime(eBuilding) > GC.getDefineINT("BUILDING_PRODUCTION_DECAY_TIME") * iGameSpeedPercent)
-					{
-						int iProduction = getBuildingProduction(eBuilding);
-						setBuildingProduction(eBuilding, iProduction - (iProduction * (100 - GC.getDefineINT("BUILDING_PRODUCTION_DECAY_PERCENT")) + iGameSpeedPercent - 1) / iGameSpeedPercent);
-					}
+				// lfgr 09/2019: No decay while stasis
+				// Use BUG functions, which is a little bit slower, but cleaner.
+				if( isBuildingProductionDecay( eBuilding ) ) {
+					int iProduction = getBuildingProduction(eBuilding);
+					setBuildingProduction( eBuilding, iProduction - getBuildingProductionDecay( eBuilding ) );
 				}
 			}
 			else
@@ -14912,15 +14937,12 @@ void CvCity::doDecay()
 			if (getUnitProduction(eUnit) > 0)
 			{
 				changeUnitProductionTime(eUnit, 1);
-
-				if (isHuman())
-				{
-					int iGameSpeedPercent = GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
-					if (100 * getUnitProductionTime(eUnit) > GC.getDefineINT("UNIT_PRODUCTION_DECAY_TIME") * iGameSpeedPercent)
-					{
-						int iProduction = getUnitProduction(eUnit);
-						setUnitProduction(eUnit, iProduction - (iProduction * (100 - GC.getDefineINT("UNIT_PRODUCTION_DECAY_PERCENT")) + iGameSpeedPercent - 1) / iGameSpeedPercent);
-					}
+				
+				// lfgr 09/2019: No decay while stasis
+				// Use BUG functions, which is a little bit slower, but cleaner.
+				if( isUnitProductionDecay( eUnit ) ) {
+					int iProduction = getUnitProduction(eUnit);
+					setUnitProduction(eUnit, iProduction - getUnitProductionDecay( eUnit ) );
 				}
 			}
 			else

@@ -461,10 +461,11 @@ public:
 		return m_iY;
 	}
 #endif
-//>>>>Unofficial Bug Fix: Modified by Denev 2010/02/22
-//	void setXY(int iX, int iY, bool bGroup = false, bool bUpdate = true, bool bShow = false, bool bCheckPlotVisible = false);	// Exposed to Python
-	void setXY(int iX, int iY, bool bGroup = false, bool bUpdate = true, bool bShow = false, bool bCheckPlotVisible = false, bool bPushOutExistingUnit = true);
-//<<<<Unofficial Bug Fix: End Modify
+// Denev 02/2010, lfgr 09/2019: Unofficial Bug Fix (added bPushOutExistingUnit), added bUnitCreation
+	// bUnitCreation indicates whether the unit was just created (instead of moving from a different plot)
+	void setXY(int iX, int iY, bool bGroup = false, bool bUpdate = true, bool bShow = false,
+		bool bCheckPlotVisible = false, bool bPushOutExistingUnit = true, bool bUnitCreation = false); 	// Exposed to Python
+
 	bool at(int iX, int iY) const;																														// Exposed to Python
 	DllExport bool atPlot(const CvPlot* pPlot) const;																					// Exposed to Python
 	DllExport CvPlot* plot() const;																														// Exposed to Python
@@ -1079,6 +1080,8 @@ public:
 	bool isPromotionImmune( PromotionTypes ePromotion ) const; // Exposed to python
 	void changePromotionImmune( PromotionTypes ePromotion, int iChange );
 	// XML_LISTS end
+	
+	int getMiscastChance() const; // MiscastPromotions 10/2019 lfgr
 
 	virtual int AI_promotionValue(PromotionTypes ePromotion) = 0;
 

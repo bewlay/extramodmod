@@ -93,7 +93,8 @@ def onMove(argsList):
 	eval(imp.getPythonOnMove())
 
 def onMoveFeature(argsList):
-	pCaster, pPlot, eFeature = argsList
+	# lfgr 09/2019: Added bUnitCreation, indicating whether the unit was just created
+	pCaster, pPlot, eFeature, bUnitCreation = argsList
 	feature = gc.getFeatureInfo(eFeature)
 	eval(feature.getPythonOnMove())
 
@@ -127,6 +128,13 @@ def getSpellHelp( argsList ) :
 		lpUnits.append( pPlayer.getUnit( eUnit ) )
 	return eval( pSpell.getPyHelp() )
 # SpellPyHelp END
+
+# UnitPyInfoHelp 10/2019 lfgr
+def getUnitInfoHelp( argsList ) :
+	eUnit, bCivilopediaText, bStrategyText, bTechChooserText, pCity = argsList
+	pUnitInfo = gc.getUnitInfo( eUnit )
+	return eval( pUnitInfo.getPyInfoHelp() )
+# UnitPyInfoHelp END
 
 def findClearPlot(pUnit, plot):
 	BestPlot = -1
@@ -3627,7 +3635,7 @@ def spellTakeEquipmentUnit(caster,unit):
 				pHolder = pUnit
 	if pHolder != -1:
 		pHolder.setHasCasted(True)
-		pHolder.kill(True, PlayerTypes.NO_PLAYER)
+		pHolder.kill(False, PlayerTypes.NO_PLAYER)
 	# More Events mod starts  #
 	# modified by lfgr: moved and fixed
 	if gc.getPlayer( iPlayer ).isHuman():
@@ -4268,9 +4276,12 @@ def onMoveAncientForest(pCaster, pPlot):
 							CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_TREANT_ENEMY",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Units/Treant.dds',ColorTypes(7),newUnit.getX(),newUnit.getY(),True,True)
 							CyInterface().addMessage(pPlot.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_TREANT",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Units/Treant.dds',ColorTypes(8),newUnit.getX(),newUnit.getY(),True,True)
 
-def onMoveBlizzard(pCaster, pPlot):
-	if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_WINTERBORN')) == False:
-		pCaster.doDamage(10, 50, pCaster, gc.getInfoTypeForString('DAMAGE_COLD'), false)
+def onMoveBlizzard(pCaster, pPlot, bUnitCreation):
+	# lfgr 09/2019: Blizzard damage on unit creation is not handled here, as the Winterborn promotion is not yet given
+	#   instead, CvEventManager.onUnitCreated is used for that
+	if not bUnitCreation :
+		if not pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_WINTERBORN')):
+			pCaster.doDamage(10, 50, pCaster, gc.getInfoTypeForString('DAMAGE_COLD'), False)
 
 def onMoveLetumFrigus(pCaster, pPlot):
 	pPlayer = gc.getPlayer(pCaster.getOwner())

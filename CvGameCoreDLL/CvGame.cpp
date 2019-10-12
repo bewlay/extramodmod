@@ -3854,6 +3854,8 @@ void CvGame::replaceCorporation(CorporationTypes eCorporation1, CorporationTypes
 			{
 				if (pUnit->getUnitInfo().getCorporationSpreads(eCorporation1) > 0)
 				{
+					logBBAI("    Killing %S -- replaced this unit's corporation (Unit %d - plot: %d, %d)",
+							pUnit->getName().GetCString(), pUnit->getID(), pUnit->getX(), pUnit->getY());
 					pUnit->kill(false);
 				}
 			}
@@ -7737,7 +7739,8 @@ void CvGame::createBarbarianCities()
 	{
 		pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
 
-		if (!(pLoopPlot->isWater()))
+		// lfgr 09/2019: Honor isFoundDisabled
+		if( ! pLoopPlot->isWater() && ! pLoopPlot->isFoundDisabled() )
 		{
 			if (!(pLoopPlot->isVisibleToCivTeam()))
 			{
