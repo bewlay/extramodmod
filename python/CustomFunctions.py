@@ -1743,9 +1743,4 @@ class CustomFunctions:
 					if( plotDistance( x, y, x2, y2 ) == d ) :
 						lpResult.append( CyMap().plot( x2, y2 ) )
 		return lpResult
-	
-	def plotDistance( x1, y1, x2, y2 ) :
-		dx = abs( x1 - x2 )
-		dy = abs( y1 - y2 )
-		return max( dx, xy ) + min( dx, dy ) / 2.0;
 	# lfgr end
