@@ -60,8 +60,9 @@ game = gc.getGame()
 cs = CvCorporationScreen.cs
 #FfH: Card Game: end
 
-# lfgr WILDERNESS 03/2015
+# lfgr 03/2015, 10/2019
 import BarbsPlusDefines
+import FfHDefines
 # lfgr end
 
 Blizzards = Blizzards.Blizzards()		#Added in Blizzards: TC01
@@ -2780,45 +2781,32 @@ class CvEventManager:
 									eTeam.setHasTech(iTech, True, iPlayer, False, True)
 									CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_EYES_AND_EARS_NETWORK_FREE_TECH",()),'AS2D_TECH_DING',1,'Art/Interface/Buttons/Buildings/Eyesandearsnetwork.dds',ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
 
-		if pCity.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_PLANAR_GATE')) > 0:
+		# PlanarGateOverhaul 10/2019 lfgr
+		ffhDefs = FfHDefines.getInst()
+		if pCity.getNumRealBuilding( ffhDefs.BUILDING_PLANAR_GATE ) > 0 :
 			## Scaled planar gate probability.
-			iMult = 1 + 0.06 * CyGame().getGlobalCounter()
-
-			if CyGame().getSorenRandNum(10000, "Planar Gate") < gc.getDefineINT('PLANAR_GATE_CHANCE') * iMult:
+			iChance = gc.getDefineINT( 'PLANAR_GATE_CHANCE' )
+			iChance = iChance + iChance * gc.getDefineINT( "PLANAR_GATE_CHANCE_PERCENT_MOD_PER_AC" ) * CyGame().getGlobalCounter() / 100
+			iChance = iChance * gc.getGameSpeedInfo(CyGame().getGameSpeedType()).getTrainPercent() / 100
+			
+			if CyGame().getSorenRandNum( 10000, "Planar Gate" ) < iChance :
 				listUnits = []
-				iMax = 1 + 0.333 * CyGame().getGlobalCounter() * pPlayer.countNumBuildings(gc.getInfoTypeForString('BUILDING_PLANAR_GATE'))
-				if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_GAMBLING_HOUSE')) > 0:
-					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_REVELERS')) < iMax:
-						listUnits.append(gc.getInfoTypeForString('UNIT_REVELERS'))
-				if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_MAGE_GUILD')) > 0:
-					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_MOBIUS_WITCH')) < iMax:
-						listUnits.append(gc.getInfoTypeForString('UNIT_MOBIUS_WITCH'))
-				if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_CARNIVAL')) > 0:
-					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_CHAOS_MARAUDER')) < iMax:
-						listUnits.append(gc.getInfoTypeForString('UNIT_CHAOS_MARAUDER'))
-				if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_GROVE')) > 0:
-					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_MANTICORE')) < (iMax / 2):
-						listUnits.append(gc.getInfoTypeForString('UNIT_MANTICORE'))
-				if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_PUBLIC_BATHS')) > 0:
-					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_SUCCUBUS')) < iMax:
-						listUnits.append(gc.getInfoTypeForString('UNIT_SUCCUBUS'))
-				if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_OBSIDIAN_GATE')) > 0:
-					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_MINOTAUR')) < (iMax / 2):
-						listUnits.append(gc.getInfoTypeForString('UNIT_MINOTAUR'))
-				if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_TEMPLE_OF_THE_VEIL')) > 0:
-					if pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_TAR_DEMON')) < iMax:
-						listUnits.append(gc.getInfoTypeForString('UNIT_TAR_DEMON'))
-				if len(listUnits) > 0:
-					iUnit = listUnits[CyGame().getSorenRandNum(len(listUnits), "Planar Gate")]
-					newUnit = pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-					CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_PLANAR_GATE",()),'AS2D_DISCOVERBONUS',1,gc.getUnitInfo(newUnit.getUnitType()).getButton(),ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
-					if iUnit == gc.getInfoTypeForString('UNIT_MOBIUS_WITCH'):
-						promotions = [ 'PROMOTION_AIR1','PROMOTION_BODY1','PROMOTION_CHAOS1','PROMOTION_CREATION1','PROMOTION_DEATH1','PROMOTION_DIMENSIONAL1','PROMOTION_EARTH1','PROMOTION_ENCHANTMENT1','PROMOTION_ENTROPY1','PROMOTION_FORCE1','PROMOTION_FIRE1','PROMOTION_ICE1','PROMOTION_LAW1','PROMOTION_LIFE1','PROMOTION_METAMAGIC1','PROMOTION_MIND1','PROMOTION_NATURE1','PROMOTION_SHADOW1','PROMOTION_SPIRIT1','PROMOTION_SUN1','PROMOTION_WATER1' ]
-						newUnit.setLevel(2)
-						newUnit.setExperience(5, -1)
-						for i in promotions:
-							if CyGame().getSorenRandNum(10, "Bob") == 1:
-								newUnit.setHasPromotion(gc.getInfoTypeForString(i), True)
+				for eUnit in ffhDefs.PLANAR_GATE_UNITS :
+					if pCity.canTrain( eUnit, False, False ) :
+						iMax = cf.getPlanarGateUnitLimit( iPlayer, eUnit )
+						iCount = pPlayer.getUnitClassCount( gc.getUnitInfo( eUnit ).getUnitClassType() )
+						if  iCount < iMax :
+							listUnits.append( eUnit )
+				if len( listUnits ) > 0 :
+					iUnit = listUnits[CyGame().getSorenRandNum( len( listUnits ), "Planar Gate" )]
+					newUnit = pPlayer.initUnit( iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI,
+												DirectionTypes.DIRECTION_SOUTH )
+					CyInterface().addMessage( iPlayer, True, 25,
+											  CyTranslator().getText( "TXT_KEY_MESSAGE_PLANAR_GATE", () ),
+											  'AS2D_DISCOVERBONUS', 1,
+											  gc.getUnitInfo( newUnit.getUnitType() ).getButton(), ColorTypes( 8 ),
+											  pCity.getX(), pCity.getY(), True, True )
+		# PlanarGateOverhaul end
 
 		if gc.getPlayer(pCity.getOwner()).getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
 			if pCity.isHasReligion(gc.getInfoTypeForString('RELIGION_THE_ORDER')):

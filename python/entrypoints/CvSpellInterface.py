@@ -420,6 +420,21 @@ def postCombatScorpionClan(pCaster, pOpponent):
 		newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_WOLF_RIDER_SCORPION_CLAN'), pCaster.getX(), pCaster.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 		newUnit.convert(pCaster)
 
+# UnitPyInfoHelp 10/2019 lfgr
+def helpPlanarGateUnitInfo( eUnit, pCity ) :
+	if pCity is None :
+		return CyTranslator().getText( "TXT_KEY_PLANAR_GATE_UNIT_GENERAL_HELP", () )
+	else :
+		iCount = gc.getPlayer( pCity.getOwner() ).getUnitClassCount( gc.getUnitInfo( eUnit ).getUnitClassType() )
+		iMax = cf.getPlanarGateUnitLimit( pCity.getOwner(), eUnit )
+		iRemaining = max( 0, iMax - iCount )
+		
+		if iRemaining > 0 :
+			return CyTranslator().getText( "TXT_KEY_PLANAR_GATE_UNIT_AVAILABLE_HELP", (iRemaining, iMax) )
+		else :
+			return CyTranslator().getText( "TXT_KEY_PLANAR_GATE_UNIT_UNAVAILABLE_HELP", (iRemaining, iMax) )
+# UnitPyInfoHelp END
+
 def reqAddToFleshGolem(caster):
 	if caster.isImmortal():
 		return False

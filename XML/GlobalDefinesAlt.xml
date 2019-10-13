@@ -218,6 +218,10 @@
         <iDefineIntVal>600</iDefineIntVal>
     </Define>
     <Define>
+        <DefineName>PLANAR_GATE_CHANCE_PERCENT_MOD_PER_AC</DefineName>
+        <iDefineIntVal>6</iDefineIntVal>
+    </Define>
+    <Define>
         <DefineName>RAZE_COST_BASE</DefineName>
         <iDefineIntVal>1</iDefineIntVal>
     </Define>

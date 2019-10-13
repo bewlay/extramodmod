@@ -9,6 +9,10 @@ import CvScreenEnums
 import CvCameraControls
 from operator import itemgetter # K-Mod (used to avoid OOS when sorting)
 
+# lfgr 10/2019
+import FfHDefines
+# lfgr end
+
 # lfgr events enhanced 08/2014
 from math import *
 # lfgr end
@@ -32,7 +36,7 @@ class CustomFunctions:
 	@property
 	def siIgnoreFire(self):
 		# Cached data is initialized the first time that it is read. This prevents assertions while the game is loading.
-		if len(self.__siIgnoreFire) > 0:
+		if len(self.__siIgnoreFire) > 0: # TODO: Error?
 			self.__siIgnoreFire.add(gc.getInfoTypeForString('BUILDING_ALTAR_OF_THE_LUONNOTAR'))
 			self.__siIgnoreFire.add(gc.getInfoTypeForString('BUILDING_ALTAR_OF_THE_LUONNOTAR_ANOINTED'))
 			self.__siIgnoreFire.add(gc.getInfoTypeForString('BUILDING_ALTAR_OF_THE_LUONNOTAR_BLESSED'))
@@ -1744,3 +1748,15 @@ class CustomFunctions:
 						lpResult.append( CyMap().plot( x2, y2 ) )
 		return lpResult
 	# lfgr end
+
+	# PlanarGateOverhaul 10/2019 lfgr
+	def getPlanarGateUnitLimit( self, ePlayer, eUnit ) :
+		ffhDefs = FfHDefines.getInst()
+		iNumPlanarGates = gc.getPlayer( ePlayer ).countNumBuildings( ffhDefs.BUILDING_PLANAR_GATE )
+		iAC = CyGame().getGlobalCounter()
+		iMax = iNumPlanarGates + iNumPlanarGates * iAC / 25 + iNumPlanarGates * iAC * iAC / 2000
+		if eUnit in ffhDefs.PLANAR_GATE_HALF_MAX_UNITS :
+			iMax /= 2
+		return iMax
+	# PlanarGateOverhaul end
+	

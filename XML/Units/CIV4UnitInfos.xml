@@ -7450,6 +7450,7 @@
 			<iTier>2</iTier>
 			<iWeaponTier>3</iWeaponTier>
 			<PrereqBuildingClass>BUILDINGCLASS_CARNIVAL</PrereqBuildingClass>
+			<PythonInfoHelp>helpPlanarGateUnitInfo( eUnit, pCity )</PythonInfoHelp>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_CENTAUR_CHARGER -->
 			<Class>UNITCLASS_CHARIOT</Class>
@@ -17478,6 +17479,7 @@
 				</DamageTypeCombat>
 			</DamageTypeCombats>
 			<PrereqBuildingClass>BUILDINGCLASS_GROVE</PrereqBuildingClass>
+			<PythonInfoHelp>helpPlanarGateUnitInfo( eUnit, pCity )</PythonInfoHelp>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_MARDERO -->
 			<Class>UNITCLASS_MARDERO</Class>
@@ -18308,6 +18310,7 @@
 			<iCombatDefense>11</iCombatDefense>
 			<iTier>4</iTier>
 			<PrereqBuildingClass>BUILDINGCLASS_OBSIDIAN_GATE</PrereqBuildingClass>
+			<PythonInfoHelp>helpPlanarGateUnitInfo( eUnit, pCity )</PythonInfoHelp>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_MISTFORM -->
 			<Class>UNITCLASS_MISTFORM</Class>
@@ -18611,6 +18614,7 @@
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>3</iTier>
 			<PrereqBuildingClass>BUILDINGCLASS_MAGE_GUILD</PrereqBuildingClass>
+			<PythonInfoHelp>helpPlanarGateUnitInfo( eUnit, pCity )</PythonInfoHelp>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_MOKKA -->
 			<Class>UNITCLASS_MOKKA</Class>
@@ -21889,6 +21893,7 @@
 				</DamageTypeCombat>
 			</DamageTypeCombats>
 			<PrereqBuildingClass>BUILDINGCLASS_GAMBLING_HOUSE</PrereqBuildingClass>
+			<PythonInfoHelp>helpPlanarGateUnitInfo( eUnit, pCity )</PythonInfoHelp>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_ROSIER -->
 			<Class>UNITCLASS_ROSIER</Class>
@@ -24369,6 +24374,7 @@
 				</DamageTypeCombat>
 			</DamageTypeCombats>
 			<PrereqBuildingClass>BUILDINGCLASS_TEMPLE_OF_THE_VEIL</PrereqBuildingClass>
+			<PythonInfoHelp>helpPlanarGateUnitInfo( eUnit, pCity )</PythonInfoHelp>
 		</UnitInfo>
 		<UnitInfo> <!-- UNIT_TEUTORIX -->
 			<Class>UNITCLASS_TEUTORIX</Class>
