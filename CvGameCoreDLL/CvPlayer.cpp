@@ -8340,6 +8340,7 @@ void CvPlayer::found(int iX, int iY)
 }
 
 
+// bTestVisible: only testing whether visible e.g. in city screen (weaker conditions!)
 bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool bIgnoreCost) const
 {
 	PROFILE_FUNC();

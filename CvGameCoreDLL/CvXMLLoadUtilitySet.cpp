@@ -14,6 +14,8 @@
 #include "FVariableSystem.h"
 #include "CvGameCoreUtils.h"
 
+#include "CvInfoCache.h" // InfoCache 10/2019 lfgr
+
 // lfgr TERRAIN_FLAVOUR_TEST
 #include "BetterBTSAI.h"
 // lfgr end
@@ -1332,6 +1334,8 @@ bool CvXMLLoadUtility::LoadPostMenuGlobals()
 	//   in later GC.getInfoTypeForString() asserts
 	GC.setCurrentXMLFile( "(None)" );
 	// lfgr end
+
+	getInfoCache().init(); // InfoCache 10/2019 lfgr
 
 	return true;
 }

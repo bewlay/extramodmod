@@ -2248,6 +2248,7 @@ bool CvCity::isBuildingsMaxed() const
 }
 
 //FfH: Modified by Kael 08/07/2007
+// bTestVisible: only testing whether visible e.g. in city screen (weaker conditions!)
 //bool CvCity::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool bIgnoreCost, bool bIgnoreUpgrades) const
 bool CvCity::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool bIgnoreCost, bool bIgnoreUpgrades) const
 {
@@ -2269,6 +2270,7 @@ bool CvCity::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool b
     return canUpgrade(eUnit, bContinue, bTestVisible, bIgnoreCost, bIgnoreUpgrades);
 }
 
+// bTestVisible: only testing whether visible e.g. in city screen (weaker conditions!)
 bool CvCity::canUpgrade(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool bIgnoreCost, bool bIgnoreUpgrades) const
 //FfH: End Modify
 
@@ -14583,6 +14585,8 @@ void CvCity::doPlotCulture(bool bUpdate, PlayerTypes ePlayer, int iCultureRate)
 							bool bCultureBlocked = false;
 							if (GET_PLAYER(getOwnerINLINE()).isCultureNeedsEmptyRadius())
 							{
+								// LFGR_TODO: simplify check
+								// LFGR_TODO: Barb check seems to be redundant, as barbarians are in no council.
 								if (pLoopPlot->isOwned())
 								{
 									bCultureBlocked = true;

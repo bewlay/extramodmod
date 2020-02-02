@@ -5439,6 +5439,7 @@
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <UnitPrereq>UNIT_SKELETON</UnitPrereq>
             <CivilizationPrereq>CIVILIZATION_BARBARIAN</CivilizationPrereq>
+            <TechPrereq>TECH_SORCERY</TechPrereq>
             <bAllowAI>1</bAllowAI>
             <iAIWeight>300</iAIWeight>
             <iCasterMinLevel>3</iCasterMinLevel>

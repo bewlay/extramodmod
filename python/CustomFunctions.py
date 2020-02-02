@@ -5,8 +5,6 @@ from CvPythonExtensions import *
 import CvUtil
 import Popup as PyPopup
 import PyHelpers
-import CvScreenEnums
-import CvCameraControls
 from operator import itemgetter # K-Mod (used to avoid OOS when sorting)
 
 # lfgr 10/2019
