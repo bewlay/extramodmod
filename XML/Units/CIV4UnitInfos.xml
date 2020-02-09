@@ -5061,7 +5061,7 @@
 					<bFeatureNative>1</bFeatureNative>
 				</FeatureNative>
 			</FeatureNatives>
-			<iPower>4</iPower>
+			<iPower>7</iPower>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -11385,7 +11385,7 @@
 			<iXPValueDefense>4</iXPValueDefense>
 			<iCultureGarrison>6</iCultureGarrison>
 			<iAsset>4</iAsset>
-			<iPower>5</iPower>
+			<iPower>4</iPower>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -19168,8 +19168,6 @@
 		<UnitInfo> <!-- UNIT_PANTHER // WILDERNESS 08/2013 MagisterCultuum/lfgr / NewUnits -->
 			<Class>UNITCLASS_PANTHER</Class>
 			<Type>UNIT_PANTHER</Type>
-			<Special />
-			<Capture />
 			<Combat>UNITCOMBAT_ANIMAL</Combat>
 			<Domain>DOMAIN_LAND</Domain>
 			<DefaultUnitAI>UNITAI_ANIMAL</DefaultUnitAI>
@@ -19178,7 +19176,6 @@
 			<Description>TXT_KEY_UNIT_PANTHER</Description>
 			<Civilopedia>TXT_KEY_UNIT_PANTHER_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_TIGER_STRATEGY</Strategy>
-			<Advisor />
 			<bAnimal>1</bAnimal>
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
@@ -19199,14 +19196,6 @@
 					<bBuilding>1</bBuilding>
 				</Building>
 			</Buildings>
-			<HolyCity />
-			<ReligionType />
-			<StateReligion />
-			<PrereqReligion />
-			<PrereqCorporation />
-			<PrereqBuilding />
-			<PrereqTech />
-			<BonusType />
 			<iCost>-1</iCost>
 			<iMoves>1</iMoves>
 			<iCombat>4</iCombat>
@@ -19219,8 +19208,7 @@
 					<bFeatureNative>1</bFeatureNative>
 				</FeatureNative>
 			</FeatureNatives>
-			<SpecialCargo />
-			<DomainCargo />
+			<iPower>4</iPower>
 			<UnitMeshGroups>
 				<iGroupSize>1</iGroupSize>
 				<fMaxSpeed>1.75</fMaxSpeed>
@@ -19243,7 +19231,6 @@
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
-			<LeaderPromotion />
 			<bNeverObsolete>1</bNeverObsolete>
 			<iCombatDefense>4</iCombatDefense>
 			<iTier>1</iTier>
