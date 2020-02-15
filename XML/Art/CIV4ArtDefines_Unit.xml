@@ -16152,6 +16152,31 @@
         </UnitArtInfo>
 		
 		<UnitArtInfo>
+			<!-- WILDERNESS 10/2017 lfgr // GargantuanAnimals -->
+            <Type>ART_DEF_UNIT_BEAR_GARGANTUAN</Type>
+            <Button>Art/Interface/Buttons/Units/Bear.dds</Button>
+            <fScale>1.2</fScale>
+            <fInterfaceScale>1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/Bear/Bear.nif</NIF>
+            <KFM>Art/Units/Bear/Bear blood.kfm</KFM>
+            <SHADERNIF>Art/Units/Bear/Bear_FX.nif</SHADERNIF>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/BearShadow.nif</ShadowNIF>
+                <ShadowAttachNode>LionBip Spine</ShadowAttachNode>
+                <fShadowScale>0.6</fShadowScale>
+            </ShadowDef>
+                <fBattleDistance>0.95</fBattleDistance>
+                <fRangedDeathTime>0.31</fRangedDeathTime>
+                <bActAsRanged>0</bActAsRanged>
+                <TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+        </UnitArtInfo>
+		<UnitArtInfo>
 			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
 			<!-- Art from Caveman2Cosmos -->
 			<Type>ART_DEF_UNIT_BOAR</Type>
@@ -16177,6 +16202,33 @@
                 <AudioRunTypeEnd/>
             </AudioRunSounds>
 		</UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 10/2017 lfgr // NewUnits, GargantuanAnimals -->
+			<!-- Art from Caveman2Cosmos -->
+			<Type>ART_DEF_UNIT_BOAR_GARGANTUAN</Type>
+			<Button>Art/Interface/Buttons/Units/boar.dds</Button>
+			<fScale>0.72</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<bActAsLand>0</bActAsLand>
+			<bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/Animals/Boar/companion_cavalry.nif</NIF>
+			<KFM>Art/Units/Knight_South_America/Companion_Cavalry.kfm</KFM>
+			<SHADERNIF>Art/Units/Animals/Boar/companion_cavalry.nif</SHADERNIF>
+			<ShadowDef>
+				<ShadowNIF>Art/Units/01_UnitShadows/PantherShadow.nif</ShadowNIF>
+				<ShadowAttachNode>LionBip Spine</ShadowAttachNode>
+				<fShadowScale>1.0</fShadowScale>
+			</ShadowDef>
+			<fBattleDistance>0.6</fBattleDistance>
+			<fRangedDeathTime>0.31</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged>
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+		</UnitArtInfo>
+		
 		<UnitArtInfo>
 			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
 			<!-- Art from Caveman2Cosmos -->
@@ -16215,7 +16267,7 @@
             <bActAsLand>0</bActAsLand>
             <bActAsAir>0</bActAsAir>
 			<NIF>Art/Units/Animals/Cobra/Cobra.nif</NIF>
-            <KFM>Art/Units/WarElephant/WarElephant.kfm</KFM>
+            <KFM></KFM>
 			<SHADERNIF>Art/Units/Animals/Cobra/Cobra.nif</SHADERNIF>
 			<ShadowDef>
 				<ShadowNIF>Art/Units/01_UnitShadows/HorseShadow.nif</ShadowNIF>
@@ -16233,6 +16285,87 @@
 			<SelectionSound>AS3D_UN_SEA_SERPENT</SelectionSound>
 			<ActionSound>AS3D_UN_SEA_SERPENT</ActionSound>
 		</UnitArtInfo>
+		<UnitArtInfo>
+			<!-- WILDERNESS 10/2017 lfgr // NewUnits, GargantuanAnimals -->
+			<!-- Art from Caveman2Cosmos -->
+			<Type>ART_DEF_UNIT_COBRA_GARGANTUAN</Type>
+			<Button>Art/Interface/Buttons/Units/cobra_giant.dds</Button>
+			<fScale>0.5</fScale>
+			<fInterfaceScale>0.7</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/Animals/Cobra/Cobra.nif</NIF>
+            <KFM>Art/Units/WarElephant/WarElephant.kfm</KFM>
+			<SHADERNIF>Art/Units/Animals/Cobra/Cobra.nif</SHADERNIF>
+			<ShadowDef>
+				<ShadowNIF>Art/Units/01_UnitShadows/HorseShadow.nif</ShadowNIF>
+				<ShadowAttachNode>LionBip Spine1</ShadowAttachNode>
+				<fShadowScale>1.4</fShadowScale>
+			</ShadowDef>
+			<fBattleDistance>0.7</fBattleDistance>
+			<fRangedDeathTime>0.32</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged>
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+			<SelectionSound>AS3D_UN_SEA_SERPENT</SelectionSound>
+			<ActionSound>AS3D_UN_SEA_SERPENT</ActionSound>
+		</UnitArtInfo>
+		
+        <UnitArtInfo>
+			<!-- WILDERNESS 10/2017 lfgr // GargantuanAnimals -->
+            <Type>ART_DEF_UNIT_GORILLA_GARGANTUAN</Type>
+            <Button>Art/Interface/Buttons/Units/Gorilla.dds</Button>
+            <fScale>0.9</fScale>
+            <fInterfaceScale>1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/Gorilla/Berserker.nif</NIF>
+            <KFM>Art/Units/Viking_Berserker/Berserker.kfm</KFM>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/UnitShadow.nif</ShadowNIF>
+                <ShadowAttachNode>BIP Pelvis</ShadowAttachNode>
+                <fShadowScale>1</fShadowScale>
+            </ShadowDef>
+                <fBattleDistance>0.65</fBattleDistance>
+                <fRangedDeathTime>0.31</fRangedDeathTime>
+                <bActAsRanged>0</bActAsRanged>
+                <TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+            <SelectionSound>AS3D_GORILLA</SelectionSound>
+            <ActionSound>AS3D_GORILLA</ActionSound>
+        </UnitArtInfo>
+        
+        <UnitArtInfo>
+			<!-- WILDERNESS 10/2017 lfgr // GargantuanAnimals -->
+            <Type>ART_DEF_UNIT_GRIFFON_GARGANTUAN</Type>
+            <Button>Art/Interface/Buttons/Units/Griffon.dds</Button>
+            <fScale>1.2</fScale>
+            <fInterfaceScale>1.1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/Griffon/griffon.nif</NIF>
+            <KFM>Art/Units/Panther/Panther blood.kfm</KFM>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/PantherShadow.nif</ShadowNIF>
+                <ShadowAttachNode>LionBip Spine</ShadowAttachNode>
+                <fShadowScale>1</fShadowScale>
+            </ShadowDef>
+                <fBattleDistance>0.9</fBattleDistance>
+                <fRangedDeathTime>0.31</fRangedDeathTime>
+                <bActAsRanged>0</bActAsRanged>
+                <TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+        </UnitArtInfo>
+		
 		<UnitArtInfo>
 			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
 			<!-- Art from Caveman2Cosmos -->
@@ -16260,6 +16393,60 @@
             </AudioRunSounds>
 		</UnitArtInfo>
 		<UnitArtInfo>
+			<!-- WILDERNESS 10/2017 lfgr // NewUnits, GargantuanAnimals -->
+			<!-- Art from Caveman2Cosmos -->
+			<Type>ART_DEF_UNIT_HYENA_GARGANTUAN</Type>
+			<Button>Art/Interface/Buttons/Units/hyena.dds</Button>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/Animals/Hyena/lion.nif</NIF>
+			<KFM>Art/Units/Lion/Lion.kfm</KFM>
+			<SHADERNIF>Art/Units/Animals/Hyena/lion.nif</SHADERNIF>
+			<ShadowDef>
+				<ShadowNIF>Art/Units/01_UnitShadows/LionShadow.nif</ShadowNIF>
+				<ShadowAttachNode>LionBip Spine1</ShadowAttachNode>
+				<fShadowScale>1.0</fShadowScale>
+			</ShadowDef>
+			<fBattleDistance>0.7</fBattleDistance>
+			<fRangedDeathTime>0.28</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged>
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+		</UnitArtInfo>
+		
+        <UnitArtInfo>
+			<!-- WILDERNESS 10/2017 lfgr // GargantuanAnimals -->
+            <Type>ART_DEF_UNIT_LION_GARGANTUAN</Type>
+            <Button>Art/Interface/Buttons/Units/Lion.dds</Button>
+            <fScale>1.2</fScale>
+            <fInterfaceScale>1.3</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/Lion/Lion.nif</NIF>
+            <KFM>Art/Units/Lion/Lion blood.kfm</KFM>
+            <SHADERNIF>Art/Units/Lion/Lion_FX.nif</SHADERNIF>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/LionShadow.nif</ShadowNIF>
+                <ShadowAttachNode>LionBip Spine1</ShadowAttachNode>
+                <fShadowScale>1</fShadowScale>
+            </ShadowDef>
+                <fBattleDistance>0.8</fBattleDistance>
+                <fRangedDeathTime>0.28</fRangedDeathTime>
+                <bActAsRanged>0</bActAsRanged>
+                <TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+            <SelectionSound>AS3D_LION_SELECT</SelectionSound>
+        </UnitArtInfo>
+		
+		<UnitArtInfo>
 			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
 			<!-- Art from MoM, tweaks by lfgr -->
 			<Type>ART_DEF_UNIT_LIZARD_GREAT</Type>
@@ -16285,6 +16472,7 @@
                 <AudioRunTypeEnd/>
             </AudioRunSounds>
 		</UnitArtInfo>
+		
 		<UnitArtInfo>
 			<!-- WILDERNESS 02/2016 lfgr // NewUnits -->
 			<!-- Art from MoM, tweaks by lfgr -->
@@ -16312,8 +16500,61 @@
             </AudioRunSounds>
 		</UnitArtInfo>
 		<UnitArtInfo>
+			<!-- WILDERNESS 02/2016 lfgr // NewUnits, GargantuanAnimals -->
+			<!-- Art from MoM, tweaks by lfgr -->
+			<Type>ART_DEF_UNIT_LIZARD_GARGANTUAN</Type>
+			<Button>Art/Interface/Buttons/Units/lizard_giant.dds</Button>
+			<fScale>1.4</fScale>
+			<fInterfaceScale>1.125</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+			<NIF>Art/Units/animals/Lizard/wolf.nif</NIF>
+			<KFM>Art/Units/animals/Lizard/wolf.kfm</KFM>
+			<SHADERNIF>Art/Units/animals/Lizard/wolf.nif</SHADERNIF>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/UnitShadow.nif</ShadowNIF>
+                <ShadowAttachNode>Bip01</ShadowAttachNode>
+                <fShadowScale>0.1</fShadowScale> <!-- TODO ? -->
+            </ShadowDef>
+			<fBattleDistance>1.1</fBattleDistance>
+			<fRangedDeathTime>0.31</fRangedDeathTime>
+			<bActAsRanged>0</bActAsRanged> <!-- TODO -->
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+		</UnitArtInfo>
+		
+        <UnitArtInfo>
+			<!-- WILDERNESS 02/2016 lfgr // GargantuanAnimals -->
+            <Type>ART_DEF_UNIT_PANTHER_GARGANTUAN</Type>
+            <Button>Art/Interface/Buttons/Units/Panther.dds</Button>
+            <fScale>1.1</fScale>
+            <fInterfaceScale>1.3</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/Panther/Panther.nif</NIF>
+            <KFM>Art/Units/Panther/Panther blood.kfm</KFM>
+            <SHADERNIF>Art/Units/Panther/Panther_FX.nif</SHADERNIF>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/LionShadow.nif</ShadowNIF>
+                <ShadowAttachNode>LionBip Spine1</ShadowAttachNode>
+                <fShadowScale>1</fShadowScale>
+            </ShadowDef>
+                <fBattleDistance>0.8</fBattleDistance>
+                <fRangedDeathTime>0.28</fRangedDeathTime>
+                <bActAsRanged>0</bActAsRanged>
+                <TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+        </UnitArtInfo>
+		
+		<UnitArtInfo>
 			<!-- WILDERNESS 09/2017 lfgr // NewUnits -->
-			<!-- Art by Terkhen -->
+			<!-- Reskin by Terkhen -->
             <Type>ART_DEF_UNIT_PHOENIX</Type>
             <Button>Art/Interface/Buttons/Units/Hawk.dds</Button>
             <fScale>0.75</fScale>
@@ -16338,6 +16579,139 @@
                 <AudioRunTypeEnd/>
             </AudioRunSounds>
             <PatrolSound>AS3D_UN_HAWK_PATROL</PatrolSound>
+        </UnitArtInfo>
+		
+        <UnitArtInfo>
+			<!-- WILDERNESS 02/2020 lfgr / GargantuanAnimals -->
+            <Type>ART_DEF_UNIT_POLAR_BEAR_GARGANTUAN</Type>
+            <Button>Art/Interface/Buttons/Units/Polar Bear.dds</Button>
+            <fScale>1.2</fScale>
+            <fInterfaceScale>1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/Polar Bear/Bear.nif</NIF>
+            <KFM>Art/Units/Bear/Bear blood.kfm</KFM>
+            <SHADERNIF>Art/Units/Polar Bear/Bear_FX.nif</SHADERNIF>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/BearShadow.nif</ShadowNIF>
+                <ShadowAttachNode>LionBip Spine</ShadowAttachNode>
+                <fShadowScale>0.6</fShadowScale>
+            </ShadowDef>
+                <fBattleDistance>0.95</fBattleDistance>
+                <fRangedDeathTime>0.31</fRangedDeathTime>
+                <bActAsRanged>0</bActAsRanged>
+                <TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+        </UnitArtInfo>
+        
+        <UnitArtInfo>
+			<!-- WILDERNESS 10/2017 lfgr / GargantuanAnimals -->
+            <Type>ART_DEF_UNIT_SCORPION_GARGANTUAN</Type>
+            <Button>Art/Interface/Buttons/Units/Scorpion.dds</Button>
+            <fScale>35</fScale>
+            <fInterfaceScale>1</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/Scorpion/scorp.nif</NIF>
+            <KFM>Art/Units/Scorpion/scorp.kfm</KFM>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/PantherShadow.nif</ShadowNIF>
+                <ShadowAttachNode>LionBip Spine</ShadowAttachNode>
+                <fShadowScale>0.05</fShadowScale>
+            </ShadowDef>
+                <fBattleDistance>0.65</fBattleDistance>
+                <fRangedDeathTime>0.31</fRangedDeathTime>
+                <bActAsRanged>0</bActAsRanged>
+                <TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+        </UnitArtInfo>
+        
+        <UnitArtInfo>
+			<!-- WILDERNESS 10/2017 lfgr / GargantuanAnimals -->
+            <Type>ART_DEF_UNIT_SPIDER_GARGANTUAN</Type>
+            <Button>Art/Interface/Buttons/Units/Spider.dds</Button>
+            <fScale>0.6</fScale>
+            <fInterfaceScale>0.7</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/Giant Spider/abman-spider.nif</NIF>
+            <KFM>Art/Units/Giant Spider/abman-spider.kfm</KFM>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/FighterShadow.nif</ShadowNIF>
+                <ShadowAttachNode>BIP Pelvis</ShadowAttachNode>
+                <fShadowScale>0.75</fShadowScale>
+            </ShadowDef>
+                <fBattleDistance>0.7</fBattleDistance>
+                <fRangedDeathTime>0.31</fRangedDeathTime>
+                <bActAsRanged>1</bActAsRanged>
+                <TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+            <SelectionSound>AS3D_UN_SPIDER_SELECT</SelectionSound>
+        </UnitArtInfo>
+        
+        <UnitArtInfo>
+			<!-- WILDERNESS 10/2017 lfgr / GargantuanAnimals -->
+            <Type>ART_DEF_UNIT_TIGER_GARGANTUAN</Type>
+            <Button>Art/Interface/Buttons/Units/Tiger.dds</Button>
+            <fScale>1.2</fScale>
+            <fInterfaceScale>1.3</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/tiger/Panther.nif</NIF>
+            <KFM>Art/Units/Panther/Panther blood.kfm</KFM>
+            <SHADERNIF>Art/Units/tiger/Panther_FX.nif</SHADERNIF>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/PantherShadow.nif</ShadowNIF>
+                <ShadowAttachNode>LionBip Spine</ShadowAttachNode>
+                <fShadowScale>1</fShadowScale>
+            </ShadowDef>
+                <fBattleDistance>0.85</fBattleDistance>
+                <fRangedDeathTime>0.31</fRangedDeathTime>
+                <bActAsRanged>0</bActAsRanged>
+                <TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+            <SelectionSound>AS3D_SPELL_TIGER</SelectionSound>
+            <ActionSound>AS3D_SPELL_TIGER</ActionSound>
+        </UnitArtInfo>
+        
+		<UnitArtInfo>
+			<!-- WILDERNESS 10/2017 lfgr / GargantuanAnimals -->
+            <Type>ART_DEF_UNIT_WOLF_GARGANTUAN</Type>
+            <Button>Art/Interface/Buttons/Units/Wolf.dds</Button>
+            <fScale>1.0</fScale>
+            <fInterfaceScale>1.4</fInterfaceScale>
+            <bActAsLand>0</bActAsLand>
+            <bActAsAir>0</bActAsAir>
+            <NIF>Art/Units/Wolf/Wolf.nif</NIF>
+            <KFM>Art/Units/Wolf/Wolf blood.kfm</KFM>
+            <SHADERNIF>Art/Units/Wolf/Wolf_fx.nif</SHADERNIF>
+            <ShadowDef>
+                <ShadowNIF>Art/Units/01_UnitShadows/WolfShadow.nif</ShadowNIF>
+                <ShadowAttachNode>LionBip Spine</ShadowAttachNode>
+                <fShadowScale>1</fShadowScale>
+            </ShadowDef>
+                <fBattleDistance>0.7</fBattleDistance>
+                <fRangedDeathTime>0.31</fRangedDeathTime>
+                <bActAsRanged>0</bActAsRanged>
+                <TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+            <AudioRunSounds>
+                <AudioRunTypeLoop/>
+                <AudioRunTypeEnd/>
+            </AudioRunSounds>
+            <SelectionSound>AS3D_UN_WOLF_FIDGT_VOX</SelectionSound>
+            <ActionSound>AS3D_UN_WOLF_ATTK_VOX</ActionSound>
         </UnitArtInfo>
 	</UnitArtInfos>
 </Civ4ArtDefines>

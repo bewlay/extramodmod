@@ -3632,6 +3632,24 @@
             </DamageTypeResists>
         </PromotionInfo>
         <PromotionInfo>
+			<!-- WILDERNESS 10/2017 lfgr / GargantuanAnimals -->
+            <Type>PROMOTION_GARGANTUAN</Type>
+            <Description>TXT_KEY_PROMOTION_GARGANTUAN</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <bAlwaysHeal>1</bAlwaysHeal>
+            <iMoveDiscountChange>-1</iMoveDiscountChange>
+            <iEnemyHealChange>10</iEnemyHealChange>
+            <iNeutralHealChange>10</iNeutralHealChange>
+            <iFriendlyHealChange>10</iFriendlyHealChange>
+            <Button>Art/Interface/Buttons/Promotions/Hero.dds</Button>
+            <bImmuneToFear>1</bImmuneToFear>
+            <iExtraCombatStr>6</iExtraCombatStr>
+            <iExtraCombatDefense>6</iExtraCombatDefense>
+            <iMinLevel>-1</iMinLevel>
+            <iGroupSize>1</iGroupSize>
+            <UnitArtStyleType>UNIT_ARTSTYLE_GARGANTUAN_ANIMAL</UnitArtStyleType>
+        </PromotionInfo>
+        <PromotionInfo>
             <Type>PROMOTION_GELA</Type>
             <Description>TXT_KEY_EQUIPMENT_GELA</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
