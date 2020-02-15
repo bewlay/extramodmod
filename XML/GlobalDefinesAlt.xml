@@ -1105,6 +1105,19 @@
 		<iDefineIntVal>30</iDefineIntVal>
 	</Define>
 	<Define>
+		<!-- Maximum additional "movement" cost of chokepoints in wilderness calculation
+			 Default: 20 -->
+		<DefineName>WILDERNESS_CHOKE_MAX_MOVEMENT_COST</DefineName>
+		<iDefineIntVal>20</iDefineIntVal>
+	</Define>
+	<Define>
+		<!-- A choke point's "movement" cost in wilderness calculation is increased by its choke value
+			 divided by this, up to a maximum of WILDERNESS_CHOKE_MAX_MOVEMENT_COST (see above).
+			 Default: 10 -->
+		<DefineName>WILDERNESS_CHOKE_MOVEMENT_DIVISOR</DefineName>
+		<iDefineIntVal>10</iDefineIntVal>
+	</Define>
+	<Define>
 		<DefineName>DEBUG_PAINT_WILDERNESS</DefineName>
 		<iDefineIntVal>0</iDefineIntVal>
 	</Define>

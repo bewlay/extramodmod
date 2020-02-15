@@ -1507,11 +1507,11 @@ void CvMap::calculateWilderness()
 	}
 	
 	logTo( "wilderness - %S.log", "  Area summary" );
-#ifdef LOG_AI
+//#ifdef LOG_AI
 	for( int iArea = 0; iArea < getNumAreas(); iArea++ )
-		logTo( "wilderness - %S.log", "    Area #%d: %d plots%s%s", iArea, getArea( iArea )->getNumTiles(), getArea( iArea )->isWater() ? ", water" : "",
+		logTo( "wilderness - %S.log", "    Area #%d: %d plots%s%s", getArea( iArea )->getID(), getArea( iArea )->getNumTiles(), getArea( iArea )->isWater() ? ", water" : "",
 				getArea( iArea )->getNumStartingPlots() > 0 ? ", inhabited" : "" );
-#endif
+//#endif
 
 	// Continents
 	// Find geometric mean for uninhabited continents
@@ -1567,12 +1567,13 @@ void CvMap::calculateWilderness()
 	int iWaterAreaMaxWilderness = -1;
 
 	// Store max and min average starting plot distance for all uninhabited continents
-	std::map<int, int>miiUAreaMinAvDist;
+	std::map<int, int> miiUAreaMinAvDist;
 	std::map<int, int> miiUAreaMaxAvDist;
 	int iUAreaMaxMaxAvDist = -1;
 	// Store max continent size divided by number of players on that continent
 	int iMaxInhabitedContinentSizePerPlayer = -1;
 	// Store first iteration wilderness values. Use float since it's scaled after normalization.
+	// LFGR_TODO: Best remove all floating point calculations to prevent OOS
 	float* pfPlotWilderness = new float[numPlotsINLINE()];
 
 	for( int iPlot = 0; iPlot < numPlotsINLINE(); iPlot++ )
@@ -1586,13 +1587,14 @@ void CvMap::calculateWilderness()
 		miiUAreaMinAvDist[iArea] = -1;
 		miiUAreaMaxAvDist[iArea] = -1;
 
-		if( !getArea( iArea )->isWater() )
-			if( getArea( iArea )->getNumStartingPlots() > 0 )
-				if( iMaxInhabitedContinentSizePerPlayer == -1 || getArea( iArea )->getNumTiles() / getArea( iArea )->getNumStartingPlots() > iMaxInhabitedContinentSizePerPlayer )
-					iMaxInhabitedContinentSizePerPlayer = getArea( iArea )->getNumTiles() / getArea( iArea )->getNumStartingPlots();
-		
-		logTo( "wilderness - %S.log", "    Area #%d after init real min and max: %d, %d", iArea, miiAreaMinWilderness[iArea], miiAreaMaxWilderness[iArea] );
-		logTo( "wilderness - %S.log", "    Area #%d after init UArea min and max dist: %d, %d", iArea, miiUAreaMinAvDist[iArea], miiUAreaMaxAvDist[iArea] );
+
+		if (!getArea(iArea)->isWater()) {
+			if (getArea(iArea)->getNumStartingPlots() > 0) {
+				iMaxInhabitedContinentSizePerPlayer = std::max( iMaxInhabitedContinentSizePerPlayer, getArea(iArea)->getNumTiles() / getArea(iArea)->getNumStartingPlots() );
+			}
+		}
+		//logTo( "wilderness - %S.log", "    Area #%d after init real min and max: %d, %d", iArea, miiAreaMinWilderness[iArea], miiAreaMaxWilderness[iArea] );
+		//logTo( "wilderness - %S.log", "    Area #%d after init UArea min and max dist: %d, %d", iArea, miiUAreaMinAvDist[iArea], miiUAreaMaxAvDist[iArea] );
 	}
 	
 	logTo( "wilderness - %S.log", "  Max inhabited continent size per player: %d", iMaxInhabitedContinentSizePerPlayer );
@@ -1618,11 +1620,16 @@ void CvMap::calculateWilderness()
 			}
 		}
 	}
-	
+
+	const int WILDERNESS_IMPASSABLE_MOVEMENT_COST = GC.getDefineINT( "WILDERNESS_IMPASSABLE_MOVEMENT_COST", 30 );
+	const int WILDERNESS_CHOKE_MAX_MOVEMENT_COST = GC.getDefineINT( "WILDERNESS_CHOKE_MAX_MOVEMENT_COST", 20 );
+	const int WILDERNESS_CHOKE_MOVEMENT_DIVISOR = GC.getDefineINT( "WILDERNESS_CHOKE_MOVEMENT_DIVISOR", 10 );
+
 	logTo( "wilderness - %S.log", "  Starting Dijkstra" );
 	// Set wilderness for all plots
 	while( !queue.empty() )
 	{
+		// Update distance for top plot
 		std::pair<float, int> kPair = queue.top();
 		queue.pop();
 
@@ -1640,6 +1647,7 @@ void CvMap::calculateWilderness()
 
 		bool bWater = getArea( pPlot->getArea() )->isWater();
 
+		// Add steps to nearby plots in same area
 		for( int iNX = pPlot->getX_INLINE() - 1; iNX <= pPlot->getX_INLINE() + 1; iNX++ )
 		{
 			for( int iNY = pPlot->getY_INLINE() - 1; iNY <= pPlot->getY_INLINE() + 1; iNY++ )
@@ -1659,9 +1667,10 @@ void CvMap::calculateWilderness()
 						{
 							float fNDistance = fDistance;
 							if( pNPlot->isImpassable() )
-								fNDistance += GC.getDefineINT( "WILDERNESS_IMPASSABLE_MOVEMENT_COST", 20 );
+								fNDistance += WILDERNESS_IMPASSABLE_MOVEMENT_COST;
 							else
 							{
+								fNDistance += std::min( WILDERNESS_CHOKE_MAX_MOVEMENT_COST, pNPlot->getChokeValue() / WILDERNESS_CHOKE_MOVEMENT_DIVISOR );
 								if( pNPlot->getFeatureType() == NO_FEATURE )
 									fNDistance += GC.getTerrainInfo( pNPlot->getTerrainType() ).getMovementCost();
 								else
@@ -1788,23 +1797,30 @@ void CvMap::calculateWilderness()
 	}
 
 	// NORMALIZATION
+	logTo( "wilderness - %S.log", "  Starting normalization" );
+	logTo( "wilderness - %S.log", "    Number of land plots in uninhabited areas: %d/%d", iNumUAreaTiles, getLandPlots() );
 	int MIN_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MIN_MAX_INHABITED_WILDERNESS" );
 	int MAX_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MAX_MAX_INHABITED_WILDERNESS" );
 	if( iNumUAreaTiles <= getLandPlots() * GC.getDefineFLOAT( "WILDERNESS_NO_ISLANDS_THRESHOLD" ) )
 	{
+		logTo( "wilderness - %S.log", "      -> No Islands" );
 		MIN_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MIN_MAX_INHABITED_WILDERNESS_NO_ISLANDS" );
 		MAX_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_NO_ISLANDS" );
 	}
 	else if( iNumUAreaTiles <= getLandPlots() * GC.getDefineFLOAT( "WILDERNESS_FEW_ISLANDS_THRESHOLD" ) )
 	{
+		logTo( "wilderness - %S.log", "      -> Few Islands" );
 		MIN_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MIN_MAX_INHABITED_WILDERNESS_FEW_ISLANDS" );
 		MAX_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_FEW_ISLANDS" );
 	}
 	else if( iNumUAreaTiles >= getLandPlots() * GC.getDefineFLOAT( "WILDERNESS_MANY_ISLANDS_THRESHOLD" ) )
 	{
+		logTo( "wilderness - %S.log", "      -> Many Islands" );
 		MIN_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MIN_MAX_INHABITED_WILDERNESS_MANY_ISLANDS" );
 		MAX_MAX_INHABITED_WILDERNESS = GC.getDefineINT( "WILDERNESS_MAX_MAX_INHABITED_WILDERNESS_MANY_ISLANDS" );
 	}
+	logTo( "wilderness - %S.log", "    Max wilderness for inhabited areas: %d-%d", 
+			MIN_MAX_INHABITED_WILDERNESS, MAX_MAX_INHABITED_WILDERNESS );
 
 	float WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT = GC.getDefineFLOAT( "WILDERNESS_MAX_INHABITED_INCREASE_PER_PLOT" );
 
@@ -1825,7 +1841,6 @@ void CvMap::calculateWilderness()
 	std::map<int,float> mifAreaNormFactor;
 	std::map<int,float> mifAreaNormShift;
 
-	logTo( "wilderness - %S.log", "  Normalization" );
 	logTo( "wilderness - %S.log", "    Water Max Wilderness: %d", iWaterAreaMaxWilderness );
 	logTo( "wilderness - %S.log", "    UArea Max Distance: %d", iUAreaMaxMaxAvDist );
 	
@@ -1896,11 +1911,17 @@ void CvMap::calculateWilderness()
 			}
 		}
 
-		logTo( "wilderness - %S.log", "      Real min and max: %d, %d", miiAreaMinWilderness[iArea], miiAreaMaxWilderness[iArea] );
-		logTo( "wilderness - %S.log", "      UArea min and max dist: %d, %d", miiUAreaMinAvDist[iArea], miiUAreaMaxAvDist[iArea] );
-		logTo( "wilderness - %S.log", "      Factor: %f, Shift: %f", mifAreaNormFactor[iArea], mifAreaNormShift[iArea] );
+		//logTo( "wilderness - %S.log", "      Real min and max: %d, %d", miiAreaMinWilderness[iArea], miiAreaMaxWilderness[iArea] );
+		if( pLoopArea->getNumStartingPlots() > 0 ) {
+			logTo( "wilderness - %S.log", "      UArea min and max dist: %d, %d", miiUAreaMinAvDist[iArea], miiUAreaMaxAvDist[iArea] );
+		}
+		//logTo( "wilderness - %S.log", "      Factor: %f, Shift: %f", mifAreaNormFactor[iArea], mifAreaNormShift[iArea] );
 		logTo( "wilderness - %S.log", "      Wilderness: %d-%d -> %d-%d", iActualMin, iActualMax, iRequiredMin, iRequiredMax );
 	}
+
+	// Count wilderness distribution in next step, for log
+	int aiPassableLandWildernessDistribution[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	int iTotalPassableLand = 0;
 	
 	logTo( "wilderness - %S.log", "  Apply normalization" );
 	for( int iPlot = 0; iPlot < numPlotsINLINE(); iPlot++ )
@@ -1914,9 +1935,21 @@ void CvMap::calculateWilderness()
 			//logTo( "wilderness - %S.log", "      NewWilderness formula: (int) ( %f * (float) %d + %f )", pfAreaNormFactor[iLoopArea], pfPlotWilderness[iPlot], pfAreaNormShift[iLoopArea] );
 		}
 		pLoopPlot->setWilderness( std::min( 100, iNewWilderness ) );
+
+		if( !pLoopPlot->isWater() && !pLoopPlot->isImpassable() ) {
+			aiPassableLandWildernessDistribution[std::min( 99, iNewWilderness ) / 10]++;
+			iTotalPassableLand++;
+		}
 	}
 	
 	SAFE_DELETE_ARRAY( pfPlotWilderness );
+
+	logTo( "wilderness - %S.log", "  Wilderness distribution:" );
+	for( int i = 0; i < 10; i++ ) {
+		logTo( "wilderness - %S.log", "    %d-%d: %d (%d%%)",
+				i * 10, (i == 9 ? 100 : i * 10 + 9), aiPassableLandWildernessDistribution[i],
+				100 * aiPassableLandWildernessDistribution[i] / iTotalPassableLand );
+	}
 	
 	// LFGR_TEST
 	if( GC.getDefineINT( "DEBUG_PAINT_WILDERNESS" ) == 1 )
@@ -1965,29 +1998,6 @@ void CvMap::calculateWilderness()
 			}
 		}
 	}
-	
-
-// LFGR_TODO: choke points?
-//	for (iI = 0; iI < numPlotsINLINE(); iI++)
-//	{
-//		pLoopPlot = plotByIndexINLINE(iI);
-//		int iChokeValue = pLoopPlot->getChokeValue();
-//		if( iChokeValue >= 5 )
-//		{
-//			int iChokeMod = std::min( iChokeValue * 3, pLoopPlot->getWilderness() * 2 ); // cannot be higher than wild*2
-//			pLoopPlot->setWilderness( std::max( pLoopPlot->getWilderness(), ( iChokeMod + pLoopPlot->getWilderness() ) / 2 ) ); // max is wild*3/2
-//			int iLoopX = pLoopPlot->getX_INLINE();
-//			int iLoopY = pLoopPlot->getY_INLINE();
-//			for( int iX = iLoopX - 1; iX <= iLoopX + 1; iX++ )
-//				for( int iY = iLoopY - 1; iY <= iLoopY + 1; iY++ )
-//					if( iX >= 0 && iX < getGridWidthINLINE() && iY >= 0 && iY < getGridHeightINLINE()  )
-//					{
-//						CvPlot* pLoopPlot2 = plot( iX, iY );
-//						int iChokeMod2 = std::min( iChokeValue * 2, pLoopPlot2->getWilderness() * 3 / 2 ); // cannot be higher than wild*1.5
-//						pLoopPlot2->setWilderness( std::max( pLoopPlot2->getWilderness(), ( iChokeMod + pLoopPlot2->getWilderness() ) / 2 ) ); // max is wild*5/4
-//					}
-//		}
-//	}
 }
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
