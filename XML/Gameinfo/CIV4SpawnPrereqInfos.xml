@@ -18,19 +18,19 @@
 			<WildernessTiers>
 				<WildernessTier>
 					<iMinWilderness>0</iMinWilderness>
-					<iMaxWilderness>40</iMaxWilderness>
+					<iMaxWilderness>29</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
-					<iMinWilderness>35</iMinWilderness>
-					<iMaxWilderness>65</iMaxWilderness>
+					<iMinWilderness>30</iMinWilderness>
+					<iMaxWilderness>49</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
-					<iMinWilderness>60</iMinWilderness>
-					<iMaxWilderness>80</iMaxWilderness>
+					<iMinWilderness>50</iMinWilderness>
+					<iMaxWilderness>69</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
-					<iMinWilderness>75</iMinWilderness>
-					<iMaxWilderness>95</iMaxWilderness>
+					<iMinWilderness>70</iMinWilderness>
+					<iMaxWilderness>89</iMaxWilderness>
 				</WildernessTier>
 				<WildernessTier>
 					<iMinWilderness>90</iMinWilderness>
