@@ -3380,7 +3380,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 				<StyleUnit>
-					<UnitType>UNIT_LION</UnitType>
+					<UnitType>UNIT_LION_PRIDE</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_LION_GARGANTUAN</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_LION_GARGANTUAN</LateArtDefineTag>
@@ -3436,7 +3436,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 				<StyleUnit>
-					<UnitType>UNIT_WOLF</UnitType>
+					<UnitType>UNIT_WOLF_PACK</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_WOLF_GARGANTUAN</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_WOLF_GARGANTUAN</LateArtDefineTag>
