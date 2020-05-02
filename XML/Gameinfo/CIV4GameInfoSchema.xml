@@ -113,6 +113,7 @@
 		<element type="ProductionToCommerceModifiers"/>
 		<element type="Button"/>
 	</ElementType>
+	<ElementType name="ParamDescription" content="textOnly" /> <!-- VOTE_DESC lfgr 04/2020 -->
 	<ElementType name="iPopulationThreshold" content="textOnly" dt:type="int"/>
 	<ElementType name="bCityVoting" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bCivVoting" content="textOnly" dt:type="boolean"/>
@@ -131,10 +132,7 @@
 	<ElementType name="bAssignCity" content="textOnly" dt:type="boolean"/>
 	<!-- Advanced Diplomacy START -->
 	<ElementType name="bTradeMap" content="textOnly" dt:type="boolean"/>
-	<ElementType name="bVictimRights" content="textOnly" dt:type="boolean"/>
-	<ElementType name="bNoCityRazing" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bCultureNeedsEmptyRadius" content="textOnly" dt:type="boolean"/>
-	<ElementType name="bPacificRule" content="textOnly" dt:type="boolean"/>
 	<!-- Advanced Diplomacy END -->
 	<ElementType name="CivicType" content="textOnly"/>
 	<ElementType name="bForce" content="textOnly" dt:type="boolean"/>
@@ -153,16 +151,17 @@
 	<ElementType name="DiploVotes" content="eltOnly">
 		<element type="DiploVote" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
-	<ElementType name="bGamblingRing" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoOutsideTechTrades" content="textOnly" dt:type="boolean"/>
-	<ElementType name="bSlaveTrade" content="textOnly" dt:type="boolean"/>
-	<ElementType name="bSmugglingRing" content="textOnly" dt:type="boolean"/>
 	<ElementType name="iCrime" content="textOnly" dt:type="int"/>
 	<ElementType name="NoBonus" content="textOnly"/>
+	<ElementType name="PyRequirement" content="textOnly"/> <!-- lfgr 04/2020 -->
+	<ElementType name="PyAI" content="textOnly"/> <!-- lfgr 04/2020 -->
 	<ElementType name="PyResult" content="textOnly"/>
 	<ElementType name="VoteInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
+		<element type="ParamDescription" minOccurs="0"/> <!-- VOTE_DESC lfgr 04/2020 -->
+		<element type="Help" minOccurs="0"/> <!-- VOTE_HELP lfgr 04/2020 -->
 		<element type="iPopulationThreshold"/>
 		<element type="bCityVoting"/>
 		<element type="bCivVoting"/>
@@ -181,21 +180,18 @@
 		<element type="bAssignCity"/>
 		<!-- Advanced Diplomacy START -->
 		<element type="bTradeMap" minOccurs="0"/>
-		<element type="bNoCityRazing" minOccurs="0"/>
 		<element type="bCultureNeedsEmptyRadius" minOccurs="0"/>
-		<element type="bPacificRule" minOccurs="0"/>
 		<!-- Advanced Diplomacy END -->
 		<element type="ForceCivics" minOccurs="0"/>
 		<element type="DiploVotes" minOccurs="0"/>
-		<element type="bGamblingRing" minOccurs="0"/>
 		<element type="bNoOutsideTechTrades" minOccurs="0"/>
-		<element type="bSlaveTrade" minOccurs="0"/>
-		<element type="bSmugglingRing" minOccurs="0"/>
 		<element type="iCost" minOccurs="0"/>
 		<element type="iCrime" minOccurs="0"/>
 		<element type="iFreeUnits" minOccurs="0"/>
 		<element type="FreeUnitClass" minOccurs="0"/>
 		<element type="NoBonus" minOccurs="0"/>
+		<element type="PyRequirement" minOccurs="0"/>
+		<element type="PyAI" minOccurs="0"/>
 		<element type="PyResult" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="ProcessInfos" content="eltOnly">

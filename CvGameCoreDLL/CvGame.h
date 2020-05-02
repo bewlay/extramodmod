@@ -459,15 +459,6 @@ public:
 	bool isReligionSlotTaken(ReligionTypes eReligion) const;											// Exposed to Python
 	void setReligionSlotTaken(ReligionTypes eReligion, bool bTaken);
 
-/************************************************************************************************/
-/* Advanced Diplomacy         START                                                             */
-/************************************************************************************************/
-	bool isPacificVoteSource(VoteSourceTypes eVoteSource) const;											// Exposed to Python
-	void setPacificVoteSource(VoteSourceTypes eVoteSource, bool bNewValue);
-/************************************************************************************************/
-/* Advanced Diplomacy         END                                                             */
-/************************************************************************************************/
-
 	CvCity* getHolyCity(ReligionTypes eIndex);																	// Exposed to Python
 	void setHolyCity(ReligionTypes eIndex, CvCity* pNewValue, bool bAnnounce);	// Exposed to Python
 
@@ -675,9 +666,6 @@ public:
     void foundBarbarianCity();
     bool isEventTriggered(EventTriggerTypes eTrigger) const;
     void setEventTriggered(EventTriggerTypes eTrigger, bool bNewValue);
-
-    bool isGamblingRing(VoteSourceTypes eIndex) const;
-    void setGamblingRing(VoteSourceTypes eIndex, bool bNewValue);
 	
 	// lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
 	/**
@@ -689,10 +677,6 @@ public:
 
     bool isNoOutsideTechTrades(VoteSourceTypes eIndex) const;
     void setNoOutsideTechTrades(VoteSourceTypes eIndex, bool bNewValue);
-    bool isSlaveTrade(VoteSourceTypes eIndex) const;
-    void setSlaveTrade(VoteSourceTypes eIndex, bool bNewValue);
-    bool isSmugglingRing(VoteSourceTypes eIndex) const;
-    void setSmugglingRing(VoteSourceTypes eIndex, bool bNewValue);
 	void decrementUnitCreatedCount(UnitTypes eIndex);
 	void decrementUnitClassCreatedCount(UnitClassTypes eIndex);
 	int getTrophyValue(const TCHAR* szName) const;
@@ -706,8 +690,6 @@ public:
 	// Advanced Diplomacy
     bool isCultureNeedsEmptyRadius(VoteSourceTypes eIndex) const;
     void setCultureNeedsEmptyRadius(VoteSourceTypes eIndex, bool bNewValue);
-    bool isNoCityRazing(VoteSourceTypes eIndex) const;
-    void setNoCityRazing(VoteSourceTypes eIndex, bool bNewValue);
 	// End Advanced Diplomacy
 
 	// Tholal AI
@@ -793,10 +775,7 @@ protected:
 	int m_iMaxGlobalCounter;
 	int m_iScenarioCounter;
 	bool* m_pabEventTriggered;
-	bool* m_pabGamblingRing;
 	bool* m_pabNoOutsideTechTrades;
-	bool* m_pabSlaveTrade;
-	bool* m_pabSmugglingRing;
 
 	// lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
 	// Stores a 2-dimensional array in a simple array. For access, see CvGame::isNoBonus().
@@ -805,7 +784,6 @@ protected:
 
 	// Advanced Diplomacy
 	bool* m_pabCultureNeedsEmptyRadius;
-	bool* m_pabNoCityRazing;
 	// End Advanced Diplomacy
 
 	int* m_aiRankPlayer;        // Ordered by rank...
@@ -839,13 +817,6 @@ protected:
 
 	bool* m_pabSpecialUnitValid;
 	bool* m_pabSpecialBuildingValid;
-/************************************************************************************************/
-/* Advanced Diplomacy         START                                                             */
-/************************************************************************************************/
-	std::vector<bool> m_abPacificVoteSource;/*bool* m_ab5; m_abPacificVoteSource*/
-/************************************************************************************************/
-/* Advanced Diplomacy         END                                                             */
-/************************************************************************************************/
 	bool* m_abReligionSlotTaken; 
 
 	IDInfo* m_paHolyCity;

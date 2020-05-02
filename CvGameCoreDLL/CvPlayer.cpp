@@ -28573,54 +28573,9 @@ void CvPlayer::setSprawling(bool bNewValue)
 	m_bSprawling = bNewValue;
 }
 
-bool CvPlayer::isGamblingRing() const
-{
-   	for (int iI = 0; iI < GC.getNumVoteSourceInfos(); ++iI)
-	{
-	    if (isFullMember((VoteSourceTypes)iI))
-	    {
-	        if (GC.getGameINLINE().isGamblingRing((VoteSourceTypes)iI))
-	        {
-	            return true;
-	        }
-	    }
-	}
-    return false;
-}
-
 bool CvPlayer::isHasTech(int iTech) const
 {
     return GET_TEAM(getTeam()).isHasTech((TechTypes)iTech);
-}
-
-bool CvPlayer::isSlaveTrade() const
-{
-   	for (int iI = 0; iI < GC.getNumVoteSourceInfos(); ++iI)
-	{
-	    if (isFullMember((VoteSourceTypes)iI))
-	    {
-	        if (GC.getGameINLINE().isSlaveTrade((VoteSourceTypes)iI))
-	        {
-	            return true;
-	        }
-	    }
-	}
-    return false;
-}
-
-bool CvPlayer::isSmugglingRing() const
-{
-   	for (int iI = 0; iI < GC.getNumVoteSourceInfos(); ++iI)
-	{
-	    if (isFullMember((VoteSourceTypes)iI))
-	    {
-	        if (GC.getGameINLINE().isSmugglingRing((VoteSourceTypes)iI))
-	        {
-	            return true;
-	        }
-	    }
-	}
-    return false;
 }
 
 int CvPlayer::getAlignment() const
@@ -29526,20 +29481,6 @@ DenialTypes CvPlayer::AI_tradeWarReparations(PlayerTypes ePlayer) const
 }
 
 // Advanced Diplomacy - added by MNAI
-bool CvPlayer::isNoCityRazing() const
-{
-   	for (int iI = 0; iI < GC.getNumVoteSourceInfos(); ++iI)
-	{
-	    if (isFullMember((VoteSourceTypes)iI))
-	    {
-	        if (GC.getGameINLINE().isNoCityRazing((VoteSourceTypes)iI))
-	        {
-	            return true;
-	        }
-	    }
-	}
-    return false;
-}
 
 bool CvPlayer::isCultureNeedsEmptyRadius() const
 {

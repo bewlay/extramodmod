@@ -701,10 +701,7 @@ public:
 	int getNumBuilding(int /*BuildingTypes*/ iBuilding) const;
 	int getNumSettlements() const;
 	int getPlayersKilled() const;
-	bool isGamblingRing() const;
 	bool isHasTech(int /*TechTypes*/ iTech) const;
-	bool isSlaveTrade() const;
-	bool isSmugglingRing() const;
 	bool isAgnostic() const;
 	bool isIgnoreFood() const;
 	void setAlive(bool bNewValue);

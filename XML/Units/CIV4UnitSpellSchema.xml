@@ -25,6 +25,7 @@
 	<ElementType name="ReligionPrereq" content="textOnly"/>
 	<ElementType name="StateReligionPrereq" content="textOnly"/>
 	<ElementType name="TechPrereq" content="textOnly"/>
+	<ElementType name="VotePrereq" content="textOnly"/> <!-- VOTE_CLEANUP 04/2020 lfgr -->
 	<ElementType name="bAllowAI" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAllowAuto" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAllowAutomateTerrain" content="textOnly" dt:type="boolean"/>
@@ -38,7 +39,6 @@
 	<ElementType name="bGlobal" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bInBordersOnly" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bInCityOnly" content="textOnly" dt:type="boolean"/>
-	<ElementType name="bPrereqSlaveTrade" content="textOnly" dt:type="boolean"/>
 	<ElementType name="iAIWeight" content="textOnly" dt:type="int"/>
 	<ElementType name="iCasterMinLevel" content="textOnly" dt:type="int"/>
 	<ElementType name="bDisplayWhenDisabled" content="textOnly" dt:type="boolean"/>
@@ -128,6 +128,7 @@
 		<element type="ReligionPrereq" minOccurs="0"/>
 		<element type="StateReligionPrereq" minOccurs="0"/>
 		<element type="TechPrereq" minOccurs="0"/>
+		<element type="VotePrereq" minOccurs="0"/> <!-- VOTE_CLEANUP 04/2020 lfgr -->
 		<element type="bAllowAI" minOccurs="0"/>
 		<element type="bAllowAuto" minOccurs="0"/>
 		<element type="bAllowAutomateTerrain" minOccurs="0"/>
@@ -141,7 +142,6 @@
 		<element type="bGlobal" minOccurs="0"/>
 		<element type="bInBordersOnly" minOccurs="0"/>
 		<element type="bInCityOnly" minOccurs="0"/>
-		<element type="bPrereqSlaveTrade" minOccurs="0"/>
 		<element type="iAIWeight" minOccurs="0"/>
 		<element type="iCasterMinLevel" minOccurs="0"/>
 		<element type="bDisplayWhenDisabled" minOccurs="0"/>

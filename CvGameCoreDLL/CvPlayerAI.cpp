@@ -9211,6 +9211,25 @@ PlayerVoteTypes CvPlayerAI::AI_diploVote(const VoteSelectionSubData& kVoteData, 
 {
 	PROFILE_FUNC();
 
+	// lfgr 04/2020
+	// Python AI takes precedence over everything else. Note that votes happen so rarely that we don't need to
+	// care about performance much.
+	if( strlen( GC.getVoteInfo( kVoteData.eVote ).getPyAI() ) > 0 )
+	{
+		CyArgsList argsList;
+		argsList.add( getIDINLINE() );
+		argsList.add( kVoteData.eVote );
+		argsList.add( kVoteData.ePlayer );
+		argsList.add( kVoteData.iCityId );
+		argsList.add( kVoteData.eOtherPlayer );
+		long eResult = NO_PLAYER_VOTE;
+		gDLL->getPythonIFace()->callFunction( PYVoteModule, "voteAI", argsList.makeFunctionArgs(), &eResult );
+		if( eResult != NO_PLAYER_VOTE ) {
+			// Python AI has made a decision
+			return (PlayerVoteTypes) eResult;
+		}
+	}
+
 	CivicTypes eBestCivic;
 	int iOpenCount;
 	int iClosedCount;
@@ -9550,30 +9569,6 @@ PlayerVoteTypes CvPlayerAI::AI_diploVote(const VoteSelectionSubData& kVoteData, 
 /*************************************************************************************************/
 /** Advanced Diplomacy       START                                                  			 */
 /*************************************************************************************************/
-		int iTempValue;
-		int iCount;
-		
-		//No City Razing
-		if (bValid)
-		{
-			if (GC.getVoteInfo(eVote).isNoCityRazing())
-			{
-				iCount = std::max(20, GC.getGameINLINE().getSorenRandNum(100, "Random") * 10);
-				int iWarPlan = (GET_TEAM(getTeam()).getAnyWarPlanCount(true) * (10 + GC.getGameINLINE().getSorenRandNum(100, "random")));
-				iCount += GC.getGameINLINE().getSorenRandNum(iWarPlan, "Vote Count No City Razing");
-				iCount += GC.getLeaderHeadInfo(getPersonalityType()).getRazeCityProb();
-				iCount /= 2;
-				iTempValue = iCount - GC.getGameINLINE().getSorenRandNum(100, "No City Razing Probabilities");
-				if (iTempValue > 0)
-				{
-					bValid = false;
-					if (iTempValue >= (iCount - 5) && iCount >= 35)
-					{
-						bDefy = true;
-					}
-				}
-			}
-		}
 
 		//Culture Radius
 		if (bValid)
@@ -9606,23 +9601,6 @@ PlayerVoteTypes CvPlayerAI::AI_diploVote(const VoteSelectionSubData& kVoteData, 
 				}
 			}
 		}
-		
-		// Pacific Rule
-		if (bValid)
-		{
-			if (GC.getVoteInfo(eVote).isPacificRule())
-			{
-				//if (GET_TEAM(getTeam()).AI_getAtWarCounter(true))
-				{
-					bValid = false;
-
-					if (GET_TEAM(getTeam()).getAtWarCount(true) > 0)
-					{
-						bDefy = true;
-					}
-				}
-			}
-		}		
 /*************************************************************************************************/
 /** Advanced Diplomacy       END                                                 			 */
 /*************************************************************************************************/
@@ -10018,7 +9996,8 @@ PlayerVoteTypes CvPlayerAI::AI_diploVote(const VoteSelectionSubData& kVoteData, 
 /*************************************************************************************************/
 /** Advanced Diplomacy       START                                                 				 */
 /*************************************************************************************************/			
-					if (bPropose && GET_TEAM(getTeam()).AI_isChosenWar(eWarTeam) && (GC.getGame().isPacificVoteSource(eVoteSource) || (std::max(0, (AI_getAttackOddsChange()-GC.getLeaderHeadInfo(getPersonalityType()).getBasePeaceWeight())) == GC.getGame().getSorenRandNum(MAX_TEAMS, "force war playerai"))))
+					if( bPropose && GET_TEAM(getTeam()).AI_isChosenWar(eWarTeam)
+						&& std::max(0, (AI_getAttackOddsChange()-GC.getLeaderHeadInfo(getPersonalityType()).getBasePeaceWeight())) == GC.getGame().getSorenRandNum(MAX_TEAMS, "force war playerai") )
 					{
 						bValid = true;
 					}
@@ -10166,23 +10145,9 @@ PlayerVoteTypes CvPlayerAI::AI_diploVote(const VoteSelectionSubData& kVoteData, 
 
 
 //FfH: Added by Kael 05/08/2008
-		if (GC.getVoteInfo(eVote).isGamblingRing() || GC.getVoteInfo(eVote).isSlaveTrade())
-		{
-			if (getAlignment() == ALIGNMENT_NEUTRAL)
-			{
-				bValid = false;
-			}
-		}
 		if (GC.getVoteInfo(eVote).isNoOutsideTechTrades())
 		{
 			if (GC.getGameINLINE().getPlayerRank(getID()) < GC.getGameINLINE().getPlayerRank(GC.getGameINLINE().getRankPlayer(GC.getGameINLINE().countCivPlayersAlive() / 2)))
-			{
-				bValid = false;
-			}
-		}
-		if (GC.getVoteInfo(eVote).isSmugglingRing())
-		{
-			if (countNumCoastalCities() < 3)
 			{
 				bValid = false;
 			}
@@ -14266,13 +14231,15 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 	{
 		//traits
 		int iTraitMod = 0;
-		for (iI = 0; iI < GC.getNumTraitInfos(); iI++)
-		{
-			if (hasTrait((TraitTypes)iI))
+		if( kUnitInfo.getUnitCombatType() != NO_UNITCOMBAT ) {
+			for (iI = 0; iI < GC.getNumTraitInfos(); iI++)
 			{
-				// InfoCache 10/2019 lfgr
-				iTraitMod += getInfoCache().AI_getUnitValueFromTrait(
+				if (hasTrait((TraitTypes)iI))
+				{
+					// InfoCache 10/2019 lfgr
+					iTraitMod += getInfoCache().AI_getUnitValueFromTrait(
 						(UnitCombatTypes) kUnitInfo.getUnitCombatType(), (TraitTypes) iI );
+				}
 			}
 		}
 

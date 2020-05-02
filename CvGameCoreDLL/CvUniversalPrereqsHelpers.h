@@ -10,7 +10,7 @@
 
 #include <string>
 
-#include "CvInfoUtils.h"
+#include "CvInfoHelpers.h"
 #include "CvUniversalPrereqs.h"
 #include "CvXMLLoadUtility.h"
 //----------------

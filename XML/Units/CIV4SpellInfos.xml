@@ -3704,9 +3704,9 @@
             <Description>TXT_KEY_SPELL_SLAVE_TRADE_BUY</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <Help>TXT_KEY_SPELL_SLAVE_TRADE_BUY_HELP</Help>
+            <VotePrereq>VOTE_SLAVE_TRADE</VotePrereq>
             <bInBordersOnly>1</bInBordersOnly>
             <bInCityOnly>1</bInCityOnly>
-            <bPrereqSlaveTrade>1</bPrereqSlaveTrade>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
             <bNoInterruptUnitCycling>1</bNoInterruptUnitCycling>
@@ -3714,7 +3714,6 @@
             <PyResult>spellSlaveTradeBuy(pCaster)</PyResult>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
-            <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Units/Slave.dds</Button>
         </SpellInfo>
         <SpellInfo>
@@ -3722,7 +3721,9 @@
             <Description>TXT_KEY_SPELL_SLAVE_TRADE_SELL</Description>
             <Civilopedia>TXT_KEY_SPELL_PLACEHOLDER_PEDIA</Civilopedia>
             <UnitClassPrereq>UNITCLASS_SLAVE</UnitClassPrereq>
-            <bPrereqSlaveTrade>1</bPrereqSlaveTrade>
+            <VotePrereq>VOTE_SLAVE_TRADE</VotePrereq>
+            <bInBordersOnly>1</bInBordersOnly>
+            <bInCityOnly>1</bInCityOnly>
             <bHasCasted>1</bHasCasted>
             <bAbility>1</bAbility>
             <bSacrificeCaster>1</bSacrificeCaster>
@@ -3730,7 +3731,6 @@
             <iCost>-10</iCost>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
-            <bGraphicalOnly>1</bGraphicalOnly>
             <Button>Art/Interface/Buttons/Spells/Slave Trade Sell.dds</Button>
         </SpellInfo>
         <SpellInfo>

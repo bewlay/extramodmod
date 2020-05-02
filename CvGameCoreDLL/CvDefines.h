@@ -181,6 +181,8 @@
 #define PYDataStorageModule					"CvDataStorageInterface"
 //FfH: End Add
 
+#define PYVoteModule "CvVoteInterface" // lfgr 04/2020
+
 // UNIVERSAL_PREREQS 07/2019 lfgr
 #define PYUniversalPrereqsModule "CvUniversalPrereqsInterface"
 // UNIVERSAL_PREREQS end

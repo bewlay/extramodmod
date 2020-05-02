@@ -3350,6 +3350,7 @@ m_iPromotionInStackPrereq(NO_PROMOTION),
 m_iReligionPrereq(NO_RELIGION),
 m_iStateReligionPrereq(NO_RELIGION),
 m_iTechPrereq(NO_TECH),
+m_iVotePrereq(NO_VOTE), // VOTE_CLEANUP 04/2020 lfgr
 m_bAllowAI(false),
 /*************************************************************************************************/
 /**	ADDON (New Functions Definition) Sephi                                     					**/
@@ -3371,7 +3372,6 @@ m_bCausesWar(false),
 m_bGlobal(false),
 m_bInBordersOnly(false),
 m_bInCityOnly(false),
-m_bPrereqSlaveTrade(false),
 m_bResistable(false),
 m_iAIWeight(0),
 m_iCasterMinLevel(0),
@@ -3533,6 +3533,11 @@ int CvSpellInfo::getTechPrereq() const
 	return m_iTechPrereq;
 }
 
+// VOTE_CLEANUP 04/2020 lfgr
+int CvSpellInfo::getVotePrereq() const {
+	return m_iVotePrereq;
+}
+
 int CvSpellInfo::getRange() const
 {
 	return m_iRange;
@@ -3611,11 +3616,6 @@ bool CvSpellInfo::isInBordersOnly() const
 bool CvSpellInfo::isInCityOnly() const
 {
 	return m_bInCityOnly;
-}
-
-bool CvSpellInfo::isPrereqSlaveTrade() const
-{
-	return m_bPrereqSlaveTrade;
 }
 
 bool CvSpellInfo::isBuffCasterOnly() const
@@ -3955,7 +3955,6 @@ void CvSpellInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bGlobal);
 	stream->Read(&m_bInBordersOnly);
 	stream->Read(&m_bInCityOnly);
-	stream->Read(&m_bPrereqSlaveTrade);
 	stream->Read(&m_bResistable);
 	stream->Read(&m_iAIWeight);
 	stream->Read(&m_iCasterMinLevel);
@@ -4080,7 +4079,6 @@ void CvSpellInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bGlobal);
 	stream->Write(m_bInBordersOnly);
 	stream->Write(m_bInCityOnly);
-	stream->Write(m_bPrereqSlaveTrade);
 	stream->Write(m_bResistable);
 	stream->Write(m_iAIWeight);
 	stream->Write(m_iCasterMinLevel);
@@ -4193,6 +4191,11 @@ bool CvSpellInfo::read(CvXMLLoadUtility* pXML)
 	if (szTextVal != "") m_iStateReligionPrereq = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(szTextVal, "TechPrereq");
 	if (szTextVal != "") m_iTechPrereq = pXML->FindInInfoClass(szTextVal);
+
+	// VOTE_CLEANUP 04/2020 lfgr
+	pXML->GetChildXmlValByName(szTextVal, "VotePrereq");
+	if (szTextVal != "") m_iVotePrereq = pXML->FindInInfoClass(szTextVal);
+
 	pXML->GetChildXmlValByName(&m_bAllowAI, "bAllowAI");
 
 /*************************************************************************************************/
@@ -4215,7 +4218,6 @@ bool CvSpellInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bGlobal, "bGlobal");
 	pXML->GetChildXmlValByName(&m_bInBordersOnly, "bInBordersOnly");
 	pXML->GetChildXmlValByName(&m_bInCityOnly, "bInCityOnly");
-	pXML->GetChildXmlValByName(&m_bPrereqSlaveTrade, "bPrereqSlaveTrade");
 	pXML->GetChildXmlValByName(&m_bResistable, "bResistable");
 	pXML->GetChildXmlValByName(&m_iAIWeight, "iAIWeight");
 	pXML->GetChildXmlValByName(&m_iCasterMinLevel, "iCasterMinLevel");
@@ -20702,9 +20704,7 @@ m_bAssignCity(false),
 /* Advanced Diplomacy         START                                                               */
 /************************************************************************************************/
 m_bTradeMap(false),
-m_bNoCityRazing(false),
 m_bCultureNeedsEmptyRadius(false),
-m_bPacificRule(false),
 /************************************************************************************************/
 /* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
@@ -20712,10 +20712,7 @@ m_pbForceCivic(NULL),
 m_abVoteSourceTypes(NULL),
 
 //FfH: Added by Kael 11/14/2007
-m_bGamblingRing(false),
 m_bNoOutsideTechTrades(false),
-m_bSlaveTrade(false),
-m_bSmugglingRing(false),
 m_iCost(0),
 m_iCrime(0),
 m_iFreeUnits(0),
@@ -20737,6 +20734,12 @@ CvVoteInfo::~CvVoteInfo()
 {
 	SAFE_DELETE_ARRAY(m_pbForceCivic);
 	SAFE_DELETE_ARRAY(m_abVoteSourceTypes);
+}
+
+// VOTE_DESC 04/2020 lfgr
+const wchar* CvVoteInfo::getParamDescriptionKey() const
+{
+	return m_szParamDescriptionKey.c_str();
 }
 
 int CvVoteInfo::getPopulationThreshold() const
@@ -20820,24 +20823,9 @@ bool CvVoteInfo::isAssignCity() const
 }
 
 //FfH: Added by Kael 11/14/2007
-bool CvVoteInfo::isGamblingRing() const
-{
-	return m_bGamblingRing;
-}
-
 bool CvVoteInfo::isNoOutsideTechTrades() const
 {
 	return m_bNoOutsideTechTrades;
-}
-
-bool CvVoteInfo::isSlaveTrade() const
-{
-	return m_bSlaveTrade;
-}
-
-bool CvVoteInfo::isSmugglingRing() const
-{
-	return m_bSmugglingRing;
 }
 
 int CvVoteInfo::getCost() const
@@ -20865,6 +20853,18 @@ int CvVoteInfo::getNoBonus() const
 	return m_iNoBonus;
 }
 
+// lfgr 04/2020
+const TCHAR *CvVoteInfo::getPyRequirement() const
+{
+	return m_szPyRequirement;
+}
+
+// lfgr 04/2020
+const TCHAR *CvVoteInfo::getPyAI() const
+{
+	return m_szPyAI;
+}
+
 const TCHAR *CvVoteInfo::getPyResult() const
 {
 	return m_szPyResult;
@@ -20878,19 +20878,9 @@ bool CvVoteInfo::isTradeMap() const
 	return m_bTradeMap;
 }
 
-bool CvVoteInfo::isNoCityRazing() const
-{
-	return m_bNoCityRazing;
-}
-
 bool CvVoteInfo::isCultureNeedsEmptyRadius() const
 {
 	return m_bCultureNeedsEmptyRadius;
-}
-
-bool CvVoteInfo::isPacificRule() const
-{
-	return m_bPacificRule;
 }
 
 /*
@@ -20967,6 +20957,8 @@ bool CvVoteInfo::read(CvXMLLoadUtility* pXML)
 		return false;
 	}
 
+	pXML->GetChildXmlValByName(m_szParamDescriptionKey, "ParamDescription"); // VOTE_DESC 04/2020 lfgr
+
 	pXML->GetChildXmlValByName(&m_iPopulationThreshold, "iPopulationThreshold");
 	pXML->GetChildXmlValByName(&m_iStateReligionVotePercent, "iStateReligionVotePercent");
 	pXML->GetChildXmlValByName(&m_iTradeRoutes, "iTradeRoutes");
@@ -20987,9 +20979,7 @@ bool CvVoteInfo::read(CvXMLLoadUtility* pXML)
 /* Advanced Diplomacy         START                                                               */
 /************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_bTradeMap, "bTradeMap");
-	pXML->GetChildXmlValByName(&m_bNoCityRazing, "bNoCityRazing");
 	pXML->GetChildXmlValByName(&m_bCultureNeedsEmptyRadius, "bCultureNeedsEmptyRadius");
-	pXML->GetChildXmlValByName(&m_bPacificRule, "bPacificRule");
 /************************************************************************************************/
 /* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
@@ -21006,10 +20996,7 @@ bool CvVoteInfo::read(CvXMLLoadUtility* pXML)
 
 //FfH: Added by Kael 11/14/2007
 	CvString szTextVal;
-	pXML->GetChildXmlValByName(&m_bGamblingRing, "bGamblingRing");
 	pXML->GetChildXmlValByName(&m_bNoOutsideTechTrades, "bNoOutsideTechTrades");
-	pXML->GetChildXmlValByName(&m_bSlaveTrade, "bSlaveTrade");
-	pXML->GetChildXmlValByName(&m_bSmugglingRing, "bSmugglingRing");
 	pXML->GetChildXmlValByName(&m_iCost, "iCost");
 	pXML->GetChildXmlValByName(&m_iCrime, "iCrime");
 	pXML->GetChildXmlValByName(&m_iFreeUnits, "iFreeUnits");
@@ -21017,6 +21004,8 @@ bool CvVoteInfo::read(CvXMLLoadUtility* pXML)
 	m_iFreeUnitClass = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(szTextVal, "NoBonus");
 	m_iNoBonus = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(m_szPyRequirement, "PyRequirement");
+	pXML->GetChildXmlValByName(m_szPyAI, "PyAI");
 	pXML->GetChildXmlValByName(m_szPyResult, "PyResult");
 //FfH: End Add
 

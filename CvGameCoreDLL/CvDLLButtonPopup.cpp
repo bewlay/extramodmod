@@ -1462,7 +1462,13 @@ bool CvDLLButtonPopup::launchChooseElectionPopup(CvPopup* pPopup, CvPopupInfo &i
 
 	for (int iI = 0; iI < (int)pVoteSelectionData->aVoteOptions.size(); ++iI)
 	{
-		gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, pVoteSelectionData->aVoteOptions[iI].szText, NULL, iI, WIDGET_GENERAL);
+	// VOTE_HELP 11/2019 lfgr
+	// Add info.getData1(), iI to show help
+		gDLL->getInterfaceIFace()->popupAddGenericButton( pPopup,
+				pVoteSelectionData->aVoteOptions[iI].szText, NULL, iI,
+				WIDGET_HELP_VOTE_SELECTION, info.getData1(), iI );
+	// VOTE_HELP end
+		
 	}
 
 	gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_NONE").c_str(), NULL, GC.getNumVoteInfos(), WIDGET_GENERAL);
@@ -1513,6 +1519,7 @@ bool CvDLLButtonPopup::launchDiploVotePopup(CvPopup* pPopup, CvPopupInfo &info)
 				{
 					if (eVassalOfTeam == NO_TEAM || eVassalOfTeam == iI || iI == GC.getGameINLINE().getActiveTeam())
 					{
+						// LFGR_TODO: Show player(s) attitude
 						gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, GET_TEAM((TeamTypes)iI).getName().GetCString(), NULL, iI, WIDGET_GENERAL);
 						bEligible = true;
 					}
@@ -1522,7 +1529,12 @@ bool CvDLLButtonPopup::launchDiploVotePopup(CvPopup* pPopup, CvPopupInfo &info)
 	}
 	else
 	{
-		gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_POPUP_YES").c_str(), NULL, PLAYER_VOTE_YES, WIDGET_GENERAL);
+	// VOTE_HELP 11/2019 lfgr
+	// Add info.getData1() to show help
+		gDLL->getInterfaceIFace()->popupAddGenericButton( pPopup,
+				gDLL->getText("TXT_KEY_POPUP_YES").c_str(), NULL, PLAYER_VOTE_YES,
+			WIDGET_HELP_VOTE_YES, info.getData1());
+	// VOTE_HELP end
 		gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_POPUP_NO").c_str(), NULL, PLAYER_VOTE_NO, WIDGET_GENERAL);
 
 		if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).canDefyResolution(eVoteSource, pVoteTriggered->kVoteOption))
@@ -1912,24 +1924,6 @@ bool CvDLLButtonPopup::launchDeclareWarMovePopup(CvPopup* pPopup, CvPopupInfo &i
 	else
 	{
 		szBuffer = gDLL->getText("TXT_KEY_POPUP_DOES_THIS_MEAN_WAR", GET_TEAM(eRivalTeam).getName().GetCString());
-
-/************************************************************************************************/
-/* Advanced Diplomacy         START                                                               */
-/************************************************************************************************/
-		for (int iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
-		{
-			if (GC.getGameINLINE().isPacificVoteSource((VoteSourceTypes)iI))
-			{
-				if (GET_TEAM(GC.getGameINLINE().getActiveTeam()).isVotingMember((VoteSourceTypes)iI))
-				{
-					szBuffer += NEWLINE;
-					szBuffer += gDLL->getText("TXT_KEY_POPUP_DOES_THIS_MEAN_WAR_PACIFIC", GC.getVoteSourceInfo((VoteSourceTypes)iI).getDescription());
-				}
-			}
-		}
-/************************************************************************************************/
-/* Advanced Diplomacy         END                                                               */
-/************************************************************************************************/
 	}
 	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, szBuffer);
 	gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_DECLARE_WAR_YES").c_str(), NULL, 0);

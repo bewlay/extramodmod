@@ -12,7 +12,7 @@
 
 #include "CvUniversalPrereqs.h"
 
-#include "CvInfoUtils.h"
+#include "CvInfoHelpers.h"
 
 class CvGame;
 

@@ -674,6 +674,18 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 /* Advanced Diplomacy                      END                                                  */
 /************************************************************************************************/
 
+// VOTE_HELP 11/2019 lfgr
+	case WIDGET_HELP_VOTE:
+		parseVoteHelp(widgetDataStruct, szBuffer);
+		break;
+	case WIDGET_HELP_VOTE_YES:
+		parseTriggeredVoteHelp(widgetDataStruct, szBuffer);
+		break;
+	case WIDGET_HELP_VOTE_SELECTION:
+		parseVoteSelectionHelp(widgetDataStruct, szBuffer);
+		break;
+// VOTE_HELP end
+
 // BUG - Trade Hover - start
 	case WIDGET_TRADE_ROUTES:
 		parseTradeRoutes(widgetDataStruct, szBuffer);
@@ -5463,6 +5475,27 @@ void CvDLLWidgetData::parseNationalityHelp(CvWidgetDataStruct &widgetDataStruct,
 /************************************************************************************************/
 		}
 
+		// NATIONALITY_HELP 04/2020 lfgr: Display turns until nationality is at 50%
+		CultureLevelTypes eCultureLevel = pHeadSelectedCity->getCultureLevel();
+		if( eCultureLevel >= 1 ) { // cultureRange is 1 for city plot
+			int iOwnerCulture = pHeadSelectedCity->plot()->getCulture( pHeadSelectedCity->getOwnerINLINE() );
+			int iDesiredCulture = pHeadSelectedCity->plot()->countTotalCulture() - iOwnerCulture;
+			if( iOwnerCulture < iDesiredCulture ) {
+				// LFGR_TODO: Should probably be function, see CvCity::doPlotCulture
+				int iFreeCultureRate = GC.getDefineINT("CITY_FREE_CULTURE_GROWTH_FACTOR");
+				int iCultureRate = pHeadSelectedCity->getCommerceRate( COMMERCE_CULTURE );
+				int iCulturePerTurn = ( eCultureLevel - 1 ) * iFreeCultureRate + iCultureRate + 1;
+				if( iCulturePerTurn > 0 ) {
+					// Round up
+					int iMissingTurns = ( iDesiredCulture - iOwnerCulture + iCulturePerTurn - 1 ) / iCulturePerTurn;
+					szBuffer.append( NEWLINE );
+					szBuffer.append( gDLL->getText( "TXT_KEY_TURNS_UNTIL_50_PERCENT_NATIONALITY",
+							GET_PLAYER( pHeadSelectedCity->getOwnerINLINE() ).getCivilizationAdjective(),
+							iMissingTurns ) );
+				}
+			}
+		}
+
 		eCulturalOwner = pHeadSelectedCity->plot()->calculateCulturalOwner();
 
 		if (eCulturalOwner != NO_PLAYER)
@@ -6185,6 +6218,31 @@ void CvDLLWidgetData::parseCivicHelp(CvWidgetDataStruct &widgetDataStruct, CvWSt
 		GAMETEXT.parseCivicInfo(szBuffer, (CivicTypes)widgetDataStruct.m_iData1);
 	}
 }
+
+// VOTE_HELP 11/2019 lfgr
+void CvDLLWidgetData::parseVoteHelp( CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer ) {
+	GAMETEXT.parseVoteInfo( szBuffer, (VoteTypes) widgetDataStruct.m_iData1,
+		(VoteSourceTypes) widgetDataStruct.m_iData2, NO_PLAYER, -1, NO_PLAYER, true );
+}
+
+void CvDLLWidgetData::parseTriggeredVoteHelp( CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer ) {
+	if( widgetDataStruct.m_iData1 != -1 ) {
+		VoteTriggeredData* pVoteTriggered = GC.getGameINLINE().getVoteTriggered( widgetDataStruct.m_iData1 );
+		GAMETEXT.parseVoteInfo( szBuffer, pVoteTriggered->kVoteOption.eVote,
+			pVoteTriggered->eVoteSource, pVoteTriggered->kVoteOption.ePlayer,
+			pVoteTriggered->kVoteOption.iCityId, pVoteTriggered->kVoteOption.eOtherPlayer );
+	}
+}
+
+void CvDLLWidgetData::parseVoteSelectionHelp( CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer ) {
+	if( widgetDataStruct.m_iData1 != -1 ) {
+		VoteSelectionData* pVoteSelectionData = GC.getGameINLINE().getVoteSelection( widgetDataStruct.m_iData1 );
+		VoteSelectionSubData kSubData = pVoteSelectionData->aVoteOptions.at( widgetDataStruct.m_iData2 );
+		GAMETEXT.parseVoteInfo( szBuffer, kSubData.eVote, pVoteSelectionData->eVoteSource,
+			kSubData.ePlayer, kSubData.iCityId, kSubData.eOtherPlayer );
+	}
+}
+// VOTE_HELP end
 
 void CvDLLWidgetData::parseCivilizationHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
 {

@@ -878,6 +878,7 @@ public:
 	int getReligionPrereq() const;
 	int getStateReligionPrereq() const;
 	int getTechPrereq() const;
+	int getVotePrereq() const; // VOTE_CLEANUP 04/2020 lfgr
 	int getRange() const;
     int getEffect() const;
 	int getAIWeight() const;
@@ -928,7 +929,6 @@ public:
 	bool isGlobal() const;
 	bool isInBordersOnly() const;
 	bool isInCityOnly() const;
-	bool isPrereqSlaveTrade() const;
 	bool isBuffCasterOnly() const;
 	bool isAbility() const;
 	bool isDispel() const;
@@ -1000,6 +1000,7 @@ protected:
 	int m_iReligionPrereq;
 	int m_iStateReligionPrereq;
 	int m_iTechPrereq;
+	int m_iVotePrereq; // VOTE_CLEANUP 04/2020 lfgr
 
     bool m_bAllowAI;
 /*************************************************************************************************/
@@ -1022,7 +1023,6 @@ protected:
     bool m_bGlobal;
     bool m_bInBordersOnly;
     bool m_bInCityOnly;
-    bool m_bPrereqSlaveTrade;
     bool m_bResistable;
     bool m_bDisplayWhenDisabled;
     bool m_bHasCasted;
@@ -5220,6 +5220,9 @@ public:
 	CvVoteInfo();
 	virtual ~CvVoteInfo();
 
+	// VOTE_DESC 04/2020 lfgr: Description parametrized with player name, city name, other player name.
+	const wchar* getParamDescriptionKey() const;
+
 	int getPopulationThreshold() const;	// Exposed to Python
 	int getStateReligionVotePercent() const;	// Exposed to Python
 	int getTradeRoutes() const;					// Exposed to Python
@@ -5246,15 +5249,14 @@ public:
 	bool isAssignCity() const;	// Exposed to Python
 
 //FfH: Added by Kael 11/14/2007
-    bool isGamblingRing() const;
     bool isNoOutsideTechTrades() const;
-    bool isSlaveTrade() const;
-    bool isSmugglingRing() const;
     int getCost() const;
     int getCrime() const;
     int getFreeUnitClass() const;
     int getFreeUnits() const;
     int getNoBonus() const;
+	const TCHAR* getPyRequirement() const; // lfgr 04/2020
+	const TCHAR* getPyAI() const; // lfgr 04/2020
 	const TCHAR* getPyResult() const;
 //FfH: End Add
 
@@ -5262,9 +5264,7 @@ public:
 /* Advanced Diplomacy         START                                                               */
 /************************************************************************************************/
 	bool isTradeMap() const;							// Exposed to Python
-	bool isNoCityRazing() const;						// Exposed to Python
 	bool isCultureNeedsEmptyRadius() const;						// Exposed to Python
-	bool isPacificRule() const;						// Exposed to Python
 //	int getCondemnCivic(int i) const;			// Exposed to Python
 //	bool isCondemnCivic(int i) const;			// Exposed to Python
 //	bool isValidCondemnCivicArray() const;			// Exposed to Python
@@ -5281,6 +5281,8 @@ public:
 	bool read(CvXMLLoadUtility* pXML);
 
 protected:
+
+	CvWString m_szParamDescriptionKey; // VOTE_DESC 04/2020 lfgr
 
 	int m_iPopulationThreshold;
 	int m_iStateReligionVotePercent;
@@ -5308,15 +5310,14 @@ protected:
 	bool m_bAssignCity;
 
 //FfH: Added by Kael 11/14/2007
-	bool m_bGamblingRing;
 	bool m_bNoOutsideTechTrades;
-	bool m_bSlaveTrade;
-	bool m_bSmugglingRing;
 	int m_iCost;
 	int m_iCrime;
 	int m_iFreeUnits;
 	int m_iFreeUnitClass;
     int m_iNoBonus;
+	CvString m_szPyRequirement; // lfgr 04/2020
+	CvString m_szPyAI; // lfgr 04/2020
 	CvString m_szPyResult;
 //FfH: End Add
 
@@ -5324,9 +5325,7 @@ protected:
 /* Advanced Diplomacy         START                                                               */
 /************************************************************************************************/
 	bool m_bTradeMap;
-	bool m_bNoCityRazing;
 	bool m_bCultureNeedsEmptyRadius;
-	bool m_bPacificRule;
 	//std::vector<int> m_piCondemnCivic;
 /************************************************************************************************/
 /* Advanced Diplomacy         END                                                               */

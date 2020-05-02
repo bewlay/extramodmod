@@ -31,6 +31,8 @@
 #include "CyArgsList.h"
 #include "CvDLLPythonIFaceBase.h"
 
+#include "CvInfoUtils.h" // lfgr 04/2020
+
 // BUG - start
 #include "CvBugOptions.h"
 // BUG - end
@@ -3510,50 +3512,21 @@ It is fine for a human player mouse-over (which is what it is used for).
                         if (pDefender->isAnimal())
                         {
                             //animal
-                            iExperience = range(iExperience,0,GC.getDefineINT("ANIMAL_MAX_XP_VALUE")-(pAttacker->getExperience()));
-                            if (iExperience < 0 )
-                            {
-                                iExperience = 0;
-                            }
-                            iWithdrawXP = range(iWithdrawXP,0,GC.getDefineINT("ANIMAL_MAX_XP_VALUE")-(pAttacker->getExperience()));
-                            if (iWithdrawXP < 0 )
-                            {
-                                iWithdrawXP = 0;
-                            }
-                            iBonusAttackerXP = range(iBonusAttackerXP,0,GC.getDefineINT("ANIMAL_MAX_XP_VALUE")-(pAttacker->getExperience() + iExperience));
-                            if (iBonusAttackerXP < 0 )
-                            {
-                                iBonusAttackerXP = 0;
-                            }
-                            iBonusWithdrawXP = range(iBonusWithdrawXP,0,GC.getDefineINT("ANIMAL_MAX_XP_VALUE")-(pAttacker->getExperience() + iWithdrawXP));
-                            if (iBonusWithdrawXP < 0 )
-                            {
-                                iBonusWithdrawXP = 0;
-                            }
+							int iMaxExtraAnimalXP = std::max( 0, GC.getDefineINT( "ANIMAL_MAX_XP_VALUE" ) - pAttacker->getExperience() );
+							iExperience = range(iExperience,0,iMaxExtraAnimalXP);
+							iWithdrawXP = range(iWithdrawXP,0,iMaxExtraAnimalXP);
+							iBonusAttackerXP = range(iBonusAttackerXP,0,iMaxExtraAnimalXP + iExperience);
+							iBonusWithdrawXP = range(iBonusWithdrawXP,0,iMaxExtraAnimalXP + iWithdrawXP);
+
                         }
                         else
                         {
                             //normal barbarian
-                            iExperience = range(iExperience,0,GC.getDefineINT("BARBARIAN_MAX_XP_VALUE")-pAttacker->getExperience());
-                            if (iExperience < 0 )
-                            {
-                                iExperience = 0;
-                            }
-                            iWithdrawXP = range(iWithdrawXP,0,GC.getDefineINT("BARBARIAN_MAX_XP_VALUE")-(pAttacker->getExperience()));
-                            if (iWithdrawXP < 0 )
-                            {
-                                iWithdrawXP = 0;
-                            }
-                            iBonusAttackerXP = range(iBonusAttackerXP,0,GC.getDefineINT("BARBARIAN_MAX_XP_VALUE")-(pAttacker->getExperience() + iExperience));
-                            if (iBonusAttackerXP < 0 )
-                            {
-                                iBonusAttackerXP = 0;
-                            }
-                            iBonusWithdrawXP = range(iBonusWithdrawXP,0,GC.getDefineINT("BARBARIAN_MAX_XP_VALUE")-(pAttacker->getExperience() + iWithdrawXP));
-                            if (iBonusWithdrawXP < 0 )
-                            {
-                                iBonusWithdrawXP = 0;
-                            }
+							int iMaxExtraBarbXP = std::max( 0, GC.getDefineINT( "BARBARIAN_MAX_XP_VALUE" ) - pAttacker->getExperience() );
+							iExperience = range(iExperience,0,iMaxExtraBarbXP);
+							iWithdrawXP = range(iWithdrawXP,0,iMaxExtraBarbXP);
+							iBonusAttackerXP = range(iBonusAttackerXP,0,iMaxExtraBarbXP + iExperience);
+							iBonusWithdrawXP = range(iBonusWithdrawXP,0,iMaxExtraBarbXP + iWithdrawXP);
                         }
                     }
 
@@ -7016,21 +6989,10 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 			{
 
 //FfH: Modified by Kael 05/24/2008
-//				if ((pPlot->getUpgradeProgress() > 0) || pPlot->isBeingWorked())
-//				{
-//					iTurns = pPlot->getUpgradeTimeLeft(eImprovement, eRevealOwner);
-//
-//					szString.append(gDLL->getText("TXT_KEY_PLOT_IMP_UPGRADE", iTurns, GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getTextKeyWide()));
-//				}
-//				else
-//				{
-//					szString.append(gDLL->getText("TXT_KEY_PLOT_WORK_TO_UPGRADE", GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getTextKeyWide()));
-//				}
+				// lfgr fix 04/2020: Removed commented out code, added pPlot->getOwner() check
                 if (GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getPrereqCivilization() == NO_CIVILIZATION ||
-                 GC.getGameINLINE().getActivePlayer() == NO_PLAYER ||
-				 //GC.getGameINLINE().isDebugMode() ||
-                 //GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCivilizationType() == GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getPrereqCivilization())
-				 GET_PLAYER(pPlot->getOwner()).getCivilizationType() == GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getPrereqCivilization())
+						pPlot->getOwner() == NO_PLAYER ||
+						GET_PLAYER(pPlot->getOwner()).getCivilizationType() == GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getPrereqCivilization())
                 {
 				/************************************************************************************************/
 				/* WILDERNESS                             08/2013                                 lfgr          */
@@ -9519,19 +9481,17 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 	else
 	{
 //BUGFfH: End Add
+		if (kPromotionInfo.getCityAttackPercent() != 0)
+		{
+			szBuffer.append(pcNewline);
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CITY_ATTACK_TEXT", kPromotionInfo.getCityAttackPercent()));
+		}
 
-
-	if (kPromotionInfo.getCityAttackPercent() != 0)
-	{
-		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CITY_ATTACK_TEXT", kPromotionInfo.getCityAttackPercent()));
-	}
-
-	if (kPromotionInfo.getCityDefensePercent() != 0)
-	{
-		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CITY_DEFENSE_TEXT", kPromotionInfo.getCityDefensePercent()));
-	}
+		if (kPromotionInfo.getCityDefensePercent() != 0)
+		{
+			szBuffer.append(pcNewline);
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_CITY_DEFENSE_TEXT", kPromotionInfo.getCityDefensePercent()));
+		}
 //BUGFfH: Added by Denev 2009/09/05
 	}
 //BUGFfH: End Add
@@ -9548,17 +9508,17 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 	else
 	{
 //BUGFfH: End Add
-	if (kPromotionInfo.getHillsAttackPercent() != 0)
-	{
-		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_HILLS_ATTACK", kPromotionInfo.getHillsAttackPercent()));
-	}
+		if (kPromotionInfo.getHillsAttackPercent() != 0)
+		{
+			szBuffer.append(pcNewline);
+			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_HILLS_ATTACK", kPromotionInfo.getHillsAttackPercent()));
+		}
 
-	if (kPromotionInfo.getHillsDefensePercent() != 0)
-	{
-		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HILLS_DEFENSE_TEXT", kPromotionInfo.getHillsDefensePercent()));
-	}
+		if (kPromotionInfo.getHillsDefensePercent() != 0)
+		{
+			szBuffer.append(pcNewline);
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HILLS_DEFENSE_TEXT", kPromotionInfo.getHillsDefensePercent()));
+		}
 //BUGFfH: Added by Denev 2009/09/05
 	}
 //BUGFfH: End Add
@@ -9642,18 +9602,18 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 		else
 		{
 //BUGFfH: End Add
-		if (kPromotionInfo.getTerrainAttackPercent(iI) != 0)
-		{
-			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_ATTACK_TEXT", kPromotionInfo.getTerrainAttackPercent(iI), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide()));
-		}
+			if (kPromotionInfo.getTerrainAttackPercent(iI) != 0)
+			{
+				szBuffer.append(pcNewline);
+				szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_ATTACK_TEXT", kPromotionInfo.getTerrainAttackPercent(iI), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide()));
+			}
 
 
-		if (kPromotionInfo.getTerrainDefensePercent(iI) != 0)
-		{
-			szBuffer.append(pcNewline);
-			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSE_TEXT", kPromotionInfo.getTerrainDefensePercent(iI), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide()));
-		}
+			if (kPromotionInfo.getTerrainDefensePercent(iI) != 0)
+			{
+				szBuffer.append(pcNewline);
+				szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSE_TEXT", kPromotionInfo.getTerrainDefensePercent(iI), GC.getTerrainInfo((TerrainTypes) iI).getTextKeyWide()));
+			}
 //BUGFfH: Added by Denev 2009/09/05
 		}
 //BUGFfH: End Add
@@ -10040,7 +10000,13 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
     if (kPromotionInfo.getExpireChance() != 0)
     {
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXPIRE_CHANCE", kPromotionInfo.getExpireChance()));
+        // lfgr 02/2020: Better text for 100% expire chance
+        if( kPromotionInfo.getExpireChance() == 100 ) {
+			szBuffer.append( gDLL->getText( "TXT_KEY_PROMOTION_EXPIRES_END_OF_TURN" ) );
+		}
+		else {
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_EXPIRE_CHANCE", kPromotionInfo.getExpireChance()));
+		}
     }
     if (kPromotionInfo.isRemovedByCasting())
     {
@@ -10111,6 +10077,8 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
 {
 	PROFILE_FUNC();
 
+	FAssert( pvpUnits == NULL || pvpUnits->size() > 0 );
+
 	CvWString szText, szText2;
 
 	if (NO_SPELL == eSpell)
@@ -10136,12 +10104,6 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
     }
 
 	// +++ Requirements +++
-	
-    if (kSpellInfo.isPrereqSlaveTrade())
-    {
-        szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_PREREQ_SLAVE_TRADE"));
-    }
     
     // lfgr 09/2019: Caster must be alive
     if (kSpellInfo.isCasterMustBeAlive())
@@ -10215,11 +10177,17 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_STATE_RELIGION_PREREQ", GC.getReligionInfo((ReligionTypes)kSpellInfo.getStateReligionPrereq()).getDescription()));
     }
-    if (kSpellInfo.getTechPrereq() != NO_TECH)
-    {
-        szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_TECH_PREREQ", GC.getTechInfo((TechTypes)kSpellInfo.getTechPrereq()).getDescription()));
-    }
+	if (kSpellInfo.getTechPrereq() != NO_TECH)
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_SPELL_TECH_PREREQ", GC.getTechInfo((TechTypes)kSpellInfo.getTechPrereq()).getDescription()));
+	}
+	if (kSpellInfo.getVotePrereq() != NO_VOTE) // lfgr VOTE_CLEANUP 04/2020
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append( gDLL->getText("TXT_KEY_SPELL_VOTE_PREREQ", // LFGR_TODO
+				GC.getVoteInfo( (VoteTypes) kSpellInfo.getVotePrereq() ).getDescription() ) );
+	}
     if (kSpellInfo.getUnitPrereq() != NO_UNIT)
     {
         szBuffer.append(pcNewline);
@@ -10490,23 +10458,35 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_REMOVE_HAS_CASTED"));
     }
-    int iCost = kSpellInfo.getCost();
-    if (iCost != 0)
-    {
-		// scale costs by gamespeed
-		iCost *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
-		iCost /= 100;
 
-        if (kSpellInfo.getConvertUnitType() != NO_UNIT)
-        {
-            if (GC.getGameINLINE().getActivePlayer() != NO_PLAYER)
-            {
-                iCost += (iCost * GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getUpgradeCostModifier()) / 100;
-            }
-        }
+    int iCost;
+	if( GC.getGameINLINE().getActivePlayer() != NO_PLAYER ) {
+		iCost = info_utils::getRealSpellCost( GC.getGameINLINE().getActivePlayer(), eSpell );
+	}
+	else {
+		iCost = kSpellInfo.getCost();
+	}
+	if( iCost > 0 ) {
+		bool bCanPay = true;
+
+		if( pvpUnits != NULL && pvpUnits->size() > 0 ) {
+			// All selected units have the same owner
+			bCanPay = GET_PLAYER( pvpUnits->at( 0 )->getOwnerINLINE() ).getGold() >= iCost;
+		}
+
         szBuffer.append(pcNewline);
-        szBuffer.append(gDLL->getText("TXT_KEY_SPELL_COST", iCost));
+        if( bCanPay ) {
+			szBuffer.append(gDLL->getText("TXT_KEY_SPELL_COST", iCost));
+		}
+		else {
+			szBuffer.append(gDLL->getText("TXT_KEY_SPELL_COST_CANNOT_PAY", iCost));
+		}
     }
+	else if( iCost < 0 ) {
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_SPELL_PROFIT", -iCost));
+	}
+
     if (kSpellInfo.getDelay() != 0)
     {
         szBuffer.append(pcNewline);
@@ -11514,6 +11494,273 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 	}
 }
 
+// VOTE_HELP 11/2019 lfgr
+void CvGameTextMgr::parseVoteInfo( CvWStringBuffer &szHelpText, VoteTypes eVote,
+		VoteSourceTypes eVoteSource, PlayerTypes ePlayer, int iCity, PlayerTypes eOtherPlayer,
+		bool bRequirements ) {
+	PROFILE_FUNC();
+
+	if( eVote == NO_VOTE ) {
+		return;
+	}
+	
+	CvVoteInfo& kVote = GC.getVoteInfo( eVote );
+	
+	// Use first eligible vote source if none is specified
+	// LFGR_TODO?
+	if( eVoteSource == NO_VOTESOURCE ) {
+		for( int eLoopVoteSource = 0; eLoopVoteSource < GC.getNumVoteSourceInfos(); eLoopVoteSource++ ) {
+			if( kVote.isVoteSourceType( eLoopVoteSource ) ) {
+				eVoteSource = (VoteSourceTypes) eLoopVoteSource;
+				break;
+			}
+		}
+	}
+
+	ReligionTypes eVoteSourceReligion = NO_RELIGION;
+	if( eVoteSource != NO_VOTESOURCE ) {
+		eVoteSourceReligion = GC.getGameINLINE().getVoteSourceReligion( eVoteSource );
+	}
+	
+	// Voting
+
+	if( eVoteSource != NO_VOTESOURCE && GC.getGameINLINE().getActivePlayer() != NO_PLAYER ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_REQUIRED_VOTES",
+			GC.getGameINLINE().getVoteRequired( eVote, eVoteSource ),
+			GC.getGameINLINE().countPossibleVote( eVote, eVoteSource )) );
+	}
+	else if( kVote.getPopulationThreshold() != 50 ) {
+		// Show percentage if no game is running or no vote source is specified.
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_POPULATION_THRESHOLD",
+				kVote.getPopulationThreshold() ) );
+	}
+	
+	if( kVote.getStateReligionVotePercent() != 0 ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_STATE_RELIGION_VOTE_PERCENT",
+				kVote.getStateReligionVotePercent() ) );
+	}
+	
+	// Minimum voters
+	if( bRequirements && kVote.getMinVoters() > 0 ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_MIN_VOTERS", kVote.getMinVoters() ) );
+	}
+
+	// "All players have to be voters"
+	if( bRequirements && kVote.isVictory() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_ALL_PLAYERS" ) );
+	}
+	
+	if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+
+	if( kVote.isCivVoting() ) {
+		if( eVoteSourceReligion == NO_RELIGION ) { // LFGR_TODO: What if vote source has religion, but we are in pedia?
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_CIV_VOTING" ) );
+		}
+		else {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_CIV_VOTING_RELIGION",
+				GC.getReligionInfo( eVoteSourceReligion ).getChar() ) );
+		}
+	}
+	else if( kVote.isCityVoting() ) {
+		if( eVoteSourceReligion == NO_RELIGION ) {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_CITY_VOTING" ) );
+		}
+		else {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_CITY_VOTING_RELIGION",
+				GC.getReligionInfo( eVoteSourceReligion ).getChar() ) );
+		}
+	}
+	else {
+		if( eVoteSourceReligion == NO_RELIGION ) {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_POP_VOTING" ) );
+		}
+		else {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_POP_VOTING_RELIGION",
+				GC.getReligionInfo( eVoteSourceReligion ).getChar() ) );
+		}
+	}
+	
+	// Special resolutions
+	
+	if( kVote.isSecretaryGeneral() && eVoteSource != NO_VOTESOURCE ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		
+		CvWString szSecGenText = GC.getVoteSourceInfo( eVoteSource ).getSecretaryGeneralText();
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_SEC_GEN_ELECTION", szSecGenText.c_str() ) );
+	}
+
+	if( kVote.isVictory() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_VICTORY" ) );
+	}
+	
+	
+	// Effects
+	
+	if( kVote.getTradeRoutes() != 0 ) { // LFGR_TODO: Only for members
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_TRADE_ROUTES", kVote.getTradeRoutes() ) );
+	}
+	
+	if( kVote.isNoNukes() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_NO_NUKES" ) );
+	}
+	
+	if( kVote.isDefensivePact() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_DEFENSIVE_PACT" ) );
+	}
+
+	// LFGR_TODO: Limited borders, embassies, non-agression pact (?)
+	
+	if( kVote.isOpenBorders() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_OPEN_BORDERS" ) );
+	}
+	
+	if( kVote.isForcePeace() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+
+		if( ePlayer != NO_PLAYER ) {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_FORCE_PEACE",
+					GET_PLAYER( ePlayer ).getNameKey() ) );
+		}
+		else {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_FORCE_PEACE_SOMEONE" ) );
+		}
+	}
+	
+	if( kVote.isForceNoTrade() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+
+		if( ePlayer != NO_PLAYER ) {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_FORCE_NO_TRADE",
+					GET_PLAYER( ePlayer ).getNameKey() ) );
+		}
+		else {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_FORCE_NO_TRADE_SOMEONE" ) );
+		}
+	}
+	
+	if( kVote.isForceWar() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+
+		if( ePlayer != NO_PLAYER ) {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_FORCE_WAR",
+					GET_PLAYER( ePlayer ).getNameKey() ) );
+		}
+		else {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_FORCE_WAR_SOMEONE" ) );
+		}
+	}
+
+	if( kVote.isFreeTrade() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_FREE_TRADE" ) );
+	}
+	
+	if( kVote.isNoOutsideTechTrades() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_NO_OUTSIDE_TECH_TRADES" ) );
+	}
+
+	if( kVote.getFreeUnits() > 0 ) {
+		FAssertMsg( kVote.getFreeUnitClass() != NO_UNITCLASS, "Cannot have iFreeUnits > 0, but no FreeUnitClass in VoteInfo" );
+		
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		
+		CvWString szUnit;
+		if( kVote.getFreeUnits() == 1 ) {
+			szUnit = gDLL->getText( "%s1",
+				GC.getUnitClassInfo( (UnitClassTypes) kVote.getFreeUnitClass() ).getTextKeyWide() );
+		}
+		else {
+			szUnit = gDLL->getText( "%d1 %s1", kVote.getFreeUnits(),
+					GC.getUnitClassInfo( (UnitClassTypes) kVote.getFreeUnitClass() ).getTextKeyWide() );
+		}
+
+		if( kVote.getCost() > 0 ) {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_RECEIVE_UNIT_COST",
+				kVote.getCost(), GC.getCommerceInfo( COMMERCE_GOLD ).getChar(), szUnit.c_str() ) );
+		}
+		else {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_RECEIVE_UNIT", szUnit.c_str() ) );
+		}
+	}
+
+	if( kVote.getCrime() != 0 ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_CRIME", kVote.getCrime() ) );
+	}
+
+	if( kVote.getNoBonus() != NO_BONUS ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_NO_BONUS",
+				GC.getBonusInfo( (BonusTypes) kVote.getNoBonus() ).getChar() ) );
+	}
+
+	if( kVote.isTradeMap() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_TRADE_MAP" ) );
+	}
+
+	for( int eCivic = 0; eCivic < GC.getNumCivicInfos(); eCivic++ ) {
+		if( kVote.isForceCivic( eCivic ) ) {
+			if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_FORCE_CIVIC",
+				GC.getCivicInfo( (CivicTypes) eCivic ).getTextKeyWide() ) );
+		}
+	}
+
+	if( kVote.isAssignCity() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		if( ePlayer != NO_PLAYER ) {
+			FAssertMsg( iCity != -1 && eOtherPlayer != NO_PLAYER,
+					"Invalid arguments to parseVoteInfo: iAssignCity, ePlayer != NO_PLAYER, but "
+					"iCity == -1 or eOtherPlayer == NO_PLAYER" );
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_REASSIGN_CITY_FROM_TO",
+					GET_PLAYER( ePlayer ).getCity( iCity )->getName(),
+					GET_PLAYER( ePlayer ).getNameKey(),
+					GET_PLAYER( eOtherPlayer ).getNameKey() ) );
+		}
+		else {
+			szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_REASSIGN_CITY" ) );
+		}
+	}
+
+	if( kVote.isCultureNeedsEmptyRadius() ) {
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_CULTURE_NEEDS_EMPTY_RADIUS" ) );
+	}
+
+	for( int iSpell = 0; iSpell < GC.getNumSpellInfos(); iSpell++ ) {
+		CvSpellInfo& kSpell = GC.getSpellInfo( (SpellTypes) iSpell );
+		if( kSpell.getVotePrereq() == eVote ) {
+			if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+			if( kSpell.isAbility() ) {
+				szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_ENABLES_ABILITY", kSpell.getDescription() ) );
+			}
+			else {
+				szHelpText.append( gDLL->getText( "TXT_KEY_VOTE_HELP_ENABLES_SPELL", kSpell.getDescription() ) );
+			}
+		}
+	}
+	
+	// Custom Help text
+	if( !CvWString( kVote.getHelp()).empty() )
+	{
+		if( ! szHelpText.isEmpty() ) szHelpText.append( NEWLINE );
+		szHelpText.append( kVote.getHelp() );
+	}
+}
+
+// VOTE_HELP end
 
 // BUG - Trade Denial - start
 void CvGameTextMgr::setTechHelp(CvWStringBuffer &szBuffer, TechTypes eTech, bool bCivilopediaText, bool bPlayerContext, bool bStrategyText, bool bTreeInfo, TechTypes eFromTech)
@@ -15065,9 +15312,7 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 
 				if (iYear != MIN_INT)
 				{
-					/*
 					// year built
-					*/
 					szBuffer.append(NEWLINE);
 					szBuffer.append(gDLL->getText("TXT_KEY_BUG_YEAR_BUILT", iYear));
 

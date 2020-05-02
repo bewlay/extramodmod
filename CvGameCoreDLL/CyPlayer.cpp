@@ -2821,24 +2821,9 @@ int CyPlayer::getPlayersKilled() const
 	return m_pPlayer ? m_pPlayer->getPlayersKilled() : -1;
 }
 
-bool CyPlayer::isGamblingRing() const
-{
-	return m_pPlayer ? m_pPlayer->isGamblingRing() : false;
-}
-
 bool CyPlayer::isHasTech(int iTech) const
 {
 	return m_pPlayer ? m_pPlayer->isHasTech(iTech) : false;
-}
-
-bool CyPlayer::isSlaveTrade() const
-{
-	return m_pPlayer ? m_pPlayer->isSlaveTrade() : false;
-}
-
-bool CyPlayer::isSmugglingRing() const
-{
-	return m_pPlayer ? m_pPlayer->isSmugglingRing() : false;
 }
 
 bool CyPlayer::isAgnostic() const

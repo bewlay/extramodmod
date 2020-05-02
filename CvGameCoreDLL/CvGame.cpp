@@ -30,6 +30,8 @@
 #include "CvDLLEngineIFaceBase.h"
 #include "CvDLLPythonIFaceBase.h"
 
+#include "CvInfoUtils.h" // lfgr 04/2020
+
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
 /*                                                                                              */
@@ -53,16 +55,12 @@ CvGame::CvGame()
 
 //FfH: Added by Kael 11/14/2007
 	m_pabEventTriggered = NULL;
-	m_pabGamblingRing = NULL;
 	m_ppbNoBonusByVoteSource = NULL; // lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
 	m_pabNoOutsideTechTrades = NULL;
-	m_pabSlaveTrade = NULL;
-	m_pabSmugglingRing = NULL;
 //FfH: End Add
 
 	// Advanced Diplomacy
 	m_pabCultureNeedsEmptyRadius = NULL;
-	m_pabNoCityRazing = NULL;
 	// End Advanced Diplomacy
 
 	m_paiUnitCreatedCount = NULL;
@@ -782,16 +780,12 @@ void CvGame::uninit()
 
 //FfH: Added by Kael 11/14/2007
 	SAFE_DELETE_ARRAY(m_pabEventTriggered);
-	SAFE_DELETE_ARRAY(m_pabGamblingRing);
 	SAFE_DELETE_ARRAY(m_ppbNoBonusByVoteSource); // lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
 	SAFE_DELETE_ARRAY(m_pabNoOutsideTechTrades);
-	SAFE_DELETE_ARRAY(m_pabSlaveTrade);
-	SAFE_DELETE_ARRAY(m_pabSmugglingRing);
 //FfH: End Add
 
 	// Advanced Diplomacy
 	SAFE_DELETE_ARRAY(m_pabCultureNeedsEmptyRadius);
-	SAFE_DELETE_ARRAY(m_pabNoCityRazing);
 	// End Advanced Diplomacy
 
 	SAFE_DELETE_ARRAY(m_aiShrineBuilding);
@@ -952,11 +946,6 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 		{
 			m_pabEventTriggered[iI] = false;
 		}
-		m_pabGamblingRing = new bool[GC.getNumVoteSourceInfos()];
-		for (iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
-		{
-			m_pabGamblingRing[iI] = false;
-		}
 
 		// lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
 		m_ppbNoBonusByVoteSource = new bool[GC.getNumVoteSourceInfos() * GC.getNumBonusInfos()];
@@ -970,16 +959,6 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 		{
 			m_pabNoOutsideTechTrades[iI] = false;
 		}
-		m_pabSlaveTrade = new bool[GC.getNumVoteSourceInfos()];
-		for (iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
-		{
-			m_pabSlaveTrade[iI] = false;
-		}
-		m_pabSmugglingRing = new bool[GC.getNumVoteSourceInfos()];
-		for (iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
-		{
-			m_pabSmugglingRing[iI] = false;
-		}
 //FfH: End Add
 
 		// Advanced Diplomacy
@@ -987,11 +966,6 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 		for (iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
 		{
 			m_pabCultureNeedsEmptyRadius[iI] = false;
-		}
-		m_pabNoCityRazing = new bool[GC.getNumVoteSourceInfos()];
-		for (iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
-		{
-			m_pabNoCityRazing[iI] = false;
 		}
 		// End Advanced Diplomacy
 		FAssertMsg(m_paiUnitCreatedCount==NULL, "about to leak memory, CvGame::m_paiUnitCreatedCount");
@@ -1041,18 +1015,10 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 
 		FAssertMsg(0 < GC.getNumVoteSourceInfos(), "GC.getNumVoteSourceInfos() is not greater than zero in CvGame::reset");
 		FAssertMsg(m_aiDiploVote==NULL, "about to leak memory, CvGame::m_aiDiploVote");
-/************************************************************************************************/
-/* Advanced Diplomacy         START                                                               */
-/************************************************************************************************/
-		m_abPacificVoteSource.clear();
 		m_aiDiploVote = new int[GC.getNumVoteSourceInfos()];
 		for (iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
 		{
 			m_aiDiploVote[iI] = 0;
-			m_abPacificVoteSource.push_back(false);
-/************************************************************************************************/
-/* Advanced Diplomacy         END                                                               */
-/************************************************************************************************/
 		}
 
 		/*
@@ -3624,7 +3590,7 @@ void CvGame::clearSecretaryGeneral(VoteSourceTypes eVoteSource)
 				kData.eVoteSource = eVoteSource;
 				kData.kVoteOption.eVote = (VoteTypes)j;
 				kData.kVoteOption.iCityId = -1;
-				kData.kVoteOption.szText.empty();
+				kData.kVoteOption.szText.clear(); // lfgr fix 04/2020
 				kData.kVoteOption.ePlayer = NO_PLAYER;
 				setVoteOutcome(kData, NO_PLAYER_VOTE);
 				setSecretaryGeneralTimer(eVoteSource, 0);
@@ -5027,6 +4993,7 @@ bool CvGame::canDoResolution(VoteSourceTypes eVoteSource, const VoteSelectionSub
 
 bool CvGame::isValidVoteSelection(VoteSourceTypes eVoteSource, const VoteSelectionSubData& kData) const
 {
+	// LFGR_TODO: This does not work if a vote does multiple things
 	if (NO_PLAYER != kData.ePlayer)
 	{
 		CvPlayer& kPlayer = GET_PLAYER(kData.ePlayer);
@@ -5128,6 +5095,7 @@ bool CvGame::isValidVoteSelection(VoteSourceTypes eVoteSource, const VoteSelecti
 
 		bool bValid = false;
 
+		// Must be at war with some member
 		for (int iTeam2 = 0; iTeam2 < MAX_CIV_TEAMS; ++iTeam2)
 		{
 			if (atWar(kPlayer.getTeam(), (TeamTypes)iTeam2))
@@ -5284,6 +5252,18 @@ bool CvGame::isValidVoteSelection(VoteSourceTypes eVoteSource, const VoteSelecti
 	if (!canDoResolution(eVoteSource, kData))
 	{
 		return false;
+	}
+
+	// lfgr 04/2020
+	if( ! CvString( GC.getVoteInfo( kData.eVote ).getPyRequirement() ).empty() )
+	{
+		CyArgsList argsList;
+		argsList.add( kData.eVote );
+		long lResult = -1;
+		gDLL->getPythonIFace()->callFunction( PYVoteModule, "votePrereq", argsList.makeFunctionArgs(), &lResult );
+		if( lResult == 0 ) { // python returned false
+			return false;
+		}
 	}
 
 	return true;
@@ -6013,7 +5993,8 @@ bool CvGame::isBuildingClassMaxedOut(BuildingClassTypes eIndex, int iExtra)
 		return false;
 	}
 
-	FAssertMsg(getBuildingClassCreatedCount(eIndex) <= GC.getBuildingClassInfo(eIndex).getMaxGlobalInstances(), "Index is expected to be within maximum bounds (invalid Index)");
+	// lfgr 04/2020: This is not appropriate in FfH.
+	//FAssertMsg(getBuildingClassCreatedCount(eIndex) <= GC.getBuildingClassInfo(eIndex).getMaxGlobalInstances(), "Index is expected to be within maximum bounds (invalid Index)");
 
 	return ((getBuildingClassCreatedCount(eIndex) + iExtra) >= GC.getBuildingClassInfo(eIndex).getMaxGlobalInstances());
 }
@@ -6311,33 +6292,6 @@ void CvGame::setReligionSlotTaken(ReligionTypes eReligion, bool bTaken)
 	FAssertMsg(eReligion < GC.getNumReligionInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
 	m_abReligionSlotTaken[eReligion] = bTaken;
 }
-
-
-/************************************************************************************************/
-/* Advanced Diplomacy         START                                                               */
-/************************************************************************************************/
-bool CvGame::isPacificVoteSource(VoteSourceTypes eVoteSource) const
-{
-	FAssertMsg(eVoteSource >= 0, "eIndex is expected to be non-negative (invalid Index)");
-	FAssertMsg(eVoteSource < GC.getNumVoteSourceInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
-
-	return m_abPacificVoteSource[eVoteSource];
-}
-
-void CvGame::setPacificVoteSource(VoteSourceTypes eVoteSource, bool bNewValue)
-{
-	FAssertMsg(eVoteSource >= 0, "eIndex is expected to be non-negative (invalid Index)");
-	FAssertMsg(eVoteSource < GC.getNumVoteSourceInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
-	m_abPacificVoteSource[eVoteSource] = bNewValue;
-
-	if (bNewValue)
-	{
-		updateSecretaryGeneral();
-	}
-}
-/************************************************************************************************/
-/* Advanced Diplomacy         END                                                               */
-/************************************************************************************************/
 
 
 int CvGame::getCorporationGameTurnFounded(CorporationTypes eIndex)
@@ -9019,14 +8973,6 @@ void CvGame::processVote(const VoteTriggeredData& kData, int iChange)
 	changeFreeTradeCount(kVote.isFreeTrade() ? iChange : 0);
 	changeNoNukesCount(kVote.isNoNukes() ? iChange : 0);
 
-/************************************************************************************************/
-/* Advanced Diplomacy         START                                                               */
-/************************************************************************************************/
-	setPacificVoteSource(kData.eVoteSource, (GC.getVoteInfo(kData.kVoteOption.eVote).isPacificRule() ? (iChange > 0) : isPacificVoteSource(kData.eVoteSource)));
-/************************************************************************************************/
-/* Advanced Diplomacy         END                                                               */
-/************************************************************************************************/
-
 	for (int iI = 0; iI < GC.getNumCivicInfos(); iI++)
 	{
 		// lfgr 06/2019: ForceCivic applies only to the respective VoteSource
@@ -9046,21 +8992,9 @@ void CvGame::processVote(const VoteTriggeredData& kData, int iChange)
 		setNoBonus(kData.eVoteSource, (BonusTypes)kVote.getNoBonus(), bChange);
 	// lfgr end
     }
-    if (kVote.isGamblingRing())
-    {
-        setGamblingRing(kData.eVoteSource, bChange);
-    }
     if (kVote.isNoOutsideTechTrades())
     {
         setNoOutsideTechTrades(kData.eVoteSource, bChange);
-    }
-    if (kVote.isSlaveTrade())
-    {
-        setSlaveTrade(kData.eVoteSource, bChange);
-    }
-    if (kVote.isSmugglingRing())
-    {
-        setSmugglingRing(kData.eVoteSource, bChange);
     }
     if (kVote.getFreeUnits() > 0 && bChange)
     {
@@ -9082,30 +9016,25 @@ void CvGame::processVote(const VoteTriggeredData& kData, int iChange)
 		    }
 		}
     }
-    if (kVote.getCrime() != 0)
-    {
-        changeCrime(kVote.getCrime());
-    }
+
+	// lfgr fix 04/2020
+	changeCrime( iChange * kVote.getCrime() );
 
 	// Advanced Diplomacy
 	if (kVote.isCultureNeedsEmptyRadius())
     {
         setCultureNeedsEmptyRadius(kData.eVoteSource, bChange);
     }
-	if (kVote.isNoCityRazing())
-    {
-        setNoCityRazing(kData.eVoteSource, bChange);
-    }
 	// End Advanced Diplomacy
 
 	// setForcedOpenBorder(kData.eVoteSource, bChange); // TODO - make this
 
+	// lfgr 04/2020: tweaked
 	if (!CvString(kVote.getPyResult()).empty())
     {
         CyArgsList argsList;
-        argsList.add(kData.kVoteOption.eVote);
-        argsList.add(1);
-        gDLL->getPythonIFace()->callFunction(PYSpellModule, "vote", argsList.makeFunctionArgs());
+        argsList.add( kData.kVoteOption.eVote );
+        gDLL->getPythonIFace()->callFunction( PYVoteModule, "voteResult", argsList.makeFunctionArgs() );
     }
 //FfH: End Add
 
@@ -10008,23 +9937,6 @@ void CvGame::read(FDataStreamBase* pStream)
 			m_mapVoteSourceReligions[eVoteSource] = eReligion;
 		}
 	}
-/************************************************************************************************/
-/* Advanced Diplomacy         START                                                               */
-/************************************************************************************************/
-	{
-		m_abPacificVoteSource.clear();
-		uint iSize = GC.getNumVoteSourceInfos();
-//		pStream->Read(&iSize);
-		for (uint i = 0; i < iSize; i++)
-		{
-			bool bValue;
-			pStream->Read(&bValue);
-			m_abPacificVoteSource.push_back(bValue);
-		}
-	}
-/************************************************************************************************/
-/* Advanced Diplomacy         END                                                               */
-/************************************************************************************************/
 	{
 		int iSize;
 		m_aeInactiveTriggers.clear();
@@ -10076,18 +9988,14 @@ void CvGame::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iGlobalCounterLimit);
 	pStream->Read(&m_iScenarioCounter);
 	pStream->Read(GC.getNumEventTriggerInfos(), m_pabEventTriggered);
-	pStream->Read(GC.getNumVoteSourceInfos(), m_pabGamblingRing);
 // lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
 	pStream->Read( GC.getNumVoteSourceInfos() * GC.getNumBonusInfos(), m_ppbNoBonusByVoteSource );
 // lfgr end
 	pStream->Read(GC.getNumVoteSourceInfos(), m_pabNoOutsideTechTrades);
-	pStream->Read(GC.getNumVoteSourceInfos(), m_pabSlaveTrade);
-	pStream->Read(GC.getNumVoteSourceInfos(), m_pabSmugglingRing);
 //FfH: End Add
 
 	// Advanced Diplomacy
 	pStream->Read(GC.getNumVoteSourceInfos(), m_pabCultureNeedsEmptyRadius);
-	pStream->Read(GC.getNumVoteSourceInfos(), m_pabNoCityRazing);
 	// End Advanced Diplomacy
 }
 
@@ -10264,22 +10172,6 @@ void CvGame::write(FDataStreamBase* pStream)
 	}
 #endif
 
-/************************************************************************************************/
-/* Advanced Diplomacy         START                                                               */
-/************************************************************************************************/
-	{
-/*		uint iSize = m_abPacificVoteSource.size();
-		pStream->Write(iSize);*/
-		std::vector<bool>::iterator it;
-		for (it = m_abPacificVoteSource.begin(); it != m_abPacificVoteSource.end(); ++it)
-		{
-			pStream->Write((*it));
-		}
-	}
-/************************************************************************************************/
-/* Advanced Diplomacy         END                                                               */
-/************************************************************************************************/
-
 	pStream->Write(m_aeInactiveTriggers.size());
 	for (std::vector<EventTriggerTypes>::iterator it = m_aeInactiveTriggers.begin(); it != m_aeInactiveTriggers.end(); ++it)
 	{
@@ -10303,18 +10195,14 @@ void CvGame::write(FDataStreamBase* pStream)
 	pStream->Write(m_iGlobalCounterLimit);
 	pStream->Write(m_iScenarioCounter);
 	pStream->Write(GC.getNumEventTriggerInfos(), m_pabEventTriggered);
-	pStream->Write(GC.getNumVoteSourceInfos(), m_pabGamblingRing);
 // lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
 	pStream->Write( GC.getNumVoteSourceInfos() * GC.getNumBonusInfos(), m_ppbNoBonusByVoteSource );
 // lfgr end
 	pStream->Write(GC.getNumVoteSourceInfos(), m_pabNoOutsideTechTrades);
-	pStream->Write(GC.getNumVoteSourceInfos(), m_pabSlaveTrade);
-	pStream->Write(GC.getNumVoteSourceInfos(), m_pabSmugglingRing);
 //FfH: End Add
 
 	// Advanced Diplomacy
 	pStream->Write(GC.getNumVoteSourceInfos(), m_pabCultureNeedsEmptyRadius);
-	pStream->Write(GC.getNumVoteSourceInfos(), m_pabNoCityRazing);
 	// End Advanced Diplomacy
 }
 
@@ -11011,7 +10899,7 @@ VoteSelectionData* CvGame::getVoteSelection(int iID) const
 
 VoteSelectionData* CvGame::addVoteSelection(VoteSourceTypes eVoteSource)
 {
-	VoteSelectionData* pData = ((VoteSelectionData*)(m_voteSelections.add()));
+	VoteSelectionData* pData = m_voteSelections.add();
 
 	if  (NULL != pData)
 	{
@@ -11029,121 +10917,61 @@ VoteSelectionData* CvGame::addVoteSelection(VoteSourceTypes eVoteSource)
 					kData.ePlayer = NO_PLAYER;
 					kData.eOtherPlayer = NO_PLAYER;
 
-					if (GC.getVoteInfo(kData.eVote).isOpenBorders())
-					{
-						if (isValidVoteSelection(eVoteSource, kData))
-						{
-							kData.szText = gDLL->getText("TXT_KEY_POPUP_ELECTION_OPEN_BORDERS", getVoteRequired(kData.eVote, eVoteSource), countPossibleVote(kData.eVote, eVoteSource));
-							pData->aVoteOptions.push_back(kData);
-						}
-					}
-					else if (GC.getVoteInfo(kData.eVote).isDefensivePact())
-					{
-						if (isValidVoteSelection(eVoteSource, kData))
-						{
-							kData.szText = gDLL->getText("TXT_KEY_POPUP_ELECTION_DEFENSIVE_PACT", getVoteRequired(kData.eVote, eVoteSource), countPossibleVote(kData.eVote, eVoteSource));
-							pData->aVoteOptions.push_back(kData);
-						}
-					}
-					else if (GC.getVoteInfo(kData.eVote).isForcePeace())
-					{
-						for (int iTeam1 = 0; iTeam1 < MAX_CIV_TEAMS; ++iTeam1)
-						{
-							CvTeam& kTeam1 = GET_TEAM((TeamTypes)iTeam1);
+					// VOTE_DESC 04/2020 lfgr: Simplified the following
 
-							if (kTeam1.isAlive())
-							{
-								kData.ePlayer = kTeam1.getLeaderID();
+					CvVoteInfo& kVote = GC.getVoteInfo( kData.eVote );
 
-								if (isValidVoteSelection(eVoteSource, kData))
-								{
-									kData.szText = gDLL->getText("TXT_KEY_POPUP_ELECTION_FORCE_PEACE", kTeam1.getName().GetCString(), getVoteRequired(kData.eVote, eVoteSource), countPossibleVote(kData.eVote, eVoteSource));
-									pData->aVoteOptions.push_back(kData);
+					if( kVote.isForcePeace() || kVote.isForceNoTrade() || kVote.isForceWar() ) {
+						// Choose non-member team
+
+						FAssertMsg( ! kVote.isAssignCity(), CvString::format(
+								"Invalid Vote parameter combination: %s", kVote.getType() ).c_str() );
+
+						for( int iTeam = 0; iTeam < MAX_CIV_TEAMS; ++iTeam ) {
+							CvTeam& kTeam = GET_TEAM( (TeamTypes)iTeam );
+
+							if( kTeam.isAlive() ) {
+								kData.ePlayer = kTeam.getLeaderID();
+
+								if( isValidVoteSelection( eVoteSource, kData ) ) {
+									info_utils::setParametrizedVoteDescription( kData );
+									pData->aVoteOptions.push_back( kData );
 								}
 							}
 						}
 					}
-					else if (GC.getVoteInfo(kData.eVote).isForceNoTrade())
-					{
-						for (int iTeam1 = 0; iTeam1 < MAX_CIV_TEAMS; ++iTeam1)
-						{
-							CvTeam& kTeam1 = GET_TEAM((TeamTypes)iTeam1);
-
-							if (kTeam1.isAlive())
-							{
-								kData.ePlayer = kTeam1.getLeaderID();
-
-								if (isValidVoteSelection(eVoteSource, kData))
-								{
-									kData.szText = gDLL->getText("TXT_KEY_POPUP_ELECTION_FORCE_NO_TRADE", kTeam1.getName().GetCString(), getVoteRequired(kData.eVote, eVoteSource), countPossibleVote(kData.eVote, eVoteSource));
-									pData->aVoteOptions.push_back(kData);
-								}
-							}
-						}
-					}
-					else if (GC.getVoteInfo(kData.eVote).isForceWar())
-					{
-						for (int iTeam1 = 0; iTeam1 < MAX_CIV_TEAMS; ++iTeam1)
-						{
-							CvTeam& kTeam1 = GET_TEAM((TeamTypes)iTeam1);
-
-							if (kTeam1.isAlive())
-							{
-								kData.ePlayer = kTeam1.getLeaderID();
-
-								if (isValidVoteSelection(eVoteSource, kData))
-								{
-									kData.szText = gDLL->getText("TXT_KEY_POPUP_ELECTION_FORCE_WAR", kTeam1.getName().GetCString(), getVoteRequired(kData.eVote, eVoteSource), countPossibleVote(kData.eVote, eVoteSource));
-									pData->aVoteOptions.push_back(kData);
-								}
-							}
-						}
-					}
-					else if (GC.getVoteInfo(kData.eVote).isAssignCity())
-					{
-						for (int iPlayer1 = 0; iPlayer1 < MAX_CIV_PLAYERS; ++iPlayer1)
-						{
-							CvPlayer& kPlayer1 = GET_PLAYER((PlayerTypes)iPlayer1);
-/************************************************************************************************/
-/* Afforess	                  Start		 		                                                */
-/* Advanced Diplomacy                                                                           */
-/************************************************************************************************/
-							if (kPlayer1.isAlive())
-							{
+					else if( kVote.isAssignCity() ) {
+						// Choose city to transfer
+						// Modified by Afforess for Advanced Diplomacy
+						for( int iPlayer = 0; iPlayer < MAX_CIV_PLAYERS; ++iPlayer ) {
+							CvPlayer& kPlayer = GET_PLAYER( (PlayerTypes)iPlayer );
+							if( kPlayer.isAlive() ) {
 								int iLoop;
-								for (CvCity* pLoopCity = kPlayer1.firstCity(&iLoop); NULL != pLoopCity; pLoopCity = kPlayer1.nextCity(&iLoop))
-								{
+								for( CvCity* pLoopCity = kPlayer.firstCity( &iLoop ); NULL != pLoopCity;
+										pLoopCity = kPlayer.nextCity( &iLoop ) ) {
 									PlayerTypes eNewOwner = pLoopCity->plot()->findHighestCulturePlayer();
-									if (NO_PLAYER != eNewOwner)
-									{
-										kData.ePlayer = (PlayerTypes)iPlayer1;
+									if( NO_PLAYER != eNewOwner ) {
+										kData.ePlayer = (PlayerTypes) iPlayer;
 										kData.iCityId =	pLoopCity->getID();
 										kData.eOtherPlayer = eNewOwner;
 
-										if (isValidVoteSelection(eVoteSource, kData))
-										{
-											kData.szText = gDLL->getText("TXT_KEY_POPUP_ELECTION_ASSIGN_CITY", kPlayer1.getCivilizationAdjectiveKey(), pLoopCity->getNameKey(), GET_PLAYER(eNewOwner).getNameKey(), getVoteRequired(kData.eVote, eVoteSource), countPossibleVote(kData.eVote, eVoteSource));
-											pData->aVoteOptions.push_back(kData);
+										if( isValidVoteSelection( eVoteSource, kData ) ) {
+											info_utils::setParametrizedVoteDescription( kData );
+											pData->aVoteOptions.push_back( kData );
 										}
-/************************************************************************************************/
-/* Advanced Diplomacy         END                                                               */
-/************************************************************************************************/
 									}
 								}
 							}
 						}
 					}
-					else
-					{
-						kData.szText = gDLL->getText("TXT_KEY_POPUP_ELECTION_OPTION", GC.getVoteInfo(kData.eVote).getTextKeyWide(), getVoteRequired(kData.eVote, eVoteSource), countPossibleVote(kData.eVote, eVoteSource));
-						if (isVotePassed(kData.eVote))
-						{
-							kData.szText += gDLL->getText("TXT_KEY_POPUP_PASSED");
-						}
-
-						if (canDoResolution(eVoteSource, kData))
-						{
-							pData->aVoteOptions.push_back(kData);
+					else {
+						// No parameters to select
+						if( isValidVoteSelection( eVoteSource, kData ) ) {
+							info_utils::setParametrizedVoteDescription( kData );
+							if( isVotePassed(kData.eVote) ) {
+								kData.szText += gDLL->getText("TXT_KEY_POPUP_PASSED");
+							}
+							pData->aVoteOptions.push_back( kData );
 						}
 					}
 				}
@@ -11237,6 +11065,9 @@ void CvGame::doVoteResults()
 		VoteTypes eVote = pVoteTriggered->kVoteOption.eVote;
 		VoteSourceTypes eVoteSource = pVoteTriggered->eVoteSource;
 		bool bPassed = false;
+
+		// VOTE_DESC 04/2020 lfgr: Take into account previous result
+		bool bPassedBefore = isVotePassed( pVoteTriggered->kVoteOption.eVote );
 		
 /********************************************************************************/
 /* Improved Councils    03/2013                                         lfgr    */
@@ -11460,7 +11291,11 @@ void CvGame::doVoteResults()
 					}
 				}
 
-				szBuffer += NEWLINE + gDLL->getText((bPassed ? "TXT_KEY_POPUP_DIPLOMATIC_VOTING_SUCCEEDS" : "TXT_KEY_POPUP_DIPLOMATIC_VOTING_FAILURE"), GC.getVoteInfo(eVote).getTextKeyWide(), countVote(*pVoteTriggered, PLAYER_VOTE_YES), getVoteRequired(eVote, eVoteSource), countPossibleVote(eVote, eVoteSource));
+				// VOTE_DESC 04/2020 lfgr: Improved
+				szBuffer += NEWLINE + gDLL->getText((bPassed ? "TXT_KEY_POPUP_DIPLOMATIC_VOTING_SUCCEEDS" : "TXT_KEY_POPUP_DIPLOMATIC_VOTING_FAILURE"),
+						pVoteTriggered->kVoteOption.szText.c_str(),
+						countVote(*pVoteTriggered, PLAYER_VOTE_YES), getVoteRequired(eVote, eVoteSource),
+						countPossibleVote(eVote, eVoteSource));
 				
 /********************************************************************************/
 /* Improved Councils    03/2013                                         lfgr    */
@@ -11473,6 +11308,7 @@ void CvGame::doVoteResults()
 /* Improved Councils                                                    END     */
 /********************************************************************************/
 
+				// Add individual player votes
 				for (int iI = PLAYER_VOTE_NEVER; iI <= PLAYER_VOTE_YES; ++iI)
 				{
 					for (int iJ = 0; iJ < MAX_CIV_PLAYERS; iJ++)
@@ -11514,6 +11350,7 @@ void CvGame::doVoteResults()
 				setVoteOutcome(*pVoteTriggered, bPassed ? PLAYER_VOTE_YES : PLAYER_VOTE_NO);
 			}
 
+			// Show popup to members and message to members and other affected players
 			for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
 			{
 				CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iI);
@@ -11531,48 +11368,46 @@ void CvGame::doVoteResults()
 						}
 					}
 
-					if (!bShow)
-					{
-						if (iI == pVoteTriggered->kVoteOption.ePlayer && GET_PLAYER(pVoteTriggered->kVoteOption.ePlayer).isVotingMember(pVoteTriggered->eVoteSource))
-						{
-							bShow = true;
-						}
-					}
+					// lfgr fix 04/2020: The previous code here didn't do anything. Below is what was probably desired.
+					bShow = bShow || ( iI == pVoteTriggered->kVoteOption.ePlayer )
+					              || ( iI == pVoteTriggered->kVoteOption.eOtherPlayer );
 
-					if (!bShow)
-					{
-						if (iI == pVoteTriggered->kVoteOption.eOtherPlayer && GET_PLAYER(pVoteTriggered->kVoteOption.eOtherPlayer).isVotingMember(pVoteTriggered->eVoteSource))
-						{
-							bShow = true;
-						}
-					}
-
-					if (bShow && bPassed)
-					{
-/********************************************************************************/
-/* Improved Councils    03/2013                                         lfgr    */
-/* Better Messages                                                              */
-/********************************************************************************/
-/* old
-						CvWString szMessage = gDLL->getText("TXT_KEY_VOTE_RESULTS", GC.getVoteSourceInfo(eVoteSource).getTextKeyWide(), pVoteTriggered->kVoteOption.szText.GetCString());
-*/
+					// VOTE_DESC 04/2020 lfgr: Show appropriate message
+					if( bShow ) {
 						CvWString szMessage;
-						
 						CvVoteInfo& kVote = GC.getVoteInfo( eVote );
 						CvVoteSourceInfo& kVoteSource = GC.getVoteSourceInfo( eVoteSource );
 						int iChoice = getVoteOutcome( eVote );
-						if( kVote.isVictory() )
-							szMessage = gDLL->getText("TXT_KEY_VOTE_RESULTS_VICTORY", kVoteSource.getTextKeyWide(), GET_TEAM( (TeamTypes) iChoice ).getName().GetCString() );
-						else if( kVote.isSecretaryGeneral() )
-							szMessage = gDLL->getText("TXT_KEY_VOTE_RESULTS_SECRETARY", kVoteSource.getTextKeyWide(), GET_TEAM( (TeamTypes) iChoice ).getName().GetCString(), kVoteSource.getSecretaryGeneralText().GetCString() );
-						else
-							szMessage = gDLL->getText("TXT_KEY_VOTE_RESULTS", GC.getVoteSourceInfo(eVoteSource).getTextKeyWide(), pVoteTriggered->kVoteOption.szText.GetCString());
-/********************************************************************************/
-/* Improved Councils                                                    END     */
-/********************************************************************************/
-						gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_NEW_ERA", MESSAGE_TYPE_MINOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
-					}
 
+						if( bPassed && kVote.isVictory() ) {
+							szMessage = gDLL->getText( "TXT_KEY_VOTE_RESULTS_VICTORY", kVoteSource.getTextKeyWide(),
+									GET_TEAM( (TeamTypes) iChoice ).getName().GetCString() );
+						}
+						else if( bPassed && kVote.isSecretaryGeneral() ) {
+							szMessage = gDLL->getText( "TXT_KEY_VOTE_RESULTS_SECRETARY", kVoteSource.getTextKeyWide(),
+									GET_TEAM( (TeamTypes) iChoice ).getName().GetCString(),
+									kVoteSource.getSecretaryGeneralText().GetCString() );
+						}
+						else if( bPassed && bPassedBefore ) {
+							szMessage = gDLL->getText( "TXT_KEY_MSG_VOTE_PASSED_AGAIN", kVoteSource.getTextKeyWide(),
+									pVoteTriggered->kVoteOption.szText.GetCString() );
+						}
+						else if( bPassed && !bPassedBefore ) {
+							szMessage = gDLL->getText( "TXT_KEY_MSG_VOTE_PASSED", kVoteSource.getTextKeyWide(),
+									pVoteTriggered->kVoteOption.szText.GetCString() );
+						}
+						else if( !bPassed && bPassedBefore ) {
+							szMessage = gDLL->getText( "TXT_KEY_MSG_VOTE_REPEALED", kVoteSource.getTextKeyWide(),
+									pVoteTriggered->kVoteOption.szText.GetCString() );
+						}
+						else if( !bPassed && !bPassedBefore ) {
+							szMessage = gDLL->getText( "TXT_KEY_MSG_VOTE_REJECTED", kVoteSource.getTextKeyWide(),
+									pVoteTriggered->kVoteOption.szText.GetCString() );
+						}
+						gDLL->getInterfaceIFace()->addMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(),
+								szMessage, "AS2D_NEW_ERA", MESSAGE_TYPE_MINOR_EVENT, NULL,
+								(ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+					}
 				}
 			}
 		}
@@ -12069,16 +11904,6 @@ void CvGame::setEventTriggered(EventTriggerTypes eTrigger, bool bNewValue)
 	m_pabEventTriggered[eTrigger] = bNewValue;
 }
 
-bool CvGame::isGamblingRing(VoteSourceTypes eIndex) const
-{
-	return m_pabGamblingRing[eIndex];
-}
-
-void CvGame::setGamblingRing(VoteSourceTypes eIndex, bool bNewValue)
-{
-	m_pabGamblingRing[eIndex] = bNewValue;
-}
-
 // lfgr 06/2019: Fix NoBonus to apply to correct VoteSource
 bool CvGame::isNoBonus(VoteSourceTypes eVoteSource, BonusTypes eBonus) const
 {
@@ -12099,26 +11924,6 @@ bool CvGame::isNoOutsideTechTrades(VoteSourceTypes eIndex) const
 void CvGame::setNoOutsideTechTrades(VoteSourceTypes eIndex, bool bNewValue)
 {
 	m_pabNoOutsideTechTrades[eIndex] = bNewValue;
-}
-
-bool CvGame::isSlaveTrade(VoteSourceTypes eIndex) const
-{
-	return m_pabSlaveTrade[eIndex];
-}
-
-void CvGame::setSlaveTrade(VoteSourceTypes eIndex, bool bNewValue)
-{
-	m_pabSlaveTrade[eIndex] = bNewValue;
-}
-
-bool CvGame::isSmugglingRing(VoteSourceTypes eIndex) const
-{
-	return m_pabSmugglingRing[eIndex];
-}
-
-void CvGame::setSmugglingRing(VoteSourceTypes eIndex, bool bNewValue)
-{
-	m_pabSmugglingRing[eIndex] = bNewValue;
 }
 
 int CvGame::getTrophyValue(const TCHAR* szName) const
@@ -12339,16 +12144,6 @@ bool CvGame::isCultureNeedsEmptyRadius(VoteSourceTypes eIndex) const
 void CvGame::setCultureNeedsEmptyRadius(VoteSourceTypes eIndex, bool bNewValue)
 {
 	m_pabCultureNeedsEmptyRadius[eIndex] = bNewValue;
-}
-
-bool CvGame::isNoCityRazing(VoteSourceTypes eIndex) const
-{
-	return m_pabNoCityRazing[eIndex];
-}
-
-void CvGame::setNoCityRazing(VoteSourceTypes eIndex, bool bNewValue)
-{
-	m_pabNoCityRazing[eIndex] = bNewValue;
 }
 
 
