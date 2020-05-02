@@ -16102,8 +16102,11 @@
 					<PromotionType>PROMOTION_IMMUNE_DISEASE</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_INFECTIOUS_BITE</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
-			<!-- TODO: apply diseased -->
 			<iCombatDefense>6</iCombatDefense>
 			<AnimalTerrainFlavour>TERRAIN_FLAVOUR_SPAWN_LIZARD</AnimalTerrainFlavour>
 		</UnitInfo>

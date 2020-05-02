@@ -213,6 +213,15 @@
 		<Finnish>TODO</Finnish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_INFECTIOUS_BITE</Tag>
+		<English>Infectious Bite</English>
+		<French>Infectious Bite</French>
+		<German>Infectious Bite</German>
+		<Italian>Infectious Bite</Italian>
+		<Spanish>Infectious Bite</Spanish>
+		<Finnish>Infectious Bite</Finnish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_UNIT_LIZARD_GREAT</Tag>
 		<English>Great Lizard</English>
 		<French>Great Lizard</French>

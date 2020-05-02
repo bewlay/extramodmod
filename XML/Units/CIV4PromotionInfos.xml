@@ -4452,6 +4452,15 @@
             </DamageTypeResists>
         </PromotionInfo>
         <PromotionInfo>
+			<!-- WILDERNESS 02/2020 lfgr // New Animals -->
+            <Type>PROMOTION_INFECTIOUS_BITE</Type>
+            <Description>TXT_KEY_PROMOTION_INFECTIOUS_BITE</Description>
+            <Sound>AS2D_IF_LEVELUP</Sound>
+            <Button>Art/Interface/Buttons/Promotions/Plaguecarrier.dds</Button>
+            <iMinLevel>-1</iMinLevel>
+            <PromotionCombatApply>PROMOTION_DISEASED</PromotionCombatApply>
+        </PromotionInfo>
+        <PromotionInfo>
             <Type>PROMOTION_INFERNAL_GRIMOIRE</Type>
             <Description>TXT_KEY_EQUIPMENT_INFERNAL_GRIMOIRE</Description>
             <Sound>AS2D_IF_LEVELUP</Sound>
