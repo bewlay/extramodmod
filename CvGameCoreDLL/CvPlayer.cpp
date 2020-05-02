@@ -13744,6 +13744,9 @@ void CvPlayer::setAlive(bool bNewValue)
 
 		if (isAlive())
 		{
+			logBBAI( "Player %d (%S - %S) becomes alive on turn %d.", getIDINLINE(), getName(),
+					getCivilizationShortDescription(), GC.getGameINLINE().getGameTurn() );
+
 			if (!isEverAlive())
 			{
 				m_bEverAlive = true;
@@ -13783,6 +13786,9 @@ void CvPlayer::setAlive(bool bNewValue)
 		}
 		else
 		{
+			logBBAI( "Player %d (%S - %S) eliminated on turn %d.", getIDINLINE(), getName(),
+					getCivilizationShortDescription(), GC.getGameINLINE().getGameTurn() );
+
 			clearResearchQueue();
 			killUnits();
 			killCities();

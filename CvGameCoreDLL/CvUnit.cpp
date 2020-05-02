@@ -3970,6 +3970,7 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 /* UnitMinWilderness                                                                            */
 /* Original by Sephi                                                                            */
 /************************************************************************************************/
+	// LFGR_TODO: Probably good idea to optimize this: Store correct min wilderness from the start?
 	if( isBarbarian() && !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
 	{
 		int iMinWilderness = getMinWilderness() - GC.getDefineINT( "UNIT_MOVE_MIN_WILDERNESS_RANGE", 5 );
