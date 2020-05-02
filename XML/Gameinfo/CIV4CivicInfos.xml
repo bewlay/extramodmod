@@ -2990,9 +2990,9 @@
             <CapitalYieldModifiers>
             </CapitalYieldModifiers>
             <TradeYieldModifiers>
-                <iCommerce>0</iCommerce>
-                <iCommerce>0</iCommerce>
-                <iCommerce>25</iCommerce>
+                <iYield>0</iYield>
+                <iYield>0</iYield>
+                <iYield>25</iYield>
             </TradeYieldModifiers>
             <CommerceModifiers>
             </CommerceModifiers>
