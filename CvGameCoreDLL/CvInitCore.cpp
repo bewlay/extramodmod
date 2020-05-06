@@ -1241,10 +1241,27 @@ void CvInitCore::setOption(GameOptionTypes eIndex, bool bOption)
 	FASSERT_BOUNDS(0, NUM_GAMEOPTION_TYPES, eIndex, "CvInitCore::setOption");
 	if ( checkBounds(eIndex, 0, NUM_GAMEOPTION_TYPES) )
 	{
+		// lfgr 05/2020: Don't allow enabling classifier options
+		if( bOption && (
+			eIndex == GAMEOPTION_BARBARIANS_ANIMALS_CLASSIFIER
+			|| eIndex == GAMEOPTION_AI_CLASSIFIER
+			|| eIndex == GAMEOPTION_WORLD_CLASSIFIER
+			|| eIndex == GAMEOPTION_DIFFICULTY_CLASSIFIER
+			|| eIndex == GAMEOPTION_AC_CLASSIFIER
+			|| eIndex == GAMEOPTION_WAR_PEACE_CLASSIFIER
+			|| eIndex == GAMEOPTION_CITIES_CLASSIFIER
+			|| eIndex == GAMEOPTION_LEADERS_CLASSIFIER
+			|| eIndex == GAMEOPTION_TECHNOLOGY_CLASSIFIER
+			|| eIndex == GAMEOPTION_RELIGION_CLASSIFIER
+			|| eIndex == GAMEOPTION_ADVANCED_OPTIONS_CLASSIFIER ) ) {
+			return;
+		}
+
+
 		m_abOptions[eIndex] = bOption;
 
 		if( eIndex == GAMEOPTION_LEAD_ANY_CIV ) {
-			// Synchronize
+			// Fix 05/2020 lfgr: Synchronize dummy option for exe
 			m_abOptions[GAMEOPTION_LEAD_ANY_CIV_DUMMY] = bOption;
 		}
 	}
