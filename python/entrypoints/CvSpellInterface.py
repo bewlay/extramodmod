@@ -4811,12 +4811,13 @@ def spellSellAnimal( pCaster ) :
 	CyInterface().addMessage(pCaster.getOwner(), True, 25, CyTranslator().getText( 'TXT_KEY_MESSAGE_SPELL_SELL_ANIMAL', ( iGold, ) ),'',1, None, ColorTypes(8), -1, -1, False, False)
 	gc.getPlayer( pCaster.getOwner() ).changeGold( iGold )
 
-def helpSellAnimal( lpUnits ) :
+def helpSellAnimal( eSpell, lpUnits ) :
 	iMinGold = 0
 	iMaxGold = 0
 	for pUnit in lpUnits :
-		iMinGold += getAnimalSellValue( pUnit ) * 75 / 100
-		iMaxGold += getAnimalSellValue( pUnit ) * 125 / 100
+		if pUnit.canCast( eSpell, False ) :
+			iMinGold += getAnimalSellValue( pUnit ) * 75 / 100
+			iMaxGold += getAnimalSellValue( pUnit ) * 125 / 100
 	
 	if( len( lpUnits ) == 1 ) :
 		return CyTranslator().getText( 'TXT_KEY_SPELL_SELL_ONE_ANIMAL_HELP', ( iMinGold, iMaxGold ) )

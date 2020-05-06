@@ -3323,7 +3323,7 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 				GAMETEXT.parseSpellHelp(szBuffer, ((SpellTypes)(GC.getActionInfo(widgetDataStruct.m_iData1).getCommandData())));
 			*/
 				int iSpell = GC.getActionInfo(widgetDataStruct.m_iData1).getCommandData();
-				std::vector<CvUnit*> vpValidUnits;
+				std::vector<CvUnit*> vpUnits;
 
 				pSelectedUnitNode = gDLL->getInterfaceIFace()->headSelectionListNode();
 
@@ -3331,13 +3331,12 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 				{
 					pSelectedUnit = ::getUnit( pSelectedUnitNode->m_data );
 
-					if( pSelectedUnit->canCast( iSpell, false ) )
-						vpValidUnits.push_back( pSelectedUnit );
+					vpUnits.push_back( pSelectedUnit );
 
 					pSelectedUnitNode = gDLL->getInterfaceIFace()->nextSelectionListNode( pSelectedUnitNode );
 				}
 				
-				GAMETEXT.parseSpellHelp(szBuffer, (SpellTypes) iSpell, NEWLINE, &vpValidUnits );
+				GAMETEXT.parseSpellHelp(szBuffer, (SpellTypes) iSpell, NEWLINE, &vpUnits );
 			/********************************************************************************/
 			/* SpellPyHelp                                                          END     */
 			/********************************************************************************/

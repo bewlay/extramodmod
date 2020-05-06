@@ -5918,7 +5918,7 @@
             <bSacrificeCaster>1</bSacrificeCaster>
             <PyResult>spellSellAnimal(pCaster)</PyResult>
             <PyRequirement>reqConsumeAnimal(pCaster)</PyRequirement>
-            <PyHelp>helpSellAnimal(lpUnits)</PyHelp>
+            <PyHelp>helpSellAnimal(eSpell, lpUnits)</PyHelp>
             <Effect>EFFECT_SPELL1</Effect>
             <Sound>AS3D_SPELL_ENCHANTMENT</Sound>
             <Button>Art/Interface/Buttons/techtree/currency.dds</Button>
