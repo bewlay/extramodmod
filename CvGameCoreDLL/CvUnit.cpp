@@ -17124,6 +17124,7 @@ bool CvUnit::canCreateUnit(int spell) const
 //<<<<Unofficial Bug Fix: End Delete
 	if (GC.getSpellInfo((SpellTypes)spell).isPermanentUnitCreate())
 	{
+		// LFGR_TODO: There should be something like "canEverCast(eSpell)", which is then counted here
 		int iCount = 0;
 		int iLoop = 0;
 		CvUnit* pLoopUnit;
@@ -17135,7 +17136,10 @@ bool CvUnit::canCreateUnit(int spell) const
 			  (GC.getSpellInfo((SpellTypes)spell).getPromotionPrereq2() == NO_PROMOTION ||
 			  pLoopUnit->isHasPromotion((PromotionTypes)GC.getSpellInfo((SpellTypes)spell).getPromotionPrereq2())) &&
 			  (GC.getSpellInfo((SpellTypes)spell).getReligionPrereq() == NO_RELIGION ||
-			  pLoopUnit->getReligion() == GC.getSpellInfo((SpellTypes)spell).getReligionPrereq()))
+			  pLoopUnit->getReligion() == GC.getSpellInfo((SpellTypes)spell).getReligionPrereq()) &&
+			  (GC.getSpellInfo((SpellTypes)spell).getUnitClassPrereq() == NO_RELIGION || // fix 05/2020 lfgr
+			  pLoopUnit->getUnitClassType() == GC.getSpellInfo((SpellTypes)spell).getUnitClassPrereq())
+			)
 			{
 				iCount += 1;
 			}
