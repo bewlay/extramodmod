@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Text for various infos. -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_LEAD_ANY_CIV_DUMMY</Tag>
+		<English>Unrestricted leader selection</English>
+		<French>Unrestricted leader selection</French>
+		<German>Unrestricted leader selection</German>
+		<Italian>Unrestricted leader selection</Italian>
+		<Spanish>Unrestricted leader selection</Spanish>
+	</TEXT>
+</Civ4GameText>

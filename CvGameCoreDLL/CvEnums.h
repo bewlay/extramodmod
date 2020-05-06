@@ -785,27 +785,24 @@ enum GameOptionTypes				// Exposed to Python
 	NO_GAMEOPTION = -1,
 	// Visible game options.
 	GAMEOPTION_ADVANCED_START,
+
 	GAMEOPTION_BARBARIANS_ANIMALS_CLASSIFIER,
 	GAMEOPTION_RAGING_BARBARIANS,
 	GAMEOPTION_BARBARIAN_WORLD,
 	GAMEOPTION_DOUBLE_ANIMALS,
-/************************************************************************************************/
-/* WILDERNESS                             08/2013                                 lfgr          */
-/* NoWilderness                                                                                 */
-/************************************************************************************************/
-	GAMEOPTION_NO_WILDERNESS,
-/************************************************************************************************/
-/* WILDERNESS                                                                     END           */
-/************************************************************************************************/
+	GAMEOPTION_NO_WILDERNESS, // WILDERNESS 08/2013 lfgr
 	GAMEOPTION_NO_BARBARIANS,
+	GAMEOPTION_LEAD_ANY_CIV_DUMMY, // fix 05/2020: Dummy option for exe, synchronized with GAMEOPTION_LEAD_ANY_CIV
 	GAMEOPTION_NO_GOODY_HUTS,
 	GAMEOPTION_NO_LAIRS,
 	GAMEOPTION_NO_ACHERON,
 	GAMEOPTION_NO_ORTHUS,
+
 	GAMEOPTION_AI_CLASSIFIER,
 	GAMEOPTION_AGGRESSIVE_AI,
 	GAMEOPTION_AI_NO_BUILDING_PREREQS,
 	GAMEOPTION_AI_NO_MINIMUM_LEVEL,
+
 	GAMEOPTION_WORLD_CLASSIFIER,
 	GAMEOPTION_DOUBLE_BONUSES,
 	GAMEOPTION_DOUBLE_EVENTS,
@@ -814,6 +811,7 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_THAW,
 	GAMEOPTION_NO_DUIN,
 	GAMEOPTION_NO_GUILD_OF_THE_NINE,
+
 	GAMEOPTION_DIFFICULTY_CLASSIFIER,
 	GAMEOPTION_CHALLENGE_HIGH_TO_LOW,
 	GAMEOPTION_CHALLENGE_INCREASING_DIFFICULTY,
@@ -825,6 +823,7 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_NO_GLOBAL_COUNTER,
 	GAMEOPTION_NO_HYBOREM_OR_BASIUM,
 	GAMEOPTION_NO_PLOT_COUNTER,
+
 	GAMEOPTION_WAR_PEACE_CLASSIFIER,
 	GAMEOPTION_PERMANENT_ALLIANCES,
 	GAMEOPTION_ALWAYS_WAR,
@@ -834,31 +833,28 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_PUPPET_STATES,
 	GAMEOPTION_REVOLUTIONS,
 	GAMEOPTION_COMPLETE_KILLS,
+
 	GAMEOPTION_CITIES_CLASSIFIER,
-/************************************************************************************************/
-/* TERRAIN_FLAVOUR                        04/2013                                 lfgr          */
-/************************************************************************************************/
-	GAMEOPTION_FLAVOUR_START, // exposed to python
-/************************************************************************************************/
-/* TERRAIN_FLAVOUR                                                                END           */
-/************************************************************************************************/	GAMEOPTION_ONE_CITY_CHALLENGE,
+	GAMEOPTION_FLAVOUR_START, // TERRAIN_FLAVOUR 04/2013 lfgr
+	GAMEOPTION_ONE_CITY_CHALLENGE,
 	GAMEOPTION_NO_SETTLERS,
 	GAMEOPTION_NO_CITY_RAZING,
 	GAMEOPTION_NO_CITY_FLIPPING,
 	GAMEOPTION_FLIPPING_AFTER_CONQUEST,
+
 	GAMEOPTION_LEADERS_CLASSIFIER,
 	GAMEOPTION_LEAD_ANY_CIV,
 	GAMEOPTION_LEADER_SCENEXTRA,
 	GAMEOPTION_LEADER_EXTRA,
 	GAMEOPTION_RANDOM_PERSONALITIES,
-	// Player traits game options START
-	GAMEOPTION_RANDOM_TRAITS,
-	GAMEOPTION_INSANE_LEADERS,
-	// Player traits game options END
+	GAMEOPTION_RANDOM_TRAITS, // Player traits game options
+	GAMEOPTION_INSANE_LEADERS, // Player traits game options
+
 	GAMEOPTION_TECHNOLOGY_CLASSIFIER,
 	GAMEOPTION_TECHNOLOGY_PROPAGATION,
 	GAMEOPTION_NO_TECH_TRADING,
 	GAMEOPTION_NO_TECH_BROKERING,
+
 	GAMEOPTION_RELIGION_CLASSIFIER,
 	GAMEOPTION_NO_RELIGION_0,
 	GAMEOPTION_NO_RELIGION_1,
@@ -867,12 +863,14 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_NO_RELIGION_4,
 	GAMEOPTION_NO_RELIGION_5,
 	GAMEOPTION_NO_RELIGION_6,
+
 	GAMEOPTION_ADVANCED_OPTIONS_CLASSIFIER,
 	GAMEOPTION_NO_WORLD_SPELLS,
 	GAMEOPTION_NEW_RANDOM_SEED,
 	GAMEOPTION_LOCK_MODS,
 	GAMEOPTION_NO_EVENTS,
 	GAMEOPTION_ADVANCED_TACTICS,
+
 	// Game options that must be kept at certain values, and invisible.
 	GAMEOPTION_PICK_RELIGION,
 	GAMEOPTION_NO_ESPIONAGE,

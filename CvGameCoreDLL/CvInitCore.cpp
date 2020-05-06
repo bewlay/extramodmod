@@ -1242,6 +1242,11 @@ void CvInitCore::setOption(GameOptionTypes eIndex, bool bOption)
 	if ( checkBounds(eIndex, 0, NUM_GAMEOPTION_TYPES) )
 	{
 		m_abOptions[eIndex] = bOption;
+
+		if( eIndex == GAMEOPTION_LEAD_ANY_CIV ) {
+			// Synchronize
+			m_abOptions[GAMEOPTION_LEAD_ANY_CIV_DUMMY] = bOption;
+		}
 	}
 }
 
