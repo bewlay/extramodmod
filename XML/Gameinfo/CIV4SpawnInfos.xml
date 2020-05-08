@@ -2391,11 +2391,6 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
-			<UnitPromotions>
-				<PromotionType>PROMOTION_GARGANTUAN</PromotionType>
-				<PromotionType>PROMOTION_MUTATED</PromotionType>
-				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
-			</UnitPromotions>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_HYENA_GARGANTUAN -->
 			<Type>SPAWN_HYENA_GARGANTUAN</Type>
@@ -2411,6 +2406,11 @@
 					<iNumUnits>1</iNumUnits>
 				</SpawnUnit>
 			</SpawnUnits>
+			<UnitPromotions>
+				<PromotionType>PROMOTION_GARGANTUAN</PromotionType>
+				<PromotionType>PROMOTION_MUTATED</PromotionType>
+				<PromotionType>PROMOTION_VILE_TOUCH</PromotionType>
+			</UnitPromotions>
 		</SpawnInfo>
 		<SpawnInfo> <!-- SPAWN_LION -->
 			<Type>SPAWN_LION</Type>
