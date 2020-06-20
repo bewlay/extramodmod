@@ -1,6 +1,7 @@
 #### Civilization 4 SDK Makefile 2.3 ####
 ####  Copyright 2013 Nightinggale    ####
 ####       Modified by Terkhen       ####
+####       Modified by lfgr          ####
 #########################################
 #### Civilization 4 SDK Makefile 2.0 ####
 ####  Copyright 2013 Nightinggale    ####
@@ -29,8 +30,8 @@
 #
 # Note: $(PROGRAMFILES) converts to "C:\Program Files", "C:\Program Files (x86)" or whatever fits your system.
 # run "nmake.exe /P" in cmd.exe to see what it is on your system
-TOOLKIT=$(PROGRAMFILES)\Microsoft Visual C++ Toolkit 2003
-PSDK=$(PROGRAMFILES)\Microsoft SDKs\Windows\v7.0A
+TOOLKIT=$(PROGRAMFILES)\Civ4SDK\Microsoft Visual C++ Toolkit 2003
+PSDK=$(PROGRAMFILES)\Civ4SDK\WindowsSDK #\Microsoft SDKs\Windows\v7.0A
 ## Uncomment to have newly compiled dlls copied to your mod's Assets directory
 YOURMOD=..
 
@@ -59,7 +60,7 @@ BLACKLIST=CvTextScreens
 ## Assert adds /DFASSERT_ENABLE, which should be added to additional options too, if you care.
 ## However you will only be able to tell a difference if you do something with asserts other than FAssert() or FAssertMsg()
 
-Debug_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /D_DEBUG /DLOG_AI
+Debug_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /D_DEBUG /DLOG_AI_ALL
 Release_DEFINES=/DWIN32 /D_WINDOWS /D_USRDLL /DCVGAMECOREDLL_EXPORTS /DNDEBUG /DLOG_AI /DFINAL_RELEASE
 
 #### You shouldn't need to modify anything beyond this point ####
@@ -166,17 +167,21 @@ LIBS    = $(LIBS) msvcprt.lib
 !ENDIF
 !IF "$(TARGET)" == "Release"
 CFLAGS  = $(Release_CFLAGS) /GL
-LDFLAGS = $(Release_LDFLAGS) /LTCG # TODO: ignores /INCREMENTAL!
+LDFLAGS = $(Release_LDFLAGS) /LTCG
 !ENDIF
 !IF "$(TARGET)" == "Assert"
-CFLAGS  = $(Release_CFLAGS) /DFASSERT_ENABLE
+CFLAGS  = $(Release_CFLAGS) /DFASSERT_ENABLE /DLOG_AI_ALL
 LDFLAGS = $(Release_LDFLAGS)
+!ENDIF
+!IF "$(TARGET)" == "AssertOpt"
+CFLAGS  = $(Release_CFLAGS) /DFASSERT_ENABLE /DLOG_AI_ALL /GL
+LDFLAGS = $(Release_LDFLAGS) /LTCG
 !ENDIF
 !IF "$(TARGET)" == "Profile"
 !IFNDEF _NMAKE_VER
 !ERROR Jom can't be used on profile builds
 !ENDIF
-CFLAGS  = $(Release_CFLAGS) /Zi /DFP_PROFILE_ENABLE /DCUSTOM_PROFILER
+CFLAGS  = $(Release_CFLAGS) /Zi
 LDFLAGS = $(Debug_LDFLAGS)
 !ENDIF
 !IF "$(TARGET)" == "OOS"
@@ -185,7 +190,7 @@ LDFLAGS = $(Release_LDFLAGS)
 !ENDIF
 
 !IFNDEF CFLAGS
-!ERROR Target "$(TARGET)" not supported. Supported targets: Debug Release Assert Profile OOS
+!ERROR Target "$(TARGET)" not supported. Supported targets: Debug Release Assert AssertOpt Profile OOS
 !ENDIF
 
 #### Targets ####

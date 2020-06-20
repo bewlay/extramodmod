@@ -2830,7 +2830,7 @@
 			<ImprovementWeightModifiers>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MANA_BODY</ImprovementType>
@@ -6703,7 +6703,7 @@
 			<ImprovementWeightModifiers>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MINE</ImprovementType>
@@ -12002,7 +12002,7 @@
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MANA_EARTH</ImprovementType>
@@ -14297,7 +14297,7 @@
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MANA_LAW</ImprovementType>
@@ -21842,7 +21842,7 @@
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MANA_LAW</ImprovementType>
@@ -25619,7 +25619,7 @@
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MANA_SPIRIT</ImprovementType>
@@ -26432,7 +26432,7 @@
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MANA_SPIRIT</ImprovementType>
@@ -28811,7 +28811,7 @@
 			<ImprovementWeightModifiers>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MANA_BODY</ImprovementType>
@@ -31086,7 +31086,7 @@
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MANA_EARTH</ImprovementType>
@@ -37951,7 +37951,7 @@
 			<ImprovementWeightModifiers>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MINE</ImprovementType>
@@ -43315,7 +43315,7 @@
 			<ImprovementWeightModifiers>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MANA_BODY</ImprovementType>
@@ -55531,7 +55531,7 @@
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MANA_LAW</ImprovementType>
@@ -62380,7 +62380,7 @@
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MANA_LAW</ImprovementType>
@@ -64707,7 +64707,7 @@
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_CITADEL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<iWeightModifier>10</iWeightModifier>
 				 </ImprovementWeightModifier>
 				 <ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_MANA_SPIRIT</ImprovementType>

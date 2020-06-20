@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Text for various infos. -->
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Misc stuff -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_LEAD_ANY_CIV_DUMMY</Tag>
@@ -8,5 +8,22 @@
 		<German>Unrestricted leader selection</German>
 		<Italian>Unrestricted leader selection</Italian>
 		<Spanish>Unrestricted leader selection</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_ASSERTS_ENABLED</Tag>
+		<English>Asserts enabled</English>
+		<French>Asserts enabled</French>
+		<German>Asserts enabled</German>
+		<Italian>Asserts enabled</Italian>
+		<Spanish>Asserts enabled</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DEBUG_BUILD</Tag>
+		<English>Debug build</English>
+		<French>Debug build</French>
+		<German>Debug build</German>
+		<Italian>Debug build</Italian>
+		<Spanish>Debug build</Spanish>
+		<Finnish>Debug build</Finnish>
 	</TEXT>
 </Civ4GameText>
