@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.0-beta5
+
+Includes MNAI 2.9-beta2u.
+
+### Fixes
+* Mod now works without installing More Naval AI alongside
+
 ## 0.6.0-beta4u
 
 Includes MNAI versions 2.8.1u and 2.9-beta1u.
