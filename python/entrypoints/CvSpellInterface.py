@@ -4724,8 +4724,11 @@ def helpFertility( lpUnits ) :
 	pPlot = pUnit.plot()
 	iBonus = pPlot.getBonusType(-1)
 	iNextBonus = getFertilityBonus(iBonus)
-
-	return CyTranslator().getText( 'TXT_KEY_SPELL_FERTILITY_PYHELP', ( gc.getBonusInfo(iBonus).getDescription(), gc.getBonusInfo(iNextBonus).getDescription() ) )
+	
+	if iBonus != BonusTypes.NO_BONUS and iNextBonus != BonusTypes.NO_BONUS :
+		return CyTranslator().getText( 'TXT_KEY_SPELL_FERTILITY_PYHELP', ( gc.getBonusInfo(iBonus).getDescription(), gc.getBonusInfo(iNextBonus).getDescription() ) )
+	else :
+		return u""
 
 def spellUpgradeLucian(pCaster):
 	pPlayer = gc.getPlayer(pCaster.getOwner())
