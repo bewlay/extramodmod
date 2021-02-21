@@ -143,4 +143,9 @@ def onSetPlayerAlive( argsList ) :
 			elif iLeader ==  gc.getInfoTypeForString('LEADER_WEEVIL_EXTRA'):
 				cf.addPopup(CyTranslator().getText("TXT_KEY_WB_THE_MOMUS_DEFEATED_WEEVIL",()),'art/interface/popups/Weevil.dds')
 
-		
+
+def cyclePlotHelpForwards( argsList = None ) :
+	gc.changePlotHelpCycleIdx( 1 )
+
+def cyclePlotHelpBackwards( argsList = None ) :
+	gc.changePlotHelpCycleIdx( -1 )

@@ -22,7 +22,7 @@ BeginGame
 	TargetScore=0
 	StartYear=0
 	Description=TXT_KEY_WB_LORD_OF_THE_BALORS_DESC
-	ModPath=More Naval AI
+	ModPath=ExtraModMod
 EndGame
 BeginTeam
 	TeamID=0

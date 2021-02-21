@@ -212,6 +212,8 @@ class CustomFunctions:
 	def doSpawn( self, pUnit, eSpawn ) :
 		pPlot = pUnit.plot()
 		
+		CvUtil.pyPrint( "exploreLairBigBad" )
+		
 		# Push units out or set spawn plot
 		pSpawnPlot = pPlot
 		

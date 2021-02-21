@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0-beta6
+
+Includes MNAI 2.9-beta3u
+
+### Fixes
+* Python exception in Fertility spell help (reported by kvaak@civfanatics)
+* Mod should now really work without having keeping the FfH2 or MNAI mod folders.
+
 ## 0.6.0-beta5
 
 Includes MNAI 2.9-beta2u.

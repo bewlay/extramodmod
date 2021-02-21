@@ -6130,7 +6130,7 @@ class CvMainInterface:
 	def showBugOptionsScreen(self):
 		screen = CyGInterfaceScreen( "MainInterface", CvScreenEnums.MAIN_INTERFACE )
 
- 	def hideBugOptionsScreen(self):
+	def hideBugOptionsScreen(self):
 		screen = CyGInterfaceScreen( "MainInterface", CvScreenEnums.MAIN_INTERFACE )
 
 # < BUG Button End >

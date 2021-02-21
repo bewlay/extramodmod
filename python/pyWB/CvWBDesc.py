@@ -104,7 +104,6 @@ class CvGameDesc:
 		self.iStartYear = -4000
 		self.szDescription = ""
 		self.szModPath = ""
-##		self.szModPath = "Mods\Fall from Heaven 2"#Magister
 		self.iRandom = 0
 #Magister Start
 		self.iGlobalCounter = 0
@@ -1953,7 +1952,7 @@ class CvPlotDesc:
 
 
 		if (plot.getRealTerrainType()!=-1):
-			f.write("\tTerrainType=%s\n" %(gc.getTerrainInfo(plot.getRealTerrainType()).getType()) )
+			f.write("\tRealTerrainType=%s\n" %(gc.getTerrainInfo(plot.getRealTerrainType()).getType()) )
 		if plot.getTempTerrainTimer() > 0:
 			f.write("\tTempTerrainTimer=%d\n" %(plot.getTempTerrainTimer()))
 
@@ -2166,7 +2165,7 @@ class CvPlotDesc:
 
 			v = parser.findTokenValue(toks, "RealTerrainType")
 			if v!=-1:
-				self.terrainType = v
+				self.realTerrainType = v
 				continue
 
 			v = parser.findTokenValue(toks, "TempFeatureTimer")
@@ -2275,8 +2274,8 @@ class CvPlotDesc:
 			plot.setPortalExitY(self.portalExitY)
 
 		if (self.realTerrainType):
-			terrainTypeNum = CvUtil.findInfoTypeNum(gc.getBonusInfo, gc.getNumBonusInfos(), self.realTerrainType)
-			plot.setRealTerrainType(terrain)
+			realTerrainTypeNum = CvUtil.findInfoTypeNum(gc.getTerrainInfo, gc.getNumTerrainInfos(), self.realTerrainType)
+			plot.setRealTerrainType(realTerrainTypeNum)
 
 		if (self.realBonusType):
 			bonusTypeNum = CvUtil.findInfoTypeNum(gc.getBonusInfo, gc.getNumBonusInfos(), self.realBonusType)

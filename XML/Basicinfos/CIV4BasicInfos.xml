@@ -14,6 +14,11 @@
 		</ConceptInfo>
 		<!-- AdventurerCounter End -->
 		<ConceptInfo>
+			<Type>CONCEPT_ADVANCED_DIPLOMACY</Type>
+			<Description>TXT_KEY_CONCEPT_ADVANCED_DIPLOMACY</Description>
+			<Civilopedia>TXT_KEY_CONCEPT_ADVANCED_DIPLOMACY_PEDIA</Civilopedia>
+		</ConceptInfo>
+		<ConceptInfo>
 			<Type>CONCEPT_AFFINITY</Type>
 			<Description>TXT_KEY_CONCEPT_AFFINITY</Description>
 			<Civilopedia>TXT_KEY_CONCEPT_AFFINITY_PEDIA</Civilopedia>
