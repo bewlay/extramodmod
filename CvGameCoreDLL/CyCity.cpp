@@ -2867,7 +2867,7 @@ int CyCity::getCrime() const
 
 bool CyCity::isHasBuildingClass(int /*BuildingClassTypes*/ iIndex) const
 {
-	return m_pCity ? m_pCity->isHasBuildingClass(iIndex) : false;
+	return m_pCity ? m_pCity->isHasBuildingClass((BuildingClassTypes)iIndex) : false;
 }
 
 bool CyCity::isSettlement() const

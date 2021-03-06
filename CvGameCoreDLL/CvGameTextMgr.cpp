@@ -165,6 +165,27 @@ void setUniversalPrereqHelp( CvWString& szBuffer, const char* helpFunc, const Cv
 	// makeStruct() allocates memory, but callFunction somehow calls the destructor
 }
 
+void setUniversalPrereqHelp( CvWString& szBuffer, const char* helpFunc, const CvPrereq<CvCity>* pPrereq,
+		const CvCity* pCity )
+{
+	CvPrereqStruct* pPrereqStruct = pPrereq->makeStruct( pCity );
+	if( pPrereqStruct == NULL )
+	{
+		return;
+	}
+
+	int iPlayer = pCity->getOwnerINLINE();
+	int iCityID = pCity->getID();
+
+	CyArgsList argsList;
+	argsList.add(gDLL->getPythonIFace()->makePythonObject( pPrereqStruct ));
+	argsList.add( iPlayer );
+	argsList.add( iCityID );
+	gDLL->getPythonIFace()->callFunction(PYUniversalPrereqsModule, helpFunc, argsList.makeFunctionArgs(), &szBuffer);
+
+	// makeStruct() allocates memory, but callFunction somehow calls the destructor
+}
+
 void setUniversalPrereqHelp( CvWString& szBuffer, const char* helpFunc, const CvPrereq<CvPlot>* pPrereq,
 		const CvPlot* pPlot )
 {
@@ -13698,7 +13719,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit, bool
 //FfH: Added by Kael 08/04/2007
 			if (kUnitInfo.getPrereqBuildingClass() != NO_BUILDINGCLASS)
 			{
-				if ((pCity == NULL) || (!pCity->isHasBuildingClass(kUnitInfo.getPrereqBuildingClass())))
+				if ((pCity == NULL) || (!pCity->isHasBuildingClass((BuildingClassTypes)kUnitInfo.getPrereqBuildingClass())))
 				{
 					szBuffer.append(NEWLINE);
 					szBuffer.append(gDLL->getText("TXT_KEY_UNIT_REQUIRES_STRING", GC.getBuildingClassInfo((BuildingClassTypes)(kUnitInfo.getPrereqBuildingClass())).getTextKeyWide()));
@@ -23407,14 +23428,11 @@ void CvGameTextMgr::setEventHelp(CvWStringBuffer& szBuffer, EventTypes eEvent, i
 //FfH: End Add
 
 	// EVENT_NEW_TAGS 07/2019 lfgr: Add CvUniversalPrereq Help
-	appendUniversalPrereqHelp( szBuffer, "eventGameHelp", kEvent.getGamePrereq(),
-			(CvGame*) &GC.getGameINLINE() );
-	appendUniversalPrereqHelp( szBuffer, "eventPlayerHelp", kEvent.getPlayerPrereq(),
-			(CvPlayer*) &GET_PLAYER( pTriggeredData->m_ePlayer ) );
-	appendUniversalPrereqHelp( szBuffer, "eventPlotHelp", kEvent.getPlotPrereq(),
-			GC.getMapINLINE().plotINLINE( pTriggeredData->m_iPlotX, pTriggeredData->m_iPlotY ) );
-	appendUniversalPrereqHelp( szBuffer, "eventUnitHelp", kEvent.getUnitPrereq(),
-			kActivePlayer.getUnit( pTriggeredData->m_iUnitId ) );
+	appendUniversalPrereqHelp( szBuffer, "eventGameHelp", kEvent.getGamePrereq(), (CvGame*) &GC.getGameINLINE() );
+	appendUniversalPrereqHelp( szBuffer, "eventPlayerHelp", kEvent.getPlayerPrereq(), (CvPlayer*) &kActivePlayer );
+	appendUniversalPrereqHelp( szBuffer, "eventCityHelp", kEvent.getCityPrereq(), pCity );
+	appendUniversalPrereqHelp( szBuffer, "eventPlotHelp", kEvent.getPlotPrereq(), pPlot );
+	appendUniversalPrereqHelp( szBuffer, "eventUnitHelp", kEvent.getUnitPrereq(), pUnit );
 	// EVENT_NEW_TAGS end
 
 	bool done = false;

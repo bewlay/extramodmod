@@ -12216,7 +12216,7 @@ bool CvPlot::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible) const
                 {
                     return false;
                 }
-                if (!pCity->isHasBuildingClass(kUnit.getPrereqBuildingClass()))
+                if (!pCity->isHasBuildingClass((BuildingClassTypes)kUnit.getPrereqBuildingClass()))
                 {
                     return false;
                 }

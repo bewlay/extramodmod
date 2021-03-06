@@ -7543,6 +7543,7 @@ public:
 // UNIVERSAL_PREREQS 08/2017 lfgr
 	CvPrereq<CvGame>* getGamePrereq() const;
 	CvPrereq<CvPlayer>* getPlayerPrereq() const;
+	CvPrereq<CvCity>* getCityPrereq() const;
 	CvPrereq<CvPlot>* getPlotPrereq() const;
 	CvPrereq<CvUnit>* getUnitPrereq() const;
 // UNIVERSAL_PREREQS end
@@ -7664,6 +7665,7 @@ private:
 // UNIVERSAL_PREREQS 08/2017 lfgr
 	CvPrereq<CvGame>* m_pGamePrereq;
 	CvPrereq<CvPlayer>* m_pPlayerPrereq;
+	CvPrereq<CvCity>* m_pCityPrereq;
 	CvPrereq<CvPlot>* m_pPlotPrereq;
 	CvPrereq<CvUnit>* m_pUnitPrereq;
 // UNIVERSAL_PREREQS end
@@ -7798,6 +7800,7 @@ public:
 // UNIVERSAL_PREREQS 07/2019 lfgr
 	CvPrereq<CvGame>* getGamePrereq() const;
 	CvPrereq<CvPlayer>* getPlayerPrereq() const;
+	CvPrereq<CvCity>* getCityPrereq() const;
 	CvPrereq<CvPlot>* getPlotPrereq() const;
 	CvPrereq<CvUnit>* getUnitPrereq() const;
 // UNIVERSAL_PREREQS end
@@ -7920,6 +7923,7 @@ private:
 // UNIVERSAL_PREREQS 08/2017 lfgr
 	CvPrereq<CvGame>* m_pGamePrereq;
 	CvPrereq<CvPlayer>* m_pPlayerPrereq;
+	CvPrereq<CvCity>* m_pCityPrereq;
 	CvPrereq<CvPlot>* m_pPlotPrereq;
 	CvPrereq<CvUnit>* m_pUnitPrereq;
 // UNIVERSAL_PREREQS end

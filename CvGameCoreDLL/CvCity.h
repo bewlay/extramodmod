@@ -1134,7 +1134,8 @@ public:
 	int getMutateChance() const;
 	void changeResistMagic(int iChange);
 	int getResistMagic() const;
-    bool isHasBuildingClass(int iBuildingClass) const;	// Exposed to Python
+	// lfgr 02/2021 fix: int -> BuildingClassTypes
+    bool isHasBuildingClass(BuildingClassTypes iBuildingClass) const;	// Exposed to Python
     int getExtraSpecialistCommerce(CommerceTypes eIndex) const;
     int getExtraSpecialistCommerce(CommerceTypes eIndex, SpecialistTypes eSpecialist) const;
 //FfH: End Add

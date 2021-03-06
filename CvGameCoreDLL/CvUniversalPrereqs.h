@@ -188,7 +188,7 @@ public :
 	CvAndPrereq( const std::vector<CvPrereq<T>*>& vpPrereqs )
 			: CvParentPrereq<T>( vpPrereqs ) {}
 
-	virtual ~CvAndPrereq() {}
+	virtual ~CvAndPrereq() {} // TODO: Memory leak?
 
 	bool isValid( const T* pObj ) const
 	{
@@ -366,6 +366,26 @@ private :
 
 template<class T>
 const std::string CvNotPrereq<T>::TAG = "Not";
+
+
+//---------------
+// PUBLIC HELPERS
+//---------------
+
+template<class T>
+void readPrereq( CvXMLLoadUtility* pXML, CvPrereq<T>*& pPrereq, const char* szTagName )
+{
+	if ( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), szTagName ) )
+	{
+		if ( pXML->SkipToNextVal() )
+		{
+			pPrereq = CvAndPrereq<T>::read( pXML );
+			FAssertMsg( pPrereq != NULL, "Failed to read prereq" );
+		}
+
+		gDLL->getXMLIFace()->SetToParent( pXML->GetXML() );
+	}
+}
 
 
 #endif /* CVUNIVERSALPREREQS_H_ */

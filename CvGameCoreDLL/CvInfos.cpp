@@ -26087,6 +26087,7 @@ CvEventTriggerInfo::CvEventTriggerInfo() :
 // UNIVERSAL_PREREQS 08/2017 lfgr
 	m_pGamePrereq( NULL ),
 	m_pPlayerPrereq( NULL ),
+	m_pCityPrereq(NULL),
 	m_pPlotPrereq( NULL ),
 	m_pUnitPrereq( NULL )
 // UNIVERSAL_PREREQS end
@@ -26100,6 +26101,7 @@ CvEventTriggerInfo::~CvEventTriggerInfo()
 // UNIVERSAL_PREREQS 08/2017 lfgr 
 	SAFE_DELETE( m_pGamePrereq )
 	SAFE_DELETE( m_pPlayerPrereq )
+	SAFE_DELETE( m_pCityPrereq )
 	SAFE_DELETE( m_pPlotPrereq )
 	SAFE_DELETE( m_pUnitPrereq )
 // UNIVERSAL_PREREQS end
@@ -26622,6 +26624,11 @@ CvPrereq<CvGame>* CvEventTriggerInfo::getGamePrereq() const
 CvPrereq<CvPlayer>* CvEventTriggerInfo::getPlayerPrereq() const
 {
 	return m_pPlayerPrereq;
+}
+
+CvPrereq<CvCity>* CvEventTriggerInfo::getCityPrereq() const
+{
+	return m_pCityPrereq;
 }
 
 CvPrereq<CvPlot>* CvEventTriggerInfo::getPlotPrereq() const
@@ -27642,49 +27649,11 @@ bool CvEventTriggerInfo::read(CvXMLLoadUtility* pXML)
 //FfH: End Add
 
 // UNIVERSAL_PREREQS 08/2017 lfgr
-	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "GamePrereq" ) )
-	{
-		if( pXML->SkipToNextVal() )
-		{
-			m_pGamePrereq = CvAndPrereq<CvGame>::read( pXML );
-			FAssertMsg( m_pGamePrereq != NULL, "Failed to read game prereq" );
-		}
-
-		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
-	}
-
-	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "PlayerPrereq" ) )
-	{
-		if( pXML->SkipToNextVal() )
-		{
-			m_pPlayerPrereq = CvAndPrereq<CvPlayer>::read( pXML );
-			FAssertMsg( m_pPlayerPrereq != NULL, "Failed to read player prereq" );
-		}
-
-		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
-	}
-
-	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "PlotPrereq" ) )
-	{
-		if( pXML->SkipToNextVal() )
-		{
-			m_pPlotPrereq = CvAndPrereq<CvPlot>::read( pXML );
-			FAssertMsg( m_pPlotPrereq != NULL, "Failed to read plot prereq" );
-		}
-
-		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
-	}
-
-	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "UnitPrereq" ) )
-	{
-		if( pXML->SkipToNextVal() )
-		{
-			m_pUnitPrereq = CvAndPrereq<CvUnit>::read( pXML );
-			FAssertMsg( m_pUnitPrereq != NULL, "Failed to read unit prereq" );
-		}
-
-		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
-	}
+	readPrereq( pXML, m_pGamePrereq, "GamePrereq" );
+	readPrereq( pXML, m_pPlayerPrereq, "PlayerPrereq" );
+	readPrereq( pXML, m_pCityPrereq, "CityPrereq" );
+	readPrereq( pXML, m_pPlotPrereq, "PlotPrereq" );
+	readPrereq( pXML, m_pUnitPrereq, "UnitPrereq" );
 // UNIVERSAL_PREREQS end
 
 
@@ -27702,6 +27671,9 @@ bool CvEventTriggerInfo::readPass3()
 	}
 	if( m_pPlotPrereq != NULL ) {
 		m_pPlotPrereq->readPass3();
+	}
+	if( m_pCityPrereq != NULL ) {
+		m_pCityPrereq->readPass3();
 	}
 	if( m_pUnitPrereq != NULL ) {
 		m_pUnitPrereq->readPass3();
@@ -27803,7 +27775,8 @@ CvEventInfo::CvEventInfo() :
 
 // UNIVERSAL_PREREQS 07/2019 lfgr
 	m_pGamePrereq( NULL ),
-	m_pPlayerPrereq( NULL ),
+	m_pPlayerPrereq(NULL),
+	m_pCityPrereq(NULL),
 	m_pPlotPrereq( NULL ),
 	m_pUnitPrereq( NULL )
 // UNIVERSAL_PREREQS end
@@ -27824,6 +27797,7 @@ CvEventInfo::~CvEventInfo()
 // UNIVERSAL_PREREQS 07/2019 lfgr
 	SAFE_DELETE( m_pGamePrereq )
 	SAFE_DELETE( m_pPlayerPrereq )
+	SAFE_DELETE( m_pCityPrereq )
 	SAFE_DELETE( m_pPlotPrereq )
 	SAFE_DELETE( m_pUnitPrereq )
 // UNIVERSAL_PREREQS end
@@ -28354,6 +28328,11 @@ CvPrereq<CvGame>* CvEventInfo::getGamePrereq() const
 CvPrereq<CvPlayer>* CvEventInfo::getPlayerPrereq() const
 {
 	return m_pPlayerPrereq;
+}
+
+CvPrereq<CvCity>* CvEventInfo::getCityPrereq() const
+{
+	return m_pCityPrereq;
 }
 
 CvPrereq<CvPlot>* CvEventInfo::getPlotPrereq() const
@@ -29044,49 +29023,11 @@ bool CvEventInfo::read(CvXMLLoadUtility* pXML)
 
 	
 // UNIVERSAL_PREREQS 08/2017 lfgr
-	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "GamePrereq" ) )
-	{
-		if( pXML->SkipToNextVal() )
-		{
-			m_pGamePrereq = CvAndPrereq<CvGame>::read( pXML );
-			FAssertMsg( m_pGamePrereq != NULL, "Failed to read game prereq" );
-		}
-
-		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
-	}
-
-	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "PlayerPrereq" ) )
-	{
-		if( pXML->SkipToNextVal() )
-		{
-			m_pPlayerPrereq = CvAndPrereq<CvPlayer>::read( pXML );
-			FAssertMsg( m_pPlayerPrereq != NULL, "Failed to read player prereq" );
-		}
-
-		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
-	}
-
-	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "PlotPrereq" ) )
-	{
-		if( pXML->SkipToNextVal() )
-		{
-			m_pPlotPrereq = CvAndPrereq<CvPlot>::read( pXML );
-			FAssertMsg( m_pPlotPrereq != NULL, "Failed to read plot prereq" );
-		}
-
-		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
-	}
-
-	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "UnitPrereq" ) )
-	{
-		if( pXML->SkipToNextVal() )
-		{
-			m_pUnitPrereq = CvAndPrereq<CvUnit>::read( pXML );
-			FAssertMsg( m_pUnitPrereq != NULL, "Failed to read unit prereq" );
-		}
-
-		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
-	}
+	readPrereq( pXML, m_pGamePrereq, "GamePrereq" );
+	readPrereq( pXML, m_pPlayerPrereq, "PlayerPrereq" );
+	readPrereq( pXML, m_pCityPrereq, "CityPrereq" );
+	readPrereq( pXML, m_pPlotPrereq, "PlotPrereq" );
+	readPrereq( pXML, m_pUnitPrereq, "UnitPrereq" );
 // UNIVERSAL_PREREQS end
 
 	return true;
@@ -29109,6 +29050,9 @@ bool CvEventInfo::readPass3()
 	}
 	if( m_pPlayerPrereq != NULL ) {
 		m_pPlayerPrereq->readPass3();
+	}
+	if( m_pCityPrereq != NULL ) {
+		m_pCityPrereq->readPass3();
 	}
 	if( m_pPlotPrereq != NULL ) {
 		m_pPlotPrereq->readPass3();

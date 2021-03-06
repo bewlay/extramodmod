@@ -40,6 +40,11 @@
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
 
+// UNIVERSAL_PREREQS 08/2017 lfgr
+#include "CvUniversalPrereqs.h"
+// UNIVERSAL_PREREQS end
+
+
 // Public Functions...
 
 CvCity::CvCity()
@@ -16152,6 +16157,10 @@ int CvCity::getTriggerValue(EventTriggerTypes eTrigger) const
 
 	CvEventTriggerInfo& kTrigger = GC.getEventTriggerInfo(eTrigger);
 
+	// UNIVERSAL_PREREQS 08/2017 lfgr
+	if( kTrigger.getCityPrereq() != NULL && ! kTrigger.getCityPrereq()->isValid( this ) )
+		return false;
+	// UNIVERSAL_PREREQS end
 
 	if (!CvString(kTrigger.getPythonCanDoCity()).empty())
 	{
@@ -16392,6 +16401,14 @@ bool CvCity::canApplyEvent(EventTypes eEvent, const EventTriggeredData& kTrigger
 	{
 		return false;
 	}
+
+	// UNIVERSAL_PREREQS 03/2021 lfgr
+	if ( kEvent.getCityPrereq() != NULL ) {
+		if ( ! kEvent.getCityPrereq()->isValid( this ) ) {
+			return false;
+		}
+	}
+	// UNIVERSAL_PREREQS end
 
 	if (kEvent.getBuildingClass() != NO_BUILDINGCLASS)
 	{
@@ -17922,7 +17939,7 @@ int CvCity::getResistMagic() const
 	return m_iResistMagic;
 }
 
-bool CvCity::isHasBuildingClass(int iBuildingClass) const
+bool CvCity::isHasBuildingClass(BuildingClassTypes iBuildingClass) const
 {
 	for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
