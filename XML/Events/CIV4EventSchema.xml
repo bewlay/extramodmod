@@ -541,6 +541,9 @@
 	<ElementType name="IsCivilization" content="textOnly" model="closed">
 		<description>Requires the given player to be of the specified civilization.</description>
 	</ElementType>
+	<ElementType name="IsAlignment" content="textOnly" model="closed">
+		<description>Requires the given player to be of the specified alignment.</description>
+	</ElementType>
 	<ElementType name="HasCivic" content="textOnly" model="closed">
 		<description>Requires the given player to have the specified civic.</description>
 	</ElementType>

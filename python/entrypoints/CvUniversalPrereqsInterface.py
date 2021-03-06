@@ -140,7 +140,7 @@ def getEventGameHelp( pPrereq, bNegated ) :
 	if helper is not None :
 		return helper.long_help( pPrereq, bNegated )
 	elif DEBUG_OUTPUT :
-		CvUtil.pyPrint( "Cannot create game help for the following Prereq" + ( bNegated and " (negated)" or "" ) + ":" )
+		CvUtil.pyPrint( "Cannot create game help for the following prereq" + ( bNegated and " (negated)" or "" ) + ":" )
 		CvUtil.pyPrint( _debugPrereqHelp( pPrereq ) )
 	
 	return u""
@@ -151,6 +151,8 @@ def getEventGameHelp( pPrereq, bNegated ) :
 PLAYER_HELPERS = {
 	"IsCivilization" : InfoDescriptionPrereqHelpHelper( gc.getCivilizationInfo,
 			"TXT_KEY_UP_REQUIRES", "TXT_KEY_UP_NOT_CIVILIZATION" ),
+	"IsAlignment" : InfoDescriptionPrereqHelpHelper( gc.getAlignmentInfo,
+			"TXT_KEY_UP_REQUIRES", "TXT_KEY_UP_NOT_ALIGNMENT" ),
 	"HasCivic" : InfoDescriptionPrereqHelpHelper( gc.getCivicInfo,
 			"TXT_KEY_UP_REQUIRES", "TXT_KEY_UP_NOT_CIVIC" ),
 	"HasTrait" : InfoDescriptionPrereqHelpHelper( gc.getTraitInfo,
@@ -165,11 +167,11 @@ def getEventPlayerShortRequiredHelp( pPrereq, ePlayer ) :
 	return None
 
 def getEventPlayerHelp( pPrereq, bNegated, ePlayer ) :
-	helper = GAME_HELPERS.get( pPrereq.getName() )
+	helper = PLAYER_HELPERS.get( pPrereq.getName() )
 	if helper is not None :
 		return helper.long_help( pPrereq, bNegated, ePlayer )
 	elif DEBUG_OUTPUT :
-		CvUtil.pyPrint( "Cannot create player help for the following Prereq" + ( bNegated and " (negated)" or "" ) + ":" )
+		CvUtil.pyPrint( "Cannot create player help for the following prereq" + ( bNegated and " (negated)" or "" ) + ":" )
 		CvUtil.pyPrint( _debugPrereqHelp( pPrereq ) )
 	
 	return u""
@@ -194,7 +196,7 @@ def getEventCityHelp( pPrereq, bNegated, iX, iY ) :
 	if helper is not None :
 		return helper.long_help( pPrereq, bNegated, iX, iY )
 	elif DEBUG_OUTPUT :
-		CvUtil.pyPrint( "Cannot create city help for the following Prereq" + ( bNegated and " (negated)" or "" ) + ":" )
+		CvUtil.pyPrint( "Cannot create city help for the following prereq" + ( bNegated and " (negated)" or "" ) + ":" )
 		CvUtil.pyPrint( _debugPrereqHelp( pPrereq ) )
 	
 	return u""

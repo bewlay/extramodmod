@@ -2759,7 +2759,7 @@ int CyPlayer::getAlignment() const
 void CyPlayer::setAlignment(int iAlignment)
 {
 	if (m_pPlayer)
-		m_pPlayer->setAlignment(iAlignment);
+		m_pPlayer->setAlignment((AlignmentTypes) iAlignment);
 }
 
 void CyPlayer::changeDisableProduction(int iChange)

@@ -430,7 +430,7 @@ void CvPlayer::init(PlayerTypes eID)
 	/********************************************************************************/
 	/* EXTRA_CIV_TRAITS                                                     END     */
 	/********************************************************************************/
-		setAlignment(GC.getLeaderHeadInfo(getLeaderType()).getAlignment());
+		setAlignment((AlignmentTypes) GC.getLeaderHeadInfo(getLeaderType()).getAlignment());
         GC.getGameINLINE().changeGlobalCounterLimit(GC.getDefineINT("GLOBAL_COUNTER_LIMIT_PER_PLAYER"));
 //FfH: End Add
 
@@ -632,7 +632,7 @@ void CvPlayer::initInGame(PlayerTypes eID, bool bSetAlive)
 	/********************************************************************************/
 	/* EXTRA_CIV_TRAITS                                                     END     */
 	/********************************************************************************/
-		setAlignment(GC.getLeaderHeadInfo(getLeaderType()).getAlignment());
+		setAlignment((AlignmentTypes) GC.getLeaderHeadInfo(getLeaderType()).getAlignment());
         GC.getGameINLINE().changeGlobalCounterLimit(GC.getDefineINT("GLOBAL_COUNTER_LIMIT_PER_PLAYER"));
 //FfH: End Add
 
@@ -995,7 +995,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bInsane = false;
 	m_bSeeInvisible = false;
 	m_bSprawling = false;
-	m_iAlignment = NO_ALIGNMENT;
+	m_eAlignment = NO_ALIGNMENT;
 	m_iDisableProduction = 0;
 	m_iDisableResearch = 0;
 	m_iDisableSpellcasting = 0;
@@ -10911,11 +10911,11 @@ void CvPlayer::convert(ReligionTypes eReligion)
 	{
 		if (getAlignment() < GC.getReligionInfo(eReligion).getAlignmentBest())
 		{
-			setAlignment(GC.getReligionInfo(eReligion).getAlignmentBest());
+			setAlignment((AlignmentTypes) GC.getReligionInfo(eReligion).getAlignmentBest());
 		}
 		if (getAlignment() > GC.getReligionInfo(eReligion).getAlignmentWorst())
 		{
-			setAlignment(GC.getReligionInfo(eReligion).getAlignmentWorst());
+			setAlignment((AlignmentTypes) GC.getReligionInfo(eReligion).getAlignmentWorst());
 		}
 	}
 //FfH: End Add
@@ -20732,7 +20732,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bInsane);
 	pStream->Read(&m_bSeeInvisible);
 	pStream->Read(&m_bSprawling);
-	pStream->Read(&m_iAlignment);
+	pStream->Read((int*)&m_eAlignment);
 	pStream->Read(&m_iDisableProduction);
 	pStream->Read(&m_iDisableResearch);
 	pStream->Read(&m_iDisableSpellcasting);
@@ -21386,7 +21386,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bInsane);
 	pStream->Write(m_bSeeInvisible);
 	pStream->Write(m_bSprawling);
-	pStream->Write(m_iAlignment);
+	pStream->Write(m_eAlignment);
 	pStream->Write(m_iDisableProduction);
 	pStream->Write(m_iDisableResearch);
 	pStream->Write(m_iDisableSpellcasting);
@@ -28584,14 +28584,14 @@ bool CvPlayer::isHasTech(int iTech) const
     return GET_TEAM(getTeam()).isHasTech((TechTypes)iTech);
 }
 
-int CvPlayer::getAlignment() const
+AlignmentTypes CvPlayer::getAlignment() const // lfgr 02/2021: int -> AlignmentTypes
 {
-    return m_iAlignment;
+    return m_eAlignment;
 }
 
-void CvPlayer::setAlignment(int iNewValue)
+void CvPlayer::setAlignment(AlignmentTypes eNewValue) // lfgr 02/2021: int -> AlignmentTypes
 {
-    m_iAlignment = iNewValue;
+    m_eAlignment = eNewValue;
 	gDLL->getInterfaceIFace()->setDirty(Score_DIRTY_BIT, true);
 }
 

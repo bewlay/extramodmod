@@ -15655,7 +15655,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 	bool bCultureVictory2 = AI_isDoVictoryStrategy(AI_VICTORY_CULTURE2);
 	bool bAtWar = (GET_TEAM(getTeam()).getAtWarCount(true) > 0);
 //>>>>Better AI: Added by Denev 2010/07/20
-	const AlignmentTypes eAlignment = (AlignmentTypes)getAlignment();//(AlignmentTypes)GC.getLeaderHeadInfo(getPersonalityType()).getAlignment();
+	const AlignmentTypes eAlignment = getAlignment();//(AlignmentTypes)GC.getLeaderHeadInfo(getPersonalityType()).getAlignment();
 //<<<<Better AI: End Add
 
 	FAssertMsg(eCivic < GC.getNumCivicInfos(), "eCivic is expected to be within maximum bounds (invalid Index)");

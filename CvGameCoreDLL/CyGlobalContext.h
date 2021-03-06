@@ -98,6 +98,8 @@ public:
 	CvSpellInfo* getSpellInfo(int i) const;
 //FfH: End Add
 
+	CvInfoBase* getAlignmentInfo( int i ) const; // lfgr 02/2021
+
     CvUnitArtStyleTypeInfo* getUnitArtStyleTypeInfo(int i) const;
 
 	int getInfoTypeForString(const char* szInfoType) const;

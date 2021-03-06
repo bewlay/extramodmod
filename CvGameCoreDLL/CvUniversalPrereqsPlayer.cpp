@@ -29,6 +29,20 @@ template<>
 const std::string CvPlayerCivilizationPrereq::TAG = "IsCivilization";
 
 
+//------------------------
+// CvPlayerAlignmentPrereq
+//------------------------
+
+/**
+ * Requires the given player to have the specified alignment.
+ */
+#define CvPlayerAlignmentPrereq CvInfoTypePropertyEqualPrereq<\
+	CvPlayer, AlignmentTypes, &CvPlayer::getAlignment>
+
+template<>
+const std::string CvPlayerAlignmentPrereq::TAG = "IsAlignment";
+
+
 //--------------------
 // CvPlayerCivicPrereq
 //--------------------
@@ -71,6 +85,7 @@ CvPrereq<CvPlayer>* CvPrereq<CvPlayer>::readPrereq( CvXMLLoadUtility* pXml )
 	TRY_READ_RETURN_PREREQ( sTagName, CvOrPrereq<CvPlayer> )
 	TRY_READ_RETURN_PREREQ( sTagName, CvNotPrereq<CvPlayer> )
 	TRY_READ_RETURN_PREREQ( sTagName, CvPlayerCivilizationPrereq )
+	TRY_READ_RETURN_PREREQ( sTagName, CvPlayerAlignmentPrereq )
 	TRY_READ_RETURN_PREREQ( sTagName, CvPlayerCivicPrereq )
 	TRY_READ_RETURN_PREREQ( sTagName, CvPlayerTraitPrereq )
 

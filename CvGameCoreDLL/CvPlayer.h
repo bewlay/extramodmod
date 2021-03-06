@@ -1384,8 +1384,8 @@ public:
     int getRealPlayer() const;
     void setRealPlayer(int iPlayer);
 
-	int getAlignment() const;
-	void setAlignment(int iNewValue);
+	AlignmentTypes getAlignment() const; // lfgr 02/2021: int -> AlignmentTypes
+	void setAlignment(AlignmentTypes eNewValue); // lfgr 02/2021: int -> AlignmentTypes
     void changeDisableProduction(int iChange);
     int getDisableProduction() const;
     void changeDisableResearch(int iChange);
@@ -1780,7 +1780,7 @@ protected:
     bool m_bInsane;
     bool m_bSeeInvisible;
     bool m_bSprawling;
-    int m_iAlignment;
+	AlignmentTypes m_eAlignment; // lfgr 02/2021: int -> AlignmentTypes
     int m_iDisableProduction;
     int m_iDisableResearch;
     int m_iDisableSpellcasting;

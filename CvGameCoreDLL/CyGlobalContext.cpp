@@ -267,6 +267,12 @@ CvSpellInfo* CyGlobalContext::getSpellInfo(int i) const
 }
 //FfH: End Add
 
+// lfgr 02/2021
+CvInfoBase* CyGlobalContext::getAlignmentInfo( int i ) const
+{
+	return (i>=0 && i<GC.getAlignmentInfo().size()) ? &GC.getAlignmentInfo( (AlignmentTypes) i ) : NULL;
+}
+
 CvTechInfo* CyGlobalContext::getTechInfo(int i) const
 {
 	return (i>=0 && i<GC.getNumTechInfos()) ? &GC.getTechInfo((TechTypes) i) : NULL;

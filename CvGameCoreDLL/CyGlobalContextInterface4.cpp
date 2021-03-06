@@ -138,6 +138,9 @@ void CyGlobalContextPythonInterface4(python::class_<CyGlobalContext>& x)
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
+		
+		// lfgr 02/2021
+		.def("getAlignmentInfo", &CyGlobalContext::getAlignmentInfo, python::return_value_policy<python::reference_existing_object>(), "Returns info object")
 
 		// ArtInfos
 		.def("getNumInterfaceArtInfos", &CyGlobalContext::getNumInterfaceArtInfos, "() - Total InterfaceArtnology Infos XML\\InterfaceArtnologies\\CIV4InterfaceArtInfos.xml")
