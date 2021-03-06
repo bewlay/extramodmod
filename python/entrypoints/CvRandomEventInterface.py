@@ -4055,49 +4055,50 @@ def	doDemonSign5(argsList):
 	
 	initBestUnitFromUpgrades( gc.getInfoTypeForString( "UNITCLASS_WARRIOR" ), pPlayer, pCity, -1, -1, ['PROMOTION_PROPHECY_MARK'] )
 	
-######## (lfgr: not reviewed)
-
-def CanDoAshCough2 (argsList):
-	"""
-	Player must be Sheaim or Kuriotates. (TODO: XMLify)
-	"""
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	if (pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SHEAIM")):
-		return True
-	if (pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_KURIOTATES")):
-		return True
-	return False
-
-def CanDoAshCough4 (argsList):
-	"""
-	City must have Mage's Guild (TODO: XMLify)
-	"""
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	if pCity.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_MAGE_GUILD')) == 0:
-		return False
-	return True
+######## ASH_COUGH (lfgr: tweaked)
 
 def doAshCough4 (argsList):
 	"""
-	50% chance of receiving an adept with Fire1, Entropy1
-	50% chance of +10 Turns of temporary unhappiness (HurryAnger)
+	20-40% chance of receiving an adept with Fire1, Entropy1 (+10% with fire mana, +10% for Amurites)
+	30-40% chance of nothing happening (+10% with life mana)
+	20-50% chance of -1 population (if available) and +10 Turns of temporary unhappiness (HurryAnger)
 	"""
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
+	pPlayer = gc.getPlayer(kTriggeredData.ePlayer) # type: CyPlayer
 	pCity = pPlayer.getCity(kTriggeredData.iCityId)
-	if CyGame().getSorenRandNum(100, "Cough")< 50 :
+	
+	iGoodThreshold = 10
+	if pPlayer.hasBonus( gc.getInfoTypeForString( "BONUS_MANA_FIRE" ) ) :
+		iGoodThreshold += 5
+	if pPlayer.getCivilizationType() == gc.getInfoTypeForString( "CIVILIZATION_AMURITES" ) :
+		iGoodThreshold += 5
+	
+	iNeutralThreshold = iGoodThreshold + 15
+	if pPlayer.hasBonus( gc.getInfoTypeForString( "BONUS_MANA_LIFE" ) ) :
+		iNeutralThreshold += 5
+	
+	iRand = CyGame().getSorenRandNum( 50, "Cough" )
+	if iRand < iGoodThreshold :
+		CyInterface().addMessage( kTriggeredData.ePlayer, True, 25, localText.getText( "TXT_KEY_EVENT_ASH_COUGH_4_OUTCOME_GOOD", () ),
+				"AS2D_POSITIVE_DINK", InterfaceMessageTypes.MESSAGE_TYPE_DISPLAY_ONLY, "Art/Interface/Buttons/Fire.dds",
+				gc.getInfoTypeForString( "COLOR_GREEN" ), pCity.getX(), pCity.getY(), True, True )
 		newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_ADEPT'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_FIRE1'), True)
 		newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ENTROPY1'), True)
-	else: 
-		pCity.changeHurryAngerTimer(10)
+	elif iRand < iNeutralThreshold :
+		CyInterface().addMessage( kTriggeredData.ePlayer, True, 25, localText.getText( "TXT_KEY_EVENT_ASH_COUGH_4_OUTCOME_NEUTRAL", () ),
+				"AS2D_POSITIVE_DINK", InterfaceMessageTypes.MESSAGE_TYPE_DISPLAY_ONLY, "Art/Interface/Buttons/WorldBuilder/Life.dds",
+				gc.getInfoTypeForString( "COLOR_GREEN" ), pCity.getX(), pCity.getY(), True, True )
+	else :
+		CyInterface().addMessage( kTriggeredData.ePlayer, True, 25, localText.getText( "TXT_KEY_EVENT_ASH_COUGH_4_OUTCOME_BAD", () ),
+				"SND_NEGATIVE_DINK", InterfaceMessageTypes.MESSAGE_TYPE_DISPLAY_ONLY, "Art/Interface/Buttons/Fire.dds",
+				gc.getInfoTypeForString( "COLOR_GREEN" ), pCity.getX(), pCity.getY(), True, True )
+		if pCity.getPopulation() > 1 :
+			pCity.changePopulation( -1 )
+		pCity.changeHurryAngerTimer( 5 )
+
+######## (lfgr: not reviewed)
 
 def CanDoDeadAngel2 (argsList):
 	"""

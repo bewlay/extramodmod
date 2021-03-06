@@ -5974,11 +5974,16 @@
 			<Type>EVENT_ASH_COUGH_2</Type>
 			<Description>TXT_KEY_EVENT_ASH_COUGH_2</Description>
 			<bPickCity>1</bPickCity>
-			<iHappyTurns>20</iHappyTurns>
+			<iHappy>1</iHappy>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCanDo>CanDoAshCough2</PythonCanDo>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
+			<PlayerPrereq>
+				<Or>
+					<IsCivilization>CIVILIZATION_KURIOTATES</IsCivilization>
+					<IsCivilization>CIVILIZATION_SHEAIM</IsCivilization>
+				</Or>
+			</PlayerPrereq>
 		</EventInfo>
 		<EventInfo><!-- ASH_COUGH_3 -->
 			<Type>EVENT_ASH_COUGH_3</Type>
@@ -5993,13 +5998,16 @@
 		<EventInfo><!-- ASH_COUGH_4 -->
 			<Type>EVENT_ASH_COUGH_4</Type>
 			<Description>TXT_KEY_EVENT_ASH_COUGH_4</Description>
+			<Help>TXT_KEY_EVENT_ASH_COUGH_4_HELP</Help>
 			<bPickCity>1</bPickCity>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doAshCough4</PythonCallback>
-			<PythonCanDo>CanDoAshCough4</PythonCanDo>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iGlobalCounter>2</iGlobalCounter>
+			<CityPrereq>
+				<HasBuildingClass>BUILDINGCLASS_MAGE_GUILD</HasBuildingClass>
+			</CityPrereq>
 		</EventInfo>
 		<EventInfo><!-- DEAD_ANGEL_1 -->
 			<Type>EVENT_DEAD_ANGEL_1</Type>

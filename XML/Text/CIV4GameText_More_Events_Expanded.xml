@@ -695,6 +695,38 @@
 		<Italian>Have our mages investigate this matter.</Italian>
 		<Spanish>Have our mages investigate this matter.</Spanish>
 	</TEXT>
+	<TEXT><!-- EVENT_ASH_COUGH_4_HELP -->
+		<Tag>TXT_KEY_EVENT_ASH_COUGH_4_HELP</Tag>
+		<English>[ICON_BULLET]Who knows what they may find?</English>
+		<French>[ICON_BULLET]Who knows what they may find?</French>
+		<German>[ICON_BULLET]Who knows what they may find?</German>
+		<Italian>[ICON_BULLET]Who knows what they may find?</Italian>
+		<Spanish>[ICON_BULLET]Who knows what they may find?</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_ASH_COUGH_4_OUTCOME_GOOD</Tag>
+		<English>[COLOR_POSITIVE_TEXT]Your adepts were able to harness the flames![COLOR_REVERT]</English>
+		<French>[COLOR_POSITIVE_TEXT]Your adepts were able to harness the flames![COLOR_REVERT]</French>
+		<German>[COLOR_POSITIVE_TEXT]Your adepts were able to harness the flames![COLOR_REVERT]</German>
+		<Italian>[COLOR_POSITIVE_TEXT]Your adepts were able to harness the flames![COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_POSITIVE_TEXT]Your adepts were able to harness the flames![COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_ASH_COUGH_4_OUTCOME_NEUTRAL</Tag>
+		<English>[COLOR_POSITIVE_TEXT]Your adepts were able to stop the cough.[COLOR_REVERT]</English>
+		<French>[COLOR_POSITIVE_TEXT]Your adepts were able to stop the cough.[COLOR_REVERT]</French>
+		<German>[COLOR_POSITIVE_TEXT]Your adepts were able to stop the cough.[COLOR_REVERT]</German>
+		<Italian>[COLOR_POSITIVE_TEXT]Your adepts were able to stop the cough.[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_POSITIVE_TEXT]Your adepts were able to stop the cough.[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_ASH_COUGH_4_OUTCOME_BAD</Tag>
+		<English>[COLOR_NEGATIVE_TEXT]The Mage Guild's atempts at healing the fire breathers were unsuccessful, killing many in the process.[COLOR_REVERT]</English>
+		<French>[COLOR_NEGATIVE_TEXT]The Mage Guild's atempts at healing the fire breathers were unsuccessful, killing many in the process.[COLOR_REVERT]</French>
+		<German>[COLOR_NEGATIVE_TEXT]The Mage Guild's atempts at healing the fire breathers were unsuccessful, killing many in the process.[COLOR_REVERT]</German>
+		<Italian>[COLOR_NEGATIVE_TEXT]The Mage Guild's atempts at healing the fire breathers were unsuccessful, killing many in the process.[COLOR_REVERT]</Italian>
+		<Spanish>[COLOR_NEGATIVE_TEXT]The Mage Guild's atempts at healing the fire breathers were unsuccessful, killing many in the process.[COLOR_REVERT]</Spanish>
+	</TEXT>
 	<TEXT><!-- EVENT_DEAD_ANGEL -->
 		<Tag>TXT_KEY_EVENT_DEAD_ANGEL</Tag>
 		<English>An angel's body was found sliced open in the fields. Plants around it are dying off.</English>

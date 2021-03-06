@@ -7271,7 +7271,7 @@
 			<bShowPlot>1</bShowPlot>
 			<iPrereqGlobalCounter>10</iPrereqGlobalCounter>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- ASH_COUGH -->
+		<EventTriggerInfo><!-- ASH_COUGH lfgr: tweaked -->
 			<Type>EVENTTRIGGER_ASH_COUGH</Type>
 			<WorldNewsTexts>
 				<Text />
@@ -7285,6 +7285,7 @@
 			<EventArt>Art\EventImages\e_ashcough.dds</EventArt>
 			<iPercentGamesActive>100</iPercentGamesActive>
 			<iWeight>400</iWeight>
+			<iMinPopulation>3</iMinPopulation>
 			<Events>
 				<Event>EVENT_ASH_COUGH_1</Event>
 				<Event>EVENT_ASH_COUGH_2</Event>
@@ -7293,8 +7294,12 @@
 			</Events>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDo>canTriggerInfernalFilter</PythonCanDo>
 			<iPrereqGlobalCounter>15</iPrereqGlobalCounter>
+			<PlayerPrereq>
+				<Not>
+					<IsCivilization>CIVILIZATION_INFERNAL</IsCivilization>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- DEAD_ANGEL -->
 			<Type>EVENTTRIGGER_DEAD_ANGEL</Type>
