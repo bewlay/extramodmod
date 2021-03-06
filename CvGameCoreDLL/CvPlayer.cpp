@@ -23471,7 +23471,12 @@ void CvPlayer::applyEvent(EventTypes eEvent, int iEventTriggeredId, bool bUpdate
                             pUnit->changeExperience(kEvent.getUnitExperience());
                         }
 //FfH: End Modify
-
+						// EVENTS_ENHANCED 02/2021 lfgr: Apply UnitName also to new units
+						CvWString szNameKey(kEvent.getUnitNameKey());
+						if (!szNameKey.empty())
+						{
+							pUnit->setName(gDLL->getText(szNameKey));
+						}
 					}
 				}
 			}
