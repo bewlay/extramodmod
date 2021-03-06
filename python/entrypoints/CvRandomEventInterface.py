@@ -4595,43 +4595,10 @@ def doElderDeath3 (argsList):
 	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pCity = pPlayer.getCity(kTriggeredData.iCityId)
 	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_SKELETON'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-
-def canTriggerSkilledJeweler(argsList):
-	eTrigger = argsList[0]
-	ePlayer = argsList[1]
-	iCity = argsList[2]
-	pPlayer = gc.getPlayer(ePlayer)
-	pCity = pPlayer.getCity(iCity)
-	if pCity.getNumRealBuilding(gc.getInfoTypeForString('BUILDING_JEWELER')) > 0:
-		return False
-	if pPlayer.getCivilizationType() != gc.getInfoTypeForString('CIVILIZATION_KURIOTATES'):
-		return False
-	return True	
 				
 ######## MORE EVENTS MOD EXPANDED STARTS ########
 
-def canTriggerInfernalFilter(argsList):
-	"""
-	Player must not be infernal
-	"""
-	kTriggeredData = argsList[0]
-	iPlayer = kTriggeredData.ePlayer
-	pPlayer = gc.getPlayer(iPlayer)
-	if pPlayer.getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
-		return False
-	return True
-
-				# More Events Mod Ends #		
-
-def CanDoOil3(argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	if (pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_KHAZAD")):
-		return True
-	if (pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_LUCHUIRP")):
-		return True
-	return False
+######## OIL (lfgr: moved to XML)
 	
 ######## POISONED_WATER (lfgr: moved to XML)
 

@@ -7353,8 +7353,12 @@
 			</Events>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDo>canTriggerInfernalFilter</PythonCanDo>
 			<iPrereqGlobalCounter>45</iPrereqGlobalCounter>
+			<PlayerPrereq>
+				<Not>
+					<IsCivilization>CIVILIZATION_INFERNAL</IsCivilization>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- DEVASTATING_PLAGUE -->
 			<Type>EVENTTRIGGER_DEVASTATING_PLAGUE</Type>
@@ -7379,8 +7383,12 @@
 			<bRecurring>1</bRecurring>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDo>canTriggerInfernalFilter</PythonCanDo>
 			<iPrereqGlobalCounter>55</iPrereqGlobalCounter>
+			<PlayerPrereq>
+				<Not>
+					<IsCivilization>CIVILIZATION_INFERNAL</IsCivilization>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- NECRO_CANNIBALISM -->
 			<Type>EVENTTRIGGER_NECRO_CANNIBALISM</Type>
@@ -7803,7 +7811,11 @@
 			</OrPreReqs>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDo>canTriggerInfernalFilter</PythonCanDo>
+			<PlayerPrereq>
+				<Not>
+					<IsCivilization>CIVILIZATION_INFERNAL</IsCivilization>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- COOKBOOK -->
 			<Type>EVENTTRIGGER_COOKBOOK</Type>
@@ -7829,7 +7841,11 @@
 			</Events>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDo>canTriggerInfernalFilter</PythonCanDo>
+			<PlayerPrereq>
+				<Not>
+					<IsCivilization>CIVILIZATION_INFERNAL</IsCivilization>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- ELDER_DEATH -->
 			<Type>EVENTTRIGGER_ELDER_DEATH</Type>
@@ -7857,13 +7873,14 @@
 			</Events>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDo>canTriggerInfernalFilter</PythonCanDo>
+			<PlayerPrereq>
+				<Not>
+					<IsCivilization>CIVILIZATION_INFERNAL</IsCivilization>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- SKILLED_JEWELER -->
 			<Type>EVENTTRIGGER_SKILLED_JEWELER</Type>
-			<WorldNewsTexts>
-				<Text />
-			</WorldNewsTexts>
 			<TriggerTexts>
 				<TriggerText>
 					<Text>TXT_KEY_EVENT_SKILLED_JEWELER</Text>
@@ -7973,13 +7990,14 @@
 			</OrPreReqs>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDo>canTriggerInfernalFilter</PythonCanDo>
+			<PlayerPrereq>
+				<Not>
+					<IsCivilization>CIVILIZATION_INFERNAL</IsCivilization>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
-		<EventTriggerInfo><!-- OIL -->
+		<EventTriggerInfo><!-- OIL lfgr: tweaked -->
 			<Type>EVENTTRIGGER_OIL</Type>
-			<WorldNewsTexts>
-				<Text />
-			</WorldNewsTexts>
 			<TriggerTexts>
 				<TriggerText>
 					<Text>TXT_KEY_EVENT_OIL</Text>
@@ -8149,7 +8167,11 @@
 			</Events>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDo>canTriggerInfernalFilter</PythonCanDo>
+			<PlayerPrereq>
+				<Not>
+					<IsCivilization>CIVILIZATION_INFERNAL</IsCivilization>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- SUTTERS_MILL -->
 			<Type>EVENTTRIGGER_SUTTERS_MILL</Type>
@@ -8203,7 +8225,11 @@
 			<bGlobal>1</bGlobal>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDo>canTriggerInfernalFilter</PythonCanDo>
+			<PlayerPrereq>
+				<Not>
+					<IsCivilization>CIVILIZATION_INFERNAL</IsCivilization>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- THREAD_NECROMANCY -->
 			<Type>EVENTTRIGGER_THREAD_NECROMANCY</Type>
@@ -8231,7 +8257,11 @@
 				<PrereqTech>TECH_EDUCATION</PrereqTech>
 				<PrereqTech>TECH_PRIESTHOOD</PrereqTech>
 			</AndPreReqs>
-			<PythonCanDo>canTriggerInfernalFilter</PythonCanDo>
+			<PlayerPrereq>
+				<Not>
+					<IsCivilization>CIVILIZATION_INFERNAL</IsCivilization>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- POISONED_WATER -->
 			<Type>EVENTTRIGGER_POISONED_WATER</Type>
@@ -8263,7 +8293,11 @@
 			</OrPreReqs>
 			<bPickCity>1</bPickCity>
 			<bShowPlot>1</bShowPlot>
-			<PythonCanDo>canTriggerInfernalFilter</PythonCanDo>
+			<PlayerPrereq>
+				<Not>
+					<IsCivilization>CIVILIZATION_INFERNAL</IsCivilization>
+				</Not>
+			</PlayerPrereq>
 		</EventTriggerInfo>
 		<EventTriggerInfo><!-- POISONED_WATER_CONT_5 -->
 			<Type>EVENTTRIGGER_POISONED_WATER_CONT_5</Type>

@@ -6084,10 +6084,14 @@
 			<Description>TXT_KEY_EVENT_DEPRESSED_TOYMAKER_1</Description>
 			<iHurryAnger>-1</iHurryAnger>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCanDo>CanDoDeadAngel2</PythonCanDo>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iGlobalCounter>2</iGlobalCounter>
+			<PlayerPrereq>
+				<Not>
+					<IsAlignment>ALIGNMENT_EVIL</IsAlignment>
+				</Not>
+			</PlayerPrereq>
 		</EventInfo>
 		<EventInfo><!-- DEPRESSED_TOYMAKER_2 -->
 			<Type>EVENT_DEPRESSED_TOYMAKER_2</Type>
@@ -6866,14 +6870,17 @@
 			<Description>TXT_KEY_EVENT_SKILLED_JEWELER_1</Description>
 			<bPickCity>1</bPickCity>
 			<iGold>-50</iGold>
-			<PrereqTech />
 			<BuildingClass>BUILDINGCLASS_CIV_BUILDING2</BuildingClass>
 			<iBuildingChange>1</iBuildingChange>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCanDo>canTriggerSkilledJeweler</PythonCanDo>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<PrereqCivilization>CIVILIZATION_KURIOTATES</PrereqCivilization>
+			<CityPrereq>
+				<Not>
+					<HasBuildingClass>BUILDINGCLASS_CIV_BUILDING2</HasBuildingClass>
+				</Not>
+			</CityPrereq>
 		</EventInfo>
 		<EventInfo><!-- SKILLED_JEWELER_2 -->
 			<Type>EVENT_SKILLED_JEWELER_2</Type>
@@ -7134,6 +7141,9 @@
 			<PythonCanDo>CanDoOil3</PythonCanDo>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>900</iAIValue>
+			<PlayerPrereq>
+				<IsCivilization>CIVILIZATION_LUCHUIRP</IsCivilization>
+			</PlayerPrereq>
 		</EventInfo>
 		<EventInfo><!-- WINDS_FROM_HELL_1 -->
 			<Type>EVENT_WINDS_FROM_HELL_1</Type>
