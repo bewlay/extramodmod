@@ -6028,10 +6028,14 @@
 				</PlotExtraYield>
 			</PlotExtraYields>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonCanDo>CanDoDeadAngel2</PythonCanDo>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iGlobalCounter>-2</iGlobalCounter>
+			<PlayerPrereq>
+				<Not>
+					<IsAlignment>ALIGNMENT_EVIL</IsAlignment>
+				</Not>
+			</PlayerPrereq>
 		</EventInfo>
 		<EventInfo><!-- DEAD_ANGEL_3 -->
 			<Type>EVENT_DEAD_ANGEL_3</Type>
@@ -6051,6 +6055,7 @@
 		<EventInfo><!-- DEAD_ANGEL_4 -->
 			<Type>EVENT_DEAD_ANGEL_4</Type>
 			<Description>TXT_KEY_EVENT_DEAD_ANGEL_4</Description>
+			<Help>TXT_KEY_EVENT_DEAD_ANGEL_4_HELP</Help>
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonExpireCheck>doDeadAngel4</PythonExpireCheck>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
@@ -6062,7 +6067,13 @@
 			<Type>EVENT_DEAD_ANGEL_5</Type>
 			<Description>TXT_KEY_EVENT_DEAD_ANGEL_5</Description>
 			<iMaxNumReligions>-1</iMaxNumReligions>
-			<PythonExpireCheck>doDeadAngel5</PythonExpireCheck>
+			<UnitClass>UNITCLASS_ANGEL</UnitClass>
+			<UnitPromotions>
+				<UnitPromotion>PROMOTION_UNDEAD</UnitPromotion>
+				<UnitPromotion>PROMOTION_PLAGUE_CARRIER</UnitPromotion>
+			</UnitPromotions>
+			<iNumFreeUnits>1</iNumFreeUnits>
+			<UnitName>TXT_KEY_EVENT_DEAD_ANGEL_5_UNIT_NAME</UnitName>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 			<iAIValue>1000</iAIValue>
 			<iGlobalCounter>10</iGlobalCounter>

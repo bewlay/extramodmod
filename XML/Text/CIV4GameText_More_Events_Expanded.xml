@@ -766,6 +766,14 @@
 		<Italian>Do our very best to defile the lands further.</Italian>
 		<Spanish>Do our very best to defile the lands further.</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_DEAD_ANGEL_4_HELP</Tag>
+		<English>[ICON_BULLET]Converts the plot to hell terrain</English>
+		<French>[ICON_BULLET]Converts the plot to hell terrain</French>
+		<German>[ICON_BULLET]Converts the plot to hell terrain</German>
+		<Italian>[ICON_BULLET]Converts the plot to hell terrain</Italian>
+		<Spanish>[ICON_BULLET]Converts the plot to hell terrain</Spanish>
+	</TEXT>
 	<TEXT><!-- EVENT_DEAD_ANGEL_5 -->
 		<Tag>TXT_KEY_EVENT_DEAD_ANGEL_5</Tag>
 		<English>Hmm... send our necromancers!</English>
@@ -773,6 +781,14 @@
 		<German>Hmm... send our necromancers!</German>
 		<Italian>Hmm... send our necromancers!</Italian>
 		<Spanish>Hmm... send our necromancers!</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_DEAD_ANGEL_5_UNIT_NAME</Tag>
+		<English>Undead Angel</English>
+		<French>Undead Angel</French>
+		<German>Untoter Engel</German>
+		<Italian>Undead Angel</Italian>
+		<Spanish>&#193;ngel muerto viviente</Spanish>
 	</TEXT>
 	<TEXT><!-- EVENT_DEPRESSED_TOYMAKER -->
 		<Tag>TXT_KEY_EVENT_DEPRESSED_TOYMAKER</Tag>

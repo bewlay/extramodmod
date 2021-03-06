@@ -4098,35 +4098,14 @@ def doAshCough4 (argsList):
 			pCity.changePopulation( -1 )
 		pCity.changeHurryAngerTimer( 5 )
 
-######## (lfgr: not reviewed)
-
-def CanDoDeadAngel2 (argsList):
-	"""
-	Requires the player not to be evil
-	"""
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
-	if pPlayer.getAlignment() == gc.getInfoTypeForString('ALIGNMENT_EVIL'):
-		return False
-	return True
+######## DEAD_ANGEL (lfgr: tweaked)
 	
 def doDeadAngel4 (argsList):
-	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
 	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 	pPlot.changePlotCounter(100)
-	
-def doDeadAngel5 (argsList):
-	iEvent = argsList[0]
-	kTriggeredData = argsList[1]
-	pPlayer = gc.getPlayer(kTriggeredData.ePlayer)
-	pPlot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
-	newUnit = pPlayer.initUnit(gc.getInfoTypeForString('UNIT_ANGEL'), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_UNDEAD'), True)
-	newUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PLAGUE_CARRIER'), True)
+
+######## (lfgr: not reviewed)
 	
 def doDevastatingPlague1 (argsList):
 	"""
