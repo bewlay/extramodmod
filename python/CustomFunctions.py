@@ -307,10 +307,8 @@ class CustomFunctions:
 		elif( tOutcome[0] == 'Event' ) :
 			iDestroyLair = tOutcome[1]
 			sEvent = tOutcome[2]
-			
-			iUnitID = self.getUnitPlayerID( pUnit )
 			eEvent = self.saveGetInfoType( gc.getNumEventTriggerInfos(), sEvent )
-			pPlayer.initTriggeredData( eEvent, True, -1, pUnit.getX(), pUnit.getY(), pUnit.getOwner(), -1, -1, -1, iUnitID, -1 )
+			pPlayer.initTriggeredData( eEvent, True, -1, pUnit.getX(), pUnit.getY(), pUnit.getOwner(), -1, -1, -1, pUnit.getID(), -1 )
 		
 		elif( tOutcome[0] == 'Goody' ) :
 			iDestroyLair = tOutcome[1]
@@ -1310,16 +1308,6 @@ class CustomFunctions:
 			if gc.getUnitInfo( pUnit.getUnitType() ).getTier() == 4:
 				iUnit = gc.getInfoTypeForString( 'UNIT_BEASTMASTER' )
 		return iUnit
-
-	def getUnitPlayerID( self, pUnit ):
-		pPlayer = gc.getPlayer( pUnit.getOwner() )
-		iID = pUnit.getID()
-		iUnitID = -1
-		for iUnit in range( pPlayer.getNumUnits() ):
-			pLoopUnit = pPlayer.getUnit( iUnit )
-			if pLoopUnit.getID() == iID:
-				iUnitID = iUnit
-		return iUnitID
 
 	def giftUnit( self, iUnit, iCivilization, iXP, pFromPlot, iFromPlayer ):
 		iAngel = gc.getInfoTypeForString( 'UNIT_ANGEL' )
