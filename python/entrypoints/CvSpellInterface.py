@@ -4480,13 +4480,11 @@ def onMovePoolOfTears(pCaster, pPlot):
 			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_GELA'), False)
 			pPlayer = gc.getPlayer(pCaster.getOwner())
 			pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_PIKE_OF_TEARS'), True)
-			CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_TEARS_GELA",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Pool of Tears.dds',ColorTypes(8),pCaster.getX(),pCaster.getY(),True,True)
 			if pPlayer.getStateReligion() == gc.getInfoTypeForString('RELIGION_FELLOWSHIP_OF_LEAVES') :
 				isPlague = CyGame().getSorenRandNum(100, "Plague") <= 20
 			else :
 				isPlague = CyGame().getSorenRandNum(100, "Plague") <= 50
 			if isPlague:
-				CyInterface().addMessage(pCaster.getOwner(),True,25,CyTranslator().getText("TXT_KEY_MESSAGE_TEARS_GELA_PLAGUE",()),'AS2D_FEATUREGROWTH',1,'Art/Interface/Buttons/Improvements/Pool of Tears.dds',ColorTypes(7),pCaster.getX(),pCaster.getY(),True,True)
 				for iPlayer2 in range(gc.getMAX_PLAYERS()):
 					pPlayer2 = gc.getPlayer(iPlayer2)
 					if pPlayer2.getCivilizationType() != gc.getInfoTypeForString('CIVILIZATION_INFERNAL'):
@@ -4497,11 +4495,20 @@ def onMovePoolOfTears(pCaster, pPlot):
 							i -= pCity.totalGoodBuildingHealth()
 							if i > 0:
 								pCity.changeEspionageHealthCounter(i)
-							py = PyPlayer(iPlayer2)
-							for pUnit in py.getUnitList():
-								if pUnit.isAlive():
-									pUnit.doDamageNoCaster(10, 100, gc.getInfoTypeForString('DAMAGE_DEATH'), false)
-			
+						py = PyPlayer(iPlayer2)
+						for pUnit in py.getUnitList():
+							if pUnit.isAlive():
+								pUnit.doDamageNoCaster(10, 100, gc.getInfoTypeForString('DAMAGE_DEATH'), false)
+			CyInterface().addMessage( pCaster.getOwner(), True, 25,
+					CyTranslator().getText( "TXT_KEY_MESSAGE_TEARS_GELA", () ), 'AS2D_FEATUREGROWTH', 1,
+					'Art/Interface/Buttons/Improvements/Pool of Tears.dds', ColorTypes( 8 ), pCaster.getX(),
+					pCaster.getY(), True, True )
+			if isPlague :
+				CyInterface().addMessage( pCaster.getOwner(), True, 25,
+					CyTranslator().getText( "TXT_KEY_MESSAGE_TEARS_GELA_PLAGUE", () ), 'AS2D_FEATUREGROWTH', 1,
+					'Art/Interface/Buttons/Improvements/Pool of Tears.dds', ColorTypes( 7 ), pCaster.getX(),
+					pCaster.getY(), True, True )
+
 
 def onMovePyreOfTheSeraphic(pCaster, pPlot):
 	if CyGame().getScenarioCounter()==5 :
