@@ -6,55 +6,36 @@
 		<English>Creation Mana</English>
 		<French>Mana de Creation</French>
 		<German>Mana des Creation</German>
-		<Italian>Creation Mana</Italian>
 		<Spanish>Maná de Creación</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BONUS_MANA_CREATION_PEDIA</Tag>
 		<English>Grants access to Creation spells. This will allow Adepts to cast [LINK=SPELL_GROWTH]Growth[\LINK]. This resource counts as a health resource.</English>
-		<French>Grants access to Creation spells. This will allow Adepts to cast [LINK=SPELL_GROWTH]Growth[\LINK]. This resource counts as a health resource.</French>
-		<German>Grants access to Creation spells. This will allow Adepts to cast [LINK=SPELL_GROWTH]Growth[\LINK]. This resource counts as a health resource.</German>
-		<Italian>Grants access to Creation spells. This will allow Adepts to cast [LINK=SPELL_GROWTH]Growth[\LINK]. This resource counts as a health resource.</Italian>
 		<Spanish>Da acceso a los hechizos de Creación. Esto permite a los Adeptos lanzar [LINK=SPELL_GROWTH]Crecimiento[\LINK]. Este recurso cuenta como uno de salud.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BONUS_MANA_DIMENSIONAL</Tag>
 		<English>Dimensional Mana</English>
-		<French>Dimensional Mana</French>
-		<German>Dimensional Mana</German>
-		<Italian>Dimensional Mana</Italian>
 		<Spanish>Maná Dimensional</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BONUS_MANA_DIMENSIONAL_PEDIA</Tag>
 		<English>Grants access to Dimensional spells. This will allow Adepts to cast [LINK=SPELL_ESCAPE]Escape[\LINK].</English>
-		<French>Grants access to Dimensional spells. This will allow Adepts to cast [LINK=SPELL_ESCAPE]Escape[\LINK].</French>
-		<German>Grants access to Dimensional spells. This will allow Adepts to cast [LINK=SPELL_ESCAPE]Escape[\LINK].</German>
-		<Italian>Grants access to Dimensional spells. This will allow Adepts to cast [LINK=SPELL_ESCAPE]Escape[\LINK].</Italian>
 		<Spanish>Da acceso a los hechizos Dimensionales. Permite a los Adeptos lanzar [LINK=SPELL_ESCAPE]Escapar[\LINK].</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BONUS_MANA_FORCE</Tag>
 		<English>Force Mana</English>
-		<French>Force Mana</French>
-		<German>Force Mana</German>
-		<Italian>Force Mana</Italian>
 		<Spanish>Maná de Fuerza</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BONUS_MANA_FORCE_PEDIA</Tag>
 		<English>Grants access to Force spells. This will allow Adepts to cast [LINK=SPELL_TEMPERANCE]Temperance[\LINK]. Owning this resource will lower maintenance in all cities.</English>
-		<French>Grants access to Force spells. This will allow Adepts to cast [LINK=SPELL_TEMPERANCE]Temperance[\LINK]. Owning this resource will lower maintenance in all cities.</French>
-		<German>Grants access to Force spells. This will allow Adepts to cast [LINK=SPELL_TEMPERANCE]Temperance[\LINK]. Owning this resource will lower maintenance in all cities.</German>
-		<Italian>Grants access to Force spells. This will allow Adepts to cast [LINK=SPELL_TEMPERANCE]Temperance[\LINK]. Owning this resource will lower maintenance in all cities.</Italian>
 		<Spanish>Da acceso a los hechizos de Fuerza. Esto permitirá a los Adeptos lanzar [LINK=SPELL_TEMPERANCE]Templanza[\LINK]. Poseer este recurso reducirá los costes de mantenimiento en todas las ciudades.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BONUS_MANA_ICE_PEDIA</Tag>
 		<English>Grants access to Ice spells. This will allow Adepts to cast [LINK=SPELL_SLOW]Slow[\LINK].</English>
-		<French>Grants access to Ice spells. This will allow Adepts to cast [LINK=SPELL_SLOW]Slow[\LINK].</French>
-		<German>Grants access to Ice spells. This will allow Adepts to cast [LINK=SPELL_SLOW]Slow[\LINK].</German>
-		<Italian>Grants access to Ice spells. This will allow Adepts to cast [LINK=SPELL_SLOW]Slow[\LINK].</Italian>
 		<Spanish>Permite el acceso a los hechizos de Hielo. Esto permite a los Adeptos lanzar [LINK=SPELL_SLOW]Ralentizar[\LINK].</Spanish>
 	</TEXT>
 	<TEXT>
@@ -62,7 +43,6 @@
 		<English>Build Force Node</English>
 		<French>Construire Noeud de Force</French>
 		<German>Errichtung eines Brunnens der Feuermagie</German>
-		<Italian>Build Force Node</Italian>
 		<Spanish>Construir Nodo de Fuerza</Spanish>
 	</TEXT>
 	<TEXT>
@@ -70,71 +50,47 @@
 		<English>Build Ice Node</English>
 		<French>Construire Noeud de Ice</French>
 		<German>Errichtung eines Brunnens der Eis</German>
-		<Italian>Build Ice Node</Italian>
 		<Spanish>Construir Nodo de Hielo</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GROWTH</Tag>
 		<English>Growth</English>
-		<French>Growth</French>
 		<German>Kornkammer</German>
-		<Italian>Growth</Italian>
 		<Spanish>Crecimiento</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_BLESSING</Tag>
 		<English>Blessing</English>
-		<French>Blessing</French>
-		<German>Blessing</German>
-		<Italian>Blessing</Italian>
 		<Spanish>Bendición</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_LIVING_MOD</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% Living Unit Production</English>
-		<French>[ICON_BULLET]%D1_Mod%% Living Unit Production</French>
-		<German>[ICON_BULLET]%D1_Mod%% Living Unit Production</German>
-		<Italian>[ICON_BULLET]%D1_Mod%% Living Unit Production</Italian>
 		<Spanish>[ICON_BULLET]%D1_Mod%% a la producci&#243;n de unidades vivas</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_DAMAGE_FORCE</Tag>
 		<English>Force</English>
-		<French>Force</French>
-		<German>Force</German>
-		<Italian>Force</Italian>
 		<Spanish>Fuerza</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_DAMAGE_FORCE_DAMAGE</Tag>
 		<English>force damage.</English>
-		<French>force damage.</French>
-		<German>force damage.</German>
-		<Italian>force damage.</Italian>
 		<Spanish>daño de fuerza.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_DAMAGE_FORCE_TAG</Tag>
 		<English>Force</English>
-		<French>Force</French>
-		<German>Force</German>
-		<Italian>Force</Italian>
 		<Spanish>Fuerza</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_FEATURE_LABYRINTH</Tag>
 		<English>Labyrinth</English>
-		<French>Labyrinth</French>
-		<German>Labyrinth</German>
-		<Italian>Labyrinth</Italian>
 		<Spanish>Laberinto</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_FEATURE_LABYRINTH_PEDIA</Tag>
 		<English>It has a 40% chance of dissapearing on each turn (on standard speed)</English>
-		<French>It has a 40% chance of dissapearing on each turn (on standard speed)</French>
-		<German>It has a 40% chance of dissapearing on each turn (on standard speed)</German>
-		<Italian>It has a 40% chance of dissapearing on each turn (on standard speed)</Italian>
 		<Spanish>Tiene una probabilidad de desaparecer cada turno del 40% (en velocidad normal)</Spanish>
 	</TEXT>
 	<TEXT>
@@ -142,7 +98,6 @@
 		<English>Creation Node</English>
 		<French>Noeud de Creation</French>
 		<German>Manabrunnen Creationmagie</German>
-		<Italian>Creation Node</Italian>
 		<Spanish>Nodo de Creación</Spanish>
 	</TEXT>
 	<TEXT>
@@ -150,63 +105,41 @@
 		<English>Dimensional Node</English>
 		<French>Noeud de Dimensional</French>
 		<German>Manabrunnen Dimensionalmagie</German>
-		<Italian>Dimensional Node</Italian>
 		<Spanish>Nodo Dimensional</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_MANA_FORCE</Tag>
 		<English>Force Node</English>
-		<French>Force Node</French>
-		<German>Force Node</German>
-		<Italian>Force Node</Italian>
 		<Spanish>Nodo de Fuerza</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_MANA_ICE</Tag>
 		<English>Ice Node</English>
-		<French>Ice Node</French>
-		<German>Ice Node</German>
-		<Italian>Ice Node</Italian>
 		<Spanish>Nodo de Hielo</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_ANIMATE_FROSTLINGS</Tag>
 		<English>Frostlings appear in the wilderness!</English>
-		<French>Frostlings appear in the wilderness!</French>
-		<German>Frostlings appear in the wilderness!</German>
-		<Italian>Frostlings appear in the wilderness!</Italian>
 		<Spanish>¡Aparecen frostlings en las zonas salvajes!</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_PROD_LIVING</Tag>
 		<English>[ICON_BULLET]%D1%%[ICON_PRODUCTION] for living units</English>
-		<French>[ICON_BULLET]%D1%%[ICON_PRODUCTION] for living units</French>
-		<German>[ICON_BULLET]%D1%%[ICON_PRODUCTION] for living units</German>
-		<Italian>[ICON_BULLET]%D1%%[ICON_PRODUCTION] for living units</Italian>
 		<Spanish>[ICON_BULLET]%D1%% a la [ICON_PRODUCTION] de unidades vivas</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_CREATION1</Tag>
 		<English>Creation I</English>
-		<French>Creation I</French>
-		<German>Creation I</German>
-		<Italian>Creation I</Italian>
 		<Spanish>Creación I</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_CREATION2</Tag>
 		<English>Creation II</English>
-		<French>Creation II</French>
-		<German>Creation II</German>
-		<Italian>Creation II</Italian>
 		<Spanish>Creación II</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_CREATION3</Tag>
 		<English>Creation III</English>
-		<French>Creation III</French>
-		<German>Creation III</German>
-		<Italian>Creation III</Italian>
 		<Spanish>Creación III</Spanish>
 	</TEXT>
 	<TEXT>
@@ -214,61 +147,44 @@
 		<English>Dimensional II</English>
 		<French>Dimensionnel I</French>
 		<German>Dimension II</German>
-		<Italian>Dimensional II</Italian>
-		<Spanish>Dimensional II</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_DIMENSIONAL3</Tag>
 		<English>Dimensional III</English>
 		<French>Dimensionnel III</French>
 		<German>Dimension III</German>
-		<Italian>Dimensional III</Italian>
-		<Spanish>Dimensional III</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_FORCE1</Tag>
 		<English>Force I</English>
 		<French>Equilibre I</French>
-		<German>Force I</German>
-		<Italian>Force I</Italian>
 		<Spanish>Fuerza I</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_FORCE2</Tag>
 		<English>Force II</English>
 		<French>Equilibre II</French>
-		<German>Force II</German>
-		<Italian>Force II</Italian>
 		<Spanish>Fuerza II</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_FORCE3</Tag>
 		<English>Force III</English>
 		<French>Equilibre II</French>
-		<German>Force III</German>
-		<Italian>Force III</Italian>
 		<Spanish>Fuerza III</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_RIFT_OPENED</Tag>
 		<English>Opened rift</English>
-		<French>Opened rift</French>
-		<German>Opened rift</German>
-		<Italian>Opened rift</Italian>
 		<Spanish>Vórtice abierto</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_TEMPERANCE</Tag>
 		<English>Temperance</English>
-		<French>Temperance</French>
-		<German>Temperance</German>
-		<Italian>Temperance</Italian>
 		<Spanish>Templanza</Spanish>
 	</TEXT>
  	<TEXT>
 		<Tag>TXT_KEY_SPELL_TREETOP_TACTICS</Tag>
 		<English>Treetop Tactics</English>
-		<French>Treetop Tactics</French>
 		<German>Treetop</German>
 		<Italian>Treetop Defense</Italian>
 		<Spanish>Tácticas Arbóreas</Spanish>
@@ -276,281 +192,167 @@
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_ANIMATE_FROSTLINGS</Tag>
 		<English>Animate Frostlings</English>
-		<French>Animate Frostlings</French>
-		<German>Animate Frostlings</German>
-		<Italian>Animate Frostlings</Italian>
 		<Spanish>Invocar Frostlings</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_BLESSING</Tag>
 		<English>Bestow Blessing</English>
-		<French>Bestow Blessing</French>
-		<German>Bestow Blessing</German>
-		<Italian>Bestow Blessing</Italian>
 		<Spanish>Conceder Bendición</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_BLESSING_HELP</Tag>
 		<English>[ICON_BULLET]Blessing creates a temporary effect (represented as a building) in the city which remains until the caster leaves. Living units are produced faster in a city with a Blessing, and they start with the Strong promotion. It also opens a specialist slot for all specialist types.</English>
-		<French>[ICON_BULLET]Blessing creates a temporary effect (represented as a building) in the city which remains until the caster leaves. Living units are produced faster in a city with a Blessing, and they start with the Strong promotion. It also opens a specialist slot for all specialist types.</French>
-		<German>[ICON_BULLET]Blessing creates a temporary effect (represented as a building) in the city which remains until the caster leaves. Living units are produced faster in a city with a Blessing, and they start with the Strong promotion. It also opens a specialist slot for all specialist types.</German>
-		<Italian>[ICON_BULLET]Blessing creates a temporary effect (represented as a building) in the city which remains until the caster leaves. Living units are produced faster in a city with a Blessing, and they start with the Strong promotion. It also opens a specialist slot for all specialist types.</Italian>
 		<Spanish>[ICON_BULLET]Bendición crea un efecto temporal (representado como un edificio) en la ciudad que permanece hasta que el lanzador se marcha. Las unidades vivas se producen mas rápidamente en las ciudades que tengan una Bendición, y comienzan con la promoción Fuerte. También abre un espacio de especialista para todos los tipos de especialistas.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_DISRUPT_PYHELP</Tag>
 		<English>[ICON_BULLET]Will remove %d1 [ICON_CULTURE] from %s2</English>
-		<French>[ICON_BULLET]Will remove %d1 [ICON_CULTURE] from %s2</French>
-		<German>[ICON_BULLET]Will remove %d1 [ICON_CULTURE] from %s2</German>
-		<Italian>[ICON_BULLET]Will remove %d1 [ICON_CULTURE] from %s2</Italian>
 		<Spanish>[ICON_BULLET]Eliminará %d1 [ICON_CULTURE] de %s2</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_GROWTH</Tag>
 		<English>Cause Growth</English>
-		<French>Cause Growth</French>
 		<German>Magische Kornkammer</German>
-		<Italian>Cause Growth</Italian>
 		<Spanish>Provocar Crecimiento</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_GROWTH_PEDIA</Tag>
 		<English>Growth creates a temporary effect (represented as a building) in the city which remains until the caster leaves. It increases the amount of food kept upon population growth as well as offering small food and culture bonuses.</English>
-		<French>Growth creates a temporary effect (represented as a building) in the city which remains until the caster leaves. It increases the amount of food kept upon population growth as well as offering small food and culture bonuses.</French>
-		<German>Growth creates a temporary effect (represented as a building) in the city which remains until the caster leaves. It increases the amount of food kept upon population growth as well as offering small food and culture bonuses.</German>
-		<Italian>Growth creates a temporary effect (represented as a building) in the city which remains until the caster leaves. It increases the amount of food kept upon population growth as well as offering small food and culture bonuses.</Italian>
 		<Spanish>Crecimiento crea un efecto temporal (representado como un edificio) en la ciudad que permanece hasta que el lanzador se marcha. Incrementa la cantidad de comida conservada después de un crecimiento de la población, y también proporciona una pequeña cantidad de comida y cultura.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_FERTILITY</Tag>
 		<English>Fertility</English>
-		<French>Fertility</French>
-		<German>Fertility</German>
-		<Italian>Fertility</Italian>
 		<Spanish>Fertilidad</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_FERTILITY_HELP</Tag>
 		<English>[ICON_BULLET]Converts Grain, Animal, Sea and Camp resources to a different resource type of the same group</English>
-		<French>[ICON_BULLET]Converts Grain, Animal, Sea and Camp resources to a different resource type of the same group</French>
-		<German>[ICON_BULLET]Converts Grain, Animal, Sea and Camp resources to a different resource type of the same group</German>
-		<Italian>[ICON_BULLET]Converts Grain, Animal, Sea and Camp resources to a different resource type of the same group</Italian>
 		<Spanish>[ICON_BULLET]Convierte recursos de grano, animales, mar o campamento a un tipo de recurso diferente del mismo grupo</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_FERTILITY_PYHELP</Tag>
 		<English>[ICON_BULLET]Convert the %s1 in the tile to %s2.</English>
-		<French>[ICON_BULLET]Convert the %s1 in the tile to %s2.</French>
-		<German>[ICON_BULLET]Convert the %s1 in the tile to %s2.</German>
-		<Italian>[ICON_BULLET]Convert the %s1 in the tile to %s2.</Italian>
 		<Spanish>[ICON_BULLET]Convierte el %s1 en la casilla a %s2.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_LABYRINTH</Tag>
 		<English>Create Labyrinth</English>
-		<French>Create Labyrinth</French>
-		<German>Create Labyrinth</German>
-		<Italian>Create Labyrinth</Italian>
 		<Spanish>Crear Laberinto</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_LABYRINTH_HELP</Tag>
 		<English>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</English>
-		<French>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</French>
-		<German>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</German>
-		<Italian>[ICON_BULLET]Creates a [LINK=FEATURE_LABYRINTH]Labyrinth[\LINK] in the tile</Italian>
 		<Spanish>[ICON_BULLET]Crea un [LINK=FEATURE_LABYRINTH]Laberinto[\LINK] en la casilla</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_MAGIC_MISSILE</Tag>
 		<English>Magic Missile</English>
-		<French>Magic Missile</French>
-		<German>Magic Missile</German>
-		<Italian>Magic Missile</Italian>
 		<Spanish>Proyectil Mágico</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CREATE</Tag>
 		<English>Create Rift</English>
-		<French>Create Rift</French>
-		<German>Create Rift</German>
-		<Italian>Create Rift</Italian>
 		<Spanish>Crear Vórtice</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CREATE_HELP</Tag>
 		<English>Creates a rift. The rift can be moved and opened to allow instant transportation of units between the caster and the rift</English>
-		<French>Creates a rift. The rift can be moved and opened to allow instant transportation of units between the caster and the rift</French>
-		<German>Creates a rift. The rift can be moved and opened to allow instant transportation of units between the caster and the rift</German>
-		<Italian>Creates a rift. The rift can be moved and opened to allow instant transportation of units between the caster and the rift</Italian>
 		<Spanish>Crea un vórtice. El vórtice puede desplazarse y ser abierto para permitir el transporte instantáneo de unidades entre el lanzador y el vórtice</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CROSS</Tag>
 		<English>Cross Rift</English>
-		<French>Cross Rift</French>
-		<German>Cross Rift</German>
-		<Italian>Cross Rift</Italian>
 		<Spanish>Cruzar Vórtice</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CROSS_HELP</Tag>
 		<English>Allows the unit to cross the rift, moving instantly from the rift to the rift's caster or viceversa</English>
-		<French>Allows the unit to cross the rift, moving instantly from the rift to the rift's caster or viceversa</French>
-		<German>Allows the unit to cross the rift, moving instantly from the rift to the rift's caster or viceversa</German>
-		<Italian>Allows the unit to cross the rift, moving instantly from the rift to the rift's caster or viceversa</Italian>
 		<Spanish>Permite a la unidad cruzar el vórtice, moviéndose instantáneamente desde el vórtice hasta el lanzador del vórtice o viceversa</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CROSS_PYHELP_UNITS_ONE</Tag>
 		<English>[ICON_BULLET]The unit will cross the rift.</English>
-		<French>[ICON_BULLET]The unit will cross the rift.</French>
-		<German>[ICON_BULLET]The unit will cross the rift.</German>
-		<Italian>[ICON_BULLET]The unit will cross the rift.</Italian>
-		<Spanish>[ICON_BULLET]The unit will cross the rift.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CROSS_PYHELP_UNITS_ALL</Tag>
 		<English>[ICON_BULLET]%d1 units will cross the rift.</English>
-		<French>[ICON_BULLET]%d1 units will cross the rift.</French>
-		<German>[ICON_BULLET]%d1 units will cross the rift.</German>
-		<Italian>[ICON_BULLET]%d1 units will cross the rift.</Italian>
-		<Spanish>[ICON_BULLET]%d1 units will cross the rift.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CROSS_PYHELP_UNITS_SOME</Tag>
 		<English>[ICON_BULLET]%d1 of %d2 units will cross the rift.</English>
-		<French>[ICON_BULLET]%d1 of %d2 units will cross the rift.</French>
-		<German>[ICON_BULLET]%d1 of %d2 units will cross the rift.</German>
-		<Italian>[ICON_BULLET]%d1 of %d2 units will cross the rift.</Italian>
-		<Spanish>[ICON_BULLET]%d1 of %d2 units will cross the rift.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CROSS_PYHELP_DESTINATION</Tag>
 		<English>[ICON_BULLET]Units crossing the rift will arrive at the position of unit %s1.</English>
-		<French>[ICON_BULLET]Units crossing the rift will arrive at the position of unit %s1.</French>
-		<German>[ICON_BULLET]Units crossing the rift will arrive at the position of unit %s1.</German>
-		<Italian>[ICON_BULLET]Units crossing the rift will arrive at the position of unit %s1.</Italian>
-		<Spanish>[ICON_BULLET]Units crossing the rift will arrive at the position of unit %s1.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CROSS_PYHELP_NOT_CLOSED</Tag>
 		<English>[ICON_BULLET]%d1 more units can still cross the rift.</English>
-		<French>[ICON_BULLET]%d1 more units can still cross the rift.</French>
-		<German>[ICON_BULLET]%d1 more units can still cross the rift.</German>
-		<Italian>[ICON_BULLET]%d1 more units can still cross the rift.</Italian>
-		<Spanish>[ICON_BULLET]%d1 more units can still cross the rift.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CROSS_PYHELP_CLOSED</Tag>
 		<English>[ICON_BULLET]The rift will be closed.</English>
-		<French>[ICON_BULLET]The rift will be closed.</French>
-		<German>[ICON_BULLET]The rift will be closed.</German>
-		<Italian>[ICON_BULLET]The rift will be closed.</Italian>
-		<Spanish>[ICON_BULLET]The rift will be closed.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CROSS_CLOSED_MESSAGE</Tag>
 		<English>A unit of %s1_unit has crossed through the rift. The rift is now closed</English>
-		<French>A unit of %s1_unit has crossed through the rift. The rift is now closed</French>
-		<German>A unit of %s1_unit has crossed through the rift. The rift is now closed</German>
-		<Italian>A unit of %s1_unit has crossed through the rift. The rift is now closed</Italian>
-		<Spanish>A unit of %s1_unit has crossed through the rift. The rift is now closed</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_CROSS_NUMBER_MESSAGE</Tag>
 		<English>A unit of %s1_unit has crossed through the rift. %d2 more units can still cross it</English>
-		<French>A unit of %s1_unit has crossed through the rift. %d2 more units can still cross it</French>
-		<German>A unit of %s1_unit has crossed through the rift. %d2 more units can still cross it</German>
-		<Italian>A unit of %s1_unit has crossed through the rift. %d2 more units can still cross it</Italian>
-		<Spanish>A unit of %s1_unit has crossed through the rift. %d2 more units can still cross it</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_OPEN</Tag>
 		<English>Open Rift</English>
-		<French>Open Rift</French>
-		<German>Open Rift</German>
-		<Italian>Open Rift</Italian>
 		<Spanish>Abrir Vórtice</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_OPEN_HELP</Tag>
 		<English>Opens the rift. This allows up to 10 units to cross it in any direction (from the caster to the rift or viceversa) and it will destroy the rift in the next turn</English>
-		<French>Opens the rift. This allows up to 10 units to cross it in any direction (from the caster to the rift or viceversa) and it will destroy the rift in the next turn</French>
-		<German>Opens the rift. This allows up to 10 units to cross it in any direction (from the caster to the rift or viceversa) and it will destroy the rift in the next turn</German>
-		<Italian>Opens the rift. This allows up to 10 units to cross it in any direction (from the caster to the rift or viceversa) and it will destroy the rift in the next turn</Italian>
 		<Spanish>Abre el vórtice. Esto permite a un máximo de 10 unidades cruzarlo en cualquier dirección (desde el lanzador al vórtice o viceversa) y destruirá al vórtice en el próximo turno</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_RIFT_OPENED_MESSAGE</Tag>
 		<English>A rift has been opened. It can be used to transport %d1 units</English>
-		<French>A rift has been opened. It can be used to transport %d1 units</French>
-		<German>A rift has been opened. It can be used to transport %d1 units</German>
-		<Italian>A rift has been opened. It can be used to transport %d1 units</Italian>
-		<Spanish>A rift has been opened. It can be used to transport %d1 units</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_SLOW_GREATER</Tag>
 		<English>Greater Slow</English>
-		<French>Greater Slow</French>
-		<German>Greater Slow</German>
-		<Italian>Greater Slow</Italian>
 		<Spanish>Ralentizar Mayor</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_SUMMON_RUNEWYN</Tag>
 		<English>Summon Runewyn</English>
-		<French>Summon Runewyn</French>
-		<German>Summon Runewyn</German>
-		<Italian>Summon Runewyn</Italian>
 		<Spanish>Invocar Runewyn</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SUMMON_RUNEWYN_HELP</Tag>
 		<English>[ICON_BULLET]Runewyns can cast [LINK=SPELL_DISPEL_MAGIC]Dispel Magic[\LINK], and they always choose to target arcane units when they attack.</English>
-		<French>[ICON_BULLET]Runewyns can cast [LINK=SPELL_DISPEL_MAGIC]Dispel Magic[\LINK], and they always choose to target arcane units when they attack.</French>
-		<German>[ICON_BULLET]Runewyns can cast [LINK=SPELL_DISPEL_MAGIC]Dispel Magic[\LINK], and they always choose to target arcane units when they attack.</German>
-		<Italian>[ICON_BULLET]Runewyns can cast [LINK=SPELL_DISPEL_MAGIC]Dispel Magic[\LINK], and they always choose to target arcane units when they attack.</Italian>
 		<Spanish>[ICON_BULLET]Los Runewyns pueden lanzar [LINK=SPELL_DISPEL_MAGIC]Disipar Magia[\LINK], y siempre eligen como objetivo a unidades arcanas cuando atacan.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SPELL_TEMPERANCE</Tag>
 		<English>Temperance</English>
-		<French>Temperance</French>
-		<German>Temperance</German>
-		<Italian>Temperance</Italian>
 		<Spanish>Templanza</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_MAGIC_MISSILE</Tag>
 		<English>Magic Missile</English>
-		<French>Magic Missile</French>
-		<German>Magic Missile</German>
-		<Italian>Magic Missile</Italian>
 		<Spanish>Proyectil Mágico</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_RIFT</Tag>
 		<English>Rift</English>
-		<French>Rift</French>
-		<German>Rift</German>
-		<Italian>Rift</Italian>
 		<Spanish>Vórtice</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_RUNEWYN</Tag>
 		<English>Runewyn</English>
-		<French>Runewyn</French>
-		<German>Runewyn</German>
-		<Italian>Runewyn</Italian>
-		<Spanish>Runewyn</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_RUNEWYN_PEDIA</Tag>
 		<English>Runewyns are winged angels of Dagda who are immune to all magic. They are frequently sent to battle powerful wizards or to cross magical barriers. They can drain away all but the most powerful spells with a touch.</English>
-		<French>Runewyns are winged angels of Dagda who are immune to all magic. They are frequently sent to battle powerful wizards or to cross magical barriers. They can drain away all but the most powerful spells with a touch.</French>
-		<German>Runewyns are winged angels of Dagda who are immune to all magic. They are frequently sent to battle powerful wizards or to cross magical barriers. They can drain away all but the most powerful spells with a touch.</German>
-		<Italian>Runewyns are winged angels of Dagda who are immune to all magic. They are frequently sent to battle powerful wizards or to cross magical barriers. They can drain away all but the most powerful spells with a touch.</Italian>
 		<Spanish>Los Runewyns son ángeles alados de Dagda inmunes a todo tipo de magia. Son frecuentemente enviados a luchar contra poderosos magos o a cruzar barreras mágicas. Pueden eliminar todos los hechizos salvo los más poderosos con un mero toque.</Spanish>
 	</TEXT>
 	<TEXT>
@@ -558,7 +360,6 @@
 		<English>Outlaw Dimensional Mana</English>
 		<French>Déclarer la Mana d'Dimensional Hors-la-Loi</French>
 		<German>Dimensionalmana ächten</German>
-		<Italian>Outlaw Dimensional Mana</Italian>
 		<Spanish>Prohibir Maná Dimensional</Spanish>
 	</TEXT>
 </Civ4GameText>

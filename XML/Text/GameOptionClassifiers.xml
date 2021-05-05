@@ -3,97 +3,61 @@
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_CLASSIFIER_HELP</Tag>
 		<English>This game option is just used to classify real game options</English>
-		<French>This game option is just used to classify real game options</French>
-		<German>This game option is just used to classify real game options</German>
-		<Italian>This game option is just used to classify real game options</Italian>
 		<Spanish>Esta opción se emplea solamente para clasificar a las opciones reales</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_BARBARIANS_ANIMALS_CLASSIFIER</Tag>
 		<English>·  BARBARIANS AND ANIMALS</English>
-		<French>·  BARBARIANS AND ANIMALS</French>
-		<German>·  BARBARIANS AND ANIMALS</German>
-		<Italian>·  BARBARIANS AND ANIMALS</Italian>
 		<Spanish>·  BÁRBAROS Y ANIMALES</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_AI_CLASSIFIER</Tag>
 		<English>·  AI</English>
-		<French>·  AI</French>
-		<German>·  AI</German>
-		<Italian>·  AI</Italian>
 		<Spanish>·  IA</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_WORLD_CLASSIFIER</Tag>
 		<English>·  WORLD</English>
-		<French>·  WORLD</French>
-		<German>·  WORLD</German>
-		<Italian>·  WORLD</Italian>
 		<Spanish>·  MUNDO</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_DIFFICULTY_CLASSIFIER</Tag>
 		<English>·  DIFFICULTY</English>
-		<French>·  DIFFICULTY</French>
-		<German>·  DIFFICULTY</German>
-		<Italian>·  DIFFICULTY</Italian>
 		<Spanish>·  DIFICULTAD</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_AC_CLASSIFIER</Tag>
 		<English>·  ARMAGEDDON COUNTER</English>
-		<French>·  ARMAGEDDON COUNTER</French>
-		<German>·  ARMAGEDDON COUNTER</German>
-		<Italian>·  ARMAGEDDON COUNTER</Italian>
 		<Spanish>·  ARMAGEDÓN</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_WAR_PEACE_CLASSIFIER</Tag>
 		<English>·  WAR AND PEACE</English>
-		<French>·  WAR AND PEACE</French>
-		<German>·  WAR AND PEACE</German>
-		<Italian>·  WAR AND PEACE</Italian>
 		<Spanish>·  GUERRA Y PAZ</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_CITIES_CLASSIFIER</Tag>
 		<English>·  CITIES</English>
-		<French>·  CITIES</French>
-		<German>·  CITIES</German>
-		<Italian>·  CITIES</Italian>
 		<Spanish>·  CIUDADES</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_LEADERS_CLASSIFIER</Tag>
 		<English>·  LEADERS</English>
-		<French>·  LEADERS</French>
-		<German>·  LEADERS</German>
-		<Italian>·  LEADERS</Italian>
 		<Spanish>·  LÍDERES</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_TECHNOLOGY_CLASSIFIER</Tag>
 		<English>·  TECHNOLOGY</English>
-		<French>·  TECHNOLOGY</French>
-		<German>·  TECHNOLOGY</German>
-		<Italian>·  TECHNOLOGY</Italian>
 		<Spanish>·  TECNOLOGÍA</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_RELIGION_CLASSIFIER</Tag>
 		<English>·  RELIGION</English>
-		<French>·  RELIGION</French>
-		<German>·  RELIGION</German>
-		<Italian>·  RELIGION</Italian>
 		<Spanish>·  RELIGIÓN</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_ADVANCED_OPTIONS_CLASSIFIER</Tag>
 		<English>·  ADVANCED OPTIONS</English>
-		<French>·  ADVANCED OPTIONS</French>
-		<German>·  ADVANCED OPTIONS</German>
-		<Italian>·  ADVANCED OPTIONS</Italian>
 		<Spanish>·  OPCIONES AVANZADAS</Spanish>
 	</TEXT>
 </Civ4GameText>

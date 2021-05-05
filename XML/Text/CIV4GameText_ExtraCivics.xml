@@ -8,9 +8,6 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_ISOLATIONISM</Tag>
 		<English>Isolationism</English>
-		<French>Isolationism</French>
-		<German>Isolationism</German>
-		<Italian>Isolationism</Italian>
 		<Spanish>
 			<Text>Aislacionismo</Text>
 			<Gender>Male</Gender>
@@ -20,9 +17,6 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NEUTRALITY</Tag>
 		<English>Neutrality</English>
-		<French>Neutrality</French>
-		<German>Neutrality</German>
-		<Italian>Neutrality</Italian>
 		<Spanish>
 			<Text>Neutralidad</Text>
 			<Gender>Female</Gender>
@@ -32,9 +26,6 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_URBAN_PLANNING</Tag>
 		<English>Urban Planning</English>
-		<French>Urban Planning</French>
-		<German>Urban Planning</German>
-		<Italian>Urban Planning</Italian>
 		<Spanish>
 			<Text>Planificación Urbana</Text>
 			<Gender>Female</Gender>

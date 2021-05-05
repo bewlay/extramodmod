@@ -5,9 +5,6 @@
 	<TEXT>
 		<Tag>TXT_KEY_DISPLAY_DWARVEN_VAULT_GENERAL</Tag>
 		<English>Vault: %s1 (%d2 [ICON_GOLD] per city)</English>
-		<French>Vault: %s1 (%d2 [ICON_GOLD] per city)</French>
-		<German>Vault: %s1 (%d2 [ICON_GOLD] per city)</German>
-		<Italian>Vault: %s1 (%d2 [ICON_GOLD] per city)</Italian>
 		<Spanish>Bóveda: %s1 (%d2 [ICON_GOLD] por ciudad)</Spanish>
 	</TEXT>
 	<TEXT>
@@ -15,7 +12,6 @@
 		<English>Empty</English>
 		<French>Vide</French>
 		<German>Leer</German>
-		<Italian>Empty</Italian>
 		<Spanish>Vacía</Spanish>
 	</TEXT>
 	<TEXT>
@@ -23,23 +19,17 @@
 		<English>Low</English>
 		<French>Basse</French>
 		<German>Kaum gefüllt</German>
-		<Italian>Low</Italian>
 		<Spanish>Poco llena</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_DISPLAY_DWARVEN_VAULT_NORMAL</Tag>
 		<English>Normal</English>
-		<French>Normal</French>
-		<German>Normal</German>
-		<Italian>Normal</Italian>
-		<Spanish>Normal</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_DISPLAY_DWARVEN_VAULT_STOCKED</Tag>
 		<English>Stocked</English>
 		<French>Approvisionnée</French>
 		<German>Gut gefüllt</German>
-		<Italian>Stocked</Italian>
 		<Spanish>Repleta</Spanish>
 	</TEXT>
 	<TEXT>
@@ -47,7 +37,6 @@
 		<English>Abundant</English>
 		<French>Abondante</French>
 		<German>Reichlich gefüllt</German>
-		<Italian>Abundant</Italian>
 		<Spanish>Abundante</Spanish>
 	</TEXT>
 	<TEXT>
@@ -55,7 +44,6 @@
 		<English>Full</English>
 		<French>Pleine</French>
 		<German>Voll</German>
-		<Italian>Full</Italian>
 		<Spanish>Llena</Spanish>
 	</TEXT>
 	<TEXT>
@@ -63,7 +51,6 @@
 		<English>Overflowing</English>
 		<French>Débordante</French>
 		<German>Überfüllt</German>
-		<Italian>Overflowing</Italian>
 		<Spanish>Desbordada</Spanish>
 	</TEXT>
 	<!-- Khazad vault display End -->
@@ -71,9 +58,6 @@
 	<TEXT>
 		<Tag>TXT_KEY_DISPLAY_TRAIT_ADAPTIVE</Tag>
 		<English>Trait change: (%d1)</English>
-		<French>Trait change: (%d1)</French>
-		<German>Trait change: (%d1)</German>
-		<Italian>Trait change: (%d1)</Italian>
 		<Spanish>Cambio Habilidad: (%d1)</Spanish>
 	</TEXT>
 	<!-- Adaptive tweaks END -->
@@ -81,9 +65,6 @@
 	<TEXT>
 		<Tag>TXT_KEY_DISPLAY_TRAIT_BARBARIAN</Tag>
 		<English>Barbarian mistrust: (%d1%)</English>
-		<French>Barbarian mistrust: (%d1%)</French>
-		<German>Barbarian mistrust: (%d1%)</German>
-		<Italian>Barbarian mistrust: (%d1%)</Italian>
 		<Spanish>Desconfianza bárbara: (%d1%)</Spanish>
 	</TEXT>
 	<!-- Barbarian bar END -->

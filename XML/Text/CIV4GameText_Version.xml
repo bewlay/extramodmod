@@ -3,17 +3,9 @@
 	<TEXT>
 		<Tag>TXT_KEY_VERSION_MNAI</Tag>
 		<English>[COLOR_ALT_HIGHLIGHT_TEXT]More Naval AI v2.9-beta3u[COLOR_REVERT]</English>
-		<French>[COLOR_ALT_HIGHLIGHT_TEXT]More Naval AI v2.9-beta3u[COLOR_REVERT]</French>
-		<German>[COLOR_ALT_HIGHLIGHT_TEXT]More Naval AI v2.9-beta3u[COLOR_REVERT]</German>
-		<Italian>[COLOR_ALT_HIGHLIGHT_TEXT]More Naval AI v2.9-beta3u[COLOR_REVERT]</Italian>
-		<Spanish>[COLOR_ALT_HIGHLIGHT_TEXT]More Naval AI v2.9-beta3u[COLOR_REVERT]</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_VERSION</Tag>
 		<English>[COLOR_ALT_HIGHLIGHT_TEXT]ExtraModMod v0.6.0-beta6[COLOR_REVERT]</English>
-		<French>[COLOR_ALT_HIGHLIGHT_TEXT]ExtraModMod v0.6.0-beta6[COLOR_REVERT]</French>
-		<German>[COLOR_ALT_HIGHLIGHT_TEXT]ExtraModMod v0.6.0-beta6[COLOR_REVERT]</German>
-		<Italian>[COLOR_ALT_HIGHLIGHT_TEXT]ExtraModMod v0.6.0-beta6[COLOR_REVERT]</Italian>
-		<Spanish>[COLOR_ALT_HIGHLIGHT_TEXT]ExtraModMod v0.6.0-beta6[COLOR_REVERT]</Spanish>
 	</TEXT>
 </Civ4GameText>

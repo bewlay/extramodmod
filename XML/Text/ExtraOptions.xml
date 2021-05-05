@@ -3,49 +3,31 @@
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_INSANE_LEADERS</Tag>
 		<English>Insanity</English>
-		<French>Insanity</French>
-		<German>Insanity</German>
-		<Italian>Insanity</Italian>
 		<Spanish>Demencia</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_INSANE_LEADERS_HELP</Tag>
 		<English>All leaders start with the Insane trait</English>
-		<French>All leaders start with the Insane trait</French>
-		<German>All leaders start with the Insane trait</German>
-		<Italian>All leaders start with the Insane trait</Italian>
 		<Spanish>Todos los líderes comienzan con la habilidad Demente</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_NO_GUILD_OF_THE_NINE</Tag>
 		<English>No Guild of the Nine</English>
-		<French>No Guild of the Nine</French>
-		<German>No Guild of the Nine</German>
-		<Italian>No Guild of the Nine</Italian>
 		<Spanish>Sin Gremio de los Nueve</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_NO_GUILD_OF_THE_NINE_HELP</Tag>
 		<English>Disables the Guild of the Nine</English>
-		<French>Disables the Guild of the Nine</French>
-		<German>Disables the Guild of the Nine</German>
-		<Italian>Disables the Guild of the Nine</Italian>
 		<Spanish>Deshabilita el Gremio de los Nueve</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_RANDOM_TRAITS</Tag>
 		<English>Random Traits</English>
-		<French>Random Traits</French>
-		<German>Random Traits</German>
-		<Italian>Random Traits</Italian>
 		<Spanish>Habilidades Aleatorias</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_RANDOM_TRAITS_HELP</Tag>
 		<English>All leaders start with two or three traits, chosen randomly</English>
-		<French>All leaders start with two or three traits, chosen randomly</French>
-		<German>All leaders start with two or three traits, chosen randomly</German>
-		<Italian>All leaders start with two or three traits, chosen randomly</Italian>
 		<Spanish>Todos los líderes comienzan con dos o tres habilidades, elegidas aleatoriamente</Spanish>
 	</TEXT>
 </Civ4GameText>

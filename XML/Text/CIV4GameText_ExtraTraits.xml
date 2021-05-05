@@ -6,25 +6,18 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIV_TRAITS</Tag>
 		<English>Civilization Traits</English>
-		<French>Civilization Traits</French>
 		<German>Zivilisationseigenschaften</German>
-		<Italian>Civilization Traits</Italian>
 		<Spanish>Habilidades de Civilización</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_WINTERBORN</Tag>
 		<English>Winterborn</English>
-		<French>Winterborn</French>
 		<German>Winterhart</German>
-		<Italian>Winterborn</Italian>
 		<Spanish>Invernal</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_WINTERBORN_SHORT</Tag>
 		<English>Win</English>
-		<French>Win</French>
-		<German>Win</German>
-		<Italian>Win</Italian>
 		<Spanish>Inv</Spanish>
 	</TEXT>
 	<TEXT>
@@ -32,47 +25,30 @@
 		<English>Nomad</English>
 		<French>Nomade</French>
 		<German>Nomade</German>
-		<Italian>Nomad</Italian>
 		<Spanish>Nómada</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_NOMAD_SHORT</Tag>
 		<English>Nom</English>
-		<French>Nom</French>
-		<German>Nom</German>
-		<Italian>Nom</Italian>
 		<Spanish>Nóm</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_FREE_PROMOTIONS_ALL_UNITS</Tag>
 		<English>All Units</English>
-		<French>All Units</French>
 		<German>Alle Einheiten</German>
-		<Italian>All Units</Italian>
 		<Spanish>Todas las unidades</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_DIVERSE</Tag>
 		<English>Diverse</English>
-		<French>Diverse</French>
-		<German>Diverse</German>
-		<Italian>Diverse</Italian>
-		<Spanish>Diverse</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_DIVERSE_SHORT</Tag>
 		<English>Div</English>
-		<French>Div</French>
-		<German>Div</German>
-		<Italian>Div</Italian>
-		<Spanish>Div</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_DIVERSE_HELP</Tag>
 		<English>[NEWLINE][ICON_BULLET]Units have a little chance to get a random racial promotion</English>
-		<French>[NEWLINE][ICON_BULLET]Units have a little chance to get a random racial promotion</French>
 		<German>[NEWLINE][ICON_BULLET]Einheiten erhalten manchmal eine zufällige Rasse</German>
-		<Italian>[NEWLINE][ICON_BULLET]Units have a little chance to get a random racial promotion</Italian>
-		<Spanish>[NEWLINE][ICON_BULLET]Units have a little chance to get a random racial promotion</Spanish>
 	</TEXT>
 </Civ4GameText>

@@ -7,66 +7,41 @@
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_AIFON_ISLE_EXPLORED</Tag>
 		<English>Maenalus (Explored)</English>
-		<French>Maenalus (Explored)</French>
-		<German>Maenalus (Explored)</German>
-		<Italian>Maenalus (Explored)</Italian>
 		<Spanish>Maenalus (Explorado)</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_BAIR_OF_LACUNA_EXPLORED</Tag>
 		<English>Bair of Lacuna (Expl.)</English>
-		<French>Bair of Lacuna (Expl.)</French>
-		<German>Bair of Lacuna (Expl.)</German>
-		<Italian>Bair of Lacuna (Expl.)</Italian>
 		<Spanish>Bair de Lacuna (Expl.)</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_BRADELINES_WELL_EXPLORED</Tag>
 		<English>Bradeline's Well (Expl.)</English>
-		<French>Bradeline's Well (Expl.)</French>
-		<German>Bradeline's Well (Expl.)</German>
-		<Italian>Bradeline's Well (Expl.)</Italian>
 		<Spanish>Pozo de Bradeline (Expl.)</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_BROKEN_SEPULCHER_EXPLORED</Tag>
 		<English>Broken Sepulcher (Expl.)</English>
-		<French>Broken Sepulcher (Expl.)</French>
-		<German>Broken Sepulcher (Expl.)</German>
-		<Italian>Broken Sepulcher (Expl.)</Italian>
 		<Spanish>Sepulcro Profanado (Expl.)</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_PALUS_EXPLORED</Tag>
 		<English>The Palus (Explored)</English>
-		<French>The Palus (Explored)</French>
-		<German>The Palus (Explored)</German>
-		<Italian>The Palus (Explored)</Italian>
 		<Spanish>El Palus (Explored)</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_PYRE_OF_THE_SERAPHIC_EXPLORED</Tag>
 		<English>Pyre of the Seraphic (E.)</English>
-		<French>Pyre of the Seraphic (E.)</French>
-		<German>Pyre of the Seraphic (E.)</German>
-		<Italian>Pyre of the Seraphic (E.)</Italian>
 		<Spanish>Pira de los Serafines (E.)</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_WOLF_DEN</Tag>
 		<English>Wolf Den</English>
-		<French>Wolf Den</French>
-		<German>Wolf Den</German>
-		<Italian>Wolf Den</Italian>
 		<Spanish>Cubil de Lobos</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_IMPROVEMENT_WOLF_DEN_PEDIA</Tag>
 		<English>TODO</English>
-		<French>TODO</French>
-		<German>TODO</German>
-		<Italian>TODO</Italian>
-		<Spanish>TODO</Spanish>
 	</TEXT>
 	
 	<!-- Exploration outcome messages -->
@@ -74,217 +49,121 @@
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_PEARL</Tag>
 		<English>A colony of clams makes its home beneath the wreckage. Opening one, your unit discovers pearls inside.</English>
-		<French>A colony of clams makes its home beneath the wreckage. Opening one, your unit discovers pearls inside.</French>
-		<German>A colony of clams makes its home beneath the wreckage. Opening one, your unit discovers pearls inside.</German>
-		<Italian>A colony of clams makes its home beneath the wreckage. Opening one, your unit discovers pearls inside.</Italian>
 		<Spanish>Una colonia de almejas tiene su hogar debajo del naufragio. Al abrir algunas, tu unidad descubre perlas dentro de ellas.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_SHRIMP</Tag>
 		<English>Plenty of Shrimps make their home beneath the wreckage.</English>
-		<French>Plenty of Shrimps make their home beneath the wreckage.</French>
-		<German>Plenty of Shrimps make their home beneath the wreckage.</German>
-		<Italian>Plenty of Shrimps make their home beneath the wreckage.</Italian>
 		<Spanish>Grandes bancos de gambas tienen su hogar en la zona del naufragio.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_BONUS_MITHRIL</Tag>
 		<English>You discover a thick vein of mithril ore beneath the lair.</English>
-		<French>You discover a thick vein of mithril ore beneath the lair.</French>
-		<German>You discover a thick vein of mithril ore beneath the lair.</German>
-		<Italian>You discover a thick vein of mithril ore beneath the lair.</Italian>
 		<Spanish>Descubres una densa veta de mithril bajo la guarida.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_BLESS</Tag>
 		<English>The forces of good bless your unit.</English>
-		<French>The forces of good bless your unit.</French>
-		<German>The forces of good bless your unit.</German>
-		<Italian>The forces of good bless your unit.</Italian>
 		<Spanish>Los poderes del bien bendicen a tu unidad.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_BURNING_BLOOD</Tag>
 		<English>A dark power influences your unit, granting it unholy strength and unquenchable bloodthirst.</English>
-		<French>A dark power influences your unit, granting it unholy strength and unquenchable bloodthirst.</French>
-		<German>A dark power influences your unit, granting it unholy strength and unquenchable bloodthirst.</German>
-		<Italian>A dark power influences your unit, granting it unholy strength and unquenchable bloodthirst.</Italian>
 		<Spanish>Un poder oscuro influencia a tu unidad, otorgándole una fuerza sacrílega y una insaciable sed de sangre.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_COUNCIL_OF_ESUS</Tag>
 		<English>Your unit finds an ancient shrine dedicated to the god of Deceit. What it believes to have found inside changes its life forever.</English>
-		<French>Your unit finds an ancient shrine dedicated to the god of Deceit. What it believes to have found inside changes its life forever.</French>
-		<German>Your unit finds an ancient shrine dedicated to the god of Deceit. What it believes to have found inside changes its life forever.</German>
-		<Italian>Your unit finds an ancient shrine dedicated to the god of Deceit. What it believes to have found inside changes its life forever.</Italian>
 		<Spanish>Tu unidad encuentra un antiguo santuario dedicado al dios del Engaño. Lo que cree haber encontrado dentro cambia su vida para siempre.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_COURAGE</Tag>
 		<English>The dangers faced in the lair have strengthened the resolve of your unit.</English>
-		<French>The dangers faced in the lair have strengthened the resolve of your unit.</French>
-		<German>The dangers faced in the lair have strengthened the resolve of your unit.</German>
-		<Italian>The dangers faced in the lair have strengthened the resolve of your unit.</Italian>
 		<Spanish>Los peligros afrontados en la guarida fortalecen la voluntad de tu unidad.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_VALOR</Tag>
 		<English>Your unit's courage is rewarded with an indomitable will.</English>
-		<French>Your unit's courage is rewarded with an indomitable will.</French>
-		<German>Your unit's courage is rewarded with an indomitable will.</German>
-		<Italian>Your unit's courage is rewarded with an indomitable will.</Italian>
 		<Spanish>La valentía de tu unidad es recompensada con una voluntad inquebrantable.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_PATRIAN_ARTIFACT</Tag>
 		<English>You find an artifact created in ancient patria.</English>
-		<French>You find an artifact created in ancient patria.</French>
-		<German>You find an artifact created in ancient patria.</German>
 		<Italian>You find an artifact created in ancient patria..</Italian>
-		<Spanish>You find an artifact created in ancient patria.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_PROPHECY_MARK</Tag>
 		<English>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</English>
-		<French>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</French>
-		<German>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</German>
-		<Italian>You find nothing more than a single room with a weird sign daubed on the wall, but after you left you can't banish the uncomfortable feeling of a burden forced upon you.</Italian>
 		<Spanish>No encuentras nada más que una habitación solitaria con un extraño signo pintarrajeado en el muro. Tras marchar, no puedes evitar la incómoda sensación de que se ha colocado una pesada carga sobre tí.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_REMOVE_CRAZED</Tag>
 		<English>Suddenly, the veil is raised. Your thoughts swirl in their violent dance a last time, then calm. You look around, puzzled, but enjoying the unfamiliar feeling of tranquillity.</English>
-		<French>Suddenly, the veil is raised. Your thoughts swirl in their violent dance a last time, then calm. You look around, puzzled, but enjoying the unfamiliar feeling of tranquillity.</French>
-		<German>Suddenly, the veil is raised. Your thoughts swirl in their violent dance a last time, then calm. You look around, puzzled, but enjoying the unfamiliar feeling of tranquillity.</German>
-		<Italian>Suddenly, the veil is raised. Your thoughts swirl in their violent dance a last time, then calm. You look around, puzzled, but enjoying the unfamiliar feeling of tranquillity.</Italian>
 		<Spanish>De pronto, el velo queda levantado. Tus pensamientos giran en su violenta danza una última vez antes de calmarse. Miras a tu alrededor, intrigado, pero disfrutando de la poco familiar sensación de tranquilidad.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_GARGOYLE</Tag>
 		<English>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</English>
-		<French>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</French>
-		<German>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</German>
-		<Italian>You find a room with a statue and several chairs, desks and cupboards. Suddenly the eyes of the statue flash in a red shine, and the furniture begins to move.</Italian>
 		<Spanish>Encuentras una habitación con una estatua y múltiples sillas, mesas y armarios. De pronto los ojos de la estatua se llenan de un profundo brillo rojo, y los muebles comienzan a moverse.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BANDITS</Tag>
 		<English>Some Bandits are using the Lair as their Hideout. They are not thrilled by your presence.</English>
-		<French>Some Bandits are using the Lair as their Hideout. They are not thrilled by your presence.</French>
-		<German>Some Bandits are using the Lair as their Hideout. They are not thrilled by your presence.</German>
-		<Italian>Some Bandits are using the Lair as their Hideout. They are not thrilled by your presence.</Italian>
-		<Spanish>Some Bandits are using the Lair as their Hideout. They are not thrilled by your presence.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_AXEMAN_ORC</Tag>
 		<English>A group of marauding orcs attack you.</English>
-		<French>A group of marauding orcs attack you.</French>
-		<German>A group of marauding orcs attack you.</German>
-		<Italian>A group of marauding orcs attack you.</Italian>
-		<Spanish>A group of marauding orcs attack you.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_AZER</Tag>
 		<English>You stumble upon a powerful and aggressive fire spirit.</English>
-		<French>You stumble upon a powerful and aggressive fire spirit.</French>
-		<German>You stumble upon a powerful and aggressive fire spirit.</German>
-		<Italian>You stumble upon a powerful and aggressive fire spirit.</Italian>
-		<Spanish>You stumble upon a powerful and aggressive fire spirit.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_BALOR</Tag>
 		<English>You trigger an ancient summoning circle by mistake, unleashing a powerful demon upon Erebus.</English>
-		<French>You trigger an ancient summoning circle by mistake, unleashing a powerful demon upon Erebus.</French>
-		<German>You trigger an ancient summoning circle by mistake, unleashing a powerful demon upon Erebus.</German>
-		<Italian>You trigger an ancient summoning circle by mistake, unleashing a powerful demon upon Erebus.</Italian>
-		<Spanish>You trigger an ancient summoning circle by mistake, unleashing a powerful demon upon Erebus.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_DEATH_KNIGHT</Tag>
 		<English>You have the misfortune of crossing your path with a death knight.</English>
-		<French>You have the misfortune of crossing your path with a death knight.</French>
-		<German>You have the misfortune of crossing your path with a death knight.</German>
-		<Italian>You have the misfortune of crossing your path with a death knight.</Italian>
-		<Spanish>You have the misfortune of crossing your path with a death knight.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_EIDOLON</Tag>
 		<English>The lair was being used as a camping site by a cohort of demonic warriors.</English>
-		<French>The lair was being used as a camping site by a cohort of demonic warriors.</French>
-		<German>The lair was being used as a camping site by a cohort of demonic warriors.</German>
-		<Italian>The lair was being used as a camping site by a cohort of demonic warriors.</Italian>
-		<Spanish>The lair was being used as a camping site by a cohort of demonic warriors.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_KRAKEN</Tag>
 		<English>A mass of huge, tangled tentacles emerges from the water, seeking to destroy everything in their path.</English>
-		<French>A mass of huge, tangled tentacles emerges from the water, seeking to destroy everything in their path.</French>
-		<German>A mass of huge, tangled tentacles emerges from the water, seeking to destroy everything in their path.</German>
-		<Italian>A mass of huge, tangled tentacles emerges from the water, seeking to destroy everything in their path.</Italian>
-		<Spanish>A mass of huge, tangled tentacles emerges from the water, seeking to destroy everything in their path.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_LICH</Tag>
 		<English>An undead creature wielding great arcane power intends to prevent you from intruding into its lair.</English>
-		<French>An undead creature wielding great arcane power intends to prevent you from intruding into its lair.</French>
-		<German>An undead creature wielding great arcane power intends to prevent you from intruding into its lair.</German>
-		<Italian>An undead creature wielding great arcane power intends to prevent you from intruding into its lair.</Italian>
-		<Spanish>An undead creature wielding great arcane power intends to prevent you from intruding into its lair.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_MANTICORE</Tag>
 		<English>Your trail has been tracked by a hungry Manticore.</English>
-		<French>Your trail has been tracked by a hungry Manticore.</French>
-		<German>Your trail has been tracked by a hungry Manticore.</German>
-		<Italian>Your trail has been tracked by a hungry Manticore.</Italian>
-		<Spanish>Your trail has been tracked by a hungry Manticore.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_OGRE</Tag>
 		<English>A mighty ogre is using the lair as its hideout. It does not seem to have intruders in high regard.</English>
-		<French>A mighty ogre is using the lair as its hideout. It does not seem to have intruders in high regard.</French>
-		<German>A mighty ogre is using the lair as its hideout. It does not seem to have intruders in high regard.</German>
-		<Italian>A mighty ogre is using the lair as its hideout. It does not seem to have intruders in high regard.</Italian>
-		<Spanish>A mighty ogre is using the lair as its hideout. It does not seem to have intruders in high regard.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_SATYR</Tag>
 		<English>The lair is guarded by a group of defenders of the forest, prepared to repel your intrusion.</English>
-		<French>The lair is guarded by a group of defenders of the forest, prepared to repel your intrusion.</French>
-		<German>The lair is guarded by a group of defenders of the forest, prepared to repel your intrusion.</German>
-		<Italian>The lair is guarded by a group of defenders of the forest, prepared to repel your intrusion.</Italian>
-		<Spanish>The lair is guarded by a group of defenders of the forest, prepared to repel your intrusion.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_STYGIAN_GUARD</Tag>
 		<English>A silent horror rises from the dark depths.</English>
-		<French>A silent horror rises from the dark depths.</French>
-		<German>A silent horror rises from the dark depths.</German>
-		<Italian>A silent horror rises from the dark depths.</Italian>
-		<Spanish>A silent horror rises from the dark depths.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_VAMPIRE</Tag>
 		<English>Your presence attracts the attention of a vampire who has been hiding in the lair for a long time. The creature intends to unleash the frustration of centuries of anger and famine upon you.</English>
-		<French>Your presence attracts the attention of a vampire who has been hiding in the lair for a long time. The creature intends to unleash the frustration of centuries of anger and famine upon you.</French>
-		<German>Your presence attracts the attention of a vampire who has been hiding in the lair for a long time. The creature intends to unleash the frustration of centuries of anger and famine upon you.</German>
-		<Italian>Your presence attracts the attention of a vampire who has been hiding in the lair for a long time. The creature intends to unleash the frustration of centuries of anger and famine upon you.</Italian>
-		<Spanish>Your presence attracts the attention of a vampire who has been hiding in the lair for a long time. The creature intends to unleash the frustration of centuries of anger and famine upon you.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_WEREWOLF</Tag>
 		<English>Your expedition is halted by the attack of a pack of frenzied werewolves. </English>
-		<French>Your expedition is halted by the attack of a pack of frenzied werewolves. </French>
-		<German>Your expedition is halted by the attack of a pack of frenzied werewolves. </German>
-		<Italian>Your expedition is halted by the attack of a pack of frenzied werewolves. </Italian>
-		<Spanish>Your expedition is halted by the attack of a pack of frenzied werewolves. </Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_EXPLORE_LAIR_SPAWN_BOSS_WRAITH</Tag>
 		<English>A hateful wraith emerges from the lair.</English>
-		<French>A hateful wraith emerges from the lair.</French>
-		<German>A hateful wraith emerges from the lair.</German>
-		<Italian>A hateful wraith emerges from the lair.</Italian>
-		<Spanish>A hateful wraith emerges from the lair.</Spanish>
 	</TEXT>
 </Civ4GameText>

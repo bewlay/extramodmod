@@ -1,10 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <Civ4GameText>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_MUSEUM</Tag>
 		<English>Museum</English>
-		<French>Museum</French>
-		<German>Museum</German>
-		<Italian>Museum</Italian>
 		<Spanish>
 			<Text>Museo:Museos</Text>
 			<Gender>Male</Gender>
@@ -14,33 +12,25 @@
     <TEXT>
 		<Tag>TXT_KEY_CAPTURED_WONDER</Tag>
 		<English>%s1 has captured %s2!</English>
-		<French>%s1 has captured %s2!</French>
 		<German>%s1 hat das Wunder %s2 erobert!</German>
-		<Italian>%s1 has captured %s2!</Italian>
-		<Spanish>¡%s1 ha capturado %s2!</Spanish>
+		<Spanish>&#161;%s1 ha capturado %s2!</Spanish>
 	</TEXT>
   <TEXT>
 		<Tag>TXT_KEY_YOU_CAPTURED_WONDER</Tag>
 		<English>You have captured %s2!</English>
-		<French>You have captured %s2!</French>
 		<German>Ihr habt das Wunder %s2 erobert!</German>
-		<Italian>You have captured %s2!</Italian>
-		<Spanish>¡Has capturado %s2!</Spanish>
+		<Spanish>&#161;Has capturado %s2!</Spanish>
 	</TEXT>
 	 <TEXT>
 		<Tag>TXT_KEY_DESTROYED_WONDER</Tag>
 		<English>%s1 has destroyed %s2!</English>
-		<French>%s1 has destroyed %s2!</French>
-		<German>%s1 hat das Wunder %s2 zerstört!</German>
-		<Italian>%s1 has destroyed %s2!</Italian>
-		<Spanish>¡%s1 ha destruido %s2!</Spanish>
+		<German>%s1 hat das Wunder %s2 zerst&#246;rt!</German>
+		<Spanish>&#161;%s1 ha destruido %s2!</Spanish>
 	</TEXT>
   <TEXT>
 		<Tag>TXT_KEY_YOU_DESTROYED_WONDER</Tag>
 		<English>You have destroyed %s2!</English>
-		<French>You have destroyed %s2!</French>
-		<German>Ihr habt das Wunder %s2 zerstört!</German>
-		<Italian>You have destroyed %s2!</Italian>
-		<Spanish>¡Has destruido %s2!</Spanish>
+		<German>Ihr habt das Wunder %s2 zerst&#246;rt!</German>
+		<Spanish>&#161;Has destruido %s2!</Spanish>
 	</TEXT>
 </Civ4GameText>

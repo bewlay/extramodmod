@@ -13,7 +13,6 @@
 		<English>Join Decius</English>
 		<French>Adjoindre Commandant</French>
 		<German>Feldherr binden</German>
-		<Italian>Join Decius</Italian>
 		<Spanish>Unir a Decius</Spanish>
 	</TEXT>
 	<TEXT>
@@ -21,15 +20,10 @@
 		<English>Split Decius</English>
 		<French>Séparer Commandant.</French>
 		<German>Feldherr lösen</German>
-		<Italian>Split Decius</Italian>
 		<Spanish>Separar de Decius</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_GREAT_GENERAL_PEDIA</Tag>
 		<English>Great Generals can be used to either recruit units, build a Command Post in a city, or be added to another unit to increase its strength and the rate it gains experience points from combat. The recruit ability offers a quick random assortment of units, but the Command Post tends to have a better long term effect. A general that is joined with a unit can always be split from the unit later on and used for other purposes, or joined to a different unit.</English>
-		<French>Great Generals can be used to either recruit units, build a Command Post in a city, or be added to another unit to increase its strength and the rate it gains experience points from combat. The recruit ability offers a quick random assortment of units, but the Command Post tends to have a better long term effect. A general that is joined with a unit can always be split from the unit later on and used for other purposes, or joined to a different unit.</French>
-		<German>Great Generals can be used to either recruit units, build a Command Post in a city, or be added to another unit to increase its strength and the rate it gains experience points from combat. The recruit ability offers a quick random assortment of units, but the Command Post tends to have a better long term effect. A general that is joined with a unit can always be split from the unit later on and used for other purposes, or joined to a different unit.</German>
-		<Italian>Great Generals can be used to either recruit units, build a Command Post in a city, or be added to another unit to increase its strength and the rate it gains experience points from combat. The recruit ability offers a quick random assortment of units, but the Command Post tends to have a better long term effect. A general that is joined with a unit can always be split from the unit later on and used for other purposes, or joined to a different unit.</Italian>
-		<Spanish>Great Generals can be used to either recruit units, build a Command Post in a city, or be added to another unit to increase its strength and the rate it gains experience points from combat. The recruit ability offers a quick random assortment of units, but the Command Post tends to have a better long term effect. A general that is joined with a unit can always be split from the unit later on and used for other purposes, or joined to a different unit.</Spanish>
 	</TEXT>
 </Civ4GameText>
