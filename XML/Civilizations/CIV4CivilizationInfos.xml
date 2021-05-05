@@ -347,7 +347,6 @@
 			<CivilizationActionSound>AS3D_FRANCE_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
 			<DefaultRace>NONE</DefaultRace>
-			<Help>TXT_KEY_CIV_BALSERAPHS_HELP</Help>
 			<Hero>UNIT_LOKI</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
@@ -466,7 +465,6 @@
 				<TraitType>TRAIT_GUARDSMAN</TraitType>
 			</CivTraits>
 			<DefaultRace>NONE</DefaultRace>
-			<Help>TXT_KEY_CIV_BANNOR_HELP</Help>
 			<Hero>UNIT_DONAL</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
@@ -1155,7 +1153,6 @@
 				<TraitType>TRAIT_TOLERANT</TraitType>
 			</CivTraits>
 			<DefaultRace>NONE</DefaultRace>
-			<Help>TXT_KEY_CIV_ELOHIM_HELP</Help>
 			<Hero>UNIT_CORLINDALE</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>
@@ -3114,7 +3111,6 @@
 			<CivilizationActionSound>AS3D_ARABIA_ORDER</CivilizationActionSound>
 			<bGraphicalOnly>0</bGraphicalOnly>
 			<DefaultRace>NONE</DefaultRace>
-			<Help>TXT_KEY_CIV_SIDAR_HELP</Help>
 			<Hero>UNIT_RATHUS</Hero>
 			<MaintainFeatures>
 			</MaintainFeatures>

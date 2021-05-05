@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Text for Civilization help text and pedia -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_BUILDINGS_AND_PROJECTS</Tag>
+		<English>Unique Buildings/Rituals</English>
+		<French>Unique Buildings/Rituals</French>
+		<German>Einzigartige Gebäude/Rituale</German>
+		<Italian>Unique Buildings/Rituals</Italian>
+		<Spanish>Edificios/rituales únicos</Spanish>
+		<Finnish>Unique Buildings/Rituals</Finnish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_OTHER_FEATURES</Tag>
+		<English>Race, Traits, and Civics</English>
+		<French>Race, Traits, and Civics</French>
+		<German>Race, Traits, and Civics</German>
+		<Italian>Race, Traits, and Civics</Italian>
+		<Spanish>Race, Traits, and Civics</Spanish>
+		<Finnish>Race, Traits, and Civics</Finnish>
+	</TEXT>
+</Civ4GameText>

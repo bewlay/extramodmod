@@ -112,7 +112,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>,Art/Interface/Buttons/Promotions/Combat1.dds,Art/Interface/Buttons/Promotions_Atlas.dds,8,2</Button>
+			<Button>,Art/Interface/Buttons/Promotions/Combat1.dds,Art/Interface/Buttons/Promotions_Atlas.dds,8,2</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SPIRITUAL</Type>
@@ -201,7 +201,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
-            <Button>Art/Interface/Buttons/Units/Settler.dds</Button>
+			<Button>Art/Interface/Buttons/Units/Settler.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_INDUSTRIOUS</Type>
@@ -335,7 +335,7 @@
 			</CommerceModifiers>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
-            <Button>Art/Interface/Buttons/TechTree/Currency.dds</Button>
+			<Button>Art/Interface/Buttons/TechTree/Currency.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_ORGANIZED</Type>
@@ -410,7 +410,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
-            <Button>Art/Interface/Buttons/Promotions/Charmed.dds</Button>
+			<Button>Art/Interface/Buttons/Promotions/Charmed.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_ARCANE</Type>
@@ -462,7 +462,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>Art/Interface/Buttons/Promotions/Potency.dds</Button>
+			<Button>Art/Interface/Buttons/Promotions/Potency.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_MAGIC_RESISTANT</Type>
@@ -526,7 +526,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>Art/Interface/Buttons/Promotions/Magicresistance.dds</Button>
+			<Button>Art/Interface/Buttons/Promotions/Magicresistance.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_AGNOSTIC</Type>
@@ -564,7 +564,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
-            <Button>Art/Interface/Buttons/Units/Inquisitor Grigori.dds</Button>
+			<Button>Art/Interface/Buttons/Units/Inquisitor Grigori.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_BARBARIAN</Type>
@@ -674,7 +674,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>,Art/Interface/Buttons/Promotions/Commando.dds,Art/Interface/Buttons/Promotions_Atlas.dds,1,3</Button>
+			<Button>,Art/Interface/Buttons/Promotions/Commando.dds,Art/Interface/Buttons/Promotions_Atlas.dds,1,3</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SUMMONER</Type>
@@ -726,7 +726,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>Art/Interface/Buttons/Promotions/Summoner.dds</Button>
+			<Button>Art/Interface/Buttons/Promotions/Summoner.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_DEFENDER</Type>
@@ -790,7 +790,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>Art/Interface/Buttons/Promotions/Homeland.dds</Button>
+			<Button>Art/Interface/Buttons/Promotions/Homeland.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SPRAWLING</Type>
@@ -866,7 +866,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
-            <Button>,Art/Interface/Buttons/TechTree/Mathematics.dds,Art/Interface/Buttons/TechTree_Atlas.dds,3,5</Button>
+			<Button>,Art/Interface/Buttons/TechTree/Mathematics.dds,Art/Interface/Buttons/TechTree_Atlas.dds,3,5</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_ADAPTIVE</Type>
@@ -1018,7 +1018,7 @@
 			<CommerceModifiers/>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
-            <Button>Art/Interface/Buttons/Units/Devout.dds</Button>
+			<Button>Art/Interface/Buttons/Units/Devout.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_DEXTEROUS</Type>
@@ -1066,7 +1066,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>Art/Interface/Buttons/Promotions/Dexterous.dds</Button>
+			<Button>Art/Interface/Buttons/Promotions/Dexterous.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_GUARDSMAN</Type>
@@ -1118,7 +1118,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>Art/Interface/Buttons/Promotions/Guardsman.dds</Button>
+			<Button>Art/Interface/Buttons/Promotions/Guardsman.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_HORSELORD</Type>
@@ -1166,7 +1166,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>Art/Interface/Buttons/Promotions/Horselord.dds</Button>
+			<Button>Art/Interface/Buttons/Promotions/Horselord.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SINISTER</Type>
@@ -1214,7 +1214,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>Art/Interface/Buttons/Promotions/Sinister.dds</Button>
+			<Button>Art/Interface/Buttons/Promotions/Sinister.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_SUNDERED</Type>
@@ -1262,7 +1262,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>Art/Interface/Buttons/Promotions/Sundered.dds</Button>
+			<Button>Art/Interface/Buttons/Promotions/Sundered.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_FOOLISH</Type>
@@ -1304,7 +1304,7 @@
 			</CommerceModifiers>
 			<FreePromotions/>
 			<FreePromotionUnitCombats/>
-            <Button>Art/Interface/Buttons/Units/Puppet.dds</Button>
+			<Button>Art/Interface/Buttons/Units/Puppet.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_WEAK</Type>
@@ -1372,7 +1372,7 @@
 					<bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
 				</FreePromotionUnitCombat>
 			</FreePromotionUnitCombats>
-            <Button>Art/Interface/Buttons/Promotions/Weak.dds</Button>
+			<Button>Art/Interface/Buttons/Promotions/Weak.dds</Button>
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_AGRARIAN</Type>

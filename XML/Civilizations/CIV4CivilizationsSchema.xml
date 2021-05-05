@@ -472,7 +472,7 @@
 		<element type="CommerceChanges"/>
 		<element type="CommerceModifiers"/>
 		<element type="FreePromotions"/>
-		<element type="FreePromotionUnitCombats"/>
+		<element type="FreePromotionUnitCombats"/> <!-- lfgr 04/2021: Trait buttons -->
 <!-- EXTRA_TRAITS 08/2013 lfgr -->
 		<element type="bAllUnitsFreePromotion" minOccurs="0"/>
 		<element type="Button" minOccurs="0"/>
