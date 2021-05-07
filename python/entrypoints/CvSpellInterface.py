@@ -1452,13 +1452,30 @@ def spellExploreLairEpic(caster):
 def reqFeast(caster):
 	pPlot = caster.plot()
 	pCity = pPlot.getPlotCity()
-	if pCity.getPopulation() < 3:
+	if pCity.getPopulation() < 4: # lfgr fix 04/2021
 		return False
 	return True
+
+# lfgr 04/2021
+def helpFeast( lpUnits ) :
+	# type: (List[CyUnit]) -> unicode
+	if len( lpUnits ) > 0 :
+		pCity = lpUnits[0].plot().getPlotCity()
+		if pCity is not None and not pCity.isNone() :
+			iMaxFeastXP = pCity.getPopulation() - 3
+			if iMaxFeastXP > 0 :
+				if len( lpUnits ) == 1 :
+					return PyHelpers.getText( "TXT_KEY_FEAST_XP", iMaxFeastXP )
+				else :
+					iNumUnitsGain = min( iMaxFeastXP-1, len( lpUnits ) )
+					iMinFeastXP = max( 1, iMaxFeastXP - len( lpUnits ) + 1 )
+					return PyHelpers.getText( "TXT_KEY_FEAST_XP_MULTI", iNumUnitsGain, iMinFeastXP, iMaxFeastXP )
+	return PyHelpers.getText( "TXT_KEY_SPELL_FEAST_HELP" )
 
 def spellFeast(caster):
 	pPlot = caster.plot()
 	pCity = pPlot.getPlotCity()
+	# lfgr note: since we removed a population point before, this is 3 less than the previous population in the city.
 	caster.changeExperience(pCity.getPopulation()-2, -1, False, False, False)
 	pCity.changeHurryAngerTimer(3)
 	
@@ -1914,7 +1931,6 @@ def spellInquisition(caster):
 		return
 
 	pCity = pPlot.getPlotCity()
-	pPlayer = gc.getPlayer(caster.getOwner())
 	StateBelief = gc.getPlayer(pCity.getOwner()).getStateReligion()
 	iRnd = CyGame().getSorenRandNum(4, "Bob")
 	if StateBelief == gc.getInfoTypeForString('RELIGION_THE_ORDER'):
@@ -1925,7 +1941,9 @@ def spellInquisition(caster):
 			iRnd = iRnd + 1
 			for i in range(gc.getNumBuildingInfos()):
 				if gc.getBuildingInfo(i).getPrereqReligion() == iTarget:
-					pCity.setNumRealBuilding(i, 0)
+					# lfgr 05/2021: Don't remove wonders
+					if gc.getBuildingClassInfo( gc.getBuildingInfo( i ).getBuildingClassType() ).getMaxGlobalInstances() != 1 :
+						pCity.setNumRealBuilding(i, 0)
 	if iRnd >= 1:
 		pCity.changeHurryAngerTimer(iRnd)
 

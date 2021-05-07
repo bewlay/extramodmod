@@ -13289,7 +13289,8 @@ void CvUnit::getCargoUnits(std::vector<CvUnit*>& aUnits) const
 		}
 	}
 
-	FAssertMsg(getCargo() == aUnits.size(), "(May occur erroneously when moving a ship containing some unit that can see some invisible type)");
+	// lfgr 04/2021: Commented out
+	//FAssertMsg(getCargo() == aUnits.size(), "(May occur erroneously when moving a ship containing some unit that can see some invisible type)");
 }
 
 CvPlot* CvUnit::getAttackPlot() const
@@ -17511,6 +17512,20 @@ bool CvUnit::canSpreadReligion(int spell) const
 		return false;
 	}
 	return true;
+}
+
+// lfgr 04/2021
+// lfgr TODO: Cache?
+bool CvUnit::canCastAnything()
+{
+	for( int eSpell = 0; eSpell < GC.getNumSpellInfos(); eSpell++ )
+	{
+		if( canCast( eSpell, false ) )
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 // MNAI begin

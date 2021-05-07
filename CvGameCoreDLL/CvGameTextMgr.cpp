@@ -10013,12 +10013,15 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_MISCAST_CHANCE_MODIFY", kPromotionInfo.getMiscastChance()));
     }
 	// MiscastPromotions end
+	// Improved spell help 04/2021: Gather allowed spells
+	std::vector<SpellTypes> veAllowedSpells;
 	for (iI = 0; iI < GC.getNumSpellInfos(); iI++)
 	{
 	    if (GC.getSpellInfo((SpellTypes)iI).getPromotionPrereq1() == ePromotion)
 		{
             if (!GC.getSpellInfo((SpellTypes)iI).isGraphicalOnly())
             {
+				veAllowedSpells.push_back( (SpellTypes) iI );
                 szBuffer.append(pcNewline);
                 if (GC.getSpellInfo((SpellTypes)iI).getPromotionPrereq2() == NO_PROMOTION)
                 {
@@ -10101,17 +10104,8 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 	}
 }
 
-//FfH: Added by Kael 07/23/2007
-/********************************************************************************/
-/* SpellPyHelp                        11/2013                           lfgr    */
-/********************************************************************************/
-/* old
-void CvGameTextMgr::parseSpellHelp(CvWStringBuffer &szBuffer, SpellTypes eSpell, const wchar* pcNewline)
-*/
-void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell, const wchar* pcNewline, std::vector<CvUnit*>* pvpUnits )
-/********************************************************************************/
-/* SpellPyHelp                                                          END     */
-/********************************************************************************/
+//FfH: Added by Kael 07/23/2007; SpellPyHelp 11/2013 lfgr; Improved spell help 04/2021 lfgr
+void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell, const wchar* pcNewline, std::vector<CvUnit*>* pvpUnits, bool bCivilopediaText )
 {
 	PROFILE_FUNC();
 
@@ -10428,11 +10422,6 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_DISPEL"));
     }
-	if (wcslen(kSpellInfo.getHelp()) > 0)
-	{
-		szBuffer.append(pcNewline);
-		szBuffer.append(kSpellInfo.getHelp());
-	}
     if (kSpellInfo.isResistable())
     {
         if (kSpellInfo.getResistModify() != 0)
@@ -10578,6 +10567,7 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
 /********************************************************************************/
 /* SpellPyHelp                        11/2013                           lfgr    */
 /********************************************************************************/
+	bool bPyHelpUsed = false;
 	if( pvpUnits != NULL && !CvString( GC.getSpellInfo( eSpell ).getPyHelp() ).empty() )
 	{
 		// Get owner of the units
@@ -10606,7 +10596,15 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
 				szBuffer.append( pcNewline );
 				szBuffer.append( szHelp );
 			}
+			bPyHelpUsed = true;
 		}
+	}
+
+	// lfgr 04/2021: SpellPyHelp overrides static help
+	if (!bPyHelpUsed && wcslen(kSpellInfo.getHelp()) > 0)
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(kSpellInfo.getHelp());
 	}
 /********************************************************************************/
 /* SpellPyHelp                                                          END     */
@@ -10616,6 +10614,39 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_SACRIFICE_CASTER"));
     }
+
+
+
+	// Improved spell help 04/2021: Show help for added promotion, constructed building
+	// LFGR_TODO: AddPromotionType2...
+	if( !bCivilopediaText )
+	{
+		CvSpellInfo& kSpellInfo = GC.getSpellInfo( eSpell );
+		PromotionTypes eAddedPromotion = (PromotionTypes) kSpellInfo.getAddPromotionType1();
+		if( eAddedPromotion != NO_PROMOTION && getBugOptionBOOL( "FfHUI__ShowSpellAddedPromotionHelp", true ) ) {
+
+			szBuffer.append( NEWLINE );
+			szBuffer.append( gDLL->getText( "TXT_KEY_SPELL_ADD_PROMOTION_HEADER", GC.getPromotionInfo( eAddedPromotion ).getTextKeyWide() ) );
+
+			parsePromotionHelp( szBuffer, eAddedPromotion );
+		}
+
+		UnitTypes eUnit = (UnitTypes) kSpellInfo.getCreateUnitType();
+		if( eUnit != NO_BUILDING && getBugOptionBOOL( "FfHUI__ShowSpellCreatedUnitHelp", true ) )
+		{
+			szBuffer.append( NEWLINE );
+			szBuffer.append( gDLL->getText( "TXT_KEY_SPELL_CREATE_UNIT_PRE_HEADER" ) );
+			setUnitHelp( szBuffer, eUnit );
+		}
+
+		BuildingTypes eBuilding = (BuildingTypes) kSpellInfo.getCreateBuildingType();
+		if( eBuilding != NO_BUILDING && getBugOptionBOOL( "FfHUI__ShowSpellCreatedBuildingHelp", true ) )
+		{
+			szBuffer.append( NEWLINE );
+			szBuffer.append( gDLL->getText( "TXT_KEY_SPELL_CREATE_BUILDING_PRE_HEADER" ) );
+			setBuildingHelp( szBuffer, eBuilding );
+		}
+	}
 }
 //FfH: End Add
 
@@ -10998,7 +11029,6 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 		}
 		
 		//  Revolution Switch to Modifier
-		/*
 		if (0 != kCivic.getRevIdxSwitchTo())
 		{
 			if (kCivic.getRevIdxSwitchTo() < 0)
@@ -11012,24 +11042,13 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 				szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_REV_SWITCH_TO_PENALTY", kCivic.getRevIdxSwitchTo()));
 			}
 		}
-		*/
 		//  Revolution Nationality Modifier
+		// REVOLUTION_REFACTORING 03/2021 lfgr: More precise messages
 		if (0 != kCivic.getRevIdxNationalityMod())
 		{
-			if ( kCivic.getRevIdxNationalityMod() < 0)
-			{
-				szHelpText.append(NEWLINE);
-				CvWString szTempBuffer;
-				szTempBuffer.Format(L"%.0f", 100 * kCivic.getRevIdxNationalityMod());
-				szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_REV_NATIONALITY_REDUCTION_MOD", szTempBuffer.GetCString()));
-			}
-			if ( kCivic.getRevIdxNationalityMod() > 0)
-			{
-				szHelpText.append(NEWLINE);
-				CvWString szTempBuffer;
-				szTempBuffer.Format(L"%.0f", 100 * kCivic.getRevIdxNationalityMod());
-				szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_REV_NATIONALITY_INCREASE_MOD", szTempBuffer.GetCString()));
-			}
+			szHelpText.append(NEWLINE);
+			CvWString szTempBuffer;
+			szHelpText.append( gDLL->getText("TXT_KEY_CIVIC_REV_NATIONALITY_MOD", (int) (100 * kCivic.getRevIdxNationalityMod()) ) );
 		}
 		
 		//  Revolution Bad Religion Modifier
@@ -11049,47 +11068,6 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 			szTempBuffer.Format(L"%.0f", 100 * kCivic.getRevIdxGoodReligionMod());
 			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_REV_GOOD_RELIGION_MOD", szTempBuffer.GetCString()));
 		}
-		
-		//  Revolution Religious Freedom Modifier
-		/*
-		if (0 != kCivic.getRevReligiousFreedom())
-		{
-			if ( kCivic.getRevReligiousFreedom() < 0 )
-			{
-				szHelpText.append(NEWLINE);
-				szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_REV_RELIGION_OPRESSION", kCivic.getRevReligiousFreedom()));
-			}
-			if ( kCivic.getRevReligiousFreedom() > 0 )
-			{
-				szHelpText.append(NEWLINE);
-				szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_REV_RELIGION_FREEDOM", kCivic.getRevReligiousFreedom()));
-			}
-		}
-		*/
-		/*
-		//  Revolution Labor Modifier
-		if (0 != kCivic.getRevLaborFreedom())
-		{
-				szHelpText.append(NEWLINE);
-				szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_REV_LABOR", kCivic.getRevLaborFreedom()));
-		}
-		*/
-		/*
-		//  Revolution Environment Modifier
-		if (0 != kCivic.getRevEnvironmentalProtection())
-		{
-				szHelpText.append(NEWLINE);
-				szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_REV_ENVIRONMENT", kCivic.getRevEnvironmentalProtection()));
-		}
-		*/
-		/*
-		//  Revolution Democracy Modifier
-		if (0 != kCivic.getRevDemocracyLevel())
-		{
-				szHelpText.append(NEWLINE);
-				szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_REV_DEMOCRACY", kCivic.getRevDemocracyLevel()));
-		}
-		*/
 	}
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
@@ -13445,6 +13423,13 @@ void CvGameTextMgr::setBasicUnitHelpWithCity(CvWStringBuffer &szBuffer, UnitType
     }
 //FfH: End Add
 
+	// Autoraze help 04/2021 lfgr
+	if( kUnitInfo.isAutoRaze() )
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_AUTORAZE"));
+	}
+
 	if (!CvWString(kUnitInfo.getHelp()).empty())
 	{
 		szBuffer.append(NEWLINE);
@@ -13803,24 +13788,38 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit, bool
 				}
 			}
 
-			bFirst = true;
+			// lfgr fix 04/2021: Don't show any OR-prereq bonus if one of them is available
+			std::vector<BonusTypes> vePrereqOrBoni;
+			bool bHasSomeBonus = false;
 
-			for (iI = 0; iI < GC.getNUM_UNIT_PREREQ_OR_BONUSES(); ++iI)
+			for( int i = 0; i < GC.getNUM_UNIT_PREREQ_OR_BONUSES(); ++i )
 			{
-				if (kUnitInfo.getPrereqOrBonuses(iI) != NO_BONUS)
+				BonusTypes eBonus = (BonusTypes) kUnitInfo.getPrereqOrBonuses( i );
+				if( eBonus != NO_BONUS )
 				{
-					if ((pCity == NULL) || !(pCity->hasBonus((BonusTypes)kUnitInfo.getPrereqOrBonuses(iI))))
+					if( pCity != NULL && pCity->hasBonus( eBonus ) )
 					{
-						szTempBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_REQUIRES").c_str());
-						setListHelp(szBuffer, szTempBuffer, GC.getBonusInfo((BonusTypes) kUnitInfo.getPrereqOrBonuses(iI)).getDescription(), gDLL->getText("TXT_KEY_OR").c_str(), bFirst);
-						bFirst = false;
+						bHasSomeBonus = true;
+						break; // No need to check the other boni
 					}
+					vePrereqOrBoni.push_back( eBonus );
 				}
 			}
 
-			if (!bFirst)
+			if( !bHasSomeBonus && vePrereqOrBoni.size() > 0 )
 			{
-				szBuffer.append(ENDCOLR);
+				bFirst = true;
+				szTempBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_REQUIRES").c_str()); // Prepare "requires" string
+				for( int i = 0; i < vePrereqOrBoni.size(); i++ )
+				{
+					setListHelp(szBuffer, szTempBuffer, GC.getBonusInfo(vePrereqOrBoni[i]).getDescription(), gDLL->getText("TXT_KEY_OR").c_str(), bFirst);
+					bFirst = false;
+				}
+
+				if (!bFirst)
+				{
+					szBuffer.append(ENDCOLR);
+				}
 			}
 		}
 	}
@@ -19077,7 +19076,7 @@ void CvGameTextMgr::setSpellHelp(CvWStringBuffer &szBuffer, SpellTypes eSpell, b
 		szBuffer.append(szTempBuffer);
 	}
 
-	parseSpellHelp(szBuffer, eSpell);
+	parseSpellHelp(szBuffer, eSpell, NEWLINE, NULL, bCivilopediaText); // Improved spell help 04/2021 lfgr
 }
 //FfH: End Add
 

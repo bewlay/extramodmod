@@ -1883,6 +1883,7 @@
             <iChangePopulation>-1</iChangePopulation>
             <PyResult>spellFeast(pCaster)</PyResult>
             <PyRequirement>reqFeast(pCaster)</PyRequirement>
+            <PyHelp>helpFeast(lpUnits)</PyHelp>
             <Effect>EFFECT_SACRIFICE</Effect>
             <Sound>AS3D_SPELL_FEAST</Sound>
             <Button>Art/Interface/Buttons/Spells/Feast.dds</Button>
@@ -2543,7 +2544,6 @@
             <Type>SPELL_HOPE</Type>
             <Description>TXT_KEY_SPELL_HOPE</Description>
             <Civilopedia>TXT_KEY_SPELL_HOPE_PEDIA</Civilopedia>
-            <Help>TXT_KEY_SPELL_HOPE_HELP</Help>
             <PromotionPrereq1>PROMOTION_SPIRIT2</PromotionPrereq1>
             <bAllowAI>1</bAllowAI>
             <bInCityOnly>1</bInCityOnly>
@@ -2612,7 +2612,6 @@
             <Type>SPELL_INSPIRATION</Type>
             <Description>TXT_KEY_SPELL_INSPIRATION</Description>
             <Civilopedia>TXT_KEY_SPELL_INSPIRATION_PEDIA</Civilopedia>
-            <Help>TXT_KEY_SPELL_INSPIRATION_HELP</Help>
             <PromotionPrereq1>PROMOTION_MIND1</PromotionPrereq1>
             <PromotionPrereq2>PROMOTION_CHANNELING1</PromotionPrereq2>
             <bAllowAI>1</bAllowAI>
@@ -5285,7 +5284,6 @@
             <Type>SPELL_UNYIELDING_ORDER</Type>
             <Description>TXT_KEY_SPELL_UNYIELDING_ORDER</Description>
             <Civilopedia>TXT_KEY_SPELL_UNYIELDING_ORDER_PEDIA</Civilopedia>
-            <Help>TXT_KEY_SPELL_UNYIELDING_ORDER_HELP</Help>
             <UnitClassPrereq>UNITCLASS_HIGH_PRIEST_OF_THE_ORDER</UnitClassPrereq>
             <bAllowAI>1</bAllowAI>
             <bInBordersOnly>1</bInBordersOnly>

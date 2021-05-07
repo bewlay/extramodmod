@@ -2684,7 +2684,7 @@ class CvEventManager:
 									CyInterface().addMessage(iPlayer,True,25,CyTranslator().getText("TXT_KEY_MESSAGE_EYES_AND_EARS_NETWORK_FREE_TECH",()),'AS2D_TECH_DING',1,'Art/Interface/Buttons/Buildings/Eyesandearsnetwork.dds',ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
 
 		# PlanarGateOverhaul 10/2019 lfgr
-		ffhDefs = FfHDefines.getInst()
+		ffhDefs = FfHDefines.getInstance()
 		if pCity.getNumRealBuilding( ffhDefs.BUILDING_PLANAR_GATE ) > 0 :
 			## Scaled planar gate probability.
 			iChance = gc.getDefineINT( 'PLANAR_GATE_CHANCE' )

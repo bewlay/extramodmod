@@ -47,6 +47,8 @@ g_bScoreShowCivName = RevOpt.isScoreShowCivName()
 PleOpt = BugCore.game.PLE
 # BUG - PLE - end
 
+ffhUIOpt = BugCore.game.FfHUI # lfgr 04/2021
+
 # BUG - Align Icons - start
 import Scoreboard
 import PlayerUtil
@@ -216,6 +218,9 @@ RAW_YIELD_HELP = ( "TXT_KEY_RAW_YIELD_VIEW_TRADE",
 				   "TXT_KEY_RAW_YIELD_TILES_OWNED",
 				   "TXT_KEY_RAW_YIELD_TILES_ALL" )
 # BUG - Raw Yields - end
+
+# 04/2021: lfgr fixes
+RESEARCH_BAR_WIDTH = 487
 
 # BUG - field of view slider - start
 DEFAULT_FIELD_OF_VIEW = 42
@@ -436,7 +441,7 @@ class CvMainInterface:
 
 # BUG - Progress Bar - Tick Marks - start
 		xCoord = 268 + (self.xResolution - 1024) / 2
-		self.pBarResearchBar_n = ProgressBarUtil.ProgressBar("ResearchBar-Canvas", xCoord, 2, 487, iStackBarHeight, gc.getInfoTypeForString("COLOR_RESEARCH_RATE"), ProgressBarUtil.TICK_MARKS, True)
+		self.pBarResearchBar_n = ProgressBarUtil.ProgressBar("ResearchBar-Canvas", xCoord, 2, RESEARCH_BAR_WIDTH, iStackBarHeight, gc.getInfoTypeForString("COLOR_RESEARCH_RATE"), ProgressBarUtil.TICK_MARKS, True)
 		self.pBarResearchBar_n.addBarItem("ResearchBar")
 		self.pBarResearchBar_n.addBarItem("ResearchText")
 # BUG - Progress Bar - Tick Marks - end
@@ -444,7 +449,7 @@ class CvMainInterface:
 # BUG - Progress Bar - Tick Marks - start
 		xCoord = 268 + (self.xResolution - 1440) / 2
 		xCoord += 6 + 84
-		self.pBarResearchBar_w = ProgressBarUtil.ProgressBar("ResearchBar-w-Canvas", xCoord, 2, 487, iStackBarHeight, gc.getInfoTypeForString("COLOR_RESEARCH_RATE"), ProgressBarUtil.TICK_MARKS, True)
+		self.pBarResearchBar_w = ProgressBarUtil.ProgressBar("ResearchBar-w-Canvas", xCoord, 2, RESEARCH_BAR_WIDTH, iStackBarHeight, gc.getInfoTypeForString("COLOR_RESEARCH_RATE"), ProgressBarUtil.TICK_MARKS, True)
 		self.pBarResearchBar_w.addBarItem("ResearchBar-w")
 		self.pBarResearchBar_w.addBarItem("ResearchText")
 # BUG - Progress Bar - Tick Marks - end
@@ -895,7 +900,8 @@ class CvMainInterface:
 		szGameDataList = []
 
 		xCoord = 268 + (xResolution - 1024) / 2
-		screen.addStackedBarGFC( "ResearchBar", xCoord, 2, 487, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_RESEARCH, -1, -1 )
+		self.xResearchBar = xCoord
+		screen.addStackedBarGFC( "ResearchBar", self.xResearchBar, 2, RESEARCH_BAR_WIDTH, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_RESEARCH, -1, -1 )
 		screen.setStackedBarColors( "ResearchBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_RESEARCH_STORED") )
 		screen.setStackedBarColors( "ResearchBar", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_RESEARCH_RATE") )
 		screen.setStackedBarColors( "ResearchBar", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
@@ -931,14 +937,15 @@ class CvMainInterface:
 		screen.hide( "GreatGeneralBar-w" )
 
 		xCoord += 6 + 84
-		screen.addStackedBarGFC( "ResearchBar-w", xCoord, 2, 487, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_RESEARCH, -1, -1 )
+		self.xResearchBarWide = xCoord
+		screen.addStackedBarGFC( "ResearchBar-w", self.xResearchBarWide, 2, RESEARCH_BAR_WIDTH, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_RESEARCH, -1, -1 )
 		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_RESEARCH_STORED") )
 		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_RESEARCH_RATE") )
 		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.hide( "ResearchBar-w" )
 
-		xCoord += 6 + 487
+		xCoord += 6 + RESEARCH_BAR_WIDTH
 		screen.addStackedBarGFC( "GreatPersonBar-w", xCoord, 2, 320, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_GP_PROGRESS_BAR, -1, -1 )
 		screen.setStackedBarColors( "GreatPersonBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_STORED") )
 		screen.setStackedBarColors( "GreatPersonBar-w", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_RATE") )
@@ -1192,6 +1199,12 @@ class CvMainInterface:
 #CustomizableBars End
 
 		return 0
+
+	# lfgr 04/2021: Helper function
+	def isResearchBarWide( self ) :
+		# type: () -> bool
+		screen = CyGInterfaceScreen( "MainInterface", CvScreenEnums.MAIN_INTERFACE )
+		return screen.getXResolution() >= 1440 and ( MainOpt.isShowGGProgressBar() or MainOpt.isShowGPProgressBar() )
 
 	# Will update the screen (every 250 MS)
 	def updateScreen(self):
@@ -3293,13 +3306,35 @@ class CvMainInterface:
 				else:
 					szText = CyGameTextMgr().getGoldStr(ePlayer)
 # BUG - Gold Rate Warning - end
-				#MOVED AMOUNT OF GOLD TEXT							   2/03/08					 JOHNY SMITH	  
-				screen.setLabel( "GoldText", "Background", szText, CvUtil.FONT_LEFT_JUSTIFY, 80, 6, -0.3, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+
+#FfH: Added by Kael 12/08/2007
+				if gc.getPlayer(ePlayer).getCivilizationType() == gc.getInfoTypeForString('CIVILIZATION_KHAZAD') \
+						and gc.getPlayer(ePlayer).getNumCities() > 0 \
+						and ffhUIOpt.isShowKhazadVaultText() : # lfgr 04/2021
+					# LFGR_TODO: Don't hardcode here, use FfHDefines
+					iGold = gc.getPlayer(ePlayer).getGold() / gc.getPlayer(ePlayer).getNumCities()
+					if iGold <= 24 :
+						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_EMPTY", ())
+					if (iGold >= 25 and iGold <= 49) :
+						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_LOW", ())
+					if (iGold >= 75 and iGold <= 99) :
+						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_STOCKED", ())
+					if (iGold >= 100 and iGold <= 149) :
+						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_ABUNDANT", ())
+					if (iGold >= 150 and iGold <= 249) :
+						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_FULL", ())
+					if iGold >= 250 :
+						szText = szText + " " + localText.getText("TXT_KEY_MISC_DWARVEN_VAULT_OVERFLOWING", ())
+#FfH: End Add
+				#MOVED AMOUNT OF GOLD TEXT							   2/03/08					 JOHNY SMITH
+				# lfgr 04/2021: Changed widget type to show Khazad vault tooltip
+				screen.setLabel( "GoldText", "Background", szText, CvUtil.FONT_LEFT_JUSTIFY, 80, 6, -0.3, FontTypes.GAME_FONT, WidgetTypes.WIDGET_PLAYER_GOLD, -1, -1 )
 				#END													 2/03/08					 JOHNY SMITH
 				screen.show( "GoldText" )
 				
 				if (((gc.getPlayer(ePlayer).calculateGoldRate() != 0) and not (gc.getPlayer(ePlayer).isAnarchy())) or (gc.getPlayer(ePlayer).getGold() != 0)):
 					screen.show( "GoldText" )
+
 # BUG - NJAGC - start
 				if ClockOpt.isEnabled() and ClockOpt.isShowEra() :
 					szText = localText.getText("TXT_KEY_BUG_ERA", (gc.getEraInfo(gc.getPlayer(ePlayer).getCurrentRealEra()).getDescription(), ))
@@ -3335,10 +3370,9 @@ class CvMainInterface:
 					szText = CyGameTextMgr().getResearchStr(ePlayer)
 
 # BUG - Bars on single line for higher resolution screens - start
-					if (xResolution >= 1440
-					and (MainOpt.isShowGGProgressBar() or MainOpt.isShowGPProgressBar())):
+					if self.isResearchBarWide() :
 						szResearchBar = "ResearchBar-w"
-						xCoord = 268 + (xResolution - 1440) / 2 + 84 + 6 + 487 / 2
+						xCoord = self.xResearchBarWide + RESEARCH_BAR_WIDTH / 2
 					else:
 						szResearchBar = "ResearchBar"
 						xCoord = screen.centerX(512)
@@ -5755,15 +5789,16 @@ class CvMainInterface:
 		xResolution = screen.getXResolution()
 
 # BUG - Bars on single line for higher resolution screens - start
-		if (xResolution >= 1440
-		and (MainOpt.isShowGGProgressBar() or MainOpt.isShowGPProgressBar())):
-			xCoord = 268 + (xResolution - 1440) / 2
-			xCoord += 6 + 84
-			screen.moveItem( szButtonID, 264 + ( ( xResolution - 1024 ) / 2 ) + ( 34 * ( iCount % 15 ) ), 0 + ( 34 * ( iCount / 15 ) ), -0.3 )
+		# lfgr fix 04/2021
+		if self.isResearchBarWide() :
+			xCoord = self.xResearchBarWide
 		else:
-			xCoord = 264 + ( ( xResolution - 1024 ) / 2 )
+			xCoord = self.xResearchBar
 
-		screen.moveItem( szButtonID, xCoord + ( 34 * ( iCount % 15 ) ), 0 + ( 34 * ( iCount / 15 ) ), -0.3 )
+		iButtonWidth = 34
+		iButtonsPerRow = RESEARCH_BAR_WIDTH // iButtonWidth
+		screen.moveItem( szButtonID, xCoord + ( iButtonWidth * ( iCount % iButtonsPerRow ) ),
+			( iButtonWidth * ( iCount / iButtonsPerRow ) ), -0.3 )
 # BUG - Bars on single line for higher resolution screens - end
 
 	# Will set the selection button position

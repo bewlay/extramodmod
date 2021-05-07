@@ -17,6 +17,7 @@ from math import *
 
 # globals
 gc = CyGlobalContext()
+ffhDefines = FfHDefines.getInstance() # lfgr 04/2021
 PyPlayer = PyHelpers.PyPlayer
 
 #AdventurerCounter Start (Imported from Rise from Erebus, modified by Terkhen)
@@ -933,37 +934,12 @@ class CustomFunctions:
 	def doTurnKhazad( self, iPlayer ):
 		pPlayer = gc.getPlayer( iPlayer )
 		if pPlayer.getNumCities() > 0:
-			iVault1 = gc.getInfoTypeForString( 'BUILDING_DWARVEN_VAULT_EMPTY' )
-			iVault2 = gc.getInfoTypeForString( 'BUILDING_DWARVEN_VAULT_LOW' )
-			iVault3 = gc.getInfoTypeForString( 'BUILDING_DWARVEN_VAULT' )
-			iVault4 = gc.getInfoTypeForString( 'BUILDING_DWARVEN_VAULT_STOCKED' )
-			iVault5 = gc.getInfoTypeForString( 'BUILDING_DWARVEN_VAULT_ABUNDANT' )
-			iVault6 = gc.getInfoTypeForString( 'BUILDING_DWARVEN_VAULT_FULL' )
-			iVault7 = gc.getInfoTypeForString( 'BUILDING_DWARVEN_VAULT_OVERFLOWING' )
-			iGold = pPlayer.getGold() / pPlayer.getNumCities()
-			if iGold <= 24:
-				iNewVault = iVault1
-			if (iGold >= 25 and iGold <= 49):
-				iNewVault = iVault2
-			if (iGold >= 50 and iGold <= 74):
-				iNewVault = iVault3
-			if (iGold >= 75 and iGold <= 99):
-				iNewVault = iVault4
-			if (iGold >= 100 and iGold <= 149):
-				iNewVault = iVault5
-			if (iGold >= 150 and iGold <= 249):
-				iNewVault = iVault6
-			if iGold >= 250:
-				iNewVault = iVault7
+			# lfgr 04/2021: Simplified
+			iNewVault = ffhDefines.getKhazadVault( pPlayer )
 			for pyCity in PyPlayer( iPlayer ).getCityList():
 				pCity = pyCity.GetCy()
-				pCity.setNumRealBuilding( iVault1, 0 )
-				pCity.setNumRealBuilding( iVault2, 0 )
-				pCity.setNumRealBuilding( iVault3, 0 )
-				pCity.setNumRealBuilding( iVault4, 0 )
-				pCity.setNumRealBuilding( iVault5, 0 )
-				pCity.setNumRealBuilding( iVault6, 0 )
-				pCity.setNumRealBuilding( iVault7, 0 )
+				for eVault, _ in ffhDefines.getKhazadVaultsWithMinGold() :
+					pCity.setNumRealBuilding( eVault, 0)
 				pCity.setNumRealBuilding( iNewVault, 1 )
 
 	def doTurnLuchuirp( self, iPlayer ):
@@ -1745,11 +1721,10 @@ class CustomFunctions:
 
 	# PlanarGateOverhaul 10/2019 lfgr
 	def getPlanarGateUnitLimit( self, ePlayer, eUnit ) :
-		ffhDefs = FfHDefines.getInst()
-		iNumPlanarGates = gc.getPlayer( ePlayer ).countNumBuildings( ffhDefs.BUILDING_PLANAR_GATE )
+		iNumPlanarGates = gc.getPlayer( ePlayer ).countNumBuildings( ffhDefines.BUILDING_PLANAR_GATE )
 		iAC = CyGame().getGlobalCounter()
 		iMax = iNumPlanarGates + iNumPlanarGates * iAC / 25 + iNumPlanarGates * iAC * iAC / 2000
-		if eUnit in ffhDefs.PLANAR_GATE_HALF_MAX_UNITS :
+		if eUnit in ffhDefines.PLANAR_GATE_HALF_MAX_UNITS :
 			iMax /= 2
 		return iMax
 	# PlanarGateOverhaul end

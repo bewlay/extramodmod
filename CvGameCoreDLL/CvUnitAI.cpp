@@ -495,7 +495,8 @@ bool CvUnitAI::AI_update()
 			}
 
 			// Tholal AI - catch for units who have casted already this turn and now can't move
-			if (!canMove())
+			// lfgr 04/2021: Allow certain AI functions to be called when we can still cast, but not move anymore
+			if (!AI_readyToMoveOrCast())
 			{
 				return false;
 			}
@@ -545,7 +546,9 @@ bool CvUnitAI::AI_update()
 /**	END	                                        												**/
 /*************************************************************************************************/
 
-		if (canMove()) // Tholal AI - make sure we dont try to move if we can't (ie, due to spell/ability usage earlier in this function)
+// Tholal AI - make sure we dont try to move if we can't (ie, due to spell/ability usage earlier in this function)
+// lfgr 04/2021: Allow certain AI functions to be called when we can still cast, but not move anymore
+		if (AI_readyToMoveOrCast())
 		{
 			switch (AI_getUnitAIType())
 			{
@@ -883,6 +886,8 @@ void CvUnitAI::AI_upgrade()
 	int iBestValue = kPlayer.AI_unitValue(getUnitType(), eUnitAI, pArea, true) * 100;
 	UnitTypes eBestUnit = NO_UNIT;
 
+	// LFGR_TODO: A new function CvUnit::canEverUpgrade(UnitTypes) could help here. Caching a list of possible upgrades for each UnitType could also make sense.
+
 	// Note: the original code did two passes, presumably for speed reasons.
 	// In the first pass, they checked only units which were flagged with the right unitAI.
 	// Then, only if no such units were found, they checked all other units.
@@ -940,6 +945,11 @@ void CvUnitAI::AI_promote()
 		return; // can't get any normal promotions. (see CvUnit::canPromote)
 	// K-Mod end
 
+	if( gPromoteLogLevel >= 1 )
+	{
+		logBBAI("    %S (unit %d - %S) looking for best promotion...", getName().GetCString(), getID(), GC.getUnitAIInfo(AI_getUnitAIType()).getDescription() );
+	}
+
 	int iBestValue = 0;
 	PromotionTypes eBestPromotion = NO_PROMOTION;
 
@@ -948,6 +958,11 @@ void CvUnitAI::AI_promote()
 		if (canPromote((PromotionTypes)iI, -1))
 		{
 			int iValue = AI_promotionValue((PromotionTypes)iI);
+
+			if( gPromoteLogLevel >= 1 && iValue > 0 )
+			{
+				logBBAI("      %S has value %d", GC.getPromotionInfo( (PromotionTypes)iI ).getDescription(), iValue );
+			}
 
 			if (iValue > iBestValue)
 			{
@@ -11262,6 +11277,9 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 //	}
 //FfH: End Modify
 
+
+	// lfgr AI 04/2021: Summoners no longer prefer CombatPercent.
+	// Combat I-V's granted empower promotions are counted below anyway.
 	iTemp = kPromotion.getCombatPercent();
 	if ((eUnitAI == UNITAI_ATTACK) ||
 		(eUnitAI == UNITAI_COUNTER) ||
@@ -11274,7 +11292,7 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 		(eUnitAI == UNITAI_CARRIER_SEA) ||
 		(eUnitAI == UNITAI_ATTACK_AIR) ||
 		(eUnitAI == UNITAI_CARRIER_AIR) ||
-		isSummoner() ||
+		//isSummoner() ||
 		(eUnitAI == UNITAI_HERO))
 	{
 		iValue += (iTemp * 2);
@@ -30385,28 +30403,14 @@ bool CvUnitAI::isSummoner()
 		return false;
 	}
 	
+	// LFGR_TODO: Use canCastWithCurrentPromotions
     for (int iSpell = 0; iSpell < GC.getNumSpellInfos(); iSpell++)
     {
 		if (GC.getSpellInfo((SpellTypes)iSpell).getCreateUnitType() != NO_UNIT)
 		{
-		    if (GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq1() != NO_PROMOTION)
-		    {
-				if (isHasPromotion((PromotionTypes)GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq1()))
-		        {
-				    if (GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq2() != NO_PROMOTION)
-				    {
-						if (isHasPromotion((PromotionTypes)GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq2()))
-				        {
-							return true;
-				        }
-						else
-						{
-							return false;
-						}
-					}
-
-					return true;
-				}
+			if( canCastWithCurrentPromotions( (SpellTypes) iSpell ) )
+			{
+				return true;
 			}
 		}
 	}
@@ -30497,22 +30501,18 @@ void CvUnitAI::AI_SummonCast()
 }
 
 //returns true if the Unit can Damage stuff
+// lfgr AI 04/2021: Ignores isHasCasted and uses canCastWithCurrentPromotions instead of canCast.
 bool CvUnitAI::isDirectDamageCaster()
 {
 	if (!isChanneler())
 	{
 		return false;
 	}
-
-    if (isHasCasted())
-    {
-        return false;
-    }
     for (int iSpell = 0; iSpell < GC.getNumSpellInfos(); iSpell++)
     {
         if (GC.getSpellInfo((SpellTypes)iSpell).getDamage() > 0)
         {
-            if (canCast(iSpell, false))
+            if (canCastWithCurrentPromotions((SpellTypes)iSpell))
             {
                 return true;
             }
@@ -30641,19 +30641,11 @@ bool CvUnitAI::isDeBuffer()
 
 		if (bDebuffPromo)
 		{
-			if (GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq1() != NO_PROMOTION)
-		    {
-				if (isHasPromotion((PromotionTypes)GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq1()))
-		        {
-				    if (GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq2() != NO_PROMOTION)
-				    {
-						if (isHasPromotion((PromotionTypes)GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq2()))
-				        {
-							return true;
-				        }
-					 }
-				 }
-			}	
+			// lfgr AI 04/2021: Use canCastWithCurrentPromotions
+			if( canCastWithCurrentPromotions( (SpellTypes) iSpell ) )
+			{
+				return true;
+			}
 		}
 	}
 	
@@ -30764,18 +30756,10 @@ bool CvUnitAI::isBuffer()
 
 		if (bBuffPromo)
 		{
-			if (GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq1() != NO_PROMOTION)
-		    {
-				if (isHasPromotion((PromotionTypes)GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq1()))
-		        {
-				    if (GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq2() != NO_PROMOTION)
-				    {
-						if (isHasPromotion((PromotionTypes)GC.getSpellInfo((SpellTypes)iSpell).getPromotionPrereq2()))
-				        {
-							return true;
-				        }
-					 }
-				 }
+			// lfgr AI 04/2021: Use canCastWithCurrentPromotions
+			if( canCastWithCurrentPromotions( (SpellTypes) iSpell ) )
+			{
+				return true;
 			}
 		}
 	}
@@ -30790,7 +30774,7 @@ void CvUnitAI::AI_BuffCast()
     {
         return;
     }
-    if (!isBuffer())
+    if (!isBuffer()) // LFGR_TODO: Seems redundant
     {
         return;
     }
@@ -31558,4 +31542,22 @@ bool isCityAIType( UnitAITypes eUnitAI )
 		(eUnitAI == UNITAI_CITY_COUNTER) ||
 		(eUnitAI == UNITAI_CITY_SPECIAL) ||
 		(eUnitAI == UNITAI_RESERVE);
+}
+
+
+// lfgr 04/2021: See CvUnitAI.h
+bool CvUnitAI::AI_readyToMoveOrCast()
+{
+	if( canMove() )
+	{
+		return true;
+	}
+
+	// For now, only the terrraformer AI might want to move and then cast.
+	if( AI_getUnitAIType() == UNITAI_TERRAFORMER && canCastAnything() )
+	{
+		return true;
+	}
+
+	return false;
 }

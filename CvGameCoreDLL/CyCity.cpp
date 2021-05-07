@@ -718,6 +718,12 @@ int CyCity::unhappyLevel(int iExtra)
 	return m_pCity ? m_pCity->unhappyLevel(iExtra) : -1;
 }
 
+// REVOLUTION_REFACTORING 04/2021 lfgr: Ignores some modifiers
+int CyCity::unhappyLevelForRevIdx(int iExtra)
+{
+	return m_pCity ? m_pCity->unhappyLevel( iExtra, true ) : -1;
+}
+
 int CyCity::happyLevel()
 {
 	return m_pCity ? m_pCity->happyLevel() : -1;
@@ -2881,12 +2887,6 @@ void CyCity::setCivilizationType(int iNewValue)
 		m_pCity->setCivilizationType(iNewValue);
 }
 
-int CyCity::getPlotRadius() const
-{
-	return m_pCity ? m_pCity->getPlotRadius() : 0;
-}
-
-// lfgr 03/2021
 int CyCity::getPlotRadius() const
 {
 	return m_pCity ? m_pCity->getPlotRadius() : 0;

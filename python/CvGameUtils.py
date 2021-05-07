@@ -5,7 +5,6 @@
 
 import CvUtil
 from CvPythonExtensions import *
-import CvEventInterface
 import CustomFunctions
 import ScenarioFunctions
 
@@ -271,7 +270,7 @@ class CvGameUtils:
 				return True
 		
 		# PlanarGateOverhaul 10/2019 lfgr
-		elif not bTestVisible and not bContinue and eUnit in FfHDefines.getInst().PLANAR_GATE_UNITS :
+		elif not bTestVisible and not bContinue and eUnit in FfHDefines.getInstance().PLANAR_GATE_UNITS :
 			iMax = cf.getPlanarGateUnitLimit( ePlayer, eUnit )
 			if pPlayer.getUnitClassCount( gc.getUnitInfo( eUnit ).getUnitClassType() ) >= iMax:
 				return True
@@ -1106,7 +1105,6 @@ class CvGameUtils:
 				elif iData2 == 1:
 					return CyTranslator().getText("TXT_KEY_WB_HAS_CAST",())
 #Magister Stop
-
 ## Ultrapack ##
 		return u""
 
@@ -1299,19 +1297,21 @@ class CvGameUtils:
 						if hasSpellForPlot( pPlot ) :
 							iCount += 1
 
-					if pyCity.isSettlement() :
-						iCount += 1000 # Always prefer non-settlements
-					if iCount > iBestCount :
-						pBestCity = pyCity
-						iBestCount = iCount
+					if iCount > 0 :
+						if not pyCity.isSettlement() :
+							iCount += 1000 # Always prefer non-settlements
+						if iCount > iBestCount :
+							pBestCity = pyCity
+							iBestCount = iCount
 
 			if pBestCity is not None :
 				pCPlot = pBestCity.plot()
-				CX = pCPlot.getX()
-				CY = pCPlot.getY()
-				pUnit.getGroup().pushMission( MissionTypes.MISSION_MOVE_TO, CX, CY, 0, False, False,
-					MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit )
-				return 1
+				iCX = pCPlot.getX()
+				iCY = pCPlot.getY()
+				if iCX != pUnit.getX() or iCY != pUnit.getY() :
+					pUnit.getGroup().pushMission( MissionTypes.MISSION_MOVE_TO, iCX, iCY, 0, False, False,
+						MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit )
+					return 1
 
 		return 0
 
