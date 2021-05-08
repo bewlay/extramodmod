@@ -2703,6 +2703,8 @@ class CvEventManager:
 					iUnit = listUnits[CyGame().getSorenRandNum( len( listUnits ), "Planar Gate" )]
 					newUnit = pPlayer.initUnit( iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI,
 												DirectionTypes.DIRECTION_SOUTH )
+					if iUnit == gc.getInfoTypeForString( "UNIT_MOBIUS_WITCH" ) :
+						ffhDefs.applyMobiusWitchPromotions( newUnit )
 					CyInterface().addMessage( iPlayer, True, 25,
 											  CyTranslator().getText( "TXT_KEY_MESSAGE_PLANAR_GATE", () ),
 											  'AS2D_DISCOVERBONUS', 1,

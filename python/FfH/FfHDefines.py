@@ -3,6 +3,8 @@ from CvPythonExtensions import *
 gc = CyGlobalContext()
 
 
+# LFGR_TODO: This now also contains functionality. Maybe move everything to single modules per civ.
+
 # Required gold for the various stages of Khazad vault. First should be 0
 _VAULT_MIN_GOLD = [0, 25, 50, 75, 100, 150, 250]
 
@@ -58,6 +60,19 @@ class FfHDefines :
 	@property
 	def PLANAR_GATE_HALF_MAX_UNITS( self ) :
 		return frozenset( map( gc.getInfoTypeForString, _PLANAR_GATE_HALF_MAX_UNITS ) )
+
+	def applyMobiusWitchPromotions( self, pUnit ) :
+		# type: (CyUnit) -> None
+		promotions = ['PROMOTION_AIR1', 'PROMOTION_BODY1', 'PROMOTION_CHAOS1', 'PROMOTION_CREATION1',
+					  'PROMOTION_DEATH1', 'PROMOTION_DIMENSIONAL1', 'PROMOTION_EARTH1', 'PROMOTION_ENCHANTMENT1',
+					  'PROMOTION_ENTROPY1', 'PROMOTION_FORCE1', 'PROMOTION_FIRE1', 'PROMOTION_ICE1', 'PROMOTION_LAW1',
+					  'PROMOTION_LIFE1', 'PROMOTION_METAMAGIC1', 'PROMOTION_MIND1', 'PROMOTION_NATURE1',
+					  'PROMOTION_SHADOW1', 'PROMOTION_SPIRIT1', 'PROMOTION_SUN1', 'PROMOTION_WATER1']
+		pUnit.setLevel(2)
+		pUnit.setExperience(5, -1)
+		for i in promotions :
+			if CyGame().getSorenRandNum(10, "Mobius Witch promotions") == 1 :
+				pUnit.setHasPromotion(gc.getInfoTypeForString(i), True)
 
 	def _loadInfoTypes( self ) :
 		if self._vaultsWithMinGold is not None :

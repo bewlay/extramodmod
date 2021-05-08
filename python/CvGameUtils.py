@@ -1149,12 +1149,7 @@ class CvGameUtils:
 						pUnit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_ENRAGED'), True)
 
 		if pUnit.getUnitClassType() == gc.getInfoTypeForString('UNITCLASS_MOBIUS_WITCH'):
-			promotions = [ 'PROMOTION_AIR1','PROMOTION_BODY1','PROMOTION_CHAOS1','PROMOTION_CREATION1','PROMOTION_DEATH1','PROMOTION_DIMENSIONAL1','PROMOTION_EARTH1','PROMOTION_ENCHANTMENT1','PROMOTION_ENTROPY1','PROMOTION_FORCE1','PROMOTION_FIRE1','PROMOTION_ICE1','PROMOTION_LAW1','PROMOTION_LIFE1','PROMOTION_METAMAGIC1','PROMOTION_MIND1','PROMOTION_NATURE1','PROMOTION_SHADOW1','PROMOTION_SPIRIT1','PROMOTION_SUN1','PROMOTION_WATER1' ]
-			pUnit.setLevel(2)
-			pUnit.setExperience(5, -1)
-			for i in promotions:
-				if CyGame().getSorenRandNum(10, "Timon") == 1:
-					pUnit.setHasPromotion(gc.getInfoTypeForString(i), True)
+			FfHDefines.getInstance().applyMobiusWitchPromotions( pUnit )
 
 		if pUnit.getRace() == gc.getInfoTypeForString('PROMOTION_GOLEM'):
 			if pCity.getNumBuilding(gc.getInfoTypeForString('BUILDING_BLASTING_WORKSHOP')) > 0:
