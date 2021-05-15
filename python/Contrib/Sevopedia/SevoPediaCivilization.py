@@ -42,7 +42,7 @@ class SevoPediaCivilization:
 		X_MERGIN = self.top.X_MERGIN
 		Y_MERGIN = self.top.Y_MERGIN
 
-		self.W_FEATURES = 215
+		self.W_FEATURES = 280
 		self.H_FEATURES = 116
 		self.X_FEATURES = self.top.R_PEDIA_PAGE - self.W_FEATURES
 		self.Y_FEATURES = self.top.Y_PEDIA_PAGE
@@ -135,7 +135,6 @@ class SevoPediaCivilization:
 ##--------	BUGFfH: Added by Denev 2009/10/08
 		self.bWideText = true
 
-		self.placeTrait()
 		self.placeHero()
 		self.placeSpells()
 
@@ -166,11 +165,31 @@ class SevoPediaCivilization:
 		screen = self.top.getScreen()
 
 		eRace = self.civInfo.getDefaultRace()
-		eTrait = self.civInfo.getCivTrait()
+		leTraits = [eTrait for eTrait in xrange( gc.getNumTraitInfos() ) if self.civInfo.isCivTraits( eTrait )]
 		leCivics = [eCivic for eCivic in range( gc.getNumCivicInfos() )
 				if gc.getCivicInfo( eCivic ).getPrereqCivilization() == self.iCivilization]
+
+		# Terrain yield modifiers
+		ltTerrainModifiers = []
+		for iTerrain in range( gc.getNumTerrainInfos() ) :
+			szYield = u""
+			bFirst = true
+			for iYield in range( YieldTypes.NUM_YIELD_TYPES ) :
+				iYieldChange = gc.getCivilizationInfo( self.iCivilization ).getTerrainYieldChanges( iTerrain, iYield,
+					False )
+				if (iYieldChange > 0) :
+					if not bFirst :
+						szYield += ", "
+					bFirst = false
+
+					szSign = "+"
+					if szYield < 0 :
+						szSign = ""
+					szYield += u"<font=3>%s%i%c</font>" % (szSign, iYieldChange, gc.getYieldInfo( iYield ).getChar())
+			if not bFirst :
+				ltTerrainModifiers.append( (iTerrain, szYield) )
 		
-		if eRace != -1 or eTrait != -1 or len( leCivics ) > 0 :
+		if eRace != -1 or len( leTraits ) > 0 or len( leCivics ) > 0 or len( ltTerrainModifiers ) > 0 :
 			panelName = self.top.getNextWidgetName()
 			screen.addPanel( panelName, localText.getText("TXT_KEY_PEDIA_OTHER_FEATURES", ()), "", False, True,
 							 self.X_FEATURES, self.Y_FEATURES, self.W_FEATURES, self.H_FEATURES, PanelStyles.PANEL_STYLE_BLUE50 )
@@ -180,13 +199,23 @@ class SevoPediaCivilization:
 				screen.attachImageButton( panelName, "", gc.getPromotionInfo( eRace ).getButton(),
 						GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_PROMOTION, eRace, 1, False )
 			
-			if eTrait != -1 :
+			for eTrait in leTraits :
 				screen.attachImageButton( panelName, "", gc.getTraitInfo( eTrait ).getButton(),
 						GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_TRAIT, eTrait, 1, False )
 			
 			for eCivic in leCivics :
 				screen.attachImageButton( panelName, "", gc.getCivicInfo( eCivic ).getButton(),
 						GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIVIC, eCivic, 1, False )
+
+			# Buttons for extra terrain yields
+			for iTerrain, szYield in ltTerrainModifiers :
+				childPanelName = self.top.getNextWidgetName()
+				screen.attachLabel( panelName, "", "  " )
+				screen.attachPanel( panelName, childPanelName, "", "", False, False, PanelStyles.PANEL_STYLE_EMPTY )
+				screen.attachImageButton( childPanelName, "", gc.getTerrainInfo( iTerrain ).getButton(),
+					GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_TERRAIN, iTerrain, 1,
+					False )
+				screen.attachLabel( childPanelName, "", szYield )
 		
 
 
@@ -312,57 +341,6 @@ class SevoPediaCivilization:
 ##--------	BUGFfH: End Modify
 		szText = gc.getCivilizationInfo(self.iCivilization).getCivilopedia()
 		screen.attachMultilineText(panelName, "Text", szText, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
-
-
-
-##--------	BUGFfH: Added by Denev 2009/08/14
-	def placeTrait(self):
-		screen = self.top.getScreen()
-		panelName = self.top.getNextWidgetName()
-	# EXTRA_CIV_TRAITS 08/2013 lfgr
-	#	screen.addPanel(panelName, localText.getText("TXT_KEY_CIV_TRAIT", ()), "", False, True, self.X_CIV_TRAIT, self.Y_CIV_TRAIT, self.W_CIV_TRAIT, self.H_CIV_TRAIT, PanelStyles.PANEL_STYLE_BLUE50)
-	#	screen.attachLabel(panelName, "", "  ")
-		screen.addPanel(panelName, localText.getText("TXT_KEY_CIV_TRAITS", ()), "", False, True, self.X_CIV_TRAIT, self.Y_CIV_TRAIT, self.W_CIV_TRAIT, self.H_CIV_TRAIT, PanelStyles.PANEL_STYLE_BLUE50)
-		screen.attachLabel(panelName, "", "  ")
-		
-		for iTrait in range( gc.getNumTraitInfos() ) :
-			if( gc.getCivilizationInfo(self.iCivilization).isCivTraits( iTrait ) ) :
-				screen.attachImageButton(panelName, "", gc.getTraitInfo(iTrait).getButton(), GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_TRAIT, iTrait, -1, False)
-	# EXTRA_CIV_TRAITS end
-
-		#terrain yield modifier
-		ltTerrainModifier = []
-		for iTerrain in range(gc.getNumTerrainInfos()):
-			szYield = u""
-			bFirst = true
-			for iYield in range(YieldTypes.NUM_YIELD_TYPES):
-				iYieldChange = gc.getCivilizationInfo(self.iCivilization).getTerrainYieldChanges(iTerrain, iYield, False)
-				if (iYieldChange > 0):
-					if not bFirst:
-						szYield += ", "
-					bFirst = false
-
-					szSign = "+"
-					if szYield < 0:
-						szSign = ""
-					szYield += u"<font=3>%s%i%c</font>" % (szSign, iYieldChange, gc.getYieldInfo(iYield).getChar())
-			if not bFirst:
-				ltTerrainModifier.append( (iTerrain, szYield) )
-
-		#place panel with variable title
-
-		#place each buttons
-	# EXTRA_CIV_TRAITS 08/2013 lfgr
-		# to help distinguish
-		if( len( ltTerrainModifier ) > 0 ) :
-			screen.attachLabel(panelName, "", localText.getText("TXT_KEY_MISC_CIV_TERRAIN", ()) + ":" )
-	# EXTRA_CIV_TRAITS end
-		for iTerrain, szYield in ltTerrainModifier:
-			childPanelName = self.top.getNextWidgetName()
-			screen.attachLabel(panelName, "", "  ")
-			screen.attachPanel(panelName, childPanelName, "", "", False, False, PanelStyles.PANEL_STYLE_EMPTY)
-			screen.attachImageButton(childPanelName, "", gc.getTerrainInfo(iTerrain).getButton(), GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_TERRAIN, iTerrain, 1, False)
-			screen.attachLabel(childPanelName, "", szYield)
 
 	def placeHero(self):
 		screen = self.top.getScreen()
