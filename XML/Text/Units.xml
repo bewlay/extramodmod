@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Text for specific Units -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_PLANAR_GATE_UNIT_GENERAL_HELP</Tag>
+		<English>[ICON_BULLET]Spawned by [LINK=BUILDING_PLANAR_GATE]Planar Gates[\LINK]. Spawning rate and limit depend on the Armageddon counter. This limit also applies when normally building the unit.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PLANAR_GATE_UNIT_AVAILABLE_HELP</Tag>
+		<English>[ICON_BULLET]Planar gate unit: %d1/%d2 remaining</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PLANAR_GATE_UNIT_UNAVAILABLE_HELP</Tag>
+		<English>[ICON_BULLET]Planar gate unit: [COLOR_NEGATIVE_TEXT]%d1/%d2 remaining.[COLOR_REVERT]</English>
+	</TEXT>
+</Civ4GameText>
