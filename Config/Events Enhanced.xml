@@ -30,6 +30,6 @@
         </section>
     </options>
 	
-	
 	<event type="unitBuilt" function="onUnitBuilt"/>
+	<event type="combatResult" function="onCombatResult"/>
 </mod>

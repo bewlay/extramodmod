@@ -1843,27 +1843,6 @@ class CvEventManager:
 	# WILDERNESS END
 			unit.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
 
-			# more events mod starts # 
-		if unit.getUnitType() == gc.getInfoTypeForString('UNIT_GOBLIN') or unit.getUnitType() == gc.getInfoTypeForString('UNIT_GOBLIN_SCORPION_CLAN'):
-			if CyGame().getSorenRandNum(1000, "Goblin2")<40:
-				if iPlayer == gc.getBARBARIAN_PLAYER() :
-					iX = unit.getX()
-					iY = unit.getY()
-					int=1
-					pAttacker = gc.getPlayer(iAttacker)
-					for iiX in range(iX-2, iX+2, 1):
-						for iiY in range(iY-2, iY+2, 1):
-							pPlot2 = CyMap().plot(iiX,iiY)
-							for i in range(pPlot2.getNumUnits()):
-								pUnit2 = pPlot2.getUnit(i)
-								if pUnit2.getOwner()== iAttacker:
-									iWorker = gc.getInfoTypeForString('UNITCLASS_WORKER')
-									iSettler = gc.getInfoTypeForString('UNITCLASS_SETTLER')
-									if not pUnit2.getUnitClassType() == iWorker and not pUnit2.getUnitClassType() == iSettler and int==1 :
-										iEvent = CvUtil.findInfoTypeNum(gc.getEventTriggerInfo, gc.getNumEventTriggerInfos(),'EVENTTRIGGER_ORPHANED_GOBLIN')
-										triggerData = pAttacker.initTriggeredData(iEvent, true, -1, pUnit2.getX(), pUnit2.getY(), pUnit2.getOwner(), -1, -1, -1, pUnit2.getID(), -1)
-										int=0
-					# more events mod ends #
 		if CyGame().getWBMapScript():
 			sf.onUnitKilled(unit, iAttacker)
 
@@ -3061,6 +3040,7 @@ class CvEventManager:
 			WBPlayerScreen.WBPlayerScreen().placeStats()
 #Magister Stop
 
+	# LFGR_TODO: When is this used?
 	def __eventWBPlayerScriptPopupApply(self, playerID, userData, popupReturn):
 		sScript = popupReturn.getEditBoxString(0)
 		gc.getPlayer(userData[0]).setScriptData(CvUtil.convertToStr(sScript))
