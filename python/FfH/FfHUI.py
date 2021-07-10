@@ -159,16 +159,18 @@ def getPlayerGoldTooltip( eWidgetType, iData1, iData2, bOption ) :
 		return u""
 	
 	szHelp = u""
-	iGoldPerCity = pPlayer.getGold() // pPlayer.getNumCities()
-	szHelp += getText( "TXT_KEY_GOLD_PER_CITY", iGoldPerCity )
 
-	nextVaultAndGold = ffhDefines.getNextKhazadVaultWithMinGold( pPlayer )
-	if nextVaultAndGold is not None :
-		eNextVault, iMinGold = nextVaultAndGold
-		szHelp += u"\n" + getText( "TXT_KEY_NEXT_GOLD", iMinGold, gc.getBuildingInfo( eNextVault ).getTextKey() )
-	
-	eVault = ffhDefines.getKhazadVault( pPlayer )
-	szHelp += u"\n" + CyGameTextMgr().getBuildingHelp( eVault, False, False, False, None )
+	if pPlayer.getNumCities() > 0 :
+		iGoldPerCity = pPlayer.getGold() // pPlayer.getNumCities()
+		szHelp += getText( "TXT_KEY_GOLD_PER_CITY", iGoldPerCity )
+
+		nextVaultAndGold = ffhDefines.getNextKhazadVaultWithMinGold( pPlayer )
+		if nextVaultAndGold is not None :
+			eNextVault, iMinGold = nextVaultAndGold
+			szHelp += u"\n" + getText( "TXT_KEY_NEXT_GOLD", iMinGold, gc.getBuildingInfo( eNextVault ).getTextKey() )
+
+		eVault = ffhDefines.getKhazadVault( pPlayer )
+		szHelp += u"\n" + CyGameTextMgr().getBuildingHelp( eVault, False, False, False, None )
 	
 	return szHelp
 	
