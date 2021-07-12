@@ -2346,6 +2346,7 @@ def canTriggerWarGamesUnit(argsList):
 	"""
 	Unit must be alive (TODO: XMLify)
 	Unit must be able to attack
+	Unit must have >=1 XP
 	"""
 	eTrigger = argsList[0]
 	ePlayer = argsList[1]
@@ -2355,6 +2356,8 @@ def canTriggerWarGamesUnit(argsList):
 	if not pUnit.isAlive():
 		return False
 	if pUnit.isOnlyDefensive():
+		return False
+	if pUnit.getExperience() == 0 : # lfgr 07/2021: Fix forced disbanding
 		return False
 	return True
 
