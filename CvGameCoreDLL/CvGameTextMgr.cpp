@@ -10595,8 +10595,8 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
 			if( !szHelp.empty() ) {
 				szBuffer.append( pcNewline );
 				szBuffer.append( szHelp );
+				bPyHelpUsed = true;
 			}
-			bPyHelpUsed = true;
 		}
 	}
 
@@ -13861,8 +13861,13 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit, bool
 	{
 		if (pCity == NULL)
 		{
-			szTempBuffer.Format(L"%s%d%c", NEWLINE, GET_PLAYER(ePlayer).getProductionNeeded(eUnit), GC.getYieldInfo(YIELD_PRODUCTION).getChar());
-			szBuffer.append(szTempBuffer);
+			// lfgr fix 05/2021: Don't show -1 hammers
+			int iProductionNeeded = GET_PLAYER(ePlayer).getProductionNeeded(eUnit);
+			if( iProductionNeeded > 0 )
+			{
+				szTempBuffer.Format(L"%s%d%c", NEWLINE, iProductionNeeded, GC.getYieldInfo(YIELD_PRODUCTION).getChar());
+				szBuffer.append(szTempBuffer);
+			}
 		}
 		else
 		{

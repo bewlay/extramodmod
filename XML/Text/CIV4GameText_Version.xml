@@ -2,7 +2,7 @@
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
 		<Tag>TXT_KEY_VERSION_MNAI</Tag>
-		<English>[COLOR_ALT_HIGHLIGHT_TEXT]More Naval AI v2.9-beta3u[COLOR_REVERT]</English>
+		<English>[COLOR_ALT_HIGHLIGHT_TEXT]More Naval AI v2.9u[COLOR_REVERT]</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_VERSION</Tag>
