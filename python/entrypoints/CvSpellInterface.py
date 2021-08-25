@@ -544,7 +544,6 @@ def spellAddToFleshGolem(caster):
 	iChanneling = gc.getInfoTypeForString('PROMOTION_CHANNELING1')
 	iChanneling2 = gc.getInfoTypeForString('PROMOTION_CHANNELING2')
 	iChanneling3 = gc.getInfoTypeForString('PROMOTION_CHANNELING3')
-	iDividedSoul = gc.getInfoTypeForString('PROMOTION_DIVIDED_SOUL')
 	iDivine = gc.getInfoTypeForString('PROMOTION_DIVINE')
 	iFleshGolem = gc.getInfoTypeForString('UNITCLASS_FLESH_GOLEM')
 	pFleshGolem = -1
@@ -559,7 +558,7 @@ def spellAddToFleshGolem(caster):
 			pFleshGolem.setBaseCombatStrDefense(pFleshGolem.baseCombatStrDefense() + 1)
 		for iCount in range(gc.getNumPromotionInfos()):
 			if (caster.isHasPromotion(iCount)):
-				if (iCount != iChanneling and iCount != iChanneling2 and iCount != iChanneling3 and iCount != iDivine and iCount != iDividedSoul):
+				if (iCount != iChanneling and iCount != iChanneling2 and iCount != iChanneling3 and iCount != iDivine):
 					if not gc.getPromotionInfo(iCount).isRace():
 						if gc.getPromotionInfo(iCount).getBonusPrereq() == -1:
 							if gc.getPromotionInfo(iCount).getPromotionPrereqAnd() != iChanneling2:
