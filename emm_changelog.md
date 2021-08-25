@@ -1,5 +1,26 @@
 # Changelog
 
+
+## 0.6.0-beta7
+
+Includes MNAI 2.9u
+
+### Gameplay
+* Revised "Ash Cough", "Dead Angel", and "Orphaned goblin" events
+* Tweaked oil event
+
+### Fixes
+* Dwarves vs. Lizardmen exploration outcome should now work correctly
+* Too much death damage from Gela/Pike of Tears event (reported by Tielby@civfanatics)
+* Unit auto-disbanding from "War games" event
+* Spawned Möbius Witches now properly get spell spheres (report by kvaak@civfanatics)
+* Error from Khazad vault tooltip when player has no cities
+* Remove reference to removed "Divided Soul" promotion, so that adding to flesh golem works again
+
+## UI
+* Disabled non-functional "Show Khazad Vault Text" BUG option
+
+
 ## 0.6.0-beta6
 
 Includes MNAI 2.9-beta3u
@@ -8,12 +29,14 @@ Includes MNAI 2.9-beta3u
 * Python exception in Fertility spell help (reported by kvaak@civfanatics)
 * Mod should now really work without having keeping the FfH2 or MNAI mod folders.
 
+
 ## 0.6.0-beta5
 
 Includes MNAI 2.9-beta2u.
 
 ### Fixes
 * Mod now works without installing More Naval AI alongside
+
 
 ## 0.6.0-beta4u
 
