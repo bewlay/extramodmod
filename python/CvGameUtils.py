@@ -1262,7 +1262,7 @@ class CvGameUtils:
 
 			for iDist in range( 1, TERRAFORM_SEARCH_DISTANCE ) :
 				lPlots = list( PyHelpers.PyPlot( pUnitPlot ).iterPlotsAtDistance( iDist ) )
-				CvUtil.shuffleList( lPlots )
+				CvUtil.shuffleSequence( lPlots )
 				for pPlot in lPlots :
 					if pPlot.getOwner() != iPlayer : continue
 					if pPlot.isImpassable() : continue
