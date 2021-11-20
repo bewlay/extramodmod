@@ -4674,6 +4674,11 @@ void CvPlayer::doTurn()
     {
         changeDisableProduction(-1);
         updateMaintenance();
+
+		if( getDisableProduction() == 0 )
+		{
+			updateCommerce();
+		}
     }
     if (getDisableResearch() > 0)
     {
@@ -19164,7 +19169,11 @@ void CvPlayer::doAdvancedStartAction(AdvancedStartActionTypes eAction, int iX, i
 			// Add Improvement to the plot
 			if (bAdd)
 			{
-				if (getAdvancedStartPoints() >= iCost)
+				// lfgr 11/2021: Refund overwritten improvement
+				int iOldCost = getAdvancedStartImprovementCost(pPlot->getImprovementType(), false, pPlot);
+				iOldCost = std::max( 0, iOldCost ); // Could be -1 if 
+
+				if (getAdvancedStartPoints() + iOldCost >= iCost) // lfgr 11/2021: Refund overwritten improvement
 				{
 					if (pPlot->getFeatureType() != NO_FEATURE)
 					{
@@ -19197,7 +19206,7 @@ void CvPlayer::doAdvancedStartAction(AdvancedStartActionTypes eAction, int iX, i
 
 					pPlot->setImprovementType(eImprovement);
 
-					changeAdvancedStartPoints(-iCost);
+					changeAdvancedStartPoints(iOldCost-iCost); // lfgr 11/2021: Refund overwritten improvement
 				}
 			}
 
@@ -19286,6 +19295,9 @@ void CvPlayer::doAdvancedStartAction(AdvancedStartActionTypes eAction, int iX, i
 				pPlot->setRevealed(getTeam(), false, true, NO_TEAM, true);
 				changeAdvancedStartPoints(iCost);
 			}
+
+			// lfgr fix 11/2021
+			GC.getGameINLINE().updateColoredPlots();
 		}
 		break;
 	default:

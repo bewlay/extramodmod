@@ -26275,13 +26275,6 @@
 		<German>Wiedererweckt von den Toten ist Duin mit Lykanthropie verflucht: jede lebende von ihm besiegte Einheit verwandelt sich in einen Lechzenden Werwolf und unterwirft sich seinem Willen.</German>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_UNIT_DURATION</Tag>
-		<English>Duration: Will die in %D1 turn(s).</English>
-		<French>Dur&#233;e: mourra dans %D1 tour(s).</French>
-		<German>Dauer: Wird sterben in %D1 Runde(n).</German>
-		<Spanish>Duraci&#243;n: Morir&#225; en %D1 turno(s).</Spanish>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_UNIT_DWARVEN_CANNON</Tag>
 		<English>Dwarven Cannon</English>
 		<French>Bombarde Naine</French>
@@ -27706,8 +27699,8 @@ n&#228;mlich ewige Qualen. Manche brachen sogar in Tr&#228;nen aus, als sie vers
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_LOKI_STRATEGY</Tag>
-		<English>Fun to play with, horrible to play against, most leaders would rather see a berserker horde wander into their lands than the clown prince. Loki can take gold from rival cities or cause unrest in the cities and flip them to the Balseraphs if their culture gets low enough.[PARAGRAPH:1]Loki can investigate cities and has effective spells for charming enemy units, but his most frustrating ability is that he is the most difficult unit in the game to kill. When attacked he simply runs away to any open tiles around him. Loki must be cornered or completely surrounded before he can be killed in combat.</English>
-		<German>Es ist ein Spa&#223; mit ihm zu spielen, jedoch ein Albtraum, gegen ihn zu spielen. Die meisten Herrscher w&#252;rden lieber einer Horde von Berserkern in ihr Land einfallen sehen als den Clown-Prinzen. Loki verursacht den gleichen Effekt wie ein Zigeuner-Trek: Er reduziert den Kultur- und Gold-Aussto&#223; von jeder Stadt in der er sich aufh&#228;lt (au&#223;er von denen seiner eigenen Zivilisation). Des weiteren verursacht er Unruhen und kann die Stadt f&#252;r die Balseraphs &#252;bernehmen, wenn ihr Kulturwert zu niedrig wird.[PARAGRAPH:1]Loki kann St&#228;dte auskundschaften und verf&#252;gt &#252;ber effektive Zauber, um feindliche Einheiten zu bezaubern oder zu verwirren. Seine frustrierendste Eigenschaft ist jedoch, dass er die am schwersten zu t&#246;tende Einheit im Spiel ist. Wenn er angegriffen wird, rennt er einfach auf ein beliebiges freies Feld um ihn herum davon. Loki muss in die Ecke getrieben werden oder komplett mit feindlichen Einheiten umgeben sein, bevor er im Kampf get&#246;tet werden kann.</German>
+		<English>Fun to play with, horrible to play against, most leaders would rather see a berserker horde wander into their lands than the clown prince. Loki can take gold from rival cities or cause unrest in the cities and flip them to the Balseraphs if their culture gets low enough.[PARAGRAPH:1]Loki can investigate cities and has effective spells for charming enemy units, but his most frustrating ability is that he is the most difficult unit in the game to kill. When attacked outide of cities, he simply runs away to any open tiles around him. Loki must be cornered or completely surrounded before he can be killed in combat.</English>
+		<German>Es ist ein Spa&#223; mit ihm zu spielen, jedoch ein Albtraum, gegen ihn zu spielen. Die meisten Herrscher w&#252;rden lieber einer Horde von Berserkern in ihr Land einfallen sehen als den Clown-Prinzen. Loki verursacht den gleichen Effekt wie ein Zigeuner-Trek: Er reduziert den Kultur- und Gold-Aussto&#223; von jeder Stadt in der er sich aufh&#228;lt (au&#223;er von denen seiner eigenen Zivilisation). Des weiteren verursacht er Unruhen und kann die Stadt f&#252;r die Balseraphs &#252;bernehmen, wenn ihr Kulturwert zu niedrig wird.[PARAGRAPH:1]Loki kann St&#228;dte auskundschaften und verf&#252;gt &#252;ber effektive Zauber, um feindliche Einheiten zu bezaubern oder zu verwirren. Seine frustrierendste Eigenschaft ist jedoch, dass er die am schwersten zu t&#246;tende Einheit im Spiel ist. Wenn er auﬂerhalb von St‰dten angegriffen wird, rennt er einfach auf ein beliebiges freies Feld um ihn herum davon. Loki muss in die Ecke getrieben werden oder komplett mit feindlichen Einheiten umgeben sein, bevor er im Kampf get&#246;tet werden kann.</German>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_LOKI_PEDIA</Tag>

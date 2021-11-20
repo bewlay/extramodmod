@@ -2512,11 +2512,12 @@ class CvInfoScreen:
 			iPlayer = self.aaWondersBeingBuilt_BUG[iWonderLoop][3]
 
 			color = -1
-			ePlayerColor = gc.getPlayer(iPlayer).getPlayerColor()
-			if ePlayerColor != -1:
-				playerColor = gc.getPlayerColorInfo(ePlayerColor)
-				if playerColor:
-					color = playerColor.getColorTypePrimary()
+			if 0 <= iPlayer < gc.getMAX_PLAYERS() :
+				ePlayerColor = gc.getPlayer(iPlayer).getPlayerColor()
+				if ePlayerColor != -1:
+					playerColor = gc.getPlayerColorInfo(ePlayerColor)
+					if playerColor:
+						color = playerColor.getColorTypePrimary()
 
 			if (self.szWonderDisplayMode == self.szWDM_Project):
 				pWonderInfo = gc.getProjectInfo(iWonderType)
@@ -2556,11 +2557,12 @@ class CvInfoScreen:
 			iPlayer = self.aaWondersBuilt_BUG[iWonderLoop][5]
 
 			color = -1
-			ePlayerColor = gc.getPlayer(iPlayer).getPlayerColor()
-			if ePlayerColor != -1:
-				playerColor = gc.getPlayerColorInfo(ePlayerColor)
-				if playerColor:
-					color = playerColor.getColorTypePrimary()
+			if 0 <= iPlayer < gc.getMAX_PLAYERS() :
+				ePlayerColor = gc.getPlayer(iPlayer).getPlayerColor()
+				if ePlayerColor != -1:
+					playerColor = gc.getPlayerColorInfo(ePlayerColor)
+					if playerColor:
+						color = playerColor.getColorTypePrimary()
 
 			if (self.szWonderDisplayMode == self.szWDM_Project):
 				pWonderInfo = gc.getProjectInfo(iWonderType)
