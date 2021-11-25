@@ -2169,7 +2169,7 @@ class PLE:
 		if (self.bShowGreatGeneralIndicator):
 			# is unit lead by a GG?
 			# lfgr 10/2021 fix: Consider both general types
-			for s in ("PROMOTION_GREAT_GENERAL", "PROMOTION_GREAT_COMMANDER") :
+			for s in ("PROMOTION_GREAT_GENERAL",) :
 				iLeaderPromo = gc.getInfoTypeForString( s )
 				if iLeaderPromo != -1 and pLoopUnit.isHasPromotion( iLeaderPromo ) :
 					szDotState += "_GG"

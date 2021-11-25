@@ -508,7 +508,7 @@ class BupUnit:
 
 		# lfgr fix 10/2021: Consider both general types
 		self.isLeadByGreatGeneral = False
-		for s in ("PROMOTION_GREAT_GENERAL", "PROMOTION_GREAT_COMMANDER") :
+		for s in ("PROMOTION_GREAT_GENERAL",) :
 			iLeaderPromo = gc.getInfoTypeForString( s )
 			if iLeaderPromo != -1 and pUnit.isHasPromotion( iLeaderPromo ) :
 				self.isLeadByGreatGeneral = True
