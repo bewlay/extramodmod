@@ -24,7 +24,7 @@ BeginGame
 	TargetScore=0
 	StartYear=1
 	Description=Ozzy's Map of Erebus. Adapted to ExtraModMod.
-	ModPath=Mods\Fall from Heaven 2
+	ModPath=Mods\ExtraModMod
 EndGame
 BeginTeam
 	TeamID=0
