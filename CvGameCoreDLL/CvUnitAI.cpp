@@ -28218,8 +28218,38 @@ bool CvUnitAI::AI_wantsToExplore( int iX, int iY ) const
 			return false;
 		else if( pPlot->getLairDanger() > getExplorationLevel() )
 			return false;
-		else
-			return true;
+		
+		// lfgr 11/2021: Check for undefended nearby cities
+		int iRange = 4; // LFGR_TODO: configurable?
+		const PlayerTypes eMyPlayer = getOwnerINLINE();
+		const TeamTypes eMyTeam = GET_PLAYER( eMyPlayer ).getTeam();
+		for (int iX = -iRange; iX <= iRange; iX++)
+		{
+			for (int iY = -iRange; iY <= iRange; iY++)
+			{
+				CvPlot* pLoopPlot = plotXY(getX_INLINE(), getY_INLINE(), iX, iY);
+				if (pLoopPlot != NULL)
+				{
+					CvCity* pLoopCity = pLoopPlot->getPlotCity();
+					if( pLoopCity != NULL )
+					{
+						const PlayerTypes eCityPlayer = pLoopCity->getOwnerINLINE();
+						const TeamTypes eCityTeam = GET_PLAYER( eCityPlayer ).getTeam();
+						if( eCityTeam == eMyTeam || GET_TEAM( eCityTeam ).isVassal( eMyTeam ) || GET_TEAM( eMyTeam ).isVassal( eCityTeam )
+								|| GET_PLAYER( eMyPlayer ).AI_getAttitude( eCityPlayer ) >= ATTITUDE_PLEASED )
+						{
+							if( pLoopCity->plot()->plotCount( PUF_canDefend, -1, -1, eCityPlayer ) == 0 )
+							{
+								// Nearby friendly city without defenders!
+								return false;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return true;
 	}
 	else
 		return false;
@@ -28273,8 +28303,12 @@ bool CvUnitAI::AI_exploreLair(int iRange)
 							if (!pLoopPlot->isVisibleEnemyDefender(this))
 							{
 							// WILDERNESS 02/2016 lfgr // WildernessAI
+								if( gUnitLogLevel > 2 ) logBBAI("      ...found eligible lair at %d, %d", pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
 								if( !AI_wantsToExplore( pLoopPlot->getX(), pLoopPlot->getY() ) )
+								{
+									if( gUnitLogLevel > 2 ) logBBAI("        ...but doesn't want to explore");
 									continue;
+								}
 							// WILDERNESS end
 								if (generatePath(pLoopPlot, 0, true, &iPathTurns))
 								{
