@@ -17148,6 +17148,22 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
     return false;
 }
 
+bool CvUnit::hasActiveSummon( UnitClassTypes eUnitClass ) const
+{
+	int iLoop;
+	CvUnit* pLoopUnit;
+	CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
+	for( pLoopUnit = kPlayer.firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = kPlayer.nextUnit(&iLoop) )
+	{
+		if( pLoopUnit->getUnitClassType() == eUnitClass && pLoopUnit->getSummoner() == getID() )
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 bool CvUnit::canCreateUnit(int spell) const
 {
 	if (getDuration() > 0) // to prevent summons summoning spinlocks
@@ -17167,29 +17183,23 @@ bool CvUnit::canCreateUnit(int spell) const
 //<<<<Unofficial Bug Fix: End Delete
 	if (GC.getSpellInfo((SpellTypes)spell).isPermanentUnitCreate())
 	{
-		// LFGR_TODO: There should be something like "canEverCast(eSpell)", which is then counted here
-		int iCount = 0;
-		int iLoop = 0;
-		CvUnit* pLoopUnit;
-		CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
-		for (pLoopUnit = kPlayer.firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = kPlayer.nextUnit(&iLoop))
+		UnitClassTypes eCreatedUnitClass = (UnitClassTypes)GC.getUnitInfo((UnitTypes)GC.getSpellInfo((SpellTypes)spell).getCreateUnitType()).getUnitClassType();
+		if( GC.getDefineINT( "COUNT_SUMMONS_PER_CASTER" ) )
 		{
-			if ((GC.getSpellInfo((SpellTypes)spell).getPromotionPrereq1() == NO_PROMOTION ||
-			  pLoopUnit->isHasPromotion((PromotionTypes)GC.getSpellInfo((SpellTypes)spell).getPromotionPrereq1())) &&
-			  (GC.getSpellInfo((SpellTypes)spell).getPromotionPrereq2() == NO_PROMOTION ||
-			  pLoopUnit->isHasPromotion((PromotionTypes)GC.getSpellInfo((SpellTypes)spell).getPromotionPrereq2())) &&
-			  (GC.getSpellInfo((SpellTypes)spell).getReligionPrereq() == NO_RELIGION ||
-			  pLoopUnit->getReligion() == GC.getSpellInfo((SpellTypes)spell).getReligionPrereq()) &&
-			  (GC.getSpellInfo((SpellTypes)spell).getUnitClassPrereq() == NO_RELIGION || // fix 05/2020 lfgr
-			  pLoopUnit->getUnitClassType() == GC.getSpellInfo((SpellTypes)spell).getUnitClassPrereq())
-			)
+			// lfgr 11/2021: Only allow one summon (of each unitclass) per caster
+			if( hasActiveSummon( eCreatedUnitClass ) )
 			{
-				iCount += 1;
+				return false;
 			}
 		}
-		if (iCount <= kPlayer.getUnitClassCount((UnitClassTypes)GC.getUnitInfo((UnitTypes)GC.getSpellInfo((SpellTypes)spell).getCreateUnitType()).getUnitClassType()))
+		else
 		{
-			return false;
+			// lfgr 11/2021: Count number of summons (of correct unitclass) against number of eligible summoners (original behavior)
+			CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
+			if( kPlayer.getCasterCount( (SpellTypes) spell ) <= kPlayer.getUnitClassCount( eCreatedUnitClass ) )
+			{
+				return false;
+			}
 		}
 	}
 	return true;
@@ -18268,11 +18278,12 @@ void CvUnit::castCreateUnit(int spell)
 /*************************************************************************************************/
 /**	END	                                        												**/
 /*************************************************************************************************/
-	if (GC.getSpellInfo((SpellTypes)spell).isPermanentUnitCreate())
+	// lfgr 11/2021: Decouple permanent and immobile summons
+	if (GC.getSpellInfo((SpellTypes)spell).isImmobileUnitCreate())
 	{
 		pUnit->changeImmobileTimer(2);
 	}
-	else
+	if( ! GC.getSpellInfo((SpellTypes)spell).isPermanentUnitCreate() )
 	{
 		pUnit->changeDuration(2);
 		if (pUnit->getSpecialUnitType() != GC.getDefineINT("SPECIALUNIT_SPELL"))
@@ -20582,6 +20593,12 @@ int CvUnit::getMiscastChance() const {
 	}
 
 	return std::max( 0, iMiscastChance );
+}
+
+// lfgr 01/2022: Refactoring
+bool CvUnit::isNoUpkeep() const
+{
+	return getDuration() > 0 || getUnitInfo().isNoUpkeep();
 }
 
 void CvUnit::read(FDataStreamBase* pStream)

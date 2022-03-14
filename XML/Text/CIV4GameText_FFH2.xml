@@ -8611,9 +8611,9 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_ENEMY_CITY_CRIME</Tag>
-		<English>A bandit company outside of the %s1_civ city of %s2_city survives by raiding occasional caravans. If we were able to provide some financing they could harass our neighbors' guards.</English>
-		<German>Ein Ganovenbande au&#223;erhalb der %[s1_civ]en Stadt %s2_city schl&#228;gt sich gelengentlichen Karawanen&#252;berf&#228;llen durch. Wenn wir ihnen etwas Gold g&#228;ben, w&#252;rden sie ihre Angriffe auf unsere Nachbarn konzentrieren.</German>
-		<Spanish>Una compa&#241;&#237;a de bandidos a las afueras de la ciudad %s1_civ de %s2_city sobrevive mediante incursiones a las caravanas. Si pudi&#233;ramos financiarlos atacar&#237;an a nuestros vecinos en lugar de a nosotros.</Spanish>
+		<English>A bandit company outside of the %s1_civ city of %s6_city survives by raiding occasional caravans. If we were able to provide some financing they could harass our neighbors' guards.</English>
+		<German>Ein Ganovenbande au&#223;erhalb der %[s1_civ]en Stadt %s6_city schl&#228;gt sich gelengentlichen Karawanen&#252;berf&#228;llen durch. Wenn wir ihnen etwas Gold g&#228;ben, w&#252;rden sie ihre Angriffe auf unsere Nachbarn konzentrieren.</German>
+		<Spanish>Una compa&#241;&#237;a de bandidos a las afueras de la ciudad %s1_civ de %s6_city sobrevive mediante incursiones a las caravanas. Si pudi&#233;ramos financiarlos atacar&#237;an a nuestros vecinos en lugar de a nosotros.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_ENEMY_CITY_CRIME_1</Tag>
@@ -14286,12 +14286,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_ALEXIS</Tag>
-		<English>Alexis</English>
-		<Spanish>
+		<English>
 			<Text>Alexis</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_ALEXIS_PEDIA</Tag>
@@ -14302,12 +14301,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_AMELANCHIER</Tag>
-		<English>Amelanchier</English>
-		<Spanish>
+		<English>
 			<Text>Amelanchier</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_AMELANCHIER_PEDIA</Tag>
@@ -14318,21 +14316,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_ANAGANTIOS</Tag>
-		<English>Anagantios</English>
-		<Spanish>
+		<English>
 			<Text>Anagantios</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_ARENDEL</Tag>
-		<English>Arendel Phaedra</English>
-		<Spanish>
+		<English>
 			<Text>Arendel Phaedra</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_ARENDEL_PEDIA</Tag>
@@ -14343,12 +14339,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_ARTURUS</Tag>
-		<English>Arturus Thorne</English>
-		<Spanish>
+		<English>
 			<Text>Arturus Thorne</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_ARTURUS_PEDIA</Tag>
@@ -14357,12 +14352,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_AURIC</Tag>
-		<English>Auric Ulvin</English>
-		<Spanish>
+		<English>
 			<Text>Auric Ulvin</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_AURIC_PEDIA</Tag>
@@ -14373,7 +14367,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_AVERAX</Tag>
-		<English>Averax the Cambion</English>
+		<English>
+			<Text>Averax the Cambion</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</English>
 		<Spanish>
 			<Text>Averax el Demon&#237;aco</Text>
 			<Gender>Male</Gender>
@@ -14382,12 +14380,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_BASIUM</Tag>
-		<English>Basium</English>
-		<Spanish>
+		<English>
 			<Text>Basium</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_BASIUM_PEDIA</Tag>
@@ -14397,12 +14394,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_BEERI</Tag>
-		<English>Beeri Bawl</English>
-		<Spanish>
+		<English>
 			<Text>Beeri Bawl</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_BEERI_PEDIA</Tag>
@@ -14412,7 +14408,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_BRAEDEN</Tag>
-		<English>Braeden the Laconic</English>
+		<English>
+			<Text>Braeden the Laconic</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</English>
 		<Spanish>
 			<Text>Braeden el Lac&#243;nico</Text>
 			<Gender>Male</Gender>
@@ -14421,12 +14421,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_CAPRIA</Tag>
-		<English>Capria</English>
-		<Spanish>
+		<English>
 			<Text>Capria</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_CAPRIA_PEDIA</Tag>
@@ -14435,12 +14434,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_CARDITH</Tag>
-		<English>Cardith Lorda</English>
-		<Spanish>
+		<English>
 			<Text>Cardith Lorda</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_CARDITH_PEDIA</Tag>
@@ -14449,12 +14447,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_CASSIEL</Tag>
-		<English>Cassiel</English>
-		<Spanish>
+		<English>
 			<Text>Cassiel</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_CASSIEL_PEDIA</Tag>
@@ -14463,12 +14460,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_CHARADON</Tag>
-		<English>Charadon</English>
-		<Spanish>
+		<English>
 			<Text>Charadon</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_CHARADON_PEDIA</Tag>
@@ -14477,7 +14473,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_DAIN</Tag>
-		<English>Dain the Caswallawn</English>
+		<English>
+			<Text>Dain the Caswallawn</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</English>
 		<French>Dain le Caswallawn</French>
 		<German>Dain der Caswallawn</German>
 		<Spanish>
@@ -14493,12 +14493,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_DECIUS</Tag>
-		<English>Decius</English>
-		<Spanish>
+		<English>
 			<Text>Decius</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_DECIUS_PEDIA</Tag>
@@ -14506,7 +14505,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_DUIN</Tag>
-		<English>Baron Duin Halfmorn</English>
+		<English>
+			<Text>Baron Duin Halfmorn</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</English>
 		<Spanish>
 			<Text>Bar&#243;n Duin Halfmorn</Text>
 			<Gender>Male</Gender>
@@ -14515,21 +14518,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_DUMANNIOS</Tag>
-		<English>Dumannios</English>
-		<Spanish>
+		<English>
 			<Text>Dumannios</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_EINION</Tag>
-		<English>Einion Logos</English>
-		<Spanish>
+		<English>
 			<Text>Einion Logos</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_EINION_PEDIA</Tag>
@@ -14538,7 +14539,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_ETHNE</Tag>
-		<English>Ethne the White</English>
+		<English>
+			<Text>Ethne the White</Text>
+			<Gender>Female</Gender>
+			<Plural>0</Plural>
+		</English>
 		<French>Ethne la Blanche</French>
 		<German>Ethne die Weisse</German>
 		<Spanish>
@@ -14554,12 +14559,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_FAERYL</Tag>
-		<English>Faeryl Viconia</English>
-		<Spanish>
+		<English>
 			<Text>Faeryl Viconia</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_FAERYL_PEDIA</Tag>
@@ -14569,12 +14573,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_FALAMAR</Tag>
-		<English>Falamar</English>
-		<Spanish>
+		<English>
 			<Text>Falamar</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_FALAMAR_PEDIA</Tag>
@@ -14583,12 +14586,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_FLAUROS</Tag>
-		<English>Flauros</English>
-		<Spanish>
+		<English>
 			<Text>Flauros</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_FLAUROS_PEDIA</Tag>
@@ -14597,7 +14599,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_FURIA</Tag>
-		<English>Furia the Mad</English>
+		<English>
+			<Text>Furia the Mad</Text>
+			<Gender>Female</Gender>
+			<Plural>0</Plural>
+		</English>
 		<Spanish>
 			<Text>Furia la Loca</Text>
 			<Gender>Female</Gender>
@@ -14606,12 +14612,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_GARRIM</Tag>
-		<English>Garrim Gyr</English>
-		<Spanish>
+		<English>
 			<Text>Garrym Gyr</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_GARRIM_PEDIA</Tag>
@@ -14620,16 +14625,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_GOSEA</Tag>
-		<English>Gosea</English>
-		<Spanish>
+		<English>
 			<Text>Gosea</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_HAFGAN</Tag>
-		<English>Hafgan the Purger</English>
+		<English>
+			<Text>Hafgan the Purger</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</English>
 		<Spanish>
 			<Text>Hafgan el Destructor</Text>
 			<Gender>Male</Gender>
@@ -14638,7 +14646,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_HANNAH</Tag>
-		<English>Hannah the Irin</English>
+		<English>
+			<Text>Hannah the Irin</Text>
+			<Gender>Female</Gender>
+			<Plural>0</Plural>
+		</English>
 		<French>Hannah l'Irin</French>
 		<German>Hannah die Irin</German>
 		<Spanish>
@@ -14654,12 +14666,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_HYBOREM</Tag>
-		<English>Hyborem</English>
-		<Spanish>
+		<English>
 			<Text>Hyborem</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_HYBOREM_PEDIA</Tag>
@@ -14669,12 +14680,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_JONAS</Tag>
-		<English>Jonas Endain</English>
-		<Spanish>
+		<English>
 			<Text>Jonas Endain</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_JONAS_PEDIA</Tag>
@@ -14683,21 +14693,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_JUDECCA</Tag>
-		<English>Judecca</English>
-		<Spanish>
+		<English>
 			<Text>Judecca</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_KANDROS</Tag>
-		<English>Kandros Fir</English>
-		<Spanish>
+		<English>
 			<Text>Kandros Fir</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_KANDROS_PEDIA</Tag>
@@ -14707,21 +14715,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_KANE</Tag>
-		<English>Kane</English>
-		<Spanish>
+		<English>
 			<Text>Kane</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_KEELYN</Tag>
-		<English>Keelyn</English>
-		<Spanish>
+		<English>
 			<Text>Keelyn</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_KEELYN_PEDIA</Tag>
@@ -14730,7 +14736,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_KOUN</Tag>
-		<English>Minister Koun</English>
+		<English>
+			<Text>Minister Koun</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</English>
 		<Spanish>
 			<Text>Ministro Koun</Text>
 			<Gender>Male</Gender>
@@ -14740,7 +14750,11 @@
 	<!-- MINOR_LEADERS_PEDIA 08/2013 lfgr: Removed TXT_KEY_LEADER_KOUN_PEDIA ("No entry yet.") -->
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_LETHE</Tag>
-		<English>Lethe, Queen of Sorrow</English>
+		<English>
+			<Text>Lethe, Queen of Sorrow</Text>
+			<Gender>Female</Gender>
+			<Plural>0</Plural>
+		</English>
 		<Spanish>
 			<Text>Lethe, Reina del Dolor</Text>
 			<Gender>Female</Gender>
@@ -14749,12 +14763,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_MAHALA</Tag>
-		<English>Mahala</English>
-		<Spanish>
+		<English>
 			<Text>Mahala</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_MAHALA_PEDIA</Tag>
@@ -14764,7 +14777,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_MAHON</Tag>
-		<English>Mahon the Butcher</English>
+		<English>
+			<Text>Mahon the Butcher</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</English>
 		<Spanish>
 			<Text>Mahon el Carnicero</Text>
 			<Gender>Male</Gender>
@@ -14773,39 +14790,35 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_MALCHAVIC</Tag>
-		<English>Malchavic</English>
-		<Spanish>
+		<English>
 			<Text>Malchavic</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_MELISANDRE</Tag>
-		<English>Melisandre</English>
-		<Spanish>
+		<English>
 			<Text>Melisandre</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_MERESIN</Tag>
-		<English>Meresin</English>
-		<Spanish>
+		<English>
 			<Text>Meresin</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_OS-GABELLA</Tag>
-		<English>Os-Gabella</English>
-		<Spanish>
+		<English>
 			<Text>Os-Gabella</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_OS-GABELLA_PEDIA</Tag>
@@ -14814,7 +14827,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_OSTANES</Tag>
-		<English>Captain Ostanes</English>
+		<English>
+			<Text>Captain Ostanes</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</English>
 		<Spanish>
 			<Text>Capit&#225;n Ostanes</Text>
 			<Gender>Male</Gender>
@@ -14823,21 +14840,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_OUZZA</Tag>
-		<English>Ouzza</English>
-		<Spanish>
+		<English>
 			<Text>Ouzza</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_PERPENTACH</Tag>
-		<English>Perpentach</English>
-		<Spanish>
-			<Text>Perpentarch</Text>
+		<English>
+			<Text>Perpentach</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_PERPENTACH_PEDIA</Tag>
@@ -14865,12 +14880,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_RHOANNA</Tag>
-		<English>Rhoanna</English>
-		<Spanish>
+		<English>
 			<Text>Rhoanna</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_RHOANNA_PEDIA</Tag>
@@ -14879,16 +14893,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_RIUROS</Tag>
-		<English>Riuros</English>
-		<Spanish>
+		<English>
 			<Text>Riuros</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_RIVANNA</Tag>
-		<English>Rivanna the Wraith Lord</English>
+		<English>
+			<Text>Rivanna the Wraith Lord</Text>
+			<Gender>Female</Gender>
+			<Plural>0</Plural>
+		</English>
 		<Spanish>
 			<Text>Rivanna, Se&#241;ora de los Espectros</Text>
 			<Gender>Female</Gender>
@@ -14897,12 +14914,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_SABATHIEL</Tag>
-		<English>Sabathiel</English>
-		<Spanish>
+		<English>
 			<Text>Sabathiel</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_SABATHIEL_PEDIA</Tag>
@@ -14911,7 +14927,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_SALLOS</Tag>
-		<English>Duke Sallos</English>
+		<English>
+			<Text>Duke Sallos</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</English>
 		<Spanish>
 			<Text>Duque Sallos</Text>
 			<Gender>Male</Gender>
@@ -14920,13 +14940,12 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_SANDALPHON</Tag>
-		<English>Sandalphon</English>
-		<French>Morgoth</French>
-		<Spanish>
+		<English>
 			<Text>Sandalphon</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
+		<French>Morgoth</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_SANDALPHON_PEDIA</Tag>
@@ -14936,12 +14955,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_SHEELBA</Tag>
-		<English>Sheelba</English>
-		<Spanish>
+		<English>
 			<Text>Sheelba</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_SHEELBA_PEDIA</Tag>
@@ -14950,16 +14968,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_SHEKINAH</Tag>
-		<English>Shekinah</English>
-		<Spanish>
+		<English>
 			<Text>Shekinah</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_STATIUS</Tag>
-		<English>Statius the Redeemer</English>
+		<English>
+			<Text>Statius the Redeemer</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</English>
 		<French>Statius le R&#233;dempteur</French>
 		<German>Statius der Erl&#246;ser</German>
 		<Spanish>
@@ -14970,12 +14991,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_TASUNKE</Tag>
-		<English>Tasunke</English>
-		<Spanish>
+		<English>
 			<Text>Tasunke</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_TASUNKE_PEDIA</Tag>
@@ -14985,12 +15005,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_TEBRYN</Tag>
-		<English>Tebryn Arbandi</English>
-		<Spanish>
+		<English>
 			<Text>Tebryn Arbandi</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_TEBRYN_PEDIA</Tag>
@@ -15000,21 +15019,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_TETHIRA</Tag>
-		<English>Tethira</English>
-		<Spanish>
+		<English>
 			<Text>Tethira</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_THESSA</Tag>
-		<English>Thessa</English>
-		<Spanish>
+		<English>
 			<Text>Thessa</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_THESSA_PEDIA</Tag>
@@ -15023,34 +15040,35 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_THESSALONICA</Tag>
-		<English>Thessalonica</English>
-		<Spanish>
+		<English>
 			<Text>Thessalonica</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_TYA</Tag>
-		<English>Tya Kiri</English>
-		<Spanish>
+		<English>
 			<Text>Tya Kiri</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_ULDANOR</Tag>
-		<English>Captain Uldanor</English>
-		<Spanish>
+		<English>
 			<Text>Capit&#225;n Uldanor</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_VALLEDIA</Tag>
-		<English>Valledia the Even</English>
+		<English>
+			<Text>Valledia the Even</Text>
+			<Gender>Female</Gender>
+			<Plural>0</Plural>
+		</English>
 		<French>Valledia la Juste</French>
 		<German>Valledia die Gerechte</German>
 		<Spanish>
@@ -15066,12 +15084,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_VARN</Tag>
-		<English>Varn Gosam</English>
-		<Spanish>
+		<English>
 			<Text>Varn Gosam</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_VARN_PEDIA</Tag>
@@ -15081,16 +15098,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_VOLANNA</Tag>
-		<English>Volanna</English>
-		<Spanish>
+		<English>
 			<Text>Volanna</Text>
 			<Gender>Female</Gender>
 			<Plural>0</Plural>
-		</Spanish>
+		</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_LEADER_WEEVIL</Tag>
-		<English>Weevil, Pickle and Hyde</English>
+		<English>
+			<Text>Weevil, Pickle and Hyde</Text>
+			<Gender>Male</Gender>
+			<Plural>1</Plural>
+		</English>
 		<French>Weevil, Pickle et Hyde</French>
 		<Spanish>
 			<Text>Weevil, Pickle y Hyde</Text>
@@ -15313,12 +15333,6 @@
 		<English>Defensive Strike: Your %s1_UnitName damaged %d2% by an enemy %s3_UnitName</English>
 		<German>Verteidigungsschlag: Eure %s1_UnitName erlitt eine Besch&#228;digung von %d2% von einer feindlichen %s3_UnitName</German>
 		<Spanish>Ataque Defensivo: Tu %s1_UnitName ha recibido un da&#241;o de %d2% debido al %s3_UnitName enemigo</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_MESSAGE_DIFFICULTY</Tag>
-		<English>Difficulty: %s1</English>
-		<German>Schwierigkeitsgrad: %s1</German>
-		<Spanish>Dificultad: %s1</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MESSAGE_DISABLE_PRODUCTION</Tag>
@@ -22209,25 +22223,6 @@
 		<Spanish>Invocar Treant</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_SPELL_SUMMON_UNIT</Tag>
-		<English>[ICON_BULLET]Summons a [LINK=literal]%s1_unit[\LINK].</English>
-		<French>[ICON_BULLET]Evoque un %s1_unit.</French>
-		<German>[ICON_BULLET]Beschw&#246;rt eine %s1_unit.</German>
-		<Spanish>[ICON_BULLET]Invoca una unidad de [LINK=literal]%s1_unit[\LINK].</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_SPELL_SUMMON_UNIT_MULTIPLE</Tag>
-		<English>[ICON_BULLET]Summons %D1 [LINK=literal]%s2_unitname[\LINK](s).</English>
-		<French>[ICON_BULLET]Evoque %D1 %s2_unitname(s).</French>
-		<German>[ICON_BULLET]Beschw&#246;rt %D1 %s2_unitname(s).</German>
-		<Spanish>[ICON_BULLET]Invoca %D1 [LINK=literal]%s2_unitname[\LINK](s).</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_SPELL_SUMMON_UNIT_PERMANENT</Tag>
-		<English>(permanent)</English>
-		<Spanish>(permanente)</Spanish>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_SPELL_SUMMON_WATER_ELEMENTAL</Tag>
 		<English>Summon Water Elemental</English>
 		<French>Evoquer El&#233;mental d'Eau</French>
@@ -27105,7 +27100,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_HAS_CASTED</Tag>
-		<English>Has already casted this turn</English>
+		<English>Has already cast this turn</English>
 		<French>A d&#233;ja lanc&#233; un sort ce tour</French>
 		<German>Hat diese Runde schon gezaubert</German>
 		<Spanish>Ya ha lanzado hechizos este turno</Spanish>

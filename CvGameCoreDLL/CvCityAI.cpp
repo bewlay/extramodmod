@@ -1806,7 +1806,7 @@ void CvCityAI::AI_chooseProduction()
 	//minimal defense.
 	if (!bLandWar && !bCrushStrategy && !bFinancialTrouble)
 	{
-		if (iPlotCityDefenderCount <= (iPlotSettlerCount * 5))
+		if (iPlotCityDefenderCount < (iPlotSettlerCount * 5)) // lfgr 02/2022: only build anything if there actually are settlers
 		{
 			if( gCityLogLevel >= 2 ) logBBAI("      City %S needs escort for existing settler", getName().GetCString());
 			if (AI_chooseUnit(UNITAI_CITY_DEFENSE))
@@ -2074,7 +2074,7 @@ void CvCityAI::AI_chooseProduction()
 		{
 			if (kPlayer.AI_getFundedPercent() > 50)
 			{
-    			if (AI_chooseUnit(UNITAI_ATTACK))
+    			if (AI_chooseUnit(UNITAI_ATTACK)) // TODO: Before we do this, we should probably build prereq buildings
     			{
 					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses danger minimal attack (%d needed)", getName().GetCString(), iAttackNeeded);
     				return;
@@ -2814,18 +2814,11 @@ void CvCityAI::AI_chooseProduction()
 			iWonderTime ++;
 			iWonderTime *= 4;
 
-/************************************************************************************************/
-/* Afforess	                  Start		 06/01/10                                               */
-/* Ruthless AI                                                                                  */
-/************************************************************************************************/
-			//Avoid building wonders that take a long time
-			if (bAggressiveAI)
+			// Ruthless AI: Avoid building wonders that take a long time
+			if( GC.getGameINLINE().isOption( GAMEOPTION_RUTHLESS_AI ) )
 			{
 				iWonderTime /= 2;
 			}
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 
 			if (AI_chooseBuilding(BUILDINGFOCUS_WORLDWONDER, iWonderTime))
 			{
@@ -5239,7 +5232,7 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 									iUnitTempValue += kUnitInfo.getTier() * 3;
 									iUnitTempValue += kUnitInfo.getWeaponTier();
 
-									if (GET_PLAYER(getOwner()).getHighestUnitTier(false,true) > kUnitInfo.getTier())
+									if (GET_PLAYER(getOwner()).getHighestUnitTier(false,true) < kUnitInfo.getTier())
 									{
 										iUnitTempValue += kUnitInfo.getTier() * 10;
 									}
@@ -11362,18 +11355,12 @@ int CvCityAI::AI_buildUnitProb()
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
 
-/************************************************************************************************/
-/* Afforess	                  Start		 02/19/10                                               */
-/* Ruthless AI: Build more units                                                                */
-/************************************************************************************************/
-	if (GC.getGameINLINE().isOption(GAMEOPTION_AGGRESSIVE_AI))
+	// Ruthless AI: Build more units
+	if (GC.getGameINLINE().isOption(GAMEOPTION_RUTHLESS_AI))
 	{
 		iProb *= 4;
 		iProb /= 3;
 	}
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 
 /************************************************************************************************/
 /* REVOLUTION_MOD                         11/08/08                                jdog5000      */

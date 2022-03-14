@@ -1548,7 +1548,7 @@
 		</UnitClassInfo>
 		<UnitClassInfo>
 			<Type>UNITCLASS_HIGH_PRIEST_OF_KILMORPH</Type>
-			<Description>TXT_KEY_UNIT_HIGH_PRIEST_OF_KILMORPH</Description>
+			<Description>TXT_KEY_UNIT_RUNEKEEPER</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>-1</iMaxTeamInstances>
 			<iMaxPlayerInstances>4</iMaxPlayerInstances>

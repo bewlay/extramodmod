@@ -914,6 +914,9 @@ enum GameOptionTypes				// Exposed to Python
 /************************************************************************************************/
 /* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
+// Ruthless AI split 02/2022 lfgr
+	GAMEOPTION_RUTHLESS_AI,
+
 // Dummy gameoptions for mod use
 	GAMEOPTION_DUMMY_01,
 	GAMEOPTION_DUMMY_02,
@@ -954,7 +957,6 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_DUMMY_37,
 	GAMEOPTION_DUMMY_38,
 	GAMEOPTION_DUMMY_39,
-	GAMEOPTION_DUMMY_40,
 
 #ifdef _USRDLL
 	NUM_GAMEOPTION_TYPES

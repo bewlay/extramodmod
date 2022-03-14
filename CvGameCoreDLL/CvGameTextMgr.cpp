@@ -10220,7 +10220,7 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
 		szBuffer.append( gDLL->getText("TXT_KEY_SPELL_VOTE_PREREQ", // LFGR_TODO
 				GC.getVoteInfo( (VoteTypes) kSpellInfo.getVotePrereq() ).getDescription() ) );
 	}
-    if (kSpellInfo.getUnitPrereq() != NO_UNIT)
+    if (kSpellInfo.getUnitPrereq() != NO_UNIT) // LFGR_TODO: Show these and others only without a specific unit
     {
         szBuffer.append(pcNewline);
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_UNIT_PREREQ", GC.getUnitInfo((UnitTypes)kSpellInfo.getUnitPrereq()).getDescription()));
@@ -10287,6 +10287,11 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
         {
             szBuffer.append(gDLL->getText("TXT_KEY_SPELL_SUMMON_UNIT_PERMANENT"));
         }
+		// lfgr 11/2021: Decouple permanent and immobile summons
+		if (kSpellInfo.isPermanentUnitCreate())
+		{
+			szBuffer.append(gDLL->getText("TXT_KEY_SPELL_SUMMON_UNIT_IMMOBILE"));
+		}
         if (kSpellInfo.isCopyCastersPromotions())
         {
             szBuffer.append(pcNewline);
@@ -10567,26 +10572,33 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
 /********************************************************************************/
 /* SpellPyHelp                        11/2013                           lfgr    */
 /********************************************************************************/
+	// Get owner of the units
+	PlayerTypes eOwner = NO_PLAYER;
+	if( pvpUnits != NULL )
+	{
+		for( uint i = 0; i < pvpUnits->size(); i++ )
+		{
+			if( eOwner == -1 )
+				eOwner = pvpUnits->at( i )->getOwnerINLINE();
+			else
+				FAssertMsg( pvpUnits->at( i )->getOwnerINLINE() == eOwner, "Units with different onwers selected!" );
+		}
+	}
+
 	bool bPyHelpUsed = false;
 	if( pvpUnits != NULL && !CvString( GC.getSpellInfo( eSpell ).getPyHelp() ).empty() )
 	{
-		// Get owner of the units
-		int iOwner = -1;
-		int* aiUnitIDs = new int[pvpUnits->size()];
-		for( uint i = 0; i < pvpUnits->size(); i++ )
+		if( eOwner != -1 )
 		{
-			if( iOwner == -1 )
-				iOwner = pvpUnits->at( i )->getOwnerINLINE();
-			else
-				FAssertMsg( pvpUnits->at( i )->getOwnerINLINE() == iOwner, "Units with different onwers selected!" );
-			aiUnitIDs[i] = pvpUnits->at( i )->getID();
-		}
+			int* aiUnitIDs = new int[pvpUnits->size()];
+			for( uint i = 0; i < pvpUnits->size(); i++ )
+			{
+				aiUnitIDs[i] = pvpUnits->at( i )->getID();
+			}
 
-		if( iOwner != -1 )
-		{
 			CyArgsList argsList;
 			argsList.add( (int) eSpell );
-			argsList.add( (int) iOwner );
+			argsList.add( (int) eOwner );
 			argsList.add( aiUnitIDs, pvpUnits->size() );
 		
 			CvWString szHelp;
@@ -10615,15 +10627,56 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
         szBuffer.append(gDLL->getText("TXT_KEY_SPELL_SACRIFICE_CASTER"));
     }
 
-
-
-	// Improved spell help 04/2021: Show help for added promotion, constructed building
+	// Improved spell help 04/2021: Show help for added promotion, created unit, constructed building
 	// LFGR_TODO: AddPromotionType2...
 	if( !bCivilopediaText )
 	{
+		// lfgr 11/2021: Permanent summon help
+		if( kSpellInfo.isPermanentUnitCreate() )
+		{
+			UnitClassTypes eCreatedUnitClass = (UnitClassTypes) GC.getUnitInfo( (UnitTypes) kSpellInfo.getCreateUnitType() ).getUnitClassType();
+			if( GC.getDefineINT( "COUNT_SUMMONS_PER_CASTER" ) )
+			{
+				bool canAnySummon = false;
+				for( uint i = 0; i < pvpUnits->size(); i++ )
+				{
+					if( ! pvpUnits->at( i )->hasActiveSummon( eCreatedUnitClass ) )
+					{
+						canAnySummon = true;
+						break;
+					}
+				}
+				
+				if( !canAnySummon )
+				{
+					szBuffer.append( pcNewline );
+					szBuffer.append( gDLL->getText( "TXT_KEY_SPELL_HELP_HAS_ACTIVE_SUMMON" ) );
+				}
+			}
+			else
+			{
+				if( eOwner != -1 )
+				{
+					CvPlayerAI& kPlayer = GET_PLAYER( (PlayerTypes) eOwner );
+					int iSummonCount = kPlayer.getUnitClassCount( eCreatedUnitClass );
+					int iCasterCount = kPlayer.getCasterCount( eSpell );
+
+					szBuffer.append( pcNewline );
+					if( iSummonCount < iCasterCount )
+					{
+						szBuffer.append( gDLL->getText( "TXT_KEY_SPELL_HELP_SUMMONS_VS_SUMMONERS", iSummonCount, iCasterCount ) );
+					}
+					else
+					{
+						szBuffer.append( gDLL->getText( "TXT_KEY_SPELL_HELP_SUMMONS_VS_SUMMONERS_UNAVAILABLE", iSummonCount, iCasterCount ) );
+					}
+				}
+			}
+		}
+
 		CvSpellInfo& kSpellInfo = GC.getSpellInfo( eSpell );
 		PromotionTypes eAddedPromotion = (PromotionTypes) kSpellInfo.getAddPromotionType1();
-		if( eAddedPromotion != NO_PROMOTION && getBugOptionBOOL( "FfHUI__ShowSpellAddedPromotionHelp", true ) ) {
+		if( eAddedPromotion != NO_PROMOTION && GC.getDefineINT( "ALLOW_SHOW_ADDED_PROMOTION_HELP", 1 ) && getBugOptionBOOL( "FfHUI__ShowSpellAddedPromotionHelp", true ) ) {
 
 			szBuffer.append( NEWLINE );
 			szBuffer.append( gDLL->getText( "TXT_KEY_SPELL_ADD_PROMOTION_HEADER", GC.getPromotionInfo( eAddedPromotion ).getTextKeyWide() ) );
@@ -10632,7 +10685,7 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
 		}
 
 		UnitTypes eUnit = (UnitTypes) kSpellInfo.getCreateUnitType();
-		if( eUnit != NO_BUILDING && getBugOptionBOOL( "FfHUI__ShowSpellCreatedUnitHelp", true ) )
+		if( eUnit != NO_BUILDING && GC.getDefineINT( "ALLOW_SHOW_CREATED_UNIT_HELP", 1 ) && getBugOptionBOOL( "FfHUI__ShowSpellCreatedUnitHelp", true ) )
 		{
 			szBuffer.append( NEWLINE );
 			szBuffer.append( gDLL->getText( "TXT_KEY_SPELL_CREATE_UNIT_PRE_HEADER" ) );
@@ -10640,7 +10693,7 @@ void CvGameTextMgr::parseSpellHelp( CvWStringBuffer &szBuffer, SpellTypes eSpell
 		}
 
 		BuildingTypes eBuilding = (BuildingTypes) kSpellInfo.getCreateBuildingType();
-		if( eBuilding != NO_BUILDING && getBugOptionBOOL( "FfHUI__ShowSpellCreatedBuildingHelp", true ) )
+		if( eBuilding != NO_BUILDING && GC.getDefineINT( "ALLOW_SHOW_CREATED_BUILDING_HELP", 1 ) && getBugOptionBOOL( "FfHUI__ShowSpellCreatedBuildingHelp", true ) )
 		{
 			szBuffer.append( NEWLINE );
 			szBuffer.append( gDLL->getText( "TXT_KEY_SPELL_CREATE_BUILDING_PRE_HEADER" ) );
@@ -12666,6 +12719,13 @@ void CvGameTextMgr::setBasicUnitHelpWithCity(CvWStringBuffer &szBuffer, UnitType
 /************************************************************************************************/
 /* Advanced Diplomacy         END                                                               */
 /************************************************************************************************/
+
+	// lfgr UI 01/2022
+	if( kUnitInfo.isNoUpkeep() )
+	{
+		szBuffer.append( NEWLINE );
+		szBuffer.append( gDLL->getText( "TXT_KEY_UNIT_HELP_NO_UPKEEP" ) );
+	}
 
 	if (kUnitInfo.isOnlyDefensive())
 	{
@@ -20131,6 +20191,14 @@ void CvGameTextMgr::setFeatureHelp(CvWStringBuffer &szBuffer, FeatureTypes eFeat
 	if (feature.isNoCity())
 	{
 		szBuffer.append(gDLL->getText("TXT_KEY_TERRAIN_NO_CITIES"));
+	}
+
+	// lfgr 11/2021
+	if( feature.getRequireResist() != NO_DAMAGE )
+	{
+		szBuffer.append( gDLL->getText( "TXT_KEY_HELP_FEATURE_REQUIRE_RESIST",
+				GC.getDefineINT( "FEATURE_REQUIRE_RESIST_AMOUNT" ),
+				GC.getDamageTypeInfo( (DamageTypes) feature.getRequireResist() ).getTextKeyWide() ) );
 	}
 
 	if (feature.isNoImprovement())

@@ -3494,6 +3494,9 @@
 			<Events>
 				<Event>EVENT_CONTINUE</Event>
 			</Events>
+			<OrPreReqs>
+				<PrereqTech>TECH_SORCERY</PrereqTech>
+			</OrPreReqs>
 			<bRecurring>1</bRecurring>
 			<bShowPlot>1</bShowPlot>
 			<PythonCanDo>canTriggerPlotEmpty</PythonCanDo>

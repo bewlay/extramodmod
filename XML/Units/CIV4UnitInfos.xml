@@ -19,6 +19,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -55,6 +56,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -91,6 +93,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -133,6 +136,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -169,6 +173,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -211,6 +216,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -247,6 +253,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -284,6 +291,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -320,6 +328,7 @@
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -356,6 +365,7 @@
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -392,6 +402,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -428,6 +439,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -470,6 +482,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -506,6 +519,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -542,6 +556,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -578,6 +593,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -614,6 +630,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -650,6 +667,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -686,6 +704,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -722,6 +741,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -758,6 +778,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -794,6 +815,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -836,6 +858,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -872,6 +895,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -913,6 +937,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bQuickCombat>1</bQuickCombat>
 			<bMechanized>1</bMechanized>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_UNKNOWN</UnitAIType>
@@ -3200,6 +3225,7 @@
 			<Advisor>ADVISOR_CULTURE</Advisor>
 			<bOnlyDefensive>1</bOnlyDefensive>
 			<bGoldenAge>1</bGoldenAge>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ARTIST</UnitAIType>
@@ -7675,6 +7701,7 @@
 			<Civilopedia>TXT_KEY_LEADER_DECIUS_PEDIA</Civilopedia>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bOnlyDefensive>1</bOnlyDefensive>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_GENERAL</UnitAIType>
@@ -10168,6 +10195,7 @@
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<bOnlyDefensive>1</bOnlyDefensive>
 			<bGoldenAge>1</bGoldenAge>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ENGINEER</UnitAIType>
@@ -18045,6 +18073,7 @@
 			<bOnlyDefensive>1</bOnlyDefensive>
 			<bRivalTerritory>1</bRivalTerritory>
 			<bGoldenAge>1</bGoldenAge>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_MERCHANT</UnitAIType>
@@ -20795,6 +20824,7 @@
 			<Advisor>ADVISOR_RELIGION</Advisor>
 			<bOnlyDefensive>1</bOnlyDefensive>
 			<bGoldenAge>1</bGoldenAge>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_PROPHET</UnitAIType>
@@ -22597,6 +22627,7 @@
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<bOnlyDefensive>1</bOnlyDefensive>
 			<bGoldenAge>1</bGoldenAge>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_SCIENTIST</UnitAIType>
@@ -24216,6 +24247,7 @@
 			<bOnlyDefensive>1</bOnlyDefensive>
 			<bQuickCombat>1</bQuickCombat>
             <bMilitaryTrade>1</bMilitaryTrade>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_SCIENTIST</UnitAIType>
@@ -26398,6 +26430,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bOnlyDefensive>1</bOnlyDefensive>
 			<bGoldenAge>1</bGoldenAge>
+			<bNoUpkeep>1</bNoUpkeep>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_GENERAL</UnitAIType>

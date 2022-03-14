@@ -1031,6 +1031,26 @@
 		<DefineName>FORCE_ENABLE_CUSTOM_PROFILER</DefineName>
 		<iDefineIntVal>1</iDefineIntVal>
 	</Define>
+    <!-- If 0, permanent summons can only be summoned if the player has less units of the summoned type than summoners.
+        If 1, permanent summons can only be summoned if the caster has no living summon of that type.  -->
+	<Define>
+		<DefineName>COUNT_SUMMONS_PER_CASTER</DefineName>
+		<iDefineIntVal>0</iDefineIntVal>
+	</Define>
+	<!-- If 0, spells don't display extra information about added promotion, created units, and/or created buildings.
+		0 even disables relevant BUG options. To be used if this is already provided via python. -->
+	<Define>
+		<DefineName>ALLOW_SHOW_ADDED_PROMOTION_HELP</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>ALLOW_SHOW_CREATED_UNIT_HELP</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>ALLOW_SHOW_CREATED_BUILDING_HELP</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
 <!-- TERRAIN_FLAVOUR 09/2013 lfgr -->
 	<Define>
 		<DefineName>TERRAIN_FLAVOUR_RADIUS</DefineName>

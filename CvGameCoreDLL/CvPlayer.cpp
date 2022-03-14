@@ -4063,7 +4063,7 @@ const wchar* CvPlayer::getName(uint uiForm) const
 // This sets the name of the player, ie Peter or Montezuma
 void CvPlayer::setName(std::wstring szNewValue)
 {
-	if ( isCityNameValid(CvWString(szNewValue), false))
+	if ( isCityNameValid(CvWString(szNewValue), false)) // LFGR_TODO: Why city?
 	{
 		m_szName = szNewValue;
 		gDLL->getInterfaceIFace()->setDirty(Score_DIRTY_BIT, true);
@@ -9660,13 +9660,14 @@ int CvPlayer::calculateUnitCost(int& iFreeUnits, int& iFreeMilitaryUnits, int& i
 
 //FfH: Added by Kael 04/19/2009
 	// dont count summons or objects for unit maintenance
+	int iNoUpkeepUnits = 0; // lfgr 01/2022: Don't count units with no upkeep as free units for display purposes
 	CvUnit* pLoopUnit;
 	int iLoop;
 	for(pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
 	{
-	    if (pLoopUnit->getDuration() > 0 || pLoopUnit->getUnitInfo().isObject())
+	    if (pLoopUnit->isNoUpkeep()) // lfgr 01/2022: Refactoring
 	    {
-	        iFreeUnits += 1;
+			iNoUpkeepUnits += 1;
 	    }
 	}
 //FfH: End Add
@@ -9706,7 +9707,7 @@ int CvPlayer::calculateUnitCost(int& iFreeUnits, int& iFreeMilitaryUnits, int& i
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
 
-	iPaidUnits = std::max(0, getNumUnits() - iFreeUnits);
+	iPaidUnits = std::max(0, getNumUnits() - iFreeUnits - iNoUpkeepUnits); // lfgr 01/2022
 	iPaidMilitaryUnits = std::max(0, getNumMilitaryUnits() - iFreeMilitaryUnits);
 
 	iSupport = 0;
@@ -15752,6 +15753,23 @@ int CvPlayer::getUnitClassCountPlusMaking(UnitClassTypes eIndex) const
 	return (getUnitClassCount(eIndex) + getUnitClassMaking(eIndex));
 }
 
+// lfgr 11/2021
+int CvPlayer::getCasterCount( SpellTypes eSpell ) const
+{
+	int iCount = 0;
+	int iLoop = 0;
+	CvUnit* pLoopUnit;
+	for (pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
+	{
+		// lfgr 11/2021: More accurate counting of eligible units.
+		if( pLoopUnit->canCastWithCurrentPromotions( eSpell ) )
+		{
+			iCount += 1;
+		}
+	}
+	return iCount;
+}
+
 
 int CvPlayer::getBuildingClassCount(BuildingClassTypes eIndex) const
 {
@@ -18840,7 +18858,15 @@ void CvPlayer::doAdvancedStartAction(AdvancedStartActionTypes eAction, int iX, i
 			{
 				if (getAdvancedStartPoints() >= iCost)
 				{
-					CvUnit* pUnit = initUnit(eUnit, iX, iY);
+					// lfgr 01/2022: Try to add at least one defender per city
+					UnitAITypes eUnitAI = NO_UNITAI;
+					if( GC.getUnitInfo( eUnit ).getUnitAIType( UNITAI_CITY_DEFENSE )
+							&& pPlot->plotCount( PUF_isUnitAIType, UNITAI_CITY_DEFENSE, -1, getIDINLINE() ) == 0 )
+					{
+						eUnitAI = UNITAI_CITY_DEFENSE;
+					}
+
+					CvUnit* pUnit = initUnit(eUnit, iX, iY, eUnitAI);
 					if (NULL != pUnit)
 					{
 						pUnit->finishMoves();
@@ -20327,6 +20353,12 @@ void CvPlayer::doWarnings()
 								if (pArea && pArea->isBorderObstacle(getTeam()))
 								{
 									// don't show warning for land-based barbarians when player has Great Wall
+									continue;
+								}
+
+								// lfgr 01/2022: Don't show warning for lairguardians
+								if( pUnit->AI_getUnitAIType() == UNITAI_LAIRGUARDIAN )
+								{
 									continue;
 								}
 								if (pUnit->isHeld())

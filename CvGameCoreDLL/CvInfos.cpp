@@ -3414,6 +3414,7 @@ m_iCreateUnitType(NO_UNIT),
 m_iCreateUnitNum(0),
 m_bCopyCastersPromotions(false),
 m_bPermanentUnitCreate(false),
+m_bImmobileUnitCreate(false), // lfgr 11/2021: Decouple permanent and immobile summons
 m_iCreateUnitPromotion(NO_PROMOTION),
 m_bImmuneTeam(false),
 m_bImmuneNeutral(false),
@@ -3696,6 +3697,12 @@ bool CvSpellInfo::isImmuneNotAlive() const
 bool CvSpellInfo::isPermanentUnitCreate() const
 {
 	return m_bPermanentUnitCreate;
+}
+
+// lfgr 11/2021: Decouple permanent and immobile summons
+bool CvSpellInfo::isImmobileUnitCreate() const
+{
+	return m_bImmobileUnitCreate;
 }
 
 bool CvSpellInfo::isPush() const
@@ -4277,6 +4284,7 @@ bool CvSpellInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iCreateUnitNum, "iCreateUnitNum");
 	pXML->GetChildXmlValByName(&m_bCopyCastersPromotions, "bCopyCastersPromotions");
 	pXML->GetChildXmlValByName(&m_bPermanentUnitCreate, "bPermanentUnitCreate");
+	pXML->GetChildXmlValByName(&m_bImmobileUnitCreate, "bImmobileUnitCreate"); // lfgr 11/2021: Decouple permanent and immobile summons
 	pXML->GetChildXmlValByName(szTextVal, "CreateUnitPromotion");
 	if (szTextVal != "") m_iCreateUnitPromotion = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(&m_bImmuneTeam, "bImmuneTeam");
@@ -5251,6 +5259,7 @@ m_bLineOfSight(false),
 m_bHiddenNationality(false),
 m_bAlwaysHostile(false),
 m_bNoRevealMap(false),
+m_bNoUpkeep(false), // lfgr 01/2022
 m_fUnitMaxSpeed(0.0f),
 m_fUnitPadTime(0.0f),
 m_pbUpgradeUnitClass(NULL),
@@ -5984,6 +5993,12 @@ bool CvUnitInfo::isAlwaysHostile() const
 bool CvUnitInfo::isNoRevealMap() const
 {
 	return m_bNoRevealMap;
+}
+
+// lfgr 01/2022
+bool CvUnitInfo::isNoUpkeep() const
+{
+	return m_bNoUpkeep;
 }
 
 float CvUnitInfo::getUnitMaxSpeed() const
@@ -7580,6 +7595,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bHiddenNationality,"bHiddenNationality",false);
 	pXML->GetChildXmlValByName(&m_bAlwaysHostile,"bAlwaysHostile",false);
 	pXML->GetChildXmlValByName(&m_bNoRevealMap,"bNoRevealMap",false);
+	pXML->GetChildXmlValByName(&m_bNoUpkeep,"bNoUpkeep",false); // lfgr 01/2022
 
 	pXML->SetVariableListTagPair(&m_pbUpgradeUnitClass, "UnitClassUpgrades", sizeof(GC.getUnitClassInfo((UnitClassTypes)0)), GC.getNumUnitClassInfos());
 	pXML->SetVariableListTagPair(&m_pbTargetUnitClass, "UnitClassTargets", sizeof(GC.getUnitClassInfo((UnitClassTypes)0)), GC.getNumUnitClassInfos());

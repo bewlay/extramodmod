@@ -8540,10 +8540,13 @@ int CvPlayerAI::AI_getAttitudeVal(PlayerTypes ePlayer, bool bForced) const
 		}
 	}
 	*/
-	//Ruthless AI: The Enemy of Our Enemy is our Friend!   
-	iAttitude += AI_getSharedEnemyAttitude(ePlayer);
-	//Ruthless AI: The Friend of Our Friend is our Friend! 	
-	iAttitude += AI_getSharedFriendAttitude(ePlayer);		
+	if( GC.getGameINLINE().isOption( GAMEOPTION_RUTHLESS_AI ) )
+	{
+		//Ruthless AI: The Enemy of Our Enemy is our Friend!
+		iAttitude += AI_getSharedEnemyAttitude(ePlayer);
+		//Ruthless AI: The Friend of Our Friend is our Friend!
+		iAttitude += AI_getSharedFriendAttitude(ePlayer);
+	}
 /************************************************************************************************/
 /* Advanced Diplomacy         END                                                             */
 /************************************************************************************************/
@@ -12940,22 +12943,14 @@ DenialTypes CvPlayerAI::AI_civicTrade(CivicTypes eCivic, PlayerTypes ePlayer) co
 		return DENIAL_ATTITUDE;
 	}
 
-/************************************************************************************************/
-/* Afforess	                  Start		 03/19/10                                               */
-/*                                                                                              */
-/* Ruthless AI: Don't change civics when planning war                                           */
-/************************************************************************************************/
-//	if (GC.getGameINLINE().isOption(GAMEOPTION_RUTHLESS_AI))
-	if (1 < 2)
+	// Ruthless AI: Don't change civics when planning war
+	if (GC.getGameINLINE().isOption(GAMEOPTION_RUTHLESS_AI))
 	{
 		if (GET_TEAM(getTeam()).getAnyWarPlanCount(true) > 0)
 		{
 			return DENIAL_JOKING;
 		}
 	}
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 
 	return NO_DENIAL;
 }
@@ -13030,22 +13025,15 @@ DenialTypes CvPlayerAI::AI_religionTrade(ReligionTypes eReligion, PlayerTypes eP
 	{
 		return DENIAL_ATTITUDE;
 	}
-/************************************************************************************************/
-/* Afforess	                  Start		 03/19/10                                               */
-/*                                                                                              */
-/* Ruthless AI: Don't Change Religions When we are planning war (Anarchy is bad)                */
-/************************************************************************************************/
-//	if (GC.getGameINLINE().isOption(GAMEOPTION_RUTHLESS_AI))
-	if (1 < 2)
+
+	// Ruthless AI: Don't Change Religions When we are planning war (Anarchy is bad)
+	if (GC.getGameINLINE().isOption(GAMEOPTION_RUTHLESS_AI))
 	{
 		if (GET_TEAM(getTeam()).getAnyWarPlanCount(true) > 0)
 		{
 			return DENIAL_NO_GAIN;
 		}
 	}
-/************************************************************************************************/
-/* Afforess	                     END                                                            */
-/************************************************************************************************/
 	return NO_DENIAL;
 }
 
@@ -14033,7 +14021,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		//iCombatValue = kUnitInfo.getCombatDefense();
 		iCombatValue += (kUnitInfo.getCombatDefense() * 2);
 		iValue += ((iCombatValue * 2) / 3);
-		iValue += ((iCombatValue * kUnitInfo.getCityDefenseModifier()) / 25);
+		iValue += ((iCombatValue * kUnitInfo.getCityDefenseModifier()) / 75);
 		iValue += kUnitInfo.getFirstStrikes() * 5;
 		if (!kUnitInfo.isMilitaryHappiness())
 		{
@@ -19831,7 +19819,10 @@ void CvPlayerAI::AI_doDiplo()
 															AI_changeContactTimer(((PlayerTypes)iI), CONTACT_JOIN_WAR, GC.getLeaderHeadInfo(getPersonalityType()).getContactDelay(CONTACT_JOIN_WAR));
 															pDiplo = new CvDiploParameters(getID());
 															FAssertMsg(pDiplo != NULL, "pDiplo must be valid");
-															pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_JOIN_WAR"), GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getCivilizationAdjectiveKey());
+															// lfgr 11/2021: Allow naming leader in demand
+															pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_JOIN_WAR"),
+																	GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getCivilizationAdjectiveKey(),
+																	GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getNameKey(), "");
 															pDiplo->setAIContact(true);
 															pDiplo->setData(eBestTeam);
 	/*************************************************************************************************/
@@ -19888,7 +19879,10 @@ void CvPlayerAI::AI_doDiplo()
 															AI_changeContactTimer(((PlayerTypes)iI), CONTACT_STOP_TRADING, GC.getLeaderHeadInfo(getPersonalityType()).getContactDelay(CONTACT_STOP_TRADING));
 															pDiplo = new CvDiploParameters(getID());
 															FAssertMsg(pDiplo != NULL, "pDiplo must be valid");
-															pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_STOP_TRADING"), GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getCivilizationAdjectiveKey());
+															// lfgr 11/2021: Allow naming leader in demand
+															pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_STOP_TRADING"),
+																GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getCivilizationAdjectiveKey(),
+																GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getNameKey(), "");
 															pDiplo->setAIContact(true);
 															pDiplo->setData(eBestTeam);
 	/*************************************************************************************************/
@@ -21034,7 +21028,10 @@ void CvPlayerAI::AI_doDiplo()
 																					AI_changeContactTimer(((PlayerTypes)iI), CONTACT_TRADE_JOIN_WAR, GC.getLeaderHeadInfo(getPersonalityType()).getContactDelay(CONTACT_TRADE_JOIN_WAR));
 																					pDiplo = new CvDiploParameters(getID());
 																					FAssertMsg(pDiplo != NULL, "pDiplo must be valid");
-																					pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_JOIN_WAR"), GET_PLAYER(GET_TEAM(eBestWarTeam).getLeaderID()).getCivilizationAdjectiveKey());
+																					// lfgr 11/2021: Allow naming leader in demand
+																					pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_JOIN_WAR"),
+																						GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getCivilizationAdjectiveKey(),
+																						GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getNameKey(), "");
 																					pDiplo->setAIContact(true);
 																					pDiplo->setOurOfferList(theirList);
 																					pDiplo->setTheirOfferList(ourList);
@@ -21198,7 +21195,10 @@ void CvPlayerAI::AI_doDiplo()
 																						AI_changeContactTimer(((PlayerTypes)iI), CONTACT_TRADE_JOIN_WAR, GC.getLeaderHeadInfo(getPersonalityType()).getContactDelay(CONTACT_TRADE_JOIN_WAR));
 																						pDiplo = new CvDiploParameters(getID());
 																						FAssertMsg(pDiplo != NULL, "pDiplo must be valid");
-																						pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_JOIN_WAR"), GET_PLAYER(GET_TEAM(eBestWarTeam).getLeaderID()).getCivilizationAdjectiveKey());
+																						// lfgr 11/2021: Allow naming leader in demand
+																						pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_JOIN_WAR"),
+																							GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getCivilizationAdjectiveKey(),
+																							GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getNameKey(), "");
 																						pDiplo->setAIContact(true);
 																						pDiplo->setOurOfferList(theirList);
 																						pDiplo->setTheirOfferList(ourList);
@@ -21245,7 +21245,10 @@ void CvPlayerAI::AI_doDiplo()
 																AI_changeContactTimer(((PlayerTypes)iI), CONTACT_PEACE_PRESSURE, GC.getLeaderHeadInfo(getPersonalityType()).getContactDelay(CONTACT_PEACE_PRESSURE));
 																pDiplo = new CvDiploParameters(getID());
 																FAssertMsg(pDiplo != NULL, "pDiplo must be valid");
-																pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_MAKE_PEACE_WITH"), GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getCivilizationDescriptionKey());
+																// lfgr 11/2021: Allow naming leader in demand
+																pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_MAKE_PEACE_WITH"),
+																	GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getCivilizationAdjectiveKey(),
+																	GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getNameKey(), "");
 																pDiplo->setAIContact(true);
 																pDiplo->setData(eBestTeam);
 																// RevolutionDCM start - new diplomacy option

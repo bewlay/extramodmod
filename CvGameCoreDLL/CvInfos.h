@@ -941,6 +941,7 @@ public:
 	bool isImmuneFlying() const;
 	bool isImmuneNotAlive() const;
 	bool isPermanentUnitCreate() const;
+	bool isImmobileUnitCreate() const; // lfgr 11/2021: Decouple permanent and immobile summons
 	bool isPush() const;
 	bool isRemoveHasCasted() const;
 	bool isResistable() const;
@@ -1049,7 +1050,8 @@ protected:
 	int m_iCreateUnitPromotion;
 	int m_iCreateUnitType;
     bool m_bCopyCastersPromotions;
-    bool m_bPermanentUnitCreate;
+	bool m_bPermanentUnitCreate;
+	bool m_bImmobileUnitCreate; // lfgr 11/2021: Decouple permanent and immobile summons
     bool m_bImmuneTeam;
     bool m_bImmuneNeutral;
     bool m_bImmuneEnemy;
@@ -1433,6 +1435,7 @@ public:
 	bool isHiddenNationality() const;			// Exposed to Python
 	bool isAlwaysHostile() const;			// Exposed to Python
 	bool isNoRevealMap() const;			// Exposed to Python
+	bool isNoUpkeep() const; // lfgr 01/2022
 
 	float getUnitMaxSpeed() const;					// Exposed to Python
 	float getUnitPadTime() const;					// Exposed to Python
@@ -1738,6 +1741,7 @@ protected:
 	bool m_bHiddenNationality;
 	bool m_bAlwaysHostile;
 	bool m_bNoRevealMap;
+	bool m_bNoUpkeep; // lfgr 01/2022
 	int m_iLeaderPromotion;
 
 	float m_fUnitMaxSpeed;
