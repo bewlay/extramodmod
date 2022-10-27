@@ -15386,7 +15386,7 @@ int CvPlayerAI::AI_cityTargetUnitsByPath(CvCity* pCity, CvSelectionGroup* pSkipS
 
 				if (iDistance <= 1)
 				{
-					if( pLoopSelectionGroup->generatePath(pLoopSelectionGroup->plot(), pMissionPlot, 0, true, &iPathTurns) )
+					if (pLoopSelectionGroup->generatePath(pLoopSelectionGroup->plot(), pMissionPlot, 0, true, &iPathTurns))
 					{
 						if( !(pLoopSelectionGroup->canAllMove()) )
 						{
@@ -21030,8 +21030,8 @@ void CvPlayerAI::AI_doDiplo()
 																					FAssertMsg(pDiplo != NULL, "pDiplo must be valid");
 																					// lfgr 11/2021: Allow naming leader in demand
 																					pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_JOIN_WAR"),
-																						GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getCivilizationAdjectiveKey(),
-																						GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getNameKey(), "");
+																						GET_PLAYER(GET_TEAM(eBestWarTeam).getLeaderID()).getCivilizationAdjectiveKey(),
+																						GET_PLAYER(GET_TEAM(eBestWarTeam).getLeaderID()).getNameKey(), "");
 																					pDiplo->setAIContact(true);
 																					pDiplo->setOurOfferList(theirList);
 																					pDiplo->setTheirOfferList(ourList);
@@ -21197,8 +21197,8 @@ void CvPlayerAI::AI_doDiplo()
 																						FAssertMsg(pDiplo != NULL, "pDiplo must be valid");
 																						// lfgr 11/2021: Allow naming leader in demand
 																						pDiplo->setDiploComment((DiploCommentTypes)GC.getInfoTypeForString("AI_DIPLOCOMMENT_JOIN_WAR"),
-																							GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getCivilizationAdjectiveKey(),
-																							GET_PLAYER(GET_TEAM(eBestTeam).getLeaderID()).getNameKey(), "");
+																							GET_PLAYER(GET_TEAM(eBestWarTeam).getLeaderID()).getCivilizationAdjectiveKey(),
+																							GET_PLAYER(GET_TEAM(eBestWarTeam).getLeaderID()).getNameKey(), "");
 																						pDiplo->setAIContact(true);
 																						pDiplo->setOurOfferList(theirList);
 																						pDiplo->setTheirOfferList(ourList);

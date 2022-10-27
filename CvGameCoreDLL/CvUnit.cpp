@@ -12386,7 +12386,11 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 								
 								logBBAI("    Killing %S -- can't defend, enemy unit moved on it (Unit %d - plot: %d, %d)",
 									pLoopUnit->getName().GetCString(), pLoopUnit->getID(), pLoopUnit->getX(), pLoopUnit->getY());
-								pLoopUnit->kill(false, getOwnerINLINE());
+								// lfgr 08/2022: Making death delayed, since this can happen during post-combat calculations. Hopefully that's fine.
+								//   (Specifically, a unit attacking a worker may lose the hidden promotion after attacking (but before moving), and
+								//   then withdraw to the plot it was attacking, killing the defending worker on it, and causing an invalid access to
+								//   the worker's internals.)
+								pLoopUnit->kill(true, getOwnerINLINE());
 							}
 						}
 					}
@@ -20406,6 +20410,8 @@ bool CvUnit::isTerraformer() const
 	return m_bTerraformer;
 }
 
+// LFGR_TODO: Shouldn't call due to losing a promotion during combat (e.g. losing the hidden promotion in combatWon()).
+//            It would be best to check after combat whether we want to withdraw.
 bool CvUnit::withdrawlToNearestValidPlot(bool bKillUnit)
 {
 	CvPlot* pLoopPlot;

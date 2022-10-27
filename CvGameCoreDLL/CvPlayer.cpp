@@ -25,6 +25,7 @@
 #include "CyPlot.h"
 #include "CyUnit.h"
 #include "CvEventReporter.h"
+#include "CvMessageControl.h" // lfgr 02/2022
 
 #include "CvDLLInterfaceIFaceBase.h"
 #include "CvDLLEntityIFaceBase.h"
@@ -3139,11 +3140,11 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	// lfgr 10/2020: Made optional, added unhealthy citizens
 	if( GC.getInfoTypeForString("EMPHASIZE_AVOID_ANGRY_CITIZENS")!=NO_EMPHASIZE
 			&& getBugOptionBOOL( "FfHUI__AvoidAngryCitizensDefault", true, "BUG_AVOID_ANGRY_CITIZENS_DEFAULT" ) ) {
-		pNewCity->AI_setEmphasize((EmphasizeTypes)GC.getInfoTypeForString("EMPHASIZE_AVOID_ANGRY_CITIZENS"),true);
+		CvMessageControl::getInstance().sendDoTask(pNewCity->getID(), TASK_SET_EMPHASIZE, GC.getInfoTypeForString("EMPHASIZE_AVOID_ANGRY_CITIZENS"), -1, true, false, false, false);
 	}
 	if( GC.getInfoTypeForString("EMPHASIZE_AVOID_UNHEALTHY_CITIZENS")!=NO_EMPHASIZE
 			&& getBugOptionBOOL( "FfHUI__AvoidUnhealthyCitizensDefault", false, "BUG_AVOID_UNHEALTHY_CITIZENS_DEFAULT" ) ) {
-		pNewCity->AI_setEmphasize((EmphasizeTypes)GC.getInfoTypeForString("EMPHASIZE_AVOID_UNHEALTHY_CITIZENS"),true);
+		CvMessageControl::getInstance().sendDoTask(pNewCity->getID(), TASK_SET_EMPHASIZE, GC.getInfoTypeForString("EMPHASIZE_AVOID_UNHEALTHY_CITIZENS"), -1, true, false, false, false);
 	}
 
 	if (bConquest)
@@ -8331,11 +8332,11 @@ void CvPlayer::found(int iX, int iY)
 	// lfgr 10/2020: Made optional, added unhealthy citizens
 	if( GC.getInfoTypeForString("EMPHASIZE_AVOID_ANGRY_CITIZENS")!=NO_EMPHASIZE
 			&& getBugOptionBOOL( "FfHUI__AvoidAngryCitizensDefault", true, "BUG_AVOID_ANGRY_CITIZENS_DEFAULT" ) ) {
-		pCity->AI_setEmphasize((EmphasizeTypes)GC.getInfoTypeForString("EMPHASIZE_AVOID_ANGRY_CITIZENS"),true);
+		CvMessageControl::getInstance().sendDoTask(pCity->getID(), TASK_SET_EMPHASIZE, GC.getInfoTypeForString("EMPHASIZE_AVOID_ANGRY_CITIZENS"), -1, true, false, false, false);
 	}
 	if( GC.getInfoTypeForString("EMPHASIZE_AVOID_UNHEALTHY_CITIZENS")!=NO_EMPHASIZE
 			&& getBugOptionBOOL( "FfHUI__AvoidUnhealthyCitizensDefault", false, "BUG_AVOID_UNHEALTHY_CITIZENS_DEFAULT" ) ) {
-		pCity->AI_setEmphasize((EmphasizeTypes)GC.getInfoTypeForString("EMPHASIZE_AVOID_UNHEALTHY_CITIZENS"),true);
+		CvMessageControl::getInstance().sendDoTask(pCity->getID(), TASK_SET_EMPHASIZE, GC.getInfoTypeForString("EMPHASIZE_AVOID_UNHEALTHY_CITIZENS"), -1, true, false, false, false);
 	}
 	// lfgr end
 

@@ -1393,6 +1393,12 @@ bool PUF_canDeclareWar( const CvUnit* pUnit, int iData1, int iData2)
 		return false;
 	}
 
+	// lfgr 02/2022: Don't ask to declare war when attacking a hidden nationality unit
+	if( pUnit->isHiddenNationality() )
+	{
+		return false;
+	}
+
 	return (iData2 ? false : GET_TEAM(eOtherTeam).canDeclareWar(eOurTeam));
 }
 
@@ -2109,7 +2115,7 @@ int pathAdd(FAStarNode* parent, FAStarNode* node, int data, const void* pointer,
 
 		for (CLLNode<IDInfo>* pUnitNode = pSelectionGroup->headUnitNode(); pUnitNode != NULL; pUnitNode = pSelectionGroup->nextUnitNode(pUnitNode))
 		{
-			CvUnit* pLoopUnit = ::getUnit(pUnitNode->m_data);
+			CvUnit* pLoopUnit = ::getUnit(pUnitNode->m_data); // LFGR_TODO: Break if iMoves == 0?
 
 			int iUnitMoves = (iStartMoves == 0 ? pLoopUnit->maxMoves() : iStartMoves);
 			iUnitMoves -= pToPlot->movementCost(pLoopUnit, pFromPlot);

@@ -5595,8 +5595,8 @@ class CvMainInterface:
 				iCountSpecial = 0
 
 				# UI improvement 01/2022 lfgr
-				bIncreasing = gc.getGame().isOption(GameOptionTypes.GAMEOPTION_CHALLENGE_INCREASING_DIFFICULTY) \
-						and pPlayer.getHandicapType() < gc.getNumHandicapInfos() - 1 # Not at hardest difficulty already
+				bIncreasing = gc.getGame().isOption(GameOptionTypes.GAMEOPTION_CHALLENGE_INCREASING_DIFFICULTY)
+				bHardest = pPlayer.getHandicapType() == gc.getNumHandicapInfos() - 1 # At hardest difficulty already
 				bFlexible = gc.getGame().isOption(GameOptionTypes.GAMEOPTION_FLEXIBLE_DIFFICULTY)
 
 				if bIncreasing or bFlexible :
@@ -5605,14 +5605,15 @@ class CvMainInterface:
 					szBuffer = u"<font=2>"
 					szBuffer += localText.getColorText("TXT_KEY_MESSAGE_DIFFICULTY", (gc.getHandicapInfo(pPlayer.getHandicapType()).getDescription(), ()), gc.getInfoTypeForString("COLOR_RED"))
 
-					iFlexibleTurns = game.getFlexibleDifficultyRemainingTurns()
-					iIncreasingTurns = game.getIncreasingDifficultyRemainingTurns()
-					if bIncreasing and bFlexible :
-						szBuffer += u" " + localText.getColorText( "TXT_KEY_MESSAGE_DIFFICULTY_CHANGE_FLEX_INCR", (iFlexibleTurns, iIncreasingTurns), gc.getInfoTypeForString("COLOR_RED"))
-					elif bIncreasing :
-						szBuffer += u" " + localText.getColorText( "TXT_KEY_MESSAGE_DIFFICULTY_CHANGE", (iIncreasingTurns,), gc.getInfoTypeForString("COLOR_RED"))
-					elif bFlexible :
-						szBuffer += u" " + localText.getColorText( "TXT_KEY_MESSAGE_DIFFICULTY_CHANGE", (iFlexibleTurns,), gc.getInfoTypeForString("COLOR_RED"))
+					if ffhUIOpt.isShowTurnsUntilDifficultyChange() and ( bFlexible or not bHardest ) :
+						iFlexibleTurns = game.getFlexibleDifficultyRemainingTurns()
+						iIncreasingTurns = game.getIncreasingDifficultyRemainingTurns()
+						if bIncreasing and bFlexible :
+							szBuffer += u" " + localText.getColorText( "TXT_KEY_MESSAGE_DIFFICULTY_CHANGE_FLEX_INCR", (iFlexibleTurns, iIncreasingTurns), gc.getInfoTypeForString("COLOR_RED"))
+						elif bIncreasing :
+							szBuffer += u" " + localText.getColorText( "TXT_KEY_MESSAGE_DIFFICULTY_CHANGE", (iIncreasingTurns,), gc.getInfoTypeForString("COLOR_RED"))
+						elif bFlexible :
+							szBuffer += u" " + localText.getColorText( "TXT_KEY_MESSAGE_DIFFICULTY_CHANGE", (iFlexibleTurns,), gc.getInfoTypeForString("COLOR_RED"))
 
 					szBuffer += "</font>"
 #					screen.setText( szName, "Background", szBuffer, CvUtil.FONT_RIGHT_JUSTIFY, xResolution - 12, yCoord - ((iCount + iCountSpecial) * iBtnHeight), -0.3, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
