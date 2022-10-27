@@ -4510,7 +4510,7 @@
 			<iMaxNumReligions>-1</iMaxNumReligions>
 			<PythonCallback>doWerewolf1</PythonCallback>
 			<Button>,Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
-			<iAIValue>-1000</iAIValue>
+			<iAIValue>0</iAIValue>
 		</EventInfo>
 		<EventInfo><!-- WEREWOLF_2 -->
 			<Type>EVENT_WEREWOLF_2</Type>

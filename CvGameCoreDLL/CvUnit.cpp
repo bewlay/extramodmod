@@ -405,6 +405,8 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
             }
         }
     }
+
+	updateTerraformer(); // lfgr 05/2022
 //FfH: End Add
 
 	CvEventReporter::getInstance().unitCreated(this);
@@ -16659,6 +16661,22 @@ bool CvUnit::canCastWithCurrentPromotions( SpellTypes eSpell ) const // lfgr fix
 		}
 	}
 
+	if (kSpell.getReligionPrereq() != NO_RELIGION)
+	{
+		if (getReligion() != (ReligionTypes)kSpell.getReligionPrereq())
+		{
+			return false;
+		}
+	}
+
+	if (kSpell.getCasterMinLevel() != 0)
+	{
+		if (getLevel() < kSpell.getCasterMinLevel())
+		{
+			return false;
+		}
+	}
+
 	return true;
 }
 
@@ -16768,13 +16786,6 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
             return false;
         }
     }
-    if (kSpell.getReligionPrereq() != NO_RELIGION)
-    {
-        if (getReligion() != (ReligionTypes)kSpell.getReligionPrereq())
-        {
-            return false;
-        }
-    }
     if (kSpell.getStateReligionPrereq() != NO_RELIGION)
     {
         if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != (ReligionTypes)kSpell.getStateReligionPrereq())
@@ -16825,13 +16836,6 @@ bool CvUnit::canCast(int spell, bool bTestVisible)
 		}
     }
 	*/
-    if (kSpell.getCasterMinLevel() != 0)
-    {
-        if (getLevel() < kSpell.getCasterMinLevel())
-        {
-            return false;
-        }
-    }
     if (kSpell.isCasterNoDuration())
     {
         if (getDuration() != 0)
@@ -19047,6 +19051,8 @@ int CvUnit::getReligion() const
 void CvUnit::setReligion(int iReligion)
 {
 	m_iReligion = iReligion;
+
+	updateTerraformer(); // lfgr 05/2022
 }
 
 int CvUnit::getResist() const
