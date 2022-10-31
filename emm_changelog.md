@@ -1,4 +1,17 @@
+## 0.6.0-beta8
+
 # Changelog
+
+Includes MNAI 2.9.1u and the next five commits
+
+### AI
+* AI does't explore lairs if it has nearby undefended cities
+
+### Gameplay
+* Added Nikis-Knight's map (edits by by [to_xp]Gekko)
+
+### UI
+* Small text changes
 
 
 ## 0.6.0-beta7
@@ -17,7 +30,7 @@ Includes MNAI 2.9u
 * Error from Khazad vault tooltip when player has no cities
 * Remove reference to removed "Divided Soul" promotion, so that adding to flesh golem works again
 
-## UI
+### UI
 * Disabled non-functional "Show Khazad Vault Text" BUG option
 
 
