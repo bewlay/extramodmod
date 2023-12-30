@@ -44,6 +44,10 @@ void CvDllTranslator::initializeTags(CvWString& szTagStartIcon, CvWString& szTag
 	aIconMap[L"[ICON_FOOD]"] = std::wstring(1, (wchar)GC.getYieldInfo(YIELD_FOOD).getChar());
 	aIconMap[L"[ICON_PRODUCTION]"] = std::wstring(1, (wchar)GC.getYieldInfo(YIELD_PRODUCTION).getChar());
 	aIconMap[L"[ICON_COMMERCE]"] = std::wstring(1, (wchar)GC.getYieldInfo(YIELD_COMMERCE).getChar());
+	
+	// lfgr 08/2023: Add instability icon.
+	// lfgr note: I couldn't get it working with any other slot I tried. If you want to add a fifth commerce type, good luck.
+	aIconMap[L"[ICON_INSTABILITY]"] = std::wstring(1, (wchar)GC.getCommerceInfo(COMMERCE_GOLD).getChar()+4);
 
 	//create color map
 	aColorMap[L"[COLOR_REVERT]"] = CvWString(L"</color>");

@@ -382,7 +382,7 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("getStateReligionBuildingProductionModifier", &CyPlayer::getStateReligionBuildingProductionModifier, "int ()")
 		.def("changeStateReligionBuildingProductionModifier", &CyPlayer::changeStateReligionBuildingProductionModifier, "void (int iChange)")
 		.def("getStateReligionFreeExperience", &CyPlayer::getStateReligionFreeExperience, "int ()")
-		.def("getCapitalCity", &CyPlayer::getCapitalCity, python::return_value_policy<python::manage_new_object>(), "CyCity* (int iID)")
+		.def("getCapitalCity", &CyPlayer::getCapitalCity, python::return_value_policy<python::manage_new_object>(), "CyCity* ()") // lfgr 11/2022: Fixed docstring
 		.def("getCitiesLost", &CyPlayer::getCitiesLost, "int ()")
 
 		.def("getWinsVsBarbs", &CyPlayer::getWinsVsBarbs, "int ()")
@@ -477,6 +477,10 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("canHurry", &CyPlayer::canHurry, "int (int (HurryTypes) eIndex)")
 		.def("getSpecialBuildingNotRequiredCount", &CyPlayer::getSpecialBuildingNotRequiredCount, "int (int (SpecialBuildingTypes) eIndex)")
 		.def("isSpecialBuildingNotRequired", &CyPlayer::isSpecialBuildingNotRequired, "int (int (SpecialBuildingTypes) eIndex)")
+
+		// lfgr 05/2022: Expose inflation
+		.def("getInflationModifier", &CyPlayer::getInflationModifier, "int ()")
+		.def("changeInflationModifier", &CyPlayer::changeInflationModifier, "void (int)")
 
 		.def("isHasCivicOption", &CyPlayer::isHasCivicOption, "bool (int (CivicOptionTypes) eIndex)")
 		.def("isNoCivicUpkeep", &CyPlayer::isNoCivicUpkeep, "bool (int /*CivicOptionTypes*/ iIndex)")

@@ -210,14 +210,6 @@
 		<Spanish>est&#225;n ansiosos por rebelarse.  A&#250;n no deber&#237;a ser muy tarde para mantener el orden, si tomas medidas para mejorar la situaci&#243;n local.</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_REV_WARN_CIV_WIDE</Tag>
-		<English>There are also civ-wide things you might consider:</English>
-		<French>Il y a &#233;galement des choses civ-larges que vous pourriez consid&#233;rer :</French>
-		<German>Es gibt auch Civ-weite Dinge, die Sie beachten sollten:</German>
-		<Italian>Ci sono altre cose pi&#249; generali da considerare:</Italian>
-		<Spanish>Deber&#237;as considerar que tambi&#233;n hay asuntos que inciden sobre el gobierno de tu civilizaci&#243;n en general:</Spanish>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_REV_WARN_WARS</Tag>
 		<English>While victory in our current wars may calm the cities cries, the shame of losing another city to our enemies could erode our support.  Carefully consider your chances for a quick victory.</English>
 		<French>Tandis que la victoire dans nos guerres courantes peut calmer les cris de villes, la honte de perdre une autre ville &#224; nos ennemis pourrait &#233;roder notre appui.  Consid&#233;rez soigneusement vos chances pour une victoire rapide.</French>
@@ -583,6 +575,12 @@
 		<Finnish>Bad:</Finnish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_REV_WATCH_TOTAL</Tag>
+		<English>Total: %D1</English>
+		<German>Gesamt: %D1</German>
+		<Spanish>Total: %D1</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_REV_WATCH_DANGEROUSLY_UNSTABLE</Tag>
 		<English>Dangerously Unstable:</English>
 		<French>Dangereusement instable:</French>
@@ -847,20 +845,18 @@
 	<TEXT>
 		<Tag>TXT_KEY_REV_MESS_REINFORCEMENTS</Tag>
 		<English>Rebel reinforcements for %s1_leader spotted outside of %s2_city</English>
-		<French>Renforts rebelles for %s1_leader rep&#233;r&#233;s dehors de</French>
-		<German>Rebellenverst&#228;rkungen wurden gesichtet for %s1_leader vor den Toren von</German>
-		<Italian>Rinforzi ribelli for %s1_leader avvistati vicino </Italian>
-		<Spanish>&#161;Refuerzos rebeldes for %s1_leader avistados en el exterior de</Spanish>
-		<Finnish>Rebel reinforcements for %s1_leader spotted outside of</Finnish>
+		<French>Renforts rebelles for %s1_leader rep&#233;r&#233;s dehors de %s2_city</French>
+		<German>Rebellenverst&#228;rkungen wurden gesichtet for %s1_leader vor den Toren von %s2_city</German>
+		<Italian>Rinforzi ribelli for %s1_leader avvistati vicino %s2_city</Italian>
+		<Spanish>&#161;Refuerzos rebeldes for %s1_leader avistados en el exterior de %s2_city</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_REV_MESS_YOUR_REINFORCEMENTS</Tag>
 		<English>%s1_civ reinforcements join your cause outside of %s2_city</English>
-		<French>Les renforts joignent votre cause dehors de</French>
-		<German>Verst&#228;rkungen schlie&#223;en sich Ihrer Sache an, vor den Toren von</German>
-		<Italian>Rinforzi si uniscono al tuo esercito, nei pressi di </Italian>
-		<Spanish>&#161;Refuerzos se han unido a tu causa en el exterior de</Spanish>
-		<Finnish>Reinforcements join your cause outside of</Finnish>
+		<French>Les renforts joignent votre cause dehors de %s2_city</French>
+		<German>Verst&#228;rkungen schlie&#223;en sich Ihrer Sache an, vor den Toren von %s2_city</German>
+		<Italian>Rinforzi si uniscono al tuo esercito, nei pressi di %s2_city</Italian>
+		<Spanish>&#161;Refuerzos se han unido a tu causa en el exterior de %s2_city</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_REV_MESS_SMALL_REVOLT</Tag>

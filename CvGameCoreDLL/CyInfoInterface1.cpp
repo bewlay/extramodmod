@@ -195,6 +195,9 @@ void CyInfoPythonInterface1()
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
 
+		// lfgr 09/2023 Extra revolution tags
+		.def("getRevGarrisonValue", &CvPromotionInfo::getRevGarrisonValue, "int ()")
+
 		// Arrays
 
 		.def("getTerrainAttackPercent", &CvPromotionInfo::getTerrainAttackPercent, "int (int i)")
@@ -363,20 +366,49 @@ void CyInfoPythonInterface1()
 		.def("getUnitPadTime", &CvUnitInfo::getUnitPadTime, "float ()")
 
 //FfH: Added by Kael 03/01/2008
+// lfgr 08/2023: Reordered and exposed additional functions
+		.def("isAbandon", &CvUnitInfo::isAbandon, "bool ()")
+		.def("isAutoRaze", &CvUnitInfo::isObject, "bool ()")
+		.def("isObject", &CvUnitInfo::isObject, "bool ()")
+		.def("isDisableUpgradeTo", &CvUnitInfo::isDisableUpgradeTo, "bool ()")
+		.def("isExplodeInCombat", &CvUnitInfo::isExplodeInCombat, "bool ()")
+		.def("isFreeXP", &CvUnitInfo::isFreeXP, "bool ()")
+		.def("isImmortal", &CvUnitInfo::isImmortal, "bool ()")
+		.def("isImmuneToDefensiveStrike", &CvUnitInfo::isImmuneToDefensiveStrike, "bool ()")
+		.def("isNeverObsolete", &CvUnitInfo::isNeverObsolete, "bool ()")
+		.def("isNoWarWeariness", &CvUnitInfo::isNoWarWeariness, "bool ()")
+
 		.def("getCombatDefense", &CvUnitInfo::getCombatDefense, "int ()")
+		.def("getDefensiveStrikeChance", &CvUnitInfo::getDefensiveStrikeChance, "int ()")
+		.def("getDefensiveStrikeDamage", &CvUnitInfo::getDefensiveStrikeDamage, "int ()")
+		.def("getDiploVoteType", &CvUnitInfo::getDiploVoteType, "int ()")
+		.def("getDurationFromCombat", &CvUnitInfo::getDurationFromCombat, "int ()")
+		.def("getEnslavementChance", &CvUnitInfo::getEnslavementChance, "int ()")
 		.def("getEquipmentPromotion", &CvUnitInfo::getEquipmentPromotion, "int ()")
-		.def("getImage", &CvUnitInfo::getImage, "wstring ()")
+		.def("getFreePromotionPick", &CvUnitInfo::getFreePromotionPick, "int ()")
+		.def("getGoldFromCombat", &CvUnitInfo::getGoldFromCombat, "int ()")
+		.def("getMinLevel", &CvUnitInfo::getMinLevel, "int ()")
+		.def("getMiscastChance", &CvUnitInfo::getMiscastChance, "int ()")
+		.def("getModifyGlobalCounter", &CvUnitInfo::getModifyGlobalCounter, "int ()")
+		.def("getPrereqAlignment", &CvUnitInfo::getPrereqAlignment, "int ()")
 		.def("getPrereqBuildingClass", &CvUnitInfo::getPrereqBuildingClass, "int ()")
+		.def("getPrereqCiv", &CvUnitInfo::getPrereqCiv, "int ()")
 		.def("getPrereqCivic", &CvUnitInfo::getPrereqCivic, "int ()")
+		.def("getPrereqGlobalCounter", &CvUnitInfo::getPrereqGlobalCounter, "int ()")
+		.def("getPromotionFromCombat", &CvUnitInfo::getPromotionFromCombat, "int ()")
+		.def("getUnitConvertFromCombat", &CvUnitInfo::getUnitConvertFromCombat, "int ()")
+		.def("getUnitConvertFromCombatChance", &CvUnitInfo::getUnitConvertFromCombatChance, "int ()")
+		.def("getUnitCreateFromCombat", &CvUnitInfo::getUnitCreateFromCombat, "int ()")
+		.def("getUnitCreateFromCombatChance", &CvUnitInfo::getUnitCreateFromCombatChance, "int ()")
+		.def("getTier", &CvUnitInfo::getTier, "int ()")
+		.def("getUpgradeCiv", &CvUnitInfo::getUpgradeCiv, "int ()")
+		.def("getWeaponTier", &CvUnitInfo::getWeaponTier, "int ()")
+		.def("getWithdrawlProbDefensive", &CvUnitInfo::getWithdrawlProbDefensive, "int ()")
+
+		.def("getImage", &CvUnitInfo::getImage, "wstring ()")
 		.def("getPyPostCombatLost", &CvUnitInfo::getPyPostCombatLost, "string ()")
 		.def("getPyPostCombatWon", &CvUnitInfo::getPyPostCombatWon, "string ()")
 		.def("getPyInfoHelp", &CvUnitInfo::getPyInfoHelp, "string ()") // lfgr 10/2019: UnitPyInfoHelp
-		.def("getTier", &CvUnitInfo::getTier, "int ()")
-		.def("getWeaponTier", &CvUnitInfo::getWeaponTier, "int ()")
-		.def("isAbandon", &CvUnitInfo::isAbandon, "bool ()")
-		.def("isObject", &CvUnitInfo::isObject, "bool ()")
-		.def("isDisableUpgradeTo", &CvUnitInfo::isDisableUpgradeTo, "bool ()")
-		.def("getPrereqCiv", &CvUnitInfo::getPrereqCiv, "int ()")
 //FfH: End Add
 
 // BUG - Unit Experience - start
@@ -502,16 +534,8 @@ void CyInfoPythonInterface1()
 /*                                                                                              */
 /************************************************************************************************/
 		.def("isDisallowInquisitions", &CvCivicInfo::isDisallowInquisitions, "bool ()")
-		.def("getRevIdxLocal", &CvCivicInfo::getRevIdxLocal, "int ()")
-		.def("getRevIdxNational", &CvCivicInfo::getRevIdxNational, "int ()")
-		.def("getRevIdxDistanceModifier", &CvCivicInfo::getRevIdxDistanceModifier, "int ()")
-		.def("getRevIdxHolyCityGood", &CvCivicInfo::getRevIdxHolyCityGood, "int ()")
-		.def("getRevIdxHolyCityBad", &CvCivicInfo::getRevIdxHolyCityBad, "int ()")
 		.def("getRevIdxSwitchTo", &CvCivicInfo::getRevIdxSwitchTo, "int ()")
-		.def("getRevIdxNationalityMod", &CvCivicInfo::getRevIdxNationalityMod, "float ()")
-		.def("getRevIdxBadReligionMod", &CvCivicInfo::getRevIdxBadReligionMod, "float ()")
-		.def("getRevIdxGoodReligionMod", &CvCivicInfo::getRevIdxGoodReligionMod, "float ()")
-		.def("getRevViolentMod", &CvCivicInfo::getRevViolentMod, "float ()")
+		.def("getRevViolentMod", &CvCivicInfo::getRevViolentMod, "int ()")
 		.def("getRevReligiousFreedom", &CvCivicInfo::getRevReligiousFreedom, "int ()")
 		.def("getRevLaborFreedom", &CvCivicInfo::getRevLaborFreedom, "int ()")
 		.def("getRevEnvironmentalProtection", &CvCivicInfo::getRevEnvironmentalProtection, "int ()")
@@ -532,6 +556,19 @@ void CyInfoPythonInterface1()
 		.def("isNoForeignCorporations", &CvCivicInfo::isNoForeignCorporations, "bool ()")
 		.def("isStateReligion", &CvCivicInfo::isStateReligion, "bool ()")
 		.def("isNoNonStateReligionSpread", &CvCivicInfo::isNoNonStateReligionSpread, "bool ()")
+
+		// lfgr 08/2023: Exposed FfH functions
+		.def("isHidden", &CvCivicInfo::isHidden, "bool ()")
+		.def("isNoDiplomacyWithEnemies", &CvCivicInfo::isNoDiplomacyWithEnemies, "bool ()")
+		.def("isPrereqWar", &CvCivicInfo::isPrereqWar, "bool ()")
+		.def("getAttitudeShareMod", &CvCivicInfo::getAttitudeShareMod, "int ()")
+		.def("getCoastalTradeRoutes", &CvCivicInfo::getCoastalTradeRoutes, "int ()")
+		.def("getEnslavementChance", &CvCivicInfo::getEnslavementChance, "int ()")
+		.def("getFoodConsumptionPerPopulation", &CvCivicInfo::getFoodConsumptionPerPopulation, "int ()")
+		.def("getBlockAlignment", &CvCivicInfo::getBlockAlignment, "int ()")
+		.def("getPrereqAlignment", &CvCivicInfo::getPrereqAlignment, "int ()")
+		.def("getPrereqCivilization", &CvCivicInfo::getPrereqCivilization, "int ()")
+		.def("getPrereqReligion", &CvCivicInfo::getPrereqReligion, "int ()")
 
 		.def("pyGetWeLoveTheKing", &CvCivicInfo::pyGetWeLoveTheKing, "wstring ()")
 
@@ -558,7 +595,8 @@ void CyInfoPythonInterface1()
 		.def("getPrereqReligion", &CvCivicInfo::getPrereqReligion, "int ()")
 //FfH: End Add
 
-
+		// lfgr Revolution effects 04/2023
+		.def("getRevIdxEffects", &CvCivicInfo::getRevIdxEffects, "CvRevolutionEffects ()")
 		;
 
 	python::class_<CvUnitClassInfo, python::bases<CvInfoBase> >("CvUnitClassInfo")
@@ -655,18 +693,6 @@ void CyInfoPythonInterface1()
 		.def("getBombardDefenseModifier", &CvBuildingInfo::getBombardDefenseModifier, "int ()")
 		.def("getAllCityDefenseModifier", &CvBuildingInfo::getAllCityDefenseModifier, "int ()")
 		.def("getEspionageDefenseModifier", &CvBuildingInfo::getEspionageDefenseModifier, "int ()")
-/********************************************************************************/
-/**		REVDCM									4/09/10				phungus420	*/
-/**																				*/
-/**		Building Effects														*/
-/********************************************************************************/
-		.def("getRevIdxLocal", &CvBuildingInfo::getRevIdxLocal, "int ()")
-		.def("getRevIdxNational", &CvBuildingInfo::getRevIdxNational, "int ()")
-		.def("getRevIdxDistanceModifier", &CvBuildingInfo::getRevIdxDistanceModifier, "int ()")
-/********************************************************************************/
-/**		REVDCM									END								*/
-/********************************************************************************/
-
 		.def("getMissionType", &CvBuildingInfo::getMissionType, "int ()")
 		.def("getVoteSourceType", &CvBuildingInfo::getVoteSourceType, "int ()")
 
@@ -754,6 +780,10 @@ void CyInfoPythonInterface1()
 		.def("getBonusYieldModifier", &CvBuildingInfo::getBonusYieldModifier, "int (int i, int j)")
 
 		.def("getArtInfo", &CvBuildingInfo::getArtInfo,  python::return_value_policy<python::reference_existing_object>())
+
+		// lfgr Revolution effects 04/2023
+		.def("getRevIdxEffects", &CvBuildingInfo::getRevIdxEffects, "CvRevolutionEffects ()")
+		.def("getRevIdxEffectsAllCities", &CvBuildingInfo::getRevIdxEffectsAllCities, "CvRevolutionEffects ()")
 		;
 
 	python::class_<CvSpecialBuildingInfo, python::bases<CvInfoBase> >("CvSpecialBuildingInfo")

@@ -821,16 +821,8 @@
 	</ElementType>
 <!--DPII < Revolution Mod Start > -->
 	<ElementType name="bDisallowInquisitions" content= "textOnly" dt:type="boolean"/>
-	<ElementType name="iRevIdxLocal" content= "textOnly" dt:type="int"/>
-	<ElementType name="iRevIdxNational" content= "textOnly" dt:type="int"/>
-	<ElementType name="iRevIdxDistanceModifier" content= "textOnly" dt:type="int"/>
-	<ElementType name="iRevIdxHolyCityGood" content="textOnly" dt:type="int"/>
-	<ElementType name="iRevIdxHolyCityBad" content="textOnly" dt:type="int"/>
 	<ElementType name="iRevIdxSwitchTo" content="textOnly" dt:type="int"/>
-	<ElementType name="fRevIdxNationalityMod" content="textOnly"/>
-	<ElementType name="fRevIdxBadReligionMod" content="textOnly"/>
-	<ElementType name="fRevIdxGoodReligionMod" content="textOnly"/>
-	<ElementType name="fRevViolentMod" content="textOnly"/>
+	<ElementType name="iRevViolentMod" content="textOnly" dt:type="int"/>
 	<ElementType name="iRevReligiousFreedom" content="textOnly" dt:type="int"/>
 	<ElementType name="iRevLaborFreedom" content="textOnly" dt:type="int"/>
 	<ElementType name="iRevEnvironmentalProtection" content="textOnly" dt:type="int"/>
@@ -839,6 +831,24 @@
 	<ElementType name="bFreeSpeech" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bCanDoElection" content="textOnly" dt:type="boolean"/>	
 <!--DPII < Revolution Mod End > -->
+<!-- lfgr Revolution effects 05/2023 -->
+	<ElementType name="iRevIdxPerTurn" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxHolyCityOwned" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxHolyCityHeathenOwned" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxHappinessMod" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxHappinessCapChange" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxUnhappinessMod" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxLocationMod" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxBadReligionMod" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxGoodReligionMod" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxNationalityMod" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxGarrisonMod" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxGarrisonCapChange" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxDisorderMod" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxCrimeMod" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxCultureRateMod" content= "textOnly" dt:type="int"/>
+	<ElementType name="iRevIdxCultureRateCapChange" content= "textOnly" dt:type="int"/>
+<!-- lfgr end -->
 	<ElementType name="WeLoveTheKing" content="textOnly"/>
 	<ElementType name="bNoDiplomacyWithEnemies" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bPrereqWar" content="textOnly" dt:type="boolean"/>
@@ -918,16 +928,8 @@
 		<element type="ImprovementYieldChanges"/>
 <!-- DPII < Revolution Mod Start > -->
 		<element type="bDisallowInquisitions" minOccurs="0"/>
-		<element type="iRevIdxLocal" minOccurs="0"/>
-		<element type="iRevIdxNational" minOccurs="0"/>
-		<element type="iRevIdxDistanceModifier" minOccurs="0"/>
-		<element type="iRevIdxHolyCityGood" minOccurs="0"/>
-		<element type="iRevIdxHolyCityBad" minOccurs="0"/>
 		<element type="iRevIdxSwitchTo" minOccurs="0"/>
-		<element type="fRevIdxNationalityMod" minOccurs="0"/>
-		<element type="fRevIdxBadReligionMod" minOccurs="0"/>
-		<element type="fRevIdxGoodReligionMod" minOccurs="0"/>
-		<element type="fRevViolentMod" minOccurs="0"/>
+		<element type="iRevViolentMod" minOccurs="0"/>
 		<element type="iRevReligiousFreedom" minOccurs="0"/>
 		<element type="iRevLaborFreedom" minOccurs="0"/>
 		<element type="iRevEnvironmentalProtection" minOccurs="0"/>
@@ -936,6 +938,24 @@
 		<element type="bFreeSpeech" minOccurs="0"/>
 		<element type="bCanDoElection" minOccurs="0"/>
 <!--DPII < Revolution Mod End > -->
+<!-- lfgr Revolution effects 05/2023 -->
+		<element type="iRevIdxPerTurn" minOccurs="0"/>
+		<element type="iRevIdxHolyCityOwned" minOccurs="0"/>
+		<element type="iRevIdxHolyCityHeathenOwned" minOccurs="0"/>
+		<element type="iRevIdxHappinessMod" minOccurs="0"/>
+		<element type="iRevIdxHappinessCapChange" minOccurs="0"/>
+		<element type="iRevIdxUnhappinessMod" minOccurs="0"/>
+		<element type="iRevIdxLocationMod" minOccurs="0"/>
+		<element type="iRevIdxBadReligionMod" minOccurs="0"/>
+		<element type="iRevIdxGoodReligionMod" minOccurs="0"/>
+		<element type="iRevIdxNationalityMod" minOccurs="0"/>
+		<element type="iRevIdxGarrisonMod" minOccurs="0"/>
+		<element type="iRevIdxGarrisonCapChange" minOccurs="0"/>
+		<element type="iRevIdxDisorderMod" minOccurs="0"/>
+		<element type="iRevIdxCrimeMod" minOccurs="0"/>
+		<element type="iRevIdxCultureRateMod" minOccurs="0"/>
+		<element type="iRevIdxCultureRateCapChange" minOccurs="0"/>
+<!-- lfgr end -->
 		<element type="WeLoveTheKing"/>
 		<element type="bHidden"/>
 		<element type="bNoDiplomacyWithEnemies"/>

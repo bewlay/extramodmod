@@ -21,6 +21,9 @@ template<class T>
 class CvPrereq;
 // UNIVERSAL_PREREQS end
 
+// lfgr Revolution effects 04/2023
+#include "CvInfosRevolution.h"
+
 class CvXMLLoadUtility;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -670,6 +673,8 @@ public:
 	bool isUpgradeOutsideBorders() const;
 	bool isAlwaysSpreadReligion() const;
 	// End MNAI
+
+	int getRevGarrisonValue() const; // lfgr 09/2023 Extra revolution tags
 	
 	bool isPromotionImmune( int /*PromotionTypes*/ ePromotion ); // XML_LISTS 07/2019 lfgr
 
@@ -830,6 +835,8 @@ protected:
 	bool m_bUpgradeOutsideBorders;
 	bool m_bAlwaysSpreadReligion;
 	// End MNAI
+
+	int m_iRevGarrisonValue; // lfgr 09/2023 Extra revolution tags
 
 	// Arrays
 
@@ -2075,16 +2082,8 @@ public:
 /* RevCivicEffects                                                                              */
 /************************************************************************************************/
 	bool isDisallowInquisitions() const;
-	int getRevIdxLocal() const;
-	int getRevIdxNational() const;
-	int getRevIdxDistanceModifier() const;
-	int getRevIdxHolyCityGood() const;
-	int getRevIdxHolyCityBad() const;
 	int getRevIdxSwitchTo() const;
-	float getRevIdxNationalityMod() const;
-	float getRevIdxBadReligionMod() const;
-	float getRevIdxGoodReligionMod() const;
-	float getRevViolentMod() const;
+	int getRevViolentMod() const; // lfgr 05/2023: Made int modifier
 	int getRevReligiousFreedom() const;
 	int getRevLaborFreedom() const;
 	int getRevEnvironmentalProtection() const;
@@ -2156,6 +2155,9 @@ public:
 
 	int getImprovementYieldChanges(int i, int j) const;				// Exposed to Python
 
+	// lfgr Revolution effects 04/2023
+	CvRevolutionEffects getRevIdxEffects() const;
+
 	void read(FDataStreamBase* stream);
 	void write(FDataStreamBase* stream);
 
@@ -2206,16 +2208,8 @@ protected:
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
 	int m_bDisallowInquisitions;
-	int m_iRevIdxLocal;
-	int m_iRevIdxNational;
-	int m_iRevIdxDistanceModifier;
-	int m_iRevIdxHolyCityGood;
-	int m_iRevIdxHolyCityBad;
 	int m_iRevIdxSwitchTo;
-	float m_fRevIdxNationalityMod;
-	float m_fRevIdxGoodReligionMod;
-	float m_fRevIdxBadReligionMod;
-	float m_fRevViolentMod;
+	int m_iRevViolentMod; // lfgr 05/2023: Made int modifier
 	int m_iRevReligiousFreedom;
 	int m_iRevLaborFreedom;
 	int m_iRevEnvironmentalProtection;
@@ -2277,6 +2271,8 @@ protected:
 
 	int** m_ppiImprovementYieldChanges;
 
+	// lfgr Revolution effects 04/2023
+	CvRevolutionEffects m_kRevIdxEffects;
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -2469,18 +2465,6 @@ public:
 	int getAllCityDefenseModifier() const;				// Exposed to Python
 	int getEspionageDefenseModifier() const;					// Exposed to Python
 
-/********************************************************************************/
-/**		REVDCM									4/09/10				phungus420	*/
-/**																				*/
-/**		Building Effects														*/
-/********************************************************************************/
-	int getRevIdxLocal() const;					// Exposed to Python
-	int getRevIdxNational() const;					// Exposed to Python
-	int getRevIdxDistanceModifier() const;					// Exposed to Python
-/********************************************************************************/
-/**		REVDCM									END								*/
-/********************************************************************************/
-
 	int getMissionType() const;											// Exposed to Python
 	void setMissionType(int iNewType);
 	int getVoteSourceType() const;				// Exposed to Python
@@ -2619,6 +2603,10 @@ public:
 	bool isBuildingClassAnyNeededInCity( int i ) const;
 // WILDERNESS end
 
+	// lfgr Revolution effects 04/2023
+	CvRevolutionEffects getRevIdxEffects() const;
+	CvRevolutionEffects getRevIdxEffectsAllCities() const;
+
 	// Other
 
 	const CvArtInfoBuilding* getArtInfo() const;
@@ -2728,18 +2716,6 @@ protected:
 	int m_iBombardDefenseModifier;
 	int m_iAllCityDefenseModifier;
 	int m_iEspionageDefenseModifier;
-
-/********************************************************************************/
-/**		REVDCM									4/09/10				phungus420	*/
-/**																				*/
-/**		Building Effects														*/
-/********************************************************************************/
-	int m_iRevIdxLocal;
-	int m_iRevIdxNational;
-	int m_iRevIdxDistanceModifier;
-/********************************************************************************/
-/**		REVDCM									END								*/
-/********************************************************************************/
 
 	int m_iMissionType;
 	int m_iVoteSourceType;
@@ -2852,6 +2828,10 @@ protected:
 	int m_iBuildingClassAnyNeededInCityCount;
 	bool* m_pbBuildingClassAnyNeededInCity;
 // WILDERNESS end
+
+	// lfgr Revolution effects 04/2023
+	CvRevolutionEffects m_kRevIdxEffects;
+	CvRevolutionEffects m_kRevIdxEffectsAllCities;
 
 };
 

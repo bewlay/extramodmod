@@ -128,8 +128,12 @@ def getSpellHelp( argsList ) :
 	pSpell = gc.getSpellInfo( eSpell )
 	pPlayer = gc.getPlayer( ePlayer )
 	lpUnits = []
+	lpCasters = []
 	for eUnit in leUnits :
-		lpUnits.append( pPlayer.getUnit( eUnit ) )
+		pUnit = pPlayer.getUnit( eUnit )
+		lpUnits.append( pUnit )
+		if pUnit.canCast( eSpell, False ) :
+			lpCasters.append( pUnit )
 	return eval( pSpell.getPyHelp() )
 # SpellPyHelp END
 
@@ -1364,23 +1368,31 @@ def spellEntertain(caster):
 		pPlayer2.changeGold(iGold)
 	pCity.changeHappinessTimer(2)
 
-def reqEscape(caster):
-	if caster.getOwner() == gc.getBARBARIAN_PLAYER():
+# lfgr 10/2023: fixed
+def reqEscape( pCaster ):
+	pCapital = gc.getPlayer( pCaster.getOwner() ).getCapitalCity() # type: CyCity
+	if pCapital is None or pCapital.isNone() :
 		return False
-	pPlayer = gc.getPlayer(caster.getOwner())
-	if pPlayer.isHuman() == False:
+
+	if ( pCapital.plot().getX(), pCapital.plot().getY() ) == ( pCaster.getX(), pCaster.getY() ) :
+		return False
+
+	if not gc.getPlayer( pCaster.getOwner() ).isHuman() :
 		#Units imprisoned in a cage will try to escape.
-		if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
+		pPlot = pCaster.plot()
+		if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
 			return True
-		if caster.getDamage() >= 50:
+		if pCaster.getDamage() <= 50:
 			return False
 	return True
 
-def spellEscape(caster):
+# lfgr 10/2023: renamed and simplified
+def spellEscape( pCaster ):
+	# type: (CyUnit) -> None
 	#Escape also allows to escape from cages.
-	pPlot = caster.plot()
-	if caster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
-		caster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
+	pPlot = pCaster.plot()
+	if pCaster.isHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD')) and pPlot.getImprovementType() == gc.getInfoTypeForString('IMPROVEMENT_CAGE'):
+		pCaster.setHasPromotion(gc.getInfoTypeForString('PROMOTION_HELD'), False)
 		#Now we have to check if the cage has to be eliminated.
 		bRemoveCage = True
 		for i in range(pPlot.getNumUnits()):
@@ -1390,11 +1402,7 @@ def spellEscape(caster):
 				break
 		if bRemoveCage:
 			pPlot.setImprovementType(-1)
-
-	player = caster.getOwner()
-	pPlayer = gc.getPlayer(player)
-	pCity = pPlayer.getCapitalCity()
-	caster.setXY(pCity.getX(), pCity.getY(), False, True, True)
+	pCaster.doEscape()
 
 def reqExploreLair(caster):
 # WILDERNESS 10/2013 lfgr: moved some code to C++
@@ -1456,18 +1464,19 @@ def reqFeast(caster):
 	return True
 
 # lfgr 04/2021
-def helpFeast( lpUnits ) :
+def helpFeast( lpCasters ) :
 	# type: (List[CyUnit]) -> unicode
-	if len( lpUnits ) > 0 :
-		pCity = lpUnits[0].plot().getPlotCity()
+	eFeastSpell = gc.getInfoTypeForString( "SPELL_FEAST" )
+	if len( lpCasters ) > 0 :
+		pCity = lpCasters[0].plot().getPlotCity()
 		if pCity is not None and not pCity.isNone() :
 			iMaxFeastXP = pCity.getPopulation() - 3
 			if iMaxFeastXP > 0 :
-				if len( lpUnits ) == 1 :
+				iNumUnitsGain = min( iMaxFeastXP, len( lpCasters ) )
+				if iNumUnitsGain == 1 :
 					return PyHelpers.getText( "TXT_KEY_FEAST_XP", iMaxFeastXP )
 				else :
-					iNumUnitsGain = min( iMaxFeastXP-1, len( lpUnits ) )
-					iMinFeastXP = max( 1, iMaxFeastXP - len( lpUnits ) + 1 )
+					iMinFeastXP = max( 1, iMaxFeastXP - iNumUnitsGain + 1 )
 					return PyHelpers.getText( "TXT_KEY_FEAST_XP_MULTI", iNumUnitsGain, iMinFeastXP, iMaxFeastXP )
 	return PyHelpers.getText( "TXT_KEY_SPELL_FEAST_HELP" )
 

@@ -5323,7 +5323,7 @@ int CvCity::getRevIndexPercentAnger(int iExtra) const
 {
 	int iAnger = 0;
 	int iLocalAdjust = std::min((getLocalRevIndex()*3)/4,getLocalRevIndex()/2);
-	iLocalAdjust = std::min(iLocalAdjust,10);
+	iLocalAdjust = std::max( 0, std::min( 10, iLocalAdjust ) ); // lfgr fix 09/2023
 
 	iAnger = (int)((12.5+iLocalAdjust)*(getRevolutionIndex() - 325))/750;
 	iAnger = std::max(0,iAnger);
@@ -18049,3 +18049,15 @@ int CvCity::getRevTrend()
 	return iDeltaTrend;
 }
 // End REVOLUTIONS
+
+// lfgr 09/2023 Extra revolution tags
+int CvCity::getTotalRevGarrisonValue() const
+{
+	int iValue = 0;
+
+	for( CLLNode<IDInfo>* pUnitNode = plot()->headUnitNode(); pUnitNode != NULL; pUnitNode = plot()->nextUnitNode( pUnitNode ) ) {
+		iValue += ::getUnit( pUnitNode->m_data )->getRevGarrisonValue();
+	}
+
+	return iValue;
+}

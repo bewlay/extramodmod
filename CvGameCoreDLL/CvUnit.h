@@ -1095,6 +1095,8 @@ public:
 	
 	int getMiscastChance() const; // MiscastPromotions 10/2019 lfgr
 
+	int getRevGarrisonValue() const; // lfgr 09/2023 Extra revolution tags
+
 	virtual int AI_promotionValue(PromotionTypes ePromotion) = 0;
 
 	int getEnslavementChance() const;

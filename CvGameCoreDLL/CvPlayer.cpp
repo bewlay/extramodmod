@@ -877,14 +877,6 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 /* Player Functions                                                                             */
 /************************************************************************************************/
 	m_iNonStateReligionCommerceCount = 0;
-	m_iRevIdxLocal = 0;
-	m_iRevIdxNational = 0;
-	m_iRevIdxDistanceModifier = 0;
-	m_iRevIdxHolyCityGood = 0;
-	m_iRevIdxHolyCityBad = 0;
-	m_fRevIdxNationalityMod = 0;
-	m_fRevIdxBadReligionMod = 0;
-	m_fRevIdxGoodReligionMod = 0;
 	m_bCanInquisition = true;
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
@@ -6729,6 +6721,10 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 		break;
 
 	case TRADE_WAR:
+		// lfgr 08/2023
+		if( GC.getDefineINT( "NO_WAR_TRADE", 0 ) ) {
+			return false;
+		}
 		if (!(GET_TEAM(getTeam()).isHuman()))
 		{
 			if (!(GET_TEAM(getTeam()).isAVassal()))
@@ -6761,6 +6757,10 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 /** Advanced Diplomacy       START															     */
 /*************************************************************************************************/
 	case TRADE_WAR_PREPARE: // byFra
+		// lfgr 08/2023
+		if( GC.getDefineINT( "NO_WAR_TRADE", 0 ) ) {
+			return false;
+		}
 		if (!(GET_TEAM(getTeam()).isHuman()))
 		{
 			if (!(GET_TEAM(getTeam()).isAVassal()))
@@ -9336,15 +9336,6 @@ void CvPlayer::processBuilding(BuildingTypes eBuilding, int iChange, CvArea* pAr
 	changeWorkerSpeedModifier(GC.getBuildingInfo(eBuilding).getWorkerSpeedModifier() * iChange);
 	changeSpaceProductionModifier(GC.getBuildingInfo(eBuilding).getGlobalSpaceProductionModifier() * iChange);
 	changeCityDefenseModifier(GC.getBuildingInfo(eBuilding).getAllCityDefenseModifier() * iChange);
-/************************************************************************************************/
-/* REVDCM                                 04/09/10                                phungus420    */
-/*                                                                                              */
-/* Building Effects                                                                             */
-/************************************************************************************************/
-	changeRevIdxNational(GC.getBuildingInfo(eBuilding).getRevIdxNational() * iChange);
-/************************************************************************************************/
-/* REVDCM                                  END                                                  */
-/************************************************************************************************/
 	pArea->changeCleanPowerCount(getTeam(), ((GC.getBuildingInfo(eBuilding).isAreaCleanPower()) ? iChange : 0));
 	pArea->changeBorderObstacleCount(getTeam(), ((GC.getBuildingInfo(eBuilding).isAreaBorderObstacle()) ? iChange : 0));
 
@@ -9846,7 +9837,7 @@ int CvPlayer::calculateInflationRate() const
 	iInflationPerTurnTimes10000 *= GC.getHandicapInfo(getHandicapType()).getInflationPercent();
 	iInflationPerTurnTimes10000 /= 100;
 
-	int iModifier = m_iInflationModifier;
+	int iModifier = getInflationModifier(); // lfgr 05/2022
 	if (!isHuman() && !isBarbarian())
 	{
 		int iAIModifier = GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getAIInflationPercent();
@@ -12184,117 +12175,6 @@ void CvPlayer::changeNonStateReligionCommerce(int iNewValue)
 		updateReligionCommerce();
 		AI_makeAssignWorkDirty();
     }
-}
-
-int CvPlayer::getRevIdxLocal() const
-{
-	return m_iRevIdxLocal;
-}
-
-void CvPlayer::changeRevIdxLocal(int iChange)
-{
-	if (iChange != 0)
-	{
-		m_iRevIdxLocal = (m_iRevIdxLocal + iChange);
-	}
-}
-
-
-int CvPlayer::getRevIdxNational() const
-{
-	return m_iRevIdxNational;
-}
-
-void CvPlayer::changeRevIdxNational(int iChange)
-{
-	if (iChange != 0)
-	{
-		m_iRevIdxNational = (m_iRevIdxNational + iChange);
-	}
-}
-
-
-int CvPlayer::getRevIdxDistanceModifier() const
-{
-	return m_iRevIdxDistanceModifier;
-}
-
-void CvPlayer::changeRevIdxDistanceModifier(int iChange)
-{
-	if (iChange != 0)
-	{
-		m_iRevIdxDistanceModifier = (m_iRevIdxDistanceModifier + iChange);
-	}
-}
-
-
-int CvPlayer::getRevIdxHolyCityGood() const
-{
-	return m_iRevIdxHolyCityGood;
-}
-
-void CvPlayer::changeRevIdxHolyCityGood(int iChange)
-{
-	if (iChange != 0)
-	{
-		m_iRevIdxHolyCityGood = (m_iRevIdxHolyCityGood + iChange);
-	}
-}
-
-
-int CvPlayer::getRevIdxHolyCityBad() const
-{
-	return m_iRevIdxHolyCityBad;
-}
-
-void CvPlayer::changeRevIdxHolyCityBad(int iChange)
-{
-	if (iChange != 0)
-	{
-		m_iRevIdxHolyCityBad = (m_iRevIdxHolyCityBad + iChange);
-	}
-}
-
-
-float CvPlayer::getRevIdxNationalityMod() const
-{
-	return m_fRevIdxNationalityMod;
-}
-
-void CvPlayer::changeRevIdxNationalityMod(float fChange)
-{
-	if (fChange != 0)
-	{
-		m_fRevIdxNationalityMod = (m_fRevIdxNationalityMod + fChange);
-	}
-}
-
-
-float CvPlayer::getRevIdxBadReligionMod() const
-{
-	return m_fRevIdxBadReligionMod;
-}
-
-void CvPlayer::changeRevIdxBadReligionMod(float fChange)
-{
-	if (fChange != 0)
-	{
-		m_fRevIdxBadReligionMod = (m_fRevIdxBadReligionMod + fChange);
-	}
-}
-
-
-float CvPlayer::getRevIdxGoodReligionMod() const
-{
-	return m_fRevIdxGoodReligionMod;
-}
-
-void CvPlayer::changeRevIdxGoodReligionMod(float fChange)
-{
-	if (fChange != 0)
-	{
-		m_fRevIdxGoodReligionMod = (m_fRevIdxGoodReligionMod + fChange);
-	}
 }
 
 // MNAI  - defaults to true
@@ -15874,6 +15754,18 @@ void CvPlayer::changeHurryCount(HurryTypes eIndex, int iChange)
 			FAssert(m_iPopRushHurryCount >= 0);
 		}
 	}
+}
+
+// lfgr 05/2022: Expose inflation
+int CvPlayer::getInflationModifier() const
+{
+	return m_iInflationModifier;
+}
+
+// lfgr 05/2022: Expose inflation
+void CvPlayer::changeInflationModifier( int iChange )
+{
+	m_iInflationModifier += iChange;
 }
 
 int CvPlayer::getSpecialBuildingNotRequiredCount(SpecialBuildingTypes eIndex) const
@@ -20476,14 +20368,6 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 /*                                                                                              */
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
-	changeRevIdxLocal(kCivic.getRevIdxLocal() * iChange);
-	changeRevIdxNational(kCivic.getRevIdxNational() * iChange);
-	changeRevIdxDistanceModifier(kCivic.getRevIdxDistanceModifier() * iChange);
-	changeRevIdxHolyCityGood(kCivic.getRevIdxHolyCityGood() * iChange);
-	changeRevIdxHolyCityBad(kCivic.getRevIdxHolyCityBad() * iChange);
-	changeRevIdxNationalityMod(kCivic.getRevIdxNationalityMod() * static_cast<float>(iChange));
-	changeRevIdxBadReligionMod(kCivic.getRevIdxBadReligionMod() * static_cast<float>(iChange));
-	changeRevIdxGoodReligionMod(kCivic.getRevIdxGoodReligionMod() * static_cast<float>(iChange));
 	setCanInquisition(kCivic.isDisallowInquisitions() ? false : true);
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
@@ -20642,14 +20526,13 @@ void CvPlayer::read(FDataStreamBase* pStream)
 /* Player Functions                                                                             */
 /************************************************************************************************/
 	pStream->Read(&m_iNonStateReligionCommerceCount);
-	pStream->Read(&m_iRevIdxLocal);
-	pStream->Read(&m_iRevIdxNational);
-	pStream->Read(&m_iRevIdxDistanceModifier);
-	pStream->Read(&m_iRevIdxHolyCityGood);
-	pStream->Read(&m_iRevIdxHolyCityBad);
-	pStream->Read(&m_fRevIdxNationalityMod);
-	pStream->Read(&m_fRevIdxBadReligionMod);
-	pStream->Read(&m_fRevIdxGoodReligionMod);
+
+	// LFGR_TODO: Compatability
+	int iTmp;
+	float fTmp;
+	for( int i = 0; i < 5; i++ ) pStream->Read( &iTmp );
+	for( int i = 0; i < 3; i++ ) pStream->Read( &fTmp );
+
 	pStream->Read(&m_bCanInquisition);
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
@@ -21295,14 +21178,11 @@ void CvPlayer::write(FDataStreamBase* pStream)
 /* Player Functions                                                                             */
 /************************************************************************************************/
 	pStream->Write(m_iNonStateReligionCommerceCount);
-	pStream->Write(m_iRevIdxLocal);
-	pStream->Write(m_iRevIdxNational);
-	pStream->Write(m_iRevIdxDistanceModifier);
-	pStream->Write(m_iRevIdxHolyCityGood);
-	pStream->Write(m_iRevIdxHolyCityBad);
-	pStream->Write(m_fRevIdxNationalityMod);
-	pStream->Write(m_fRevIdxBadReligionMod);
-	pStream->Write(m_fRevIdxGoodReligionMod);
+
+	// LFGR_TODO: Compatability
+	for( int i = 0; i < 5; i++ ) pStream->Write( 0 );
+	for( int i = 0; i < 3; i++ ) pStream->Write( 0.f );
+
 	pStream->Write(m_bCanInquisition);
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
@@ -23216,7 +23096,7 @@ void CvPlayer::applyEvent(EventTypes eEvent, int iEventTriggeredId, bool bUpdate
 
 	if (0 != kEvent.getInflationModifier())
 	{
-		m_iInflationModifier += kEvent.getInflationModifier();
+		changeInflationModifier( kEvent.getInflationModifier() ); // lfgr 05/2022
 	}
 
 	if (0 != kEvent.getSpaceProductionModifier())
@@ -27306,6 +27186,10 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
 			break;
 
 		case TRADE_WAR:
+			// lfgr 08/2023
+			if( GC.getDefineINT( "NO_WAR_TRADE", 0 ) ) {
+				break;
+			}
 			if (!isHuman())
 			{
 				for (int j = 0; j < MAX_CIV_TEAMS; j++)
@@ -27329,6 +27213,10 @@ void CvPlayer::buildTradeTable(PlayerTypes eOtherPlayer, CLinkList<TradeData>& o
 /** Advanced Diplomacy       START															     */
 /*************************************************************************************************/
 		case TRADE_WAR_PREPARE:
+			// lfgr 08/2023
+			if( GC.getDefineINT( "NO_WAR_TRADE", 0 ) ) {
+				break;
+			}
 			if (!isHuman())
 			{
 				for (int j = 0; j < MAX_CIV_TEAMS; j++)

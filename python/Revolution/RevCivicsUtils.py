@@ -63,52 +63,10 @@ def getCivicsHolyCityEffects( iPlayer ) :
 		iCivic = pPlayer.getCivics(i)
 		if( iCivic >= 0 ) :
 			kCivic = gc.getCivicInfo(iCivic)
-			goodEffect += kCivic.getRevIdxHolyCityGood()
-			badEffect += kCivic.getRevIdxHolyCityBad()
+			goodEffect += kCivic.getRevIdxEffects().getRevIdxHolyCityOwned()
+			badEffect += kCivic.getRevIdxEffects().getRevIdxHolyCityHeathenOwned()
 
 	return [goodEffect,badEffect]
-
-def getCivicsReligionMods( iPlayer ) :
-
-	pPlayer = gc.getPlayer(iPlayer)
-
-	if( pPlayer.isNone() ) :
-		return [0,0]
-
-	if( pPlayer.getNumCities() == 0 ) :
-		return [0,0]
-
-	goodMod = 0
-	badMod = 0
-
-	for i in range(0,gc.getNumCivicOptionInfos()) :
-		iCivic = pPlayer.getCivics(i)
-		if( iCivic >= 0 ) :
-			kCivic = gc.getCivicInfo(iCivic)
-			goodMod += kCivic.getRevIdxGoodReligionMod()
-			badMod += kCivic.getRevIdxBadReligionMod()
-
-	return [goodMod,badMod]
-
-def getCivicsViolentRevMod( iPlayer ) :
-
-	pPlayer = gc.getPlayer(iPlayer)
-
-	if( pPlayer.isNone() ) :
-		return 0
-
-	if( pPlayer.getNumCities() == 0 ) :
-		return 0
-
-	vioMod = 0
-
-	for i in range(0,gc.getNumCivicOptionInfos()) :
-		iCivic = pPlayer.getCivics(i)
-		if( iCivic >= 0 ) :
-			kCivic = gc.getCivicInfo(iCivic)
-			vioMod += kCivic.getRevViolentMod()
-
-	return vioMod
 
 def canDoCommunism( iPlayer ) :
 	pPlayer = gc.getPlayer(iPlayer)

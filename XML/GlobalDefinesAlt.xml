@@ -1051,6 +1051,21 @@
 		<DefineName>ALLOW_SHOW_CREATED_BUILDING_HELP</DefineName>
 		<iDefineIntVal>1</iDefineIntVal>
 	</Define>
+	<!-- If 1, city cycles first goes through non-settlements, then settlements. --><!-- If 1, city cycles first goes through non-settlements, then settlements. -->
+	<Define>
+		<DefineName>CITY_CYCLING_SEPARATE_SETTLEMENTS</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<!-- lfgr Revolution effects 05/2023: Base instability/turn for every city -->
+	<Define>
+		<DefineName>BASE_REV_IDX</DefineName>
+		<iDefineIntVal>-7</iDefineIntVal>
+	</Define>
+	<!-- lfgr 08/2023: Allow disabling war bribes -->
+	<Define>
+		<DefineName>NO_WAR_TRADE</DefineName>
+		<iDefineIntVal>0</iDefineIntVal>
+	</Define>
 <!-- TERRAIN_FLAVOUR 09/2013 lfgr -->
 	<Define>
 		<DefineName>TERRAIN_FLAVOUR_RADIUS</DefineName>

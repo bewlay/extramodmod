@@ -286,7 +286,7 @@ bool CvUnitAI::AI_update()
         }
         else if(isAIControl())
         {
-			if (canMove())
+			if (canMove() && canAttack()) // lfgr 11/2022: Fix for defensive-only units
 			{
 				if (AI_anyAttack(getMoves(), 0))
 				{
@@ -1846,6 +1846,11 @@ int CvUnitAI::AI_sacrificeValue(const CvPlot* pPlot) const
 void CvUnitAI::AI_animalMove()
 {
 	PROFILE_FUNC();
+
+	if( gUnitLogLevel >= 2 )
+	{
+		logBBAI("    Stack %d (led by %S (%d), size %d) starting animalMove", getGroup()->getID(), getName().GetCString(), getID(), getGroup()->getNumUnits());
+	}
 
 //FfH: Added by Kael 10/26/2008 So that animals can build their pens...
     if (!isBarbarian())
@@ -17860,6 +17865,11 @@ bool CvUnitAI::AI_anyAttack(int iRange, int iOddsThreshold, int iMinStack, bool 
 	{
 		FAssert(!atPlot(pBestPlot));
 		getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), ((bFollow) ? MOVE_DIRECT_ATTACK : 0));
+		if( gUnitLogLevel >= 2 )
+		{
+			logBBAI( "      Stack %d (led by %S (%d), size %d) attacking plot %d|%d", getGroup()->getID(), getName().GetCString(), getID(),
+					getGroup()->getNumUnits(), pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE() );
+		}
 		return true;
 	}
 

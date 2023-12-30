@@ -347,14 +347,6 @@ public:
 /* Player Functions                                                                             */
 /************************************************************************************************/
 	bool isNonStateReligionCommerce() const;
-	int getRevIdxLocal();
-	int getRevIdxNational();
-	int getRevIdxDistanceModifier();
-	int getRevIdxHolyCityGood();
-	int getRevIdxHolyCityBad();
-	float getRevIdxNationalityMod();
-	float getRevIdxBadReligionMod();
-	float getRevIdxGoodReligionMod();
 	bool canInquisition();
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
@@ -542,6 +534,11 @@ public:
 	int getBuildingClassCountPlusMaking(int /*BuildingClassTypes*/ iIndex);
 	int getHurryCount(int /*HurryTypes*/ eIndex);
 	bool canHurry(int /*HurryTypes*/ eIndex);
+
+	// lfgr 05/2022: Expose inflation
+	int getInflationModifier() const;
+	void changeInflationModifier( int iChange );
+
 	int getSpecialBuildingNotRequiredCount(int /*SpecialBuildingTypes*/ eIndex);
 	bool isSpecialBuildingNotRequired(int /*SpecialBuildingTypes*/ eIndex);
 

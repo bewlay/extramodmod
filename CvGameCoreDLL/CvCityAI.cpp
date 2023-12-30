@@ -2606,7 +2606,10 @@ void CvCityAI::AI_chooseProduction()
 				}
 			}
 
-			if (iPlotSettlerCount == 0 && (!bDanger || plot()->getNumDefenders(getOwnerINLINE()) >= 4)&& !bRoomToGrow)
+			// lfgr 08/2023: Experimental AI
+			bool bMayBuildSettler = !bRoomToGrow || GC.getGameINLINE().isOption( GAMEOPTION_EXPERIMENTAL_AI );
+
+			if (iPlotSettlerCount == 0 && (!bDanger || plot()->getNumDefenders(getOwnerINLINE()) >= 4)&& bMayBuildSettler)
 			{
 				if ((iNumSettlers < iMaxSettlers) && !bSlowSettlerProduction)
 				{
@@ -5642,11 +5645,14 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 				// Revolutions
 				if (GC.getGameINLINE().isOption(GAMEOPTION_REVOLUTIONS))
 				{
+					// LFGR_TODO: Consider other effects
 					// Local RevIndex - positive numbers are bad
-					iValue += (-(getLocalRevIndex() * kBuilding.getRevIdxLocal() / 100));
+					iValue += (-(getLocalRevIndex() * kBuilding.getRevIdxEffects().getRevIdxPerTurn() / 100));
 
 					// National RevIndex
-					iValue += (-(kOwner.getRevIdxNational() * kBuilding.getRevIdxNational()) / (isGovernmentCenter() ? 50 : 100));
+					// LFGR_TODO: National rev idx doesn't mean anything anymore. Should replace this with *average* rev idx.
+					//iValue += (-(kOwner.getRevIdxNational() * kBuilding.getRevIdxNational()) / (isGovernmentCenter() ? 50 : 100));
+					iValue += (-(getLocalRevIndex() * kBuilding.getRevIdxEffectsAllCities().getRevIdxPerTurn()) / (isGovernmentCenter() ? 50 : 100));
 
 					// Crime
 					iValue += (-(getLocalRevIndex() * (getCrime() / 10)));

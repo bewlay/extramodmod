@@ -1938,9 +1938,9 @@ m_bCastingBlocked(false),
 m_bBlocksUpgrade (false),
 m_bBlocksGifting (false),
 m_bUpgradeOutsideBorders(false),
-m_bAlwaysSpreadReligion(false)
+m_bAlwaysSpreadReligion(false),
 // End MNAI
-
+m_iRevGarrisonValue(0) // lfgr 09/2023 Extra revolution tags
 {
 }
 
@@ -2647,6 +2647,12 @@ bool CvPromotionInfo::isAlwaysSpreadReligion() const
 }
 // End MNAI
 
+// lfgr 09/2023 Extra revolution tags
+int CvPromotionInfo::getRevGarrisonValue() const
+{
+	return m_iRevGarrisonValue;
+}
+
 // Arrays
 
 int CvPromotionInfo::getTerrainAttackPercent(int i) const
@@ -3254,6 +3260,7 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bBlocksGifting, "bBlocksGifting");
 	pXML->GetChildXmlValByName(&m_bUpgradeOutsideBorders, "bUpgradeOutsideBorders");
 	pXML->GetChildXmlValByName(&m_bAlwaysSpreadReligion, "bAlwaysSpreadReligion");
+	pXML->GetChildXmlValByName(&m_iRevGarrisonValue, "iRevGarrisonValue"); // lfgr 09/2023 Extra revolution tags
 	// End MNAI
 
 	return true;
@@ -8357,16 +8364,8 @@ m_iExpInBorderModifier(0),
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
 m_bDisallowInquisitions(false),
-m_iRevIdxLocal(0),
-m_iRevIdxNational(0),
-m_iRevIdxDistanceModifier(0),
-m_iRevIdxHolyCityGood(0),
-m_iRevIdxHolyCityBad(0),
 m_iRevIdxSwitchTo(0),
-m_fRevIdxNationalityMod(0),
-m_fRevIdxGoodReligionMod(0),
-m_fRevIdxBadReligionMod(0),
-m_fRevViolentMod(0),
+m_iRevViolentMod(0), // lfgr 05/2023: Made int modifier
 m_iRevReligiousFreedom(0),
 m_iRevLaborFreedom(0),
 m_iRevEnvironmentalProtection(0),
@@ -8646,54 +8645,15 @@ bool CvCivicInfo::isDisallowInquisitions() const
 	return m_bDisallowInquisitions;
 }
 
-int CvCivicInfo::getRevIdxLocal() const
-{
-	return m_iRevIdxLocal;
-}
-
-int CvCivicInfo::getRevIdxNational() const
-{
-	return m_iRevIdxNational;
-}
-
-int CvCivicInfo::getRevIdxDistanceModifier() const
-{
-	return m_iRevIdxDistanceModifier;
-}
-
-int CvCivicInfo::getRevIdxHolyCityGood() const
-{
-	return m_iRevIdxHolyCityGood;
-}
-
-int CvCivicInfo::getRevIdxHolyCityBad() const
-{
-	return m_iRevIdxHolyCityBad;
-}
-
 int CvCivicInfo::getRevIdxSwitchTo() const
 {
 	return m_iRevIdxSwitchTo;
 }
 
-float CvCivicInfo::getRevIdxNationalityMod() const
+// lfgr 05/2023: Made int modifier
+int CvCivicInfo::getRevViolentMod() const
 {
-	return m_fRevIdxNationalityMod;
-}
-
-float CvCivicInfo::getRevIdxBadReligionMod() const
-{
-	return m_fRevIdxBadReligionMod;
-}
-
-float CvCivicInfo::getRevIdxGoodReligionMod() const
-{
-	return m_fRevIdxGoodReligionMod;
-}
-
-float CvCivicInfo::getRevViolentMod() const
-{
-	return m_fRevViolentMod;
+	return m_iRevViolentMod;
 }
 
 int CvCivicInfo::getRevReligiousFreedom() const
@@ -8976,6 +8936,12 @@ int CvCivicInfo::getImprovementYieldChanges(int i, int j) const
 	return m_ppiImprovementYieldChanges[i][j];
 }
 
+// lfgr Revolution effects 04/2023
+CvRevolutionEffects CvCivicInfo::getRevIdxEffects() const
+{
+	return m_kRevIdxEffects;
+}
+
 void CvCivicInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
@@ -9025,16 +8991,8 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
 	stream->Read(&m_bDisallowInquisitions);
-	stream->Read(&m_iRevIdxLocal);
-	stream->Read(&m_iRevIdxNational);
-	stream->Read(&m_iRevIdxDistanceModifier);
-	stream->Read(&m_iRevIdxHolyCityGood);
-	stream->Read(&m_iRevIdxHolyCityBad);
 	stream->Read(&m_iRevIdxSwitchTo);
-	stream->Read(&m_fRevIdxNationalityMod);
-	stream->Read(&m_fRevIdxBadReligionMod);
-	stream->Read(&m_fRevIdxGoodReligionMod);
-	stream->Read(&m_fRevViolentMod);
+	stream->Read(&m_iRevViolentMod); // lfgr 05/2023: Made int modifier
 	stream->Read(&m_iRevReligiousFreedom);
 	stream->Read(&m_iRevLaborFreedom);
 	stream->Read(&m_iRevEnvironmentalProtection);
@@ -9197,16 +9155,8 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
 	stream->Write(&m_bDisallowInquisitions);
-	stream->Write(&m_iRevIdxLocal);
-	stream->Write(&m_iRevIdxNational);
-	stream->Write(&m_iRevIdxDistanceModifier);
-	stream->Write(&m_iRevIdxHolyCityGood);
-	stream->Write(&m_iRevIdxHolyCityBad);
 	stream->Write(&m_iRevIdxSwitchTo);
-	stream->Write(&m_fRevIdxNationalityMod);
-	stream->Write(&m_fRevIdxBadReligionMod);
-	stream->Write(&m_fRevIdxGoodReligionMod);
-	stream->Write(&m_fRevViolentMod);
+	stream->Write(&m_iRevViolentMod); // lfgr 05/2023: Made int modifier
 	stream->Write(&m_iRevReligiousFreedom);
 	stream->Write(&m_iRevLaborFreedom);
 	stream->Write(&m_iRevEnvironmentalProtection);
@@ -9351,16 +9301,8 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 /* RevCivic Effects                                                                             */
 /************************************************************************************************/
 	pXML->GetChildXmlValByName(&m_bDisallowInquisitions, "bDisallowInquisitions");
-	pXML->GetChildXmlValByName(&m_iRevIdxLocal, "iRevIdxLocal");
-	pXML->GetChildXmlValByName(&m_iRevIdxNational, "iRevIdxNational");
-	pXML->GetChildXmlValByName(&m_iRevIdxDistanceModifier, "iRevIdxDistanceModifier");
-	pXML->GetChildXmlValByName(&m_iRevIdxHolyCityGood, "iRevIdxHolyCityGood");
-	pXML->GetChildXmlValByName(&m_iRevIdxHolyCityBad, "iRevIdxHolyCityBad");
 	pXML->GetChildXmlValByName(&m_iRevIdxSwitchTo, "iRevIdxSwitchTo");
-	pXML->GetChildXmlValByName(&m_fRevIdxNationalityMod, "fRevIdxNationalityMod");
-	pXML->GetChildXmlValByName(&m_fRevIdxBadReligionMod, "fRevIdxBadReligionMod");
-	pXML->GetChildXmlValByName(&m_fRevIdxGoodReligionMod, "fRevIdxGoodReligionMod");
-	pXML->GetChildXmlValByName(&m_fRevViolentMod, "fRevViolentMod");
+	pXML->GetChildXmlValByName(&m_iRevViolentMod, "iRevViolentMod"); // lfgr 05/2023: Made int modifier
 	pXML->GetChildXmlValByName(&m_iRevReligiousFreedom, "iRevReligiousFreedom");
 	pXML->GetChildXmlValByName(&m_iRevLaborFreedom, "iRevLaborFreedom");
 	pXML->GetChildXmlValByName(&m_iRevEnvironmentalProtection, "iRevEnvironmentalProtection");
@@ -9371,6 +9313,9 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 /************************************************************************************************/
 /* REVOLUTION_MOD                          END                                                  */
 /************************************************************************************************/
+
+	// lfgr Revolution effects 04/2023
+	m_kRevIdxEffects.read( pXML );
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"YieldModifiers"))
 	{
@@ -9899,19 +9844,6 @@ m_iDefenseModifier(0),
 m_iBombardDefenseModifier(0),
 m_iAllCityDefenseModifier(0),
 m_iEspionageDefenseModifier(0),
-
-/********************************************************************************/
-/**		REVDCM									4/09/10				phungus420	*/
-/**																				*/
-/**		Building Effects														*/
-/********************************************************************************/
-m_iRevIdxLocal(0),
-m_iRevIdxNational(0),
-m_iRevIdxDistanceModifier(0),
-/********************************************************************************/
-/**		REVDCM									END								*/
-/********************************************************************************/
-
 m_iMissionType(NO_MISSION),
 m_iVoteSourceType(NO_VOTESOURCE),
 m_fVisibilityPriority(0.0f),
@@ -10538,29 +10470,6 @@ int CvBuildingInfo::getEspionageDefenseModifier() const
 {
 	return m_iEspionageDefenseModifier;
 }
-
-/********************************************************************************/
-/**		REVDCM									4/09/10				phungus420	*/
-/**																				*/
-/**		Building Effects														*/
-/********************************************************************************/
-int CvBuildingInfo::getRevIdxLocal() const	
-{
-	return m_iRevIdxLocal;
-}
-
-int CvBuildingInfo::getRevIdxNational() const	
-{
-	return m_iRevIdxNational;
-}
-
-int CvBuildingInfo::getRevIdxDistanceModifier() const	
-{
-	return m_iRevIdxDistanceModifier;
-}
-/********************************************************************************/
-/**		REVDCM									END								*/
-/********************************************************************************/
 
 int CvBuildingInfo::getMissionType() const
 {
@@ -11206,6 +11115,18 @@ bool CvBuildingInfo::isBuildingClassAnyNeededInCity( int  i) const
 }
 // WILDERNESS end
 
+// lfgr Revolution effects 04/2023
+CvRevolutionEffects CvBuildingInfo::getRevIdxEffects() const
+{
+	return m_kRevIdxEffects;
+}
+
+// lfgr Revolution effects 04/2023
+CvRevolutionEffects CvBuildingInfo::getRevIdxEffectsAllCities() const
+{
+	return m_kRevIdxEffectsAllCities;
+}
+
 const TCHAR* CvBuildingInfo::getButton() const
 {
 	const CvArtInfoBuilding * pBuildingArtInfo;
@@ -11357,18 +11278,6 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iBombardDefenseModifier);
 	stream->Read(&m_iAllCityDefenseModifier);
 	stream->Read(&m_iEspionageDefenseModifier);
-
-/********************************************************************************/
-/**		REVDCM									4/09/10				phungus420	*/
-/**																				*/
-/**		Building Effects														*/
-/********************************************************************************/
-	stream->Read(&m_iRevIdxLocal);
-	stream->Read(&m_iRevIdxNational);
-	stream->Read(&m_iRevIdxDistanceModifier);
-/********************************************************************************/
-/**		REVDCM									END								*/
-/********************************************************************************/
 
 	stream->Read(&m_iMissionType);
 	stream->Read(&m_iVoteSourceType);
@@ -11740,18 +11649,6 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iAllCityDefenseModifier);
 	stream->Write(m_iEspionageDefenseModifier);
 
-/********************************************************************************/
-/**		REVDCM									4/09/10				phungus420	*/
-/**																				*/
-/**		Building Effects														*/
-/********************************************************************************/
-	stream->Write(m_iRevIdxLocal);
-	stream->Write(m_iRevIdxNational);
-	stream->Write(m_iRevIdxDistanceModifier);
-/********************************************************************************/
-/**		REVDCM									END								*/
-/********************************************************************************/
-
 	stream->Write(m_iMissionType);
 	stream->Write(m_iVoteSourceType);
 
@@ -11984,6 +11881,22 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
 
+	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "RevolutionEffects" ) )
+	{
+		// lfgr Revolution effects 04/2023
+		m_kRevIdxEffects.read( pXML );
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "RevolutionEffectsAllCities" ) )
+	{
+		// lfgr Revolution effects 04/2023
+		m_kRevIdxEffectsAllCities.read( pXML );
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
 	pXML->GetChildXmlValByName(szTextVal, "Bonus");
 	m_iPrereqAndBonus = pXML->FindInInfoClass(szTextVal);
 
@@ -12148,18 +12061,15 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iBombardDefenseModifier, "iBombardDefense");
 	pXML->GetChildXmlValByName(&m_iAllCityDefenseModifier, "iAllCityDefense");
 	pXML->GetChildXmlValByName(&m_iEspionageDefenseModifier, "iEspionageDefense");
+/********************************************************************************/
 
-/********************************************************************************/
-/**		REVDCM									4/09/10				phungus420	*/
-/**																				*/
-/**		Building Effects														*/
-/********************************************************************************/
-	pXML->GetChildXmlValByName(&m_iRevIdxLocal, "iRevIdxLocal");
-	pXML->GetChildXmlValByName(&m_iRevIdxNational, "iRevIdxNational");
-	pXML->GetChildXmlValByName(&m_iRevIdxDistanceModifier, "iRevIdxDistanceModifier");
-/********************************************************************************/
-/**		REVDCM									END								*/
-/********************************************************************************/
+	// lfgr Revolution effects 04/2023
+	m_kRevIdxEffects.read( pXML );
+	if( gDLL->getXMLIFace()->SetToChildByTagName( pXML->GetXML(), "RevIdxEffectsAllCities" ) )
+	{
+		m_kRevIdxEffectsAllCities.read( pXML );
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
 
 	pXML->GetChildXmlValByName(&m_iAssetValue, "iAsset");
 	pXML->GetChildXmlValByName(&m_iPowerValue, "iPower");

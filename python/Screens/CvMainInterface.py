@@ -4561,7 +4561,7 @@ class CvMainInterface:
 
 # < Revolution Mod Start >
 				if( game.isOption(GameOptionTypes.GAMEOPTION_REVOLUTIONS) and not RevInstances.RevolutionInst == None ) :
-					RevInstances.RevolutionInst.updateLocalRevIndices( CyGame().getGameTurn(), pHeadSelectedCity.getOwner(), subCityList = [pHeadSelectedCity], bIsRevWatch = True)
+					RevInstances.RevolutionInst.updateLocalRevIndices( CyGame().getGameTurn(), pHeadSelectedCity.getOwner(), subCityList = [pHeadSelectedCity], bNoApply = True)
 
 					divisor = RevInstances.RevolutionInst.revInstigatorThreshold
 					revIndex = pHeadSelectedCity.getRevolutionIndex()
@@ -6121,45 +6121,27 @@ class CvMainInterface:
 		screen.hide("REV_WATCH_PANE")
 
 
-	def showRevStatusInfoPane(self):
-		#CyInterface().addImmediateMessage( "Showing Rev Watch info pane","" )
-		# screen = CyGInterfaceScreen( "MainInterface", CvScreenEnums.MAIN_INTERFACE )
-
-		# # Defining the size of the info pane
-		# InfoPaneX = 240
-		# InfoPaneY = screen.getYResolution() - 256
-		# InfoPaneWidth = 350
-		# InfoPaneHeight = 134
-
-		# screen.addPanel( "REV_STATUS_PANE", u"", u"", True, True, \
-						# InfoPaneX, InfoPaneY, InfoPaneWidth, InfoPaneHeight, \
-						# PanelStyles.PANEL_STYLE_MAIN_BLACK50)
-
-		# create text
-		headerString = "=========================="
-		if( CyInterface().getHeadSelectedCity().getOwner() == CyGame().getActivePlayer() ) : headerString = localText.getText("TXT_KEY_REV_STATUS_HEADER",())
-		cityString = RevInstances.RevolutionInst.updateLocalRevIndices(1,CyInterface().getHeadSelectedCity().getOwner(),[CyInterface().getHeadSelectedCity()],True)
-		cityString = cityString.strip('\n')
-		cityString = cityString.replace('\t',' ')
+	def showRevStatusInfoPane(self): # LFGR_TODO: Replace this by a normal popup, best outsource to RevIdxUtils
+		# lfgr 05/2023: Improved and cleaned up
 		
-		#RevolutionDCM start - display national effects in the city screen rev bar mouseover
-		player = CyGame().getActivePlayer()
-		turn = CyGame().getGameTurn()
-		civString = RevInstances.RevolutionInst.updateCivStability(turn, player, true, true)
-		civString = civString.strip('\n')
-		civString = civString.replace('\t', ' ')			
+		import RevIdxUtils # LFGR_TODO?
 		
-		szText = "<font=2>" + headerString + '\n' + cityString + '\n\n' + civString + "</font=2>"
-		#RevolutionDCM end
+		pCity = CyInterface().getHeadSelectedCity()
+		pPlayerCache = RevIdxUtils.PlayerRevIdxCache( pCity.getOwner() )
+		pCityHelper = RevIdxUtils.CityRevIdxHelper( pCity, pPlayerCache )
+
+		szText = "<font=2>"
+		# LFGR_TODO: Should clicking instead lead to the advisor?
+		if pCity.getOwner() == CyGame().getActivePlayer() :
+			szText += localText.getText( "TXT_KEY_REV_STATUS_HEADER", () )
+		else :
+			szText += "=========================="
+		
+		szText += u"\n" + pCityHelper.computeRevIdxPopupHelp()
+		
+		szText += "</font=2>"
 		
 		self.PLE.displayInfoPane(szText)
-
-		# # display text
-		# screen.addMultilineText( "REV_STATUS_TEXT", szText, \
-								# InfoPaneX +5, InfoPaneY +5, \
-								# InfoPaneWidth -3, InfoPaneHeight- 3, \
-								# WidgetTypes.WIDGET_GENERAL, -1, -1, \
-								# CvUtil.FONT_LEFT_JUSTIFY)
 
 	def hideRevStatusInfoPane(self):
 		# screen = CyGInterfaceScreen( "MainInterface", CvScreenEnums.MAIN_INTERFACE )
@@ -6255,8 +6237,6 @@ class CvMainInterface:
 				self.hideRevWatchInfoPane()
 
 			if(inputClass.getNotifyCode() == NotifyCode.NOTIFY_CLICKED and inputClass.getFunctionName() == "RevWatchButton"):
-				#RevolutionDCM - fire new RevWatch screen
-				#RevInstances.RevolutionInst.showRevWatchPopup(gc.getActivePlayer().getID())
 				CvScreensInterface.showRevolutionWatchAdvisor(self)
 
 			if ( inputClass.getNotifyCode() == NotifyCode.NOTIFY_CURSOR_MOVE_ON and inputClass.getFunctionName() == "RevStatusButton"):

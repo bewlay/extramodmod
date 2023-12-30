@@ -3623,6 +3623,12 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 		return false;
 	}
 
+	// lfgr 11/2022: Barbarian Animal AI units can never enter foreign (non-barbarian) cities
+	if (isBarbarian() && AI_getUnitAIType() == UNITAI_ANIMAL && pPlot->isCity() && pPlot->getOwnerINLINE() != getOwnerINLINE())
+	{
+		return false;
+	}
+
 	if (GC.getUSE_SPIES_NO_ENTER_BORDERS())
 	{
 		if (isSpy() && NO_PLAYER != pPlot->getOwnerINLINE())
@@ -20605,6 +20611,21 @@ int CvUnit::getMiscastChance() const {
 	}
 
 	return std::max( 0, iMiscastChance );
+}
+
+// lfgr 09/2023 Extra revolution tags
+int CvUnit::getRevGarrisonValue() const
+{
+	int iGarrisonValue = 1;
+
+	// LFGR_TODO: Make more efficient for next savegame-breaking release
+	for( int ePromotion = 0; ePromotion < GC.getNumPromotionInfos(); ePromotion++ ) {
+		if( isHasPromotion( (PromotionTypes) ePromotion ) ) {
+			iGarrisonValue += GC.getPromotionInfo( (PromotionTypes) ePromotion ).getRevGarrisonValue();
+		}
+	}
+
+	return iGarrisonValue;
 }
 
 // lfgr 01/2022: Refactoring

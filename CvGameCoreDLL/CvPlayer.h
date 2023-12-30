@@ -553,30 +553,6 @@ public:
 	bool isNonStateReligionCommerce() const;
 	void changeNonStateReligionCommerce(int iNewValue);
 
-	int getRevIdxLocal() const;																																		// Exposed to Python
-	void changeRevIdxLocal(int iChange);
-
-	int getRevIdxNational() const;																																		// Exposed to Python
-	void changeRevIdxNational(int iChange);
-
-	int getRevIdxDistanceModifier() const;																																		// Exposed to Python
-	void changeRevIdxDistanceModifier(int iChange);
-
-	int getRevIdxHolyCityGood() const;																																		// Exposed to Python
-	void changeRevIdxHolyCityGood(int iChange);
-
-	int getRevIdxHolyCityBad() const;																																		// Exposed to Python
-	void changeRevIdxHolyCityBad(int iChange);
-
-	float getRevIdxNationalityMod() const;																																		// Exposed to Python
-	void changeRevIdxNationalityMod(float fChange);
-
-	float getRevIdxBadReligionMod() const;																																		// Exposed to Python
-	void changeRevIdxBadReligionMod(float fChange);
-
-	float getRevIdxGoodReligionMod() const;																																		// Exposed to Python
-	void changeRevIdxGoodReligionMod(float fChange);
-
 	bool canInquisition() const;																																		// Exposed to Python
 	void setCanInquisition(bool bNewValue);
 /************************************************************************************************/
@@ -1021,6 +997,10 @@ public:
 	DllExport bool canHurry(HurryTypes eIndex) const;																									// Exposed to Python
 	bool canPopRush();
 	void changeHurryCount(HurryTypes eIndex, int iChange);
+
+	// lfgr 05/2022: Expose inflation
+	int getInflationModifier() const;
+	void changeInflationModifier( int iChange );
 
 	int getSpecialBuildingNotRequiredCount(SpecialBuildingTypes eIndex) const;												// Exposed to Python
 	bool isSpecialBuildingNotRequired(SpecialBuildingTypes eIndex) const;															// Exposed to Python
@@ -1598,14 +1578,6 @@ protected:
 /* Player Functions                                                                             */
 /************************************************************************************************/
 	int m_iNonStateReligionCommerceCount;
-	int m_iRevIdxLocal;
-	int m_iRevIdxNational;
-	int m_iRevIdxDistanceModifier;
-	int m_iRevIdxHolyCityGood;
-	int m_iRevIdxHolyCityBad;
-	float m_fRevIdxNationalityMod;
-	float m_fRevIdxBadReligionMod;
-	float m_fRevIdxGoodReligionMod;
 	bool m_bCanInquisition;
 /************************************************************************************************/
 /* REVDCM                                  END                                                  */
