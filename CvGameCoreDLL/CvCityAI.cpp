@@ -7010,13 +7010,13 @@ int CvCityAI::AI_neededDefenders()
 /************************************************************************************************/
 /* WILDERNESS                             09/2013                                 lfgr          */
 /* WildernessMisc                                                                               */
-/* Also BarbarianAlly AI will declare war agains barbs if too strong.                           */
+/* BarbarianAlly AI may declare war against barbs if too strong.                                */
 /************************************************************************************************/
 /* old
 	if (GET_TEAM(getTeam()).isBarbarianAlly() && !bAtWar)
 */
 	// LFGR_TODO: Multibarb
-	if (GET_TEAM(getTeam()).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) && !bAtWar)
+	if (!GET_TEAM(getTeam()).isAtWar( (TeamTypes) GC.getBARBARIAN_TEAM() ) && !bAtWar)
 /************************************************************************************************/
 /* WILDERNESS                                                                     END           */
 /************************************************************************************************/
