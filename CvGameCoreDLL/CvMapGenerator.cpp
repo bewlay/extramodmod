@@ -1248,6 +1248,7 @@ void CvMapGenerator::addImprovements()
     bool bValid = true;
 	CvPlot* pAdjacentPlot;
 	CvPlot* pPlot;
+	// LFGR_TODO: Shuffle plots
 	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
 	{
 		pPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
@@ -1281,6 +1282,7 @@ void CvMapGenerator::addImprovements()
                 }
                 if (bValid)
                 {
+					// LFGR_TODO: Shuffle improvements
                     for (int iJ = 0; iJ < GC.getNumImprovementInfos(); iJ++)
                     {
 					/************************************************************************************************/
@@ -1312,7 +1314,12 @@ void CvMapGenerator::addImprovements()
 							{
 								// More Lairs in higher wilderness
 								if( !GC.getGameINLINE().isOption( GAMEOPTION_NO_WILDERNESS ) )
-									iProbability += (int) ( iProbability * ( pPlot->getWilderness() * 2 / 100.0 ) );
+								{
+									// LFGR_TODO: Make dependent on inhabited/uninhabited contintents; try to ensure at least one lair per island
+									FAssertMsg( iProbability <= 200, "Improvement appearance probability too high: possible overflow in high wilderness!" );
+									int w =  pPlot->getWilderness();
+									iProbability += (int) ( iProbability * 20 * w*w*w/100/100/100 ); // Increase by factor of 21 in 100 wilderness
+								}
 								
 								if (GC.getGameINLINE().getSorenRandNum( 10000, "Spawn Improvement" ) < iProbability)
 								{
