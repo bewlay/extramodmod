@@ -1,3 +1,15 @@
+## 0.6.0-beta9
+
+Includes MNAI 2.9.2-1u.
+
+### Gameplay
+* More lairs in very high wilderness
+
+### Fixes
+* Encoding error in Great Person popup
+* Typo in "needed city defenders" calculation
+
+
 ## 0.6.0-beta8
 
 # Changelog
