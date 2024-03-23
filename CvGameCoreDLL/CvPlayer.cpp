@@ -248,9 +248,9 @@ void CvPlayer::addRandomTrait()
 void CvPlayer::setLeaderTraits()
 {
 	int iInsane = GC.getInfoTypeForString("TRAIT_INSANE");
-	if (GC.getGameINLINE().isOption(GAMEOPTION_RANDOM_TRAITS) ||
-		(GC.getGameINLINE().isOption(GAMEOPTION_INSANE_LEADERS) &&
-		!GC.getLeaderHeadInfo(getLeaderType()).hasTrait((TraitTypes) iInsane)))
+	if( !isBarbarian() && ( GC.getGameINLINE().isOption(GAMEOPTION_RANDOM_TRAITS) ||
+		( GC.getGameINLINE().isOption(GAMEOPTION_INSANE_LEADERS) &&
+		!GC.getLeaderHeadInfo(getLeaderType()).hasTrait( (TraitTypes) iInsane ) ) ) )
 	{
 		int iNumNormalTraits = 2;
 		bool bInsane = false;
